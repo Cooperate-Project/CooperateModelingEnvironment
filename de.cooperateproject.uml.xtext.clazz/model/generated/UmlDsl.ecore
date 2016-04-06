@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="umlDsl" nsURI="http://www.cooperateproject.de/uml/xtext/clazz/UmlDsl"
     nsPrefix="umlDsl">
-  <eClassifiers xsi:type="ecore:EClass" name="Domainmodel">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Element" containment="true"/>
   </eClassifiers>
@@ -10,12 +10,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Greeting" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="javaTypes" unique="false"
+        upperBound="-1" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmType"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDef" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//ClassName" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassName">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
@@ -32,9 +38,9 @@
         eType="#//Attribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//ConnectorSide"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AssociationEnd"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ConnectorSide"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AssociationEnd"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Connector"/>
@@ -42,7 +48,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinality" eType="#//ConnectorCardinalitiy"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConnectorSide">
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectorLabel">

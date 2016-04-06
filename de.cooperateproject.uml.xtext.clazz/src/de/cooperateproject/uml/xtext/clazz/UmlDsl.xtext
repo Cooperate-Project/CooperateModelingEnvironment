@@ -1,8 +1,12 @@
 grammar de.cooperateproject.uml.xtext.clazz.UmlDsl with org.eclipse.xtext.common.Terminals
 
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
+
 generate umlDsl "http://www.cooperateproject.de/uml/xtext/clazz/UmlDsl"
 
-Domainmodel:
+
+ClassDiagram:
+	{ClassDiagram}
 	'@startclass'
     (elements += Element)*
     '@endclass';
@@ -12,9 +16,10 @@ Element: ClassDef | Class | DataType | Connector;
 DataType:
   'datatype' name = ID;
 
+QualifiedName: ID ('.' ID)* ;
 ClassDef: 'class {' classes += ClassName (',' classes += ClassName)* '}';
 
-ClassName: name = ID;
+ClassName: (name = ID | longname = (STRING | ID) ' as ' name = ID);
 
 Class: type = [ClassName] '{' (members += Member)* '}';
 
@@ -26,14 +31,19 @@ Methode: name=ID'(' (attributes += Attribute (',' attributes += Attribute)*)* ')
 
 Connector: Generalization | Association;
 
-Generalization: left = ConnectorSide 'isa' right = ConnectorSide;
+Generalization: left = AssociationEnd 'isa' right = AssociationEnd;
 
-Association: left = ConnectorSide '-' right = ConnectorSide (cardinality = ConnectorCardinalitiy)?;
+Association: left = AssociationEnd '-' right = AssociationEnd (cardinality = ConnectorCardinalitiy)?;
 
-ConnectorSide: type = [ClassName];
+AssociationEnd: type = [ClassName];
 
 ConnectorLabel: name = ID;
 
-ConnectorCardinalitiy: '[' left = CARDINALITY '|' middle = CARDINALITY ('|' right = ConnectorLabel)?']';
+ConnectorCardinalitiy: 
+	{ConnectorCardinalitiy}
+	'[' (left = Cardinality)? 
+	('|' (middle = Cardinality)?)? 
+	('|' (right = ConnectorLabel)? ('<' | '>')?)?']'
+;
 
-terminal CARDINALITY: ('*')|(('0')|(('1'..'9')('0'))*) '..' ('*')|('0')|(('1'..'9')('0'))*;
+Cardinality: ('*') | (INT '..' (('*') | INT));

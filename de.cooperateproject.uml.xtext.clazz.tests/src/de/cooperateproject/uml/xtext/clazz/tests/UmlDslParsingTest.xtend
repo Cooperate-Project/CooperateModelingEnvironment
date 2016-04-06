@@ -4,7 +4,7 @@
 package de.cooperateproject.uml.xtext.clazz.tests
 
 import com.google.inject.Inject
-import de.cooperateproject.uml.xtext.clazz.umlDsl.Domainmodel
+import de.cooperateproject.uml.xtext.clazz.umlDsl.ClassDiagram
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 class UmlDslParsingTest{
 
 	@Inject
-	ParseHelper<Domainmodel> parseHelper;
+	ParseHelper<ClassDiagram> parseHelper;
 
 	@Test 
 	def void loadModel() {
