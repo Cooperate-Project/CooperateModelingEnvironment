@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.cooperateproject.uml.xtext.clazz
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.cooperateproject.uml.xtext.clazz; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.cooperateproject.uml.xtext.clazz.umlDsl.util,
+ de.cooperateproject.uml.xtext.clazz.parser.antlr,
+ de.cooperateproject.uml.xtext.clazz.scoping,
+ de.cooperateproject.uml.xtext.clazz.generator,
+ de.cooperateproject.uml.xtext.clazz.umlDsl.impl,
+ de.cooperateproject.uml.xtext.clazz.services,
+ de.cooperateproject.uml.xtext.clazz.umlDsl,
+ de.cooperateproject.uml.xtext.clazz.serializer,
+ de.cooperateproject.uml.xtext.clazz.parser.antlr.internal,
+ de.cooperateproject.uml.xtext.clazz.validation,
+ de.cooperateproject.uml.xtext.clazz
+Import-Package: org.apache.log4j

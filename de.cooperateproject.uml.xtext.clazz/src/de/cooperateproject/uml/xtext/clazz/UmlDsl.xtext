@@ -1,0 +1,39 @@
+grammar de.cooperateproject.uml.xtext.clazz.UmlDsl with org.eclipse.xtext.common.Terminals
+
+generate umlDsl "http://www.cooperateproject.de/uml/xtext/clazz/UmlDsl"
+
+Domainmodel:
+	'@startclass'
+    (elements += Element)*
+    '@endclass';
+
+Element: ClassDef | Class | DataType | Connector;
+
+DataType:
+  'datatype' name = ID;
+
+ClassDef: 'class {' classes += ClassName (',' classes += ClassName)* '}';
+
+ClassName: name = ID;
+
+Class: type = [ClassName] '{' (members += Member)* '}';
+
+Member: Attribute | Methode;
+
+Attribute: name = ID ':' (type = [DataType]);
+
+Methode: name=ID'(' (attributes += Attribute (',' attributes += Attribute)*)* ')' (':' (type = [DataType]))?;
+
+Connector: Generalization | Association;
+
+Generalization: left = ConnectorSide 'isa' right = ConnectorSide;
+
+Association: left = ConnectorSide '-' right = ConnectorSide (cardinality = ConnectorCardinalitiy)?;
+
+ConnectorSide: type = [ClassName];
+
+ConnectorLabel: name = ID;
+
+ConnectorCardinalitiy: '[' left = CARDINALITY '|' middle = CARDINALITY ('|' right = ConnectorLabel)?']';
+
+terminal CARDINALITY: ('*')|(('0')|(('1'..'9')('0'))*) '..' ('*')|('0')|(('1'..'9')('0'))*;
