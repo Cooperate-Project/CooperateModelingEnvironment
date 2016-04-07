@@ -31,6 +31,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Member">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type"/>
   </eClassifiers>
@@ -49,6 +50,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Connector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinality" eType="#//ConnectorCardinalitiy"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="note" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
@@ -61,5 +63,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="middle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ConnectorLabel"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PROTECTED" literal="#"/>
+    <eLiterals name="PRIVATE" value="1" literal="-"/>
+    <eLiterals name="DEFAULT" value="2" literal="~"/>
+    <eLiterals name="PUBLIC" value="3" literal="+"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -16,8 +16,11 @@ public class InternalUmlDslLexer extends Lexer {
     public static final int RULE_SL_COMMENT=8;
     public static final int T__19=19;
     public static final int T__15=15;
+    public static final int T__37=37;
     public static final int T__16=16;
+    public static final int T__38=38;
     public static final int T__17=17;
+    public static final int T__39=39;
     public static final int T__18=18;
     public static final int T__11=11;
     public static final int T__33=33;
@@ -44,6 +47,7 @@ public class InternalUmlDslLexer extends Lexer {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
+    public static final int T__40=40;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -167,11 +171,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:16:7: ( '@startclass' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:16:9: '@startclass'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:16:7: ( '#' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:16:9: '#'
             {
-            match("@startclass"); 
-
+            match('#'); 
 
             }
 
@@ -188,11 +191,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:17:7: ( '@endclass' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:17:9: '@endclass'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:17:7: ( '-' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:17:9: '-'
             {
-            match("@endclass"); 
-
+            match('-'); 
 
             }
 
@@ -209,11 +211,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:18:7: ( 'datatype' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:18:9: 'datatype'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:18:7: ( '~' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:18:9: '~'
             {
-            match("datatype"); 
-
+            match('~'); 
 
             }
 
@@ -230,10 +231,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:19:7: ( '{' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:19:9: '{'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:19:7: ( '+' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:19:9: '+'
             {
-            match('{'); 
+            match('+'); 
 
             }
 
@@ -250,10 +251,11 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:20:7: ( '}' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:20:9: '}'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:20:7: ( '@startclass' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:20:9: '@startclass'
             {
-            match('}'); 
+            match("@startclass"); 
+
 
             }
 
@@ -270,10 +272,11 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:21:7: ( ',' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:21:9: ','
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:21:7: ( '@endclass' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:21:9: '@endclass'
             {
-            match(','); 
+            match("@endclass"); 
+
 
             }
 
@@ -290,10 +293,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:22:7: ( ' as ' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:22:9: ' as '
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:22:7: ( 'datatype' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:22:9: 'datatype'
             {
-            match(" as "); 
+            match("datatype"); 
 
 
             }
@@ -311,11 +314,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:23:7: ( 'abstract' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:23:9: 'abstract'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:23:7: ( '{' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:23:9: '{'
             {
-            match("abstract"); 
-
+            match('{'); 
 
             }
 
@@ -332,11 +334,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:24:7: ( 'extends' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:24:9: 'extends'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:24:7: ( '}' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:24:9: '}'
             {
-            match("extends"); 
-
+            match('}'); 
 
             }
 
@@ -353,11 +354,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:25:7: ( 'implements' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:25:9: 'implements'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:25:7: ( ',' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:25:9: ','
             {
-            match("implements"); 
-
+            match(','); 
 
             }
 
@@ -374,10 +374,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:26:7: ( 'static' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:26:9: 'static'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:26:7: ( ' as ' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:26:9: ' as '
             {
-            match("static"); 
+            match(" as "); 
 
 
             }
@@ -395,10 +395,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:27:7: ( 'final' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:27:9: 'final'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:27:7: ( 'abstract' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:27:9: 'abstract'
             {
-            match("final"); 
+            match("abstract"); 
 
 
             }
@@ -416,10 +416,11 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:28:7: ( ':' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:28:9: ':'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:28:7: ( 'extends' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:28:9: 'extends'
             {
-            match(':'); 
+            match("extends"); 
+
 
             }
 
@@ -436,10 +437,11 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:29:7: ( '(' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:29:9: '('
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:29:7: ( 'implements' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:29:9: 'implements'
             {
-            match('('); 
+            match("implements"); 
+
 
             }
 
@@ -456,10 +458,11 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:30:7: ( ')' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:30:9: ')'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:30:7: ( 'static' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:30:9: 'static'
             {
-            match(')'); 
+            match("static"); 
+
 
             }
 
@@ -476,10 +479,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:31:7: ( 'isa' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:31:9: 'isa'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:31:7: ( 'final' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:31:9: 'final'
             {
-            match("isa"); 
+            match("final"); 
 
 
             }
@@ -497,10 +500,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:32:7: ( '-' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:32:9: '-'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:32:7: ( ':' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:32:9: ':'
             {
-            match('-'); 
+            match(':'); 
 
             }
 
@@ -517,10 +520,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:33:7: ( '[' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:33:9: '['
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:33:7: ( '(' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:33:9: '('
             {
-            match('['); 
+            match('('); 
 
             }
 
@@ -537,10 +540,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:34:7: ( ']' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:34:9: ']'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:34:7: ( ')' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:34:9: ')'
             {
-            match(']'); 
+            match(')'); 
 
             }
 
@@ -557,10 +560,11 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:35:7: ( '|' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:35:9: '|'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:35:7: ( 'isa' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:35:9: 'isa'
             {
-            match('|'); 
+            match("isa"); 
+
 
             }
 
@@ -577,8 +581,68 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:36:7: ( '..' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:36:9: '..'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:36:7: ( '[' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:36:9: '['
+            {
+            match('['); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__36"
+
+    // $ANTLR start "T__37"
+    public final void mT__37() throws RecognitionException {
+        try {
+            int _type = T__37;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:37:7: ( ']' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:37:9: ']'
+            {
+            match(']'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__37"
+
+    // $ANTLR start "T__38"
+    public final void mT__38() throws RecognitionException {
+        try {
+            int _type = T__38;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:38:7: ( '|' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:38:9: '|'
+            {
+            match('|'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__38"
+
+    // $ANTLR start "T__39"
+    public final void mT__39() throws RecognitionException {
+        try {
+            int _type = T__39;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:39:7: ( '..' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:39:9: '..'
             {
             match(".."); 
 
@@ -591,17 +655,38 @@ public class InternalUmlDslLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__36"
+    // $ANTLR end "T__39"
+
+    // $ANTLR start "T__40"
+    public final void mT__40() throws RecognitionException {
+        try {
+            int _type = T__40;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:40:7: ( 'note[' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:40:9: 'note['
+            {
+            match("note["); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__40"
 
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3349:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3349:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3735:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3735:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3349:11: ( '^' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3735:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -610,7 +695,7 @@ public class InternalUmlDslLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3349:11: '^'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3735:11: '^'
                     {
                     match('^'); 
 
@@ -628,7 +713,7 @@ public class InternalUmlDslLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3349:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3735:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -677,10 +762,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3351:10: ( ( '0' .. '9' )+ )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3351:12: ( '0' .. '9' )+
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3737:10: ( ( '0' .. '9' )+ )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3737:12: ( '0' .. '9' )+
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3351:12: ( '0' .. '9' )+
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3737:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -694,7 +779,7 @@ public class InternalUmlDslLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3351:13: '0' .. '9'
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3737:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -726,10 +811,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -747,10 +832,10 @@ public class InternalUmlDslLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -766,7 +851,7 @@ public class InternalUmlDslLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:21: '\\\\' .
+                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -774,7 +859,7 @@ public class InternalUmlDslLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -799,10 +884,10 @@ public class InternalUmlDslLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -818,7 +903,7 @@ public class InternalUmlDslLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:54: '\\\\' .
+                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -826,7 +911,7 @@ public class InternalUmlDslLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3353:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3739:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -869,12 +954,12 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3355:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3355:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3741:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3741:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3355:24: ( options {greedy=false; } : . )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3741:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -899,7 +984,7 @@ public class InternalUmlDslLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3355:52: .
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3741:52: .
             	    {
             	    matchAny(); 
 
@@ -929,12 +1014,12 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -947,7 +1032,7 @@ public class InternalUmlDslLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -967,7 +1052,7 @@ public class InternalUmlDslLexer extends Lexer {
                 }
             } while (true);
 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:40: ( ( '\\r' )? '\\n' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -976,9 +1061,9 @@ public class InternalUmlDslLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:41: ( '\\r' )? '\\n'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:41: ( '\\r' )? '\\n'
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:41: ( '\\r' )?
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -987,7 +1072,7 @@ public class InternalUmlDslLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3357:41: '\\r'
+                            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3743:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1019,10 +1104,10 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3359:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3359:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3745:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3745:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3359:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3745:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1076,8 +1161,8 @@ public class InternalUmlDslLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3361:16: ( . )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3361:18: .
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3747:16: ( . )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3747:18: .
             {
             matchAny(); 
 
@@ -1092,8 +1177,8 @@ public class InternalUmlDslLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=33;
+        // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=37;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1279,49 +1364,77 @@ public class InternalUmlDslLexer extends Lexer {
                 }
                 break;
             case 27 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:166: RULE_ID
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:166: T__37
+                {
+                mT__37(); 
+
+                }
+                break;
+            case 28 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:172: T__38
+                {
+                mT__38(); 
+
+                }
+                break;
+            case 29 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:178: T__39
+                {
+                mT__39(); 
+
+                }
+                break;
+            case 30 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:184: T__40
+                {
+                mT__40(); 
+
+                }
+                break;
+            case 31 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:190: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 28 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:174: RULE_INT
+            case 32 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:198: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 29 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:183: RULE_STRING
+            case 33 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:207: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 30 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:195: RULE_ML_COMMENT
+            case 34 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:219: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 31 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:211: RULE_SL_COMMENT
+            case 35 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:235: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 32 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:227: RULE_WS
+            case 36 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:251: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 33 :
-                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:235: RULE_ANY_OTHER
+            case 37 :
+                // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1:259: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1335,161 +1448,174 @@ public class InternalUmlDslLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\2\41\3\uffff\1\37\1\41\3\uffff\1\57\4\41\7\uffff\2\37"+
-        "\2\uffff\3\37\2\uffff\1\41\1\uffff\3\41\5\uffff\1\41\5\uffff\4\41"+
-        "\14\uffff\3\41\1\114\10\41\1\uffff\5\41\1\132\6\41\1\141\1\uffff"+
-        "\5\41\1\147\1\uffff\4\41\1\154\1\uffff\2\41\1\157\1\160\1\uffff"+
-        "\1\161\1\41\3\uffff\1\163\1\uffff";
+        "\1\uffff\2\45\7\uffff\1\43\1\45\3\uffff\1\67\4\45\6\uffff\1\43"+
+        "\1\45\1\43\2\uffff\3\43\2\uffff\1\45\1\uffff\3\45\11\uffff\1\45"+
+        "\5\uffff\4\45\7\uffff\1\45\4\uffff\3\45\1\125\11\45\1\uffff\6\45"+
+        "\1\145\6\45\1\154\2\uffff\5\45\1\162\1\uffff\4\45\1\167\1\uffff"+
+        "\2\45\1\172\1\173\1\uffff\1\174\1\45\3\uffff\1\176\1\uffff";
     static final String DFA12_eofS =
-        "\164\uffff";
+        "\177\uffff";
     static final String DFA12_minS =
-        "\1\0\1\154\1\155\3\uffff\1\145\1\141\3\uffff\1\141\1\142\1\170"+
-        "\1\164\1\151\7\uffff\1\56\1\101\2\uffff\2\0\1\52\2\uffff\1\141\1"+
-        "\uffff\1\164\1\160\1\141\5\uffff\1\164\5\uffff\1\163\1\164\1\141"+
-        "\1\156\14\uffff\1\163\1\145\1\154\1\60\1\141\1\164\1\145\1\164\1"+
-        "\141\1\163\1\162\1\145\1\uffff\1\164\1\162\1\156\1\151\1\154\1\60"+
-        "\1\146\1\155\1\171\1\141\1\144\1\143\1\60\1\uffff\1\141\1\145\1"+
-        "\160\1\143\1\163\1\60\1\uffff\1\143\1\156\1\145\1\164\1\60\1\uffff"+
-        "\1\145\1\164\2\60\1\uffff\1\60\1\163\3\uffff\1\60\1\uffff";
+        "\1\0\1\154\1\155\7\uffff\1\145\1\141\3\uffff\1\141\1\142\1\170"+
+        "\1\164\1\151\6\uffff\1\56\1\157\1\101\2\uffff\2\0\1\52\2\uffff\1"+
+        "\141\1\uffff\1\164\1\160\1\141\11\uffff\1\164\5\uffff\1\163\1\164"+
+        "\1\141\1\156\7\uffff\1\164\4\uffff\1\163\1\145\1\154\1\60\1\141"+
+        "\1\164\1\145\1\164\1\141\1\145\1\163\1\162\1\145\1\uffff\1\164\1"+
+        "\162\1\156\1\151\1\154\1\133\1\60\1\146\1\155\1\171\1\141\1\144"+
+        "\1\143\1\60\2\uffff\1\141\1\145\1\160\1\143\1\163\1\60\1\uffff\1"+
+        "\143\1\156\1\145\1\164\1\60\1\uffff\1\145\1\164\2\60\1\uffff\1\60"+
+        "\1\163\3\uffff\1\60\1\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\154\1\163\3\uffff\1\163\1\141\3\uffff\1\141\1\142\1"+
-        "\170\1\164\1\151\7\uffff\1\56\1\172\2\uffff\2\uffff\1\57\2\uffff"+
-        "\1\141\1\uffff\1\164\1\160\1\141\5\uffff\1\164\5\uffff\1\163\1\164"+
-        "\1\141\1\156\14\uffff\1\163\1\145\1\154\1\172\1\141\1\164\1\145"+
-        "\1\164\1\141\1\163\1\162\1\145\1\uffff\1\164\1\162\1\156\1\151\1"+
-        "\154\1\172\1\146\1\155\1\171\1\141\1\144\1\143\1\172\1\uffff\1\141"+
-        "\1\145\1\160\1\143\1\163\1\172\1\uffff\1\143\1\156\1\145\1\164\1"+
-        "\172\1\uffff\1\145\1\164\2\172\1\uffff\1\172\1\163\3\uffff\1\172"+
-        "\1\uffff";
+        "\1\uffff\1\154\1\163\7\uffff\1\163\1\141\3\uffff\1\141\1\142\1"+
+        "\170\1\164\1\151\6\uffff\1\56\1\157\1\172\2\uffff\2\uffff\1\57\2"+
+        "\uffff\1\141\1\uffff\1\164\1\160\1\141\11\uffff\1\164\5\uffff\1"+
+        "\163\1\164\1\141\1\156\7\uffff\1\164\4\uffff\1\163\1\145\1\154\1"+
+        "\172\1\141\1\164\1\145\1\164\1\141\1\145\1\163\1\162\1\145\1\uffff"+
+        "\1\164\1\162\1\156\1\151\1\154\1\133\1\172\1\146\1\155\1\171\1\141"+
+        "\1\144\1\143\1\172\2\uffff\1\141\1\145\1\160\1\143\1\163\1\172\1"+
+        "\uffff\1\143\1\156\1\145\1\164\1\172\1\uffff\1\145\1\164\2\172\1"+
+        "\uffff\1\172\1\163\3\uffff\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\3\uffff\1\3\1\4\1\5\2\uffff\1\11\1\12\1\13\5\uffff\1\22\1\23\1"+
-        "\24\1\26\1\27\1\30\1\31\2\uffff\1\33\1\34\3\uffff\1\40\1\41\1\uffff"+
-        "\1\33\3\uffff\1\3\1\4\1\5\1\6\1\7\1\uffff\1\11\1\12\1\13\1\14\1"+
-        "\40\4\uffff\1\22\1\23\1\24\1\26\1\27\1\30\1\31\1\32\1\34\1\35\1"+
-        "\36\1\37\14\uffff\1\25\15\uffff\1\1\6\uffff\1\21\5\uffff\1\20\4"+
-        "\uffff\1\16\2\uffff\1\10\1\15\1\2\1\uffff\1\17";
+        "\3\uffff\1\3\1\4\1\5\1\6\1\7\1\10\1\11\2\uffff\1\15\1\16\1\17\5"+
+        "\uffff\1\26\1\27\1\30\1\32\1\33\1\34\3\uffff\1\37\1\40\3\uffff\1"+
+        "\44\1\45\1\uffff\1\37\3\uffff\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12"+
+        "\1\13\1\uffff\1\15\1\16\1\17\1\20\1\44\4\uffff\1\26\1\27\1\30\1"+
+        "\32\1\33\1\34\1\35\1\uffff\1\40\1\41\1\42\1\43\15\uffff\1\31\16"+
+        "\uffff\1\36\1\1\6\uffff\1\25\5\uffff\1\24\4\uffff\1\22\2\uffff\1"+
+        "\14\1\21\1\2\1\uffff\1\23";
     static final String DFA12_specialS =
-        "\1\1\32\uffff\1\0\1\2\127\uffff}>";
+        "\1\2\36\uffff\1\1\1\0\136\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\37\2\36\2\37\1\36\22\37\1\13\1\37\1\33\4\37\1\34\1\21\1"+
-            "\22\1\5\1\37\1\12\1\23\1\27\1\35\12\32\1\20\1\37\1\3\1\37\1"+
-            "\4\1\37\1\6\32\31\1\24\1\37\1\25\1\30\1\31\1\37\1\14\1\31\1"+
-            "\1\1\7\1\15\1\17\2\31\1\2\11\31\1\16\7\31\1\10\1\26\1\11\uff82"+
-            "\37",
-            "\1\40",
-            "\1\43\1\42\4\uffff\1\44",
+            "\11\43\2\42\2\43\1\42\22\43\1\17\1\43\1\37\1\6\3\43\1\40\1"+
+            "\25\1\26\1\5\1\11\1\16\1\7\1\32\1\41\12\36\1\24\1\43\1\3\1\43"+
+            "\1\4\1\43\1\12\32\35\1\27\1\43\1\30\1\34\1\35\1\43\1\20\1\35"+
+            "\1\1\1\13\1\21\1\23\2\35\1\2\4\35\1\33\4\35\1\22\7\35\1\14\1"+
+            "\31\1\15\1\10\uff81\43",
+            "\1\44",
+            "\1\47\1\46\4\uffff\1\50",
             "",
             "",
             "",
-            "\1\51\15\uffff\1\50",
-            "\1\52",
             "",
             "",
             "",
-            "\1\56",
-            "\1\60",
-            "\1\61",
+            "",
+            "\1\61\15\uffff\1\60",
             "\1\62",
-            "\1\63",
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
+            "\1\66",
+            "\1\70",
+            "\1\71",
+            "\1\72",
             "\1\73",
-            "\32\41\4\uffff\1\41\1\uffff\32\41",
             "",
             "",
-            "\0\75",
-            "\0\75",
-            "\1\76\4\uffff\1\77",
             "",
             "",
-            "\1\100",
             "",
-            "\1\101",
+            "",
             "\1\102",
             "\1\103",
+            "\32\45\4\uffff\1\45\1\uffff\32\45",
             "",
             "",
+            "\0\105",
+            "\0\105",
+            "\1\106\4\uffff\1\107",
             "",
             "",
-            "",
-            "\1\104",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\105",
-            "\1\106",
-            "\1\107",
             "\1\110",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "",
             "\1\111",
             "\1\112",
             "\1\113",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\114",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\115",
             "\1\116",
             "\1\117",
             "\1\120",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\121",
+            "",
+            "",
+            "",
+            "",
             "\1\122",
             "\1\123",
             "\1\124",
-            "",
-            "\1\125",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
             "\1\126",
             "\1\127",
             "\1\130",
             "\1\131",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\132",
             "\1\133",
             "\1\134",
             "\1\135",
             "\1\136",
+            "",
             "\1\137",
             "\1\140",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "",
+            "\1\141",
             "\1\142",
             "\1\143",
             "\1\144",
-            "\1\145",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
             "\1\146",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "",
+            "\1\147",
             "\1\150",
             "\1\151",
             "\1\152",
             "\1\153",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "",
             "",
             "\1\155",
             "\1\156",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\157",
+            "\1\160",
+            "\1\161",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
             "",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "\1\162",
+            "\1\163",
+            "\1\164",
+            "\1\165",
+            "\1\166",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "",
+            "\1\170",
+            "\1\171",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\1\175",
             "",
             "",
             "",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
             ""
     };
 
@@ -1523,23 +1649,33 @@ public class InternalUmlDslLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_27 = input.LA(1);
+                        int LA12_32 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_27>='\u0000' && LA12_27<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA12_32>='\u0000' && LA12_32<='\uFFFF')) ) {s = 69;}
 
-                        else s = 31;
+                        else s = 35;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA12_31 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_31>='\u0000' && LA12_31<='\uFFFF')) ) {s = 69;}
+
+                        else s = 35;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -1553,67 +1689,65 @@ public class InternalUmlDslLexer extends Lexer {
 
                         else if ( (LA12_0=='*') ) {s = 5;}
 
-                        else if ( (LA12_0=='@') ) {s = 6;}
+                        else if ( (LA12_0=='#') ) {s = 6;}
 
-                        else if ( (LA12_0=='d') ) {s = 7;}
+                        else if ( (LA12_0=='-') ) {s = 7;}
 
-                        else if ( (LA12_0=='{') ) {s = 8;}
+                        else if ( (LA12_0=='~') ) {s = 8;}
 
-                        else if ( (LA12_0=='}') ) {s = 9;}
+                        else if ( (LA12_0=='+') ) {s = 9;}
 
-                        else if ( (LA12_0==',') ) {s = 10;}
+                        else if ( (LA12_0=='@') ) {s = 10;}
 
-                        else if ( (LA12_0==' ') ) {s = 11;}
+                        else if ( (LA12_0=='d') ) {s = 11;}
 
-                        else if ( (LA12_0=='a') ) {s = 12;}
+                        else if ( (LA12_0=='{') ) {s = 12;}
 
-                        else if ( (LA12_0=='e') ) {s = 13;}
+                        else if ( (LA12_0=='}') ) {s = 13;}
 
-                        else if ( (LA12_0=='s') ) {s = 14;}
+                        else if ( (LA12_0==',') ) {s = 14;}
 
-                        else if ( (LA12_0=='f') ) {s = 15;}
+                        else if ( (LA12_0==' ') ) {s = 15;}
 
-                        else if ( (LA12_0==':') ) {s = 16;}
+                        else if ( (LA12_0=='a') ) {s = 16;}
 
-                        else if ( (LA12_0=='(') ) {s = 17;}
+                        else if ( (LA12_0=='e') ) {s = 17;}
 
-                        else if ( (LA12_0==')') ) {s = 18;}
+                        else if ( (LA12_0=='s') ) {s = 18;}
 
-                        else if ( (LA12_0=='-') ) {s = 19;}
+                        else if ( (LA12_0=='f') ) {s = 19;}
 
-                        else if ( (LA12_0=='[') ) {s = 20;}
+                        else if ( (LA12_0==':') ) {s = 20;}
 
-                        else if ( (LA12_0==']') ) {s = 21;}
+                        else if ( (LA12_0=='(') ) {s = 21;}
 
-                        else if ( (LA12_0=='|') ) {s = 22;}
+                        else if ( (LA12_0==')') ) {s = 22;}
 
-                        else if ( (LA12_0=='.') ) {s = 23;}
+                        else if ( (LA12_0=='[') ) {s = 23;}
 
-                        else if ( (LA12_0=='^') ) {s = 24;}
+                        else if ( (LA12_0==']') ) {s = 24;}
 
-                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||LA12_0=='b'||(LA12_0>='g' && LA12_0<='h')||(LA12_0>='j' && LA12_0<='r')||(LA12_0>='t' && LA12_0<='z')) ) {s = 25;}
+                        else if ( (LA12_0=='|') ) {s = 25;}
 
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 26;}
+                        else if ( (LA12_0=='.') ) {s = 26;}
 
-                        else if ( (LA12_0=='\"') ) {s = 27;}
+                        else if ( (LA12_0=='n') ) {s = 27;}
 
-                        else if ( (LA12_0=='\'') ) {s = 28;}
+                        else if ( (LA12_0=='^') ) {s = 28;}
 
-                        else if ( (LA12_0=='/') ) {s = 29;}
+                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||LA12_0=='b'||(LA12_0>='g' && LA12_0<='h')||(LA12_0>='j' && LA12_0<='m')||(LA12_0>='o' && LA12_0<='r')||(LA12_0>='t' && LA12_0<='z')) ) {s = 29;}
 
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r') ) {s = 30;}
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 30;}
 
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||LA12_0=='+'||LA12_0==';'||LA12_0=='='||LA12_0=='?'||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 31;}
+                        else if ( (LA12_0=='\"') ) {s = 31;}
 
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA12_28 = input.LA(1);
+                        else if ( (LA12_0=='\'') ) {s = 32;}
 
-                        s = -1;
-                        if ( ((LA12_28>='\u0000' && LA12_28<='\uFFFF')) ) {s = 61;}
+                        else if ( (LA12_0=='/') ) {s = 33;}
 
-                        else s = 31;
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r') ) {s = 34;}
+
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='$' && LA12_0<='&')||LA12_0==';'||LA12_0=='='||LA12_0=='?'||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='\u007F' && LA12_0<='\uFFFF')) ) {s = 35;}
 
                         if ( s>=0 ) return s;
                         break;

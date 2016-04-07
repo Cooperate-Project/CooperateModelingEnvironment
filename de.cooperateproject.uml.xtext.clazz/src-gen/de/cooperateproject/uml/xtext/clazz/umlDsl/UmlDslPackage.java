@@ -4,6 +4,7 @@ package de.cooperateproject.uml.xtext.clazz.umlDsl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -319,13 +320,22 @@ public interface UmlDslPackage extends EPackage
   int MEMBER = 9;
 
   /**
+   * The feature id for the '<em><b>Visibility</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MEMBER__VISIBILITY = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MEMBER__NAME = 0;
+  int MEMBER__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -334,7 +344,7 @@ public interface UmlDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MEMBER__TYPE = 1;
+  int MEMBER__TYPE = 2;
 
   /**
    * The number of structural features of the '<em>Member</em>' class.
@@ -343,7 +353,7 @@ public interface UmlDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MEMBER_FEATURE_COUNT = 2;
+  int MEMBER_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -354,6 +364,15 @@ public interface UmlDslPackage extends EPackage
    * @generated
    */
   int ATTRIBUTE = 10;
+
+  /**
+   * The feature id for the '<em><b>Visibility</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__VISIBILITY = MEMBER__VISIBILITY;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -391,6 +410,15 @@ public interface UmlDslPackage extends EPackage
    * @generated
    */
   int METHODE = 11;
+
+  /**
+   * The feature id for the '<em><b>Visibility</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHODE__VISIBILITY = MEMBER__VISIBILITY;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -540,13 +568,22 @@ public interface UmlDslPackage extends EPackage
   int ASSOCIATION__CARDINALITY = CONNECTOR_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Note</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSOCIATION__NOTE = CONNECTOR_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Association</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSOCIATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 1;
+  int ASSOCIATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.AssociationEndImpl <em>Association End</em>}' class.
@@ -649,6 +686,16 @@ public interface UmlDslPackage extends EPackage
    * @ordered
    */
   int CONNECTOR_CARDINALITIY_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility <em>Visibility</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.impl.UmlDslPackageImpl#getVisibility()
+   * @generated
+   */
+  int VISIBILITY = 18;
 
 
   /**
@@ -851,6 +898,17 @@ public interface UmlDslPackage extends EPackage
   EClass getMember();
 
   /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getVisibility <em>Visibility</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Visibility</em>'.
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getVisibility()
+   * @see #getMember()
+   * @generated
+   */
+  EAttribute getMember_Visibility();
+
+  /**
    * Returns the meta object for the attribute '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -967,6 +1025,17 @@ public interface UmlDslPackage extends EPackage
   EReference getAssociation_Cardinality();
 
   /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Association#getNote <em>Note</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Note</em>'.
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Association#getNote()
+   * @see #getAssociation()
+   * @generated
+   */
+  EAttribute getAssociation_Note();
+
+  /**
    * Returns the meta object for class '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.AssociationEnd <em>Association End</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1050,6 +1119,16 @@ public interface UmlDslPackage extends EPackage
    * @generated
    */
   EReference getConnectorCardinalitiy_Right();
+
+  /**
+   * Returns the meta object for enum '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility <em>Visibility</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Visibility</em>'.
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility
+   * @generated
+   */
+  EEnum getVisibility();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1247,6 +1326,14 @@ public interface UmlDslPackage extends EPackage
     EClass MEMBER = eINSTANCE.getMember();
 
     /**
+     * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MEMBER__VISIBILITY = eINSTANCE.getMember_Visibility();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1345,6 +1432,14 @@ public interface UmlDslPackage extends EPackage
     EReference ASSOCIATION__CARDINALITY = eINSTANCE.getAssociation_Cardinality();
 
     /**
+     * The meta object literal for the '<em><b>Note</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSOCIATION__NOTE = eINSTANCE.getAssociation_Note();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.AssociationEndImpl <em>Association End</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1413,6 +1508,16 @@ public interface UmlDslPackage extends EPackage
      * @generated
      */
     EReference CONNECTOR_CARDINALITIY__RIGHT = eINSTANCE.getConnectorCardinalitiy_Right();
+
+    /**
+     * The meta object literal for the '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility <em>Visibility</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility
+     * @see de.cooperateproject.uml.xtext.clazz.umlDsl.impl.UmlDslPackageImpl#getVisibility()
+     * @generated
+     */
+    EEnum VISIBILITY = eINSTANCE.getVisibility();
 
   }
 

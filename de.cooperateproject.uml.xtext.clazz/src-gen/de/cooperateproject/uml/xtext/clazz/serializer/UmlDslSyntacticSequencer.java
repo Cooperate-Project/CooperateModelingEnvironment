@@ -22,30 +22,30 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected UmlDslGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Attribute_FinalKeyword_1_q;
-	protected AbstractElementAlias match_Attribute_StaticKeyword_0_q;
+	protected AbstractElementAlias match_Attribute_FinalKeyword_2_q;
+	protected AbstractElementAlias match_Attribute_StaticKeyword_1_q;
 	protected AbstractElementAlias match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1;
 	protected AbstractElementAlias match_Class_AbstractKeyword_0_q;
 	protected AbstractElementAlias match_ConnectorCardinalitiy_VerticalLineKeyword_3_0_q;
 	protected AbstractElementAlias match_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q;
 	protected AbstractElementAlias match_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q;
-	protected AbstractElementAlias match_Methode_AbstractKeyword_0_q;
-	protected AbstractElementAlias match_Methode_FinalKeyword_2_q;
-	protected AbstractElementAlias match_Methode_StaticKeyword_1_q;
+	protected AbstractElementAlias match_Methode_AbstractKeyword_1_q;
+	protected AbstractElementAlias match_Methode_FinalKeyword_3_q;
+	protected AbstractElementAlias match_Methode_StaticKeyword_2_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (UmlDslGrammarAccess) access;
-		match_Attribute_FinalKeyword_1_q = new TokenAlias(false, true, grammarAccess.getAttributeAccess().getFinalKeyword_1());
-		match_Attribute_StaticKeyword_0_q = new TokenAlias(false, true, grammarAccess.getAttributeAccess().getStaticKeyword_0());
+		match_Attribute_FinalKeyword_2_q = new TokenAlias(false, true, grammarAccess.getAttributeAccess().getFinalKeyword_2());
+		match_Attribute_StaticKeyword_1_q = new TokenAlias(false, true, grammarAccess.getAttributeAccess().getStaticKeyword_1());
 		match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassDefAccess().getClassKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getClassDefAccess().getInterfaceKeyword_0_1()));
 		match_Class_AbstractKeyword_0_q = new TokenAlias(false, true, grammarAccess.getClassAccess().getAbstractKeyword_0());
 		match_ConnectorCardinalitiy_VerticalLineKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0());
 		match_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getGreaterThanSignKeyword_4_2_1()), new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getLessThanSignKeyword_4_2_0()));
 		match_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0()), new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getGreaterThanSignKeyword_4_2_1()), new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getLessThanSignKeyword_4_2_0())));
-		match_Methode_AbstractKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMethodeAccess().getAbstractKeyword_0());
-		match_Methode_FinalKeyword_2_q = new TokenAlias(false, true, grammarAccess.getMethodeAccess().getFinalKeyword_2());
-		match_Methode_StaticKeyword_1_q = new TokenAlias(false, true, grammarAccess.getMethodeAccess().getStaticKeyword_1());
+		match_Methode_AbstractKeyword_1_q = new TokenAlias(false, true, grammarAccess.getMethodeAccess().getAbstractKeyword_1());
+		match_Methode_FinalKeyword_3_q = new TokenAlias(false, true, grammarAccess.getMethodeAccess().getFinalKeyword_3());
+		match_Methode_StaticKeyword_2_q = new TokenAlias(false, true, grammarAccess.getMethodeAccess().getStaticKeyword_2());
 	}
 	
 	@Override
@@ -60,10 +60,10 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_Attribute_FinalKeyword_1_q.equals(syntax))
-				emit_Attribute_FinalKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Attribute_StaticKeyword_0_q.equals(syntax))
-				emit_Attribute_StaticKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if(match_Attribute_FinalKeyword_2_q.equals(syntax))
+				emit_Attribute_FinalKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Attribute_StaticKeyword_1_q.equals(syntax))
+				emit_Attribute_StaticKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1.equals(syntax))
 				emit_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Class_AbstractKeyword_0_q.equals(syntax))
@@ -74,12 +74,12 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q.equals(syntax))
 				emit_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Methode_AbstractKeyword_0_q.equals(syntax))
-				emit_Methode_AbstractKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Methode_FinalKeyword_2_q.equals(syntax))
-				emit_Methode_FinalKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Methode_StaticKeyword_1_q.equals(syntax))
-				emit_Methode_StaticKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Methode_AbstractKeyword_1_q.equals(syntax))
+				emit_Methode_AbstractKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Methode_FinalKeyword_3_q.equals(syntax))
+				emit_Methode_FinalKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Methode_StaticKeyword_2_q.equals(syntax))
+				emit_Methode_StaticKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -90,8 +90,9 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'static'? (ambiguity) name=ID
+	 *     visibility=Visibility 'static'? (ambiguity) name=ID
 	 */
-	protected void emit_Attribute_FinalKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Attribute_FinalKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -101,8 +102,9 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'final'? name=ID
+	 *     visibility=Visibility (ambiguity) 'final'? name=ID
 	 */
-	protected void emit_Attribute_StaticKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Attribute_StaticKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -172,8 +174,9 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'static'? 'final'? name=ID
+	 *     visibility=Visibility (ambiguity) 'static'? 'final'? name=ID
 	 */
-	protected void emit_Methode_AbstractKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Methode_AbstractKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -183,8 +186,9 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'abstract'? 'static'? (ambiguity) name=ID
+	 *     visibility=Visibility 'abstract'? 'static'? (ambiguity) name=ID
 	 */
-	protected void emit_Methode_FinalKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Methode_FinalKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -194,8 +198,9 @@ public class UmlDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'abstract'? (ambiguity) 'final'? name=ID
+	 *     visibility=Visibility 'abstract'? (ambiguity) 'final'? name=ID
 	 */
-	protected void emit_Methode_StaticKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Methode_StaticKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

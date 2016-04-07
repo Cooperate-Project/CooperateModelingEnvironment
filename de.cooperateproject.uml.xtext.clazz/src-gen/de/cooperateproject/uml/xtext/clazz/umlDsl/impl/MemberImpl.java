@@ -5,6 +5,7 @@ package de.cooperateproject.uml.xtext.clazz.umlDsl.impl;
 import de.cooperateproject.uml.xtext.clazz.umlDsl.Member;
 import de.cooperateproject.uml.xtext.clazz.umlDsl.Type;
 import de.cooperateproject.uml.xtext.clazz.umlDsl.UmlDslPackage;
+import de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.MemberImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.MemberImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.MemberImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -30,6 +32,26 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class MemberImpl extends MinimalEObjectImpl.Container implements Member
 {
+  /**
+   * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVisibility()
+   * @generated
+   * @ordered
+   */
+  protected static final Visibility VISIBILITY_EDEFAULT = Visibility.PROTECTED;
+
+  /**
+   * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVisibility()
+   * @generated
+   * @ordered
+   */
+  protected Visibility visibility = VISIBILITY_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -79,6 +101,29 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
   protected EClass eStaticClass()
   {
     return UmlDslPackage.Literals.MEMBER;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Visibility getVisibility()
+  {
+    return visibility;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setVisibility(Visibility newVisibility)
+  {
+    Visibility oldVisibility = visibility;
+    visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlDslPackage.MEMBER__VISIBILITY, oldVisibility, visibility));
   }
 
   /**
@@ -157,6 +202,8 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
   {
     switch (featureID)
     {
+      case UmlDslPackage.MEMBER__VISIBILITY:
+        return getVisibility();
       case UmlDslPackage.MEMBER__NAME:
         return getName();
       case UmlDslPackage.MEMBER__TYPE:
@@ -176,6 +223,9 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
   {
     switch (featureID)
     {
+      case UmlDslPackage.MEMBER__VISIBILITY:
+        setVisibility((Visibility)newValue);
+        return;
       case UmlDslPackage.MEMBER__NAME:
         setName((String)newValue);
         return;
@@ -196,6 +246,9 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
   {
     switch (featureID)
     {
+      case UmlDslPackage.MEMBER__VISIBILITY:
+        setVisibility(VISIBILITY_EDEFAULT);
+        return;
       case UmlDslPackage.MEMBER__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -216,6 +269,8 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
   {
     switch (featureID)
     {
+      case UmlDslPackage.MEMBER__VISIBILITY:
+        return visibility != VISIBILITY_EDEFAULT;
       case UmlDslPackage.MEMBER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UmlDslPackage.MEMBER__TYPE:
@@ -235,7 +290,9 @@ public class MemberImpl extends MinimalEObjectImpl.Container implements Member
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (visibility: ");
+    result.append(visibility);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

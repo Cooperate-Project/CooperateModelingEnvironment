@@ -22,14 +22,17 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'class'", "'interface'", "'<'", "'>'", "'*'", "'@startclass'", "'@endclass'", "'datatype'", "'{'", "'}'", "','", "' as '", "'abstract'", "'extends'", "'implements'", "'static'", "'final'", "':'", "'('", "')'", "'isa'", "'-'", "'['", "']'", "'|'", "'..'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'class'", "'interface'", "'<'", "'>'", "'*'", "'#'", "'-'", "'~'", "'+'", "'@startclass'", "'@endclass'", "'datatype'", "'{'", "'}'", "','", "' as '", "'abstract'", "'extends'", "'implements'", "'static'", "'final'", "':'", "'('", "')'", "'isa'", "'['", "']'", "'|'", "'..'", "'note['"
     };
     public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
     public static final int T__19=19;
     public static final int T__15=15;
+    public static final int T__37=37;
     public static final int T__16=16;
+    public static final int T__38=38;
     public static final int T__17=17;
+    public static final int T__39=39;
     public static final int T__18=18;
     public static final int T__11=11;
     public static final int T__33=33;
@@ -56,6 +59,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
+    public static final int T__40=40;
     public static final int T__20=20;
     public static final int T__21=21;
 
@@ -1476,14 +1480,138 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleCardinality"
 
 
+    // $ANTLR start "entryRuleNote"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:566:1: entryRuleNote : ruleNote EOF ;
+    public final void entryRuleNote() throws RecognitionException {
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:567:1: ( ruleNote EOF )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:568:1: ruleNote EOF
+            {
+             before(grammarAccess.getNoteRule()); 
+            pushFollow(FOLLOW_ruleNote_in_entryRuleNote1142);
+            ruleNote();
+
+            state._fsp--;
+
+             after(grammarAccess.getNoteRule()); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleNote1149); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleNote"
+
+
+    // $ANTLR start "ruleNote"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:575:1: ruleNote : ( ( rule__Note__Group__0 ) ) ;
+    public final void ruleNote() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:579:2: ( ( ( rule__Note__Group__0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:580:1: ( ( rule__Note__Group__0 ) )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:580:1: ( ( rule__Note__Group__0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:581:1: ( rule__Note__Group__0 )
+            {
+             before(grammarAccess.getNoteAccess().getGroup()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:582:1: ( rule__Note__Group__0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:582:2: rule__Note__Group__0
+            {
+            pushFollow(FOLLOW_rule__Note__Group__0_in_ruleNote1175);
+            rule__Note__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getNoteAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleNote"
+
+
+    // $ANTLR start "ruleVisibility"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:595:1: ruleVisibility : ( ( rule__Visibility__Alternatives ) ) ;
+    public final void ruleVisibility() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:599:1: ( ( ( rule__Visibility__Alternatives ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:600:1: ( ( rule__Visibility__Alternatives ) )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:600:1: ( ( rule__Visibility__Alternatives ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:601:1: ( rule__Visibility__Alternatives )
+            {
+             before(grammarAccess.getVisibilityAccess().getAlternatives()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:602:1: ( rule__Visibility__Alternatives )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:602:2: rule__Visibility__Alternatives
+            {
+            pushFollow(FOLLOW_rule__Visibility__Alternatives_in_ruleVisibility1212);
+            rule__Visibility__Alternatives();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getVisibilityAccess().getAlternatives()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleVisibility"
+
+
     // $ANTLR start "rule__Element__Alternatives"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:566:1: rule__Element__Alternatives : ( ( ruleClassDef ) | ( ruleClass ) | ( ruleDataType ) | ( ruleConnector ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:613:1: rule__Element__Alternatives : ( ( ruleClassDef ) | ( ruleClass ) | ( ruleDataType ) | ( ruleConnector ) );
     public final void rule__Element__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:570:1: ( ( ruleClassDef ) | ( ruleClass ) | ( ruleDataType ) | ( ruleConnector ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:617:1: ( ( ruleClassDef ) | ( ruleClass ) | ( ruleDataType ) | ( ruleConnector ) )
             int alt1=4;
             switch ( input.LA(1) ) {
             case 11:
@@ -1492,7 +1620,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                 alt1=1;
                 }
                 break;
-            case 23:
+            case 27:
                 {
                 alt1=2;
                 }
@@ -1501,10 +1629,10 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                 {
                 int LA1_3 = input.LA(2);
 
-                if ( ((LA1_3>=31 && LA1_3<=32)) ) {
+                if ( (LA1_3==17||LA1_3==35) ) {
                     alt1=4;
                 }
-                else if ( (LA1_3==19||(LA1_3>=24 && LA1_3<=25)) ) {
+                else if ( (LA1_3==23||(LA1_3>=28 && LA1_3<=29)) ) {
                     alt1=2;
                 }
                 else {
@@ -1515,7 +1643,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                 }
                 }
                 break;
-            case 18:
+            case 22:
                 {
                 alt1=3;
                 }
@@ -1529,13 +1657,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
             switch (alt1) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:571:1: ( ruleClassDef )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:618:1: ( ruleClassDef )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:571:1: ( ruleClassDef )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:572:1: ruleClassDef
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:618:1: ( ruleClassDef )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:619:1: ruleClassDef
                     {
                      before(grammarAccess.getElementAccess().getClassDefParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleClassDef_in_rule__Element__Alternatives1151);
+                    pushFollow(FOLLOW_ruleClassDef_in_rule__Element__Alternatives1247);
                     ruleClassDef();
 
                     state._fsp--;
@@ -1548,13 +1676,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:577:6: ( ruleClass )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:624:6: ( ruleClass )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:577:6: ( ruleClass )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:578:1: ruleClass
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:624:6: ( ruleClass )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:625:1: ruleClass
                     {
                      before(grammarAccess.getElementAccess().getClassParserRuleCall_1()); 
-                    pushFollow(FOLLOW_ruleClass_in_rule__Element__Alternatives1168);
+                    pushFollow(FOLLOW_ruleClass_in_rule__Element__Alternatives1264);
                     ruleClass();
 
                     state._fsp--;
@@ -1567,13 +1695,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:583:6: ( ruleDataType )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:630:6: ( ruleDataType )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:583:6: ( ruleDataType )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:584:1: ruleDataType
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:630:6: ( ruleDataType )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:631:1: ruleDataType
                     {
                      before(grammarAccess.getElementAccess().getDataTypeParserRuleCall_2()); 
-                    pushFollow(FOLLOW_ruleDataType_in_rule__Element__Alternatives1185);
+                    pushFollow(FOLLOW_ruleDataType_in_rule__Element__Alternatives1281);
                     ruleDataType();
 
                     state._fsp--;
@@ -1586,13 +1714,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:589:6: ( ruleConnector )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:636:6: ( ruleConnector )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:589:6: ( ruleConnector )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:590:1: ruleConnector
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:636:6: ( ruleConnector )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:637:1: ruleConnector
                     {
                      before(grammarAccess.getElementAccess().getConnectorParserRuleCall_3()); 
-                    pushFollow(FOLLOW_ruleConnector_in_rule__Element__Alternatives1202);
+                    pushFollow(FOLLOW_ruleConnector_in_rule__Element__Alternatives1298);
                     ruleConnector();
 
                     state._fsp--;
@@ -1622,13 +1750,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Alternatives_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:601:1: rule__ClassDef__Alternatives_0 : ( ( 'class' ) | ( 'interface' ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:648:1: rule__ClassDef__Alternatives_0 : ( ( 'class' ) | ( 'interface' ) );
     public final void rule__ClassDef__Alternatives_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:605:1: ( ( 'class' ) | ( 'interface' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:652:1: ( ( 'class' ) | ( 'interface' ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1646,13 +1774,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:606:1: ( 'class' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:653:1: ( 'class' )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:606:1: ( 'class' )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:607:1: 'class'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:653:1: ( 'class' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:654:1: 'class'
                     {
                      before(grammarAccess.getClassDefAccess().getClassKeyword_0_0()); 
-                    match(input,11,FOLLOW_11_in_rule__ClassDef__Alternatives_01236); 
+                    match(input,11,FOLLOW_11_in_rule__ClassDef__Alternatives_01332); 
                      after(grammarAccess.getClassDefAccess().getClassKeyword_0_0()); 
 
                     }
@@ -1661,13 +1789,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:614:6: ( 'interface' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:661:6: ( 'interface' )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:614:6: ( 'interface' )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:615:1: 'interface'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:661:6: ( 'interface' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:662:1: 'interface'
                     {
                      before(grammarAccess.getClassDefAccess().getInterfaceKeyword_0_1()); 
-                    match(input,12,FOLLOW_12_in_rule__ClassDef__Alternatives_01256); 
+                    match(input,12,FOLLOW_12_in_rule__ClassDef__Alternatives_01352); 
                      after(grammarAccess.getClassDefAccess().getInterfaceKeyword_0_1()); 
 
                     }
@@ -1693,24 +1821,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Alternatives"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:627:1: rule__Name__Alternatives : ( ( ( rule__Name__NameAssignment_0 ) ) | ( ( rule__Name__Group_1__0 ) ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:674:1: rule__Name__Alternatives : ( ( ( rule__Name__NameAssignment_0 ) ) | ( ( rule__Name__Group_1__0 ) ) );
     public final void rule__Name__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:631:1: ( ( ( rule__Name__NameAssignment_0 ) ) | ( ( rule__Name__Group_1__0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:678:1: ( ( ( rule__Name__NameAssignment_0 ) ) | ( ( rule__Name__Group_1__0 ) ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
             if ( (LA3_0==RULE_ID) ) {
                 int LA3_1 = input.LA(2);
 
-                if ( (LA3_1==EOF||(LA3_1>=20 && LA3_1<=21)) ) {
-                    alt3=1;
-                }
-                else if ( (LA3_1==22) ) {
+                if ( (LA3_1==26) ) {
                     alt3=2;
+                }
+                else if ( (LA3_1==EOF||(LA3_1>=24 && LA3_1<=25)) ) {
+                    alt3=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -1730,16 +1858,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:632:1: ( ( rule__Name__NameAssignment_0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:679:1: ( ( rule__Name__NameAssignment_0 ) )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:632:1: ( ( rule__Name__NameAssignment_0 ) )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:633:1: ( rule__Name__NameAssignment_0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:679:1: ( ( rule__Name__NameAssignment_0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:680:1: ( rule__Name__NameAssignment_0 )
                     {
                      before(grammarAccess.getNameAccess().getNameAssignment_0()); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:634:1: ( rule__Name__NameAssignment_0 )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:634:2: rule__Name__NameAssignment_0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:681:1: ( rule__Name__NameAssignment_0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:681:2: rule__Name__NameAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__Name__NameAssignment_0_in_rule__Name__Alternatives1290);
+                    pushFollow(FOLLOW_rule__Name__NameAssignment_0_in_rule__Name__Alternatives1386);
                     rule__Name__NameAssignment_0();
 
                     state._fsp--;
@@ -1755,16 +1883,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:638:6: ( ( rule__Name__Group_1__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:685:6: ( ( rule__Name__Group_1__0 ) )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:638:6: ( ( rule__Name__Group_1__0 ) )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:639:1: ( rule__Name__Group_1__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:685:6: ( ( rule__Name__Group_1__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:686:1: ( rule__Name__Group_1__0 )
                     {
                      before(grammarAccess.getNameAccess().getGroup_1()); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:640:1: ( rule__Name__Group_1__0 )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:640:2: rule__Name__Group_1__0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:687:1: ( rule__Name__Group_1__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:687:2: rule__Name__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__Name__Group_1__0_in_rule__Name__Alternatives1308);
+                    pushFollow(FOLLOW_rule__Name__Group_1__0_in_rule__Name__Alternatives1404);
                     rule__Name__Group_1__0();
 
                     state._fsp--;
@@ -1797,13 +1925,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__LongnameAlternatives_1_0_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:649:1: rule__Name__LongnameAlternatives_1_0_0 : ( ( RULE_STRING ) | ( RULE_ID ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:696:1: rule__Name__LongnameAlternatives_1_0_0 : ( ( RULE_STRING ) | ( RULE_ID ) );
     public final void rule__Name__LongnameAlternatives_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:653:1: ( ( RULE_STRING ) | ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:700:1: ( ( RULE_STRING ) | ( RULE_ID ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1821,13 +1949,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:654:1: ( RULE_STRING )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:701:1: ( RULE_STRING )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:654:1: ( RULE_STRING )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:655:1: RULE_STRING
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:701:1: ( RULE_STRING )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:702:1: RULE_STRING
                     {
                      before(grammarAccess.getNameAccess().getLongnameSTRINGTerminalRuleCall_1_0_0_0()); 
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Name__LongnameAlternatives_1_0_01341); 
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Name__LongnameAlternatives_1_0_01437); 
                      after(grammarAccess.getNameAccess().getLongnameSTRINGTerminalRuleCall_1_0_0_0()); 
 
                     }
@@ -1836,13 +1964,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:660:6: ( RULE_ID )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:707:6: ( RULE_ID )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:660:6: ( RULE_ID )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:661:1: RULE_ID
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:707:6: ( RULE_ID )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:708:1: RULE_ID
                     {
                      before(grammarAccess.getNameAccess().getLongnameIDTerminalRuleCall_1_0_0_1()); 
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Name__LongnameAlternatives_1_0_01358); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Name__LongnameAlternatives_1_0_01454); 
                      after(grammarAccess.getNameAccess().getLongnameIDTerminalRuleCall_1_0_0_1()); 
 
                     }
@@ -1868,20 +1996,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Alternatives"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:671:1: rule__Inheritance__Alternatives : ( ( ( rule__Inheritance__Group_0__0 ) ) | ( ( rule__Inheritance__Group_1__0 ) ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:718:1: rule__Inheritance__Alternatives : ( ( ( rule__Inheritance__Group_0__0 ) ) | ( ( rule__Inheritance__Group_1__0 ) ) );
     public final void rule__Inheritance__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:675:1: ( ( ( rule__Inheritance__Group_0__0 ) ) | ( ( rule__Inheritance__Group_1__0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:722:1: ( ( ( rule__Inheritance__Group_0__0 ) ) | ( ( rule__Inheritance__Group_1__0 ) ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==24) ) {
+            if ( (LA5_0==28) ) {
                 alt5=1;
             }
-            else if ( (LA5_0==25) ) {
+            else if ( (LA5_0==29) ) {
                 alt5=2;
             }
             else {
@@ -1892,16 +2020,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:676:1: ( ( rule__Inheritance__Group_0__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:723:1: ( ( rule__Inheritance__Group_0__0 ) )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:676:1: ( ( rule__Inheritance__Group_0__0 ) )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:677:1: ( rule__Inheritance__Group_0__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:723:1: ( ( rule__Inheritance__Group_0__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:724:1: ( rule__Inheritance__Group_0__0 )
                     {
                      before(grammarAccess.getInheritanceAccess().getGroup_0()); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:678:1: ( rule__Inheritance__Group_0__0 )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:678:2: rule__Inheritance__Group_0__0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:725:1: ( rule__Inheritance__Group_0__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:725:2: rule__Inheritance__Group_0__0
                     {
-                    pushFollow(FOLLOW_rule__Inheritance__Group_0__0_in_rule__Inheritance__Alternatives1390);
+                    pushFollow(FOLLOW_rule__Inheritance__Group_0__0_in_rule__Inheritance__Alternatives1486);
                     rule__Inheritance__Group_0__0();
 
                     state._fsp--;
@@ -1917,16 +2045,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:682:6: ( ( rule__Inheritance__Group_1__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:729:6: ( ( rule__Inheritance__Group_1__0 ) )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:682:6: ( ( rule__Inheritance__Group_1__0 ) )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:683:1: ( rule__Inheritance__Group_1__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:729:6: ( ( rule__Inheritance__Group_1__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:730:1: ( rule__Inheritance__Group_1__0 )
                     {
                      before(grammarAccess.getInheritanceAccess().getGroup_1()); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:684:1: ( rule__Inheritance__Group_1__0 )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:684:2: rule__Inheritance__Group_1__0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:731:1: ( rule__Inheritance__Group_1__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:731:2: rule__Inheritance__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__Inheritance__Group_1__0_in_rule__Inheritance__Alternatives1408);
+                    pushFollow(FOLLOW_rule__Inheritance__Group_1__0_in_rule__Inheritance__Alternatives1504);
                     rule__Inheritance__Group_1__0();
 
                     state._fsp--;
@@ -1959,136 +2087,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Member__Alternatives"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:693:1: rule__Member__Alternatives : ( ( ruleAttribute ) | ( ruleMethode ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:740:1: rule__Member__Alternatives : ( ( ruleAttribute ) | ( ruleMethode ) );
     public final void rule__Member__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:697:1: ( ( ruleAttribute ) | ( ruleMethode ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:744:1: ( ( ruleAttribute ) | ( ruleMethode ) )
             int alt6=2;
-            switch ( input.LA(1) ) {
-            case 26:
-                {
-                int LA6_1 = input.LA(2);
-
-                if ( (LA6_1==27) ) {
-                    int LA6_2 = input.LA(3);
-
-                    if ( (LA6_2==RULE_ID) ) {
-                        int LA6_3 = input.LA(4);
-
-                        if ( (LA6_3==29) ) {
-                            alt6=2;
-                        }
-                        else if ( (LA6_3==28) ) {
-                            alt6=1;
-                        }
-                        else {
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 6, 3, input);
-
-                            throw nvae;
-                        }
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 6, 2, input);
-
-                        throw nvae;
-                    }
-                }
-                else if ( (LA6_1==RULE_ID) ) {
-                    int LA6_3 = input.LA(3);
-
-                    if ( (LA6_3==29) ) {
-                        alt6=2;
-                    }
-                    else if ( (LA6_3==28) ) {
-                        alt6=1;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 6, 3, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 6, 1, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 27:
-                {
-                int LA6_2 = input.LA(2);
-
-                if ( (LA6_2==RULE_ID) ) {
-                    int LA6_3 = input.LA(3);
-
-                    if ( (LA6_3==29) ) {
-                        alt6=2;
-                    }
-                    else if ( (LA6_3==28) ) {
-                        alt6=1;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 6, 3, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 6, 2, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case RULE_ID:
-                {
-                int LA6_3 = input.LA(2);
-
-                if ( (LA6_3==29) ) {
-                    alt6=2;
-                }
-                else if ( (LA6_3==28) ) {
-                    alt6=1;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 6, 3, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 23:
-                {
-                alt6=2;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
-
-                throw nvae;
-            }
-
+            alt6 = dfa6.predict(input);
             switch (alt6) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:698:1: ( ruleAttribute )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:745:1: ( ruleAttribute )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:698:1: ( ruleAttribute )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:699:1: ruleAttribute
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:745:1: ( ruleAttribute )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:746:1: ruleAttribute
                     {
                      before(grammarAccess.getMemberAccess().getAttributeParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleAttribute_in_rule__Member__Alternatives1441);
+                    pushFollow(FOLLOW_ruleAttribute_in_rule__Member__Alternatives1537);
                     ruleAttribute();
 
                     state._fsp--;
@@ -2101,13 +2117,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:704:6: ( ruleMethode )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:751:6: ( ruleMethode )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:704:6: ( ruleMethode )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:705:1: ruleMethode
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:751:6: ( ruleMethode )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:752:1: ruleMethode
                     {
                      before(grammarAccess.getMemberAccess().getMethodeParserRuleCall_1()); 
-                    pushFollow(FOLLOW_ruleMethode_in_rule__Member__Alternatives1458);
+                    pushFollow(FOLLOW_ruleMethode_in_rule__Member__Alternatives1554);
                     ruleMethode();
 
                     state._fsp--;
@@ -2137,24 +2153,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Connector__Alternatives"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:715:1: rule__Connector__Alternatives : ( ( ruleGeneralization ) | ( ruleAssociation ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:762:1: rule__Connector__Alternatives : ( ( ruleGeneralization ) | ( ruleAssociation ) );
     public final void rule__Connector__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:719:1: ( ( ruleGeneralization ) | ( ruleAssociation ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:766:1: ( ( ruleGeneralization ) | ( ruleAssociation ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
             if ( (LA7_0==RULE_ID) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==32) ) {
-                    alt7=2;
-                }
-                else if ( (LA7_1==31) ) {
+                if ( (LA7_1==35) ) {
                     alt7=1;
+                }
+                else if ( (LA7_1==17) ) {
+                    alt7=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2171,13 +2187,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:720:1: ( ruleGeneralization )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:767:1: ( ruleGeneralization )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:720:1: ( ruleGeneralization )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:721:1: ruleGeneralization
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:767:1: ( ruleGeneralization )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:768:1: ruleGeneralization
                     {
                      before(grammarAccess.getConnectorAccess().getGeneralizationParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleGeneralization_in_rule__Connector__Alternatives1490);
+                    pushFollow(FOLLOW_ruleGeneralization_in_rule__Connector__Alternatives1586);
                     ruleGeneralization();
 
                     state._fsp--;
@@ -2190,13 +2206,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:726:6: ( ruleAssociation )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:773:6: ( ruleAssociation )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:726:6: ( ruleAssociation )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:727:1: ruleAssociation
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:773:6: ( ruleAssociation )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:774:1: ruleAssociation
                     {
                      before(grammarAccess.getConnectorAccess().getAssociationParserRuleCall_1()); 
-                    pushFollow(FOLLOW_ruleAssociation_in_rule__Connector__Alternatives1507);
+                    pushFollow(FOLLOW_ruleAssociation_in_rule__Connector__Alternatives1603);
                     ruleAssociation();
 
                     state._fsp--;
@@ -2225,21 +2241,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Connector__Alternatives"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__Alternatives_4_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:737:1: rule__ConnectorCardinalitiy__Alternatives_4_2 : ( ( '<' ) | ( '>' ) );
-    public final void rule__ConnectorCardinalitiy__Alternatives_4_2() throws RecognitionException {
+    // $ANTLR start "rule__Association__Alternatives_2"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:784:1: rule__Association__Alternatives_2 : ( ( ( rule__Association__Group_2_0__0 ) ) | ( ( rule__Association__NoteAssignment_2_1 ) ) );
+    public final void rule__Association__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:741:1: ( ( '<' ) | ( '>' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:788:1: ( ( ( rule__Association__Group_2_0__0 ) ) | ( ( rule__Association__NoteAssignment_2_1 ) ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==13) ) {
+            if ( (LA8_0==RULE_ID) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==14) ) {
+            else if ( (LA8_0==40) ) {
                 alt8=2;
             }
             else {
@@ -2250,13 +2266,104 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:742:1: ( '<' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:789:1: ( ( rule__Association__Group_2_0__0 ) )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:742:1: ( '<' )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:743:1: '<'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:789:1: ( ( rule__Association__Group_2_0__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:790:1: ( rule__Association__Group_2_0__0 )
+                    {
+                     before(grammarAccess.getAssociationAccess().getGroup_2_0()); 
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:791:1: ( rule__Association__Group_2_0__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:791:2: rule__Association__Group_2_0__0
+                    {
+                    pushFollow(FOLLOW_rule__Association__Group_2_0__0_in_rule__Association__Alternatives_21635);
+                    rule__Association__Group_2_0__0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getAssociationAccess().getGroup_2_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:795:6: ( ( rule__Association__NoteAssignment_2_1 ) )
+                    {
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:795:6: ( ( rule__Association__NoteAssignment_2_1 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:796:1: ( rule__Association__NoteAssignment_2_1 )
+                    {
+                     before(grammarAccess.getAssociationAccess().getNoteAssignment_2_1()); 
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:797:1: ( rule__Association__NoteAssignment_2_1 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:797:2: rule__Association__NoteAssignment_2_1
+                    {
+                    pushFollow(FOLLOW_rule__Association__NoteAssignment_2_1_in_rule__Association__Alternatives_21653);
+                    rule__Association__NoteAssignment_2_1();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getAssociationAccess().getNoteAssignment_2_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__Alternatives_2"
+
+
+    // $ANTLR start "rule__ConnectorCardinalitiy__Alternatives_4_2"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:806:1: rule__ConnectorCardinalitiy__Alternatives_4_2 : ( ( '<' ) | ( '>' ) );
+    public final void rule__ConnectorCardinalitiy__Alternatives_4_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:810:1: ( ( '<' ) | ( '>' ) )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
+
+            if ( (LA9_0==13) ) {
+                alt9=1;
+            }
+            else if ( (LA9_0==14) ) {
+                alt9=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 9, 0, input);
+
+                throw nvae;
+            }
+            switch (alt9) {
+                case 1 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:811:1: ( '<' )
+                    {
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:811:1: ( '<' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:812:1: '<'
                     {
                      before(grammarAccess.getConnectorCardinalitiyAccess().getLessThanSignKeyword_4_2_0()); 
-                    match(input,13,FOLLOW_13_in_rule__ConnectorCardinalitiy__Alternatives_4_21540); 
+                    match(input,13,FOLLOW_13_in_rule__ConnectorCardinalitiy__Alternatives_4_21687); 
                      after(grammarAccess.getConnectorCardinalitiyAccess().getLessThanSignKeyword_4_2_0()); 
 
                     }
@@ -2265,13 +2372,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:750:6: ( '>' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:819:6: ( '>' )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:750:6: ( '>' )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:751:1: '>'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:819:6: ( '>' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:820:1: '>'
                     {
                      before(grammarAccess.getConnectorCardinalitiyAccess().getGreaterThanSignKeyword_4_2_1()); 
-                    match(input,14,FOLLOW_14_in_rule__ConnectorCardinalitiy__Alternatives_4_21560); 
+                    match(input,14,FOLLOW_14_in_rule__ConnectorCardinalitiy__Alternatives_4_21707); 
                      after(grammarAccess.getConnectorCardinalitiyAccess().getGreaterThanSignKeyword_4_2_1()); 
 
                     }
@@ -2297,37 +2404,37 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Alternatives"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:763:1: rule__Cardinality__Alternatives : ( ( '*' ) | ( ( rule__Cardinality__Group_1__0 ) ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:832:1: rule__Cardinality__Alternatives : ( ( '*' ) | ( ( rule__Cardinality__Group_1__0 ) ) );
     public final void rule__Cardinality__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:767:1: ( ( '*' ) | ( ( rule__Cardinality__Group_1__0 ) ) )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:836:1: ( ( '*' ) | ( ( rule__Cardinality__Group_1__0 ) ) )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0==15) ) {
-                alt9=1;
+            if ( (LA10_0==15) ) {
+                alt10=1;
             }
-            else if ( (LA9_0==RULE_INT) ) {
-                alt9=2;
+            else if ( (LA10_0==RULE_INT) ) {
+                alt10=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:768:1: ( '*' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:837:1: ( '*' )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:768:1: ( '*' )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:769:1: '*'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:837:1: ( '*' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:838:1: '*'
                     {
                      before(grammarAccess.getCardinalityAccess().getAsteriskKeyword_0()); 
-                    match(input,15,FOLLOW_15_in_rule__Cardinality__Alternatives1595); 
+                    match(input,15,FOLLOW_15_in_rule__Cardinality__Alternatives1742); 
                      after(grammarAccess.getCardinalityAccess().getAsteriskKeyword_0()); 
 
                     }
@@ -2336,16 +2443,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:776:6: ( ( rule__Cardinality__Group_1__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:845:6: ( ( rule__Cardinality__Group_1__0 ) )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:776:6: ( ( rule__Cardinality__Group_1__0 ) )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:777:1: ( rule__Cardinality__Group_1__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:845:6: ( ( rule__Cardinality__Group_1__0 ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:846:1: ( rule__Cardinality__Group_1__0 )
                     {
                      before(grammarAccess.getCardinalityAccess().getGroup_1()); 
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:778:1: ( rule__Cardinality__Group_1__0 )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:778:2: rule__Cardinality__Group_1__0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:847:1: ( rule__Cardinality__Group_1__0 )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:847:2: rule__Cardinality__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__Cardinality__Group_1__0_in_rule__Cardinality__Alternatives1614);
+                    pushFollow(FOLLOW_rule__Cardinality__Group_1__0_in_rule__Cardinality__Alternatives1761);
                     rule__Cardinality__Group_1__0();
 
                     state._fsp--;
@@ -2378,37 +2485,37 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Alternatives_1_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:787:1: rule__Cardinality__Alternatives_1_2 : ( ( '*' ) | ( RULE_INT ) );
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:856:1: rule__Cardinality__Alternatives_1_2 : ( ( '*' ) | ( RULE_INT ) );
     public final void rule__Cardinality__Alternatives_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:791:1: ( ( '*' ) | ( RULE_INT ) )
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:860:1: ( ( '*' ) | ( RULE_INT ) )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA10_0==15) ) {
-                alt10=1;
+            if ( (LA11_0==15) ) {
+                alt11=1;
             }
-            else if ( (LA10_0==RULE_INT) ) {
-                alt10=2;
+            else if ( (LA11_0==RULE_INT) ) {
+                alt11=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:792:1: ( '*' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:861:1: ( '*' )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:792:1: ( '*' )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:793:1: '*'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:861:1: ( '*' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:862:1: '*'
                     {
                      before(grammarAccess.getCardinalityAccess().getAsteriskKeyword_1_2_0()); 
-                    match(input,15,FOLLOW_15_in_rule__Cardinality__Alternatives_1_21648); 
+                    match(input,15,FOLLOW_15_in_rule__Cardinality__Alternatives_1_21795); 
                      after(grammarAccess.getCardinalityAccess().getAsteriskKeyword_1_2_0()); 
 
                     }
@@ -2417,13 +2524,13 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:800:6: ( RULE_INT )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:869:6: ( RULE_INT )
                     {
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:800:6: ( RULE_INT )
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:801:1: RULE_INT
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:869:6: ( RULE_INT )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:870:1: RULE_INT
                     {
                      before(grammarAccess.getCardinalityAccess().getINTTerminalRuleCall_1_2_1()); 
-                    match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Cardinality__Alternatives_1_21667); 
+                    match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Cardinality__Alternatives_1_21814); 
                      after(grammarAccess.getCardinalityAccess().getINTTerminalRuleCall_1_2_1()); 
 
                     }
@@ -2448,22 +2555,161 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Cardinality__Alternatives_1_2"
 
 
+    // $ANTLR start "rule__Visibility__Alternatives"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:880:1: rule__Visibility__Alternatives : ( ( ( '#' ) ) | ( ( '-' ) ) | ( ( '~' ) ) | ( ( '+' ) ) );
+    public final void rule__Visibility__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:884:1: ( ( ( '#' ) ) | ( ( '-' ) ) | ( ( '~' ) ) | ( ( '+' ) ) )
+            int alt12=4;
+            switch ( input.LA(1) ) {
+            case 16:
+                {
+                alt12=1;
+                }
+                break;
+            case 17:
+                {
+                alt12=2;
+                }
+                break;
+            case 18:
+                {
+                alt12=3;
+                }
+                break;
+            case 19:
+                {
+                alt12=4;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 12, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt12) {
+                case 1 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:885:1: ( ( '#' ) )
+                    {
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:885:1: ( ( '#' ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:886:1: ( '#' )
+                    {
+                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_0()); 
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:887:1: ( '#' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:887:3: '#'
+                    {
+                    match(input,16,FOLLOW_16_in_rule__Visibility__Alternatives1847); 
+
+                    }
+
+                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:892:6: ( ( '-' ) )
+                    {
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:892:6: ( ( '-' ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:893:1: ( '-' )
+                    {
+                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_1()); 
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:894:1: ( '-' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:894:3: '-'
+                    {
+                    match(input,17,FOLLOW_17_in_rule__Visibility__Alternatives1868); 
+
+                    }
+
+                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_1()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:899:6: ( ( '~' ) )
+                    {
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:899:6: ( ( '~' ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:900:1: ( '~' )
+                    {
+                     before(grammarAccess.getVisibilityAccess().getDEFAULTEnumLiteralDeclaration_2()); 
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:901:1: ( '~' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:901:3: '~'
+                    {
+                    match(input,18,FOLLOW_18_in_rule__Visibility__Alternatives1889); 
+
+                    }
+
+                     after(grammarAccess.getVisibilityAccess().getDEFAULTEnumLiteralDeclaration_2()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:906:6: ( ( '+' ) )
+                    {
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:906:6: ( ( '+' ) )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:907:1: ( '+' )
+                    {
+                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); 
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:908:1: ( '+' )
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:908:3: '+'
+                    {
+                    match(input,19,FOLLOW_19_in_rule__Visibility__Alternatives1910); 
+
+                    }
+
+                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Visibility__Alternatives"
+
+
     // $ANTLR start "rule__ClassDiagram__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:813:1: rule__ClassDiagram__Group__0 : rule__ClassDiagram__Group__0__Impl rule__ClassDiagram__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:920:1: rule__ClassDiagram__Group__0 : rule__ClassDiagram__Group__0__Impl rule__ClassDiagram__Group__1 ;
     public final void rule__ClassDiagram__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:817:1: ( rule__ClassDiagram__Group__0__Impl rule__ClassDiagram__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:818:2: rule__ClassDiagram__Group__0__Impl rule__ClassDiagram__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:924:1: ( rule__ClassDiagram__Group__0__Impl rule__ClassDiagram__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:925:2: rule__ClassDiagram__Group__0__Impl rule__ClassDiagram__Group__1
             {
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__0__Impl_in_rule__ClassDiagram__Group__01697);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__0__Impl_in_rule__ClassDiagram__Group__01943);
             rule__ClassDiagram__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__1_in_rule__ClassDiagram__Group__01700);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__1_in_rule__ClassDiagram__Group__01946);
             rule__ClassDiagram__Group__1();
 
             state._fsp--;
@@ -2487,21 +2733,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:825:1: rule__ClassDiagram__Group__0__Impl : ( () ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:932:1: rule__ClassDiagram__Group__0__Impl : ( () ) ;
     public final void rule__ClassDiagram__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:829:1: ( ( () ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:830:1: ( () )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:936:1: ( ( () ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:937:1: ( () )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:830:1: ( () )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:831:1: ()
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:937:1: ( () )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:938:1: ()
             {
              before(grammarAccess.getClassDiagramAccess().getClassDiagramAction_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:832:1: ()
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:834:1: 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:939:1: ()
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:941:1: 
             {
             }
 
@@ -2524,21 +2770,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:844:1: rule__ClassDiagram__Group__1 : rule__ClassDiagram__Group__1__Impl rule__ClassDiagram__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:951:1: rule__ClassDiagram__Group__1 : rule__ClassDiagram__Group__1__Impl rule__ClassDiagram__Group__2 ;
     public final void rule__ClassDiagram__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:848:1: ( rule__ClassDiagram__Group__1__Impl rule__ClassDiagram__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:849:2: rule__ClassDiagram__Group__1__Impl rule__ClassDiagram__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:955:1: ( rule__ClassDiagram__Group__1__Impl rule__ClassDiagram__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:956:2: rule__ClassDiagram__Group__1__Impl rule__ClassDiagram__Group__2
             {
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__1__Impl_in_rule__ClassDiagram__Group__11758);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__1__Impl_in_rule__ClassDiagram__Group__12004);
             rule__ClassDiagram__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__2_in_rule__ClassDiagram__Group__11761);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__2_in_rule__ClassDiagram__Group__12007);
             rule__ClassDiagram__Group__2();
 
             state._fsp--;
@@ -2562,20 +2808,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:856:1: rule__ClassDiagram__Group__1__Impl : ( '@startclass' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:963:1: rule__ClassDiagram__Group__1__Impl : ( '@startclass' ) ;
     public final void rule__ClassDiagram__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:860:1: ( ( '@startclass' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:861:1: ( '@startclass' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:967:1: ( ( '@startclass' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:968:1: ( '@startclass' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:861:1: ( '@startclass' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:862:1: '@startclass'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:968:1: ( '@startclass' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:969:1: '@startclass'
             {
              before(grammarAccess.getClassDiagramAccess().getStartclassKeyword_1()); 
-            match(input,16,FOLLOW_16_in_rule__ClassDiagram__Group__1__Impl1789); 
+            match(input,20,FOLLOW_20_in_rule__ClassDiagram__Group__1__Impl2035); 
              after(grammarAccess.getClassDiagramAccess().getStartclassKeyword_1()); 
 
             }
@@ -2599,21 +2845,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:875:1: rule__ClassDiagram__Group__2 : rule__ClassDiagram__Group__2__Impl rule__ClassDiagram__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:982:1: rule__ClassDiagram__Group__2 : rule__ClassDiagram__Group__2__Impl rule__ClassDiagram__Group__3 ;
     public final void rule__ClassDiagram__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:879:1: ( rule__ClassDiagram__Group__2__Impl rule__ClassDiagram__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:880:2: rule__ClassDiagram__Group__2__Impl rule__ClassDiagram__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:986:1: ( rule__ClassDiagram__Group__2__Impl rule__ClassDiagram__Group__3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:987:2: rule__ClassDiagram__Group__2__Impl rule__ClassDiagram__Group__3
             {
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__2__Impl_in_rule__ClassDiagram__Group__21820);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__2__Impl_in_rule__ClassDiagram__Group__22066);
             rule__ClassDiagram__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__3_in_rule__ClassDiagram__Group__21823);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__3_in_rule__ClassDiagram__Group__22069);
             rule__ClassDiagram__Group__3();
 
             state._fsp--;
@@ -2637,35 +2883,35 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:887:1: rule__ClassDiagram__Group__2__Impl : ( ( rule__ClassDiagram__ElementsAssignment_2 )* ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:994:1: rule__ClassDiagram__Group__2__Impl : ( ( rule__ClassDiagram__ElementsAssignment_2 )* ) ;
     public final void rule__ClassDiagram__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:891:1: ( ( ( rule__ClassDiagram__ElementsAssignment_2 )* ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:892:1: ( ( rule__ClassDiagram__ElementsAssignment_2 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:998:1: ( ( ( rule__ClassDiagram__ElementsAssignment_2 )* ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:999:1: ( ( rule__ClassDiagram__ElementsAssignment_2 )* )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:892:1: ( ( rule__ClassDiagram__ElementsAssignment_2 )* )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:893:1: ( rule__ClassDiagram__ElementsAssignment_2 )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:999:1: ( ( rule__ClassDiagram__ElementsAssignment_2 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1000:1: ( rule__ClassDiagram__ElementsAssignment_2 )*
             {
              before(grammarAccess.getClassDiagramAccess().getElementsAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:894:1: ( rule__ClassDiagram__ElementsAssignment_2 )*
-            loop11:
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1001:1: ( rule__ClassDiagram__ElementsAssignment_2 )*
+            loop13:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt13=2;
+                int LA13_0 = input.LA(1);
 
-                if ( (LA11_0==RULE_ID||(LA11_0>=11 && LA11_0<=12)||LA11_0==18||LA11_0==23) ) {
-                    alt11=1;
+                if ( (LA13_0==RULE_ID||(LA13_0>=11 && LA13_0<=12)||LA13_0==22||LA13_0==27) ) {
+                    alt13=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt13) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:894:2: rule__ClassDiagram__ElementsAssignment_2
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1001:2: rule__ClassDiagram__ElementsAssignment_2
             	    {
-            	    pushFollow(FOLLOW_rule__ClassDiagram__ElementsAssignment_2_in_rule__ClassDiagram__Group__2__Impl1850);
+            	    pushFollow(FOLLOW_rule__ClassDiagram__ElementsAssignment_2_in_rule__ClassDiagram__Group__2__Impl2096);
             	    rule__ClassDiagram__ElementsAssignment_2();
 
             	    state._fsp--;
@@ -2675,7 +2921,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop13;
                 }
             } while (true);
 
@@ -2702,16 +2948,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:904:1: rule__ClassDiagram__Group__3 : rule__ClassDiagram__Group__3__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1011:1: rule__ClassDiagram__Group__3 : rule__ClassDiagram__Group__3__Impl ;
     public final void rule__ClassDiagram__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:908:1: ( rule__ClassDiagram__Group__3__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:909:2: rule__ClassDiagram__Group__3__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1015:1: ( rule__ClassDiagram__Group__3__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1016:2: rule__ClassDiagram__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__ClassDiagram__Group__3__Impl_in_rule__ClassDiagram__Group__31881);
+            pushFollow(FOLLOW_rule__ClassDiagram__Group__3__Impl_in_rule__ClassDiagram__Group__32127);
             rule__ClassDiagram__Group__3__Impl();
 
             state._fsp--;
@@ -2735,20 +2981,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:915:1: rule__ClassDiagram__Group__3__Impl : ( '@endclass' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1022:1: rule__ClassDiagram__Group__3__Impl : ( '@endclass' ) ;
     public final void rule__ClassDiagram__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:919:1: ( ( '@endclass' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:920:1: ( '@endclass' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1026:1: ( ( '@endclass' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1027:1: ( '@endclass' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:920:1: ( '@endclass' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:921:1: '@endclass'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1027:1: ( '@endclass' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1028:1: '@endclass'
             {
              before(grammarAccess.getClassDiagramAccess().getEndclassKeyword_3()); 
-            match(input,17,FOLLOW_17_in_rule__ClassDiagram__Group__3__Impl1909); 
+            match(input,21,FOLLOW_21_in_rule__ClassDiagram__Group__3__Impl2155); 
              after(grammarAccess.getClassDiagramAccess().getEndclassKeyword_3()); 
 
             }
@@ -2772,21 +3018,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataType__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:942:1: rule__DataType__Group__0 : rule__DataType__Group__0__Impl rule__DataType__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1049:1: rule__DataType__Group__0 : rule__DataType__Group__0__Impl rule__DataType__Group__1 ;
     public final void rule__DataType__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:946:1: ( rule__DataType__Group__0__Impl rule__DataType__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:947:2: rule__DataType__Group__0__Impl rule__DataType__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1053:1: ( rule__DataType__Group__0__Impl rule__DataType__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1054:2: rule__DataType__Group__0__Impl rule__DataType__Group__1
             {
-            pushFollow(FOLLOW_rule__DataType__Group__0__Impl_in_rule__DataType__Group__01948);
+            pushFollow(FOLLOW_rule__DataType__Group__0__Impl_in_rule__DataType__Group__02194);
             rule__DataType__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__DataType__Group__1_in_rule__DataType__Group__01951);
+            pushFollow(FOLLOW_rule__DataType__Group__1_in_rule__DataType__Group__02197);
             rule__DataType__Group__1();
 
             state._fsp--;
@@ -2810,20 +3056,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataType__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:954:1: rule__DataType__Group__0__Impl : ( 'datatype' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1061:1: rule__DataType__Group__0__Impl : ( 'datatype' ) ;
     public final void rule__DataType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:958:1: ( ( 'datatype' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:959:1: ( 'datatype' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1065:1: ( ( 'datatype' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1066:1: ( 'datatype' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:959:1: ( 'datatype' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:960:1: 'datatype'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1066:1: ( 'datatype' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1067:1: 'datatype'
             {
              before(grammarAccess.getDataTypeAccess().getDatatypeKeyword_0()); 
-            match(input,18,FOLLOW_18_in_rule__DataType__Group__0__Impl1979); 
+            match(input,22,FOLLOW_22_in_rule__DataType__Group__0__Impl2225); 
              after(grammarAccess.getDataTypeAccess().getDatatypeKeyword_0()); 
 
             }
@@ -2847,16 +3093,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataType__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:973:1: rule__DataType__Group__1 : rule__DataType__Group__1__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1080:1: rule__DataType__Group__1 : rule__DataType__Group__1__Impl ;
     public final void rule__DataType__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:977:1: ( rule__DataType__Group__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:978:2: rule__DataType__Group__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1084:1: ( rule__DataType__Group__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1085:2: rule__DataType__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__DataType__Group__1__Impl_in_rule__DataType__Group__12010);
+            pushFollow(FOLLOW_rule__DataType__Group__1__Impl_in_rule__DataType__Group__12256);
             rule__DataType__Group__1__Impl();
 
             state._fsp--;
@@ -2880,23 +3126,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataType__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:984:1: rule__DataType__Group__1__Impl : ( ( rule__DataType__NameAssignment_1 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1091:1: rule__DataType__Group__1__Impl : ( ( rule__DataType__NameAssignment_1 ) ) ;
     public final void rule__DataType__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:988:1: ( ( ( rule__DataType__NameAssignment_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:989:1: ( ( rule__DataType__NameAssignment_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1095:1: ( ( ( rule__DataType__NameAssignment_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1096:1: ( ( rule__DataType__NameAssignment_1 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:989:1: ( ( rule__DataType__NameAssignment_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:990:1: ( rule__DataType__NameAssignment_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1096:1: ( ( rule__DataType__NameAssignment_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1097:1: ( rule__DataType__NameAssignment_1 )
             {
              before(grammarAccess.getDataTypeAccess().getNameAssignment_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:991:1: ( rule__DataType__NameAssignment_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:991:2: rule__DataType__NameAssignment_1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1098:1: ( rule__DataType__NameAssignment_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1098:2: rule__DataType__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__DataType__NameAssignment_1_in_rule__DataType__Group__1__Impl2037);
+            pushFollow(FOLLOW_rule__DataType__NameAssignment_1_in_rule__DataType__Group__1__Impl2283);
             rule__DataType__NameAssignment_1();
 
             state._fsp--;
@@ -2927,21 +3173,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1005:1: rule__ClassDef__Group__0 : rule__ClassDef__Group__0__Impl rule__ClassDef__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1112:1: rule__ClassDef__Group__0 : rule__ClassDef__Group__0__Impl rule__ClassDef__Group__1 ;
     public final void rule__ClassDef__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1009:1: ( rule__ClassDef__Group__0__Impl rule__ClassDef__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1010:2: rule__ClassDef__Group__0__Impl rule__ClassDef__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1116:1: ( rule__ClassDef__Group__0__Impl rule__ClassDef__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1117:2: rule__ClassDef__Group__0__Impl rule__ClassDef__Group__1
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group__0__Impl_in_rule__ClassDef__Group__02071);
+            pushFollow(FOLLOW_rule__ClassDef__Group__0__Impl_in_rule__ClassDef__Group__02317);
             rule__ClassDef__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDef__Group__1_in_rule__ClassDef__Group__02074);
+            pushFollow(FOLLOW_rule__ClassDef__Group__1_in_rule__ClassDef__Group__02320);
             rule__ClassDef__Group__1();
 
             state._fsp--;
@@ -2965,23 +3211,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1017:1: rule__ClassDef__Group__0__Impl : ( ( rule__ClassDef__Alternatives_0 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1124:1: rule__ClassDef__Group__0__Impl : ( ( rule__ClassDef__Alternatives_0 ) ) ;
     public final void rule__ClassDef__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1021:1: ( ( ( rule__ClassDef__Alternatives_0 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1022:1: ( ( rule__ClassDef__Alternatives_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1128:1: ( ( ( rule__ClassDef__Alternatives_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1129:1: ( ( rule__ClassDef__Alternatives_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1022:1: ( ( rule__ClassDef__Alternatives_0 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1023:1: ( rule__ClassDef__Alternatives_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1129:1: ( ( rule__ClassDef__Alternatives_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1130:1: ( rule__ClassDef__Alternatives_0 )
             {
              before(grammarAccess.getClassDefAccess().getAlternatives_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1024:1: ( rule__ClassDef__Alternatives_0 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1024:2: rule__ClassDef__Alternatives_0
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1131:1: ( rule__ClassDef__Alternatives_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1131:2: rule__ClassDef__Alternatives_0
             {
-            pushFollow(FOLLOW_rule__ClassDef__Alternatives_0_in_rule__ClassDef__Group__0__Impl2101);
+            pushFollow(FOLLOW_rule__ClassDef__Alternatives_0_in_rule__ClassDef__Group__0__Impl2347);
             rule__ClassDef__Alternatives_0();
 
             state._fsp--;
@@ -3012,21 +3258,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1034:1: rule__ClassDef__Group__1 : rule__ClassDef__Group__1__Impl rule__ClassDef__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1141:1: rule__ClassDef__Group__1 : rule__ClassDef__Group__1__Impl rule__ClassDef__Group__2 ;
     public final void rule__ClassDef__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1038:1: ( rule__ClassDef__Group__1__Impl rule__ClassDef__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1039:2: rule__ClassDef__Group__1__Impl rule__ClassDef__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1145:1: ( rule__ClassDef__Group__1__Impl rule__ClassDef__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1146:2: rule__ClassDef__Group__1__Impl rule__ClassDef__Group__2
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group__1__Impl_in_rule__ClassDef__Group__12131);
+            pushFollow(FOLLOW_rule__ClassDef__Group__1__Impl_in_rule__ClassDef__Group__12377);
             rule__ClassDef__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDef__Group__2_in_rule__ClassDef__Group__12134);
+            pushFollow(FOLLOW_rule__ClassDef__Group__2_in_rule__ClassDef__Group__12380);
             rule__ClassDef__Group__2();
 
             state._fsp--;
@@ -3050,20 +3296,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1046:1: rule__ClassDef__Group__1__Impl : ( '{' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1153:1: rule__ClassDef__Group__1__Impl : ( '{' ) ;
     public final void rule__ClassDef__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1050:1: ( ( '{' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1051:1: ( '{' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1157:1: ( ( '{' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1158:1: ( '{' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1051:1: ( '{' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1052:1: '{'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1158:1: ( '{' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1159:1: '{'
             {
              before(grammarAccess.getClassDefAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,19,FOLLOW_19_in_rule__ClassDef__Group__1__Impl2162); 
+            match(input,23,FOLLOW_23_in_rule__ClassDef__Group__1__Impl2408); 
              after(grammarAccess.getClassDefAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -3087,21 +3333,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1065:1: rule__ClassDef__Group__2 : rule__ClassDef__Group__2__Impl rule__ClassDef__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1172:1: rule__ClassDef__Group__2 : rule__ClassDef__Group__2__Impl rule__ClassDef__Group__3 ;
     public final void rule__ClassDef__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1069:1: ( rule__ClassDef__Group__2__Impl rule__ClassDef__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1070:2: rule__ClassDef__Group__2__Impl rule__ClassDef__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1176:1: ( rule__ClassDef__Group__2__Impl rule__ClassDef__Group__3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1177:2: rule__ClassDef__Group__2__Impl rule__ClassDef__Group__3
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group__2__Impl_in_rule__ClassDef__Group__22193);
+            pushFollow(FOLLOW_rule__ClassDef__Group__2__Impl_in_rule__ClassDef__Group__22439);
             rule__ClassDef__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDef__Group__3_in_rule__ClassDef__Group__22196);
+            pushFollow(FOLLOW_rule__ClassDef__Group__3_in_rule__ClassDef__Group__22442);
             rule__ClassDef__Group__3();
 
             state._fsp--;
@@ -3125,23 +3371,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1077:1: rule__ClassDef__Group__2__Impl : ( ( rule__ClassDef__ClassesAssignment_2 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1184:1: rule__ClassDef__Group__2__Impl : ( ( rule__ClassDef__ClassesAssignment_2 ) ) ;
     public final void rule__ClassDef__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1081:1: ( ( ( rule__ClassDef__ClassesAssignment_2 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1082:1: ( ( rule__ClassDef__ClassesAssignment_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1188:1: ( ( ( rule__ClassDef__ClassesAssignment_2 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1189:1: ( ( rule__ClassDef__ClassesAssignment_2 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1082:1: ( ( rule__ClassDef__ClassesAssignment_2 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1083:1: ( rule__ClassDef__ClassesAssignment_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1189:1: ( ( rule__ClassDef__ClassesAssignment_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1190:1: ( rule__ClassDef__ClassesAssignment_2 )
             {
              before(grammarAccess.getClassDefAccess().getClassesAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1084:1: ( rule__ClassDef__ClassesAssignment_2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1084:2: rule__ClassDef__ClassesAssignment_2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1191:1: ( rule__ClassDef__ClassesAssignment_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1191:2: rule__ClassDef__ClassesAssignment_2
             {
-            pushFollow(FOLLOW_rule__ClassDef__ClassesAssignment_2_in_rule__ClassDef__Group__2__Impl2223);
+            pushFollow(FOLLOW_rule__ClassDef__ClassesAssignment_2_in_rule__ClassDef__Group__2__Impl2469);
             rule__ClassDef__ClassesAssignment_2();
 
             state._fsp--;
@@ -3172,21 +3418,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1094:1: rule__ClassDef__Group__3 : rule__ClassDef__Group__3__Impl rule__ClassDef__Group__4 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1201:1: rule__ClassDef__Group__3 : rule__ClassDef__Group__3__Impl rule__ClassDef__Group__4 ;
     public final void rule__ClassDef__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1098:1: ( rule__ClassDef__Group__3__Impl rule__ClassDef__Group__4 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1099:2: rule__ClassDef__Group__3__Impl rule__ClassDef__Group__4
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1205:1: ( rule__ClassDef__Group__3__Impl rule__ClassDef__Group__4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1206:2: rule__ClassDef__Group__3__Impl rule__ClassDef__Group__4
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group__3__Impl_in_rule__ClassDef__Group__32253);
+            pushFollow(FOLLOW_rule__ClassDef__Group__3__Impl_in_rule__ClassDef__Group__32499);
             rule__ClassDef__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDef__Group__4_in_rule__ClassDef__Group__32256);
+            pushFollow(FOLLOW_rule__ClassDef__Group__4_in_rule__ClassDef__Group__32502);
             rule__ClassDef__Group__4();
 
             state._fsp--;
@@ -3210,35 +3456,35 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1106:1: rule__ClassDef__Group__3__Impl : ( ( rule__ClassDef__Group_3__0 )* ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1213:1: rule__ClassDef__Group__3__Impl : ( ( rule__ClassDef__Group_3__0 )* ) ;
     public final void rule__ClassDef__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1110:1: ( ( ( rule__ClassDef__Group_3__0 )* ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1111:1: ( ( rule__ClassDef__Group_3__0 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1217:1: ( ( ( rule__ClassDef__Group_3__0 )* ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1218:1: ( ( rule__ClassDef__Group_3__0 )* )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1111:1: ( ( rule__ClassDef__Group_3__0 )* )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1112:1: ( rule__ClassDef__Group_3__0 )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1218:1: ( ( rule__ClassDef__Group_3__0 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1219:1: ( rule__ClassDef__Group_3__0 )*
             {
              before(grammarAccess.getClassDefAccess().getGroup_3()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1113:1: ( rule__ClassDef__Group_3__0 )*
-            loop12:
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1220:1: ( rule__ClassDef__Group_3__0 )*
+            loop14:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt14=2;
+                int LA14_0 = input.LA(1);
 
-                if ( (LA12_0==21) ) {
-                    alt12=1;
+                if ( (LA14_0==25) ) {
+                    alt14=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt14) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1113:2: rule__ClassDef__Group_3__0
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1220:2: rule__ClassDef__Group_3__0
             	    {
-            	    pushFollow(FOLLOW_rule__ClassDef__Group_3__0_in_rule__ClassDef__Group__3__Impl2283);
+            	    pushFollow(FOLLOW_rule__ClassDef__Group_3__0_in_rule__ClassDef__Group__3__Impl2529);
             	    rule__ClassDef__Group_3__0();
 
             	    state._fsp--;
@@ -3248,7 +3494,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop12;
+            	    break loop14;
                 }
             } while (true);
 
@@ -3275,16 +3521,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1123:1: rule__ClassDef__Group__4 : rule__ClassDef__Group__4__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1230:1: rule__ClassDef__Group__4 : rule__ClassDef__Group__4__Impl ;
     public final void rule__ClassDef__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1127:1: ( rule__ClassDef__Group__4__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1128:2: rule__ClassDef__Group__4__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1234:1: ( rule__ClassDef__Group__4__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1235:2: rule__ClassDef__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group__4__Impl_in_rule__ClassDef__Group__42314);
+            pushFollow(FOLLOW_rule__ClassDef__Group__4__Impl_in_rule__ClassDef__Group__42560);
             rule__ClassDef__Group__4__Impl();
 
             state._fsp--;
@@ -3308,20 +3554,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group__4__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1134:1: rule__ClassDef__Group__4__Impl : ( '}' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1241:1: rule__ClassDef__Group__4__Impl : ( '}' ) ;
     public final void rule__ClassDef__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1138:1: ( ( '}' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1139:1: ( '}' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1245:1: ( ( '}' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1246:1: ( '}' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1139:1: ( '}' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1140:1: '}'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1246:1: ( '}' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1247:1: '}'
             {
              before(grammarAccess.getClassDefAccess().getRightCurlyBracketKeyword_4()); 
-            match(input,20,FOLLOW_20_in_rule__ClassDef__Group__4__Impl2342); 
+            match(input,24,FOLLOW_24_in_rule__ClassDef__Group__4__Impl2588); 
              after(grammarAccess.getClassDefAccess().getRightCurlyBracketKeyword_4()); 
 
             }
@@ -3345,21 +3591,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group_3__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1163:1: rule__ClassDef__Group_3__0 : rule__ClassDef__Group_3__0__Impl rule__ClassDef__Group_3__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1270:1: rule__ClassDef__Group_3__0 : rule__ClassDef__Group_3__0__Impl rule__ClassDef__Group_3__1 ;
     public final void rule__ClassDef__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1167:1: ( rule__ClassDef__Group_3__0__Impl rule__ClassDef__Group_3__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1168:2: rule__ClassDef__Group_3__0__Impl rule__ClassDef__Group_3__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1274:1: ( rule__ClassDef__Group_3__0__Impl rule__ClassDef__Group_3__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1275:2: rule__ClassDef__Group_3__0__Impl rule__ClassDef__Group_3__1
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group_3__0__Impl_in_rule__ClassDef__Group_3__02383);
+            pushFollow(FOLLOW_rule__ClassDef__Group_3__0__Impl_in_rule__ClassDef__Group_3__02629);
             rule__ClassDef__Group_3__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ClassDef__Group_3__1_in_rule__ClassDef__Group_3__02386);
+            pushFollow(FOLLOW_rule__ClassDef__Group_3__1_in_rule__ClassDef__Group_3__02632);
             rule__ClassDef__Group_3__1();
 
             state._fsp--;
@@ -3383,20 +3629,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group_3__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1175:1: rule__ClassDef__Group_3__0__Impl : ( ',' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1282:1: rule__ClassDef__Group_3__0__Impl : ( ',' ) ;
     public final void rule__ClassDef__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1179:1: ( ( ',' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1180:1: ( ',' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1286:1: ( ( ',' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1287:1: ( ',' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1180:1: ( ',' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1181:1: ','
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1287:1: ( ',' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1288:1: ','
             {
              before(grammarAccess.getClassDefAccess().getCommaKeyword_3_0()); 
-            match(input,21,FOLLOW_21_in_rule__ClassDef__Group_3__0__Impl2414); 
+            match(input,25,FOLLOW_25_in_rule__ClassDef__Group_3__0__Impl2660); 
              after(grammarAccess.getClassDefAccess().getCommaKeyword_3_0()); 
 
             }
@@ -3420,16 +3666,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group_3__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1194:1: rule__ClassDef__Group_3__1 : rule__ClassDef__Group_3__1__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1301:1: rule__ClassDef__Group_3__1 : rule__ClassDef__Group_3__1__Impl ;
     public final void rule__ClassDef__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1198:1: ( rule__ClassDef__Group_3__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1199:2: rule__ClassDef__Group_3__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1305:1: ( rule__ClassDef__Group_3__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1306:2: rule__ClassDef__Group_3__1__Impl
             {
-            pushFollow(FOLLOW_rule__ClassDef__Group_3__1__Impl_in_rule__ClassDef__Group_3__12445);
+            pushFollow(FOLLOW_rule__ClassDef__Group_3__1__Impl_in_rule__ClassDef__Group_3__12691);
             rule__ClassDef__Group_3__1__Impl();
 
             state._fsp--;
@@ -3453,23 +3699,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__Group_3__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1205:1: rule__ClassDef__Group_3__1__Impl : ( ( rule__ClassDef__ClassesAssignment_3_1 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1312:1: rule__ClassDef__Group_3__1__Impl : ( ( rule__ClassDef__ClassesAssignment_3_1 ) ) ;
     public final void rule__ClassDef__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1209:1: ( ( ( rule__ClassDef__ClassesAssignment_3_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1210:1: ( ( rule__ClassDef__ClassesAssignment_3_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1316:1: ( ( ( rule__ClassDef__ClassesAssignment_3_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1317:1: ( ( rule__ClassDef__ClassesAssignment_3_1 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1210:1: ( ( rule__ClassDef__ClassesAssignment_3_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1211:1: ( rule__ClassDef__ClassesAssignment_3_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1317:1: ( ( rule__ClassDef__ClassesAssignment_3_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1318:1: ( rule__ClassDef__ClassesAssignment_3_1 )
             {
              before(grammarAccess.getClassDefAccess().getClassesAssignment_3_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1212:1: ( rule__ClassDef__ClassesAssignment_3_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1212:2: rule__ClassDef__ClassesAssignment_3_1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1319:1: ( rule__ClassDef__ClassesAssignment_3_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1319:2: rule__ClassDef__ClassesAssignment_3_1
             {
-            pushFollow(FOLLOW_rule__ClassDef__ClassesAssignment_3_1_in_rule__ClassDef__Group_3__1__Impl2472);
+            pushFollow(FOLLOW_rule__ClassDef__ClassesAssignment_3_1_in_rule__ClassDef__Group_3__1__Impl2718);
             rule__ClassDef__ClassesAssignment_3_1();
 
             state._fsp--;
@@ -3500,21 +3746,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Group_1__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1226:1: rule__Name__Group_1__0 : rule__Name__Group_1__0__Impl rule__Name__Group_1__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1333:1: rule__Name__Group_1__0 : rule__Name__Group_1__0__Impl rule__Name__Group_1__1 ;
     public final void rule__Name__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1230:1: ( rule__Name__Group_1__0__Impl rule__Name__Group_1__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1231:2: rule__Name__Group_1__0__Impl rule__Name__Group_1__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1337:1: ( rule__Name__Group_1__0__Impl rule__Name__Group_1__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1338:2: rule__Name__Group_1__0__Impl rule__Name__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Name__Group_1__0__Impl_in_rule__Name__Group_1__02506);
+            pushFollow(FOLLOW_rule__Name__Group_1__0__Impl_in_rule__Name__Group_1__02752);
             rule__Name__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Name__Group_1__1_in_rule__Name__Group_1__02509);
+            pushFollow(FOLLOW_rule__Name__Group_1__1_in_rule__Name__Group_1__02755);
             rule__Name__Group_1__1();
 
             state._fsp--;
@@ -3538,23 +3784,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Group_1__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1238:1: rule__Name__Group_1__0__Impl : ( ( rule__Name__LongnameAssignment_1_0 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1345:1: rule__Name__Group_1__0__Impl : ( ( rule__Name__LongnameAssignment_1_0 ) ) ;
     public final void rule__Name__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1242:1: ( ( ( rule__Name__LongnameAssignment_1_0 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1243:1: ( ( rule__Name__LongnameAssignment_1_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1349:1: ( ( ( rule__Name__LongnameAssignment_1_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1350:1: ( ( rule__Name__LongnameAssignment_1_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1243:1: ( ( rule__Name__LongnameAssignment_1_0 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1244:1: ( rule__Name__LongnameAssignment_1_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1350:1: ( ( rule__Name__LongnameAssignment_1_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1351:1: ( rule__Name__LongnameAssignment_1_0 )
             {
              before(grammarAccess.getNameAccess().getLongnameAssignment_1_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1245:1: ( rule__Name__LongnameAssignment_1_0 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1245:2: rule__Name__LongnameAssignment_1_0
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1352:1: ( rule__Name__LongnameAssignment_1_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1352:2: rule__Name__LongnameAssignment_1_0
             {
-            pushFollow(FOLLOW_rule__Name__LongnameAssignment_1_0_in_rule__Name__Group_1__0__Impl2536);
+            pushFollow(FOLLOW_rule__Name__LongnameAssignment_1_0_in_rule__Name__Group_1__0__Impl2782);
             rule__Name__LongnameAssignment_1_0();
 
             state._fsp--;
@@ -3585,21 +3831,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Group_1__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1255:1: rule__Name__Group_1__1 : rule__Name__Group_1__1__Impl rule__Name__Group_1__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1362:1: rule__Name__Group_1__1 : rule__Name__Group_1__1__Impl rule__Name__Group_1__2 ;
     public final void rule__Name__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1259:1: ( rule__Name__Group_1__1__Impl rule__Name__Group_1__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1260:2: rule__Name__Group_1__1__Impl rule__Name__Group_1__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1366:1: ( rule__Name__Group_1__1__Impl rule__Name__Group_1__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1367:2: rule__Name__Group_1__1__Impl rule__Name__Group_1__2
             {
-            pushFollow(FOLLOW_rule__Name__Group_1__1__Impl_in_rule__Name__Group_1__12566);
+            pushFollow(FOLLOW_rule__Name__Group_1__1__Impl_in_rule__Name__Group_1__12812);
             rule__Name__Group_1__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Name__Group_1__2_in_rule__Name__Group_1__12569);
+            pushFollow(FOLLOW_rule__Name__Group_1__2_in_rule__Name__Group_1__12815);
             rule__Name__Group_1__2();
 
             state._fsp--;
@@ -3623,20 +3869,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Group_1__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1267:1: rule__Name__Group_1__1__Impl : ( ' as ' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1374:1: rule__Name__Group_1__1__Impl : ( ' as ' ) ;
     public final void rule__Name__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1271:1: ( ( ' as ' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1272:1: ( ' as ' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1378:1: ( ( ' as ' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1379:1: ( ' as ' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1272:1: ( ' as ' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1273:1: ' as '
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1379:1: ( ' as ' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1380:1: ' as '
             {
              before(grammarAccess.getNameAccess().getAsKeyword_1_1()); 
-            match(input,22,FOLLOW_22_in_rule__Name__Group_1__1__Impl2597); 
+            match(input,26,FOLLOW_26_in_rule__Name__Group_1__1__Impl2843); 
              after(grammarAccess.getNameAccess().getAsKeyword_1_1()); 
 
             }
@@ -3660,16 +3906,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Group_1__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1286:1: rule__Name__Group_1__2 : rule__Name__Group_1__2__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1393:1: rule__Name__Group_1__2 : rule__Name__Group_1__2__Impl ;
     public final void rule__Name__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1290:1: ( rule__Name__Group_1__2__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1291:2: rule__Name__Group_1__2__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1397:1: ( rule__Name__Group_1__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1398:2: rule__Name__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__Name__Group_1__2__Impl_in_rule__Name__Group_1__22628);
+            pushFollow(FOLLOW_rule__Name__Group_1__2__Impl_in_rule__Name__Group_1__22874);
             rule__Name__Group_1__2__Impl();
 
             state._fsp--;
@@ -3693,23 +3939,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__Group_1__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1297:1: rule__Name__Group_1__2__Impl : ( ( rule__Name__NameAssignment_1_2 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1404:1: rule__Name__Group_1__2__Impl : ( ( rule__Name__NameAssignment_1_2 ) ) ;
     public final void rule__Name__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1301:1: ( ( ( rule__Name__NameAssignment_1_2 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1302:1: ( ( rule__Name__NameAssignment_1_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1408:1: ( ( ( rule__Name__NameAssignment_1_2 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1409:1: ( ( rule__Name__NameAssignment_1_2 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1302:1: ( ( rule__Name__NameAssignment_1_2 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1303:1: ( rule__Name__NameAssignment_1_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1409:1: ( ( rule__Name__NameAssignment_1_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1410:1: ( rule__Name__NameAssignment_1_2 )
             {
              before(grammarAccess.getNameAccess().getNameAssignment_1_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1304:1: ( rule__Name__NameAssignment_1_2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1304:2: rule__Name__NameAssignment_1_2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1411:1: ( rule__Name__NameAssignment_1_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1411:2: rule__Name__NameAssignment_1_2
             {
-            pushFollow(FOLLOW_rule__Name__NameAssignment_1_2_in_rule__Name__Group_1__2__Impl2655);
+            pushFollow(FOLLOW_rule__Name__NameAssignment_1_2_in_rule__Name__Group_1__2__Impl2901);
             rule__Name__NameAssignment_1_2();
 
             state._fsp--;
@@ -3740,21 +3986,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1320:1: rule__Class__Group__0 : rule__Class__Group__0__Impl rule__Class__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1427:1: rule__Class__Group__0 : rule__Class__Group__0__Impl rule__Class__Group__1 ;
     public final void rule__Class__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1324:1: ( rule__Class__Group__0__Impl rule__Class__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1325:2: rule__Class__Group__0__Impl rule__Class__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1431:1: ( rule__Class__Group__0__Impl rule__Class__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1432:2: rule__Class__Group__0__Impl rule__Class__Group__1
             {
-            pushFollow(FOLLOW_rule__Class__Group__0__Impl_in_rule__Class__Group__02691);
+            pushFollow(FOLLOW_rule__Class__Group__0__Impl_in_rule__Class__Group__02937);
             rule__Class__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Class__Group__1_in_rule__Class__Group__02694);
+            pushFollow(FOLLOW_rule__Class__Group__1_in_rule__Class__Group__02940);
             rule__Class__Group__1();
 
             state._fsp--;
@@ -3778,31 +4024,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1332:1: rule__Class__Group__0__Impl : ( ( 'abstract' )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1439:1: rule__Class__Group__0__Impl : ( ( 'abstract' )? ) ;
     public final void rule__Class__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1336:1: ( ( ( 'abstract' )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1337:1: ( ( 'abstract' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1443:1: ( ( ( 'abstract' )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1444:1: ( ( 'abstract' )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1337:1: ( ( 'abstract' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1338:1: ( 'abstract' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1444:1: ( ( 'abstract' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1445:1: ( 'abstract' )?
             {
              before(grammarAccess.getClassAccess().getAbstractKeyword_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1339:1: ( 'abstract' )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1446:1: ( 'abstract' )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA13_0==23) ) {
-                alt13=1;
+            if ( (LA15_0==27) ) {
+                alt15=1;
             }
-            switch (alt13) {
+            switch (alt15) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1340:2: 'abstract'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1447:2: 'abstract'
                     {
-                    match(input,23,FOLLOW_23_in_rule__Class__Group__0__Impl2723); 
+                    match(input,27,FOLLOW_27_in_rule__Class__Group__0__Impl2969); 
 
                     }
                     break;
@@ -3832,21 +4078,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1351:1: rule__Class__Group__1 : rule__Class__Group__1__Impl rule__Class__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1458:1: rule__Class__Group__1 : rule__Class__Group__1__Impl rule__Class__Group__2 ;
     public final void rule__Class__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1355:1: ( rule__Class__Group__1__Impl rule__Class__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1356:2: rule__Class__Group__1__Impl rule__Class__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1462:1: ( rule__Class__Group__1__Impl rule__Class__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1463:2: rule__Class__Group__1__Impl rule__Class__Group__2
             {
-            pushFollow(FOLLOW_rule__Class__Group__1__Impl_in_rule__Class__Group__12756);
+            pushFollow(FOLLOW_rule__Class__Group__1__Impl_in_rule__Class__Group__13002);
             rule__Class__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Class__Group__2_in_rule__Class__Group__12759);
+            pushFollow(FOLLOW_rule__Class__Group__2_in_rule__Class__Group__13005);
             rule__Class__Group__2();
 
             state._fsp--;
@@ -3870,23 +4116,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1363:1: rule__Class__Group__1__Impl : ( ( rule__Class__TypeAssignment_1 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1470:1: rule__Class__Group__1__Impl : ( ( rule__Class__TypeAssignment_1 ) ) ;
     public final void rule__Class__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1367:1: ( ( ( rule__Class__TypeAssignment_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1368:1: ( ( rule__Class__TypeAssignment_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1474:1: ( ( ( rule__Class__TypeAssignment_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1475:1: ( ( rule__Class__TypeAssignment_1 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1368:1: ( ( rule__Class__TypeAssignment_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1369:1: ( rule__Class__TypeAssignment_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1475:1: ( ( rule__Class__TypeAssignment_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1476:1: ( rule__Class__TypeAssignment_1 )
             {
              before(grammarAccess.getClassAccess().getTypeAssignment_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1370:1: ( rule__Class__TypeAssignment_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1370:2: rule__Class__TypeAssignment_1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1477:1: ( rule__Class__TypeAssignment_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1477:2: rule__Class__TypeAssignment_1
             {
-            pushFollow(FOLLOW_rule__Class__TypeAssignment_1_in_rule__Class__Group__1__Impl2786);
+            pushFollow(FOLLOW_rule__Class__TypeAssignment_1_in_rule__Class__Group__1__Impl3032);
             rule__Class__TypeAssignment_1();
 
             state._fsp--;
@@ -3917,21 +4163,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1380:1: rule__Class__Group__2 : rule__Class__Group__2__Impl rule__Class__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1487:1: rule__Class__Group__2 : rule__Class__Group__2__Impl rule__Class__Group__3 ;
     public final void rule__Class__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1384:1: ( rule__Class__Group__2__Impl rule__Class__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1385:2: rule__Class__Group__2__Impl rule__Class__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1491:1: ( rule__Class__Group__2__Impl rule__Class__Group__3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1492:2: rule__Class__Group__2__Impl rule__Class__Group__3
             {
-            pushFollow(FOLLOW_rule__Class__Group__2__Impl_in_rule__Class__Group__22816);
+            pushFollow(FOLLOW_rule__Class__Group__2__Impl_in_rule__Class__Group__23062);
             rule__Class__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Class__Group__3_in_rule__Class__Group__22819);
+            pushFollow(FOLLOW_rule__Class__Group__3_in_rule__Class__Group__23065);
             rule__Class__Group__3();
 
             state._fsp--;
@@ -3955,31 +4201,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1392:1: rule__Class__Group__2__Impl : ( ( rule__Class__InheritanceAssignment_2 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1499:1: rule__Class__Group__2__Impl : ( ( rule__Class__InheritanceAssignment_2 )? ) ;
     public final void rule__Class__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1396:1: ( ( ( rule__Class__InheritanceAssignment_2 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1397:1: ( ( rule__Class__InheritanceAssignment_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1503:1: ( ( ( rule__Class__InheritanceAssignment_2 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1504:1: ( ( rule__Class__InheritanceAssignment_2 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1397:1: ( ( rule__Class__InheritanceAssignment_2 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1398:1: ( rule__Class__InheritanceAssignment_2 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1504:1: ( ( rule__Class__InheritanceAssignment_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1505:1: ( rule__Class__InheritanceAssignment_2 )?
             {
              before(grammarAccess.getClassAccess().getInheritanceAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1399:1: ( rule__Class__InheritanceAssignment_2 )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1506:1: ( rule__Class__InheritanceAssignment_2 )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( ((LA14_0>=24 && LA14_0<=25)) ) {
-                alt14=1;
+            if ( ((LA16_0>=28 && LA16_0<=29)) ) {
+                alt16=1;
             }
-            switch (alt14) {
+            switch (alt16) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1399:2: rule__Class__InheritanceAssignment_2
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1506:2: rule__Class__InheritanceAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__Class__InheritanceAssignment_2_in_rule__Class__Group__2__Impl2846);
+                    pushFollow(FOLLOW_rule__Class__InheritanceAssignment_2_in_rule__Class__Group__2__Impl3092);
                     rule__Class__InheritanceAssignment_2();
 
                     state._fsp--;
@@ -4013,21 +4259,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1409:1: rule__Class__Group__3 : rule__Class__Group__3__Impl rule__Class__Group__4 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1516:1: rule__Class__Group__3 : rule__Class__Group__3__Impl rule__Class__Group__4 ;
     public final void rule__Class__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1413:1: ( rule__Class__Group__3__Impl rule__Class__Group__4 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1414:2: rule__Class__Group__3__Impl rule__Class__Group__4
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1520:1: ( rule__Class__Group__3__Impl rule__Class__Group__4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1521:2: rule__Class__Group__3__Impl rule__Class__Group__4
             {
-            pushFollow(FOLLOW_rule__Class__Group__3__Impl_in_rule__Class__Group__32877);
+            pushFollow(FOLLOW_rule__Class__Group__3__Impl_in_rule__Class__Group__33123);
             rule__Class__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Class__Group__4_in_rule__Class__Group__32880);
+            pushFollow(FOLLOW_rule__Class__Group__4_in_rule__Class__Group__33126);
             rule__Class__Group__4();
 
             state._fsp--;
@@ -4051,20 +4297,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1421:1: rule__Class__Group__3__Impl : ( '{' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1528:1: rule__Class__Group__3__Impl : ( '{' ) ;
     public final void rule__Class__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1425:1: ( ( '{' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1426:1: ( '{' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1532:1: ( ( '{' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1533:1: ( '{' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1426:1: ( '{' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1427:1: '{'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1533:1: ( '{' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1534:1: '{'
             {
              before(grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_3()); 
-            match(input,19,FOLLOW_19_in_rule__Class__Group__3__Impl2908); 
+            match(input,23,FOLLOW_23_in_rule__Class__Group__3__Impl3154); 
              after(grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_3()); 
 
             }
@@ -4088,21 +4334,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1440:1: rule__Class__Group__4 : rule__Class__Group__4__Impl rule__Class__Group__5 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1547:1: rule__Class__Group__4 : rule__Class__Group__4__Impl rule__Class__Group__5 ;
     public final void rule__Class__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1444:1: ( rule__Class__Group__4__Impl rule__Class__Group__5 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1445:2: rule__Class__Group__4__Impl rule__Class__Group__5
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1551:1: ( rule__Class__Group__4__Impl rule__Class__Group__5 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1552:2: rule__Class__Group__4__Impl rule__Class__Group__5
             {
-            pushFollow(FOLLOW_rule__Class__Group__4__Impl_in_rule__Class__Group__42939);
+            pushFollow(FOLLOW_rule__Class__Group__4__Impl_in_rule__Class__Group__43185);
             rule__Class__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Class__Group__5_in_rule__Class__Group__42942);
+            pushFollow(FOLLOW_rule__Class__Group__5_in_rule__Class__Group__43188);
             rule__Class__Group__5();
 
             state._fsp--;
@@ -4126,35 +4372,35 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__4__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1452:1: rule__Class__Group__4__Impl : ( ( rule__Class__MembersAssignment_4 )* ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1559:1: rule__Class__Group__4__Impl : ( ( rule__Class__MembersAssignment_4 )* ) ;
     public final void rule__Class__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1456:1: ( ( ( rule__Class__MembersAssignment_4 )* ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1457:1: ( ( rule__Class__MembersAssignment_4 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1563:1: ( ( ( rule__Class__MembersAssignment_4 )* ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1564:1: ( ( rule__Class__MembersAssignment_4 )* )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1457:1: ( ( rule__Class__MembersAssignment_4 )* )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1458:1: ( rule__Class__MembersAssignment_4 )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1564:1: ( ( rule__Class__MembersAssignment_4 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1565:1: ( rule__Class__MembersAssignment_4 )*
             {
              before(grammarAccess.getClassAccess().getMembersAssignment_4()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1459:1: ( rule__Class__MembersAssignment_4 )*
-            loop15:
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1566:1: ( rule__Class__MembersAssignment_4 )*
+            loop17:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt17=2;
+                int LA17_0 = input.LA(1);
 
-                if ( (LA15_0==RULE_ID||LA15_0==23||(LA15_0>=26 && LA15_0<=27)) ) {
-                    alt15=1;
+                if ( (LA17_0==RULE_ID||(LA17_0>=16 && LA17_0<=19)||LA17_0==27||(LA17_0>=30 && LA17_0<=31)) ) {
+                    alt17=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt17) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1459:2: rule__Class__MembersAssignment_4
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1566:2: rule__Class__MembersAssignment_4
             	    {
-            	    pushFollow(FOLLOW_rule__Class__MembersAssignment_4_in_rule__Class__Group__4__Impl2969);
+            	    pushFollow(FOLLOW_rule__Class__MembersAssignment_4_in_rule__Class__Group__4__Impl3215);
             	    rule__Class__MembersAssignment_4();
 
             	    state._fsp--;
@@ -4164,7 +4410,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop17;
                 }
             } while (true);
 
@@ -4191,16 +4437,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__5"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1469:1: rule__Class__Group__5 : rule__Class__Group__5__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1576:1: rule__Class__Group__5 : rule__Class__Group__5__Impl ;
     public final void rule__Class__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1473:1: ( rule__Class__Group__5__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1474:2: rule__Class__Group__5__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1580:1: ( rule__Class__Group__5__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1581:2: rule__Class__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__Class__Group__5__Impl_in_rule__Class__Group__53000);
+            pushFollow(FOLLOW_rule__Class__Group__5__Impl_in_rule__Class__Group__53246);
             rule__Class__Group__5__Impl();
 
             state._fsp--;
@@ -4224,20 +4470,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__Group__5__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1480:1: rule__Class__Group__5__Impl : ( '}' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1587:1: rule__Class__Group__5__Impl : ( '}' ) ;
     public final void rule__Class__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1484:1: ( ( '}' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1485:1: ( '}' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1591:1: ( ( '}' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1592:1: ( '}' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1485:1: ( '}' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1486:1: '}'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1592:1: ( '}' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1593:1: '}'
             {
              before(grammarAccess.getClassAccess().getRightCurlyBracketKeyword_5()); 
-            match(input,20,FOLLOW_20_in_rule__Class__Group__5__Impl3028); 
+            match(input,24,FOLLOW_24_in_rule__Class__Group__5__Impl3274); 
              after(grammarAccess.getClassAccess().getRightCurlyBracketKeyword_5()); 
 
             }
@@ -4261,21 +4507,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_0__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1511:1: rule__Inheritance__Group_0__0 : rule__Inheritance__Group_0__0__Impl rule__Inheritance__Group_0__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1618:1: rule__Inheritance__Group_0__0 : rule__Inheritance__Group_0__0__Impl rule__Inheritance__Group_0__1 ;
     public final void rule__Inheritance__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1515:1: ( rule__Inheritance__Group_0__0__Impl rule__Inheritance__Group_0__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1516:2: rule__Inheritance__Group_0__0__Impl rule__Inheritance__Group_0__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1622:1: ( rule__Inheritance__Group_0__0__Impl rule__Inheritance__Group_0__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1623:2: rule__Inheritance__Group_0__0__Impl rule__Inheritance__Group_0__1
             {
-            pushFollow(FOLLOW_rule__Inheritance__Group_0__0__Impl_in_rule__Inheritance__Group_0__03071);
+            pushFollow(FOLLOW_rule__Inheritance__Group_0__0__Impl_in_rule__Inheritance__Group_0__03317);
             rule__Inheritance__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Inheritance__Group_0__1_in_rule__Inheritance__Group_0__03074);
+            pushFollow(FOLLOW_rule__Inheritance__Group_0__1_in_rule__Inheritance__Group_0__03320);
             rule__Inheritance__Group_0__1();
 
             state._fsp--;
@@ -4299,20 +4545,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_0__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1523:1: rule__Inheritance__Group_0__0__Impl : ( 'extends' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1630:1: rule__Inheritance__Group_0__0__Impl : ( 'extends' ) ;
     public final void rule__Inheritance__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1527:1: ( ( 'extends' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1528:1: ( 'extends' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1634:1: ( ( 'extends' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1635:1: ( 'extends' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1528:1: ( 'extends' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1529:1: 'extends'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1635:1: ( 'extends' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1636:1: 'extends'
             {
              before(grammarAccess.getInheritanceAccess().getExtendsKeyword_0_0()); 
-            match(input,24,FOLLOW_24_in_rule__Inheritance__Group_0__0__Impl3102); 
+            match(input,28,FOLLOW_28_in_rule__Inheritance__Group_0__0__Impl3348); 
              after(grammarAccess.getInheritanceAccess().getExtendsKeyword_0_0()); 
 
             }
@@ -4336,16 +4582,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_0__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1542:1: rule__Inheritance__Group_0__1 : rule__Inheritance__Group_0__1__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1649:1: rule__Inheritance__Group_0__1 : rule__Inheritance__Group_0__1__Impl ;
     public final void rule__Inheritance__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1546:1: ( rule__Inheritance__Group_0__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1547:2: rule__Inheritance__Group_0__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1653:1: ( rule__Inheritance__Group_0__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1654:2: rule__Inheritance__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Inheritance__Group_0__1__Impl_in_rule__Inheritance__Group_0__13133);
+            pushFollow(FOLLOW_rule__Inheritance__Group_0__1__Impl_in_rule__Inheritance__Group_0__13379);
             rule__Inheritance__Group_0__1__Impl();
 
             state._fsp--;
@@ -4369,23 +4615,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_0__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1553:1: rule__Inheritance__Group_0__1__Impl : ( ( rule__Inheritance__TypeAssignment_0_1 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1660:1: rule__Inheritance__Group_0__1__Impl : ( ( rule__Inheritance__TypeAssignment_0_1 ) ) ;
     public final void rule__Inheritance__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1557:1: ( ( ( rule__Inheritance__TypeAssignment_0_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1558:1: ( ( rule__Inheritance__TypeAssignment_0_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1664:1: ( ( ( rule__Inheritance__TypeAssignment_0_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1665:1: ( ( rule__Inheritance__TypeAssignment_0_1 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1558:1: ( ( rule__Inheritance__TypeAssignment_0_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1559:1: ( rule__Inheritance__TypeAssignment_0_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1665:1: ( ( rule__Inheritance__TypeAssignment_0_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1666:1: ( rule__Inheritance__TypeAssignment_0_1 )
             {
              before(grammarAccess.getInheritanceAccess().getTypeAssignment_0_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1560:1: ( rule__Inheritance__TypeAssignment_0_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1560:2: rule__Inheritance__TypeAssignment_0_1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1667:1: ( rule__Inheritance__TypeAssignment_0_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1667:2: rule__Inheritance__TypeAssignment_0_1
             {
-            pushFollow(FOLLOW_rule__Inheritance__TypeAssignment_0_1_in_rule__Inheritance__Group_0__1__Impl3160);
+            pushFollow(FOLLOW_rule__Inheritance__TypeAssignment_0_1_in_rule__Inheritance__Group_0__1__Impl3406);
             rule__Inheritance__TypeAssignment_0_1();
 
             state._fsp--;
@@ -4416,21 +4662,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_1__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1574:1: rule__Inheritance__Group_1__0 : rule__Inheritance__Group_1__0__Impl rule__Inheritance__Group_1__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1681:1: rule__Inheritance__Group_1__0 : rule__Inheritance__Group_1__0__Impl rule__Inheritance__Group_1__1 ;
     public final void rule__Inheritance__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1578:1: ( rule__Inheritance__Group_1__0__Impl rule__Inheritance__Group_1__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1579:2: rule__Inheritance__Group_1__0__Impl rule__Inheritance__Group_1__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1685:1: ( rule__Inheritance__Group_1__0__Impl rule__Inheritance__Group_1__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1686:2: rule__Inheritance__Group_1__0__Impl rule__Inheritance__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Inheritance__Group_1__0__Impl_in_rule__Inheritance__Group_1__03194);
+            pushFollow(FOLLOW_rule__Inheritance__Group_1__0__Impl_in_rule__Inheritance__Group_1__03440);
             rule__Inheritance__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Inheritance__Group_1__1_in_rule__Inheritance__Group_1__03197);
+            pushFollow(FOLLOW_rule__Inheritance__Group_1__1_in_rule__Inheritance__Group_1__03443);
             rule__Inheritance__Group_1__1();
 
             state._fsp--;
@@ -4454,20 +4700,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_1__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1586:1: rule__Inheritance__Group_1__0__Impl : ( 'implements' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1693:1: rule__Inheritance__Group_1__0__Impl : ( 'implements' ) ;
     public final void rule__Inheritance__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1590:1: ( ( 'implements' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1591:1: ( 'implements' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1697:1: ( ( 'implements' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1698:1: ( 'implements' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1591:1: ( 'implements' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1592:1: 'implements'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1698:1: ( 'implements' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1699:1: 'implements'
             {
              before(grammarAccess.getInheritanceAccess().getImplementsKeyword_1_0()); 
-            match(input,25,FOLLOW_25_in_rule__Inheritance__Group_1__0__Impl3225); 
+            match(input,29,FOLLOW_29_in_rule__Inheritance__Group_1__0__Impl3471); 
              after(grammarAccess.getInheritanceAccess().getImplementsKeyword_1_0()); 
 
             }
@@ -4491,16 +4737,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_1__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1605:1: rule__Inheritance__Group_1__1 : rule__Inheritance__Group_1__1__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1712:1: rule__Inheritance__Group_1__1 : rule__Inheritance__Group_1__1__Impl ;
     public final void rule__Inheritance__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1609:1: ( rule__Inheritance__Group_1__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1610:2: rule__Inheritance__Group_1__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1716:1: ( rule__Inheritance__Group_1__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1717:2: rule__Inheritance__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Inheritance__Group_1__1__Impl_in_rule__Inheritance__Group_1__13256);
+            pushFollow(FOLLOW_rule__Inheritance__Group_1__1__Impl_in_rule__Inheritance__Group_1__13502);
             rule__Inheritance__Group_1__1__Impl();
 
             state._fsp--;
@@ -4524,23 +4770,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__Group_1__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1616:1: rule__Inheritance__Group_1__1__Impl : ( ( rule__Inheritance__TypeAssignment_1_1 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1723:1: rule__Inheritance__Group_1__1__Impl : ( ( rule__Inheritance__TypeAssignment_1_1 ) ) ;
     public final void rule__Inheritance__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1620:1: ( ( ( rule__Inheritance__TypeAssignment_1_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1621:1: ( ( rule__Inheritance__TypeAssignment_1_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1727:1: ( ( ( rule__Inheritance__TypeAssignment_1_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1728:1: ( ( rule__Inheritance__TypeAssignment_1_1 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1621:1: ( ( rule__Inheritance__TypeAssignment_1_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1622:1: ( rule__Inheritance__TypeAssignment_1_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1728:1: ( ( rule__Inheritance__TypeAssignment_1_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1729:1: ( rule__Inheritance__TypeAssignment_1_1 )
             {
              before(grammarAccess.getInheritanceAccess().getTypeAssignment_1_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1623:1: ( rule__Inheritance__TypeAssignment_1_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1623:2: rule__Inheritance__TypeAssignment_1_1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1730:1: ( rule__Inheritance__TypeAssignment_1_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1730:2: rule__Inheritance__TypeAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__Inheritance__TypeAssignment_1_1_in_rule__Inheritance__Group_1__1__Impl3283);
+            pushFollow(FOLLOW_rule__Inheritance__TypeAssignment_1_1_in_rule__Inheritance__Group_1__1__Impl3529);
             rule__Inheritance__TypeAssignment_1_1();
 
             state._fsp--;
@@ -4571,21 +4817,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1637:1: rule__Attribute__Group__0 : rule__Attribute__Group__0__Impl rule__Attribute__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1744:1: rule__Attribute__Group__0 : rule__Attribute__Group__0__Impl rule__Attribute__Group__1 ;
     public final void rule__Attribute__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1641:1: ( rule__Attribute__Group__0__Impl rule__Attribute__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1642:2: rule__Attribute__Group__0__Impl rule__Attribute__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1748:1: ( rule__Attribute__Group__0__Impl rule__Attribute__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1749:2: rule__Attribute__Group__0__Impl rule__Attribute__Group__1
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__03317);
+            pushFollow(FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__03563);
             rule__Attribute__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__03320);
+            pushFollow(FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__03566);
             rule__Attribute__Group__1();
 
             state._fsp--;
@@ -4609,38 +4855,42 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1649:1: rule__Attribute__Group__0__Impl : ( ( 'static' )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1756:1: rule__Attribute__Group__0__Impl : ( ( rule__Attribute__VisibilityAssignment_0 )? ) ;
     public final void rule__Attribute__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1653:1: ( ( ( 'static' )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1654:1: ( ( 'static' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1760:1: ( ( ( rule__Attribute__VisibilityAssignment_0 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1761:1: ( ( rule__Attribute__VisibilityAssignment_0 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1654:1: ( ( 'static' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1655:1: ( 'static' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1761:1: ( ( rule__Attribute__VisibilityAssignment_0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1762:1: ( rule__Attribute__VisibilityAssignment_0 )?
             {
-             before(grammarAccess.getAttributeAccess().getStaticKeyword_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1656:1: ( 'static' )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+             before(grammarAccess.getAttributeAccess().getVisibilityAssignment_0()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1763:1: ( rule__Attribute__VisibilityAssignment_0 )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA16_0==26) ) {
-                alt16=1;
+            if ( ((LA18_0>=16 && LA18_0<=19)) ) {
+                alt18=1;
             }
-            switch (alt16) {
+            switch (alt18) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1657:2: 'static'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1763:2: rule__Attribute__VisibilityAssignment_0
                     {
-                    match(input,26,FOLLOW_26_in_rule__Attribute__Group__0__Impl3349); 
+                    pushFollow(FOLLOW_rule__Attribute__VisibilityAssignment_0_in_rule__Attribute__Group__0__Impl3593);
+                    rule__Attribute__VisibilityAssignment_0();
+
+                    state._fsp--;
+
 
                     }
                     break;
 
             }
 
-             after(grammarAccess.getAttributeAccess().getStaticKeyword_0()); 
+             after(grammarAccess.getAttributeAccess().getVisibilityAssignment_0()); 
 
             }
 
@@ -4663,21 +4913,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1668:1: rule__Attribute__Group__1 : rule__Attribute__Group__1__Impl rule__Attribute__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1773:1: rule__Attribute__Group__1 : rule__Attribute__Group__1__Impl rule__Attribute__Group__2 ;
     public final void rule__Attribute__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1672:1: ( rule__Attribute__Group__1__Impl rule__Attribute__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1673:2: rule__Attribute__Group__1__Impl rule__Attribute__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1777:1: ( rule__Attribute__Group__1__Impl rule__Attribute__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1778:2: rule__Attribute__Group__1__Impl rule__Attribute__Group__2
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__13382);
+            pushFollow(FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__13624);
             rule__Attribute__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__13385);
+            pushFollow(FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__13627);
             rule__Attribute__Group__2();
 
             state._fsp--;
@@ -4701,38 +4951,38 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1680:1: rule__Attribute__Group__1__Impl : ( ( 'final' )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1785:1: rule__Attribute__Group__1__Impl : ( ( 'static' )? ) ;
     public final void rule__Attribute__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1684:1: ( ( ( 'final' )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1685:1: ( ( 'final' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1789:1: ( ( ( 'static' )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1790:1: ( ( 'static' )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1685:1: ( ( 'final' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1686:1: ( 'final' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1790:1: ( ( 'static' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1791:1: ( 'static' )?
             {
-             before(grammarAccess.getAttributeAccess().getFinalKeyword_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1687:1: ( 'final' )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+             before(grammarAccess.getAttributeAccess().getStaticKeyword_1()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1792:1: ( 'static' )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA17_0==27) ) {
-                alt17=1;
+            if ( (LA19_0==30) ) {
+                alt19=1;
             }
-            switch (alt17) {
+            switch (alt19) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1688:2: 'final'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1793:2: 'static'
                     {
-                    match(input,27,FOLLOW_27_in_rule__Attribute__Group__1__Impl3414); 
+                    match(input,30,FOLLOW_30_in_rule__Attribute__Group__1__Impl3656); 
 
                     }
                     break;
 
             }
 
-             after(grammarAccess.getAttributeAccess().getFinalKeyword_1()); 
+             after(grammarAccess.getAttributeAccess().getStaticKeyword_1()); 
 
             }
 
@@ -4755,21 +5005,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1699:1: rule__Attribute__Group__2 : rule__Attribute__Group__2__Impl rule__Attribute__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1804:1: rule__Attribute__Group__2 : rule__Attribute__Group__2__Impl rule__Attribute__Group__3 ;
     public final void rule__Attribute__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1703:1: ( rule__Attribute__Group__2__Impl rule__Attribute__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1704:2: rule__Attribute__Group__2__Impl rule__Attribute__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1808:1: ( rule__Attribute__Group__2__Impl rule__Attribute__Group__3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1809:2: rule__Attribute__Group__2__Impl rule__Attribute__Group__3
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__23447);
+            pushFollow(FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__23689);
             rule__Attribute__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Attribute__Group__3_in_rule__Attribute__Group__23450);
+            pushFollow(FOLLOW_rule__Attribute__Group__3_in_rule__Attribute__Group__23692);
             rule__Attribute__Group__3();
 
             state._fsp--;
@@ -4793,31 +5043,38 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1711:1: rule__Attribute__Group__2__Impl : ( ( rule__Attribute__NameAssignment_2 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1816:1: rule__Attribute__Group__2__Impl : ( ( 'final' )? ) ;
     public final void rule__Attribute__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1715:1: ( ( ( rule__Attribute__NameAssignment_2 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1716:1: ( ( rule__Attribute__NameAssignment_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1820:1: ( ( ( 'final' )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1821:1: ( ( 'final' )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1716:1: ( ( rule__Attribute__NameAssignment_2 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1717:1: ( rule__Attribute__NameAssignment_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1821:1: ( ( 'final' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1822:1: ( 'final' )?
             {
-             before(grammarAccess.getAttributeAccess().getNameAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1718:1: ( rule__Attribute__NameAssignment_2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1718:2: rule__Attribute__NameAssignment_2
-            {
-            pushFollow(FOLLOW_rule__Attribute__NameAssignment_2_in_rule__Attribute__Group__2__Impl3477);
-            rule__Attribute__NameAssignment_2();
+             before(grammarAccess.getAttributeAccess().getFinalKeyword_2()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1823:1: ( 'final' )?
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA20_0==31) ) {
+                alt20=1;
+            }
+            switch (alt20) {
+                case 1 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1824:2: 'final'
+                    {
+                    match(input,31,FOLLOW_31_in_rule__Attribute__Group__2__Impl3721); 
 
+                    }
+                    break;
 
             }
 
-             after(grammarAccess.getAttributeAccess().getNameAssignment_2()); 
+             after(grammarAccess.getAttributeAccess().getFinalKeyword_2()); 
 
             }
 
@@ -4840,21 +5097,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1728:1: rule__Attribute__Group__3 : rule__Attribute__Group__3__Impl rule__Attribute__Group__4 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1835:1: rule__Attribute__Group__3 : rule__Attribute__Group__3__Impl rule__Attribute__Group__4 ;
     public final void rule__Attribute__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1732:1: ( rule__Attribute__Group__3__Impl rule__Attribute__Group__4 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1733:2: rule__Attribute__Group__3__Impl rule__Attribute__Group__4
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1839:1: ( rule__Attribute__Group__3__Impl rule__Attribute__Group__4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1840:2: rule__Attribute__Group__3__Impl rule__Attribute__Group__4
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__3__Impl_in_rule__Attribute__Group__33507);
+            pushFollow(FOLLOW_rule__Attribute__Group__3__Impl_in_rule__Attribute__Group__33754);
             rule__Attribute__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Attribute__Group__4_in_rule__Attribute__Group__33510);
+            pushFollow(FOLLOW_rule__Attribute__Group__4_in_rule__Attribute__Group__33757);
             rule__Attribute__Group__4();
 
             state._fsp--;
@@ -4878,21 +5135,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1740:1: rule__Attribute__Group__3__Impl : ( ':' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1847:1: rule__Attribute__Group__3__Impl : ( ( rule__Attribute__NameAssignment_3 ) ) ;
     public final void rule__Attribute__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1744:1: ( ( ':' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1745:1: ( ':' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1851:1: ( ( ( rule__Attribute__NameAssignment_3 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1852:1: ( ( rule__Attribute__NameAssignment_3 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1745:1: ( ':' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1746:1: ':'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1852:1: ( ( rule__Attribute__NameAssignment_3 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1853:1: ( rule__Attribute__NameAssignment_3 )
             {
-             before(grammarAccess.getAttributeAccess().getColonKeyword_3()); 
-            match(input,28,FOLLOW_28_in_rule__Attribute__Group__3__Impl3538); 
-             after(grammarAccess.getAttributeAccess().getColonKeyword_3()); 
+             before(grammarAccess.getAttributeAccess().getNameAssignment_3()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1854:1: ( rule__Attribute__NameAssignment_3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1854:2: rule__Attribute__NameAssignment_3
+            {
+            pushFollow(FOLLOW_rule__Attribute__NameAssignment_3_in_rule__Attribute__Group__3__Impl3784);
+            rule__Attribute__NameAssignment_3();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getAttributeAccess().getNameAssignment_3()); 
 
             }
 
@@ -4915,17 +5182,22 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1759:1: rule__Attribute__Group__4 : rule__Attribute__Group__4__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1864:1: rule__Attribute__Group__4 : rule__Attribute__Group__4__Impl rule__Attribute__Group__5 ;
     public final void rule__Attribute__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1763:1: ( rule__Attribute__Group__4__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1764:2: rule__Attribute__Group__4__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1868:1: ( rule__Attribute__Group__4__Impl rule__Attribute__Group__5 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1869:2: rule__Attribute__Group__4__Impl rule__Attribute__Group__5
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__4__Impl_in_rule__Attribute__Group__43569);
+            pushFollow(FOLLOW_rule__Attribute__Group__4__Impl_in_rule__Attribute__Group__43814);
             rule__Attribute__Group__4__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Attribute__Group__5_in_rule__Attribute__Group__43817);
+            rule__Attribute__Group__5();
 
             state._fsp--;
 
@@ -4948,31 +5220,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__4__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1770:1: rule__Attribute__Group__4__Impl : ( ( rule__Attribute__TypeAssignment_4 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1876:1: rule__Attribute__Group__4__Impl : ( ':' ) ;
     public final void rule__Attribute__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1774:1: ( ( ( rule__Attribute__TypeAssignment_4 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1775:1: ( ( rule__Attribute__TypeAssignment_4 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1880:1: ( ( ':' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1881:1: ( ':' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1775:1: ( ( rule__Attribute__TypeAssignment_4 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1776:1: ( rule__Attribute__TypeAssignment_4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1881:1: ( ':' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1882:1: ':'
             {
-             before(grammarAccess.getAttributeAccess().getTypeAssignment_4()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1777:1: ( rule__Attribute__TypeAssignment_4 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1777:2: rule__Attribute__TypeAssignment_4
-            {
-            pushFollow(FOLLOW_rule__Attribute__TypeAssignment_4_in_rule__Attribute__Group__4__Impl3596);
-            rule__Attribute__TypeAssignment_4();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getAttributeAccess().getTypeAssignment_4()); 
+             before(grammarAccess.getAttributeAccess().getColonKeyword_4()); 
+            match(input,32,FOLLOW_32_in_rule__Attribute__Group__4__Impl3845); 
+             after(grammarAccess.getAttributeAccess().getColonKeyword_4()); 
 
             }
 
@@ -4994,22 +5256,102 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Attribute__Group__4__Impl"
 
 
+    // $ANTLR start "rule__Attribute__Group__5"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1895:1: rule__Attribute__Group__5 : rule__Attribute__Group__5__Impl ;
+    public final void rule__Attribute__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1899:1: ( rule__Attribute__Group__5__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1900:2: rule__Attribute__Group__5__Impl
+            {
+            pushFollow(FOLLOW_rule__Attribute__Group__5__Impl_in_rule__Attribute__Group__53876);
+            rule__Attribute__Group__5__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Attribute__Group__5"
+
+
+    // $ANTLR start "rule__Attribute__Group__5__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1906:1: rule__Attribute__Group__5__Impl : ( ( rule__Attribute__TypeAssignment_5 ) ) ;
+    public final void rule__Attribute__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1910:1: ( ( ( rule__Attribute__TypeAssignment_5 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1911:1: ( ( rule__Attribute__TypeAssignment_5 ) )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1911:1: ( ( rule__Attribute__TypeAssignment_5 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1912:1: ( rule__Attribute__TypeAssignment_5 )
+            {
+             before(grammarAccess.getAttributeAccess().getTypeAssignment_5()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1913:1: ( rule__Attribute__TypeAssignment_5 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1913:2: rule__Attribute__TypeAssignment_5
+            {
+            pushFollow(FOLLOW_rule__Attribute__TypeAssignment_5_in_rule__Attribute__Group__5__Impl3903);
+            rule__Attribute__TypeAssignment_5();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getAttributeAccess().getTypeAssignment_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Attribute__Group__5__Impl"
+
+
     // $ANTLR start "rule__Methode__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1797:1: rule__Methode__Group__0 : rule__Methode__Group__0__Impl rule__Methode__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1935:1: rule__Methode__Group__0 : rule__Methode__Group__0__Impl rule__Methode__Group__1 ;
     public final void rule__Methode__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1801:1: ( rule__Methode__Group__0__Impl rule__Methode__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1802:2: rule__Methode__Group__0__Impl rule__Methode__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1939:1: ( rule__Methode__Group__0__Impl rule__Methode__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1940:2: rule__Methode__Group__0__Impl rule__Methode__Group__1
             {
-            pushFollow(FOLLOW_rule__Methode__Group__0__Impl_in_rule__Methode__Group__03636);
+            pushFollow(FOLLOW_rule__Methode__Group__0__Impl_in_rule__Methode__Group__03945);
             rule__Methode__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__1_in_rule__Methode__Group__03639);
+            pushFollow(FOLLOW_rule__Methode__Group__1_in_rule__Methode__Group__03948);
             rule__Methode__Group__1();
 
             state._fsp--;
@@ -5033,38 +5375,42 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1809:1: rule__Methode__Group__0__Impl : ( ( 'abstract' )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1947:1: rule__Methode__Group__0__Impl : ( ( rule__Methode__VisibilityAssignment_0 )? ) ;
     public final void rule__Methode__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1813:1: ( ( ( 'abstract' )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1814:1: ( ( 'abstract' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1951:1: ( ( ( rule__Methode__VisibilityAssignment_0 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1952:1: ( ( rule__Methode__VisibilityAssignment_0 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1814:1: ( ( 'abstract' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1815:1: ( 'abstract' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1952:1: ( ( rule__Methode__VisibilityAssignment_0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1953:1: ( rule__Methode__VisibilityAssignment_0 )?
             {
-             before(grammarAccess.getMethodeAccess().getAbstractKeyword_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1816:1: ( 'abstract' )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+             before(grammarAccess.getMethodeAccess().getVisibilityAssignment_0()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1954:1: ( rule__Methode__VisibilityAssignment_0 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA18_0==23) ) {
-                alt18=1;
+            if ( ((LA21_0>=16 && LA21_0<=19)) ) {
+                alt21=1;
             }
-            switch (alt18) {
+            switch (alt21) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1817:2: 'abstract'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1954:2: rule__Methode__VisibilityAssignment_0
                     {
-                    match(input,23,FOLLOW_23_in_rule__Methode__Group__0__Impl3668); 
+                    pushFollow(FOLLOW_rule__Methode__VisibilityAssignment_0_in_rule__Methode__Group__0__Impl3975);
+                    rule__Methode__VisibilityAssignment_0();
+
+                    state._fsp--;
+
 
                     }
                     break;
 
             }
 
-             after(grammarAccess.getMethodeAccess().getAbstractKeyword_0()); 
+             after(grammarAccess.getMethodeAccess().getVisibilityAssignment_0()); 
 
             }
 
@@ -5087,21 +5433,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1828:1: rule__Methode__Group__1 : rule__Methode__Group__1__Impl rule__Methode__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1964:1: rule__Methode__Group__1 : rule__Methode__Group__1__Impl rule__Methode__Group__2 ;
     public final void rule__Methode__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1832:1: ( rule__Methode__Group__1__Impl rule__Methode__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1833:2: rule__Methode__Group__1__Impl rule__Methode__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1968:1: ( rule__Methode__Group__1__Impl rule__Methode__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1969:2: rule__Methode__Group__1__Impl rule__Methode__Group__2
             {
-            pushFollow(FOLLOW_rule__Methode__Group__1__Impl_in_rule__Methode__Group__13701);
+            pushFollow(FOLLOW_rule__Methode__Group__1__Impl_in_rule__Methode__Group__14006);
             rule__Methode__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__2_in_rule__Methode__Group__13704);
+            pushFollow(FOLLOW_rule__Methode__Group__2_in_rule__Methode__Group__14009);
             rule__Methode__Group__2();
 
             state._fsp--;
@@ -5125,38 +5471,38 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1840:1: rule__Methode__Group__1__Impl : ( ( 'static' )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1976:1: rule__Methode__Group__1__Impl : ( ( 'abstract' )? ) ;
     public final void rule__Methode__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1844:1: ( ( ( 'static' )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1845:1: ( ( 'static' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1980:1: ( ( ( 'abstract' )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1981:1: ( ( 'abstract' )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1845:1: ( ( 'static' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1846:1: ( 'static' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1981:1: ( ( 'abstract' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1982:1: ( 'abstract' )?
             {
-             before(grammarAccess.getMethodeAccess().getStaticKeyword_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1847:1: ( 'static' )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+             before(grammarAccess.getMethodeAccess().getAbstractKeyword_1()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1983:1: ( 'abstract' )?
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA19_0==26) ) {
-                alt19=1;
+            if ( (LA22_0==27) ) {
+                alt22=1;
             }
-            switch (alt19) {
+            switch (alt22) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1848:2: 'static'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1984:2: 'abstract'
                     {
-                    match(input,26,FOLLOW_26_in_rule__Methode__Group__1__Impl3733); 
+                    match(input,27,FOLLOW_27_in_rule__Methode__Group__1__Impl4038); 
 
                     }
                     break;
 
             }
 
-             after(grammarAccess.getMethodeAccess().getStaticKeyword_1()); 
+             after(grammarAccess.getMethodeAccess().getAbstractKeyword_1()); 
 
             }
 
@@ -5179,21 +5525,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1859:1: rule__Methode__Group__2 : rule__Methode__Group__2__Impl rule__Methode__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1995:1: rule__Methode__Group__2 : rule__Methode__Group__2__Impl rule__Methode__Group__3 ;
     public final void rule__Methode__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1863:1: ( rule__Methode__Group__2__Impl rule__Methode__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1864:2: rule__Methode__Group__2__Impl rule__Methode__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1999:1: ( rule__Methode__Group__2__Impl rule__Methode__Group__3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2000:2: rule__Methode__Group__2__Impl rule__Methode__Group__3
             {
-            pushFollow(FOLLOW_rule__Methode__Group__2__Impl_in_rule__Methode__Group__23766);
+            pushFollow(FOLLOW_rule__Methode__Group__2__Impl_in_rule__Methode__Group__24071);
             rule__Methode__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__3_in_rule__Methode__Group__23769);
+            pushFollow(FOLLOW_rule__Methode__Group__3_in_rule__Methode__Group__24074);
             rule__Methode__Group__3();
 
             state._fsp--;
@@ -5217,38 +5563,38 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1871:1: rule__Methode__Group__2__Impl : ( ( 'final' )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2007:1: rule__Methode__Group__2__Impl : ( ( 'static' )? ) ;
     public final void rule__Methode__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1875:1: ( ( ( 'final' )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1876:1: ( ( 'final' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2011:1: ( ( ( 'static' )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2012:1: ( ( 'static' )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1876:1: ( ( 'final' )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1877:1: ( 'final' )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2012:1: ( ( 'static' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2013:1: ( 'static' )?
             {
-             before(grammarAccess.getMethodeAccess().getFinalKeyword_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1878:1: ( 'final' )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+             before(grammarAccess.getMethodeAccess().getStaticKeyword_2()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2014:1: ( 'static' )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA20_0==27) ) {
-                alt20=1;
+            if ( (LA23_0==30) ) {
+                alt23=1;
             }
-            switch (alt20) {
+            switch (alt23) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1879:2: 'final'
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2015:2: 'static'
                     {
-                    match(input,27,FOLLOW_27_in_rule__Methode__Group__2__Impl3798); 
+                    match(input,30,FOLLOW_30_in_rule__Methode__Group__2__Impl4103); 
 
                     }
                     break;
 
             }
 
-             after(grammarAccess.getMethodeAccess().getFinalKeyword_2()); 
+             after(grammarAccess.getMethodeAccess().getStaticKeyword_2()); 
 
             }
 
@@ -5271,21 +5617,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1890:1: rule__Methode__Group__3 : rule__Methode__Group__3__Impl rule__Methode__Group__4 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2026:1: rule__Methode__Group__3 : rule__Methode__Group__3__Impl rule__Methode__Group__4 ;
     public final void rule__Methode__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1894:1: ( rule__Methode__Group__3__Impl rule__Methode__Group__4 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1895:2: rule__Methode__Group__3__Impl rule__Methode__Group__4
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2030:1: ( rule__Methode__Group__3__Impl rule__Methode__Group__4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2031:2: rule__Methode__Group__3__Impl rule__Methode__Group__4
             {
-            pushFollow(FOLLOW_rule__Methode__Group__3__Impl_in_rule__Methode__Group__33831);
+            pushFollow(FOLLOW_rule__Methode__Group__3__Impl_in_rule__Methode__Group__34136);
             rule__Methode__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__4_in_rule__Methode__Group__33834);
+            pushFollow(FOLLOW_rule__Methode__Group__4_in_rule__Methode__Group__34139);
             rule__Methode__Group__4();
 
             state._fsp--;
@@ -5309,31 +5655,38 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1902:1: rule__Methode__Group__3__Impl : ( ( rule__Methode__NameAssignment_3 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2038:1: rule__Methode__Group__3__Impl : ( ( 'final' )? ) ;
     public final void rule__Methode__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1906:1: ( ( ( rule__Methode__NameAssignment_3 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1907:1: ( ( rule__Methode__NameAssignment_3 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2042:1: ( ( ( 'final' )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2043:1: ( ( 'final' )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1907:1: ( ( rule__Methode__NameAssignment_3 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1908:1: ( rule__Methode__NameAssignment_3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2043:1: ( ( 'final' )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2044:1: ( 'final' )?
             {
-             before(grammarAccess.getMethodeAccess().getNameAssignment_3()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1909:1: ( rule__Methode__NameAssignment_3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1909:2: rule__Methode__NameAssignment_3
-            {
-            pushFollow(FOLLOW_rule__Methode__NameAssignment_3_in_rule__Methode__Group__3__Impl3861);
-            rule__Methode__NameAssignment_3();
+             before(grammarAccess.getMethodeAccess().getFinalKeyword_3()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2045:1: ( 'final' )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA24_0==31) ) {
+                alt24=1;
+            }
+            switch (alt24) {
+                case 1 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2046:2: 'final'
+                    {
+                    match(input,31,FOLLOW_31_in_rule__Methode__Group__3__Impl4168); 
 
+                    }
+                    break;
 
             }
 
-             after(grammarAccess.getMethodeAccess().getNameAssignment_3()); 
+             after(grammarAccess.getMethodeAccess().getFinalKeyword_3()); 
 
             }
 
@@ -5356,21 +5709,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1919:1: rule__Methode__Group__4 : rule__Methode__Group__4__Impl rule__Methode__Group__5 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2057:1: rule__Methode__Group__4 : rule__Methode__Group__4__Impl rule__Methode__Group__5 ;
     public final void rule__Methode__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1923:1: ( rule__Methode__Group__4__Impl rule__Methode__Group__5 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1924:2: rule__Methode__Group__4__Impl rule__Methode__Group__5
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2061:1: ( rule__Methode__Group__4__Impl rule__Methode__Group__5 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2062:2: rule__Methode__Group__4__Impl rule__Methode__Group__5
             {
-            pushFollow(FOLLOW_rule__Methode__Group__4__Impl_in_rule__Methode__Group__43891);
+            pushFollow(FOLLOW_rule__Methode__Group__4__Impl_in_rule__Methode__Group__44201);
             rule__Methode__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__5_in_rule__Methode__Group__43894);
+            pushFollow(FOLLOW_rule__Methode__Group__5_in_rule__Methode__Group__44204);
             rule__Methode__Group__5();
 
             state._fsp--;
@@ -5394,21 +5747,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__4__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1931:1: rule__Methode__Group__4__Impl : ( '(' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2069:1: rule__Methode__Group__4__Impl : ( ( rule__Methode__NameAssignment_4 ) ) ;
     public final void rule__Methode__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1935:1: ( ( '(' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1936:1: ( '(' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2073:1: ( ( ( rule__Methode__NameAssignment_4 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2074:1: ( ( rule__Methode__NameAssignment_4 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1936:1: ( '(' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1937:1: '('
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2074:1: ( ( rule__Methode__NameAssignment_4 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2075:1: ( rule__Methode__NameAssignment_4 )
             {
-             before(grammarAccess.getMethodeAccess().getLeftParenthesisKeyword_4()); 
-            match(input,29,FOLLOW_29_in_rule__Methode__Group__4__Impl3922); 
-             after(grammarAccess.getMethodeAccess().getLeftParenthesisKeyword_4()); 
+             before(grammarAccess.getMethodeAccess().getNameAssignment_4()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2076:1: ( rule__Methode__NameAssignment_4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2076:2: rule__Methode__NameAssignment_4
+            {
+            pushFollow(FOLLOW_rule__Methode__NameAssignment_4_in_rule__Methode__Group__4__Impl4231);
+            rule__Methode__NameAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMethodeAccess().getNameAssignment_4()); 
 
             }
 
@@ -5431,21 +5794,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__5"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1950:1: rule__Methode__Group__5 : rule__Methode__Group__5__Impl rule__Methode__Group__6 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2086:1: rule__Methode__Group__5 : rule__Methode__Group__5__Impl rule__Methode__Group__6 ;
     public final void rule__Methode__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1954:1: ( rule__Methode__Group__5__Impl rule__Methode__Group__6 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1955:2: rule__Methode__Group__5__Impl rule__Methode__Group__6
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2090:1: ( rule__Methode__Group__5__Impl rule__Methode__Group__6 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2091:2: rule__Methode__Group__5__Impl rule__Methode__Group__6
             {
-            pushFollow(FOLLOW_rule__Methode__Group__5__Impl_in_rule__Methode__Group__53953);
+            pushFollow(FOLLOW_rule__Methode__Group__5__Impl_in_rule__Methode__Group__54261);
             rule__Methode__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__6_in_rule__Methode__Group__53956);
+            pushFollow(FOLLOW_rule__Methode__Group__6_in_rule__Methode__Group__54264);
             rule__Methode__Group__6();
 
             state._fsp--;
@@ -5469,49 +5832,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__5__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1962:1: rule__Methode__Group__5__Impl : ( ( rule__Methode__Group_5__0 )* ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2098:1: rule__Methode__Group__5__Impl : ( '(' ) ;
     public final void rule__Methode__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1966:1: ( ( ( rule__Methode__Group_5__0 )* ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1967:1: ( ( rule__Methode__Group_5__0 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2102:1: ( ( '(' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2103:1: ( '(' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1967:1: ( ( rule__Methode__Group_5__0 )* )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1968:1: ( rule__Methode__Group_5__0 )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2103:1: ( '(' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2104:1: '('
             {
-             before(grammarAccess.getMethodeAccess().getGroup_5()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1969:1: ( rule__Methode__Group_5__0 )*
-            loop21:
-            do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
-
-                if ( (LA21_0==RULE_ID||(LA21_0>=26 && LA21_0<=27)) ) {
-                    alt21=1;
-                }
-
-
-                switch (alt21) {
-            	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1969:2: rule__Methode__Group_5__0
-            	    {
-            	    pushFollow(FOLLOW_rule__Methode__Group_5__0_in_rule__Methode__Group__5__Impl3983);
-            	    rule__Methode__Group_5__0();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop21;
-                }
-            } while (true);
-
-             after(grammarAccess.getMethodeAccess().getGroup_5()); 
+             before(grammarAccess.getMethodeAccess().getLeftParenthesisKeyword_5()); 
+            match(input,33,FOLLOW_33_in_rule__Methode__Group__5__Impl4292); 
+             after(grammarAccess.getMethodeAccess().getLeftParenthesisKeyword_5()); 
 
             }
 
@@ -5534,21 +5869,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__6"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1979:1: rule__Methode__Group__6 : rule__Methode__Group__6__Impl rule__Methode__Group__7 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2117:1: rule__Methode__Group__6 : rule__Methode__Group__6__Impl rule__Methode__Group__7 ;
     public final void rule__Methode__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1983:1: ( rule__Methode__Group__6__Impl rule__Methode__Group__7 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1984:2: rule__Methode__Group__6__Impl rule__Methode__Group__7
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2121:1: ( rule__Methode__Group__6__Impl rule__Methode__Group__7 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2122:2: rule__Methode__Group__6__Impl rule__Methode__Group__7
             {
-            pushFollow(FOLLOW_rule__Methode__Group__6__Impl_in_rule__Methode__Group__64014);
+            pushFollow(FOLLOW_rule__Methode__Group__6__Impl_in_rule__Methode__Group__64323);
             rule__Methode__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group__7_in_rule__Methode__Group__64017);
+            pushFollow(FOLLOW_rule__Methode__Group__7_in_rule__Methode__Group__64326);
             rule__Methode__Group__7();
 
             state._fsp--;
@@ -5572,21 +5907,49 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__6__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1991:1: rule__Methode__Group__6__Impl : ( ')' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2129:1: rule__Methode__Group__6__Impl : ( ( rule__Methode__Group_6__0 )* ) ;
     public final void rule__Methode__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1995:1: ( ( ')' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1996:1: ( ')' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2133:1: ( ( ( rule__Methode__Group_6__0 )* ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2134:1: ( ( rule__Methode__Group_6__0 )* )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1996:1: ( ')' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:1997:1: ')'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2134:1: ( ( rule__Methode__Group_6__0 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2135:1: ( rule__Methode__Group_6__0 )*
             {
-             before(grammarAccess.getMethodeAccess().getRightParenthesisKeyword_6()); 
-            match(input,30,FOLLOW_30_in_rule__Methode__Group__6__Impl4045); 
-             after(grammarAccess.getMethodeAccess().getRightParenthesisKeyword_6()); 
+             before(grammarAccess.getMethodeAccess().getGroup_6()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2136:1: ( rule__Methode__Group_6__0 )*
+            loop25:
+            do {
+                int alt25=2;
+                int LA25_0 = input.LA(1);
+
+                if ( (LA25_0==RULE_ID||(LA25_0>=16 && LA25_0<=19)||(LA25_0>=30 && LA25_0<=31)) ) {
+                    alt25=1;
+                }
+
+
+                switch (alt25) {
+            	case 1 :
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2136:2: rule__Methode__Group_6__0
+            	    {
+            	    pushFollow(FOLLOW_rule__Methode__Group_6__0_in_rule__Methode__Group__6__Impl4353);
+            	    rule__Methode__Group_6__0();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop25;
+                }
+            } while (true);
+
+             after(grammarAccess.getMethodeAccess().getGroup_6()); 
 
             }
 
@@ -5609,17 +5972,22 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__7"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2010:1: rule__Methode__Group__7 : rule__Methode__Group__7__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2146:1: rule__Methode__Group__7 : rule__Methode__Group__7__Impl rule__Methode__Group__8 ;
     public final void rule__Methode__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2014:1: ( rule__Methode__Group__7__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2015:2: rule__Methode__Group__7__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2150:1: ( rule__Methode__Group__7__Impl rule__Methode__Group__8 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2151:2: rule__Methode__Group__7__Impl rule__Methode__Group__8
             {
-            pushFollow(FOLLOW_rule__Methode__Group__7__Impl_in_rule__Methode__Group__74076);
+            pushFollow(FOLLOW_rule__Methode__Group__7__Impl_in_rule__Methode__Group__74384);
             rule__Methode__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Methode__Group__8_in_rule__Methode__Group__74387);
+            rule__Methode__Group__8();
 
             state._fsp--;
 
@@ -5642,42 +6010,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Methode__Group__7__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2021:1: rule__Methode__Group__7__Impl : ( ( rule__Methode__Group_7__0 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2158:1: rule__Methode__Group__7__Impl : ( ')' ) ;
     public final void rule__Methode__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2025:1: ( ( ( rule__Methode__Group_7__0 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2026:1: ( ( rule__Methode__Group_7__0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2162:1: ( ( ')' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2163:1: ( ')' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2026:1: ( ( rule__Methode__Group_7__0 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2027:1: ( rule__Methode__Group_7__0 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2163:1: ( ')' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2164:1: ')'
             {
-             before(grammarAccess.getMethodeAccess().getGroup_7()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2028:1: ( rule__Methode__Group_7__0 )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
-
-            if ( (LA22_0==28) ) {
-                alt22=1;
-            }
-            switch (alt22) {
-                case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2028:2: rule__Methode__Group_7__0
-                    {
-                    pushFollow(FOLLOW_rule__Methode__Group_7__0_in_rule__Methode__Group__7__Impl4103);
-                    rule__Methode__Group_7__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getMethodeAccess().getGroup_7()); 
+             before(grammarAccess.getMethodeAccess().getRightParenthesisKeyword_7()); 
+            match(input,34,FOLLOW_34_in_rule__Methode__Group__7__Impl4415); 
+             after(grammarAccess.getMethodeAccess().getRightParenthesisKeyword_7()); 
 
             }
 
@@ -5699,23 +6046,18 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Methode__Group__7__Impl"
 
 
-    // $ANTLR start "rule__Methode__Group_5__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2054:1: rule__Methode__Group_5__0 : rule__Methode__Group_5__0__Impl rule__Methode__Group_5__1 ;
-    public final void rule__Methode__Group_5__0() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group__8"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2177:1: rule__Methode__Group__8 : rule__Methode__Group__8__Impl ;
+    public final void rule__Methode__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2058:1: ( rule__Methode__Group_5__0__Impl rule__Methode__Group_5__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2059:2: rule__Methode__Group_5__0__Impl rule__Methode__Group_5__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2181:1: ( rule__Methode__Group__8__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2182:2: rule__Methode__Group__8__Impl
             {
-            pushFollow(FOLLOW_rule__Methode__Group_5__0__Impl_in_rule__Methode__Group_5__04150);
-            rule__Methode__Group_5__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__Methode__Group_5__1_in_rule__Methode__Group_5__04153);
-            rule__Methode__Group_5__1();
+            pushFollow(FOLLOW_rule__Methode__Group__8__Impl_in_rule__Methode__Group__84446);
+            rule__Methode__Group__8__Impl();
 
             state._fsp--;
 
@@ -5734,35 +6076,46 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_5__0"
+    // $ANTLR end "rule__Methode__Group__8"
 
 
-    // $ANTLR start "rule__Methode__Group_5__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2066:1: rule__Methode__Group_5__0__Impl : ( ( rule__Methode__AttributesAssignment_5_0 ) ) ;
-    public final void rule__Methode__Group_5__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group__8__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2188:1: rule__Methode__Group__8__Impl : ( ( rule__Methode__Group_8__0 )? ) ;
+    public final void rule__Methode__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2070:1: ( ( ( rule__Methode__AttributesAssignment_5_0 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2071:1: ( ( rule__Methode__AttributesAssignment_5_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2192:1: ( ( ( rule__Methode__Group_8__0 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2193:1: ( ( rule__Methode__Group_8__0 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2071:1: ( ( rule__Methode__AttributesAssignment_5_0 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2072:1: ( rule__Methode__AttributesAssignment_5_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2193:1: ( ( rule__Methode__Group_8__0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2194:1: ( rule__Methode__Group_8__0 )?
             {
-             before(grammarAccess.getMethodeAccess().getAttributesAssignment_5_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2073:1: ( rule__Methode__AttributesAssignment_5_0 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2073:2: rule__Methode__AttributesAssignment_5_0
-            {
-            pushFollow(FOLLOW_rule__Methode__AttributesAssignment_5_0_in_rule__Methode__Group_5__0__Impl4180);
-            rule__Methode__AttributesAssignment_5_0();
+             before(grammarAccess.getMethodeAccess().getGroup_8()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2195:1: ( rule__Methode__Group_8__0 )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA26_0==32) ) {
+                alt26=1;
+            }
+            switch (alt26) {
+                case 1 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2195:2: rule__Methode__Group_8__0
+                    {
+                    pushFollow(FOLLOW_rule__Methode__Group_8__0_in_rule__Methode__Group__8__Impl4473);
+                    rule__Methode__Group_8__0();
 
+                    state._fsp--;
+
+
+                    }
+                    break;
 
             }
 
-             after(grammarAccess.getMethodeAccess().getAttributesAssignment_5_0()); 
+             after(grammarAccess.getMethodeAccess().getGroup_8()); 
 
             }
 
@@ -5781,21 +6134,26 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_5__0__Impl"
+    // $ANTLR end "rule__Methode__Group__8__Impl"
 
 
-    // $ANTLR start "rule__Methode__Group_5__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2083:1: rule__Methode__Group_5__1 : rule__Methode__Group_5__1__Impl ;
-    public final void rule__Methode__Group_5__1() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_6__0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2223:1: rule__Methode__Group_6__0 : rule__Methode__Group_6__0__Impl rule__Methode__Group_6__1 ;
+    public final void rule__Methode__Group_6__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2087:1: ( rule__Methode__Group_5__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2088:2: rule__Methode__Group_5__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2227:1: ( rule__Methode__Group_6__0__Impl rule__Methode__Group_6__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2228:2: rule__Methode__Group_6__0__Impl rule__Methode__Group_6__1
             {
-            pushFollow(FOLLOW_rule__Methode__Group_5__1__Impl_in_rule__Methode__Group_5__14210);
-            rule__Methode__Group_5__1__Impl();
+            pushFollow(FOLLOW_rule__Methode__Group_6__0__Impl_in_rule__Methode__Group_6__04522);
+            rule__Methode__Group_6__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Methode__Group_6__1_in_rule__Methode__Group_6__04525);
+            rule__Methode__Group_6__1();
 
             state._fsp--;
 
@@ -5814,40 +6172,120 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_5__1"
+    // $ANTLR end "rule__Methode__Group_6__0"
 
 
-    // $ANTLR start "rule__Methode__Group_5__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2094:1: rule__Methode__Group_5__1__Impl : ( ( rule__Methode__Group_5_1__0 )* ) ;
-    public final void rule__Methode__Group_5__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_6__0__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2235:1: rule__Methode__Group_6__0__Impl : ( ( rule__Methode__AttributesAssignment_6_0 ) ) ;
+    public final void rule__Methode__Group_6__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2098:1: ( ( ( rule__Methode__Group_5_1__0 )* ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2099:1: ( ( rule__Methode__Group_5_1__0 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2239:1: ( ( ( rule__Methode__AttributesAssignment_6_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2240:1: ( ( rule__Methode__AttributesAssignment_6_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2099:1: ( ( rule__Methode__Group_5_1__0 )* )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2100:1: ( rule__Methode__Group_5_1__0 )*
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2240:1: ( ( rule__Methode__AttributesAssignment_6_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2241:1: ( rule__Methode__AttributesAssignment_6_0 )
             {
-             before(grammarAccess.getMethodeAccess().getGroup_5_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2101:1: ( rule__Methode__Group_5_1__0 )*
-            loop23:
+             before(grammarAccess.getMethodeAccess().getAttributesAssignment_6_0()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2242:1: ( rule__Methode__AttributesAssignment_6_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2242:2: rule__Methode__AttributesAssignment_6_0
+            {
+            pushFollow(FOLLOW_rule__Methode__AttributesAssignment_6_0_in_rule__Methode__Group_6__0__Impl4552);
+            rule__Methode__AttributesAssignment_6_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMethodeAccess().getAttributesAssignment_6_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Methode__Group_6__0__Impl"
+
+
+    // $ANTLR start "rule__Methode__Group_6__1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2252:1: rule__Methode__Group_6__1 : rule__Methode__Group_6__1__Impl ;
+    public final void rule__Methode__Group_6__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2256:1: ( rule__Methode__Group_6__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2257:2: rule__Methode__Group_6__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Methode__Group_6__1__Impl_in_rule__Methode__Group_6__14582);
+            rule__Methode__Group_6__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Methode__Group_6__1"
+
+
+    // $ANTLR start "rule__Methode__Group_6__1__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2263:1: rule__Methode__Group_6__1__Impl : ( ( rule__Methode__Group_6_1__0 )* ) ;
+    public final void rule__Methode__Group_6__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2267:1: ( ( ( rule__Methode__Group_6_1__0 )* ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2268:1: ( ( rule__Methode__Group_6_1__0 )* )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2268:1: ( ( rule__Methode__Group_6_1__0 )* )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2269:1: ( rule__Methode__Group_6_1__0 )*
+            {
+             before(grammarAccess.getMethodeAccess().getGroup_6_1()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2270:1: ( rule__Methode__Group_6_1__0 )*
+            loop27:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA23_0==21) ) {
-                    alt23=1;
+                if ( (LA27_0==25) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt27) {
             	case 1 :
-            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2101:2: rule__Methode__Group_5_1__0
+            	    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2270:2: rule__Methode__Group_6_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Methode__Group_5_1__0_in_rule__Methode__Group_5__1__Impl4237);
-            	    rule__Methode__Group_5_1__0();
+            	    pushFollow(FOLLOW_rule__Methode__Group_6_1__0_in_rule__Methode__Group_6__1__Impl4609);
+            	    rule__Methode__Group_6_1__0();
 
             	    state._fsp--;
 
@@ -5856,11 +6294,11 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop27;
                 }
             } while (true);
 
-             after(grammarAccess.getMethodeAccess().getGroup_5_1()); 
+             after(grammarAccess.getMethodeAccess().getGroup_6_1()); 
 
             }
 
@@ -5879,96 +6317,26 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_5__1__Impl"
+    // $ANTLR end "rule__Methode__Group_6__1__Impl"
 
 
-    // $ANTLR start "rule__Methode__Group_5_1__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2115:1: rule__Methode__Group_5_1__0 : rule__Methode__Group_5_1__0__Impl rule__Methode__Group_5_1__1 ;
-    public final void rule__Methode__Group_5_1__0() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_6_1__0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2284:1: rule__Methode__Group_6_1__0 : rule__Methode__Group_6_1__0__Impl rule__Methode__Group_6_1__1 ;
+    public final void rule__Methode__Group_6_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2119:1: ( rule__Methode__Group_5_1__0__Impl rule__Methode__Group_5_1__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2120:2: rule__Methode__Group_5_1__0__Impl rule__Methode__Group_5_1__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2288:1: ( rule__Methode__Group_6_1__0__Impl rule__Methode__Group_6_1__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2289:2: rule__Methode__Group_6_1__0__Impl rule__Methode__Group_6_1__1
             {
-            pushFollow(FOLLOW_rule__Methode__Group_5_1__0__Impl_in_rule__Methode__Group_5_1__04272);
-            rule__Methode__Group_5_1__0__Impl();
+            pushFollow(FOLLOW_rule__Methode__Group_6_1__0__Impl_in_rule__Methode__Group_6_1__04644);
+            rule__Methode__Group_6_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Methode__Group_5_1__1_in_rule__Methode__Group_5_1__04275);
-            rule__Methode__Group_5_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Methode__Group_5_1__0"
-
-
-    // $ANTLR start "rule__Methode__Group_5_1__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2127:1: rule__Methode__Group_5_1__0__Impl : ( ',' ) ;
-    public final void rule__Methode__Group_5_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2131:1: ( ( ',' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2132:1: ( ',' )
-            {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2132:1: ( ',' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2133:1: ','
-            {
-             before(grammarAccess.getMethodeAccess().getCommaKeyword_5_1_0()); 
-            match(input,21,FOLLOW_21_in_rule__Methode__Group_5_1__0__Impl4303); 
-             after(grammarAccess.getMethodeAccess().getCommaKeyword_5_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Methode__Group_5_1__0__Impl"
-
-
-    // $ANTLR start "rule__Methode__Group_5_1__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2146:1: rule__Methode__Group_5_1__1 : rule__Methode__Group_5_1__1__Impl ;
-    public final void rule__Methode__Group_5_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2150:1: ( rule__Methode__Group_5_1__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2151:2: rule__Methode__Group_5_1__1__Impl
-            {
-            pushFollow(FOLLOW_rule__Methode__Group_5_1__1__Impl_in_rule__Methode__Group_5_1__14334);
-            rule__Methode__Group_5_1__1__Impl();
+            pushFollow(FOLLOW_rule__Methode__Group_6_1__1_in_rule__Methode__Group_6_1__04647);
+            rule__Methode__Group_6_1__1();
 
             state._fsp--;
 
@@ -5987,35 +6355,25 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_5_1__1"
+    // $ANTLR end "rule__Methode__Group_6_1__0"
 
 
-    // $ANTLR start "rule__Methode__Group_5_1__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2157:1: rule__Methode__Group_5_1__1__Impl : ( ( rule__Methode__AttributesAssignment_5_1_1 ) ) ;
-    public final void rule__Methode__Group_5_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_6_1__0__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2296:1: rule__Methode__Group_6_1__0__Impl : ( ',' ) ;
+    public final void rule__Methode__Group_6_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2161:1: ( ( ( rule__Methode__AttributesAssignment_5_1_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2162:1: ( ( rule__Methode__AttributesAssignment_5_1_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2300:1: ( ( ',' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2301:1: ( ',' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2162:1: ( ( rule__Methode__AttributesAssignment_5_1_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2163:1: ( rule__Methode__AttributesAssignment_5_1_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2301:1: ( ',' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2302:1: ','
             {
-             before(grammarAccess.getMethodeAccess().getAttributesAssignment_5_1_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2164:1: ( rule__Methode__AttributesAssignment_5_1_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2164:2: rule__Methode__AttributesAssignment_5_1_1
-            {
-            pushFollow(FOLLOW_rule__Methode__AttributesAssignment_5_1_1_in_rule__Methode__Group_5_1__1__Impl4361);
-            rule__Methode__AttributesAssignment_5_1_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getMethodeAccess().getAttributesAssignment_5_1_1()); 
+             before(grammarAccess.getMethodeAccess().getCommaKeyword_6_1_0()); 
+            match(input,25,FOLLOW_25_in_rule__Methode__Group_6_1__0__Impl4675); 
+             after(grammarAccess.getMethodeAccess().getCommaKeyword_6_1_0()); 
 
             }
 
@@ -6034,26 +6392,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_5_1__1__Impl"
+    // $ANTLR end "rule__Methode__Group_6_1__0__Impl"
 
 
-    // $ANTLR start "rule__Methode__Group_7__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2178:1: rule__Methode__Group_7__0 : rule__Methode__Group_7__0__Impl rule__Methode__Group_7__1 ;
-    public final void rule__Methode__Group_7__0() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_6_1__1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2315:1: rule__Methode__Group_6_1__1 : rule__Methode__Group_6_1__1__Impl ;
+    public final void rule__Methode__Group_6_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2182:1: ( rule__Methode__Group_7__0__Impl rule__Methode__Group_7__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2183:2: rule__Methode__Group_7__0__Impl rule__Methode__Group_7__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2319:1: ( rule__Methode__Group_6_1__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2320:2: rule__Methode__Group_6_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Methode__Group_7__0__Impl_in_rule__Methode__Group_7__04395);
-            rule__Methode__Group_7__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__Methode__Group_7__1_in_rule__Methode__Group_7__04398);
-            rule__Methode__Group_7__1();
+            pushFollow(FOLLOW_rule__Methode__Group_6_1__1__Impl_in_rule__Methode__Group_6_1__14706);
+            rule__Methode__Group_6_1__1__Impl();
 
             state._fsp--;
 
@@ -6072,25 +6425,35 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_7__0"
+    // $ANTLR end "rule__Methode__Group_6_1__1"
 
 
-    // $ANTLR start "rule__Methode__Group_7__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2190:1: rule__Methode__Group_7__0__Impl : ( ':' ) ;
-    public final void rule__Methode__Group_7__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_6_1__1__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2326:1: rule__Methode__Group_6_1__1__Impl : ( ( rule__Methode__AttributesAssignment_6_1_1 ) ) ;
+    public final void rule__Methode__Group_6_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2194:1: ( ( ':' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2195:1: ( ':' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2330:1: ( ( ( rule__Methode__AttributesAssignment_6_1_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2331:1: ( ( rule__Methode__AttributesAssignment_6_1_1 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2195:1: ( ':' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2196:1: ':'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2331:1: ( ( rule__Methode__AttributesAssignment_6_1_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2332:1: ( rule__Methode__AttributesAssignment_6_1_1 )
             {
-             before(grammarAccess.getMethodeAccess().getColonKeyword_7_0()); 
-            match(input,28,FOLLOW_28_in_rule__Methode__Group_7__0__Impl4426); 
-             after(grammarAccess.getMethodeAccess().getColonKeyword_7_0()); 
+             before(grammarAccess.getMethodeAccess().getAttributesAssignment_6_1_1()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2333:1: ( rule__Methode__AttributesAssignment_6_1_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2333:2: rule__Methode__AttributesAssignment_6_1_1
+            {
+            pushFollow(FOLLOW_rule__Methode__AttributesAssignment_6_1_1_in_rule__Methode__Group_6_1__1__Impl4733);
+            rule__Methode__AttributesAssignment_6_1_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMethodeAccess().getAttributesAssignment_6_1_1()); 
 
             }
 
@@ -6109,21 +6472,26 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_7__0__Impl"
+    // $ANTLR end "rule__Methode__Group_6_1__1__Impl"
 
 
-    // $ANTLR start "rule__Methode__Group_7__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2209:1: rule__Methode__Group_7__1 : rule__Methode__Group_7__1__Impl ;
-    public final void rule__Methode__Group_7__1() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_8__0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2347:1: rule__Methode__Group_8__0 : rule__Methode__Group_8__0__Impl rule__Methode__Group_8__1 ;
+    public final void rule__Methode__Group_8__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2213:1: ( rule__Methode__Group_7__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2214:2: rule__Methode__Group_7__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2351:1: ( rule__Methode__Group_8__0__Impl rule__Methode__Group_8__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2352:2: rule__Methode__Group_8__0__Impl rule__Methode__Group_8__1
             {
-            pushFollow(FOLLOW_rule__Methode__Group_7__1__Impl_in_rule__Methode__Group_7__14457);
-            rule__Methode__Group_7__1__Impl();
+            pushFollow(FOLLOW_rule__Methode__Group_8__0__Impl_in_rule__Methode__Group_8__04767);
+            rule__Methode__Group_8__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Methode__Group_8__1_in_rule__Methode__Group_8__04770);
+            rule__Methode__Group_8__1();
 
             state._fsp--;
 
@@ -6142,35 +6510,25 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_7__1"
+    // $ANTLR end "rule__Methode__Group_8__0"
 
 
-    // $ANTLR start "rule__Methode__Group_7__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2220:1: rule__Methode__Group_7__1__Impl : ( ( rule__Methode__TypeAssignment_7_1 ) ) ;
-    public final void rule__Methode__Group_7__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Methode__Group_8__0__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2359:1: rule__Methode__Group_8__0__Impl : ( ':' ) ;
+    public final void rule__Methode__Group_8__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2224:1: ( ( ( rule__Methode__TypeAssignment_7_1 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2225:1: ( ( rule__Methode__TypeAssignment_7_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2363:1: ( ( ':' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2364:1: ( ':' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2225:1: ( ( rule__Methode__TypeAssignment_7_1 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2226:1: ( rule__Methode__TypeAssignment_7_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2364:1: ( ':' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2365:1: ':'
             {
-             before(grammarAccess.getMethodeAccess().getTypeAssignment_7_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2227:1: ( rule__Methode__TypeAssignment_7_1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2227:2: rule__Methode__TypeAssignment_7_1
-            {
-            pushFollow(FOLLOW_rule__Methode__TypeAssignment_7_1_in_rule__Methode__Group_7__1__Impl4484);
-            rule__Methode__TypeAssignment_7_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getMethodeAccess().getTypeAssignment_7_1()); 
+             before(grammarAccess.getMethodeAccess().getColonKeyword_8_0()); 
+            match(input,32,FOLLOW_32_in_rule__Methode__Group_8__0__Impl4798); 
+             after(grammarAccess.getMethodeAccess().getColonKeyword_8_0()); 
 
             }
 
@@ -6189,25 +6547,105 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__Group_7__1__Impl"
+    // $ANTLR end "rule__Methode__Group_8__0__Impl"
+
+
+    // $ANTLR start "rule__Methode__Group_8__1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2378:1: rule__Methode__Group_8__1 : rule__Methode__Group_8__1__Impl ;
+    public final void rule__Methode__Group_8__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2382:1: ( rule__Methode__Group_8__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2383:2: rule__Methode__Group_8__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Methode__Group_8__1__Impl_in_rule__Methode__Group_8__14829);
+            rule__Methode__Group_8__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Methode__Group_8__1"
+
+
+    // $ANTLR start "rule__Methode__Group_8__1__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2389:1: rule__Methode__Group_8__1__Impl : ( ( rule__Methode__TypeAssignment_8_1 ) ) ;
+    public final void rule__Methode__Group_8__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2393:1: ( ( ( rule__Methode__TypeAssignment_8_1 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2394:1: ( ( rule__Methode__TypeAssignment_8_1 ) )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2394:1: ( ( rule__Methode__TypeAssignment_8_1 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2395:1: ( rule__Methode__TypeAssignment_8_1 )
+            {
+             before(grammarAccess.getMethodeAccess().getTypeAssignment_8_1()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2396:1: ( rule__Methode__TypeAssignment_8_1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2396:2: rule__Methode__TypeAssignment_8_1
+            {
+            pushFollow(FOLLOW_rule__Methode__TypeAssignment_8_1_in_rule__Methode__Group_8__1__Impl4856);
+            rule__Methode__TypeAssignment_8_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMethodeAccess().getTypeAssignment_8_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Methode__Group_8__1__Impl"
 
 
     // $ANTLR start "rule__Generalization__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2241:1: rule__Generalization__Group__0 : rule__Generalization__Group__0__Impl rule__Generalization__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2410:1: rule__Generalization__Group__0 : rule__Generalization__Group__0__Impl rule__Generalization__Group__1 ;
     public final void rule__Generalization__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2245:1: ( rule__Generalization__Group__0__Impl rule__Generalization__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2246:2: rule__Generalization__Group__0__Impl rule__Generalization__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2414:1: ( rule__Generalization__Group__0__Impl rule__Generalization__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2415:2: rule__Generalization__Group__0__Impl rule__Generalization__Group__1
             {
-            pushFollow(FOLLOW_rule__Generalization__Group__0__Impl_in_rule__Generalization__Group__04518);
+            pushFollow(FOLLOW_rule__Generalization__Group__0__Impl_in_rule__Generalization__Group__04890);
             rule__Generalization__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Generalization__Group__1_in_rule__Generalization__Group__04521);
+            pushFollow(FOLLOW_rule__Generalization__Group__1_in_rule__Generalization__Group__04893);
             rule__Generalization__Group__1();
 
             state._fsp--;
@@ -6231,23 +6669,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Generalization__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2253:1: rule__Generalization__Group__0__Impl : ( ( rule__Generalization__LeftAssignment_0 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2422:1: rule__Generalization__Group__0__Impl : ( ( rule__Generalization__LeftAssignment_0 ) ) ;
     public final void rule__Generalization__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2257:1: ( ( ( rule__Generalization__LeftAssignment_0 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2258:1: ( ( rule__Generalization__LeftAssignment_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2426:1: ( ( ( rule__Generalization__LeftAssignment_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2427:1: ( ( rule__Generalization__LeftAssignment_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2258:1: ( ( rule__Generalization__LeftAssignment_0 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2259:1: ( rule__Generalization__LeftAssignment_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2427:1: ( ( rule__Generalization__LeftAssignment_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2428:1: ( rule__Generalization__LeftAssignment_0 )
             {
              before(grammarAccess.getGeneralizationAccess().getLeftAssignment_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2260:1: ( rule__Generalization__LeftAssignment_0 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2260:2: rule__Generalization__LeftAssignment_0
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2429:1: ( rule__Generalization__LeftAssignment_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2429:2: rule__Generalization__LeftAssignment_0
             {
-            pushFollow(FOLLOW_rule__Generalization__LeftAssignment_0_in_rule__Generalization__Group__0__Impl4548);
+            pushFollow(FOLLOW_rule__Generalization__LeftAssignment_0_in_rule__Generalization__Group__0__Impl4920);
             rule__Generalization__LeftAssignment_0();
 
             state._fsp--;
@@ -6278,21 +6716,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Generalization__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2270:1: rule__Generalization__Group__1 : rule__Generalization__Group__1__Impl rule__Generalization__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2439:1: rule__Generalization__Group__1 : rule__Generalization__Group__1__Impl rule__Generalization__Group__2 ;
     public final void rule__Generalization__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2274:1: ( rule__Generalization__Group__1__Impl rule__Generalization__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2275:2: rule__Generalization__Group__1__Impl rule__Generalization__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2443:1: ( rule__Generalization__Group__1__Impl rule__Generalization__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2444:2: rule__Generalization__Group__1__Impl rule__Generalization__Group__2
             {
-            pushFollow(FOLLOW_rule__Generalization__Group__1__Impl_in_rule__Generalization__Group__14578);
+            pushFollow(FOLLOW_rule__Generalization__Group__1__Impl_in_rule__Generalization__Group__14950);
             rule__Generalization__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Generalization__Group__2_in_rule__Generalization__Group__14581);
+            pushFollow(FOLLOW_rule__Generalization__Group__2_in_rule__Generalization__Group__14953);
             rule__Generalization__Group__2();
 
             state._fsp--;
@@ -6316,20 +6754,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Generalization__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2282:1: rule__Generalization__Group__1__Impl : ( 'isa' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2451:1: rule__Generalization__Group__1__Impl : ( 'isa' ) ;
     public final void rule__Generalization__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2286:1: ( ( 'isa' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2287:1: ( 'isa' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2455:1: ( ( 'isa' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2456:1: ( 'isa' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2287:1: ( 'isa' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2288:1: 'isa'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2456:1: ( 'isa' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2457:1: 'isa'
             {
              before(grammarAccess.getGeneralizationAccess().getIsaKeyword_1()); 
-            match(input,31,FOLLOW_31_in_rule__Generalization__Group__1__Impl4609); 
+            match(input,35,FOLLOW_35_in_rule__Generalization__Group__1__Impl4981); 
              after(grammarAccess.getGeneralizationAccess().getIsaKeyword_1()); 
 
             }
@@ -6353,16 +6791,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Generalization__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2301:1: rule__Generalization__Group__2 : rule__Generalization__Group__2__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2470:1: rule__Generalization__Group__2 : rule__Generalization__Group__2__Impl ;
     public final void rule__Generalization__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2305:1: ( rule__Generalization__Group__2__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2306:2: rule__Generalization__Group__2__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2474:1: ( rule__Generalization__Group__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2475:2: rule__Generalization__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Generalization__Group__2__Impl_in_rule__Generalization__Group__24640);
+            pushFollow(FOLLOW_rule__Generalization__Group__2__Impl_in_rule__Generalization__Group__25012);
             rule__Generalization__Group__2__Impl();
 
             state._fsp--;
@@ -6386,23 +6824,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Generalization__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2312:1: rule__Generalization__Group__2__Impl : ( ( rule__Generalization__RightAssignment_2 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2481:1: rule__Generalization__Group__2__Impl : ( ( rule__Generalization__RightAssignment_2 ) ) ;
     public final void rule__Generalization__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2316:1: ( ( ( rule__Generalization__RightAssignment_2 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2317:1: ( ( rule__Generalization__RightAssignment_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2485:1: ( ( ( rule__Generalization__RightAssignment_2 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2486:1: ( ( rule__Generalization__RightAssignment_2 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2317:1: ( ( rule__Generalization__RightAssignment_2 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2318:1: ( rule__Generalization__RightAssignment_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2486:1: ( ( rule__Generalization__RightAssignment_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2487:1: ( rule__Generalization__RightAssignment_2 )
             {
              before(grammarAccess.getGeneralizationAccess().getRightAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2319:1: ( rule__Generalization__RightAssignment_2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2319:2: rule__Generalization__RightAssignment_2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2488:1: ( rule__Generalization__RightAssignment_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2488:2: rule__Generalization__RightAssignment_2
             {
-            pushFollow(FOLLOW_rule__Generalization__RightAssignment_2_in_rule__Generalization__Group__2__Impl4667);
+            pushFollow(FOLLOW_rule__Generalization__RightAssignment_2_in_rule__Generalization__Group__2__Impl5039);
             rule__Generalization__RightAssignment_2();
 
             state._fsp--;
@@ -6433,21 +6871,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2335:1: rule__Association__Group__0 : rule__Association__Group__0__Impl rule__Association__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2504:1: rule__Association__Group__0 : rule__Association__Group__0__Impl rule__Association__Group__1 ;
     public final void rule__Association__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2339:1: ( rule__Association__Group__0__Impl rule__Association__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2340:2: rule__Association__Group__0__Impl rule__Association__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2508:1: ( rule__Association__Group__0__Impl rule__Association__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2509:2: rule__Association__Group__0__Impl rule__Association__Group__1
             {
-            pushFollow(FOLLOW_rule__Association__Group__0__Impl_in_rule__Association__Group__04703);
+            pushFollow(FOLLOW_rule__Association__Group__0__Impl_in_rule__Association__Group__05075);
             rule__Association__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Association__Group__1_in_rule__Association__Group__04706);
+            pushFollow(FOLLOW_rule__Association__Group__1_in_rule__Association__Group__05078);
             rule__Association__Group__1();
 
             state._fsp--;
@@ -6471,23 +6909,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2347:1: rule__Association__Group__0__Impl : ( ( rule__Association__LeftAssignment_0 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2516:1: rule__Association__Group__0__Impl : ( ( rule__Association__LeftAssignment_0 ) ) ;
     public final void rule__Association__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2351:1: ( ( ( rule__Association__LeftAssignment_0 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2352:1: ( ( rule__Association__LeftAssignment_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2520:1: ( ( ( rule__Association__LeftAssignment_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2521:1: ( ( rule__Association__LeftAssignment_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2352:1: ( ( rule__Association__LeftAssignment_0 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2353:1: ( rule__Association__LeftAssignment_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2521:1: ( ( rule__Association__LeftAssignment_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2522:1: ( rule__Association__LeftAssignment_0 )
             {
              before(grammarAccess.getAssociationAccess().getLeftAssignment_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2354:1: ( rule__Association__LeftAssignment_0 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2354:2: rule__Association__LeftAssignment_0
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2523:1: ( rule__Association__LeftAssignment_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2523:2: rule__Association__LeftAssignment_0
             {
-            pushFollow(FOLLOW_rule__Association__LeftAssignment_0_in_rule__Association__Group__0__Impl4733);
+            pushFollow(FOLLOW_rule__Association__LeftAssignment_0_in_rule__Association__Group__0__Impl5105);
             rule__Association__LeftAssignment_0();
 
             state._fsp--;
@@ -6518,21 +6956,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2364:1: rule__Association__Group__1 : rule__Association__Group__1__Impl rule__Association__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2533:1: rule__Association__Group__1 : rule__Association__Group__1__Impl rule__Association__Group__2 ;
     public final void rule__Association__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2368:1: ( rule__Association__Group__1__Impl rule__Association__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2369:2: rule__Association__Group__1__Impl rule__Association__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2537:1: ( rule__Association__Group__1__Impl rule__Association__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2538:2: rule__Association__Group__1__Impl rule__Association__Group__2
             {
-            pushFollow(FOLLOW_rule__Association__Group__1__Impl_in_rule__Association__Group__14763);
+            pushFollow(FOLLOW_rule__Association__Group__1__Impl_in_rule__Association__Group__15135);
             rule__Association__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Association__Group__2_in_rule__Association__Group__14766);
+            pushFollow(FOLLOW_rule__Association__Group__2_in_rule__Association__Group__15138);
             rule__Association__Group__2();
 
             state._fsp--;
@@ -6556,20 +6994,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2376:1: rule__Association__Group__1__Impl : ( '-' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2545:1: rule__Association__Group__1__Impl : ( '-' ) ;
     public final void rule__Association__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2380:1: ( ( '-' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2381:1: ( '-' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2549:1: ( ( '-' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2550:1: ( '-' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2381:1: ( '-' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2382:1: '-'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2550:1: ( '-' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2551:1: '-'
             {
              before(grammarAccess.getAssociationAccess().getHyphenMinusKeyword_1()); 
-            match(input,32,FOLLOW_32_in_rule__Association__Group__1__Impl4794); 
+            match(input,17,FOLLOW_17_in_rule__Association__Group__1__Impl5166); 
              after(grammarAccess.getAssociationAccess().getHyphenMinusKeyword_1()); 
 
             }
@@ -6593,22 +7031,17 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2395:1: rule__Association__Group__2 : rule__Association__Group__2__Impl rule__Association__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2564:1: rule__Association__Group__2 : rule__Association__Group__2__Impl ;
     public final void rule__Association__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2399:1: ( rule__Association__Group__2__Impl rule__Association__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2400:2: rule__Association__Group__2__Impl rule__Association__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2568:1: ( rule__Association__Group__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2569:2: rule__Association__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Association__Group__2__Impl_in_rule__Association__Group__24825);
+            pushFollow(FOLLOW_rule__Association__Group__2__Impl_in_rule__Association__Group__25197);
             rule__Association__Group__2__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__Association__Group__3_in_rule__Association__Group__24828);
-            rule__Association__Group__3();
 
             state._fsp--;
 
@@ -6631,31 +7064,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2407:1: rule__Association__Group__2__Impl : ( ( rule__Association__RightAssignment_2 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2575:1: rule__Association__Group__2__Impl : ( ( rule__Association__Alternatives_2 ) ) ;
     public final void rule__Association__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2411:1: ( ( ( rule__Association__RightAssignment_2 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2412:1: ( ( rule__Association__RightAssignment_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2579:1: ( ( ( rule__Association__Alternatives_2 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2580:1: ( ( rule__Association__Alternatives_2 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2412:1: ( ( rule__Association__RightAssignment_2 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2413:1: ( rule__Association__RightAssignment_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2580:1: ( ( rule__Association__Alternatives_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2581:1: ( rule__Association__Alternatives_2 )
             {
-             before(grammarAccess.getAssociationAccess().getRightAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2414:1: ( rule__Association__RightAssignment_2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2414:2: rule__Association__RightAssignment_2
+             before(grammarAccess.getAssociationAccess().getAlternatives_2()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2582:1: ( rule__Association__Alternatives_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2582:2: rule__Association__Alternatives_2
             {
-            pushFollow(FOLLOW_rule__Association__RightAssignment_2_in_rule__Association__Group__2__Impl4855);
-            rule__Association__RightAssignment_2();
+            pushFollow(FOLLOW_rule__Association__Alternatives_2_in_rule__Association__Group__2__Impl5224);
+            rule__Association__Alternatives_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getAssociationAccess().getRightAssignment_2()); 
+             after(grammarAccess.getAssociationAccess().getAlternatives_2()); 
 
             }
 
@@ -6677,18 +7110,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Association__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Association__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2424:1: rule__Association__Group__3 : rule__Association__Group__3__Impl ;
-    public final void rule__Association__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__Association__Group_2_0__0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2598:1: rule__Association__Group_2_0__0 : rule__Association__Group_2_0__0__Impl rule__Association__Group_2_0__1 ;
+    public final void rule__Association__Group_2_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2428:1: ( rule__Association__Group__3__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2429:2: rule__Association__Group__3__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2602:1: ( rule__Association__Group_2_0__0__Impl rule__Association__Group_2_0__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2603:2: rule__Association__Group_2_0__0__Impl rule__Association__Group_2_0__1
             {
-            pushFollow(FOLLOW_rule__Association__Group__3__Impl_in_rule__Association__Group__34885);
-            rule__Association__Group__3__Impl();
+            pushFollow(FOLLOW_rule__Association__Group_2_0__0__Impl_in_rule__Association__Group_2_0__05260);
+            rule__Association__Group_2_0__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Association__Group_2_0__1_in_rule__Association__Group_2_0__05263);
+            rule__Association__Group_2_0__1();
 
             state._fsp--;
 
@@ -6707,36 +7145,121 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Association__Group__3"
+    // $ANTLR end "rule__Association__Group_2_0__0"
 
 
-    // $ANTLR start "rule__Association__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2435:1: rule__Association__Group__3__Impl : ( ( rule__Association__CardinalityAssignment_3 )? ) ;
-    public final void rule__Association__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Association__Group_2_0__0__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2610:1: rule__Association__Group_2_0__0__Impl : ( ( rule__Association__RightAssignment_2_0_0 ) ) ;
+    public final void rule__Association__Group_2_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2439:1: ( ( ( rule__Association__CardinalityAssignment_3 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2440:1: ( ( rule__Association__CardinalityAssignment_3 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2614:1: ( ( ( rule__Association__RightAssignment_2_0_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2615:1: ( ( rule__Association__RightAssignment_2_0_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2440:1: ( ( rule__Association__CardinalityAssignment_3 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2441:1: ( rule__Association__CardinalityAssignment_3 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2615:1: ( ( rule__Association__RightAssignment_2_0_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2616:1: ( rule__Association__RightAssignment_2_0_0 )
             {
-             before(grammarAccess.getAssociationAccess().getCardinalityAssignment_3()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2442:1: ( rule__Association__CardinalityAssignment_3 )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+             before(grammarAccess.getAssociationAccess().getRightAssignment_2_0_0()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2617:1: ( rule__Association__RightAssignment_2_0_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2617:2: rule__Association__RightAssignment_2_0_0
+            {
+            pushFollow(FOLLOW_rule__Association__RightAssignment_2_0_0_in_rule__Association__Group_2_0__0__Impl5290);
+            rule__Association__RightAssignment_2_0_0();
 
-            if ( (LA24_0==33) ) {
-                alt24=1;
+            state._fsp--;
+
+
             }
-            switch (alt24) {
+
+             after(grammarAccess.getAssociationAccess().getRightAssignment_2_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__Group_2_0__0__Impl"
+
+
+    // $ANTLR start "rule__Association__Group_2_0__1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2627:1: rule__Association__Group_2_0__1 : rule__Association__Group_2_0__1__Impl rule__Association__Group_2_0__2 ;
+    public final void rule__Association__Group_2_0__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2631:1: ( rule__Association__Group_2_0__1__Impl rule__Association__Group_2_0__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2632:2: rule__Association__Group_2_0__1__Impl rule__Association__Group_2_0__2
+            {
+            pushFollow(FOLLOW_rule__Association__Group_2_0__1__Impl_in_rule__Association__Group_2_0__15320);
+            rule__Association__Group_2_0__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Association__Group_2_0__2_in_rule__Association__Group_2_0__15323);
+            rule__Association__Group_2_0__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__Group_2_0__1"
+
+
+    // $ANTLR start "rule__Association__Group_2_0__1__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2639:1: rule__Association__Group_2_0__1__Impl : ( ( rule__Association__CardinalityAssignment_2_0_1 )? ) ;
+    public final void rule__Association__Group_2_0__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2643:1: ( ( ( rule__Association__CardinalityAssignment_2_0_1 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2644:1: ( ( rule__Association__CardinalityAssignment_2_0_1 )? )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2644:1: ( ( rule__Association__CardinalityAssignment_2_0_1 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2645:1: ( rule__Association__CardinalityAssignment_2_0_1 )?
+            {
+             before(grammarAccess.getAssociationAccess().getCardinalityAssignment_2_0_1()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2646:1: ( rule__Association__CardinalityAssignment_2_0_1 )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
+
+            if ( (LA28_0==36) ) {
+                alt28=1;
+            }
+            switch (alt28) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2442:2: rule__Association__CardinalityAssignment_3
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2646:2: rule__Association__CardinalityAssignment_2_0_1
                     {
-                    pushFollow(FOLLOW_rule__Association__CardinalityAssignment_3_in_rule__Association__Group__3__Impl4912);
-                    rule__Association__CardinalityAssignment_3();
+                    pushFollow(FOLLOW_rule__Association__CardinalityAssignment_2_0_1_in_rule__Association__Group_2_0__1__Impl5350);
+                    rule__Association__CardinalityAssignment_2_0_1();
 
                     state._fsp--;
 
@@ -6746,7 +7269,7 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getAssociationAccess().getCardinalityAssignment_3()); 
+             after(grammarAccess.getAssociationAccess().getCardinalityAssignment_2_0_1()); 
 
             }
 
@@ -6765,25 +7288,116 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Association__Group__3__Impl"
+    // $ANTLR end "rule__Association__Group_2_0__1__Impl"
+
+
+    // $ANTLR start "rule__Association__Group_2_0__2"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2656:1: rule__Association__Group_2_0__2 : rule__Association__Group_2_0__2__Impl ;
+    public final void rule__Association__Group_2_0__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2660:1: ( rule__Association__Group_2_0__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2661:2: rule__Association__Group_2_0__2__Impl
+            {
+            pushFollow(FOLLOW_rule__Association__Group_2_0__2__Impl_in_rule__Association__Group_2_0__25381);
+            rule__Association__Group_2_0__2__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__Group_2_0__2"
+
+
+    // $ANTLR start "rule__Association__Group_2_0__2__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2667:1: rule__Association__Group_2_0__2__Impl : ( ( rule__Association__NoteAssignment_2_0_2 )? ) ;
+    public final void rule__Association__Group_2_0__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2671:1: ( ( ( rule__Association__NoteAssignment_2_0_2 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2672:1: ( ( rule__Association__NoteAssignment_2_0_2 )? )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2672:1: ( ( rule__Association__NoteAssignment_2_0_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2673:1: ( rule__Association__NoteAssignment_2_0_2 )?
+            {
+             before(grammarAccess.getAssociationAccess().getNoteAssignment_2_0_2()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2674:1: ( rule__Association__NoteAssignment_2_0_2 )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
+
+            if ( (LA29_0==40) ) {
+                alt29=1;
+            }
+            switch (alt29) {
+                case 1 :
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2674:2: rule__Association__NoteAssignment_2_0_2
+                    {
+                    pushFollow(FOLLOW_rule__Association__NoteAssignment_2_0_2_in_rule__Association__Group_2_0__2__Impl5408);
+                    rule__Association__NoteAssignment_2_0_2();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getAssociationAccess().getNoteAssignment_2_0_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__Group_2_0__2__Impl"
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2460:1: rule__ConnectorCardinalitiy__Group__0 : rule__ConnectorCardinalitiy__Group__0__Impl rule__ConnectorCardinalitiy__Group__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2690:1: rule__ConnectorCardinalitiy__Group__0 : rule__ConnectorCardinalitiy__Group__0__Impl rule__ConnectorCardinalitiy__Group__1 ;
     public final void rule__ConnectorCardinalitiy__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2464:1: ( rule__ConnectorCardinalitiy__Group__0__Impl rule__ConnectorCardinalitiy__Group__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2465:2: rule__ConnectorCardinalitiy__Group__0__Impl rule__ConnectorCardinalitiy__Group__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2694:1: ( rule__ConnectorCardinalitiy__Group__0__Impl rule__ConnectorCardinalitiy__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2695:2: rule__ConnectorCardinalitiy__Group__0__Impl rule__ConnectorCardinalitiy__Group__1
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__0__Impl_in_rule__ConnectorCardinalitiy__Group__04951);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__0__Impl_in_rule__ConnectorCardinalitiy__Group__05445);
             rule__ConnectorCardinalitiy__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__1_in_rule__ConnectorCardinalitiy__Group__04954);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__1_in_rule__ConnectorCardinalitiy__Group__05448);
             rule__ConnectorCardinalitiy__Group__1();
 
             state._fsp--;
@@ -6807,21 +7421,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2472:1: rule__ConnectorCardinalitiy__Group__0__Impl : ( () ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2702:1: rule__ConnectorCardinalitiy__Group__0__Impl : ( () ) ;
     public final void rule__ConnectorCardinalitiy__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2476:1: ( ( () ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2477:1: ( () )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2706:1: ( ( () ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2707:1: ( () )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2477:1: ( () )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2478:1: ()
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2707:1: ( () )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2708:1: ()
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getConnectorCardinalitiyAction_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2479:1: ()
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2481:1: 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2709:1: ()
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2711:1: 
             {
             }
 
@@ -6844,21 +7458,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2491:1: rule__ConnectorCardinalitiy__Group__1 : rule__ConnectorCardinalitiy__Group__1__Impl rule__ConnectorCardinalitiy__Group__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2721:1: rule__ConnectorCardinalitiy__Group__1 : rule__ConnectorCardinalitiy__Group__1__Impl rule__ConnectorCardinalitiy__Group__2 ;
     public final void rule__ConnectorCardinalitiy__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2495:1: ( rule__ConnectorCardinalitiy__Group__1__Impl rule__ConnectorCardinalitiy__Group__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2496:2: rule__ConnectorCardinalitiy__Group__1__Impl rule__ConnectorCardinalitiy__Group__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2725:1: ( rule__ConnectorCardinalitiy__Group__1__Impl rule__ConnectorCardinalitiy__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2726:2: rule__ConnectorCardinalitiy__Group__1__Impl rule__ConnectorCardinalitiy__Group__2
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__1__Impl_in_rule__ConnectorCardinalitiy__Group__15012);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__1__Impl_in_rule__ConnectorCardinalitiy__Group__15506);
             rule__ConnectorCardinalitiy__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__2_in_rule__ConnectorCardinalitiy__Group__15015);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__2_in_rule__ConnectorCardinalitiy__Group__15509);
             rule__ConnectorCardinalitiy__Group__2();
 
             state._fsp--;
@@ -6882,20 +7496,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2503:1: rule__ConnectorCardinalitiy__Group__1__Impl : ( '[' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2733:1: rule__ConnectorCardinalitiy__Group__1__Impl : ( '[' ) ;
     public final void rule__ConnectorCardinalitiy__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2507:1: ( ( '[' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2508:1: ( '[' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2737:1: ( ( '[' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2738:1: ( '[' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2508:1: ( '[' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2509:1: '['
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2738:1: ( '[' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2739:1: '['
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getLeftSquareBracketKeyword_1()); 
-            match(input,33,FOLLOW_33_in_rule__ConnectorCardinalitiy__Group__1__Impl5043); 
+            match(input,36,FOLLOW_36_in_rule__ConnectorCardinalitiy__Group__1__Impl5537); 
              after(grammarAccess.getConnectorCardinalitiyAccess().getLeftSquareBracketKeyword_1()); 
 
             }
@@ -6919,21 +7533,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2522:1: rule__ConnectorCardinalitiy__Group__2 : rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2752:1: rule__ConnectorCardinalitiy__Group__2 : rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3 ;
     public final void rule__ConnectorCardinalitiy__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2526:1: ( rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2527:2: rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2756:1: ( rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2757:2: rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__2__Impl_in_rule__ConnectorCardinalitiy__Group__25074);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__2__Impl_in_rule__ConnectorCardinalitiy__Group__25568);
             rule__ConnectorCardinalitiy__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__3_in_rule__ConnectorCardinalitiy__Group__25077);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__3_in_rule__ConnectorCardinalitiy__Group__25571);
             rule__ConnectorCardinalitiy__Group__3();
 
             state._fsp--;
@@ -6957,31 +7571,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2534:1: rule__ConnectorCardinalitiy__Group__2__Impl : ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2764:1: rule__ConnectorCardinalitiy__Group__2__Impl : ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2538:1: ( ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2539:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2768:1: ( ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2769:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2539:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2540:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2769:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2770:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getLeftAssignment_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2541:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2771:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )?
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA25_0==RULE_INT||LA25_0==15) ) {
-                alt25=1;
+            if ( (LA30_0==RULE_INT||LA30_0==15) ) {
+                alt30=1;
             }
-            switch (alt25) {
+            switch (alt30) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2541:2: rule__ConnectorCardinalitiy__LeftAssignment_2
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2771:2: rule__ConnectorCardinalitiy__LeftAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__LeftAssignment_2_in_rule__ConnectorCardinalitiy__Group__2__Impl5104);
+                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__LeftAssignment_2_in_rule__ConnectorCardinalitiy__Group__2__Impl5598);
                     rule__ConnectorCardinalitiy__LeftAssignment_2();
 
                     state._fsp--;
@@ -7015,21 +7629,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2551:1: rule__ConnectorCardinalitiy__Group__3 : rule__ConnectorCardinalitiy__Group__3__Impl rule__ConnectorCardinalitiy__Group__4 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2781:1: rule__ConnectorCardinalitiy__Group__3 : rule__ConnectorCardinalitiy__Group__3__Impl rule__ConnectorCardinalitiy__Group__4 ;
     public final void rule__ConnectorCardinalitiy__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2555:1: ( rule__ConnectorCardinalitiy__Group__3__Impl rule__ConnectorCardinalitiy__Group__4 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2556:2: rule__ConnectorCardinalitiy__Group__3__Impl rule__ConnectorCardinalitiy__Group__4
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2785:1: ( rule__ConnectorCardinalitiy__Group__3__Impl rule__ConnectorCardinalitiy__Group__4 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2786:2: rule__ConnectorCardinalitiy__Group__3__Impl rule__ConnectorCardinalitiy__Group__4
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__3__Impl_in_rule__ConnectorCardinalitiy__Group__35135);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__3__Impl_in_rule__ConnectorCardinalitiy__Group__35629);
             rule__ConnectorCardinalitiy__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__4_in_rule__ConnectorCardinalitiy__Group__35138);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__4_in_rule__ConnectorCardinalitiy__Group__35632);
             rule__ConnectorCardinalitiy__Group__4();
 
             state._fsp--;
@@ -7053,31 +7667,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__3__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2563:1: rule__ConnectorCardinalitiy__Group__3__Impl : ( ( rule__ConnectorCardinalitiy__Group_3__0 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2793:1: rule__ConnectorCardinalitiy__Group__3__Impl : ( ( rule__ConnectorCardinalitiy__Group_3__0 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2567:1: ( ( ( rule__ConnectorCardinalitiy__Group_3__0 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2568:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2797:1: ( ( ( rule__ConnectorCardinalitiy__Group_3__0 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2798:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2568:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2569:1: ( rule__ConnectorCardinalitiy__Group_3__0 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2798:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2799:1: ( rule__ConnectorCardinalitiy__Group_3__0 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getGroup_3()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2570:1: ( rule__ConnectorCardinalitiy__Group_3__0 )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2800:1: ( rule__ConnectorCardinalitiy__Group_3__0 )?
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA26_0==35) ) {
-                alt26=1;
+            if ( (LA31_0==38) ) {
+                alt31=1;
             }
-            switch (alt26) {
+            switch (alt31) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2570:2: rule__ConnectorCardinalitiy__Group_3__0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2800:2: rule__ConnectorCardinalitiy__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__0_in_rule__ConnectorCardinalitiy__Group__3__Impl5165);
+                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__0_in_rule__ConnectorCardinalitiy__Group__3__Impl5659);
                     rule__ConnectorCardinalitiy__Group_3__0();
 
                     state._fsp--;
@@ -7111,21 +7725,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2580:1: rule__ConnectorCardinalitiy__Group__4 : rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2810:1: rule__ConnectorCardinalitiy__Group__4 : rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5 ;
     public final void rule__ConnectorCardinalitiy__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2584:1: ( rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2585:2: rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2814:1: ( rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2815:2: rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__4__Impl_in_rule__ConnectorCardinalitiy__Group__45196);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__4__Impl_in_rule__ConnectorCardinalitiy__Group__45690);
             rule__ConnectorCardinalitiy__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__5_in_rule__ConnectorCardinalitiy__Group__45199);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__5_in_rule__ConnectorCardinalitiy__Group__45693);
             rule__ConnectorCardinalitiy__Group__5();
 
             state._fsp--;
@@ -7149,31 +7763,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__4__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2592:1: rule__ConnectorCardinalitiy__Group__4__Impl : ( ( rule__ConnectorCardinalitiy__Group_4__0 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2822:1: rule__ConnectorCardinalitiy__Group__4__Impl : ( ( rule__ConnectorCardinalitiy__Group_4__0 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2596:1: ( ( ( rule__ConnectorCardinalitiy__Group_4__0 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2597:1: ( ( rule__ConnectorCardinalitiy__Group_4__0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2826:1: ( ( ( rule__ConnectorCardinalitiy__Group_4__0 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2827:1: ( ( rule__ConnectorCardinalitiy__Group_4__0 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2597:1: ( ( rule__ConnectorCardinalitiy__Group_4__0 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2598:1: ( rule__ConnectorCardinalitiy__Group_4__0 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2827:1: ( ( rule__ConnectorCardinalitiy__Group_4__0 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2828:1: ( rule__ConnectorCardinalitiy__Group_4__0 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getGroup_4()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2599:1: ( rule__ConnectorCardinalitiy__Group_4__0 )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2829:1: ( rule__ConnectorCardinalitiy__Group_4__0 )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA27_0==35) ) {
-                alt27=1;
+            if ( (LA32_0==38) ) {
+                alt32=1;
             }
-            switch (alt27) {
+            switch (alt32) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2599:2: rule__ConnectorCardinalitiy__Group_4__0
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2829:2: rule__ConnectorCardinalitiy__Group_4__0
                     {
-                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__0_in_rule__ConnectorCardinalitiy__Group__4__Impl5226);
+                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__0_in_rule__ConnectorCardinalitiy__Group__4__Impl5720);
                     rule__ConnectorCardinalitiy__Group_4__0();
 
                     state._fsp--;
@@ -7207,16 +7821,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__5"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2609:1: rule__ConnectorCardinalitiy__Group__5 : rule__ConnectorCardinalitiy__Group__5__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2839:1: rule__ConnectorCardinalitiy__Group__5 : rule__ConnectorCardinalitiy__Group__5__Impl ;
     public final void rule__ConnectorCardinalitiy__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2613:1: ( rule__ConnectorCardinalitiy__Group__5__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2614:2: rule__ConnectorCardinalitiy__Group__5__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2843:1: ( rule__ConnectorCardinalitiy__Group__5__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2844:2: rule__ConnectorCardinalitiy__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__5__Impl_in_rule__ConnectorCardinalitiy__Group__55257);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group__5__Impl_in_rule__ConnectorCardinalitiy__Group__55751);
             rule__ConnectorCardinalitiy__Group__5__Impl();
 
             state._fsp--;
@@ -7240,20 +7854,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__5__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2620:1: rule__ConnectorCardinalitiy__Group__5__Impl : ( ']' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2850:1: rule__ConnectorCardinalitiy__Group__5__Impl : ( ']' ) ;
     public final void rule__ConnectorCardinalitiy__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2624:1: ( ( ']' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2625:1: ( ']' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2854:1: ( ( ']' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2855:1: ( ']' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2625:1: ( ']' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2626:1: ']'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2855:1: ( ']' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2856:1: ']'
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_5()); 
-            match(input,34,FOLLOW_34_in_rule__ConnectorCardinalitiy__Group__5__Impl5285); 
+            match(input,37,FOLLOW_37_in_rule__ConnectorCardinalitiy__Group__5__Impl5779); 
              after(grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_5()); 
 
             }
@@ -7277,21 +7891,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2651:1: rule__ConnectorCardinalitiy__Group_3__0 : rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2881:1: rule__ConnectorCardinalitiy__Group_3__0 : rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 ;
     public final void rule__ConnectorCardinalitiy__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2655:1: ( rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2656:2: rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2885:1: ( rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2886:2: rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__0__Impl_in_rule__ConnectorCardinalitiy__Group_3__05328);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__0__Impl_in_rule__ConnectorCardinalitiy__Group_3__05822);
             rule__ConnectorCardinalitiy__Group_3__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__1_in_rule__ConnectorCardinalitiy__Group_3__05331);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__1_in_rule__ConnectorCardinalitiy__Group_3__05825);
             rule__ConnectorCardinalitiy__Group_3__1();
 
             state._fsp--;
@@ -7315,20 +7929,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2663:1: rule__ConnectorCardinalitiy__Group_3__0__Impl : ( '|' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2893:1: rule__ConnectorCardinalitiy__Group_3__0__Impl : ( '|' ) ;
     public final void rule__ConnectorCardinalitiy__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2667:1: ( ( '|' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2668:1: ( '|' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2897:1: ( ( '|' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2898:1: ( '|' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2668:1: ( '|' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2669:1: '|'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2898:1: ( '|' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2899:1: '|'
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0()); 
-            match(input,35,FOLLOW_35_in_rule__ConnectorCardinalitiy__Group_3__0__Impl5359); 
+            match(input,38,FOLLOW_38_in_rule__ConnectorCardinalitiy__Group_3__0__Impl5853); 
              after(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0()); 
 
             }
@@ -7352,16 +7966,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2682:1: rule__ConnectorCardinalitiy__Group_3__1 : rule__ConnectorCardinalitiy__Group_3__1__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2912:1: rule__ConnectorCardinalitiy__Group_3__1 : rule__ConnectorCardinalitiy__Group_3__1__Impl ;
     public final void rule__ConnectorCardinalitiy__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2686:1: ( rule__ConnectorCardinalitiy__Group_3__1__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2687:2: rule__ConnectorCardinalitiy__Group_3__1__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2916:1: ( rule__ConnectorCardinalitiy__Group_3__1__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2917:2: rule__ConnectorCardinalitiy__Group_3__1__Impl
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__1__Impl_in_rule__ConnectorCardinalitiy__Group_3__15390);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_3__1__Impl_in_rule__ConnectorCardinalitiy__Group_3__15884);
             rule__ConnectorCardinalitiy__Group_3__1__Impl();
 
             state._fsp--;
@@ -7385,31 +7999,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2693:1: rule__ConnectorCardinalitiy__Group_3__1__Impl : ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2923:1: rule__ConnectorCardinalitiy__Group_3__1__Impl : ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2697:1: ( ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2698:1: ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2927:1: ( ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2928:1: ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2698:1: ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2699:1: ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2928:1: ( ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2929:1: ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getMiddleAssignment_3_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2700:1: ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2930:1: ( rule__ConnectorCardinalitiy__MiddleAssignment_3_1 )?
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA28_0==RULE_INT||LA28_0==15) ) {
-                alt28=1;
+            if ( (LA33_0==RULE_INT||LA33_0==15) ) {
+                alt33=1;
             }
-            switch (alt28) {
+            switch (alt33) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2700:2: rule__ConnectorCardinalitiy__MiddleAssignment_3_1
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2930:2: rule__ConnectorCardinalitiy__MiddleAssignment_3_1
                     {
-                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__MiddleAssignment_3_1_in_rule__ConnectorCardinalitiy__Group_3__1__Impl5417);
+                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__MiddleAssignment_3_1_in_rule__ConnectorCardinalitiy__Group_3__1__Impl5911);
                     rule__ConnectorCardinalitiy__MiddleAssignment_3_1();
 
                     state._fsp--;
@@ -7443,21 +8057,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2714:1: rule__ConnectorCardinalitiy__Group_4__0 : rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2944:1: rule__ConnectorCardinalitiy__Group_4__0 : rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1 ;
     public final void rule__ConnectorCardinalitiy__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2718:1: ( rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2719:2: rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2948:1: ( rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2949:2: rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__0__Impl_in_rule__ConnectorCardinalitiy__Group_4__05452);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__0__Impl_in_rule__ConnectorCardinalitiy__Group_4__05946);
             rule__ConnectorCardinalitiy__Group_4__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__1_in_rule__ConnectorCardinalitiy__Group_4__05455);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__1_in_rule__ConnectorCardinalitiy__Group_4__05949);
             rule__ConnectorCardinalitiy__Group_4__1();
 
             state._fsp--;
@@ -7481,20 +8095,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2726:1: rule__ConnectorCardinalitiy__Group_4__0__Impl : ( '|' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2956:1: rule__ConnectorCardinalitiy__Group_4__0__Impl : ( '|' ) ;
     public final void rule__ConnectorCardinalitiy__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2730:1: ( ( '|' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2731:1: ( '|' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2960:1: ( ( '|' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2961:1: ( '|' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2731:1: ( '|' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2732:1: '|'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2961:1: ( '|' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2962:1: '|'
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0()); 
-            match(input,35,FOLLOW_35_in_rule__ConnectorCardinalitiy__Group_4__0__Impl5483); 
+            match(input,38,FOLLOW_38_in_rule__ConnectorCardinalitiy__Group_4__0__Impl5977); 
              after(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0()); 
 
             }
@@ -7518,21 +8132,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2745:1: rule__ConnectorCardinalitiy__Group_4__1 : rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2975:1: rule__ConnectorCardinalitiy__Group_4__1 : rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2 ;
     public final void rule__ConnectorCardinalitiy__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2749:1: ( rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2750:2: rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2979:1: ( rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2980:2: rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__1__Impl_in_rule__ConnectorCardinalitiy__Group_4__15514);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__1__Impl_in_rule__ConnectorCardinalitiy__Group_4__16008);
             rule__ConnectorCardinalitiy__Group_4__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__2_in_rule__ConnectorCardinalitiy__Group_4__15517);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__2_in_rule__ConnectorCardinalitiy__Group_4__16011);
             rule__ConnectorCardinalitiy__Group_4__2();
 
             state._fsp--;
@@ -7556,31 +8170,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2757:1: rule__ConnectorCardinalitiy__Group_4__1__Impl : ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2987:1: rule__ConnectorCardinalitiy__Group_4__1__Impl : ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2761:1: ( ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2762:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2991:1: ( ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2992:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2762:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2763:1: ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2992:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2993:1: ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getRightAssignment_4_1()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2764:1: ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2994:1: ( rule__ConnectorCardinalitiy__RightAssignment_4_1 )?
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA29_0==RULE_ID) ) {
-                alt29=1;
+            if ( (LA34_0==RULE_ID) ) {
+                alt34=1;
             }
-            switch (alt29) {
+            switch (alt34) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2764:2: rule__ConnectorCardinalitiy__RightAssignment_4_1
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2994:2: rule__ConnectorCardinalitiy__RightAssignment_4_1
                     {
-                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__RightAssignment_4_1_in_rule__ConnectorCardinalitiy__Group_4__1__Impl5544);
+                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__RightAssignment_4_1_in_rule__ConnectorCardinalitiy__Group_4__1__Impl6038);
                     rule__ConnectorCardinalitiy__RightAssignment_4_1();
 
                     state._fsp--;
@@ -7614,16 +8228,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2774:1: rule__ConnectorCardinalitiy__Group_4__2 : rule__ConnectorCardinalitiy__Group_4__2__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3004:1: rule__ConnectorCardinalitiy__Group_4__2 : rule__ConnectorCardinalitiy__Group_4__2__Impl ;
     public final void rule__ConnectorCardinalitiy__Group_4__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2778:1: ( rule__ConnectorCardinalitiy__Group_4__2__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2779:2: rule__ConnectorCardinalitiy__Group_4__2__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3008:1: ( rule__ConnectorCardinalitiy__Group_4__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3009:2: rule__ConnectorCardinalitiy__Group_4__2__Impl
             {
-            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__2__Impl_in_rule__ConnectorCardinalitiy__Group_4__25575);
+            pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Group_4__2__Impl_in_rule__ConnectorCardinalitiy__Group_4__26069);
             rule__ConnectorCardinalitiy__Group_4__2__Impl();
 
             state._fsp--;
@@ -7647,31 +8261,31 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2785:1: rule__ConnectorCardinalitiy__Group_4__2__Impl : ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3015:1: rule__ConnectorCardinalitiy__Group_4__2__Impl : ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group_4__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2789:1: ( ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2790:1: ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3019:1: ( ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3020:1: ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2790:1: ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2791:1: ( rule__ConnectorCardinalitiy__Alternatives_4_2 )?
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3020:1: ( ( rule__ConnectorCardinalitiy__Alternatives_4_2 )? )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3021:1: ( rule__ConnectorCardinalitiy__Alternatives_4_2 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getAlternatives_4_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2792:1: ( rule__ConnectorCardinalitiy__Alternatives_4_2 )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3022:1: ( rule__ConnectorCardinalitiy__Alternatives_4_2 )?
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( ((LA30_0>=13 && LA30_0<=14)) ) {
-                alt30=1;
+            if ( ((LA35_0>=13 && LA35_0<=14)) ) {
+                alt35=1;
             }
-            switch (alt30) {
+            switch (alt35) {
                 case 1 :
-                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2792:2: rule__ConnectorCardinalitiy__Alternatives_4_2
+                    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3022:2: rule__ConnectorCardinalitiy__Alternatives_4_2
                     {
-                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Alternatives_4_2_in_rule__ConnectorCardinalitiy__Group_4__2__Impl5602);
+                    pushFollow(FOLLOW_rule__ConnectorCardinalitiy__Alternatives_4_2_in_rule__ConnectorCardinalitiy__Group_4__2__Impl6096);
                     rule__ConnectorCardinalitiy__Alternatives_4_2();
 
                     state._fsp--;
@@ -7705,21 +8319,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Group_1__0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2808:1: rule__Cardinality__Group_1__0 : rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3038:1: rule__Cardinality__Group_1__0 : rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1 ;
     public final void rule__Cardinality__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2812:1: ( rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2813:2: rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3042:1: ( rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3043:2: rule__Cardinality__Group_1__0__Impl rule__Cardinality__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Cardinality__Group_1__0__Impl_in_rule__Cardinality__Group_1__05639);
+            pushFollow(FOLLOW_rule__Cardinality__Group_1__0__Impl_in_rule__Cardinality__Group_1__06133);
             rule__Cardinality__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Cardinality__Group_1__1_in_rule__Cardinality__Group_1__05642);
+            pushFollow(FOLLOW_rule__Cardinality__Group_1__1_in_rule__Cardinality__Group_1__06136);
             rule__Cardinality__Group_1__1();
 
             state._fsp--;
@@ -7743,20 +8357,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Group_1__0__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2820:1: rule__Cardinality__Group_1__0__Impl : ( RULE_INT ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3050:1: rule__Cardinality__Group_1__0__Impl : ( RULE_INT ) ;
     public final void rule__Cardinality__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2824:1: ( ( RULE_INT ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2825:1: ( RULE_INT )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3054:1: ( ( RULE_INT ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3055:1: ( RULE_INT )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2825:1: ( RULE_INT )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2826:1: RULE_INT
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3055:1: ( RULE_INT )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3056:1: RULE_INT
             {
              before(grammarAccess.getCardinalityAccess().getINTTerminalRuleCall_1_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Cardinality__Group_1__0__Impl5669); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Cardinality__Group_1__0__Impl6163); 
              after(grammarAccess.getCardinalityAccess().getINTTerminalRuleCall_1_0()); 
 
             }
@@ -7780,21 +8394,21 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Group_1__1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2837:1: rule__Cardinality__Group_1__1 : rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2 ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3067:1: rule__Cardinality__Group_1__1 : rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2 ;
     public final void rule__Cardinality__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2841:1: ( rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2842:2: rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3071:1: ( rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3072:2: rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2
             {
-            pushFollow(FOLLOW_rule__Cardinality__Group_1__1__Impl_in_rule__Cardinality__Group_1__15698);
+            pushFollow(FOLLOW_rule__Cardinality__Group_1__1__Impl_in_rule__Cardinality__Group_1__16192);
             rule__Cardinality__Group_1__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Cardinality__Group_1__2_in_rule__Cardinality__Group_1__15701);
+            pushFollow(FOLLOW_rule__Cardinality__Group_1__2_in_rule__Cardinality__Group_1__16195);
             rule__Cardinality__Group_1__2();
 
             state._fsp--;
@@ -7818,20 +8432,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Group_1__1__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2849:1: rule__Cardinality__Group_1__1__Impl : ( '..' ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3079:1: rule__Cardinality__Group_1__1__Impl : ( '..' ) ;
     public final void rule__Cardinality__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2853:1: ( ( '..' ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2854:1: ( '..' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3083:1: ( ( '..' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3084:1: ( '..' )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2854:1: ( '..' )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2855:1: '..'
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3084:1: ( '..' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3085:1: '..'
             {
              before(grammarAccess.getCardinalityAccess().getFullStopFullStopKeyword_1_1()); 
-            match(input,36,FOLLOW_36_in_rule__Cardinality__Group_1__1__Impl5729); 
+            match(input,39,FOLLOW_39_in_rule__Cardinality__Group_1__1__Impl6223); 
              after(grammarAccess.getCardinalityAccess().getFullStopFullStopKeyword_1_1()); 
 
             }
@@ -7855,16 +8469,16 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Group_1__2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2868:1: rule__Cardinality__Group_1__2 : rule__Cardinality__Group_1__2__Impl ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3098:1: rule__Cardinality__Group_1__2 : rule__Cardinality__Group_1__2__Impl ;
     public final void rule__Cardinality__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2872:1: ( rule__Cardinality__Group_1__2__Impl )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2873:2: rule__Cardinality__Group_1__2__Impl
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3102:1: ( rule__Cardinality__Group_1__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3103:2: rule__Cardinality__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__Cardinality__Group_1__2__Impl_in_rule__Cardinality__Group_1__25760);
+            pushFollow(FOLLOW_rule__Cardinality__Group_1__2__Impl_in_rule__Cardinality__Group_1__26254);
             rule__Cardinality__Group_1__2__Impl();
 
             state._fsp--;
@@ -7888,23 +8502,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Cardinality__Group_1__2__Impl"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2879:1: rule__Cardinality__Group_1__2__Impl : ( ( rule__Cardinality__Alternatives_1_2 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3109:1: rule__Cardinality__Group_1__2__Impl : ( ( rule__Cardinality__Alternatives_1_2 ) ) ;
     public final void rule__Cardinality__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2883:1: ( ( ( rule__Cardinality__Alternatives_1_2 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2884:1: ( ( rule__Cardinality__Alternatives_1_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3113:1: ( ( ( rule__Cardinality__Alternatives_1_2 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3114:1: ( ( rule__Cardinality__Alternatives_1_2 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2884:1: ( ( rule__Cardinality__Alternatives_1_2 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2885:1: ( rule__Cardinality__Alternatives_1_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3114:1: ( ( rule__Cardinality__Alternatives_1_2 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3115:1: ( rule__Cardinality__Alternatives_1_2 )
             {
              before(grammarAccess.getCardinalityAccess().getAlternatives_1_2()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2886:1: ( rule__Cardinality__Alternatives_1_2 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2886:2: rule__Cardinality__Alternatives_1_2
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3116:1: ( rule__Cardinality__Alternatives_1_2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3116:2: rule__Cardinality__Alternatives_1_2
             {
-            pushFollow(FOLLOW_rule__Cardinality__Alternatives_1_2_in_rule__Cardinality__Group_1__2__Impl5787);
+            pushFollow(FOLLOW_rule__Cardinality__Alternatives_1_2_in_rule__Cardinality__Group_1__2__Impl6281);
             rule__Cardinality__Alternatives_1_2();
 
             state._fsp--;
@@ -7934,21 +8548,241 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Cardinality__Group_1__2__Impl"
 
 
+    // $ANTLR start "rule__Note__Group__0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3132:1: rule__Note__Group__0 : rule__Note__Group__0__Impl rule__Note__Group__1 ;
+    public final void rule__Note__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3136:1: ( rule__Note__Group__0__Impl rule__Note__Group__1 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3137:2: rule__Note__Group__0__Impl rule__Note__Group__1
+            {
+            pushFollow(FOLLOW_rule__Note__Group__0__Impl_in_rule__Note__Group__06317);
+            rule__Note__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Note__Group__1_in_rule__Note__Group__06320);
+            rule__Note__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Note__Group__0"
+
+
+    // $ANTLR start "rule__Note__Group__0__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3144:1: rule__Note__Group__0__Impl : ( 'note[' ) ;
+    public final void rule__Note__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3148:1: ( ( 'note[' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3149:1: ( 'note[' )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3149:1: ( 'note[' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3150:1: 'note['
+            {
+             before(grammarAccess.getNoteAccess().getNoteKeyword_0()); 
+            match(input,40,FOLLOW_40_in_rule__Note__Group__0__Impl6348); 
+             after(grammarAccess.getNoteAccess().getNoteKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Note__Group__0__Impl"
+
+
+    // $ANTLR start "rule__Note__Group__1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3163:1: rule__Note__Group__1 : rule__Note__Group__1__Impl rule__Note__Group__2 ;
+    public final void rule__Note__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3167:1: ( rule__Note__Group__1__Impl rule__Note__Group__2 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3168:2: rule__Note__Group__1__Impl rule__Note__Group__2
+            {
+            pushFollow(FOLLOW_rule__Note__Group__1__Impl_in_rule__Note__Group__16379);
+            rule__Note__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Note__Group__2_in_rule__Note__Group__16382);
+            rule__Note__Group__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Note__Group__1"
+
+
+    // $ANTLR start "rule__Note__Group__1__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3175:1: rule__Note__Group__1__Impl : ( RULE_STRING ) ;
+    public final void rule__Note__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3179:1: ( ( RULE_STRING ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3180:1: ( RULE_STRING )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3180:1: ( RULE_STRING )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3181:1: RULE_STRING
+            {
+             before(grammarAccess.getNoteAccess().getSTRINGTerminalRuleCall_1()); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Note__Group__1__Impl6409); 
+             after(grammarAccess.getNoteAccess().getSTRINGTerminalRuleCall_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Note__Group__1__Impl"
+
+
+    // $ANTLR start "rule__Note__Group__2"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3192:1: rule__Note__Group__2 : rule__Note__Group__2__Impl ;
+    public final void rule__Note__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3196:1: ( rule__Note__Group__2__Impl )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3197:2: rule__Note__Group__2__Impl
+            {
+            pushFollow(FOLLOW_rule__Note__Group__2__Impl_in_rule__Note__Group__26438);
+            rule__Note__Group__2__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Note__Group__2"
+
+
+    // $ANTLR start "rule__Note__Group__2__Impl"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3203:1: rule__Note__Group__2__Impl : ( ']' ) ;
+    public final void rule__Note__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3207:1: ( ( ']' ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3208:1: ( ']' )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3208:1: ( ']' )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3209:1: ']'
+            {
+             before(grammarAccess.getNoteAccess().getRightSquareBracketKeyword_2()); 
+            match(input,37,FOLLOW_37_in_rule__Note__Group__2__Impl6466); 
+             after(grammarAccess.getNoteAccess().getRightSquareBracketKeyword_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Note__Group__2__Impl"
+
+
     // $ANTLR start "rule__ClassDiagram__ElementsAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2903:1: rule__ClassDiagram__ElementsAssignment_2 : ( ruleElement ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3229:1: rule__ClassDiagram__ElementsAssignment_2 : ( ruleElement ) ;
     public final void rule__ClassDiagram__ElementsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2907:1: ( ( ruleElement ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2908:1: ( ruleElement )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3233:1: ( ( ruleElement ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3234:1: ( ruleElement )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2908:1: ( ruleElement )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2909:1: ruleElement
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3234:1: ( ruleElement )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3235:1: ruleElement
             {
              before(grammarAccess.getClassDiagramAccess().getElementsElementParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleElement_in_rule__ClassDiagram__ElementsAssignment_25828);
+            pushFollow(FOLLOW_ruleElement_in_rule__ClassDiagram__ElementsAssignment_26508);
             ruleElement();
 
             state._fsp--;
@@ -7976,20 +8810,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataType__NameAssignment_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2918:1: rule__DataType__NameAssignment_1 : ( RULE_ID ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3244:1: rule__DataType__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__DataType__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2922:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2923:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3248:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3249:1: ( RULE_ID )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2923:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2924:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3249:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3250:1: RULE_ID
             {
              before(grammarAccess.getDataTypeAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataType__NameAssignment_15859); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataType__NameAssignment_16539); 
              after(grammarAccess.getDataTypeAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -8013,20 +8847,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__ClassesAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2933:1: rule__ClassDef__ClassesAssignment_2 : ( ruleClassName ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3259:1: rule__ClassDef__ClassesAssignment_2 : ( ruleClassName ) ;
     public final void rule__ClassDef__ClassesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2937:1: ( ( ruleClassName ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2938:1: ( ruleClassName )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3263:1: ( ( ruleClassName ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3264:1: ( ruleClassName )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2938:1: ( ruleClassName )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2939:1: ruleClassName
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3264:1: ( ruleClassName )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3265:1: ruleClassName
             {
              before(grammarAccess.getClassDefAccess().getClassesClassNameParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_25890);
+            pushFollow(FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_26570);
             ruleClassName();
 
             state._fsp--;
@@ -8054,20 +8888,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDef__ClassesAssignment_3_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2948:1: rule__ClassDef__ClassesAssignment_3_1 : ( ruleClassName ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3274:1: rule__ClassDef__ClassesAssignment_3_1 : ( ruleClassName ) ;
     public final void rule__ClassDef__ClassesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2952:1: ( ( ruleClassName ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2953:1: ( ruleClassName )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3278:1: ( ( ruleClassName ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3279:1: ( ruleClassName )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2953:1: ( ruleClassName )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2954:1: ruleClassName
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3279:1: ( ruleClassName )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3280:1: ruleClassName
             {
              before(grammarAccess.getClassDefAccess().getClassesClassNameParserRuleCall_3_1_0()); 
-            pushFollow(FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_3_15921);
+            pushFollow(FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_3_16601);
             ruleClassName();
 
             state._fsp--;
@@ -8095,20 +8929,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__NameAssignment_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2963:1: rule__Name__NameAssignment_0 : ( RULE_ID ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3289:1: rule__Name__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Name__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2967:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2968:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3293:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3294:1: ( RULE_ID )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2968:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2969:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3294:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3295:1: RULE_ID
             {
              before(grammarAccess.getNameAccess().getNameIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Name__NameAssignment_05952); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Name__NameAssignment_06632); 
              after(grammarAccess.getNameAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
@@ -8132,23 +8966,23 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__LongnameAssignment_1_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2978:1: rule__Name__LongnameAssignment_1_0 : ( ( rule__Name__LongnameAlternatives_1_0_0 ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3304:1: rule__Name__LongnameAssignment_1_0 : ( ( rule__Name__LongnameAlternatives_1_0_0 ) ) ;
     public final void rule__Name__LongnameAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2982:1: ( ( ( rule__Name__LongnameAlternatives_1_0_0 ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2983:1: ( ( rule__Name__LongnameAlternatives_1_0_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3308:1: ( ( ( rule__Name__LongnameAlternatives_1_0_0 ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3309:1: ( ( rule__Name__LongnameAlternatives_1_0_0 ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2983:1: ( ( rule__Name__LongnameAlternatives_1_0_0 ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2984:1: ( rule__Name__LongnameAlternatives_1_0_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3309:1: ( ( rule__Name__LongnameAlternatives_1_0_0 ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3310:1: ( rule__Name__LongnameAlternatives_1_0_0 )
             {
              before(grammarAccess.getNameAccess().getLongnameAlternatives_1_0_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2985:1: ( rule__Name__LongnameAlternatives_1_0_0 )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2985:2: rule__Name__LongnameAlternatives_1_0_0
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3311:1: ( rule__Name__LongnameAlternatives_1_0_0 )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3311:2: rule__Name__LongnameAlternatives_1_0_0
             {
-            pushFollow(FOLLOW_rule__Name__LongnameAlternatives_1_0_0_in_rule__Name__LongnameAssignment_1_05983);
+            pushFollow(FOLLOW_rule__Name__LongnameAlternatives_1_0_0_in_rule__Name__LongnameAssignment_1_06663);
             rule__Name__LongnameAlternatives_1_0_0();
 
             state._fsp--;
@@ -8179,20 +9013,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Name__NameAssignment_1_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2994:1: rule__Name__NameAssignment_1_2 : ( RULE_ID ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3320:1: rule__Name__NameAssignment_1_2 : ( RULE_ID ) ;
     public final void rule__Name__NameAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2998:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2999:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3324:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3325:1: ( RULE_ID )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:2999:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3000:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3325:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3326:1: RULE_ID
             {
              before(grammarAccess.getNameAccess().getNameIDTerminalRuleCall_1_2_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Name__NameAssignment_1_26016); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Name__NameAssignment_1_26696); 
              after(grammarAccess.getNameAccess().getNameIDTerminalRuleCall_1_2_0()); 
 
             }
@@ -8216,24 +9050,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__TypeAssignment_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3009:1: rule__Class__TypeAssignment_1 : ( ( RULE_ID ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3335:1: rule__Class__TypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__Class__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3013:1: ( ( ( RULE_ID ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3014:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3339:1: ( ( ( RULE_ID ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3340:1: ( ( RULE_ID ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3014:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3015:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3340:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3341:1: ( RULE_ID )
             {
              before(grammarAccess.getClassAccess().getTypeClassNameCrossReference_1_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3016:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3017:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3342:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3343:1: RULE_ID
             {
              before(grammarAccess.getClassAccess().getTypeClassNameIDTerminalRuleCall_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Class__TypeAssignment_16051); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Class__TypeAssignment_16731); 
              after(grammarAccess.getClassAccess().getTypeClassNameIDTerminalRuleCall_1_0_1()); 
 
             }
@@ -8261,20 +9095,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__InheritanceAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3028:1: rule__Class__InheritanceAssignment_2 : ( ruleInheritance ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3354:1: rule__Class__InheritanceAssignment_2 : ( ruleInheritance ) ;
     public final void rule__Class__InheritanceAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3032:1: ( ( ruleInheritance ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3033:1: ( ruleInheritance )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3358:1: ( ( ruleInheritance ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3359:1: ( ruleInheritance )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3033:1: ( ruleInheritance )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3034:1: ruleInheritance
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3359:1: ( ruleInheritance )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3360:1: ruleInheritance
             {
              before(grammarAccess.getClassAccess().getInheritanceInheritanceParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleInheritance_in_rule__Class__InheritanceAssignment_26086);
+            pushFollow(FOLLOW_ruleInheritance_in_rule__Class__InheritanceAssignment_26766);
             ruleInheritance();
 
             state._fsp--;
@@ -8302,20 +9136,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Class__MembersAssignment_4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3043:1: rule__Class__MembersAssignment_4 : ( ruleMember ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3369:1: rule__Class__MembersAssignment_4 : ( ruleMember ) ;
     public final void rule__Class__MembersAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3047:1: ( ( ruleMember ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3048:1: ( ruleMember )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3373:1: ( ( ruleMember ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3374:1: ( ruleMember )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3048:1: ( ruleMember )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3049:1: ruleMember
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3374:1: ( ruleMember )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3375:1: ruleMember
             {
              before(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleMember_in_rule__Class__MembersAssignment_46117);
+            pushFollow(FOLLOW_ruleMember_in_rule__Class__MembersAssignment_46797);
             ruleMember();
 
             state._fsp--;
@@ -8343,24 +9177,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__TypeAssignment_0_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3058:1: rule__Inheritance__TypeAssignment_0_1 : ( ( RULE_ID ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3384:1: rule__Inheritance__TypeAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__Inheritance__TypeAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3062:1: ( ( ( RULE_ID ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3063:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3388:1: ( ( ( RULE_ID ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3389:1: ( ( RULE_ID ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3063:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3064:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3389:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3390:1: ( RULE_ID )
             {
              before(grammarAccess.getInheritanceAccess().getTypeClassNameCrossReference_0_1_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3065:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3066:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3391:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3392:1: RULE_ID
             {
              before(grammarAccess.getInheritanceAccess().getTypeClassNameIDTerminalRuleCall_0_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_0_16152); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_0_16832); 
              after(grammarAccess.getInheritanceAccess().getTypeClassNameIDTerminalRuleCall_0_1_0_1()); 
 
             }
@@ -8388,24 +9222,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Inheritance__TypeAssignment_1_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3077:1: rule__Inheritance__TypeAssignment_1_1 : ( ( RULE_ID ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3403:1: rule__Inheritance__TypeAssignment_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__Inheritance__TypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3081:1: ( ( ( RULE_ID ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3082:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3407:1: ( ( ( RULE_ID ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3408:1: ( ( RULE_ID ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3082:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3083:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3408:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3409:1: ( RULE_ID )
             {
              before(grammarAccess.getInheritanceAccess().getTypeClassNameCrossReference_1_1_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3084:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3085:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3410:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3411:1: RULE_ID
             {
              before(grammarAccess.getInheritanceAccess().getTypeClassNameIDTerminalRuleCall_1_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_1_16191); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_1_16871); 
              after(grammarAccess.getInheritanceAccess().getTypeClassNameIDTerminalRuleCall_1_1_0_1()); 
 
             }
@@ -8432,22 +9266,26 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Inheritance__TypeAssignment_1_1"
 
 
-    // $ANTLR start "rule__Attribute__NameAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3096:1: rule__Attribute__NameAssignment_2 : ( RULE_ID ) ;
-    public final void rule__Attribute__NameAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Attribute__VisibilityAssignment_0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3422:1: rule__Attribute__VisibilityAssignment_0 : ( ruleVisibility ) ;
+    public final void rule__Attribute__VisibilityAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3100:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3101:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3426:1: ( ( ruleVisibility ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3427:1: ( ruleVisibility )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3101:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3102:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3427:1: ( ruleVisibility )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3428:1: ruleVisibility
             {
-             before(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_2_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Attribute__NameAssignment_26226); 
-             after(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_2_0()); 
+             before(grammarAccess.getAttributeAccess().getVisibilityVisibilityEnumRuleCall_0_0()); 
+            pushFollow(FOLLOW_ruleVisibility_in_rule__Attribute__VisibilityAssignment_06906);
+            ruleVisibility();
+
+            state._fsp--;
+
+             after(grammarAccess.getAttributeAccess().getVisibilityVisibilityEnumRuleCall_0_0()); 
 
             }
 
@@ -8466,33 +9304,25 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Attribute__NameAssignment_2"
+    // $ANTLR end "rule__Attribute__VisibilityAssignment_0"
 
 
-    // $ANTLR start "rule__Attribute__TypeAssignment_4"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3111:1: rule__Attribute__TypeAssignment_4 : ( ( RULE_ID ) ) ;
-    public final void rule__Attribute__TypeAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__Attribute__NameAssignment_3"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3437:1: rule__Attribute__NameAssignment_3 : ( RULE_ID ) ;
+    public final void rule__Attribute__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3115:1: ( ( ( RULE_ID ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3116:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3441:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3442:1: ( RULE_ID )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3116:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3117:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3442:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3443:1: RULE_ID
             {
-             before(grammarAccess.getAttributeAccess().getTypeTypeCrossReference_4_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3118:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3119:1: RULE_ID
-            {
-             before(grammarAccess.getAttributeAccess().getTypeTypeIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Attribute__TypeAssignment_46261); 
-             after(grammarAccess.getAttributeAccess().getTypeTypeIDTerminalRuleCall_4_0_1()); 
-
-            }
-
-             after(grammarAccess.getAttributeAccess().getTypeTypeCrossReference_4_0()); 
+             before(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_3_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Attribute__NameAssignment_36937); 
+             after(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_3_0()); 
 
             }
 
@@ -8511,25 +9341,33 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Attribute__TypeAssignment_4"
+    // $ANTLR end "rule__Attribute__NameAssignment_3"
 
 
-    // $ANTLR start "rule__Methode__NameAssignment_3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3130:1: rule__Methode__NameAssignment_3 : ( RULE_ID ) ;
-    public final void rule__Methode__NameAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Attribute__TypeAssignment_5"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3452:1: rule__Attribute__TypeAssignment_5 : ( ( RULE_ID ) ) ;
+    public final void rule__Attribute__TypeAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3134:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3135:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3456:1: ( ( ( RULE_ID ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3457:1: ( ( RULE_ID ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3135:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3136:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3457:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3458:1: ( RULE_ID )
             {
-             before(grammarAccess.getMethodeAccess().getNameIDTerminalRuleCall_3_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Methode__NameAssignment_36296); 
-             after(grammarAccess.getMethodeAccess().getNameIDTerminalRuleCall_3_0()); 
+             before(grammarAccess.getAttributeAccess().getTypeTypeCrossReference_5_0()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3459:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3460:1: RULE_ID
+            {
+             before(grammarAccess.getAttributeAccess().getTypeTypeIDTerminalRuleCall_5_0_1()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Attribute__TypeAssignment_56972); 
+             after(grammarAccess.getAttributeAccess().getTypeTypeIDTerminalRuleCall_5_0_1()); 
+
+            }
+
+             after(grammarAccess.getAttributeAccess().getTypeTypeCrossReference_5_0()); 
 
             }
 
@@ -8548,29 +9386,107 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__NameAssignment_3"
+    // $ANTLR end "rule__Attribute__TypeAssignment_5"
 
 
-    // $ANTLR start "rule__Methode__AttributesAssignment_5_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3145:1: rule__Methode__AttributesAssignment_5_0 : ( ruleAttribute ) ;
-    public final void rule__Methode__AttributesAssignment_5_0() throws RecognitionException {
+    // $ANTLR start "rule__Methode__VisibilityAssignment_0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3471:1: rule__Methode__VisibilityAssignment_0 : ( ruleVisibility ) ;
+    public final void rule__Methode__VisibilityAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3149:1: ( ( ruleAttribute ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3150:1: ( ruleAttribute )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3475:1: ( ( ruleVisibility ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3476:1: ( ruleVisibility )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3150:1: ( ruleAttribute )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3151:1: ruleAttribute
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3476:1: ( ruleVisibility )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3477:1: ruleVisibility
             {
-             before(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_5_0_0()); 
-            pushFollow(FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_5_06327);
+             before(grammarAccess.getMethodeAccess().getVisibilityVisibilityEnumRuleCall_0_0()); 
+            pushFollow(FOLLOW_ruleVisibility_in_rule__Methode__VisibilityAssignment_07007);
+            ruleVisibility();
+
+            state._fsp--;
+
+             after(grammarAccess.getMethodeAccess().getVisibilityVisibilityEnumRuleCall_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Methode__VisibilityAssignment_0"
+
+
+    // $ANTLR start "rule__Methode__NameAssignment_4"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3486:1: rule__Methode__NameAssignment_4 : ( RULE_ID ) ;
+    public final void rule__Methode__NameAssignment_4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3490:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3491:1: ( RULE_ID )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3491:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3492:1: RULE_ID
+            {
+             before(grammarAccess.getMethodeAccess().getNameIDTerminalRuleCall_4_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Methode__NameAssignment_47038); 
+             after(grammarAccess.getMethodeAccess().getNameIDTerminalRuleCall_4_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Methode__NameAssignment_4"
+
+
+    // $ANTLR start "rule__Methode__AttributesAssignment_6_0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3501:1: rule__Methode__AttributesAssignment_6_0 : ( ruleAttribute ) ;
+    public final void rule__Methode__AttributesAssignment_6_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3505:1: ( ( ruleAttribute ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3506:1: ( ruleAttribute )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3506:1: ( ruleAttribute )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3507:1: ruleAttribute
+            {
+             before(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_6_0_0()); 
+            pushFollow(FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_6_07069);
             ruleAttribute();
 
             state._fsp--;
 
-             after(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_5_0_0()); 
+             after(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_6_0_0()); 
 
             }
 
@@ -8589,29 +9505,29 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__AttributesAssignment_5_0"
+    // $ANTLR end "rule__Methode__AttributesAssignment_6_0"
 
 
-    // $ANTLR start "rule__Methode__AttributesAssignment_5_1_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3160:1: rule__Methode__AttributesAssignment_5_1_1 : ( ruleAttribute ) ;
-    public final void rule__Methode__AttributesAssignment_5_1_1() throws RecognitionException {
+    // $ANTLR start "rule__Methode__AttributesAssignment_6_1_1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3516:1: rule__Methode__AttributesAssignment_6_1_1 : ( ruleAttribute ) ;
+    public final void rule__Methode__AttributesAssignment_6_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3164:1: ( ( ruleAttribute ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3165:1: ( ruleAttribute )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3520:1: ( ( ruleAttribute ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3521:1: ( ruleAttribute )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3165:1: ( ruleAttribute )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3166:1: ruleAttribute
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3521:1: ( ruleAttribute )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3522:1: ruleAttribute
             {
-             before(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_5_1_1_0()); 
-            pushFollow(FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_5_1_16358);
+             before(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_6_1_1_0()); 
+            pushFollow(FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_6_1_17100);
             ruleAttribute();
 
             state._fsp--;
 
-             after(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_5_1_1_0()); 
+             after(grammarAccess.getMethodeAccess().getAttributesAttributeParserRuleCall_6_1_1_0()); 
 
             }
 
@@ -8630,33 +9546,33 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__AttributesAssignment_5_1_1"
+    // $ANTLR end "rule__Methode__AttributesAssignment_6_1_1"
 
 
-    // $ANTLR start "rule__Methode__TypeAssignment_7_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3175:1: rule__Methode__TypeAssignment_7_1 : ( ( RULE_ID ) ) ;
-    public final void rule__Methode__TypeAssignment_7_1() throws RecognitionException {
+    // $ANTLR start "rule__Methode__TypeAssignment_8_1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3531:1: rule__Methode__TypeAssignment_8_1 : ( ( RULE_ID ) ) ;
+    public final void rule__Methode__TypeAssignment_8_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3179:1: ( ( ( RULE_ID ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3180:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3535:1: ( ( ( RULE_ID ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3536:1: ( ( RULE_ID ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3180:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3181:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3536:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3537:1: ( RULE_ID )
             {
-             before(grammarAccess.getMethodeAccess().getTypeTypeCrossReference_7_1_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3182:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3183:1: RULE_ID
+             before(grammarAccess.getMethodeAccess().getTypeTypeCrossReference_8_1_0()); 
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3538:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3539:1: RULE_ID
             {
-             before(grammarAccess.getMethodeAccess().getTypeTypeIDTerminalRuleCall_7_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Methode__TypeAssignment_7_16393); 
-             after(grammarAccess.getMethodeAccess().getTypeTypeIDTerminalRuleCall_7_1_0_1()); 
+             before(grammarAccess.getMethodeAccess().getTypeTypeIDTerminalRuleCall_8_1_0_1()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Methode__TypeAssignment_8_17135); 
+             after(grammarAccess.getMethodeAccess().getTypeTypeIDTerminalRuleCall_8_1_0_1()); 
 
             }
 
-             after(grammarAccess.getMethodeAccess().getTypeTypeCrossReference_7_1_0()); 
+             after(grammarAccess.getMethodeAccess().getTypeTypeCrossReference_8_1_0()); 
 
             }
 
@@ -8675,24 +9591,24 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Methode__TypeAssignment_7_1"
+    // $ANTLR end "rule__Methode__TypeAssignment_8_1"
 
 
     // $ANTLR start "rule__Generalization__LeftAssignment_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3194:1: rule__Generalization__LeftAssignment_0 : ( ruleAssociationEnd ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3550:1: rule__Generalization__LeftAssignment_0 : ( ruleAssociationEnd ) ;
     public final void rule__Generalization__LeftAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3198:1: ( ( ruleAssociationEnd ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3199:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3554:1: ( ( ruleAssociationEnd ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3555:1: ( ruleAssociationEnd )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3199:1: ( ruleAssociationEnd )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3200:1: ruleAssociationEnd
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3555:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3556:1: ruleAssociationEnd
             {
              before(grammarAccess.getGeneralizationAccess().getLeftAssociationEndParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Generalization__LeftAssignment_06428);
+            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Generalization__LeftAssignment_07170);
             ruleAssociationEnd();
 
             state._fsp--;
@@ -8720,20 +9636,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Generalization__RightAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3209:1: rule__Generalization__RightAssignment_2 : ( ruleAssociationEnd ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3565:1: rule__Generalization__RightAssignment_2 : ( ruleAssociationEnd ) ;
     public final void rule__Generalization__RightAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3213:1: ( ( ruleAssociationEnd ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3214:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3569:1: ( ( ruleAssociationEnd ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3570:1: ( ruleAssociationEnd )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3214:1: ( ruleAssociationEnd )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3215:1: ruleAssociationEnd
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3570:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3571:1: ruleAssociationEnd
             {
              before(grammarAccess.getGeneralizationAccess().getRightAssociationEndParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Generalization__RightAssignment_26459);
+            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Generalization__RightAssignment_27201);
             ruleAssociationEnd();
 
             state._fsp--;
@@ -8761,20 +9677,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__LeftAssignment_0"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3224:1: rule__Association__LeftAssignment_0 : ( ruleAssociationEnd ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3580:1: rule__Association__LeftAssignment_0 : ( ruleAssociationEnd ) ;
     public final void rule__Association__LeftAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3228:1: ( ( ruleAssociationEnd ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3229:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3584:1: ( ( ruleAssociationEnd ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3585:1: ( ruleAssociationEnd )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3229:1: ( ruleAssociationEnd )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3230:1: ruleAssociationEnd
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3585:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3586:1: ruleAssociationEnd
             {
              before(grammarAccess.getAssociationAccess().getLeftAssociationEndParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Association__LeftAssignment_06490);
+            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Association__LeftAssignment_07232);
             ruleAssociationEnd();
 
             state._fsp--;
@@ -8801,26 +9717,26 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Association__LeftAssignment_0"
 
 
-    // $ANTLR start "rule__Association__RightAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3239:1: rule__Association__RightAssignment_2 : ( ruleAssociationEnd ) ;
-    public final void rule__Association__RightAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Association__RightAssignment_2_0_0"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3595:1: rule__Association__RightAssignment_2_0_0 : ( ruleAssociationEnd ) ;
+    public final void rule__Association__RightAssignment_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3243:1: ( ( ruleAssociationEnd ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3244:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3599:1: ( ( ruleAssociationEnd ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3600:1: ( ruleAssociationEnd )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3244:1: ( ruleAssociationEnd )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3245:1: ruleAssociationEnd
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3600:1: ( ruleAssociationEnd )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3601:1: ruleAssociationEnd
             {
-             before(grammarAccess.getAssociationAccess().getRightAssociationEndParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Association__RightAssignment_26521);
+             before(grammarAccess.getAssociationAccess().getRightAssociationEndParserRuleCall_2_0_0_0()); 
+            pushFollow(FOLLOW_ruleAssociationEnd_in_rule__Association__RightAssignment_2_0_07263);
             ruleAssociationEnd();
 
             state._fsp--;
 
-             after(grammarAccess.getAssociationAccess().getRightAssociationEndParserRuleCall_2_0()); 
+             after(grammarAccess.getAssociationAccess().getRightAssociationEndParserRuleCall_2_0_0_0()); 
 
             }
 
@@ -8839,29 +9755,29 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Association__RightAssignment_2"
+    // $ANTLR end "rule__Association__RightAssignment_2_0_0"
 
 
-    // $ANTLR start "rule__Association__CardinalityAssignment_3"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3254:1: rule__Association__CardinalityAssignment_3 : ( ruleConnectorCardinalitiy ) ;
-    public final void rule__Association__CardinalityAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Association__CardinalityAssignment_2_0_1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3610:1: rule__Association__CardinalityAssignment_2_0_1 : ( ruleConnectorCardinalitiy ) ;
+    public final void rule__Association__CardinalityAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3258:1: ( ( ruleConnectorCardinalitiy ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3259:1: ( ruleConnectorCardinalitiy )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3614:1: ( ( ruleConnectorCardinalitiy ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3615:1: ( ruleConnectorCardinalitiy )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3259:1: ( ruleConnectorCardinalitiy )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3260:1: ruleConnectorCardinalitiy
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3615:1: ( ruleConnectorCardinalitiy )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3616:1: ruleConnectorCardinalitiy
             {
-             before(grammarAccess.getAssociationAccess().getCardinalityConnectorCardinalitiyParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleConnectorCardinalitiy_in_rule__Association__CardinalityAssignment_36552);
+             before(grammarAccess.getAssociationAccess().getCardinalityConnectorCardinalitiyParserRuleCall_2_0_1_0()); 
+            pushFollow(FOLLOW_ruleConnectorCardinalitiy_in_rule__Association__CardinalityAssignment_2_0_17294);
             ruleConnectorCardinalitiy();
 
             state._fsp--;
 
-             after(grammarAccess.getAssociationAccess().getCardinalityConnectorCardinalitiyParserRuleCall_3_0()); 
+             after(grammarAccess.getAssociationAccess().getCardinalityConnectorCardinalitiyParserRuleCall_2_0_1_0()); 
 
             }
 
@@ -8880,28 +9796,110 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Association__CardinalityAssignment_3"
+    // $ANTLR end "rule__Association__CardinalityAssignment_2_0_1"
+
+
+    // $ANTLR start "rule__Association__NoteAssignment_2_0_2"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3625:1: rule__Association__NoteAssignment_2_0_2 : ( ruleNote ) ;
+    public final void rule__Association__NoteAssignment_2_0_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3629:1: ( ( ruleNote ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3630:1: ( ruleNote )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3630:1: ( ruleNote )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3631:1: ruleNote
+            {
+             before(grammarAccess.getAssociationAccess().getNoteNoteParserRuleCall_2_0_2_0()); 
+            pushFollow(FOLLOW_ruleNote_in_rule__Association__NoteAssignment_2_0_27325);
+            ruleNote();
+
+            state._fsp--;
+
+             after(grammarAccess.getAssociationAccess().getNoteNoteParserRuleCall_2_0_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__NoteAssignment_2_0_2"
+
+
+    // $ANTLR start "rule__Association__NoteAssignment_2_1"
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3640:1: rule__Association__NoteAssignment_2_1 : ( ruleNote ) ;
+    public final void rule__Association__NoteAssignment_2_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3644:1: ( ( ruleNote ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3645:1: ( ruleNote )
+            {
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3645:1: ( ruleNote )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3646:1: ruleNote
+            {
+             before(grammarAccess.getAssociationAccess().getNoteNoteParserRuleCall_2_1_0()); 
+            pushFollow(FOLLOW_ruleNote_in_rule__Association__NoteAssignment_2_17356);
+            ruleNote();
+
+            state._fsp--;
+
+             after(grammarAccess.getAssociationAccess().getNoteNoteParserRuleCall_2_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Association__NoteAssignment_2_1"
 
 
     // $ANTLR start "rule__AssociationEnd__TypeAssignment"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3269:1: rule__AssociationEnd__TypeAssignment : ( ( RULE_ID ) ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3655:1: rule__AssociationEnd__TypeAssignment : ( ( RULE_ID ) ) ;
     public final void rule__AssociationEnd__TypeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3273:1: ( ( ( RULE_ID ) ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3274:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3659:1: ( ( ( RULE_ID ) ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3660:1: ( ( RULE_ID ) )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3274:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3275:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3660:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3661:1: ( RULE_ID )
             {
              before(grammarAccess.getAssociationEndAccess().getTypeClassNameCrossReference_0()); 
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3276:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3277:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3662:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3663:1: RULE_ID
             {
              before(grammarAccess.getAssociationEndAccess().getTypeClassNameIDTerminalRuleCall_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AssociationEnd__TypeAssignment6587); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AssociationEnd__TypeAssignment7391); 
              after(grammarAccess.getAssociationEndAccess().getTypeClassNameIDTerminalRuleCall_0_1()); 
 
             }
@@ -8929,20 +9927,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorLabel__NameAssignment"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3288:1: rule__ConnectorLabel__NameAssignment : ( RULE_ID ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3674:1: rule__ConnectorLabel__NameAssignment : ( RULE_ID ) ;
     public final void rule__ConnectorLabel__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3292:1: ( ( RULE_ID ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3293:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3678:1: ( ( RULE_ID ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3679:1: ( RULE_ID )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3293:1: ( RULE_ID )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3294:1: RULE_ID
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3679:1: ( RULE_ID )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3680:1: RULE_ID
             {
              before(grammarAccess.getConnectorLabelAccess().getNameIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ConnectorLabel__NameAssignment6622); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ConnectorLabel__NameAssignment7426); 
              after(grammarAccess.getConnectorLabelAccess().getNameIDTerminalRuleCall_0()); 
 
             }
@@ -8966,20 +9964,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__LeftAssignment_2"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3303:1: rule__ConnectorCardinalitiy__LeftAssignment_2 : ( ruleCardinality ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3689:1: rule__ConnectorCardinalitiy__LeftAssignment_2 : ( ruleCardinality ) ;
     public final void rule__ConnectorCardinalitiy__LeftAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3307:1: ( ( ruleCardinality ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3308:1: ( ruleCardinality )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3693:1: ( ( ruleCardinality ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3694:1: ( ruleCardinality )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3308:1: ( ruleCardinality )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3309:1: ruleCardinality
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3694:1: ( ruleCardinality )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3695:1: ruleCardinality
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getLeftCardinalityParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__LeftAssignment_26653);
+            pushFollow(FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__LeftAssignment_27457);
             ruleCardinality();
 
             state._fsp--;
@@ -9007,20 +10005,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__MiddleAssignment_3_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3318:1: rule__ConnectorCardinalitiy__MiddleAssignment_3_1 : ( ruleCardinality ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3704:1: rule__ConnectorCardinalitiy__MiddleAssignment_3_1 : ( ruleCardinality ) ;
     public final void rule__ConnectorCardinalitiy__MiddleAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3322:1: ( ( ruleCardinality ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3323:1: ( ruleCardinality )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3708:1: ( ( ruleCardinality ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3709:1: ( ruleCardinality )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3323:1: ( ruleCardinality )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3324:1: ruleCardinality
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3709:1: ( ruleCardinality )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3710:1: ruleCardinality
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getMiddleCardinalityParserRuleCall_3_1_0()); 
-            pushFollow(FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__MiddleAssignment_3_16684);
+            pushFollow(FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__MiddleAssignment_3_17488);
             ruleCardinality();
 
             state._fsp--;
@@ -9048,20 +10046,20 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__RightAssignment_4_1"
-    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3333:1: rule__ConnectorCardinalitiy__RightAssignment_4_1 : ( ruleConnectorLabel ) ;
+    // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3719:1: rule__ConnectorCardinalitiy__RightAssignment_4_1 : ( ruleConnectorLabel ) ;
     public final void rule__ConnectorCardinalitiy__RightAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3337:1: ( ( ruleConnectorLabel ) )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3338:1: ( ruleConnectorLabel )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3723:1: ( ( ruleConnectorLabel ) )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3724:1: ( ruleConnectorLabel )
             {
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3338:1: ( ruleConnectorLabel )
-            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3339:1: ruleConnectorLabel
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3724:1: ( ruleConnectorLabel )
+            // ../de.cooperateproject.uml.xtext.clazz.ui/src-gen/de/cooperateproject/uml/xtext/clazz/ui/contentassist/antlr/internal/InternalUmlDsl.g:3725:1: ruleConnectorLabel
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getRightConnectorLabelParserRuleCall_4_1_0()); 
-            pushFollow(FOLLOW_ruleConnectorLabel_in_rule__ConnectorCardinalitiy__RightAssignment_4_16715);
+            pushFollow(FOLLOW_ruleConnectorLabel_in_rule__ConnectorCardinalitiy__RightAssignment_4_17519);
             ruleConnectorLabel();
 
             state._fsp--;
@@ -9090,6 +10088,65 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     // Delegated rules
 
 
+    protected DFA6 dfa6 = new DFA6(this);
+    static final String DFA6_eotS =
+        "\12\uffff";
+    static final String DFA6_eofS =
+        "\12\uffff";
+    static final String DFA6_minS =
+        "\7\5\1\40\2\uffff";
+    static final String DFA6_maxS =
+        "\6\37\1\5\1\41\2\uffff";
+    static final String DFA6_acceptS =
+        "\10\uffff\1\2\1\1";
+    static final String DFA6_specialS =
+        "\12\uffff}>";
+    static final String[] DFA6_transitionS = {
+            "\1\7\12\uffff\1\1\1\2\1\3\1\4\7\uffff\1\10\2\uffff\1\5\1\6",
+            "\1\7\25\uffff\1\10\2\uffff\1\5\1\6",
+            "\1\7\25\uffff\1\10\2\uffff\1\5\1\6",
+            "\1\7\25\uffff\1\10\2\uffff\1\5\1\6",
+            "\1\7\25\uffff\1\10\2\uffff\1\5\1\6",
+            "\1\7\31\uffff\1\6",
+            "\1\7",
+            "\1\11\1\10",
+            "",
+            ""
+    };
+
+    static final short[] DFA6_eot = DFA.unpackEncodedString(DFA6_eotS);
+    static final short[] DFA6_eof = DFA.unpackEncodedString(DFA6_eofS);
+    static final char[] DFA6_min = DFA.unpackEncodedStringToUnsignedChars(DFA6_minS);
+    static final char[] DFA6_max = DFA.unpackEncodedStringToUnsignedChars(DFA6_maxS);
+    static final short[] DFA6_accept = DFA.unpackEncodedString(DFA6_acceptS);
+    static final short[] DFA6_special = DFA.unpackEncodedString(DFA6_specialS);
+    static final short[][] DFA6_transition;
+
+    static {
+        int numStates = DFA6_transitionS.length;
+        DFA6_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA6_transition[i] = DFA.unpackEncodedString(DFA6_transitionS[i]);
+        }
+    }
+
+    class DFA6 extends DFA {
+
+        public DFA6(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 6;
+            this.eot = DFA6_eot;
+            this.eof = DFA6_eof;
+            this.min = DFA6_min;
+            this.max = DFA6_max;
+            this.accept = DFA6_accept;
+            this.special = DFA6_special;
+            this.transition = DFA6_transition;
+        }
+        public String getDescription() {
+            return "740:1: rule__Member__Alternatives : ( ( ruleAttribute ) | ( ruleMethode ) );";
+        }
+    }
  
 
     public static final BitSet FOLLOW_ruleClassDiagram_in_entryRuleClassDiagram61 = new BitSet(new long[]{0x0000000000000000L});
@@ -9146,232 +10203,265 @@ public class InternalUmlDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleCardinality_in_entryRuleCardinality1082 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCardinality1089 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Cardinality__Alternatives_in_ruleCardinality1115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassDef_in_rule__Element__Alternatives1151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClass_in_rule__Element__Alternatives1168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__Element__Alternatives1185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConnector_in_rule__Element__Alternatives1202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__ClassDef__Alternatives_01236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__ClassDef__Alternatives_01256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__NameAssignment_0_in_rule__Name__Alternatives1290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__Group_1__0_in_rule__Name__Alternatives1308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Name__LongnameAlternatives_1_0_01341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Name__LongnameAlternatives_1_0_01358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_0__0_in_rule__Inheritance__Alternatives1390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_1__0_in_rule__Inheritance__Alternatives1408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttribute_in_rule__Member__Alternatives1441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMethode_in_rule__Member__Alternatives1458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleGeneralization_in_rule__Connector__Alternatives1490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssociation_in_rule__Connector__Alternatives1507 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__ConnectorCardinalitiy__Alternatives_4_21540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__ConnectorCardinalitiy__Alternatives_4_21560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__Cardinality__Alternatives1595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cardinality__Group_1__0_in_rule__Cardinality__Alternatives1614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__Cardinality__Alternatives_1_21648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__Cardinality__Alternatives_1_21667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__0__Impl_in_rule__ClassDiagram__Group__01697 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__1_in_rule__ClassDiagram__Group__01700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__1__Impl_in_rule__ClassDiagram__Group__11758 = new BitSet(new long[]{0x0000000000861820L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__2_in_rule__ClassDiagram__Group__11761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__ClassDiagram__Group__1__Impl1789 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__2__Impl_in_rule__ClassDiagram__Group__21820 = new BitSet(new long[]{0x0000000000861820L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__3_in_rule__ClassDiagram__Group__21823 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__ElementsAssignment_2_in_rule__ClassDiagram__Group__2__Impl1850 = new BitSet(new long[]{0x0000000000841822L});
-    public static final BitSet FOLLOW_rule__ClassDiagram__Group__3__Impl_in_rule__ClassDiagram__Group__31881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__ClassDiagram__Group__3__Impl1909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataType__Group__0__Impl_in_rule__DataType__Group__01948 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__DataType__Group__1_in_rule__DataType__Group__01951 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__DataType__Group__0__Impl1979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataType__Group__1__Impl_in_rule__DataType__Group__12010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataType__NameAssignment_1_in_rule__DataType__Group__1__Impl2037 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__0__Impl_in_rule__ClassDef__Group__02071 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__1_in_rule__ClassDef__Group__02074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Alternatives_0_in_rule__ClassDef__Group__0__Impl2101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__1__Impl_in_rule__ClassDef__Group__12131 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__2_in_rule__ClassDef__Group__12134 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__ClassDef__Group__1__Impl2162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__2__Impl_in_rule__ClassDef__Group__22193 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__3_in_rule__ClassDef__Group__22196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__ClassesAssignment_2_in_rule__ClassDef__Group__2__Impl2223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__3__Impl_in_rule__ClassDef__Group__32253 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__4_in_rule__ClassDef__Group__32256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group_3__0_in_rule__ClassDef__Group__3__Impl2283 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group__4__Impl_in_rule__ClassDef__Group__42314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__ClassDef__Group__4__Impl2342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group_3__0__Impl_in_rule__ClassDef__Group_3__02383 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group_3__1_in_rule__ClassDef__Group_3__02386 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__ClassDef__Group_3__0__Impl2414 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__Group_3__1__Impl_in_rule__ClassDef__Group_3__12445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ClassDef__ClassesAssignment_3_1_in_rule__ClassDef__Group_3__1__Impl2472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__Group_1__0__Impl_in_rule__Name__Group_1__02506 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_rule__Name__Group_1__1_in_rule__Name__Group_1__02509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__LongnameAssignment_1_0_in_rule__Name__Group_1__0__Impl2536 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__Group_1__1__Impl_in_rule__Name__Group_1__12566 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Name__Group_1__2_in_rule__Name__Group_1__12569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rule__Name__Group_1__1__Impl2597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__Group_1__2__Impl_in_rule__Name__Group_1__22628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__NameAssignment_1_2_in_rule__Name__Group_1__2__Impl2655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__Group__0__Impl_in_rule__Class__Group__02691 = new BitSet(new long[]{0x0000000000800020L});
-    public static final BitSet FOLLOW_rule__Class__Group__1_in_rule__Class__Group__02694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__Class__Group__0__Impl2723 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__Group__1__Impl_in_rule__Class__Group__12756 = new BitSet(new long[]{0x0000000003080000L});
-    public static final BitSet FOLLOW_rule__Class__Group__2_in_rule__Class__Group__12759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__TypeAssignment_1_in_rule__Class__Group__1__Impl2786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__Group__2__Impl_in_rule__Class__Group__22816 = new BitSet(new long[]{0x0000000003080000L});
-    public static final BitSet FOLLOW_rule__Class__Group__3_in_rule__Class__Group__22819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__InheritanceAssignment_2_in_rule__Class__Group__2__Impl2846 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__Group__3__Impl_in_rule__Class__Group__32877 = new BitSet(new long[]{0x000000000C900020L});
-    public static final BitSet FOLLOW_rule__Class__Group__4_in_rule__Class__Group__32880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__Class__Group__3__Impl2908 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__Group__4__Impl_in_rule__Class__Group__42939 = new BitSet(new long[]{0x000000000C900020L});
-    public static final BitSet FOLLOW_rule__Class__Group__5_in_rule__Class__Group__42942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Class__MembersAssignment_4_in_rule__Class__Group__4__Impl2969 = new BitSet(new long[]{0x000000000C800022L});
-    public static final BitSet FOLLOW_rule__Class__Group__5__Impl_in_rule__Class__Group__53000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__Class__Group__5__Impl3028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_0__0__Impl_in_rule__Inheritance__Group_0__03071 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_0__1_in_rule__Inheritance__Group_0__03074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__Inheritance__Group_0__0__Impl3102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_0__1__Impl_in_rule__Inheritance__Group_0__13133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__TypeAssignment_0_1_in_rule__Inheritance__Group_0__1__Impl3160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_1__0__Impl_in_rule__Inheritance__Group_1__03194 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_1__1_in_rule__Inheritance__Group_1__03197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_rule__Inheritance__Group_1__0__Impl3225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__Group_1__1__Impl_in_rule__Inheritance__Group_1__13256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Inheritance__TypeAssignment_1_1_in_rule__Inheritance__Group_1__1__Impl3283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__03317 = new BitSet(new long[]{0x000000000C000020L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__03320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__Attribute__Group__0__Impl3349 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__13382 = new BitSet(new long[]{0x000000000C000020L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__13385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__Attribute__Group__1__Impl3414 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__23447 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__3_in_rule__Attribute__Group__23450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__NameAssignment_2_in_rule__Attribute__Group__2__Impl3477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__3__Impl_in_rule__Attribute__Group__33507 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__4_in_rule__Attribute__Group__33510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Attribute__Group__3__Impl3538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__4__Impl_in_rule__Attribute__Group__43569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__TypeAssignment_4_in_rule__Attribute__Group__4__Impl3596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__0__Impl_in_rule__Methode__Group__03636 = new BitSet(new long[]{0x000000000C800020L});
-    public static final BitSet FOLLOW_rule__Methode__Group__1_in_rule__Methode__Group__03639 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__Methode__Group__0__Impl3668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__1__Impl_in_rule__Methode__Group__13701 = new BitSet(new long[]{0x000000000C800020L});
-    public static final BitSet FOLLOW_rule__Methode__Group__2_in_rule__Methode__Group__13704 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__Methode__Group__1__Impl3733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__2__Impl_in_rule__Methode__Group__23766 = new BitSet(new long[]{0x000000000C800020L});
-    public static final BitSet FOLLOW_rule__Methode__Group__3_in_rule__Methode__Group__23769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__Methode__Group__2__Impl3798 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__3__Impl_in_rule__Methode__Group__33831 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Methode__Group__4_in_rule__Methode__Group__33834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__NameAssignment_3_in_rule__Methode__Group__3__Impl3861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__4__Impl_in_rule__Methode__Group__43891 = new BitSet(new long[]{0x000000004C000020L});
-    public static final BitSet FOLLOW_rule__Methode__Group__5_in_rule__Methode__Group__43894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Methode__Group__4__Impl3922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__5__Impl_in_rule__Methode__Group__53953 = new BitSet(new long[]{0x000000004C000020L});
-    public static final BitSet FOLLOW_rule__Methode__Group__6_in_rule__Methode__Group__53956 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5__0_in_rule__Methode__Group__5__Impl3983 = new BitSet(new long[]{0x000000000C000022L});
-    public static final BitSet FOLLOW_rule__Methode__Group__6__Impl_in_rule__Methode__Group__64014 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Methode__Group__7_in_rule__Methode__Group__64017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__Methode__Group__6__Impl4045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group__7__Impl_in_rule__Methode__Group__74076 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_7__0_in_rule__Methode__Group__7__Impl4103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5__0__Impl_in_rule__Methode__Group_5__04150 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5__1_in_rule__Methode__Group_5__04153 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__AttributesAssignment_5_0_in_rule__Methode__Group_5__0__Impl4180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5__1__Impl_in_rule__Methode__Group_5__14210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5_1__0_in_rule__Methode__Group_5__1__Impl4237 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5_1__0__Impl_in_rule__Methode__Group_5_1__04272 = new BitSet(new long[]{0x000000000C000020L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5_1__1_in_rule__Methode__Group_5_1__04275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__Methode__Group_5_1__0__Impl4303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_5_1__1__Impl_in_rule__Methode__Group_5_1__14334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__AttributesAssignment_5_1_1_in_rule__Methode__Group_5_1__1__Impl4361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_7__0__Impl_in_rule__Methode__Group_7__04395 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Methode__Group_7__1_in_rule__Methode__Group_7__04398 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Methode__Group_7__0__Impl4426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__Group_7__1__Impl_in_rule__Methode__Group_7__14457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Methode__TypeAssignment_7_1_in_rule__Methode__Group_7__1__Impl4484 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Generalization__Group__0__Impl_in_rule__Generalization__Group__04518 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__Generalization__Group__1_in_rule__Generalization__Group__04521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Generalization__LeftAssignment_0_in_rule__Generalization__Group__0__Impl4548 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Generalization__Group__1__Impl_in_rule__Generalization__Group__14578 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Generalization__Group__2_in_rule__Generalization__Group__14581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__Generalization__Group__1__Impl4609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Generalization__Group__2__Impl_in_rule__Generalization__Group__24640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Generalization__RightAssignment_2_in_rule__Generalization__Group__2__Impl4667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__Group__0__Impl_in_rule__Association__Group__04703 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_rule__Association__Group__1_in_rule__Association__Group__04706 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__LeftAssignment_0_in_rule__Association__Group__0__Impl4733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__Group__1__Impl_in_rule__Association__Group__14763 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Association__Group__2_in_rule__Association__Group__14766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rule__Association__Group__1__Impl4794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__Group__2__Impl_in_rule__Association__Group__24825 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__Association__Group__3_in_rule__Association__Group__24828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__RightAssignment_2_in_rule__Association__Group__2__Impl4855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__Group__3__Impl_in_rule__Association__Group__34885 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Association__CardinalityAssignment_3_in_rule__Association__Group__3__Impl4912 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__0__Impl_in_rule__ConnectorCardinalitiy__Group__04951 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__1_in_rule__ConnectorCardinalitiy__Group__04954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__1__Impl_in_rule__ConnectorCardinalitiy__Group__15012 = new BitSet(new long[]{0x0000000C00008040L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__2_in_rule__ConnectorCardinalitiy__Group__15015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__ConnectorCardinalitiy__Group__1__Impl5043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__2__Impl_in_rule__ConnectorCardinalitiy__Group__25074 = new BitSet(new long[]{0x0000000C00008040L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__3_in_rule__ConnectorCardinalitiy__Group__25077 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__LeftAssignment_2_in_rule__ConnectorCardinalitiy__Group__2__Impl5104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__3__Impl_in_rule__ConnectorCardinalitiy__Group__35135 = new BitSet(new long[]{0x0000000C00008040L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__4_in_rule__ConnectorCardinalitiy__Group__35138 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__0_in_rule__ConnectorCardinalitiy__Group__3__Impl5165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__4__Impl_in_rule__ConnectorCardinalitiy__Group__45196 = new BitSet(new long[]{0x0000000C00008040L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__5_in_rule__ConnectorCardinalitiy__Group__45199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__0_in_rule__ConnectorCardinalitiy__Group__4__Impl5226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__5__Impl_in_rule__ConnectorCardinalitiy__Group__55257 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rule__ConnectorCardinalitiy__Group__5__Impl5285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__0__Impl_in_rule__ConnectorCardinalitiy__Group_3__05328 = new BitSet(new long[]{0x0000000000008040L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__1_in_rule__ConnectorCardinalitiy__Group_3__05331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__ConnectorCardinalitiy__Group_3__0__Impl5359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__1__Impl_in_rule__ConnectorCardinalitiy__Group_3__15390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__MiddleAssignment_3_1_in_rule__ConnectorCardinalitiy__Group_3__1__Impl5417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__0__Impl_in_rule__ConnectorCardinalitiy__Group_4__05452 = new BitSet(new long[]{0x0000000000006020L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__1_in_rule__ConnectorCardinalitiy__Group_4__05455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__ConnectorCardinalitiy__Group_4__0__Impl5483 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__1__Impl_in_rule__ConnectorCardinalitiy__Group_4__15514 = new BitSet(new long[]{0x0000000000006020L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__2_in_rule__ConnectorCardinalitiy__Group_4__15517 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__RightAssignment_4_1_in_rule__ConnectorCardinalitiy__Group_4__1__Impl5544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__2__Impl_in_rule__ConnectorCardinalitiy__Group_4__25575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Alternatives_4_2_in_rule__ConnectorCardinalitiy__Group_4__2__Impl5602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cardinality__Group_1__0__Impl_in_rule__Cardinality__Group_1__05639 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__Cardinality__Group_1__1_in_rule__Cardinality__Group_1__05642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__Cardinality__Group_1__0__Impl5669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cardinality__Group_1__1__Impl_in_rule__Cardinality__Group_1__15698 = new BitSet(new long[]{0x0000000000008040L});
-    public static final BitSet FOLLOW_rule__Cardinality__Group_1__2_in_rule__Cardinality__Group_1__15701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__Cardinality__Group_1__1__Impl5729 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cardinality__Group_1__2__Impl_in_rule__Cardinality__Group_1__25760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cardinality__Alternatives_1_2_in_rule__Cardinality__Group_1__2__Impl5787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleElement_in_rule__ClassDiagram__ElementsAssignment_25828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DataType__NameAssignment_15859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_25890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_3_15921 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Name__NameAssignment_05952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Name__LongnameAlternatives_1_0_0_in_rule__Name__LongnameAssignment_1_05983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Name__NameAssignment_1_26016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Class__TypeAssignment_16051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInheritance_in_rule__Class__InheritanceAssignment_26086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMember_in_rule__Class__MembersAssignment_46117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_0_16152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_1_16191 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Attribute__NameAssignment_26226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Attribute__TypeAssignment_46261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Methode__NameAssignment_36296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_5_06327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_5_1_16358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Methode__TypeAssignment_7_16393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Generalization__LeftAssignment_06428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Generalization__RightAssignment_26459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Association__LeftAssignment_06490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Association__RightAssignment_26521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConnectorCardinalitiy_in_rule__Association__CardinalityAssignment_36552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AssociationEnd__TypeAssignment6587 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ConnectorLabel__NameAssignment6622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__LeftAssignment_26653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__MiddleAssignment_3_16684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConnectorLabel_in_rule__ConnectorCardinalitiy__RightAssignment_4_16715 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNote_in_entryRuleNote1142 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleNote1149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Note__Group__0_in_ruleNote1175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Visibility__Alternatives_in_ruleVisibility1212 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassDef_in_rule__Element__Alternatives1247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClass_in_rule__Element__Alternatives1264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__Element__Alternatives1281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnector_in_rule__Element__Alternatives1298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_rule__ClassDef__Alternatives_01332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__ClassDef__Alternatives_01352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__NameAssignment_0_in_rule__Name__Alternatives1386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__Group_1__0_in_rule__Name__Alternatives1404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Name__LongnameAlternatives_1_0_01437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Name__LongnameAlternatives_1_0_01454 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_0__0_in_rule__Inheritance__Alternatives1486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_1__0_in_rule__Inheritance__Alternatives1504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttribute_in_rule__Member__Alternatives1537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMethode_in_rule__Member__Alternatives1554 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGeneralization_in_rule__Connector__Alternatives1586 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssociation_in_rule__Connector__Alternatives1603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group_2_0__0_in_rule__Association__Alternatives_21635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__NoteAssignment_2_1_in_rule__Association__Alternatives_21653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ConnectorCardinalitiy__Alternatives_4_21687 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ConnectorCardinalitiy__Alternatives_4_21707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__Cardinality__Alternatives1742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cardinality__Group_1__0_in_rule__Cardinality__Alternatives1761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__Cardinality__Alternatives_1_21795 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__Cardinality__Alternatives_1_21814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__Visibility__Alternatives1847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__Visibility__Alternatives1868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__Visibility__Alternatives1889 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_rule__Visibility__Alternatives1910 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__0__Impl_in_rule__ClassDiagram__Group__01943 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__1_in_rule__ClassDiagram__Group__01946 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__1__Impl_in_rule__ClassDiagram__Group__12004 = new BitSet(new long[]{0x0000000008601820L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__2_in_rule__ClassDiagram__Group__12007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__ClassDiagram__Group__1__Impl2035 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__2__Impl_in_rule__ClassDiagram__Group__22066 = new BitSet(new long[]{0x0000000008601820L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__3_in_rule__ClassDiagram__Group__22069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__ElementsAssignment_2_in_rule__ClassDiagram__Group__2__Impl2096 = new BitSet(new long[]{0x0000000008401822L});
+    public static final BitSet FOLLOW_rule__ClassDiagram__Group__3__Impl_in_rule__ClassDiagram__Group__32127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__ClassDiagram__Group__3__Impl2155 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataType__Group__0__Impl_in_rule__DataType__Group__02194 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__DataType__Group__1_in_rule__DataType__Group__02197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__DataType__Group__0__Impl2225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataType__Group__1__Impl_in_rule__DataType__Group__12256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataType__NameAssignment_1_in_rule__DataType__Group__1__Impl2283 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__0__Impl_in_rule__ClassDef__Group__02317 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__1_in_rule__ClassDef__Group__02320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Alternatives_0_in_rule__ClassDef__Group__0__Impl2347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__1__Impl_in_rule__ClassDef__Group__12377 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__2_in_rule__ClassDef__Group__12380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__ClassDef__Group__1__Impl2408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__2__Impl_in_rule__ClassDef__Group__22439 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__3_in_rule__ClassDef__Group__22442 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__ClassesAssignment_2_in_rule__ClassDef__Group__2__Impl2469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__3__Impl_in_rule__ClassDef__Group__32499 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__4_in_rule__ClassDef__Group__32502 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group_3__0_in_rule__ClassDef__Group__3__Impl2529 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group__4__Impl_in_rule__ClassDef__Group__42560 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__ClassDef__Group__4__Impl2588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group_3__0__Impl_in_rule__ClassDef__Group_3__02629 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group_3__1_in_rule__ClassDef__Group_3__02632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__ClassDef__Group_3__0__Impl2660 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__Group_3__1__Impl_in_rule__ClassDef__Group_3__12691 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ClassDef__ClassesAssignment_3_1_in_rule__ClassDef__Group_3__1__Impl2718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__Group_1__0__Impl_in_rule__Name__Group_1__02752 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_rule__Name__Group_1__1_in_rule__Name__Group_1__02755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__LongnameAssignment_1_0_in_rule__Name__Group_1__0__Impl2782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__Group_1__1__Impl_in_rule__Name__Group_1__12812 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Name__Group_1__2_in_rule__Name__Group_1__12815 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__Name__Group_1__1__Impl2843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__Group_1__2__Impl_in_rule__Name__Group_1__22874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__NameAssignment_1_2_in_rule__Name__Group_1__2__Impl2901 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__Group__0__Impl_in_rule__Class__Group__02937 = new BitSet(new long[]{0x0000000008000020L});
+    public static final BitSet FOLLOW_rule__Class__Group__1_in_rule__Class__Group__02940 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__Class__Group__0__Impl2969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__Group__1__Impl_in_rule__Class__Group__13002 = new BitSet(new long[]{0x0000000030800000L});
+    public static final BitSet FOLLOW_rule__Class__Group__2_in_rule__Class__Group__13005 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__TypeAssignment_1_in_rule__Class__Group__1__Impl3032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__Group__2__Impl_in_rule__Class__Group__23062 = new BitSet(new long[]{0x0000000030800000L});
+    public static final BitSet FOLLOW_rule__Class__Group__3_in_rule__Class__Group__23065 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__InheritanceAssignment_2_in_rule__Class__Group__2__Impl3092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__Group__3__Impl_in_rule__Class__Group__33123 = new BitSet(new long[]{0x00000000C90F0020L});
+    public static final BitSet FOLLOW_rule__Class__Group__4_in_rule__Class__Group__33126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__Class__Group__3__Impl3154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__Group__4__Impl_in_rule__Class__Group__43185 = new BitSet(new long[]{0x00000000C90F0020L});
+    public static final BitSet FOLLOW_rule__Class__Group__5_in_rule__Class__Group__43188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Class__MembersAssignment_4_in_rule__Class__Group__4__Impl3215 = new BitSet(new long[]{0x00000000C80F0022L});
+    public static final BitSet FOLLOW_rule__Class__Group__5__Impl_in_rule__Class__Group__53246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__Class__Group__5__Impl3274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_0__0__Impl_in_rule__Inheritance__Group_0__03317 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_0__1_in_rule__Inheritance__Group_0__03320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Inheritance__Group_0__0__Impl3348 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_0__1__Impl_in_rule__Inheritance__Group_0__13379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__TypeAssignment_0_1_in_rule__Inheritance__Group_0__1__Impl3406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_1__0__Impl_in_rule__Inheritance__Group_1__03440 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_1__1_in_rule__Inheritance__Group_1__03443 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Inheritance__Group_1__0__Impl3471 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__Group_1__1__Impl_in_rule__Inheritance__Group_1__13502 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Inheritance__TypeAssignment_1_1_in_rule__Inheritance__Group_1__1__Impl3529 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__03563 = new BitSet(new long[]{0x00000000C00F0020L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__03566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__VisibilityAssignment_0_in_rule__Attribute__Group__0__Impl3593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__13624 = new BitSet(new long[]{0x00000000C00F0020L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__13627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__Attribute__Group__1__Impl3656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__23689 = new BitSet(new long[]{0x00000000C00F0020L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__3_in_rule__Attribute__Group__23692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__Attribute__Group__2__Impl3721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__3__Impl_in_rule__Attribute__Group__33754 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__4_in_rule__Attribute__Group__33757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__NameAssignment_3_in_rule__Attribute__Group__3__Impl3784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__4__Impl_in_rule__Attribute__Group__43814 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__5_in_rule__Attribute__Group__43817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_rule__Attribute__Group__4__Impl3845 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__5__Impl_in_rule__Attribute__Group__53876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__TypeAssignment_5_in_rule__Attribute__Group__5__Impl3903 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__0__Impl_in_rule__Methode__Group__03945 = new BitSet(new long[]{0x00000000C80F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group__1_in_rule__Methode__Group__03948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__VisibilityAssignment_0_in_rule__Methode__Group__0__Impl3975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__1__Impl_in_rule__Methode__Group__14006 = new BitSet(new long[]{0x00000000C80F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group__2_in_rule__Methode__Group__14009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__Methode__Group__1__Impl4038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__2__Impl_in_rule__Methode__Group__24071 = new BitSet(new long[]{0x00000000C80F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group__3_in_rule__Methode__Group__24074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__Methode__Group__2__Impl4103 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__3__Impl_in_rule__Methode__Group__34136 = new BitSet(new long[]{0x00000000C80F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group__4_in_rule__Methode__Group__34139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__Methode__Group__3__Impl4168 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__4__Impl_in_rule__Methode__Group__44201 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__Methode__Group__5_in_rule__Methode__Group__44204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__NameAssignment_4_in_rule__Methode__Group__4__Impl4231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__5__Impl_in_rule__Methode__Group__54261 = new BitSet(new long[]{0x00000004C00F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group__6_in_rule__Methode__Group__54264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__Methode__Group__5__Impl4292 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__6__Impl_in_rule__Methode__Group__64323 = new BitSet(new long[]{0x00000004C00F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group__7_in_rule__Methode__Group__64326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6__0_in_rule__Methode__Group__6__Impl4353 = new BitSet(new long[]{0x00000000C00F0022L});
+    public static final BitSet FOLLOW_rule__Methode__Group__7__Impl_in_rule__Methode__Group__74384 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_rule__Methode__Group__8_in_rule__Methode__Group__74387 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_rule__Methode__Group__7__Impl4415 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group__8__Impl_in_rule__Methode__Group__84446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_8__0_in_rule__Methode__Group__8__Impl4473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6__0__Impl_in_rule__Methode__Group_6__04522 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6__1_in_rule__Methode__Group_6__04525 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__AttributesAssignment_6_0_in_rule__Methode__Group_6__0__Impl4552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6__1__Impl_in_rule__Methode__Group_6__14582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6_1__0_in_rule__Methode__Group_6__1__Impl4609 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6_1__0__Impl_in_rule__Methode__Group_6_1__04644 = new BitSet(new long[]{0x00000000C00F0020L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6_1__1_in_rule__Methode__Group_6_1__04647 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__Methode__Group_6_1__0__Impl4675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_6_1__1__Impl_in_rule__Methode__Group_6_1__14706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__AttributesAssignment_6_1_1_in_rule__Methode__Group_6_1__1__Impl4733 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_8__0__Impl_in_rule__Methode__Group_8__04767 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Methode__Group_8__1_in_rule__Methode__Group_8__04770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_rule__Methode__Group_8__0__Impl4798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__Group_8__1__Impl_in_rule__Methode__Group_8__14829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Methode__TypeAssignment_8_1_in_rule__Methode__Group_8__1__Impl4856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Generalization__Group__0__Impl_in_rule__Generalization__Group__04890 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__Generalization__Group__1_in_rule__Generalization__Group__04893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Generalization__LeftAssignment_0_in_rule__Generalization__Group__0__Impl4920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Generalization__Group__1__Impl_in_rule__Generalization__Group__14950 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Generalization__Group__2_in_rule__Generalization__Group__14953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__Generalization__Group__1__Impl4981 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Generalization__Group__2__Impl_in_rule__Generalization__Group__25012 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Generalization__RightAssignment_2_in_rule__Generalization__Group__2__Impl5039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group__0__Impl_in_rule__Association__Group__05075 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_rule__Association__Group__1_in_rule__Association__Group__05078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__LeftAssignment_0_in_rule__Association__Group__0__Impl5105 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group__1__Impl_in_rule__Association__Group__15135 = new BitSet(new long[]{0x0000010000000020L});
+    public static final BitSet FOLLOW_rule__Association__Group__2_in_rule__Association__Group__15138 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__Association__Group__1__Impl5166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group__2__Impl_in_rule__Association__Group__25197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Alternatives_2_in_rule__Association__Group__2__Impl5224 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group_2_0__0__Impl_in_rule__Association__Group_2_0__05260 = new BitSet(new long[]{0x0000011000000020L});
+    public static final BitSet FOLLOW_rule__Association__Group_2_0__1_in_rule__Association__Group_2_0__05263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__RightAssignment_2_0_0_in_rule__Association__Group_2_0__0__Impl5290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group_2_0__1__Impl_in_rule__Association__Group_2_0__15320 = new BitSet(new long[]{0x0000011000000020L});
+    public static final BitSet FOLLOW_rule__Association__Group_2_0__2_in_rule__Association__Group_2_0__15323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__CardinalityAssignment_2_0_1_in_rule__Association__Group_2_0__1__Impl5350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__Group_2_0__2__Impl_in_rule__Association__Group_2_0__25381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Association__NoteAssignment_2_0_2_in_rule__Association__Group_2_0__2__Impl5408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__0__Impl_in_rule__ConnectorCardinalitiy__Group__05445 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__1_in_rule__ConnectorCardinalitiy__Group__05448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__1__Impl_in_rule__ConnectorCardinalitiy__Group__15506 = new BitSet(new long[]{0x0000006000008040L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__2_in_rule__ConnectorCardinalitiy__Group__15509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__ConnectorCardinalitiy__Group__1__Impl5537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__2__Impl_in_rule__ConnectorCardinalitiy__Group__25568 = new BitSet(new long[]{0x0000006000008040L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__3_in_rule__ConnectorCardinalitiy__Group__25571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__LeftAssignment_2_in_rule__ConnectorCardinalitiy__Group__2__Impl5598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__3__Impl_in_rule__ConnectorCardinalitiy__Group__35629 = new BitSet(new long[]{0x0000006000008040L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__4_in_rule__ConnectorCardinalitiy__Group__35632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__0_in_rule__ConnectorCardinalitiy__Group__3__Impl5659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__4__Impl_in_rule__ConnectorCardinalitiy__Group__45690 = new BitSet(new long[]{0x0000006000008040L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__5_in_rule__ConnectorCardinalitiy__Group__45693 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__0_in_rule__ConnectorCardinalitiy__Group__4__Impl5720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group__5__Impl_in_rule__ConnectorCardinalitiy__Group__55751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__ConnectorCardinalitiy__Group__5__Impl5779 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__0__Impl_in_rule__ConnectorCardinalitiy__Group_3__05822 = new BitSet(new long[]{0x0000000000008040L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__1_in_rule__ConnectorCardinalitiy__Group_3__05825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__ConnectorCardinalitiy__Group_3__0__Impl5853 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_3__1__Impl_in_rule__ConnectorCardinalitiy__Group_3__15884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__MiddleAssignment_3_1_in_rule__ConnectorCardinalitiy__Group_3__1__Impl5911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__0__Impl_in_rule__ConnectorCardinalitiy__Group_4__05946 = new BitSet(new long[]{0x0000000000006020L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__1_in_rule__ConnectorCardinalitiy__Group_4__05949 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__ConnectorCardinalitiy__Group_4__0__Impl5977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__1__Impl_in_rule__ConnectorCardinalitiy__Group_4__16008 = new BitSet(new long[]{0x0000000000006020L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__2_in_rule__ConnectorCardinalitiy__Group_4__16011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__RightAssignment_4_1_in_rule__ConnectorCardinalitiy__Group_4__1__Impl6038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Group_4__2__Impl_in_rule__ConnectorCardinalitiy__Group_4__26069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ConnectorCardinalitiy__Alternatives_4_2_in_rule__ConnectorCardinalitiy__Group_4__2__Impl6096 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cardinality__Group_1__0__Impl_in_rule__Cardinality__Group_1__06133 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__Cardinality__Group_1__1_in_rule__Cardinality__Group_1__06136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__Cardinality__Group_1__0__Impl6163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cardinality__Group_1__1__Impl_in_rule__Cardinality__Group_1__16192 = new BitSet(new long[]{0x0000000000008040L});
+    public static final BitSet FOLLOW_rule__Cardinality__Group_1__2_in_rule__Cardinality__Group_1__16195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_rule__Cardinality__Group_1__1__Impl6223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cardinality__Group_1__2__Impl_in_rule__Cardinality__Group_1__26254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cardinality__Alternatives_1_2_in_rule__Cardinality__Group_1__2__Impl6281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Note__Group__0__Impl_in_rule__Note__Group__06317 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Note__Group__1_in_rule__Note__Group__06320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__Note__Group__0__Impl6348 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Note__Group__1__Impl_in_rule__Note__Group__16379 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_rule__Note__Group__2_in_rule__Note__Group__16382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Note__Group__1__Impl6409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Note__Group__2__Impl_in_rule__Note__Group__26438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__Note__Group__2__Impl6466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleElement_in_rule__ClassDiagram__ElementsAssignment_26508 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DataType__NameAssignment_16539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_26570 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassName_in_rule__ClassDef__ClassesAssignment_3_16601 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Name__NameAssignment_06632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Name__LongnameAlternatives_1_0_0_in_rule__Name__LongnameAssignment_1_06663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Name__NameAssignment_1_26696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Class__TypeAssignment_16731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInheritance_in_rule__Class__InheritanceAssignment_26766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMember_in_rule__Class__MembersAssignment_46797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_0_16832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Inheritance__TypeAssignment_1_16871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVisibility_in_rule__Attribute__VisibilityAssignment_06906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Attribute__NameAssignment_36937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Attribute__TypeAssignment_56972 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVisibility_in_rule__Methode__VisibilityAssignment_07007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Methode__NameAssignment_47038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_6_07069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttribute_in_rule__Methode__AttributesAssignment_6_1_17100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Methode__TypeAssignment_8_17135 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Generalization__LeftAssignment_07170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Generalization__RightAssignment_27201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Association__LeftAssignment_07232 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssociationEnd_in_rule__Association__RightAssignment_2_0_07263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnectorCardinalitiy_in_rule__Association__CardinalityAssignment_2_0_17294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNote_in_rule__Association__NoteAssignment_2_0_27325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNote_in_rule__Association__NoteAssignment_2_17356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AssociationEnd__TypeAssignment7391 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ConnectorLabel__NameAssignment7426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__LeftAssignment_27457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCardinality_in_rule__ConnectorCardinalitiy__MiddleAssignment_3_17488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConnectorLabel_in_rule__ConnectorCardinalitiy__RightAssignment_4_17519 = new BitSet(new long[]{0x0000000000000002L});
 
 }

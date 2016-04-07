@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.AssociationImpl#getCardinality <em>Cardinality</em>}</li>
+ *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.impl.AssociationImpl#getNote <em>Note</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +39,26 @@ public class AssociationImpl extends ConnectorImpl implements Association
    * @ordered
    */
   protected ConnectorCardinalitiy cardinality;
+
+  /**
+   * The default value of the '{@link #getNote() <em>Note</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNote()
+   * @generated
+   * @ordered
+   */
+  protected static final String NOTE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNote() <em>Note</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNote()
+   * @generated
+   * @ordered
+   */
+  protected String note = NOTE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,6 +134,29 @@ public class AssociationImpl extends ConnectorImpl implements Association
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getNote()
+  {
+    return note;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNote(String newNote)
+  {
+    String oldNote = note;
+    note = newNote;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlDslPackage.ASSOCIATION__NOTE, oldNote, note));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -136,6 +180,8 @@ public class AssociationImpl extends ConnectorImpl implements Association
     {
       case UmlDslPackage.ASSOCIATION__CARDINALITY:
         return getCardinality();
+      case UmlDslPackage.ASSOCIATION__NOTE:
+        return getNote();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,6 +198,9 @@ public class AssociationImpl extends ConnectorImpl implements Association
     {
       case UmlDslPackage.ASSOCIATION__CARDINALITY:
         setCardinality((ConnectorCardinalitiy)newValue);
+        return;
+      case UmlDslPackage.ASSOCIATION__NOTE:
+        setNote((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,6 +219,9 @@ public class AssociationImpl extends ConnectorImpl implements Association
       case UmlDslPackage.ASSOCIATION__CARDINALITY:
         setCardinality((ConnectorCardinalitiy)null);
         return;
+      case UmlDslPackage.ASSOCIATION__NOTE:
+        setNote(NOTE_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -186,8 +238,27 @@ public class AssociationImpl extends ConnectorImpl implements Association
     {
       case UmlDslPackage.ASSOCIATION__CARDINALITY:
         return cardinality != null;
+      case UmlDslPackage.ASSOCIATION__NOTE:
+        return NOTE_EDEFAULT == null ? note != null : !NOTE_EDEFAULT.equals(note);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (note: ");
+    result.append(note);
+    result.append(')');
+    return result.toString();
   }
 
 } //AssociationImpl

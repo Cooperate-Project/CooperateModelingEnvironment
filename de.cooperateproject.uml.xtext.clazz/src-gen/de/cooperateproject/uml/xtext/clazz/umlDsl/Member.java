@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getType <em>Type</em>}</li>
  * </ul>
@@ -23,6 +24,35 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Member extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Visibility</b></em>' attribute.
+   * The literals are from the enumeration {@link de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Visibility</em>' attribute.
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility
+   * @see #setVisibility(Visibility)
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.UmlDslPackage#getMember_Visibility()
+   * @model
+   * @generated
+   */
+  Visibility getVisibility();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.uml.xtext.clazz.umlDsl.Member#getVisibility <em>Visibility</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Visibility</em>' attribute.
+   * @see de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility
+   * @see #getVisibility()
+   * @generated
+   */
+  void setVisibility(Visibility value);
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

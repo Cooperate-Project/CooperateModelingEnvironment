@@ -2,7 +2,7 @@ grammar de.cooperateproject.uml.xtext.clazz.UmlDsl with org.eclipse.xtext.common
 
 generate umlDsl "http://www.cooperateproject.de/uml/xtext/clazz/UmlDsl"
 
-import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
+//import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 
 ClassDiagram:
 	{ClassDiagram}
@@ -10,18 +10,34 @@ ClassDiagram:
     (elements += Element)*
     '@endclass';
 
-Element: ClassDef | Class |  DataType | Connector;
+Element: 
+	ClassDef 
+	| Class 
+	|  DataType 
+	| Connector
+;
 
 DataType:
   'datatype' name = ID;
 
-Type: DataType | ClassName;
+Type: 
+	DataType 
+	| ClassName
+;
 
-ClassDef: ('class' | 'interface') '{' classes += ClassName (',' classes += ClassName)* '}';
+ClassDef: 
+	('class' | 'interface') 
+	'{' classes += ClassName (',' classes += ClassName)* '}'
+;
 
-ClassName: Name;
+ClassName: 
+	Name
+;
 
-Name: (name = ID | longname = (STRING | ID) ' as ' name = ID);
+Name: 
+	(name = ID 
+	| longname = (STRING | ID) ' as ' name = ID)
+;
 
 Class: 
 	('abstract')?
@@ -30,23 +46,55 @@ Class:
 	'{' (members += Member)* '}'
 ;
 
-Inheritance:('extends' type = [ClassName] | 'implements' type = [ClassName]);
+Inheritance:
+	'extends' type = [ClassName] 
+	| 'implements' type = [ClassName]
+;
 
-Member: Attribute | Methode;
+Member: 
+	Attribute 
+	| Methode
+;
 
-Attribute: ('static')? ('final')? name = ID ':' (type = [Type]);
+Attribute: 
+	(visibility = Visibility)? 
+	('static')? 
+	('final')? 
+	name = ID ':' (type = [Type])
+;
 
-Methode: ('abstract')? ('static')? ('final')? name = ID'(' (attributes += Attribute (',' attributes += Attribute)*)* ')' (':' (type = [Type]))?;
+Methode: 
+	(visibility = Visibility)? 
+	('abstract')? 
+	('static')? 
+	('final')? 
+	name = ID '(' 
+	(attributes += Attribute (',' attributes += Attribute)*)* ')' 
+	(':' (type = [Type]))?
+;
 
-Connector: Generalization | Association;
+Connector: 
+	Generalization 
+	| Association
+;
 
-Generalization: left = AssociationEnd 'isa' right = AssociationEnd;
+Generalization: 
+	left = AssociationEnd 'isa' right = AssociationEnd
+;
 
-Association: left = AssociationEnd '-' right = AssociationEnd (cardinality = ConnectorCardinalitiy)?;
+Association: 
+	left = AssociationEnd '-'  
+	((right = AssociationEnd (cardinality = ConnectorCardinalitiy)? (note = Note)?) 
+	| note = Note)
+;
 
-AssociationEnd: type = [ClassName];
+AssociationEnd: 
+	type = [ClassName]
+;
 
-ConnectorLabel: name = ID;
+ConnectorLabel: 
+	name = ID
+;
 
 ConnectorCardinalitiy: 
 	{ConnectorCardinalitiy}
@@ -55,4 +103,18 @@ ConnectorCardinalitiy:
 	('|' (right = ConnectorLabel)? ('<' | '>')?)?']'
 ;
 
-Cardinality: ('*') | (INT '..' (('*') | INT));
+Cardinality: 
+	('*') 
+	| (INT '..' (('*') | INT))
+;
+
+Note: 
+	'note[' STRING ']'
+;
+
+enum Visibility: 
+	PROTECTED = '#' 
+	| PRIVATE = '-' 
+	| DEFAULT = '~' 
+	| PUBLIC = '+'
+;

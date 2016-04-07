@@ -21,9 +21,11 @@ import de.cooperateproject.uml.xtext.clazz.umlDsl.Name;
 import de.cooperateproject.uml.xtext.clazz.umlDsl.Type;
 import de.cooperateproject.uml.xtext.clazz.umlDsl.UmlDslFactory;
 import de.cooperateproject.uml.xtext.clazz.umlDsl.UmlDslPackage;
+import de.cooperateproject.uml.xtext.clazz.umlDsl.Visibility;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -162,6 +164,13 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
    * @generated
    */
   private EClass connectorCardinalitiyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum visibilityEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -421,7 +430,7 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMember_Name()
+  public EAttribute getMember_Visibility()
   {
     return (EAttribute)memberEClass.getEStructuralFeatures().get(0);
   }
@@ -431,9 +440,19 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getMember_Name()
+  {
+    return (EAttribute)memberEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getMember_Type()
   {
-    return (EReference)memberEClass.getEStructuralFeatures().get(1);
+    return (EReference)memberEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -531,6 +550,16 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getAssociation_Note()
+  {
+    return (EAttribute)associationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAssociationEnd()
   {
     return associationEndEClass;
@@ -611,6 +640,16 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getVisibility()
+  {
+    return visibilityEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public UmlDslFactory getUmlDslFactory()
   {
     return (UmlDslFactory)getEFactoryInstance();
@@ -664,6 +703,7 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
     createEReference(inheritanceEClass, INHERITANCE__TYPE);
 
     memberEClass = createEClass(MEMBER);
+    createEAttribute(memberEClass, MEMBER__VISIBILITY);
     createEAttribute(memberEClass, MEMBER__NAME);
     createEReference(memberEClass, MEMBER__TYPE);
 
@@ -680,6 +720,7 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
 
     associationEClass = createEClass(ASSOCIATION);
     createEReference(associationEClass, ASSOCIATION__CARDINALITY);
+    createEAttribute(associationEClass, ASSOCIATION__NOTE);
 
     associationEndEClass = createEClass(ASSOCIATION_END);
     createEReference(associationEndEClass, ASSOCIATION_END__TYPE);
@@ -691,6 +732,9 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
     createEAttribute(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__LEFT);
     createEAttribute(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__MIDDLE);
     createEReference(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__RIGHT);
+
+    // Create enums
+    visibilityEEnum = createEEnum(VISIBILITY);
   }
 
   /**
@@ -763,6 +807,7 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
     initEReference(getInheritance_Type(), this.getClassName(), null, "type", null, 0, 1, Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(memberEClass, Member.class, "Member", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMember_Visibility(), this.getVisibility(), "visibility", null, 0, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMember_Name(), ecorePackage.getEString(), "name", null, 0, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMember_Type(), this.getType(), null, "type", null, 0, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -779,6 +824,7 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
 
     initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssociation_Cardinality(), this.getConnectorCardinalitiy(), null, "cardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssociation_Note(), ecorePackage.getEString(), "note", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(associationEndEClass, AssociationEnd.class, "AssociationEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssociationEnd_Type(), this.getClassName(), null, "type", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -790,6 +836,13 @@ public class UmlDslPackageImpl extends EPackageImpl implements UmlDslPackage
     initEAttribute(getConnectorCardinalitiy_Left(), ecorePackage.getEString(), "left", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConnectorCardinalitiy_Middle(), ecorePackage.getEString(), "middle", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConnectorCardinalitiy_Right(), this.getConnectorLabel(), null, "right", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(visibilityEEnum, Visibility.class, "Visibility");
+    addEEnumLiteral(visibilityEEnum, Visibility.PROTECTED);
+    addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
+    addEEnumLiteral(visibilityEEnum, Visibility.DEFAULT);
+    addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
 
     // Create resource
     createResource(eNS_URI);

@@ -101,7 +101,7 @@ public class UmlDslSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (left=AssociationEnd right=AssociationEnd cardinality=ConnectorCardinalitiy?)
+	 *     (left=AssociationEnd ((right=AssociationEnd cardinality=ConnectorCardinalitiy? note=Note?) | note=Note))
 	 */
 	protected void sequence_Association(EObject context, Association semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -110,20 +110,10 @@ public class UmlDslSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (name=ID type=[Type|ID])
+	 *     (visibility=Visibility? name=ID type=[Type|ID])
 	 */
 	protected void sequence_Attribute(EObject context, Attribute semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, UmlDslPackage.Literals.MEMBER__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UmlDslPackage.Literals.MEMBER__NAME));
-			if(transientValues.isValueTransient(semanticObject, UmlDslPackage.Literals.MEMBER__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UmlDslPackage.Literals.MEMBER__TYPE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getAttributeAccess().getTypeTypeIDTerminalRuleCall_4_0_1(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -225,7 +215,7 @@ public class UmlDslSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (name=ID (attributes+=Attribute attributes+=Attribute*)* type=[Type|ID]?)
+	 *     (visibility=Visibility? name=ID (attributes+=Attribute attributes+=Attribute*)* type=[Type|ID]?)
 	 */
 	protected void sequence_Methode(EObject context, Methode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
