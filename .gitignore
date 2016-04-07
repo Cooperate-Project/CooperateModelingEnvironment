@@ -1,7 +1,6 @@
 #Folder
 bin/
 target/
-src-gen/
 xtend-gen/
 
 # Mobile Tools for Java (J2ME)
