@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>${update.site.name} - ${update.site.releasetype} Update Site: ${update.site.version}</title>
+		<link rel="stylesheet" type="text/css" href="web/site.css">
+	</head>
+	<body>
+
+		<div id="logoHeader">
+			<div id="logoImage"></div>
+			<div id="logoText">
+				<div style="font-size:2em;">Cooperate Project</div>
+				<div>Deployed Artifacts</div>
+			</div>
+		</div>
+		<div id="logoClear"></div>
+
+		<div id="contentArea">
+			<h1>${update.site.name} - ${update.site.releasetype} Update Site</h1>
+			<p>This is the ${update.site.releasetype} update site for ${update.site.name}.</p>
+			<p>Build version: ${update.site.version}</p>
+
+			<h2>Instructions for Using the Update Site</h2>
+			<p>
+				<ol>
+					<li>To install from this site, start up Eclipse, then do:
+						<ul>
+							<code>
+								<strong>Help > Install New Software... ></strong>
+							</code>
+						</ul>
+					</li>
+					<li>Copy this site's URL into Eclipse, and hit Enter.</li>
+					<li>When the site loads, select the features to install,
+										or click the <code>
+							<strong>Select All</strong>
+						</code> button.</li>
+					<li>To properly resolve all dependencies, check
+						<ul>
+							<code>
+								<strong>[x] Contact all update sites during install to find required software</strong>
+							</code>
+						</ul>
+
+					<li>Click <code>
+								<strong>Next</strong>
+							</code>, agree to the license
+										terms, and install.</li>
+				</ol>
+			</p>
+
+			<h2>Contents of the Update Site</h2>
+			<p>
+				${site.contents}
+			</p>
+		</div>
+	</body>
+</html>
+	

@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.cooperateproject.modeling</groupId>
+		<artifactId>releng</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<artifactId>de.cooperateproject.modeling.updatesite</artifactId>
+	<packaging>eclipse-repository</packaging>
+	
+	<properties>
+		<siteTemplateFolder>${basedir}/templates</siteTemplateFolder>
+		<update.site.name>Cooperate Modeling Environment</update.site.name>
+		<!-- We use the nightly profile as defaults -->
+		<update.site.releasetype>Nightly Build</update.site.releasetype>
+		<deployVersion>latest</deployVersion>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>release</id>
+			<properties>
+				<update.site.releasetype>Release Build</update.site.releasetype>
+			</properties>
+		</profile>
+		<profile>
+			<id>nightly</id>
+			<!-- just use the default values for the properties -->
+		</profile>
+	</profiles>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>jboss-snapshots-repository</id>
+			<name>JBoss Snapshots Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.jboss.tools.tycho-plugins</groupId>
+				<artifactId>repository-utils</artifactId>
+				<version>0.23.3-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<id>generate-facade</id>
+						<phase>package</phase>
+						<goals>
+							<goal>generate-repository-facade</goal>
+						</goals>
+						<configuration>
+							<siteTemplateFolder>${siteTemplateFolder}</siteTemplateFolder>
+							<skipBuildInfo>true</skipBuildInfo>
+							<symbols>
+								<update.site.name>${update.site.name}</update.site.name>
+								<update.site.releasetype>${update.site.releasetype}</update.site.releasetype>
+								<update.site.version>${deployVersion}</update.site.version>
+							</symbols>
+							<associateSites>
+							</associateSites>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<useReleaseProfile>false</useReleaseProfile>
+					<releaseProfiles>release</releaseProfiles>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<releaseVersion>${deployVersion}</releaseVersion>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven.deploy-plugin.version}</version>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>none</phase>
+					</execution>
+					<execution>
+						<id>deploy-updatesite</id>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.11</version>
+				<configuration>
+					<message>Update site artifacts for ${deployVersion}</message>
+					<noJekyll>true</noJekyll>
+					<outputDirectory>${project.build.directory}/repository</outputDirectory>
+					<branch>refs/heads/gh-pages</branch>
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<repositoryName>Cooperate</repositoryName>
+					<repositoryOwner>Cooperate-Project</repositoryOwner>
+					<path>updatesite/${deployVersion}</path>
+					<merge>true</merge>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

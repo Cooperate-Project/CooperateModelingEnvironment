@@ -1,0 +1,27 @@
+language: java
+sudo: false
+jdk:
+  - oraclejdk8
+before_install:
+- wget -P /tmp http://www.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+- unzip -d /tmp -qq /tmp/apache-maven-3.3.9-bin.zip
+- export M2_HOME=/tmp/apache-maven-3.3.9
+- chmod +x $M2_HOME/bin/mvn
+- export PATH=$M2_HOME/bin:$PATH
+- cp $JAVA_HOME/jre/lib/security/cacerts /tmp
+- wget -P /tmp https://letsencrypt.org/certs/isrgrootx1.pem
+- keytool -trustcacerts -keystore /tmp/cacerts -storepass changeit -noprompt -importcert -file /tmp/isrgrootx1.pem -alias isrgrootx1
+- wget -P /tmp https://letsencrypt.org/certs/letsencryptauthorityx1.der
+- keytool -trustcacerts -keystore /tmp/cacerts -storepass changeit -noprompt -importcert -file /tmp/letsencryptauthorityx1.der -alias letsencryptauthorityx1
+- cp ./releng/settings.xml "$HOME/.m2/"
+install: true
+script:
+- ./.travis.sh "-Djavax.net.ssl.trustStore=/tmp/cacerts"
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+env:
+  global:  
+  - secure: "bYpeuIPqL75MjUaI541mCc18jfCp+T/AIUmTqDJu33VeJIEFwYxYxPYU+xGd4yyp6NQGUs8OD5kB0ZJ6XLhQl28gXg6jTERKSMcpQIe10Rxz0f/5Y6yqTeAHgBwPj8fNLv7YDOzOuCIa8FneMZ4dkvPhQiWhyLGJil6BVzNJ2Mw="
+  - secure: "KPvtol+6jncx1Pb2VsvGGQUzH5G1dvvUe8Y128ZzsooEC9nJXkZKltbGDnmwoQ2/tZS+PSFIkJCh5MNg5B+c5U3hViXknmGrrLQY6F2Tg2DIIW9fAhwWdxa1s5NGnbAAeKllXeHds5QsYpQsoi2+mowR8+RJOMm7co9gNd8FHrc="
+  - secure: "hWHWGXw8dv0usBhqjd1x9aemURE1Oj2rCAZxGccV34QqA8nOyxHt0h4ttEM/mJe4+pUR8xcIavJXgKEHqxszWX0h4LDgY2izukc+K1fm+ZQWnvYzP/buYpPBF+lpLIRlavmBLlY2ZxjMUGhUQJ191t6snDL9ney39bDxf1sFNYY="
