@@ -4,6 +4,9 @@ import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
 
 var rootPath = ".."
+var projectName = "Cooperate"
+var runtimeProject = "../${projectName}"
+var testProject = "${runtimeProject}/../../tests"
 
 Workflow {
 	
@@ -13,12 +16,14 @@ Workflow {
 				baseName = "de.cooperateproject.modeling.textual.cls"
 				rootPath = rootPath
 				runtimeTest = {
+					root = testProject
 					enabled = true
 				}
 				eclipsePlugin = {
 					enabled = true
 				}
 				eclipsePluginTest = {
+					root = testProject
 					enabled = true
 				}
 				createEclipseMetaData = true
