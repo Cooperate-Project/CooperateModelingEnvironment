@@ -18,7 +18,7 @@ Element:
 
 Type: 
 	type = DataType 
-	| ClassName
+	| ClassName 
 ;
 
 ClassDef: 
