@@ -14,38 +14,266 @@ import org.junit.runner.RunWith
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import de.cooperateproject.modeling.textual.cls.cls.ClassDef
 import de.cooperateproject.modeling.textual.cls.cls.Name
+import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.ClassName
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.DataType
+import de.cooperateproject.modeling.textual.cls.cls.Methode
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
 
 @RunWith(XtextRunner)
 @InjectWith(ClsInjectorProvider)
-class ClsParsingTest{
+class ClsParsingTest {
 	@Inject extension ParseHelper<ClassDiagram>
 	@Inject extension ValidationTestHelper
-	
+
 	@Test
 	def classDefTest() {
 		val model = '''
-		@startclass
-		class {Alice, Bob}
-		@endclass
+			@startclass
+			class {Alice, Bob}
+			@endclass
 		'''.parse
-		
+
 		val classes = (model.elements.head as ClassDef).classes
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+	}
+
+	@Test
+	def interfaceDefTest() {
+		val model = '''
+			@startclass
+			interface {Alice, Bob}
+			@endclass
+		'''.parse
+
+		val classes = (model.elements.head as ClassDef).classes
+		
 		Assert::assertEquals(2, classes.size)
 		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
 		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
 	}
 	
 	@Test
-	def interfaceDefTest() {
+	def longnameToShortnameTest() {
 		val model = '''
-		@startclass
-		interface {Alice, Bob}
-		@endclass
+			@startclass
+			class {Alice as A}
+			A {
+			}
+			@endclass
+		'''.parse
+
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("A", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).longname))
+		Assert::assertEquals("A", ((class.type as Name).name))
+	}
+	
+	@Test
+	def abstractClassWithoutMembers() {
+		val model = '''
+			@startclass
+			class {Alice}
+			abstract Alice {
+			}
+			@endclass
 		'''.parse
 		
 		val classes = (model.elements.head as ClassDef).classes
-		Assert::assertEquals(2, classes.size)
+		val class = model.elements.get(1) as Class
+		
+		Assert::assertEquals(1, classes.size)
 		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertTrue(class.abstract)
+	}
+	
+	@Test 
+	def classWithAttributes() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				firstName : string
+				lastName : string
+				age : int
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val attributes = #[
+			class.members.get(0) as Attribute, 
+			class.members.get(1) as Attribute,
+			class.members.get(2) as Attribute
+		]
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertEquals(3, class.members.size)
+		
+		Assert::assertEquals("firstName", attributes.get(0).name)
+		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
+		Assert::assertEquals("lastName", attributes.get(1).name)
+		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
+		Assert::assertEquals("age", attributes.get(2).name)
+		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)		
+	}
+	
+	@Test
+	def classWithMethodes() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				getFirstName() : string
+				setFirstName(name : string)
+				calculateAge(date : int) : int
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val methodes = #[
+			class.members.get(0) as Methode, 
+			class.members.get(1) as Methode,
+			class.members.get(2) as Methode
+		]
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertEquals(3, class.members.size)
+		
+		Assert::assertEquals("getFirstName", methodes.get(0).name)
+		Assert::assertEquals(DataType.STRING, methodes.get(0).type.type)
+		Assert::assertEquals("setFirstName", methodes.get(1).name)
+		Assert::assertEquals(DataType.STRING, (methodes.get(1).attributes.head as Attribute).type.type)
+		Assert::assertEquals("calculateAge", methodes.get(2).name)
+		Assert::assertEquals(DataType.INT, (methodes.get(2).attributes.head as Attribute).type.type)	
+		Assert::assertEquals(DataType.INT, methodes.get(2).type.type)	
+	}
+	
+	@Test
+	def visibilies() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				-firstName : string
+				+lastName : string
+				~age : int
+				#height : int
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val attributes = #[
+			class.members.get(0) as Attribute, 
+			class.members.get(1) as Attribute,
+			class.members.get(2) as Attribute,
+			class.members.get(3) as Attribute
+		]
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertEquals(4, class.members.size)
+		
+		Assert::assertEquals("firstName", attributes.get(0).name)
+		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
+		Assert::assertEquals(Visibility.PRIVATE, attributes.get(0).visibility)
+		Assert::assertEquals("lastName", attributes.get(1).name)
+		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
+		Assert::assertEquals(Visibility.PUBLIC, attributes.get(1).visibility)		
+		Assert::assertEquals("age", attributes.get(2).name)
+		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)	
+		Assert::assertEquals(Visibility.DEFAULT, attributes.get(2).visibility)
+		Assert::assertEquals("height", attributes.get(3).name)
+		Assert::assertEquals(DataType.INT, attributes.get(3).type.type)	
+		Assert::assertEquals(Visibility.PROTECTED, attributes.get(3).visibility)	
+	}
+	
+	@Test
+	def classWithMethodsAndAttributes() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				- firstName : string
+				+ getFirstName() : string
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val attribute = class.members.get(0) as Attribute
+		val methode = class.members.get(1) as Methode
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertEquals(2, class.members.size)
+		
+		Assert::assertEquals("firstName", attribute.name)
+		Assert::assertEquals(DataType.STRING, attribute.type.type)
+		Assert::assertEquals(Visibility.PRIVATE, attribute.visibility)
+		Assert::assertEquals("getFirstName", methode.name)
+		Assert::assertEquals(DataType.STRING, methode.type.type)
+		Assert::assertEquals(Visibility.PUBLIC, methode.visibility)
+	}
+	
+	@Test 
+	def classWithStaticAndFinalAttributes() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				static firstName : string
+				final lastName : string
+				static final age : int
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val attributes = #[
+			class.members.get(0) as Attribute, 
+			class.members.get(1) as Attribute,
+			class.members.get(2) as Attribute
+		]
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertEquals(3, class.members.size)
+		
+		Assert::assertEquals("firstName", attributes.get(0).name)
+		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
+		Assert::assertTrue(attributes.get(0).static)
+		Assert::assertFalse(attributes.get(0).final)
+		Assert::assertEquals("lastName", attributes.get(1).name)
+		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
+		Assert::assertFalse(attributes.get(1).static)
+		Assert::assertTrue(attributes.get(1).final)
+		/*Assert::assertEquals("age", attributes.get(2).name)
+		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)
+		Assert::assertTrue(attributes.get(2).static)
+		Assert::assertTrue(attributes.get(2).final)		*/
 	}
 }
+
