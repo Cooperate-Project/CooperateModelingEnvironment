@@ -11,21 +11,24 @@ import org.eclipse.xtext.junit4.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.validation.ValidationTestHelper
+//import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import de.cooperateproject.modeling.textual.cls.cls.ClassDef
 import de.cooperateproject.modeling.textual.cls.cls.Name
 import de.cooperateproject.modeling.textual.cls.cls.Class
-import de.cooperateproject.modeling.textual.cls.cls.ClassName
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.DataType
 import de.cooperateproject.modeling.textual.cls.cls.Methode
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 
 @RunWith(XtextRunner)
 @InjectWith(ClsInjectorProvider)
 class ClsParsingTest {
 	@Inject extension ParseHelper<ClassDiagram>
-	@Inject extension ValidationTestHelper
+	//@Inject extension ValidationTestHelper
 
 	@Test
 	def classDefTest() {
@@ -244,7 +247,7 @@ class ClsParsingTest {
 			Alice {
 				static firstName : string
 				final lastName : string
-				static final age : int
+				static final height : int
 			}
 			@endclass
 		'''.parse
@@ -270,10 +273,312 @@ class ClsParsingTest {
 		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
 		Assert::assertFalse(attributes.get(1).static)
 		Assert::assertTrue(attributes.get(1).final)
-		/*Assert::assertEquals("age", attributes.get(2).name)
+		Assert::assertEquals("height", attributes.get(2).name)
 		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)
 		Assert::assertTrue(attributes.get(2).static)
-		Assert::assertTrue(attributes.get(2).final)		*/
+		Assert::assertTrue(attributes.get(2).final)	
 	}
+	
+	@Test
+	def classWithAbstractStaticAndFinalMethodes() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				abstract buildHouse()
+				static getDate() : int
+				final getHeight() : int
+				abstract static final work()
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val methodes = #[
+			class.members.get(0) as Methode, 
+			class.members.get(1) as Methode,
+			class.members.get(2) as Methode,
+			class.members.get(3) as Methode
+		]
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", ((class.type as Name).name))
+		Assert::assertEquals(4, class.members.size)
+		
+		Assert::assertEquals("buildHouse", methodes.get(0).name)
+		Assert::assertTrue(methodes.get(0).abstract)
+		Assert::assertFalse(methodes.get(0).static)
+		Assert::assertFalse(methodes.get(0).final)
+		Assert::assertEquals("getDate", methodes.get(1).name)
+		Assert::assertFalse(methodes.get(1).abstract)
+		Assert::assertTrue(methodes.get(1).static)
+		Assert::assertFalse(methodes.get(1).final)
+		Assert::assertEquals("getHeight", methodes.get(2).name)
+		Assert::assertFalse(methodes.get(2).abstract)
+		Assert::assertFalse(methodes.get(2).static)
+		Assert::assertTrue(methodes.get(2).final)	
+		Assert::assertEquals("work", methodes.get(3).name)
+		Assert::assertTrue(methodes.get(3).abstract)
+		Assert::assertTrue(methodes.get(3).static)
+		Assert::assertTrue(methodes.get(3).final)	
+	}
+	
+	@Test
+	def classGeneralizationTest() {
+		val model = '''
+			@startclass
+			class {Person, Alice}
+			Alice isa Person
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val generalization = model.elements.get(1) as Generalization
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Person", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", (classes.get(1) as Name).name)
+		Assert::assertEquals("Alice", (generalization.left.type as Name).name)
+		Assert::assertEquals("Person", (generalization.right.type as Name).name)		
+	}
+	
+	@Test
+	def classImplementationTest() {
+		val model = '''
+			@startclass
+			class {Person, Alice}
+			Alice impl Person
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val impl = model.elements.get(1) as Implementation
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Person", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", (classes.get(1) as Name).name)
+		Assert::assertEquals("Alice", (impl.left.type as Name).name)
+		Assert::assertEquals("Person", (impl.right.type as Name).name)		
+	}
+	
+	@Test
+	def simpleClassAssociationTest() {
+		val model = '''
+			@startclass
+			class {Alice, Bob}
+			Alice - Bob
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val association = model.elements.get(1) as Association
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		Assert::assertEquals("Alice", (association.left.type as Name).name)
+		Assert::assertEquals("Bob", (association.right.type as Name).name)		
+	}
+	
+	@Test
+	def classWithNoteTest() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice - note["this is a note"]
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val commentLink = model.elements.get(1) as CommentLink
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Alice", (commentLink.left.type as Name).name)
+		Assert::assertEquals("note[\"this is a note\"]", commentLink.comment)		
+	}
+	
+	@Test
+	def ClassAsscociationWithNoteTest() {
+		val model = '''
+			@startclass
+			class {Alice, Bob}
+			Alice - Bob note["this is a note"]
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val association = model.elements.get(1) as Association
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		Assert::assertEquals("Alice", (association.left.type as Name).name)
+		Assert::assertEquals("Bob", (association.right.type as Name).name)
+		Assert::assertEquals("note[\"this is a note\"]", association.comment)	
+	}
+		
+	@Test
+	def CardinalityTest() {
+		val model = '''
+			@startclass
+			class {Alice, Bob}
+			Alice - Bob [*]
+			Alice - Bob [|*]
+			Alice - Bob [*|*]
+			Alice - Bob [*|*|"this is a label"]
+			Alice - Bob []
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val associations = #[
+			model.elements.get(1) as Association, 
+			model.elements.get(2) as Association,
+			model.elements.get(3) as Association,
+			model.elements.get(4) as Association,
+			model.elements.get(5) as Association
+		]
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		//Alice - Bob [*]
+		Assert::assertEquals("Alice", (associations.get(0).left.type as Name).name)
+		Assert::assertEquals("Bob", (associations.get(0).right.type as Name).name)	
+		Assert::assertEquals("*", (associations.get(0).cardinality.left))
+		Assert::assertEquals(null, (associations.get(0).cardinality.right))
+		Assert::assertEquals(null, (associations.get(0).cardinality.label))	
+		//Alice - Bob [|*]
+		Assert::assertEquals("Alice", (associations.get(1).left.type as Name).name)
+		Assert::assertEquals("Bob", (associations.get(1).right.type as Name).name)	
+		Assert::assertEquals(null, (associations.get(1).cardinality.left))
+		Assert::assertEquals("*", (associations.get(1).cardinality.right))
+		Assert::assertEquals(null, (associations.get(1).cardinality.label))	
+		//Alice - Bob [*|*]
+		Assert::assertEquals("Alice", (associations.get(2).left.type as Name).name)
+		Assert::assertEquals("Bob", (associations.get(2).right.type as Name).name)	
+		Assert::assertEquals("*", (associations.get(2).cardinality.left))
+		Assert::assertEquals("*", (associations.get(2).cardinality.right))
+		Assert::assertEquals(null, (associations.get(2).cardinality.label))	
+		//Alice - Bob [*|*|"this is a label"]
+		Assert::assertEquals("Alice", (associations.get(3).left.type as Name).name)
+		Assert::assertEquals("Bob", (associations.get(3).right.type as Name).name)	
+		Assert::assertEquals("*", (associations.get(3).cardinality.left))
+		Assert::assertEquals("*", (associations.get(3).cardinality.right))
+		Assert::assertEquals("this is a label", (associations.get(3).cardinality.label.name))	
+		//Alice - Bob []
+		Assert::assertEquals("Alice", (associations.get(4).left.type as Name).name)
+		Assert::assertEquals("Bob", (associations.get(4).right.type as Name).name)	
+		Assert::assertEquals(null, (associations.get(4).cardinality.left))
+		Assert::assertEquals(null, (associations.get(4).cardinality.right))
+		Assert::assertEquals(null, (associations.get(4).cardinality.label))	
+	}
+	
+	@Test
+	def classAssociationDirectionTest() {
+		val model = '''
+			@startclass
+			class {Alice, Bob}
+			Alice - Bob [*|*|label <]
+			Alice - Bob [*|*|label >]
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val firstAssociation = model.elements.get(1) as Association
+		val secondAssociation = model.elements.get(2) as Association
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		//Alice - Bob [*|*|label <]
+		Assert::assertEquals("Alice", (firstAssociation.left.type as Name).name)
+		Assert::assertEquals("Bob", (firstAssociation.right.type as Name).name)	
+		Assert::assertEquals("*", (firstAssociation.cardinality.left))
+		Assert::assertEquals("*", (firstAssociation.cardinality.right))
+		Assert::assertEquals("label", (firstAssociation.cardinality.label.name))
+		Assert::assertEquals("<", (firstAssociation.cardinality.direction))
+		//Alice - Bob [*|*|label >]
+		Assert::assertEquals("Alice", (secondAssociation.left.type as Name).name)
+		Assert::assertEquals("Bob", (secondAssociation.right.type as Name).name)	
+		Assert::assertEquals("*", (secondAssociation.cardinality.left))
+		Assert::assertEquals("*", (secondAssociation.cardinality.right))
+		Assert::assertEquals("label", (secondAssociation.cardinality.label.name))
+		Assert::assertEquals(">", (secondAssociation.cardinality.direction))	
+	}
+	
+	@Test
+	def datatypeTest() {
+		val model = '''
+			@startclass
+			class {Alice}
+			Alice {
+				a : string
+				b : int 
+				c : double
+				d : boolean
+				e : char
+				f : byte
+				g : short
+				h : long
+				i : float
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val attributes = #[
+			class.members.get(0) as Attribute, 
+			class.members.get(1) as Attribute, 
+			class.members.get(2) as Attribute, 
+			class.members.get(3) as Attribute, 
+			class.members.get(4) as Attribute, 
+			class.members.get(5) as Attribute, 
+			class.members.get(6) as Attribute, 
+			class.members.get(7) as Attribute, 
+			class.members.get(8) as Attribute
+		]
+		
+		Assert::assertEquals(1, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		
+		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
+		Assert::assertEquals(DataType.INT, attributes.get(1).type.type)
+		Assert::assertEquals(DataType.DOUBLE, attributes.get(2).type.type)
+		Assert::assertEquals(DataType.BOOLEAN, attributes.get(3).type.type)
+		Assert::assertEquals(DataType.CHAR, attributes.get(4).type.type)
+		Assert::assertEquals(DataType.BYTE, attributes.get(5).type.type)
+		Assert::assertEquals(DataType.SHORT, attributes.get(6).type.type)
+		Assert::assertEquals(DataType.LONG, attributes.get(7).type.type)
+		Assert::assertEquals(DataType.FLOAT, attributes.get(8).type.type)		
+	}
+	
+	@Test
+	def classTypeTest() {
+		val model = '''
+			@startclass
+			class {Alice, Bob}
+			Alice {
+				bob : Bob
+			}
+			@endclass
+		'''.parse
+		
+		val classes = (model.elements.head as ClassDef).classes
+		val class = model.elements.get(1) as Class
+		val attribute = class.members.get(0) as Attribute
+		
+		Assert::assertEquals(2, classes.size)
+		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
+		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		Assert::assertEquals("Alice", (class.type as Name).name)
+		Assert::assertEquals("bob", attribute.name)		
+		Assert::assertEquals("Bob", (attribute.type as Name).name)
+	}
+	
 }
 

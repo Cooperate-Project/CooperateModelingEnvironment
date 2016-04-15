@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,16 +39,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
    * @ordered
    */
   protected AssociationEnd left;
-
-  /**
-   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRight()
-   * @generated
-   * @ordered
-   */
-  protected AssociationEnd right;
 
   /**
    * <!-- begin-user-doc -->
@@ -125,54 +114,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
    * <!-- end-user-doc -->
    * @generated
    */
-  public AssociationEnd getRight()
-  {
-    return right;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetRight(AssociationEnd newRight, NotificationChain msgs)
-  {
-    AssociationEnd oldRight = right;
-    right = newRight;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR__RIGHT, oldRight, newRight);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setRight(AssociationEnd newRight)
-  {
-    if (newRight != right)
-    {
-      NotificationChain msgs = null;
-      if (right != null)
-        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClsPackage.CONNECTOR__RIGHT, null, msgs);
-      if (newRight != null)
-        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClsPackage.CONNECTOR__RIGHT, null, msgs);
-      msgs = basicSetRight(newRight, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR__RIGHT, newRight, newRight));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -180,8 +121,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
     {
       case ClsPackage.CONNECTOR__LEFT:
         return basicSetLeft(null, msgs);
-      case ClsPackage.CONNECTOR__RIGHT:
-        return basicSetRight(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -198,8 +137,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
     {
       case ClsPackage.CONNECTOR__LEFT:
         return getLeft();
-      case ClsPackage.CONNECTOR__RIGHT:
-        return getRight();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -216,9 +153,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
     {
       case ClsPackage.CONNECTOR__LEFT:
         setLeft((AssociationEnd)newValue);
-        return;
-      case ClsPackage.CONNECTOR__RIGHT:
-        setRight((AssociationEnd)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -237,9 +171,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
       case ClsPackage.CONNECTOR__LEFT:
         setLeft((AssociationEnd)null);
         return;
-      case ClsPackage.CONNECTOR__RIGHT:
-        setRight((AssociationEnd)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -256,8 +187,6 @@ public class ConnectorImpl extends ElementImpl implements Connector
     {
       case ClsPackage.CONNECTOR__LEFT:
         return left != null;
-      case ClsPackage.CONNECTOR__RIGHT:
-        return right != null;
     }
     return super.eIsSet(featureID);
   }

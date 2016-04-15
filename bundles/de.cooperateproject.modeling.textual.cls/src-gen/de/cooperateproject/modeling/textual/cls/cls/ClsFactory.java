@@ -141,6 +141,15 @@ public interface ClsFactory extends EFactory
   Implementation createImplementation();
 
   /**
+   * Returns a new object of class '<em>Comment Link</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comment Link</em>'.
+   * @generated
+   */
+  CommentLink createCommentLink();
+
+  /**
    * Returns a new object of class '<em>Association</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

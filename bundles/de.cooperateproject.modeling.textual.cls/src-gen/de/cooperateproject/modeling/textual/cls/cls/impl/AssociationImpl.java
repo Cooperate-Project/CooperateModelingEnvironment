@@ -4,6 +4,7 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 
@@ -23,14 +24,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getRight <em>Right</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getCardinality <em>Cardinality</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getNote <em>Note</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AssociationImpl extends ConnectorImpl implements Association
 {
+  /**
+   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRight()
+   * @generated
+   * @ordered
+   */
+  protected AssociationEnd right;
+
   /**
    * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -42,24 +54,24 @@ public class AssociationImpl extends ConnectorImpl implements Association
   protected ConnectorCardinalitiy cardinality;
 
   /**
-   * The default value of the '{@link #getNote() <em>Note</em>}' attribute.
+   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNote()
+   * @see #getComment()
    * @generated
    * @ordered
    */
-  protected static final String NOTE_EDEFAULT = null;
+  protected static final String COMMENT_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getNote() <em>Note</em>}' attribute.
+   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNote()
+   * @see #getComment()
    * @generated
    * @ordered
    */
-  protected String note = NOTE_EDEFAULT;
+  protected String comment = COMMENT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -80,6 +92,54 @@ public class AssociationImpl extends ConnectorImpl implements Association
   protected EClass eStaticClass()
   {
     return ClsPackage.Literals.ASSOCIATION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssociationEnd getRight()
+  {
+    return right;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetRight(AssociationEnd newRight, NotificationChain msgs)
+  {
+    AssociationEnd oldRight = right;
+    right = newRight;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClsPackage.ASSOCIATION__RIGHT, oldRight, newRight);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRight(AssociationEnd newRight)
+  {
+    if (newRight != right)
+    {
+      NotificationChain msgs = null;
+      if (right != null)
+        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClsPackage.ASSOCIATION__RIGHT, null, msgs);
+      if (newRight != null)
+        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClsPackage.ASSOCIATION__RIGHT, null, msgs);
+      msgs = basicSetRight(newRight, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.ASSOCIATION__RIGHT, newRight, newRight));
   }
 
   /**
@@ -135,9 +195,9 @@ public class AssociationImpl extends ConnectorImpl implements Association
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNote()
+  public String getComment()
   {
-    return note;
+    return comment;
   }
 
   /**
@@ -145,12 +205,12 @@ public class AssociationImpl extends ConnectorImpl implements Association
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNote(String newNote)
+  public void setComment(String newComment)
   {
-    String oldNote = note;
-    note = newNote;
+    String oldComment = comment;
+    comment = newComment;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.ASSOCIATION__NOTE, oldNote, note));
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.ASSOCIATION__COMMENT, oldComment, comment));
   }
 
   /**
@@ -163,6 +223,8 @@ public class AssociationImpl extends ConnectorImpl implements Association
   {
     switch (featureID)
     {
+      case ClsPackage.ASSOCIATION__RIGHT:
+        return basicSetRight(null, msgs);
       case ClsPackage.ASSOCIATION__CARDINALITY:
         return basicSetCardinality(null, msgs);
     }
@@ -179,10 +241,12 @@ public class AssociationImpl extends ConnectorImpl implements Association
   {
     switch (featureID)
     {
+      case ClsPackage.ASSOCIATION__RIGHT:
+        return getRight();
       case ClsPackage.ASSOCIATION__CARDINALITY:
         return getCardinality();
-      case ClsPackage.ASSOCIATION__NOTE:
-        return getNote();
+      case ClsPackage.ASSOCIATION__COMMENT:
+        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -197,11 +261,14 @@ public class AssociationImpl extends ConnectorImpl implements Association
   {
     switch (featureID)
     {
+      case ClsPackage.ASSOCIATION__RIGHT:
+        setRight((AssociationEnd)newValue);
+        return;
       case ClsPackage.ASSOCIATION__CARDINALITY:
         setCardinality((ConnectorCardinalitiy)newValue);
         return;
-      case ClsPackage.ASSOCIATION__NOTE:
-        setNote((String)newValue);
+      case ClsPackage.ASSOCIATION__COMMENT:
+        setComment((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -217,11 +284,14 @@ public class AssociationImpl extends ConnectorImpl implements Association
   {
     switch (featureID)
     {
+      case ClsPackage.ASSOCIATION__RIGHT:
+        setRight((AssociationEnd)null);
+        return;
       case ClsPackage.ASSOCIATION__CARDINALITY:
         setCardinality((ConnectorCardinalitiy)null);
         return;
-      case ClsPackage.ASSOCIATION__NOTE:
-        setNote(NOTE_EDEFAULT);
+      case ClsPackage.ASSOCIATION__COMMENT:
+        setComment(COMMENT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -237,10 +307,12 @@ public class AssociationImpl extends ConnectorImpl implements Association
   {
     switch (featureID)
     {
+      case ClsPackage.ASSOCIATION__RIGHT:
+        return right != null;
       case ClsPackage.ASSOCIATION__CARDINALITY:
         return cardinality != null;
-      case ClsPackage.ASSOCIATION__NOTE:
-        return NOTE_EDEFAULT == null ? note != null : !NOTE_EDEFAULT.equals(note);
+      case ClsPackage.ASSOCIATION__COMMENT:
+        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
   }
@@ -256,8 +328,8 @@ public class AssociationImpl extends ConnectorImpl implements Association
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (note: ");
-    result.append(note);
+    result.append(" (comment: ");
+    result.append(comment);
     result.append(')');
     return result.toString();
   }

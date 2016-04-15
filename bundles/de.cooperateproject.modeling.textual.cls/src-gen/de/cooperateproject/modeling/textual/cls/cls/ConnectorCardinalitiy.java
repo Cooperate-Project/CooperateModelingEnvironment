@@ -15,8 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getLeft <em>Left</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getMiddle <em>Middle</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getRight <em>Right</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getLabel <em>Label</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnectorCardinalitiy()
@@ -52,55 +53,81 @@ public interface ConnectorCardinalitiy extends EObject
   void setLeft(String value);
 
   /**
-   * Returns the value of the '<em><b>Middle</b></em>' attribute.
+   * Returns the value of the '<em><b>Right</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Middle</em>' attribute isn't clear,
+   * If the meaning of the '<em>Right</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Middle</em>' attribute.
-   * @see #setMiddle(String)
-   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnectorCardinalitiy_Middle()
+   * @return the value of the '<em>Right</em>' attribute.
+   * @see #setRight(String)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnectorCardinalitiy_Right()
    * @model
    * @generated
    */
-  String getMiddle();
+  String getRight();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getMiddle <em>Middle</em>}' attribute.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getRight <em>Right</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Middle</em>' attribute.
-   * @see #getMiddle()
-   * @generated
-   */
-  void setMiddle(String value);
-
-  /**
-   * Returns the value of the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Right</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(ConnectorLabel)
-   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnectorCardinalitiy_Right()
-   * @model containment="true"
-   * @generated
-   */
-  ConnectorLabel getRight();
-
-  /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getRight <em>Right</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Right</em>' containment reference.
+   * @param value the new value of the '<em>Right</em>' attribute.
    * @see #getRight()
    * @generated
    */
-  void setRight(ConnectorLabel value);
+  void setRight(String value);
+
+  /**
+   * Returns the value of the '<em><b>Label</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Label</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Label</em>' containment reference.
+   * @see #setLabel(ConnectorLabel)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnectorCardinalitiy_Label()
+   * @model containment="true"
+   * @generated
+   */
+  ConnectorLabel getLabel();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getLabel <em>Label</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Label</em>' containment reference.
+   * @see #getLabel()
+   * @generated
+   */
+  void setLabel(ConnectorLabel value);
+
+  /**
+   * Returns the value of the '<em><b>Direction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Direction</em>' attribute.
+   * @see #setDirection(String)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnectorCardinalitiy_Direction()
+   * @model
+   * @generated
+   */
+  String getDirection();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getDirection <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Direction</em>' attribute.
+   * @see #getDirection()
+   * @generated
+   */
+  void setDirection(String value);
 
 } // ConnectorCardinalitiy

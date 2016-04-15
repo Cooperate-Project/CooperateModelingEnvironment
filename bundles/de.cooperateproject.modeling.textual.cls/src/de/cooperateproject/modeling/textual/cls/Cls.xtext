@@ -46,11 +46,12 @@ Member:
 	| Methode
 ;
 
-Attribute: 
+Attribute:
+	{Attribute} 
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	name = ID ':' (type = Type)
+	name=ID ':' type = Type
 ;
 
 Methode: 
@@ -60,13 +61,14 @@ Methode:
 	(final ?= 'final')? 
 	name = ID '(' 
 	(attributes += Attribute (',' attributes += Attribute)*)* ')' 
-	(':' (type = Type))?
+	(':' type = Type)?
 ;
 
 Connector: 
 	Generalization 
 	| Association
 	| Implementation
+	| CommentLink
 ;
 
 Generalization: 
@@ -77,10 +79,13 @@ Implementation:
 	left = AssociationEnd 'impl' right = AssociationEnd
 ;
 
+CommentLink: 
+	left = AssociationEnd '-' comment = Comment
+;
+
 Association: 
 	left = AssociationEnd '-'  
-	((right = AssociationEnd (cardinality = ConnectorCardinalitiy)? (note = Note)?) 
-	| note = Note)
+	right = AssociationEnd (cardinality = ConnectorCardinalitiy)? (comment = Comment)?
 ;
 
 AssociationEnd: 
@@ -88,14 +93,15 @@ AssociationEnd:
 ;
 
 ConnectorLabel: 
-	name = ID
+	name = (ID | STRING)
 ;
 
 ConnectorCardinalitiy: 
 	{ConnectorCardinalitiy}
 	'[' (left = Cardinality)? 
-	('|' (middle = Cardinality)?)
-	('|' (right = ConnectorLabel)? ('<' | '>')?)?']'
+	('|' (right = Cardinality)?)
+	('|' (label = ConnectorLabel)?
+	(direction = ('<' | '>'))?)? ']'
 ;
 
 Cardinality: 
@@ -103,7 +109,7 @@ Cardinality:
 	| (INT '..' (('*') | INT))
 ;
 
-Note: 
+Comment: 
 	'note[' STRING ']'
 ;
 

@@ -10,6 +10,7 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDef;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
@@ -155,6 +156,11 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
       public Adapter caseImplementation(Implementation object)
       {
         return createImplementationAdapter();
+      }
+      @Override
+      public Adapter caseCommentLink(CommentLink object)
+      {
+        return createCommentLinkAdapter();
       }
       @Override
       public Adapter caseAssociation(Association object)
@@ -389,6 +395,21 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createImplementationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink <em>Comment Link</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink
+   * @generated
+   */
+  public Adapter createCommentLinkAdapter()
   {
     return null;
   }

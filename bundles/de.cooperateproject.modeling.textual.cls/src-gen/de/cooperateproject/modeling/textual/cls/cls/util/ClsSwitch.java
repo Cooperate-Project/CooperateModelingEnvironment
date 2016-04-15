@@ -10,6 +10,7 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDef;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
@@ -189,6 +190,15 @@ public class ClsSwitch<T> extends Switch<T>
         T result = caseImplementation(implementation);
         if (result == null) result = caseConnector(implementation);
         if (result == null) result = caseElement(implementation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ClsPackage.COMMENT_LINK:
+      {
+        CommentLink commentLink = (CommentLink)theEObject;
+        T result = caseCommentLink(commentLink);
+        if (result == null) result = caseConnector(commentLink);
+        if (result == null) result = caseElement(commentLink);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -430,6 +440,22 @@ public class ClsSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseImplementation(Implementation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comment Link</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comment Link</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCommentLink(CommentLink object)
   {
     return null;
   }

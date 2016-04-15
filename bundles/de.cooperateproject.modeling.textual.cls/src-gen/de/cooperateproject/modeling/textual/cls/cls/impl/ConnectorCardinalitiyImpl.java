@@ -25,8 +25,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorCardinalitiyImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorCardinalitiyImpl#getMiddle <em>Middle</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorCardinalitiyImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorCardinalitiyImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorCardinalitiyImpl#getDirection <em>Direction</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,34 +55,54 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
   protected String left = LEFT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getMiddle() <em>Middle</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMiddle()
-   * @generated
-   * @ordered
-   */
-  protected static final String MIDDLE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getMiddle() <em>Middle</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMiddle()
-   * @generated
-   * @ordered
-   */
-  protected String middle = MIDDLE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
+   * The default value of the '{@link #getRight() <em>Right</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getRight()
    * @generated
    * @ordered
    */
-  protected ConnectorLabel right;
+  protected static final String RIGHT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getRight() <em>Right</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRight()
+   * @generated
+   * @ordered
+   */
+  protected String right = RIGHT_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getLabel() <em>Label</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLabel()
+   * @generated
+   * @ordered
+   */
+  protected ConnectorLabel label;
+
+  /**
+   * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirection()
+   * @generated
+   * @ordered
+   */
+  protected static final String DIRECTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirection()
+   * @generated
+   * @ordered
+   */
+  protected String direction = DIRECTION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,30 +153,7 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getMiddle()
-  {
-    return middle;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setMiddle(String newMiddle)
-  {
-    String oldMiddle = middle;
-    middle = newMiddle;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__MIDDLE, oldMiddle, middle));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ConnectorLabel getRight()
+  public String getRight()
   {
     return right;
   }
@@ -165,13 +163,36 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRight(ConnectorLabel newRight, NotificationChain msgs)
+  public void setRight(String newRight)
   {
-    ConnectorLabel oldRight = right;
+    String oldRight = right;
     right = newRight;
     if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__RIGHT, oldRight, right));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ConnectorLabel getLabel()
+  {
+    return label;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLabel(ConnectorLabel newLabel, NotificationChain msgs)
+  {
+    ConnectorLabel oldLabel = label;
+    label = newLabel;
+    if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__RIGHT, oldRight, newRight);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__LABEL, oldLabel, newLabel);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -182,20 +203,43 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRight(ConnectorLabel newRight)
+  public void setLabel(ConnectorLabel newLabel)
   {
-    if (newRight != right)
+    if (newLabel != label)
     {
       NotificationChain msgs = null;
-      if (right != null)
-        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClsPackage.CONNECTOR_CARDINALITIY__RIGHT, null, msgs);
-      if (newRight != null)
-        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClsPackage.CONNECTOR_CARDINALITIY__RIGHT, null, msgs);
-      msgs = basicSetRight(newRight, msgs);
+      if (label != null)
+        msgs = ((InternalEObject)label).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClsPackage.CONNECTOR_CARDINALITIY__LABEL, null, msgs);
+      if (newLabel != null)
+        msgs = ((InternalEObject)newLabel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClsPackage.CONNECTOR_CARDINALITIY__LABEL, null, msgs);
+      msgs = basicSetLabel(newLabel, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__RIGHT, newRight, newRight));
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__LABEL, newLabel, newLabel));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDirection()
+  {
+    return direction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDirection(String newDirection)
+  {
+    String oldDirection = direction;
+    direction = newDirection;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_CARDINALITIY__DIRECTION, oldDirection, direction));
   }
 
   /**
@@ -208,8 +252,8 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case ClsPackage.CONNECTOR_CARDINALITIY__RIGHT:
-        return basicSetRight(null, msgs);
+      case ClsPackage.CONNECTOR_CARDINALITIY__LABEL:
+        return basicSetLabel(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -226,10 +270,12 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
     {
       case ClsPackage.CONNECTOR_CARDINALITIY__LEFT:
         return getLeft();
-      case ClsPackage.CONNECTOR_CARDINALITIY__MIDDLE:
-        return getMiddle();
       case ClsPackage.CONNECTOR_CARDINALITIY__RIGHT:
         return getRight();
+      case ClsPackage.CONNECTOR_CARDINALITIY__LABEL:
+        return getLabel();
+      case ClsPackage.CONNECTOR_CARDINALITIY__DIRECTION:
+        return getDirection();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -247,11 +293,14 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
       case ClsPackage.CONNECTOR_CARDINALITIY__LEFT:
         setLeft((String)newValue);
         return;
-      case ClsPackage.CONNECTOR_CARDINALITIY__MIDDLE:
-        setMiddle((String)newValue);
-        return;
       case ClsPackage.CONNECTOR_CARDINALITIY__RIGHT:
-        setRight((ConnectorLabel)newValue);
+        setRight((String)newValue);
+        return;
+      case ClsPackage.CONNECTOR_CARDINALITIY__LABEL:
+        setLabel((ConnectorLabel)newValue);
+        return;
+      case ClsPackage.CONNECTOR_CARDINALITIY__DIRECTION:
+        setDirection((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -270,11 +319,14 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
       case ClsPackage.CONNECTOR_CARDINALITIY__LEFT:
         setLeft(LEFT_EDEFAULT);
         return;
-      case ClsPackage.CONNECTOR_CARDINALITIY__MIDDLE:
-        setMiddle(MIDDLE_EDEFAULT);
-        return;
       case ClsPackage.CONNECTOR_CARDINALITIY__RIGHT:
-        setRight((ConnectorLabel)null);
+        setRight(RIGHT_EDEFAULT);
+        return;
+      case ClsPackage.CONNECTOR_CARDINALITIY__LABEL:
+        setLabel((ConnectorLabel)null);
+        return;
+      case ClsPackage.CONNECTOR_CARDINALITIY__DIRECTION:
+        setDirection(DIRECTION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -292,10 +344,12 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
     {
       case ClsPackage.CONNECTOR_CARDINALITIY__LEFT:
         return LEFT_EDEFAULT == null ? left != null : !LEFT_EDEFAULT.equals(left);
-      case ClsPackage.CONNECTOR_CARDINALITIY__MIDDLE:
-        return MIDDLE_EDEFAULT == null ? middle != null : !MIDDLE_EDEFAULT.equals(middle);
       case ClsPackage.CONNECTOR_CARDINALITIY__RIGHT:
-        return right != null;
+        return RIGHT_EDEFAULT == null ? right != null : !RIGHT_EDEFAULT.equals(right);
+      case ClsPackage.CONNECTOR_CARDINALITIY__LABEL:
+        return label != null;
+      case ClsPackage.CONNECTOR_CARDINALITIY__DIRECTION:
+        return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
     }
     return super.eIsSet(featureID);
   }
@@ -313,8 +367,10 @@ public class ConnectorCardinalitiyImpl extends MinimalEObjectImpl.Container impl
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (left: ");
     result.append(left);
-    result.append(", middle: ");
-    result.append(middle);
+    result.append(", right: ");
+    result.append(right);
+    result.append(", direction: ");
+    result.append(direction);
     result.append(')');
     return result.toString();
   }

@@ -511,22 +511,13 @@ public interface ClsPackage extends EPackage
   int CONNECTOR__LEFT = ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONNECTOR__RIGHT = ELEMENT_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Connector</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECTOR_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+  int CONNECTOR_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.GeneralizationImpl <em>Generalization</em>}' class.
@@ -554,7 +545,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GENERALIZATION__RIGHT = CONNECTOR__RIGHT;
+  int GENERALIZATION__RIGHT = CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Generalization</em>' class.
@@ -563,7 +554,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int GENERALIZATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
+  int GENERALIZATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl <em>Implementation</em>}' class.
@@ -591,7 +582,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IMPLEMENTATION__RIGHT = CONNECTOR__RIGHT;
+  int IMPLEMENTATION__RIGHT = CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Implementation</em>' class.
@@ -600,7 +591,44 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IMPLEMENTATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
+  int IMPLEMENTATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl <em>Comment Link</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
+   * @generated
+   */
+  int COMMENT_LINK = 13;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_LINK__LEFT = CONNECTOR__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_LINK__COMMENT = CONNECTOR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Comment Link</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_LINK_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.
@@ -610,7 +638,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociation()
    * @generated
    */
-  int ASSOCIATION = 13;
+  int ASSOCIATION = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -628,7 +656,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSOCIATION__RIGHT = CONNECTOR__RIGHT;
+  int ASSOCIATION__RIGHT = CONNECTOR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Cardinality</b></em>' containment reference.
@@ -637,16 +665,16 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSOCIATION__CARDINALITY = CONNECTOR_FEATURE_COUNT + 0;
+  int ASSOCIATION__CARDINALITY = CONNECTOR_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Note</b></em>' attribute.
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSOCIATION__NOTE = CONNECTOR_FEATURE_COUNT + 1;
+  int ASSOCIATION__COMMENT = CONNECTOR_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Association</em>' class.
@@ -655,7 +683,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSOCIATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 2;
+  int ASSOCIATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationEndImpl <em>Association End</em>}' class.
@@ -665,7 +693,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationEnd()
    * @generated
    */
-  int ASSOCIATION_END = 14;
+  int ASSOCIATION_END = 15;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -693,7 +721,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getConnectorLabel()
    * @generated
    */
-  int CONNECTOR_LABEL = 15;
+  int CONNECTOR_LABEL = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -721,7 +749,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getConnectorCardinalitiy()
    * @generated
    */
-  int CONNECTOR_CARDINALITIY = 16;
+  int CONNECTOR_CARDINALITIY = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' attribute.
@@ -733,22 +761,31 @@ public interface ClsPackage extends EPackage
   int CONNECTOR_CARDINALITIY__LEFT = 0;
 
   /**
-   * The feature id for the '<em><b>Middle</b></em>' attribute.
+   * The feature id for the '<em><b>Right</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECTOR_CARDINALITIY__MIDDLE = 1;
+  int CONNECTOR_CARDINALITIY__RIGHT = 1;
 
   /**
-   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * The feature id for the '<em><b>Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECTOR_CARDINALITIY__RIGHT = 2;
+  int CONNECTOR_CARDINALITIY__LABEL = 2;
+
+  /**
+   * The feature id for the '<em><b>Direction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONNECTOR_CARDINALITIY__DIRECTION = 3;
 
   /**
    * The number of structural features of the '<em>Connector Cardinalitiy</em>' class.
@@ -757,7 +794,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONNECTOR_CARDINALITIY_FEATURE_COUNT = 3;
+  int CONNECTOR_CARDINALITIY_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.
@@ -767,7 +804,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 17;
+  int VISIBILITY = 18;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.DataType <em>Data Type</em>}' enum.
@@ -777,7 +814,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataType()
    * @generated
    */
-  int DATA_TYPE = 18;
+  int DATA_TYPE = 19;
 
 
   /**
@@ -1067,17 +1104,6 @@ public interface ClsPackage extends EPackage
   EReference getConnector_Left();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.Connector#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Connector#getRight()
-   * @see #getConnector()
-   * @generated
-   */
-  EReference getConnector_Right();
-
-  /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Generalization <em>Generalization</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1086,6 +1112,17 @@ public interface ClsPackage extends EPackage
    * @generated
    */
   EClass getGeneralization();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.Generalization#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Generalization#getRight()
+   * @see #getGeneralization()
+   * @generated
+   */
+  EReference getGeneralization_Right();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Implementation <em>Implementation</em>}'.
@@ -1098,6 +1135,38 @@ public interface ClsPackage extends EPackage
   EClass getImplementation();
 
   /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.Implementation#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Implementation#getRight()
+   * @see #getImplementation()
+   * @generated
+   */
+  EReference getImplementation_Right();
+
+  /**
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink <em>Comment Link</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Comment Link</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink
+   * @generated
+   */
+  EClass getCommentLink();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink#getComment()
+   * @see #getCommentLink()
+   * @generated
+   */
+  EAttribute getCommentLink_Comment();
+
+  /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Association <em>Association</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1106,6 +1175,17 @@ public interface ClsPackage extends EPackage
    * @generated
    */
   EClass getAssociation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Association#getRight()
+   * @see #getAssociation()
+   * @generated
+   */
+  EReference getAssociation_Right();
 
   /**
    * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getCardinality <em>Cardinality</em>}'.
@@ -1119,15 +1199,15 @@ public interface ClsPackage extends EPackage
   EReference getAssociation_Cardinality();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getNote <em>Note</em>}'.
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Note</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Association#getNote()
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Association#getComment()
    * @see #getAssociation()
    * @generated
    */
-  EAttribute getAssociation_Note();
+  EAttribute getAssociation_Comment();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}'.
@@ -1193,26 +1273,37 @@ public interface ClsPackage extends EPackage
   EAttribute getConnectorCardinalitiy_Left();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getMiddle <em>Middle</em>}'.
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Middle</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getMiddle()
-   * @see #getConnectorCardinalitiy()
-   * @generated
-   */
-  EAttribute getConnectorCardinalitiy_Middle();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getRight <em>Right</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @return the meta object for the attribute '<em>Right</em>'.
    * @see de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getRight()
    * @see #getConnectorCardinalitiy()
    * @generated
    */
-  EReference getConnectorCardinalitiy_Right();
+  EAttribute getConnectorCardinalitiy_Right();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getLabel <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Label</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getLabel()
+   * @see #getConnectorCardinalitiy()
+   * @generated
+   */
+  EReference getConnectorCardinalitiy_Label();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getDirection <em>Direction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Direction</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy#getDirection()
+   * @see #getConnectorCardinalitiy()
+   * @generated
+   */
+  EAttribute getConnectorCardinalitiy_Direction();
 
   /**
    * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}'.
@@ -1496,14 +1587,6 @@ public interface ClsPackage extends EPackage
     EReference CONNECTOR__LEFT = eINSTANCE.getConnector_Left();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONNECTOR__RIGHT = eINSTANCE.getConnector_Right();
-
-    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.GeneralizationImpl <em>Generalization</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1512,6 +1595,14 @@ public interface ClsPackage extends EPackage
      * @generated
      */
     EClass GENERALIZATION = eINSTANCE.getGeneralization();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GENERALIZATION__RIGHT = eINSTANCE.getGeneralization_Right();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl <em>Implementation</em>}' class.
@@ -1524,6 +1615,32 @@ public interface ClsPackage extends EPackage
     EClass IMPLEMENTATION = eINSTANCE.getImplementation();
 
     /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMPLEMENTATION__RIGHT = eINSTANCE.getImplementation_Right();
+
+    /**
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl <em>Comment Link</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
+     * @generated
+     */
+    EClass COMMENT_LINK = eINSTANCE.getCommentLink();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMMENT_LINK__COMMENT = eINSTANCE.getCommentLink_Comment();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1534,6 +1651,14 @@ public interface ClsPackage extends EPackage
     EClass ASSOCIATION = eINSTANCE.getAssociation();
 
     /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSOCIATION__RIGHT = eINSTANCE.getAssociation_Right();
+
+    /**
      * The meta object literal for the '<em><b>Cardinality</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1542,12 +1667,12 @@ public interface ClsPackage extends EPackage
     EReference ASSOCIATION__CARDINALITY = eINSTANCE.getAssociation_Cardinality();
 
     /**
-     * The meta object literal for the '<em><b>Note</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ASSOCIATION__NOTE = eINSTANCE.getAssociation_Note();
+    EAttribute ASSOCIATION__COMMENT = eINSTANCE.getAssociation_Comment();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationEndImpl <em>Association End</em>}' class.
@@ -1604,20 +1729,28 @@ public interface ClsPackage extends EPackage
     EAttribute CONNECTOR_CARDINALITIY__LEFT = eINSTANCE.getConnectorCardinalitiy_Left();
 
     /**
-     * The meta object literal for the '<em><b>Middle</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Right</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONNECTOR_CARDINALITIY__MIDDLE = eINSTANCE.getConnectorCardinalitiy_Middle();
+    EAttribute CONNECTOR_CARDINALITIY__RIGHT = eINSTANCE.getConnectorCardinalitiy_Right();
 
     /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONNECTOR_CARDINALITIY__RIGHT = eINSTANCE.getConnectorCardinalitiy_Right();
+    EReference CONNECTOR_CARDINALITIY__LABEL = eINSTANCE.getConnectorCardinalitiy_Label();
+
+    /**
+     * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONNECTOR_CARDINALITIY__DIRECTION = eINSTANCE.getConnectorCardinalitiy_Direction();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.

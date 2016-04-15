@@ -41,15 +41,24 @@
   <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AssociationEnd"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Connector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AssociationEnd"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//Connector"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Implementation" eSuperTypes="#//Connector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Implementation" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AssociationEnd"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AssociationEnd"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinality" eType="#//ConnectorCardinalitiy"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="note" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
@@ -59,9 +68,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectorCardinalitiy">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="left" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="middle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//ConnectorLabel"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="right" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//ConnectorLabel"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
     <eLiterals name="DEFAULT" literal="~"/>

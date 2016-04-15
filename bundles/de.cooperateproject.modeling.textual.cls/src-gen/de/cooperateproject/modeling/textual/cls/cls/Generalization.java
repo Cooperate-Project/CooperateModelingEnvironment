@@ -9,6 +9,12 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * A representation of the model object '<em><b>Generalization</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Generalization#getRight <em>Right</em>}</li>
+ * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getGeneralization()
  * @model
@@ -16,4 +22,30 @@ package de.cooperateproject.modeling.textual.cls.cls;
  */
 public interface Generalization extends Connector
 {
+  /**
+   * Returns the value of the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Right</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Right</em>' containment reference.
+   * @see #setRight(AssociationEnd)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getGeneralization_Right()
+   * @model containment="true"
+   * @generated
+   */
+  AssociationEnd getRight();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Generalization#getRight <em>Right</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Right</em>' containment reference.
+   * @see #getRight()
+   * @generated
+   */
+  void setRight(AssociationEnd value);
+
 } // Generalization

@@ -11,6 +11,7 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
@@ -98,6 +99,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
       case ClsPackage.CONNECTOR: return createConnector();
       case ClsPackage.GENERALIZATION: return createGeneralization();
       case ClsPackage.IMPLEMENTATION: return createImplementation();
+      case ClsPackage.COMMENT_LINK: return createCommentLink();
       case ClsPackage.ASSOCIATION: return createAssociation();
       case ClsPackage.ASSOCIATION_END: return createAssociationEnd();
       case ClsPackage.CONNECTOR_LABEL: return createConnectorLabel();
@@ -286,6 +288,17 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
   {
     ImplementationImpl implementation = new ImplementationImpl();
     return implementation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CommentLink createCommentLink()
+  {
+    CommentLinkImpl commentLink = new CommentLinkImpl();
+    return commentLink;
   }
 
   /**
