@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorLabelImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorLabelImpl#getLabel <em>Label</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,24 +29,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements ConnectorLabel
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getLabel()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final String LABEL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getLabel()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected String label = LABEL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +74,9 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public String getLabel()
   {
-    return name;
+    return label;
   }
 
   /**
@@ -84,12 +84,12 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setLabel(String newLabel)
   {
-    String oldName = name;
-    name = newName;
+    String oldLabel = label;
+    label = newLabel;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_LABEL__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CONNECTOR_LABEL__LABEL, oldLabel, label));
   }
 
   /**
@@ -102,8 +102,8 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ClsPackage.CONNECTOR_LABEL__NAME:
-        return getName();
+      case ClsPackage.CONNECTOR_LABEL__LABEL:
+        return getLabel();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,8 +118,8 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ClsPackage.CONNECTOR_LABEL__NAME:
-        setName((String)newValue);
+      case ClsPackage.CONNECTOR_LABEL__LABEL:
+        setLabel((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,8 +135,8 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ClsPackage.CONNECTOR_LABEL__NAME:
-        setName(NAME_EDEFAULT);
+      case ClsPackage.CONNECTOR_LABEL__LABEL:
+        setLabel(LABEL_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -152,8 +152,8 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ClsPackage.CONNECTOR_LABEL__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ClsPackage.CONNECTOR_LABEL__LABEL:
+        return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
     }
     return super.eIsSet(featureID);
   }
@@ -169,8 +169,8 @@ public class ConnectorLabelImpl extends MinimalEObjectImpl.Container implements 
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (label: ");
+    result.append(label);
     result.append(')');
     return result.toString();
   }

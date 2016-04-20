@@ -44,7 +44,7 @@ import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "ClassDiagram";
+    	return "UmlDiagram";
    	}
 
    	@Override
@@ -60,6 +60,31 @@ import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
         appendSkippedTokens();
     }
 }
+
+// Entry rule entryRuleUmlDiagram
+entryRuleUmlDiagram returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUmlDiagramRule()); }
+	iv_ruleUmlDiagram=ruleUmlDiagram
+	{ $current=$iv_ruleUmlDiagram.current; }
+	EOF;
+
+// Rule UmlDiagram
+ruleUmlDiagram returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	{
+		newCompositeNode(grammarAccess.getUmlDiagramAccess().getClassDiagramParserRuleCall());
+	}
+	this_ClassDiagram_0=ruleClassDiagram
+	{
+		$current = $this_ClassDiagram_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
 
 // Entry rule entryRuleClassDiagram
 entryRuleClassDiagram returns [EObject current=null]:
@@ -91,9 +116,9 @@ ruleClassDiagram returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClassDiagramAccess().getElementsElementParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getClassDiagramAccess().getElementsClassElementParserRuleCall_2_0());
 				}
-				lv_elements_2_0=ruleElement
+				lv_elements_2_0=ruleClassElement
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getClassDiagramRule());
@@ -102,7 +127,7 @@ ruleClassDiagram returns [EObject current=null]
 						$current,
 						"elements",
 						lv_elements_2_0,
-						"de.cooperateproject.modeling.textual.cls.Cls.Element");
+						"de.cooperateproject.modeling.textual.cls.Cls.ClassElement");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -114,15 +139,15 @@ ruleClassDiagram returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleElement
-entryRuleElement returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getElementRule()); }
-	iv_ruleElement=ruleElement
-	{ $current=$iv_ruleElement.current; }
+// Entry rule entryRuleClassElement
+entryRuleClassElement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassElementRule()); }
+	iv_ruleClassElement=ruleClassElement
+	{ $current=$iv_ruleClassElement.current; }
 	EOF;
 
-// Rule Element
-ruleElement returns [EObject current=null]
+// Rule ClassElement
+ruleClassElement returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -131,7 +156,7 @@ ruleElement returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getElementAccess().getClassDefParserRuleCall_0());
+			newCompositeNode(grammarAccess.getClassElementAccess().getClassDefParserRuleCall_0());
 		}
 		this_ClassDef_0=ruleClassDef
 		{
@@ -140,7 +165,7 @@ ruleElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementAccess().getClassParserRuleCall_1());
+			newCompositeNode(grammarAccess.getClassElementAccess().getClassParserRuleCall_1());
 		}
 		this_Class_1=ruleClass
 		{
@@ -149,7 +174,7 @@ ruleElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementAccess().getConnectorParserRuleCall_2());
+			newCompositeNode(grammarAccess.getClassElementAccess().getConnectorParserRuleCall_2());
 		}
 		this_Connector_2=ruleConnector
 		{
@@ -175,34 +200,89 @@ ruleType returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getTypeAccess().getTypeDataTypeEnumRuleCall_0_0());
-				}
-				lv_type_0_0=ruleDataType
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTypeRule());
-					}
-					set(
-						$current,
-						"type",
-						lv_type_0_0,
-						"de.cooperateproject.modeling.textual.cls.Cls.DataType");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		    |
 		{
-			newCompositeNode(grammarAccess.getTypeAccess().getClassNameParserRuleCall_1());
+			newCompositeNode(grammarAccess.getTypeAccess().getClassTypeParserRuleCall_0());
 		}
-		this_ClassName_1=ruleClassName
+		this_ClassType_0=ruleClassType
 		{
-			$current = $this_ClassName_1.current;
+			$current = $this_ClassType_0.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getTypeAccess().getDataTypeParserRuleCall_1());
+		}
+		this_DataType_1=ruleDataType
+		{
+			$current = $this_DataType_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleClassType
+entryRuleClassType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassTypeRule()); }
+	iv_ruleClassType=ruleClassType
+	{ $current=$iv_ruleClassType.current; }
+	EOF;
+
+// Rule ClassType
+ruleClassType returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getClassTypeRule());
+				}
+			}
+			otherlv_0=RULE_ID
+			{
+				newLeafNode(otherlv_0, grammarAccess.getClassTypeAccess().getTypeClassNameCrossReference_0());
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleDataType
+entryRuleDataType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDataTypeRule()); }
+	iv_ruleDataType=ruleDataType
+	{ $current=$iv_ruleDataType.current; }
+	EOF;
+
+// Rule DataType
+ruleDataType returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getDataTypeAccess().getTypeDataTypeEnumEnumRuleCall_0());
+			}
+			lv_type_0_0=ruleDataTypeEnum
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getDataTypeRule());
+				}
+				set(
+					$current,
+					"type",
+					lv_type_0_0,
+					"de.cooperateproject.modeling.textual.cls.Cls.DataTypeEnum");
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 
@@ -449,7 +529,7 @@ ruleClass returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getClassAccess().getTypeClassNameCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getClassAccess().getNameClassNameCrossReference_1_0());
 				}
 			)
 		)
@@ -1194,9 +1274,9 @@ ruleConnectorLabel returns [EObject current=null]
 	(
 		(
 			(
-				lv_name_0_1=RULE_ID
+				lv_label_0_1=RULE_ID
 				{
-					newLeafNode(lv_name_0_1, grammarAccess.getConnectorLabelAccess().getNameIDTerminalRuleCall_0_0());
+					newLeafNode(lv_label_0_1, grammarAccess.getConnectorLabelAccess().getLabelIDTerminalRuleCall_0_0());
 				}
 				{
 					if ($current==null) {
@@ -1204,14 +1284,14 @@ ruleConnectorLabel returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"name",
-						lv_name_0_1,
+						"label",
+						lv_label_0_1,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 				    |
-				lv_name_0_2=RULE_STRING
+				lv_label_0_2=RULE_STRING
 				{
-					newLeafNode(lv_name_0_2, grammarAccess.getConnectorLabelAccess().getNameSTRINGTerminalRuleCall_0_1());
+					newLeafNode(lv_label_0_2, grammarAccess.getConnectorLabelAccess().getLabelSTRINGTerminalRuleCall_0_1());
 				}
 				{
 					if ($current==null) {
@@ -1219,8 +1299,8 @@ ruleConnectorLabel returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"name",
-						lv_name_0_2,
+						"label",
+						lv_label_0_2,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
@@ -1413,14 +1493,14 @@ ruleCardinality returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 ;
 
 // Entry rule entryRuleComment
-entryRuleComment returns [String current=null]:
+entryRuleComment returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getCommentRule()); }
 	iv_ruleComment=ruleComment
-	{ $current=$iv_ruleComment.current.getText(); }
+	{ $current=$iv_ruleComment.current; }
 	EOF;
 
 // Rule Comment
-ruleComment returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleComment returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1428,22 +1508,38 @@ ruleComment returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 	leaveRule();
 }:
 	(
-		kw='note['
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getCommentAccess().getCommentAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='note['
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getCommentAccess().getNoteKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getCommentAccess().getNoteKeyword_1());
 		}
-		this_STRING_1=RULE_STRING
+		(
+			(
+				lv_comment_2_0=RULE_STRING
+				{
+					newLeafNode(lv_comment_2_0, grammarAccess.getCommentAccess().getCommentSTRINGTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCommentRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"comment",
+						lv_comment_2_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_3=']'
 		{
-			$current.merge(this_STRING_1);
-		}
-		{
-			newLeafNode(this_STRING_1, grammarAccess.getCommentAccess().getSTRINGTerminalRuleCall_1());
-		}
-		kw=']'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getCommentAccess().getRightSquareBracketKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getCommentAccess().getRightSquareBracketKeyword_3());
 		}
 	)
 ;
@@ -1491,8 +1587,8 @@ ruleVisibility returns [Enumerator current=null]
 	)
 ;
 
-// Rule DataType
-ruleDataType returns [Enumerator current=null]
+// Rule DataTypeEnum
+ruleDataTypeEnum returns [Enumerator current=null]
 @init {
 	enterRule();
 }
@@ -1503,72 +1599,72 @@ ruleDataType returns [Enumerator current=null]
 		(
 			enumLiteral_0='string'
 			{
-				$current = grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_0());
+				$current = grammarAccess.getDataTypeEnumAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getDataTypeEnumAccess().getSTRINGEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
 			enumLiteral_1='int'
 			{
-				$current = grammarAccess.getDataTypeAccess().getINTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getDataTypeAccess().getINTEnumLiteralDeclaration_1());
+				$current = grammarAccess.getDataTypeEnumAccess().getINTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getDataTypeEnumAccess().getINTEnumLiteralDeclaration_1());
 			}
 		)
 		    |
 		(
 			enumLiteral_2='double'
 			{
-				$current = grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_2());
+				$current = grammarAccess.getDataTypeEnumAccess().getDOUBLEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getDataTypeEnumAccess().getDOUBLEEnumLiteralDeclaration_2());
 			}
 		)
 		    |
 		(
 			enumLiteral_3='boolean'
 			{
-				$current = grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_3());
+				$current = grammarAccess.getDataTypeEnumAccess().getBOOLEANEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getDataTypeEnumAccess().getBOOLEANEnumLiteralDeclaration_3());
 			}
 		)
 		    |
 		(
 			enumLiteral_4='char'
 			{
-				$current = grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_4, grammarAccess.getDataTypeAccess().getCHAREnumLiteralDeclaration_4());
+				$current = grammarAccess.getDataTypeEnumAccess().getCHAREnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getDataTypeEnumAccess().getCHAREnumLiteralDeclaration_4());
 			}
 		)
 		    |
 		(
 			enumLiteral_5='byte'
 			{
-				$current = grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_5, grammarAccess.getDataTypeAccess().getBYTEEnumLiteralDeclaration_5());
+				$current = grammarAccess.getDataTypeEnumAccess().getBYTEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_5, grammarAccess.getDataTypeEnumAccess().getBYTEEnumLiteralDeclaration_5());
 			}
 		)
 		    |
 		(
 			enumLiteral_6='short'
 			{
-				$current = grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_6, grammarAccess.getDataTypeAccess().getSHORTEnumLiteralDeclaration_6());
+				$current = grammarAccess.getDataTypeEnumAccess().getSHORTEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_6, grammarAccess.getDataTypeEnumAccess().getSHORTEnumLiteralDeclaration_6());
 			}
 		)
 		    |
 		(
 			enumLiteral_7='long'
 			{
-				$current = grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_7, grammarAccess.getDataTypeAccess().getLONGEnumLiteralDeclaration_7());
+				$current = grammarAccess.getDataTypeEnumAccess().getLONGEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_7, grammarAccess.getDataTypeEnumAccess().getLONGEnumLiteralDeclaration_7());
 			}
 		)
 		    |
 		(
 			enumLiteral_8='float'
 			{
-				$current = grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_8, grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_8());
+				$current = grammarAccess.getDataTypeEnumAccess().getFLOATEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_8, grammarAccess.getDataTypeEnumAccess().getFLOATEnumLiteralDeclaration_8());
 			}
 		)
 	)

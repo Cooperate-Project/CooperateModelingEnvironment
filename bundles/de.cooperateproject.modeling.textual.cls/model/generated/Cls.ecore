@@ -2,26 +2,30 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cls" nsURI="http://www.cooperateproject.de/modeling/textual/cls/Cls"
     nsPrefix="cls">
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram">
+  <eClassifiers xsi:type="ecore:EClass" name="UmlDiagram"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//UmlDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Element" containment="true"/>
+        eType="#//ClassElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Type">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DataType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDef" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DataTypeEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDef" eSuperTypes="#//ClassElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
         eType="#//ClassName" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassName" eSuperTypes="#//Type"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ClassName">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassName">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="longname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//ClassElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//ClassName"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//Member" containment="true"/>
   </eClassifiers>
@@ -38,7 +42,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//ClassElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//AssociationEnd"
         containment="true"/>
   </eClassifiers>
@@ -51,20 +55,22 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Connector">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="#//Comment"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Connector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//AssociationEnd"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinality" eType="#//ConnectorCardinalitiy"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="#//Comment"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ClassName"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectorLabel">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectorCardinalitiy">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="left" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -73,13 +79,16 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
     <eLiterals name="DEFAULT" literal="~"/>
     <eLiterals name="PRIVATE" value="1" literal="-"/>
     <eLiterals name="PROTECTED" value="2" literal="#"/>
     <eLiterals name="PUBLIC" value="3" literal="+"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+  <eClassifiers xsi:type="ecore:EEnum" name="DataTypeEnum">
     <eLiterals name="STRING" literal="string"/>
     <eLiterals name="INT" value="1" literal="int"/>
     <eLiterals name="DOUBLE" value="2" literal="double"/>

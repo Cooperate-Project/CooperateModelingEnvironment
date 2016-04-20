@@ -4,8 +4,8 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.ClassElement;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
 
 import java.util.Collection;
 
@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -34,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ClassDiagramImpl extends MinimalEObjectImpl.Container implements ClassDiagram
+public class ClassDiagramImpl extends UmlDiagramImpl implements ClassDiagram
 {
   /**
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
@@ -44,7 +42,7 @@ public class ClassDiagramImpl extends MinimalEObjectImpl.Container implements Cl
    * @generated
    * @ordered
    */
-  protected EList<Element> elements;
+  protected EList<ClassElement> elements;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,11 +70,11 @@ public class ClassDiagramImpl extends MinimalEObjectImpl.Container implements Cl
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Element> getElements()
+  public EList<ClassElement> getElements()
   {
     if (elements == null)
     {
-      elements = new EObjectContainmentEList<Element>(Element.class, this, ClsPackage.CLASS_DIAGRAM__ELEMENTS);
+      elements = new EObjectContainmentEList<ClassElement>(ClassElement.class, this, ClsPackage.CLASS_DIAGRAM__ELEMENTS);
     }
     return elements;
   }
@@ -126,7 +124,7 @@ public class ClassDiagramImpl extends MinimalEObjectImpl.Container implements Cl
     {
       case ClsPackage.CLASS_DIAGRAM__ELEMENTS:
         getElements().clear();
-        getElements().addAll((Collection<? extends Element>)newValue);
+        getElements().addAll((Collection<? extends ClassElement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

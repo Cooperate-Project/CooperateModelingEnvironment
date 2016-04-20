@@ -24,6 +24,15 @@ public interface ClsFactory extends EFactory
   ClsFactory eINSTANCE = de.cooperateproject.modeling.textual.cls.cls.impl.ClsFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Uml Diagram</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Uml Diagram</em>'.
+   * @generated
+   */
+  UmlDiagram createUmlDiagram();
+
+  /**
    * Returns a new object of class '<em>Class Diagram</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -33,13 +42,13 @@ public interface ClsFactory extends EFactory
   ClassDiagram createClassDiagram();
 
   /**
-   * Returns a new object of class '<em>Element</em>'.
+   * Returns a new object of class '<em>Class Element</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Element</em>'.
+   * @return a new object of class '<em>Class Element</em>'.
    * @generated
    */
-  Element createElement();
+  ClassElement createClassElement();
 
   /**
    * Returns a new object of class '<em>Type</em>'.
@@ -49,6 +58,24 @@ public interface ClsFactory extends EFactory
    * @generated
    */
   Type createType();
+
+  /**
+   * Returns a new object of class '<em>Class Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Class Type</em>'.
+   * @generated
+   */
+  ClassType createClassType();
+
+  /**
+   * Returns a new object of class '<em>Data Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Type</em>'.
+   * @generated
+   */
+  DataType createDataType();
 
   /**
    * Returns a new object of class '<em>Class Def</em>'.
@@ -67,15 +94,6 @@ public interface ClsFactory extends EFactory
    * @generated
    */
   ClassName createClassName();
-
-  /**
-   * Returns a new object of class '<em>Name</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Name</em>'.
-   * @generated
-   */
-  Name createName();
 
   /**
    * Returns a new object of class '<em>Class</em>'.
@@ -184,6 +202,15 @@ public interface ClsFactory extends EFactory
    * @generated
    */
   ConnectorCardinalitiy createConnectorCardinalitiy();
+
+  /**
+   * Returns a new object of class '<em>Comment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comment</em>'.
+   * @generated
+   */
+  Comment createComment();
 
   /**
    * Returns the package supported by this factory.

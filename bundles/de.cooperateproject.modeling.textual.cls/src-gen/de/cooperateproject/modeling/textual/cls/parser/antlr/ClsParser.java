@@ -27,7 +27,7 @@ public class ClsParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "ClassDiagram";
+		return "UmlDiagram";
 	}
 
 	public ClsGrammarAccess getGrammarAccess() {

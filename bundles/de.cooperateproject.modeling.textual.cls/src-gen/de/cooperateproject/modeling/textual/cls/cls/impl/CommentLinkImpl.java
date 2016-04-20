@@ -4,11 +4,14 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -28,24 +31,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class CommentLinkImpl extends ConnectorImpl implements CommentLink
 {
   /**
-   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * The cached value of the '{@link #getComment() <em>Comment</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getComment()
    * @generated
    * @ordered
    */
-  protected static final String COMMENT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected String comment = COMMENT_EDEFAULT;
+  protected Comment comment;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +66,7 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getComment()
+  public Comment getComment()
   {
     return comment;
   }
@@ -83,12 +76,53 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setComment(String newComment)
+  public NotificationChain basicSetComment(Comment newComment, NotificationChain msgs)
   {
-    String oldComment = comment;
+    Comment oldComment = comment;
     comment = newComment;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.COMMENT_LINK__COMMENT, oldComment, comment));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClsPackage.COMMENT_LINK__COMMENT, oldComment, newComment);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setComment(Comment newComment)
+  {
+    if (newComment != comment)
+    {
+      NotificationChain msgs = null;
+      if (comment != null)
+        msgs = ((InternalEObject)comment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClsPackage.COMMENT_LINK__COMMENT, null, msgs);
+      if (newComment != null)
+        msgs = ((InternalEObject)newComment).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClsPackage.COMMENT_LINK__COMMENT, null, msgs);
+      msgs = basicSetComment(newComment, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.COMMENT_LINK__COMMENT, newComment, newComment));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ClsPackage.COMMENT_LINK__COMMENT:
+        return basicSetComment(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -118,7 +152,7 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink
     switch (featureID)
     {
       case ClsPackage.COMMENT_LINK__COMMENT:
-        setComment((String)newValue);
+        setComment((Comment)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +169,7 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink
     switch (featureID)
     {
       case ClsPackage.COMMENT_LINK__COMMENT:
-        setComment(COMMENT_EDEFAULT);
+        setComment((Comment)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +186,9 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink
     switch (featureID)
     {
       case ClsPackage.COMMENT_LINK__COMMENT:
-        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
+        return comment != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (comment: ");
-    result.append(comment);
-    result.append(')');
-    return result.toString();
   }
 
 } //CommentLinkImpl

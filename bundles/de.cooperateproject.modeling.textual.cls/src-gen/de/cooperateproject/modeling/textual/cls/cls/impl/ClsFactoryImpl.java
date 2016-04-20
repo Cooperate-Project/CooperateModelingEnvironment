@@ -8,21 +8,24 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDef;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.ClassElement;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
+import de.cooperateproject.modeling.textual.cls.cls.ClassType;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
 import de.cooperateproject.modeling.textual.cls.cls.DataType;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.Methode;
-import de.cooperateproject.modeling.textual.cls.cls.Name;
 import de.cooperateproject.modeling.textual.cls.cls.Type;
+import de.cooperateproject.modeling.textual.cls.cls.UmlDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import org.eclipse.emf.ecore.EClass;
@@ -86,12 +89,14 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
   {
     switch (eClass.getClassifierID())
     {
+      case ClsPackage.UML_DIAGRAM: return createUmlDiagram();
       case ClsPackage.CLASS_DIAGRAM: return createClassDiagram();
-      case ClsPackage.ELEMENT: return createElement();
+      case ClsPackage.CLASS_ELEMENT: return createClassElement();
       case ClsPackage.TYPE: return createType();
+      case ClsPackage.CLASS_TYPE: return createClassType();
+      case ClsPackage.DATA_TYPE: return createDataType();
       case ClsPackage.CLASS_DEF: return createClassDef();
       case ClsPackage.CLASS_NAME: return createClassName();
-      case ClsPackage.NAME: return createName();
       case ClsPackage.CLASS: return createClass();
       case ClsPackage.MEMBER: return createMember();
       case ClsPackage.ATTRIBUTE: return createAttribute();
@@ -104,6 +109,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
       case ClsPackage.ASSOCIATION_END: return createAssociationEnd();
       case ClsPackage.CONNECTOR_LABEL: return createConnectorLabel();
       case ClsPackage.CONNECTOR_CARDINALITIY: return createConnectorCardinalitiy();
+      case ClsPackage.COMMENT: return createComment();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -121,8 +127,8 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
     {
       case ClsPackage.VISIBILITY:
         return createVisibilityFromString(eDataType, initialValue);
-      case ClsPackage.DATA_TYPE:
-        return createDataTypeFromString(eDataType, initialValue);
+      case ClsPackage.DATA_TYPE_ENUM:
+        return createDataTypeEnumFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -140,11 +146,22 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
     {
       case ClsPackage.VISIBILITY:
         return convertVisibilityToString(eDataType, instanceValue);
-      case ClsPackage.DATA_TYPE:
-        return convertDataTypeToString(eDataType, instanceValue);
+      case ClsPackage.DATA_TYPE_ENUM:
+        return convertDataTypeEnumToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UmlDiagram createUmlDiagram()
+  {
+    UmlDiagramImpl umlDiagram = new UmlDiagramImpl();
+    return umlDiagram;
   }
 
   /**
@@ -163,10 +180,10 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Element createElement()
+  public ClassElement createClassElement()
   {
-    ElementImpl element = new ElementImpl();
-    return element;
+    ClassElementImpl classElement = new ClassElementImpl();
+    return classElement;
   }
 
   /**
@@ -178,6 +195,28 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
   {
     TypeImpl type = new TypeImpl();
     return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ClassType createClassType()
+  {
+    ClassTypeImpl classType = new ClassTypeImpl();
+    return classType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DataType createDataType()
+  {
+    DataTypeImpl dataType = new DataTypeImpl();
+    return dataType;
   }
 
   /**
@@ -200,17 +239,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
   {
     ClassNameImpl className = new ClassNameImpl();
     return className;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Name createName()
-  {
-    NameImpl name = new NameImpl();
-    return name;
   }
 
   /**
@@ -350,6 +378,17 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Comment createComment()
+  {
+    CommentImpl comment = new CommentImpl();
+    return comment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Visibility createVisibilityFromString(EDataType eDataType, String initialValue)
   {
     Visibility result = Visibility.get(initialValue);
@@ -372,9 +411,9 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DataType createDataTypeFromString(EDataType eDataType, String initialValue)
+  public DataTypeEnum createDataTypeEnumFromString(EDataType eDataType, String initialValue)
   {
-    DataType result = DataType.get(initialValue);
+    DataTypeEnum result = DataTypeEnum.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -384,7 +423,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertDataTypeToString(EDataType eDataType, Object instanceValue)
+  public String convertDataTypeEnumToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

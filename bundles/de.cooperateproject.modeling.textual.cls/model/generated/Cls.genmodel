@@ -12,35 +12,39 @@
       <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//Visibility/PROTECTED"/>
       <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//Visibility/PUBLIC"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Cls.ecore#//DataType">
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/STRING"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/INT"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/DOUBLE"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/BOOLEAN"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/CHAR"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/BYTE"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/SHORT"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/LONG"/>
-      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataType/FLOAT"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Cls.ecore#//DataTypeEnum">
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/CHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/SHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="Cls.ecore#//DataTypeEnum/FLOAT"/>
     </genEnums>
+    <genClasses ecoreClass="Cls.ecore#//UmlDiagram"/>
     <genClasses ecoreClass="Cls.ecore#//ClassDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//ClassDiagram/elements"/>
     </genClasses>
-    <genClasses ecoreClass="Cls.ecore#//Element"/>
-    <genClasses ecoreClass="Cls.ecore#//Type">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//Type/type"/>
+    <genClasses ecoreClass="Cls.ecore#//ClassElement"/>
+    <genClasses ecoreClass="Cls.ecore#//Type"/>
+    <genClasses ecoreClass="Cls.ecore#//ClassType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cls.ecore#//ClassType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Cls.ecore#//DataType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//DataType/type"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//ClassDef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//ClassDef/classes"/>
     </genClasses>
-    <genClasses ecoreClass="Cls.ecore#//ClassName"/>
-    <genClasses ecoreClass="Cls.ecore#//Name">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//Name/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//Name/longname"/>
+    <genClasses ecoreClass="Cls.ecore#//ClassName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ClassName/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ClassName/longname"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//Class">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//Class/abstract"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cls.ecore#//Class/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cls.ecore#//Class/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//Class/members"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//Member">
@@ -65,24 +69,27 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//Implementation/right"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//CommentLink">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//CommentLink/comment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//CommentLink/comment"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//Association">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//Association/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//Association/cardinality"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//Association/comment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//Association/comment"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//AssociationEnd">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cls.ecore#//AssociationEnd/type"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//ConnectorLabel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ConnectorLabel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ConnectorLabel/label"/>
     </genClasses>
     <genClasses ecoreClass="Cls.ecore#//ConnectorCardinalitiy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ConnectorCardinalitiy/left"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ConnectorCardinalitiy/right"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cls.ecore#//ConnectorCardinalitiy/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//ConnectorCardinalitiy/direction"/>
+    </genClasses>
+    <genClasses ecoreClass="Cls.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cls.ecore#//Comment/comment"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

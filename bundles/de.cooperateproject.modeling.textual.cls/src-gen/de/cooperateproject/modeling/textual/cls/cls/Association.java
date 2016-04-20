@@ -77,29 +77,29 @@ public interface Association extends Connector
   void setCardinality(ConnectorCardinalitiy value);
 
   /**
-   * Returns the value of the '<em><b>Comment</b></em>' attribute.
+   * Returns the value of the '<em><b>Comment</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Comment</em>' attribute isn't clear,
+   * If the meaning of the '<em>Comment</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Comment</em>' attribute.
-   * @see #setComment(String)
+   * @return the value of the '<em>Comment</em>' containment reference.
+   * @see #setComment(Comment)
    * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Comment()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getComment();
+  Comment getComment();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}' attribute.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Comment</em>' attribute.
+   * @param value the new value of the '<em>Comment</em>' containment reference.
    * @see #getComment()
    * @generated
    */
-  void setComment(String value);
+  void setComment(Comment value);
 
 } // Association

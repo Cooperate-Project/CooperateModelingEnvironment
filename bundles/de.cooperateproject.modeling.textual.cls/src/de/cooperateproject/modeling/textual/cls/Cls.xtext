@@ -2,23 +2,47 @@ grammar de.cooperateproject.modeling.textual.cls.Cls with org.eclipse.xtext.comm
 
 generate cls "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 
-//import "http://www.eclipse.org/xtext/common/JavaVMTypes" as jvmTypes
 
+// ------------------------------------------------------------------------------------------
+// ---------------------------------Root-----------------------------------------------------
+// ------------------------------------------------------------------------------------------
+UmlDiagram:
+	ClassDiagram
+;
+
+
+// ------------------------------------------------------------------------------------------
+// ---------------------------------Entry point for different Diagrams-----------------------
+// ------------------------------------------------------------------------------------------
 ClassDiagram:
 	{ClassDiagram}
 	'@startclass'
-    (elements += Element)*
-    '@endclass';
+    (elements += ClassElement)*
+    '@endclass'
+;
 
-Element: 
+
+// ------------------------------------------------------------------------------------------
+// ---------------------------------Class Diagram--------------------------------------------
+// ------------------------------------------------------------------------------------------
+
+
+ClassElement: 
 	ClassDef 
 	| Class  
 	| Connector
 ;
 
 Type: 
-	type = DataType 
-	| ClassName 
+	ClassType | DataType
+;
+
+ClassType: 
+	type = [ClassName]
+;
+
+DataType: 
+	type = DataTypeEnum
 ;
 
 ClassDef: 
@@ -30,14 +54,14 @@ ClassName:
 	Name
 ;
 
-Name: 
+Name returns ClassName: 
 	(name = ID 
 	| longname = (STRING | ID) ' as ' name = ID)
 ;
 
 Class: 
 	(abstract ?= 'abstract')?
-	type = [ClassName] 
+	name = [ClassName]
 	'{' (members += Member)* '}'
 ;
 
@@ -53,7 +77,7 @@ Attribute:
 	(final ?= 'final')? 
 	name=ID ':' type = Type
 ;
-
+	
 Methode: 
 	(visibility = Visibility)? 
 	(abstract ?= 'abstract')? 
@@ -93,7 +117,7 @@ AssociationEnd:
 ;
 
 ConnectorLabel: 
-	name = (ID | STRING)
+	label = (ID | STRING)
 ;
 
 ConnectorCardinalitiy: 
@@ -110,7 +134,8 @@ Cardinality:
 ;
 
 Comment: 
-	'note[' STRING ']'
+	{Comment}
+	'note[' comment = STRING ']'
 ;
 
 enum Visibility:
@@ -120,7 +145,8 @@ enum Visibility:
 	| PUBLIC = '+'
 ;
 
-enum DataType:
+
+enum DataTypeEnum:
 	STRING = 'string'
 	| INT = 'int'
 	| DOUBLE = 'double'

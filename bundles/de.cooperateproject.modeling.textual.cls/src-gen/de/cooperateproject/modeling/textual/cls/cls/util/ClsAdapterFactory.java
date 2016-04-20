@@ -8,19 +8,22 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDef;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.ClassElement;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
+import de.cooperateproject.modeling.textual.cls.cls.ClassType;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
+import de.cooperateproject.modeling.textual.cls.cls.DataType;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.Methode;
-import de.cooperateproject.modeling.textual.cls.cls.Name;
 import de.cooperateproject.modeling.textual.cls.cls.Type;
+import de.cooperateproject.modeling.textual.cls.cls.UmlDiagram;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -93,19 +96,34 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
     new ClsSwitch<Adapter>()
     {
       @Override
+      public Adapter caseUmlDiagram(UmlDiagram object)
+      {
+        return createUmlDiagramAdapter();
+      }
+      @Override
       public Adapter caseClassDiagram(ClassDiagram object)
       {
         return createClassDiagramAdapter();
       }
       @Override
-      public Adapter caseElement(Element object)
+      public Adapter caseClassElement(ClassElement object)
       {
-        return createElementAdapter();
+        return createClassElementAdapter();
       }
       @Override
       public Adapter caseType(Type object)
       {
         return createTypeAdapter();
+      }
+      @Override
+      public Adapter caseClassType(ClassType object)
+      {
+        return createClassTypeAdapter();
+      }
+      @Override
+      public Adapter caseDataType(DataType object)
+      {
+        return createDataTypeAdapter();
       }
       @Override
       public Adapter caseClassDef(ClassDef object)
@@ -116,11 +134,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
       public Adapter caseClassName(ClassName object)
       {
         return createClassNameAdapter();
-      }
-      @Override
-      public Adapter caseName(Name object)
-      {
-        return createNameAdapter();
       }
       @Override
       public Adapter caseClass(de.cooperateproject.modeling.textual.cls.cls.Class object)
@@ -183,6 +196,11 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
         return createConnectorCardinalitiyAdapter();
       }
       @Override
+      public Adapter caseComment(Comment object)
+      {
+        return createCommentAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -205,6 +223,21 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
 
 
   /**
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.UmlDiagram <em>Uml Diagram</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.cooperateproject.modeling.textual.cls.cls.UmlDiagram
+   * @generated
+   */
+  public Adapter createUmlDiagramAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassDiagram <em>Class Diagram</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -220,16 +253,16 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Element <em>Element</em>}'.
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassElement <em>Class Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Element
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassElement
    * @generated
    */
-  public Adapter createElementAdapter()
+  public Adapter createClassElementAdapter()
   {
     return null;
   }
@@ -245,6 +278,36 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassType <em>Class Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassType
+   * @generated
+   */
+  public Adapter createClassTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.DataType <em>Data Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.cooperateproject.modeling.textual.cls.cls.DataType
+   * @generated
+   */
+  public Adapter createDataTypeAdapter()
   {
     return null;
   }
@@ -275,21 +338,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createClassNameAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Name <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Name
-   * @generated
-   */
-  public Adapter createNameAdapter()
   {
     return null;
   }
@@ -470,6 +518,21 @@ public class ClsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createConnectorCardinalitiyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Comment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Comment
+   * @generated
+   */
+  public Adapter createCommentAdapter()
   {
     return null;
   }

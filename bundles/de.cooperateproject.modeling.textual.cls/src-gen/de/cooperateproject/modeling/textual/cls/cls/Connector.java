@@ -20,7 +20,7 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model
  * @generated
  */
-public interface Connector extends Element
+public interface Connector extends ClassElement
 {
   /**
    * Returns the value of the '<em><b>Left</b></em>' containment reference.

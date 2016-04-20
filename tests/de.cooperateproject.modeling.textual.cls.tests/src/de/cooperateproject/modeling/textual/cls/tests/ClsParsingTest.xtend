@@ -4,64 +4,122 @@
 package de.cooperateproject.modeling.textual.cls.tests
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import java.util.Map
+
+import org.junit.Assert
+import org.junit.Test
+import org.junit.BeforeClass
+import org.junit.AfterClass
+import org.junit.runner.RunWith
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
-import org.junit.Assert
-import org.junit.Test
-import org.junit.runner.RunWith
 //import org.eclipse.xtext.junit4.validation.ValidationTestHelper
-import de.cooperateproject.modeling.textual.cls.cls.ClassDef
-import de.cooperateproject.modeling.textual.cls.cls.Name
-import de.cooperateproject.modeling.textual.cls.cls.Class
-import de.cooperateproject.modeling.textual.cls.cls.Attribute
-import de.cooperateproject.modeling.textual.cls.cls.DataType
-import de.cooperateproject.modeling.textual.cls.cls.Methode
-import de.cooperateproject.modeling.textual.cls.cls.Visibility
-import de.cooperateproject.modeling.textual.cls.cls.Generalization
-import de.cooperateproject.modeling.textual.cls.cls.Implementation
-import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
+
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EPackage.Registry
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.compare.scope.DefaultComparisonScope
+import org.eclipse.emf.compare.EMFCompare
+import org.eclipse.emf.compare.Diff
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 @RunWith(XtextRunner)
 @InjectWith(ClsInjectorProvider)
 class ClsParsingTest {
 	@Inject extension ParseHelper<ClassDiagram>
 	//@Inject extension ValidationTestHelper
+	
+	private static val TEST_FOLDER = "testmodels/"
+	
+	private static Resource.Factory.Registry registry
+	private static Map<String, Object> map
+	private static Registry preg
+	
+	@BeforeClass
+	static def void ressourceSetUp() {
+		registry = Resource.Factory.Registry.INSTANCE
+		
+		map = registry.getExtensionToFactoryMap()
+		map.put("xmi", new XMIResourceFactoryImpl())
 
+		preg = EPackage.Registry.INSTANCE
+		preg.replace(ClsPackage.eNS_URI, ClsPackage.eINSTANCE)
+	}
+	
+	@AfterClass
+	static def void cleanUp() {
+		registry = null
+		map = null
+		preg = null
+	}
+	
+	def ClassDiagram getDiagram(String uri) {
+		val resSet = new ResourceSetImpl()
+    	val resource = resSet.getResource(URI.createURI(uri), true) 
+    	
+   		return resource.getContents().get(0) as ClassDiagram
+	}
+	
+	def compare(ClassDiagram expected, ClassDiagram diagram) {
+		val scope = new DefaultComparisonScope(expected, diagram, null)
+		val comparison = EMFCompare.builder().build().compare(scope)
+		return comparison.getDifferences();
+	}
+	
+	def assertEqualsModel(ClassDiagram expected, ClassDiagram diagram) {		
+		EcoreUtil.resolveAll(expected)
+		val diff = compare(expected, diagram)
+		try {
+			Assert::assertTrue(diff.isEmpty)
+		} catch(AssertionError e) {
+			println("Differences:")
+			printDiff(diff)
+			throw(e)
+		}
+	}
+	
+	def printDiff(EList<Diff> diff) {
+		for(d : diff) {
+			println(d)
+		}
+	}
+	
 	@Test
-	def classDefTest() {
+	def void classDefTest() {		
+		val xmiModel = getDiagram(TEST_FOLDER + "classDef.xmi")
 		val model = '''
 			@startclass
 			class {Alice, Bob}
 			@endclass
-		'''.parse
-
-		val classes = (model.elements.head as ClassDef).classes
+		'''.parse		
 		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		assertEqualsModel(model, xmiModel)
 	}
 
 	@Test
 	def interfaceDefTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "interfaceDef.xmi")
 		val model = '''
 			@startclass
 			interface {Alice, Bob}
 			@endclass
 		'''.parse
 
-		val classes = (model.elements.head as ClassDef).classes
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def longnameToShortnameTest() {
+		ClsPackage.eINSTANCE.eClass()
+		val xmiModel = getDiagram(TEST_FOLDER + "longnameToShortname.xmi")
 		val model = '''
 			@startclass
 			class {Alice as A}
@@ -69,18 +127,12 @@ class ClsParsingTest {
 			}
 			@endclass
 		'''.parse
-
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("A", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).longname))
-		Assert::assertEquals("A", ((class.type as Name).name))
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
-	def abstractClassWithoutMembers() {
+	def abstractClassWithoutMembersTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "abstractClassWithoutMembers.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -89,17 +141,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertTrue(class.abstract)
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test 
-	def classWithAttributes() {
+	def classWithAttributesTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithAttributes.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -111,29 +158,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val attributes = #[
-			class.members.get(0) as Attribute, 
-			class.members.get(1) as Attribute,
-			class.members.get(2) as Attribute
-		]
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertEquals(3, class.members.size)
-		
-		Assert::assertEquals("firstName", attributes.get(0).name)
-		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
-		Assert::assertEquals("lastName", attributes.get(1).name)
-		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
-		Assert::assertEquals("age", attributes.get(2).name)
-		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)		
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
-	def classWithMethodes() {
+	def classWithMethodesTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodes.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -145,30 +175,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val methodes = #[
-			class.members.get(0) as Methode, 
-			class.members.get(1) as Methode,
-			class.members.get(2) as Methode
-		]
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertEquals(3, class.members.size)
-		
-		Assert::assertEquals("getFirstName", methodes.get(0).name)
-		Assert::assertEquals(DataType.STRING, methodes.get(0).type.type)
-		Assert::assertEquals("setFirstName", methodes.get(1).name)
-		Assert::assertEquals(DataType.STRING, (methodes.get(1).attributes.head as Attribute).type.type)
-		Assert::assertEquals("calculateAge", methodes.get(2).name)
-		Assert::assertEquals(DataType.INT, (methodes.get(2).attributes.head as Attribute).type.type)	
-		Assert::assertEquals(DataType.INT, methodes.get(2).type.type)	
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
-	def visibilies() {
+	def visibiliesTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "visibilies.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -181,36 +193,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val attributes = #[
-			class.members.get(0) as Attribute, 
-			class.members.get(1) as Attribute,
-			class.members.get(2) as Attribute,
-			class.members.get(3) as Attribute
-		]
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertEquals(4, class.members.size)
-		
-		Assert::assertEquals("firstName", attributes.get(0).name)
-		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
-		Assert::assertEquals(Visibility.PRIVATE, attributes.get(0).visibility)
-		Assert::assertEquals("lastName", attributes.get(1).name)
-		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
-		Assert::assertEquals(Visibility.PUBLIC, attributes.get(1).visibility)		
-		Assert::assertEquals("age", attributes.get(2).name)
-		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)	
-		Assert::assertEquals(Visibility.DEFAULT, attributes.get(2).visibility)
-		Assert::assertEquals("height", attributes.get(3).name)
-		Assert::assertEquals(DataType.INT, attributes.get(3).type.type)	
-		Assert::assertEquals(Visibility.PROTECTED, attributes.get(3).visibility)	
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
-	def classWithMethodsAndAttributes() {
+	def classWithMethodsAndAttributesTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodsAndAttributes.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -221,26 +209,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val attribute = class.members.get(0) as Attribute
-		val methode = class.members.get(1) as Methode
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertEquals(2, class.members.size)
-		
-		Assert::assertEquals("firstName", attribute.name)
-		Assert::assertEquals(DataType.STRING, attribute.type.type)
-		Assert::assertEquals(Visibility.PRIVATE, attribute.visibility)
-		Assert::assertEquals("getFirstName", methode.name)
-		Assert::assertEquals(DataType.STRING, methode.type.type)
-		Assert::assertEquals(Visibility.PUBLIC, methode.visibility)
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test 
-	def classWithStaticAndFinalAttributes() {
+	def classWithStaticAndFinalAttributesTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithStaticAndFinalAttributes.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -252,35 +226,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val attributes = #[
-			class.members.get(0) as Attribute, 
-			class.members.get(1) as Attribute,
-			class.members.get(2) as Attribute
-		]
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertEquals(3, class.members.size)
-		
-		Assert::assertEquals("firstName", attributes.get(0).name)
-		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
-		Assert::assertTrue(attributes.get(0).static)
-		Assert::assertFalse(attributes.get(0).final)
-		Assert::assertEquals("lastName", attributes.get(1).name)
-		Assert::assertEquals(DataType.STRING, attributes.get(1).type.type)
-		Assert::assertFalse(attributes.get(1).static)
-		Assert::assertTrue(attributes.get(1).final)
-		Assert::assertEquals("height", attributes.get(2).name)
-		Assert::assertEquals(DataType.INT, attributes.get(2).type.type)
-		Assert::assertTrue(attributes.get(2).static)
-		Assert::assertTrue(attributes.get(2).final)	
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
-	def classWithAbstractStaticAndFinalMethodes() {
+	def classWithAbstractStaticAndFinalMethodesTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithAbstractStaticAndFinalMethodes.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -293,40 +244,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val methodes = #[
-			class.members.get(0) as Methode, 
-			class.members.get(1) as Methode,
-			class.members.get(2) as Methode,
-			class.members.get(3) as Methode
-		]
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", ((class.type as Name).name))
-		Assert::assertEquals(4, class.members.size)
-		
-		Assert::assertEquals("buildHouse", methodes.get(0).name)
-		Assert::assertTrue(methodes.get(0).abstract)
-		Assert::assertFalse(methodes.get(0).static)
-		Assert::assertFalse(methodes.get(0).final)
-		Assert::assertEquals("getDate", methodes.get(1).name)
-		Assert::assertFalse(methodes.get(1).abstract)
-		Assert::assertTrue(methodes.get(1).static)
-		Assert::assertFalse(methodes.get(1).final)
-		Assert::assertEquals("getHeight", methodes.get(2).name)
-		Assert::assertFalse(methodes.get(2).abstract)
-		Assert::assertFalse(methodes.get(2).static)
-		Assert::assertTrue(methodes.get(2).final)	
-		Assert::assertEquals("work", methodes.get(3).name)
-		Assert::assertTrue(methodes.get(3).abstract)
-		Assert::assertTrue(methodes.get(3).static)
-		Assert::assertTrue(methodes.get(3).final)	
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classGeneralizationTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classGeneralization.xmi")
 		val model = '''
 			@startclass
 			class {Person, Alice}
@@ -334,18 +257,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val generalization = model.elements.get(1) as Generalization
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Person", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", (classes.get(1) as Name).name)
-		Assert::assertEquals("Alice", (generalization.left.type as Name).name)
-		Assert::assertEquals("Person", (generalization.right.type as Name).name)		
+		assertEqualsModel(model, xmiModel)		
 	}
 	
 	@Test
 	def classImplementationTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classImplementation.xmi")
 		val model = '''
 			@startclass
 			class {Person, Alice}
@@ -353,18 +270,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val impl = model.elements.get(1) as Implementation
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Person", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", (classes.get(1) as Name).name)
-		Assert::assertEquals("Alice", (impl.left.type as Name).name)
-		Assert::assertEquals("Person", (impl.right.type as Name).name)		
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def simpleClassAssociationTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "simpleClassAssociation.xmi")
 		val model = '''
 			@startclass
 			class {Alice, Bob}
@@ -372,18 +283,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val association = model.elements.get(1) as Association
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
-		Assert::assertEquals("Alice", (association.left.type as Name).name)
-		Assert::assertEquals("Bob", (association.right.type as Name).name)		
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classWithNoteTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithNote.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -391,17 +296,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val commentLink = model.elements.get(1) as CommentLink
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Alice", (commentLink.left.type as Name).name)
-		Assert::assertEquals("note[\"this is a note\"]", commentLink.comment)		
+		assertEqualsModel(model, xmiModel)		
 	}
 	
 	@Test
 	def ClassAsscociationWithNoteTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classAsscociationWithNote.xmi")
 		val model = '''
 			@startclass
 			class {Alice, Bob}
@@ -409,109 +309,43 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val association = model.elements.get(1) as Association
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
-		Assert::assertEquals("Alice", (association.left.type as Name).name)
-		Assert::assertEquals("Bob", (association.right.type as Name).name)
-		Assert::assertEquals("note[\"this is a note\"]", association.comment)	
+		assertEqualsModel(model, xmiModel)
 	}
 		
 	@Test
 	def CardinalityTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "cardinality.xmi")
 		val model = '''
 			@startclass
 			class {Alice, Bob}
 			Alice - Bob [*]
-			Alice - Bob [|*]
-			Alice - Bob [*|*]
+			Alice - Bob [|1..*]
+			Alice - Bob [24|24..42]
 			Alice - Bob [*|*|"this is a label"]
 			Alice - Bob []
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val associations = #[
-			model.elements.get(1) as Association, 
-			model.elements.get(2) as Association,
-			model.elements.get(3) as Association,
-			model.elements.get(4) as Association,
-			model.elements.get(5) as Association
-		]
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
-		//Alice - Bob [*]
-		Assert::assertEquals("Alice", (associations.get(0).left.type as Name).name)
-		Assert::assertEquals("Bob", (associations.get(0).right.type as Name).name)	
-		Assert::assertEquals("*", (associations.get(0).cardinality.left))
-		Assert::assertEquals(null, (associations.get(0).cardinality.right))
-		Assert::assertEquals(null, (associations.get(0).cardinality.label))	
-		//Alice - Bob [|*]
-		Assert::assertEquals("Alice", (associations.get(1).left.type as Name).name)
-		Assert::assertEquals("Bob", (associations.get(1).right.type as Name).name)	
-		Assert::assertEquals(null, (associations.get(1).cardinality.left))
-		Assert::assertEquals("*", (associations.get(1).cardinality.right))
-		Assert::assertEquals(null, (associations.get(1).cardinality.label))	
-		//Alice - Bob [*|*]
-		Assert::assertEquals("Alice", (associations.get(2).left.type as Name).name)
-		Assert::assertEquals("Bob", (associations.get(2).right.type as Name).name)	
-		Assert::assertEquals("*", (associations.get(2).cardinality.left))
-		Assert::assertEquals("*", (associations.get(2).cardinality.right))
-		Assert::assertEquals(null, (associations.get(2).cardinality.label))	
-		//Alice - Bob [*|*|"this is a label"]
-		Assert::assertEquals("Alice", (associations.get(3).left.type as Name).name)
-		Assert::assertEquals("Bob", (associations.get(3).right.type as Name).name)	
-		Assert::assertEquals("*", (associations.get(3).cardinality.left))
-		Assert::assertEquals("*", (associations.get(3).cardinality.right))
-		Assert::assertEquals("this is a label", (associations.get(3).cardinality.label.name))	
-		//Alice - Bob []
-		Assert::assertEquals("Alice", (associations.get(4).left.type as Name).name)
-		Assert::assertEquals("Bob", (associations.get(4).right.type as Name).name)	
-		Assert::assertEquals(null, (associations.get(4).cardinality.left))
-		Assert::assertEquals(null, (associations.get(4).cardinality.right))
-		Assert::assertEquals(null, (associations.get(4).cardinality.label))	
+		assertEqualsModel(model, xmiModel)
 	}
-	
+
 	@Test
 	def classAssociationDirectionTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classAssociationDirection.xmi")
 		val model = '''
 			@startclass
 			class {Alice, Bob}
-			Alice - Bob [*|*|label <]
-			Alice - Bob [*|*|label >]
+			Alice - Bob [24|42|labelID <]
+			Alice - Bob [42|24|labelID >]
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val firstAssociation = model.elements.get(1) as Association
-		val secondAssociation = model.elements.get(2) as Association
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
-		//Alice - Bob [*|*|label <]
-		Assert::assertEquals("Alice", (firstAssociation.left.type as Name).name)
-		Assert::assertEquals("Bob", (firstAssociation.right.type as Name).name)	
-		Assert::assertEquals("*", (firstAssociation.cardinality.left))
-		Assert::assertEquals("*", (firstAssociation.cardinality.right))
-		Assert::assertEquals("label", (firstAssociation.cardinality.label.name))
-		Assert::assertEquals("<", (firstAssociation.cardinality.direction))
-		//Alice - Bob [*|*|label >]
-		Assert::assertEquals("Alice", (secondAssociation.left.type as Name).name)
-		Assert::assertEquals("Bob", (secondAssociation.right.type as Name).name)	
-		Assert::assertEquals("*", (secondAssociation.cardinality.left))
-		Assert::assertEquals("*", (secondAssociation.cardinality.right))
-		Assert::assertEquals("label", (secondAssociation.cardinality.label.name))
-		Assert::assertEquals(">", (secondAssociation.cardinality.direction))	
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def datatypeTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "datatype.xmi")
 		val model = '''
 			@startclass
 			class {Alice}
@@ -529,36 +363,12 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val attributes = #[
-			class.members.get(0) as Attribute, 
-			class.members.get(1) as Attribute, 
-			class.members.get(2) as Attribute, 
-			class.members.get(3) as Attribute, 
-			class.members.get(4) as Attribute, 
-			class.members.get(5) as Attribute, 
-			class.members.get(6) as Attribute, 
-			class.members.get(7) as Attribute, 
-			class.members.get(8) as Attribute
-		]
-		
-		Assert::assertEquals(1, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		
-		Assert::assertEquals(DataType.STRING, attributes.get(0).type.type)
-		Assert::assertEquals(DataType.INT, attributes.get(1).type.type)
-		Assert::assertEquals(DataType.DOUBLE, attributes.get(2).type.type)
-		Assert::assertEquals(DataType.BOOLEAN, attributes.get(3).type.type)
-		Assert::assertEquals(DataType.CHAR, attributes.get(4).type.type)
-		Assert::assertEquals(DataType.BYTE, attributes.get(5).type.type)
-		Assert::assertEquals(DataType.SHORT, attributes.get(6).type.type)
-		Assert::assertEquals(DataType.LONG, attributes.get(7).type.type)
-		Assert::assertEquals(DataType.FLOAT, attributes.get(8).type.type)		
+		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classTypeTest() {
+		val xmiModel = getDiagram(TEST_FOLDER + "classType.xmi")
 		val model = '''
 			@startclass
 			class {Alice, Bob}
@@ -568,16 +378,7 @@ class ClsParsingTest {
 			@endclass
 		'''.parse
 		
-		val classes = (model.elements.head as ClassDef).classes
-		val class = model.elements.get(1) as Class
-		val attribute = class.members.get(0) as Attribute
-		
-		Assert::assertEquals(2, classes.size)
-		Assert::assertEquals("Alice", (classes.get(0) as Name).name)
-		Assert::assertEquals("Bob", (classes.get(1) as Name).name)
-		Assert::assertEquals("Alice", (class.type as Name).name)
-		Assert::assertEquals("bob", attribute.name)		
-		Assert::assertEquals("Bob", (attribute.type as Name).name)
+		assertEqualsModel(model, xmiModel)
 	}
 	
 }

@@ -4,7 +4,7 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
+import de.cooperateproject.modeling.textual.cls.cls.UmlDiagram;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -12,19 +12,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Element</b></em>'.
+ * An implementation of the model object '<em><b>Uml Diagram</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ElementImpl extends MinimalEObjectImpl.Container implements Element
+public class UmlDiagramImpl extends MinimalEObjectImpl.Container implements UmlDiagram
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ElementImpl()
+  protected UmlDiagramImpl()
   {
     super();
   }
@@ -37,7 +37,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
   @Override
   protected EClass eStaticClass()
   {
-    return ClsPackage.Literals.ELEMENT;
+    return ClsPackage.Literals.UML_DIAGRAM;
   }
 
-} //ElementImpl
+} //UmlDiagramImpl

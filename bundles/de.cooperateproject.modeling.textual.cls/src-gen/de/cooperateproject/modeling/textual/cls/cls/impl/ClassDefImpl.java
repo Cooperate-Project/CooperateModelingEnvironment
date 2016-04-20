@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ClassDefImpl extends ElementImpl implements ClassDef
+public class ClassDefImpl extends ClassElementImpl implements ClassDef
 {
   /**
    * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.

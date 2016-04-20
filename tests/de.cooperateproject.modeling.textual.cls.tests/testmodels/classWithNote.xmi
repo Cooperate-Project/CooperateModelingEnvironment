@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cls:ClassDiagram
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls"
+    xsi:schemaLocation="http://www.cooperateproject.de/modeling/textual/cls/Cls ../../de.cooperateproject.modeling.textual.cls/model/generated/Cls.ecore">
+  <elements
+      xsi:type="cls:ClassDef">
+    <classes
+        name="Alice"
+        longname=""/>
+  </elements>
+  <elements
+      xsi:type="cls:CommentLink">
+    <left type="//@elements.0/@classes.0"/>
+    <comment
+        comment="this is a note"/>
+  </elements>
+</cls:ClassDiagram>

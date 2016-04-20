@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Class#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Class#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Class#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Class#getMembers <em>Members</em>}</li>
  * </ul>
  *
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Class extends Element
+public interface Class extends ClassElement
 {
   /**
    * Returns the value of the '<em><b>Abstract</b></em>' attribute.
@@ -52,30 +52,30 @@ public interface Class extends Element
   void setAbstract(boolean value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * Returns the value of the '<em><b>Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * If the meaning of the '<em>Name</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(ClassName)
-   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClass_Type()
+   * @return the value of the '<em>Name</em>' reference.
+   * @see #setName(ClassName)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClass_Name()
    * @model
    * @generated
    */
-  ClassName getType();
+  ClassName getName();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Class#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Class#getName <em>Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
+   * @param value the new value of the '<em>Name</em>' reference.
+   * @see #getName()
    * @generated
    */
-  void setType(ClassName value);
+  void setName(ClassName value);
 
   /**
    * Returns the value of the '<em><b>Members</b></em>' containment reference list.

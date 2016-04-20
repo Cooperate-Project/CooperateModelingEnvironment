@@ -6,17 +6,69 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Class Name</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassNameImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassNameImpl#getLongname <em>Longname</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class ClassNameImpl extends TypeImpl implements ClassName
+public class ClassNameImpl extends MinimalEObjectImpl.Container implements ClassName
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getLongname() <em>Longname</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLongname()
+   * @generated
+   * @ordered
+   */
+  protected static final String LONGNAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getLongname() <em>Longname</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLongname()
+   * @generated
+   * @ordered
+   */
+  protected String longname = LONGNAME_EDEFAULT;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -36,6 +88,147 @@ public class ClassNameImpl extends TypeImpl implements ClassName
   protected EClass eStaticClass()
   {
     return ClsPackage.Literals.CLASS_NAME;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CLASS_NAME__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getLongname()
+  {
+    return longname;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setLongname(String newLongname)
+  {
+    String oldLongname = longname;
+    longname = newLongname;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CLASS_NAME__LONGNAME, oldLongname, longname));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case ClsPackage.CLASS_NAME__NAME:
+        return getName();
+      case ClsPackage.CLASS_NAME__LONGNAME:
+        return getLongname();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case ClsPackage.CLASS_NAME__NAME:
+        setName((String)newValue);
+        return;
+      case ClsPackage.CLASS_NAME__LONGNAME:
+        setLongname((String)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case ClsPackage.CLASS_NAME__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case ClsPackage.CLASS_NAME__LONGNAME:
+        setLongname(LONGNAME_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case ClsPackage.CLASS_NAME__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ClsPackage.CLASS_NAME__LONGNAME:
+        return LONGNAME_EDEFAULT == null ? longname != null : !LONGNAME_EDEFAULT.equals(longname);
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", longname: ");
+    result.append(longname);
+    result.append(')');
+    return result.toString();
   }
 
 } //ClassNameImpl

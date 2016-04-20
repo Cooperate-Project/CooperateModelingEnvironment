@@ -59,6 +59,25 @@ public interface ClsPackage extends EPackage
   ClsPackage eINSTANCE = de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl.init();
 
   /**
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.UmlDiagramImpl <em>Uml Diagram</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.UmlDiagramImpl
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getUmlDiagram()
+   * @generated
+   */
+  int UML_DIAGRAM = 0;
+
+  /**
+   * The number of structural features of the '<em>Uml Diagram</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UML_DIAGRAM_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl <em>Class Diagram</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -66,7 +85,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassDiagram()
    * @generated
    */
-  int CLASS_DIAGRAM = 0;
+  int CLASS_DIAGRAM = 1;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -75,7 +94,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS_DIAGRAM__ELEMENTS = 0;
+  int CLASS_DIAGRAM__ELEMENTS = UML_DIAGRAM_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Class Diagram</em>' class.
@@ -84,26 +103,26 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS_DIAGRAM_FEATURE_COUNT = 1;
+  int CLASS_DIAGRAM_FEATURE_COUNT = UML_DIAGRAM_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ElementImpl <em>Element</em>}' class.
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassElementImpl <em>Class Element</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ElementImpl
-   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getElement()
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClassElementImpl
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassElement()
    * @generated
    */
-  int ELEMENT = 1;
+  int CLASS_ELEMENT = 2;
 
   /**
-   * The number of structural features of the '<em>Element</em>' class.
+   * The number of structural features of the '<em>Class Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ELEMENT_FEATURE_COUNT = 0;
+  int CLASS_ELEMENT_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.TypeImpl <em>Type</em>}' class.
@@ -113,16 +132,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getType()
    * @generated
    */
-  int TYPE = 2;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__TYPE = 0;
+  int TYPE = 3;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -131,7 +141,63 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TYPE_FEATURE_COUNT = 1;
+  int TYPE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassTypeImpl <em>Class Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClassTypeImpl
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassType()
+   * @generated
+   */
+  int CLASS_TYPE = 4;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Class Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLASS_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.DataTypeImpl <em>Data Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.DataTypeImpl
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataType()
+   * @generated
+   */
+  int DATA_TYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_TYPE__TYPE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Data Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DATA_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDefImpl <em>Class Def</em>}' class.
@@ -141,7 +207,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassDef()
    * @generated
    */
-  int CLASS_DEF = 3;
+  int CLASS_DEF = 6;
 
   /**
    * The feature id for the '<em><b>Classes</b></em>' containment reference list.
@@ -150,7 +216,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS_DEF__CLASSES = ELEMENT_FEATURE_COUNT + 0;
+  int CLASS_DEF__CLASSES = CLASS_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Class Def</em>' class.
@@ -159,7 +225,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS_DEF_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+  int CLASS_DEF_FEATURE_COUNT = CLASS_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassNameImpl <em>Class Name</em>}' class.
@@ -169,44 +235,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassName()
    * @generated
    */
-  int CLASS_NAME = 4;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLASS_NAME__TYPE = TYPE__TYPE;
-
-  /**
-   * The number of structural features of the '<em>Class Name</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLASS_NAME_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.NameImpl <em>Name</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.cls.cls.impl.NameImpl
-   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getName_()
-   * @generated
-   */
-  int NAME = 5;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAME__TYPE = CLASS_NAME__TYPE;
+  int CLASS_NAME = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -215,7 +244,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAME__NAME = CLASS_NAME_FEATURE_COUNT + 0;
+  int CLASS_NAME__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Longname</b></em>' attribute.
@@ -224,16 +253,16 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAME__LONGNAME = CLASS_NAME_FEATURE_COUNT + 1;
+  int CLASS_NAME__LONGNAME = 1;
 
   /**
-   * The number of structural features of the '<em>Name</em>' class.
+   * The number of structural features of the '<em>Class Name</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NAME_FEATURE_COUNT = CLASS_NAME_FEATURE_COUNT + 2;
+  int CLASS_NAME_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl <em>Class</em>}' class.
@@ -243,7 +272,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClass_()
    * @generated
    */
-  int CLASS = 6;
+  int CLASS = 8;
 
   /**
    * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -252,16 +281,16 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS__ABSTRACT = ELEMENT_FEATURE_COUNT + 0;
+  int CLASS__ABSTRACT = CLASS_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLASS__TYPE = ELEMENT_FEATURE_COUNT + 1;
+  int CLASS__NAME = CLASS_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -270,7 +299,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS__MEMBERS = ELEMENT_FEATURE_COUNT + 2;
+  int CLASS__MEMBERS = CLASS_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Class</em>' class.
@@ -279,7 +308,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLASS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+  int CLASS_FEATURE_COUNT = CLASS_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberImpl <em>Member</em>}' class.
@@ -289,7 +318,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getMember()
    * @generated
    */
-  int MEMBER = 7;
+  int MEMBER = 9;
 
   /**
    * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -353,7 +382,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 8;
+  int ATTRIBUTE = 10;
 
   /**
    * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -417,7 +446,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getMethode()
    * @generated
    */
-  int METHODE = 9;
+  int METHODE = 11;
 
   /**
    * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -499,7 +528,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getConnector()
    * @generated
    */
-  int CONNECTOR = 10;
+  int CONNECTOR = 12;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -508,7 +537,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONNECTOR__LEFT = ELEMENT_FEATURE_COUNT + 0;
+  int CONNECTOR__LEFT = CLASS_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Connector</em>' class.
@@ -517,7 +546,7 @@ public interface ClsPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONNECTOR_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+  int CONNECTOR_FEATURE_COUNT = CLASS_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.GeneralizationImpl <em>Generalization</em>}' class.
@@ -527,7 +556,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getGeneralization()
    * @generated
    */
-  int GENERALIZATION = 11;
+  int GENERALIZATION = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -564,7 +593,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getImplementation()
    * @generated
    */
-  int IMPLEMENTATION = 12;
+  int IMPLEMENTATION = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -601,7 +630,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
    * @generated
    */
-  int COMMENT_LINK = 13;
+  int COMMENT_LINK = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -613,7 +642,7 @@ public interface ClsPackage extends EPackage
   int COMMENT_LINK__LEFT = CONNECTOR__LEFT;
 
   /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * The feature id for the '<em><b>Comment</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -638,7 +667,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociation()
    * @generated
    */
-  int ASSOCIATION = 14;
+  int ASSOCIATION = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -668,7 +697,7 @@ public interface ClsPackage extends EPackage
   int ASSOCIATION__CARDINALITY = CONNECTOR_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * The feature id for the '<em><b>Comment</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -693,7 +722,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationEnd()
    * @generated
    */
-  int ASSOCIATION_END = 15;
+  int ASSOCIATION_END = 17;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -721,16 +750,16 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getConnectorLabel()
    * @generated
    */
-  int CONNECTOR_LABEL = 16;
+  int CONNECTOR_LABEL = 18;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Label</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECTOR_LABEL__NAME = 0;
+  int CONNECTOR_LABEL__LABEL = 0;
 
   /**
    * The number of structural features of the '<em>Connector Label</em>' class.
@@ -749,7 +778,7 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getConnectorCardinalitiy()
    * @generated
    */
-  int CONNECTOR_CARDINALITIY = 17;
+  int CONNECTOR_CARDINALITIY = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' attribute.
@@ -797,6 +826,34 @@ public interface ClsPackage extends EPackage
   int CONNECTOR_CARDINALITIY_FEATURE_COUNT = 4;
 
   /**
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentImpl <em>Comment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.CommentImpl
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getComment()
+   * @generated
+   */
+  int COMMENT = 20;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT__COMMENT = 0;
+
+  /**
+   * The number of structural features of the '<em>Comment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -804,18 +861,28 @@ public interface ClsPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getVisibility()
    * @generated
    */
-  int VISIBILITY = 18;
+  int VISIBILITY = 21;
 
   /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.DataType <em>Data Type</em>}' enum.
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum <em>Data Type Enum</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.cls.cls.DataType
-   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataType()
+   * @see de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum
+   * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataTypeEnum()
    * @generated
    */
-  int DATA_TYPE = 19;
+  int DATA_TYPE_ENUM = 22;
 
+
+  /**
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.UmlDiagram <em>Uml Diagram</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Uml Diagram</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.UmlDiagram
+   * @generated
+   */
+  EClass getUmlDiagram();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassDiagram <em>Class Diagram</em>}'.
@@ -839,14 +906,14 @@ public interface ClsPackage extends EPackage
   EReference getClassDiagram_Elements();
 
   /**
-   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Element <em>Element</em>}'.
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassElement <em>Class Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Element</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Element
+   * @return the meta object for class '<em>Class Element</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassElement
    * @generated
    */
-  EClass getElement();
+  EClass getClassElement();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Type <em>Type</em>}'.
@@ -859,15 +926,46 @@ public interface ClsPackage extends EPackage
   EClass getType();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Type#getType <em>Type</em>}'.
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassType <em>Class Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Class Type</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassType
+   * @generated
+   */
+  EClass getClassType();
+
+  /**
+   * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.ClassType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassType#getType()
+   * @see #getClassType()
+   * @generated
+   */
+  EReference getClassType_Type();
+
+  /**
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.DataType <em>Data Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Data Type</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.DataType
+   * @generated
+   */
+  EClass getDataType();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.DataType#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Type#getType()
-   * @see #getType()
+   * @see de.cooperateproject.modeling.textual.cls.cls.DataType#getType()
+   * @see #getDataType()
    * @generated
    */
-  EAttribute getType_Type();
+  EAttribute getDataType_Type();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassDef <em>Class Def</em>}'.
@@ -901,36 +999,26 @@ public interface ClsPackage extends EPackage
   EClass getClassName();
 
   /**
-   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Name <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Name</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Name
-   * @generated
-   */
-  EClass getName_();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Name#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ClassName#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Name#getName()
-   * @see #getName_()
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassName#getName()
+   * @see #getClassName()
    * @generated
    */
-  EAttribute getName_Name();
+  EAttribute getClassName_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Name#getLongname <em>Longname</em>}'.
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ClassName#getLongname <em>Longname</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Longname</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Name#getLongname()
-   * @see #getName_()
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClassName#getLongname()
+   * @see #getClassName()
    * @generated
    */
-  EAttribute getName_Longname();
+  EAttribute getClassName_Longname();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Class <em>Class</em>}'.
@@ -954,15 +1042,15 @@ public interface ClsPackage extends EPackage
   EAttribute getClass_Abstract();
 
   /**
-   * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Class#getType <em>Type</em>}'.
+   * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Class#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.Class#getType()
+   * @return the meta object for the reference '<em>Name</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Class#getName()
    * @see #getClass_()
    * @generated
    */
-  EReference getClass_Type();
+  EReference getClass_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cls.cls.Class#getMembers <em>Members</em>}'.
@@ -1156,15 +1244,15 @@ public interface ClsPackage extends EPackage
   EClass getCommentLink();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getComment <em>Comment</em>}'.
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getComment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @return the meta object for the containment reference '<em>Comment</em>'.
    * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink#getComment()
    * @see #getCommentLink()
    * @generated
    */
-  EAttribute getCommentLink_Comment();
+  EReference getCommentLink_Comment();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Association <em>Association</em>}'.
@@ -1199,15 +1287,15 @@ public interface ClsPackage extends EPackage
   EReference getAssociation_Cardinality();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}'.
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @return the meta object for the containment reference '<em>Comment</em>'.
    * @see de.cooperateproject.modeling.textual.cls.cls.Association#getComment()
    * @see #getAssociation()
    * @generated
    */
-  EAttribute getAssociation_Comment();
+  EReference getAssociation_Comment();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}'.
@@ -1241,15 +1329,15 @@ public interface ClsPackage extends EPackage
   EClass getConnectorLabel();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel#getLabel <em>Label</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel#getName()
+   * @return the meta object for the attribute '<em>Label</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel#getLabel()
    * @see #getConnectorLabel()
    * @generated
    */
-  EAttribute getConnectorLabel_Name();
+  EAttribute getConnectorLabel_Label();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy <em>Connector Cardinalitiy</em>}'.
@@ -1306,6 +1394,27 @@ public interface ClsPackage extends EPackage
   EAttribute getConnectorCardinalitiy_Direction();
 
   /**
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Comment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Comment
+   * @generated
+   */
+  EClass getComment();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Comment#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.Comment#getComment()
+   * @see #getComment()
+   * @generated
+   */
+  EAttribute getComment_Comment();
+
+  /**
    * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1316,14 +1425,14 @@ public interface ClsPackage extends EPackage
   EEnum getVisibility();
 
   /**
-   * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.DataType <em>Data Type</em>}'.
+   * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum <em>Data Type Enum</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Data Type</em>'.
-   * @see de.cooperateproject.modeling.textual.cls.cls.DataType
+   * @return the meta object for enum '<em>Data Type Enum</em>'.
+   * @see de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum
    * @generated
    */
-  EEnum getDataType();
+  EEnum getDataTypeEnum();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1349,6 +1458,16 @@ public interface ClsPackage extends EPackage
   interface Literals
   {
     /**
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.UmlDiagramImpl <em>Uml Diagram</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.UmlDiagramImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getUmlDiagram()
+     * @generated
+     */
+    EClass UML_DIAGRAM = eINSTANCE.getUmlDiagram();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl <em>Class Diagram</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1367,14 +1486,14 @@ public interface ClsPackage extends EPackage
     EReference CLASS_DIAGRAM__ELEMENTS = eINSTANCE.getClassDiagram_Elements();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ElementImpl <em>Element</em>}' class.
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassElementImpl <em>Class Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ElementImpl
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getElement()
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClassElementImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassElement()
      * @generated
      */
-    EClass ELEMENT = eINSTANCE.getElement();
+    EClass CLASS_ELEMENT = eINSTANCE.getClassElement();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.TypeImpl <em>Type</em>}' class.
@@ -1387,12 +1506,40 @@ public interface ClsPackage extends EPackage
     EClass TYPE = eINSTANCE.getType();
 
     /**
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassTypeImpl <em>Class Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClassTypeImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassType()
+     * @generated
+     */
+    EClass CLASS_TYPE = eINSTANCE.getClassType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLASS_TYPE__TYPE = eINSTANCE.getClassType_Type();
+
+    /**
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.DataTypeImpl <em>Data Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.DataTypeImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataType()
+     * @generated
+     */
+    EClass DATA_TYPE = eINSTANCE.getDataType();
+
+    /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TYPE__TYPE = eINSTANCE.getType_Type();
+    EAttribute DATA_TYPE__TYPE = eINSTANCE.getDataType_Type();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDefImpl <em>Class Def</em>}' class.
@@ -1423,22 +1570,12 @@ public interface ClsPackage extends EPackage
     EClass CLASS_NAME = eINSTANCE.getClassName();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.NameImpl <em>Name</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.NameImpl
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getName_()
-     * @generated
-     */
-    EClass NAME = eINSTANCE.getName_();
-
-    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NAME__NAME = eINSTANCE.getName_Name();
+    EAttribute CLASS_NAME__NAME = eINSTANCE.getClassName_Name();
 
     /**
      * The meta object literal for the '<em><b>Longname</b></em>' attribute feature.
@@ -1446,7 +1583,7 @@ public interface ClsPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NAME__LONGNAME = eINSTANCE.getName_Longname();
+    EAttribute CLASS_NAME__LONGNAME = eINSTANCE.getClassName_Longname();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl <em>Class</em>}' class.
@@ -1467,12 +1604,12 @@ public interface ClsPackage extends EPackage
     EAttribute CLASS__ABSTRACT = eINSTANCE.getClass_Abstract();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Name</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLASS__TYPE = eINSTANCE.getClass_Type();
+    EReference CLASS__NAME = eINSTANCE.getClass_Name();
 
     /**
      * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
@@ -1633,12 +1770,12 @@ public interface ClsPackage extends EPackage
     EClass COMMENT_LINK = eINSTANCE.getCommentLink();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COMMENT_LINK__COMMENT = eINSTANCE.getCommentLink_Comment();
+    EReference COMMENT_LINK__COMMENT = eINSTANCE.getCommentLink_Comment();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.
@@ -1667,12 +1804,12 @@ public interface ClsPackage extends EPackage
     EReference ASSOCIATION__CARDINALITY = eINSTANCE.getAssociation_Cardinality();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ASSOCIATION__COMMENT = eINSTANCE.getAssociation_Comment();
+    EReference ASSOCIATION__COMMENT = eINSTANCE.getAssociation_Comment();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationEndImpl <em>Association End</em>}' class.
@@ -1703,12 +1840,12 @@ public interface ClsPackage extends EPackage
     EClass CONNECTOR_LABEL = eINSTANCE.getConnectorLabel();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONNECTOR_LABEL__NAME = eINSTANCE.getConnectorLabel_Name();
+    EAttribute CONNECTOR_LABEL__LABEL = eINSTANCE.getConnectorLabel_Label();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorCardinalitiyImpl <em>Connector Cardinalitiy</em>}' class.
@@ -1753,6 +1890,24 @@ public interface ClsPackage extends EPackage
     EAttribute CONNECTOR_CARDINALITIY__DIRECTION = eINSTANCE.getConnectorCardinalitiy_Direction();
 
     /**
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentImpl <em>Comment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.CommentImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getComment()
+     * @generated
+     */
+    EClass COMMENT = eINSTANCE.getComment();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMMENT__COMMENT = eINSTANCE.getComment_Comment();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1763,14 +1918,14 @@ public interface ClsPackage extends EPackage
     EEnum VISIBILITY = eINSTANCE.getVisibility();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.DataType <em>Data Type</em>}' enum.
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum <em>Data Type Enum</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.cls.cls.DataType
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataType()
+     * @see de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getDataTypeEnum()
      * @generated
      */
-    EEnum DATA_TYPE = eINSTANCE.getDataType();
+    EEnum DATA_TYPE_ENUM = eINSTANCE.getDataTypeEnum();
 
   }
 
