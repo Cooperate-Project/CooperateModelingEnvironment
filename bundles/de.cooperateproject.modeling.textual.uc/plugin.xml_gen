@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.cooperate-project.de/modeling/language/usecase"
+			class = "de.cooperateproject.modeling.language.usecase.usecase.UsecasePackage"
+			genModel = "model/generated/UseCase.genmodel" />
+	</extension>
+</plugin>

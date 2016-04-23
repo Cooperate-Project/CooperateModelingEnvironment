@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: de.cooperateproject.modeling.language.usecase
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.cooperateproject.modeling.language.usecase; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.uml2.uml;bundle-version="5.1.0";visibility:=reexport,
+ org.eclipse.core.resources;bundle-version="3.10.1",
+ org.eclipse.core.runtime;bundle-version="3.11.1",
+ org.eclipse.uml2;bundle-version="5.0.0";visibility:=reexport,
+ org.eclipse.uml2.codegen.ecore;bundle-version="2.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.cooperateproject.modeling.language.usecase.validation,
+ de.cooperateproject.modeling.language.usecase.generator,
+ de.cooperateproject.modeling.language.usecase.parser.antlr,
+ de.cooperateproject.modeling.language.usecase.services,
+ de.cooperateproject.modeling.language.usecase.usecase,
+ de.cooperateproject.modeling.language.usecase,
+ de.cooperateproject.modeling.language.usecase.usecase.impl,
+ de.cooperateproject.modeling.language.usecase.parser.antlr.internal,
+ de.cooperateproject.modeling.language.usecase.scoping,
+ de.cooperateproject.modeling.language.usecase.usecase.util,
+ de.cooperateproject.modeling.language.usecase.serializer
+Import-Package: org.apache.log4j
