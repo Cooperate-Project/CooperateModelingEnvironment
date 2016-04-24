@@ -7,14 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Element</b></em>'.
+ * A representation of the model object '<em><b>Class Element</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getElement()
+ * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassElement()
  * @model
  * @generated
  */
-public interface Element extends EObject
+public interface ClassElement extends EObject
 {
-} // Element
+} // ClassElement

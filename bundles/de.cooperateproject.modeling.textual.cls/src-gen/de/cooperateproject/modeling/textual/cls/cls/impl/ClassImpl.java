@@ -31,13 +31,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl#isAbstract <em>Abstract</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl#getMembers <em>Members</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ClassImpl extends ElementImpl implements de.cooperateproject.modeling.textual.cls.cls.Class
+public class ClassImpl extends ClassElementImpl implements de.cooperateproject.modeling.textual.cls.cls.Class
 {
   /**
    * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
@@ -60,14 +60,14 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
   protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getName() <em>Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected ClassName type;
+  protected ClassName name;
 
   /**
    * The cached value of the '{@link #getMembers() <em>Members</em>}' containment reference list.
@@ -128,19 +128,19 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
    * <!-- end-user-doc -->
    * @generated
    */
-  public ClassName getType()
+  public ClassName getName()
   {
-    if (type != null && type.eIsProxy())
+    if (name != null && name.eIsProxy())
     {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (ClassName)eResolveProxy(oldType);
-      if (type != oldType)
+      InternalEObject oldName = (InternalEObject)name;
+      name = (ClassName)eResolveProxy(oldName);
+      if (name != oldName)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClsPackage.CLASS__TYPE, oldType, type));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClsPackage.CLASS__NAME, oldName, name));
       }
     }
-    return type;
+    return name;
   }
 
   /**
@@ -148,9 +148,9 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
    * <!-- end-user-doc -->
    * @generated
    */
-  public ClassName basicGetType()
+  public ClassName basicGetName()
   {
-    return type;
+    return name;
   }
 
   /**
@@ -158,12 +158,12 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(ClassName newType)
+  public void setName(ClassName newName)
   {
-    ClassName oldType = type;
-    type = newType;
+    ClassName oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CLASS__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, ClsPackage.CLASS__NAME, oldName, name));
   }
 
   /**
@@ -208,9 +208,9 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
     {
       case ClsPackage.CLASS__ABSTRACT:
         return isAbstract();
-      case ClsPackage.CLASS__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+      case ClsPackage.CLASS__NAME:
+        if (resolve) return getName();
+        return basicGetName();
       case ClsPackage.CLASS__MEMBERS:
         return getMembers();
     }
@@ -231,8 +231,8 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
       case ClsPackage.CLASS__ABSTRACT:
         setAbstract((Boolean)newValue);
         return;
-      case ClsPackage.CLASS__TYPE:
-        setType((ClassName)newValue);
+      case ClsPackage.CLASS__NAME:
+        setName((ClassName)newValue);
         return;
       case ClsPackage.CLASS__MEMBERS:
         getMembers().clear();
@@ -255,8 +255,8 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
       case ClsPackage.CLASS__ABSTRACT:
         setAbstract(ABSTRACT_EDEFAULT);
         return;
-      case ClsPackage.CLASS__TYPE:
-        setType((ClassName)null);
+      case ClsPackage.CLASS__NAME:
+        setName((ClassName)null);
         return;
       case ClsPackage.CLASS__MEMBERS:
         getMembers().clear();
@@ -277,8 +277,8 @@ public class ClassImpl extends ElementImpl implements de.cooperateproject.modeli
     {
       case ClsPackage.CLASS__ABSTRACT:
         return abstract_ != ABSTRACT_EDEFAULT;
-      case ClsPackage.CLASS__TYPE:
-        return type != null;
+      case ClsPackage.CLASS__NAME:
+        return name != null;
       case ClsPackage.CLASS__MEMBERS:
         return members != null && !members.isEmpty();
     }

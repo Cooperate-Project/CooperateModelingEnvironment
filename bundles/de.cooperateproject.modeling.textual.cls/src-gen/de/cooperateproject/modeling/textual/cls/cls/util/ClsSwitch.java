@@ -8,18 +8,22 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDef;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.ClassElement;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
+import de.cooperateproject.modeling.textual.cls.cls.ClassType;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Comment;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
+import de.cooperateproject.modeling.textual.cls.cls.DataType;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.Methode;
-import de.cooperateproject.modeling.textual.cls.cls.Name;
 import de.cooperateproject.modeling.textual.cls.cls.Type;
+import de.cooperateproject.modeling.textual.cls.cls.UmlDiagram;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -89,17 +93,25 @@ public class ClsSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
+      case ClsPackage.UML_DIAGRAM:
+      {
+        UmlDiagram umlDiagram = (UmlDiagram)theEObject;
+        T result = caseUmlDiagram(umlDiagram);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ClsPackage.CLASS_DIAGRAM:
       {
         ClassDiagram classDiagram = (ClassDiagram)theEObject;
         T result = caseClassDiagram(classDiagram);
+        if (result == null) result = caseUmlDiagram(classDiagram);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ClsPackage.ELEMENT:
+      case ClsPackage.CLASS_ELEMENT:
       {
-        Element element = (Element)theEObject;
-        T result = caseElement(element);
+        ClassElement classElement = (ClassElement)theEObject;
+        T result = caseClassElement(classElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -110,11 +122,27 @@ public class ClsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ClsPackage.CLASS_TYPE:
+      {
+        ClassType classType = (ClassType)theEObject;
+        T result = caseClassType(classType);
+        if (result == null) result = caseType(classType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ClsPackage.DATA_TYPE:
+      {
+        DataType dataType = (DataType)theEObject;
+        T result = caseDataType(dataType);
+        if (result == null) result = caseType(dataType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ClsPackage.CLASS_DEF:
       {
         ClassDef classDef = (ClassDef)theEObject;
         T result = caseClassDef(classDef);
-        if (result == null) result = caseElement(classDef);
+        if (result == null) result = caseClassElement(classDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -122,16 +150,6 @@ public class ClsSwitch<T> extends Switch<T>
       {
         ClassName className = (ClassName)theEObject;
         T result = caseClassName(className);
-        if (result == null) result = caseType(className);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ClsPackage.NAME:
-      {
-        Name name = (Name)theEObject;
-        T result = caseName(name);
-        if (result == null) result = caseClassName(name);
-        if (result == null) result = caseType(name);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -139,7 +157,7 @@ public class ClsSwitch<T> extends Switch<T>
       {
         de.cooperateproject.modeling.textual.cls.cls.Class class_ = (de.cooperateproject.modeling.textual.cls.cls.Class)theEObject;
         T result = caseClass(class_);
-        if (result == null) result = caseElement(class_);
+        if (result == null) result = caseClassElement(class_);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -170,7 +188,7 @@ public class ClsSwitch<T> extends Switch<T>
       {
         Connector connector = (Connector)theEObject;
         T result = caseConnector(connector);
-        if (result == null) result = caseElement(connector);
+        if (result == null) result = caseClassElement(connector);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -179,7 +197,7 @@ public class ClsSwitch<T> extends Switch<T>
         Generalization generalization = (Generalization)theEObject;
         T result = caseGeneralization(generalization);
         if (result == null) result = caseConnector(generalization);
-        if (result == null) result = caseElement(generalization);
+        if (result == null) result = caseClassElement(generalization);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -188,7 +206,16 @@ public class ClsSwitch<T> extends Switch<T>
         Implementation implementation = (Implementation)theEObject;
         T result = caseImplementation(implementation);
         if (result == null) result = caseConnector(implementation);
-        if (result == null) result = caseElement(implementation);
+        if (result == null) result = caseClassElement(implementation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ClsPackage.COMMENT_LINK:
+      {
+        CommentLink commentLink = (CommentLink)theEObject;
+        T result = caseCommentLink(commentLink);
+        if (result == null) result = caseConnector(commentLink);
+        if (result == null) result = caseClassElement(commentLink);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -197,7 +224,7 @@ public class ClsSwitch<T> extends Switch<T>
         Association association = (Association)theEObject;
         T result = caseAssociation(association);
         if (result == null) result = caseConnector(association);
-        if (result == null) result = caseElement(association);
+        if (result == null) result = caseClassElement(association);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -222,8 +249,31 @@ public class ClsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ClsPackage.COMMENT:
+      {
+        Comment comment = (Comment)theEObject;
+        T result = caseComment(comment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Uml Diagram</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Uml Diagram</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUmlDiagram(UmlDiagram object)
+  {
+    return null;
   }
 
   /**
@@ -243,17 +293,17 @@ public class ClsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Class Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Class Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseElement(Element object)
+  public T caseClassElement(ClassElement object)
   {
     return null;
   }
@@ -270,6 +320,38 @@ public class ClsSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseType(Type object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Class Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Class Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseClassType(ClassType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Data Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Data Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDataType(DataType object)
   {
     return null;
   }
@@ -302,22 +384,6 @@ public class ClsSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseClassName(ClassName object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Name</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Name</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseName(Name object)
   {
     return null;
   }
@@ -435,6 +501,22 @@ public class ClsSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Comment Link</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comment Link</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCommentLink(CommentLink object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Association</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -494,6 +576,22 @@ public class ClsSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseConnectorCardinalitiy(ConnectorCardinalitiy object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComment(Comment object)
   {
     return null;
   }

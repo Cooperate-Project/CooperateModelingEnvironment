@@ -12,7 +12,6 @@ import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -23,15 +22,13 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ClsGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1;
-	protected AbstractElementAlias match_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q;
-	protected AbstractElementAlias match_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q;
+	protected AbstractElementAlias match_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ClsGrammarAccess) access;
 		match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassDefAccess().getClassKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getClassDefAccess().getInterfaceKeyword_0_1()));
-		match_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getGreaterThanSignKeyword_4_2_1()), new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getLessThanSignKeyword_4_2_0()));
-		match_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0()), new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getGreaterThanSignKeyword_4_2_1()), new TokenAlias(false, false, grammarAccess.getConnectorCardinalitiyAccess().getLessThanSignKeyword_4_2_0())));
+		match_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0());
 	}
 	
 	@Override
@@ -48,10 +45,8 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1.equals(syntax))
 				emit_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q.equals(syntax))
-				emit_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q.equals(syntax))
-				emit_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q.equals(syntax))
+				emit_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -69,25 +64,14 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ('<' | '>')?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     right=ConnectorLabel (ambiguity) ']' (rule end)
-	 */
-	protected void emit_ConnectorCardinalitiy___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ('|' ('<' | '>')?)?
+	 *     '|'?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) '[' '|' (ambiguity) ']' (rule start)
 	 *     left=Cardinality '|' (ambiguity) ']' (rule end)
-	 *     middle=Cardinality (ambiguity) ']' (rule end)
+	 *     right=Cardinality (ambiguity) ']' (rule end)
 	 */
-	protected void emit_ConnectorCardinalitiy___VerticalLineKeyword_4_0___GreaterThanSignKeyword_4_2_1_or_LessThanSignKeyword_4_2_0__q__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

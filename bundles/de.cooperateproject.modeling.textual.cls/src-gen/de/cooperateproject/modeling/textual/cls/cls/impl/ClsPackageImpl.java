@@ -8,20 +8,24 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDef;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.ClassElement;
 import de.cooperateproject.modeling.textual.cls.cls.ClassName;
+import de.cooperateproject.modeling.textual.cls.cls.ClassType;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Comment;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorCardinalitiy;
 import de.cooperateproject.modeling.textual.cls.cls.ConnectorLabel;
 import de.cooperateproject.modeling.textual.cls.cls.DataType;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeEnum;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.Methode;
-import de.cooperateproject.modeling.textual.cls.cls.Name;
 import de.cooperateproject.modeling.textual.cls.cls.Type;
+import de.cooperateproject.modeling.textual.cls.cls.UmlDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -45,6 +49,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass umlDiagramEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass classDiagramEClass = null;
 
   /**
@@ -52,7 +63,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass elementEClass = null;
+  private EClass classElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -60,6 +71,20 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * @generated
    */
   private EClass typeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass classTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dataTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,13 +99,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * @generated
    */
   private EClass classNameEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass nameEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -136,6 +154,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass commentLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass associationEClass = null;
 
   /**
@@ -164,6 +189,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass commentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EEnum visibilityEEnum = null;
 
   /**
@@ -171,7 +203,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum dataTypeEEnum = null;
+  private EEnum dataTypeEnumEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -241,6 +273,16 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getUmlDiagram()
+  {
+    return umlDiagramEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getClassDiagram()
   {
     return classDiagramEClass;
@@ -261,9 +303,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getElement()
+  public EClass getClassElement()
   {
-    return elementEClass;
+    return classElementEClass;
   }
 
   /**
@@ -281,9 +323,39 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getType_Type()
+  public EClass getClassType()
   {
-    return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+    return classTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClassType_Type()
+  {
+    return (EReference)classTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDataType()
+  {
+    return dataTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDataType_Type()
+  {
+    return (EAttribute)dataTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -321,9 +393,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getName_()
+  public EAttribute getClassName_Name()
   {
-    return nameEClass;
+    return (EAttribute)classNameEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -331,19 +403,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getName_Name()
+  public EAttribute getClassName_Longname()
   {
-    return (EAttribute)nameEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getName_Longname()
-  {
-    return (EAttribute)nameEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)classNameEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -371,7 +433,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getClass_Type()
+  public EReference getClass_Name()
   {
     return (EReference)classEClass.getEStructuralFeatures().get(1);
   }
@@ -511,9 +573,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConnector_Right()
+  public EClass getGeneralization()
   {
-    return (EReference)connectorEClass.getEStructuralFeatures().get(1);
+    return generalizationEClass;
   }
 
   /**
@@ -521,9 +583,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getGeneralization()
+  public EReference getGeneralization_Right()
   {
-    return generalizationEClass;
+    return (EReference)generalizationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -541,6 +603,36 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getImplementation_Right()
+  {
+    return (EReference)implementationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCommentLink()
+  {
+    return commentLinkEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCommentLink_Comment()
+  {
+    return (EReference)commentLinkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAssociation()
   {
     return associationEClass;
@@ -551,7 +643,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAssociation_Cardinality()
+  public EReference getAssociation_Right()
   {
     return (EReference)associationEClass.getEStructuralFeatures().get(0);
   }
@@ -561,9 +653,19 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAssociation_Note()
+  public EReference getAssociation_Cardinality()
   {
-    return (EAttribute)associationEClass.getEStructuralFeatures().get(1);
+    return (EReference)associationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssociation_Comment()
+  {
+    return (EReference)associationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -601,7 +703,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getConnectorLabel_Name()
+  public EAttribute getConnectorLabel_Label()
   {
     return (EAttribute)connectorLabelEClass.getEStructuralFeatures().get(0);
   }
@@ -631,7 +733,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getConnectorCardinalitiy_Middle()
+  public EAttribute getConnectorCardinalitiy_Right()
   {
     return (EAttribute)connectorCardinalitiyEClass.getEStructuralFeatures().get(1);
   }
@@ -641,9 +743,39 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConnectorCardinalitiy_Right()
+  public EReference getConnectorCardinalitiy_Label()
   {
     return (EReference)connectorCardinalitiyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConnectorCardinalitiy_Direction()
+  {
+    return (EAttribute)connectorCardinalitiyEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getComment()
+  {
+    return commentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getComment_Comment()
+  {
+    return (EAttribute)commentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -661,9 +793,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getDataType()
+  public EEnum getDataTypeEnum()
   {
-    return dataTypeEEnum;
+    return dataTypeEnumEEnum;
   }
 
   /**
@@ -696,26 +828,31 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
     isCreated = true;
 
     // Create classes and their features
+    umlDiagramEClass = createEClass(UML_DIAGRAM);
+
     classDiagramEClass = createEClass(CLASS_DIAGRAM);
     createEReference(classDiagramEClass, CLASS_DIAGRAM__ELEMENTS);
 
-    elementEClass = createEClass(ELEMENT);
+    classElementEClass = createEClass(CLASS_ELEMENT);
 
     typeEClass = createEClass(TYPE);
-    createEAttribute(typeEClass, TYPE__TYPE);
+
+    classTypeEClass = createEClass(CLASS_TYPE);
+    createEReference(classTypeEClass, CLASS_TYPE__TYPE);
+
+    dataTypeEClass = createEClass(DATA_TYPE);
+    createEAttribute(dataTypeEClass, DATA_TYPE__TYPE);
 
     classDefEClass = createEClass(CLASS_DEF);
     createEReference(classDefEClass, CLASS_DEF__CLASSES);
 
     classNameEClass = createEClass(CLASS_NAME);
-
-    nameEClass = createEClass(NAME);
-    createEAttribute(nameEClass, NAME__NAME);
-    createEAttribute(nameEClass, NAME__LONGNAME);
+    createEAttribute(classNameEClass, CLASS_NAME__NAME);
+    createEAttribute(classNameEClass, CLASS_NAME__LONGNAME);
 
     classEClass = createEClass(CLASS);
     createEAttribute(classEClass, CLASS__ABSTRACT);
-    createEReference(classEClass, CLASS__TYPE);
+    createEReference(classEClass, CLASS__NAME);
     createEReference(classEClass, CLASS__MEMBERS);
 
     memberEClass = createEClass(MEMBER);
@@ -733,30 +870,39 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
 
     connectorEClass = createEClass(CONNECTOR);
     createEReference(connectorEClass, CONNECTOR__LEFT);
-    createEReference(connectorEClass, CONNECTOR__RIGHT);
 
     generalizationEClass = createEClass(GENERALIZATION);
+    createEReference(generalizationEClass, GENERALIZATION__RIGHT);
 
     implementationEClass = createEClass(IMPLEMENTATION);
+    createEReference(implementationEClass, IMPLEMENTATION__RIGHT);
+
+    commentLinkEClass = createEClass(COMMENT_LINK);
+    createEReference(commentLinkEClass, COMMENT_LINK__COMMENT);
 
     associationEClass = createEClass(ASSOCIATION);
+    createEReference(associationEClass, ASSOCIATION__RIGHT);
     createEReference(associationEClass, ASSOCIATION__CARDINALITY);
-    createEAttribute(associationEClass, ASSOCIATION__NOTE);
+    createEReference(associationEClass, ASSOCIATION__COMMENT);
 
     associationEndEClass = createEClass(ASSOCIATION_END);
     createEReference(associationEndEClass, ASSOCIATION_END__TYPE);
 
     connectorLabelEClass = createEClass(CONNECTOR_LABEL);
-    createEAttribute(connectorLabelEClass, CONNECTOR_LABEL__NAME);
+    createEAttribute(connectorLabelEClass, CONNECTOR_LABEL__LABEL);
 
     connectorCardinalitiyEClass = createEClass(CONNECTOR_CARDINALITIY);
     createEAttribute(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__LEFT);
-    createEAttribute(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__MIDDLE);
-    createEReference(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__RIGHT);
+    createEAttribute(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__RIGHT);
+    createEReference(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__LABEL);
+    createEAttribute(connectorCardinalitiyEClass, CONNECTOR_CARDINALITIY__DIRECTION);
+
+    commentEClass = createEClass(COMMENT);
+    createEAttribute(commentEClass, COMMENT__COMMENT);
 
     // Create enums
     visibilityEEnum = createEEnum(VISIBILITY);
-    dataTypeEEnum = createEEnum(DATA_TYPE);
+    dataTypeEnumEEnum = createEEnum(DATA_TYPE_ENUM);
   }
 
   /**
@@ -788,38 +934,45 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    classDefEClass.getESuperTypes().add(this.getElement());
-    classNameEClass.getESuperTypes().add(this.getType());
-    nameEClass.getESuperTypes().add(this.getClassName());
-    classEClass.getESuperTypes().add(this.getElement());
+    classDiagramEClass.getESuperTypes().add(this.getUmlDiagram());
+    classTypeEClass.getESuperTypes().add(this.getType());
+    dataTypeEClass.getESuperTypes().add(this.getType());
+    classDefEClass.getESuperTypes().add(this.getClassElement());
+    classEClass.getESuperTypes().add(this.getClassElement());
     attributeEClass.getESuperTypes().add(this.getMember());
     methodeEClass.getESuperTypes().add(this.getMember());
-    connectorEClass.getESuperTypes().add(this.getElement());
+    connectorEClass.getESuperTypes().add(this.getClassElement());
     generalizationEClass.getESuperTypes().add(this.getConnector());
     implementationEClass.getESuperTypes().add(this.getConnector());
+    commentLinkEClass.getESuperTypes().add(this.getConnector());
     associationEClass.getESuperTypes().add(this.getConnector());
 
     // Initialize classes and features; add operations and parameters
-    initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getClassDiagram_Elements(), this.getElement(), null, "elements", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(umlDiagramEClass, UmlDiagram.class, "UmlDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getClassDiagram_Elements(), this.getClassElement(), null, "elements", null, 0, -1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(classElementEClass, ClassElement.class, "ClassElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getType_Type(), this.getDataType(), "type", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(classTypeEClass, ClassType.class, "ClassType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getClassType_Type(), this.getClassName(), null, "type", null, 0, 1, ClassType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(dataTypeEClass, DataType.class, "DataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDataType_Type(), this.getDataTypeEnum(), "type", null, 0, 1, DataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(classDefEClass, ClassDef.class, "ClassDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getClassDef_Classes(), this.getClassName(), null, "classes", null, 0, -1, ClassDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(classNameEClass, ClassName.class, "ClassName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(nameEClass, Name.class, "Name", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getName_Name(), ecorePackage.getEString(), "name", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getName_Longname(), ecorePackage.getEString(), "longname", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getClassName_Name(), ecorePackage.getEString(), "name", null, 0, 1, ClassName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getClassName_Longname(), ecorePackage.getEString(), "longname", null, 0, 1, ClassName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(classEClass, de.cooperateproject.modeling.textual.cls.cls.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getClass_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getClass_Type(), this.getClassName(), null, "type", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getClass_Name(), this.getClassName(), null, "name", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getClass_Members(), this.getMember(), null, "members", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(memberEClass, Member.class, "Member", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -837,26 +990,35 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
 
     initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getConnector_Left(), this.getAssociationEnd(), null, "left", null, 0, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConnector_Right(), this.getAssociationEnd(), null, "right", null, 0, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getGeneralization_Right(), this.getAssociationEnd(), null, "right", null, 0, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(implementationEClass, Implementation.class, "Implementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImplementation_Right(), this.getAssociationEnd(), null, "right", null, 0, 1, Implementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCommentLink_Comment(), this.getComment(), null, "comment", null, 0, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAssociation_Right(), this.getAssociationEnd(), null, "right", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssociation_Cardinality(), this.getConnectorCardinalitiy(), null, "cardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAssociation_Note(), ecorePackage.getEString(), "note", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssociation_Comment(), this.getComment(), null, "comment", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(associationEndEClass, AssociationEnd.class, "AssociationEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssociationEnd_Type(), this.getClassName(), null, "type", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(connectorLabelEClass, ConnectorLabel.class, "ConnectorLabel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConnectorLabel_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConnectorLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConnectorLabel_Label(), ecorePackage.getEString(), "label", null, 0, 1, ConnectorLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(connectorCardinalitiyEClass, ConnectorCardinalitiy.class, "ConnectorCardinalitiy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConnectorCardinalitiy_Left(), ecorePackage.getEString(), "left", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConnectorCardinalitiy_Middle(), ecorePackage.getEString(), "middle", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConnectorCardinalitiy_Right(), this.getConnectorLabel(), null, "right", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConnectorCardinalitiy_Right(), ecorePackage.getEString(), "right", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConnectorCardinalitiy_Label(), this.getConnectorLabel(), null, "label", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConnectorCardinalitiy_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, ConnectorCardinalitiy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getComment_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(visibilityEEnum, Visibility.class, "Visibility");
@@ -865,16 +1027,16 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage
     addEEnumLiteral(visibilityEEnum, Visibility.PROTECTED);
     addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
 
-    initEEnum(dataTypeEEnum, DataType.class, "DataType");
-    addEEnumLiteral(dataTypeEEnum, DataType.STRING);
-    addEEnumLiteral(dataTypeEEnum, DataType.INT);
-    addEEnumLiteral(dataTypeEEnum, DataType.DOUBLE);
-    addEEnumLiteral(dataTypeEEnum, DataType.BOOLEAN);
-    addEEnumLiteral(dataTypeEEnum, DataType.CHAR);
-    addEEnumLiteral(dataTypeEEnum, DataType.BYTE);
-    addEEnumLiteral(dataTypeEEnum, DataType.SHORT);
-    addEEnumLiteral(dataTypeEEnum, DataType.LONG);
-    addEEnumLiteral(dataTypeEEnum, DataType.FLOAT);
+    initEEnum(dataTypeEnumEEnum, DataTypeEnum.class, "DataTypeEnum");
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.STRING);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.INT);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.DOUBLE);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.BOOLEAN);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.CHAR);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.BYTE);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.SHORT);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.LONG);
+    addEEnumLiteral(dataTypeEnumEEnum, DataTypeEnum.FLOAT);
 
     // Create resource
     createResource(eNS_URI);

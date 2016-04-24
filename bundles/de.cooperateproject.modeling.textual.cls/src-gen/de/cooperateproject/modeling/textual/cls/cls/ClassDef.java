@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ClassDef extends Element
+public interface ClassDef extends ClassElement
 {
   /**
    * Returns the value of the '<em><b>Classes</b></em>' containment reference list.

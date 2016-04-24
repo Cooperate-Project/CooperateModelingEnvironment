@@ -3,17 +3,77 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class Name</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ClassName#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ClassName#getLongname <em>Longname</em>}</li>
+ * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassName()
  * @model
  * @generated
  */
-public interface ClassName extends Type
+public interface ClassName extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassName_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ClassName#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Longname</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Longname</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Longname</em>' attribute.
+   * @see #setLongname(String)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassName_Longname()
+   * @model
+   * @generated
+   */
+  String getLongname();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ClassName#getLongname <em>Longname</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Longname</em>' attribute.
+   * @see #getLongname()
+   * @generated
+   */
+  void setLongname(String value);
+
 } // ClassName

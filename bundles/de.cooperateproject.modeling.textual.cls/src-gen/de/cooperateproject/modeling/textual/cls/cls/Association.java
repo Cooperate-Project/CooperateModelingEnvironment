@@ -13,8 +13,9 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getRight <em>Right</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getCardinality <em>Cardinality</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getNote <em>Note</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation()
@@ -23,6 +24,32 @@ package de.cooperateproject.modeling.textual.cls.cls;
  */
 public interface Association extends Connector
 {
+  /**
+   * Returns the value of the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Right</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Right</em>' containment reference.
+   * @see #setRight(AssociationEnd)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Right()
+   * @model containment="true"
+   * @generated
+   */
+  AssociationEnd getRight();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getRight <em>Right</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Right</em>' containment reference.
+   * @see #getRight()
+   * @generated
+   */
+  void setRight(AssociationEnd value);
+
   /**
    * Returns the value of the '<em><b>Cardinality</b></em>' containment reference.
    * <!-- begin-user-doc -->
@@ -50,29 +77,29 @@ public interface Association extends Connector
   void setCardinality(ConnectorCardinalitiy value);
 
   /**
-   * Returns the value of the '<em><b>Note</b></em>' attribute.
+   * Returns the value of the '<em><b>Comment</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Note</em>' attribute isn't clear,
+   * If the meaning of the '<em>Comment</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Note</em>' attribute.
-   * @see #setNote(String)
-   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Note()
-   * @model
+   * @return the value of the '<em>Comment</em>' containment reference.
+   * @see #setComment(Comment)
+   * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Comment()
+   * @model containment="true"
    * @generated
    */
-  String getNote();
+  Comment getComment();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getNote <em>Note</em>}' attribute.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getComment <em>Comment</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Note</em>' attribute.
-   * @see #getNote()
+   * @param value the new value of the '<em>Comment</em>' containment reference.
+   * @see #getComment()
    * @generated
    */
-  void setNote(String value);
+  void setComment(Comment value);
 
 } // Association
