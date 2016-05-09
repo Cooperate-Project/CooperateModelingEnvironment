@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CDO UI Integration
+Bundle-SymbolicName: de.cooperateproject.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.cooperateproject.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.cdo.transfer.workspace;bundle-version="4.2.200",
+ org.eclipse.emf.cdo.transfer.repository;bundle-version="4.2.200",
+ com.google.guava;bundle-version="15.0.0",
+ org.eclipse.net4j,
+ org.eclipse.emf.cdo.net4j;bundle-version="4.1.301",
+ org.eclipse.emf.cdo.workspace;bundle-version="4.2.1",
+ org.eclipse.core.databinding,
+ org.eclipse.core.databinding.beans,
+ org.eclipse.core.databinding.observable,
+ org.eclipse.core.databinding.property,
+ org.eclipse.jface.databinding,
+ com.ibm.icu,
+ org.apache.log4j;bundle-version="1.2.16"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ jgoodies-forms-1.8.0.jar

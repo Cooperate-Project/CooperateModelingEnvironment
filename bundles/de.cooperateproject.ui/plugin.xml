@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="CooperateProjectNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="de.cooperateproject.ui.nature.CooperateProjectNature">
+         </run>
+      </runtime>
+      <builder
+            id="de.cooperateproject.ui.CooperateProjectBuilder">
+      </builder>
+   </extension>
+   <extension
+         id="CooperateProjectBuilder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="de.cooperateproject.ui.nature.CooperateProjectBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="de.cooperateproject.ui.AddProjectNatureCommand"
+            name="Convert to Cooperate Project">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="de.cooperateproject.ui.nature.AddProjectNatureCommand"
+            commandId="de.cooperateproject.ui.AddProjectNatureCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.projectConfigure">
+         <command
+               commandId="de.cooperateproject.ui.AddProjectNatureCommand"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="de.cooperateproject.ui.properties.ProjectPropertiesPage"
+            id="de.cooperateproject.ui.nature.properties"
+            name="Cooperate">
+      </page>
+   </extension>
+
+</plugin>
