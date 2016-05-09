@@ -17,6 +17,7 @@
 		<module>de.cooperateproject.modeling.textual.cls</module>
 		<module>de.cooperateproject.modeling.textual.cls.ide</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
+		<module>de.cooperateproject.ui</module>
 	</modules>
 	
 </project>
