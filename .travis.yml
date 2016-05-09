@@ -3,20 +3,11 @@ sudo: false
 jdk:
   - oraclejdk8
 before_install:
-- wget -P /tmp http://www.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
-- unzip -d /tmp -qq /tmp/apache-maven-3.3.9-bin.zip
-- export M2_HOME=/tmp/apache-maven-3.3.9
-- chmod +x $M2_HOME/bin/mvn
-- export PATH=$M2_HOME/bin:$PATH
-- cp $JAVA_HOME/jre/lib/security/cacerts /tmp
-- wget -P /tmp https://letsencrypt.org/certs/isrgrootx1.pem
-- keytool -trustcacerts -keystore /tmp/cacerts -storepass changeit -noprompt -importcert -file /tmp/isrgrootx1.pem -alias isrgrootx1
-- wget -P /tmp https://letsencrypt.org/certs/letsencryptauthorityx1.der
-- keytool -trustcacerts -keystore /tmp/cacerts -storepass changeit -noprompt -importcert -file /tmp/letsencryptauthorityx1.der -alias letsencryptauthorityx1
-- cp ./releng/settings.xml "$HOME/.m2/"
+- git clone --depth 1 https://github.com/Cooperate-Project/BuildUtils.git /tmp/BuildUtils
+- . /tmp/BuildUtils/travisci/setup.sh
 install: true
 script:
-- ./.travis.sh "-Djavax.net.ssl.trustStore=/tmp/cacerts"
+- mavenBuild.sh
 cache:
   directories:
   - "$HOME/.m2/repository"
