@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.ui.launchermodel/src" modelPluginID="de.cooperateproject.ui.launchermodel"
+    modelName="Launcher" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>launcher.ecore</foreignModel>
+  <genPackages prefix="Launcher" basePackage="de.cooperateproject.ui.launchermodel"
+      resource="XMI" disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions="cooperate"
+      ecorePackage="launcher.ecore#/" publicationLocation="">
+    <genClasses ecoreClass="launcher.ecore#//Diagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute launcher.ecore#//Diagram/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference launcher.ecore#//Diagram/concreteSyntaxModels"/>
+    </genClasses>
+    <genClasses ecoreClass="launcher.ecore#//ConcreteSyntaxModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute launcher.ecore#//ConcreteSyntaxModel/extension"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference launcher.ecore#//ConcreteSyntaxModel/rootElement"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

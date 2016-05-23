@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IProject;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
+import de.cooperateproject.ui.nature.NatureUtils;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 
@@ -52,7 +53,7 @@ public class CooperateProjectBackgroundTaskManager {
 	}
 
 	private void startTaskFor(IProject project, BackgroundTaskFactory<?> taskFactory) {
-		BackgroundTask task = taskFactory.create(project, createProjectProperties(project));
+		BackgroundTask task = taskFactory.create(project, NatureUtils.createProjectProperties(project));
 		tasks.get(project).add(task);
 		try {
 			task.start();
@@ -90,9 +91,5 @@ public class CooperateProjectBackgroundTaskManager {
 		tasks.get(project).removeAll(tasksToRemove);
 	}
 
-	private static ProjectPropertiesDTO createProjectProperties(IProject project) {
-		ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(project);
-		propertiesStore.initFromStore();
-		return propertiesStore.getPreferences();
-	}
+
 }

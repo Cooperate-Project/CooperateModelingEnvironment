@@ -33,10 +33,16 @@
 	</properties>
 
 	<distributionManagement>
-		<site>
-			<id>github-cooperate-deploy</id>
-			<url>gitsite:git@github.com/Cooperate-Project/Cooperate</url>
-		</site>
+		<repository>
+			<id>cooperate-packagedrone</id>
+			<name>Release Repository</name>
+			<url>https://mammutbaum36.fzi.de/maven/cooperate</url>
+		</repository>
+		<snapshotRepository>
+			<id>cooperate-packagedrone</id>
+			<name>Snapshot Repository</name>
+			<url>https://mammutbaum36.fzi.de/maven/cooperate-dev</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 	<repositories>
@@ -53,6 +59,11 @@
 		<repository>
 			<id>eclipse-license-feature</id>
 			<url>http://download.eclipse.org/cbi/updates/license/</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>cooperate-dev</id>
+			<url>https://mammutbaum36.fzi.de/p2/cooperate-dev</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
@@ -187,13 +198,11 @@
 				</configuration>
 			</plugin>
 
-			<!-- we only want to deploy the update site, so we skip deployment for 
-				all other artifacts -->
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>${maven.deploy-plugin.version}</version>
 				<configuration>
-					<skip>true</skip>
+					<deployAtEnd>true</deployAtEnd>
 				</configuration>
 			</plugin>
 

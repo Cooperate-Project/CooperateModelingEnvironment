@@ -13,6 +13,4 @@ cache:
   - "$HOME/.m2/repository"
 env:
   global:  
-  - secure: "bYpeuIPqL75MjUaI541mCc18jfCp+T/AIUmTqDJu33VeJIEFwYxYxPYU+xGd4yyp6NQGUs8OD5kB0ZJ6XLhQl28gXg6jTERKSMcpQIe10Rxz0f/5Y6yqTeAHgBwPj8fNLv7YDOzOuCIa8FneMZ4dkvPhQiWhyLGJil6BVzNJ2Mw="
-  - secure: "KPvtol+6jncx1Pb2VsvGGQUzH5G1dvvUe8Y128ZzsooEC9nJXkZKltbGDnmwoQ2/tZS+PSFIkJCh5MNg5B+c5U3hViXknmGrrLQY6F2Tg2DIIW9fAhwWdxa1s5NGnbAAeKllXeHds5QsYpQsoi2+mowR8+RJOMm7co9gNd8FHrc="
-  - secure: "hWHWGXw8dv0usBhqjd1x9aemURE1Oj2rCAZxGccV34QqA8nOyxHt0h4ttEM/mJe4+pUR8xcIavJXgKEHqxszWX0h4LDgY2izukc+K1fm+ZQWnvYzP/buYpPBF+lpLIRlavmBLlY2ZxjMUGhUQJ191t6snDL9ney39bDxf1sFNYY="
+  - secure: "SHq0WmujCSwF4WspYRoMzYNrZtRWit/By9bfNCBaJdzKUSlIUnUu4MCC3TcYcM32qpE29fAYMEOo+uaw9IYO+9j47BY1DdWPiB0Em3CadmFAoPgrbM5Eth/4t3HLmWEyom3Q28R2VmNA8xldwQYYu63AubmZ+OOku9phhIxuEJ0="

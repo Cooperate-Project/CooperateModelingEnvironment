@@ -2,17 +2,8 @@ grammar de.cooperateproject.modeling.textual.cls.Cls with org.eclipse.xtext.comm
 
 generate cls "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 
-
 // ------------------------------------------------------------------------------------------
 // ---------------------------------Root-----------------------------------------------------
-// ------------------------------------------------------------------------------------------
-UmlDiagram:
-	ClassDiagram
-;
-
-
-// ------------------------------------------------------------------------------------------
-// ---------------------------------Entry point for different Diagrams-----------------------
 // ------------------------------------------------------------------------------------------
 ClassDiagram:
 	{ClassDiagram}
@@ -55,8 +46,8 @@ ClassName:
 ;
 
 Name returns ClassName: 
-	(name = ID 
-	| longname = (STRING | ID) ' as ' name = ID)
+	(name = ID )
+	| ( longname = (STRING | ID) 'as' name = ID)
 ;
 
 Class: 

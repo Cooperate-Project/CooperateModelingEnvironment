@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="de.cooperateproject.ui.editors.launcher.extensions.editorlauncher" name="EditorLauncher" schema="schema/de.cooperateproject.ui.editors.launcher.extensions.editorlauncher.exsd"/>
    <extension
          id="CooperateProjectNature"
          point="org.eclipse.core.resources.natures">
@@ -56,5 +57,15 @@
             name="Cooperate">
       </page>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            default="false"
+            extensions="cooperate"
+            icon="src/de/cooperateproject/ui/resources/cooperate_16.png"
+            id="de.cooperateproject.ui.editors.launcher.EditorLauncher"
+            launcher="de.cooperateproject.ui.editors.launcher.EditorLauncher"
+            name="Cooperate Editor Launcher">
+      </editor>
+   </extension>
 </plugin>

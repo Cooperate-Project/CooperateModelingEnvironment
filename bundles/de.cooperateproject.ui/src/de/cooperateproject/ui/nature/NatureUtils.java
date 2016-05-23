@@ -15,6 +15,9 @@ import org.eclipse.core.runtime.Status;
 
 import com.google.common.collect.ObjectArrays;
 
+import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
+import de.cooperateproject.ui.properties.ProjectPropertiesStore;
+
 public class NatureUtils {
 	
 	private NatureUtils() {
@@ -72,6 +75,12 @@ public class NatureUtils {
 	
 	public static boolean hasCooperateNature(IProject project) throws CoreException {
 		return hasNature(project, CooperateProjectNature.NATURE_ID);
+	}
+	
+	public static ProjectPropertiesDTO createProjectProperties(IProject project) {
+		ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(project);
+		propertiesStore.initFromStore();
+		return propertiesStore.getPreferences();
 	}
 
 }

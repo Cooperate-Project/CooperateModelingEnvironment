@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated launcher -->
+      <package
+            uri="http://www.cooperateproject.de/ui/launchermodel/Launcher"
+            class="de.cooperateproject.ui.launchermodel.Launcher.LauncherPackage"
+            genModel="model/launcher.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated launcher -->
+      <parser
+            type="cooperate"
+            class="de.cooperateproject.ui.launchermodel.Launcher.util.LauncherResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

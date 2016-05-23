@@ -43,6 +43,10 @@ Workflow {
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
 			}
+			
+			fragment = net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2 {}
+			fragment = net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2 {}
+			fragment = net.winklerweb.cdoxtext.generator.EMFCDOGeneratorFragment2 {}
 		}
 	}
 }

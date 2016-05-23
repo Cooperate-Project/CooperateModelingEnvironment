@@ -2,8 +2,7 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cls" nsURI="http://www.cooperateproject.de/modeling/textual/cls/Cls"
     nsPrefix="cls">
-  <eClassifiers xsi:type="ecore:EClass" name="UmlDiagram"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram" eSuperTypes="#//UmlDiagram">
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ClassElement" containment="true"/>
   </eClassifiers>

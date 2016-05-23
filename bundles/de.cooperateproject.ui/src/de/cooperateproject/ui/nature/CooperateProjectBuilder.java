@@ -26,12 +26,15 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 	@Override
 	protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
 		LOGGER.debug(String.format("%s started with kind %d.", CooperateProjectBuilder.class.getSimpleName(), kind));
-		boolean treatAsNew = kind == CLEAN_BUILD;
+		boolean treatAsNew = (kind == CLEAN_BUILD || kind == FULL_BUILD) ;
 		Collection<IProject> processedProjects = Lists.newArrayList();
 		for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
 			if (project.isOpen() && NatureUtils.hasCooperateNature(project)) {
 				buildProject(project, treatAsNew);
 				processedProjects.add(project);
+			}
+			if (!project.isOpen()) {
+				BackgroundTasksAdapter.getManager().deregisterProject(project);
 			}
 		}
 		return processedProjects.toArray(new IProject[0]);
