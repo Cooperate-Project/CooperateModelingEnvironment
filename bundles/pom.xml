@@ -21,7 +21,6 @@
 		<module>de.cooperateproject.ui.launchermodel</module>
 		<module>de.cooperateproject.ui.papyrus</module>
 		<module>de.cooperateproject.ui.textualeditors</module>
-		<module>de.cooperateproject.cdo.manager</module>
 	</modules>
 
 </project>
