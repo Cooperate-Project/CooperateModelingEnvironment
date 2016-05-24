@@ -247,7 +247,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ConnectorCardinalitiy returns ConnectorCardinalitiy
 	 *
 	 * Constraint:
-	 *     (left=Cardinality? right=Cardinality? label=ConnectorLabel? (direction='<' | direction='>')?)
+	 *     (left=Cardinality (right=Cardinality (label=ConnectorLabel (direction='<' | direction='>')?)?)?)
 	 */
 	protected void sequence_ConnectorCardinalitiy(ISerializationContext context, ConnectorCardinalitiy semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

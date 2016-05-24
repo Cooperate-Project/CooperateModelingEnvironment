@@ -22,13 +22,11 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ClsGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1;
-	protected AbstractElementAlias match_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ClsGrammarAccess) access;
 		match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getClassDefAccess().getClassKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getClassDefAccess().getInterfaceKeyword_0_1()));
-		match_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0());
 	}
 	
 	@Override
@@ -45,8 +43,6 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1.equals(syntax))
 				emit_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q.equals(syntax))
-				emit_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -59,19 +55,6 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '{' classes+=ClassName
 	 */
 	protected void emit_ClassDef_ClassKeyword_0_0_or_InterfaceKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '|'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '[' '|' (ambiguity) ']' (rule start)
-	 *     left=Cardinality '|' (ambiguity) ']' (rule end)
-	 *     right=Cardinality (ambiguity) ']' (rule end)
-	 */
-	protected void emit_ConnectorCardinalitiy_VerticalLineKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

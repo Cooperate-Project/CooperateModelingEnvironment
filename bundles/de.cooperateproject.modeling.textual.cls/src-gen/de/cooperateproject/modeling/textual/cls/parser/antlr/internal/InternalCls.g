@@ -1361,7 +1361,7 @@ ruleConnectorCardinalitiy returns [EObject current=null]
 	    }
 
 )
-)?(	otherlv_3='|' 
+)(	otherlv_3='|' 
     {
     	newLeafNode(otherlv_3, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0());
     }
@@ -1383,14 +1383,14 @@ ruleConnectorCardinalitiy returns [EObject current=null]
 	    }
 
 )
-)?)(	otherlv_5='|' 
+)(	otherlv_5='|' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0());
+    	newLeafNode(otherlv_5, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_3_2_1_0()); 
 	    }
 		lv_label_6_0=ruleConnectorLabel		{
 	        if ($current==null) {
@@ -1405,12 +1405,12 @@ ruleConnectorCardinalitiy returns [EObject current=null]
 	    }
 
 )
-)?(
+)(
 (
 (
 		lv_direction_7_1=	'<' 
     {
-        newLeafNode(lv_direction_7_1, grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_4_2_0_0());
+        newLeafNode(lv_direction_7_1, grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_3_2_2_0_0());
     }
  
 	    {
@@ -1422,7 +1422,7 @@ ruleConnectorCardinalitiy returns [EObject current=null]
 
     |		lv_direction_7_2=	'>' 
     {
-        newLeafNode(lv_direction_7_2, grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_4_2_0_1());
+        newLeafNode(lv_direction_7_2, grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_3_2_2_0_1());
     }
  
 	    {
@@ -1435,9 +1435,9 @@ ruleConnectorCardinalitiy returns [EObject current=null]
 )
 
 )
-)?)?	otherlv_8=']' 
+)?)?)?	otherlv_8=']' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_5());
+    	newLeafNode(otherlv_8, grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_4());
     }
 )
 ;

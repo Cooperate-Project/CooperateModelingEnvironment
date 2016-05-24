@@ -115,10 +115,7 @@ ConnectorLabel:
 
 ConnectorCardinalitiy: 
 	{ConnectorCardinalitiy}
-	'[' (left = Cardinality)? 
-	('|' (right = Cardinality)?)
-	('|' (label = ConnectorLabel)?
-	(direction = ('<' | '>'))?)? ']'
+	'[' left = Cardinality ('|' right = Cardinality ('|' label = ConnectorLabel (direction = ('<' | '>'))?)?)? ']'
 ;
 
 Cardinality: 

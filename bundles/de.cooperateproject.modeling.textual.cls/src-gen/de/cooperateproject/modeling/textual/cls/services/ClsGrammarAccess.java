@@ -736,24 +736,23 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cRightAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cRightCardinalityParserRuleCall_3_1_0 = (RuleCall)cRightAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cVerticalLineKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cLabelAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cLabelConnectorLabelParserRuleCall_4_1_0 = (RuleCall)cLabelAssignment_4_1.eContents().get(0);
-		private final Assignment cDirectionAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final Alternatives cDirectionAlternatives_4_2_0 = (Alternatives)cDirectionAssignment_4_2.eContents().get(0);
-		private final Keyword cDirectionLessThanSignKeyword_4_2_0_0 = (Keyword)cDirectionAlternatives_4_2_0.eContents().get(0);
-		private final Keyword cDirectionGreaterThanSignKeyword_4_2_0_1 = (Keyword)cDirectionAlternatives_4_2_0.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cVerticalLineKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Assignment cLabelAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cLabelConnectorLabelParserRuleCall_3_2_1_0 = (RuleCall)cLabelAssignment_3_2_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_3_2_2 = (Assignment)cGroup_3_2.eContents().get(2);
+		private final Alternatives cDirectionAlternatives_3_2_2_0 = (Alternatives)cDirectionAssignment_3_2_2.eContents().get(0);
+		private final Keyword cDirectionLessThanSignKeyword_3_2_2_0_0 = (Keyword)cDirectionAlternatives_3_2_2_0.eContents().get(0);
+		private final Keyword cDirectionGreaterThanSignKeyword_3_2_2_0_1 = (Keyword)cDirectionAlternatives_3_2_2_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ConnectorCardinalitiy:
 		//	{ConnectorCardinalitiy}
-		//	'[' left=Cardinality? ('|' right=Cardinality?) ('|' label=ConnectorLabel?
-		//	direction=('<' | '>')?)? ']';
+		//	'[' left=Cardinality ('|' right=Cardinality ('|' label=ConnectorLabel direction=('<' | '>')?)?)? ']';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ConnectorCardinalitiy} '[' left=Cardinality? ('|' right=Cardinality?) ('|' label=ConnectorLabel? direction=('<' |
-		//'>')?)? ']'
+		//{ConnectorCardinalitiy} '[' left=Cardinality ('|' right=Cardinality ('|' label=ConnectorLabel direction=('<' | '>')?)?)?
+		//']'
 		public Group getGroup() { return cGroup; }
 
 		//{ConnectorCardinalitiy}
@@ -762,50 +761,50 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
-		//left=Cardinality?
+		//left=Cardinality
 		public Assignment getLeftAssignment_2() { return cLeftAssignment_2; }
 
 		//Cardinality
 		public RuleCall getLeftCardinalityParserRuleCall_2_0() { return cLeftCardinalityParserRuleCall_2_0; }
 
-		//('|' right=Cardinality?)
+		//('|' right=Cardinality ('|' label=ConnectorLabel direction=('<' | '>')?)?)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//'|'
 		public Keyword getVerticalLineKeyword_3_0() { return cVerticalLineKeyword_3_0; }
 
-		//right=Cardinality?
+		//right=Cardinality
 		public Assignment getRightAssignment_3_1() { return cRightAssignment_3_1; }
 
 		//Cardinality
 		public RuleCall getRightCardinalityParserRuleCall_3_1_0() { return cRightCardinalityParserRuleCall_3_1_0; }
 
-		//('|' label=ConnectorLabel? direction=('<' | '>')?)?
-		public Group getGroup_4() { return cGroup_4; }
+		//('|' label=ConnectorLabel direction=('<' | '>')?)?
+		public Group getGroup_3_2() { return cGroup_3_2; }
 
 		//'|'
-		public Keyword getVerticalLineKeyword_4_0() { return cVerticalLineKeyword_4_0; }
+		public Keyword getVerticalLineKeyword_3_2_0() { return cVerticalLineKeyword_3_2_0; }
 
-		//label=ConnectorLabel?
-		public Assignment getLabelAssignment_4_1() { return cLabelAssignment_4_1; }
+		//label=ConnectorLabel
+		public Assignment getLabelAssignment_3_2_1() { return cLabelAssignment_3_2_1; }
 
 		//ConnectorLabel
-		public RuleCall getLabelConnectorLabelParserRuleCall_4_1_0() { return cLabelConnectorLabelParserRuleCall_4_1_0; }
+		public RuleCall getLabelConnectorLabelParserRuleCall_3_2_1_0() { return cLabelConnectorLabelParserRuleCall_3_2_1_0; }
 
 		//direction=('<' | '>')?
-		public Assignment getDirectionAssignment_4_2() { return cDirectionAssignment_4_2; }
+		public Assignment getDirectionAssignment_3_2_2() { return cDirectionAssignment_3_2_2; }
 
 		//('<' | '>')
-		public Alternatives getDirectionAlternatives_4_2_0() { return cDirectionAlternatives_4_2_0; }
+		public Alternatives getDirectionAlternatives_3_2_2_0() { return cDirectionAlternatives_3_2_2_0; }
 
 		//'<'
-		public Keyword getDirectionLessThanSignKeyword_4_2_0_0() { return cDirectionLessThanSignKeyword_4_2_0_0; }
+		public Keyword getDirectionLessThanSignKeyword_3_2_2_0_0() { return cDirectionLessThanSignKeyword_3_2_2_0_0; }
 
 		//'>'
-		public Keyword getDirectionGreaterThanSignKeyword_4_2_0_1() { return cDirectionGreaterThanSignKeyword_4_2_0_1; }
+		public Keyword getDirectionGreaterThanSignKeyword_3_2_2_0_1() { return cDirectionGreaterThanSignKeyword_3_2_2_0_1; }
 
 		//']'
-		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
 
 	public class CardinalityElements extends AbstractParserRuleElementFinder {
@@ -1327,8 +1326,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ConnectorCardinalitiy:
 	//	{ConnectorCardinalitiy}
-	//	'[' left=Cardinality? ('|' right=Cardinality?) ('|' label=ConnectorLabel?
-	//	direction=('<' | '>')?)? ']';
+	//	'[' left=Cardinality ('|' right=Cardinality ('|' label=ConnectorLabel direction=('<' | '>')?)?)? ']';
 	public ConnectorCardinalitiyElements getConnectorCardinalitiyAccess() {
 		return pConnectorCardinalitiy;
 	}

@@ -45,7 +45,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberAccess().getAlternatives(), "rule__Member__Alternatives");
 					put(grammarAccess.getConnectorAccess().getAlternatives(), "rule__Connector__Alternatives");
 					put(grammarAccess.getConnectorLabelAccess().getLabelAlternatives_0(), "rule__ConnectorLabel__LabelAlternatives_0");
-					put(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAlternatives_4_2_0(), "rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0");
+					put(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAlternatives_3_2_2_0(), "rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0");
 					put(grammarAccess.getCardinalityAccess().getAlternatives(), "rule__Cardinality__Alternatives");
 					put(grammarAccess.getCardinalityAccess().getAlternatives_1_2(), "rule__Cardinality__Alternatives_1_2");
 					put(grammarAccess.getVisibilityAccess().getAlternatives(), "rule__Visibility__Alternatives");
@@ -66,7 +66,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssociationAccess().getGroup(), "rule__Association__Group__0");
 					put(grammarAccess.getConnectorCardinalitiyAccess().getGroup(), "rule__ConnectorCardinalitiy__Group__0");
 					put(grammarAccess.getConnectorCardinalitiyAccess().getGroup_3(), "rule__ConnectorCardinalitiy__Group_3__0");
-					put(grammarAccess.getConnectorCardinalitiyAccess().getGroup_4(), "rule__ConnectorCardinalitiy__Group_4__0");
+					put(grammarAccess.getConnectorCardinalitiyAccess().getGroup_3_2(), "rule__ConnectorCardinalitiy__Group_3_2__0");
 					put(grammarAccess.getCardinalityAccess().getGroup_1(), "rule__Cardinality__Group_1__0");
 					put(grammarAccess.getCommentAccess().getGroup(), "rule__Comment__Group__0");
 					put(grammarAccess.getClassDiagramAccess().getElementsAssignment_2(), "rule__ClassDiagram__ElementsAssignment_2");
@@ -107,8 +107,8 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConnectorLabelAccess().getLabelAssignment(), "rule__ConnectorLabel__LabelAssignment");
 					put(grammarAccess.getConnectorCardinalitiyAccess().getLeftAssignment_2(), "rule__ConnectorCardinalitiy__LeftAssignment_2");
 					put(grammarAccess.getConnectorCardinalitiyAccess().getRightAssignment_3_1(), "rule__ConnectorCardinalitiy__RightAssignment_3_1");
-					put(grammarAccess.getConnectorCardinalitiyAccess().getLabelAssignment_4_1(), "rule__ConnectorCardinalitiy__LabelAssignment_4_1");
-					put(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAssignment_4_2(), "rule__ConnectorCardinalitiy__DirectionAssignment_4_2");
+					put(grammarAccess.getConnectorCardinalitiyAccess().getLabelAssignment_3_2_1(), "rule__ConnectorCardinalitiy__LabelAssignment_3_2_1");
+					put(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAssignment_3_2_2(), "rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2");
 					put(grammarAccess.getCommentAccess().getCommentAssignment_2(), "rule__Comment__CommentAssignment_2");
 				}
 			};

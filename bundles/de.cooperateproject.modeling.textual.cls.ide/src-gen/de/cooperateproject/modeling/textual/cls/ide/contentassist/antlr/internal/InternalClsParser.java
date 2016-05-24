@@ -1914,11 +1914,11 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                 {
                 int LA1_3 = input.LA(2);
 
-                if ( (LA1_3==17||(LA1_3>=38 && LA1_3<=39)) ) {
-                    alt1=3;
-                }
-                else if ( (LA1_3==31) ) {
+                if ( (LA1_3==31) ) {
                     alt1=2;
+                }
+                else if ( (LA1_3==17||(LA1_3>=38 && LA1_3<=39)) ) {
+                    alt1=3;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2414,19 +2414,24 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
             if ( (LA7_0==RULE_ID) ) {
                 switch ( input.LA(2) ) {
+                case 39:
+                    {
+                    alt7=3;
+                    }
+                    break;
                 case 17:
                     {
-                    int LA7_2 = input.LA(3);
+                    int LA7_3 = input.LA(3);
 
-                    if ( (LA7_2==44) ) {
+                    if ( (LA7_3==44) ) {
                         alt7=4;
                     }
-                    else if ( (LA7_2==RULE_ID) ) {
+                    else if ( (LA7_3==RULE_ID) ) {
                         alt7=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 7, 2, input);
+                            new NoViableAltException("", 7, 3, input);
 
                         throw nvae;
                     }
@@ -2435,11 +2440,6 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                 case 38:
                     {
                     alt7=1;
-                    }
-                    break;
-                case 39:
-                    {
-                    alt7=3;
                     }
                     break;
                 default:
@@ -2621,9 +2621,9 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorLabel__LabelAlternatives_0"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0"
-    // InternalCls.g:912:1: rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 : ( ( '<' ) | ( '>' ) );
-    public final void rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0"
+    // InternalCls.g:912:1: rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 : ( ( '<' ) | ( '>' ) );
+    public final void rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -2651,9 +2651,9 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:917:1: ( '<' )
                     // InternalCls.g:918:1: '<'
                     {
-                     before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_4_2_0_0()); 
+                     before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_3_2_2_0_0()); 
                     match(input,13,FOLLOW_2); 
-                     after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_4_2_0_0()); 
+                     after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_3_2_2_0_0()); 
 
                     }
 
@@ -2666,9 +2666,9 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:925:6: ( '>' )
                     // InternalCls.g:926:1: '>'
                     {
-                     before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_4_2_0_1()); 
+                     before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_3_2_2_0_1()); 
                     match(input,14,FOLLOW_2); 
-                     after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_4_2_0_1()); 
+                     after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_3_2_2_0_1()); 
 
                     }
 
@@ -2689,7 +2689,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0"
+    // $ANTLR end "rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0"
 
 
     // $ANTLR start "rule__Cardinality__Alternatives"
@@ -8038,7 +8038,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:2894:1: ( rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3 )
             // InternalCls.g:2895:2: rule__ConnectorCardinalitiy__Group__2__Impl rule__ConnectorCardinalitiy__Group__3
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__ConnectorCardinalitiy__Group__2__Impl();
 
             state._fsp--;
@@ -8067,38 +8067,27 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__2__Impl"
-    // InternalCls.g:2902:1: rule__ConnectorCardinalitiy__Group__2__Impl : ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? ) ;
+    // InternalCls.g:2902:1: rule__ConnectorCardinalitiy__Group__2__Impl : ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 ) ) ;
     public final void rule__ConnectorCardinalitiy__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:2906:1: ( ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? ) )
-            // InternalCls.g:2907:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? )
+            // InternalCls.g:2906:1: ( ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 ) ) )
+            // InternalCls.g:2907:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 ) )
             {
-            // InternalCls.g:2907:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 )? )
-            // InternalCls.g:2908:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )?
+            // InternalCls.g:2907:1: ( ( rule__ConnectorCardinalitiy__LeftAssignment_2 ) )
+            // InternalCls.g:2908:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getLeftAssignment_2()); 
-            // InternalCls.g:2909:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // InternalCls.g:2909:1: ( rule__ConnectorCardinalitiy__LeftAssignment_2 )
+            // InternalCls.g:2909:2: rule__ConnectorCardinalitiy__LeftAssignment_2
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConnectorCardinalitiy__LeftAssignment_2();
 
-            if ( (LA30_0==RULE_INT||LA30_0==15) ) {
-                alt30=1;
-            }
-            switch (alt30) {
-                case 1 :
-                    // InternalCls.g:2909:2: rule__ConnectorCardinalitiy__LeftAssignment_2
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__ConnectorCardinalitiy__LeftAssignment_2();
+            state._fsp--;
 
-                    state._fsp--;
-
-
-                    }
-                    break;
 
             }
 
@@ -8163,27 +8152,38 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__3__Impl"
-    // InternalCls.g:2931:1: rule__ConnectorCardinalitiy__Group__3__Impl : ( ( rule__ConnectorCardinalitiy__Group_3__0 ) ) ;
+    // InternalCls.g:2931:1: rule__ConnectorCardinalitiy__Group__3__Impl : ( ( rule__ConnectorCardinalitiy__Group_3__0 )? ) ;
     public final void rule__ConnectorCardinalitiy__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:2935:1: ( ( ( rule__ConnectorCardinalitiy__Group_3__0 ) ) )
-            // InternalCls.g:2936:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 ) )
+            // InternalCls.g:2935:1: ( ( ( rule__ConnectorCardinalitiy__Group_3__0 )? ) )
+            // InternalCls.g:2936:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 )? )
             {
-            // InternalCls.g:2936:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 ) )
-            // InternalCls.g:2937:1: ( rule__ConnectorCardinalitiy__Group_3__0 )
+            // InternalCls.g:2936:1: ( ( rule__ConnectorCardinalitiy__Group_3__0 )? )
+            // InternalCls.g:2937:1: ( rule__ConnectorCardinalitiy__Group_3__0 )?
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getGroup_3()); 
-            // InternalCls.g:2938:1: ( rule__ConnectorCardinalitiy__Group_3__0 )
-            // InternalCls.g:2938:2: rule__ConnectorCardinalitiy__Group_3__0
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__Group_3__0();
+            // InternalCls.g:2938:1: ( rule__ConnectorCardinalitiy__Group_3__0 )?
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA30_0==42) ) {
+                alt30=1;
+            }
+            switch (alt30) {
+                case 1 :
+                    // InternalCls.g:2938:2: rule__ConnectorCardinalitiy__Group_3__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__ConnectorCardinalitiy__Group_3__0();
 
+                    state._fsp--;
+
+
+                    }
+                    break;
 
             }
 
@@ -8210,22 +8210,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__4"
-    // InternalCls.g:2948:1: rule__ConnectorCardinalitiy__Group__4 : rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5 ;
+    // InternalCls.g:2948:1: rule__ConnectorCardinalitiy__Group__4 : rule__ConnectorCardinalitiy__Group__4__Impl ;
     public final void rule__ConnectorCardinalitiy__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:2952:1: ( rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5 )
-            // InternalCls.g:2953:2: rule__ConnectorCardinalitiy__Group__4__Impl rule__ConnectorCardinalitiy__Group__5
+            // InternalCls.g:2952:1: ( rule__ConnectorCardinalitiy__Group__4__Impl )
+            // InternalCls.g:2953:2: rule__ConnectorCardinalitiy__Group__4__Impl
             {
-            pushFollow(FOLLOW_30);
-            rule__ConnectorCardinalitiy__Group__4__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__Group__5();
+            rule__ConnectorCardinalitiy__Group__4__Impl();
 
             state._fsp--;
 
@@ -8248,42 +8243,21 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group__4__Impl"
-    // InternalCls.g:2960:1: rule__ConnectorCardinalitiy__Group__4__Impl : ( ( rule__ConnectorCardinalitiy__Group_4__0 )? ) ;
+    // InternalCls.g:2959:1: rule__ConnectorCardinalitiy__Group__4__Impl : ( ']' ) ;
     public final void rule__ConnectorCardinalitiy__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:2964:1: ( ( ( rule__ConnectorCardinalitiy__Group_4__0 )? ) )
-            // InternalCls.g:2965:1: ( ( rule__ConnectorCardinalitiy__Group_4__0 )? )
+            // InternalCls.g:2963:1: ( ( ']' ) )
+            // InternalCls.g:2964:1: ( ']' )
             {
-            // InternalCls.g:2965:1: ( ( rule__ConnectorCardinalitiy__Group_4__0 )? )
-            // InternalCls.g:2966:1: ( rule__ConnectorCardinalitiy__Group_4__0 )?
+            // InternalCls.g:2964:1: ( ']' )
+            // InternalCls.g:2965:1: ']'
             {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getGroup_4()); 
-            // InternalCls.g:2967:1: ( rule__ConnectorCardinalitiy__Group_4__0 )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
-
-            if ( (LA31_0==42) ) {
-                alt31=1;
-            }
-            switch (alt31) {
-                case 1 :
-                    // InternalCls.g:2967:2: rule__ConnectorCardinalitiy__Group_4__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__ConnectorCardinalitiy__Group_4__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getConnectorCardinalitiyAccess().getGroup_4()); 
+             before(grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_4()); 
+            match(input,41,FOLLOW_2); 
+             after(grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_4()); 
 
             }
 
@@ -8305,87 +8279,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorCardinalitiy__Group__4__Impl"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group__5"
-    // InternalCls.g:2977:1: rule__ConnectorCardinalitiy__Group__5 : rule__ConnectorCardinalitiy__Group__5__Impl ;
-    public final void rule__ConnectorCardinalitiy__Group__5() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalCls.g:2981:1: ( rule__ConnectorCardinalitiy__Group__5__Impl )
-            // InternalCls.g:2982:2: rule__ConnectorCardinalitiy__Group__5__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__Group__5__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group__5"
-
-
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group__5__Impl"
-    // InternalCls.g:2988:1: rule__ConnectorCardinalitiy__Group__5__Impl : ( ']' ) ;
-    public final void rule__ConnectorCardinalitiy__Group__5__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalCls.g:2992:1: ( ( ']' ) )
-            // InternalCls.g:2993:1: ( ']' )
-            {
-            // InternalCls.g:2993:1: ( ']' )
-            // InternalCls.g:2994:1: ']'
-            {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_5()); 
-            match(input,41,FOLLOW_2); 
-             after(grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_5()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group__5__Impl"
-
-
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__0"
-    // InternalCls.g:3019:1: rule__ConnectorCardinalitiy__Group_3__0 : rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 ;
+    // InternalCls.g:2988:1: rule__ConnectorCardinalitiy__Group_3__0 : rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 ;
     public final void rule__ConnectorCardinalitiy__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3023:1: ( rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 )
-            // InternalCls.g:3024:2: rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1
+            // InternalCls.g:2992:1: ( rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1 )
+            // InternalCls.g:2993:2: rule__ConnectorCardinalitiy__Group_3__0__Impl rule__ConnectorCardinalitiy__Group_3__1
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_29);
             rule__ConnectorCardinalitiy__Group_3__0__Impl();
 
             state._fsp--;
@@ -8414,17 +8318,17 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__0__Impl"
-    // InternalCls.g:3031:1: rule__ConnectorCardinalitiy__Group_3__0__Impl : ( '|' ) ;
+    // InternalCls.g:3000:1: rule__ConnectorCardinalitiy__Group_3__0__Impl : ( '|' ) ;
     public final void rule__ConnectorCardinalitiy__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3035:1: ( ( '|' ) )
-            // InternalCls.g:3036:1: ( '|' )
+            // InternalCls.g:3004:1: ( ( '|' ) )
+            // InternalCls.g:3005:1: ( '|' )
             {
-            // InternalCls.g:3036:1: ( '|' )
-            // InternalCls.g:3037:1: '|'
+            // InternalCls.g:3005:1: ( '|' )
+            // InternalCls.g:3006:1: '|'
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0()); 
             match(input,42,FOLLOW_2); 
@@ -8451,17 +8355,22 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__1"
-    // InternalCls.g:3050:1: rule__ConnectorCardinalitiy__Group_3__1 : rule__ConnectorCardinalitiy__Group_3__1__Impl ;
+    // InternalCls.g:3019:1: rule__ConnectorCardinalitiy__Group_3__1 : rule__ConnectorCardinalitiy__Group_3__1__Impl rule__ConnectorCardinalitiy__Group_3__2 ;
     public final void rule__ConnectorCardinalitiy__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3054:1: ( rule__ConnectorCardinalitiy__Group_3__1__Impl )
-            // InternalCls.g:3055:2: rule__ConnectorCardinalitiy__Group_3__1__Impl
+            // InternalCls.g:3023:1: ( rule__ConnectorCardinalitiy__Group_3__1__Impl rule__ConnectorCardinalitiy__Group_3__2 )
+            // InternalCls.g:3024:2: rule__ConnectorCardinalitiy__Group_3__1__Impl rule__ConnectorCardinalitiy__Group_3__2
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_31);
             rule__ConnectorCardinalitiy__Group_3__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConnectorCardinalitiy__Group_3__2();
 
             state._fsp--;
 
@@ -8484,38 +8393,27 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__1__Impl"
-    // InternalCls.g:3061:1: rule__ConnectorCardinalitiy__Group_3__1__Impl : ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )? ) ;
+    // InternalCls.g:3031:1: rule__ConnectorCardinalitiy__Group_3__1__Impl : ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 ) ) ;
     public final void rule__ConnectorCardinalitiy__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3065:1: ( ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )? ) )
-            // InternalCls.g:3066:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )? )
+            // InternalCls.g:3035:1: ( ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 ) ) )
+            // InternalCls.g:3036:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 ) )
             {
-            // InternalCls.g:3066:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )? )
-            // InternalCls.g:3067:1: ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )?
+            // InternalCls.g:3036:1: ( ( rule__ConnectorCardinalitiy__RightAssignment_3_1 ) )
+            // InternalCls.g:3037:1: ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )
             {
              before(grammarAccess.getConnectorCardinalitiyAccess().getRightAssignment_3_1()); 
-            // InternalCls.g:3068:1: ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )?
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            // InternalCls.g:3038:1: ( rule__ConnectorCardinalitiy__RightAssignment_3_1 )
+            // InternalCls.g:3038:2: rule__ConnectorCardinalitiy__RightAssignment_3_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConnectorCardinalitiy__RightAssignment_3_1();
 
-            if ( (LA32_0==RULE_INT||LA32_0==15) ) {
-                alt32=1;
-            }
-            switch (alt32) {
-                case 1 :
-                    // InternalCls.g:3068:2: rule__ConnectorCardinalitiy__RightAssignment_3_1
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__ConnectorCardinalitiy__RightAssignment_3_1();
+            state._fsp--;
 
-                    state._fsp--;
-
-
-                    }
-                    break;
 
             }
 
@@ -8541,23 +8439,18 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorCardinalitiy__Group_3__1__Impl"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__0"
-    // InternalCls.g:3082:1: rule__ConnectorCardinalitiy__Group_4__0 : rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1 ;
-    public final void rule__ConnectorCardinalitiy__Group_4__0() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__2"
+    // InternalCls.g:3048:1: rule__ConnectorCardinalitiy__Group_3__2 : rule__ConnectorCardinalitiy__Group_3__2__Impl ;
+    public final void rule__ConnectorCardinalitiy__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3086:1: ( rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1 )
-            // InternalCls.g:3087:2: rule__ConnectorCardinalitiy__Group_4__0__Impl rule__ConnectorCardinalitiy__Group_4__1
+            // InternalCls.g:3052:1: ( rule__ConnectorCardinalitiy__Group_3__2__Impl )
+            // InternalCls.g:3053:2: rule__ConnectorCardinalitiy__Group_3__2__Impl
             {
-            pushFollow(FOLLOW_32);
-            rule__ConnectorCardinalitiy__Group_4__0__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__Group_4__1();
+            rule__ConnectorCardinalitiy__Group_3__2__Impl();
 
             state._fsp--;
 
@@ -8576,12 +8469,108 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group_4__0"
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3__2"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__0__Impl"
-    // InternalCls.g:3094:1: rule__ConnectorCardinalitiy__Group_4__0__Impl : ( '|' ) ;
-    public final void rule__ConnectorCardinalitiy__Group_4__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3__2__Impl"
+    // InternalCls.g:3059:1: rule__ConnectorCardinalitiy__Group_3__2__Impl : ( ( rule__ConnectorCardinalitiy__Group_3_2__0 )? ) ;
+    public final void rule__ConnectorCardinalitiy__Group_3__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalCls.g:3063:1: ( ( ( rule__ConnectorCardinalitiy__Group_3_2__0 )? ) )
+            // InternalCls.g:3064:1: ( ( rule__ConnectorCardinalitiy__Group_3_2__0 )? )
+            {
+            // InternalCls.g:3064:1: ( ( rule__ConnectorCardinalitiy__Group_3_2__0 )? )
+            // InternalCls.g:3065:1: ( rule__ConnectorCardinalitiy__Group_3_2__0 )?
+            {
+             before(grammarAccess.getConnectorCardinalitiyAccess().getGroup_3_2()); 
+            // InternalCls.g:3066:1: ( rule__ConnectorCardinalitiy__Group_3_2__0 )?
+            int alt31=2;
+            int LA31_0 = input.LA(1);
+
+            if ( (LA31_0==42) ) {
+                alt31=1;
+            }
+            switch (alt31) {
+                case 1 :
+                    // InternalCls.g:3066:2: rule__ConnectorCardinalitiy__Group_3_2__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__ConnectorCardinalitiy__Group_3_2__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getConnectorCardinalitiyAccess().getGroup_3_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3__2__Impl"
+
+
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3_2__0"
+    // InternalCls.g:3082:1: rule__ConnectorCardinalitiy__Group_3_2__0 : rule__ConnectorCardinalitiy__Group_3_2__0__Impl rule__ConnectorCardinalitiy__Group_3_2__1 ;
+    public final void rule__ConnectorCardinalitiy__Group_3_2__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalCls.g:3086:1: ( rule__ConnectorCardinalitiy__Group_3_2__0__Impl rule__ConnectorCardinalitiy__Group_3_2__1 )
+            // InternalCls.g:3087:2: rule__ConnectorCardinalitiy__Group_3_2__0__Impl rule__ConnectorCardinalitiy__Group_3_2__1
+            {
+            pushFollow(FOLLOW_7);
+            rule__ConnectorCardinalitiy__Group_3_2__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConnectorCardinalitiy__Group_3_2__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3_2__0"
+
+
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3_2__0__Impl"
+    // InternalCls.g:3094:1: rule__ConnectorCardinalitiy__Group_3_2__0__Impl : ( '|' ) ;
+    public final void rule__ConnectorCardinalitiy__Group_3_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -8592,9 +8581,9 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3099:1: ( '|' )
             // InternalCls.g:3100:1: '|'
             {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0()); 
+             before(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_2_0()); 
             match(input,42,FOLLOW_2); 
-             after(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0()); 
+             after(grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_2_0()); 
 
             }
 
@@ -8613,26 +8602,26 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group_4__0__Impl"
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3_2__0__Impl"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__1"
-    // InternalCls.g:3113:1: rule__ConnectorCardinalitiy__Group_4__1 : rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2 ;
-    public final void rule__ConnectorCardinalitiy__Group_4__1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3_2__1"
+    // InternalCls.g:3113:1: rule__ConnectorCardinalitiy__Group_3_2__1 : rule__ConnectorCardinalitiy__Group_3_2__1__Impl rule__ConnectorCardinalitiy__Group_3_2__2 ;
+    public final void rule__ConnectorCardinalitiy__Group_3_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3117:1: ( rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2 )
-            // InternalCls.g:3118:2: rule__ConnectorCardinalitiy__Group_4__1__Impl rule__ConnectorCardinalitiy__Group_4__2
+            // InternalCls.g:3117:1: ( rule__ConnectorCardinalitiy__Group_3_2__1__Impl rule__ConnectorCardinalitiy__Group_3_2__2 )
+            // InternalCls.g:3118:2: rule__ConnectorCardinalitiy__Group_3_2__1__Impl rule__ConnectorCardinalitiy__Group_3_2__2
             {
             pushFollow(FOLLOW_32);
-            rule__ConnectorCardinalitiy__Group_4__1__Impl();
+            rule__ConnectorCardinalitiy__Group_3_2__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__Group_4__2();
+            rule__ConnectorCardinalitiy__Group_3_2__2();
 
             state._fsp--;
 
@@ -8651,36 +8640,116 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group_4__1"
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3_2__1"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__1__Impl"
-    // InternalCls.g:3125:1: rule__ConnectorCardinalitiy__Group_4__1__Impl : ( ( rule__ConnectorCardinalitiy__LabelAssignment_4_1 )? ) ;
-    public final void rule__ConnectorCardinalitiy__Group_4__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3_2__1__Impl"
+    // InternalCls.g:3125:1: rule__ConnectorCardinalitiy__Group_3_2__1__Impl : ( ( rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 ) ) ;
+    public final void rule__ConnectorCardinalitiy__Group_3_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:3129:1: ( ( ( rule__ConnectorCardinalitiy__LabelAssignment_4_1 )? ) )
-            // InternalCls.g:3130:1: ( ( rule__ConnectorCardinalitiy__LabelAssignment_4_1 )? )
+            // InternalCls.g:3129:1: ( ( ( rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 ) ) )
+            // InternalCls.g:3130:1: ( ( rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 ) )
             {
-            // InternalCls.g:3130:1: ( ( rule__ConnectorCardinalitiy__LabelAssignment_4_1 )? )
-            // InternalCls.g:3131:1: ( rule__ConnectorCardinalitiy__LabelAssignment_4_1 )?
+            // InternalCls.g:3130:1: ( ( rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 ) )
+            // InternalCls.g:3131:1: ( rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 )
             {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getLabelAssignment_4_1()); 
-            // InternalCls.g:3132:1: ( rule__ConnectorCardinalitiy__LabelAssignment_4_1 )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+             before(grammarAccess.getConnectorCardinalitiyAccess().getLabelAssignment_3_2_1()); 
+            // InternalCls.g:3132:1: ( rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 )
+            // InternalCls.g:3132:2: rule__ConnectorCardinalitiy__LabelAssignment_3_2_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConnectorCardinalitiy__LabelAssignment_3_2_1();
 
-            if ( ((LA33_0>=RULE_STRING && LA33_0<=RULE_ID)) ) {
-                alt33=1;
+            state._fsp--;
+
+
             }
-            switch (alt33) {
+
+             after(grammarAccess.getConnectorCardinalitiyAccess().getLabelAssignment_3_2_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3_2__1__Impl"
+
+
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3_2__2"
+    // InternalCls.g:3142:1: rule__ConnectorCardinalitiy__Group_3_2__2 : rule__ConnectorCardinalitiy__Group_3_2__2__Impl ;
+    public final void rule__ConnectorCardinalitiy__Group_3_2__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalCls.g:3146:1: ( rule__ConnectorCardinalitiy__Group_3_2__2__Impl )
+            // InternalCls.g:3147:2: rule__ConnectorCardinalitiy__Group_3_2__2__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConnectorCardinalitiy__Group_3_2__2__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3_2__2"
+
+
+    // $ANTLR start "rule__ConnectorCardinalitiy__Group_3_2__2__Impl"
+    // InternalCls.g:3153:1: rule__ConnectorCardinalitiy__Group_3_2__2__Impl : ( ( rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 )? ) ;
+    public final void rule__ConnectorCardinalitiy__Group_3_2__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // InternalCls.g:3157:1: ( ( ( rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 )? ) )
+            // InternalCls.g:3158:1: ( ( rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 )? )
+            {
+            // InternalCls.g:3158:1: ( ( rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 )? )
+            // InternalCls.g:3159:1: ( rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 )?
+            {
+             before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAssignment_3_2_2()); 
+            // InternalCls.g:3160:1: ( rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
+
+            if ( ((LA32_0>=13 && LA32_0<=14)) ) {
+                alt32=1;
+            }
+            switch (alt32) {
                 case 1 :
-                    // InternalCls.g:3132:2: rule__ConnectorCardinalitiy__LabelAssignment_4_1
+                    // InternalCls.g:3160:2: rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__ConnectorCardinalitiy__LabelAssignment_4_1();
+                    rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2();
 
                     state._fsp--;
 
@@ -8690,7 +8759,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getConnectorCardinalitiyAccess().getLabelAssignment_4_1()); 
+             after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAssignment_3_2_2()); 
 
             }
 
@@ -8709,98 +8778,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group_4__1__Impl"
-
-
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__2"
-    // InternalCls.g:3142:1: rule__ConnectorCardinalitiy__Group_4__2 : rule__ConnectorCardinalitiy__Group_4__2__Impl ;
-    public final void rule__ConnectorCardinalitiy__Group_4__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalCls.g:3146:1: ( rule__ConnectorCardinalitiy__Group_4__2__Impl )
-            // InternalCls.g:3147:2: rule__ConnectorCardinalitiy__Group_4__2__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__Group_4__2__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group_4__2"
-
-
-    // $ANTLR start "rule__ConnectorCardinalitiy__Group_4__2__Impl"
-    // InternalCls.g:3153:1: rule__ConnectorCardinalitiy__Group_4__2__Impl : ( ( rule__ConnectorCardinalitiy__DirectionAssignment_4_2 )? ) ;
-    public final void rule__ConnectorCardinalitiy__Group_4__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // InternalCls.g:3157:1: ( ( ( rule__ConnectorCardinalitiy__DirectionAssignment_4_2 )? ) )
-            // InternalCls.g:3158:1: ( ( rule__ConnectorCardinalitiy__DirectionAssignment_4_2 )? )
-            {
-            // InternalCls.g:3158:1: ( ( rule__ConnectorCardinalitiy__DirectionAssignment_4_2 )? )
-            // InternalCls.g:3159:1: ( rule__ConnectorCardinalitiy__DirectionAssignment_4_2 )?
-            {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAssignment_4_2()); 
-            // InternalCls.g:3160:1: ( rule__ConnectorCardinalitiy__DirectionAssignment_4_2 )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
-
-            if ( ((LA34_0>=13 && LA34_0<=14)) ) {
-                alt34=1;
-            }
-            switch (alt34) {
-                case 1 :
-                    // InternalCls.g:3160:2: rule__ConnectorCardinalitiy__DirectionAssignment_4_2
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__ConnectorCardinalitiy__DirectionAssignment_4_2();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAssignment_4_2()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConnectorCardinalitiy__Group_4__2__Impl"
+    // $ANTLR end "rule__ConnectorCardinalitiy__Group_3_2__2__Impl"
 
 
     // $ANTLR start "rule__Cardinality__Group_1__0"
@@ -8888,7 +8866,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:3209:1: ( rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2 )
             // InternalCls.g:3210:2: rule__Cardinality__Group_1__1__Impl rule__Cardinality__Group_1__2
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_29);
             rule__Cardinality__Group_1__1__Impl();
 
             state._fsp--;
@@ -10928,9 +10906,9 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorCardinalitiy__RightAssignment_3_1"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__LabelAssignment_4_1"
-    // InternalCls.g:4032:1: rule__ConnectorCardinalitiy__LabelAssignment_4_1 : ( ruleConnectorLabel ) ;
-    public final void rule__ConnectorCardinalitiy__LabelAssignment_4_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__LabelAssignment_3_2_1"
+    // InternalCls.g:4032:1: rule__ConnectorCardinalitiy__LabelAssignment_3_2_1 : ( ruleConnectorLabel ) ;
+    public final void rule__ConnectorCardinalitiy__LabelAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -10941,13 +10919,13 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
             // InternalCls.g:4037:1: ( ruleConnectorLabel )
             // InternalCls.g:4038:1: ruleConnectorLabel
             {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_4_1_0()); 
+             before(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_3_2_1_0()); 
             pushFollow(FOLLOW_2);
             ruleConnectorLabel();
 
             state._fsp--;
 
-             after(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_4_1_0()); 
+             after(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_3_2_1_0()); 
 
             }
 
@@ -10966,35 +10944,35 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__LabelAssignment_4_1"
+    // $ANTLR end "rule__ConnectorCardinalitiy__LabelAssignment_3_2_1"
 
 
-    // $ANTLR start "rule__ConnectorCardinalitiy__DirectionAssignment_4_2"
-    // InternalCls.g:4047:1: rule__ConnectorCardinalitiy__DirectionAssignment_4_2 : ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 ) ) ;
-    public final void rule__ConnectorCardinalitiy__DirectionAssignment_4_2() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2"
+    // InternalCls.g:4047:1: rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2 : ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 ) ) ;
+    public final void rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:4051:1: ( ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 ) ) )
-            // InternalCls.g:4052:1: ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 ) )
+            // InternalCls.g:4051:1: ( ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 ) ) )
+            // InternalCls.g:4052:1: ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 ) )
             {
-            // InternalCls.g:4052:1: ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 ) )
-            // InternalCls.g:4053:1: ( rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 )
+            // InternalCls.g:4052:1: ( ( rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 ) )
+            // InternalCls.g:4053:1: ( rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 )
             {
-             before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAlternatives_4_2_0()); 
-            // InternalCls.g:4054:1: ( rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0 )
-            // InternalCls.g:4054:2: rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0
+             before(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAlternatives_3_2_2_0()); 
+            // InternalCls.g:4054:1: ( rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0 )
+            // InternalCls.g:4054:2: rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0
             {
             pushFollow(FOLLOW_2);
-            rule__ConnectorCardinalitiy__DirectionAlternatives_4_2_0();
+            rule__ConnectorCardinalitiy__DirectionAlternatives_3_2_2_0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAlternatives_4_2_0()); 
+             after(grammarAccess.getConnectorCardinalitiyAccess().getDirectionAlternatives_3_2_2_0()); 
 
             }
 
@@ -11013,7 +10991,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorCardinalitiy__DirectionAssignment_4_2"
+    // $ANTLR end "rule__ConnectorCardinalitiy__DirectionAssignment_3_2_2"
 
 
     // $ANTLR start "rule__Comment__CommentAssignment_2"
@@ -11128,10 +11106,10 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000110000000000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000040000008040L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000008040L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000060000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000008040L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000006030L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000080000000000L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000020000000000L});

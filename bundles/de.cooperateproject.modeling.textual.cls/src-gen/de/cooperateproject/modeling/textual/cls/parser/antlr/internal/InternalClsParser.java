@@ -3378,7 +3378,7 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConnectorCardinalitiy"
-    // InternalCls.g:1332:1: ruleConnectorCardinalitiy returns [EObject current=null] : ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) )? (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )? ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? otherlv_8= ']' ) ;
+    // InternalCls.g:1332:1: ruleConnectorCardinalitiy returns [EObject current=null] : ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) ) (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? )? otherlv_8= ']' ) ;
     public final EObject ruleConnectorCardinalitiy() throws RecognitionException {
         EObject current = null;
 
@@ -3398,11 +3398,11 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalCls.g:1335:28: ( ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) )? (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )? ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? otherlv_8= ']' ) )
-            // InternalCls.g:1336:1: ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) )? (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )? ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? otherlv_8= ']' )
+            // InternalCls.g:1335:28: ( ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) ) (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? )? otherlv_8= ']' ) )
+            // InternalCls.g:1336:1: ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) ) (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? )? otherlv_8= ']' )
             {
-            // InternalCls.g:1336:1: ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) )? (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )? ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? otherlv_8= ']' )
-            // InternalCls.g:1336:2: () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) )? (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )? ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? otherlv_8= ']'
+            // InternalCls.g:1336:1: ( () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) ) (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? )? otherlv_8= ']' )
+            // InternalCls.g:1336:2: () otherlv_1= '[' ( (lv_left_2_0= ruleCardinality ) ) (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? )? otherlv_8= ']'
             {
             // InternalCls.g:1336:2: ()
             // InternalCls.g:1337:5: 
@@ -3419,64 +3419,53 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_1, grammarAccess.getConnectorCardinalitiyAccess().getLeftSquareBracketKeyword_1());
                 
-            // InternalCls.g:1346:1: ( (lv_left_2_0= ruleCardinality ) )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
-
-            if ( (LA25_0==RULE_INT||LA25_0==33) ) {
-                alt25=1;
-            }
-            switch (alt25) {
-                case 1 :
-                    // InternalCls.g:1347:1: (lv_left_2_0= ruleCardinality )
-                    {
-                    // InternalCls.g:1347:1: (lv_left_2_0= ruleCardinality )
-                    // InternalCls.g:1348:3: lv_left_2_0= ruleCardinality
-                    {
-                     
-                    	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getLeftCardinalityParserRuleCall_2_0()); 
-                    	    
-                    pushFollow(FOLLOW_27);
-                    lv_left_2_0=ruleCardinality();
-
-                    state._fsp--;
-
-
-                    	        if (current==null) {
-                    	            current = createModelElementForParent(grammarAccess.getConnectorCardinalitiyRule());
-                    	        }
-                           		set(
-                           			current, 
-                           			"left",
-                            		lv_left_2_0, 
-                            		"de.cooperateproject.modeling.textual.cls.Cls.Cardinality");
-                    	        afterParserOrEnumRuleCall();
-                    	    
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-            // InternalCls.g:1364:3: (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )? )
-            // InternalCls.g:1364:5: otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) )?
+            // InternalCls.g:1346:1: ( (lv_left_2_0= ruleCardinality ) )
+            // InternalCls.g:1347:1: (lv_left_2_0= ruleCardinality )
             {
-            otherlv_3=(Token)match(input,29,FOLLOW_28); 
+            // InternalCls.g:1347:1: (lv_left_2_0= ruleCardinality )
+            // InternalCls.g:1348:3: lv_left_2_0= ruleCardinality
+            {
+             
+            	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getLeftCardinalityParserRuleCall_2_0()); 
+            	    
+            pushFollow(FOLLOW_27);
+            lv_left_2_0=ruleCardinality();
 
-                	newLeafNode(otherlv_3, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0());
-                
-            // InternalCls.g:1368:1: ( (lv_right_4_0= ruleCardinality ) )?
-            int alt26=2;
-            int LA26_0 = input.LA(1);
+            state._fsp--;
 
-            if ( (LA26_0==RULE_INT||LA26_0==33) ) {
-                alt26=1;
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getConnectorCardinalitiyRule());
+            	        }
+                   		set(
+                   			current, 
+                   			"left",
+                    		lv_left_2_0, 
+                    		"de.cooperateproject.modeling.textual.cls.Cls.Cardinality");
+            	        afterParserOrEnumRuleCall();
+            	    
+
             }
-            switch (alt26) {
+
+
+            }
+
+            // InternalCls.g:1364:2: (otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )? )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
+
+            if ( (LA28_0==29) ) {
+                alt28=1;
+            }
+            switch (alt28) {
                 case 1 :
+                    // InternalCls.g:1364:4: otherlv_3= '|' ( (lv_right_4_0= ruleCardinality ) ) (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )?
+                    {
+                    otherlv_3=(Token)match(input,29,FOLLOW_26); 
+
+                        	newLeafNode(otherlv_3, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_0());
+                        
+                    // InternalCls.g:1368:1: ( (lv_right_4_0= ruleCardinality ) )
                     // InternalCls.g:1369:1: (lv_right_4_0= ruleCardinality )
                     {
                     // InternalCls.g:1369:1: (lv_right_4_0= ruleCardinality )
@@ -3485,7 +3474,7 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
                      
                     	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getRightCardinalityParserRuleCall_3_1_0()); 
                     	    
-                    pushFollow(FOLLOW_29);
+                    pushFollow(FOLLOW_27);
                     lv_right_4_0=ruleCardinality();
 
                     state._fsp--;
@@ -3506,46 +3495,32 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
 
                     }
-                    break;
 
-            }
-
-
-            }
-
-            // InternalCls.g:1386:4: (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
-
-            if ( (LA30_0==29) ) {
-                alt30=1;
-            }
-            switch (alt30) {
-                case 1 :
-                    // InternalCls.g:1386:6: otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) )? ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )?
-                    {
-                    otherlv_5=(Token)match(input,29,FOLLOW_30); 
-
-                        	newLeafNode(otherlv_5, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_4_0());
-                        
-                    // InternalCls.g:1390:1: ( (lv_label_6_0= ruleConnectorLabel ) )?
+                    // InternalCls.g:1386:2: (otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )? )?
                     int alt27=2;
                     int LA27_0 = input.LA(1);
 
-                    if ( ((LA27_0>=RULE_ID && LA27_0<=RULE_STRING)) ) {
+                    if ( (LA27_0==29) ) {
                         alt27=1;
                     }
                     switch (alt27) {
                         case 1 :
+                            // InternalCls.g:1386:4: otherlv_5= '|' ( (lv_label_6_0= ruleConnectorLabel ) ) ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )?
+                            {
+                            otherlv_5=(Token)match(input,29,FOLLOW_5); 
+
+                                	newLeafNode(otherlv_5, grammarAccess.getConnectorCardinalitiyAccess().getVerticalLineKeyword_3_2_0());
+                                
+                            // InternalCls.g:1390:1: ( (lv_label_6_0= ruleConnectorLabel ) )
                             // InternalCls.g:1391:1: (lv_label_6_0= ruleConnectorLabel )
                             {
                             // InternalCls.g:1391:1: (lv_label_6_0= ruleConnectorLabel )
                             // InternalCls.g:1392:3: lv_label_6_0= ruleConnectorLabel
                             {
                              
-                            	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_4_1_0()); 
+                            	        newCompositeNode(grammarAccess.getConnectorCardinalitiyAccess().getLabelConnectorLabelParserRuleCall_3_2_1_0()); 
                             	    
-                            pushFollow(FOLLOW_31);
+                            pushFollow(FOLLOW_28);
                             lv_label_6_0=ruleConnectorLabel();
 
                             state._fsp--;
@@ -3566,76 +3541,79 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
 
                             }
-                            break;
 
-                    }
+                            // InternalCls.g:1408:2: ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )?
+                            int alt26=2;
+                            int LA26_0 = input.LA(1);
 
-                    // InternalCls.g:1408:3: ( ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) ) )?
-                    int alt29=2;
-                    int LA29_0 = input.LA(1);
-
-                    if ( ((LA29_0>=30 && LA29_0<=31)) ) {
-                        alt29=1;
-                    }
-                    switch (alt29) {
-                        case 1 :
-                            // InternalCls.g:1409:1: ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) )
-                            {
-                            // InternalCls.g:1409:1: ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) )
-                            // InternalCls.g:1410:1: (lv_direction_7_1= '<' | lv_direction_7_2= '>' )
-                            {
-                            // InternalCls.g:1410:1: (lv_direction_7_1= '<' | lv_direction_7_2= '>' )
-                            int alt28=2;
-                            int LA28_0 = input.LA(1);
-
-                            if ( (LA28_0==30) ) {
-                                alt28=1;
+                            if ( ((LA26_0>=30 && LA26_0<=31)) ) {
+                                alt26=1;
                             }
-                            else if ( (LA28_0==31) ) {
-                                alt28=2;
-                            }
-                            else {
-                                NoViableAltException nvae =
-                                    new NoViableAltException("", 28, 0, input);
-
-                                throw nvae;
-                            }
-                            switch (alt28) {
+                            switch (alt26) {
                                 case 1 :
-                                    // InternalCls.g:1411:3: lv_direction_7_1= '<'
+                                    // InternalCls.g:1409:1: ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) )
                                     {
-                                    lv_direction_7_1=(Token)match(input,30,FOLLOW_32); 
+                                    // InternalCls.g:1409:1: ( (lv_direction_7_1= '<' | lv_direction_7_2= '>' ) )
+                                    // InternalCls.g:1410:1: (lv_direction_7_1= '<' | lv_direction_7_2= '>' )
+                                    {
+                                    // InternalCls.g:1410:1: (lv_direction_7_1= '<' | lv_direction_7_2= '>' )
+                                    int alt25=2;
+                                    int LA25_0 = input.LA(1);
 
-                                            newLeafNode(lv_direction_7_1, grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_4_2_0_0());
-                                        
+                                    if ( (LA25_0==30) ) {
+                                        alt25=1;
+                                    }
+                                    else if ( (LA25_0==31) ) {
+                                        alt25=2;
+                                    }
+                                    else {
+                                        NoViableAltException nvae =
+                                            new NoViableAltException("", 25, 0, input);
 
-                                    	        if (current==null) {
-                                    	            current = createModelElement(grammarAccess.getConnectorCardinalitiyRule());
-                                    	        }
-                                           		setWithLastConsumed(current, "direction", lv_direction_7_1, null);
-                                    	    
+                                        throw nvae;
+                                    }
+                                    switch (alt25) {
+                                        case 1 :
+                                            // InternalCls.g:1411:3: lv_direction_7_1= '<'
+                                            {
+                                            lv_direction_7_1=(Token)match(input,30,FOLLOW_29); 
+
+                                                    newLeafNode(lv_direction_7_1, grammarAccess.getConnectorCardinalitiyAccess().getDirectionLessThanSignKeyword_3_2_2_0_0());
+                                                
+
+                                            	        if (current==null) {
+                                            	            current = createModelElement(grammarAccess.getConnectorCardinalitiyRule());
+                                            	        }
+                                                   		setWithLastConsumed(current, "direction", lv_direction_7_1, null);
+                                            	    
+
+                                            }
+                                            break;
+                                        case 2 :
+                                            // InternalCls.g:1423:8: lv_direction_7_2= '>'
+                                            {
+                                            lv_direction_7_2=(Token)match(input,31,FOLLOW_29); 
+
+                                                    newLeafNode(lv_direction_7_2, grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_3_2_2_0_1());
+                                                
+
+                                            	        if (current==null) {
+                                            	            current = createModelElement(grammarAccess.getConnectorCardinalitiyRule());
+                                            	        }
+                                                   		setWithLastConsumed(current, "direction", lv_direction_7_2, null);
+                                            	    
+
+                                            }
+                                            break;
+
+                                    }
+
+
+                                    }
+
 
                                     }
                                     break;
-                                case 2 :
-                                    // InternalCls.g:1423:8: lv_direction_7_2= '>'
-                                    {
-                                    lv_direction_7_2=(Token)match(input,31,FOLLOW_32); 
-
-                                            newLeafNode(lv_direction_7_2, grammarAccess.getConnectorCardinalitiyAccess().getDirectionGreaterThanSignKeyword_4_2_0_1());
-                                        
-
-                                    	        if (current==null) {
-                                    	            current = createModelElement(grammarAccess.getConnectorCardinalitiyRule());
-                                    	        }
-                                           		setWithLastConsumed(current, "direction", lv_direction_7_2, null);
-                                    	    
-
-                                    }
-                                    break;
-
-                            }
-
 
                             }
 
@@ -3653,7 +3631,7 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
             otherlv_8=(Token)match(input,32,FOLLOW_2); 
 
-                	newLeafNode(otherlv_8, grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_5());
+                	newLeafNode(otherlv_8, grammarAccess.getConnectorCardinalitiyAccess().getRightSquareBracketKeyword_4());
                 
 
             }
@@ -3727,22 +3705,22 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
             // InternalCls.g:1463:1: (kw= '*' | (this_INT_1= RULE_INT kw= '..' (kw= '*' | this_INT_4= RULE_INT ) ) )
             {
             // InternalCls.g:1463:1: (kw= '*' | (this_INT_1= RULE_INT kw= '..' (kw= '*' | this_INT_4= RULE_INT ) ) )
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( (LA32_0==33) ) {
-                alt32=1;
+            if ( (LA30_0==33) ) {
+                alt30=1;
             }
-            else if ( (LA32_0==RULE_INT) ) {
-                alt32=2;
+            else if ( (LA30_0==RULE_INT) ) {
+                alt30=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 32, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
-            switch (alt32) {
+            switch (alt30) {
                 case 1 :
                     // InternalCls.g:1464:2: kw= '*'
                     {
@@ -3760,35 +3738,35 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
                     // InternalCls.g:1470:6: (this_INT_1= RULE_INT kw= '..' (kw= '*' | this_INT_4= RULE_INT ) )
                     // InternalCls.g:1470:11: this_INT_1= RULE_INT kw= '..' (kw= '*' | this_INT_4= RULE_INT )
                     {
-                    this_INT_1=(Token)match(input,RULE_INT,FOLLOW_33); 
+                    this_INT_1=(Token)match(input,RULE_INT,FOLLOW_30); 
 
                     		current.merge(this_INT_1);
                         
                      
                         newLeafNode(this_INT_1, grammarAccess.getCardinalityAccess().getINTTerminalRuleCall_1_0()); 
                         
-                    kw=(Token)match(input,34,FOLLOW_34); 
+                    kw=(Token)match(input,34,FOLLOW_26); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getCardinalityAccess().getFullStopFullStopKeyword_1_1()); 
                         
                     // InternalCls.g:1483:1: (kw= '*' | this_INT_4= RULE_INT )
-                    int alt31=2;
-                    int LA31_0 = input.LA(1);
+                    int alt29=2;
+                    int LA29_0 = input.LA(1);
 
-                    if ( (LA31_0==33) ) {
-                        alt31=1;
+                    if ( (LA29_0==33) ) {
+                        alt29=1;
                     }
-                    else if ( (LA31_0==RULE_INT) ) {
-                        alt31=2;
+                    else if ( (LA29_0==RULE_INT) ) {
+                        alt29=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 31, 0, input);
+                            new NoViableAltException("", 29, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt31) {
+                    switch (alt29) {
                         case 1 :
                             // InternalCls.g:1484:2: kw= '*'
                             {
@@ -3907,7 +3885,7 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,35,FOLLOW_35); 
+            otherlv_1=(Token)match(input,35,FOLLOW_31); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getCommentAccess().getNoteKeyword_1());
                 
@@ -3917,7 +3895,7 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
             // InternalCls.g:1529:1: (lv_comment_2_0= RULE_STRING )
             // InternalCls.g:1530:3: lv_comment_2_0= RULE_STRING
             {
-            lv_comment_2_0=(Token)match(input,RULE_STRING,FOLLOW_32); 
+            lv_comment_2_0=(Token)match(input,RULE_STRING,FOLLOW_29); 
 
             			newLeafNode(lv_comment_2_0, grammarAccess.getCommentAccess().getCommentSTRINGTerminalRuleCall_2_0()); 
             		
@@ -3977,36 +3955,36 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
             // InternalCls.g:1561:1: ( (enumLiteral_0= '~' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '+' ) )
             {
             // InternalCls.g:1561:1: ( (enumLiteral_0= '~' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '+' ) )
-            int alt33=4;
+            int alt31=4;
             switch ( input.LA(1) ) {
             case 36:
                 {
-                alt33=1;
+                alt31=1;
                 }
                 break;
             case 27:
                 {
-                alt33=2;
+                alt31=2;
                 }
                 break;
             case 37:
                 {
-                alt33=3;
+                alt31=3;
                 }
                 break;
             case 38:
                 {
-                alt33=4;
+                alt31=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 33, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt33) {
+            switch (alt31) {
                 case 1 :
                     // InternalCls.g:1561:2: (enumLiteral_0= '~' )
                     {
@@ -4116,61 +4094,61 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
             // InternalCls.g:1592:1: ( (enumLiteral_0= 'string' ) | (enumLiteral_1= 'int' ) | (enumLiteral_2= 'double' ) | (enumLiteral_3= 'boolean' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'byte' ) | (enumLiteral_6= 'short' ) | (enumLiteral_7= 'long' ) | (enumLiteral_8= 'float' ) )
             {
             // InternalCls.g:1592:1: ( (enumLiteral_0= 'string' ) | (enumLiteral_1= 'int' ) | (enumLiteral_2= 'double' ) | (enumLiteral_3= 'boolean' ) | (enumLiteral_4= 'char' ) | (enumLiteral_5= 'byte' ) | (enumLiteral_6= 'short' ) | (enumLiteral_7= 'long' ) | (enumLiteral_8= 'float' ) )
-            int alt34=9;
+            int alt32=9;
             switch ( input.LA(1) ) {
             case 39:
                 {
-                alt34=1;
+                alt32=1;
                 }
                 break;
             case 40:
                 {
-                alt34=2;
+                alt32=2;
                 }
                 break;
             case 41:
                 {
-                alt34=3;
+                alt32=3;
                 }
                 break;
             case 42:
                 {
-                alt34=4;
+                alt32=4;
                 }
                 break;
             case 43:
                 {
-                alt34=5;
+                alt32=5;
                 }
                 break;
             case 44:
                 {
-                alt34=6;
+                alt32=6;
                 }
                 break;
             case 45:
                 {
-                alt34=7;
+                alt32=7;
                 }
                 break;
             case 46:
                 {
-                alt34=8;
+                alt32=8;
                 }
                 break;
             case 47:
                 {
-                alt34=9;
+                alt32=9;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 34, 0, input);
+                    new NoViableAltException("", 32, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt34) {
+            switch (alt32) {
                 case 1 :
                     // InternalCls.g:1592:2: (enumLiteral_0= 'string' )
                     {
@@ -4416,15 +4394,11 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000810000002L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000220000040L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000320000040L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000120000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x00000001C0000030L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x00000001C0000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000200000040L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000200000040L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000120000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x00000001C0000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000020L});
 
 }
