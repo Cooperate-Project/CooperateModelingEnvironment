@@ -15,7 +15,7 @@
 	
 	<modules>
 		<module>de.cooperateproject.modeling.textual.feature</module>
-		<moduel>de.cooperateproject.ui.feature</moduel>
+		<module>de.cooperateproject.ui.feature</module>
 	</modules>
 	
 </project>
