@@ -1,16 +1,25 @@
-<?xml version="1.0" encoding="windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
+
 <plugin>
-	<extension point="org.eclipse.emf.ecore.generated_package">
-		<package 
-			uri = "http://www.cooperateproject.de/modeling/textual/cls/Cls"
-			class = "de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
-			genModel = "model/generated/Cls.genmodel" />
-	</extension>
-	<extension point="org.eclipse.emf.ecore.generated_package">
-		<package 
-			uri = "http://www.cooperateproject.de/modeling/textual/cls/Cls"
-			class = "de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
-			genModel = "model/generated/Cls.genmodel" />
-	</extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.cooperateproject.de/modeling/textual/cls/Cls" 
+       class = "de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
+       genModel = "model/generated/Cls.genmodel" /> 
+	
+  </extension>
+
+
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.cooperateproject.de/modeling/textual/cls/Cls" 
+       class = "de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
+       genModel = "model/generated/Cls.genmodel" /> 
+	
+  </extension>
+
+
 </plugin>

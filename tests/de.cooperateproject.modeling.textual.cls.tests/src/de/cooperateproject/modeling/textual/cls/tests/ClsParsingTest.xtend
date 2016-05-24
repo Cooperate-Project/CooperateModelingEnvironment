@@ -30,6 +30,7 @@ import org.eclipse.emf.compare.scope.DefaultComparisonScope
 import org.eclipse.emf.compare.EMFCompare
 import org.eclipse.emf.compare.Diff
 import org.eclipse.emf.ecore.util.EcoreUtil
+import de.cooperateproject.modeling.textual.cls.ClsInjectorProvider
 
 @RunWith(XtextRunner)
 @InjectWith(ClsInjectorProvider)

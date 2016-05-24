@@ -5,7 +5,8 @@
     modelName="Cls" updateClasspath="false" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject"
     rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl" importerID="org.eclipse.emf.importer.cdo"
     featureDelegation="Dynamic" complianceLevel="6.0" copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
-    runtimeVersion="2.11" operationReflection="true" importOrganizing="true">
+    runtimeVersion="2.11" usedGenPackages="platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
   <genPackages prefix="Cls" basePackage="de.cooperateproject.modeling.textual.cls"
       disposableProviderFactory="true" fileExtensions="cls" ecorePackage="Cls.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Cls.ecore#//Visibility">

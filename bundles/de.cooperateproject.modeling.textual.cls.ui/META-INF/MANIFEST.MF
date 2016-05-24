@@ -20,7 +20,9 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  org.eclipse.emf.compare.rcp,
  org.eclipse.emf.compare,
  org.eclipse.emf.compare.rcp.ui,
- net.winklerweb.cdoxtext.runtime
+ net.winklerweb.cdoxtext.runtime,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.emf.cdo;visibility:=reexport
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls.ui.internal,
