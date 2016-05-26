@@ -58,6 +58,10 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 
 	@Override
 	public void stop() {
+		if (repositoryFolder == null) {
+			return;
+		}
+		
 		CDOView cdoView = repositoryFolder.cdoView();
 		CDOSession cdoSession = cdoView.getSession();
 
