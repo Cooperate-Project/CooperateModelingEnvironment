@@ -1,0 +1,665 @@
+/**
+ */
+package de.cooperateproject.modeling.textual.cls.cls.util;
+
+import de.cooperateproject.modeling.textual.cls.cls.Association;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
+import de.cooperateproject.modeling.textual.cls.cls.Attribute;
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.Classifier;
+import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
+import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Comment;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
+import de.cooperateproject.modeling.textual.cls.cls.Commentable;
+import de.cooperateproject.modeling.textual.cls.cls.Connector;
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
+import de.cooperateproject.modeling.textual.cls.cls.Generalization;
+import de.cooperateproject.modeling.textual.cls.cls.Implementation;
+import de.cooperateproject.modeling.textual.cls.cls.Interface;
+import de.cooperateproject.modeling.textual.cls.cls.Member;
+import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
+import de.cooperateproject.modeling.textual.cls.cls.Parameter;
+import de.cooperateproject.modeling.textual.cls.cls.Property;
+import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
+import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
+import org.eclipse.emf.ecore.util.Switch;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Switch</b> for the model's inheritance hierarchy.
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
+ * starting with the actual class of the object
+ * and proceeding up the inheritance hierarchy
+ * until a non-null result is returned,
+ * which is the result of the switch.
+ * <!-- end-user-doc -->
+ * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+ * @generated
+ */
+public class ClsSwitch<T> extends Switch<T> {
+	/**
+	 * The cached model package
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static ClsPackage modelPackage;
+
+	/**
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClsSwitch() {
+		if (modelPackage == null) {
+			modelPackage = ClsPackage.eINSTANCE;
+		}
+	}
+
+	/**
+	 * Checks whether this is a switch for the given package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param ePackage the package in question.
+	 * @return whether this is a switch for the given package.
+	 * @generated
+	 */
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
+	}
+
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
+			case ClsPackage.CLASS_DIAGRAM: {
+				ClassDiagram classDiagram = (ClassDiagram)theEObject;
+				T result = caseClassDiagram(classDiagram);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.PACKAGE_IMPORT: {
+				PackageImport packageImport = (PackageImport)theEObject;
+				T result = casePackageImport(packageImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.TYPE_REFERENCE: {
+				TypeReference typeReference = (TypeReference)theEObject;
+				T result = caseTypeReference(typeReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.DATA_TYPE_REFERENCE: {
+				DataTypeReference dataTypeReference = (DataTypeReference)theEObject;
+				T result = caseDataTypeReference(dataTypeReference);
+				if (result == null) result = caseTypeReference(dataTypeReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.CLASSIFIER_REFERENCE: {
+				ClassifierReference classifierReference = (ClassifierReference)theEObject;
+				T result = caseClassifierReference(classifierReference);
+				if (result == null) result = caseTypeReference(classifierReference);
+				if (result == null) result = caseClassifierAssociationEnd(classifierReference);
+				if (result == null) result = caseAssociationEnd(classifierReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.CLASSIFIER: {
+				Classifier classifier = (Classifier)theEObject;
+				T result = caseClassifier(classifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.CLASS: {
+				de.cooperateproject.modeling.textual.cls.cls.Class class_ = (de.cooperateproject.modeling.textual.cls.cls.Class)theEObject;
+				T result = caseClass(class_);
+				if (result == null) result = caseClassifier(class_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.INTERFACE: {
+				Interface interface_ = (Interface)theEObject;
+				T result = caseInterface(interface_);
+				if (result == null) result = caseClassifier(interface_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.PROPERTY: {
+				Property property = (Property)theEObject;
+				T result = caseProperty(property);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.MEMBER: {
+				Member member = (Member)theEObject;
+				T result = caseMember(member);
+				if (result == null) result = caseProperty(member);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.ATTRIBUTE: {
+				Attribute attribute = (Attribute)theEObject;
+				T result = caseAttribute(attribute);
+				if (result == null) result = caseMember(attribute);
+				if (result == null) result = caseProperty(attribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.METHOD: {
+				Method method = (Method)theEObject;
+				T result = caseMethod(method);
+				if (result == null) result = caseMember(method);
+				if (result == null) result = caseProperty(method);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.PARAMETER: {
+				Parameter parameter = (Parameter)theEObject;
+				T result = caseParameter(parameter);
+				if (result == null) result = caseProperty(parameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.CONNECTOR: {
+				Connector connector = (Connector)theEObject;
+				T result = caseConnector(connector);
+				if (result == null) result = caseCommentable(connector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.TYPED_CONNECTOR: {
+				TypedConnector typedConnector = (TypedConnector)theEObject;
+				T result = caseTypedConnector(typedConnector);
+				if (result == null) result = caseConnector(typedConnector);
+				if (result == null) result = caseCommentable(typedConnector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.ASSOCIATION: {
+				Association association = (Association)theEObject;
+				T result = caseAssociation(association);
+				if (result == null) result = caseTypedConnector(association);
+				if (result == null) result = caseConnector(association);
+				if (result == null) result = caseCommentable(association);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.ASSOCIATION_END: {
+				AssociationEnd associationEnd = (AssociationEnd)theEObject;
+				T result = caseAssociationEnd(associationEnd);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.CLASSIFIER_ASSOCIATION_END: {
+				ClassifierAssociationEnd classifierAssociationEnd = (ClassifierAssociationEnd)theEObject;
+				T result = caseClassifierAssociationEnd(classifierAssociationEnd);
+				if (result == null) result = caseAssociationEnd(classifierAssociationEnd);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.GENERALIZATION: {
+				Generalization generalization = (Generalization)theEObject;
+				T result = caseGeneralization(generalization);
+				if (result == null) result = caseTypedConnector(generalization);
+				if (result == null) result = caseConnector(generalization);
+				if (result == null) result = caseCommentable(generalization);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.IMPLEMENTATION: {
+				Implementation implementation = (Implementation)theEObject;
+				T result = caseImplementation(implementation);
+				if (result == null) result = caseTypedConnector(implementation);
+				if (result == null) result = caseConnector(implementation);
+				if (result == null) result = caseCommentable(implementation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.COMMENT_LINK: {
+				CommentLink commentLink = (CommentLink)theEObject;
+				T result = caseCommentLink(commentLink);
+				if (result == null) result = caseConnector(commentLink);
+				if (result == null) result = caseCommentable(commentLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.ASSOCIATION_PROPERTIES: {
+				AssociationProperties associationProperties = (AssociationProperties)theEObject;
+				T result = caseAssociationProperties(associationProperties);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.CARDINALITY: {
+				Cardinality cardinality = (Cardinality)theEObject;
+				T result = caseCardinality(cardinality);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.COMMENTABLE: {
+				Commentable commentable = (Commentable)theEObject;
+				T result = caseCommentable(commentable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.COMMENT: {
+				Comment comment = (Comment)theEObject;
+				T result = caseComment(comment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
+		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class Diagram</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class Diagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassDiagram(ClassDiagram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Package Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Package Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePackageImport(PackageImport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Type Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Type Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypeReference(TypeReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Type Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Type Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataTypeReference(DataTypeReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierReference(ClassifierReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifier(Classifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClass(de.cooperateproject.modeling.textual.cls.cls.Class object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInterface(Interface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProperty(Property object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMember(Member object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttribute(Attribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Method</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMethod(Method object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConnector(Connector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTypedConnector(TypedConnector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociation(Association object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociationEnd(AssociationEnd object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier Association End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier Association End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierAssociationEnd(ClassifierAssociationEnd object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generalization</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generalization</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGeneralization(Generalization object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implementation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implementation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplementation(Implementation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Comment Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Comment Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCommentLink(CommentLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Association Properties</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Association Properties</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAssociationProperties(AssociationProperties object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinality(Cardinality object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Commentable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Commentable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCommentable(Commentable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComment(Comment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch, but this is the last case anyway.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	@Override
+	public T defaultCase(EObject object) {
+		return null;
+	}
+
+} //ClsSwitch
