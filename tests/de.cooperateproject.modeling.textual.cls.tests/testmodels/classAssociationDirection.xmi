@@ -1,39 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<cls:ClassDiagram
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls"
-    xsi:schemaLocation="http://www.cooperateproject.de/modeling/textual/cls/Cls ../../de.cooperateproject.modeling.textual.cls/model/generated/Cls.ecore">
-  <elements
-      xsi:type="cls:ClassDef">
-    <classes
-        name="Alice"/>
-    <classes
-        name="Bob"/>
-  </elements>
-  <elements
-      xsi:type="cls:Association">
-    <left type="//@elements.0/@classes.0"/>
-    <right type="//@elements.0/@classes.1"/>
-    <cardinality
-        left="24"
-        right="42"
-        direction="&lt;">
-      <label
-          label="labelID"/>
-    </cardinality>
-  </elements>
-  <elements
-      xsi:type="cls:Association">
-    <left type="//@elements.0/@classes.0"/>
-    <right type="//@elements.0/@classes.1"/>
-    <cardinality
-        left="42"
-        right="24"
-        direction=">">
-      <label
-          label="labelID"/>
-    </cardinality>
-  </elements>
+<?xml version="1.0" encoding="ASCII"?>
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls">
+  <classifiers xsi:type="cls:Class" name="Alice"/>
+  <classifiers xsi:type="cls:Class" name="Bob"/>
+  <connectors xsi:type="cls:Association">
+    <left xsi:type="cls:ClassifierReference"
+        type="//@classifiers.0"/>
+    <right xsi:type="cls:ClassifierReference"
+        type="//@classifiers.1"/>
+    <properties name="labelID">
+      <cardinalityLeft lowerBound="24"/>
+      <cardinalityRight lowerBound="42"/>
+    </properties>
+  </connectors>
+  <connectors xsi:type="cls:Association">
+    <left xsi:type="cls:ClassifierReference"
+        type="//@classifiers.0"/>
+    <right xsi:type="cls:ClassifierReference"
+        type="//@classifiers.1"/>
+    <properties readingDirection="RIGHT" name="labelID">
+      <cardinalityLeft lowerBound="42"/>
+      <cardinalityRight lowerBound="24"/>
+    </properties>
+  </connectors>
 </cls:ClassDiagram>

@@ -4,33 +4,33 @@
 package de.cooperateproject.modeling.textual.cls.tests
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.ClsInjectorProvider
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 import java.util.Map
-
-import org.junit.Assert
-import org.junit.Test
-import org.junit.BeforeClass
-import org.junit.AfterClass
-import org.junit.runner.RunWith
+import org.apache.commons.io.IOUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.compare.Comparison
+import org.eclipse.emf.compare.EMFCompare
+import org.eclipse.emf.compare.scope.DefaultComparisonScope
+import org.eclipse.emf.compare.utils.EMFComparePrettyPrinter
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EPackage.Registry
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
-//import org.eclipse.xtext.junit4.validation.ValidationTestHelper
-
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EPackage.Registry
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.compare.scope.DefaultComparisonScope
-import org.eclipse.emf.compare.EMFCompare
-import org.eclipse.emf.compare.Diff
-import org.eclipse.emf.ecore.util.EcoreUtil
-import de.cooperateproject.modeling.textual.cls.ClsInjectorProvider
+import org.junit.AfterClass
+import org.junit.Assert
+import org.junit.BeforeClass
+import org.junit.Test
+import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(ClsInjectorProvider)
@@ -71,48 +71,49 @@ class ClsParsingTest {
 	
 	def compare(ClassDiagram expected, ClassDiagram diagram) {
 		val scope = new DefaultComparisonScope(expected, diagram, null)
-		val comparison = EMFCompare.builder().build().compare(scope)
-		return comparison.getDifferences();
+		return EMFCompare.builder().build().compare(scope)
 	}
 	
-	def assertEqualsModel(ClassDiagram expected, ClassDiagram diagram) {		
+	def assertEqualsModel(ClassDiagram expected, ClassDiagram diagram) {	
 		EcoreUtil.resolveAll(expected)
 		val diff = compare(expected, diagram)
-		try {
-			Assert::assertTrue(diff.isEmpty)
-		} catch(AssertionError e) {
-			println("Differences:")
-			printDiff(diff)
-			throw(e)
-		}
+		Assert::assertTrue(diff.toPrettyString, diff.differences.empty);
 	}
 	
-	def printDiff(EList<Diff> diff) {
-		for(d : diff) {
-			println(d)
+	def toPrettyString(Comparison comparison) {
+		var ByteArrayOutputStream baos = null
+		var PrintStream ps = null
+		try {
+			baos = new ByteArrayOutputStream
+			ps = new PrintStream(baos)
+			EMFComparePrettyPrinter.printDifferences(comparison, ps)
+			return new String(baos.toByteArray, "UTF-8")
+		} finally {
+			IOUtils.closeQuietly(ps)
+			IOUtils.closeQuietly(baos)
 		}
 	}
 	
 	@Test
 	def void classDefTest() {		
-		val xmiModel = getDiagram(TEST_FOLDER + "classDef.xmi")
 		val model = '''
 			@startclass
-			class {Alice, Bob}
+			class Alice {}
 			@endclass
 		'''.parse		
+		val xmiModel = getDiagram(TEST_FOLDER + "classDef.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 
 	@Test
 	def interfaceDefTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "interfaceDef.xmi")
 		val model = '''
 			@startclass
-			interface {Alice, Bob}
+			interface Alice {}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "interfaceDef.xmi")
 
 		assertEqualsModel(model, xmiModel)
 	}
@@ -120,72 +121,66 @@ class ClsParsingTest {
 	@Test
 	def longnameToShortnameTest() {
 		ClsPackage.eINSTANCE.eClass()
-		val xmiModel = getDiagram(TEST_FOLDER + "longnameToShortname.xmi")
 		val model = '''
 			@startclass
-			class {Alice as A}
-			A {
+			class Alice as A {
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "longnameToShortname.xmi")
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def abstractClassWithoutMembersTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "abstractClassWithoutMembers.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			abstract Alice {
+			abstract class Alice {
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "abstractClassWithoutMembers.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test 
 	def classWithAttributesTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithAttributes.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			Alice {
+			class Alice {
 				firstName : string
 				lastName : string
 				age : int
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithAttributes.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classWithMethodesTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodes.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			Alice {
+			class Alice {
 				getFirstName() : string
 				setFirstName(name : string)
 				calculateAge(date : int) : int
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodes.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def visibiliesTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "visibilies.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			Alice {
+			class Alice {
 				-firstName : string
 				+lastName : string
 				~age : int
@@ -193,50 +188,47 @@ class ClsParsingTest {
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "visibilies.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classWithMethodsAndAttributesTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodsAndAttributes.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			Alice {
+			class Alice {
 				- firstName : string
 				+ getFirstName() : string
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodsAndAttributes.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test 
 	def classWithStaticAndFinalAttributesTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithStaticAndFinalAttributes.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			Alice {
+			class Alice {
 				static firstName : string
 				final lastName : string
 				static final height : int
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithStaticAndFinalAttributes.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classWithAbstractStaticAndFinalMethodesTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithAbstractStaticAndFinalMethodes.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
-			Alice {
+			class Alice {
 				abstract buildHouse()
 				static getDate() : int
 				final getHeight() : int
@@ -244,81 +236,86 @@ class ClsParsingTest {
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithAbstractStaticAndFinalMethodes.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classGeneralizationTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classGeneralization.xmi")
 		val model = '''
 			@startclass
-			class {Person, Alice}
+			class Person {}
+			class Alice {}
 			Alice isa Person
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classGeneralization.xmi")
 		
 		assertEqualsModel(model, xmiModel)		
 	}
 	
 	@Test
 	def classImplementationTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classImplementation.xmi")
 		val model = '''
 			@startclass
-			class {Person, Alice}
+			class Person {}
+			class Alice {}
 			Alice impl Person
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classImplementation.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def simpleClassAssociationTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "simpleClassAssociation.xmi")
 		val model = '''
 			@startclass
-			class {Alice, Bob}
+			class Bob {}
+			class Alice {}
 			Alice - Bob
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "simpleClassAssociation.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classWithNoteTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithNote.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
+			class Alice {}
 			Alice - note["this is a note"]
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classWithNote.xmi")
 		
 		assertEqualsModel(model, xmiModel)		
 	}
 	
 	@Test
 	def ClassAsscociationWithNoteTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classAsscociationWithNote.xmi")
 		val model = '''
 			@startclass
-			class {Alice, Bob}
+			class Alice {}
+			class Bob {}
 			Alice - Bob note["this is a note"]
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classAsscociationWithNote.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 		
 	@Test
 	def CardinalityTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "cardinality.xmi")
 		val model = '''
 			@startclass
-			class {Alice, Bob}
+			class Alice {}
+			class Bob {}
 			Alice - Bob [*]
 			Alice - Bob [|1..*]
 			Alice - Bob [24|24..42]
@@ -326,30 +323,31 @@ class ClsParsingTest {
 			Alice - Bob []
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "cardinality.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 
 	@Test
 	def classAssociationDirectionTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classAssociationDirection.xmi")
 		val model = '''
 			@startclass
-			class {Alice, Bob}
+			class Alice {}
+			class Bob {}
 			Alice - Bob [24|42|labelID <]
 			Alice - Bob [42|24|labelID >]
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classAssociationDirection.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def datatypeTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "datatype.xmi")
 		val model = '''
 			@startclass
-			class {Alice}
+			class Alice {}
 			Alice {
 				a : string
 				b : int 
@@ -363,21 +361,23 @@ class ClsParsingTest {
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "datatype.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}
 	
 	@Test
 	def classTypeTest() {
-		val xmiModel = getDiagram(TEST_FOLDER + "classType.xmi")
 		val model = '''
 			@startclass
-			class {Alice, Bob}
+			class Alice {}
+			class Bob {}
 			Alice {
 				bob : Bob
 			}
 			@endclass
 		'''.parse
+		val xmiModel = getDiagram(TEST_FOLDER + "classType.xmi")
 		
 		assertEqualsModel(model, xmiModel)
 	}

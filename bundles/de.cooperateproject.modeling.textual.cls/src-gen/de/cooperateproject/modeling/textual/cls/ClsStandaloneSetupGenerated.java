@@ -30,9 +30,6 @@ public class ClsStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.cooperateproject.de/modeling/textual/cls/Cls")) {
-		EPackage.Registry.INSTANCE.put("http://www.cooperateproject.de/modeling/textual/cls/Cls", de.cooperateproject.modeling.textual.cls.cls.ClsPackage.eINSTANCE);
-	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
 		org.eclipse.xtext.resource.IResourceServiceProvider serviceProvider = injector.getInstance(org.eclipse.xtext.resource.IResourceServiceProvider.class);
@@ -40,9 +37,6 @@ public class ClsStandaloneSetupGenerated implements ISetup {
 		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("cls", serviceProvider);
 		
 
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.cooperateproject.de/modeling/textual/cls/Cls")) {
-		EPackage.Registry.INSTANCE.put("http://www.cooperateproject.de/modeling/textual/cls/Cls", de.cooperateproject.modeling.textual.cls.cls.ClsPackage.eINSTANCE);
-	}
 
 	}
 }

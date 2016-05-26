@@ -1,8 +1,9 @@
 grammar de.cooperateproject.modeling.textual.cls.Cls with org.eclipse.xtext.common.Terminals
 
+import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
-generate cls "http://www.cooperateproject.de/modeling/textual/cls/Cls"
+import "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 
 // ------------------------------------------------------------------------------------------
 // ---------------------------------Root-----------------------------------------------------
@@ -10,57 +11,52 @@ generate cls "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 ClassDiagram:
 	{ClassDiagram}
 	'@startclass'
-    (elements += ClassElement)*
+	(packageImports+=PackageImport)*
+	classifiers+=Classifier*
+	connectors+=Connector*
     '@endclass'
 ;
 
+PackageImport:
+	"import" package=[uml::Package|FQN]
+;
+
+FQN returns ecore::EString:
+    ID ("." ID)*
+;
 
 // ------------------------------------------------------------------------------------------
 // ---------------------------------Class Diagram--------------------------------------------
 // ------------------------------------------------------------------------------------------
 
-
-ClassElement: 
-	ClassDef 
-	| Class  
-	| Connector
+Classifier:
+	Class | Interface
 ;
 
-Type: 
-	ClassType | DataType
+Class:
+	visibility=Visibility? (abstract ?= 'abstract')? 'class' (longName = (STRING | ID) 'as')? name = ID '{' (members += Member)* '}'
 ;
 
-ClassType: 
-	type = [ClassName]
+Interface:
+	visibility=Visibility? 'interface' (longName = (STRING | ID) 'as')? name = ID '{' (members += Member)* '}'
 ;
 
-DataType: 
-	type = DataTypeEnum
+TypeReference: 
+	ClassifierReference | DataTypeReference
 ;
 
-ClassDef: 
-	('class' | 'interface') 
-	'{' classes += ClassName (',' classes += ClassName)* '}'
+ClassifierReference: 
+	type = [Classifier]
 ;
 
-ClassName: 
-	Name
+DataTypeReference: 
+	type = PrimitiveType
 ;
 
-Name returns ClassName: 
-	(name = ID )
-	| ( longname = (STRING | ID) 'as' name = ID)
-;
-
-Class: 
-	(abstract ?= 'abstract')?
-	name = [ClassName]
-	'{' (members += Member)* '}'
-;
 
 Member: 
 	Attribute 
-	| Methode
+	| Method
 ;
 
 Attribute:
@@ -68,18 +64,27 @@ Attribute:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	name=ID ':' type = Type
+	name=ID ':' type = TypeReference
 ;
 	
-Methode: 
+Method: 
 	(visibility = Visibility)? 
 	(abstract ?= 'abstract')? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
 	name = ID '(' 
-	(attributes += Attribute (',' attributes += Attribute)*)* ')' 
-	(':' type = Type)?
+	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
+	(':' type = TypeReference)?
 ;
+
+Parameter:
+	(visibility = Visibility)? 
+	(static ?= 'static')? 
+	(final ?= 'final')? 
+	name=ID ':' type = TypeReference
+;
+
+
 
 Connector: 
 	Generalization 
@@ -88,44 +93,42 @@ Connector:
 	| CommentLink
 ;
 
+ClassifierAssociationEnd:
+	ClassifierReference
+;
+
 Generalization: 
-	left = AssociationEnd 'isa' right = AssociationEnd
+	left = ClassifierAssociationEnd 'isa' right = ClassifierAssociationEnd
 ;
 
 Implementation:
-	left = AssociationEnd 'impl' right = AssociationEnd
+	left = ClassifierAssociationEnd 'impl' right = ClassifierAssociationEnd
 ;
 
 CommentLink: 
-	left = AssociationEnd '-' comment = Comment
+	left = ClassifierAssociationEnd '-' comment = Comment
 ;
 
 Association: 
-	left = AssociationEnd '-'  
-	right = AssociationEnd (cardinality = ConnectorCardinalitiy)? (comment = Comment)?
+	left = ClassifierAssociationEnd '-'  
+	right = ClassifierAssociationEnd (properties = AssociationProperties)? (comment = Comment)?
 ;
 
-AssociationEnd: 
-	type = [ClassName]
-;
 
-ConnectorLabel: 
-	label = (ID | STRING)
-;
-
-ConnectorCardinalitiy: 
-	{ConnectorCardinalitiy}
-	'[' left = Cardinality ('|' right = Cardinality ('|' label = ConnectorLabel (direction = ('<' | '>'))?)?)? ']'
+AssociationProperties: 
+	'[' cardinalityLeft = Cardinality ('|' cardinalityRight = Cardinality ('|' name = (STRING | ID) (readingDirection = ReadingDirection)?)?)? ']'
 ;
 
 Cardinality: 
-	('*') 
-	| (INT '..' (('*') | INT))
+	lowerBound=CardinalityBound ('..' upperBound=CardinalityBound)?
+;
+
+CardinalityBound returns ecore::EInt:
+	('*') | INT
 ;
 
 Comment: 
-	{Comment}
-	'note[' comment = STRING ']'
+	'note[' description = STRING ']'
 ;
 
 enum Visibility:
@@ -135,8 +138,12 @@ enum Visibility:
 	| PUBLIC = '+'
 ;
 
+enum ReadingDirection:
+	LEFT = '<'
+	| RIGHT = '>'
+;
 
-enum DataTypeEnum:
+enum PrimitiveType:
 	STRING = 'string'
 	| INT = 'int'
 	| DOUBLE = 'double'

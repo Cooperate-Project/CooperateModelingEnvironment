@@ -12,7 +12,7 @@ public class AbstractClsValidator extends org.eclipse.xtext.validation.AbstractD
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(de.cooperateproject.modeling.textual.cls.cls.ClsPackage.eINSTANCE);
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/cls/Cls"));
 		return result;
 	}
 }

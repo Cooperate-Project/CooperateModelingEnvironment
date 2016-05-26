@@ -1,26 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<cls:ClassDiagram
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls"
-    xsi:schemaLocation="http://www.cooperateproject.de/modeling/textual/cls/Cls ../../de.cooperateproject.modeling.textual.cls/model/generated/Cls.ecore">
-  <elements
-      xsi:type="cls:ClassDef">
-    <classes
-        name="Alice"/>
-    <classes
-        name="Bob"/>
-  </elements>
-  <elements
-      xsi:type="cls:Class"
-      name="//@elements.0/@classes.0">
-    <members
-        xsi:type="cls:Attribute"
-        name="bob">
-      <type
-          xsi:type="cls:ClassType"
-          type="//@elements.0/@classes.1"/>
-    </members>
-  </elements>
+<?xml version="1.0" encoding="ASCII"?>
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls">
+  <classifiers xsi:type="cls:Class" name="Alice"/>
+  <classifiers xsi:type="cls:Class" name="Bob"/>
 </cls:ClassDiagram>

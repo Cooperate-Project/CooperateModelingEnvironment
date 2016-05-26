@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls.metamodel;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.cooperateproject.modeling.textual.cls.cls,
+ de.cooperateproject.modeling.textual.cls.cls.impl,
+ de.cooperateproject.modeling.textual.cls.cls.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.xtext.xbase.lib;visibility:=reexport,
+ org.eclipse.uml2.uml;bundle-version="5.1.2";visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.emf.cdo;bundle-version="4.4.1";visibility:=reexport,
+ org.eclipse.emf.ecore.xcore.lib;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+
