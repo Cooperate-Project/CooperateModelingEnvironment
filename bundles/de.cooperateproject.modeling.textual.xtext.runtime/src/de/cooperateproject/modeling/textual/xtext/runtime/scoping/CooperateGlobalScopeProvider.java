@@ -17,16 +17,21 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
+	private static final IQualifiedNameProvider QUALIFIED_NAME_PROVIDER = new CooperateQualifiedNameProvider();
+	
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
 			Predicate<IEObjectDescription> predicate) {
@@ -71,12 +76,16 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	}
 
 	private static IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-		Collection<EObject> obj = results.map(CooperateGlobalScopeProvider::getDescriptionFor)
+		Collection<EObject> objs = results.map(CooperateGlobalScopeProvider::getDescriptionFor)
 				.filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
 				.collect(Collectors.toList());
-		return Scopes.scopeFor(obj);
+		return createUMLScope(objs);
 	}
 
+	private static IScope createUMLScope(Iterable<EObject> objects) {
+		return Scopes.scopeFor(objects, e -> QUALIFIED_NAME_PROVIDER.apply(e), IScope.NULLSCOPE);
+	}
+	
 	private static IEObjectDescription getDescriptionFor(EObject obj) {
 		return Scopes.scopedElementsFor(Arrays.asList(obj)).iterator().next();
 	}
