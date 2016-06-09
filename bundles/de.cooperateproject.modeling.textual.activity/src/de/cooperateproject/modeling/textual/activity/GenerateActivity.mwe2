@@ -1,0 +1,207 @@
+module de.cooperateproject.modeling.textual.activity.GenerateActivity
+
+import org.eclipse.xtext.generator.*
+import org.eclipse.xtext.xtext.generator.*
+import org.eclipse.xtext.xtext.generator.model.project.*
+
+var fileExtensions = "activity"
+var rootPath = ".."
+var projectName = "de.cooperateproject.modeling.textual.activity"
+var runtimeProjectPath = "${rootPath}/${projectName}"
+var testProjectPath = "${rootPath}/../tests"
+var modelProject = "${projectName}.metamodel"
+var modelProjectPath = "${rootPath}/${modelProject}"
+var grammarURI = "classpath:/de/cooperateproject/modeling/textual/activity/Activity.xtext"
+var generateXtendStub = true
+
+Workflow {
+	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
+		scanClassPath = true
+		platformUri = "${runtimeProjectPath}/.."
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel"
+			to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+			to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
+			to = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"
+			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
+			to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+			to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
+			to = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel"
+			to = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
+			to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
+		}
+//		//
+//		registerGeneratedEPackage = "org.eclipse.emf.ecore.EcorePackage"
+//		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
+//		registerGeneratedEPackage = "org.eclipse.uml2.types.TypesPackage"
+		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
+		registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
+//		registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+//		registerGeneratedEPackage = "de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
+//		registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"		
+//		registerGenModelFile = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"		
+//		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+	}
+
+	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
+		directory = "${runtimeProjectPath}/src-gen"
+	}
+
+	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
+		directory = "${runtimeProjectPath}.ide/src-gen"
+	}
+
+	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
+		directory = "${runtimeProjectPath}.ui/src-gen"
+	}
+	
+	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
+		directory = "${testProjectPath}/${projectName}.tests/src-gen"
+	}
+
+	component = org.eclipse.xtext.generator.Generator {
+		pathRtProject = runtimeProjectPath
+		pathTestProject = "${testProjectPath}/${projectName}.tests"
+		pathUiProject = "${runtimeProjectPath}.ui"
+		pathIdeProject = "${runtimeProjectPath}.ide"
+		projectNameRt = projectName
+		projectNameIde = "${projectName}.ide"
+		projectNameUi = "${projectName}.ui"
+		encoding = "UTF-8"
+		language = auto-inject {
+			
+            loadedResource = "platform:/resource/org.eclipse.emf.ecore.xcore.lib/model/XcoreLang.xcore"
+            loadedResource = "classpath:/model/Xbase.ecore"
+            loadedResource = "classpath:/model/Xbase.genmodel"
+            loadedResource = "classpath:/model/Ecore.ecore"
+            loadedResource = "classpath:/model/Ecore.genmodel"
+			loadedResource = "classpath:/model/UML.genmodel"
+			loadedResource = "classpath:/model/UML.ecore"
+			loadedResource = "classpath:/model/Types.genmodel"
+			loadedResource = "classpath:/model/Types.ecore"
+
+//			loadedResource = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
+//			//loadedResource = "platform:/resource/org.eclipse.emf.ecore.xcore.lib/model/XcoreLang.xcore"
+			loadedResource = "platform:/resource/${modelProject}/model/activity.xcore"
+			
+			uri = grammarURI
+
+			// Java API to access grammar elements (required by several other fragments)
+			fragment = grammarAccess.GrammarAccessFragment auto-inject {}
+
+			// generates Java API for the generated EPackages
+			//fragment = ecore.EMFGeneratorFragment auto-inject {}
+
+			// the old serialization component
+			// fragment = parseTreeConstructor.ParseTreeConstructorFragment auto-inject {}    
+
+			// serializer 2.0
+			fragment = serializer.SerializerFragment auto-inject {
+				generateStub = false
+			}
+
+			// a custom ResourceFactory for use with EMF
+			fragment = resourceFactory.ResourceFactoryFragment auto-inject {}
+
+			// The antlr parser generator fragment.
+			fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
+			//  options = {
+			//      backtrack = true
+			//  }
+			}
+
+			// Xtend-based API for validation
+			fragment = validation.ValidatorFragment auto-inject {
+			//    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
+			//    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+			}
+
+			// old scoping and exporting API
+			// fragment = scoping.ImportURIScopingFragment auto-inject {}
+			// fragment = exporting.SimpleNamesFragment auto-inject {}
+
+			// scoping and exporting API
+			fragment = scoping.ImportNamespacesScopingFragment auto-inject {}
+			fragment = exporting.QualifiedNamesFragment auto-inject {}
+			fragment = builder.BuilderIntegrationFragment auto-inject {}
+
+			// generator API
+			fragment = generator.GeneratorFragment auto-inject {}
+
+			// formatter API
+			fragment = formatting.FormatterFragment auto-inject {}
+
+			// labeling API
+			fragment = org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment auto-inject {}
+
+			// outline API
+			fragment = org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment auto-inject {}
+			fragment = org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment auto-inject {}
+
+			// quickfix API
+			fragment = org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment auto-inject {}
+
+			// content assist API
+			fragment = org.eclipse.xtext.ui.generator.contentAssist.ContentAssistFragment auto-inject {}
+
+			// generates a more lightweight Antlr parser and lexer tailored for content assist
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
+
+			// generates junit test support classes into Generator#pathTestProject
+			fragment = junit.Junit4Fragment auto-inject {}
+
+			// rename refactoring
+			fragment = org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment auto-inject {}
+
+			// provides the necessary bindings for java types integration
+			//fragment = types.TypesGeneratorFragment auto-inject {}
+
+			// generates the required bindings only if the grammar inherits from Xbase
+			//fragment = xbase.XbaseGeneratorFragment auto-inject {}
+
+			// generates the required bindings only if the grammar inherits from Xtype
+			//fragment = xbase.XtypeGeneratorFragment auto-inject {}
+
+			// provides a preference page for template proposals
+			fragment = org.eclipse.xtext.ui.generator.templates.CodetemplatesGeneratorFragment auto-inject {}
+
+			// provides a compare view
+			fragment = org.eclipse.xtext.ui.generator.compare.CompareFragment auto-inject {}
+
+			fragment = net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment {}
+			fragment = net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment {}
+			fragment = net.winklerweb.cdoxtext.generator.EMFCDOGeneratorFragment auto-inject {}
+		}
+	}
+
+}

@@ -1,0 +1,71 @@
+@Ecore(nsURI="http://www.cooperateproject.de/modeling/textual/activity/Activity")
+@GenModel(rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl", rootExtendsInterface="org.eclipse.emf.cdo.CDOObject", providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter",
+	modelName="activity", modelDirectory="/de.cooperateproject.modeling.textual.activity.metamodel/src-gen", featureDelegation="Dynamic")
+
+package de.cooperateproject.modeling.textual.activity.activity
+
+class ActivityDiagram {
+	contains ActivityElement[] elements
+}
+
+abstract class ActivityElement {
+	
+}
+
+class Action extends ActivityElement, DefRef {
+	String[1] name
+	String longName
+	contains Comment comment
+}
+
+class Condition extends ActivityElement {
+	contains ConditionEnd start
+	contains ConditionEnd end
+	contains Comment comment
+}
+
+class Fork extends ActivityElement {
+	contains ForkEnd start
+	contains ForkEnd end
+	contains Comment comment
+}
+
+class ConditionEnd extends DefRef {
+	String[1] name
+	String longName
+}
+
+class ForkEnd extends DefRef {
+	String[1] name
+	String longName
+}
+
+class Comment {
+	String description
+}
+
+class Association extends ActivityElement {
+	contains Reference left
+	contains Reference right
+	contains Comment comment
+}
+
+abstract class Reference {
+	
+}
+
+class DefReference extends Reference {
+	refers DefRef ^type
+}
+
+abstract class DefRef {
+	
+}
+class StartAndEnd extends Reference {
+	StartAndEndEnum ^type
+}
+
+enum StartAndEndEnum {
+	START,
+	END
+}

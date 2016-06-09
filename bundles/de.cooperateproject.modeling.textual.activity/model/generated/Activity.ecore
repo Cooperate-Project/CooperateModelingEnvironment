@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="activity" nsURI="http://www.cooperateproject.de/modeling/textual/activity/Activity"
+    nsPrefix="activity">
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ActivityElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActivityElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="#//Comment"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//ActivityElement #//DefRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//ActivityElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStart" eType="#//ConditionEnd"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionEnd" eType="#//ConditionEnd"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionEnd" eSuperTypes="#//DefRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//ActivityElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forkStart" eType="#//ForkEnd"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forkEnd" eType="#//ForkEnd"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkEnd" eSuperTypes="#//DefRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//ActivityElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Reference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Reference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefReference" eSuperTypes="#//Reference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//DefRef"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefRef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StartAndEnd" eSuperTypes="#//Reference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//StartAndEndEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StartAndEndEnum">
+    <eLiterals name="START" literal="start"/>
+    <eLiterals name="END" value="1" literal="end"/>
+  </eClassifiers>
+</ecore:EPackage>

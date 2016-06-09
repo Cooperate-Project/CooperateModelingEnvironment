@@ -1,0 +1,73 @@
+grammar de.cooperateproject.modeling.textual.activity.Activity with org.eclipse.xtext.common.Terminals
+
+generate activity "http://www.cooperateproject.de/modeling/textual/activity/Activity"
+
+ActivityDiagram:
+	{ActivityDiagram}
+	'@startactivity'
+	elements+=ActivityElement*
+	'@endactivity'
+;
+
+ActivityElement:
+	Action
+	| Condition
+	| Fork
+	| Association
+	//| Comment
+;
+	
+
+Action: 
+	'action' (longName = (STRING | ID) 'as')? name = ID (comment = Comment)?
+;
+
+Condition: 
+	'condition' conditionStart = ConditionEnd ':' conditionEnd = ConditionEnd (comment = Comment)?
+;
+
+
+ConditionEnd: 
+	(longName = (STRING | ID) 'as')? name = ID
+;
+
+
+Fork:
+	'fork' forkStart = ForkEnd ':' forkEnd = ForkEnd (comment = Comment)?
+;
+
+ForkEnd:
+	(longName = (STRING | ID) 'as')? name = ID
+;
+
+Association:
+	left = Reference '-' right = Reference (comment = Comment)?
+;
+	
+Reference:
+	DefReference
+	| StartAndEnd
+;
+
+DefReference:
+	type = [DefRef]
+;
+
+DefRef:
+	Action
+	| ConditionEnd
+	| ForkEnd
+;
+
+StartAndEnd:
+	type = StartAndEndEnum
+;
+
+Comment:
+	'note[' description = STRING ']'
+;
+
+enum StartAndEndEnum:
+	START = 'start'
+	| END = 'end'
+;
