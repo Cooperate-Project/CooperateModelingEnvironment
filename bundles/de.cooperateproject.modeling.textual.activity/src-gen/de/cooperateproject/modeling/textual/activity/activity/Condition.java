@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.activity.activity;
 
+import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,13 +15,15 @@ package de.cooperateproject.modeling.textual.activity.activity;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getConditionStart <em>Condition Start</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getConditionEnd <em>Condition End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition()
  * @model
+ * @extends CDOObject
  * @generated
  */
-public interface Condition extends ActivityElement
+public interface Condition extends CDOObject
 {
   /**
    * Returns the value of the '<em><b>Condition Start</b></em>' containment reference.
@@ -73,5 +76,31 @@ public interface Condition extends ActivityElement
    * @generated
    */
   void setConditionEnd(ConditionEnd value);
+
+  /**
+   * Returns the value of the '<em><b>Comment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Comment</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comment</em>' containment reference.
+   * @see #setComment(Comment)
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition_Comment()
+   * @model containment="true"
+   * @generated
+   */
+  Comment getComment();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getComment <em>Comment</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comment</em>' containment reference.
+   * @see #getComment()
+   * @generated
+   */
+  void setComment(Comment value);
 
 } // Condition

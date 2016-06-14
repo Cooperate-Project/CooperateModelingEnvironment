@@ -23,18 +23,28 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cActivityDiagramAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cStartactivityKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cElementsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cElementsActivityElementParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cActionsAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cActionsActionParserRuleCall_2_0_0 = (RuleCall)cActionsAssignment_2_0.eContents().get(0);
+		private final Assignment cConditionsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cConditionsConditionParserRuleCall_2_1_0 = (RuleCall)cConditionsAssignment_2_1.eContents().get(0);
+		private final Assignment cForksAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cForksForkParserRuleCall_2_2_0 = (RuleCall)cForksAssignment_2_2.eContents().get(0);
+		private final Assignment cAssociationsAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
+		private final RuleCall cAssociationsAssociationParserRuleCall_2_3_0 = (RuleCall)cAssociationsAssignment_2_3.eContents().get(0);
 		private final Keyword cEndactivityKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ActivityDiagram:
 		//	{ActivityDiagram}
-		//	'@startactivity'
-		//	elements+=ActivityElement*
+		//	'@startactivity' (actions+=Action
+		//	| conditions+=Condition
+		//	| forks+=Fork
+		//	| associations+=Association)*
 		//	'@endactivity';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ActivityDiagram} '@startactivity' elements+=ActivityElement* '@endactivity'
+		//{ActivityDiagram} '@startactivity' (actions+=Action | conditions+=Condition | forks+=Fork | associations+=Association)*
+		//'@endactivity'
 		public Group getGroup() { return cGroup; }
 
 		//{ActivityDiagram}
@@ -43,103 +53,67 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		//'@startactivity'
 		public Keyword getStartactivityKeyword_1() { return cStartactivityKeyword_1; }
 
-		//elements+=ActivityElement*
-		public Assignment getElementsAssignment_2() { return cElementsAssignment_2; }
+		//(actions+=Action | conditions+=Condition | forks+=Fork | associations+=Association)*
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//ActivityElement
-		public RuleCall getElementsActivityElementParserRuleCall_2_0() { return cElementsActivityElementParserRuleCall_2_0; }
+		//actions+=Action
+		public Assignment getActionsAssignment_2_0() { return cActionsAssignment_2_0; }
+
+		//Action
+		public RuleCall getActionsActionParserRuleCall_2_0_0() { return cActionsActionParserRuleCall_2_0_0; }
+
+		//conditions+=Condition
+		public Assignment getConditionsAssignment_2_1() { return cConditionsAssignment_2_1; }
+
+		//Condition
+		public RuleCall getConditionsConditionParserRuleCall_2_1_0() { return cConditionsConditionParserRuleCall_2_1_0; }
+
+		//forks+=Fork
+		public Assignment getForksAssignment_2_2() { return cForksAssignment_2_2; }
+
+		//Fork
+		public RuleCall getForksForkParserRuleCall_2_2_0() { return cForksForkParserRuleCall_2_2_0; }
+
+		//associations+=Association
+		public Assignment getAssociationsAssignment_2_3() { return cAssociationsAssignment_2_3; }
+
+		//Association
+		public RuleCall getAssociationsAssociationParserRuleCall_2_3_0() { return cAssociationsAssociationParserRuleCall_2_3_0; }
 
 		//'@endactivity'
 		public Keyword getEndactivityKeyword_3() { return cEndactivityKeyword_3; }
-	}
-
-	public class ActivityElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.ActivityElement");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cActionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cConditionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cForkParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cAssociationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		
-		//ActivityElement:
-		//	Action
-		//	| Condition
-		//	| Fork
-		//	| Association
-		//	//| Comment
-		//;
-		@Override public ParserRule getRule() { return rule; }
-
-		//Action | Condition | Fork | Association
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//Action
-		public RuleCall getActionParserRuleCall_0() { return cActionParserRuleCall_0; }
-
-		//Condition
-		public RuleCall getConditionParserRuleCall_1() { return cConditionParserRuleCall_1; }
-
-		//Fork
-		public RuleCall getForkParserRuleCall_2() { return cForkParserRuleCall_2; }
-
-		//Association
-		public RuleCall getAssociationParserRuleCall_3() { return cAssociationParserRuleCall_3; }
 	}
 
 	public class ActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.Action");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cActionKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cLongNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final Alternatives cLongNameAlternatives_1_0_0 = (Alternatives)cLongNameAssignment_1_0.eContents().get(0);
-		private final RuleCall cLongNameSTRINGTerminalRuleCall_1_0_0_0 = (RuleCall)cLongNameAlternatives_1_0_0.eContents().get(0);
-		private final RuleCall cLongNameIDTerminalRuleCall_1_0_0_1 = (RuleCall)cLongNameAlternatives_1_0_0.eContents().get(1);
-		private final Keyword cAsKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Assignment cCommentAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cCommentCommentParserRuleCall_3_0 = (RuleCall)cCommentAssignment_3.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cCommentAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCommentCommentParserRuleCall_2_0 = (RuleCall)cCommentAssignment_2.eContents().get(0);
 		
 		//Action:
-		//	'action' (longName=(STRING | ID) 'as')? name=ID comment=Comment?;
+		//	'action' name=Name comment=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'action' (longName=(STRING | ID) 'as')? name=ID comment=Comment?
+		//'action' name=Name comment=Comment?
 		public Group getGroup() { return cGroup; }
 
 		//'action'
 		public Keyword getActionKeyword_0() { return cActionKeyword_0; }
 
-		//(longName=(STRING | ID) 'as')?
-		public Group getGroup_1() { return cGroup_1; }
+		//name=Name
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
-		//longName=(STRING | ID)
-		public Assignment getLongNameAssignment_1_0() { return cLongNameAssignment_1_0; }
-
-		//(STRING | ID)
-		public Alternatives getLongNameAlternatives_1_0_0() { return cLongNameAlternatives_1_0_0; }
-
-		//STRING
-		public RuleCall getLongNameSTRINGTerminalRuleCall_1_0_0_0() { return cLongNameSTRINGTerminalRuleCall_1_0_0_0; }
-
-		//ID
-		public RuleCall getLongNameIDTerminalRuleCall_1_0_0_1() { return cLongNameIDTerminalRuleCall_1_0_0_1; }
-
-		//'as'
-		public Keyword getAsKeyword_1_1() { return cAsKeyword_1_1; }
-
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		//Name
+		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
 		//comment=Comment?
-		public Assignment getCommentAssignment_3() { return cCommentAssignment_3; }
+		public Assignment getCommentAssignment_2() { return cCommentAssignment_2; }
 
 		//Comment
-		public RuleCall getCommentCommentParserRuleCall_3_0() { return cCommentCommentParserRuleCall_3_0; }
+		public RuleCall getCommentCommentParserRuleCall_2_0() { return cCommentCommentParserRuleCall_2_0; }
 	}
 
 	public class ConditionElements extends AbstractParserRuleElementFinder {
@@ -188,46 +162,18 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ConditionEndElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.ConditionEnd");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Assignment cLongNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final Alternatives cLongNameAlternatives_0_0_0 = (Alternatives)cLongNameAssignment_0_0.eContents().get(0);
-		private final RuleCall cLongNameSTRINGTerminalRuleCall_0_0_0_0 = (RuleCall)cLongNameAlternatives_0_0_0.eContents().get(0);
-		private final RuleCall cLongNameIDTerminalRuleCall_0_0_0_1 = (RuleCall)cLongNameAlternatives_0_0_0.eContents().get(1);
-		private final Keyword cAsKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//ConditionEnd:
-		//	(longName=(STRING | ID) 'as')? name=ID;
+		//	name=Name;
 		@Override public ParserRule getRule() { return rule; }
 
-		//(longName=(STRING | ID) 'as')? name=ID
-		public Group getGroup() { return cGroup; }
+		//name=Name
+		public Assignment getNameAssignment() { return cNameAssignment; }
 
-		//(longName=(STRING | ID) 'as')?
-		public Group getGroup_0() { return cGroup_0; }
-
-		//longName=(STRING | ID)
-		public Assignment getLongNameAssignment_0_0() { return cLongNameAssignment_0_0; }
-
-		//(STRING | ID)
-		public Alternatives getLongNameAlternatives_0_0_0() { return cLongNameAlternatives_0_0_0; }
-
-		//STRING
-		public RuleCall getLongNameSTRINGTerminalRuleCall_0_0_0_0() { return cLongNameSTRINGTerminalRuleCall_0_0_0_0; }
-
-		//ID
-		public RuleCall getLongNameIDTerminalRuleCall_0_0_0_1() { return cLongNameIDTerminalRuleCall_0_0_0_1; }
-
-		//'as'
-		public Keyword getAsKeyword_0_1() { return cAsKeyword_0_1; }
-
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		//Name
+		public RuleCall getNameNameParserRuleCall_0() { return cNameNameParserRuleCall_0; }
 	}
 
 	public class ForkElements extends AbstractParserRuleElementFinder {
@@ -276,6 +222,22 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ForkEndElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.ForkEnd");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//ForkEnd:
+		//	name=Name;
+		@Override public ParserRule getRule() { return rule; }
+
+		//name=Name
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_0() { return cNameNameParserRuleCall_0; }
+	}
+
+	public class NameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.Name");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Assignment cLongNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
@@ -286,7 +248,7 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//ForkEnd:
+		//Name:
 		//	(longName=(STRING | ID) 'as')? name=ID;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -361,84 +323,58 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	public class ReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.Reference");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cDefReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStartAndEndParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cActivityElementReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cStartEndReferenceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Reference:
-		//	DefReference
-		//	| StartAndEnd;
+		//	ActivityElementReference
+		//	| StartEndReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//DefReference | StartAndEnd
+		//ActivityElementReference | StartEndReference
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//DefReference
-		public RuleCall getDefReferenceParserRuleCall_0() { return cDefReferenceParserRuleCall_0; }
+		//ActivityElementReference
+		public RuleCall getActivityElementReferenceParserRuleCall_0() { return cActivityElementReferenceParserRuleCall_0; }
 
-		//StartAndEnd
-		public RuleCall getStartAndEndParserRuleCall_1() { return cStartAndEndParserRuleCall_1; }
+		//StartEndReference
+		public RuleCall getStartEndReferenceParserRuleCall_1() { return cStartEndReferenceParserRuleCall_1; }
 	}
 
-	public class DefReferenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.DefReference");
+	public class ActivityElementReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.ActivityElementReference");
 		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cTypeDefRefCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
-		private final RuleCall cTypeDefRefIDTerminalRuleCall_0_1 = (RuleCall)cTypeDefRefCrossReference_0.eContents().get(1);
+		private final CrossReference cTypeNameCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeNameIDTerminalRuleCall_0_1 = (RuleCall)cTypeNameCrossReference_0.eContents().get(1);
 		
-		//DefReference:
-		//	type=[DefRef];
+		//ActivityElementReference:
+		//	type=[Name];
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[DefRef]
+		//type=[Name]
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
-		//[DefRef]
-		public CrossReference getTypeDefRefCrossReference_0() { return cTypeDefRefCrossReference_0; }
+		//[Name]
+		public CrossReference getTypeNameCrossReference_0() { return cTypeNameCrossReference_0; }
 
 		//ID
-		public RuleCall getTypeDefRefIDTerminalRuleCall_0_1() { return cTypeDefRefIDTerminalRuleCall_0_1; }
+		public RuleCall getTypeNameIDTerminalRuleCall_0_1() { return cTypeNameIDTerminalRuleCall_0_1; }
 	}
 
-	public class DefRefElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.DefRef");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cActionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cConditionEndParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cForkEndParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		
-		//DefRef:
-		//	Action
-		//	| ConditionEnd
-		//	| ForkEnd;
-		@Override public ParserRule getRule() { return rule; }
-
-		//Action | ConditionEnd | ForkEnd
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//Action
-		public RuleCall getActionParserRuleCall_0() { return cActionParserRuleCall_0; }
-
-		//ConditionEnd
-		public RuleCall getConditionEndParserRuleCall_1() { return cConditionEndParserRuleCall_1; }
-
-		//ForkEnd
-		public RuleCall getForkEndParserRuleCall_2() { return cForkEndParserRuleCall_2; }
-	}
-
-	public class StartAndEndElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.StartAndEnd");
+	public class StartEndReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.StartEndReference");
 		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cTypeStartAndEndEnumEnumRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeStartEndEnumEnumRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
 		
-		//StartAndEnd:
-		//	type=StartAndEndEnum;
+		//StartEndReference:
+		//	type=StartEndEnum;
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=StartAndEndEnum
+		//type=StartEndEnum
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
-		//StartAndEndEnum
-		public RuleCall getTypeStartAndEndEnumEnumRuleCall_0() { return cTypeStartAndEndEnumEnumRuleCall_0; }
+		//StartEndEnum
+		public RuleCall getTypeStartEndEnumEnumRuleCall_0() { return cTypeStartEndEnumEnumRuleCall_0; }
 	}
 
 	public class CommentElements extends AbstractParserRuleElementFinder {
@@ -470,15 +406,15 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	public class StartAndEndEnumElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.StartAndEndEnum");
+	public class StartEndEnumElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.activity.Activity.StartEndEnum");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cSTARTEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cSTARTStartKeyword_0_0 = (Keyword)cSTARTEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cENDEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cENDEndKeyword_1_0 = (Keyword)cENDEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum StartAndEndEnum:
+		//enum StartEndEnum:
 		//	START='start'
 		//	| END='end';
 		public EnumRule getRule() { return rule; }
@@ -500,19 +436,18 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private final ActivityDiagramElements pActivityDiagram;
-	private final ActivityElementElements pActivityElement;
 	private final ActionElements pAction;
 	private final ConditionElements pCondition;
 	private final ConditionEndElements pConditionEnd;
 	private final ForkElements pFork;
 	private final ForkEndElements pForkEnd;
+	private final NameElements pName;
 	private final AssociationElements pAssociation;
 	private final ReferenceElements pReference;
-	private final DefReferenceElements pDefReference;
-	private final DefRefElements pDefRef;
-	private final StartAndEndElements pStartAndEnd;
+	private final ActivityElementReferenceElements pActivityElementReference;
+	private final StartEndReferenceElements pStartEndReference;
 	private final CommentElements pComment;
-	private final StartAndEndEnumElements eStartAndEndEnum;
+	private final StartEndEnumElements eStartEndEnum;
 	
 	private final Grammar grammar;
 
@@ -524,19 +459,18 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pActivityDiagram = new ActivityDiagramElements();
-		this.pActivityElement = new ActivityElementElements();
 		this.pAction = new ActionElements();
 		this.pCondition = new ConditionElements();
 		this.pConditionEnd = new ConditionEndElements();
 		this.pFork = new ForkElements();
 		this.pForkEnd = new ForkEndElements();
+		this.pName = new NameElements();
 		this.pAssociation = new AssociationElements();
 		this.pReference = new ReferenceElements();
-		this.pDefReference = new DefReferenceElements();
-		this.pDefRef = new DefRefElements();
-		this.pStartAndEnd = new StartAndEndElements();
+		this.pActivityElementReference = new ActivityElementReferenceElements();
+		this.pStartEndReference = new StartEndReferenceElements();
 		this.pComment = new CommentElements();
-		this.eStartAndEndEnum = new StartAndEndEnumElements();
+		this.eStartEndEnum = new StartEndEnumElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -568,8 +502,10 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ActivityDiagram:
 	//	{ActivityDiagram}
-	//	'@startactivity'
-	//	elements+=ActivityElement*
+	//	'@startactivity' (actions+=Action
+	//	| conditions+=Condition
+	//	| forks+=Fork
+	//	| associations+=Association)*
 	//	'@endactivity';
 	public ActivityDiagramElements getActivityDiagramAccess() {
 		return pActivityDiagram;
@@ -579,23 +515,8 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		return getActivityDiagramAccess().getRule();
 	}
 
-	//ActivityElement:
-	//	Action
-	//	| Condition
-	//	| Fork
-	//	| Association
-	//	//| Comment
-	//;
-	public ActivityElementElements getActivityElementAccess() {
-		return pActivityElement;
-	}
-	
-	public ParserRule getActivityElementRule() {
-		return getActivityElementAccess().getRule();
-	}
-
 	//Action:
-	//	'action' (longName=(STRING | ID) 'as')? name=ID comment=Comment?;
+	//	'action' name=Name comment=Comment?;
 	public ActionElements getActionAccess() {
 		return pAction;
 	}
@@ -615,7 +536,7 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConditionEnd:
-	//	(longName=(STRING | ID) 'as')? name=ID;
+	//	name=Name;
 	public ConditionEndElements getConditionEndAccess() {
 		return pConditionEnd;
 	}
@@ -635,13 +556,23 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ForkEnd:
-	//	(longName=(STRING | ID) 'as')? name=ID;
+	//	name=Name;
 	public ForkEndElements getForkEndAccess() {
 		return pForkEnd;
 	}
 	
 	public ParserRule getForkEndRule() {
 		return getForkEndAccess().getRule();
+	}
+
+	//Name:
+	//	(longName=(STRING | ID) 'as')? name=ID;
+	public NameElements getNameAccess() {
+		return pName;
+	}
+	
+	public ParserRule getNameRule() {
+		return getNameAccess().getRule();
 	}
 
 	//Association:
@@ -655,8 +586,8 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Reference:
-	//	DefReference
-	//	| StartAndEnd;
+	//	ActivityElementReference
+	//	| StartEndReference;
 	public ReferenceElements getReferenceAccess() {
 		return pReference;
 	}
@@ -665,36 +596,24 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		return getReferenceAccess().getRule();
 	}
 
-	//DefReference:
-	//	type=[DefRef];
-	public DefReferenceElements getDefReferenceAccess() {
-		return pDefReference;
+	//ActivityElementReference:
+	//	type=[Name];
+	public ActivityElementReferenceElements getActivityElementReferenceAccess() {
+		return pActivityElementReference;
 	}
 	
-	public ParserRule getDefReferenceRule() {
-		return getDefReferenceAccess().getRule();
+	public ParserRule getActivityElementReferenceRule() {
+		return getActivityElementReferenceAccess().getRule();
 	}
 
-	//DefRef:
-	//	Action
-	//	| ConditionEnd
-	//	| ForkEnd;
-	public DefRefElements getDefRefAccess() {
-		return pDefRef;
+	//StartEndReference:
+	//	type=StartEndEnum;
+	public StartEndReferenceElements getStartEndReferenceAccess() {
+		return pStartEndReference;
 	}
 	
-	public ParserRule getDefRefRule() {
-		return getDefRefAccess().getRule();
-	}
-
-	//StartAndEnd:
-	//	type=StartAndEndEnum;
-	public StartAndEndElements getStartAndEndAccess() {
-		return pStartAndEnd;
-	}
-	
-	public ParserRule getStartAndEndRule() {
-		return getStartAndEndAccess().getRule();
+	public ParserRule getStartEndReferenceRule() {
+		return getStartEndReferenceAccess().getRule();
 	}
 
 	//Comment:
@@ -707,15 +626,15 @@ public class ActivityGrammarAccess extends AbstractGrammarElementFinder {
 		return getCommentAccess().getRule();
 	}
 
-	//enum StartAndEndEnum:
+	//enum StartEndEnum:
 	//	START='start'
 	//	| END='end';
-	public StartAndEndEnumElements getStartAndEndEnumAccess() {
-		return eStartAndEndEnum;
+	public StartEndEnumElements getStartEndEnumAccess() {
+		return eStartEndEnum;
 	}
 	
-	public EnumRule getStartAndEndEnumRule() {
-		return getStartAndEndEnumAccess().getRule();
+	public EnumRule getStartEndEnumRule() {
+		return getStartEndEnumAccess().getRule();
 	}
 
 	//terminal ID:

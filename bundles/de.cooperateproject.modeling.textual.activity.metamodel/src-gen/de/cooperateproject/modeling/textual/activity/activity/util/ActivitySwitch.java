@@ -72,45 +72,33 @@ public class ActivitySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityPackage.ACTIVITY_ELEMENT: {
-				ActivityElement activityElement = (ActivityElement)theEObject;
-				T result = caseActivityElement(activityElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ActivityPackage.ACTION: {
 				Action action = (Action)theEObject;
 				T result = caseAction(action);
-				if (result == null) result = caseActivityElement(action);
-				if (result == null) result = caseDefRef(action);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActivityPackage.CONDITION: {
 				Condition condition = (Condition)theEObject;
 				T result = caseCondition(condition);
-				if (result == null) result = caseActivityElement(condition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActivityPackage.FORK: {
 				Fork fork = (Fork)theEObject;
 				T result = caseFork(fork);
-				if (result == null) result = caseActivityElement(fork);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActivityPackage.CONDITION_END: {
 				ConditionEnd conditionEnd = (ConditionEnd)theEObject;
 				T result = caseConditionEnd(conditionEnd);
-				if (result == null) result = caseDefRef(conditionEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ActivityPackage.FORK_END: {
 				ForkEnd forkEnd = (ForkEnd)theEObject;
 				T result = caseForkEnd(forkEnd);
-				if (result == null) result = caseDefRef(forkEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,7 +111,6 @@ public class ActivitySwitch<T> extends Switch<T> {
 			case ActivityPackage.ASSOCIATION: {
 				Association association = (Association)theEObject;
 				T result = caseAssociation(association);
-				if (result == null) result = caseActivityElement(association);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,23 +120,23 @@ public class ActivitySwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityPackage.DEF_REFERENCE: {
-				DefReference defReference = (DefReference)theEObject;
-				T result = caseDefReference(defReference);
-				if (result == null) result = caseReference(defReference);
+			case ActivityPackage.NAME: {
+				Name name = (Name)theEObject;
+				T result = caseName(name);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityPackage.DEF_REF: {
-				DefRef defRef = (DefRef)theEObject;
-				T result = caseDefRef(defRef);
+			case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE: {
+				ActivityElementReference activityElementReference = (ActivityElementReference)theEObject;
+				T result = caseActivityElementReference(activityElementReference);
+				if (result == null) result = caseReference(activityElementReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityPackage.START_AND_END: {
-				StartAndEnd startAndEnd = (StartAndEnd)theEObject;
-				T result = caseStartAndEnd(startAndEnd);
-				if (result == null) result = caseReference(startAndEnd);
+			case ActivityPackage.START_END_REFERENCE: {
+				StartEndReference startEndReference = (StartEndReference)theEObject;
+				T result = caseStartEndReference(startEndReference);
+				if (result == null) result = caseReference(startEndReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,21 +156,6 @@ public class ActivitySwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseActivityDiagram(ActivityDiagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseActivityElement(ActivityElement object) {
 		return null;
 	}
 
@@ -308,47 +280,47 @@ public class ActivitySwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Def Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Name</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Def Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Name</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDefReference(DefReference object) {
+	public T caseName(Name object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Def Ref</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Def Ref</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Element Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDefRef(DefRef object) {
+	public T caseActivityElementReference(ActivityElementReference object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Start And End</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Start End Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Start And End</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Start End Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStartAndEnd(StartAndEnd object) {
+	public T caseStartEndReference(StartEndReference object) {
 		return null;
 	}
 

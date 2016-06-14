@@ -11,44 +11,77 @@
     operationReflection="true" importOrganizing="true">
   <genPackages prefix="Activity" basePackage="de.cooperateproject.modeling.textual.activity"
       disposableProviderFactory="true" fileExtensions="activity" ecorePackage="Activity.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Activity.ecore#//StartEndEnum">
+      <genEnumLiterals ecoreEnumLiteral="Activity.ecore#//StartEndEnum/START"/>
+      <genEnumLiterals ecoreEnumLiteral="Activity.ecore#//StartEndEnum/END"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Activity.ecore#//StartAndEndEnum">
       <genEnumLiterals ecoreEnumLiteral="Activity.ecore#//StartAndEndEnum/START"/>
       <genEnumLiterals ecoreEnumLiteral="Activity.ecore#//StartAndEndEnum/END"/>
     </genEnums>
     <genClasses ecoreClass="Activity.ecore#//ActivityDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityDiagram/actions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityDiagram/conditions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityDiagram/forks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityDiagram/associations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityDiagram/elements"/>
     </genClasses>
-    <genClasses ecoreClass="Activity.ecore#//ActivityElement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityElement/comment"/>
+    <genClasses ecoreClass="Activity.ecore#//Action">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Action/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Action/comment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//DefRef/longName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//DefRef/name"/>
     </genClasses>
-    <genClasses ecoreClass="Activity.ecore#//Action"/>
     <genClasses ecoreClass="Activity.ecore#//Condition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Condition/conditionStart"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Condition/conditionEnd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Condition/comment"/>
     </genClasses>
-    <genClasses ecoreClass="Activity.ecore#//ConditionEnd"/>
+    <genClasses ecoreClass="Activity.ecore#//ConditionEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference Activity.ecore#//ConditionEnd/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//ConditionEnd/longName"/>
+    </genClasses>
     <genClasses ecoreClass="Activity.ecore#//Fork">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Fork/forkStart"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Fork/forkEnd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Fork/comment"/>
     </genClasses>
-    <genClasses ecoreClass="Activity.ecore#//ForkEnd"/>
+    <genClasses ecoreClass="Activity.ecore#//ForkEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference Activity.ecore#//ForkEnd/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//ForkEnd/longName"/>
+    </genClasses>
+    <genClasses ecoreClass="Activity.ecore#//Name">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//Name/longName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//Name/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Name/comment"/>
+    </genClasses>
     <genClasses ecoreClass="Activity.ecore#//Association">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Association/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Association/right"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//Association/comment"/>
     </genClasses>
     <genClasses ecoreClass="Activity.ecore#//Reference"/>
+    <genClasses ecoreClass="Activity.ecore#//ActivityElementReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityElementReference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Activity.ecore#//StartEndReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//StartEndReference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Activity.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//Comment/description"/>
+    </genClasses>
     <genClasses ecoreClass="Activity.ecore#//DefReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Activity.ecore#//DefReference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Activity.ecore#//StartAndEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//StartAndEnd/type"/>
     </genClasses>
     <genClasses ecoreClass="Activity.ecore#//DefRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//DefRef/longName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//DefRef/name"/>
     </genClasses>
-    <genClasses ecoreClass="Activity.ecore#//StartAndEnd">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//StartAndEnd/type"/>
-    </genClasses>
-    <genClasses ecoreClass="Activity.ecore#//Comment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Activity.ecore#//Comment/description"/>
+    <genClasses ecoreClass="Activity.ecore#//ActivityElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Activity.ecore#//ActivityElement/comment"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

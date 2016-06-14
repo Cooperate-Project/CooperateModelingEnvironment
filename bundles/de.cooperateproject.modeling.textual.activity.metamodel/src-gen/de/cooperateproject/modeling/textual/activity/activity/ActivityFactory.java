@@ -94,22 +94,31 @@ public interface ActivityFactory extends EFactory {
 	Association createAssociation();
 
 	/**
-	 * Returns a new object of class '<em>Def Reference</em>'.
+	 * Returns a new object of class '<em>Name</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Def Reference</em>'.
+	 * @return a new object of class '<em>Name</em>'.
 	 * @generated
 	 */
-	DefReference createDefReference();
+	Name createName();
 
 	/**
-	 * Returns a new object of class '<em>Start And End</em>'.
+	 * Returns a new object of class '<em>Element Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Start And End</em>'.
+	 * @return a new object of class '<em>Element Reference</em>'.
 	 * @generated
 	 */
-	StartAndEnd createStartAndEnd();
+	ActivityElementReference createActivityElementReference();
+
+	/**
+	 * Returns a new object of class '<em>Start End Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Start End Reference</em>'.
+	 * @generated
+	 */
+	StartEndReference createStartEndReference();
 
 	/**
 	 * Returns the package supported by this factory.

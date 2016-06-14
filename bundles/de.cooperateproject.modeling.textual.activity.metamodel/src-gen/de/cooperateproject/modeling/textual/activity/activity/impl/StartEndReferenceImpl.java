@@ -3,25 +3,25 @@
 package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
-import de.cooperateproject.modeling.textual.activity.activity.StartAndEnd;
-import de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum;
+import de.cooperateproject.modeling.textual.activity.activity.StartEndEnum;
+import de.cooperateproject.modeling.textual.activity.activity.StartEndReference;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Start And End</b></em>'.
+ * An implementation of the model object '<em><b>Start End Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.StartAndEndImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.StartEndReferenceImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
+public class StartEndReferenceImpl extends ReferenceImpl implements StartEndReference {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -30,14 +30,14 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final StartAndEndEnum TYPE_EDEFAULT = StartAndEndEnum.START;
+	protected static final StartEndEnum TYPE_EDEFAULT = StartEndEnum.START;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StartAndEndImpl() {
+	protected StartEndReferenceImpl() {
 		super();
 	}
 
@@ -48,7 +48,7 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ActivityPackage.Literals.START_AND_END;
+		return ActivityPackage.Literals.START_END_REFERENCE;
 	}
 
 	/**
@@ -56,8 +56,8 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StartAndEndEnum getType() {
-		return (StartAndEndEnum)eDynamicGet(ActivityPackage.START_AND_END__TYPE, ActivityPackage.Literals.START_AND_END__TYPE, true, true);
+	public StartEndEnum getType() {
+		return (StartEndEnum)eDynamicGet(ActivityPackage.START_END_REFERENCE__TYPE, ActivityPackage.Literals.START_END_REFERENCE__TYPE, true, true);
 	}
 
 	/**
@@ -65,8 +65,8 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(StartAndEndEnum newType) {
-		eDynamicSet(ActivityPackage.START_AND_END__TYPE, ActivityPackage.Literals.START_AND_END__TYPE, newType);
+	public void setType(StartEndEnum newType) {
+		eDynamicSet(ActivityPackage.START_END_REFERENCE__TYPE, ActivityPackage.Literals.START_END_REFERENCE__TYPE, newType);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActivityPackage.START_AND_END__TYPE:
+			case ActivityPackage.START_END_REFERENCE__TYPE:
 				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -91,8 +91,8 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActivityPackage.START_AND_END__TYPE:
-				setType((StartAndEndEnum)newValue);
+			case ActivityPackage.START_END_REFERENCE__TYPE:
+				setType((StartEndEnum)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -106,7 +106,7 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActivityPackage.START_AND_END__TYPE:
+			case ActivityPackage.START_END_REFERENCE__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
 		}
@@ -121,10 +121,10 @@ public class StartAndEndImpl extends ReferenceImpl implements StartAndEnd {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActivityPackage.START_AND_END__TYPE:
+			case ActivityPackage.START_END_REFERENCE__TYPE:
 				return getType() != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //StartAndEndImpl
+} //StartEndReferenceImpl

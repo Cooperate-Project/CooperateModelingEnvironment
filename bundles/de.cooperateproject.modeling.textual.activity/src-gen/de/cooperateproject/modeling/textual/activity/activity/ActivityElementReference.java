@@ -5,21 +5,21 @@ package de.cooperateproject.modeling.textual.activity.activity;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Def Reference</b></em>'.
+ * A representation of the model object '<em><b>Element Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.DefReference#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getDefReference()
+ * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getActivityElementReference()
  * @model
  * @generated
  */
-public interface DefReference extends Reference
+public interface ActivityElementReference extends Reference
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -30,21 +30,21 @@ public interface DefReference extends Reference
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(DefRef)
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getDefReference_Type()
+   * @see #setType(Name)
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getActivityElementReference_Type()
    * @model
    * @generated
    */
-  DefRef getType();
+  Name getType();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.DefReference#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference#getType <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' reference.
    * @see #getType()
    * @generated
    */
-  void setType(DefRef value);
+  void setType(Name value);
 
-} // DefReference
+} // ActivityElementReference

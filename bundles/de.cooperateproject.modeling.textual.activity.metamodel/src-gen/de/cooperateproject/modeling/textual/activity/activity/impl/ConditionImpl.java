@@ -12,6 +12,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Condition</b></em>'.
@@ -20,14 +22,14 @@ import org.eclipse.emf.ecore.InternalEObject;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getStart <em>Start</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getEnd <em>End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getConditionStart <em>Condition Start</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getConditionEnd <em>Condition End</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConditionImpl extends ActivityElementImpl implements Condition {
+public class ConditionImpl extends CDOObjectImpl implements Condition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,8 +54,9 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionEnd getStart() {
-		return (ConditionEnd)eDynamicGet(ActivityPackage.CONDITION__START, ActivityPackage.Literals.CONDITION__START, true, true);
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -61,8 +64,17 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStart(ConditionEnd newStart, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newStart, ActivityPackage.CONDITION__START, msgs);
+	public ConditionEnd getConditionStart() {
+		return (ConditionEnd)eDynamicGet(ActivityPackage.CONDITION__CONDITION_START, ActivityPackage.Literals.CONDITION__CONDITION_START, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetConditionStart(ConditionEnd newConditionStart, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newConditionStart, ActivityPackage.CONDITION__CONDITION_START, msgs);
 		return msgs;
 	}
 
@@ -71,8 +83,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStart(ConditionEnd newStart) {
-		eDynamicSet(ActivityPackage.CONDITION__START, ActivityPackage.Literals.CONDITION__START, newStart);
+	public void setConditionStart(ConditionEnd newConditionStart) {
+		eDynamicSet(ActivityPackage.CONDITION__CONDITION_START, ActivityPackage.Literals.CONDITION__CONDITION_START, newConditionStart);
 	}
 
 	/**
@@ -80,8 +92,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionEnd getEnd() {
-		return (ConditionEnd)eDynamicGet(ActivityPackage.CONDITION__END, ActivityPackage.Literals.CONDITION__END, true, true);
+	public ConditionEnd getConditionEnd() {
+		return (ConditionEnd)eDynamicGet(ActivityPackage.CONDITION__CONDITION_END, ActivityPackage.Literals.CONDITION__CONDITION_END, true, true);
 	}
 
 	/**
@@ -89,8 +101,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEnd(ConditionEnd newEnd, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newEnd, ActivityPackage.CONDITION__END, msgs);
+	public NotificationChain basicSetConditionEnd(ConditionEnd newConditionEnd, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newConditionEnd, ActivityPackage.CONDITION__CONDITION_END, msgs);
 		return msgs;
 	}
 
@@ -99,8 +111,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnd(ConditionEnd newEnd) {
-		eDynamicSet(ActivityPackage.CONDITION__END, ActivityPackage.Literals.CONDITION__END, newEnd);
+	public void setConditionEnd(ConditionEnd newConditionEnd) {
+		eDynamicSet(ActivityPackage.CONDITION__CONDITION_END, ActivityPackage.Literals.CONDITION__CONDITION_END, newConditionEnd);
 	}
 
 	/**
@@ -139,10 +151,10 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ActivityPackage.CONDITION__START:
-				return basicSetStart(null, msgs);
-			case ActivityPackage.CONDITION__END:
-				return basicSetEnd(null, msgs);
+			case ActivityPackage.CONDITION__CONDITION_START:
+				return basicSetConditionStart(null, msgs);
+			case ActivityPackage.CONDITION__CONDITION_END:
+				return basicSetConditionEnd(null, msgs);
 			case ActivityPackage.CONDITION__COMMENT:
 				return basicSetComment(null, msgs);
 		}
@@ -157,10 +169,10 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActivityPackage.CONDITION__START:
-				return getStart();
-			case ActivityPackage.CONDITION__END:
-				return getEnd();
+			case ActivityPackage.CONDITION__CONDITION_START:
+				return getConditionStart();
+			case ActivityPackage.CONDITION__CONDITION_END:
+				return getConditionEnd();
 			case ActivityPackage.CONDITION__COMMENT:
 				return getComment();
 		}
@@ -175,11 +187,11 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActivityPackage.CONDITION__START:
-				setStart((ConditionEnd)newValue);
+			case ActivityPackage.CONDITION__CONDITION_START:
+				setConditionStart((ConditionEnd)newValue);
 				return;
-			case ActivityPackage.CONDITION__END:
-				setEnd((ConditionEnd)newValue);
+			case ActivityPackage.CONDITION__CONDITION_END:
+				setConditionEnd((ConditionEnd)newValue);
 				return;
 			case ActivityPackage.CONDITION__COMMENT:
 				setComment((Comment)newValue);
@@ -196,11 +208,11 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActivityPackage.CONDITION__START:
-				setStart((ConditionEnd)null);
+			case ActivityPackage.CONDITION__CONDITION_START:
+				setConditionStart((ConditionEnd)null);
 				return;
-			case ActivityPackage.CONDITION__END:
-				setEnd((ConditionEnd)null);
+			case ActivityPackage.CONDITION__CONDITION_END:
+				setConditionEnd((ConditionEnd)null);
 				return;
 			case ActivityPackage.CONDITION__COMMENT:
 				setComment((Comment)null);
@@ -217,10 +229,10 @@ public class ConditionImpl extends ActivityElementImpl implements Condition {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActivityPackage.CONDITION__START:
-				return getStart() != null;
-			case ActivityPackage.CONDITION__END:
-				return getEnd() != null;
+			case ActivityPackage.CONDITION__CONDITION_START:
+				return getConditionStart() != null;
+			case ActivityPackage.CONDITION__CONDITION_END:
+				return getConditionEnd() != null;
 			case ActivityPackage.CONDITION__COMMENT:
 				return getComment() != null;
 		}

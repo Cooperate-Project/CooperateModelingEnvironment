@@ -4,20 +4,19 @@ package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.Action;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram;
-import de.cooperateproject.modeling.textual.activity.activity.ActivityElement;
+import de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityFactory;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
 import de.cooperateproject.modeling.textual.activity.activity.Association;
 import de.cooperateproject.modeling.textual.activity.activity.Comment;
 import de.cooperateproject.modeling.textual.activity.activity.Condition;
 import de.cooperateproject.modeling.textual.activity.activity.ConditionEnd;
-import de.cooperateproject.modeling.textual.activity.activity.DefRef;
-import de.cooperateproject.modeling.textual.activity.activity.DefReference;
 import de.cooperateproject.modeling.textual.activity.activity.Fork;
 import de.cooperateproject.modeling.textual.activity.activity.ForkEnd;
+import de.cooperateproject.modeling.textual.activity.activity.Name;
 import de.cooperateproject.modeling.textual.activity.activity.Reference;
-import de.cooperateproject.modeling.textual.activity.activity.StartAndEnd;
-import de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum;
+import de.cooperateproject.modeling.textual.activity.activity.StartEndEnum;
+import de.cooperateproject.modeling.textual.activity.activity.StartEndReference;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -42,13 +41,6 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * @generated
    */
   private EClass activityDiagramEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass activityElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -90,6 +82,13 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass nameEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass associationEClass = null;
 
   /**
@@ -104,21 +103,14 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass defReferenceEClass = null;
+  private EClass activityElementReferenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass defRefEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass startAndEndEClass = null;
+  private EClass startEndReferenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,7 +124,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum startAndEndEnumEEnum = null;
+  private EEnum startEndEnumEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -215,7 +207,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getActivityDiagram_Elements()
+  public EReference getActivityDiagram_Actions()
   {
     return (EReference)activityDiagramEClass.getEStructuralFeatures().get(0);
   }
@@ -225,9 +217,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getActivityElement()
+  public EReference getActivityDiagram_Conditions()
   {
-    return activityElementEClass;
+    return (EReference)activityDiagramEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -235,9 +227,19 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getActivityElement_Comment()
+  public EReference getActivityDiagram_Forks()
   {
-    return (EReference)activityElementEClass.getEStructuralFeatures().get(0);
+    return (EReference)activityDiagramEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getActivityDiagram_Associations()
+  {
+    return (EReference)activityDiagramEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -248,6 +250,26 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
   public EClass getAction()
   {
     return actionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAction_Name()
+  {
+    return (EReference)actionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAction_Comment()
+  {
+    return (EReference)actionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -285,9 +307,29 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getCondition_Comment()
+  {
+    return (EReference)conditionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getConditionEnd()
   {
     return conditionEndEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConditionEnd_Name()
+  {
+    return (EReference)conditionEndEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -325,9 +367,59 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getFork_Comment()
+  {
+    return (EReference)forkEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getForkEnd()
   {
     return forkEndEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getForkEnd_Name()
+  {
+    return (EReference)forkEndEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getName_()
+  {
+    return nameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getName_LongName()
+  {
+    return (EAttribute)nameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getName_Name()
+  {
+    return (EAttribute)nameEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -365,6 +457,16 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getAssociation_Comment()
+  {
+    return (EReference)associationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getReference()
   {
     return referenceEClass;
@@ -375,9 +477,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDefReference()
+  public EClass getActivityElementReference()
   {
-    return defReferenceEClass;
+    return activityElementReferenceEClass;
   }
 
   /**
@@ -385,9 +487,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDefReference_Type()
+  public EReference getActivityElementReference_Type()
   {
-    return (EReference)defReferenceEClass.getEStructuralFeatures().get(0);
+    return (EReference)activityElementReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -395,9 +497,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDefRef()
+  public EClass getStartEndReference()
   {
-    return defRefEClass;
+    return startEndReferenceEClass;
   }
 
   /**
@@ -405,39 +507,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDefRef_LongName()
+  public EAttribute getStartEndReference_Type()
   {
-    return (EAttribute)defRefEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getDefRef_Name()
-  {
-    return (EAttribute)defRefEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStartAndEnd()
-  {
-    return startAndEndEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStartAndEnd_Type()
-  {
-    return (EAttribute)startAndEndEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)startEndReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -465,9 +537,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getStartAndEndEnum()
+  public EEnum getStartEndEnum()
   {
-    return startAndEndEnumEEnum;
+    return startEndEnumEEnum;
   }
 
   /**
@@ -501,46 +573,53 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
     // Create classes and their features
     activityDiagramEClass = createEClass(ACTIVITY_DIAGRAM);
-    createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__ELEMENTS);
-
-    activityElementEClass = createEClass(ACTIVITY_ELEMENT);
-    createEReference(activityElementEClass, ACTIVITY_ELEMENT__COMMENT);
+    createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__ACTIONS);
+    createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__CONDITIONS);
+    createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__FORKS);
+    createEReference(activityDiagramEClass, ACTIVITY_DIAGRAM__ASSOCIATIONS);
 
     actionEClass = createEClass(ACTION);
+    createEReference(actionEClass, ACTION__NAME);
+    createEReference(actionEClass, ACTION__COMMENT);
 
     conditionEClass = createEClass(CONDITION);
     createEReference(conditionEClass, CONDITION__CONDITION_START);
     createEReference(conditionEClass, CONDITION__CONDITION_END);
+    createEReference(conditionEClass, CONDITION__COMMENT);
 
     conditionEndEClass = createEClass(CONDITION_END);
+    createEReference(conditionEndEClass, CONDITION_END__NAME);
 
     forkEClass = createEClass(FORK);
     createEReference(forkEClass, FORK__FORK_START);
     createEReference(forkEClass, FORK__FORK_END);
+    createEReference(forkEClass, FORK__COMMENT);
 
     forkEndEClass = createEClass(FORK_END);
+    createEReference(forkEndEClass, FORK_END__NAME);
+
+    nameEClass = createEClass(NAME);
+    createEAttribute(nameEClass, NAME__LONG_NAME);
+    createEAttribute(nameEClass, NAME__NAME);
 
     associationEClass = createEClass(ASSOCIATION);
     createEReference(associationEClass, ASSOCIATION__LEFT);
     createEReference(associationEClass, ASSOCIATION__RIGHT);
+    createEReference(associationEClass, ASSOCIATION__COMMENT);
 
     referenceEClass = createEClass(REFERENCE);
 
-    defReferenceEClass = createEClass(DEF_REFERENCE);
-    createEReference(defReferenceEClass, DEF_REFERENCE__TYPE);
+    activityElementReferenceEClass = createEClass(ACTIVITY_ELEMENT_REFERENCE);
+    createEReference(activityElementReferenceEClass, ACTIVITY_ELEMENT_REFERENCE__TYPE);
 
-    defRefEClass = createEClass(DEF_REF);
-    createEAttribute(defRefEClass, DEF_REF__LONG_NAME);
-    createEAttribute(defRefEClass, DEF_REF__NAME);
-
-    startAndEndEClass = createEClass(START_AND_END);
-    createEAttribute(startAndEndEClass, START_AND_END__TYPE);
+    startEndReferenceEClass = createEClass(START_END_REFERENCE);
+    createEAttribute(startEndReferenceEClass, START_END_REFERENCE__TYPE);
 
     commentEClass = createEClass(COMMENT);
     createEAttribute(commentEClass, COMMENT__DESCRIPTION);
 
     // Create enums
-    startAndEndEnumEEnum = createEEnum(START_AND_END_ENUM);
+    startEndEnumEEnum = createEEnum(START_END_ENUM);
   }
 
   /**
@@ -575,60 +654,60 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    actionEClass.getESuperTypes().add(this.getActivityElement());
-    actionEClass.getESuperTypes().add(this.getDefRef());
-    conditionEClass.getESuperTypes().add(this.getActivityElement());
-    conditionEndEClass.getESuperTypes().add(this.getDefRef());
-    forkEClass.getESuperTypes().add(this.getActivityElement());
-    forkEndEClass.getESuperTypes().add(this.getDefRef());
-    associationEClass.getESuperTypes().add(this.getActivityElement());
-    defReferenceEClass.getESuperTypes().add(this.getReference());
-    startAndEndEClass.getESuperTypes().add(this.getReference());
+    activityElementReferenceEClass.getESuperTypes().add(this.getReference());
+    startEndReferenceEClass.getESuperTypes().add(this.getReference());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getActivityDiagram_Elements(), this.getActivityElement(), null, "elements", null, 0, -1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(activityElementEClass, ActivityElement.class, "ActivityElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getActivityElement_Comment(), this.getComment(), null, "comment", null, 0, 1, ActivityElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getActivityDiagram_Actions(), this.getAction(), null, "actions", null, 0, -1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getActivityDiagram_Conditions(), this.getCondition(), null, "conditions", null, 0, -1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getActivityDiagram_Forks(), this.getFork(), null, "forks", null, 0, -1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getActivityDiagram_Associations(), this.getAssociation(), null, "associations", null, 0, -1, ActivityDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAction_Name(), this.getName_(), null, "name", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAction_Comment(), this.getComment(), null, "comment", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCondition_ConditionStart(), this.getConditionEnd(), null, "conditionStart", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCondition_ConditionEnd(), this.getConditionEnd(), null, "conditionEnd", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCondition_Comment(), this.getComment(), null, "comment", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(conditionEndEClass, ConditionEnd.class, "ConditionEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConditionEnd_Name(), this.getName_(), null, "name", null, 0, 1, ConditionEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFork_ForkStart(), this.getForkEnd(), null, "forkStart", null, 0, 1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFork_ForkEnd(), this.getForkEnd(), null, "forkEnd", null, 0, 1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFork_Comment(), this.getComment(), null, "comment", null, 0, 1, Fork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(forkEndEClass, ForkEnd.class, "ForkEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getForkEnd_Name(), this.getName_(), null, "name", null, 0, 1, ForkEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(nameEClass, Name.class, "Name", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getName_LongName(), theEcorePackage.getEString(), "longName", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getName_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssociation_Left(), this.getReference(), null, "left", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssociation_Right(), this.getReference(), null, "right", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssociation_Comment(), this.getComment(), null, "comment", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(referenceEClass, Reference.class, "Reference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(defReferenceEClass, DefReference.class, "DefReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDefReference_Type(), this.getDefRef(), null, "type", null, 0, 1, DefReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(activityElementReferenceEClass, ActivityElementReference.class, "ActivityElementReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getActivityElementReference_Type(), this.getName_(), null, "type", null, 0, 1, ActivityElementReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(defRefEClass, DefRef.class, "DefRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDefRef_LongName(), theEcorePackage.getEString(), "longName", null, 0, 1, DefRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDefRef_Name(), theEcorePackage.getEString(), "name", null, 0, 1, DefRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(startAndEndEClass, StartAndEnd.class, "StartAndEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStartAndEnd_Type(), this.getStartAndEndEnum(), "type", null, 0, 1, StartAndEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(startEndReferenceEClass, StartEndReference.class, "StartEndReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStartEndReference_Type(), this.getStartEndEnum(), "type", null, 0, 1, StartEndReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getComment_Description(), theEcorePackage.getEString(), "description", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(startAndEndEnumEEnum, StartAndEndEnum.class, "StartAndEndEnum");
-    addEEnumLiteral(startAndEndEnumEEnum, StartAndEndEnum.START);
-    addEEnumLiteral(startAndEndEnumEEnum, StartAndEndEnum.END);
+    initEEnum(startEndEnumEEnum, StartEndEnum.class, "StartEndEnum");
+    addEEnumLiteral(startEndEnumEEnum, StartEndEnum.START);
+    addEEnumLiteral(startEndEnumEEnum, StartEndEnum.END);
 
     // Create resource
     createResource(eNS_URI);

@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.activity.activity;
 
+import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,67 +13,68 @@ package de.cooperateproject.modeling.textual.activity.activity;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getStart <em>Start</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getEnd <em>End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getConditionStart <em>Condition Start</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getConditionEnd <em>Condition End</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition()
  * @model
+ * @extends CDOObject
  * @generated
  */
-public interface Condition extends ActivityElement {
+public interface Condition extends CDOObject {
 	/**
-	 * Returns the value of the '<em><b>Start</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Condition Start</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Start</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Condition Start</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Start</em>' containment reference.
-	 * @see #setStart(ConditionEnd)
-	 * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition_Start()
-	 * @model containment="true"
+	 * @return the value of the '<em>Condition Start</em>' containment reference.
+	 * @see #setConditionStart(ConditionEnd)
+	 * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition_ConditionStart()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ConditionEnd getStart();
+	ConditionEnd getConditionStart();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getStart <em>Start</em>}' containment reference.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getConditionStart <em>Condition Start</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Start</em>' containment reference.
-	 * @see #getStart()
+	 * @param value the new value of the '<em>Condition Start</em>' containment reference.
+	 * @see #getConditionStart()
 	 * @generated
 	 */
-	void setStart(ConditionEnd value);
+	void setConditionStart(ConditionEnd value);
 
 	/**
-	 * Returns the value of the '<em><b>End</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Condition End</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Condition End</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>End</em>' containment reference.
-	 * @see #setEnd(ConditionEnd)
-	 * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition_End()
-	 * @model containment="true"
+	 * @return the value of the '<em>Condition End</em>' containment reference.
+	 * @see #setConditionEnd(ConditionEnd)
+	 * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getCondition_ConditionEnd()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ConditionEnd getEnd();
+	ConditionEnd getConditionEnd();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getEnd <em>End</em>}' containment reference.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getConditionEnd <em>Condition End</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End</em>' containment reference.
-	 * @see #getEnd()
+	 * @param value the new value of the '<em>Condition End</em>' containment reference.
+	 * @see #getConditionEnd()
 	 * @generated
 	 */
-	void setEnd(ConditionEnd value);
+	void setConditionEnd(ConditionEnd value);
 
 	/**
 	 * Returns the value of the '<em><b>Comment</b></em>' containment reference.

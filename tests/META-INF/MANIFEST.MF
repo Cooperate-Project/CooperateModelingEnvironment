@@ -6,11 +6,18 @@ Bundle-Version: 0.0.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.modeling.textual.cls.tests,
- de.cooperateproject.modeling.textual.cls.ui.tests
+ de.cooperateproject.modeling.textual.cls.ui.tests,
+ de.cooperateproject.modeling.textual.activity.tests,
+ de.cooperateproject.modeling.textual.activity.ui.tests,
+ de.cooperateproject.modeling.textual.activity
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.workbench;resolution:=optional,
  org.eclipse.xtext.junit4,
- org.eclipse.xtext.xbase.lib
+ org.eclipse.xtext.xbase.lib,
+ de.cooperateproject.modeling.textual.activity,
+ de.cooperateproject.modeling.textual.activity.ui,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ ../de.cooperateproject.modeling.textual.activity.ui
 Import-Package: org.hamcrest.core,
  org.junit.runner.manipulation;version="4.5.0",
  org.junit.runner.notification;version="4.5.0",

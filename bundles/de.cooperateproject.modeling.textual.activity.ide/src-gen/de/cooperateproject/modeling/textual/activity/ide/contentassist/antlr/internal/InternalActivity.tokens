@@ -1,13 +1,13 @@
 '-'=20
-':'=18
+':'=17
 '@endactivity'=14
 '@startactivity'=13
 ']'=22
 'action'=15
-'as'=16
-'condition'=17
+'as'=19
+'condition'=16
 'end'=12
-'fork'=19
+'fork'=18
 'note['=21
 'start'=11
 RULE_ANY_OTHER=10

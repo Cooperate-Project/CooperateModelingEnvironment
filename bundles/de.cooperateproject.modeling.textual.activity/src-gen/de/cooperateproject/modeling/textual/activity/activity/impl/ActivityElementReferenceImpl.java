@@ -2,33 +2,33 @@
  */
 package de.cooperateproject.modeling.textual.activity.activity.impl;
 
+import de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
-import de.cooperateproject.modeling.textual.activity.activity.DefRef;
-import de.cooperateproject.modeling.textual.activity.activity.DefReference;
+import de.cooperateproject.modeling.textual.activity.activity.Name;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Def Reference</b></em>'.
+ * An implementation of the model object '<em><b>Element Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefReferenceImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementReferenceImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DefReferenceImpl extends ReferenceImpl implements DefReference
+public class ActivityElementReferenceImpl extends ReferenceImpl implements ActivityElementReference
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DefReferenceImpl()
+  protected ActivityElementReferenceImpl()
   {
     super();
   }
@@ -41,7 +41,7 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
   @Override
   protected EClass eStaticClass()
   {
-    return ActivityPackage.Literals.DEF_REFERENCE;
+    return ActivityPackage.Literals.ACTIVITY_ELEMENT_REFERENCE;
   }
 
   /**
@@ -49,9 +49,9 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
    * <!-- end-user-doc -->
    * @generated
    */
-  public DefRef getType()
+  public Name getType()
   {
-    return (DefRef)eDynamicGet(ActivityPackage.DEF_REFERENCE__TYPE, ActivityPackage.Literals.DEF_REFERENCE__TYPE, true, true);
+    return (Name)eDynamicGet(ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE, ActivityPackage.Literals.ACTIVITY_ELEMENT_REFERENCE__TYPE, true, true);
   }
 
   /**
@@ -59,9 +59,9 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
    * <!-- end-user-doc -->
    * @generated
    */
-  public DefRef basicGetType()
+  public Name basicGetType()
   {
-    return (DefRef)eDynamicGet(ActivityPackage.DEF_REFERENCE__TYPE, ActivityPackage.Literals.DEF_REFERENCE__TYPE, false, true);
+    return (Name)eDynamicGet(ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE, ActivityPackage.Literals.ACTIVITY_ELEMENT_REFERENCE__TYPE, false, true);
   }
 
   /**
@@ -69,9 +69,9 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(DefRef newType)
+  public void setType(Name newType)
   {
-    eDynamicSet(ActivityPackage.DEF_REFERENCE__TYPE, ActivityPackage.Literals.DEF_REFERENCE__TYPE, newType);
+    eDynamicSet(ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE, ActivityPackage.Literals.ACTIVITY_ELEMENT_REFERENCE__TYPE, newType);
   }
 
   /**
@@ -84,7 +84,7 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REFERENCE__TYPE:
+      case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE:
         if (resolve) return getType();
         return basicGetType();
     }
@@ -101,8 +101,8 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REFERENCE__TYPE:
-        setType((DefRef)newValue);
+      case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE:
+        setType((Name)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -118,8 +118,8 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REFERENCE__TYPE:
-        setType((DefRef)null);
+      case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE:
+        setType((Name)null);
         return;
     }
     super.eUnset(featureID);
@@ -135,10 +135,10 @@ public class DefReferenceImpl extends ReferenceImpl implements DefReference
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REFERENCE__TYPE:
+      case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE__TYPE:
         return basicGetType() != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //DefReferenceImpl
+} //ActivityElementReferenceImpl

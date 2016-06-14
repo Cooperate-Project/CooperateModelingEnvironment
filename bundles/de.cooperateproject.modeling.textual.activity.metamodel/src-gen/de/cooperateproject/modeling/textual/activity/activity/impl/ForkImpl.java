@@ -12,6 +12,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Fork</b></em>'.
@@ -20,14 +22,14 @@ import org.eclipse.emf.ecore.InternalEObject;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getStart <em>Start</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getEnd <em>End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getForkStart <em>Fork Start</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getForkEnd <em>Fork End</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ForkImpl extends ActivityElementImpl implements Fork {
+public class ForkImpl extends CDOObjectImpl implements Fork {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,8 +54,9 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ForkEnd getStart() {
-		return (ForkEnd)eDynamicGet(ActivityPackage.FORK__START, ActivityPackage.Literals.FORK__START, true, true);
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -61,8 +64,17 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetStart(ForkEnd newStart, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newStart, ActivityPackage.FORK__START, msgs);
+	public ForkEnd getForkStart() {
+		return (ForkEnd)eDynamicGet(ActivityPackage.FORK__FORK_START, ActivityPackage.Literals.FORK__FORK_START, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetForkStart(ForkEnd newForkStart, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newForkStart, ActivityPackage.FORK__FORK_START, msgs);
 		return msgs;
 	}
 
@@ -71,8 +83,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStart(ForkEnd newStart) {
-		eDynamicSet(ActivityPackage.FORK__START, ActivityPackage.Literals.FORK__START, newStart);
+	public void setForkStart(ForkEnd newForkStart) {
+		eDynamicSet(ActivityPackage.FORK__FORK_START, ActivityPackage.Literals.FORK__FORK_START, newForkStart);
 	}
 
 	/**
@@ -80,8 +92,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ForkEnd getEnd() {
-		return (ForkEnd)eDynamicGet(ActivityPackage.FORK__END, ActivityPackage.Literals.FORK__END, true, true);
+	public ForkEnd getForkEnd() {
+		return (ForkEnd)eDynamicGet(ActivityPackage.FORK__FORK_END, ActivityPackage.Literals.FORK__FORK_END, true, true);
 	}
 
 	/**
@@ -89,8 +101,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEnd(ForkEnd newEnd, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newEnd, ActivityPackage.FORK__END, msgs);
+	public NotificationChain basicSetForkEnd(ForkEnd newForkEnd, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newForkEnd, ActivityPackage.FORK__FORK_END, msgs);
 		return msgs;
 	}
 
@@ -99,8 +111,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnd(ForkEnd newEnd) {
-		eDynamicSet(ActivityPackage.FORK__END, ActivityPackage.Literals.FORK__END, newEnd);
+	public void setForkEnd(ForkEnd newForkEnd) {
+		eDynamicSet(ActivityPackage.FORK__FORK_END, ActivityPackage.Literals.FORK__FORK_END, newForkEnd);
 	}
 
 	/**
@@ -139,10 +151,10 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ActivityPackage.FORK__START:
-				return basicSetStart(null, msgs);
-			case ActivityPackage.FORK__END:
-				return basicSetEnd(null, msgs);
+			case ActivityPackage.FORK__FORK_START:
+				return basicSetForkStart(null, msgs);
+			case ActivityPackage.FORK__FORK_END:
+				return basicSetForkEnd(null, msgs);
 			case ActivityPackage.FORK__COMMENT:
 				return basicSetComment(null, msgs);
 		}
@@ -157,10 +169,10 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ActivityPackage.FORK__START:
-				return getStart();
-			case ActivityPackage.FORK__END:
-				return getEnd();
+			case ActivityPackage.FORK__FORK_START:
+				return getForkStart();
+			case ActivityPackage.FORK__FORK_END:
+				return getForkEnd();
 			case ActivityPackage.FORK__COMMENT:
 				return getComment();
 		}
@@ -175,11 +187,11 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ActivityPackage.FORK__START:
-				setStart((ForkEnd)newValue);
+			case ActivityPackage.FORK__FORK_START:
+				setForkStart((ForkEnd)newValue);
 				return;
-			case ActivityPackage.FORK__END:
-				setEnd((ForkEnd)newValue);
+			case ActivityPackage.FORK__FORK_END:
+				setForkEnd((ForkEnd)newValue);
 				return;
 			case ActivityPackage.FORK__COMMENT:
 				setComment((Comment)newValue);
@@ -196,11 +208,11 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ActivityPackage.FORK__START:
-				setStart((ForkEnd)null);
+			case ActivityPackage.FORK__FORK_START:
+				setForkStart((ForkEnd)null);
 				return;
-			case ActivityPackage.FORK__END:
-				setEnd((ForkEnd)null);
+			case ActivityPackage.FORK__FORK_END:
+				setForkEnd((ForkEnd)null);
 				return;
 			case ActivityPackage.FORK__COMMENT:
 				setComment((Comment)null);
@@ -217,10 +229,10 @@ public class ForkImpl extends ActivityElementImpl implements Fork {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ActivityPackage.FORK__START:
-				return getStart() != null;
-			case ActivityPackage.FORK__END:
-				return getEnd() != null;
+			case ActivityPackage.FORK__FORK_START:
+				return getForkStart() != null;
+			case ActivityPackage.FORK__FORK_END:
+				return getForkEnd() != null;
 			case ActivityPackage.FORK__COMMENT:
 				return getComment() != null;
 		}

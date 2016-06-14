@@ -4,12 +4,15 @@ package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
 import de.cooperateproject.modeling.textual.activity.activity.Association;
+import de.cooperateproject.modeling.textual.activity.activity.Comment;
 import de.cooperateproject.modeling.textual.activity.activity.Reference;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,11 +24,12 @@ import org.eclipse.emf.ecore.InternalEObject;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.AssociationImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.AssociationImpl#getRight <em>Right</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.AssociationImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationImpl extends ActivityElementImpl implements Association
+public class AssociationImpl extends CDOObjectImpl implements Association
 {
   /**
    * <!-- begin-user-doc -->
@@ -46,6 +50,17 @@ public class AssociationImpl extends ActivityElementImpl implements Association
   protected EClass eStaticClass()
   {
     return ActivityPackage.Literals.ASSOCIATION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected int eStaticFeatureCount()
+  {
+    return 0;
   }
 
   /**
@@ -115,6 +130,37 @@ public class AssociationImpl extends ActivityElementImpl implements Association
    * <!-- end-user-doc -->
    * @generated
    */
+  public Comment getComment()
+  {
+    return (Comment)eDynamicGet(ActivityPackage.ASSOCIATION__COMMENT, ActivityPackage.Literals.ASSOCIATION__COMMENT, true, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetComment(Comment newComment, NotificationChain msgs)
+  {
+    msgs = eDynamicInverseAdd((InternalEObject)newComment, ActivityPackage.ASSOCIATION__COMMENT, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setComment(Comment newComment)
+  {
+    eDynamicSet(ActivityPackage.ASSOCIATION__COMMENT, ActivityPackage.Literals.ASSOCIATION__COMMENT, newComment);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -124,6 +170,8 @@ public class AssociationImpl extends ActivityElementImpl implements Association
         return basicSetLeft(null, msgs);
       case ActivityPackage.ASSOCIATION__RIGHT:
         return basicSetRight(null, msgs);
+      case ActivityPackage.ASSOCIATION__COMMENT:
+        return basicSetComment(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -142,6 +190,8 @@ public class AssociationImpl extends ActivityElementImpl implements Association
         return getLeft();
       case ActivityPackage.ASSOCIATION__RIGHT:
         return getRight();
+      case ActivityPackage.ASSOCIATION__COMMENT:
+        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -161,6 +211,9 @@ public class AssociationImpl extends ActivityElementImpl implements Association
         return;
       case ActivityPackage.ASSOCIATION__RIGHT:
         setRight((Reference)newValue);
+        return;
+      case ActivityPackage.ASSOCIATION__COMMENT:
+        setComment((Comment)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -182,6 +235,9 @@ public class AssociationImpl extends ActivityElementImpl implements Association
       case ActivityPackage.ASSOCIATION__RIGHT:
         setRight((Reference)null);
         return;
+      case ActivityPackage.ASSOCIATION__COMMENT:
+        setComment((Comment)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -200,6 +256,8 @@ public class AssociationImpl extends ActivityElementImpl implements Association
         return getLeft() != null;
       case ActivityPackage.ASSOCIATION__RIGHT:
         return getRight() != null;
+      case ActivityPackage.ASSOCIATION__COMMENT:
+        return getComment() != null;
     }
     return super.eIsSet(featureID);
   }

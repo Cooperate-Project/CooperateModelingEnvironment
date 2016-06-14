@@ -5,15 +5,16 @@ package de.cooperateproject.modeling.textual.activity.serializer;
 
 import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram;
+import de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
 import de.cooperateproject.modeling.textual.activity.activity.Association;
 import de.cooperateproject.modeling.textual.activity.activity.Comment;
 import de.cooperateproject.modeling.textual.activity.activity.Condition;
 import de.cooperateproject.modeling.textual.activity.activity.ConditionEnd;
-import de.cooperateproject.modeling.textual.activity.activity.DefReference;
 import de.cooperateproject.modeling.textual.activity.activity.Fork;
 import de.cooperateproject.modeling.textual.activity.activity.ForkEnd;
-import de.cooperateproject.modeling.textual.activity.activity.StartAndEnd;
+import de.cooperateproject.modeling.textual.activity.activity.Name;
+import de.cooperateproject.modeling.textual.activity.activity.StartEndReference;
 import de.cooperateproject.modeling.textual.activity.services.ActivityGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -46,6 +47,9 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case ActivityPackage.ACTIVITY_DIAGRAM:
 				sequence_ActivityDiagram(context, (ActivityDiagram) semanticObject); 
 				return; 
+			case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE:
+				sequence_ActivityElementReference(context, (ActivityElementReference) semanticObject); 
+				return; 
 			case ActivityPackage.ASSOCIATION:
 				sequence_Association(context, (Association) semanticObject); 
 				return; 
@@ -58,17 +62,17 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case ActivityPackage.CONDITION_END:
 				sequence_ConditionEnd(context, (ConditionEnd) semanticObject); 
 				return; 
-			case ActivityPackage.DEF_REFERENCE:
-				sequence_DefReference(context, (DefReference) semanticObject); 
-				return; 
 			case ActivityPackage.FORK:
 				sequence_Fork(context, (Fork) semanticObject); 
 				return; 
 			case ActivityPackage.FORK_END:
 				sequence_ForkEnd(context, (ForkEnd) semanticObject); 
 				return; 
-			case ActivityPackage.START_AND_END:
-				sequence_StartAndEnd(context, (StartAndEnd) semanticObject); 
+			case ActivityPackage.NAME:
+				sequence_Name(context, (Name) semanticObject); 
+				return; 
+			case ActivityPackage.START_END_REFERENCE:
+				sequence_StartEndReference(context, (StartEndReference) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -77,12 +81,10 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     ActivityElement returns Action
 	 *     Action returns Action
-	 *     DefRef returns Action
 	 *
 	 * Constraint:
-	 *     ((longName=STRING | longName=ID)? name=ID comment=Comment?)
+	 *     (name=Name comment=Comment?)
 	 */
 	protected void sequence_Action(ISerializationContext context, de.cooperateproject.modeling.textual.activity.activity.Action semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -94,7 +96,7 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     ActivityDiagram returns ActivityDiagram
 	 *
 	 * Constraint:
-	 *     elements+=ActivityElement*
+	 *     (actions+=Action | conditions+=Condition | forks+=Fork | associations+=Association)*
 	 */
 	protected void sequence_ActivityDiagram(ISerializationContext context, ActivityDiagram semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -103,7 +105,25 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     ActivityElement returns Association
+	 *     Reference returns ActivityElementReference
+	 *     ActivityElementReference returns ActivityElementReference
+	 *
+	 * Constraint:
+	 *     type=[Name|ID]
+	 */
+	protected void sequence_ActivityElementReference(ISerializationContext context, ActivityElementReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActivityPackage.Literals.ACTIVITY_ELEMENT_REFERENCE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActivityPackage.Literals.ACTIVITY_ELEMENT_REFERENCE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getActivityElementReferenceAccess().getTypeNameIDTerminalRuleCall_0_1(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Association returns Association
 	 *
 	 * Constraint:
@@ -135,19 +155,23 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * Contexts:
 	 *     ConditionEnd returns ConditionEnd
-	 *     DefRef returns ConditionEnd
 	 *
 	 * Constraint:
-	 *     ((longName=STRING | longName=ID)? name=ID)
+	 *     name=Name
 	 */
 	protected void sequence_ConditionEnd(ISerializationContext context, ConditionEnd semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ActivityPackage.Literals.CONDITION_END__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActivityPackage.Literals.CONDITION_END__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getConditionEndAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     ActivityElement returns Condition
 	 *     Condition returns Condition
 	 *
 	 * Constraint:
@@ -160,39 +184,24 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     Reference returns DefReference
-	 *     DefReference returns DefReference
+	 *     ForkEnd returns ForkEnd
 	 *
 	 * Constraint:
-	 *     type=[DefRef|ID]
+	 *     name=Name
 	 */
-	protected void sequence_DefReference(ISerializationContext context, DefReference semanticObject) {
+	protected void sequence_ForkEnd(ISerializationContext context, ForkEnd semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ActivityPackage.Literals.DEF_REFERENCE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActivityPackage.Literals.DEF_REFERENCE__TYPE));
+			if (transientValues.isValueTransient((EObject) semanticObject, ActivityPackage.Literals.FORK_END__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActivityPackage.Literals.FORK_END__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getDefReferenceAccess().getTypeDefRefIDTerminalRuleCall_0_1(), semanticObject.getType());
+		feeder.accept(grammarAccess.getForkEndAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     ForkEnd returns ForkEnd
-	 *     DefRef returns ForkEnd
-	 *
-	 * Constraint:
-	 *     ((longName=STRING | longName=ID)? name=ID)
-	 */
-	protected void sequence_ForkEnd(ISerializationContext context, ForkEnd semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ActivityElement returns Fork
 	 *     Fork returns Fork
 	 *
 	 * Constraint:
@@ -205,19 +214,31 @@ public class ActivitySemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     Reference returns StartAndEnd
-	 *     StartAndEnd returns StartAndEnd
+	 *     Name returns Name
 	 *
 	 * Constraint:
-	 *     type=StartAndEndEnum
+	 *     ((longName=STRING | longName=ID)? name=ID)
 	 */
-	protected void sequence_StartAndEnd(ISerializationContext context, StartAndEnd semanticObject) {
+	protected void sequence_Name(ISerializationContext context, Name semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Reference returns StartEndReference
+	 *     StartEndReference returns StartEndReference
+	 *
+	 * Constraint:
+	 *     type=StartEndEnum
+	 */
+	protected void sequence_StartEndReference(ISerializationContext context, StartEndReference semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ActivityPackage.Literals.START_AND_END__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActivityPackage.Literals.START_AND_END__TYPE));
+			if (transientValues.isValueTransient((EObject) semanticObject, ActivityPackage.Literals.START_END_REFERENCE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ActivityPackage.Literals.START_END_REFERENCE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getStartAndEndAccess().getTypeStartAndEndEnumEnumRuleCall_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getStartEndReferenceAccess().getTypeStartEndEnumEnumRuleCall_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

@@ -65,8 +65,9 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 			case ActivityPackage.FORK_END: return (EObject)createForkEnd();
 			case ActivityPackage.COMMENT: return (EObject)createComment();
 			case ActivityPackage.ASSOCIATION: return (EObject)createAssociation();
-			case ActivityPackage.DEF_REFERENCE: return (EObject)createDefReference();
-			case ActivityPackage.START_AND_END: return (EObject)createStartAndEnd();
+			case ActivityPackage.NAME: return (EObject)createName();
+			case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE: return (EObject)createActivityElementReference();
+			case ActivityPackage.START_END_REFERENCE: return (EObject)createStartEndReference();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -80,8 +81,8 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ActivityPackage.START_AND_END_ENUM:
-				return createStartAndEndEnumFromString(eDataType, initialValue);
+			case ActivityPackage.START_END_ENUM:
+				return createStartEndEnumFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -95,8 +96,8 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ActivityPackage.START_AND_END_ENUM:
-				return convertStartAndEndEnumToString(eDataType, instanceValue);
+			case ActivityPackage.START_END_ENUM:
+				return convertStartEndEnumToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -187,9 +188,9 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DefReference createDefReference() {
-		DefReferenceImpl defReference = new DefReferenceImpl();
-		return defReference;
+	public Name createName() {
+		NameImpl name = new NameImpl();
+		return name;
 	}
 
 	/**
@@ -197,9 +198,9 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StartAndEnd createStartAndEnd() {
-		StartAndEndImpl startAndEnd = new StartAndEndImpl();
-		return startAndEnd;
+	public ActivityElementReference createActivityElementReference() {
+		ActivityElementReferenceImpl activityElementReference = new ActivityElementReferenceImpl();
+		return activityElementReference;
 	}
 
 	/**
@@ -207,8 +208,18 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StartAndEndEnum createStartAndEndEnumFromString(EDataType eDataType, String initialValue) {
-		StartAndEndEnum result = StartAndEndEnum.get(initialValue);
+	public StartEndReference createStartEndReference() {
+		StartEndReferenceImpl startEndReference = new StartEndReferenceImpl();
+		return startEndReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StartEndEnum createStartEndEnumFromString(EDataType eDataType, String initialValue) {
+		StartEndEnum result = StartEndEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -218,7 +229,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertStartAndEndEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertStartEndEnumToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

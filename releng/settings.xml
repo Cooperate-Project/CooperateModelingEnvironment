@@ -1,0 +1,27 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          https://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<pluginGroups>
+		<pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+	</pluginGroups>
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>https://mammutbaum36.fzi.de</sonar.host.url>
+				<sonar.login>${env.SONAR_USERNAME}</sonar.login>
+				<sonar.password>${env.SONAR_PASSWORD}</sonar.password>
+			</properties>
+		</profile>
+	</profiles>
+	<servers>
+		<server>
+			<id>github-cooperate-deploy</id>
+			<password>${env.DEPLOY_APIKEY}</password>
+		</server>
+	</servers>
+</settings>

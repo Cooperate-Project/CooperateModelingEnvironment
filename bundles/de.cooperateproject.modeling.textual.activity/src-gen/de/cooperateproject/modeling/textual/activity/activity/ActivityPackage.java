@@ -69,13 +69,40 @@ public interface ActivityPackage extends EPackage
   int ACTIVITY_DIAGRAM = 0;
 
   /**
-   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+   * The feature id for the '<em><b>Actions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTIVITY_DIAGRAM__ELEMENTS = 0;
+  int ACTIVITY_DIAGRAM__ACTIONS = 0;
+
+  /**
+   * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_DIAGRAM__CONDITIONS = 1;
+
+  /**
+   * The feature id for the '<em><b>Forks</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_DIAGRAM__FORKS = 2;
+
+  /**
+   * The feature id for the '<em><b>Associations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_DIAGRAM__ASSOCIATIONS = 3;
 
   /**
    * The number of structural features of the '<em>Diagram</em>' class.
@@ -84,7 +111,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTIVITY_DIAGRAM_FEATURE_COUNT = 1;
+  int ACTIVITY_DIAGRAM_FEATURE_COUNT = 4;
 
   /**
    * The number of operations of the '<em>Diagram</em>' class.
@@ -96,43 +123,6 @@ public interface ActivityPackage extends EPackage
   int ACTIVITY_DIAGRAM_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementImpl <em>Element</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementImpl
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getActivityElement()
-   * @generated
-   */
-  int ACTIVITY_ELEMENT = 1;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTIVITY_ELEMENT__COMMENT = 0;
-
-  /**
-   * The number of structural features of the '<em>Element</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTIVITY_ELEMENT_FEATURE_COUNT = 1;
-
-  /**
-   * The number of operations of the '<em>Element</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTIVITY_ELEMENT_OPERATION_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActionImpl <em>Action</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -140,7 +130,16 @@ public interface ActivityPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 2;
+  int ACTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTION__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' containment reference.
@@ -149,25 +148,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTION__COMMENT = ACTIVITY_ELEMENT__COMMENT;
-
-  /**
-   * The feature id for the '<em><b>Long Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTION__LONG_NAME = ACTIVITY_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTION__NAME = ACTIVITY_ELEMENT_FEATURE_COUNT + 1;
+  int ACTION__COMMENT = 1;
 
   /**
    * The number of structural features of the '<em>Action</em>' class.
@@ -176,7 +157,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTION_FEATURE_COUNT = ACTIVITY_ELEMENT_FEATURE_COUNT + 2;
+  int ACTION_FEATURE_COUNT = 2;
 
   /**
    * The number of operations of the '<em>Action</em>' class.
@@ -185,7 +166,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTION_OPERATION_COUNT = ACTIVITY_ELEMENT_OPERATION_COUNT + 0;
+  int ACTION_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl <em>Condition</em>}' class.
@@ -195,16 +176,7 @@ public interface ActivityPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getCondition()
    * @generated
    */
-  int CONDITION = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION__COMMENT = ACTIVITY_ELEMENT__COMMENT;
+  int CONDITION = 2;
 
   /**
    * The feature id for the '<em><b>Condition Start</b></em>' containment reference.
@@ -213,7 +185,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION__CONDITION_START = ACTIVITY_ELEMENT_FEATURE_COUNT + 0;
+  int CONDITION__CONDITION_START = 0;
 
   /**
    * The feature id for the '<em><b>Condition End</b></em>' containment reference.
@@ -222,7 +194,16 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION__CONDITION_END = ACTIVITY_ELEMENT_FEATURE_COUNT + 1;
+  int CONDITION__CONDITION_END = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITION__COMMENT = 2;
 
   /**
    * The number of structural features of the '<em>Condition</em>' class.
@@ -231,7 +212,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_FEATURE_COUNT = ACTIVITY_ELEMENT_FEATURE_COUNT + 2;
+  int CONDITION_FEATURE_COUNT = 3;
 
   /**
    * The number of operations of the '<em>Condition</em>' class.
@@ -240,53 +221,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_OPERATION_COUNT = ACTIVITY_ELEMENT_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefRefImpl <em>Def Ref</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.DefRefImpl
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getDefRef()
-   * @generated
-   */
-  int DEF_REF = 10;
-
-  /**
-   * The feature id for the '<em><b>Long Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEF_REF__LONG_NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEF_REF__NAME = 1;
-
-  /**
-   * The number of structural features of the '<em>Def Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEF_REF_FEATURE_COUNT = 2;
-
-  /**
-   * The number of operations of the '<em>Def Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DEF_REF_OPERATION_COUNT = 0;
+  int CONDITION_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionEndImpl <em>Condition End</em>}' class.
@@ -296,25 +231,16 @@ public interface ActivityPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getConditionEnd()
    * @generated
    */
-  int CONDITION_END = 4;
+  int CONDITION_END = 3;
 
   /**
-   * The feature id for the '<em><b>Long Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONDITION_END__LONG_NAME = DEF_REF__LONG_NAME;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION_END__NAME = DEF_REF__NAME;
+  int CONDITION_END__NAME = 0;
 
   /**
    * The number of structural features of the '<em>Condition End</em>' class.
@@ -323,7 +249,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_END_FEATURE_COUNT = DEF_REF_FEATURE_COUNT + 0;
+  int CONDITION_END_FEATURE_COUNT = 1;
 
   /**
    * The number of operations of the '<em>Condition End</em>' class.
@@ -332,7 +258,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITION_END_OPERATION_COUNT = DEF_REF_OPERATION_COUNT + 0;
+  int CONDITION_END_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl <em>Fork</em>}' class.
@@ -342,16 +268,7 @@ public interface ActivityPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getFork()
    * @generated
    */
-  int FORK = 5;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FORK__COMMENT = ACTIVITY_ELEMENT__COMMENT;
+  int FORK = 4;
 
   /**
    * The feature id for the '<em><b>Fork Start</b></em>' containment reference.
@@ -360,7 +277,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORK__FORK_START = ACTIVITY_ELEMENT_FEATURE_COUNT + 0;
+  int FORK__FORK_START = 0;
 
   /**
    * The feature id for the '<em><b>Fork End</b></em>' containment reference.
@@ -369,7 +286,16 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORK__FORK_END = ACTIVITY_ELEMENT_FEATURE_COUNT + 1;
+  int FORK__FORK_END = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORK__COMMENT = 2;
 
   /**
    * The number of structural features of the '<em>Fork</em>' class.
@@ -378,7 +304,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORK_FEATURE_COUNT = ACTIVITY_ELEMENT_FEATURE_COUNT + 2;
+  int FORK_FEATURE_COUNT = 3;
 
   /**
    * The number of operations of the '<em>Fork</em>' class.
@@ -387,7 +313,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORK_OPERATION_COUNT = ACTIVITY_ELEMENT_OPERATION_COUNT + 0;
+  int FORK_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkEndImpl <em>Fork End</em>}' class.
@@ -397,25 +323,16 @@ public interface ActivityPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getForkEnd()
    * @generated
    */
-  int FORK_END = 6;
+  int FORK_END = 5;
 
   /**
-   * The feature id for the '<em><b>Long Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FORK_END__LONG_NAME = DEF_REF__LONG_NAME;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FORK_END__NAME = DEF_REF__NAME;
+  int FORK_END__NAME = 0;
 
   /**
    * The number of structural features of the '<em>Fork End</em>' class.
@@ -424,7 +341,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORK_END_FEATURE_COUNT = DEF_REF_FEATURE_COUNT + 0;
+  int FORK_END_FEATURE_COUNT = 1;
 
   /**
    * The number of operations of the '<em>Fork End</em>' class.
@@ -433,7 +350,53 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FORK_END_OPERATION_COUNT = DEF_REF_OPERATION_COUNT + 0;
+  int FORK_END_OPERATION_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.NameImpl <em>Name</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.NameImpl
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getName_()
+   * @generated
+   */
+  int NAME = 6;
+
+  /**
+   * The feature id for the '<em><b>Long Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAME__LONG_NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAME__NAME = 1;
+
+  /**
+   * The number of structural features of the '<em>Name</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAME_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>Name</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAME_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.AssociationImpl <em>Association</em>}' class.
@@ -446,22 +409,13 @@ public interface ActivityPackage extends EPackage
   int ASSOCIATION = 7;
 
   /**
-   * The feature id for the '<em><b>Comment</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSOCIATION__COMMENT = ACTIVITY_ELEMENT__COMMENT;
-
-  /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSOCIATION__LEFT = ACTIVITY_ELEMENT_FEATURE_COUNT + 0;
+  int ASSOCIATION__LEFT = 0;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference.
@@ -470,7 +424,16 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSOCIATION__RIGHT = ACTIVITY_ELEMENT_FEATURE_COUNT + 1;
+  int ASSOCIATION__RIGHT = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSOCIATION__COMMENT = 2;
 
   /**
    * The number of structural features of the '<em>Association</em>' class.
@@ -479,7 +442,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSOCIATION_FEATURE_COUNT = ACTIVITY_ELEMENT_FEATURE_COUNT + 2;
+  int ASSOCIATION_FEATURE_COUNT = 3;
 
   /**
    * The number of operations of the '<em>Association</em>' class.
@@ -488,7 +451,7 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASSOCIATION_OPERATION_COUNT = ACTIVITY_ELEMENT_OPERATION_COUNT + 0;
+  int ASSOCIATION_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -519,14 +482,14 @@ public interface ActivityPackage extends EPackage
   int REFERENCE_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefReferenceImpl <em>Def Reference</em>}' class.
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementReferenceImpl <em>Element Reference</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.DefReferenceImpl
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getDefReference()
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementReferenceImpl
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getActivityElementReference()
    * @generated
    */
-  int DEF_REFERENCE = 9;
+  int ACTIVITY_ELEMENT_REFERENCE = 9;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -535,35 +498,35 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEF_REFERENCE__TYPE = REFERENCE_FEATURE_COUNT + 0;
+  int ACTIVITY_ELEMENT_REFERENCE__TYPE = REFERENCE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Def Reference</em>' class.
+   * The number of structural features of the '<em>Element Reference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEF_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
+  int ACTIVITY_ELEMENT_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
 
   /**
-   * The number of operations of the '<em>Def Reference</em>' class.
+   * The number of operations of the '<em>Element Reference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEF_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+  int ACTIVITY_ELEMENT_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.StartAndEndImpl <em>Start And End</em>}' class.
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.StartEndReferenceImpl <em>Start End Reference</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.StartAndEndImpl
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartAndEnd()
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.StartEndReferenceImpl
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartEndReference()
    * @generated
    */
-  int START_AND_END = 11;
+  int START_END_REFERENCE = 10;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -572,25 +535,25 @@ public interface ActivityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int START_AND_END__TYPE = REFERENCE_FEATURE_COUNT + 0;
+  int START_END_REFERENCE__TYPE = REFERENCE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Start And End</em>' class.
+   * The number of structural features of the '<em>Start End Reference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int START_AND_END_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
+  int START_END_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
 
   /**
-   * The number of operations of the '<em>Start And End</em>' class.
+   * The number of operations of the '<em>Start End Reference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int START_AND_END_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+  int START_END_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.CommentImpl <em>Comment</em>}' class.
@@ -600,7 +563,7 @@ public interface ActivityPackage extends EPackage
    * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getComment()
    * @generated
    */
-  int COMMENT = 12;
+  int COMMENT = 11;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -630,14 +593,14 @@ public interface ActivityPackage extends EPackage
   int COMMENT_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum <em>Start And End Enum</em>}' enum.
+   * The meta object id for the '{@link de.cooperateproject.modeling.textual.activity.activity.StartEndEnum <em>Start End Enum</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum
-   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartAndEndEnum()
+   * @see de.cooperateproject.modeling.textual.activity.activity.StartEndEnum
+   * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartEndEnum()
    * @generated
    */
-  int START_AND_END_ENUM = 13;
+  int START_END_ENUM = 12;
 
 
   /**
@@ -651,36 +614,48 @@ public interface ActivityPackage extends EPackage
   EClass getActivityDiagram();
 
   /**
-   * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getElements <em>Elements</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getActions <em>Actions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Elements</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getElements()
+   * @return the meta object for the containment reference list '<em>Actions</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getActions()
    * @see #getActivityDiagram()
    * @generated
    */
-  EReference getActivityDiagram_Elements();
+  EReference getActivityDiagram_Actions();
 
   /**
-   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElement <em>Element</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getConditions <em>Conditions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Element</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityElement
+   * @return the meta object for the containment reference list '<em>Conditions</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getConditions()
+   * @see #getActivityDiagram()
    * @generated
    */
-  EClass getActivityElement();
+  EReference getActivityDiagram_Conditions();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElement#getComment <em>Comment</em>}'.
+   * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getForks <em>Forks</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Comment</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityElement#getComment()
-   * @see #getActivityElement()
+   * @return the meta object for the containment reference list '<em>Forks</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getForks()
+   * @see #getActivityDiagram()
    * @generated
    */
-  EReference getActivityElement_Comment();
+  EReference getActivityDiagram_Forks();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getAssociations <em>Associations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Associations</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityDiagram#getAssociations()
+   * @see #getActivityDiagram()
+   * @generated
+   */
+  EReference getActivityDiagram_Associations();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Action <em>Action</em>}'.
@@ -691,6 +666,28 @@ public interface ActivityPackage extends EPackage
    * @generated
    */
   EClass getAction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.Action#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Action#getName()
+   * @see #getAction()
+   * @generated
+   */
+  EReference getAction_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.Action#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Action#getComment()
+   * @see #getAction()
+   * @generated
+   */
+  EReference getAction_Comment();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Condition <em>Condition</em>}'.
@@ -725,6 +722,17 @@ public interface ActivityPackage extends EPackage
   EReference getCondition_ConditionEnd();
 
   /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.Condition#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Condition#getComment()
+   * @see #getCondition()
+   * @generated
+   */
+  EReference getCondition_Comment();
+
+  /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd <em>Condition End</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -733,6 +741,17 @@ public interface ActivityPackage extends EPackage
    * @generated
    */
   EClass getConditionEnd();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getName()
+   * @see #getConditionEnd()
+   * @generated
+   */
+  EReference getConditionEnd_Name();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Fork <em>Fork</em>}'.
@@ -767,6 +786,17 @@ public interface ActivityPackage extends EPackage
   EReference getFork_ForkEnd();
 
   /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.Fork#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Fork#getComment()
+   * @see #getFork()
+   * @generated
+   */
+  EReference getFork_Comment();
+
+  /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.ForkEnd <em>Fork End</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -775,6 +805,49 @@ public interface ActivityPackage extends EPackage
    * @generated
    */
   EClass getForkEnd();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.ForkEnd#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ForkEnd#getName()
+   * @see #getForkEnd()
+   * @generated
+   */
+  EReference getForkEnd_Name();
+
+  /**
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Name <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Name</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Name
+   * @generated
+   */
+  EClass getName_();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.activity.Name#getLongName <em>Long Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Long Name</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Name#getLongName()
+   * @see #getName_()
+   * @generated
+   */
+  EAttribute getName_LongName();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.activity.Name#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Name#getName()
+   * @see #getName_()
+   * @generated
+   */
+  EAttribute getName_Name();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Association <em>Association</em>}'.
@@ -809,6 +882,17 @@ public interface ActivityPackage extends EPackage
   EReference getAssociation_Right();
 
   /**
+   * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.activity.activity.Association#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Comment</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Association#getComment()
+   * @see #getAssociation()
+   * @generated
+   */
+  EReference getAssociation_Comment();
+
+  /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Reference <em>Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -819,78 +903,46 @@ public interface ActivityPackage extends EPackage
   EClass getReference();
 
   /**
-   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.DefReference <em>Def Reference</em>}'.
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference <em>Element Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Def Reference</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefReference
+   * @return the meta object for class '<em>Element Reference</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference
    * @generated
    */
-  EClass getDefReference();
+  EClass getActivityElementReference();
 
   /**
-   * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.activity.activity.DefReference#getType <em>Type</em>}'.
+   * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Type</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefReference#getType()
-   * @see #getDefReference()
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference#getType()
+   * @see #getActivityElementReference()
    * @generated
    */
-  EReference getDefReference_Type();
+  EReference getActivityElementReference_Type();
 
   /**
-   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.DefRef <em>Def Ref</em>}'.
+   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.StartEndReference <em>Start End Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Def Ref</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefRef
+   * @return the meta object for class '<em>Start End Reference</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.StartEndReference
    * @generated
    */
-  EClass getDefRef();
+  EClass getStartEndReference();
 
   /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.activity.DefRef#getLongName <em>Long Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Long Name</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefRef#getLongName()
-   * @see #getDefRef()
-   * @generated
-   */
-  EAttribute getDefRef_LongName();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.activity.DefRef#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefRef#getName()
-   * @see #getDefRef()
-   * @generated
-   */
-  EAttribute getDefRef_Name();
-
-  /**
-   * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.StartAndEnd <em>Start And End</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Start And End</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.StartAndEnd
-   * @generated
-   */
-  EClass getStartAndEnd();
-
-  /**
-   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.activity.StartAndEnd#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.activity.activity.StartEndReference#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.StartAndEnd#getType()
-   * @see #getStartAndEnd()
+   * @see de.cooperateproject.modeling.textual.activity.activity.StartEndReference#getType()
+   * @see #getStartEndReference()
    * @generated
    */
-  EAttribute getStartAndEnd_Type();
+  EAttribute getStartEndReference_Type();
 
   /**
    * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.activity.activity.Comment <em>Comment</em>}'.
@@ -914,14 +966,14 @@ public interface ActivityPackage extends EPackage
   EAttribute getComment_Description();
 
   /**
-   * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum <em>Start And End Enum</em>}'.
+   * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.activity.activity.StartEndEnum <em>Start End Enum</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Start And End Enum</em>'.
-   * @see de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum
+   * @return the meta object for enum '<em>Start End Enum</em>'.
+   * @see de.cooperateproject.modeling.textual.activity.activity.StartEndEnum
    * @generated
    */
-  EEnum getStartAndEndEnum();
+  EEnum getStartEndEnum();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -958,30 +1010,36 @@ public interface ActivityPackage extends EPackage
     EClass ACTIVITY_DIAGRAM = eINSTANCE.getActivityDiagram();
 
     /**
-     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ACTIVITY_DIAGRAM__ELEMENTS = eINSTANCE.getActivityDiagram_Elements();
+    EReference ACTIVITY_DIAGRAM__ACTIONS = eINSTANCE.getActivityDiagram_Actions();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementImpl <em>Element</em>}' class.
+     * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementImpl
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getActivityElement()
      * @generated
      */
-    EClass ACTIVITY_ELEMENT = eINSTANCE.getActivityElement();
+    EReference ACTIVITY_DIAGRAM__CONDITIONS = eINSTANCE.getActivityDiagram_Conditions();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Forks</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ACTIVITY_ELEMENT__COMMENT = eINSTANCE.getActivityElement_Comment();
+    EReference ACTIVITY_DIAGRAM__FORKS = eINSTANCE.getActivityDiagram_Forks();
+
+    /**
+     * The meta object literal for the '<em><b>Associations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ACTIVITY_DIAGRAM__ASSOCIATIONS = eINSTANCE.getActivityDiagram_Associations();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActionImpl <em>Action</em>}' class.
@@ -992,6 +1050,22 @@ public interface ActivityPackage extends EPackage
      * @generated
      */
     EClass ACTION = eINSTANCE.getAction();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ACTION__NAME = eINSTANCE.getAction_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ACTION__COMMENT = eINSTANCE.getAction_Comment();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl <em>Condition</em>}' class.
@@ -1020,6 +1094,14 @@ public interface ActivityPackage extends EPackage
     EReference CONDITION__CONDITION_END = eINSTANCE.getCondition_ConditionEnd();
 
     /**
+     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION__COMMENT = eINSTANCE.getCondition_Comment();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionEndImpl <em>Condition End</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1028,6 +1110,14 @@ public interface ActivityPackage extends EPackage
      * @generated
      */
     EClass CONDITION_END = eINSTANCE.getConditionEnd();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONDITION_END__NAME = eINSTANCE.getConditionEnd_Name();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl <em>Fork</em>}' class.
@@ -1056,6 +1146,14 @@ public interface ActivityPackage extends EPackage
     EReference FORK__FORK_END = eINSTANCE.getFork_ForkEnd();
 
     /**
+     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FORK__COMMENT = eINSTANCE.getFork_Comment();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkEndImpl <em>Fork End</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1064,6 +1162,40 @@ public interface ActivityPackage extends EPackage
      * @generated
      */
     EClass FORK_END = eINSTANCE.getForkEnd();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FORK_END__NAME = eINSTANCE.getForkEnd_Name();
+
+    /**
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.NameImpl <em>Name</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.NameImpl
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getName_()
+     * @generated
+     */
+    EClass NAME = eINSTANCE.getName_();
+
+    /**
+     * The meta object literal for the '<em><b>Long Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NAME__LONG_NAME = eINSTANCE.getName_LongName();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NAME__NAME = eINSTANCE.getName_Name();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.AssociationImpl <em>Association</em>}' class.
@@ -1092,6 +1224,14 @@ public interface ActivityPackage extends EPackage
     EReference ASSOCIATION__RIGHT = eINSTANCE.getAssociation_Right();
 
     /**
+     * The meta object literal for the '<em><b>Comment</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSOCIATION__COMMENT = eINSTANCE.getAssociation_Comment();
+
+    /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ReferenceImpl <em>Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1102,14 +1242,14 @@ public interface ActivityPackage extends EPackage
     EClass REFERENCE = eINSTANCE.getReference();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefReferenceImpl <em>Def Reference</em>}' class.
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementReferenceImpl <em>Element Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.DefReferenceImpl
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getDefReference()
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityElementReferenceImpl
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getActivityElementReference()
      * @generated
      */
-    EClass DEF_REFERENCE = eINSTANCE.getDefReference();
+    EClass ACTIVITY_ELEMENT_REFERENCE = eINSTANCE.getActivityElementReference();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' reference feature.
@@ -1117,43 +1257,17 @@ public interface ActivityPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DEF_REFERENCE__TYPE = eINSTANCE.getDefReference_Type();
+    EReference ACTIVITY_ELEMENT_REFERENCE__TYPE = eINSTANCE.getActivityElementReference_Type();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefRefImpl <em>Def Ref</em>}' class.
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.StartEndReferenceImpl <em>Start End Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.DefRefImpl
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getDefRef()
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.StartEndReferenceImpl
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartEndReference()
      * @generated
      */
-    EClass DEF_REF = eINSTANCE.getDefRef();
-
-    /**
-     * The meta object literal for the '<em><b>Long Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEF_REF__LONG_NAME = eINSTANCE.getDefRef_LongName();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEF_REF__NAME = eINSTANCE.getDefRef_Name();
-
-    /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.StartAndEndImpl <em>Start And End</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.StartAndEndImpl
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartAndEnd()
-     * @generated
-     */
-    EClass START_AND_END = eINSTANCE.getStartAndEnd();
+    EClass START_END_REFERENCE = eINSTANCE.getStartEndReference();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1161,7 +1275,7 @@ public interface ActivityPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute START_AND_END__TYPE = eINSTANCE.getStartAndEnd_Type();
+    EAttribute START_END_REFERENCE__TYPE = eINSTANCE.getStartEndReference_Type();
 
     /**
      * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.impl.CommentImpl <em>Comment</em>}' class.
@@ -1182,14 +1296,14 @@ public interface ActivityPackage extends EPackage
     EAttribute COMMENT__DESCRIPTION = eINSTANCE.getComment_Description();
 
     /**
-     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum <em>Start And End Enum</em>}' enum.
+     * The meta object literal for the '{@link de.cooperateproject.modeling.textual.activity.activity.StartEndEnum <em>Start End Enum</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.activity.activity.StartAndEndEnum
-     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartAndEndEnum()
+     * @see de.cooperateproject.modeling.textual.activity.activity.StartEndEnum
+     * @see de.cooperateproject.modeling.textual.activity.activity.impl.ActivityPackageImpl#getStartEndEnum()
      * @generated
      */
-    EEnum START_AND_END_ENUM = eINSTANCE.getStartAndEndEnum();
+    EEnum START_END_ENUM = eINSTANCE.getStartEndEnum();
 
   }
 
