@@ -5,6 +5,9 @@ package de.cooperateproject.modeling.textual.activity.formatting
 
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter
 import org.eclipse.xtext.formatting.impl.FormattingConfig
+import javax.inject.Inject
+import de.cooperateproject.modeling.textual.activity.services.ActivityGrammarAccess
+
 // import com.google.inject.Inject;
 // import de.cooperateproject.modeling.textual.activity.services.ActivityGrammarAccess
 
@@ -18,13 +21,14 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig
  */
 class ActivityFormatter extends AbstractDeclarativeFormatter {
 
-//	@Inject extension ActivityGrammarAccess
-	
+	@Inject extension ActivityGrammarAccess grammar
 	override protected void configureFormatting(FormattingConfig c) {
-// It's usually a good idea to activate the following three statements.
-// They will add and preserve newlines around comments
-//		c.setLinewrap(0, 1, 2).before(SL_COMMENTRule)
-//		c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
-//		c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
+		c.setLinewrap.after(grammar.findKeywords("@startactivity").get(0))
+		c.setLinewrap.before(grammar.findKeywords("@endactivity").get(0))
+		
+		c.setLinewrap.after(grammar.actionRule);
+		c.setLinewrap.after(grammar.conditionRule);
+		c.setLinewrap.after(grammar.forkRule);
+		c.setLinewrap.after(grammar.associationRule);
 	}
 }
