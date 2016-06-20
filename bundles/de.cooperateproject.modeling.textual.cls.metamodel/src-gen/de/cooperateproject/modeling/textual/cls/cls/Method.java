@@ -4,6 +4,8 @@ package de.cooperateproject.modeling.textual.cls.cls;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.uml2.uml.Operation;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Method</b></em>'.
@@ -21,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Method extends Member {
+public interface Method extends Member<Operation> {
 	/**
 	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->

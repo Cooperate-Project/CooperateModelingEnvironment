@@ -44,7 +44,7 @@ public interface ClassDiagram extends CDOObject {
 
 	/**
 	 * Returns the value of the '<em><b>Classifiers</b></em>' containment reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}.
+	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}&lt;?>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classifiers</em>' containment reference list isn't clear,
@@ -56,7 +56,7 @@ public interface ClassDiagram extends CDOObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Classifier> getClassifiers();
+	EList<Classifier<?>> getClassifiers();
 
 	/**
 	 * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.

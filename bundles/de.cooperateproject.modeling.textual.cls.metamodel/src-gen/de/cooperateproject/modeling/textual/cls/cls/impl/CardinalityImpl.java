@@ -25,26 +25,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  */
 public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	/**
-	 * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLowerBound()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int LOWER_BOUND_EDEFAULT = 0;
-
-	/**
-	 * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpperBound()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int UPPER_BOUND_EDEFAULT = 0;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,7 +59,7 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	 * @generated
 	 */
 	public int getLowerBound() {
-		return (Integer)eDynamicGet(ClsPackage.CARDINALITY__LOWER_BOUND, ClsPackage.Literals.CARDINALITY__LOWER_BOUND, true, true);
+		return (Integer)eGet(ClsPackage.Literals.CARDINALITY__LOWER_BOUND, true);
 	}
 
 	/**
@@ -88,7 +68,7 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	 * @generated
 	 */
 	public void setLowerBound(int newLowerBound) {
-		eDynamicSet(ClsPackage.CARDINALITY__LOWER_BOUND, ClsPackage.Literals.CARDINALITY__LOWER_BOUND, newLowerBound);
+		eSet(ClsPackage.Literals.CARDINALITY__LOWER_BOUND, newLowerBound);
 	}
 
 	/**
@@ -97,7 +77,7 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	 * @generated
 	 */
 	public int getUpperBound() {
-		return (Integer)eDynamicGet(ClsPackage.CARDINALITY__UPPER_BOUND, ClsPackage.Literals.CARDINALITY__UPPER_BOUND, true, true);
+		return (Integer)eGet(ClsPackage.Literals.CARDINALITY__UPPER_BOUND, true);
 	}
 
 	/**
@@ -106,75 +86,7 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	 * @generated
 	 */
 	public void setUpperBound(int newUpperBound) {
-		eDynamicSet(ClsPackage.CARDINALITY__UPPER_BOUND, ClsPackage.Literals.CARDINALITY__UPPER_BOUND, newUpperBound);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClsPackage.CARDINALITY__LOWER_BOUND:
-				return getLowerBound();
-			case ClsPackage.CARDINALITY__UPPER_BOUND:
-				return getUpperBound();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClsPackage.CARDINALITY__LOWER_BOUND:
-				setLowerBound((Integer)newValue);
-				return;
-			case ClsPackage.CARDINALITY__UPPER_BOUND:
-				setUpperBound((Integer)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClsPackage.CARDINALITY__LOWER_BOUND:
-				setLowerBound(LOWER_BOUND_EDEFAULT);
-				return;
-			case ClsPackage.CARDINALITY__UPPER_BOUND:
-				setUpperBound(UPPER_BOUND_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClsPackage.CARDINALITY__LOWER_BOUND:
-				return getLowerBound() != LOWER_BOUND_EDEFAULT;
-			case ClsPackage.CARDINALITY__UPPER_BOUND:
-				return getUpperBound() != UPPER_BOUND_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
+		eSet(ClsPackage.Literals.CARDINALITY__UPPER_BOUND, newUpperBound);
 	}
 
 } //CardinalityImpl

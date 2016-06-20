@@ -2,7 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,6 @@ import org.eclipse.emf.cdo.CDOObject;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#isStatic <em>Static</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#isFinal <em>Final</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}</li>
@@ -22,10 +21,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getProperty()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface Property extends CDOObject {
+public interface Property<T extends NamedElement> extends de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> {
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
 	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.cls.cls.Visibility}.
@@ -54,32 +52,6 @@ public interface Property extends CDOObject {
 	 * @generated
 	 */
 	void setVisibility(Visibility value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getProperty_Name()
-	 * @model unique="false" required="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Static</b></em>' attribute.

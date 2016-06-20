@@ -31,6 +31,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConnectorsConnectorParserRuleCall_4_0 = (RuleCall)cConnectorsAssignment_4.eContents().get(0);
 		private final Keyword cEndclassKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
+		////import "platform:/resource/de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore"
 		//// ------------------------------------------------------------------------------------------
 		//// ---------------------------------Root-----------------------------------------------------
 		//// ------------------------------------------------------------------------------------------
@@ -167,18 +168,21 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLongNameSTRINGTerminalRuleCall_3_0_0_0 = (RuleCall)cLongNameAlternatives_3_0_0.eContents().get(0);
 		private final RuleCall cLongNameIDTerminalRuleCall_3_0_0_1 = (RuleCall)cLongNameAlternatives_3_0_0.eContents().get(1);
 		private final Keyword cAsKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cNameIDTerminalRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cReferencedElementClassCrossReference_4_0 = (CrossReference)cReferencedElementAssignment_4.eContents().get(0);
+		private final RuleCall cReferencedElementClassIDTerminalRuleCall_4_0_1 = (RuleCall)cReferencedElementClassCrossReference_4_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cMembersAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cMembersMemberParserRuleCall_6_0 = (RuleCall)cMembersAssignment_6.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Class:
-		//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? name=ID '{' members+=Member* '}';
+		//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class]
+		//	'{' members+=Member* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? name=ID '{' members+=Member* '}'
+		//visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class] '{'
+		//members+=Member* '}'
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -214,11 +218,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'as'
 		public Keyword getAsKeyword_3_1() { return cAsKeyword_3_1; }
 
-		//name=ID
-		public Assignment getNameAssignment_4() { return cNameAssignment_4; }
+		//referencedElement=[uml::Class]
+		public Assignment getReferencedElementAssignment_4() { return cReferencedElementAssignment_4; }
+
+		//[uml::Class]
+		public CrossReference getReferencedElementClassCrossReference_4_0() { return cReferencedElementClassCrossReference_4_0; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_4_0() { return cNameIDTerminalRuleCall_4_0; }
+		public RuleCall getReferencedElementClassIDTerminalRuleCall_4_0_1() { return cReferencedElementClassIDTerminalRuleCall_4_0_1; }
 
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
@@ -245,18 +252,21 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLongNameSTRINGTerminalRuleCall_2_0_0_0 = (RuleCall)cLongNameAlternatives_2_0_0.eContents().get(0);
 		private final RuleCall cLongNameIDTerminalRuleCall_2_0_0_1 = (RuleCall)cLongNameAlternatives_2_0_0.eContents().get(1);
 		private final Keyword cAsKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cReferencedElementInterfaceCrossReference_3_0 = (CrossReference)cReferencedElementAssignment_3.eContents().get(0);
+		private final RuleCall cReferencedElementInterfaceIDTerminalRuleCall_3_0_1 = (RuleCall)cReferencedElementInterfaceCrossReference_3_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cMembersAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cMembersMemberParserRuleCall_5_0 = (RuleCall)cMembersAssignment_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Interface:
-		//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? name=ID '{' members+=Member* '}';
+		//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] '{'
+		//	members+=Member* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? name=ID '{' members+=Member* '}'
+		//visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] '{'
+		//members+=Member* '}'
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -286,11 +296,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'as'
 		public Keyword getAsKeyword_2_1() { return cAsKeyword_2_1; }
 
-		//name=ID
-		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
+		//referencedElement=[uml::Interface]
+		public Assignment getReferencedElementAssignment_3() { return cReferencedElementAssignment_3; }
+
+		//[uml::Interface]
+		public CrossReference getReferencedElementInterfaceCrossReference_3_0() { return cReferencedElementInterfaceCrossReference_3_0; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
+		public RuleCall getReferencedElementInterfaceIDTerminalRuleCall_3_0_1() { return cReferencedElementInterfaceIDTerminalRuleCall_3_0_1; }
 
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
@@ -392,8 +405,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStaticStaticKeyword_2_0 = (Keyword)cStaticAssignment_2.eContents().get(0);
 		private final Assignment cFinalAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final Keyword cFinalFinalKeyword_3_0 = (Keyword)cFinalAssignment_3.eContents().get(0);
-		private final Assignment cNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cNameIDTerminalRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cReferencedElementPropertyCrossReference_4_0 = (CrossReference)cReferencedElementAssignment_4.eContents().get(0);
+		private final RuleCall cReferencedElementPropertyIDTerminalRuleCall_4_0_1 = (RuleCall)cReferencedElementPropertyCrossReference_4_0.eContents().get(1);
 		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cTypeAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cTypeTypeReferenceParserRuleCall_6_0 = (RuleCall)cTypeAssignment_6.eContents().get(0);
@@ -402,10 +416,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//	{Attribute} visibility=Visibility?
 		//	static?='static'?
 		//	final?='final'?
-		//	name=ID ':' type=TypeReference;
+		//	referencedElement=[uml::Property] ':' type=TypeReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{Attribute} visibility=Visibility? static?='static'? final?='final'? name=ID ':' type=TypeReference
+		//{Attribute} visibility=Visibility? static?='static'? final?='final'? referencedElement=[uml::Property] ':'
+		//type=TypeReference
 		public Group getGroup() { return cGroup; }
 
 		//{Attribute}
@@ -429,11 +444,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'final'
 		public Keyword getFinalFinalKeyword_3_0() { return cFinalFinalKeyword_3_0; }
 
-		//name=ID
-		public Assignment getNameAssignment_4() { return cNameAssignment_4; }
+		//referencedElement=[uml::Property]
+		public Assignment getReferencedElementAssignment_4() { return cReferencedElementAssignment_4; }
+
+		//[uml::Property]
+		public CrossReference getReferencedElementPropertyCrossReference_4_0() { return cReferencedElementPropertyCrossReference_4_0; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_4_0() { return cNameIDTerminalRuleCall_4_0; }
+		public RuleCall getReferencedElementPropertyIDTerminalRuleCall_4_0_1() { return cReferencedElementPropertyIDTerminalRuleCall_4_0_1; }
 
 		//':'
 		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
@@ -456,8 +474,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStaticStaticKeyword_2_0 = (Keyword)cStaticAssignment_2.eContents().get(0);
 		private final Assignment cFinalAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final Keyword cFinalFinalKeyword_3_0 = (Keyword)cFinalAssignment_3.eContents().get(0);
-		private final Assignment cNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cNameIDTerminalRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cReferencedElementOperationCrossReference_4_0 = (CrossReference)cReferencedElementAssignment_4.eContents().get(0);
+		private final RuleCall cReferencedElementOperationIDTerminalRuleCall_4_0_1 = (RuleCall)cReferencedElementOperationCrossReference_4_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
 		private final Assignment cParametersAssignment_6_0 = (Assignment)cGroup_6.eContents().get(0);
@@ -477,11 +496,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//	abstract?='abstract'?
 		//	static?='static'?
 		//	final?='final'?
-		//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=TypeReference)?;
+		//	referencedElement=[uml::Operation] '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':'
+		//	type=TypeReference)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? abstract?='abstract'? static?='static'? final?='final'? name=ID '(' (parameters+=Parameter (','
-		//parameters+=Parameter)*)* ')' (':' type=TypeReference)?
+		//visibility=Visibility? abstract?='abstract'? static?='static'? final?='final'? referencedElement=[uml::Operation] '('
+		//(parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=TypeReference)?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -508,11 +528,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'final'
 		public Keyword getFinalFinalKeyword_3_0() { return cFinalFinalKeyword_3_0; }
 
-		//name=ID
-		public Assignment getNameAssignment_4() { return cNameAssignment_4; }
+		//referencedElement=[uml::Operation]
+		public Assignment getReferencedElementAssignment_4() { return cReferencedElementAssignment_4; }
+
+		//[uml::Operation]
+		public CrossReference getReferencedElementOperationCrossReference_4_0() { return cReferencedElementOperationCrossReference_4_0; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_4_0() { return cNameIDTerminalRuleCall_4_0; }
+		public RuleCall getReferencedElementOperationIDTerminalRuleCall_4_0_1() { return cReferencedElementOperationIDTerminalRuleCall_4_0_1; }
 
 		//'('
 		public Keyword getLeftParenthesisKeyword_5() { return cLeftParenthesisKeyword_5; }
@@ -563,8 +586,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStaticStaticKeyword_1_0 = (Keyword)cStaticAssignment_1.eContents().get(0);
 		private final Assignment cFinalAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Keyword cFinalFinalKeyword_2_0 = (Keyword)cFinalAssignment_2.eContents().get(0);
-		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cReferencedElementParameterCrossReference_3_0 = (CrossReference)cReferencedElementAssignment_3.eContents().get(0);
+		private final RuleCall cReferencedElementParameterIDTerminalRuleCall_3_0_1 = (RuleCall)cReferencedElementParameterCrossReference_3_0.eContents().get(1);
 		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cTypeTypeReferenceParserRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
@@ -573,10 +597,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//	visibility=Visibility?
 		//	static?='static'?
 		//	final?='final'?
-		//	name=ID ':' type=TypeReference;
+		//	referencedElement=[uml::Parameter] ':' type=TypeReference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? static?='static'? final?='final'? name=ID ':' type=TypeReference
+		//visibility=Visibility? static?='static'? final?='final'? referencedElement=[uml::Parameter] ':' type=TypeReference
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -597,11 +621,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'final'
 		public Keyword getFinalFinalKeyword_2_0() { return cFinalFinalKeyword_2_0; }
 
-		//name=ID
-		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
+		//referencedElement=[uml::Parameter]
+		public Assignment getReferencedElementAssignment_3() { return cReferencedElementAssignment_3; }
+
+		//[uml::Parameter]
+		public CrossReference getReferencedElementParameterCrossReference_3_0() { return cReferencedElementParameterCrossReference_3_0; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
+		public RuleCall getReferencedElementParameterIDTerminalRuleCall_3_0_1() { return cReferencedElementParameterIDTerminalRuleCall_3_0_1; }
 
 		//':'
 		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
@@ -1224,6 +1251,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
+	////import "platform:/resource/de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore"
 	//// ------------------------------------------------------------------------------------------
 	//// ---------------------------------Root-----------------------------------------------------
 	//// ------------------------------------------------------------------------------------------
@@ -1276,7 +1304,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Class:
-	//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? name=ID '{' members+=Member* '}';
+	//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class]
+	//	'{' members+=Member* '}';
 	public ClassElements getClassAccess() {
 		return pClass;
 	}
@@ -1286,7 +1315,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Interface:
-	//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? name=ID '{' members+=Member* '}';
+	//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] '{'
+	//	members+=Member* '}';
 	public InterfaceElements getInterfaceAccess() {
 		return pInterface;
 	}
@@ -1340,7 +1370,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	//	{Attribute} visibility=Visibility?
 	//	static?='static'?
 	//	final?='final'?
-	//	name=ID ':' type=TypeReference;
+	//	referencedElement=[uml::Property] ':' type=TypeReference;
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
@@ -1354,7 +1384,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	//	abstract?='abstract'?
 	//	static?='static'?
 	//	final?='final'?
-	//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=TypeReference)?;
+	//	referencedElement=[uml::Operation] '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':'
+	//	type=TypeReference)?;
 	public MethodElements getMethodAccess() {
 		return pMethod;
 	}
@@ -1367,7 +1398,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	//	visibility=Visibility?
 	//	static?='static'?
 	//	final?='final'?
-	//	name=ID ':' type=TypeReference;
+	//	referencedElement=[uml::Parameter] ':' type=TypeReference;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}

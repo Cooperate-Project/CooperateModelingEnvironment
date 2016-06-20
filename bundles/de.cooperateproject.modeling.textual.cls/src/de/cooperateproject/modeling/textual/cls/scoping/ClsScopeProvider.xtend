@@ -3,13 +3,75 @@
  */
 package de.cooperateproject.modeling.textual.cls.scoping
 
+import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.util.Switch
+import org.eclipse.uml2.uml.UMLPackage
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import org.eclipse.xtext.scoping.impl.FilteringScope
+import org.eclipse.uml2.uml.NamedElement
+
 /**
  * This class contains custom scoping description.
  * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#scoping
  * on how and when to use it.
- *
+ * 
  */
-class ClsScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
+class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
+
+	override getScope(EObject context, EReference reference) {
+		return super.getScope(context, reference).postprocess(context, reference)
+	}
+
+	private def IScope postprocess(IScope scope, EObject context, EReference reference) {
+		var Switch<IScope> scopeSwitch = null
+
+		if (reference == ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT) {
+			scopeSwitch = new UMLReferencingScopeSwitch(scope)
+		}
+
+		if (scopeSwitch == null) {
+			return scope
+		}
+		return scopeSwitch.doSwitch(context)
+	}
+
+	static class UMLReferencingScopeSwitch extends ClsSwitch<IScope> {
+		val IScope baseScope
+
+		new(IScope baseScope) {
+			this.baseScope = baseScope
+		}
+
+		override caseClass(Class clazz) {
+			return UMLPackage.Literals.CLASS.filterScope
+		}
+		
+		override caseMethod(Method method) {
+			val container = method.eContainer as UMLReferencingElement<NamedElement>
+			return UMLPackage.Literals.OPERATION.filterScope(container.referencedElement)
+		}
+
+		override defaultCase(EObject o) {
+			return baseScope
+		}
+
+		private def filterScope(EClass clazz) {
+			return new FilteringScope(baseScope, [EcoreUtil2.isAssignableFrom(clazz, EObjectOrProxy.eClass)])
+		}
+		
+		private def filterScope(EClass clazz, EObject container) {
+			return new FilteringScope(clazz.filterScope, [container.equals(EObjectOrProxy.eContainer)])
+		}
+	}
 
 }

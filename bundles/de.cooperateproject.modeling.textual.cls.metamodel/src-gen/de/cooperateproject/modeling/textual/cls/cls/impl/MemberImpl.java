@@ -7,6 +7,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Member;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.uml2.uml.NamedElement;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Member</b></em>'.
@@ -14,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class MemberImpl extends PropertyImpl implements Member {
+public abstract class MemberImpl<T extends NamedElement> extends PropertyImpl<T> implements Member<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

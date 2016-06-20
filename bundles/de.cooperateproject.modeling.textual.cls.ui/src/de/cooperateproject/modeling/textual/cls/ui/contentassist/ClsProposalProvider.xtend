@@ -3,11 +3,14 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
-import de.cooperateproject.modeling.textual.cls.ui.contentassist.AbstractClsProposalProvider
-
 /**
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
  * on how to customize the content assistant.
  */
 class ClsProposalProvider extends AbstractClsProposalProvider {
+	
+//	override completeClass_ReferencedElement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+//		
+//	}
+	
 }

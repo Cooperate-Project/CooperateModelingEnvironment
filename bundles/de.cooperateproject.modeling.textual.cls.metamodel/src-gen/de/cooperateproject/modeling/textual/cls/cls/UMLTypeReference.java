@@ -2,24 +2,25 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Classifier Reference</b></em>'.
+ * A representation of the model object '<em><b>UML Type Reference</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierReference#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassifierReference()
+ * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getUMLTypeReference()
  * @model
  * @generated
  */
-public interface ClassifierReference extends TypeReference, ClassifierAssociationEnd {
+public interface UMLTypeReference extends TypeReference, ClassifierAssociationEnd {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -29,21 +30,21 @@ public interface ClassifierReference extends TypeReference, ClassifierAssociatio
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(Classifier)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassifierReference_Type()
+	 * @see #setType(Type)
+	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getUMLTypeReference_Type()
 	 * @model required="true"
 	 * @generated
 	 */
-	Classifier<?> getType();
+	Type getType();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierReference#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(Classifier<?> value);
+	void setType(Type value);
 
-} // ClassifierReference
+} // UMLTypeReference

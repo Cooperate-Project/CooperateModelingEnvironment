@@ -19,7 +19,7 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model
  * @generated
  */
-public interface Class extends Classifier {
+public interface Class extends Classifier<org.eclipse.uml2.uml.Class> {
 	/**
 	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->

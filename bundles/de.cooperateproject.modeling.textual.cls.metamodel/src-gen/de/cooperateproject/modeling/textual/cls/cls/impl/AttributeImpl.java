@@ -7,6 +7,8 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.uml2.uml.Property;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Attribute</b></em>'.
@@ -14,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class AttributeImpl extends MemberImpl implements Attribute {
+public class AttributeImpl extends MemberImpl<Property> implements Attribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

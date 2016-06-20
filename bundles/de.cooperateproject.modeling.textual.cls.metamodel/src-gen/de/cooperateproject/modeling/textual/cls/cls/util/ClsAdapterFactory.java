@@ -8,7 +8,6 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
@@ -22,18 +21,24 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,7 +117,23 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 				return createClassifierReferenceAdapter();
 			}
 			@Override
-			public Adapter caseClassifier(Classifier object) {
+			public Adapter caseUMLTypeReference(UMLTypeReference object) {
+				return createUMLTypeReferenceAdapter();
+			}
+			@Override
+			public <T extends NamedElement> Adapter caseUMLReferencingElement(UMLReferencingElement<T> object) {
+				return createUMLReferencingElementAdapter();
+			}
+			@Override
+			public <T extends NamedElement> Adapter caseNamedElement(de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> object) {
+				return createNamedElementAdapter();
+			}
+			@Override
+			public <T extends NamedElement> Adapter caseNamedElementLongName(NamedElementLongName<T> object) {
+				return createNamedElementLongNameAdapter();
+			}
+			@Override
+			public <T extends Classifier> Adapter caseClassifier(de.cooperateproject.modeling.textual.cls.cls.Classifier<T> object) {
 				return createClassifierAdapter();
 			}
 			@Override
@@ -124,11 +145,11 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 				return createInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseProperty(Property object) {
+			public <T extends NamedElement> Adapter caseProperty(Property<T> object) {
 				return createPropertyAdapter();
 			}
 			@Override
-			public Adapter caseMember(Member object) {
+			public <T extends NamedElement> Adapter caseMember(Member<T> object) {
 				return createMemberAdapter();
 			}
 			@Override
@@ -278,6 +299,62 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassifierReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference <em>UML Type Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+	 * @generated
+	 */
+	public Adapter createUMLTypeReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement <em>UML Referencing Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+	 * @generated
+	 */
+	public Adapter createUMLReferencingElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElement
+	 * @generated
+	 */
+	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName <em>Named Element Long Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName
+	 * @generated
+	 */
+	public Adapter createNamedElementLongNameAdapter() {
 		return null;
 	}
 

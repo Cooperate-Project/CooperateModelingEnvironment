@@ -13,5 +13,5 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model
  * @generated
  */
-public interface Interface extends Classifier {
+public interface Interface extends Classifier<org.eclipse.uml2.uml.Interface> {
 } // Interface

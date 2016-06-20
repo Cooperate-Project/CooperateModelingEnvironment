@@ -21,6 +21,7 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.ReadingDirection;
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import org.eclipse.emf.ecore.EClass;
@@ -80,6 +81,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 			case ClsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
 			case ClsPackage.DATA_TYPE_REFERENCE: return (EObject)createDataTypeReference();
 			case ClsPackage.CLASSIFIER_REFERENCE: return (EObject)createClassifierReference();
+			case ClsPackage.UML_TYPE_REFERENCE: return (EObject)createUMLTypeReference();
 			case ClsPackage.CLASS: return (EObject)createClass();
 			case ClsPackage.INTERFACE: return (EObject)createInterface();
 			case ClsPackage.ATTRIBUTE: return (EObject)createAttribute();
@@ -173,6 +175,16 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	public ClassifierReference createClassifierReference() {
 		ClassifierReferenceImpl classifierReference = new ClassifierReferenceImpl();
 		return classifierReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UMLTypeReference createUMLTypeReference() {
+		UMLTypeReferenceImpl umlTypeReference = new UMLTypeReferenceImpl();
+		return umlTypeReference;
 	}
 
 	/**

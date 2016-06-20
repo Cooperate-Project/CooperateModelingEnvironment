@@ -129,7 +129,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? final?='final'? name=ID type=TypeReference)
+	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Property|ID] type=TypeReference)
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -166,7 +166,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? (longName=STRING | longName=ID)? name=ID members+=Member*)
+	 *     (visibility=Visibility? abstract?='abstract'? (longName=STRING | longName=ID)? referencedElement=[Class|ID] members+=Member*)
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -302,7 +302,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? (longName=STRING | longName=ID)? name=ID members+=Member*)
+	 *     (visibility=Visibility? (longName=STRING | longName=ID)? referencedElement=[Interface|ID] members+=Member*)
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -320,7 +320,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         abstract?='abstract'? 
 	 *         static?='static'? 
 	 *         final?='final'? 
-	 *         name=ID 
+	 *         referencedElement=[Operation|ID] 
 	 *         (parameters+=Parameter parameters+=Parameter*)* 
 	 *         type=TypeReference?
 	 *     )
@@ -353,7 +353,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? final?='final'? name=ID type=TypeReference)
+	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Parameter|ID] type=TypeReference)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

@@ -3,9 +3,10 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.Parameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ParameterImpl extends PropertyImpl implements Parameter {
+public class ParameterImpl extends PropertyImpl<Parameter> implements de.cooperateproject.modeling.textual.cls.cls.Parameter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

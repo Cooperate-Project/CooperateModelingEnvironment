@@ -22,6 +22,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
@@ -29,6 +31,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.ReadingDirection;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import java.util.Map;
@@ -131,16 +135,24 @@ public class ClsValidator extends EObjectValidator {
 				return validateDataTypeReference((DataTypeReference)value, diagnostics, context);
 			case ClsPackage.CLASSIFIER_REFERENCE:
 				return validateClassifierReference((ClassifierReference)value, diagnostics, context);
+			case ClsPackage.UML_TYPE_REFERENCE:
+				return validateUMLTypeReference((UMLTypeReference)value, diagnostics, context);
+			case ClsPackage.UML_REFERENCING_ELEMENT:
+				return validateUMLReferencingElement((UMLReferencingElement<?>)value, diagnostics, context);
+			case ClsPackage.NAMED_ELEMENT:
+				return validateNamedElement((NamedElement<?>)value, diagnostics, context);
+			case ClsPackage.NAMED_ELEMENT_LONG_NAME:
+				return validateNamedElementLongName((NamedElementLongName<?>)value, diagnostics, context);
 			case ClsPackage.CLASSIFIER:
-				return validateClassifier((Classifier)value, diagnostics, context);
+				return validateClassifier((Classifier<?>)value, diagnostics, context);
 			case ClsPackage.CLASS:
 				return validateClass((de.cooperateproject.modeling.textual.cls.cls.Class)value, diagnostics, context);
 			case ClsPackage.INTERFACE:
 				return validateInterface((Interface)value, diagnostics, context);
 			case ClsPackage.PROPERTY:
-				return validateProperty((Property)value, diagnostics, context);
+				return validateProperty((Property<?>)value, diagnostics, context);
 			case ClsPackage.MEMBER:
-				return validateMember((Member)value, diagnostics, context);
+				return validateMember((Member<?>)value, diagnostics, context);
 			case ClsPackage.ATTRIBUTE:
 				return validateAttribute((Attribute)value, diagnostics, context);
 			case ClsPackage.METHOD:
@@ -232,7 +244,43 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClassifier(Classifier classifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateUMLTypeReference(UMLTypeReference umlTypeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)umlTypeReference, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUMLReferencingElement(UMLReferencingElement<?> umlReferencingElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)umlReferencingElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNamedElement(NamedElement<?> namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)namedElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNamedElementLongName(NamedElementLongName<?> namedElementLongName, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)namedElementLongName, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateClassifier(Classifier<?> classifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)classifier, diagnostics, context);
 	}
 
@@ -259,7 +307,7 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateProperty(Property property, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateProperty(Property<?> property, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)property, diagnostics, context);
 	}
 
@@ -268,7 +316,7 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMember(Member member, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMember(Member<?> member, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)member, diagnostics, context);
 	}
 

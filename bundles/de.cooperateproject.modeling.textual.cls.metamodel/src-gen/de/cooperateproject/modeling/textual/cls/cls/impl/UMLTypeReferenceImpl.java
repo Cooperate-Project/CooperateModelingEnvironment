@@ -3,29 +3,32 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.uml2.uml.Type;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Class</b></em>'.
+ * An implementation of the model object '<em><b>UML Type Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.UMLTypeReferenceImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implements de.cooperateproject.modeling.textual.cls.cls.Class {
+public class UMLTypeReferenceImpl extends TypeReferenceImpl implements UMLTypeReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClassImpl() {
+	protected UMLTypeReferenceImpl() {
 		super();
 	}
 
@@ -36,7 +39,7 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ClsPackage.Literals.CLASS;
+		return ClsPackage.Literals.UML_TYPE_REFERENCE;
 	}
 
 	/**
@@ -44,8 +47,8 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAbstract() {
-		return (Boolean)eGet(ClsPackage.Literals.CLASS__ABSTRACT, true);
+	public Type getType() {
+		return (Type)eGet(ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE, true);
 	}
 
 	/**
@@ -53,8 +56,8 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAbstract(boolean newAbstract) {
-		eSet(ClsPackage.Literals.CLASS__ABSTRACT, newAbstract);
+	public void setType(Type newType) {
+		eSet(ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE, newType);
 	}
 
-} //ClassImpl
+} //UMLTypeReferenceImpl

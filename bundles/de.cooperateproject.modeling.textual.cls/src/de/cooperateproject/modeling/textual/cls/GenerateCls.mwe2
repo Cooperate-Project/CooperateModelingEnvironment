@@ -58,19 +58,18 @@ Workflow {
 			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
 			to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
 		}
-//		//
+//		
 //		registerGeneratedEPackage = "org.eclipse.emf.ecore.EcorePackage"
 //		registerGeneratedEPackage = "org.eclipse.uml2.uml.UMLPackage"
 //		registerGeneratedEPackage = "org.eclipse.uml2.types.TypesPackage"
 		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
 		registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
-//		registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
 //		registerGeneratedEPackage = "de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
 //		registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
-		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"		
+//		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"		
 //		registerGenModelFile = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
-		registerGenModelFile = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"		
-//		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+//		registerGenModelFile = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"		
+		//registerGenModelFile = "platform:/resource/de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore"
 	}
 
 	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
@@ -88,7 +87,7 @@ Workflow {
 	component = org.eclipse.emf.mwe.utils.DirectoryCleaner {
 		directory = "${testProjectPath}/${projectName}.tests/src-gen"
 	}
-
+	
 	component = org.eclipse.xtext.generator.Generator {
 		pathRtProject = runtimeProjectPath
 		pathTestProject = "${testProjectPath}/${projectName}.tests"
@@ -99,20 +98,23 @@ Workflow {
 		projectNameUi = "${projectName}.ui"
 		encoding = "UTF-8"
 		language = auto-inject {
-			
-            loadedResource = "platform:/resource/org.eclipse.emf.ecore.xcore.lib/model/XcoreLang.xcore"
-            loadedResource = "classpath:/model/Xbase.ecore"
-            loadedResource = "classpath:/model/Xbase.genmodel"
-            loadedResource = "classpath:/model/Ecore.ecore"
-            loadedResource = "classpath:/model/Ecore.genmodel"
-			loadedResource = "classpath:/model/UML.genmodel"
-			loadedResource = "classpath:/model/UML.ecore"
-			loadedResource = "classpath:/model/Types.genmodel"
-			loadedResource = "classpath:/model/Types.ecore"
+//          loadedResource = "classpath:/model/Ecore.ecore"
+//          loadedResource = "classpath:/model/Ecore.genmodel"
+//			loadedResource = "classpath:/model/UML.genmodel"
+//			loadedResource = "classpath:/model/UML.ecore"
+//			loadedResource = "classpath:/model/Types.genmodel"
+//			loadedResource = "classpath:/model/Types.ecore"
 
+//			loadedResource = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
+//			loadedResource = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
+//			loadedResource = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+//			loadedResource = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
 //			loadedResource = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
-//			//loadedResource = "platform:/resource/org.eclipse.emf.ecore.xcore.lib/model/XcoreLang.xcore"
-			loadedResource = "platform:/resource/${modelProject}/model/cls.xcore"
+//			loadedResource = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+			loadedResource = "platform:/resource/${modelProject}/model/cls.ecore"
+			loadedResource = "platform:/resource/${modelProject}/model/cls.genmodel"
+			loadedResource = "platform:/resource/de.cooperateproject.modeling.textual.common/model/common.ecore"
+			loadedResource = "platform:/resource/de.cooperateproject.modeling.textual.common/model/common.genmodel"
 			
 			uri = grammarURI
 

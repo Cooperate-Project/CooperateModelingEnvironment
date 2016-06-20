@@ -58,16 +58,7 @@ public class PackageImportImpl extends CDOObjectImpl implements PackageImport {
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Package getPackage() {
-		return (org.eclipse.uml2.uml.Package)eDynamicGet(ClsPackage.PACKAGE_IMPORT__PACKAGE, ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.uml2.uml.Package basicGetPackage() {
-		return (org.eclipse.uml2.uml.Package)eDynamicGet(ClsPackage.PACKAGE_IMPORT__PACKAGE, ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE, false, true);
+		return (org.eclipse.uml2.uml.Package)eGet(ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE, true);
 	}
 
 	/**
@@ -76,66 +67,7 @@ public class PackageImportImpl extends CDOObjectImpl implements PackageImport {
 	 * @generated
 	 */
 	public void setPackage(org.eclipse.uml2.uml.Package newPackage) {
-		eDynamicSet(ClsPackage.PACKAGE_IMPORT__PACKAGE, ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE, newPackage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClsPackage.PACKAGE_IMPORT__PACKAGE:
-				if (resolve) return getPackage();
-				return basicGetPackage();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClsPackage.PACKAGE_IMPORT__PACKAGE:
-				setPackage((org.eclipse.uml2.uml.Package)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClsPackage.PACKAGE_IMPORT__PACKAGE:
-				setPackage((org.eclipse.uml2.uml.Package)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClsPackage.PACKAGE_IMPORT__PACKAGE:
-				return basicGetPackage() != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE, newPackage);
 	}
 
 } //PackageImportImpl

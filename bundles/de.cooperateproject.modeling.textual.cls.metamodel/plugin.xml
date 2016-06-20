@@ -10,7 +10,7 @@
       <package
             uri="http://www.cooperateproject.de/modeling/textual/cls/Cls"
             class="de.cooperateproject.modeling.textual.cls.cls.ClsPackage"
-            genModel="model/cls.xcore"/>
+            genModel="model/cls.genmodel"/>
    </extension>
 
 </plugin>

@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +14,5 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model abstract="true"
  * @generated
  */
-public interface Member extends Property {
+public interface Member<T extends NamedElement> extends Property<T> {
 } // Member

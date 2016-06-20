@@ -46,8 +46,8 @@ public class ClassifierReferenceImpl extends TypeReferenceImpl implements Classi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier getType() {
-		return (Classifier)eDynamicGet(ClsPackage.CLASSIFIER_REFERENCE__TYPE, ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE, true, true);
+	public Classifier<?> getType() {
+		return (Classifier<?>)eGet(ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE, true);
 	}
 
 	/**
@@ -55,76 +55,8 @@ public class ClassifierReferenceImpl extends TypeReferenceImpl implements Classi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier basicGetType() {
-		return (Classifier)eDynamicGet(ClsPackage.CLASSIFIER_REFERENCE__TYPE, ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE, false, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(Classifier newType) {
-		eDynamicSet(ClsPackage.CLASSIFIER_REFERENCE__TYPE, ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE, newType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClsPackage.CLASSIFIER_REFERENCE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClsPackage.CLASSIFIER_REFERENCE__TYPE:
-				setType((Classifier)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClsPackage.CLASSIFIER_REFERENCE__TYPE:
-				setType((Classifier)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClsPackage.CLASSIFIER_REFERENCE__TYPE:
-				return basicGetType() != null;
-		}
-		return super.eIsSet(featureID);
+	public void setType(Classifier<?> newType) {
+		eSet(ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE, newType);
 	}
 
 } //ClassifierReferenceImpl

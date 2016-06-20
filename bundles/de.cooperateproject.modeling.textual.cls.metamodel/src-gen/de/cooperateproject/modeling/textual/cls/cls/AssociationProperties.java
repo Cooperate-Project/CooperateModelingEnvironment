@@ -2,7 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.uml2.uml.Association;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,16 +16,14 @@ import org.eclipse.emf.cdo.CDOObject;
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getCardinalityLeft <em>Cardinality Left</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getCardinalityRight <em>Cardinality Right</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getReadingDirection <em>Reading Direction</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getNote <em>Note</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociationProperties()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface AssociationProperties extends CDOObject {
+public interface AssociationProperties extends UMLReferencingElement<Association> {
 	/**
 	 * Returns the value of the '<em><b>Cardinality Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -106,32 +104,6 @@ public interface AssociationProperties extends CDOObject {
 	 * @generated
 	 */
 	void setReadingDirection(ReadingDirection value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociationProperties_Name()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Note</b></em>' containment reference.

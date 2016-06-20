@@ -3,9 +3,10 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Interface;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.Interface;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class InterfaceImpl extends ClassifierImpl implements Interface {
+public class InterfaceImpl extends ClassifierImpl<Interface> implements de.cooperateproject.modeling.textual.cls.cls.Interface {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -13,5 +13,5 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model
  * @generated
  */
-public interface Parameter extends Property {
+public interface Parameter extends Property<org.eclipse.uml2.uml.Parameter> {
 } // Parameter

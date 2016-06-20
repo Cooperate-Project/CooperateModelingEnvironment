@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.uml2.uml.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +14,5 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model
  * @generated
  */
-public interface Attribute extends Member {
+public interface Attribute extends Member<Property> {
 } // Attribute

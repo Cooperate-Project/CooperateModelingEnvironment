@@ -1,9 +1,8 @@
 grammar de.cooperateproject.modeling.textual.cls.Cls with org.eclipse.xtext.common.Terminals
 
+import "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-
-import "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 
 // ------------------------------------------------------------------------------------------
 // ---------------------------------Root-----------------------------------------------------
@@ -34,15 +33,15 @@ Classifier:
 ;
 
 Class:
-	visibility=Visibility? (abstract ?= 'abstract')? 'class' (longName = (STRING | ID) 'as')? name = ID '{' (members += Member)* '}'
+	visibility=Visibility? (abstract ?= 'abstract')? 'class' (longName = (STRING | ID) 'as')? referencedElement = [uml::Class|ID] '{' (members += Member)* '}'
 ;
 
 Interface:
-	visibility=Visibility? 'interface' (longName = (STRING | ID) 'as')? name = ID '{' (members += Member)* '}'
+	visibility=Visibility? 'interface' (longName = (STRING | ID) 'as')? referencedElement = [uml::Interface|ID] '{' (members += Member)* '}'
 ;
 
 TypeReference: 
-	ClassifierReference | DataTypeReference
+	ClassifierReference | DataTypeReference | UMLTypeReference
 ;
 
 ClassifierReference: 
@@ -51,6 +50,10 @@ ClassifierReference:
 
 DataTypeReference: 
 	type = PrimitiveType
+;
+
+UMLTypeReference: 
+	type = [uml::Type]
 ;
 
 
@@ -64,7 +67,7 @@ Attribute:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	name=ID ':' type = TypeReference
+	referencedElement = [uml::Property|ID] ':' type = TypeReference
 ;
 	
 Method: 
@@ -72,7 +75,7 @@ Method:
 	(abstract ?= 'abstract')? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	name = ID '(' 
+	referencedElement = [uml::Operation|ID] '(' 
 	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
 	(':' type = TypeReference)?
 ;
@@ -81,7 +84,7 @@ Parameter:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	name=ID ':' type = TypeReference
+	referencedElement = [uml::Parameter|ID] ':' type = TypeReference
 ;
 
 
@@ -116,7 +119,7 @@ Association:
 
 
 AssociationProperties: 
-	'[' cardinalityLeft = Cardinality ('|' cardinalityRight = Cardinality ('|' name = (STRING | ID) (readingDirection = ReadingDirection)?)?)? ']'
+	'[' cardinalityLeft = Cardinality ('|' cardinalityRight = Cardinality ('|' referencedElement = [uml::Association] (readingDirection = ReadingDirection)?)?)? ']'
 ;
 
 Cardinality: 
@@ -132,7 +135,7 @@ Comment:
 ;
 
 enum Visibility:
-	DEFAULT = '~' 
+	PACKAGE = '~' 
 	| PRIVATE = '-' 
 	| PROTECTED = '#' 
 	| PUBLIC = '+'

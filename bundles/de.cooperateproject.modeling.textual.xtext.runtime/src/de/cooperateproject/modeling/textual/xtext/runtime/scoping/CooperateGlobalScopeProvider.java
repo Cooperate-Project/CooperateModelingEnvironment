@@ -18,20 +18,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 
-import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
 	private static final IQualifiedNameProvider QUALIFIED_NAME_PROVIDER = new CooperateQualifiedNameProvider();
-	
+
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
 			Predicate<IEObjectDescription> predicate) {
@@ -52,8 +51,8 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 			return getScopeFromUMLResource((CDOResource) umlResource, ignoreCase, type, predicate);
 		}
 
-		EObject rootObject = umlResource.getContents().get(0);
-		Iterable<EObject> allContents = () -> rootObject.eAllContents();
+		Iterable<EObject> allContents = Iterables.concat(umlResource.getContents(),
+				() -> umlResource.getContents().get(0).eAllContents());
 		Stream<EObject> allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
 		try {
 			Stream<EObject> results = allContentsStream.filter(type::isInstance);
@@ -77,7 +76,7 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
 	private static IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
 		Collection<EObject> objs = results.map(CooperateGlobalScopeProvider::getDescriptionFor)
-				.filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
+				.filter(d -> d != null).filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
 				.collect(Collectors.toList());
 		return createUMLScope(objs);
 	}
@@ -85,9 +84,11 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	private static IScope createUMLScope(Iterable<EObject> objects) {
 		return Scopes.scopeFor(objects, e -> QUALIFIED_NAME_PROVIDER.apply(e), IScope.NULLSCOPE);
 	}
-	
+
 	private static IEObjectDescription getDescriptionFor(EObject obj) {
-		return Scopes.scopedElementsFor(Arrays.asList(obj)).iterator().next();
+		List<EObject> elements = Arrays.asList(obj);
+		Iterable<IEObjectDescription> descriptions = Scopes.scopedElementsFor(elements);
+		return Iterables.getFirst(descriptions, null);
 	}
 
 	private static Optional<Resource> findUMLResource(Resource self) {

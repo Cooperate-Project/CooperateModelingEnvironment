@@ -45,8 +45,11 @@ class ClsFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap.after(access.classifierRule)
 		c.setLinewrap.after(access.memberRule)
 		
-		c.setLinewrap.after(access.findKeywords("@startclass").get(0))
+		c.setLinewrap(1, 2, 2).after(access.findKeywords("@startclass").get(0))
 		c.setLinewrap.before(access.findKeywords("@endclass").get(0))
+		
+		c.setLinewrap.after(access.packageImportRule)
+		c.setLinewrap.around(access.packageImportRule)
 
 		// set no space around all parentheses
 		for (p : access.findKeywordPairs("(", ")")) {

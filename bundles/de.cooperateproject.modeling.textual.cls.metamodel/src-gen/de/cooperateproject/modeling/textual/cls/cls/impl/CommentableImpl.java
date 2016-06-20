@@ -6,10 +6,7 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
@@ -62,17 +59,7 @@ public abstract class CommentableImpl extends CDOObjectImpl implements Commentab
 	 * @generated
 	 */
 	public Comment getComment() {
-		return (Comment)eDynamicGet(ClsPackage.COMMENTABLE__COMMENT, ClsPackage.Literals.COMMENTABLE__COMMENT, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetComment(Comment newComment, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newComment, ClsPackage.COMMENTABLE__COMMENT, msgs);
-		return msgs;
+		return (Comment)eGet(ClsPackage.Literals.COMMENTABLE__COMMENT, true);
 	}
 
 	/**
@@ -81,79 +68,7 @@ public abstract class CommentableImpl extends CDOObjectImpl implements Commentab
 	 * @generated
 	 */
 	public void setComment(Comment newComment) {
-		eDynamicSet(ClsPackage.COMMENTABLE__COMMENT, ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClsPackage.COMMENTABLE__COMMENT:
-				return basicSetComment(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClsPackage.COMMENTABLE__COMMENT:
-				return getComment();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClsPackage.COMMENTABLE__COMMENT:
-				setComment((Comment)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClsPackage.COMMENTABLE__COMMENT:
-				setComment((Comment)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClsPackage.COMMENTABLE__COMMENT:
-				return getComment() != null;
-		}
-		return super.eIsSet(featureID);
+		eSet(ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
 	}
 
 } //CommentableImpl
