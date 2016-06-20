@@ -3,7 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
-import de.cooperateproject.modeling.textual.activity.activity.DefRef;
+import de.cooperateproject.modeling.textual.activity.activity.Name;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -11,19 +11,19 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Def Ref</b></em>'.
+ * An implementation of the model object '<em><b>Name</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefRefImpl#getLongName <em>Long Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.DefRefImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.NameImpl#getLongName <em>Long Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.NameImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DefRefImpl extends CDOObjectImpl implements DefRef
+public class NameImpl extends CDOObjectImpl implements Name
 {
   /**
    * The default value of the '{@link #getLongName() <em>Long Name</em>}' attribute.
@@ -50,7 +50,7 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DefRefImpl()
+  protected NameImpl()
   {
     super();
   }
@@ -63,7 +63,7 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
   @Override
   protected EClass eStaticClass()
   {
-    return ActivityPackage.Literals.DEF_REF;
+    return ActivityPackage.Literals.NAME;
   }
 
   /**
@@ -84,7 +84,7 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
    */
   public String getLongName()
   {
-    return (String)eDynamicGet(ActivityPackage.DEF_REF__LONG_NAME, ActivityPackage.Literals.DEF_REF__LONG_NAME, true, true);
+    return (String)eDynamicGet(ActivityPackage.NAME__LONG_NAME, ActivityPackage.Literals.NAME__LONG_NAME, true, true);
   }
 
   /**
@@ -94,7 +94,7 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
    */
   public void setLongName(String newLongName)
   {
-    eDynamicSet(ActivityPackage.DEF_REF__LONG_NAME, ActivityPackage.Literals.DEF_REF__LONG_NAME, newLongName);
+    eDynamicSet(ActivityPackage.NAME__LONG_NAME, ActivityPackage.Literals.NAME__LONG_NAME, newLongName);
   }
 
   /**
@@ -104,7 +104,7 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
    */
   public String getName()
   {
-    return (String)eDynamicGet(ActivityPackage.DEF_REF__NAME, ActivityPackage.Literals.DEF_REF__NAME, true, true);
+    return (String)eDynamicGet(ActivityPackage.NAME__NAME, ActivityPackage.Literals.NAME__NAME, true, true);
   }
 
   /**
@@ -114,7 +114,7 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
    */
   public void setName(String newName)
   {
-    eDynamicSet(ActivityPackage.DEF_REF__NAME, ActivityPackage.Literals.DEF_REF__NAME, newName);
+    eDynamicSet(ActivityPackage.NAME__NAME, ActivityPackage.Literals.NAME__NAME, newName);
   }
 
   /**
@@ -127,9 +127,9 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REF__LONG_NAME:
+      case ActivityPackage.NAME__LONG_NAME:
         return getLongName();
-      case ActivityPackage.DEF_REF__NAME:
+      case ActivityPackage.NAME__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -145,10 +145,10 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REF__LONG_NAME:
+      case ActivityPackage.NAME__LONG_NAME:
         setLongName((String)newValue);
         return;
-      case ActivityPackage.DEF_REF__NAME:
+      case ActivityPackage.NAME__NAME:
         setName((String)newValue);
         return;
     }
@@ -165,10 +165,10 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REF__LONG_NAME:
+      case ActivityPackage.NAME__LONG_NAME:
         setLongName(LONG_NAME_EDEFAULT);
         return;
-      case ActivityPackage.DEF_REF__NAME:
+      case ActivityPackage.NAME__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -185,12 +185,12 @@ public class DefRefImpl extends CDOObjectImpl implements DefRef
   {
     switch (featureID)
     {
-      case ActivityPackage.DEF_REF__LONG_NAME:
+      case ActivityPackage.NAME__LONG_NAME:
         return LONG_NAME_EDEFAULT == null ? getLongName() != null : !LONG_NAME_EDEFAULT.equals(getLongName());
-      case ActivityPackage.DEF_REF__NAME:
+      case ActivityPackage.NAME__NAME:
         return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
     }
     return super.eIsSet(featureID);
   }
 
-} //DefRefImpl
+} //NameImpl

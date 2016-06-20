@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.activity.activity;
 
+import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,13 +15,15 @@ package de.cooperateproject.modeling.textual.activity.activity;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Fork#getForkStart <em>Fork Start</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Fork#getForkEnd <em>Fork End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Fork#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getFork()
  * @model
+ * @extends CDOObject
  * @generated
  */
-public interface Fork extends ActivityElement
+public interface Fork extends CDOObject
 {
   /**
    * Returns the value of the '<em><b>Fork Start</b></em>' containment reference.
@@ -73,5 +76,31 @@ public interface Fork extends ActivityElement
    * @generated
    */
   void setForkEnd(ForkEnd value);
+
+  /**
+   * Returns the value of the '<em><b>Comment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Comment</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comment</em>' containment reference.
+   * @see #setComment(Comment)
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getFork_Comment()
+   * @model containment="true"
+   * @generated
+   */
+  Comment getComment();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Fork#getComment <em>Comment</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comment</em>' containment reference.
+   * @see #getComment()
+   * @generated
+   */
+  void setComment(Comment value);
 
 } // Fork

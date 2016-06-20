@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
+import de.cooperateproject.modeling.textual.activity.activity.Comment;
 import de.cooperateproject.modeling.textual.activity.activity.Fork;
 import de.cooperateproject.modeling.textual.activity.activity.ForkEnd;
 
@@ -10,6 +11,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,11 +24,12 @@ import org.eclipse.emf.ecore.InternalEObject;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getForkStart <em>Fork Start</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getForkEnd <em>Fork End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ForkImpl extends ActivityElementImpl implements Fork
+public class ForkImpl extends CDOObjectImpl implements Fork
 {
   /**
    * <!-- begin-user-doc -->
@@ -46,6 +50,17 @@ public class ForkImpl extends ActivityElementImpl implements Fork
   protected EClass eStaticClass()
   {
     return ActivityPackage.Literals.FORK;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected int eStaticFeatureCount()
+  {
+    return 0;
   }
 
   /**
@@ -115,6 +130,37 @@ public class ForkImpl extends ActivityElementImpl implements Fork
    * <!-- end-user-doc -->
    * @generated
    */
+  public Comment getComment()
+  {
+    return (Comment)eDynamicGet(ActivityPackage.FORK__COMMENT, ActivityPackage.Literals.FORK__COMMENT, true, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetComment(Comment newComment, NotificationChain msgs)
+  {
+    msgs = eDynamicInverseAdd((InternalEObject)newComment, ActivityPackage.FORK__COMMENT, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setComment(Comment newComment)
+  {
+    eDynamicSet(ActivityPackage.FORK__COMMENT, ActivityPackage.Literals.FORK__COMMENT, newComment);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -124,6 +170,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork
         return basicSetForkStart(null, msgs);
       case ActivityPackage.FORK__FORK_END:
         return basicSetForkEnd(null, msgs);
+      case ActivityPackage.FORK__COMMENT:
+        return basicSetComment(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -142,6 +190,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork
         return getForkStart();
       case ActivityPackage.FORK__FORK_END:
         return getForkEnd();
+      case ActivityPackage.FORK__COMMENT:
+        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -161,6 +211,9 @@ public class ForkImpl extends ActivityElementImpl implements Fork
         return;
       case ActivityPackage.FORK__FORK_END:
         setForkEnd((ForkEnd)newValue);
+        return;
+      case ActivityPackage.FORK__COMMENT:
+        setComment((Comment)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -182,6 +235,9 @@ public class ForkImpl extends ActivityElementImpl implements Fork
       case ActivityPackage.FORK__FORK_END:
         setForkEnd((ForkEnd)null);
         return;
+      case ActivityPackage.FORK__COMMENT:
+        setComment((Comment)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -200,6 +256,8 @@ public class ForkImpl extends ActivityElementImpl implements Fork
         return getForkStart() != null;
       case ActivityPackage.FORK__FORK_END:
         return getForkEnd() != null;
+      case ActivityPackage.FORK__COMMENT:
+        return getComment() != null;
     }
     return super.eIsSet(featureID);
   }

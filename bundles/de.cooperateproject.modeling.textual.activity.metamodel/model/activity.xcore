@@ -1,71 +1,68 @@
 @Ecore(nsURI="http://www.cooperateproject.de/modeling/textual/activity/Activity")
 @GenModel(rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl", rootExtendsInterface="org.eclipse.emf.cdo.CDOObject", providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter",
 	modelName="activity", modelDirectory="/de.cooperateproject.modeling.textual.activity.metamodel/src-gen", featureDelegation="Dynamic")
-
 package de.cooperateproject.modeling.textual.activity.activity
 
 class ActivityDiagram {
-	contains ActivityElement[] elements
+	contains Action[] actions
+	contains Condition[] conditions
+	contains Fork[] forks
+	contains Association[] associations
 }
 
-abstract class ActivityElement {
-	
-}
-
-class Action extends ActivityElement, DefRef {
-	String[1] name
-	String longName
+class Action {
+	contains Name name
 	contains Comment comment
 }
 
-class Condition extends ActivityElement {
-	contains ConditionEnd start
-	contains ConditionEnd end
+class Condition {
+	contains ConditionEnd[1] conditionStart
+	contains ConditionEnd[1] conditionEnd
 	contains Comment comment
 }
 
-class Fork extends ActivityElement {
-	contains ForkEnd start
-	contains ForkEnd end
+class Fork {
+	contains ForkEnd[1] forkStart
+	contains ForkEnd[1] forkEnd
 	contains Comment comment
 }
 
-class ConditionEnd extends DefRef {
-	String[1] name
-	String longName
+class ConditionEnd {
+	contains Name[1] name
 }
 
-class ForkEnd extends DefRef {
-	String[1] name
-	String longName
+class ForkEnd {
+	contains Name[1] name
 }
 
 class Comment {
 	String description
 }
 
-class Association extends ActivityElement {
+class Association {
 	contains Reference left
 	contains Reference right
 	contains Comment comment
 }
 
 abstract class Reference {
-	
 }
 
-class DefReference extends Reference {
-	refers DefRef ^type
+class Name {
+	String[1] name
+	String longName
 }
 
-abstract class DefRef {
-	
-}
-class StartAndEnd extends Reference {
-	StartAndEndEnum ^type
+class ActivityElementReference extends Reference {
+	refers Name ^type
 }
 
-enum StartAndEndEnum {
-	START,
+class StartEndReference extends Reference {
+	StartEndEnum ^type
+}
+
+enum StartEndEnum {
+	START
+	,
 	END
 }

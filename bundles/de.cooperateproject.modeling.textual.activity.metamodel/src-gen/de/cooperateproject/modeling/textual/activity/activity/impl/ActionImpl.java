@@ -5,11 +5,14 @@ package de.cooperateproject.modeling.textual.activity.activity.impl;
 import de.cooperateproject.modeling.textual.activity.activity.Action;
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
 import de.cooperateproject.modeling.textual.activity.activity.Comment;
+import de.cooperateproject.modeling.textual.activity.activity.Name;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,33 +23,12 @@ import org.eclipse.emf.ecore.InternalEObject;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActionImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActionImpl#getLongName <em>Long Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ActionImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ActionImpl extends ActivityElementImpl implements Action {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getLongName() <em>Long Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLongName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LONG_NAME_EDEFAULT = null;
-
+public class ActionImpl extends CDOObjectImpl implements Action {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,8 +53,9 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return (String)eDynamicGet(ActivityPackage.ACTION__NAME, ActivityPackage.Literals.ACTION__NAME, true, true);
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -80,26 +63,27 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public Name getName() {
+		return (Name)eDynamicGet(ActivityPackage.ACTION__NAME, ActivityPackage.Literals.ACTION__NAME, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetName(Name newName, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newName, ActivityPackage.ACTION__NAME, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(Name newName) {
 		eDynamicSet(ActivityPackage.ACTION__NAME, ActivityPackage.Literals.ACTION__NAME, newName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getLongName() {
-		return (String)eDynamicGet(ActivityPackage.ACTION__LONG_NAME, ActivityPackage.Literals.ACTION__LONG_NAME, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLongName(String newLongName) {
-		eDynamicSet(ActivityPackage.ACTION__LONG_NAME, ActivityPackage.Literals.ACTION__LONG_NAME, newLongName);
 	}
 
 	/**
@@ -138,6 +122,8 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ActivityPackage.ACTION__NAME:
+				return basicSetName(null, msgs);
 			case ActivityPackage.ACTION__COMMENT:
 				return basicSetComment(null, msgs);
 		}
@@ -154,8 +140,6 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 		switch (featureID) {
 			case ActivityPackage.ACTION__NAME:
 				return getName();
-			case ActivityPackage.ACTION__LONG_NAME:
-				return getLongName();
 			case ActivityPackage.ACTION__COMMENT:
 				return getComment();
 		}
@@ -171,10 +155,7 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ActivityPackage.ACTION__NAME:
-				setName((String)newValue);
-				return;
-			case ActivityPackage.ACTION__LONG_NAME:
-				setLongName((String)newValue);
+				setName((Name)newValue);
 				return;
 			case ActivityPackage.ACTION__COMMENT:
 				setComment((Comment)newValue);
@@ -192,10 +173,7 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ActivityPackage.ACTION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ActivityPackage.ACTION__LONG_NAME:
-				setLongName(LONG_NAME_EDEFAULT);
+				setName((Name)null);
 				return;
 			case ActivityPackage.ACTION__COMMENT:
 				setComment((Comment)null);
@@ -213,9 +191,7 @@ public class ActionImpl extends ActivityElementImpl implements Action {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ActivityPackage.ACTION__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case ActivityPackage.ACTION__LONG_NAME:
-				return LONG_NAME_EDEFAULT == null ? getLongName() != null : !LONG_NAME_EDEFAULT.equals(getLongName());
+				return getName() != null;
 			case ActivityPackage.ACTION__COMMENT:
 				return getComment() != null;
 		}

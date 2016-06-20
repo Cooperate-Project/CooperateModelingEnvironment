@@ -32,15 +32,6 @@ public interface ActivityFactory extends EFactory
   ActivityDiagram createActivityDiagram();
 
   /**
-   * Returns a new object of class '<em>Element</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Element</em>'.
-   * @generated
-   */
-  ActivityElement createActivityElement();
-
-  /**
    * Returns a new object of class '<em>Action</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -86,6 +77,15 @@ public interface ActivityFactory extends EFactory
   ForkEnd createForkEnd();
 
   /**
+   * Returns a new object of class '<em>Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Name</em>'.
+   * @generated
+   */
+  Name createName();
+
+  /**
    * Returns a new object of class '<em>Association</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -104,31 +104,22 @@ public interface ActivityFactory extends EFactory
   Reference createReference();
 
   /**
-   * Returns a new object of class '<em>Def Reference</em>'.
+   * Returns a new object of class '<em>Element Reference</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Def Reference</em>'.
+   * @return a new object of class '<em>Element Reference</em>'.
    * @generated
    */
-  DefReference createDefReference();
+  ActivityElementReference createActivityElementReference();
 
   /**
-   * Returns a new object of class '<em>Def Ref</em>'.
+   * Returns a new object of class '<em>Start End Reference</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Def Ref</em>'.
+   * @return a new object of class '<em>Start End Reference</em>'.
    * @generated
    */
-  DefRef createDefRef();
-
-  /**
-   * Returns a new object of class '<em>Start And End</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Start And End</em>'.
-   * @generated
-   */
-  StartAndEnd createStartAndEnd();
+  StartEndReference createStartEndReference();
 
   /**
    * Returns a new object of class '<em>Comment</em>'.

@@ -80,11 +80,6 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl
         return createActivityDiagramAdapter();
       }
       @Override
-      public Adapter caseActivityElement(ActivityElement object)
-      {
-        return createActivityElementAdapter();
-      }
-      @Override
       public Adapter caseAction(Action object)
       {
         return createActionAdapter();
@@ -110,6 +105,11 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl
         return createForkEndAdapter();
       }
       @Override
+      public Adapter caseName(Name object)
+      {
+        return createNameAdapter();
+      }
+      @Override
       public Adapter caseAssociation(Association object)
       {
         return createAssociationAdapter();
@@ -120,19 +120,14 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl
         return createReferenceAdapter();
       }
       @Override
-      public Adapter caseDefReference(DefReference object)
+      public Adapter caseActivityElementReference(ActivityElementReference object)
       {
-        return createDefReferenceAdapter();
+        return createActivityElementReferenceAdapter();
       }
       @Override
-      public Adapter caseDefRef(DefRef object)
+      public Adapter caseStartEndReference(StartEndReference object)
       {
-        return createDefRefAdapter();
-      }
-      @Override
-      public Adapter caseStartAndEnd(StartAndEnd object)
-      {
-        return createStartAndEndAdapter();
+        return createStartEndReferenceAdapter();
       }
       @Override
       public Adapter caseComment(Comment object)
@@ -172,21 +167,6 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createActivityDiagramAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElement <em>Element</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityElement
-   * @generated
-   */
-  public Adapter createActivityElementAdapter()
   {
     return null;
   }
@@ -267,6 +247,21 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.Name <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.cooperateproject.modeling.textual.activity.activity.Name
+   * @generated
+   */
+  public Adapter createNameAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.Association <em>Association</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -297,46 +292,31 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.DefReference <em>Def Reference</em>}'.
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference <em>Element Reference</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefReference
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityElementReference
    * @generated
    */
-  public Adapter createDefReferenceAdapter()
+  public Adapter createActivityElementReferenceAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.DefRef <em>Def Ref</em>}'.
+   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.StartEndReference <em>Start End Reference</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see de.cooperateproject.modeling.textual.activity.activity.DefRef
+   * @see de.cooperateproject.modeling.textual.activity.activity.StartEndReference
    * @generated
    */
-  public Adapter createDefRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.activity.activity.StartAndEnd <em>Start And End</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see de.cooperateproject.modeling.textual.activity.activity.StartAndEnd
-   * @generated
-   */
-  public Adapter createStartAndEndAdapter()
+  public Adapter createStartEndReferenceAdapter()
   {
     return null;
   }

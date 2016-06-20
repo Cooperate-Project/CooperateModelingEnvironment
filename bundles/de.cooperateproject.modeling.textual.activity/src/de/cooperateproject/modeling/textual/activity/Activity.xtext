@@ -5,69 +5,46 @@ generate activity "http://www.cooperateproject.de/modeling/textual/activity/Acti
 ActivityDiagram:
 	{ActivityDiagram}
 	'@startactivity'
-	elements+=ActivityElement*
-	'@endactivity'
-;
+	(actions+=Action
+	| conditions+=Condition
+	| forks+=Fork
+	| associations+=Association)*
+	'@endactivity';
 
-ActivityElement:
-	Action
-	| Condition
-	| Fork
-	| Association
-	//| Comment
-;
-	
+Action:
+	'action' name=Name (comment=Comment)?;
 
-Action: 
-	'action' (longName = (STRING | ID) 'as')? name = ID (comment = Comment)?
-;
+Condition:
+	'condition' conditionStart=ConditionEnd ':' conditionEnd=ConditionEnd (comment=Comment)?;
 
-Condition: 
-	'condition' conditionStart = ConditionEnd ':' conditionEnd = ConditionEnd (comment = Comment)?
-;
-
-
-ConditionEnd: 
-	(longName = (STRING | ID) 'as')? name = ID
-;
-
+ConditionEnd:
+	name=Name;
 
 Fork:
-	'fork' forkStart = ForkEnd ':' forkEnd = ForkEnd (comment = Comment)?
-;
+	'fork' forkStart=ForkEnd ':' forkEnd=ForkEnd (comment=Comment)?;
 
 ForkEnd:
-	(longName = (STRING | ID) 'as')? name = ID
-;
+	name=Name;
+
+Name:
+	(longName=(STRING | ID) 'as')? name=ID;
 
 Association:
-	left = Reference '-' right = Reference (comment = Comment)?
-;
-	
+	left=Reference '-' right=Reference (comment=Comment)?;
+
 Reference:
-	DefReference
-	| StartAndEnd
-;
+	ActivityElementReference
+	| StartEndReference;
 
-DefReference:
-	type = [DefRef]
-;
+ActivityElementReference:
+	type=[Name];
 
-DefRef:
-	Action
-	| ConditionEnd
-	| ForkEnd
-;
-
-StartAndEnd:
-	type = StartAndEndEnum
-;
+StartEndReference:
+	type=StartEndEnum;
 
 Comment:
-	'note[' description = STRING ']'
-;
+	'note[' description=STRING ']';
 
-enum StartAndEndEnum:
-	START = 'start'
-	| END = 'end'
-;
+enum StartEndEnum:
+	START='start'
+	| END='end';

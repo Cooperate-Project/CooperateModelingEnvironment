@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.activity.activity;
 
+import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,64 +14,38 @@ package de.cooperateproject.modeling.textual.activity.activity;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getLongName <em>Long Name</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getConditionEnd()
  * @model
+ * @extends CDOObject
  * @generated
  */
-public interface ConditionEnd extends DefRef {
+public interface ConditionEnd extends CDOObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
+	 * @return the value of the '<em>Name</em>' containment reference.
+	 * @see #setName(Name)
 	 * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getConditionEnd_Name()
-	 * @model unique="false" required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	String getName();
+	Name getName();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getName <em>Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' containment reference.
 	 * @see #getName()
 	 * @generated
 	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Long Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Long Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Long Name</em>' attribute.
-	 * @see #setLongName(String)
-	 * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getConditionEnd_LongName()
-	 * @model unique="false"
-	 * @generated
-	 */
-	String getLongName();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.ConditionEnd#getLongName <em>Long Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Long Name</em>' attribute.
-	 * @see #getLongName()
-	 * @generated
-	 */
-	void setLongName(String value);
+	void setName(Name value);
 
 } // ConditionEnd

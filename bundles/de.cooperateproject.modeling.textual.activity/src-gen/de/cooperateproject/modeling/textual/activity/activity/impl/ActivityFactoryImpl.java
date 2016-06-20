@@ -66,17 +66,16 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
     switch (eClass.getClassifierID())
     {
       case ActivityPackage.ACTIVITY_DIAGRAM: return (EObject)createActivityDiagram();
-      case ActivityPackage.ACTIVITY_ELEMENT: return (EObject)createActivityElement();
       case ActivityPackage.ACTION: return (EObject)createAction();
       case ActivityPackage.CONDITION: return (EObject)createCondition();
       case ActivityPackage.CONDITION_END: return (EObject)createConditionEnd();
       case ActivityPackage.FORK: return (EObject)createFork();
       case ActivityPackage.FORK_END: return (EObject)createForkEnd();
+      case ActivityPackage.NAME: return (EObject)createName();
       case ActivityPackage.ASSOCIATION: return (EObject)createAssociation();
       case ActivityPackage.REFERENCE: return (EObject)createReference();
-      case ActivityPackage.DEF_REFERENCE: return (EObject)createDefReference();
-      case ActivityPackage.DEF_REF: return (EObject)createDefRef();
-      case ActivityPackage.START_AND_END: return (EObject)createStartAndEnd();
+      case ActivityPackage.ACTIVITY_ELEMENT_REFERENCE: return (EObject)createActivityElementReference();
+      case ActivityPackage.START_END_REFERENCE: return (EObject)createStartEndReference();
       case ActivityPackage.COMMENT: return (EObject)createComment();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -93,8 +92,8 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case ActivityPackage.START_AND_END_ENUM:
-        return createStartAndEndEnumFromString(eDataType, initialValue);
+      case ActivityPackage.START_END_ENUM:
+        return createStartEndEnumFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -110,8 +109,8 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case ActivityPackage.START_AND_END_ENUM:
-        return convertStartAndEndEnumToString(eDataType, instanceValue);
+      case ActivityPackage.START_END_ENUM:
+        return convertStartEndEnumToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -126,17 +125,6 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
   {
     ActivityDiagramImpl activityDiagram = new ActivityDiagramImpl();
     return activityDiagram;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ActivityElement createActivityElement()
-  {
-    ActivityElementImpl activityElement = new ActivityElementImpl();
-    return activityElement;
   }
 
   /**
@@ -199,6 +187,17 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Name createName()
+  {
+    NameImpl name = new NameImpl();
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Association createAssociation()
   {
     AssociationImpl association = new AssociationImpl();
@@ -221,10 +220,10 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DefReference createDefReference()
+  public ActivityElementReference createActivityElementReference()
   {
-    DefReferenceImpl defReference = new DefReferenceImpl();
-    return defReference;
+    ActivityElementReferenceImpl activityElementReference = new ActivityElementReferenceImpl();
+    return activityElementReference;
   }
 
   /**
@@ -232,21 +231,10 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DefRef createDefRef()
+  public StartEndReference createStartEndReference()
   {
-    DefRefImpl defRef = new DefRefImpl();
-    return defRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StartAndEnd createStartAndEnd()
-  {
-    StartAndEndImpl startAndEnd = new StartAndEndImpl();
-    return startAndEnd;
+    StartEndReferenceImpl startEndReference = new StartEndReferenceImpl();
+    return startEndReference;
   }
 
   /**
@@ -265,9 +253,9 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public StartAndEndEnum createStartAndEndEnumFromString(EDataType eDataType, String initialValue)
+  public StartEndEnum createStartEndEnumFromString(EDataType eDataType, String initialValue)
   {
-    StartAndEndEnum result = StartAndEndEnum.get(initialValue);
+    StartEndEnum result = StartEndEnum.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -277,7 +265,7 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertStartAndEndEnumToString(EDataType eDataType, Object instanceValue)
+  public String convertStartEndEnumToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

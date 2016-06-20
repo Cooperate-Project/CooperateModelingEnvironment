@@ -6,23 +6,23 @@ import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Def Ref</b></em>'.
+ * A representation of the model object '<em><b>Name</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.DefRef#getLongName <em>Long Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.DefRef#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Name#getLongName <em>Long Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.Name#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getDefRef()
+ * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getName_()
  * @model
  * @extends CDOObject
  * @generated
  */
-public interface DefRef extends CDOObject
+public interface Name extends CDOObject
 {
   /**
    * Returns the value of the '<em><b>Long Name</b></em>' attribute.
@@ -34,14 +34,14 @@ public interface DefRef extends CDOObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Long Name</em>' attribute.
    * @see #setLongName(String)
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getDefRef_LongName()
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getName_LongName()
    * @model
    * @generated
    */
   String getLongName();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.DefRef#getLongName <em>Long Name</em>}' attribute.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Name#getLongName <em>Long Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Long Name</em>' attribute.
@@ -60,14 +60,14 @@ public interface DefRef extends CDOObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getDefRef_Name()
+   * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getName_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.DefRef#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.activity.activity.Name#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -76,4 +76,4 @@ public interface DefRef extends CDOObject
    */
   void setName(String value);
 
-} // DefRef
+} // Name

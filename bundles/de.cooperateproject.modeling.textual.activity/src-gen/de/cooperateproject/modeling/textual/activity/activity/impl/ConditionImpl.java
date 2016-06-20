@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
+import de.cooperateproject.modeling.textual.activity.activity.Comment;
 import de.cooperateproject.modeling.textual.activity.activity.Condition;
 import de.cooperateproject.modeling.textual.activity.activity.ConditionEnd;
 
@@ -10,6 +11,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,11 +24,12 @@ import org.eclipse.emf.ecore.InternalEObject;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getConditionStart <em>Condition Start</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getConditionEnd <em>Condition End</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ConditionImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConditionImpl extends ActivityElementImpl implements Condition
+public class ConditionImpl extends CDOObjectImpl implements Condition
 {
   /**
    * <!-- begin-user-doc -->
@@ -46,6 +50,17 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
   protected EClass eStaticClass()
   {
     return ActivityPackage.Literals.CONDITION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected int eStaticFeatureCount()
+  {
+    return 0;
   }
 
   /**
@@ -115,6 +130,37 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
    * <!-- end-user-doc -->
    * @generated
    */
+  public Comment getComment()
+  {
+    return (Comment)eDynamicGet(ActivityPackage.CONDITION__COMMENT, ActivityPackage.Literals.CONDITION__COMMENT, true, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetComment(Comment newComment, NotificationChain msgs)
+  {
+    msgs = eDynamicInverseAdd((InternalEObject)newComment, ActivityPackage.CONDITION__COMMENT, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setComment(Comment newComment)
+  {
+    eDynamicSet(ActivityPackage.CONDITION__COMMENT, ActivityPackage.Literals.CONDITION__COMMENT, newComment);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -124,6 +170,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
         return basicSetConditionStart(null, msgs);
       case ActivityPackage.CONDITION__CONDITION_END:
         return basicSetConditionEnd(null, msgs);
+      case ActivityPackage.CONDITION__COMMENT:
+        return basicSetComment(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -142,6 +190,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
         return getConditionStart();
       case ActivityPackage.CONDITION__CONDITION_END:
         return getConditionEnd();
+      case ActivityPackage.CONDITION__COMMENT:
+        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -161,6 +211,9 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
         return;
       case ActivityPackage.CONDITION__CONDITION_END:
         setConditionEnd((ConditionEnd)newValue);
+        return;
+      case ActivityPackage.CONDITION__COMMENT:
+        setComment((Comment)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -182,6 +235,9 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
       case ActivityPackage.CONDITION__CONDITION_END:
         setConditionEnd((ConditionEnd)null);
         return;
+      case ActivityPackage.CONDITION__COMMENT:
+        setComment((Comment)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -200,6 +256,8 @@ public class ConditionImpl extends ActivityElementImpl implements Condition
         return getConditionStart() != null;
       case ActivityPackage.CONDITION__CONDITION_END:
         return getConditionEnd() != null;
+      case ActivityPackage.CONDITION__COMMENT:
+        return getComment() != null;
     }
     return super.eIsSet(featureID);
   }

@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.activity.activity;
 
+import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,9 +20,10 @@ package de.cooperateproject.modeling.textual.activity.activity;
  *
  * @see de.cooperateproject.modeling.textual.activity.activity.ActivityPackage#getAssociation()
  * @model
+ * @extends CDOObject
  * @generated
  */
-public interface Association extends ActivityElement {
+public interface Association extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

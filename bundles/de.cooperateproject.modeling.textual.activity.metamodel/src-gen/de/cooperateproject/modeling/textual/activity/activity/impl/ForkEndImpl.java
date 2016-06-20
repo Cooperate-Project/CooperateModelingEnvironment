@@ -4,8 +4,14 @@ package de.cooperateproject.modeling.textual.activity.activity.impl;
 
 import de.cooperateproject.modeling.textual.activity.activity.ActivityPackage;
 import de.cooperateproject.modeling.textual.activity.activity.ForkEnd;
+import de.cooperateproject.modeling.textual.activity.activity.Name;
+
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,32 +22,11 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkEndImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.activity.activity.impl.ForkEndImpl#getLongName <em>Long Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ForkEndImpl extends DefRefImpl implements ForkEnd {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The default value of the '{@link #getLongName() <em>Long Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLongName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LONG_NAME_EDEFAULT = null;
-
+public class ForkEndImpl extends CDOObjectImpl implements ForkEnd {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,8 +51,9 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return (String)eDynamicGet(ActivityPackage.FORK_END__NAME, ActivityPackage.Literals.FORK_END__NAME, true, true);
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -75,7 +61,26 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
+	public Name getName() {
+		return (Name)eDynamicGet(ActivityPackage.FORK_END__NAME, ActivityPackage.Literals.FORK_END__NAME, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetName(Name newName, NotificationChain msgs) {
+		msgs = eDynamicInverseAdd((InternalEObject)newName, ActivityPackage.FORK_END__NAME, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(Name newName) {
 		eDynamicSet(ActivityPackage.FORK_END__NAME, ActivityPackage.Literals.FORK_END__NAME, newName);
 	}
 
@@ -84,17 +89,13 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLongName() {
-		return (String)eDynamicGet(ActivityPackage.FORK_END__LONG_NAME, ActivityPackage.Literals.FORK_END__LONG_NAME, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLongName(String newLongName) {
-		eDynamicSet(ActivityPackage.FORK_END__LONG_NAME, ActivityPackage.Literals.FORK_END__LONG_NAME, newLongName);
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ActivityPackage.FORK_END__NAME:
+				return basicSetName(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -107,8 +108,6 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 		switch (featureID) {
 			case ActivityPackage.FORK_END__NAME:
 				return getName();
-			case ActivityPackage.FORK_END__LONG_NAME:
-				return getLongName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,10 +121,7 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ActivityPackage.FORK_END__NAME:
-				setName((String)newValue);
-				return;
-			case ActivityPackage.FORK_END__LONG_NAME:
-				setLongName((String)newValue);
+				setName((Name)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,10 +136,7 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ActivityPackage.FORK_END__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ActivityPackage.FORK_END__LONG_NAME:
-				setLongName(LONG_NAME_EDEFAULT);
+				setName((Name)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,9 +151,7 @@ public class ForkEndImpl extends DefRefImpl implements ForkEnd {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ActivityPackage.FORK_END__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case ActivityPackage.FORK_END__LONG_NAME:
-				return LONG_NAME_EDEFAULT == null ? getLongName() != null : !LONG_NAME_EDEFAULT.equals(getLongName());
+				return getName() != null;
 		}
 		return super.eIsSet(featureID);
 	}
