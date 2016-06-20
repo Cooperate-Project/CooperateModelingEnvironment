@@ -12,6 +12,7 @@ import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
+import de.cooperateproject.ui.util.CDOTransferUMLFirst;
 
 /**
  * Assumptions
@@ -60,10 +61,12 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 
 		cleanUpFolder(workspaceFolder);
 
-		CDOTransfer transfer = new CDOTransfer(source, target);
+		CDOTransfer transfer = new CDOTransferUMLFirst(source, target);
 		transfer.setTargetPath(workspaceFolder.getFullPath());
 		transfer.map(getRepositoryFolder().getPath(), new NullProgressMonitor());
+		
 		transfer.perform();
 	}
+
 
 }

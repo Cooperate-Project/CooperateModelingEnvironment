@@ -12,8 +12,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import de.cooperateproject.ui.nature.NatureUtils;
-import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
-import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 
 public class CooperateProjectBackgroundTaskManager {
 
