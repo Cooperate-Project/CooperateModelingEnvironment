@@ -9,7 +9,6 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
@@ -19,6 +18,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -63,9 +63,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.CLASS_DIAGRAM:
 				sequence_ClassDiagram(context, (ClassDiagram) semanticObject); 
 				return; 
-			case ClsPackage.CLASSIFIER_REFERENCE:
-				sequence_ClassifierReference(context, (ClassifierReference) semanticObject); 
-				return; 
 			case ClsPackage.COMMENT:
 				sequence_Comment(context, (Comment) semanticObject); 
 				return; 
@@ -93,6 +90,9 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.PARAMETER:
 				sequence_Parameter(context, (de.cooperateproject.modeling.textual.cls.cls.Parameter) semanticObject); 
 				return; 
+			case ClsPackage.UML_TYPE_REFERENCE:
+				sequence_UMLTypeReference(context, (UMLTypeReference) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -103,7 +103,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AssociationProperties returns AssociationProperties
 	 *
 	 * Constraint:
-	 *     (cardinalityLeft=Cardinality (cardinalityRight=Cardinality ((name=STRING | name=ID) readingDirection=ReadingDirection?)?)?)
+	 *     (cardinalityLeft=Cardinality (cardinalityRight=Cardinality (referencedElement=[Association|ID] readingDirection=ReadingDirection?)?)?)
 	 */
 	protected void sequence_AssociationProperties(ISerializationContext context, AssociationProperties semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -170,26 +170,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypeReference returns ClassifierReference
-	 *     ClassifierReference returns ClassifierReference
-	 *     ClassifierAssociationEnd returns ClassifierReference
-	 *
-	 * Constraint:
-	 *     type=[Classifier|ID]
-	 */
-	protected void sequence_ClassifierReference(ISerializationContext context, ClassifierReference semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.CLASSIFIER_REFERENCE__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getClassifierReferenceAccess().getTypeClassifierIDTerminalRuleCall_0_1(), semanticObject.getType());
-		feeder.finish();
 	}
 	
 	
@@ -357,6 +337,26 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypeReference returns UMLTypeReference
+	 *     UMLTypeReference returns UMLTypeReference
+	 *     ClassifierAssociationEnd returns UMLTypeReference
+	 *
+	 * Constraint:
+	 *     type=[Type|ID]
+	 */
+	protected void sequence_UMLTypeReference(ISerializationContext context, UMLTypeReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeIDTerminalRuleCall_0_1(), semanticObject.getType());
+		feeder.finish();
 	}
 	
 	

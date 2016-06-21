@@ -549,57 +549,23 @@ ruleTypeReference returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getTypeReferenceAccess().getClassifierReferenceParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getTypeReferenceAccess().getDataTypeReferenceParserRuleCall_0()); 
     }
-    this_ClassifierReference_0=ruleClassifierReference
+    this_DataTypeReference_0=ruleDataTypeReference
     { 
-        $current = $this_ClassifierReference_0.current; 
+        $current = $this_DataTypeReference_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getTypeReferenceAccess().getDataTypeReferenceParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getTypeReferenceAccess().getUMLTypeReferenceParserRuleCall_1()); 
     }
-    this_DataTypeReference_1=ruleDataTypeReference
+    this_UMLTypeReference_1=ruleUMLTypeReference
     { 
-        $current = $this_DataTypeReference_1.current; 
+        $current = $this_UMLTypeReference_1.current; 
         afterParserOrEnumRuleCall();
     }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleClassifierReference
-entryRuleClassifierReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getClassifierReferenceRule()); }
-	 iv_ruleClassifierReference=ruleClassifierReference 
-	 { $current=$iv_ruleClassifierReference.current; } 
-	 EOF 
-;
-
-// Rule ClassifierReference
-ruleClassifierReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getClassifierReferenceRule());
-	        }
-        }
-	otherlv_0=RULE_ID
-	{
-		newLeafNode(otherlv_0, grammarAccess.getClassifierReferenceAccess().getTypeClassifierCrossReference_0()); 
-	}
-
-)
 )
 ;
 
@@ -637,6 +603,40 @@ ruleDataTypeReference returns [EObject current=null]
         		"de.cooperateproject.modeling.textual.cls.Cls.PrimitiveType");
 	        afterParserOrEnumRuleCall();
 	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleUMLTypeReference
+entryRuleUMLTypeReference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getUMLTypeReferenceRule()); }
+	 iv_ruleUMLTypeReference=ruleUMLTypeReference 
+	 { $current=$iv_ruleUMLTypeReference.current; } 
+	 EOF 
+;
+
+// Rule UMLTypeReference
+ruleUMLTypeReference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getUMLTypeReferenceRule());
+	        }
+        }
+	otherlv_0=RULE_ID
+	{
+		newLeafNode(otherlv_0, grammarAccess.getUMLTypeReferenceAccess().getTypeTypeCrossReference_0()); 
+	}
 
 )
 )
@@ -1143,11 +1143,11 @@ ruleClassifierAssociationEnd returns [EObject current=null]
     @after { leaveRule(); }:
 
     { 
-        newCompositeNode(grammarAccess.getClassifierAssociationEndAccess().getClassifierReferenceParserRuleCall()); 
+        newCompositeNode(grammarAccess.getClassifierAssociationEndAccess().getUMLTypeReferenceParserRuleCall()); 
     }
-    this_ClassifierReference_0=ruleClassifierReference
+    this_UMLTypeReference_0=ruleUMLTypeReference
     { 
-        $current = $this_ClassifierReference_0.current; 
+        $current = $this_UMLTypeReference_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -1501,38 +1501,15 @@ ruleAssociationProperties returns [EObject current=null]
     }
 (
 (
-(
-		lv_name_5_1=RULE_STRING
 		{
-			newLeafNode(lv_name_5_1, grammarAccess.getAssociationPropertiesAccess().getNameSTRINGTerminalRuleCall_2_2_1_0_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getAssociationPropertiesRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"name",
-        		lv_name_5_1, 
-        		"org.eclipse.xtext.common.Terminals.STRING");
-	    }
-
-    |		lv_name_5_2=RULE_ID
-		{
-			newLeafNode(lv_name_5_2, grammarAccess.getAssociationPropertiesAccess().getNameIDTerminalRuleCall_2_2_1_0_1()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getAssociationPropertiesRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"name",
-        		lv_name_5_2, 
-        		"org.eclipse.xtext.common.Terminals.ID");
-	    }
-
-)
+        }
+	otherlv_5=RULE_ID
+	{
+		newLeafNode(otherlv_5, grammarAccess.getAssociationPropertiesAccess().getReferencedElementAssociationCrossReference_2_2_1_0()); 
+	}
 
 )
 )(
@@ -1713,8 +1690,8 @@ ruleVisibility returns [Enumerator current=null]
     @after { leaveRule(); }:
 ((	enumLiteral_0='~' 
 	{
-        $current = grammarAccess.getVisibilityAccess().getDEFAULTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getDEFAULTEnumLiteralDeclaration_0()); 
+        $current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0()); 
     }
 )
     |(	enumLiteral_1='-' 
