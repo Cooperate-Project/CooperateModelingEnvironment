@@ -19,10 +19,11 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls.tests,
  de.cooperateproject.modeling.textual.cls
-Import-Package: org.hamcrest.core,
+Import-Package: org.hamcrest.collection;version="1.3.0",
+ org.hamcrest.core,
  org.junit;version="4.5.0",
- org.junit.runners.model;version="4.5.0",
  org.junit.runner;version="4.5.0",
- org.junit.runners;version="4.5.0",
  org.junit.runner.manipulation;version="4.5.0",
- org.junit.runner.notification;version="4.5.0"
+ org.junit.runner.notification;version="4.5.0",
+ org.junit.runners;version="4.5.0",
+ org.junit.runners.model;version="4.5.0"

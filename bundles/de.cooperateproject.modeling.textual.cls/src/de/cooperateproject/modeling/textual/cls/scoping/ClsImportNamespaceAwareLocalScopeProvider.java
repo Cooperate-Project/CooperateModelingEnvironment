@@ -26,7 +26,7 @@ public class ClsImportNamespaceAwareLocalScopeProvider
 	}
 
 	@Override
-	protected Iterable<QualifiedName> getInferredImportedNamespace(EObject object) {
+	protected Iterable<QualifiedNameOrString> getInferredImportedNamespace(EObject object) {
 		if (!(object instanceof UMLReferencingElement<?>)) {
 			return Lists.newArrayList();
 		}
@@ -44,7 +44,7 @@ public class ClsImportNamespaceAwareLocalScopeProvider
 				QualifiedNameOrString namePart = namePartOptional.get();
 				if (namePart.isQualified()) {
 					nameParts.addAll(namePart.getQualifiedName().getSegments());
-					break;
+					return Arrays.asList(new QualifiedNameOrString(QualifiedName.create(nameParts)));
 				} else {
 					nameParts.add(namePart.getName());
 				}
@@ -53,13 +53,13 @@ public class ClsImportNamespaceAwareLocalScopeProvider
 		}
 
 		QualifiedName estimatedQualifiedName = QualifiedName.create(nameParts);
-		return Arrays.asList(estimatedQualifiedName);
+		return Arrays.asList(new QualifiedNameOrString(estimatedQualifiedName.toString()));
 	}
 
 	private List<UMLReferencingElement<NamedElement>> getContainmentPath(UMLReferencingElement<NamedElement> start) {
-		@SuppressWarnings("unchecked")
-		List<UMLReferencingElement<NamedElement>> parents = Lists.newArrayList(start);
+		List<UMLReferencingElement<NamedElement>> parents = Lists.newArrayList();
 		Iterables.addAll(parents, Iterables.filter(EcoreUtil2.getAllContainers(start), UMLReferencingElement.class));
+		parents.add(start);
 		return Lists.newArrayList(parents);
 	}
 

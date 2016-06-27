@@ -14,12 +14,13 @@ import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends EObject>
 		extends ImportedNamespaceAwareLocalScopeProvider {
 
-	private static final String QUALIFIED_NAME_SEPARATOR = ".";
+	private static final String QUALIFIED_NAME_SPLIT_REGEX = "\\.";
 	private static final String WILDCARD_POSTFIX = ".*";
 	private final EStructuralFeature packageFeature;
 
@@ -30,7 +31,6 @@ public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends 
 	@Override
 	protected String getImportedNamespace(EObject object) {
 		if (object.eClass().getEStructuralFeatures().contains(packageFeature)) {
-		//if (elementClazz.isAssignableFrom(object.getClass())) {
 			Optional<String> importedNamespace = makeWildcard(determineFeatureText(object, packageFeature));
 			if (importedNamespace.isPresent()) {
 				return importedNamespace.get();
@@ -42,7 +42,7 @@ public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends 
 
 	@Override
 	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, boolean ignoreCase) {
-		List<ImportNormalizer> normalizers = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
+		final List<ImportNormalizer> normalizers = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
 
 		/**
 		 * Always try to determine the explicitly imported namespaces and
@@ -53,20 +53,28 @@ public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends 
 			if (rootElement == context) {
 				return normalizers;
 			}
-			normalizers = internalGetImportedNamespaceResolvers(rootElement, ignoreCase);
+			normalizers.clear();
+			normalizers.addAll(internalGetImportedNamespaceResolvers(rootElement, ignoreCase));
 		}
 
 		/**
 		 * Construct implicit namespace imports.
 		 */
 		List<ImportNormalizer> superNormalizers = Lists.newArrayList(normalizers);
-		Iterable<QualifiedName> qualifiedContextNames = getInferredImportedNamespace(context);
-		for (QualifiedName qualifiedContextName : qualifiedContextNames) {
-			normalizers.addAll(
-					createImplicitImportedNamespaceNormalizers(qualifiedContextName, superNormalizers, ignoreCase));
-		}
+		Iterable<QualifiedNameOrString> qualifiedContextNames = getInferredImportedNamespace(context);
+		Iterables.filter(qualifiedContextNames, n -> n.getQualifiedName() != null)
+				.forEach(n -> normalizers.add(createImportedNamespaceResolver(n.getQualifiedName(), ignoreCase, true)));
+		Iterables.filter(qualifiedContextNames, n -> n.getQualifiedName() == null).forEach(n -> normalizers
+				.addAll(createImplicitImportedNamespaceNormalizers(n.getName(), superNormalizers, ignoreCase)));
 
 		return normalizers;
+	}
+
+	private Collection<ImportNormalizer> createImplicitImportedNamespaceNormalizers(String qualifiedName,
+			Iterable<ImportNormalizer> normalizers, boolean ignoreCase) {
+		String[] segments = splitQualifiedName(qualifiedName);
+		QualifiedName qn = QualifiedName.create(segments);
+		return createImplicitImportedNamespaceNormalizers(qn, normalizers, ignoreCase);
 	}
 
 	private Collection<ImportNormalizer> createImplicitImportedNamespaceNormalizers(QualifiedName qualifiedName,
@@ -87,7 +95,7 @@ public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends 
 		return createImportedNamespaceResolver(name, ignoreCase);
 	}
 
-	protected abstract Iterable<QualifiedName> getInferredImportedNamespace(EObject object);
+	protected abstract Iterable<QualifiedNameOrString> getInferredImportedNamespace(EObject object);
 
 	protected static Optional<QualifiedNameOrString> getNameOfContextFeature(EObject context,
 			EStructuralFeature feature) {
@@ -97,7 +105,7 @@ public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends 
 		}
 
 		String featureText = featureTextOptional.get();
-		String[] featureTextSegments = featureText.split(QUALIFIED_NAME_SEPARATOR);
+		String[] featureTextSegments = splitQualifiedName(featureText);
 		if (featureTextSegments.length > 1) {
 			return Optional.of(new QualifiedNameOrString(QualifiedName.create(featureTextSegments)));
 		} else {
@@ -136,6 +144,10 @@ public abstract class CooperateImportNamespaceAwareLocalScopeProvider<T extends 
 			return Optional.of(importName.get() + WILDCARD_POSTFIX);
 		}
 		return Optional.absent();
+	}
+	
+	private static String[] splitQualifiedName(String qualifiedName) {
+		return qualifiedName.split(QUALIFIED_NAME_SPLIT_REGEX);
 	}
 
 }

@@ -27,4 +27,12 @@ public class QualifiedNameOrString {
 	public boolean isQualified() {
 		return qualifiedName != null;
 	}
+	
+	@Override
+	public String toString() {
+		if (qualifiedName != null) {
+			return qualifiedName.toString();
+		}
+		return name;
+	}
 }
