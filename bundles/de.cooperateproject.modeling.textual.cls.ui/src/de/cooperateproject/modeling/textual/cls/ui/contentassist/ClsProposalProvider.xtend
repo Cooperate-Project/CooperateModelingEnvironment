@@ -3,14 +3,34 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
-/**
- * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#content-assist
- * on how to customize the content assistant.
- */
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.eclipse.xtext.RuleCall
+import com.google.inject.Inject
+import org.eclipse.xtext.scoping.IScopeProvider
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import org.eclipse.uml2.uml.Class
+
 class ClsProposalProvider extends AbstractClsProposalProvider {
+	@Inject IScopeProvider scope
+
+	override complete_Class(EObject model, RuleCall ruleCall, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+		
+		var scope = scope.getScope(model, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+		
+		var elements = scope.allElements
+		var classes = elements.map[x|x.EObjectOrProxy].filter(Class)
+		for (class : classes) {
+			acceptor.accept(createCompletionProposal(getClassProposal(class), class.name, null, context))
+		}
+	}
 	
-//	override completeClass_ReferencedElement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-//		
-//	}
-	
+	private def getClassProposal(Class c) {
+		'''
+		class «c.name» {
+		}
+		'''.toString()
+	}
 }
