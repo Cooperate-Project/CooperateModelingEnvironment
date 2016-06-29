@@ -3,11 +3,59 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.outline
 
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
+import com.google.inject.Inject
+import org.eclipse.xtext.ui.IImageHelper
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
+import de.cooperateproject.modeling.textual.cls.cls.Parameter
+
 /**
  * Customization of the default outline structure.
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
-class ClsOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
+class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
+
+	@Inject
+	private IImageHelper imageHelper;
+
+	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
+		val name = root.eResource().getURI().trimFileExtension().lastSegment().replaceAll("%20", " ");
+		val rootNode = new AbstractOutlineNode(parentNode, imageHelper.getImage("class_obj.png"), name, false) {};
+		val importNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Imports", false) {};
+
+		for (oneImport : root.packageImports) {
+			createNode(importNode, oneImport)
+		}
+
+		for (oneClassifier : root.classifiers) {
+			createNode(rootNode, oneClassifier);
+		}
+
+		for (oneConnector : root.connectors) {
+			createNode(rootNode, oneConnector)
+		}
+	}
 	
+	dispatch def createNode(IOutlineNode parent, TypedConnector typedCon) {
+		val associationNode = createEObjectNode(parent, typedCon);
+		val leftChild = typedCon.left;
+		val rightChild = typedCon.right;
+		createNode(associationNode, leftChild)
+		createNode(associationNode, rightChild)
+	}
+	
+	dispatch def isLeaf(Attribute att) {
+		return true;
+	}
+	
+	dispatch def isLeaf(Parameter param) {
+		return true;
+	}
+
 }

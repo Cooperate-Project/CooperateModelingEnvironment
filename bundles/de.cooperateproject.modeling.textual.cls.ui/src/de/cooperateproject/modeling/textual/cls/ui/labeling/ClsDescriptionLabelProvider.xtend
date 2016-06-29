@@ -3,8 +3,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.labeling
 
-//import org.eclipse.xtext.resource.IEObjectDescription
-
 /**
  * Provides labels for IEObjectDescriptions and IResourceDescriptions.
  * 

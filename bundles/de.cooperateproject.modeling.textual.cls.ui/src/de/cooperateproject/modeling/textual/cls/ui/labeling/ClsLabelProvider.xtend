@@ -4,6 +4,17 @@
 package de.cooperateproject.modeling.textual.cls.ui.labeling
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.NamedElement
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Property
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
 
 /**
  * Provides labels for EObjects.
@@ -11,10 +22,71 @@ import com.google.inject.Inject
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
 class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
-
+	
+	val String[] visibiltySymbols = #["-", "#", "+", "~"]
+	
 	@Inject
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
-		super(delegate);
+		super(delegate)
+	}
+	
+	def text(NamedElement ele) {
+		ele.name
+	}
+	
+	def text(PackageImport ele) {
+		ele.package.name;
+	}
+	
+	def text(Method ele) {
+		var text = text(ele as Property)
+		if (text.contains(":")) {
+			text = text.replaceAll(":", "():")
+		} else {
+			text += "()"
+		}
+		return text
+	}
+
+	def text(Property ele) {
+		val visSymbol = getVisibiltySymbol(ele.visibility)
+		val typeRef = ele.type
+		var type = ""
+		if (typeRef != null) {
+			type = ": " + (typeRef as DataTypeReference).type
+		}
+		visSymbol + ele.name + type
+	}
+	
+	def text(UMLTypeReference ele) {
+		ele.type.name
+	}
+	
+	def text(Association ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " - " + rightChild.doGetText
+	}
+	
+	def text(Generalization ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " is a " + rightChild.doGetText
+	}
+	
+	def text(Implementation ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " implements " + rightChild.doGetText
+	}
+	
+	
+	def private String getVisibiltySymbol(Visibility vis) {
+		if (vis == null) {
+			return ""
+		} else {
+			return visibiltySymbols.get(vis.value - 1);
+		}
 	}
 
 	// Labels and icons can be computed like this:
