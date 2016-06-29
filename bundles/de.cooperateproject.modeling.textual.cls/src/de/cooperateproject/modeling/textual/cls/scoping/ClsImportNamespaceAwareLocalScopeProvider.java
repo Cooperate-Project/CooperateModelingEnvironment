@@ -43,10 +43,10 @@ public class ClsImportNamespaceAwareLocalScopeProvider
 			if (namePartOptional.isPresent()) {
 				QualifiedNameOrString namePart = namePartOptional.get();
 				if (namePart.isQualified()) {
-					nameParts.addAll(namePart.getQualifiedName().getSegments());
+					nameParts.addAll(0, namePart.getQualifiedName().getSegments());
 					return Arrays.asList(new QualifiedNameOrString(QualifiedName.create(nameParts)));
 				} else {
-					nameParts.add(namePart.getName());
+					nameParts.add(0, namePart.getName());
 				}
 			}
 
@@ -59,7 +59,7 @@ public class ClsImportNamespaceAwareLocalScopeProvider
 	private List<UMLReferencingElement<NamedElement>> getContainmentPath(UMLReferencingElement<NamedElement> start) {
 		List<UMLReferencingElement<NamedElement>> parents = Lists.newArrayList();
 		Iterables.addAll(parents, Iterables.filter(EcoreUtil2.getAllContainers(start), UMLReferencingElement.class));
-		parents.add(start);
+		parents.add(0, start);
 		return Lists.newArrayList(parents);
 	}
 
