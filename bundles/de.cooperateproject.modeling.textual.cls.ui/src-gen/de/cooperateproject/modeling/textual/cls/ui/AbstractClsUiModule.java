@@ -207,6 +207,11 @@ public abstract class AbstractClsUiModule extends org.eclipse.xtext.ui.DefaultUi
 		return net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory.class;
 	}
 
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
+	public Class<? extends org.eclipse.xtext.ui.editor.XtextEditor> bindXtextEditor() {
+		return net.winklerweb.cdoxtext.runtime.CDOXtextEditor.class;
+	}
+
 	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment
 	public Class<? extends org.eclipse.emf.compare.match.IMatchEngine.Factory> bindIMatchEngine$Factory() {
 		return de.cooperateproject.modeling.textual.cls.ui.cdoxtext.ClsMatchEngineFactory.class;

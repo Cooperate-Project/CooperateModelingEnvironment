@@ -5,11 +5,18 @@ package de.cooperateproject.modeling.textual.cls.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
+
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class ClsUiModule extends de.cooperateproject.modeling.textual.cls.ui.AbstractClsUiModule {
 	public ClsUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.ui.editor.XtextEditor> bindXtextEditor() {
+		return CooperateCDOXtextEditor.class;
 	}
 }
