@@ -4,6 +4,23 @@
 package de.cooperateproject.modeling.textual.cls.ui.labeling
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.NamedElement
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.Interface
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Parameter
+import de.cooperateproject.modeling.textual.cls.cls.Property
+import de.cooperateproject.modeling.textual.cls.cls.TypeReference
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import org.eclipse.jdt.ui.ISharedImages
+import org.eclipse.jdt.ui.JavaUI
 
 /**
  * Provides labels for EObjects.
@@ -12,13 +29,121 @@ import com.google.inject.Inject
  */
 class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
 
+	val String[] visibilitySymbols = #["-", "#", "+", "~"]
+	val String[] visibilityFields = #[ISharedImages.IMG_FIELD_PRIVATE, ISharedImages.IMG_FIELD_PROTECTED,
+		ISharedImages.IMG_FIELD_PUBLIC, ISharedImages.IMG_FIELD_DEFAULT]
+
+	val String[] visibilityMethods = #[ISharedImages.IMG_OBJS_PRIVATE, ISharedImages.IMG_OBJS_PROTECTED,
+		ISharedImages.IMG_OBJS_PUBLIC, ISharedImages.IMG_OBJS_DEFAULT]
+		
+	val images = JavaUI.getSharedImages();
+
 	@Inject
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
-		super(delegate);
+		super(delegate)
 	}
 
-	// Labels and icons can be computed like this:
+	def text(NamedElement ele) {
+		ele.name
+	}
+
+	def text(PackageImport ele) {
+		ele.package.name;
+	}
 	
+	def image(PackageImport ele) {
+		images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
+	}
+
+	def text(Method ele) {
+		var text = text(ele as Property)
+		if (text.contains(":")) {
+			text = text.replaceAll(":", "():")
+		} else {
+			text += "()"
+		}
+		return text
+	}
+
+	def text(Property ele) {
+		val visIndex = getVisibiltyIndex(ele.visibility)
+		val visSymbol = visibilitySymbols.get(visIndex)
+		val typeRef = ele.type
+		var type = ""
+		if (typeRef != null) {
+			type = ": " + text(typeRef)
+		}
+		visSymbol + ele.name + type
+	}
+	
+	def image(Class ele) {
+		images.getImage(ISharedImages.IMG_OBJS_CLASS)
+	}
+	
+	def image(Interface ele) {
+		images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+	}
+
+	def image(Attribute ele) {
+		val visIndes = getVisibiltyIndex(ele.visibility)
+		val image = images.getImage(visibilityFields.get(visIndes))
+		return image
+	}
+	
+	def image(Parameter ele) {
+		val visIndes = getVisibiltyIndex(ele.visibility)
+		val image = images.getImage(visibilityFields.get(visIndes))
+		return image
+	}
+
+	def image(Method ele) {
+		val visIndes = getVisibiltyIndex(ele.visibility)
+		return images.getImage(visibilityMethods.get(visIndes))
+	}
+
+	def text(TypeReference ele) {
+		if (ele instanceof UMLTypeReference) {
+			text(ele as UMLTypeReference)
+		} else if (ele instanceof DataTypeReference) {
+			text(ele as DataTypeReference)
+		}
+	}
+
+	def text(UMLTypeReference ele) {
+		ele.type.name
+	}
+
+	def text(DataTypeReference ele) {
+		ele.type.name()
+	}
+
+	def text(Association ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " - " + rightChild.doGetText
+	}
+
+	def text(Generalization ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " is a " + rightChild.doGetText
+	}
+
+	def text(Implementation ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " implements " + rightChild.doGetText
+	}
+
+	def private int getVisibiltyIndex(Visibility vis) {
+		if (vis == null) {
+			return 3;
+		} else {
+			return vis.value - 1;
+		}
+	}
+
+// Labels and icons can be computed like this:
 //	def text(Greeting ele) {
 //		'A greeting to ' + ele.name
 //	}
