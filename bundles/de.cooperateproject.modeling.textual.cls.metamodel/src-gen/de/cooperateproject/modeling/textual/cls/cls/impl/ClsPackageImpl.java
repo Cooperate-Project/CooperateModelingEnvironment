@@ -1281,7 +1281,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		addEEnumLiteral(visibilityEEnum, Visibility.PACKAGE);
 
 		initEEnum(primitiveTypeEEnum, PrimitiveType.class, "PrimitiveType");
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.STRING);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.INT);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.DOUBLE);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.BOOLEAN);
@@ -1290,6 +1289,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.SHORT);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.LONG);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.FLOAT);
+		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.STRING);
 
 		initEEnum(readingDirectionEEnum, ReadingDirection.class, "ReadingDirection");
 		addEEnumLiteral(readingDirectionEEnum, ReadingDirection.LEFT);

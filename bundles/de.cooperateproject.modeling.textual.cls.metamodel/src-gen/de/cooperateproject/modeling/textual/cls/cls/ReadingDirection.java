@@ -26,7 +26,7 @@ public enum ReadingDirection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LEFT(0, "LEFT", "LEFT"),
+	LEFT(1, "LEFT", "LEFT"),
 
 	/**
 	 * The '<em><b>RIGHT</b></em>' literal object.
@@ -36,7 +36,7 @@ public enum ReadingDirection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RIGHT(0, "RIGHT", "RIGHT");
+	RIGHT(2, "RIGHT", "RIGHT");
 
 	/**
 	 * The '<em><b>LEFT</b></em>' literal value.
@@ -51,7 +51,7 @@ public enum ReadingDirection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LEFT_VALUE = 0;
+	public static final int LEFT_VALUE = 1;
 
 	/**
 	 * The '<em><b>RIGHT</b></em>' literal value.
@@ -66,7 +66,7 @@ public enum ReadingDirection implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RIGHT_VALUE = 0;
+	public static final int RIGHT_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Reading Direction</b></em>' enumerators.
@@ -135,6 +135,7 @@ public enum ReadingDirection implements Enumerator {
 	public static ReadingDirection get(int value) {
 		switch (value) {
 			case LEFT_VALUE: return LEFT;
+			case RIGHT_VALUE: return RIGHT;
 		}
 		return null;
 	}

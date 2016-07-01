@@ -213,18 +213,18 @@
     <eLiterals name="PACKAGE" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
-    <eLiterals name="STRING"/>
-    <eLiterals name="INT"/>
-    <eLiterals name="DOUBLE"/>
-    <eLiterals name="BOOLEAN"/>
-    <eLiterals name="CHAR"/>
-    <eLiterals name="BYTE"/>
-    <eLiterals name="SHORT"/>
-    <eLiterals name="LONG"/>
-    <eLiterals name="FLOAT"/>
+    <eLiterals name="INT" value="1"/>
+    <eLiterals name="DOUBLE" value="2"/>
+    <eLiterals name="BOOLEAN" value="3"/>
+    <eLiterals name="CHAR" value="4"/>
+    <eLiterals name="BYTE" value="5"/>
+    <eLiterals name="SHORT" value="6"/>
+    <eLiterals name="LONG" value="7"/>
+    <eLiterals name="FLOAT" value="8"/>
+    <eLiterals name="STRING" value="9"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ReadingDirection">
-    <eLiterals name="LEFT"/>
-    <eLiterals name="RIGHT"/>
+    <eLiterals name="LEFT" value="1"/>
+    <eLiterals name="RIGHT" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

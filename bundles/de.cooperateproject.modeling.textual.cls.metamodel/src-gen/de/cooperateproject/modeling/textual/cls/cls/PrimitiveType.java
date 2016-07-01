@@ -19,16 +19,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum PrimitiveType implements Enumerator {
 	/**
-	 * The '<em><b>STRING</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #STRING_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	STRING(0, "STRING", "STRING"),
-
-	/**
 	 * The '<em><b>INT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,7 +26,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INT(0, "INT", "INT"),
+	INT(1, "INT", "INT"),
 
 	/**
 	 * The '<em><b>DOUBLE</b></em>' literal object.
@@ -46,7 +36,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE(0, "DOUBLE", "DOUBLE"),
+	DOUBLE(2, "DOUBLE", "DOUBLE"),
 
 	/**
 	 * The '<em><b>BOOLEAN</b></em>' literal object.
@@ -56,7 +46,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOOLEAN(0, "BOOLEAN", "BOOLEAN"),
+	BOOLEAN(3, "BOOLEAN", "BOOLEAN"),
 
 	/**
 	 * The '<em><b>CHAR</b></em>' literal object.
@@ -66,7 +56,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CHAR(0, "CHAR", "CHAR"),
+	CHAR(4, "CHAR", "CHAR"),
 
 	/**
 	 * The '<em><b>BYTE</b></em>' literal object.
@@ -76,7 +66,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BYTE(0, "BYTE", "BYTE"),
+	BYTE(5, "BYTE", "BYTE"),
 
 	/**
 	 * The '<em><b>SHORT</b></em>' literal object.
@@ -86,7 +76,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHORT(0, "SHORT", "SHORT"),
+	SHORT(6, "SHORT", "SHORT"),
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal object.
@@ -96,7 +86,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LONG(0, "LONG", "LONG"),
+	LONG(7, "LONG", "LONG"),
 
 	/**
 	 * The '<em><b>FLOAT</b></em>' literal object.
@@ -106,22 +96,15 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOAT(0, "FLOAT", "FLOAT");
-
-	/**
-	 * The '<em><b>STRING</b></em>' literal value.
+	FLOAT(8, "FLOAT", "FLOAT"), /**
+	 * The '<em><b>STRING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #STRING
-	 * @model
+	 * @see #STRING_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int STRING_VALUE = 0;
+	STRING(9, "STRING", "STRING");
 
 	/**
 	 * The '<em><b>INT</b></em>' literal value.
@@ -136,7 +119,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INT_VALUE = 0;
+	public static final int INT_VALUE = 1;
 
 	/**
 	 * The '<em><b>DOUBLE</b></em>' literal value.
@@ -151,7 +134,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_VALUE = 0;
+	public static final int DOUBLE_VALUE = 2;
 
 	/**
 	 * The '<em><b>BOOLEAN</b></em>' literal value.
@@ -166,7 +149,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BOOLEAN_VALUE = 0;
+	public static final int BOOLEAN_VALUE = 3;
 
 	/**
 	 * The '<em><b>CHAR</b></em>' literal value.
@@ -181,7 +164,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHAR_VALUE = 0;
+	public static final int CHAR_VALUE = 4;
 
 	/**
 	 * The '<em><b>BYTE</b></em>' literal value.
@@ -196,7 +179,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BYTE_VALUE = 0;
+	public static final int BYTE_VALUE = 5;
 
 	/**
 	 * The '<em><b>SHORT</b></em>' literal value.
@@ -211,7 +194,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHORT_VALUE = 0;
+	public static final int SHORT_VALUE = 6;
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal value.
@@ -226,7 +209,7 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LONG_VALUE = 0;
+	public static final int LONG_VALUE = 7;
 
 	/**
 	 * The '<em><b>FLOAT</b></em>' literal value.
@@ -241,7 +224,22 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOAT_VALUE = 0;
+	public static final int FLOAT_VALUE = 8;
+
+	/**
+	 * The '<em><b>STRING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STRING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRING_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Primitive Type</b></em>' enumerators.
@@ -251,7 +249,6 @@ public enum PrimitiveType implements Enumerator {
 	 */
 	private static final PrimitiveType[] VALUES_ARRAY =
 		new PrimitiveType[] {
-			STRING,
 			INT,
 			DOUBLE,
 			BOOLEAN,
@@ -260,6 +257,7 @@ public enum PrimitiveType implements Enumerator {
 			SHORT,
 			LONG,
 			FLOAT,
+			STRING,
 		};
 
 	/**
@@ -316,6 +314,14 @@ public enum PrimitiveType implements Enumerator {
 	 */
 	public static PrimitiveType get(int value) {
 		switch (value) {
+			case INT_VALUE: return INT;
+			case DOUBLE_VALUE: return DOUBLE;
+			case BOOLEAN_VALUE: return BOOLEAN;
+			case CHAR_VALUE: return CHAR;
+			case BYTE_VALUE: return BYTE;
+			case SHORT_VALUE: return SHORT;
+			case LONG_VALUE: return LONG;
+			case FLOAT_VALUE: return FLOAT;
 			case STRING_VALUE: return STRING;
 		}
 		return null;
