@@ -27,6 +27,8 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 		public void notifyEvent(IEvent arg0) {
 			if (arg0 instanceof CDOViewInvalidationEvent) {
 				handleChange((CDOViewInvalidationEvent) arg0);
+			} else {
+				handleChange(arg0);
 			}
 		}
 	}
@@ -65,6 +67,9 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 	}
 
 	protected abstract void handleChange(CDOViewInvalidationEvent cdoChangeEvent);
+	protected void handleChange(IEvent cdoEvent) {
+		return;
+	}
 	protected abstract void doStart() throws TaskException;
 	
 	protected CDOResourceFolder getRepositoryFolder() {

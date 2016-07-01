@@ -23,11 +23,19 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  de.cooperateproject.ui.launchermodel;visibility:=reexport,
  org.eclipse.emf.cdo;bundle-version="4.4.1";visibility:=reexport,
  org.eclipse.emf.cdo.explorer;bundle-version="4.4.1",
- org.eclipse.gmf.runtime.notation;bundle-version="1.8.0"
+ org.eclipse.gmf.runtime.notation;bundle-version="1.8.0",
+ org.eclipse.emf.cdo.ui,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ de.cooperateproject.modeling.transformation.engine,
+ de.cooperateproject.cdo.util;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Export-Package: de.cooperateproject.ui.cdo.sessions,
  de.cooperateproject.ui.cdo.util,
  de.cooperateproject.ui.editors.launcher.extensions,
+ de.cooperateproject.ui.events,
  de.cooperateproject.ui.util
+

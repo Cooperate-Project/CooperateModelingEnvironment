@@ -1,0 +1,143 @@
+transformation PapyrusClass2Text(in graphical : NOTATION, out textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+	
+main() {
+	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLClassDiagram");
+	assert fatal (diagrams->size() = 1);
+
+	diagrams->map diagramToDiagram();
+}
+
+mapping notation::Diagram::diagramToDiagram() : cls::ClassDiagram {
+	packageImports += self->map diagramToPackageImport();
+	classifiers += self.children->select(element.oclIsTypeOf(uml::Class))->map nodeToClass();
+	connectors += self.edges->select(element.oclIsTypeOf(uml::Association))->map edgeToAssociation();
+}
+
+mapping notation::Diagram::diagramToPackageImport() : cls::PackageImport {
+	package := self.element.oclAsType(uml::Package);
+}
+
+mapping notation::Node::nodeToClass() : cls::Class {
+	var clz := self.element.oclAsType(uml::Class);
+	referencedElement := clz;
+	
+	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
+	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
+}
+
+mapping notation::Node::nodeToOperation() : cls::Method {
+	var operation := self.element.oclAsType(uml::Operation);
+	referencedElement := operation;
+	visibility := operation.visibility.covert();
+	_static := operation.isStatic;
+	final := operation.isLeaf;
+	_abstract := operation.isAbstract;
+	type := operation.type.map typeToTypeReference();
+	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
+}
+
+mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
+	referencedElement := self;
+	visibility := self.visibility.covert();
+	type := self.type.map typeToTypeReference();
+}
+
+mapping notation::Node::nodeToProperty() : cls::Attribute {
+	var prop := self.element.oclAsType(uml::Property);
+	referencedElement := prop;
+	visibility := prop.visibility.covert();
+	_static := prop.isStatic;
+	final := prop.isLeaf;
+	type := prop.type.map typeToTypeReference();
+}
+
+mapping uml::Type::typeToTypeReference() : cls::TypeReference 
+disjuncts uml::Type::typeToPrimitiveTypeReference, uml::Type::typeToUMLTypeReference 
+{
+}
+
+mapping uml::Type::typeToPrimitiveTypeReference() : cls::DataTypeReference 
+	when {self.oclIsKindOf(uml::PrimitiveType)}
+{
+	type := self.oclAsType(uml::PrimitiveType).convert();
+}
+
+mapping uml::Type::typeToUMLTypeReference() : cls::UMLTypeReference
+{
+	type := self;
+}
+
+mapping notation::Edge::edgeToAssociation() : cls::Association {
+	var association := self.element.oclAsType(uml::Association);
+	
+	assert error (association.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', association);
+		
+	left := association.memberEnd->at(0).map memberEndToAssociationEnd();
+	right := association.memberEnd->at(1).map memberEndToAssociationEnd();
+	
+	properties := association.map edgeToAssociationProperties();
+}
+
+mapping uml::Association::edgeToAssociationProperties() : cls::AssociationProperties {
+	assert error (self.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
+		
+	var left := self.memberEnd->at(0);
+	var right := self.memberEnd->at(1);
+	
+	cardinalityLeft := left.map multiplicityElementToCardinality();
+	cardinalityRight := right.map multiplicityElementToCardinality();
+	referencedElement := self;
+
+	note := self.ownedComment->any(true).map umlCommentToComment(); //TODO not all elements transformed
+}
+
+mapping uml::Comment::umlCommentToComment() : cls::Comment {
+	description := self.body;
+}
+
+mapping uml::MultiplicityElement::multiplicityElementToCardinality() : cls::Cardinality {
+	lowerBound := self.lower;
+	upperBound := self.upper;
+}
+
+mapping uml::Property::memberEndToAssociationEnd() : cls::UMLTypeReference {
+	type := self.type; 
+}
+
+
+
+query uml::PrimitiveType::convert() : cls::PrimitiveType {
+	switch {
+		case (self.name = "Real") {return cls::PrimitiveType::DOUBLE}
+		case (self.name = "EDouble") {return cls::PrimitiveType::DOUBLE}
+		case (self.name = "Integer") {return cls::PrimitiveType::INT}
+		case (self.name = "EInt") {return cls::PrimitiveType::INT}
+		case (self.name = "Boolean") {return cls::PrimitiveType::BOOLEAN}
+		case (self.name = "EBoolean") {return cls::PrimitiveType::BOOLEAN}
+		case (self.name = "EByte") {return cls::PrimitiveType::BYTE}
+		case (self.name = "EChar") {return cls::PrimitiveType::CHAR}
+		case (self.name = "EFloat") {return cls::PrimitiveType::FLOAT}
+		case (self.name = "ELong") {return cls::PrimitiveType::LONG}
+		case (self.name = "EShort") {return cls::PrimitiveType::SHORT}
+		case (self.name = "String") {return cls::PrimitiveType::STRING}
+		case (self.name = "EString") {return cls::PrimitiveType::STRING}
+	};
+	assert error (false) with log('Could not convert primitive UML type.', self);
+	return null;
+}
+
+query uml::VisibilityKind::covert() : cls::Visibility {
+	switch {
+		case(self = uml::VisibilityKind::public) {return cls::Visibility::PUBLIC}
+		case(self = uml::VisibilityKind::private) {return cls::Visibility::PRIVATE}
+		case(self = uml::VisibilityKind::protected) {return cls::Visibility::PROTECTED}
+		case(self = uml::VisibilityKind::package) {return cls::Visibility::PACKAGE}
+	};
+	assert error (false) with log('Could not convert UML visibility type.', self);
+	return null;
+}

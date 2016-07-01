@@ -57,6 +57,18 @@ public class BackgroundTasksAdapter {
 				return LauncherFilesCheckoutTask.class;
 			}
 		});
+		
+		manager.registerTaskFactory(new BackgroundTaskFactory<TransformationBackgroundTask>() {
+			@Override
+			public TransformationBackgroundTask create(IProject project, ProjectPropertiesDTO properties) {
+				return new TransformationBackgroundTask(project, properties);
+			}
+
+			@Override
+			public Class<TransformationBackgroundTask> getTaskType() {
+				return TransformationBackgroundTask.class;
+			}
+		});
 
 		return manager;
 	}

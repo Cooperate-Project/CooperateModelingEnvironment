@@ -10,6 +10,7 @@ import org.eclipse.emf.cdo.transfer.spi.repository.RepositoryTransferSystem;
 import org.eclipse.emf.cdo.transfer.spi.workspace.WorkspaceTransferSystem;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.util.CDOTransferUMLFirst;
@@ -64,6 +65,9 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 		CDOTransfer transfer = new CDOTransferUMLFirst(source, target);
 		transfer.setTargetPath(workspaceFolder.getFullPath());
 		transfer.map(getRepositoryFolder().getPath(), new NullProgressMonitor());
+		
+		// no default factory is registered in the CDO utilities
+		transfer.getModelTransferContext().registerTargetExtension("*", new XMIResourceFactoryImpl());
 		
 		transfer.perform();
 	}

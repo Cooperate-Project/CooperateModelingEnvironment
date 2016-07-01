@@ -14,11 +14,14 @@
 	<name>Bundle Modules</name>
 
 	<modules>
+		<module>de.cooperateproject.cdo.util</module>
 		<module>de.cooperateproject.modeling.textual.cls</module>
 		<module>de.cooperateproject.modeling.textual.cls.ide</module>
 		<module>de.cooperateproject.modeling.textual.cls.metamodel</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
+		<module>de.cooperateproject.modeling.transformation.engine</module>
+		<module>de.cooperateproject.modeling.transformation.transformations</module>
 		<module>de.cooperateproject.ui</module>
 		<module>de.cooperateproject.ui.launchermodel</module>
 		<module>de.cooperateproject.ui.papyrus</module>

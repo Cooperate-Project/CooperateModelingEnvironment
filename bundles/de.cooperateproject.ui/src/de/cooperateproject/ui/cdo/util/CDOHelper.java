@@ -16,7 +16,6 @@ import org.eclipse.emf.cdo.net4j.CDONet4jSessionConfiguration;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
-import org.eclipse.net4j.util.StringUtil;
 import org.eclipse.net4j.util.container.IPluginContainer;
 
 import com.google.common.base.Optional;
