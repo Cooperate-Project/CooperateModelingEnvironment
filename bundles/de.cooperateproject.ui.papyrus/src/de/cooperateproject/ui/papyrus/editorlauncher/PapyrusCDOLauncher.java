@@ -12,6 +12,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -32,10 +33,10 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 
 	private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private Optional<CDOCheckoutHandler> checkoutHandler = null;
-
-	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType)
+	
+	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType, PartSavedHandler savedHandler)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType);
+		super(launcherFile, editorType, savedHandler);
 	}
 
 	@Override
@@ -45,6 +46,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 		IEditorInput editorInput = createEditorInput();
 		IEditorPart editorPart = IDE.openEditor(page, editorInput, EDITOR_ID_GRAPHICAL);
 		selectAppropriateModel(editorPart);
+		registerPostSaveListener(editorPart);
 		return editorPart;
 	}
 
@@ -58,11 +60,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 
 	private void selectAppropriateModel(IEditorPart editorPart) throws PartInitException {
 		try {
-			ServicesRegistry servicesRegistry = editorPart.getAdapter(ServicesRegistry.class);
-			if (servicesRegistry == null) {
-				return;
-			}
-			servicesRegistry.startRegistry();
+			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
 			EObject rootObject = getConcreteSyntaxModel().getRootElement();
 			if (checkoutHandler.isPresent()) {
 				final EObject checkedOutRootObject = checkoutHandler.get().getObject(rootObject);
@@ -85,6 +83,25 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 		} catch (ServiceException e) {
 			throw new PartInitException("Could not select the correct diagram.", e);
 		}
+	}
+
+	private void registerPostSaveListener(IEditorPart editorPart) throws PartInitException {
+		try {
+			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
+			SaveEventListener saveListener = new SaveEventListener(getPartSavedHandler());
+			servicesRegistry.getService(ILifeCycleEventsProvider.class).addPostDoSaveListener(saveListener);
+		} catch (ServiceException e) {
+			throw new PartInitException("Could not add save listener.", e);
+		}
+	}
+
+	private static ServicesRegistry getServicesRegistery(IEditorPart editorPart) throws ServiceException {
+		ServicesRegistry servicesRegistry = editorPart.getAdapter(ServicesRegistry.class);
+		if (servicesRegistry == null) {
+			throw new ServiceException("Editor does not support service registry.");
+		}
+		servicesRegistry.startRegistry();
+		return servicesRegistry;
 	}
 
 	private Optional<CDOCheckoutHandler> createCDOCheckoutHandler() {

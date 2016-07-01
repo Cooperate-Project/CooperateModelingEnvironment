@@ -27,12 +27,18 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 
 public abstract class EditorLauncher implements IEditorLauncher {
 	
+	@FunctionalInterface
+	public interface PartSavedHandler {
+		public void partSaved(IEditorPart part);
+	}
+	
+	private final PartSavedHandler savedHandler;
 	private final CDOSession cdoSession;
 	private final CDOView cdoView;
 	private final ConcreteSyntaxModel concreteSyntaxModel;
 	private DisposedListener disposeListener;
 	
-	public EditorLauncher(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+	public EditorLauncher(IFile launcherFile, EditorType editorType, PartSavedHandler savedHandler) throws IOException, ConcreteSyntaxTypeNotAvailableException {
 		cdoSession = openCDOSession(launcherFile.getProject());
 		cdoView = cdoSession.openView();
 		Diagram launcherModel = loadDiagram(cdoView, launcherFile);
@@ -42,6 +48,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
 					"The concrete syntax type " + editorType + " is not available.");
 		}
 		concreteSyntaxModel = model.get();
+		this.savedHandler = savedHandler;
 	}
 	
 	@Override
@@ -51,6 +58,10 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	}
 
 	protected abstract IEditorPart doOpenEditor() throws PartInitException;
+	
+	protected PartSavedHandler getPartSavedHandler() {
+		return savedHandler;
+	}
 	
 	protected ConcreteSyntaxModel getConcreteSyntaxModel() {
 		return concreteSyntaxModel;

@@ -7,11 +7,5 @@
             class="de.cooperateproject.ui.textualeditors.editorlauncher.TextualCDOEditorLauncherFactory">
       </provider>
    </extension>
-   <extension
-         point="de.cooperateproject.ui.editors.launcher.extensions.editorlauncher">
-      <provider
-            class="de.cooperateproject.ui.textualeditors.EditorLauncherFactory2">
-      </provider>
-   </extension>
 
 </plugin>

@@ -15,17 +15,20 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.SavePostProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.SaveablePostProcessingSupport;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 
 public class TextualCDOEditorLauncher extends EditorLauncher {
 
+	
 	private CDOTransaction cdoTransaction;
 
-	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType)
+	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType, PartSavedHandler savedHandler)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType);
+		super(launcherFile, editorType, savedHandler);
 	}
 
 	@Override
@@ -40,7 +43,20 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
 		if (!editorId.isPresent()) {
 			throw new PartInitException("Could not find appropriate editor.");
 		}
-		return IDE.openEditor(page, editorInput, editorId.get().getId());
+		IEditorPart editor = IDE.openEditor(page, editorInput, editorId.get().getId());
+		
+		SaveablePostProcessingSupport postProcessingSupport = editor.getAdapter(SaveablePostProcessingSupport.class);
+		if (postProcessingSupport != null) {
+			postProcessingSupport.register(new SavePostProcessor() {
+				
+				@Override
+				public void processAfterSafe() throws Exception {
+					getPartSavedHandler().partSaved(editor);
+				}
+			});			
+		}
+		
+		return editor;
 	}
 
 	@Override
