@@ -18,6 +18,7 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.scoping.impl.FilteringScope
 import org.eclipse.uml2.uml.NamedElement
+import de.cooperateproject.modeling.textual.cls.cls.Parameter
 
 /**
  * This class contains custom scoping description.
@@ -59,6 +60,11 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 		override caseMethod(Method method) {
 			val container = method.eContainer as UMLReferencingElement<NamedElement>
 			return UMLPackage.Literals.OPERATION.filterScope(container.referencedElement)
+		}
+		
+		override caseParameter(Parameter param) {
+			val container = param.eContainer as UMLReferencingElement<NamedElement>
+			return UMLPackage.Literals.PARAMETER.filterScope(container.referencedElement)
 		}
 
 		override defaultCase(EObject o) {
