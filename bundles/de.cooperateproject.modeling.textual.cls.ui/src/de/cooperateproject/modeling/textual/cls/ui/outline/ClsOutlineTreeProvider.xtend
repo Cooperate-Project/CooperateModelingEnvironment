@@ -13,6 +13,9 @@ import org.eclipse.xtext.ui.IImageHelper
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import org.eclipse.jdt.ui.JavaUI
+import org.eclipse.jdt.ui.ISharedImages
 
 /**
  * Customization of the default outline structure.
@@ -23,22 +26,26 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	@Inject
 	private IImageHelper imageHelper;
+	
+	val images = JavaUI.getSharedImages();
 
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
 		val name = root.eResource().getURI().trimFileExtension().lastSegment().replaceAll("%20", " ");
 		val rootNode = new AbstractOutlineNode(parentNode, imageHelper.getImage("class_obj.png"), name, false) {};
-		val importNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Imports", false) {};
+		val importNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), "Imports", false) {};
+		val classifierNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Classifiers", false) {};
+		val connectorNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Connectors", false) {};
 
 		for (oneImport : root.packageImports) {
 			createNode(importNode, oneImport)
 		}
 
 		for (oneClassifier : root.classifiers) {
-			createNode(rootNode, oneClassifier);
+			createNode(classifierNode, oneClassifier);
 		}
 
 		for (oneConnector : root.connectors) {
-			createNode(rootNode, oneConnector)
+			createNode(connectorNode, oneConnector)
 		}
 	}
 	
@@ -48,6 +55,16 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		val rightChild = typedCon.right;
 		createNode(associationNode, leftChild)
 		createNode(associationNode, rightChild)
+	}
+	
+	def _createChildren(IOutlineNode parent, Method method) {
+		for (param : method.parameters) {
+			createNode(parent, param)
+		}
+	}
+	
+	dispatch def isLeaf(Method meth) {
+		return meth.parameters.isEmpty
 	}
 	
 	dispatch def isLeaf(Attribute att) {
