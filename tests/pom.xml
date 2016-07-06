@@ -12,15 +12,48 @@
 	<artifactId>tests</artifactId>
 	<packaging>pom</packaging>
 	<name>Test Modules</name>
-	
+
 	<modules>
 		<module>de.cooperateproject.modeling.textual.cls.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui.tests</module>
 		<module>de.cooperateproject.modeling.transformation.transformations.tests</module>
 	</modules>
-	
+
 	<properties>
 		<sonar.jacoco.reportPath>../../target/jacoco.exec</sonar.jacoco.reportPath>
 	</properties>
-	
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.7.201606060606</version>
+				<configuration>
+					<append>true</append>
+					<destFile>${sonar.jacoco.reportPath}</destFile>
+					<excludes>
+						<exclude>**org.eclipse*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<failIfNoTests>false</failIfNoTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

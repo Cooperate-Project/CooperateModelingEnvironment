@@ -96,7 +96,8 @@ public abstract class PlainTransformationTestBase {
 		ExecutionDiagnostic result = executor.execute(ctx, new ModelExtent[] {source, destination, uml, umlPrimitives});
 		assertEquals(ExecutionDiagnostic.OK, result.getSeverity());
 
-		Resource resultResource = createResource(resourceSet, umlModelURI.trimFileExtension().appendFileExtension("xmi"));
+		URI virtualResultModelURI = umlModelURI.trimFileExtension().trimFragment().trimQuery().trimSegments(1).appendSegment("resultModel").appendFileExtension("xmi");
+		Resource resultResource = createResource(resourceSet, virtualResultModelURI);
 		resultResource.getContents().addAll(destination.getContents());
 		
 		return destination;

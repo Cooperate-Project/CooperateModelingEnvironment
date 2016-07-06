@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ASCII"?>
-<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" name="Class Diagram">
+<?xml version="1.0" encoding="UTF-8"?>
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.cooperateproject.de/modeling/textual/cls/Cls ../../de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore" name="Class Diagram">
   <packageImports>
     <package href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
   </packageImports>

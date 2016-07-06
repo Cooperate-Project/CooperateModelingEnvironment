@@ -38,7 +38,7 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 	public void test() throws Exception {
 		URI sourceModelURI = createResourceModelURI("ClassDiagram.notation");
 		URI umlModelURI = createResourceModelURI("ClassDiagram.uml");
-		URI resultModelURI = createResourceModelURI("ClassDiagram.cls");
+		URI resultModelURI = createResourceModelURI("ClassDiagram.xmi");
 		
 		ModelExtent transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI);
 		
