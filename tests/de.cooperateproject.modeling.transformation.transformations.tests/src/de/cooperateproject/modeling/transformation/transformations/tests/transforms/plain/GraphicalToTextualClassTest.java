@@ -18,7 +18,6 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.junit.Test;
 
 import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
@@ -45,8 +44,6 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		EObject expected = getRootElement(resultModelURI);
 		EObject actual = transformationResult.getContents().get(0);
 		EcoreUtil.resolveAll(getResourceSet());
-		
-		((ClassDiagram)expected).getClassifiers().get(0).getReferencedElement();
 		
 		DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
 		Comparison comparisonResult = EMFCompare.builder().build().compare(scope);

@@ -12,6 +12,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -46,7 +47,7 @@ public abstract class PlainTransformationTestBase {
 	@BeforeClass
 	public static void init() throws Exception {
 		BasicConfigurator.resetConfiguration();
-		BasicConfigurator.configure(new ConsoleAppender());
+		BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
 		
 		if (!isPluginEnvironment()) {
 			EcorePlugin.getPlatformResourceMap().put(Activator.PLUGIN_ID, determinePluginUri(Activator.PLUGIN_ID, Activator.class));
