@@ -46,7 +46,9 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PUBLIC(3, "PUBLIC", "PUBLIC"), /**
+	PUBLIC(3, "PUBLIC", "PUBLIC"),
+
+	/**
 	 * The '<em><b>PACKAGE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

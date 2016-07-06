@@ -5,11 +5,11 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.ReadingDirection;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.uml.Association;
+
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,12 +22,11 @@ import org.eclipse.uml2.uml.Association;
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getCardinalityLeft <em>Cardinality Left</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getCardinalityRight <em>Cardinality Right</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getReadingDirection <em>Reading Direction</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getNote <em>Note</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationPropertiesImpl extends UMLReferencingElementImpl<Association> implements AssociationProperties {
+public class AssociationPropertiesImpl extends CDOObjectImpl implements AssociationProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,12 +49,11 @@ public class AssociationPropertiesImpl extends UMLReferencingElementImpl<Associa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
 	@Override
-	public void setReferencedElement(Association newReferencedElement) {
-		super.setReferencedElement(newReferencedElement);
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**
@@ -110,24 +108,6 @@ public class AssociationPropertiesImpl extends UMLReferencingElementImpl<Associa
 	 */
 	public void setReadingDirection(ReadingDirection newReadingDirection) {
 		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__READING_DIRECTION, newReadingDirection);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Comment getNote() {
-		return (Comment)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__NOTE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNote(Comment newNote) {
-		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__NOTE, newNote);
 	}
 
 } //AssociationPropertiesImpl

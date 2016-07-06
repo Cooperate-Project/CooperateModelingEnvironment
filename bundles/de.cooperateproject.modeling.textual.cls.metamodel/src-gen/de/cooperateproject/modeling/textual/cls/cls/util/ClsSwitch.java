@@ -12,7 +12,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
@@ -30,8 +29,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -236,7 +235,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 			case ClsPackage.CONNECTOR: {
 				Connector connector = (Connector)theEObject;
 				T1 result = caseConnector(connector);
-				if (result == null) result = caseCommentable(connector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -244,7 +242,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				TypedConnector typedConnector = (TypedConnector)theEObject;
 				T1 result = caseTypedConnector(typedConnector);
 				if (result == null) result = caseConnector(typedConnector);
-				if (result == null) result = caseCommentable(typedConnector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -252,8 +249,9 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				Association association = (Association)theEObject;
 				T1 result = caseAssociation(association);
 				if (result == null) result = caseTypedConnector(association);
-				if (result == null) result = caseConnector(association);
+				if (result == null) result = caseUMLReferencingElement(association);
 				if (result == null) result = caseCommentable(association);
+				if (result == null) result = caseConnector(association);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -275,7 +273,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				T1 result = caseGeneralization(generalization);
 				if (result == null) result = caseTypedConnector(generalization);
 				if (result == null) result = caseConnector(generalization);
-				if (result == null) result = caseCommentable(generalization);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -284,7 +281,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				T1 result = caseImplementation(implementation);
 				if (result == null) result = caseTypedConnector(implementation);
 				if (result == null) result = caseConnector(implementation);
-				if (result == null) result = caseCommentable(implementation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -299,7 +295,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 			case ClsPackage.ASSOCIATION_PROPERTIES: {
 				AssociationProperties associationProperties = (AssociationProperties)theEObject;
 				T1 result = caseAssociationProperties(associationProperties);
-				if (result == null) result = caseUMLReferencingElement(associationProperties);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -312,12 +307,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 			case ClsPackage.COMMENTABLE: {
 				Commentable commentable = (Commentable)theEObject;
 				T1 result = caseCommentable(commentable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.COMMENT: {
-				Comment comment = (Comment)theEObject;
-				T1 result = caseComment(comment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -742,21 +731,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseCommentable(Commentable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Comment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Comment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseComment(Comment object) {
 		return null;
 	}
 

@@ -2,16 +2,13 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
-import com.google.common.base.Objects;
-
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
+import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 
 import java.lang.reflect.InvocationTargetException;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -20,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.uml2.uml.Comment;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +27,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl#getComment <em>Comment</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl#getLeft <em>Left</em>}</li>
  * </ul>
  *
@@ -60,6 +58,24 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Comment getComment() {
+		return (Comment)eGet(ClsPackage.Literals.COMMENTABLE__COMMENT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setComment(Comment newComment) {
+		eSet(ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ClassifierAssociationEnd getLeft() {
 		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
 	}
@@ -79,17 +95,45 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * @generated
 	 */
 	public boolean hasComment(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		Comment _comment = this.getComment();
-		boolean _equals = Objects.equal(_comment, null);
-		if (_equals) {
-			ArrayList<Object> _newArrayList = CollectionLiterals.<Object>newArrayList(this, context);
-			Object[] _array = _newArrayList.toArray();
-			BasicDiagnostic _basicDiagnostic = new BasicDiagnostic(BasicDiagnostic.ERROR, "hasComment", 1, "A comment link must have a comment.", _array);
-			diagnostics.add(_basicDiagnostic);
+		if (getComment() == null) {
+			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(BasicDiagnostic.ERROR, "hasComment", 1, "A comment link must have a comment.", new Object[]{this});
+			diagnostics.add(basicDiagnostic);
 			return false;
 		}
 		diagnostics.add(BasicDiagnostic.OK_INSTANCE);
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Commentable.class) {
+			switch (derivedFeatureID) {
+				case ClsPackage.COMMENT_LINK__COMMENT: return ClsPackage.COMMENTABLE__COMMENT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Commentable.class) {
+			switch (baseFeatureID) {
+				case ClsPackage.COMMENTABLE__COMMENT: return ClsPackage.COMMENT_LINK__COMMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
@@ -28,8 +27,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -207,10 +206,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCommentable(Commentable object) {
 				return createCommentableAdapter();
-			}
-			@Override
-			public Adapter caseComment(Comment object) {
-				return createCommentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -621,20 +616,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCommentableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Comment <em>Comment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.Comment
-	 * @generated
-	 */
-	public Adapter createCommentAdapter() {
 		return null;
 	}
 

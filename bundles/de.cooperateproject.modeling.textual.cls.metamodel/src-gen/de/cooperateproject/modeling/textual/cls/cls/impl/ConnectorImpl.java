@@ -7,6 +7,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Connector;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Connector</b></em>'.
@@ -14,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class ConnectorImpl extends CommentableImpl implements Connector {
+public abstract class ConnectorImpl extends CDOObjectImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +34,16 @@ public abstract class ConnectorImpl extends CommentableImpl implements Connector
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.CONNECTOR;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 } //ConnectorImpl

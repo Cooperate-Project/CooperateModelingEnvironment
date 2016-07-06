@@ -136,12 +136,12 @@ public abstract class TransformationBase implements Transformation {
 	
 	private Trace createTrace(URI traceURI) {
 		Trace traceModel = Trace.createEmptyTrace();
-		Resource traceResource = resourceSet.getResource(traceURI, false);
-		if (traceResource != null) {
-			traceModel = new Trace(traceResource.getContents());
+		if (resourceSet.getURIConverter().exists(traceURI, Collections.emptyMap())) {
+			Resource traceResource = resourceSet.getResource(traceURI, true);
+			traceModel = new Trace(traceResource.getContents());			
 		} else {
-			traceResource = resourceSet.createResource(traceURI);
-			traceResource.getContents().addAll(traceModel.getTraceContent());
+			Resource traceResource = resourceSet.createResource(traceURI);
+			traceResource.getContents().addAll(traceModel.getTraceContent());			
 		}
 		return traceModel;
 	}

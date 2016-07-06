@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
+import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
@@ -10,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
@@ -93,7 +93,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 			case ClsPackage.COMMENT_LINK: return (EObject)createCommentLink();
 			case ClsPackage.ASSOCIATION_PROPERTIES: return (EObject)createAssociationProperties();
 			case ClsPackage.CARDINALITY: return (EObject)createCardinality();
-			case ClsPackage.COMMENT: return (EObject)createComment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -113,6 +112,8 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 				return createPrimitiveTypeFromString(eDataType, initialValue);
 			case ClsPackage.READING_DIRECTION:
 				return createReadingDirectionFromString(eDataType, initialValue);
+			case ClsPackage.AGGREGATION_KIND:
+				return createAggregationKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -132,6 +133,8 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 				return convertPrimitiveTypeToString(eDataType, instanceValue);
 			case ClsPackage.READING_DIRECTION:
 				return convertReadingDirectionToString(eDataType, instanceValue);
+			case ClsPackage.AGGREGATION_KIND:
+				return convertAggregationKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -302,16 +305,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Comment createComment() {
-		CommentImpl comment = new CommentImpl();
-		return comment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Visibility createVisibilityFromString(EDataType eDataType, String initialValue) {
 		Visibility result = Visibility.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -364,6 +357,26 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * @generated
 	 */
 	public String convertReadingDirectionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AggregationKind createAggregationKindFromString(EDataType eDataType, String initialValue) {
+		AggregationKind result = AggregationKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAggregationKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

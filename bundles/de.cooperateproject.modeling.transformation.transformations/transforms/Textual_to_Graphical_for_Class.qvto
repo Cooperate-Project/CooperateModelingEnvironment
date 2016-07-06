@@ -1,0 +1,65 @@
+transformation Textual_to_Graphical_for_Class(in textual : TXT, out graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+
+main() {
+	var diagrams := textual.rootObjects()[cls::ClassDiagram];
+	assert fatal (diagrams->size() = 1);
+	diagrams->map diagramToDiagram();
+}
+
+mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
+	type := "PapyrusUMLClassDiagram";
+	name := self.name;
+	measurementUnit := notation::MeasurementUnit::Pixel;
+	
+	element := self.packageImports->first().package.oclAsType(ecore::EObject);
+	
+	// package imports?
+	children += self.classifiers->map classifierToShape();
+	edges += self.connectors->map connectorToEdge();
+}
+
+mapping cls::Classifier::classifierToShape() : notation::Shape
+{
+	element := self.referencedElement.oclAsType(ecore::EObject);
+	
+	children += self->map classifierToAttributesCompartment();
+	children += self->map classifierToOperationsCompartment();
+	children += self->map classifierToSignalsCompartment();
+}
+
+mapping cls::Classifier::classifierToAttributesCompartment() : notation::BasicCompartment {
+	type := "7017";
+	children += self.members->select(oclIsKindOf(cls::Attribute))->oclAsType(cls::Attribute)->map attributeToShape();
+}
+
+mapping cls::Attribute::attributeToShape() : notation::Shape {
+	type := "3012";
+	element := self.oclAsType(ecore::EObject);
+}
+
+mapping cls::Classifier::classifierToOperationsCompartment() : notation::BasicCompartment {
+	type := "7018";
+	children += self.members->select(oclIsKindOf(cls::Method))->oclAsType(cls::Method)->map methodToShape();
+}
+
+mapping cls::Method::methodToShape() : notation::Shape {
+	type := "3013";
+	element := self.oclAsType(ecore::EObject);
+}
+
+mapping cls::Classifier::classifierToSignalsCompartment() : notation::BasicCompartment {
+	type := "7019";
+}
+
+mapping cls::Connector::connectorToEdge() : notation::Edge
+
+{}
+
+mapping cls::TypedConnector::connectorToEdge() : notation::Edge {
+	//element := self.
+}

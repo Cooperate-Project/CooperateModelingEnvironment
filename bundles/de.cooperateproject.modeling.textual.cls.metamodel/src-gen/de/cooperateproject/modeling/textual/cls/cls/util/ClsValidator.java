@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.util;
 
+import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
@@ -12,7 +13,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
@@ -181,14 +181,14 @@ public class ClsValidator extends EObjectValidator {
 				return validateCardinality((Cardinality)value, diagnostics, context);
 			case ClsPackage.COMMENTABLE:
 				return validateCommentable((Commentable)value, diagnostics, context);
-			case ClsPackage.COMMENT:
-				return validateComment((Comment)value, diagnostics, context);
 			case ClsPackage.VISIBILITY:
 				return validateVisibility((Visibility)value, diagnostics, context);
 			case ClsPackage.PRIMITIVE_TYPE:
 				return validatePrimitiveType((PrimitiveType)value, diagnostics, context);
 			case ClsPackage.READING_DIRECTION:
 				return validateReadingDirection((ReadingDirection)value, diagnostics, context);
+			case ClsPackage.AGGREGATION_KIND:
+				return validateAggregationKind((AggregationKind)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -471,15 +471,6 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateComment(Comment comment, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)comment, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateVisibility(Visibility visibility, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
@@ -499,6 +490,15 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateReadingDirection(ReadingDirection readingDirection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAggregationKind(AggregationKind aggregationKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

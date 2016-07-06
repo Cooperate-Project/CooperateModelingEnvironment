@@ -12,13 +12,12 @@
   <genPackages prefix="Cls" basePackage="de.cooperateproject.modeling.textual.cls"
       disposableProviderFactory="true" ecorePackage="cls.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//Visibility">
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/DEFAULT"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PRIVATE"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PROTECTED"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PUBLIC"/>
+      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PACKAGE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//PrimitiveType">
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/STRING"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/INT"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/DOUBLE"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/BOOLEAN"/>
@@ -27,15 +26,22 @@
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/SHORT"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/LONG"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/STRING"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//ReadingDirection">
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//ReadingDirection/LEFT"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//ReadingDirection/RIGHT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//AggregationKind">
+      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//AggregationKind/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//AggregationKind/AGGREGATION"/>
+      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//AggregationKind/COMPOSITION"/>
+    </genEnums>
     <genClasses ecoreClass="cls.ecore#//ClassDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/packageImports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/classifiers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/connectors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//ClassDiagram/name"/>
     </genClasses>
     <genClasses ecoreClass="cls.ecore#//PackageImport">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//PackageImport/package"/>
@@ -46,6 +52,9 @@
     </genClasses>
     <genClasses ecoreClass="cls.ecore#//ClassifierReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//ClassifierReference/type"/>
+    </genClasses>
+    <genClasses ecoreClass="cls.ecore#//UMLTypeReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//UMLTypeReference/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="cls.ecore#//UMLReferencingElement">
       <genTypeParameters ecoreTypeParameter="cls.ecore#//UMLReferencingElement/T"/>
@@ -91,6 +100,7 @@
     </genClasses>
     <genClasses ecoreClass="cls.ecore#//Association">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Association/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Association/aggregationKind"/>
     </genClasses>
     <genClasses image="false" ecoreClass="cls.ecore#//AssociationEnd"/>
     <genClasses image="false" ecoreClass="cls.ecore#//ClassifierAssociationEnd"/>
@@ -107,8 +117,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/cardinalityLeft"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/cardinalityRight"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//AssociationProperties/readingDirection"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//AssociationProperties/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/note"/>
     </genClasses>
     <genClasses ecoreClass="cls.ecore#//Cardinality">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Cardinality/lowerBound"/>
@@ -116,9 +124,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="cls.ecore#//Commentable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Commentable/comment"/>
-    </genClasses>
-    <genClasses ecoreClass="cls.ecore#//Comment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Comment/description"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

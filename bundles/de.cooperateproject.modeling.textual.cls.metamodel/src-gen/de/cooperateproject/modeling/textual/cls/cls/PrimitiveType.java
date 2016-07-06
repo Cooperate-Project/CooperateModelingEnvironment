@@ -96,7 +96,9 @@ public enum PrimitiveType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOAT(8, "FLOAT", "FLOAT"), /**
+	FLOAT(8, "FLOAT", "FLOAT"),
+
+	/**
 	 * The '<em><b>STRING</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

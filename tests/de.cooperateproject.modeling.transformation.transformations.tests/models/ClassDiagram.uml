@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Opgx0EKSEeaXCq-9LXQNWQ" name="RootElement">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_-pP9wEKSEeaXCq-9LXQNWQ" annotatedElement="_xEjCoEKSEeaXCq-9LXQNWQ">
+    <body>I would not buy this for myself.</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_DX9voEKTEeaXCq-9LXQNWQ" annotatedElement="_RpctsEKSEeaXCq-9LXQNWQ">
+    <body>Obvious, isn't it?</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_QHekoEKSEeaXCq-9LXQNWQ" name="Car">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_RpfJ8EKSEeaXCq-9LXQNWQ" name="wheel" type="_Qr2dAEKSEeaXCq-9LXQNWQ" aggregation="composite" association="_RpctsEKSEeaXCq-9LXQNWQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UCPxEEKSEeaXCq-9LXQNWQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UCRmQEKSEeaXCq-9LXQNWQ" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_sLlvoEKSEeaXCq-9LXQNWQ" name="TypeName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_WwgHEEKSEeaXCq-9LXQNWQ" name="drive">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Z8Kx0EKSEeaXCq-9LXQNWQ" name="speed" visibility="protected">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Qr2dAEKSEeaXCq-9LXQNWQ" name="Wheel">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_oNOcoEKSEeaXCq-9LXQNWQ" name="radius">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_RpctsEKSEeaXCq-9LXQNWQ" name="has" memberEnd="_RpfJ8EKSEeaXCq-9LXQNWQ _RpfJ8UKSEeaXCq-9LXQNWQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Rpd70EKSEeaXCq-9LXQNWQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Rpd70UKSEeaXCq-9LXQNWQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_RpfJ8UKSEeaXCq-9LXQNWQ" name="car" type="_QHekoEKSEeaXCq-9LXQNWQ" association="_RpctsEKSEeaXCq-9LXQNWQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xEjCoEKSEeaXCq-9LXQNWQ" name="ConvertibleCar">
+    <generalization xmi:type="uml:Generalization" xmi:id="_4i2AMEKSEeaXCq-9LXQNWQ" general="_QHekoEKSEeaXCq-9LXQNWQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_5_7pQEKSEeaXCq-9LXQNWQ" name="conversionTime">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Model>

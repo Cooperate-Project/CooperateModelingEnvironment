@@ -13,13 +13,14 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getProperties <em>Properties</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getAggregationKind <em>Aggregation Kind</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation()
  * @model
  * @generated
  */
-public interface Association extends TypedConnector {
+public interface Association extends TypedConnector, UMLReferencingElement<org.eclipse.uml2.uml.Association>, Commentable {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -45,5 +46,34 @@ public interface Association extends TypedConnector {
 	 * @generated
 	 */
 	void setProperties(AssociationProperties value);
+
+	/**
+	 * Returns the value of the '<em><b>Aggregation Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Aggregation Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Aggregation Kind</em>' attribute.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AggregationKind
+	 * @see #setAggregationKind(AggregationKind)
+	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_AggregationKind()
+	 * @model required="true"
+	 * @generated
+	 */
+	AggregationKind getAggregationKind();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getAggregationKind <em>Aggregation Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Aggregation Kind</em>' attribute.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AggregationKind
+	 * @see #getAggregationKind()
+	 * @generated
+	 */
+	void setAggregationKind(AggregationKind value);
 
 } // Association

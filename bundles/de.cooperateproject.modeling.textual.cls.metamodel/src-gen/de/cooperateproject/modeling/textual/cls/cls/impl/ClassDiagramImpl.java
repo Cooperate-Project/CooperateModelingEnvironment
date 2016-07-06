@@ -25,6 +25,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getPackageImports <em>Package Imports</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getClassifiers <em>Classifiers</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +88,24 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	@SuppressWarnings("unchecked")
 	public EList<Connector> getConnectors() {
 		return (EList<Connector>)eGet(ClsPackage.Literals.CLASS_DIAGRAM__CONNECTORS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return (String)eGet(ClsPackage.Literals.CLASS_DIAGRAM__NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		eSet(ClsPackage.Literals.CLASS_DIAGRAM__NAME, newName);
 	}
 
 } //ClassDiagramImpl

@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.emf.cdo.CDOObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +12,8 @@ package de.cooperateproject.modeling.textual.cls.cls;
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnector()
  * @model abstract="true"
+ * @extends CDOObject
  * @generated
  */
-public interface Connector extends Commentable {
+public interface Connector extends CDOObject {
 } // Connector

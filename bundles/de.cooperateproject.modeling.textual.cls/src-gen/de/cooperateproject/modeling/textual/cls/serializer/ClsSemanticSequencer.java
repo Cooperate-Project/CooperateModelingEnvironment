@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
@@ -63,9 +62,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.CLASS_DIAGRAM:
 				sequence_ClassDiagram(context, (ClassDiagram) semanticObject); 
 				return; 
-			case ClsPackage.COMMENT:
-				sequence_Comment(context, (Comment) semanticObject); 
-				return; 
 			case ClsPackage.COMMENT_LINK:
 				sequence_CommentLink(context, (CommentLink) semanticObject); 
 				return; 
@@ -103,7 +99,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AssociationProperties returns AssociationProperties
 	 *
 	 * Constraint:
-	 *     (cardinalityLeft=Cardinality (cardinalityRight=Cardinality (referencedElement=[Association|ID] readingDirection=ReadingDirection?)?)?)
+	 *     (cardinalityLeft=Cardinality (cardinalityRight=Cardinality readingDirection=ReadingDirection?)?)
 	 */
 	protected void sequence_AssociationProperties(ISerializationContext context, AssociationProperties semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -116,7 +112,14 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Association returns Association
 	 *
 	 * Constraint:
-	 *     (left=ClassifierAssociationEnd right=ClassifierAssociationEnd properties=AssociationProperties? comment=Comment?)
+	 *     (
+	 *         aggregationKind=AggregationKind 
+	 *         left=ClassifierAssociationEnd 
+	 *         referencedElement=[Association|ID] 
+	 *         right=ClassifierAssociationEnd 
+	 *         properties=AssociationProperties? 
+	 *         comment=[Comment|STRING]?
+	 *     )
 	 */
 	protected void sequence_Association(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -153,7 +156,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDiagram returns ClassDiagram
 	 *
 	 * Constraint:
-	 *     (packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*)
+	 *     (name=STRING packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*)
 	 */
 	protected void sequence_ClassDiagram(ISerializationContext context, ClassDiagram semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -179,7 +182,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CommentLink returns CommentLink
 	 *
 	 * Constraint:
-	 *     (left=ClassifierAssociationEnd comment=Comment)
+	 *     (left=ClassifierAssociationEnd comment=[Comment|STRING])
 	 */
 	protected void sequence_CommentLink(ISerializationContext context, CommentLink semanticObject) {
 		if (errorAcceptor != null) {
@@ -190,25 +193,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getCommentLinkAccess().getLeftClassifierAssociationEndParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentParserRuleCall_2_0(), semanticObject.getComment());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Comment returns Comment
-	 *
-	 * Constraint:
-	 *     description=STRING
-	 */
-	protected void sequence_Comment(ISerializationContext context, Comment semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.COMMENT__DESCRIPTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.COMMENT__DESCRIPTION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getCommentAccess().getDescriptionSTRINGTerminalRuleCall_1_0(), semanticObject.getDescription());
+		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentSTRINGTerminalRuleCall_3_0_1(), semanticObject.getComment());
 		feeder.finish();
 	}
 	

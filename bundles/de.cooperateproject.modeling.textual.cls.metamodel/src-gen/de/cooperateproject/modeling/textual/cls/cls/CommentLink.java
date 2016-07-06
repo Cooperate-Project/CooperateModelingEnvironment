@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='hasComment'"
  * @generated
  */
-public interface CommentLink extends Connector {
+public interface CommentLink extends Connector, Commentable {
 	/**
 	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public interface CommentLink extends Connector {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model unique="false" diagnosticsUnique="false" contextUnique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%de.cooperateproject.modeling.textual.cls.cls.Comment%> _comment = this.getComment();\nboolean _equals = <%com.google.common.base.Objects%>.equal(_comment, null);\nif (_equals)\n{\n\t<%java.util.ArrayList%><<%java.lang.Object%>> _newArrayList = <%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.<<%java.lang.Object%>>newArrayList(this, context);\n\t<%java.lang.Object%>[] _array = _newArrayList.toArray();\n\t<%org.eclipse.emf.common.util.BasicDiagnostic%> _basicDiagnostic = new <%org.eclipse.emf.common.util.BasicDiagnostic%>(<%org.eclipse.emf.common.util.BasicDiagnostic%>.ERROR, \"hasComment\", 1, \"A comment link must have a comment.\", _array);\n\tdiagnostics.add(_basicDiagnostic);\n\treturn false;\n}\ndiagnostics.add(<%org.eclipse.emf.common.util.BasicDiagnostic%>.OK_INSTANCE);\nreturn true;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (getComment() == null) {\r\n\t<%org.eclipse.emf.common.util.BasicDiagnostic%> basicDiagnostic = new <%org.eclipse.emf.common.util.BasicDiagnostic%>(<%org.eclipse.emf.common.util.BasicDiagnostic%>.ERROR, \"hasComment\", 1, \"A comment link must have a comment.\", new Object[]{this});\r\n\tdiagnostics.add(basicDiagnostic);\r\n\treturn false;\r\n}\r\ndiagnostics.add(<%org.eclipse.emf.common.util.BasicDiagnostic%>.OK_INSTANCE);\r\nreturn true;'"
 	 * @generated
 	 */
 	boolean hasComment(DiagnosticChain diagnostics, Map<Object, Object> context);

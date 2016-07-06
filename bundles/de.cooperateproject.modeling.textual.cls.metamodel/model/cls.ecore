@@ -22,6 +22,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
         eType="#//Connector" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
     <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
@@ -54,7 +55,7 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="return getReferencedElement().getName();"/>
@@ -69,7 +70,7 @@
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="longName" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eGenericSuperTypes eClassifier="#//NamedElement">
       <eTypeArguments eTypeParameter="#//NamedElementLongName/T"/>
     </eGenericSuperTypes>
@@ -92,7 +93,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eGenericSuperTypes eClassifier="#//Classifier">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     </eGenericSuperTypes>
@@ -109,8 +110,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
         eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeReference"
         containment="true" resolveProxies="false"/>
     <eGenericSuperTypes eClassifier="#//NamedElement">
@@ -132,7 +133,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Method">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true" resolveProxies="false"/>
     <eGenericSuperTypes eClassifier="#//Member">
@@ -144,35 +145,42 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true" eSuperTypes="#//Commentable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ClassifierAssociationEnd"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//ClassifierAssociationEnd"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//TypedConnector">
+  <eClassifiers xsi:type="ecore:EClass" name="Association">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//AssociationProperties"
         containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregationKind" lowerBound="1"
+        eType="#//AggregationKind"/>
+    <eGenericSuperTypes eClassifier="#//TypedConnector"/>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//Commentable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssociationEnd" abstract="true"
       interface="true" eSuperTypes="#//AssociationEnd"/>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//TypedConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="Implementation" eSuperTypes="#//TypedConnector"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Connector">
+  <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Connector #//Commentable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="hasComment"/>
     </eAnnotations>
-    <eOperations name="hasComment" unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+    <eOperations name="hasComment" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="&lt;%de.cooperateproject.modeling.textual.cls.cls.Comment%> _comment = this.getComment();&#xA;boolean _equals = &lt;%com.google.common.base.Objects%>.equal(_comment, null);&#xA;if (_equals)&#xA;{&#xA;&#x9;&lt;%java.util.ArrayList%>&lt;&lt;%java.lang.Object%>> _newArrayList = &lt;%org.eclipse.xtext.xbase.lib.CollectionLiterals%>.&lt;&lt;%java.lang.Object%>>newArrayList(this, context);&#xA;&#x9;&lt;%java.lang.Object%>[] _array = _newArrayList.toArray();&#xA;&#x9;&lt;%org.eclipse.emf.common.util.BasicDiagnostic%> _basicDiagnostic = new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>(&lt;%org.eclipse.emf.common.util.BasicDiagnostic%>.ERROR, &quot;hasComment&quot;, 1, &quot;A comment link must have a comment.&quot;, _array);&#xA;&#x9;diagnostics.add(_basicDiagnostic);&#xA;&#x9;return false;&#xA;}&#xA;diagnostics.add(&lt;%org.eclipse.emf.common.util.BasicDiagnostic%>.OK_INSTANCE);&#xA;return true;"/>
+        <details key="body" value="if (getComment() == null) {&#xD;&#xA;&#x9;&lt;%org.eclipse.emf.common.util.BasicDiagnostic%> basicDiagnostic = new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>(&lt;%org.eclipse.emf.common.util.BasicDiagnostic%>.ERROR, &quot;hasComment&quot;, 1, &quot;A comment link must have a comment.&quot;, new Object[]{this});&#xD;&#xA;&#x9;diagnostics.add(basicDiagnostic);&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;diagnostics.add(&lt;%org.eclipse.emf.common.util.BasicDiagnostic%>.OK_INSTANCE);&#xD;&#xA;return true;"/>
       </eAnnotations>
-      <eParameters name="diagnostics" unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDiagnosticChain"/>
+      <eParameters name="diagnostics" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context" unique="false">
-        <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EMap">
-          <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-          <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         </eGenericType>
       </eParameters>
     </eOperations>
@@ -186,25 +194,15 @@
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="readingDirection" unique="false"
         eType="#//ReadingDirection"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="note" eType="#//Comment"
-        containment="true" resolveProxies="false"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
-    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cardinality">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commentable" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="#//Comment"
-        containment="true" resolveProxies="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Comment">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
     <eLiterals name="PRIVATE" value="1"/>
@@ -226,5 +224,10 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ReadingDirection">
     <eLiterals name="LEFT" value="1"/>
     <eLiterals name="RIGHT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
+    <eLiterals name="NONE"/>
+    <eLiterals name="AGGREGATION" value="1"/>
+    <eLiterals name="COMPOSITION" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

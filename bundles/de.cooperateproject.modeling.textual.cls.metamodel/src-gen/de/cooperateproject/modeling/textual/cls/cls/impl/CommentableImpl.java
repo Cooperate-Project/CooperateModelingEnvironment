@@ -3,12 +3,13 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Comment;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
+import org.eclipse.uml2.uml.Comment;
 
 /**
  * <!-- begin-user-doc -->
