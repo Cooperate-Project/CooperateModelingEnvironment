@@ -6,31 +6,80 @@ package de.cooperateproject.modeling.textual.cls.ui.contentassist
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
-import org.eclipse.xtext.RuleCall
 import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import org.eclipse.uml2.uml.Class
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import org.eclipse.xtext.serializer.impl.Serializer
+import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
+import org.eclipse.uml2.uml.Operation
+import org.eclipse.uml2.uml.Property
+import org.eclipse.uml2.uml.Type
+import org.eclipse.xtext.Assignment
 
 class ClsProposalProvider extends AbstractClsProposalProvider {
 	@Inject IScopeProvider scope
+	@Inject Serializer serializer
 
-	override complete_Class(EObject model, RuleCall ruleCall, ContentAssistContext context,
+	override completeClassDiagram_Classifiers(EObject model, Assignment assignment, ContentAssistContext context, 
 		ICompletionProposalAcceptor acceptor) {
 		
 		var scope = scope.getScope(model, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
 		
 		var elements = scope.allElements
 		var classes = elements.map[x|x.EObjectOrProxy].filter(Class)
-		for (class : classes) {
-			acceptor.accept(createCompletionProposal(getClassProposal(class), class.name, null, context))
+		for (class : classes) {			
+			var c = createClass(class)
+			var m = model as ClassDiagram
+			m.classifiers.add(c)
+			
+			acceptor.accept(createCompletionProposal(serializer.serialize(c), class.name, null, context))
 		}
 	}
 	
-	private def getClassProposal(Class c) {
-		'''
-		class «c.name» {
+	private def createClass(Class refClass) {
+		var class = ClsFactory.eINSTANCE.createClass
+		class.referencedElement = refClass
+		
+		for (attribute : refClass.attributes) {
+			class.members.add(createAttributes(attribute))
 		}
-		'''.toString()
+		for (operation : refClass.operations) {
+			class.members.add(createOperations(operation))
+		}
+		return class
+	}
+	
+	private def createOperations(Operation refOperation) {
+		var operation = ClsFactory.eINSTANCE.createMethod
+		operation.visibility = Visibility.PRIVATE	
+		operation.referencedElement = refOperation
+		operation.parameters.addAll(operation.parameters)
+		return operation
+	}
+	
+	private def createAttributes(Property refAttribute) {
+		var attribute = ClsFactory.eINSTANCE.createAttribute			
+		attribute.visibility = Visibility.PRIVATE
+		attribute.referencedElement = refAttribute
+		
+		var dataType = ClsFactory.eINSTANCE.createDataTypeReference
+		dataType.type = getPrimitive(refAttribute.type)
+		attribute.type = dataType 
+		
+		return attribute
+	}
+	
+	private def getPrimitive(Type type) {
+		switch(type.name) {
+			case "String": return PrimitiveType.STRING
+			case "Boolean": return PrimitiveType.BOOLEAN
+			case "Real": return PrimitiveType.FLOAT
+			case "Integer": return PrimitiveType.INT
+			case "UnlimitedNatural": return PrimitiveType.LONG
+		}
 	}
 }
