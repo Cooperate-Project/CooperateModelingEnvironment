@@ -12,10 +12,8 @@ Export-Package: de.cooperateproject.modeling.textual.cls.cls,
  de.cooperateproject.modeling.textual.cls.cls.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.xtext.xbase.lib;visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="5.1.2";visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.emf.cdo;bundle-version="4.4.1";visibility:=reexport,
- org.eclipse.emf.ecore.xcore.lib;visibility:=reexport
+ org.eclipse.emf.cdo;bundle-version="4.4.1";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 

@@ -16,6 +16,7 @@
 	<modules>
 		<module>de.cooperateproject.modeling.textual.feature</module>
 		<module>de.cooperateproject.ui.feature</module>
+		<moduel>de.cooperateproject.modeling.textual.metamodels.feature</moduel>
 	</modules>
 	
 </project>
