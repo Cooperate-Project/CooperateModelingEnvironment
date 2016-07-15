@@ -61,14 +61,14 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 	_static := operation.isStatic;
 	final := operation.isLeaf;
 	_abstract := operation.isAbstract;
-	type := operation.type.map typeToTypeReference(self.toString() + "MethodType");
+	type := operation.type.typeToTypeReference();
 	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
 	visibility := self.visibility.covert();
-	type := self.type.map typeToTypeReference(self.toString() + "ParameterType");
+	type := self.type.typeToTypeReference();
 }
 
 mapping notation::Node::nodeToProperty() : cls::Attribute {
@@ -77,19 +77,18 @@ mapping notation::Node::nodeToProperty() : cls::Attribute {
 	visibility := prop.visibility.covert();
 	_static := prop.isStatic;
 	final := prop.isLeaf;
-	type := prop.type.map typeToTypeReference(self.toString() + "AttributeType");
+	type := prop.type.typeToTypeReference();
 }
 
-mapping uml::Type::typeToTypeReference(_ : String) : cls::TypeReference 
+/* we cannot do a mapping here, because we have to create a new
+ * instance of the datatype for every call.
+ */
+query uml::Type::typeToTypeReference() : cls::TypeReference
 {
-	init {
-		result :=
-			if self.oclIsTypeOf(uml::PrimitiveType) then
-				new DataTypeReference(self.oclAsType(uml::PrimitiveType))
-			else
-				new UMLTypeReference(self)
-			endif;
-	}
+	if self.oclIsTypeOf(uml::PrimitiveType) then
+		return new DataTypeReference(self.oclAsType(uml::PrimitiveType))
+	endif;
+	return new UMLTypeReference(self)
 }
 
 constructor cls::DataTypeReference::DataTypeReference(umlType : uml::PrimitiveType) {
@@ -99,27 +98,6 @@ constructor cls::DataTypeReference::DataTypeReference(umlType : uml::PrimitiveTy
 constructor cls::UMLTypeReference::UMLTypeReference(umlType : uml::Type) {
 	type := umlType;
 }
-
-/*
-mapping uml::Type::typeToTypeReference() : cls::TypeReference 
-disjuncts uml::Type::typeToPrimitiveTypeReference, uml::Type::typeToUMLTypeReference 
-{
-}
-
-
-mapping uml::Type::typeToPrimitiveTypeReference() : cls::DataTypeReference 
-	when {self.oclIsKindOf(uml::PrimitiveType)}
-{
-	type := self.oclAsType(uml::PrimitiveType).convert();
-	log("Primitive type: ", self);
-	log("Textual   type: ", result.type);
-}
-
-mapping uml::Type::typeToUMLTypeReference() : cls::UMLTypeReference
-{
-	type := self;
-}
-*/
 
 mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
 disjuncts
