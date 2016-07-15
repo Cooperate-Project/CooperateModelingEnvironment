@@ -3,24 +3,79 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.quickfix
 
-//import org.eclipse.xtext.ui.editor.quickfix.Fix
-//import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
-//import org.eclipse.xtext.validation.Issue
+import com.google.inject.Inject
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import de.cooperateproject.modeling.textual.cls.validation.ClsValidator
+import org.eclipse.xtext.validation.Issue
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.uml2.uml.Model
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import java.io.IOException
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil
 
 /**
  * Custom quickfixes.
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#quick-fixes
  */
 class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
 
-//	@Fix(MyDslValidator::INVALID_NAME)
-//	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Capitalize name', 'Capitalize the name.', 'upcase.png') [
-//			context |
-//			val xtextDocument = context.xtextDocument
-//			val firstLetter = xtextDocument.get(issue.offset, 1)
-//			xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
-//		]
-//	}
+	@Inject IScopeProvider scope
+
+	@Fix(ClsValidator::NO_REFERENCE)
+	def createMissingUMLClassifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Create Classifier', 'Create the Classifier into the UML Diagram', null) [ element, context |
+
+			var name = context.xtextDocument.get(issue.offset, issue.length)
+
+			val model = element.eContainer
+			if (model instanceof ClassDiagram) {
+
+				var scope = scope.getScope(model, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+				var iterator = scope.allElements.iterator
+
+				if (iterator.hasNext) {
+					var umlModel = EcoreUtil.getRootContainer(iterator.next.EObjectOrProxy)
+
+					if (umlModel instanceof Model) {
+						umlModel.createOwnedClass(name, false)
+						var uri = EcoreUtil.getURI(umlModel)
+						save(umlModel, uri)
+					}
+				}
+
+			}
+		]
+	}
+
+	private def save(EObject package_, URI uri) {
+		// Create a resource-set to contain the resource(s) that we are saving
+		var resourceSet = new ResourceSetImpl();
+
+		// Initialize registrations of resource factories, library models,
+		// profiles, Ecore metadata, and other dependencies required for
+		// serializing and working with UML resources. This is only necessary in
+		// applications that are not hosted in the Eclipse platform run-time, in
+		// which case these registrations are discovered automatically from
+		// Eclipse extension points.
+		UMLResourcesUtil.init(resourceSet);
+
+		// Create the output resource and add our model package to it.
+		var resource = resourceSet.createResource(uri);
+		resource.getContents().add(package_);
+
+		// And save
+		try {
+			resource.save(null); // no save options needed
+			// out("Done.");
+		} catch (IOException ioe) {
+			// err(ioe.getMessage());
+		}
+	}
 }

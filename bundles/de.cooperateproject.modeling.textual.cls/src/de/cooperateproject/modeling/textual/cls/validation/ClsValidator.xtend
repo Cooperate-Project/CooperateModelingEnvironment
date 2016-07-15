@@ -3,7 +3,10 @@
  */
 package de.cooperateproject.modeling.textual.cls.validation
 
-//import org.eclipse.xtext.validation.Check
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class contains custom validation rules. 
@@ -12,14 +15,11 @@ package de.cooperateproject.modeling.textual.cls.validation
  */
 class ClsValidator extends AbstractClsValidator {
 
-//  public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					MyDslPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+  public static val NO_REFERENCE = 'no_reference'
+	@Check
+	def checkIfClassifierExists(Classifier classifier) {
+		if (classifier.referencedElement.model == null) {
+			error("No Referenced UML Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_REFERENCE)
+		}
+	}
 }
