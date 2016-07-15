@@ -8,10 +8,10 @@ import org.eclipse.xtext.junit4.IInjectorProvider;
 import com.google.inject.Injector;
 
 public class ClsUiInjectorProvider implements IInjectorProvider {
-	
+
 	@Override
 	public Injector getInjector() {
 		return de.cooperateproject.modeling.textual.cls.ui.internal.ClsActivator.getInstance().getInjector("de.cooperateproject.modeling.textual.cls.Cls");
 	}
-	
+
 }

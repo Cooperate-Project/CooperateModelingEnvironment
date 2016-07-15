@@ -1382,8 +1382,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getDataTypeReferenceAccess().getRule();
 	}
 
-	//UMLTypeReference:
-	//	type=[uml::Type];
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@metamodelDeclarations.1'
 	public UMLTypeReferenceElements getUMLTypeReferenceAccess() {
 		return pUMLTypeReference;
 	}
@@ -1392,9 +1391,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getUMLTypeReferenceAccess().getRule();
 	}
 
-	//Member:
-	//	Attribute
-	//	| Method;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Member'
 	public MemberElements getMemberAccess() {
 		return pMember;
 	}
@@ -1403,11 +1400,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getMemberAccess().getRule();
 	}
 
-	//Attribute:
-	//	{Attribute} visibility=Visibility?
-	//	static?='static'?
-	//	final?='final'?
-	//	referencedElement=[uml::Property] ':' type=TypeReference;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Attribute'
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
@@ -1416,13 +1409,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getAttributeAccess().getRule();
 	}
 
-	//Method:
-	//	visibility=Visibility?
-	//	abstract?='abstract'?
-	//	static?='static'?
-	//	final?='final'?
-	//	referencedElement=[uml::Operation] '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':'
-	//	type=TypeReference)?;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Method'
 	public MethodElements getMethodAccess() {
 		return pMethod;
 	}
@@ -1431,11 +1418,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getMethodAccess().getRule();
 	}
 
-	//Parameter:
-	//	visibility=Visibility?
-	//	static?='static'?
-	//	final?='final'?
-	//	referencedElement=[uml::Parameter] ':' type=TypeReference;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Parameter'
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -1444,11 +1427,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getParameterAccess().getRule();
 	}
 
-	//Connector:
-	//	Generalization
-	//	| Association
-	//	| Implementation
-	//	| CommentLink;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Connector'
 	public ConnectorElements getConnectorAccess() {
 		return pConnector;
 	}
@@ -1457,8 +1436,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getConnectorAccess().getRule();
 	}
 
-	//ClassifierAssociationEnd:
-	//	UMLTypeReference;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/ClassifierAssociationEnd'
 	public ClassifierAssociationEndElements getClassifierAssociationEndAccess() {
 		return pClassifierAssociationEnd;
 	}
@@ -1467,8 +1445,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierAssociationEndAccess().getRule();
 	}
 
-	//Generalization:
-	//	left=ClassifierAssociationEnd 'isa' right=ClassifierAssociationEnd;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Generalization'
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}
@@ -1477,8 +1454,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getGeneralizationAccess().getRule();
 	}
 
-	//Implementation:
-	//	left=ClassifierAssociationEnd 'impl' right=ClassifierAssociationEnd;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Implementation'
 	public ImplementationElements getImplementationAccess() {
 		return pImplementation;
 	}
@@ -1487,8 +1463,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getImplementationAccess().getRule();
 	}
 
-	//CommentLink:
-	//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|STRING];
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/CommentLink'
 	public CommentLinkElements getCommentLinkAccess() {
 		return pCommentLink;
 	}
@@ -1497,10 +1472,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getCommentLinkAccess().getRule();
 	}
 
-	//Association:
-	//	aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
-	//	right=ClassifierAssociationEnd
-	//	properties=AssociationProperties? ('note' comment=[uml::Comment|STRING])?;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Association'
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
 	}
@@ -1509,8 +1481,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssociationAccess().getRule();
 	}
 
-	//AssociationProperties:
-	//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality ('|' readingDirection=ReadingDirection)?)? ']';
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/AssociationProperties'
 	public AssociationPropertiesElements getAssociationPropertiesAccess() {
 		return pAssociationProperties;
 	}
@@ -1519,8 +1490,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssociationPropertiesAccess().getRule();
 	}
 
-	//Cardinality:
-	//	lowerBound=CardinalityBound ('..' upperBound=CardinalityBound)?;
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Cardinality'
 	public CardinalityElements getCardinalityAccess() {
 		return pCardinality;
 	}
@@ -1529,8 +1499,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getCardinalityAccess().getRule();
 	}
 
-	//CardinalityBound ecore::EInt:
-	//	'*' | INT
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/CardinalityBound'
 	public CardinalityBoundElements getCardinalityBoundAccess() {
 		return pCardinalityBound;
 	}
@@ -1539,11 +1508,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getCardinalityBoundAccess().getRule();
 	}
 
-	//enum Visibility:
-	//	PACKAGE='~'
-	//	| PRIVATE='-'
-	//	| PROTECTED='#'
-	//	| PUBLIC='+';
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Visibility'
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
 	}
@@ -1552,9 +1517,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getVisibilityAccess().getRule();
 	}
 
-	//enum ReadingDirection:
-	//	LEFT='<'
-	//	| RIGHT='>';
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/ReadingDirection'
 	public ReadingDirectionElements getReadingDirectionAccess() {
 		return eReadingDirection;
 	}
@@ -1563,16 +1526,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getReadingDirectionAccess().getRule();
 	}
 
-	//enum PrimitiveType:
-	//	STRING='string'
-	//	| INT='int'
-	//	| DOUBLE='double'
-	//	| BOOLEAN='boolean'
-	//	| CHAR='char'
-	//	| BYTE='byte'
-	//	| SHORT='short'
-	//	| LONG='long'
-	//	| FLOAT='float';
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/PrimitiveType'
 	public PrimitiveTypeElements getPrimitiveTypeAccess() {
 		return ePrimitiveType;
 	}
@@ -1581,10 +1535,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimitiveTypeAccess().getRule();
 	}
 
-	//enum AggregationKind:
-	//	NONE='ass'
-	//	| AGGREGATION='agg'
-	//	| COMPOSITION='com';
+	//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/AggregationKind'
 	public AggregationKindElements getAggregationKindAccess() {
 		return eAggregationKind;
 	}

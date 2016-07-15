@@ -4,17 +4,13 @@
 package de.cooperateproject.modeling.textual.cls;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
 import com.google.inject.Binder;
 
 import de.cooperateproject.modeling.textual.cls.scoping.ClsImportNamespaceAwareLocalScopeProvider;
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter;
-import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the
@@ -37,16 +33,6 @@ public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.A
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return ClsValueConverter.class;
-	}
-
-	@Override
-	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
-		return CooperateResourceSet.class;
-	}
-
-	@Override
-	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return CooperateQualifiedNameProvider.class;
 	}
 
 }

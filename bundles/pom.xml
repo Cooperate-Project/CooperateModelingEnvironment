@@ -19,6 +19,7 @@
 		<module>de.cooperateproject.modeling.textual.cls.ide</module>
 		<module>de.cooperateproject.modeling.textual.cls.metamodel</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
+		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
 		<module>de.cooperateproject.modeling.transformation.engine</module>
 		<module>de.cooperateproject.modeling.transformation.transformations</module>

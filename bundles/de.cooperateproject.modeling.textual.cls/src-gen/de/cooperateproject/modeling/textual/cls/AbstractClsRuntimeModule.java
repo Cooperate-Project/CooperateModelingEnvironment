@@ -118,11 +118,6 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
 		binder.bindConstant().annotatedWith(org.eclipse.xtext.scoping.IgnoreCaseLinking.class).to(false);
 	}
 
-	// contributed by org.eclipse.xtext.generator.exporting.QualifiedNamesFragment
-	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider.class;
-	}
-
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public Class<? extends org.eclipse.xtext.resource.IContainer.Manager> bindIContainer$Manager() {
 		return org.eclipse.xtext.resource.containers.StateBasedContainerManager.class;
@@ -151,6 +146,16 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
 	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
 		return de.cooperateproject.modeling.textual.cls.formatting.ClsFormatter.class;
+	}
+
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
+	public Class<? extends org.eclipse.xtext.resource.XtextResourceSet> bindXtextResourceSet() {
+		return de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet.class;
+	}
+
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment
+	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider.class;
 	}
 
 }

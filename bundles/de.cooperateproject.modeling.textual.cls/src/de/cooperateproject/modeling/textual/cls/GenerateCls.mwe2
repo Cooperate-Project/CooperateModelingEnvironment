@@ -201,6 +201,8 @@ Workflow {
 			fragment = net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment {}
 			fragment = net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment {}
 			fragment = net.winklerweb.cdoxtext.generator.EMFCDOGeneratorFragment auto-inject {}
+			fragment = de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment {}
+			fragment = de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment {}
 		}
 	}
 

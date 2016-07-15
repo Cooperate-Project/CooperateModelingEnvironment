@@ -8,7 +8,11 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.xtext.xbase.lib;bundle-version="2.9.1",
  org.eclipse.emf.cdo;bundle-version="4.4.1",
  org.eclipse.uml2.uml;bundle-version="5.1.2",
- net.winklerweb.cdoxtext.runtime;bundle-version="0.1.0"
+ net.winklerweb.cdoxtext.runtime;bundle-version="0.1.0",
+ org.apache.commons.lang3;bundle-version="3.1.0",
+ org.apache.log4j
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator
