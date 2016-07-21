@@ -13,6 +13,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.cdo.util.connection.CDOConnectionSettings;
 import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
@@ -49,10 +51,15 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 		
 		if (treatAsNew || !currentProperties.equals(oldProperties.get(project))) {
 			BackgroundTasksAdapter.getManager().deregisterProject(project);
+			CDOConnectionManager.getInstance().unregister(project);
 		}
+		CDOConnectionManager.getInstance().register(project, convert(currentProperties));
 		BackgroundTasksAdapter.getManager().registerProject(project);
 
 		oldProperties.put(project, currentProperties);
 	}
 
+	private static CDOConnectionSettings convert(ProjectPropertiesDTO properties) {
+		return CDOConnectionSettings.builder().setHost(properties.getCdoHost()).setPort(properties.getCdoPort()).setRepo(properties.getCdoRepo()).build();
+	}
 }

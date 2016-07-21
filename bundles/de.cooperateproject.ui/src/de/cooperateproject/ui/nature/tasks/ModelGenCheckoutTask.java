@@ -3,6 +3,7 @@ package de.cooperateproject.ui.nature.tasks;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.transfer.CDOTransfer;
@@ -33,7 +34,7 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 	protected void handleChange(CDOViewInvalidationEvent cdoChangeEvent) {
 		try {
 			doFullCheckout();
-		} catch (CoreException e) {
+		} catch (Exception e) {
 			// TODO display an error in Eclipse problem view
 			LOGGER.warn("Full checkout did not succeed after a change in CDO has been detected.", e);
 		}
@@ -70,6 +71,8 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 		transfer.getModelTransferContext().registerTargetExtension("*", new XMIResourceFactoryImpl());
 		
 		transfer.perform();
+		
+		getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 	}
 
 

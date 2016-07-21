@@ -19,19 +19,6 @@ public class BackgroundTasksAdapter {
 	private static CooperateProjectBackgroundTaskManager createBackgroundTaskManager() {
 		CooperateProjectBackgroundTaskManager manager = new CooperateProjectBackgroundTaskManager();
 
-		manager.registerTaskFactory(new BackgroundTaskFactory<CDORepositoryAdderTask>() {
-
-			@Override
-			public CDORepositoryAdderTask create(IProject project, ProjectPropertiesDTO properties) {
-				return new CDORepositoryAdderTask(project, properties);
-			}
-
-			@Override
-			public Class<CDORepositoryAdderTask> getTaskType() {
-				return CDORepositoryAdderTask.class;
-			}
-		});
-
 		manager.registerTaskFactory(new BackgroundTaskFactory<ModelGenCheckoutTask>() {
 
 			@Override
@@ -55,18 +42,6 @@ public class BackgroundTasksAdapter {
 			@Override
 			public Class<LauncherFilesCheckoutTask> getTaskType() {
 				return LauncherFilesCheckoutTask.class;
-			}
-		});
-		
-		manager.registerTaskFactory(new BackgroundTaskFactory<TransformationBackgroundTask>() {
-			@Override
-			public TransformationBackgroundTask create(IProject project, ProjectPropertiesDTO properties) {
-				return new TransformationBackgroundTask(project, properties);
-			}
-
-			@Override
-			public Class<TransformationBackgroundTask> getTaskType() {
-				return TransformationBackgroundTask.class;
 			}
 		});
 

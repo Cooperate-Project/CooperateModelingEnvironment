@@ -1,24 +1,25 @@
 package de.cooperateproject.ui.editors.launcher;
 
 import java.io.IOException;
+import java.net.URI;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorLauncher;
 import org.eclipse.ui.PartInitException;
-
-import com.google.common.base.Optional;
 
 import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
+import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncherFactory;
 
-public class EditorLauncher implements IEditorLauncher {
+public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
 
 	private static final Logger LOGGER = Logger.getLogger(EditorLauncher.class);
 
@@ -29,12 +30,13 @@ public class EditorLauncher implements IEditorLauncher {
 			return;
 		}
 
-		// find workspace file
-		IFile[] foundFiles = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocation(file.makeAbsolute());
-		if (foundFiles.length != 1) {
+		// find workspace file	
+		URI fileURI = URIUtil.toURI(file);
+		IFile[] foundResources = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(fileURI);
+		if (foundResources == null || foundResources.length != 1) {
 			return;
 		}
-		IFile launcherFile = foundFiles[0];
+		IFile launcherFile = foundResources[0];
 
 		// determine preferred editor type
 		Optional<EditorType> preferredEditorType = getPreferredEditorType();
@@ -45,11 +47,11 @@ public class EditorLauncher implements IEditorLauncher {
 		
 		// open the editor
 		try {
-			java.util.Optional<IEditorLauncherFactory> editorLauncherFactory = EditorLauncherRegistry.getInstance().getFactory(preferredEditorType.get());
+			Optional<IEditorLauncherFactory> editorLauncherFactory = EditorLauncherRegistry.getInstance().getFactory(preferredEditorType.get());
 			if (!editorLauncherFactory.isPresent()) {
 				throw new PartInitException("No editor available for that type.");
 			}
-			de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile, preferredEditorType.get());
+			IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile, preferredEditorType.get());
 			launcher.openEditor();
 		} catch (IOException e) {
 			LOGGER.error("Could not read launcher file.", e);
@@ -69,11 +71,11 @@ public class EditorLauncher implements IEditorLauncher {
 		int result = dlg.open();
 		switch (result) {
 		case 1:
-			return Optional.fromNullable(EditorType.GRAPHICAL);
+			return Optional.ofNullable(EditorType.GRAPHICAL);
 		case 0:
-			return Optional.fromNullable(EditorType.TEXTUAL);
+			return Optional.ofNullable(EditorType.TEXTUAL);
 		default:
-			return Optional.absent();
+			return Optional.empty();
 		}
 	}
 

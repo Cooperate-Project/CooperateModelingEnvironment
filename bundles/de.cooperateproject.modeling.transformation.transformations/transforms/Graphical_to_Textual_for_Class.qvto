@@ -61,14 +61,14 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 	_static := operation.isStatic;
 	final := operation.isLeaf;
 	_abstract := operation.isAbstract;
-	type := operation.type.typeToTypeReference();
+	type := operation.type.map typeToTypeReference(result);
 	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
 	visibility := self.visibility.covert();
-	type := self.type.typeToTypeReference();
+	type := self.type.map typeToTypeReference(result);
 }
 
 mapping notation::Node::nodeToProperty() : cls::Attribute {
@@ -77,20 +77,30 @@ mapping notation::Node::nodeToProperty() : cls::Attribute {
 	visibility := prop.visibility.covert();
 	_static := prop.isStatic;
 	final := prop.isLeaf;
-	type := prop.type.typeToTypeReference();
+	type := prop.type.map typeToTypeReference(result);
 }
 
-/* we cannot do a mapping here, because we have to create a new
- * instance of the datatype for every call.
- */
-query uml::Type::typeToTypeReference() : cls::TypeReference
+mapping uml::Type::typeToTypeReference(parent : OclAny) : cls::TypeReference 
+disjuncts uml::Type::typeToPrimitiveTypeReference, uml::Type::typeToUMLTypeReference 
 {
-	if self.oclIsTypeOf(uml::PrimitiveType) then
-		return new DataTypeReference(self.oclAsType(uml::PrimitiveType))
-	endif;
-	return new UMLTypeReference(self)
 }
 
+
+mapping uml::Type::typeToPrimitiveTypeReference(parent : OclAny) : cls::DataTypeReference 
+	when {self.oclIsKindOf(uml::PrimitiveType)}
+{
+	type := self.oclAsType(uml::PrimitiveType).convert();
+	log("Primitive type: ", self);
+	log("Textual   type: ", result.type);
+}
+
+mapping uml::Type::typeToUMLTypeReference(parent : OclAny) : cls::UMLTypeReference
+	when {not self.oclIsKindOf(uml::PrimitiveType)}
+{
+	type := self;
+}
+
+/*
 constructor cls::DataTypeReference::DataTypeReference(umlType : uml::PrimitiveType) {
 	type := umlType.convert();
 }
@@ -98,6 +108,7 @@ constructor cls::DataTypeReference::DataTypeReference(umlType : uml::PrimitiveTy
 constructor cls::UMLTypeReference::UMLTypeReference(umlType : uml::Type) {
 	type := umlType;
 }
+*/
 
 mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
 disjuncts
@@ -118,7 +129,7 @@ mapping notation::Edge::edgeToCommentLink1(allEdges : OrderedSet(Edge)) : cls::C
 		)
 	}
 {
-	left := new UMLTypeReference(self.target.element.oclAsType(uml::Classifier));
+	left := self.target.element.oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
 	comment := self.source.element.oclAsType(uml::Comment);
 }
 
@@ -131,7 +142,7 @@ mapping notation::Edge::edgeToCommentLink2(allEdges : OrderedSet(Edge)) : cls::C
 		)
 	}
 {
-	left := new UMLTypeReference(self.source.element.oclAsType(uml::Classifier));
+	left := self.source.element.oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
 	comment := self.target.element.oclAsType(uml::Comment);
 }
 
@@ -144,8 +155,8 @@ mapping notation::Edge::edgeToGeneralization(allEdges : OrderedSet(Edge)) : cls:
 	var association := self.element.oclAsType(uml::Generalization);
 	assert error (association.source->size() = 1 and association.target->size() = 1) with log ('Generalizations must of exactly one source and one target.', association);
 	
-	left := new UMLTypeReference(association.specific);
-	right := new UMLTypeReference(association.general);
+	left := association.specific.map typeToUMLTypeReference(result);
+	right := association.general.map typeToUMLTypeReference(result);
 }
 
 mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls::Implementation
@@ -157,8 +168,8 @@ mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls:
 	var association := self.element.oclAsType(uml::InterfaceRealization);
 	assert error (association.source->size() = 1 and association.target->size() = 1) with log ('Interface realizations must of exactly one source and one target.', association);
 	
-	left := new UMLTypeReference(association.implementingClassifier);
-	right := new UMLTypeReference(association.contract);
+	left := association.implementingClassifier.map typeToUMLTypeReference(result);
+	right := association.contract.map typeToUMLTypeReference(result);
 }
 
 mapping notation::Edge::edgeToAggregationOrComposition(allEdges : OrderedSet(Edge)) : cls::Association
@@ -173,8 +184,8 @@ mapping notation::Edge::edgeToAggregationOrComposition(allEdges : OrderedSet(Edg
 	
 	referencedElement := association;
 	aggregationKind := association.memberEnd->at(1).aggregation.convert();
-	left := new UMLTypeReference(association.memberEnd->at(2).type);
-	right := new UMLTypeReference(association.memberEnd->at(1).type);
+	left := association.memberEnd->at(2).type.map typeToUMLTypeReference(result);
+	right := association.memberEnd->at(1).type.map typeToUMLTypeReference(result);
 	
 	properties := association.map edgeToAssociationProperties(true);
 	
@@ -194,8 +205,8 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	
 	referencedElement := association;
 	aggregationKind := association.memberEnd->at(1).aggregation.convert();
-	left := new UMLTypeReference(association.memberEnd->at(1).type);
-	right := new UMLTypeReference(association.memberEnd->at(2).type);
+	left := association.memberEnd->at(1).type.map typeToUMLTypeReference(result);
+	right := association.memberEnd->at(2).type.map typeToUMLTypeReference(result);
 	
 	properties := association.map edgeToAssociationProperties(false);
 }
@@ -233,7 +244,7 @@ mapping notation::Node::nodeToCommentConnector() : cls::CommentLink
 	var commentElement := self.element.oclAsType(uml::Comment);
 	assert error (commentElement.annotatedElement->size() = 1) with log ("Comments must not comment more than one element.", commentElement);
 	
-	left := new UMLTypeReference(commentElement.annotatedElement->any(true).oclAsType(uml::Classifier));
+	left := commentElement.annotatedElement->any(true).oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
 	comment := comment;
 }
 

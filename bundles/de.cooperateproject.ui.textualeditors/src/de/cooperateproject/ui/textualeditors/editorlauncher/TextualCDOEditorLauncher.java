@@ -26,9 +26,9 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
 	
 	private CDOTransaction cdoTransaction;
 
-	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType, PartSavedHandler savedHandler)
+	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType, savedHandler);
+		super(launcherFile, editorType);
 	}
 
 	@Override
@@ -48,10 +48,9 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
 		SaveablePostProcessingSupport postProcessingSupport = editor.getAdapter(SaveablePostProcessingSupport.class);
 		if (postProcessingSupport != null) {
 			postProcessingSupport.register(new SavePostProcessor() {
-				
 				@Override
 				public void processAfterSafe() throws Exception {
-					getPartSavedHandler().partSaved(editor);
+					handleEditorSave(editor);
 				}
 			});			
 		}

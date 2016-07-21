@@ -9,7 +9,9 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
@@ -64,6 +66,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 	private void recreateAllLauncherFiles() throws CoreException {
 		removeAllLauncherFiles();
 		createAllLauncherFiles();
+		getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 	}
 
 	private void removeAllLauncherFiles() throws CoreException {

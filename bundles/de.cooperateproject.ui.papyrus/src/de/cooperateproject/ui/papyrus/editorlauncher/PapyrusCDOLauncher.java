@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.explorer.repositories.CDORepository;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -24,7 +24,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
-import de.cooperateproject.ui.cdo.sessions.RepositoryManager;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
@@ -32,17 +31,15 @@ import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 public class PapyrusCDOLauncher extends EditorLauncher {
 
 	private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
-	private Optional<CDOCheckoutHandler> checkoutHandler = null;
-	
-	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType, PartSavedHandler savedHandler)
+
+	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType, savedHandler);
+		super(launcherFile, editorType);
 	}
 
 	@Override
 	protected IEditorPart doOpenEditor() throws PartInitException {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		checkoutHandler = createCDOCheckoutHandler();
 		IEditorInput editorInput = createEditorInput();
 		IEditorPart editorPart = IDE.openEditor(page, editorInput, EDITOR_ID_GRAPHICAL);
 		selectAppropriateModel(editorPart);
@@ -50,32 +47,20 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 		return editorPart;
 	}
 
-	@Override
-	protected void editorClosed(IWorkbenchPage p) {
-		if (checkoutHandler.isPresent()) {
-			checkoutHandler.get().delete();
-		}
-		super.editorClosed(p);
-	}
-
 	private void selectAppropriateModel(IEditorPart editorPart) throws PartInitException {
 		try {
 			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
 			EObject rootObject = getConcreteSyntaxModel().getRootElement();
-			if (checkoutHandler.isPresent()) {
-				final EObject checkedOutRootObject = checkoutHandler.get().getObject(rootObject);
-				final CDOObject checkedOutCDObject = CDOUtil.getCDOObject(checkedOutRootObject);
+			CDOObject rootObjectCDO = CDOUtil.getCDOObject(rootObject);
+			final CDOID rootObjectID = rootObjectCDO.cdoID();
 
-				IPageManager pageManager = servicesRegistry.getService(IPageManager.class);
-				Optional<CDOObject> pagedElement = pageManager.allPages().stream().filter(p -> p instanceof EObject)
-						.map(p -> (EObject) p).map(CDOUtil::getCDOObject)
-						.filter(o -> checkedOutCDObject.cdoID().equals(o.cdoID())).findFirst();
+			IPageManager pageManager = servicesRegistry.getService(IPageManager.class);
+			Optional<CDOObject> pagedElement = pageManager.allPages().stream().filter(p -> p instanceof EObject)
+					.map(p -> (EObject) p).map(CDOUtil::getCDOObject)
+					.filter(o -> rootObjectID.equals(o.cdoID())).findFirst();
 
-				if (pagedElement.isPresent()) {
-					rootObject = pagedElement.get();
-				} else {
-					rootObject = checkedOutRootObject;
-				}
+			if (pagedElement.isPresent()) {
+				rootObject = pagedElement.get();
 			}
 
 			OpenElementService openElementService = servicesRegistry.getService(OpenElementService.class);
@@ -88,7 +73,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 	private void registerPostSaveListener(IEditorPart editorPart) throws PartInitException {
 		try {
 			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
-			SaveEventListener saveListener = new SaveEventListener(getPartSavedHandler());
+			SaveEventListener saveListener = new SaveEventListener(this::handleEditorSave);
 			servicesRegistry.getService(ILifeCycleEventsProvider.class).addPostDoSaveListener(saveListener);
 		} catch (ServiceException e) {
 			throw new PartInitException("Could not add save listener.", e);
@@ -102,17 +87,6 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 		}
 		servicesRegistry.startRegistry();
 		return servicesRegistry;
-	}
-
-	private Optional<CDOCheckoutHandler> createCDOCheckoutHandler() {
-		EObject rootElement = getConcreteSyntaxModel().getRootElement();
-		if (rootElement.eResource() instanceof CDOResource) {
-			Optional<CDORepository> repo = getRepository();
-			if (repo.isPresent()) {
-				return Optional.of(new CDOCheckoutHandler(repo.get()));
-			}
-		}
-		return Optional.empty();
 	}
 
 	private IEditorInput createEditorInput() {
@@ -141,11 +115,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 
 	private Resource createCDOResource(EObject rootelement) {
 		CDOResource cdoResource = (CDOResource) rootelement.eResource();
-		return (CDOResource) checkoutHandler.get().getObject(cdoResource.cdoID());
-	}
-
-	private Optional<CDORepository> getRepository() {
-		return RepositoryManager.getInstance().getRepository(getCDOSession());
+		return (CDOResource) getCDOView().getObject(cdoResource.cdoID());
 	}
 
 }

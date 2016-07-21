@@ -16,7 +16,7 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.io.IOUtil;
 
-import de.cooperateproject.ui.cdo.util.CDOHelper;
+import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 
 public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgroundTask {
@@ -61,8 +61,8 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 
 		cdoView.removeListener(cdoChangeListener);
 
-		IOUtil.closeSilent(cdoSession);
 		IOUtil.closeSilent(cdoView);
+		CDOConnectionManager.getInstance().releaseSession(cdoSession);
 		repositoryFolder = null;
 	}
 
@@ -77,35 +77,29 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 	}
 
 	private CDOResourceFolder createCDOProjectFolder() throws CommitException {
-		String cdoHost = getProperties().getCdoHost();
-		int cdoPort = getProperties().getCdoPort();
-		String cdoRepo = getProperties().getCdoRepo();
 		String cdoRepoPath = getProject().getName();
-		return createCDOResource(cdoHost, cdoPort, cdoRepo, cdoRepoPath, cdoChangeListener);
+		return createCDOResource(getProject(), cdoRepoPath, cdoChangeListener);
 	}
 
-	private static CDOResourceFolder createCDOResource(String host, int port, String repository, String path,
+	private static CDOResourceFolder createCDOResource(IProject project, String cdoRepoPath,
 			IListener listener) throws CommitException {
-		CDOSession cdoSession = null;
-		CDOView cdoView = null;
+		CDOSession cdoSession = CDOConnectionManager.getInstance().acquireSession(project);
 		CDOResourceFolder result = null;
 		try {
-			cdoSession = CDOHelper.createSession(host, port, repository);
-			cdoView = cdoSession.openView();
+			CDOView cdoView = cdoSession.openView();
 			cdoView.addListener(listener);
 			cdoView.options().addChangeSubscriptionPolicy(CDOAdapterPolicy.ALL);
-			if (!cdoView.hasResource(path)) {
+			if (!cdoView.hasResource(cdoRepoPath)) {
 				CDOTransaction transaction = cdoSession.openTransaction();
-				transaction.createResourceFolder(path);
+				transaction.createResourceFolder(cdoRepoPath);
 				transaction.commit();
 				transaction.close();
 			}
-			result = cdoView.getResourceFolder(path);
+			result = cdoView.getResourceFolder(cdoRepoPath);
 			return result;
 		} finally {
 			if (result == null) {
-				IOUtil.closeSilent(cdoView);
-				IOUtil.closeSilent(cdoSession);
+				CDOConnectionManager.getInstance().releaseSession(cdoSession);
 			}
 		}
 	}

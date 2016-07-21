@@ -3,15 +3,14 @@ package de.cooperateproject.ui.editors.launcher.extensions;
 import java.io.IOException;
 import java.util.Collections;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.cdo.session.CDOSession;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -19,28 +18,26 @@ import org.eclipse.ui.PartInitException;
 import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 
-import de.cooperateproject.ui.cdo.sessions.RepositoryManager;
+import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
+import de.cooperateproject.ui.editors.launcher.extensions.TransformationManager.TransformationException;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 
 public abstract class EditorLauncher implements IEditorLauncher {
 	
-	@FunctionalInterface
-	public interface PartSavedHandler {
-		public void partSaved(IEditorPart part);
-	}
-	
-	private final PartSavedHandler savedHandler;
-	private final CDOSession cdoSession;
+	private static final Logger LOGGER = Logger.getLogger(EditorLauncher.class);
+	private final CDOCheckout cdoCheckout;
 	private final CDOView cdoView;
 	private final ConcreteSyntaxModel concreteSyntaxModel;
+	private final TransformationManager transformationManager;
 	private DisposedListener disposeListener;
 	
-	public EditorLauncher(IFile launcherFile, EditorType editorType, PartSavedHandler savedHandler) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		cdoSession = openCDOSession(launcherFile.getProject());
-		cdoView = cdoSession.openView();
+	public EditorLauncher(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+		cdoCheckout = CDOConnectionManager.getInstance().createCDOCheckout(launcherFile.getProject(), true);
+		cdoCheckout.open();
+		cdoView = cdoCheckout.openView();
 		Diagram launcherModel = loadDiagram(cdoView, launcherFile);
 		Optional<ConcreteSyntaxModel> model = selectConcreteSyntaxModel(launcherModel, editorType);
 		if (!model.isPresent()) {
@@ -48,7 +45,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
 					"The concrete syntax type " + editorType + " is not available.");
 		}
 		concreteSyntaxModel = model.get();
-		this.savedHandler = savedHandler;
+		transformationManager = new TransformationManager(cdoCheckout);
 	}
 	
 	@Override
@@ -59,16 +56,12 @@ public abstract class EditorLauncher implements IEditorLauncher {
 
 	protected abstract IEditorPart doOpenEditor() throws PartInitException;
 	
-	protected PartSavedHandler getPartSavedHandler() {
-		return savedHandler;
+	protected CDOView getCDOView() {
+		return cdoView;
 	}
 	
 	protected ConcreteSyntaxModel getConcreteSyntaxModel() {
 		return concreteSyntaxModel;
-	}
-	
-	protected CDOSession getCDOSession() {
-		return cdoSession;
 	}
 	
 	private void registerListener(IEditorPart editorPart) {
@@ -78,16 +71,17 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	
 	protected void editorClosed(IWorkbenchPage p) {
 		p.removePartListener(disposeListener);
-		closeCDOSession(cdoSession, cdoView);
-	}
-
-	private static CDOSession openCDOSession(IProject project) {
-		return RepositoryManager.getInstance().getSession(project);
+		cdoCheckout.close();
+		CDOConnectionManager.getInstance().deleteCDOCheckout(cdoCheckout);
 	}
 	
-	private static void closeCDOSession(CDOSession cdoSession, CDOView cdoView) {
-		IOUtil.closeSilent(cdoView);
-		RepositoryManager.getInstance().releaseSession(cdoSession);
+	protected void handleEditorSave(IEditorPart editorPart) {
+		try {
+			transformationManager.handleEditorSave(editorPart.getEditorInput());
+		} catch (TransformationException e) {
+			// TODO inform user
+			LOGGER.error("Failed to handle editor save event.", e);
+		}
 	}
 	
 	private static Diagram loadDiagram(CDOView cdoView, IFile launcherFile) throws IOException {
@@ -107,4 +101,5 @@ public abstract class EditorLauncher implements IEditorLauncher {
 		return Iterables.tryFind(launcherModel.getConcreteSyntaxModels(), m -> editorType.getSupportedSyntaxModels()
 				.stream().anyMatch(t -> t.isAssignableFrom(m.getClass())));
 	}
+
 }

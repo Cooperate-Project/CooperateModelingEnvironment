@@ -5,5 +5,10 @@ Bundle-SymbolicName: de.cooperateproject.cdo.util
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore,
- org.eclipse.emf.cdo
-Export-Package: de.cooperateproject.cdo.util.utils
+ org.eclipse.emf.cdo,
+ org.eclipse.core.resources,
+ org.eclipse.emf.cdo.explorer,
+ com.google.guava;bundle-version="15.0.0",
+ org.apache.commons.lang3;bundle-version="3.1.0"
+Export-Package: de.cooperateproject.cdo.util.connection,
+ de.cooperateproject.cdo.util.utils
