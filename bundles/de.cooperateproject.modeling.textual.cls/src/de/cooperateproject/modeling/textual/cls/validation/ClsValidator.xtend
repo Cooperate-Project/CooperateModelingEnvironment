@@ -3,8 +3,12 @@
  */
 package de.cooperateproject.modeling.textual.cls.validation
 
-import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.Method
+
 
 import org.eclipse.xtext.validation.Check
 
@@ -15,11 +19,36 @@ import org.eclipse.xtext.validation.Check
  */
 class ClsValidator extends AbstractClsValidator {
 
-  public static val NO_REFERENCE = 'no_reference'
+  public static val NO_CLASS_REFERENCE = 'no_class_reference'
+  public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
+  public static val NO_PROPERTY_REFERENCE = 'no_property_reference'  
+  public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
+  
 	@Check
-	def checkIfClassifierExists(Classifier classifier) {
+	def checkIfClassExists(Class classifier) {
 		if (classifier.referencedElement.model == null) {
-			error("No Referenced UML Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_REFERENCE)
+			error("No Referenced UML-Class Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_CLASS_REFERENCE)
+		}
+	}
+	
+	@Check
+	def checkIfInterfaceExists(Interface classifier) {
+		if (classifier.referencedElement.model == null) {
+			error("No Referenced UML-Interface Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_INTERFACE_REFERENCE)
+		}
+	}
+	
+	@Check
+	def checkIfPropertyExists(Attribute attribute) {
+		if (attribute.referencedElement.model == null) {
+			error("No Referenced UML-Property", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_PROPERTY_REFERENCE)
+		}
+	}
+	
+	@Check
+	def checkIfOperationExists(Method method) {
+		if (method.referencedElement.model == null) {
+			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_OPERATION_REFERENCE)
 		}
 	}
 }
