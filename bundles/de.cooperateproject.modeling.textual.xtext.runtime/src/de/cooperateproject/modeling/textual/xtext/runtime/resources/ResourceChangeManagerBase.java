@@ -46,7 +46,7 @@ public abstract class ResourceChangeManagerBase implements IResourceChangeManage
 		}
 
 		if (observedResourceSet != null) {
-			cleanupForOldResourceSet(rs);
+			cleanupForOldResourceSet(observedResourceSet);
 		}
 
 		observedResourceSet = rs;
