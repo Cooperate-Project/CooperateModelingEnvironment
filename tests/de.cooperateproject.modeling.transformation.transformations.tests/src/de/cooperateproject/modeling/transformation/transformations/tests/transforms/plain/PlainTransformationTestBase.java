@@ -2,12 +2,16 @@ package de.cooperateproject.modeling.transformation.transformations.tests.transf
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
@@ -15,6 +19,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.utils.EMFComparePrettyPrinter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,7 +38,6 @@ import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
 import de.cooperateproject.modeling.transformation.transformations.tests.util.Log4JLogger;
@@ -57,7 +62,6 @@ public abstract class PlainTransformationTestBase {
 			OCL.initialize(null);
 			NotationPackage.eINSTANCE.eClass();
 			StylePackage.eINSTANCE.eClass();
-			ClsPackage.eINSTANCE.eClass();
 		}
 	}
 	
@@ -120,6 +124,20 @@ public abstract class PlainTransformationTestBase {
 	public static URI createResourceModelURI(String filename) {
 		String pathName = String.format("/%s/models/%s", Constants.PLUGIN_ID, filename);
 		return createPlatformURI(pathName);
+	}
+	
+	protected static String prettyPrint(Comparison comparison) throws UnsupportedEncodingException {
+		ByteArrayOutputStream baos = null;
+		PrintStream ps = null;
+		try {
+			baos = new ByteArrayOutputStream();
+			ps = new PrintStream(baos);
+			EMFComparePrettyPrinter.printDifferences(comparison, ps);
+			return new String(baos.toByteArray(), "UTF-8");
+		} finally {
+			IOUtils.closeQuietly(ps);
+			IOUtils.closeQuietly(baos);
+		}
 	}
 	
 	private static URI createPlatformURI(String pathName) {
