@@ -1782,7 +1782,7 @@ rulePrimitiveType returns [Enumerator current=null]
 ruleAggregationKind returns [Enumerator current=null] 
     @init { enterRule(); }
     @after { leaveRule(); }:
-((	enumLiteral_0='ass' 
+((	enumLiteral_0='asc' 
 	{
         $current = grammarAccess.getAggregationKindAccess().getNONEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_0, grammarAccess.getAggregationKindAccess().getNONEEnumLiteralDeclaration_0()); 

@@ -1164,26 +1164,26 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.AggregationKind");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cNONEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cNONEAssKeyword_0_0 = (Keyword)cNONEEnumLiteralDeclaration_0.eContents().get(0);
+		private final Keyword cNONEAscKeyword_0_0 = (Keyword)cNONEEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cAGGREGATIONEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cAGGREGATIONAggKeyword_1_0 = (Keyword)cAGGREGATIONEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cCOMPOSITIONEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cCOMPOSITIONComKeyword_2_0 = (Keyword)cCOMPOSITIONEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum AggregationKind:
-		//	NONE='ass'
+		//	NONE='asc'
 		//	| AGGREGATION='agg'
 		//	| COMPOSITION='com';
 		public EnumRule getRule() { return rule; }
 
-		//NONE='ass' | AGGREGATION='agg' | COMPOSITION='com'
+		//NONE='asc' | AGGREGATION='agg' | COMPOSITION='com'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//NONE='ass'
+		//NONE='asc'
 		public EnumLiteralDeclaration getNONEEnumLiteralDeclaration_0() { return cNONEEnumLiteralDeclaration_0; }
 
-		//'ass'
-		public Keyword getNONEAssKeyword_0_0() { return cNONEAssKeyword_0_0; }
+		//'asc'
+		public Keyword getNONEAscKeyword_0_0() { return cNONEAscKeyword_0_0; }
 
 		//AGGREGATION='agg'
 		public EnumLiteralDeclaration getAGGREGATIONEnumLiteralDeclaration_1() { return cAGGREGATIONEnumLiteralDeclaration_1; }
@@ -1582,7 +1582,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum AggregationKind:
-	//	NONE='ass'
+	//	NONE='asc'
 	//	| AGGREGATION='agg'
 	//	| COMPOSITION='com';
 	public AggregationKindElements getAggregationKindAccess() {

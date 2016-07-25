@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalClsParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'~'", "'-'", "'#'", "'+'", "'<'", "'>'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'ass'", "'agg'", "'com'", "'@startclass'", "'@endclass'", "'import'", "'.'", "'class'", "'{'", "'}'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'note'", "'['", "']'", "'|'", "'..'", "'abstract'", "'static'", "'final'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'~'", "'-'", "'#'", "'+'", "'<'", "'>'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'asc'", "'agg'", "'com'", "'@startclass'", "'@endclass'", "'import'", "'.'", "'class'", "'{'", "'}'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'note'", "'['", "']'", "'|'", "'..'", "'abstract'", "'static'", "'final'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -3133,13 +3133,13 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregationKind__Alternatives"
-    // InternalCls.g:1055:1: rule__AggregationKind__Alternatives : ( ( ( 'ass' ) ) | ( ( 'agg' ) ) | ( ( 'com' ) ) );
+    // InternalCls.g:1055:1: rule__AggregationKind__Alternatives : ( ( ( 'asc' ) ) | ( ( 'agg' ) ) | ( ( 'com' ) ) );
     public final void rule__AggregationKind__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:1059:1: ( ( ( 'ass' ) ) | ( ( 'agg' ) ) | ( ( 'com' ) ) )
+            // InternalCls.g:1059:1: ( ( ( 'asc' ) ) | ( ( 'agg' ) ) | ( ( 'com' ) ) )
             int alt11=3;
             switch ( input.LA(1) ) {
             case 27:
@@ -3166,14 +3166,14 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
             switch (alt11) {
                 case 1 :
-                    // InternalCls.g:1060:1: ( ( 'ass' ) )
+                    // InternalCls.g:1060:1: ( ( 'asc' ) )
                     {
-                    // InternalCls.g:1060:1: ( ( 'ass' ) )
-                    // InternalCls.g:1061:1: ( 'ass' )
+                    // InternalCls.g:1060:1: ( ( 'asc' ) )
+                    // InternalCls.g:1061:1: ( 'asc' )
                     {
                      before(grammarAccess.getAggregationKindAccess().getNONEEnumLiteralDeclaration_0()); 
-                    // InternalCls.g:1062:1: ( 'ass' )
-                    // InternalCls.g:1062:3: 'ass'
+                    // InternalCls.g:1062:1: ( 'asc' )
+                    // InternalCls.g:1062:3: 'asc'
                     {
                     match(input,27,FOLLOW_2); 
 
