@@ -226,43 +226,6 @@ public interface ClsPackage extends EPackage {
 	int DATA_TYPE_REFERENCE_OPERATION_COUNT = TYPE_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierReferenceImpl <em>Classifier Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierReferenceImpl
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassifierReference()
-	 * @generated
-	 */
-	int CLASSIFIER_REFERENCE = 4;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_REFERENCE__TYPE = TYPE_REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Classifier Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_REFERENCE_FEATURE_COUNT = TYPE_REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Classifier Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_REFERENCE_OPERATION_COUNT = TYPE_REFERENCE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.UMLTypeReferenceImpl <em>UML Type Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,7 +233,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getUMLTypeReference()
 	 * @generated
 	 */
-	int UML_TYPE_REFERENCE = 5;
+	int UML_TYPE_REFERENCE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -307,7 +270,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getUMLReferencingElement()
 	 * @generated
 	 */
-	int UML_REFERENCING_ELEMENT = 6;
+	int UML_REFERENCING_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -344,7 +307,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 7;
+	int NAMED_ELEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -390,7 +353,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getNamedElementLongName()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_LONG_NAME = 8;
+	int NAMED_ELEMENT_LONG_NAME = 7;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -445,7 +408,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassifier()
 	 * @generated
 	 */
-	int CLASSIFIER = 9;
+	int CLASSIFIER = 8;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -518,7 +481,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClass_()
 	 * @generated
 	 */
-	int CLASS = 10;
+	int CLASS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -600,7 +563,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getInterface()
 	 * @generated
 	 */
-	int INTERFACE = 11;
+	int INTERFACE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -673,7 +636,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 12;
+	int PROPERTY = 11;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -755,7 +718,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getMember()
 	 * @generated
 	 */
-	int MEMBER = 13;
+	int MEMBER = 12;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -837,7 +800,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAttribute()
 	 * @generated
 	 */
-	int ATTRIBUTE = 14;
+	int ATTRIBUTE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -919,7 +882,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getMethod()
 	 * @generated
 	 */
-	int METHOD = 15;
+	int METHOD = 14;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1019,7 +982,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 16;
+	int PARAMETER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1101,7 +1064,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getConnector()
 	 * @generated
 	 */
-	int CONNECTOR = 17;
+	int CONNECTOR = 16;
 
 	/**
 	 * The number of structural features of the '<em>Connector</em>' class.
@@ -1129,7 +1092,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getTypedConnector()
 	 * @generated
 	 */
-	int TYPED_CONNECTOR = 18;
+	int TYPED_CONNECTOR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1175,7 +1138,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociation()
 	 * @generated
 	 */
-	int ASSOCIATION = 19;
+	int ASSOCIATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1257,7 +1220,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationEnd()
 	 * @generated
 	 */
-	int ASSOCIATION_END = 20;
+	int ASSOCIATION_END = 19;
 
 	/**
 	 * The number of structural features of the '<em>Association End</em>' class.
@@ -1285,7 +1248,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassifierAssociationEnd()
 	 * @generated
 	 */
-	int CLASSIFIER_ASSOCIATION_END = 21;
+	int CLASSIFIER_ASSOCIATION_END = 20;
 
 	/**
 	 * The number of structural features of the '<em>Classifier Association End</em>' class.
@@ -1313,7 +1276,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getGeneralization()
 	 * @generated
 	 */
-	int GENERALIZATION = 22;
+	int GENERALIZATION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1359,7 +1322,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getImplementation()
 	 * @generated
 	 */
-	int IMPLEMENTATION = 23;
+	int IMPLEMENTATION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1405,7 +1368,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
 	 * @generated
 	 */
-	int COMMENT_LINK = 24;
+	int COMMENT_LINK = 23;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference.
@@ -1460,7 +1423,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationProperties()
 	 * @generated
 	 */
-	int ASSOCIATION_PROPERTIES = 25;
+	int ASSOCIATION_PROPERTIES = 24;
 
 	/**
 	 * The feature id for the '<em><b>Cardinality Left</b></em>' containment reference.
@@ -1515,7 +1478,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCardinality()
 	 * @generated
 	 */
-	int CARDINALITY = 26;
+	int CARDINALITY = 25;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -1561,7 +1524,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentable()
 	 * @generated
 	 */
-	int COMMENTABLE = 27;
+	int COMMENTABLE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference.
@@ -1598,7 +1561,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getVisibility()
 	 * @generated
 	 */
-	int VISIBILITY = 28;
+	int VISIBILITY = 27;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.PrimitiveType <em>Primitive Type</em>}' enum.
@@ -1608,7 +1571,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 29;
+	int PRIMITIVE_TYPE = 28;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.ReadingDirection <em>Reading Direction</em>}' enum.
@@ -1618,7 +1581,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getReadingDirection()
 	 * @generated
 	 */
-	int READING_DIRECTION = 30;
+	int READING_DIRECTION = 29;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}' enum.
@@ -1628,7 +1591,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAggregationKind()
 	 * @generated
 	 */
-	int AGGREGATION_KIND = 31;
+	int AGGREGATION_KIND = 30;
 
 
 	/**
@@ -1736,27 +1699,6 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDataTypeReference_Type();
-
-	/**
-	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierReference <em>Classifier Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Classifier Reference</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierReference
-	 * @generated
-	 */
-	EClass getClassifierReference();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierReference#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierReference#getType()
-	 * @see #getClassifierReference()
-	 * @generated
-	 */
-	EReference getClassifierReference_Type();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference <em>UML Type Reference</em>}'.
@@ -2412,24 +2354,6 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATA_TYPE_REFERENCE__TYPE = eINSTANCE.getDataTypeReference_Type();
-
-		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierReferenceImpl <em>Classifier Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierReferenceImpl
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassifierReference()
-		 * @generated
-		 */
-		EClass CLASSIFIER_REFERENCE = eINSTANCE.getClassifierReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASSIFIER_REFERENCE__TYPE = eINSTANCE.getClassifierReference_Type();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.UMLTypeReferenceImpl <em>UML Type Reference</em>}' class.

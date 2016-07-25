@@ -49,15 +49,6 @@ public interface ClsFactory extends EFactory {
 	DataTypeReference createDataTypeReference();
 
 	/**
-	 * Returns a new object of class '<em>Classifier Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Classifier Reference</em>'.
-	 * @generated
-	 */
-	ClassifierReference createClassifierReference();
-
-	/**
 	 * Returns a new object of class '<em>UML Type Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

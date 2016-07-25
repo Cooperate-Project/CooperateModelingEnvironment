@@ -33,13 +33,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" unique="false" lowerBound="1"
         eType="#//PrimitiveType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassifierReference" eSuperTypes="#//TypeReference #//ClassifierAssociationEnd">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1">
-      <eGenericType eClassifier="#//Classifier">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UMLTypeReference" eSuperTypes="#//TypeReference #//ClassifierAssociationEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
   </eClassifiers>
