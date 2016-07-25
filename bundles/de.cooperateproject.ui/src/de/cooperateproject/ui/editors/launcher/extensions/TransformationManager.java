@@ -42,7 +42,7 @@ public class TransformationManager {
 	public TransformationManager(CDOCheckout cdoCheckout) {
 		this.cdoCheckout = cdoCheckout;
 		CDOBranch branch = cdoCheckout.getView().getBranch();
-		lastMergeTimeBranch = branch.getTimeStamp();
+		lastMergeTimeBranch = getTimestampOfBranch(cdoCheckout, branch);
 		lastMergeTimeMain = getTimestampOfBranch(cdoCheckout, CDOBranch.MAIN_BRANCH_ID);
 	}
 	
@@ -67,25 +67,34 @@ public class TransformationManager {
 			MergeHelper.merge(mergeTransaction, sourceToRevision, sourceFromRevision, targetFromRevision, new DefaultCDOMerger.PerFeature.ManyValued());
 			CDOCommitInfo mergeCommitInfo = mergeTransaction.commit();
 			mergeCommitInfo.getTimeStamp();
-			lastMergeTimeBranch = cdoCheckout.getView().getLastUpdateTime();
-			lastMergeTimeMain = mergeCommitInfo.getTimeStamp();
+			lastMergeTimeBranch = getTimestampOfBranch(cdoCheckout, editorBranch);
+			lastMergeTimeMain = getTimestampOfBranch(cdoCheckout, mainBranch);
 		} finally {
 			IOUtil.closeSilent(mergeTransaction);
 		}
 	}
 	
+	private static long getTimestampOfBranch(CDOCheckout cdoCheckout, CDOBranch branch) {
+		return getTimestampOfBranch(cdoCheckout, branch.getID());
+	}
+	
 	private static long getTimestampOfBranch(CDOCheckout cdoCheckout, int branchId) {
-		CDOView view = cdoCheckout.getView().getSession().openView(branchId);
-		try {
+		if (cdoCheckout.getView().getBranch().getID() == branchId) {
+			CDOView view = cdoCheckout.getView();
 			return view.getLastUpdateTime();
-		} finally {
-			IOUtil.closeSilent(view);
+		} else {
+			CDOView view = cdoCheckout.getView().getSession().openView(branchId);			
+			try {
+				return view.getLastUpdateTime();
+			} finally {
+				IOUtil.closeSilent(view);
+			}
 		}
 	}
 
 	private void triggerTransformation(IEditorInput editorInput) throws IOException, CommitException {
 		URI changedResourceURI = new EditorInputSwitch().doSwitch(editorInput);
-		URI normalizedURI = normalizeURI(changedResourceURI);
+		URI normalizedURI = normalizeURI(changedResourceURI, cdoCheckout.getURI());
 		triggerTransformation(normalizedURI);
 	}
 	
@@ -125,13 +134,17 @@ public class TransformationManager {
 		return r.getContents().stream().map(o -> r.getURIFragment(o)).map(f -> normalizedURI.trimFragment().appendFragment(f)).collect(Collectors.toSet());
 	}
 	
-	private static URI normalizeURI(URI originalURI) {
-		Validate.isTrue(originalURI.scheme().startsWith(CDOProtocolConstants.PROTOCOL_NAME) && originalURI.scheme().endsWith("checkout"));
+	private static URI normalizeURI(URI originalURI, URI cdoBaseUri) {
+		Validate.isTrue(originalURI.scheme().startsWith(CDOProtocolConstants.PROTOCOL_NAME));
 		
 		URI processedURI = originalURI;		
 		if ("di".equals(processedURI.fileExtension())) {
 			processedURI = processedURI.trimFileExtension().appendFileExtension("notation");
 		}
+		
+		URI currentBaseURI = processedURI.trimFileExtension().trimQuery().trimFragment().trimSegments(processedURI.segmentCount());
+		processedURI = processedURI.deresolve(currentBaseURI).resolve(cdoBaseUri);
+		
 		return processedURI;
 		
 	}
