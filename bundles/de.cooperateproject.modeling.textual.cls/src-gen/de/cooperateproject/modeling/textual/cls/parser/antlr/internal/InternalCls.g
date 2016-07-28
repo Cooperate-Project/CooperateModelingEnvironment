@@ -1671,10 +1671,10 @@ ruleCardinalityBound returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 ruleVisibility returns [Enumerator current=null] 
     @init { enterRule(); }
     @after { leaveRule(); }:
-((	enumLiteral_0='~' 
+((	enumLiteral_0='+' 
 	{
-        $current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0()); 
+        $current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
     }
 )
     |(	enumLiteral_1='-' 
@@ -1689,10 +1689,10 @@ ruleVisibility returns [Enumerator current=null]
         newLeafNode(enumLiteral_2, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_2()); 
     }
 )
-    |(	enumLiteral_3='+' 
+    |(	enumLiteral_3='~' 
 	{
-        $current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_3, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); 
+        $current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_3, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3()); 
     }
 ));
 

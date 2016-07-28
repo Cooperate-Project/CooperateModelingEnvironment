@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalClsParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'~'", "'-'", "'#'", "'+'", "'<'", "'>'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'ass'", "'agg'", "'com'", "'@startclass'", "'@endclass'", "'import'", "'.'", "'class'", "'{'", "'}'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'note'", "'['", "']'", "'|'", "'..'", "'abstract'", "'static'", "'final'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'-'", "'#'", "'~'", "'<'", "'>'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'ass'", "'agg'", "'com'", "'@startclass'", "'@endclass'", "'import'", "'.'", "'class'", "'{'", "'}'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'note'", "'['", "']'", "'|'", "'..'", "'abstract'", "'static'", "'final'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -2642,13 +2642,13 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Visibility__Alternatives"
-    // InternalCls.g:920:1: rule__Visibility__Alternatives : ( ( ( '~' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '+' ) ) );
+    // InternalCls.g:920:1: rule__Visibility__Alternatives : ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) );
     public final void rule__Visibility__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:924:1: ( ( ( '~' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '+' ) ) )
+            // InternalCls.g:924:1: ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) )
             int alt8=4;
             switch ( input.LA(1) ) {
             case 12:
@@ -2680,20 +2680,20 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
             switch (alt8) {
                 case 1 :
-                    // InternalCls.g:925:1: ( ( '~' ) )
+                    // InternalCls.g:925:1: ( ( '+' ) )
                     {
-                    // InternalCls.g:925:1: ( ( '~' ) )
-                    // InternalCls.g:926:1: ( '~' )
+                    // InternalCls.g:925:1: ( ( '+' ) )
+                    // InternalCls.g:926:1: ( '+' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0()); 
-                    // InternalCls.g:927:1: ( '~' )
-                    // InternalCls.g:927:3: '~'
+                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                    // InternalCls.g:927:1: ( '+' )
+                    // InternalCls.g:927:3: '+'
                     {
                     match(input,12,FOLLOW_2); 
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0()); 
+                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
 
                     }
 
@@ -2743,20 +2743,20 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // InternalCls.g:946:6: ( ( '+' ) )
+                    // InternalCls.g:946:6: ( ( '~' ) )
                     {
-                    // InternalCls.g:946:6: ( ( '+' ) )
-                    // InternalCls.g:947:1: ( '+' )
+                    // InternalCls.g:946:6: ( ( '~' ) )
+                    // InternalCls.g:947:1: ( '~' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); 
-                    // InternalCls.g:948:1: ( '+' )
-                    // InternalCls.g:948:3: '+'
+                     before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3()); 
+                    // InternalCls.g:948:1: ( '~' )
+                    // InternalCls.g:948:3: '~'
                     {
                     match(input,15,FOLLOW_2); 
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); 
+                     after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3()); 
 
                     }
 

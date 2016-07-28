@@ -4,7 +4,9 @@
 package de.cooperateproject.modeling.textual.cls.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.resource.ILocationInFileProvider;
 
+import de.cooperateproject.modeling.textual.cls.ui.inFile.ClsLocationInFileProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 
 /**
@@ -19,4 +21,9 @@ public class ClsUiModule extends de.cooperateproject.modeling.textual.cls.ui.Abs
 	public Class<? extends org.eclipse.xtext.ui.editor.XtextEditor> bindXtextEditor() {
 		return CooperateCDOXtextEditor.class;
 	}
+	
+	 public Class<? extends ILocationInFileProvider> 
+	      bindILocationInFileProvider() {
+	    return ClsLocationInFileProvider.class;
+	  }
 }

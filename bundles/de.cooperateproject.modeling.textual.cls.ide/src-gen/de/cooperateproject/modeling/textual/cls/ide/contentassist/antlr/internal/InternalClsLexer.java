@@ -101,10 +101,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:12:7: ( '~' )
-            // InternalCls.g:12:9: '~'
+            // InternalCls.g:12:7: ( '+' )
+            // InternalCls.g:12:9: '+'
             {
-            match('~'); 
+            match('+'); 
 
             }
 
@@ -161,10 +161,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:15:7: ( '+' )
-            // InternalCls.g:15:9: '+'
+            // InternalCls.g:15:7: ( '~' )
+            // InternalCls.g:15:9: '~'
             {
-            match('+'); 
+            match('~'); 
 
             }
 
@@ -1807,7 +1807,7 @@ public class InternalClsLexer extends Lexer {
     static final String DFA12_specialS =
         "\1\2\36\uffff\1\0\1\1\u0080\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\43\2\42\2\43\1\42\22\43\1\42\1\43\1\37\1\4\3\43\1\40\1\25\1\26\1\1\1\5\1\27\1\3\1\21\1\41\12\36\1\24\1\43\1\6\1\43\1\7\1\43\1\20\32\35\1\31\1\43\1\32\1\34\1\35\1\43\1\17\1\13\1\14\1\12\1\35\1\16\2\35\1\11\2\35\1\15\1\35\1\30\4\35\1\10\7\35\1\22\1\33\1\23\1\2\uff81\43",
+            "\11\43\2\42\2\43\1\42\22\43\1\42\1\43\1\37\1\4\3\43\1\40\1\25\1\26\1\1\1\2\1\27\1\3\1\21\1\41\12\36\1\24\1\43\1\6\1\43\1\7\1\43\1\20\32\35\1\31\1\43\1\32\1\34\1\35\1\43\1\17\1\13\1\14\1\12\1\35\1\16\2\35\1\11\2\35\1\15\1\35\1\30\4\35\1\10\7\35\1\22\1\33\1\23\1\5\uff81\43",
             "",
             "",
             "",
@@ -2032,13 +2032,13 @@ public class InternalClsLexer extends Lexer {
                         s = -1;
                         if ( (LA12_0=='*') ) {s = 1;}
 
-                        else if ( (LA12_0=='~') ) {s = 2;}
+                        else if ( (LA12_0=='+') ) {s = 2;}
 
                         else if ( (LA12_0=='-') ) {s = 3;}
 
                         else if ( (LA12_0=='#') ) {s = 4;}
 
-                        else if ( (LA12_0=='+') ) {s = 5;}
+                        else if ( (LA12_0=='~') ) {s = 5;}
 
                         else if ( (LA12_0=='<') ) {s = 6;}
 

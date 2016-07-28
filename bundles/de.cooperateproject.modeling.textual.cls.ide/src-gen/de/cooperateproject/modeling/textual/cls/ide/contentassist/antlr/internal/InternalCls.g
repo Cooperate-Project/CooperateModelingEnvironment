@@ -923,10 +923,10 @@ rule__Visibility__Alternatives
     }
 :
 (
-{ before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0()); }
-(	'~' 
+{ before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); }
+(	'+' 
 )
-{ after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_0()); }
+{ after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); }
 )
 
     |(
@@ -944,10 +944,10 @@ rule__Visibility__Alternatives
 )
 
     |(
-{ before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); }
-(	'+' 
+{ before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3()); }
+(	'~' 
 )
-{ after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_3()); }
+{ after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3()); }
 )
 
 ;
