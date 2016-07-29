@@ -25,6 +25,7 @@ public class TransformationRegistryInitializer {
 	
 	public void init() {
 		registry.registerTransformation(createN2T(DiagramTypes.CLASS, "cls"));
+		registry.registerTransformation(createT2N(DiagramTypes.CLASS, "cls"));
 	}
 	
 	private static TransformationFactory createN2T(DiagramTypes diagramType, String textualFileExtension) {
@@ -60,7 +61,7 @@ public class TransformationRegistryInitializer {
 				String lastSegment = changedModelURI.lastSegment();
 				String modelName = lastSegment.split(" - ")[0];
 				String diagramName = changedModelURI.trimFileExtension().lastSegment().split(" - ")[1];
-				URI targetURI = changedModelURI.trimSegments(1).appendSegment(modelName).appendFileExtension("notation");
+				URI targetURI = changedModelURI.trimQuery().trimFragment().trimSegments(1).appendSegment(modelName).appendFileExtension("notation");
 				if (rs.getURIConverter().exists(targetURI, Collections.emptyMap())) {
 					Resource r = rs.getResource(targetURI, false);
 					Optional<Diagram> diagram = r.getContents().stream().filter(o -> o instanceof Diagram).map(o -> ((Diagram)o)).filter(d -> diagramName.equals(d.getName())).findAny();

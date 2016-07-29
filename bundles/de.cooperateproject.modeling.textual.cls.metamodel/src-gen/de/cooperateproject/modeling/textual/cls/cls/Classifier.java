@@ -54,6 +54,7 @@ public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends N
 	/**
 	 * Returns the value of the '<em><b>Members</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}&lt;?>.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Member#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Members</em>' containment reference list isn't clear,
@@ -62,7 +63,8 @@ public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends N
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Members</em>' containment reference list.
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassifier_Members()
-	 * @model containment="true"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Member#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<Member<?>> getMembers();

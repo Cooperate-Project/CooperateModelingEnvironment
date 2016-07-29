@@ -4,6 +4,7 @@ modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notat
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
 
 main() {
 	var diagrams := textual.rootObjects()[cls::ClassDiagram];
@@ -16,50 +17,397 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
 	name := self.name;
 	measurementUnit := notation::MeasurementUnit::Pixel;
 	
-	element := self.packageImports->first().package.oclAsType(ecore::EObject);
+	var umlRootElement := self.packageImports->first().package;
+	element := umlRootElement.toEObject();
 	
 	// package imports?
 	children += self.classifiers->map classifierToShape();
-	edges += self.connectors->map connectorToEdge();
+	children += self.connectors->select(oclIsKindOf(cls::CommentLink))->collect(oclAsType(cls::CommentLink))->map commentLinkToShape();
+	edges += self.connectors->sortedBy(oclIsKindOf(cls::CommentLink))->map connectorToConnector(self.classifiers);	
+	
+	styles += self.map stringValueStyle();
+	styles += self.map diagramStyle();
+	styles += self.map papyrusViewStyle(umlRootElement);
 }
 
+// classifiers
+
 mapping cls::Classifier::classifierToShape() : notation::Shape
+merges cls::Classifier::classToShape, cls::Classifier::interfaceToShape
 {
 	element := self.referencedElement.oclAsType(ecore::EObject);
+	
+	children += self->classifierToUnknownDecorationNode();
+	children += self->classifierToFloatingLabelDecorationNode();
 	
 	children += self->map classifierToAttributesCompartment();
 	children += self->map classifierToOperationsCompartment();
 	children += self->map classifierToSignalsCompartment();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
-mapping cls::Classifier::classifierToAttributesCompartment() : notation::BasicCompartment {
-	type := "7017";
+mapping cls::Classifier::interfaceToShape() : notation::Shape
+when {self.oclIsKindOf(cls::Class)}
+{
+	type := "2008";
+}
+
+mapping cls::Classifier::classToShape() : notation::Shape
+when {self.oclIsKindOf(cls::Interface)}
+{
+	type := "2004";
+}
+
+mapping cls::Classifier::classifierToCompartmentBase() : notation::BasicCompartment {
+	styles += result.toEObject().map titleStyle();
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping cls::CommentLink::commentLinkToShape() : notation::Shape
+{
+	type := "2012";
+	element := self.comment.toEObject();
+	children += self.map commentLabelBodyHintDecoration();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping cls::Classifier::classifierToAttributesCompartment() : notation::BasicCompartment
+inherits cls::Classifier::classifierToCompartmentBase
+merges cls::Classifier::classToAttributesCompartment, cls::Classifier::interfaceToAttributesCompartment
+{
 	children += self.members->select(oclIsKindOf(cls::Attribute))->oclAsType(cls::Attribute)->map attributeToShape();
+}
+
+mapping cls::Classifier::classToAttributesCompartment() : notation::BasicCompartment
+when {self.oclIsKindOf(cls::Class)}
+{
+	type := "7017";
+}
+
+mapping cls::Classifier::interfaceToAttributesCompartment() : notation::BasicCompartment
+when {self.oclIsKindOf(cls::Interface)}
+{
+	type := "7006";
 }
 
 mapping cls::Attribute::attributeToShape() : notation::Shape {
 	type := "3012";
-	element := self.oclAsType(ecore::EObject);
+	element := self.referencedElement.oclAsType(ecore::EObject);
+	layoutConstraint := result.toEObject().map locationConstraint(null);
 }
 
-mapping cls::Classifier::classifierToOperationsCompartment() : notation::BasicCompartment {
-	type := "7018";
+mapping cls::Classifier::classifierToOperationsCompartment() : notation::BasicCompartment
+inherits cls::Classifier::classifierToCompartmentBase
+merges cls::Classifier::classToOperationsCompartment, cls::Classifier::interfaceToOperationsCompartment
+{
 	children += self.members->select(oclIsKindOf(cls::Method))->oclAsType(cls::Method)->map methodToShape();
 }
 
-mapping cls::Method::methodToShape() : notation::Shape {
-	type := "3013";
-	element := self.oclAsType(ecore::EObject);
+mapping cls::Classifier::classToOperationsCompartment() : notation::BasicCompartment
+when {self.oclIsKindOf(cls::Class)}
+{
+	type := "7018";
 }
 
-mapping cls::Classifier::classifierToSignalsCompartment() : notation::BasicCompartment {
+mapping cls::Classifier::interfaceToOperationsCompartment() : notation::BasicCompartment
+when {self.oclIsKindOf(cls::Interface)}
+{
+	type := "7007";
+}
+
+mapping cls::Method::methodToShape() : notation::Shape
+merges cls::Method::classMethodToShape, cls::Method::interfaceMethodToShape
+{
+	element := self.referencedElement.oclAsType(ecore::EObject);
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::Method::classMethodToShape() : notation::Shape
+when {self.owner.oclIsKindOf(cls::Class)}
+{
+	type := "3013";
+}
+
+mapping cls::Method::interfaceMethodToShape() : notation::Shape
+when {self.owner.oclIsKindOf(cls::Interface)}
+{
+	type := "3007";
+}
+
+mapping cls::Classifier::classifierToSignalsCompartment() : notation::BasicCompartment
+merges cls::Classifier::classToSignalsCompartment, cls::Classifier::interfaceToSignalsCompartment
+inherits cls::Classifier::classifierToCompartmentBase
+{
+}
+
+mapping cls::Classifier::classToSignalsCompartment() : notation::BasicCompartment
+when {self.oclIsKindOf(cls::Class)}
+{
 	type := "7019";
 }
 
-mapping cls::Connector::connectorToEdge() : notation::Edge
+mapping cls::Classifier::interfaceToSignalsCompartment() : notation::BasicCompartment
+when {self.oclIsKindOf(cls::Interface)}
+{
+	type := "7008";
+}
 
+
+
+mapping cls::Classifier::classifierToUnknownDecorationNode() : notation::DecorationNode
+merges cls::Classifier::classToUnknownDecorationNode, cls::Classifier::interfaceToUnknownDecorationNode
+{
+}
+
+mapping cls::Classifier::classToUnknownDecorationNode() : notation::DecorationNode
+when{self.oclIsKindOf(cls::Class)}
+{
+	type := "5029";
+}
+
+mapping cls::Classifier::interfaceToUnknownDecorationNode() : notation::DecorationNode
+when{self.oclIsKindOf(cls::Interface)}
+{
+	type := "5011";
+}
+
+mapping cls::Classifier::classifierToFloatingLabelDecorationNode() : notation::DecorationNode
+merges cls::Classifier::classToFloatingLabelDecorationNode, cls::Classifier::interfaceToFloatingLabelDecorationNode
+{
+	layoutConstraint := result.toEObject().map locationConstraint(5);
+}
+
+mapping cls::Classifier::classToFloatingLabelDecorationNode() : notation::DecorationNode
+when {self.oclIsKindOf(cls::Class)}
+{
+	type := "8510";
+}
+
+mapping cls::Classifier::interfaceToFloatingLabelDecorationNode() : notation::DecorationNode
+when {self.oclIsKindOf(cls::Interface)}
+{
+	type := "8507";
+}
+
+
+// connectors
+
+mapping cls::Connector::connectorToConnector(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
+disjuncts cls::Association::connectorToEdge, cls::Generalization::generalizationToEdge, cls::Implementation::implementationToEdge, cls::CommentLink::commentLinkToEdge
 {}
 
-mapping cls::TypedConnector::connectorToEdge() : notation::Edge {
-	//element := self.
+mapping cls::Association::connectorToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
+when { self.oclIsKindOf(cls::Association) }
+{
+	type := "4001";
+	
+	source := self.left.oclAsType(UMLTypeReference).type.typeToView();
+	target := self.right.oclAsType(UMLTypeReference).type.typeToView();
+	element := self.referencedElement.toEObject();
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+	
+	children += self.map stereotypeDecoration();
+	children += self.map nameDecoration();
+	children += self.properties.map targetRoleDecoration();
+	children += self.properties.map sourceRoleDecoration();
+	children += self.properties.map sourceMultiplicityDecoration();
+	children += self.properties.map targetMultiplicityDecoration();
+}
+
+mapping cls::Generalization::generalizationToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
+when { self.oclIsKindOf(cls::Generalization) }
+{
+	type := "4002";
+	
+	var specialClassifier := self.left.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	var generalClassifier := self.right.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	
+	source := specialClassifier.typeToView();
+	target := generalClassifier.typeToView();
+	element := specialClassifier.generalization->any(specific = specialClassifier).toEObject();
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+	
+	children += self.map stereotypeDecoration();
+}
+
+mapping cls::Implementation::implementationToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
+when { self.oclIsKindOf(cls::Implementation) }
+{
+	type := "4003";
+	
+	var implementingClassifier := self.left.oclAsType(UMLTypeReference).type.oclAsType(uml::BehavioredClassifier);
+	var implementedInterface := self.right.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	
+	source := implementingClassifier.typeToView();
+	target := implementedInterface.typeToView();
+	
+	element := implementingClassifier.interfaceRealization->any(contract = implementedInterface).toEObject();
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+	
+	children += self.map stereotypeDecoration();
+	children += self.map nameDecoration();
+}
+
+mapping cls::CommentLink::commentLinkToEdge(_ : OrderedSet(cls::Classifier)) : notation::Connector
+{
+	type := "4013";
+	
+	var commentShape := self.resolveoneIn(cls::CommentLink::commentLinkToShape);
+	var classifier := self.left.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	
+	source := commentShape;
+	target := classifier.typeToView();
+	element := null;
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+}
+
+mapping cls::Connector::connectorToBendpoint() : notation::RelativeBendpoints {
+	
+}
+
+
+// decoration nodes
+
+/*
+5038 Comment Label Body Hint
+6001 Stereotype (Association)
+6002 Name (Association)
+6003 TargetRole (Association)
+6005 SourceRole (Association)
+6007 Stereotype (Generalization)
+6008 Stereotype (Interface Realization)
+6009 Name (Interface Realization)
+6033 SourceMultiplicity
+6034 TargetMultiplicity
+*/
+
+mapping cls::CommentLink::commentLabelBodyHintDecoration() : notation::DecorationNode
+{
+	type := "5038";
+}
+
+mapping cls::Association::stereotypeDecoration() : notation::DecorationNode
+{
+	type := "6001";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::Association::nameDecoration() : notation::DecorationNode
+{
+	type := "6002";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::AssociationProperties::targetRoleDecoration() : notation::DecorationNode
+{
+	type := "6003";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::AssociationProperties::sourceRoleDecoration() : notation::DecorationNode
+{
+	type := "6005";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::Generalization::stereotypeDecoration() : notation::DecorationNode
+{
+	type := "6007";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::Implementation::stereotypeDecoration() : notation::DecorationNode
+{
+	type := "6008";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::Implementation::nameDecoration() : notation::DecorationNode
+{
+	type := "6009";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::AssociationProperties::sourceMultiplicityDecoration() : notation::DecorationNode
+when {self.cardinalityLeft != null}
+{
+	type := "6033";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+mapping cls::AssociationProperties::targetMultiplicityDecoration() : notation::DecorationNode
+when {self.cardinalityRight != null}
+{
+	type := "6034";
+	layoutConstraint := result.toEObject().map locationConstraint(null);
+}
+
+// style stuff
+
+mapping ecore::EObject::locationConstraint(yValue : Integer) : notation::Location
+{
+	y := yValue;
+}
+
+mapping ecore::EObject::titleStyle() : notation::TitleStyle
+{
+}
+
+mapping ecore::EObject::sortingStyle() : notation::SortingStyle
+{
+}
+
+mapping ecore::EObject::filteringStyle() : notation::FilteringStyle
+{
+}
+
+mapping ecore::EObject::notationBounds() : notation::Bounds
+{
+}
+
+mapping ecore::EObject::fontStyle() : notation::FontStyle
+{
+}
+
+mapping cls::ClassDiagram::stringValueStyle() : notation::StringValueStyle
+{
+	name := "diagram_compatibility_version";
+	stringValue := "1.1.0";	
+}
+
+mapping cls::ClassDiagram::diagramStyle() : notation::DiagramStyle
+{	
+}
+
+mapping cls::ClassDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusViewStyle
+{
+	owner := rootElement.toEObject();
+}
+
+// helpers
+
+query OclAny::toEObject() : ecore::EObject {
+	return self.oclAsType(ecore::EObject);
+}
+
+query uml::Type::typeToView() : notation::View
+{
+	return if self.oclIsKindOf(uml::Association) then self.typeToEdge() else self.typeToShape() endif;
+}
+
+query uml::Type::typeToShape() : notation::Shape
+{
+	return resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = self.toEObject());
+}
+
+query uml::Type::typeToEdge() : notation::Edge
+{
+	return resolveoneIn(cls::Connector::connectorToConnector, e : notation::Edge | e.element = self.toEObject());
 }

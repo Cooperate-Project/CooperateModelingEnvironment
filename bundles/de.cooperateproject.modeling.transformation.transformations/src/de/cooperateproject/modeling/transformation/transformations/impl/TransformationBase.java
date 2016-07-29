@@ -20,6 +20,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.Trace;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -30,8 +31,7 @@ import de.cooperateproject.modeling.transformation.transformations.registry.Tran
 
 public abstract class TransformationBase implements Transformation {
 
-	private static final URI UML_PRIMITIVE_TYPES = URI
-			.createURI("pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml");
+	private static final URI UML_PRIMITIVE_TYPES = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
 	protected static final String UML_MODEL_FILE_EXTENSION = "uml";
 	private final ResourceSet resourceSet;
 	private final TransformationCharacteristic characteristics;
