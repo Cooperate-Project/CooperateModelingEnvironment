@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -115,15 +114,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				DataTypeReference dataTypeReference = (DataTypeReference)theEObject;
 				T1 result = caseDataTypeReference(dataTypeReference);
 				if (result == null) result = caseTypeReference(dataTypeReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.CLASSIFIER_REFERENCE: {
-				ClassifierReference classifierReference = (ClassifierReference)theEObject;
-				T1 result = caseClassifierReference(classifierReference);
-				if (result == null) result = caseTypeReference(classifierReference);
-				if (result == null) result = caseClassifierAssociationEnd(classifierReference);
-				if (result == null) result = caseAssociationEnd(classifierReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -371,21 +361,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseDataTypeReference(DataTypeReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Classifier Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Classifier Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseClassifierReference(ClassifierReference object) {
 		return null;
 	}
 

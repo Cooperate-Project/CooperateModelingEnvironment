@@ -1059,7 +1059,7 @@ rule__AggregationKind__Alternatives
 :
 (
 { before(grammarAccess.getAggregationKindAccess().getNONEEnumLiteralDeclaration_0()); }
-(	'ass' 
+(	'asc' 
 )
 { after(grammarAccess.getAggregationKindAccess().getNONEEnumLiteralDeclaration_0()); }
 )

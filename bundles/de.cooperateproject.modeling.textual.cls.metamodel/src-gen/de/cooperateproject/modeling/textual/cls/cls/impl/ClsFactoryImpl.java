@@ -8,7 +8,6 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
@@ -80,7 +79,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 			case ClsPackage.CLASS_DIAGRAM: return (EObject)createClassDiagram();
 			case ClsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
 			case ClsPackage.DATA_TYPE_REFERENCE: return (EObject)createDataTypeReference();
-			case ClsPackage.CLASSIFIER_REFERENCE: return (EObject)createClassifierReference();
 			case ClsPackage.UML_TYPE_REFERENCE: return (EObject)createUMLTypeReference();
 			case ClsPackage.CLASS: return (EObject)createClass();
 			case ClsPackage.INTERFACE: return (EObject)createInterface();
@@ -168,16 +166,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	public DataTypeReference createDataTypeReference() {
 		DataTypeReferenceImpl dataTypeReference = new DataTypeReferenceImpl();
 		return dataTypeReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ClassifierReference createClassifierReference() {
-		ClassifierReferenceImpl classifierReference = new ClassifierReferenceImpl();
-		return classifierReference;
 	}
 
 	/**

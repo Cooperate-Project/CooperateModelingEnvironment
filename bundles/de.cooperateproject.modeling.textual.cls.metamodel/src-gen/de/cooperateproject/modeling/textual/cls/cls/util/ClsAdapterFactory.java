@@ -9,7 +9,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -110,10 +109,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDataTypeReference(DataTypeReference object) {
 				return createDataTypeReferenceAdapter();
-			}
-			@Override
-			public Adapter caseClassifierReference(ClassifierReference object) {
-				return createClassifierReferenceAdapter();
 			}
 			@Override
 			public Adapter caseUMLTypeReference(UMLTypeReference object) {
@@ -280,20 +275,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataTypeReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierReference <em>Classifier Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierReference
-	 * @generated
-	 */
-	public Adapter createClassifierReferenceAdapter() {
 		return null;
 	}
 

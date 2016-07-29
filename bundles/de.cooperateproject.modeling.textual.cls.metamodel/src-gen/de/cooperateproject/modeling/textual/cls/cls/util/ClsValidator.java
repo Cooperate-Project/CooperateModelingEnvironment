@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -133,8 +132,6 @@ public class ClsValidator extends EObjectValidator {
 				return validateTypeReference((TypeReference)value, diagnostics, context);
 			case ClsPackage.DATA_TYPE_REFERENCE:
 				return validateDataTypeReference((DataTypeReference)value, diagnostics, context);
-			case ClsPackage.CLASSIFIER_REFERENCE:
-				return validateClassifierReference((ClassifierReference)value, diagnostics, context);
 			case ClsPackage.UML_TYPE_REFERENCE:
 				return validateUMLTypeReference((UMLTypeReference)value, diagnostics, context);
 			case ClsPackage.UML_REFERENCING_ELEMENT:
@@ -228,15 +225,6 @@ public class ClsValidator extends EObjectValidator {
 	 */
 	public boolean validateDataTypeReference(DataTypeReference dataTypeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)dataTypeReference, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateClassifierReference(ClassifierReference classifierReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)classifierReference, diagnostics, context);
 	}
 
 	/**

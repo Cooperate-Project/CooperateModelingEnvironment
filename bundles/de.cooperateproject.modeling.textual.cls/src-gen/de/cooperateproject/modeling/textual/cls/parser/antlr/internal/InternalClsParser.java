@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalClsParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'@startclass'", "'@endclass'", "'import'", "'.'", "'abstract'", "'class'", "'as'", "'{'", "'}'", "'interface'", "'static'", "'final'", "':'", "'('", "','", "')'", "'isa'", "'impl'", "'-'", "'note'", "'['", "'|'", "']'", "'..'", "'*'", "'+'", "'#'", "'~'", "'<'", "'>'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'ass'", "'agg'", "'com'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'@startclass'", "'@endclass'", "'import'", "'.'", "'abstract'", "'class'", "'as'", "'{'", "'}'", "'interface'", "'static'", "'final'", "':'", "'('", "','", "')'", "'isa'", "'impl'", "'-'", "'note'", "'['", "'|'", "']'", "'..'", "'*'", "'+'", "'#'", "'~'", "'<'", "'>'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'asc'", "'agg'", "'com'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -4724,7 +4724,7 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAggregationKind"
-    // InternalCls.g:1782:1: ruleAggregationKind returns [Enumerator current=null] : ( (enumLiteral_0= 'ass' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) ) ;
+    // InternalCls.g:1782:1: ruleAggregationKind returns [Enumerator current=null] : ( (enumLiteral_0= 'asc' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) ) ;
     public final Enumerator ruleAggregationKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -4734,10 +4734,10 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // InternalCls.g:1784:28: ( ( (enumLiteral_0= 'ass' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) ) )
-            // InternalCls.g:1785:1: ( (enumLiteral_0= 'ass' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) )
+            // InternalCls.g:1784:28: ( ( (enumLiteral_0= 'asc' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) ) )
+            // InternalCls.g:1785:1: ( (enumLiteral_0= 'asc' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) )
             {
-            // InternalCls.g:1785:1: ( (enumLiteral_0= 'ass' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) )
+            // InternalCls.g:1785:1: ( (enumLiteral_0= 'asc' ) | (enumLiteral_1= 'agg' ) | (enumLiteral_2= 'com' ) )
             int alt40=3;
             switch ( input.LA(1) ) {
             case 50:
@@ -4764,10 +4764,10 @@ public class InternalClsParser extends AbstractInternalAntlrParser {
 
             switch (alt40) {
                 case 1 :
-                    // InternalCls.g:1785:2: (enumLiteral_0= 'ass' )
+                    // InternalCls.g:1785:2: (enumLiteral_0= 'asc' )
                     {
-                    // InternalCls.g:1785:2: (enumLiteral_0= 'ass' )
-                    // InternalCls.g:1785:4: enumLiteral_0= 'ass'
+                    // InternalCls.g:1785:2: (enumLiteral_0= 'asc' )
+                    // InternalCls.g:1785:4: enumLiteral_0= 'asc'
                     {
                     enumLiteral_0=(Token)match(input,50,FOLLOW_2); 
 

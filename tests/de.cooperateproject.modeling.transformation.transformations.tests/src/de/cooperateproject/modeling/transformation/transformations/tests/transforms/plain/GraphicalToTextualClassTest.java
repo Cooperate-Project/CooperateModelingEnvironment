@@ -2,16 +2,10 @@ package de.cooperateproject.modeling.transformation.transformations.tests.transf
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-
-import org.apache.commons.io.IOUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
-import org.eclipse.emf.compare.utils.EMFComparePrettyPrinter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
@@ -26,10 +20,6 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 
 	static {
 		ClsPackage.eINSTANCE.eClass();
-	}
-
-	@Override
-	protected void beforeTest() throws Exception {
 		ClsStandaloneSetup.doSetup();
 	}
 
@@ -47,21 +37,9 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		
 		DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
 		Comparison comparisonResult = EMFCompare.builder().build().compare(scope);
-		assertEquals(pretty(comparisonResult), 0, comparisonResult.getDifferences().size());
+		assertEquals(prettyPrint(comparisonResult), 0, comparisonResult.getDifferences().size());
 	}
 	
-	private String pretty(Comparison comparison) throws UnsupportedEncodingException {
-		ByteArrayOutputStream baos = null;
-		PrintStream ps = null;
-		try {
-			baos = new ByteArrayOutputStream();
-			ps = new PrintStream(baos);
-			EMFComparePrettyPrinter.printDifferences(comparison, ps);
-			return new String(baos.toByteArray(), "UTF-8");
-		} finally {
-			IOUtils.closeQuietly(ps);
-			IOUtils.closeQuietly(baos);
-		}
-	}
+
 
 }

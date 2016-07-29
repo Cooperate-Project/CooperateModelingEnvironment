@@ -410,10 +410,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:27:7: ( 'ass' )
-            // InternalCls.g:27:9: 'ass'
+            // InternalCls.g:27:7: ( 'asc' )
+            // InternalCls.g:27:9: 'asc'
             {
-            match("ass"); 
+            match("asc"); 
 
 
             }
@@ -1865,7 +1865,7 @@ public class InternalClsLexer extends Lexer {
             "\1\134",
             "\1\135",
             "\1\136",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\22\55\1\137\7\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\2\55\1\137\27\55",
             "\1\141",
             "\1\142",
             "",

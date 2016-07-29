@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierReference;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
@@ -86,13 +85,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * @generated
 	 */
 	private EClass dataTypeReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classifierReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -444,24 +436,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 */
 	public EAttribute getDataTypeReference_Type() {
 		return (EAttribute)dataTypeReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClassifierReference() {
-		return classifierReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getClassifierReference_Type() {
-		return (EReference)classifierReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -974,9 +948,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		dataTypeReferenceEClass = createEClass(DATA_TYPE_REFERENCE);
 		createEAttribute(dataTypeReferenceEClass, DATA_TYPE_REFERENCE__TYPE);
 
-		classifierReferenceEClass = createEClass(CLASSIFIER_REFERENCE);
-		createEReference(classifierReferenceEClass, CLASSIFIER_REFERENCE__TYPE);
-
 		umlTypeReferenceEClass = createEClass(UML_TYPE_REFERENCE);
 		createEReference(umlTypeReferenceEClass, UML_TYPE_REFERENCE__TYPE);
 
@@ -1105,8 +1076,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		// Add supertypes to classes
 		dataTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
-		classifierReferenceEClass.getESuperTypes().add(this.getTypeReference());
-		classifierReferenceEClass.getESuperTypes().add(this.getClassifierAssociationEnd());
 		umlTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
 		umlTypeReferenceEClass.getESuperTypes().add(this.getClassifierAssociationEnd());
 		g1 = createEGenericType(this.getUMLReferencingElement());
@@ -1181,12 +1150,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		initEClass(dataTypeReferenceEClass, DataTypeReference.class, "DataTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataTypeReference_Type(), this.getPrimitiveType(), "type", null, 1, 1, DataTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classifierReferenceEClass, ClassifierReference.class, "ClassifierReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(this.getClassifier());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEReference(getClassifierReference_Type(), g1, null, "type", null, 1, 1, ClassifierReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(umlTypeReferenceEClass, UMLTypeReference.class, "UMLTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUMLTypeReference_Type(), theUMLPackage.getType(), null, "type", null, 1, 1, UMLTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

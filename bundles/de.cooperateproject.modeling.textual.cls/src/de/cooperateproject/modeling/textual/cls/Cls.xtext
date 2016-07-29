@@ -150,7 +150,7 @@ enum PrimitiveType:
 ;
 
 enum AggregationKind:
-	NONE = 'ass'
+	NONE = 'asc'
 	| AGGREGATION = 'agg'
 	| COMPOSITION = 'com'
 ;
