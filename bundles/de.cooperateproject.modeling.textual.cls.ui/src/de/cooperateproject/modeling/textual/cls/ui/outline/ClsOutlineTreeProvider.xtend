@@ -30,8 +30,7 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	val images = JavaUI.getSharedImages();
 
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
-		val name = root.eResource().getURI().trimFileExtension().lastSegment().replaceAll("%20", " ");
-		val rootNode = new AbstractOutlineNode(parentNode, imageHelper.getImage("class_obj.png"), name, false) {};
+		val rootNode = createEObjectNode(parentNode, root);
 		val importNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), "Imports", false) {};
 		val classifierNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Classifiers", false) {};
 		val connectorNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Connectors", false) {};

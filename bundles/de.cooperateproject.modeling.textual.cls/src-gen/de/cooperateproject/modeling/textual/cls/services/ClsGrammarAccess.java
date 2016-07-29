@@ -994,30 +994,30 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	public class VisibilityElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Visibility");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cPACKAGETildeKeyword_0_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPUBLICPlusSignKeyword_0_0 = (Keyword)cPUBLICEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
 		private final Keyword cPRIVATEHyphenMinusKeyword_1_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cPROTECTEDNumberSignKeyword_2_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cPUBLICPlusSignKeyword_3_0 = (Keyword)cPUBLICEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cPACKAGETildeKeyword_3_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum Visibility:
-		//	PACKAGE='~'
+		//	PUBLIC='+'
 		//	| PRIVATE='-'
 		//	| PROTECTED='#'
-		//	| PUBLIC='+';
+		//	| PACKAGE='~';
 		public EnumRule getRule() { return rule; }
 
-		//PACKAGE='~' | PRIVATE='-' | PROTECTED='#' | PUBLIC='+'
+		//PUBLIC='+' | PRIVATE='-' | PROTECTED='#' | PACKAGE='~'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//PACKAGE='~'
-		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_0() { return cPACKAGEEnumLiteralDeclaration_0; }
+		//PUBLIC='+'
+		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_0() { return cPUBLICEnumLiteralDeclaration_0; }
 
-		//'~'
-		public Keyword getPACKAGETildeKeyword_0_0() { return cPACKAGETildeKeyword_0_0; }
+		//'+'
+		public Keyword getPUBLICPlusSignKeyword_0_0() { return cPUBLICPlusSignKeyword_0_0; }
 
 		//PRIVATE='-'
 		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_1() { return cPRIVATEEnumLiteralDeclaration_1; }
@@ -1031,11 +1031,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'#'
 		public Keyword getPROTECTEDNumberSignKeyword_2_0() { return cPROTECTEDNumberSignKeyword_2_0; }
 
-		//PUBLIC='+'
-		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_3() { return cPUBLICEnumLiteralDeclaration_3; }
+		//PACKAGE='~'
+		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_3() { return cPACKAGEEnumLiteralDeclaration_3; }
 
-		//'+'
-		public Keyword getPUBLICPlusSignKeyword_3_0() { return cPUBLICPlusSignKeyword_3_0; }
+		//'~'
+		public Keyword getPACKAGETildeKeyword_3_0() { return cPACKAGETildeKeyword_3_0; }
 	}
 
 	public class ReadingDirectionElements extends AbstractEnumRuleElementFinder {
@@ -1540,10 +1540,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum Visibility:
-	//	PACKAGE='~'
+	//	PUBLIC='+'
 	//	| PRIVATE='-'
 	//	| PROTECTED='#'
-	//	| PUBLIC='+';
+	//	| PACKAGE='~';
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
 	}

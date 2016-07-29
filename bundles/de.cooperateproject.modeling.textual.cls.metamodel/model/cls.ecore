@@ -204,10 +204,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PUBLIC"/>
     <eLiterals name="PRIVATE" value="1"/>
     <eLiterals name="PROTECTED" value="2"/>
-    <eLiterals name="PUBLIC" value="3"/>
-    <eLiterals name="PACKAGE" value="4"/>
+    <eLiterals name="PACKAGE" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
     <eLiterals name="INT" value="1"/>
