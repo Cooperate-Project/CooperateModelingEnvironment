@@ -13,11 +13,24 @@ import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.TypeReference
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
+import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.uml2.uml.Model
 import com.google.common.collect.Iterables
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.uml2.uml.Type
+import org.eclipse.uml2.uml.resource.UMLResource
+import org.eclipse.emf.common.util.URI
+import java.util.List
+import org.eclipse.uml2.uml.Operation
+import java.util.ArrayList
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.BasicEList
 
 class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
 
@@ -106,7 +119,7 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 				var umlModel = EcoreUtil.getRootContainer(umlClass)
 
 				if (umlModel instanceof Model) {
-					createMember.createMember(name, umlClass)
+					createMember.createMember(name, element, umlClass)
 					context.xtextDocument.replace(issue.offset, issue.length, name)
 				}
 			}
@@ -116,25 +129,90 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 	/**
 	 * Interface using the command pattern to create a member.
 	 */
-	private interface CreateMember {
-		def void createMember(String name, org.eclipse.uml2.uml.Class umlClass)
+	private static abstract class CreateMember {
+		def void createMember(String name, EObject type, org.eclipse.uml2.uml.Class umlClass)
+
+		public def getType(TypeReference type, Model model) {
+			if (type == null) {
+				return null
+			}
+			var typeSwitch = new TypeSwitch(model)
+			var t = typeSwitch.doSwitch(type)
+			typeSwitch = null
+			return t
+		}
 	}
 
 	/**
 	 * Implementation of the CreateMember interface that creates a Property into the UML-diagram.
 	 */
-	private static class CreateProperty implements CreateMember {
-		override createMember(String name, org.eclipse.uml2.uml.Class umlClass) {
-			umlClass.createOwnedAttribute(name, null)
+	private static class CreateProperty extends CreateMember {
+		override createMember(String name, EObject attribute, org.eclipse.uml2.uml.Class umlClass) {
+			if (attribute instanceof Attribute) {
+				umlClass.createOwnedAttribute(name, getType(attribute.type, umlClass.model))
+			}
 		}
 	}
 
 	/**
 	 * Implementation of the CreateMember interface that creates a Operation into the UML-diagram.
 	 */
-	private static class CreateOperation implements CreateMember {
-		override createMember(String name, org.eclipse.uml2.uml.Class umlClass) {
-			umlClass.createOwnedOperation(name, null, null)
+	private static class CreateOperation extends CreateMember {
+		override createMember(String name, EObject operation, org.eclipse.uml2.uml.Class umlClass) {
+			if (operation instanceof Method) {
+				operation.parameters
+				var parameterName = new BasicEList<String>()
+				var names = operation.parameters.map[x | x.name]
+				parameterName.addAll(names)
+				
+				var parameterTypes = new BasicEList<Type>()
+				var types = operation.parameters.map[x | getType(x.type, umlClass.model)]
+				parameterTypes.addAll(types)
+				
+				umlClass.createOwnedOperation(name, parameterName, parameterTypes, getType(operation.type, umlClass.model))
+			}
+		}
+	}
+
+	private static class TypeSwitch extends ClsSwitch<Type> {
+		private Model model
+
+		new(Model model) {
+			this.model = model
+		}
+
+		override caseDataTypeReference(DataTypeReference dataTypeReference) {
+			return getType(dataTypeReference.type)
+
+		}
+
+		override caseUMLTypeReference(UMLTypeReference umlTypeReference) {
+			return umlTypeReference.type;
+		}
+
+		private def getType(PrimitiveType type) {
+			switch (type) {
+				case PrimitiveType.STRING: findEcorePrimitiveType("EString")
+				case PrimitiveType.INT: findEcorePrimitiveType("EInt")
+				case PrimitiveType.DOUBLE: findEcorePrimitiveType("EDouble")
+				case PrimitiveType.BOOLEAN: findEcorePrimitiveType("EBoolean")
+				case PrimitiveType.CHAR: findEcorePrimitiveType("EChar")
+				case PrimitiveType.BYTE: findEcorePrimitiveType("EByte")
+				case PrimitiveType.SHORT: findEcorePrimitiveType("EShort")
+				case PrimitiveType.LONG: findEcorePrimitiveType("ELong")
+				case PrimitiveType.FLOAT: findEcorePrimitiveType("EFloat")
+			}
+		}
+
+		private def findEcorePrimitiveType(String name) {
+			var resource = model.eResource.resourceSet.getResource(
+				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI), true)
+			var model = Iterables.getFirst(resource.contents, null)
+			if (!(model instanceof Model)) {
+				return null
+			}
+			var ecoreTypes = (model as Model).ownedTypes
+			return ecoreTypes.findFirst[x|x.name.equals(name)]
 		}
 	}
 

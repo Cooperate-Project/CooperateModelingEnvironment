@@ -13,37 +13,51 @@ import org.eclipse.uml2.uml.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import org.eclipse.xtext.serializer.impl.Serializer
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
 import org.eclipse.uml2.uml.Operation
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
 import org.eclipse.xtext.Assignment
+import org.eclipse.uml2.uml.VisibilityKind
+import org.eclipse.uml2.uml.Interface
+import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
+import org.eclipse.uml2.uml.util.UMLSwitch
 
+/**
+ * This class provides content assist in our editor. It offeres suggestions for code completion.
+ */
 class ClsProposalProvider extends AbstractClsProposalProvider {
 	@Inject IScopeProvider scope
 	@Inject Serializer serializer
 
-	override completeClassDiagram_Classifiers(EObject model, Assignment assignment, ContentAssistContext context, 
+	/**
+	 * Content assist for creating classes into the text editor from the uml file.
+	 */
+	override completeClassDiagram_Classifiers(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
-		
+
 		var scope = scope.getScope(model, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
-		
+
 		var elements = scope.allElements
 		var classes = elements.map[x|x.EObjectOrProxy].filter(Class)
-		for (class : classes) {			
+		for (class : classes) {
 			var c = createClass(class)
 			var m = model as ClassDiagram
 			m.classifiers.add(c)
-			
+
 			acceptor.accept(createCompletionProposal(serializer.serialize(c), class.name, null, context))
 		}
 	}
-	
+
+	/**
+	 * Creates an Cls Class out of a UML Class.
+	 */
 	private def createClass(Class refClass) {
 		var class = ClsFactory.eINSTANCE.createClass
 		class.referencedElement = refClass
-		
+
 		for (attribute : refClass.attributes) {
 			class.members.add(createAttributes(attribute))
 		}
@@ -52,48 +66,110 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		}
 		return class
 	}
-	
+
+	/**
+	 * Creates an Cls Method out of an UML Operation.
+	 */
 	private def createOperations(Operation refOperation) {
+		if (refOperation == null) {
+			return null
+		}
 		var operation = ClsFactory.eINSTANCE.createMethod
-		operation.visibility = Visibility.PRIVATE	
+		operation.visibility = getVisibility(refOperation.visibility)
 		operation.referencedElement = refOperation
-		operation.parameters.addAll(operation.parameters)
+		
+		/*var typeSwitch = new TypeSwitch
+		operation.type = typeSwitch.doSwitch(refOperation.type)
+		typeSwitch = null*/
+		
+		operation.type = getType(refOperation.type)
+		
+		// operation.parameters.addAll(operation.parameters)
+		
+		
 		return operation
 	}
-	
+
+	/**
+	 * Creates an Cls Attribute out of an UML Property.
+	 */
 	private def createAttributes(Property refAttribute) {
-		var attribute = ClsFactory.eINSTANCE.createAttribute			
-		attribute.visibility = Visibility.PRIVATE
-		attribute.referencedElement = refAttribute
-		
-		var dataType = ClsFactory.eINSTANCE.createDataTypeReference
-		var type = refAttribute.type
-		if (type.equals(PrimitiveType)) {
-			dataType.type = getPrimitive(refAttribute.type)
-		} else {
-			dataType.type
+		if (refAttribute == null) {
+			return null
 		}
+		var attribute = ClsFactory.eINSTANCE.createAttribute
+
+		attribute.visibility = getVisibility(refAttribute.visibility)
+		attribute.referencedElement = refAttribute
+
+		/*var typeSwitch = new TypeSwitch
+		attribute.type = typeSwitch.doSwitch(refAttribute.type)
+		typeSwitch = null*/
+		attribute.type = getType(refAttribute.type)
 		
-		attribute.type = dataType 
-		
-		return attribute 
+		return attribute
 	}
 	
-	private def getPrimitive(Type type) {
-		switch(type.name) {
-			case "String": return PrimitiveType.STRING
-			case "Boolean": return PrimitiveType.BOOLEAN
-			case "Real": return PrimitiveType.FLOAT
-			case "Integer": return PrimitiveType.INT
-			case "UnlimitedNatural": return PrimitiveType.LONG
-			case "EString": return PrimitiveType.STRING
-			case "EBoolean": return PrimitiveType.BOOLEAN
-			case "EFloat": return PrimitiveType.FLOAT
-			case "EInteger": return PrimitiveType.INT
-			case "ELong": return PrimitiveType.LONG
-			case "EDouble": return PrimitiveType.DOUBLE
-			case "EChar": return PrimitiveType.CHAR
-			case "EShort": return PrimitiveType.SHORT
+	private def getType(Type type) {
+		if (type == null) {
+			return null
 		}
+		var typeSwitch = new TypeSwitch
+		var t = typeSwitch.doSwitch(type)
+		typeSwitch = null
+		
+		return t
 	}
+
+	/**
+	 * Converts a VisibilityKind into a Cls Visibility.
+	 */
+	private def getVisibility(VisibilityKind visibility) {
+		Visibility.get(visibility.literal.toUpperCase)
+	}
+
+	private static class TypeSwitch extends UMLSwitch<TypeReference> {
+		
+		override casePrimitiveType(org.eclipse.uml2.uml.PrimitiveType primitiveType) {
+			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
+			dataType.type = getPrimitive(primitiveType)
+			return dataType
+		}
+
+		override caseClass(Class classifier) {
+			var dataType = ClsFactory.eINSTANCE.createUMLTypeReference
+			dataType.type = classifier
+			return dataType
+		}
+
+		override caseInterface(Interface classifier) {
+			var dataType = ClsFactory.eINSTANCE.createUMLTypeReference
+			dataType.type = classifier
+			return dataType
+		}
+
+		/**
+		 * Converts a UML Type into a Cls PrimitiveType.
+		 */
+		private def getPrimitive(Type type) {
+			switch (type.name) {
+				case "String": return PrimitiveType.STRING
+				case "Boolean": return PrimitiveType.BOOLEAN
+				case "Real": return PrimitiveType.FLOAT
+				case "Integer": return PrimitiveType.INT
+				case "UnlimitedNatural": return PrimitiveType.LONG
+				case "EString": return PrimitiveType.STRING
+				case "EBoolean": return PrimitiveType.BOOLEAN
+				case "EFloat": return PrimitiveType.FLOAT
+				case "EInteger": return PrimitiveType.INT
+				case "ELong": return PrimitiveType.LONG
+				case "EDouble": return PrimitiveType.DOUBLE
+				case "EChar": return PrimitiveType.CHAR
+				case "EShort": return PrimitiveType.SHORT
+			}
+			return PrimitiveType.STRING
+		}
+
+	}
+
 }

@@ -8,47 +8,64 @@ import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Method
-
+import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 
 import org.eclipse.xtext.validation.Check
 
 /**
  * This class contains custom validation rules. 
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ClsValidator extends AbstractClsValidator {
 
-  public static val NO_CLASS_REFERENCE = 'no_class_reference'
-  public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
-  public static val NO_PROPERTY_REFERENCE = 'no_property_reference'  
-  public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
-  
+	public static val NO_CLASS_REFERENCE = 'no_class_reference'
+	public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
+	public static val NO_PROPERTY_REFERENCE = 'no_property_reference'
+	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
+
 	@Check
 	def checkIfClassExists(Class classifier) {
 		if (classifier.referencedElement.model == null) {
-			error("No Referenced UML-Class Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_CLASS_REFERENCE)
+			error("No Referenced UML-Class Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_CLASS_REFERENCE)
 		}
 	}
-	
+
 	@Check
 	def checkIfInterfaceExists(Interface classifier) {
 		if (classifier.referencedElement.model == null) {
-			error("No Referenced UML-Interface Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_INTERFACE_REFERENCE)
+			error("No Referenced UML-Interface Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_INTERFACE_REFERENCE)
 		}
 	}
-	
+
 	@Check
 	def checkIfPropertyExists(Attribute attribute) {
 		if (attribute.referencedElement.model == null) {
-			error("No Referenced UML-Property", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_PROPERTY_REFERENCE)
-		}
+			error("No Referenced UML-Property", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_PROPERTY_REFERENCE)
+		} /*else {
+			var attrType = attribute.type as DataTypeReference
+			
+			var refType = attribute.referencedElement.type
+			if (attrType.equals(refType)) {
+				error("Wrong Type", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			}
+		}*/
 	}
-	
+
 	@Check
 	def checkIfOperationExists(Method method) {
 		if (method.referencedElement.model == null) {
-			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_OPERATION_REFERENCE)
+			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_OPERATION_REFERENCE)
 		}
+	}
+
+	@Check
+	def checkIfTypeChanged(PrimitiveType type) {
+		var a = 0
 	}
 }
