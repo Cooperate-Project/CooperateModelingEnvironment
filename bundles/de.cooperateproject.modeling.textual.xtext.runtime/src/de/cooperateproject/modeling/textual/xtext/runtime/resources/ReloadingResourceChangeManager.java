@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 public class ReloadingResourceChangeManager extends RecursiveResourceChangeManager {
 	
@@ -40,7 +41,10 @@ public class ReloadingResourceChangeManager extends RecursiveResourceChangeManag
 			session.refresh();
 		} else {
 			r.unload();
-			r.load(Collections.emptyMap());
+			ResourceSet rs = r.getResourceSet();
+			if (rs != null && rs.getURIConverter().exists(r.getURI(), Collections.emptyMap())) {
+				r.load(Collections.emptyMap());				
+			}
 		}
 	}
 

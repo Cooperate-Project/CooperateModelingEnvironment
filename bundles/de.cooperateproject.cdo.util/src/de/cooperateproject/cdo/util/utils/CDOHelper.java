@@ -3,6 +3,7 @@ package de.cooperateproject.cdo.util.utils;
 import java.util.Arrays;
 import java.util.Properties;
 
+import org.apache.commons.lang3.Validate;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.revision.CDORevision;
 import org.eclipse.emf.cdo.common.revision.CDORevisionCache;
@@ -17,6 +18,7 @@ import org.eclipse.emf.cdo.internal.explorer.repositories.RemoteCDORepository;
 import org.eclipse.emf.cdo.net4j.CDONet4jSession;
 import org.eclipse.emf.cdo.net4j.CDONet4jSessionConfiguration;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.util.container.IPluginContainer;
@@ -98,6 +100,16 @@ public class CDOHelper {
 	public static void delete(CDOCheckout checkout) {
 		checkout.close();
 		checkout.delete(true);
+	}
+	
+	public static java.util.Optional<CDOCheckout> findCheckoutByCheckoutURI(URI checkoutURI) {
+		Validate.isTrue(checkoutURI.scheme().equals("cdo.checkout"), "The URI has to be a cdo checkout URI.");
+		
+		CDOCheckout checkout = CDOExplorerUtil.getCheckoutManager().getCheckout(checkoutURI.authority());
+		if (checkout == null) {
+			return java.util.Optional.empty();
+		}
+		return java.util.Optional.of(checkout);
 	}
 	
 	private static Properties createProperties(String repositoryLabel, CDOConnectionSettings settings) {

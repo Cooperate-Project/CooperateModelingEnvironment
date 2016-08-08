@@ -75,7 +75,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
         eType="#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
-        containment="true" resolveProxies="false">
+        containment="true" resolveProxies="false" eOpposite="#//Member/owner">
       <eGenericType eClassifier="#//Member">
         <eTypeArguments/>
       </eGenericType>
@@ -115,6 +115,12 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" changeable="false"
+        eOpposite="#//Classifier/members">
+      <eGenericType eClassifier="#//Classifier">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
     <eGenericSuperTypes eClassifier="#//Property">
       <eTypeArguments eTypeParameter="#//Member/T"/>
     </eGenericSuperTypes>
@@ -198,10 +204,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PUBLIC"/>
     <eLiterals name="PRIVATE" value="1"/>
     <eLiterals name="PROTECTED" value="2"/>
-    <eLiterals name="PUBLIC" value="3"/>
-    <eLiterals name="PACKAGE" value="4"/>
+    <eLiterals name="PACKAGE" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
     <eLiterals name="INT" value="1"/>

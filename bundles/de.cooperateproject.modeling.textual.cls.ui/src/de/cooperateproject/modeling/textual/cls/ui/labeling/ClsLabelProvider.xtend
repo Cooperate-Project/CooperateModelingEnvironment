@@ -29,18 +29,24 @@ import org.eclipse.jdt.ui.JavaUI
  */
 class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
 
-	val String[] visibilitySymbols = #["-", "#", "+", "~"]
-	val String[] visibilityFields = #[ISharedImages.IMG_FIELD_PRIVATE, ISharedImages.IMG_FIELD_PROTECTED,
-		ISharedImages.IMG_FIELD_PUBLIC, ISharedImages.IMG_FIELD_DEFAULT]
+	val visibilityFieldsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_FIELD_PUBLIC,
+		Visibility.PRIVATE -> ISharedImages.IMG_FIELD_PRIVATE, Visibility.PROTECTED -> ISharedImages.IMG_FIELD_PROTECTED,
+		Visibility.PACKAGE -> ISharedImages.IMG_FIELD_DEFAULT}
 
-	val String[] visibilityMethods = #[ISharedImages.IMG_OBJS_PRIVATE, ISharedImages.IMG_OBJS_PROTECTED,
-		ISharedImages.IMG_OBJS_PUBLIC, ISharedImages.IMG_OBJS_DEFAULT]
-		
+	val visibilityMethodsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_OBJS_PUBLIC,
+		Visibility.PRIVATE -> ISharedImages.IMG_OBJS_PRIVATE, Visibility.PROTECTED -> ISharedImages.IMG_OBJS_PROTECTED,
+		Visibility.PACKAGE -> ISharedImages.IMG_OBJS_DEFAULT}
+
 	val images = JavaUI.getSharedImages();
 
 	@Inject
 	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
 		super(delegate)
+	}
+
+	def text(Class ele) {
+		var name = ele.name
+		return name
 	}
 
 	def text(NamedElement ele) {
@@ -50,7 +56,7 @@ class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPro
 	def text(PackageImport ele) {
 		ele.package.name;
 	}
-	
+
 	def image(PackageImport ele) {
 		images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
 	}
@@ -66,39 +72,37 @@ class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPro
 	}
 
 	def text(Property ele) {
-		val visIndex = getVisibiltyIndex(ele.visibility)
-		val visSymbol = visibilitySymbols.get(visIndex)
 		val typeRef = ele.type
 		var type = ""
 		if (typeRef != null) {
 			type = ": " + text(typeRef)
 		}
-		visSymbol + ele.name + type
+		ele.name + type
 	}
-	
+
 	def image(Class ele) {
 		images.getImage(ISharedImages.IMG_OBJS_CLASS)
 	}
-	
+
 	def image(Interface ele) {
 		images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
 	}
 
 	def image(Attribute ele) {
-		val visIndes = getVisibiltyIndex(ele.visibility)
-		val image = images.getImage(visibilityFields.get(visIndes))
+		val visibility = ele.visibility
+		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
 		return image
 	}
-	
+
 	def image(Parameter ele) {
-		val visIndes = getVisibiltyIndex(ele.visibility)
-		val image = images.getImage(visibilityFields.get(visIndes))
+		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
 		return image
 	}
 
 	def image(Method ele) {
-		val visIndes = getVisibiltyIndex(ele.visibility)
-		return images.getImage(visibilityMethods.get(visIndes))
+		val visibility = ele.visibility
+		val image = images.getImage(visibilityMethodsMap.get(ele.visibility))
+		return image
 	}
 
 	def text(TypeReference ele) {
@@ -120,7 +124,7 @@ class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPro
 	def text(Association ele) {
 		val leftChild = ele.left;
 		val rightChild = ele.right;
-		leftChild.doGetText + " - " + rightChild.doGetText
+		leftChild.doGetText + " " + ele.referencedElement.name + " " + rightChild.doGetText
 	}
 
 	def text(Generalization ele) {
@@ -133,14 +137,6 @@ class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelPro
 		val leftChild = ele.left;
 		val rightChild = ele.right;
 		leftChild.doGetText + " implements " + rightChild.doGetText
-	}
-
-	def private int getVisibiltyIndex(Visibility vis) {
-		if (vis == null) {
-			return 3;
-		} else {
-			return vis.value - 1;
-		}
 	}
 
 // Labels and icons can be computed like this:

@@ -126,10 +126,10 @@ CardinalityBound returns ecore::EInt:
 ;
 
 enum Visibility:
-	PACKAGE = '~' 
+	PUBLIC = '+' 
 	| PRIVATE = '-' 
 	| PROTECTED = '#' 
-	| PUBLIC = '+'
+	| PACKAGE = '~'
 ;
 
 enum ReadingDirection:
