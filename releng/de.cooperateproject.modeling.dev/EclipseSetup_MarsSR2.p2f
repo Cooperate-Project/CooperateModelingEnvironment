@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?p2f version='1.0.0'?>
+<p2f version='1.0.0'>
+  <ius size='9'>
+    <iu id='de.cooperateproject.cdoxtext.feature.feature.group' name='CDO-Xtext Integration' version='1.0.0.201607151645'>
+      <repositories size='1'>
+        <repository location='https://mammutbaum36.fzi.de/p2/cooperate-dev/'/>
+      </repositories>
+    </iu>
+    <iu id='epp.package.modeling' name='Eclipse Modeling Tools' version='4.5.2.20160218-0600'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/mars'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/mars/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecore.xcore.sdk.feature.group' name='EMF - Eclipse Modeling Framework Xcore SDK' version='1.3.2.v20160209-0349'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/mars'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/mars/'/>
+      </repositories>
+    </iu>
+    <iu id='org.hamcrest' name='Hamcrest Library of Matchers' version='1.1.0.v20090501071000'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/tools/orbit/downloads/drops/R20160221192158/repository/'/>
+        <repository location='http://download.eclipse.org/eclipse/updates/4.5'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.papyrus.sdk.feature.feature.group' name='Papyrus UML' version='1.1.4.201602101200'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/mars'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/mars/'/>
+      </repositories>
+    </iu>
+    <iu id='de.cooperateproject.cdo.patched.client.feature.feature.group' name='Patched Client Bundles' version='1.0.0.201607221028'>
+      <repositories size='1'>
+        <repository location='https://mammutbaum36.fzi.de/p2/cooperate-dev/'/>
+      </repositories>
+    </iu>
+    <iu id='de.cooperateproject.cdo.patched.server.feature.feature.group' name='Patched Server Bundles' version='1.0.0.201607221028'>
+      <repositories size='1'>
+        <repository location='https://mammutbaum36.fzi.de/p2/cooperate-dev/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.m2m.qvt.oml.sdk.feature.group' name='QVT Operational SDK' version='3.5.0.v20150603-1058'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/mars'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/mars/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.xtext.sdk.feature.group' name='Xtext Complete SDK' version='2.9.1.v201512180746'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/mars'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/mars/'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+  </ius>
+</p2f>
