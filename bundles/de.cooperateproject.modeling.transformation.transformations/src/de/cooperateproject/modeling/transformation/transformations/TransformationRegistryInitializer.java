@@ -42,7 +42,7 @@ public class TransformationRegistryInitializer {
 				String diagramName = ((Diagram)changedEObject).getName();
 				String lastSegment = String.format("%s - %s.%s", modelName, diagramName, textualFileExtension);
 				URI targetURI = changedModelURI.trimFragment().trimQuery().trimSegments(1).appendSegment(lastSegment);
-				return new GraphicsToTextTransformation(diagramType, textualFileExtension, rs, changedModelURI, targetURI);
+				return new GraphicsToTextTransformation(diagramType, rs, changedModelURI, targetURI);
 			}
 			
 			@Override
@@ -70,7 +70,7 @@ public class TransformationRegistryInitializer {
 						targetURI = targetURI.trimFragment().appendFragment(targetUriFragment);
 					}
 				}
-				return new TextToGraphicsTransformation(diagramType, textualFileExtension, changedModelURI.fileExtension(), rs, changedModelURI, targetURI);
+				return new TextToGraphicsTransformation(diagramType, changedModelURI.fileExtension(), rs, changedModelURI, targetURI);
 			}
 			
 			@Override

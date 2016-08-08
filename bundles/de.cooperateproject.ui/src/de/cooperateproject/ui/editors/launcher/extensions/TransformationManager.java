@@ -115,7 +115,7 @@ public class TransformationManager {
 		CDOTransaction transaction = cdoCheckout.openTransaction();
 		ResourceSet rs = new CDOResourceSet(transaction);
 		try {
-			triggerTransformation(uri, rs);			
+			triggerTransformation(uri, rs);
 			transaction.commit();
 		} finally {
 			IOUtil.closeSilent(transaction);

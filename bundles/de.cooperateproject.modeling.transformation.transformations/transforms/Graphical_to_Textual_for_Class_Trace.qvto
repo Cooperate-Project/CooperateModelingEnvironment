@@ -1,0 +1,397 @@
+import TraceUtils;
+
+transformation Graphical_to_Textual_for_Class_Trace(in graphicalTrace : TRACE, out textualTrace : TRACE, in textualModel : TEXTUAL, in t2gTransformation : QVTO);
+
+modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
+modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TEXTUAL uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
+modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+
+main() {
+	var traces := graphicalTrace.rootObjects()[trace::Trace];
+	assert fatal (traces->size() = 1);
+
+	traces->map trace();
+}
+
+mapping trace::Trace::trace() : trace::Trace
+{
+	traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtended();
+}
+
+
+
+mapping trace::TraceRecord::traceRecordExtended() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedDiagram();
+	
+	result += self.map traceRecordExtendedClassifier();
+	result += self.map traceRecordExtendedAttributeShape();
+	result += self.map traceRecordExtendedOperationShape();
+	result += self.map traceRecordExtendedClassShape();
+	result += self.map traceRecordExtendedInterfaceShape();
+	result += self.map traceRecordExtendedConnector();
+	result += self.map traceRecordExtendedConnectorToEdge();
+	result += self.map traceRecordExtendedGeneralizationToEdge();
+	result += self.map traceRecordExtendedImplementationToEdge();
+	result += self.map traceRecordExtendedCommentLinkToEdge();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedDiagram() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
+{
+	var classDiagram := self.getResult().modelElement;
+	var notationDiagram := self.getSelf().modelElement.oclAsType(notation::Diagram);
+
+	result += new TraceRecord("diagramToDiagram", "ClassDiagram", classDiagram, "Diagram", notationDiagram.eobject());
+	result += new TraceRecord("stringValueStyle", "ClassDiagram", classDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
+	result += new TraceRecord("diagramStyle", "ClassDiagram", classDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
+	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "ClassDiagram", classDiagram, "PapyrusViewStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusViewStyle)).eobject());
+	viewStyleRecord.parameters.parameters += object VarParameterValue {
+		name := "rootElement";
+		type := "Package";
+		value := new EValue(notationDiagram.element);
+	};
+	result += viewStyleRecord;
+}
+
+mapping trace::TraceRecord::traceRecordExtendedAttributeShape() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToProperty"}
+{
+	result += new TraceRecord("attributeToShape", "Attribute", self.getResult().modelElement.eobject(), "Shape", self.getSelfNode().eobject());
+	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedOperationShape() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToOperation"}
+{
+	result += new TraceRecord("methodToShape", "Method", self.getResult().modelElement.eobject(), "Shape", self.getSelfNode().eobject());
+	result += self.map traceRecordExtendedOperationShape_Class();
+	result += self.map traceRecordExtendedOperationShape_Interface();
+	result += self.getSelfNode().map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedOperationShape_Class() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclAsType(cls::Method).owner.oclIsKindOf(cls::Class)}
+{
+	result += new TraceRecord("classMethodToShape", "Method", self.getResult().modelElement.eobject(), "Shape", self.getSelfNode().eobject());
+}
+
+mapping trace::TraceRecord::traceRecordExtendedOperationShape_Interface() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclAsType(cls::Method).owner.oclIsKindOf(cls::Interface)}
+{
+	result += new TraceRecord("interfaceMethodToShape", "Method", self.getResult().modelElement.eobject(), "Shape", self.getSelfNode().eobject());
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassShape() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToClass"}
+{
+	var clz := self.getResult().modelElement;
+	var shape := self.getSelfNode().eobject();
+	result += new TraceRecord("classToShape", "Classifier", clz, "Shape", shape);
+}
+
+mapping trace::TraceRecord::traceRecordExtendedInterfaceShape() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToInterface"}
+{
+	var interface := self.getResult().modelElement;
+	var shape := self.getSelfNode().eobject();
+	result += new TraceRecord("interfaceToShape", "Classifier", interface, "Shape", shape);
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToClassifier"}
+{
+	result += new TraceRecord("classifierToShape", "Classifier", self.getResult().modelElement.eobject(), "Shape", self.getSelfNode().eobject());
+	result += self.map traceRecordExtendedClassifier_UnknownDecorationNode();
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNode();
+	result += self.getSelfNode().map traceRecordExtended_notationBounds();
+	result += self.map traceRecordExtendedClassifier_classifierToAttributesCompartment();
+	result += self.map traceRecordExtendedClassifier_classifierToOperationsCompartment();
+	result += self.map traceRecordExtendedClassifier_classifierToSignalsCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_UnknownDecorationNode() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedClassifier_UnknownDecorationNodeClass();
+	result += self.map traceRecordExtendedClassifier_UnknownDecorationNodeInterface();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_UnknownDecorationNodeClass() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
+{
+	result += new TraceRecord("classifierToUnknownDecorationNode", "Classifier", self.getResult().modelElement, "DecorationNode", self.getSelfNode().children->any(type = "5029").eobject());
+	result += new TraceRecord("classToUnknownDecorationNode", "Classifier", self.getResult().modelElement, "DecorationNode", self.getSelfNode().children->any(type = "5029").eobject());
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_UnknownDecorationNodeInterface() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
+{
+	result += new TraceRecord("classifierToUnknownDecorationNode", "Classifier", self.getResult().modelElement, "DecorationNode", self.getSelfNode().children->any(type = "5011").eobject());
+	result += new TraceRecord("interfaceToUnknownDecorationNode", "Classifier", self.getResult().modelElement, "DecorationNode", self.getSelfNode().children->any(type = "5011").eobject());
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNode() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeClass();
+	result += self.map traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeClass() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
+{
+	var classifier := self.getResult().modelElement;
+	var node := self.getSelfNode().children->any(type = "8510");
+	result += new TraceRecord("classifierToFloatingLabelDecorationNode", "Classifier", classifier, "DecorationNode", node.eobject());
+	result += new TraceRecord("classToFloatingLabelDecorationNode", "Classifier", classifier, "DecorationNode", node.eobject());
+	result += node.map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_FloatingLabelDecorationNodeInterface() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
+{
+	var classifier := self.getResult().modelElement;
+	var node := self.getSelfNode().children->any(type = "8507");
+	result += new TraceRecord("classifierToFloatingLabelDecorationNode", "Classifier", classifier, "DecorationNode", node.eobject());
+	result += new TraceRecord("interfaceToFloatingLabelDecorationNode", "Classifier", classifier, "DecorationNode", node.eobject());
+	result += node.map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_classifierToAttributesCompartment() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedClassifier_classToAttributesCompartment();
+	result += self.map traceRecordExtendedClassifier_interfaceToAttributesCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_classToAttributesCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().children->any(type = "7017").eobject();
+	result += new TraceRecord("classifierToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += new TraceRecord("classToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_interfaceToAttributesCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().children->any(type = "7006").eobject();
+	result += new TraceRecord("classifierToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += new TraceRecord("classToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_classifierToOperationsCompartment() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedClassifier_classToOperationsCompartment();
+	result += self.map traceRecordExtendedClassifier_interfaceToOperationsCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_classToOperationsCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().children->any(type = "7018").eobject();
+	result += new TraceRecord("classifierToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += new TraceRecord("classToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_interfaceToOperationsCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().children->any(type = "7007").eobject();
+	result += new TraceRecord("classifierToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += new TraceRecord("interfaceToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_classifierToSignalsCompartment() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordExtendedClassifier_classToSignalsCompartment();
+	result += self.map traceRecordExtendedClassifier_interfaceToSignalsCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_classToSignalsCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().children->any(type = "7019").eobject();
+	result += new TraceRecord("classifierToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += new TraceRecord("classToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedClassifier_interfaceToSignalsCompartment() : List(trace::TraceRecord)
+when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
+{
+	var classifier := self.getResult().modelElement;
+	var compartment := self.getSelfNode().children->any(type = "7008").eobject();
+	result += new TraceRecord("classifierToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += new TraceRecord("interfaceToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedConnector() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToConnector"}
+{
+	var connector := self.getResult().modelElement;
+	var edge := self.getSelf().modelElement;
+	result += createEdgeTraceRecord("connectorToConnector", "Connector", connector, "Connector", edge);
+}
+
+mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToRegularAssociation"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cls::Association);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += createEdgeTraceRecord("connectorToEdge", "Association", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeDecoration", "Association", connector.eobject(), "DecorationNode", edge.children->any(type = "6001").eobject());
+	result += edge.children->any(type = "6001").map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("nameDecoration", "Association", connector.eobject(), "DecorationNode", edge.children->any(type = "6002").eobject());
+	result += edge.children->any(type = "6002").map traceRecordExtended_locationConstraint();
+
+	result += connector.properties.map traceRecordExtendedConnectorToEdge_AssociationProperties(edge);
+}
+
+mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge_ConnectorBase() : List(trace::TraceRecord)
+{
+	var connector := self.getResult().modelElement.oclAsType(cls::Connector);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("connectorToBendpoint", "Connector", connector.eobject(), "RelativeBendpoints", edge.bendpoints.eobject());
+	result += new TraceRecord("fontStyle", "EObject", edge.eobject() , "FontStyle", edge.styles->selectByKind(notation::FontStyle)->any(true).eobject());
+}
+
+mapping cls::AssociationProperties::traceRecordExtendedConnectorToEdge_AssociationProperties(edge : notation::Connector) : List(trace::TraceRecord)
+{
+	result += new TraceRecord("targetRoleDecoration", "AssociationProperties", self.eobject(), "DecorationNode", edge.children->any(type = "6003").eobject());
+	result += edge.children->any(type = "6003").map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("sourceRoleDecoration", "AssociationProperties", self.eobject(), "DecorationNode", edge.children->any(type = "6005").eobject());
+	result += edge.children->any(type = "6005").map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("sourceMultiplicityDecoration", "AssociationProperties", self.eobject(), "DecorationNode", edge.children->any(type = "6033").eobject());
+	result += edge.children->any(type = "6033").map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("targetMultiplicityDecoration", "AssociationProperties", self.eobject(), "DecorationNode", edge.children->any(type = "6034").eobject());
+	result += edge.children->any(type = "6034").map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedGeneralizationToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToGeneralization"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cls::Generalization);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += createEdgeTraceRecord("generalizationToEdge", "Generalization", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeDecoration", "Generalization", connector.eobject(), "DecorationNode", edge.children->any(type = "6007").eobject());
+	result += edge.children->any(type = "6007").map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedImplementationToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToImplementation"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cls::Implementation);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += createEdgeTraceRecord("implementationToEdge", "Implementation", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	result += new TraceRecord("stereotypeDecoration", "Implementation", connector.eobject(), "DecorationNode", edge.children->any(type = "6008").eobject());
+	result += edge.children->any(type = "6008").map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("nameDecoration", "Implementation", connector.eobject(), "DecorationNode", edge.children->any(type = "6009").eobject());
+	result += edge.children->any(type = "6009").map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedCommentLinkToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToCommentLink"}
+{
+	var connector := self.getResult().modelElement.oclAsType(cls::CommentLink);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+
+	result += createEdgeTraceRecord("commentLinkToEdge", "CommentLink", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+}
+
+
+mapping notation::BasicCompartment::traceRecordExtendedClassifier_basicCompartment() : List(trace::TraceRecord)
+{
+	result += new TraceRecord("titleStyle", "EObject", self.eobject(), "TitleStyle", self.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+	result += new TraceRecord("sortingStyle", "EObject", self.eobject(), "SortingStyle", self.styles->selectByKind(notation::SortingStyle)->any(true).eobject());
+	result += new TraceRecord("filteringStyle", "EObject", self.eobject(), "FilteringStyle", self.styles->selectByKind(notation::FilteringStyle)->any(true).eobject());
+	result += self.map traceRecordExtended_notationBounds();
+}
+
+mapping notation::Node::traceRecordExtended_locationConstraint() : trace::TraceRecord
+{
+	init {
+		result := new TraceRecord("locationConstraint", "EObject", self.eobject(), "Location", self.layoutConstraint.eobject());
+	}
+}
+
+mapping notation::Node::traceRecordExtended_notationBounds() : trace::TraceRecord
+{
+	init {
+		result := new TraceRecord("notationBounds", "EObject", self.eobject(), "Bounds", self.layoutConstraint.eobject());
+	}
+}
+
+// Helpers
+
+query trace::TraceRecord::getSelfNode() : notation::Node {
+	assert error (self.getSelf().modelElement.oclIsKindOf(notation::Node)) with log('The contained model element is not a node.');
+	return self.getSelf().modelElement.oclAsType(notation::Node);
+}
+
+constructor trace::TraceRecord::TraceRecord(mappingName : String, contextType : String, contextValue : ecore::EObject, resultType : String, resultValue : ecore::EObject)
+{
+	mappingOperation := object trace::EMappingOperation {
+		name := mappingName;
+		package := "Textual_to_Graphical_for_Class";
+		module := "Textual_to_Graphical_for_Class";
+		runtimeMappingOperation := t2gTransformation.rootObjects()->any(true).getMapping(mappingName, contextType);
+	};
+	context := object trace::EMappingContext {
+		context := object trace::VarParameterValue {
+			name := "self";
+			type := contextType;
+			value := new EValue(contextValue);
+		};
+	};
+	parameters := object trace::EMappingParameters {};
+	result._result := new EMappingResults(resultType, resultValue);			
+}
+
+constructor trace::EMappingResults::EMappingResults(typeName : String, resultObject : ecore::EObject)
+{
+	result.result := object trace::VarParameterValue {
+		kind := trace::EDirectionKind::OUT;
+		name := "result";
+		type := typeName;
+		value := new EValue(resultObject);
+	}
+}
+
+query createEdgeTraceRecord(mappingName : String, contextType : String, contextValue : ecore::EObject, resultType : String, resultValue : ecore::EObject) : trace::TraceRecord
+{
+	var record := new trace::TraceRecord(mappingName, contextType, contextValue, resultType, resultValue);
+	record.parameters.parameters += new trace::VarParameterValue("classifiers", "Classifier", getAllClassifiers());
+	return record;
+}
+
+query getAllClassifiers() : OrderedSet(cls::Classifier)
+{
+	var classDiagrams := textualModel.rootObjects()[cls::ClassDiagram];
+	assert error (classDiagrams->size() = 1) with log('No models with more than one root object supported.');
+	return classDiagrams->any(true).classifiers;
+}

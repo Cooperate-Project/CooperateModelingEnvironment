@@ -37,33 +37,26 @@ merges cls::Classifier::classToShape, cls::Classifier::interfaceToShape
 {
 	element := self.referencedElement.oclAsType(ecore::EObject);
 	
-	children += self->classifierToUnknownDecorationNode();
-	children += self->classifierToFloatingLabelDecorationNode();
+	children += self.map classifierToUnknownDecorationNode();
+	children += self.map classifierToFloatingLabelDecorationNode();
 	
-	children += self->map classifierToAttributesCompartment();
-	children += self->map classifierToOperationsCompartment();
-	children += self->map classifierToSignalsCompartment();
+	children += self.map classifierToAttributesCompartment();
+	children += self.map classifierToOperationsCompartment();
+	children += self.map classifierToSignalsCompartment();
 	
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 mapping cls::Classifier::interfaceToShape() : notation::Shape
-when {self.oclIsKindOf(cls::Class)}
-{
-	type := "2008";
-}
-
-mapping cls::Classifier::classToShape() : notation::Shape
 when {self.oclIsKindOf(cls::Interface)}
 {
 	type := "2004";
 }
 
-mapping cls::Classifier::classifierToCompartmentBase() : notation::BasicCompartment {
-	styles += result.toEObject().map titleStyle();
-	styles += result.toEObject().map sortingStyle();
-	styles += result.toEObject().map filteringStyle();
-	layoutConstraint := result.toEObject().map notationBounds();
+mapping cls::Classifier::classToShape() : notation::Shape
+when {self.oclIsKindOf(cls::Class)}
+{
+	type := "2008";
 }
 
 mapping cls::CommentLink::commentLinkToShape() : notation::Shape
@@ -75,10 +68,13 @@ mapping cls::CommentLink::commentLinkToShape() : notation::Shape
 }
 
 mapping cls::Classifier::classifierToAttributesCompartment() : notation::BasicCompartment
-inherits cls::Classifier::classifierToCompartmentBase
 merges cls::Classifier::classToAttributesCompartment, cls::Classifier::interfaceToAttributesCompartment
 {
 	children += self.members->select(oclIsKindOf(cls::Attribute))->oclAsType(cls::Attribute)->map attributeToShape();
+	styles += result.toEObject().map titleStyle();
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 mapping cls::Classifier::classToAttributesCompartment() : notation::BasicCompartment
@@ -96,14 +92,17 @@ when {self.oclIsKindOf(cls::Interface)}
 mapping cls::Attribute::attributeToShape() : notation::Shape {
 	type := "3012";
 	element := self.referencedElement.oclAsType(ecore::EObject);
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Classifier::classifierToOperationsCompartment() : notation::BasicCompartment
-inherits cls::Classifier::classifierToCompartmentBase
 merges cls::Classifier::classToOperationsCompartment, cls::Classifier::interfaceToOperationsCompartment
 {
 	children += self.members->select(oclIsKindOf(cls::Method))->oclAsType(cls::Method)->map methodToShape();
+	styles += result.toEObject().map titleStyle();
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 mapping cls::Classifier::classToOperationsCompartment() : notation::BasicCompartment
@@ -122,7 +121,7 @@ mapping cls::Method::methodToShape() : notation::Shape
 merges cls::Method::classMethodToShape, cls::Method::interfaceMethodToShape
 {
 	element := self.referencedElement.oclAsType(ecore::EObject);
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Method::classMethodToShape() : notation::Shape
@@ -139,8 +138,11 @@ when {self.owner.oclIsKindOf(cls::Interface)}
 
 mapping cls::Classifier::classifierToSignalsCompartment() : notation::BasicCompartment
 merges cls::Classifier::classToSignalsCompartment, cls::Classifier::interfaceToSignalsCompartment
-inherits cls::Classifier::classifierToCompartmentBase
 {
+	styles += result.toEObject().map titleStyle();
+	styles += result.toEObject().map sortingStyle();
+	styles += result.toEObject().map filteringStyle();
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 mapping cls::Classifier::classToSignalsCompartment() : notation::BasicCompartment
@@ -177,7 +179,7 @@ when{self.oclIsKindOf(cls::Interface)}
 mapping cls::Classifier::classifierToFloatingLabelDecorationNode() : notation::DecorationNode
 merges cls::Classifier::classToFloatingLabelDecorationNode, cls::Classifier::interfaceToFloatingLabelDecorationNode
 {
-	layoutConstraint := result.toEObject().map locationConstraint(5);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Classifier::classToFloatingLabelDecorationNode() : notation::DecorationNode
@@ -197,7 +199,8 @@ when {self.oclIsKindOf(cls::Interface)}
 
 mapping cls::Connector::connectorToConnector(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
 disjuncts cls::Association::connectorToEdge, cls::Generalization::generalizationToEdge, cls::Implementation::implementationToEdge, cls::CommentLink::commentLinkToEdge
-{}
+{
+}
 
 mapping cls::Association::connectorToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
 when { self.oclIsKindOf(cls::Association) }
@@ -207,15 +210,16 @@ when { self.oclIsKindOf(cls::Association) }
 	source := self.left.oclAsType(UMLTypeReference).type.typeToView();
 	target := self.right.oclAsType(UMLTypeReference).type.typeToView();
 	element := self.referencedElement.toEObject();
-	bendpoints := self.map connectorToBendpoint();
-	styles += result.toEObject().map fontStyle();
-	
+
 	children += self.map stereotypeDecoration();
 	children += self.map nameDecoration();
 	children += self.properties.map targetRoleDecoration();
 	children += self.properties.map sourceRoleDecoration();
 	children += self.properties.map sourceMultiplicityDecoration();
 	children += self.properties.map targetMultiplicityDecoration();
+	
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
 }
 
 mapping cls::Generalization::generalizationToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
@@ -229,10 +233,11 @@ when { self.oclIsKindOf(cls::Generalization) }
 	source := specialClassifier.typeToView();
 	target := generalClassifier.typeToView();
 	element := specialClassifier.generalization->any(specific = specialClassifier).toEObject();
-	bendpoints := self.map connectorToBendpoint();
-	styles += result.toEObject().map fontStyle();
 	
 	children += self.map stereotypeDecoration();
+	
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
 }
 
 mapping cls::Implementation::implementationToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
@@ -247,14 +252,15 @@ when { self.oclIsKindOf(cls::Implementation) }
 	target := implementedInterface.typeToView();
 	
 	element := implementingClassifier.interfaceRealization->any(contract = implementedInterface).toEObject();
-	bendpoints := self.map connectorToBendpoint();
-	styles += result.toEObject().map fontStyle();
 	
 	children += self.map stereotypeDecoration();
 	children += self.map nameDecoration();
+	
+	bendpoints := self.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
 }
 
-mapping cls::CommentLink::commentLinkToEdge(_ : OrderedSet(cls::Classifier)) : notation::Connector
+mapping cls::CommentLink::commentLinkToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
 {
 	type := "4013";
 	
@@ -264,12 +270,13 @@ mapping cls::CommentLink::commentLinkToEdge(_ : OrderedSet(cls::Classifier)) : n
 	source := commentShape;
 	target := classifier.typeToView();
 	element := null;
+	
 	bendpoints := self.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
 
-mapping cls::Connector::connectorToBendpoint() : notation::RelativeBendpoints {
-	
+mapping cls::Connector::connectorToBendpoint() : notation::RelativeBendpoints
+{
 }
 
 
@@ -296,64 +303,63 @@ mapping cls::CommentLink::commentLabelBodyHintDecoration() : notation::Decoratio
 mapping cls::Association::stereotypeDecoration() : notation::DecorationNode
 {
 	type := "6001";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Association::nameDecoration() : notation::DecorationNode
 {
 	type := "6002";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationProperties::targetRoleDecoration() : notation::DecorationNode
 {
 	type := "6003";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationProperties::sourceRoleDecoration() : notation::DecorationNode
 {
 	type := "6005";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Generalization::stereotypeDecoration() : notation::DecorationNode
 {
 	type := "6007";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Implementation::stereotypeDecoration() : notation::DecorationNode
 {
 	type := "6008";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::Implementation::nameDecoration() : notation::DecorationNode
 {
 	type := "6009";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationProperties::sourceMultiplicityDecoration() : notation::DecorationNode
 when {self.cardinalityLeft != null}
 {
 	type := "6033";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationProperties::targetMultiplicityDecoration() : notation::DecorationNode
 when {self.cardinalityRight != null}
 {
 	type := "6034";
-	layoutConstraint := result.toEObject().map locationConstraint(null);
+	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 // style stuff
 
-mapping ecore::EObject::locationConstraint(yValue : Integer) : notation::Location
+mapping ecore::EObject::locationConstraint() : notation::Location
 {
-	y := yValue;
 }
 
 mapping ecore::EObject::titleStyle() : notation::TitleStyle
