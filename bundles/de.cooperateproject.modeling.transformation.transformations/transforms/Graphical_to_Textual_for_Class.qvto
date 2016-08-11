@@ -112,38 +112,31 @@ constructor cls::UMLTypeReference::UMLTypeReference(umlType : uml::Type) {
 
 mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
 disjuncts
-	notation::Edge::edgeToCommentLink1,
-	notation::Edge::edgeToCommentLink2,
+	notation::Edge::edgeToCommentLink,
 	notation::Edge::edgeToGeneralization,
 	notation::Edge::edgeToImplementation,
-	notation::Edge::edgeToAggregationOrComposition,
 	notation::Edge::edgeToRegularAssociation
 {}
 
-mapping notation::Edge::edgeToCommentLink1(allEdges : OrderedSet(Edge)) : cls::CommentLink
+mapping notation::Edge::edgeToCommentLink(allEdges : OrderedSet(Edge)) : cls::CommentLink
 	when {
-		self.element = null and
-		(
-			self.source.element.oclIsKindOf(uml::Comment) and
-			self.target.element.oclIsKindOf(uml::Classifier)
+		self.element = null and	(
+			(
+				self.source.element.oclIsKindOf(uml::Comment) and
+				self.target.element.oclIsKindOf(uml::Classifier)
+			)
+			or
+			(
+				self.source.element.oclIsKindOf(uml::Classifier) and
+				self.target.element.oclIsKindOf(uml::Comment)
+			)
 		)
 	}
 {
-	left := self.target.element.oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
-	comment := self.source.element.oclAsType(uml::Comment);
-}
-
-mapping notation::Edge::edgeToCommentLink2(allEdges : OrderedSet(Edge)) : cls::CommentLink
-	when {
-		self.element = null and
-		(
-			self.source.element.oclIsKindOf(uml::Classifier) and
-			self.target.element.oclIsKindOf(uml::Comment) 
-		)
-	}
-{
-	left := self.source.element.oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
-	comment := self.target.element.oclAsType(uml::Comment);
+	var classifier := if self.source.element.oclIsKindOf(uml::Classifier) then self.source.element else self.target.element endif;
+	var umlComment := if self.source.element.oclIsKindOf(uml::Comment) then self.source.element else  self.target.element endif; 
+	left := classifier.oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
+	comment := umlComment.oclAsType(uml::Comment);
 }
 
 mapping notation::Edge::edgeToGeneralization(allEdges : OrderedSet(Edge)) : cls::Generalization
@@ -172,50 +165,35 @@ mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls:
 	right := association.contract.map typeToUMLTypeReference(result);
 }
 
-mapping notation::Edge::edgeToAggregationOrComposition(allEdges : OrderedSet(Edge)) : cls::Association
+mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : cls::Association
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::Association) and
-		self.element.oclAsType(uml::Association).memberEnd->size() = 2 and
-		self.element.oclAsType(uml::Association).memberEnd->at(2).aggregation != uml::AggregationKind::none
+		self.element.oclAsType(uml::Association).memberEnd->size() = 2
 	}
 {
 	var association := self.element.oclAsType(uml::Association);
 	
-	referencedElement := association;
-	aggregationKind := association.memberEnd->at(1).aggregation.convert();
-	left := association.memberEnd->at(2).type.map typeToUMLTypeReference(result);
-	right := association.memberEnd->at(1).type.map typeToUMLTypeReference(result);
+	var aggregatingIndex := if association.memberEnd->at(2).aggregation != uml::AggregationKind::none then 2 else 1 endif;
+	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
 	
-	properties := association.map edgeToAssociationProperties(true);
+	referencedElement := association;
+	aggregationKind := association.memberEnd->at(aggregatingIndex).aggregation.convert();
+	left := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference(result);
+	right := association.memberEnd->at(regularIndex).type.map typeToUMLTypeReference(result);
+	
+	properties := association.map edgeToAssociationProperties(aggregatingIndex);
 	
 	var relevantComments := self.findEdgeComments(allEdges);
 	assert warning (relevantComments->size() = 1) with log ('There can be no more than one comments for an association.');
 	comment := relevantComments->any(true);
 }
 
-mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : cls::Association
-	when {
-		self.element != null and
-		self.element.oclIsKindOf(uml::Association)
-	}
-{
-	var association := self.element.oclAsType(uml::Association);
-	assert error (association.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', association);
-	
-	referencedElement := association;
-	aggregationKind := association.memberEnd->at(1).aggregation.convert();
-	left := association.memberEnd->at(1).type.map typeToUMLTypeReference(result);
-	right := association.memberEnd->at(2).type.map typeToUMLTypeReference(result);
-	
-	properties := association.map edgeToAssociationProperties(false);
-}
-
-mapping uml::Association::edgeToAssociationProperties(inverted : Boolean) : cls::AssociationProperties {
+mapping uml::Association::edgeToAssociationProperties(aggregatingIndex : Integer) : cls::AssociationProperties {
 	assert error (self.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
 		
-	var left := self.memberEnd->at(if inverted then 2 else 1 endif);
-	var right := self.memberEnd->at(if inverted then 1 else 2 endif);
+	var left := self.memberEnd->at(aggregatingIndex);
+	var right := self.memberEnd->at(if aggregatingIndex = 1 then 2 else 1 endif);
 	
 	cardinalityLeft := left.map multiplicityElementToCardinality();
 	cardinalityRight := right.map multiplicityElementToCardinality();

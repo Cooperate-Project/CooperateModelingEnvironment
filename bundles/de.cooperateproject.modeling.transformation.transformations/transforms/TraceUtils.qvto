@@ -1,0 +1,82 @@
+library TraceUtils;
+
+modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
+modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+
+query ecore::EObject::getRoot() : ecore::EObject
+{
+	var parent := self.eobject();
+	while(parent.eContainer() != null) {
+		parent := parent.eContainer();
+	};
+	assert error (parent != null) with log ('Could not find a parent.', self);
+	return parent;
+}
+
+query trace::VarParameterValue::getTraceRecord() : trace::TraceRecord
+{
+	var parent := self.eobject();
+	while(parent != null and not parent.oclIsKindOf(trace::TraceRecord)) {
+		parent := parent.eContainer();
+	};
+
+	assert error (parent.oclIsKindOf(trace::TraceRecord)) with log('Could not find parent trace record.', self);
+
+	return parent.oclAsType(trace::TraceRecord);
+}
+
+query trace::TraceRecord::getResult() : trace::EValue
+{
+	var resultMapping := self.getResultMapping();
+	return resultMapping.value;
+}
+
+query trace::TraceRecord::getResultMapping() : trace::VarParameterValue
+{
+	var results := self._result._result->select(kind = EDirectionKind::OUT and name = "result");
+	assert error (results->size() = 1) with log('Records with multiple results are not supported.', self);
+	return results->any(true);
+}
+
+query trace::TraceRecord::getSelf() : trace::EValue
+{
+	return self.getContextMapping().value;
+}
+
+query trace::TraceRecord::getContextMapping() : trace::VarParameterValue
+{
+	return self.context.context;
+}
+
+query OclAny::eobject() : ecore::EObject
+{
+	return self.oclAsType(ecore::EObject);
+}
+
+query Element::getMapping(name : String, contextType : String) : qvtoperational::expressions::MappingOperation {
+	var operations := self[qvtoperational::expressions::OperationalTransformation].eAllOperations->selectByKind(qvtoperational::expressions::MappingOperation);
+	var matchingOperations := operations->select(o | o.name = name and o.context.eType.name = contextType);
+	assert error (matchingOperations->size() = 1) with log ('The mapping operation has to be identifyable unambigously.', name);
+	return matchingOperations->any(true);
+}
+
+constructor trace::EValue::EValue(target : ecore::EObject)
+{
+	modelElement := target;
+}
+
+constructor trace::EValue::EValue(objects : OrderedSet(OclAny))
+{
+	collectionType := "OrderedSet";
+	objects->forEach(c) {
+		collection += new EValue(c.eobject())
+	}
+}
+
+constructor trace::VarParameterValue::VarParameterValue(parameterName : String, typeName : String, objects : OrderedSet(OclAny))
+{
+	name := parameterName;
+	type := "OrderedSet(" + typeName + ")";
+	value := new EValue(objects);
+}

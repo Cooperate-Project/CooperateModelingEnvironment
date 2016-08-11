@@ -24,5 +24,9 @@ public class TransformationCharacteristic {
 	public ConcreteSyntaxTypes getTo() {
 		return to;
 	}
+	
+	public TransformationCharacteristic inverse() {
+		return new TransformationCharacteristic(diagramType, to, from);
+	}
 
 }

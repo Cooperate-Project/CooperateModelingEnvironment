@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,7 +10,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.function.Function;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.BasicConfigurator;
@@ -20,6 +23,7 @@ import org.apache.log4j.PatternLayout;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.utils.EMFComparePrettyPrinter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -41,6 +45,7 @@ import org.junit.BeforeClass;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
 import de.cooperateproject.modeling.transformation.transformations.tests.util.Log4JLogger;
+import de.cooperateproject.modeling.transformation.transformations.tests.util.ModelComparator;
 
 
 public abstract class PlainTransformationTestBase {
@@ -76,12 +81,6 @@ public abstract class PlainTransformationTestBase {
 	@Before
 	public void setup() throws Exception {
 		resourceSet = new ResourceSetImpl();
-		beforeTest();
-	}
-
-	protected void beforeTest() throws Exception {
-		// intentionally left blank
-		return;
 	}
 	
 	protected ResourceSet getResourceSet() {
@@ -107,12 +106,25 @@ public abstract class PlainTransformationTestBase {
 		
 		return destination;
 	}
-
 	
 	protected EObject getRootElement(URI modelUri) throws IOException {
 		Resource r = createResource(getResourceSet(), modelUri);
 		return r.getContents().get(0);
 	}
+	
+	protected void assertModelEquals(EObject expected, EObject actual) throws UnsupportedEncodingException {
+		assertModelEquals(expected, actual, (c -> Collections.emptyList()));
+	}
+	
+	protected static void assertModelEquals(EObject expected, EObject actual,
+			Function<Collection<Diff>, Collection<Diff>> diffProcessor) throws UnsupportedEncodingException {
+		Comparison result = ModelComparator.compare(expected, actual);
+		Collection<Diff> ignoredDiffs = diffProcessor.apply(result.getDifferences());
+		ignoredDiffs.stream().forEach(PlainTransformationTestBase::removeDifference);
+		assertTrue(prettyPrint(result), result.getDifferences().isEmpty());
+	}
+	
+
 	
 	// Utility methods
 	
@@ -126,7 +138,11 @@ public abstract class PlainTransformationTestBase {
 		return createPlatformURI(pathName);
 	}
 	
-	protected static String prettyPrint(Comparison comparison) throws UnsupportedEncodingException {
+	public static boolean isPluginEnvironment() {
+		return ResourcesPlugin.getPlugin() != null;
+	}
+	
+	private static String prettyPrint(Comparison comparison) throws UnsupportedEncodingException {
 		ByteArrayOutputStream baos = null;
 		PrintStream ps = null;
 		try {
@@ -163,7 +179,7 @@ public abstract class PlainTransformationTestBase {
 		return new BasicModelExtent(r.getContents());
 	}
 	
-	private static boolean isPluginEnvironment() {
-		return ResourcesPlugin.getPlugin() != null;
+	private static void removeDifference(Diff difference) {
+		difference.getMatch().getDifferences().remove(difference);
 	}
 }

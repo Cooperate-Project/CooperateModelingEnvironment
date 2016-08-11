@@ -1,5 +1,10 @@
 package de.cooperateproject.modeling.transformation.transformations.registry;
 
+import java.util.Arrays;
+import java.util.Optional;
+
+import com.google.common.collect.Iterables;
+
 public enum DiagramTypes {
 
 	CLASS("Class"),
@@ -16,5 +21,13 @@ public enum DiagramTypes {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public static Optional<DiagramTypes> getByName(String name) {
+		com.google.common.base.Optional<DiagramTypes> foundType = Iterables.tryFind(Arrays.asList(values()), t -> t.getName().equals(name));
+		if (foundType.isPresent()) {
+			Optional.of(foundType.get());
+		}
+		return Optional.empty();
 	}
 }

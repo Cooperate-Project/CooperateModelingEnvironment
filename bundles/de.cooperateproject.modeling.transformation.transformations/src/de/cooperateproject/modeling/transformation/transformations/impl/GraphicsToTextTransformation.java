@@ -1,13 +1,7 @@
 package de.cooperateproject.modeling.transformation.transformations.impl;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.m2m.qvt.oml.ModelExtent;
 
 import de.cooperateproject.modeling.transformation.transformations.registry.ConcreteSyntaxTypes;
 import de.cooperateproject.modeling.transformation.transformations.registry.DiagramTypes;
@@ -15,14 +9,8 @@ import de.cooperateproject.modeling.transformation.transformations.registry.Tran
 
 public class GraphicsToTextTransformation extends TransformationBase {
 
-	public GraphicsToTextTransformation(DiagramTypes diagramType, String textualFileExtension, ResourceSet rs, URI source, URI target) {
-		super(createCharacteristics(diagramType), textualFileExtension, rs, source, target);
-	}
-
-	@Override
-	protected void saveTransformationResources(List<Pair<ModelExtent, Resource>> transformationResources) throws IOException {
-		List<Pair<ModelExtent, Resource>> textResources = transformationResources.stream().filter(r -> getTextualFileExtension().equals(r.getSecond().getURI().fileExtension())).collect(Collectors.toList());
-		save(textResources);
+	public GraphicsToTextTransformation(DiagramTypes diagramType, ResourceSet rs, URI source, URI target) {
+		super(createCharacteristics(diagramType), rs, source, target);
 	}
 
 	@Override

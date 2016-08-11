@@ -1,11 +1,6 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
-import static org.junit.Assert.assertEquals;
-
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.Comparison;
-import org.eclipse.emf.compare.EMFCompare;
-import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
@@ -35,9 +30,7 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		EObject actual = transformationResult.getContents().get(0);
 		EcoreUtil.resolveAll(getResourceSet());
 		
-		DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
-		Comparison comparisonResult = EMFCompare.builder().build().compare(scope);
-		assertEquals(prettyPrint(comparisonResult), 0, comparisonResult.getDifferences().size());
+		assertModelEquals(expected, actual);
 	}
 	
 
