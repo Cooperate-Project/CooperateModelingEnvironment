@@ -26,11 +26,8 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.resource.UMLResource
 import org.eclipse.emf.common.util.URI
-import java.util.List
-import org.eclipse.uml2.uml.Operation
-import java.util.ArrayList
-import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 
 class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
 
@@ -160,16 +157,17 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 	private static class CreateOperation extends CreateMember {
 		override createMember(String name, EObject operation, org.eclipse.uml2.uml.Class umlClass) {
 			if (operation instanceof Method) {
-				operation.parameters
-				var parameterName = new BasicEList<String>()
-				var names = operation.parameters.map[x | x.name]
-				parameterName.addAll(names)
-				
+				var parameterNames = new BasicEList<String>()
+				var nodes = operation.parameters.map[x|NodeModelUtils.getNode(x)]
+				var names = nodes.map[x|NodeModelUtils.getTokenText(x)]
+				parameterNames.addAll(names.map[x|x.split(":").get(0).trim])
+
 				var parameterTypes = new BasicEList<Type>()
-				var types = operation.parameters.map[x | getType(x.type, umlClass.model)]
+				var types = operation.parameters.map[x|getType(x.type, umlClass.model)]
 				parameterTypes.addAll(types)
-				
-				umlClass.createOwnedOperation(name, parameterName, parameterTypes, getType(operation.type, umlClass.model))
+
+				umlClass.createOwnedOperation(name, parameterNames, parameterTypes,
+					getType(operation.type, umlClass.model))
 			}
 		}
 	}
@@ -208,11 +206,12 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 			var resource = model.eResource.resourceSet.getResource(
 				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI), true)
 			var model = Iterables.getFirst(resource.contents, null)
-			if (!(model instanceof Model)) {
-				return null
+			if (model instanceof Model) {
+				var ecoreTypes = model.ownedTypes
+				return ecoreTypes.findFirst[x|x.name.equals(name)]
 			}
-			var ecoreTypes = (model as Model).ownedTypes
-			return ecoreTypes.findFirst[x|x.name.equals(name)]
+			return null
+
 		}
 	}
 

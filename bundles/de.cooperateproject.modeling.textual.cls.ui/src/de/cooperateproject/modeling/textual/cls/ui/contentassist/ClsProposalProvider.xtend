@@ -22,7 +22,6 @@ import org.eclipse.uml2.uml.Type
 import org.eclipse.xtext.Assignment
 import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.uml2.uml.Interface
-import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
 import org.eclipse.uml2.uml.util.UMLSwitch
 
 /**
@@ -77,16 +76,19 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		var operation = ClsFactory.eINSTANCE.createMethod
 		operation.visibility = getVisibility(refOperation.visibility)
 		operation.referencedElement = refOperation
-		
-		/*var typeSwitch = new TypeSwitch
-		operation.type = typeSwitch.doSwitch(refOperation.type)
-		typeSwitch = null*/
-		
+
 		operation.type = getType(refOperation.type)
+		var parameters = refOperation.getOwnedParameters
 		
-		// operation.parameters.addAll(operation.parameters)
-		
-		
+		for (parameter : parameters) {
+			if (parameter.name != null) {
+				var param = ClsFactory.eINSTANCE.createParameter
+				param.referencedElement = parameter
+				param.type = getType(parameter.type)
+				operation.parameters.add(param)
+			}
+		}
+
 		return operation
 	}
 
@@ -103,13 +105,13 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		attribute.referencedElement = refAttribute
 
 		/*var typeSwitch = new TypeSwitch
-		attribute.type = typeSwitch.doSwitch(refAttribute.type)
-		typeSwitch = null*/
+		 * attribute.type = typeSwitch.doSwitch(refAttribute.type)
+		 typeSwitch = null*/
 		attribute.type = getType(refAttribute.type)
-		
+
 		return attribute
 	}
-	
+
 	private def getType(Type type) {
 		if (type == null) {
 			return null
@@ -117,7 +119,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		var typeSwitch = new TypeSwitch
 		var t = typeSwitch.doSwitch(type)
 		typeSwitch = null
-		
+
 		return t
 	}
 
@@ -129,7 +131,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	}
 
 	private static class TypeSwitch extends UMLSwitch<TypeReference> {
-		
+
 		override casePrimitiveType(org.eclipse.uml2.uml.PrimitiveType primitiveType) {
 			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
 			dataType.type = getPrimitive(primitiveType)
