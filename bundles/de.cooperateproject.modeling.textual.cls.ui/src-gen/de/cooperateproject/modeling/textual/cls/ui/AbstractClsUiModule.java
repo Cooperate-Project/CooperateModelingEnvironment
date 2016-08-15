@@ -198,6 +198,11 @@ public abstract class AbstractClsUiModule extends org.eclipse.xtext.ui.DefaultUi
 	}
 
 	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
+	public Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocumentProvider> bindXtextDocumentProvider() {
+		return net.winklerweb.cdoxtext.runtime.CDOXtextDocumentProvider.class;
+	}
+
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {
 		return net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory.class;
 	}
@@ -215,11 +220,6 @@ public abstract class AbstractClsUiModule extends org.eclipse.xtext.ui.DefaultUi
 	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment
 	public Class<? extends org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher.DistanceFunction> bindProximityEObjectMatcher$DistanceFunction() {
 		return de.cooperateproject.modeling.textual.cls.ui.cdoxtext.ClsDistanceFunction.class;
-	}
-
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
-	public Class<? extends org.eclipse.xtext.ui.editor.model.XtextDocumentProvider> bindXtextDocumentProvider() {
-		return de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider.class;
 	}
 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
