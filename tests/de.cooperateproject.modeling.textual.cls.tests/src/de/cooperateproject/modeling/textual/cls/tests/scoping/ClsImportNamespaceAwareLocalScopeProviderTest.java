@@ -40,7 +40,7 @@ import de.cooperateproject.modeling.textual.cls.ClsInjectorProvider;
 import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.scoping.ClsImportNamespaceAwareLocalScopeProvider;
+import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeProvider;
 
 @RunWith(XtextRunner.class)
 @InjectWith(ClsInjectorProvider.class)
@@ -49,7 +49,7 @@ public class ClsImportNamespaceAwareLocalScopeProviderTest {
 	private static String TEST_FOLDER = "testmodels/scoping/";
 
 	@Inject
-	private ClsImportNamespaceAwareLocalScopeProvider subject;
+	private ClsCooperateSimpleScopeProvider subject;
 
 	private ResourceSet rs;
 
@@ -78,7 +78,7 @@ public class ClsImportNamespaceAwareLocalScopeProviderTest {
 
 		List<ImportNormalizer> normalizers = getNormalizers(scope);
 
-		Set<String> expectedPrefixes = Sets.newHashSet("RootElement", "RootElement.Class1.someOP");
+		Set<String> expectedPrefixes = Sets.newHashSet("RootElement", "RootElement.Class1", "RootElement.Class1.someOP", "RootElement.someOP");
 		Set<String> actualPrefixes = normalizers.stream().map(n -> n.getImportedNamespacePrefix().toString())
 				.collect(Collectors.toSet());
 	
