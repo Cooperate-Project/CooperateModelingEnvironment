@@ -4,11 +4,13 @@
 package de.cooperateproject.modeling.textual.cls;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
 import com.google.inject.Binder;
 
-import de.cooperateproject.modeling.textual.cls.scoping.ClsImportNamespaceAwareLocalScopeProvider;
+import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeProvider;
+import de.cooperateproject.modeling.textual.cls.scoping.ClsQualifiedNameProvider;
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
 
@@ -27,7 +29,7 @@ public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.A
 		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class)
 				.annotatedWith(com.google.inject.name.Names
 						.named(org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
-				.to(ClsImportNamespaceAwareLocalScopeProvider.class);
+				.to(ClsCooperateSimpleScopeProvider.class);
 	}
 
 	@Override
@@ -35,4 +37,10 @@ public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.A
 		return ClsValueConverter.class;
 	}
 
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return ClsQualifiedNameProvider.class;
+	}
+
+	
 }

@@ -26,10 +26,12 @@ import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
-	private static final IQualifiedNameProvider QUALIFIED_NAME_PROVIDER = new CooperateQualifiedNameProvider();
+	@Inject
+	private IQualifiedNameProvider qualifiedNameProvider;
 
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
@@ -74,20 +76,20 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		return createScopeForStream(results.stream(), predicate);
 	}
 
-	private static IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-		Collection<EObject> objs = results.map(CooperateGlobalScopeProvider::getDescriptionFor)
+	private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
+		Collection<EObject> objs = results.map(this::getDescriptionFor)
 				.filter(d -> d != null).filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
 				.collect(Collectors.toList());
 		return createUMLScope(objs);
 	}
 
-	private static IScope createUMLScope(Iterable<EObject> objects) {
-		return Scopes.scopeFor(objects, e -> QUALIFIED_NAME_PROVIDER.apply(e), IScope.NULLSCOPE);
+	private IScope createUMLScope(Iterable<EObject> objects) {
+		return Scopes.scopeFor(objects, e -> qualifiedNameProvider.apply(e), IScope.NULLSCOPE);
 	}
 
-	private static IEObjectDescription getDescriptionFor(EObject obj) {
+	private IEObjectDescription getDescriptionFor(EObject obj) {
 		List<EObject> elements = Arrays.asList(obj);
-		Iterable<IEObjectDescription> descriptions = Scopes.scopedElementsFor(elements);
+		Iterable<IEObjectDescription> descriptions = Scopes.scopedElementsFor(elements, qualifiedNameProvider::apply);
 		return Iterables.getFirst(descriptions, null);
 	}
 

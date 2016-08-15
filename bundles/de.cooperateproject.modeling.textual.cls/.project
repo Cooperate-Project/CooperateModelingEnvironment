@@ -3,6 +3,8 @@
 	<name>de.cooperateproject.modeling.textual.cls</name>
 	<comment></comment>
 	<projects>
+		<project>de.cooperateproject.modeling.textual.xtext.uml</project>
+		<project>de.cooperateproject.modeling.textual.xtext.uml.ui</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
