@@ -12,9 +12,6 @@ public class CooperateResourceHandlingBindingsFragment extends Xtend2GeneratorFr
 	@Override
 	public Set<Binding> getGuiceBindingsUi(Grammar grammar) {
 		return new BindFactory().addTypeToType(
-		      "org.eclipse.xtext.ui.editor.model.XtextDocumentProvider",
-			  "de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider")
-			.addTypeToType(
 			  "org.eclipse.xtext.ui.editor.model.XtextDocument",
 			  "de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument")
 			.addTypeToType(
