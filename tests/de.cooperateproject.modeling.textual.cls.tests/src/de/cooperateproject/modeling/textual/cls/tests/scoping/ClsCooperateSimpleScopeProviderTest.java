@@ -44,7 +44,7 @@ import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeP
 
 @RunWith(XtextRunner.class)
 @InjectWith(ClsInjectorProvider.class)
-public class ClsImportNamespaceAwareLocalScopeProviderTest {
+public class ClsCooperateSimpleScopeProviderTest {
 
 	private static String TEST_FOLDER = "testmodels/scoping/";
 
