@@ -134,6 +134,11 @@ public class ModelComparator {
 	private static final Collection<EAttribute> IGNORED_EATTRIBUTES = createIgnoredEAttributes();
 	private static final Collection<EClass> IGNORED_ECLASSES = createIgnoredEClasses();
 	
+	public static Comparison compareStrict(EObject expected, EObject actual) {
+		DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
+		return EMFCompare.builder().build().compare(scope);
+	}
+	
 	public static Comparison compare(EObject expected, EObject actual) {
 		DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
 		scope.setEObjectContentFilter(o -> IGNORED_ECLASSES.stream().allMatch(c -> !c.isSuperTypeOf(o.eClass())));

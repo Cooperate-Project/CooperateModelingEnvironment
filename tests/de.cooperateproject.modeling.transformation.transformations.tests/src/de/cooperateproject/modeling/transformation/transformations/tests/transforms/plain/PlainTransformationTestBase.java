@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
@@ -32,11 +33,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.m2m.internal.qvt.oml.evaluator.QVTEvaluationOptions;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.junit.Before;
@@ -88,15 +91,22 @@ public abstract class PlainTransformationTestBase {
 	}
 	
 	protected ModelExtent runTransformation(URI transformationURI, URI sourceModelURI, URI umlModelURI) throws IOException {
+		return runTransformation(transformationURI, sourceModelURI, umlModelURI, new BasicModelExtent(), new Trace(Collections.emptyList()));
+	}
+	
+	protected ModelExtent runTransformation(URI transformationURI, URI sourceModelURI, URI umlModelURI, Trace traceModel) throws IOException {
+		return runTransformation(transformationURI, sourceModelURI, umlModelURI, new BasicModelExtent(), traceModel);
+	}
+	
+	protected ModelExtent runTransformation(URI transformationURI, URI sourceModelURI, URI umlModelURI, ModelExtent destination, Trace traceModel) throws IOException {
 		ModelExtent source = createModelExtent(createResource(resourceSet, sourceModelURI));
 		ModelExtent uml = createModelExtent(createResource(resourceSet, umlModelURI));
 		ModelExtent umlPrimitives = createModelExtent(createResource(resourceSet, UML_PRIMITIVE_TYPES));
-		ModelExtent destination = new BasicModelExtent();
-		
 
 		TransformationExecutor executor = new TransformationExecutor(transformationURI);
 		ExecutionContextImpl ctx = new ExecutionContextImpl();
-		ctx.setLog(new Log4JLogger(LOGGER, Level.INFO));		
+		ctx.setLog(new Log4JLogger(LOGGER, Level.INFO));
+		ctx.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, traceModel);
 		ExecutionDiagnostic result = executor.execute(ctx, new ModelExtent[] {source, destination, uml, umlPrimitives});
 		assertEquals(ExecutionDiagnostic.OK, result.getSeverity());
 
@@ -116,15 +126,22 @@ public abstract class PlainTransformationTestBase {
 		assertModelEquals(expected, actual, (c -> Collections.emptyList()));
 	}
 	
+	protected static void assertModelEqualsStrict(EObject expected, EObject actual) throws UnsupportedEncodingException {
+		Comparison result = ModelComparator.compareStrict(expected, actual);
+		assertComparison(result);
+	}
+	
 	protected static void assertModelEquals(EObject expected, EObject actual,
 			Function<Collection<Diff>, Collection<Diff>> diffProcessor) throws UnsupportedEncodingException {
 		Comparison result = ModelComparator.compare(expected, actual);
 		Collection<Diff> ignoredDiffs = diffProcessor.apply(result.getDifferences());
 		ignoredDiffs.stream().forEach(PlainTransformationTestBase::removeDifference);
-		assertTrue(prettyPrint(result), result.getDifferences().isEmpty());
+		assertComparison(result);
 	}
 	
-
+	private static void assertComparison(Comparison comparisionResult) throws UnsupportedEncodingException {
+		assertTrue(prettyPrint(comparisionResult), comparisionResult.getDifferences().isEmpty());
+	}
 	
 	// Utility methods
 	
@@ -136,6 +153,12 @@ public abstract class PlainTransformationTestBase {
 	public static URI createResourceModelURI(String filename) {
 		String pathName = String.format("/%s/models/%s", Constants.PLUGIN_ID, filename);
 		return createPlatformURI(pathName);
+	}
+	
+	public static URI createTemporaryModelURI() throws IOException {
+		File tmpFile = File.createTempFile(PlainTransformationTestBase.class.getSimpleName(), ".xmi");
+		tmpFile.deleteOnExit();
+		return URI.createFileURI(tmpFile.getAbsolutePath());
 	}
 	
 	public static boolean isPluginEnvironment() {
