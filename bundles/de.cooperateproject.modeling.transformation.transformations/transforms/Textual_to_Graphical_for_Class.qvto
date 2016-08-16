@@ -211,8 +211,8 @@ when { self.oclIsKindOf(cls::Association) }
 	target := self.right.oclAsType(UMLTypeReference).type.typeToView();
 	element := self.referencedElement.toEObject();
 
-	children += self.map stereotypeDecoration();
-	children += self.map nameDecoration();
+	children += self.map stereotypeDecorationAssocation();
+	children += self.map nameDecorationAssociation();
 	children += self.properties.map targetRoleDecoration();
 	children += self.properties.map sourceRoleDecoration();
 	children += self.properties.map sourceMultiplicityDecoration();
@@ -234,7 +234,7 @@ when { self.oclIsKindOf(cls::Generalization) }
 	target := generalClassifier.typeToView();
 	element := specialClassifier.generalization->any(specific = specialClassifier).toEObject();
 	
-	children += self.map stereotypeDecoration();
+	children += self.map stereotypeDecorationGeneralization();
 	
 	bendpoints := self.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
@@ -253,8 +253,8 @@ when { self.oclIsKindOf(cls::Implementation) }
 	
 	element := implementingClassifier.interfaceRealization->any(contract = implementedInterface).toEObject();
 	
-	children += self.map stereotypeDecoration();
-	children += self.map nameDecoration();
+	children += self.map stereotypeDecorationImplementation();
+	children += self.map nameDecorationImplementation();
 	
 	bendpoints := self.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
@@ -300,13 +300,13 @@ mapping cls::CommentLink::commentLabelBodyHintDecoration() : notation::Decoratio
 	type := "5038";
 }
 
-mapping cls::Association::stereotypeDecoration() : notation::DecorationNode
+mapping cls::Association::stereotypeDecorationAssocation() : notation::DecorationNode
 {
 	type := "6001";
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::Association::nameDecoration() : notation::DecorationNode
+mapping cls::Association::nameDecorationAssociation() : notation::DecorationNode
 {
 	type := "6002";
 	layoutConstraint := result.toEObject().map locationConstraint();
@@ -324,19 +324,19 @@ mapping cls::AssociationProperties::sourceRoleDecoration() : notation::Decoratio
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::Generalization::stereotypeDecoration() : notation::DecorationNode
+mapping cls::Generalization::stereotypeDecorationGeneralization() : notation::DecorationNode
 {
 	type := "6007";
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::Implementation::stereotypeDecoration() : notation::DecorationNode
+mapping cls::Implementation::stereotypeDecorationImplementation() : notation::DecorationNode
 {
 	type := "6008";
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::Implementation::nameDecoration() : notation::DecorationNode
+mapping cls::Implementation::nameDecorationImplementation() : notation::DecorationNode
 {
 	type := "6009";
 	layoutConstraint := result.toEObject().map locationConstraint();

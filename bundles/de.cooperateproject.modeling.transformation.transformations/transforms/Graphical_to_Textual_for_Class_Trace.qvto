@@ -258,9 +258,9 @@ when {self.mappingOperation.name = "edgeToRegularAssociation"}
 	
 	result += createEdgeTraceRecord("connectorToEdge", "Association", connector.eobject(), "Connector", edge.eobject());
 	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeDecoration", "Association", connector.eobject(), "DecorationNode", edge.children->any(type = "6001").eobject());
+	result += new TraceRecord("stereotypeDecorationAssocation", "Association", connector.eobject(), "DecorationNode", edge.children->any(type = "6001").eobject());
 	result += edge.children->any(type = "6001").map traceRecordExtended_locationConstraint();
-	result += new TraceRecord("nameDecoration", "Association", connector.eobject(), "DecorationNode", edge.children->any(type = "6002").eobject());
+	result += new TraceRecord("nameDecorationAssociation", "Association", connector.eobject(), "DecorationNode", edge.children->any(type = "6002").eobject());
 	result += edge.children->any(type = "6002").map traceRecordExtended_locationConstraint();
 
 	result += connector.properties.map traceRecordExtendedConnectorToEdge_AssociationProperties(edge);
@@ -295,7 +295,7 @@ when {self.mappingOperation.name = "edgeToGeneralization"}
 	
 	result += createEdgeTraceRecord("generalizationToEdge", "Generalization", connector.eobject(), "Connector", edge.eobject());
 	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeDecoration", "Generalization", connector.eobject(), "DecorationNode", edge.children->any(type = "6007").eobject());
+	result += new TraceRecord("stereotypeDecorationGeneralization", "Generalization", connector.eobject(), "DecorationNode", edge.children->any(type = "6007").eobject());
 	result += edge.children->any(type = "6007").map traceRecordExtended_locationConstraint();
 }
 
@@ -307,9 +307,9 @@ when {self.mappingOperation.name = "edgeToImplementation"}
 	
 	result += createEdgeTraceRecord("implementationToEdge", "Implementation", connector.eobject(), "Connector", edge.eobject());
 	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	result += new TraceRecord("stereotypeDecoration", "Implementation", connector.eobject(), "DecorationNode", edge.children->any(type = "6008").eobject());
+	result += new TraceRecord("stereotypeDecorationImplementation", "Implementation", connector.eobject(), "DecorationNode", edge.children->any(type = "6008").eobject());
 	result += edge.children->any(type = "6008").map traceRecordExtended_locationConstraint();
-	result += new TraceRecord("nameDecoration", "Implementation", connector.eobject(), "DecorationNode", edge.children->any(type = "6009").eobject());
+	result += new TraceRecord("nameDecorationImplementation", "Implementation", connector.eobject(), "DecorationNode", edge.children->any(type = "6009").eobject());
 	result += edge.children->any(type = "6009").map traceRecordExtended_locationConstraint();
 }
 
