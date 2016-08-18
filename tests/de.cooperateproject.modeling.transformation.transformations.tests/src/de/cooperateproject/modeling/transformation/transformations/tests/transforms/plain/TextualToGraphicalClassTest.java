@@ -25,7 +25,6 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
-import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.transformation.transformations.tests.util.MatchValueSideConverter;
 
@@ -35,7 +34,6 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 
 	static {
 		ClsPackage.eINSTANCE.eClass();
-		ClsStandaloneSetup.doSetup();
 	}
 
 	@Test

@@ -11,7 +11,6 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.junit.Test;
 
-import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
@@ -20,7 +19,6 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 
 	static {
 		ClsPackage.eINSTANCE.eClass();
-		ClsStandaloneSetup.doSetup();
 	}
 
 	@Test
