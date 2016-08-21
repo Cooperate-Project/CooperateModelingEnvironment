@@ -1,0 +1,246 @@
+import TraceUtils_Class;
+
+transformation Textual_to_Graphical_for_Class_Trace(in textualTrace : TRACE, out graphicalTrace : TRACE, in graphicalModel : GRAPHICAL, in g2tTransformation : QVTO);
+
+modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
+modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TEXTUAL uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
+modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+
+main() {
+	var traces := textualTrace.rootObjects()[trace::Trace];
+	assert fatal (traces->size() = 1);
+	traces->initializeProperties();
+	traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+	TARGET_TRANSFORMATION_NAME := "PapyrusClass2Text";
+	TARGET_TRANSFORMATION := g2tTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
+}
+
+mapping trace::Trace::trace() : trace::Trace
+{
+	traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordDiagram();
+	result += self.map traceRecordShapeClassifier();
+	result += self.map traceRecordShapeAttribute();
+	result += self.map traceRecordShapeOperation();
+	result += self.map traceRecordEdgeParent();
+	result += self.map traceRecordEdgeGeneralization();
+	result += self.map traceRecordEdgeImplementation();
+	result += self.map traceRecordEdgeRegularAssociation();
+	result += self.map traceRecordEdgeCommentLink();
+}
+
+/*
+=============================================
+              Individual Mappings            
+=============================================
+
+ General notes
+ - self.mappingOperation is the name of the mapping operation in the source trace
+ 
+ */
+
+mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
+{
+	var notationDiagram := self.getResult().modelElement;
+	var classDiagram := self.getSelf().modelElement.oclAsType(cls::ClassDiagram);
+	
+	result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram, "ClassDiagram", classDiagram.eobject());
+	result += new TraceRecord("diagramToPackageImport", "Diagram", notationDiagram, "PackageImport", classDiagram.packageImports->first().eobject());
+}
+
+mapping trace::TraceRecord::traceRecordShapeClassifier() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "classifierToShape"}
+{
+	result += self.map traceRecordShapeClassifier_Class();
+	result += self.map traceRecordShapeClassifier_Interface();
+}
+
+mapping trace::TraceRecord::traceRecordShapeClassifier_Class() : List(trace::TraceRecord)
+when {self.getSelf().modelElement.oclIsKindOf(cls::Class)}
+{
+	var classifierShape := self.getResult().modelElement;
+	var classifier := self.getSelf().modelElement;
+	
+	result += new TraceRecord("nodeToClass", "Node", classifierShape, "Class", classifier);
+	result += new TraceRecord("nodeToClassifier", "Node", classifierShape, "Classifier", classifier);
+}
+
+mapping trace::TraceRecord::traceRecordShapeClassifier_Interface() : List(trace::TraceRecord)
+when {self.getSelf().modelElement.oclIsKindOf(cls::Interface)}
+{
+	var classifierShape := self.getResult().modelElement;
+	var classifier := self.getSelf().modelElement;
+
+	result += new TraceRecord("nodeToInterface", "Node", classifierShape, "Interface", classifier);
+	result += new TraceRecord("nodeToClassifier", "Node", classifierShape, "Classifier", classifier);
+}
+
+mapping trace::TraceRecord::traceRecordShapeAttribute() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "attributeToShape"}
+{
+	var attributeShape := self.getResult().modelElement;
+	var attribute := self.getSelf().modelElement.oclAsType(cls::Attribute);
+	var umlType := attributeShape.oclAsType(notation::Shape).element.oclAsType(uml::TypedElement).type;
+	
+	result += new TraceRecord("nodeToProperty", "Node", attributeShape, "Attribute", attribute.eobject());	
+	result += umlType.map typeToTypeReference(attribute.type);
+}
+
+mapping trace::TraceRecord::traceRecordShapeOperation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "methodToShape"}
+{
+	var methodShape := self.getResult().modelElement;
+	var method := self.getSelf().modelElement.oclAsType(cls::Method);
+	var umlOperation := methodShape.oclAsType(notation::Shape).element.oclAsType(uml::Operation);
+	var umlType := umlOperation.type;
+	
+	result += new TraceRecord("nodeToOperation", "Node", methodShape, "Method", method.eobject());	
+	result += method.parameters->map traceRecordShapeOperation_Parameter()->flatten();
+	result += umlType.map typeToTypeReference(method.type);
+}
+
+mapping cls::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
+{
+	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
+	result += self.referencedElement.oclAsType(uml::TypedElement).type.map typeToTypeReference(self.type);
+}
+
+mapping trace::TraceRecord::traceRecordEdgeParent() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "connectorToConnector"}
+{
+	var connector := self.getSelf().modelElement;
+	var edge := self.getResult().modelElement;
+
+	result += createEdgeTraceRecord("edgeToConnector", "Edge", edge, "Connector", connector);
+}
+
+mapping trace::TraceRecord::traceRecordEdgeGeneralization() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "generalizationToEdge"}
+{
+	var connector := self.getSelf().modelElement.oclAsType(cls::Generalization);
+	var edge := self.getResult().modelElement;
+	var umlGeneralization := edge.oclAsType(notation::Edge).element.oclAsType(uml::Generalization);
+
+	result += createEdgeTraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", connector.eobject());
+	result += umlGeneralization.specific.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
+	result += umlGeneralization.general.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));	
+}
+
+mapping trace::TraceRecord::traceRecordEdgeImplementation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "implementationToEdge"}
+{
+	var connector := self.getSelf().modelElement.oclAsType(cls::Implementation);
+	var edge := self.getResult().modelElement;
+	var umlImplementation := edge.oclAsType(notation::Edge).element.oclAsType(uml::InterfaceRealization);
+
+	result += createEdgeTraceRecord("edgeToImplementation", "Edge", edge, "Implementation", connector.eobject());
+	result += umlImplementation.implementingClassifier.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
+	result += umlImplementation.contract.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));	
+}
+
+mapping trace::TraceRecord::traceRecordEdgeRegularAssociation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "connectorToEdge"}
+{
+	var connector := self.getSelf().modelElement.oclAsType(cls::Association);
+	var edge := self.getResult().modelElement;
+	var umlAssociation := edge.oclAsType(notation::Edge).element.oclAsType(uml::Association);
+	var aggregatingIndex := if umlAssociation.memberEnd->at(2).aggregation != uml::AggregationKind::none then 2 else 1 endif;
+	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
+	var leftElement := umlAssociation.memberEnd->at(aggregatingIndex);
+	var rightElement := umlAssociation.memberEnd->at(regularIndex);
+
+	result += createEdgeTraceRecord("edgeToRegularAssociation", "Edge", edge, "Association", connector.eobject());
+	result += umlAssociation.memberEnd->at(aggregatingIndex).type.map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
+	result += umlAssociation.memberEnd->at(regularIndex).type.map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));
+	
+	// association properties
+	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Association", umlAssociation.eobject(), "AssociationProperties", connector.properties.eobject());
+	associationProperties.parameters.parameters += new trace::VarParameterValue("aggregatingIndex", aggregatingIndex);
+	result += associationProperties;	
+	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", leftElement.eobject(), "Cardinality", connector.properties.cardinalityLeft.eobject());
+	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", rightElement.eobject(), "Cardinality", connector.properties.cardinalityRight.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordEdgeCommentLink() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentLinkToEdge"}
+{
+	var connector := self.getSelf().modelElement.oclAsType(cls::CommentLink);
+	var edge := self.getResult().modelElement;
+	var typeReference := connector.left.oclAsType(cls::UMLTypeReference);
+	
+	result += createEdgeTraceRecord("edgeToCommentLink", "Edge", edge, "CommentLink", connector.eobject());
+	result += typeReference.type.map typeToTypeReference_Classifier(typeReference);
+}
+
+
+/*
+=============================================
+                Inner Mappings            
+=============================================
+
+General notes
+- only call these mappings from within other mappings
+
+*/
+
+
+mapping uml::Type::typeToTypeReference(typeReference : cls::TypeReference) : List(trace::TraceRecord)
+{
+	var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
+	var parentRecord := new TraceRecord("typeToTypeReference", "Type", self.eobject(), "TypeReference", typeReference.eobject());
+	parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
+	result += parentRecord;
+	
+	result += self.map typeToTypeReference_Primitive(typeReference);
+	result += self.map typeToTypeReference_Classifier(typeReference);
+}
+
+mapping uml::Type::typeToTypeReference_Primitive(typeReference : cls::TypeReference) : trace::TraceRecord
+when {self.oclIsKindOf(uml::PrimitiveType)}
+{
+	init {
+		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
+		var parentRecord := new TraceRecord("typeToPrimitiveTypeReference", "Type", self.eobject(), "DataTypeReference", typeReference.eobject());
+		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
+		result := parentRecord;
+	}
+}
+
+mapping uml::Type::typeToTypeReference_Classifier(typeReference : cls::TypeReference) : trace::TraceRecord
+when {not self.oclIsKindOf(uml::PrimitiveType)}
+{
+	init {
+		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
+		var parentRecord := new TraceRecord("typeToUMLTypeReference", "Type", self.eobject(), "UMLTypeReference", typeReference.eobject());
+		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
+		result := parentRecord;
+	}
+}
+
+
+// =============================================
+//                     Helpers                  
+// =============================================
+
+query createEdgeTraceRecord(mappingName : String, contextType : String, contextValue : ecore::EObject, resultType : String, resultValue : ecore::EObject) : trace::TraceRecord
+{
+	var record := new trace::TraceRecord(mappingName, contextType, contextValue, resultType, resultValue);
+	record.parameters.parameters += new trace::VarParameterValue("allEdges", "Edge", getallEdges());
+	return record;
+}
+
+query getallEdges() : OrderedSet(notation::Edge)
+{
+	return graphicalModel.rootObjects()[Diagram]->any(true).edges;
+}

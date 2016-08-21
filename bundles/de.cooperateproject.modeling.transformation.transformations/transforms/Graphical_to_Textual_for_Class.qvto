@@ -208,11 +208,7 @@ mapping uml::MultiplicityElement::multiplicityElementToCardinality() : cls::Card
 }
 
 
-
-mapping uml::Classifier::classifierToTypeReference(_ : String) : cls::UMLTypeReference {
-	type := self
-}
-
+//TODO never called
 mapping notation::Node::nodeToCommentConnector() : cls::CommentLink
 	when {
 		self.element.oclIsKindOf(uml::Comment) and

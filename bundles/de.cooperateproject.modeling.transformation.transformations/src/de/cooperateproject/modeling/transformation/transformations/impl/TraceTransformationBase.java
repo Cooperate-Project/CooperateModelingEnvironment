@@ -5,11 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.cooperateproject.modeling.transformation.transformations.registry.ConcreteSyntaxTypes;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationCharacteristic;
 
 public class TraceTransformationBase extends DomainIndependentTransformationBase implements TraceTransformation {
@@ -31,11 +29,6 @@ public class TraceTransformationBase extends DomainIndependentTransformationBase
 		URI targetTransformationURI = TransformationNameUtils.createTransformationURI(sourceTransformationCharacteristic.inverse());
 		URI traceSourceURI = TransformationNameUtils.createTraceURI(sourceTransformationCharacteristic, traceBase);
 		URI traceTargetURI = TransformationNameUtils.createTraceURI(sourceTransformationCharacteristic.inverse(), traceBase);
-		
-		//TODO remove
-		if (sourceTransformationCharacteristic.getFrom() == ConcreteSyntaxTypes.TEXTUAL) {
-			return Status.OK_STATUS;
-		}
 		
 		Collection<URI> parameterURIs = Arrays.asList(traceSourceURI, traceTargetURI, targetModelURI, targetTransformationURI);
 		return transform(transformationURI, parameterURIs);

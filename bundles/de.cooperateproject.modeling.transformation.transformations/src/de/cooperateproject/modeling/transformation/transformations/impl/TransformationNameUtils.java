@@ -37,7 +37,7 @@ public class TransformationNameUtils {
 		String from = segments[0];
 		String to = segments[1];
 		String diagramType = segments[2];
-		boolean trace = segments.length == 4 && segments[3].equals("Trace");
+		//boolean trace = segments.length == 4 && segments[3].equals("Trace");
 		
 		Optional<DiagramTypes> foundDiagramType = DiagramTypes.getByName(name);
 		Optional<ConcreteSyntaxTypes> foundFromSyntax = ConcreteSyntaxTypes.getByName(from);

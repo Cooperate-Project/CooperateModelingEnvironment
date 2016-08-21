@@ -1,4 +1,4 @@
-import TraceUtils;
+import TraceUtils_Class;
 
 transformation Graphical_to_Textual_for_Class_Trace(in graphicalTrace : TRACE, out textualTrace : TRACE, in textualModel : TEXTUAL, in t2gTransformation : QVTO);
 
@@ -12,8 +12,13 @@ modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/poli
 main() {
 	var traces := graphicalTrace.rootObjects()[trace::Trace];
 	assert fatal (traces->size() = 1);
-
+	traces->initializeProperties();
 	traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+	TARGET_TRANSFORMATION_NAME := "Textual_to_Graphical_for_Class";
+	TARGET_TRANSFORMATION := t2gTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
 }
 
 mapping trace::Trace::trace() : trace::Trace
@@ -321,6 +326,16 @@ when {self.mappingOperation.name = "edgeToCommentLink"}
 
 	result += createEdgeTraceRecord("commentLinkToEdge", "CommentLink", connector.eobject(), "Connector", edge.eobject());
 	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	
+	result += self.map traceRecordExtendedCommentLinkToEdge_Shape(connector, edge);
+}
+
+mapping trace::TraceRecord::traceRecordExtendedCommentLinkToEdge_Shape(connector : cls::CommentLink, edge : notation::Connector) : List(trace::TraceRecord)
+{
+	var commentShape := if edge.source.element = connector.comment.eobject() then edge.source else edge.target endif;
+	result += new TraceRecord("commentLinkToShape", "CommentLink", connector.eobject(), "Shape", commentShape.eobject());
+	result += new TraceRecord("commentLabelBodyHintDecoration", "CommentLink", connector.eobject(), "DecorationNode", commentShape.children->any(type = "5038").eobject());
+	result += commentShape.oclAsType(notation::Node).map traceRecordExtended_notationBounds(); 
 }
 
 
@@ -353,35 +368,6 @@ query trace::TraceRecord::getSelfNode() : notation::Node {
 	return self.getSelf().modelElement.oclAsType(notation::Node);
 }
 
-constructor trace::TraceRecord::TraceRecord(mappingName : String, contextType : String, contextValue : ecore::EObject, resultType : String, resultValue : ecore::EObject)
-{
-	mappingOperation := object trace::EMappingOperation {
-		name := mappingName;
-		package := "Textual_to_Graphical_for_Class";
-		module := "Textual_to_Graphical_for_Class";
-		runtimeMappingOperation := t2gTransformation.rootObjects()->any(true).getMapping(mappingName, contextType);
-	};
-	context := object trace::EMappingContext {
-		context := object trace::VarParameterValue {
-			name := "self";
-			type := contextType;
-			value := new EValue(contextValue);
-		};
-	};
-	parameters := object trace::EMappingParameters {};
-	result._result := new EMappingResults(resultType, resultValue);			
-}
-
-constructor trace::EMappingResults::EMappingResults(typeName : String, resultObject : ecore::EObject)
-{
-	result.result := object trace::VarParameterValue {
-		kind := trace::EDirectionKind::OUT;
-		name := "result";
-		type := typeName;
-		value := new EValue(resultObject);
-	}
-}
-
 query createEdgeTraceRecord(mappingName : String, contextType : String, contextValue : ecore::EObject, resultType : String, resultValue : ecore::EObject) : trace::TraceRecord
 {
 	var record := new trace::TraceRecord(mappingName, contextType, contextValue, resultType, resultValue);
@@ -391,7 +377,5 @@ query createEdgeTraceRecord(mappingName : String, contextType : String, contextV
 
 query getAllClassifiers() : OrderedSet(cls::Classifier)
 {
-	var classDiagrams := textualModel.rootObjects()[cls::ClassDiagram];
-	assert error (classDiagrams->size() = 1) with log('No models with more than one root object supported.');
-	return classDiagrams->any(true).classifiers;
+	return textualModel.rootObjects()[cls::ClassDiagram]->any(true).classifiers;
 }
