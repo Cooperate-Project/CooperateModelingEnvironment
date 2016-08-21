@@ -84,7 +84,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 
 	}
 	
-	private static final File DEBUG_SERIALIZATION_DIR = new File("D:\\");
+	private static final File DEBUG_SERIALIZATION_DIR = null;
 
 	protected static void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
 		Comparison comparisonResult = ModelComparator.compare(expectedModel.getContents().get(0),
