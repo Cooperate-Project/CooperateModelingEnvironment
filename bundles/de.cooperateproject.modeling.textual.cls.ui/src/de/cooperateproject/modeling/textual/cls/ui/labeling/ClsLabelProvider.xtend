@@ -4,147 +4,182 @@
 package de.cooperateproject.modeling.textual.cls.ui.labeling
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
+import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.Interface
+import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport
-import de.cooperateproject.modeling.textual.cls.cls.Visibility
-import de.cooperateproject.modeling.textual.cls.cls.Class
-import de.cooperateproject.modeling.textual.cls.cls.Interface
-import de.cooperateproject.modeling.textual.cls.cls.Attribute
-import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
-import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.Generalization
-import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jdt.ui.ISharedImages
 import org.eclipse.jdt.ui.JavaUI
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
+import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 
 /**
  * Provides labels for EObjects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class ClsLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
+class ClsLabelProvider extends DefaultEObjectLabelProvider {
 
 	val visibilityFieldsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_FIELD_PUBLIC,
-		Visibility.PRIVATE -> ISharedImages.IMG_FIELD_PRIVATE, Visibility.PROTECTED -> ISharedImages.IMG_FIELD_PROTECTED,
+		Visibility.PRIVATE -> ISharedImages.IMG_FIELD_PRIVATE,
+		Visibility.PROTECTED -> ISharedImages.IMG_FIELD_PROTECTED,
 		Visibility.PACKAGE -> ISharedImages.IMG_FIELD_DEFAULT}
 
-	val visibilityMethodsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_OBJS_PUBLIC,
-		Visibility.PRIVATE -> ISharedImages.IMG_OBJS_PRIVATE, Visibility.PROTECTED -> ISharedImages.IMG_OBJS_PROTECTED,
-		Visibility.PACKAGE -> ISharedImages.IMG_OBJS_DEFAULT}
+		val visibilityMethodsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_OBJS_PUBLIC,
+			Visibility.PRIVATE -> ISharedImages.IMG_OBJS_PRIVATE,
+			Visibility.PROTECTED -> ISharedImages.IMG_OBJS_PROTECTED,
+			Visibility.PACKAGE -> ISharedImages.IMG_OBJS_DEFAULT}
 
-	val images = JavaUI.getSharedImages();
+			val images = JavaUI.getSharedImages();
 
-	@Inject
-	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
-		super(delegate)
-	}
+			@Inject
+			new(AdapterFactoryLabelProvider delegate) {
+				super(delegate)
+			}
+			
+			def image(ClassDiagram ele) {
+				return UMLImageGetter.getUMLImage("Model.gif")
+			}
 
-	def text(Class ele) {
-		var name = ele.name
-		return name
-	}
+			def text(Class ele) {
+				var name = ele.name
+				return name
+			}
 
-	def text(NamedElement ele) {
-		ele.name
-	}
+			def text(NamedElement ele) {
+				ele.name
+			}
 
-	def text(PackageImport ele) {
-		ele.package.name;
-	}
+			def text(PackageImport ele) {
+				ele.package.name;
+			}
 
-	def image(PackageImport ele) {
-		images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
-	}
+			def image(PackageImport ele) {
+				images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
+			}
 
-	def text(Method ele) {
-		var text = text(ele as Property)
-		if (text.contains(":")) {
-			text = text.replaceAll(":", "():")
-		} else {
-			text += "()"
+			def text(Method ele) {
+				var text = text(ele as Property)
+				if (text.contains(":")) {
+					text = text.replaceAll(":", "():")
+				} else {
+					text += "()"
+				}
+				return text
+			}
+
+			def text(Property ele) {
+				val typeRef = ele.type
+				var type = ""
+				if (typeRef != null) {
+					type = ": " + text(typeRef)
+				}
+				ele.name + type
+			}
+
+			def image(Class ele) {
+				images.getImage(ISharedImages.IMG_OBJS_CLASS)
+			}
+
+			def image(Interface ele) {
+				images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+			}
+
+			def image(Attribute ele) {
+				val visibility = ele.visibility
+				val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
+				return image
+			}
+
+			def image(Parameter ele) {
+				val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
+				return image
+			}
+
+			def image(Method ele) {
+				val visibility = ele.visibility
+				val image = images.getImage(visibilityMethodsMap.get(ele.visibility))
+				return image
+			}
+
+			def text(TypeReference ele) {
+				if (ele instanceof UMLTypeReference) {
+					text(ele as UMLTypeReference)
+				} else if (ele instanceof DataTypeReference) {
+					text(ele as DataTypeReference)
+				}
+			}
+
+			def text(UMLTypeReference ele) {
+				ele.type.name
+			}
+
+			def text(DataTypeReference ele) {
+				ele.type.name()
+			}
+
+			def text(Association ele) {
+				val leftChild = ele.left;
+				val rightChild = ele.right;
+				leftChild.doGetText + " " + ele.referencedElement.name + " " + rightChild.doGetText
+			}
+
+			def image(Association ele) {
+				if (ele.aggregationKind == AggregationKind.COMPOSITION) {
+					return UMLImageGetter.getUMLImage("Association_composite.gif")
+				} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
+					return UMLImageGetter.getUMLImage("Association_shared.gif")
+				} else {
+					return UMLImageGetter.getUMLImage("Association.gif")
+				}
+			}
+
+			def text(Generalization ele) {
+				val leftChild = ele.left;
+				val rightChild = ele.right;
+				leftChild.doGetText + " is a " + rightChild.doGetText
+			}
+
+			def image(Generalization ele) {
+				return UMLImageGetter.getUMLImage("Generalization.gif")
+			}
+
+			def text(Implementation ele) {
+				val leftChild = ele.left;
+				val rightChild = ele.right;
+				leftChild.doGetText + " implements " + rightChild.doGetText
+			}
+
+			def image(Implementation ele) {
+				return UMLImageGetter.getUMLImage("Realization.gif")
+			}
+			
+			def text(CommentLink ele) {
+				val leftChild = ele.left;
+				return leftChild.doGetText + " - Comment"
+			}
+			
+			def image(CommentLink ele) {
+				return UMLImageGetter.getUMLImage("Comment.gif")
+			}
+			
 		}
-		return text
-	}
-
-	def text(Property ele) {
-		val typeRef = ele.type
-		var type = ""
-		if (typeRef != null) {
-			type = ": " + text(typeRef)
-		}
-		ele.name + type
-	}
-
-	def image(Class ele) {
-		images.getImage(ISharedImages.IMG_OBJS_CLASS)
-	}
-
-	def image(Interface ele) {
-		images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
-	}
-
-	def image(Attribute ele) {
-		val visibility = ele.visibility
-		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
-		return image
-	}
-
-	def image(Parameter ele) {
-		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
-		return image
-	}
-
-	def image(Method ele) {
-		val visibility = ele.visibility
-		val image = images.getImage(visibilityMethodsMap.get(ele.visibility))
-		return image
-	}
-
-	def text(TypeReference ele) {
-		if (ele instanceof UMLTypeReference) {
-			text(ele as UMLTypeReference)
-		} else if (ele instanceof DataTypeReference) {
-			text(ele as DataTypeReference)
-		}
-	}
-
-	def text(UMLTypeReference ele) {
-		ele.type.name
-	}
-
-	def text(DataTypeReference ele) {
-		ele.type.name()
-	}
-
-	def text(Association ele) {
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		leftChild.doGetText + " " + ele.referencedElement.name + " " + rightChild.doGetText
-	}
-
-	def text(Generalization ele) {
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		leftChild.doGetText + " is a " + rightChild.doGetText
-	}
-
-	def text(Implementation ele) {
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		leftChild.doGetText + " implements " + rightChild.doGetText
-	}
-
-// Labels and icons can be computed like this:
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
-}
+		

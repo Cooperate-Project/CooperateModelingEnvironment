@@ -16,6 +16,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.jdt.ui.ISharedImages
+import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImageGetter
 
 /**
  * Customization of the default outline structure.
@@ -32,8 +33,8 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
 		val rootNode = createEObjectNode(parentNode, root);
 		val importNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), "Imports", false) {};
-		val classifierNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Classifiers", false) {};
-		val connectorNode = new AbstractOutlineNode(rootNode, imageHelper.getImage("class_obj.png"), "Connectors", false) {};
+		val classifierNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), "Classifiers", false) {};
+		val connectorNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Association.gif"), "Connectors", false) {};
 
 		for (oneImport : root.packageImports) {
 			createNode(importNode, oneImport)
