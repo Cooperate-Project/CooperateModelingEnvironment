@@ -134,12 +134,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="#//Parameter" containment="true" resolveProxies="false"/>
+        eType="#//Parameter" containment="true" resolveProxies="false" eOpposite="#//Parameter/owner"/>
     <eGenericSuperTypes eClassifier="#//Member">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Method"
+        eOpposite="#//Method/parameters"/>
     <eGenericSuperTypes eClassifier="#//Property">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     </eGenericSuperTypes>

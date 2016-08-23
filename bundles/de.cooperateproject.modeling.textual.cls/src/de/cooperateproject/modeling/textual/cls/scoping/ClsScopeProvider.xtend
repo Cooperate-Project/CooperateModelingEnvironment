@@ -3,24 +3,29 @@
  */
 package de.cooperateproject.modeling.textual.cls.scoping
 
+import com.google.common.base.Predicate
+import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
+import de.cooperateproject.modeling.textual.cls.cls.Commentable
+import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Method
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import de.cooperateproject.modeling.textual.cls.cls.Parameter
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.util.Switch
+import org.eclipse.uml2.uml.Comment
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.scoping.impl.FilteringScope
-import org.eclipse.uml2.uml.NamedElement
-import de.cooperateproject.modeling.textual.cls.cls.Parameter
-import de.cooperateproject.modeling.textual.cls.cls.Connector
-import de.cooperateproject.modeling.textual.cls.cls.Attribute
 
 /**
  * This class contains custom scoping description.
@@ -32,62 +37,85 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute
 class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	override getScope(EObject context, EReference reference) {
-		return super.getScope(context, reference).postprocess(context, reference)
-	}
-
-	private def IScope postprocess(IScope scope, EObject context, EReference reference) {
-		var Switch<IScope> scopeSwitch = null
-
-		if (reference == ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT) {
-			scopeSwitch = new UMLReferencingScopeSwitch(scope)
-		}
-
-		if (scopeSwitch == null) {
-			return scope
-		}
+		val baseScope = super.getScope(context, reference)
+		val Switch<IScope> scopeSwitch = new UMLReferencingScopeSwitch(baseScope, reference)
 		return scopeSwitch.doSwitch(context)
 	}
 
 	static class UMLReferencingScopeSwitch extends ClsSwitch<IScope> {
 		val IScope baseScope
+		val EReference reference
 
-		new(IScope baseScope) {
-			this.baseScope = baseScope
+		new(IScope scope, EReference reference) {
+			this.baseScope = scope
+			this.reference = reference
 		}
 
 		override caseAttribute(Attribute attribute) {
-			val container = attribute.eContainer as UMLReferencingElement<NamedElement>
-			return UMLPackage.Literals.PROPERTY.filterScope(container.referencedElement)
+			if (reference == ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement) {
+				return UMLPackage.Literals.PROPERTY.filterScope(attribute.owner.referencedElement)				
+			}
 		}
 
 		override caseClass(Class clazz) {
-			return UMLPackage.Literals.CLASS.filterScope
+			if (reference == ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement) {
+				return UMLPackage.Literals.CLASS.filterScope			
+			}
 		}
-		
+
 		override caseMethod(Method method) {
-			val container = method.eContainer as UMLReferencingElement<NamedElement>
-			return UMLPackage.Literals.OPERATION.filterScope(container.referencedElement)
+			if (reference == ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement) {
+				return UMLPackage.Literals.OPERATION.filterScope(method.owner.referencedElement)
+			}
 		}
-		
+
 		override caseParameter(Parameter param) {
-			val container = param.eContainer as UMLReferencingElement<NamedElement>
-			return UMLPackage.Literals.PARAMETER.filterScope(container.referencedElement)
+			if (reference == ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement) {
+				return UMLPackage.Literals.PARAMETER.filterScope(param.owner.referencedElement)
+			}
+		}
+
+		override caseConnector(Connector object) {
+			if (reference == ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement) {
+				return UMLPackage.Literals.RELATIONSHIP.filterScope			
+			}
 		}
 		
-		override caseConnector(Connector object) {
-			return UMLPackage.Literals.RELATIONSHIP.filterScope
+		override caseAssociation(Association association) {
+			if (reference == ClsPackage.Literals.COMMENTABLE__COMMENT) {
+				return UMLPackage.Literals.COMMENT.filterScope([(EObjectOrProxy as Comment).annotatedElements.contains(association.referencedElement)])
+			}
+		}
+		
+		override caseCommentLink(CommentLink commentLink) {
+			if (reference == ClsPackage.Literals.COMMENTABLE__COMMENT) {
+				if (commentLink.left instanceof UMLTypeReference) {
+					val annotatedType = (commentLink.left as UMLTypeReference).type
+					return UMLPackage.Literals.COMMENT.filterScope([(EObjectOrProxy as Comment).annotatedElements.contains(annotatedType)])
+				}
+			}
+		}
+
+		override caseCommentable(Commentable commentable) {
+			if (reference == ClsPackage.Literals.COMMENTABLE__COMMENT) {
+				return UMLPackage.Literals.COMMENT.filterScope
+			}
 		}
 
 		override defaultCase(EObject o) {
 			return baseScope
 		}
-
+		
 		private def filterScope(EClass clazz) {
 			return new FilteringScope(baseScope, [EcoreUtil2.isAssignableFrom(clazz, EObjectOrProxy.eClass)])
 		}
-		
+
 		private def filterScope(EClass clazz, EObject container) {
-			return new FilteringScope(clazz.filterScope, [container.equals(EObjectOrProxy.eContainer)])
+			return clazz.filterScope([container.equals(EObjectOrProxy.eContainer)])
+		}
+		
+		private def filterScope(EClass clazz, Predicate<IEObjectDescription> condition) {
+			return new FilteringScope(clazz.filterScope, condition)
 		}
 	}
 

@@ -1344,10 +1344,12 @@ ruleCommentLink returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getCommentLinkRule());
 	        }
         }
-	otherlv_3=RULE_STRING
-	{
-		newLeafNode(otherlv_3, grammarAccess.getCommentLinkAccess().getCommentCommentCrossReference_3_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentCommentCrossReference_3_0()); 
+	    }
+		ruleCommentBody		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))
@@ -1467,10 +1469,12 @@ ruleAssociation returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getAssociationRule());
 	        }
         }
-	otherlv_6=RULE_STRING
-	{
-		newLeafNode(otherlv_6, grammarAccess.getAssociationAccess().getCommentCommentCrossReference_5_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getCommentCommentCrossReference_5_1_0()); 
+	    }
+		ruleCommentBody		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))?)
@@ -1627,6 +1631,34 @@ ruleCardinality returns [EObject current=null]
 )
 ))?)
 ;
+
+
+
+
+
+// Entry rule entryRuleCommentBody
+entryRuleCommentBody returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getCommentBodyRule()); } 
+	 iv_ruleCommentBody=ruleCommentBody 
+	 { $current=$iv_ruleCommentBody.current.getText(); }  
+	 EOF 
+;
+
+// Rule CommentBody
+ruleCommentBody returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_STRING_0=RULE_STRING    {
+		$current.merge(this_STRING_0);
+    }
+
+    { 
+    newLeafNode(this_STRING_0, grammarAccess.getCommentBodyAccess().getSTRINGTerminalRuleCall()); 
+    }
+
+    ;
 
 
 

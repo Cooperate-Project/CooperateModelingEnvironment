@@ -105,12 +105,12 @@ Implementation:
 ;
 
 CommentLink: 
-	left = ClassifierAssociationEnd '-' 'note' comment = [uml::Comment|STRING]
+	left = ClassifierAssociationEnd '-' 'note' comment = [uml::Comment|CommentBody]
 ;
 
 Association:
 	aggregationKind=AggregationKind  left = ClassifierAssociationEnd referencedElement = [uml::Association] right = ClassifierAssociationEnd
-	(properties = AssociationProperties)? ('note' comment = [uml::Comment|STRING])?
+	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
 ;
 
 AssociationProperties: 
@@ -119,6 +119,10 @@ AssociationProperties:
 
 Cardinality: 
 	lowerBound=CardinalityBound ('..' upperBound=CardinalityBound)?
+;
+
+CommentBody returns ecore::EString:
+	STRING
 ;
 
 CardinalityBound returns ecore::EInt:

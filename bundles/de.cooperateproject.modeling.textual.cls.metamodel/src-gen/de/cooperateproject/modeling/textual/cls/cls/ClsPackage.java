@@ -1066,13 +1066,22 @@ public interface ClsPackage extends EPackage {
 	int PARAMETER__TYPE = PROPERTY__TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNER = PROPERTY_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 0;
+	int PARAMETER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
@@ -2002,6 +2011,17 @@ public interface ClsPackage extends EPackage {
 	EClass getParameter();
 
 	/**
+	 * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owner</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EReference getParameter_Owner();
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Connector <em>Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2624,6 +2644,14 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PARAMETER = eINSTANCE.getParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER__OWNER = eINSTANCE.getParameter_Owner();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ConnectorImpl <em>Connector</em>}' class.

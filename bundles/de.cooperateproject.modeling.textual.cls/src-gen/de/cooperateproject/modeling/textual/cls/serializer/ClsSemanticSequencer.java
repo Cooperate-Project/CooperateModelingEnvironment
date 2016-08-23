@@ -118,7 +118,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         referencedElement=[Association|ID] 
 	 *         right=ClassifierAssociationEnd 
 	 *         properties=AssociationProperties? 
-	 *         comment=[Comment|STRING]?
+	 *         comment=[Comment|CommentBody]?
 	 *     )
 	 */
 	protected void sequence_Association(ISerializationContext context, Association semanticObject) {
@@ -182,7 +182,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CommentLink returns CommentLink
 	 *
 	 * Constraint:
-	 *     (left=ClassifierAssociationEnd comment=[Comment|STRING])
+	 *     (left=ClassifierAssociationEnd comment=[Comment|CommentBody])
 	 */
 	protected void sequence_CommentLink(ISerializationContext context, CommentLink semanticObject) {
 		if (errorAcceptor != null) {
@@ -193,7 +193,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getCommentLinkAccess().getLeftClassifierAssociationEndParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentSTRINGTerminalRuleCall_3_0_1(), semanticObject.getComment());
+		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentCommentBodyParserRuleCall_3_0_1(), semanticObject.getComment());
 		feeder.finish();
 	}
 	

@@ -53,6 +53,7 @@ public interface Method extends Member<Operation> {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Parameter}.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
@@ -61,7 +62,8 @@ public interface Method extends Member<Operation> {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMethod_Parameters()
-	 * @model containment="true"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner
+	 * @model opposite="owner" containment="true"
 	 * @generated
 	 */
 	EList<Parameter> getParameters();

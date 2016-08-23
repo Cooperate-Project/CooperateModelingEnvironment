@@ -764,13 +764,13 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNoteKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cCommentAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cCommentCommentCrossReference_3_0 = (CrossReference)cCommentAssignment_3.eContents().get(0);
-		private final RuleCall cCommentCommentSTRINGTerminalRuleCall_3_0_1 = (RuleCall)cCommentCommentCrossReference_3_0.eContents().get(1);
+		private final RuleCall cCommentCommentCommentBodyParserRuleCall_3_0_1 = (RuleCall)cCommentCommentCrossReference_3_0.eContents().get(1);
 		
 		//CommentLink:
-		//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|STRING];
+		//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|CommentBody];
 		@Override public ParserRule getRule() { return rule; }
 
-		//left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|STRING]
+		//left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|CommentBody]
 		public Group getGroup() { return cGroup; }
 
 		//left=ClassifierAssociationEnd
@@ -785,14 +785,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'note'
 		public Keyword getNoteKeyword_2() { return cNoteKeyword_2; }
 
-		//comment=[uml::Comment|STRING]
+		//comment=[uml::Comment|CommentBody]
 		public Assignment getCommentAssignment_3() { return cCommentAssignment_3; }
 
-		//[uml::Comment|STRING]
+		//[uml::Comment|CommentBody]
 		public CrossReference getCommentCommentCrossReference_3_0() { return cCommentCommentCrossReference_3_0; }
 
-		//STRING
-		public RuleCall getCommentCommentSTRINGTerminalRuleCall_3_0_1() { return cCommentCommentSTRINGTerminalRuleCall_3_0_1; }
+		//CommentBody
+		public RuleCall getCommentCommentCommentBodyParserRuleCall_3_0_1() { return cCommentCommentCommentBodyParserRuleCall_3_0_1; }
 	}
 
 	public class AssociationElements extends AbstractParserRuleElementFinder {
@@ -813,16 +813,16 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cNoteKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final CrossReference cCommentCommentCrossReference_5_1_0 = (CrossReference)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cCommentCommentSTRINGTerminalRuleCall_5_1_0_1 = (RuleCall)cCommentCommentCrossReference_5_1_0.eContents().get(1);
+		private final RuleCall cCommentCommentCommentBodyParserRuleCall_5_1_0_1 = (RuleCall)cCommentCommentCrossReference_5_1_0.eContents().get(1);
 		
 		//Association:
 		//	aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
 		//	right=ClassifierAssociationEnd
-		//	properties=AssociationProperties? ('note' comment=[uml::Comment|STRING])?;
+		//	properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
-		//right=ClassifierAssociationEnd properties=AssociationProperties? ('note' comment=[uml::Comment|STRING])?
+		//right=ClassifierAssociationEnd properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?
 		public Group getGroup() { return cGroup; }
 
 		//aggregationKind=AggregationKind
@@ -858,20 +858,20 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//AssociationProperties
 		public RuleCall getPropertiesAssociationPropertiesParserRuleCall_4_0() { return cPropertiesAssociationPropertiesParserRuleCall_4_0; }
 
-		//('note' comment=[uml::Comment|STRING])?
+		//('note' comment=[uml::Comment|CommentBody])?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//'note'
 		public Keyword getNoteKeyword_5_0() { return cNoteKeyword_5_0; }
 
-		//comment=[uml::Comment|STRING]
+		//comment=[uml::Comment|CommentBody]
 		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
 
-		//[uml::Comment|STRING]
+		//[uml::Comment|CommentBody]
 		public CrossReference getCommentCommentCrossReference_5_1_0() { return cCommentCommentCrossReference_5_1_0; }
 
-		//STRING
-		public RuleCall getCommentCommentSTRINGTerminalRuleCall_5_1_0_1() { return cCommentCommentSTRINGTerminalRuleCall_5_1_0_1; }
+		//CommentBody
+		public RuleCall getCommentCommentCommentBodyParserRuleCall_5_1_0_1() { return cCommentCommentCommentBodyParserRuleCall_5_1_0_1; }
 	}
 
 	public class AssociationPropertiesElements extends AbstractParserRuleElementFinder {
@@ -968,6 +968,18 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 		//CardinalityBound
 		public RuleCall getUpperBoundCardinalityBoundParserRuleCall_1_1_0() { return cUpperBoundCardinalityBoundParserRuleCall_1_1_0; }
+	}
+
+	public class CommentBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.CommentBody");
+		private final RuleCall cSTRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//CommentBody:
+		//	STRING;
+		@Override public ParserRule getRule() { return rule; }
+
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall() { return cSTRINGTerminalRuleCall; }
 	}
 
 	public class CardinalityBoundElements extends AbstractParserRuleElementFinder {
@@ -1219,6 +1231,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	private final AssociationElements pAssociation;
 	private final AssociationPropertiesElements pAssociationProperties;
 	private final CardinalityElements pCardinality;
+	private final CommentBodyElements pCommentBody;
 	private final CardinalityBoundElements pCardinalityBound;
 	private final VisibilityElements eVisibility;
 	private final ReadingDirectionElements eReadingDirection;
@@ -1255,6 +1268,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAssociation = new AssociationElements();
 		this.pAssociationProperties = new AssociationPropertiesElements();
 		this.pCardinality = new CardinalityElements();
+		this.pCommentBody = new CommentBodyElements();
 		this.pCardinalityBound = new CardinalityBoundElements();
 		this.eVisibility = new VisibilityElements();
 		this.eReadingDirection = new ReadingDirectionElements();
@@ -1488,7 +1502,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CommentLink:
-	//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|STRING];
+	//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|CommentBody];
 	public CommentLinkElements getCommentLinkAccess() {
 		return pCommentLink;
 	}
@@ -1500,7 +1514,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	//Association:
 	//	aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
 	//	right=ClassifierAssociationEnd
-	//	properties=AssociationProperties? ('note' comment=[uml::Comment|STRING])?;
+	//	properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
 	}
@@ -1527,6 +1541,16 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getCardinalityRule() {
 		return getCardinalityAccess().getRule();
+	}
+
+	//CommentBody:
+	//	STRING;
+	public CommentBodyElements getCommentBodyAccess() {
+		return pCommentBody;
+	}
+	
+	public ParserRule getCommentBodyRule() {
+		return getCommentBodyAccess().getRule();
 	}
 
 	//CardinalityBound ecore::EInt:
