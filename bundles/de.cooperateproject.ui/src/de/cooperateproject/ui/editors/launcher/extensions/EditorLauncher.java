@@ -31,6 +31,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	private final CDOCheckout cdoCheckout;
 	private final CDOView cdoView;
 	private final ConcreteSyntaxModel concreteSyntaxModel;
+	private final IFile launcherFile;
 	private final TransformationManager transformationManager;
 	private DisposedListener disposeListener;
 	
@@ -38,6 +39,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
 		cdoCheckout = CDOConnectionManager.getInstance().createCDOCheckout(launcherFile.getProject(), true);
 		cdoCheckout.open();
 		cdoView = cdoCheckout.openView();
+		this.launcherFile = launcherFile;
 		Diagram launcherModel = loadDiagram(cdoView, launcherFile);
 		Optional<ConcreteSyntaxModel> model = selectConcreteSyntaxModel(launcherModel, editorType);
 		if (!model.isPresent()) {
@@ -62,6 +64,10 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	
 	protected ConcreteSyntaxModel getConcreteSyntaxModel() {
 		return concreteSyntaxModel;
+	}
+	
+	protected IFile getLauncherFile() {
+		return launcherFile;
 	}
 	
 	private void registerListener(IEditorPart editorPart) {

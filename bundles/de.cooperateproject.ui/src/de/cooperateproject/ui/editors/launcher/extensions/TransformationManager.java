@@ -25,6 +25,7 @@ import de.cooperateproject.cdo.util.utils.CDOResourceSet;
 import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
+//TODO this class should be located in another location and/or splitted
 public class TransformationManager {
 	
 	public static class TransformationException extends Exception {

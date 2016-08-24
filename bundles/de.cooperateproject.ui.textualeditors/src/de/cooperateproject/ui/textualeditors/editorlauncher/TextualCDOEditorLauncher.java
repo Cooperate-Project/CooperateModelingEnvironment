@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
-import org.eclipse.emf.cdo.internal.ui.CDOLobEditorInput;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -15,6 +14,7 @@ import org.eclipse.ui.ide.IDE;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.SavePostProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.SaveablePostProcessingSupport;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
@@ -31,7 +31,7 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
 		CDOResourceLeaf cdoResource = (CDOResourceLeaf) getConcreteSyntaxModel().getRootElement().eResource();
 
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorInput editorInput = new CDOLobEditorInput(cdoResource);
+		IEditorInput editorInput = new CooperateCDOLobEditorInput(cdoResource, getLauncherFile());
 		Optional<TextualCDOEditorIDs> editorId = getEditorId();
 		if (!editorId.isPresent()) {
 			throw new PartInitException("Could not find appropriate editor.");

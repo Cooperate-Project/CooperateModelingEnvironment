@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  de.cooperateproject.util;bundle-version="1.0.0",
  de.cooperateproject.modeling.textual.common
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
+ de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping
 Bundle-ActivationPolicy: lazy
