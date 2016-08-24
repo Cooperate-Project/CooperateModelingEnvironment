@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
+import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
 import de.cooperateproject.modeling.transformation.transformations.impl.GraphicsToTextTransformation;
 import de.cooperateproject.modeling.transformation.transformations.impl.TextToGraphicsTransformation;
 import de.cooperateproject.modeling.transformation.transformations.registry.DiagramTypes;
@@ -37,11 +38,9 @@ public class TransformationRegistryInitializer {
 				notNull(rs);
 				isTrue(changedModelURI.hasFragment());
 				
-				String modelName = changedModelURI.trimFileExtension().lastSegment();
 				EObject changedEObject = rs.getEObject(changedModelURI, false);
 				String diagramName = ((Diagram)changedEObject).getName();
-				String lastSegment = String.format("%s - %s.%s", modelName, diagramName, textualFileExtension);
-				URI targetURI = changedModelURI.trimFragment().trimQuery().trimSegments(1).appendSegment(lastSegment);
+				URI targetURI = ModelNamingConventions.getTextualFromGraphicalURI(changedModelURI, diagramName, textualFileExtension);
 				return new GraphicsToTextTransformation(diagramType, rs, changedModelURI, targetURI);
 			}
 			
@@ -58,19 +57,19 @@ public class TransformationRegistryInitializer {
 			
 			@Override
 			public Transformation create(URI changedModelURI, ResourceSet rs) {
-				String lastSegment = changedModelURI.lastSegment();
-				String modelName = lastSegment.split(" - ")[0];
-				String diagramName = changedModelURI.trimFileExtension().lastSegment().split(" - ")[1];
-				URI targetURI = changedModelURI.trimQuery().trimFragment().trimSegments(1).appendSegment(modelName).appendFileExtension("notation");
-				if (rs.getURIConverter().exists(targetURI, Collections.emptyMap())) {
-					Resource r = rs.getResource(targetURI, false);
+				
+				URI targetResourceURI = ModelNamingConventions.getGraphicalFromTextualURI(changedModelURI);
+				String diagramName = ModelNamingConventions.getDiagramNameFromTextualURI(changedModelURI);
+
+				if (rs.getURIConverter().exists(targetResourceURI, Collections.emptyMap())) {
+					Resource r = rs.getResource(targetResourceURI, false);
 					Optional<Diagram> diagram = r.getContents().stream().filter(o -> o instanceof Diagram).map(o -> ((Diagram)o)).filter(d -> diagramName.equals(d.getName())).findAny();
 					if (diagram.isPresent()) {
 						String targetUriFragment = r.getURIFragment(diagram.get());
-						targetURI = targetURI.trimFragment().appendFragment(targetUriFragment);
+						targetResourceURI = targetResourceURI.trimFragment().appendFragment(targetUriFragment);
 					}
 				}
-				return new TextToGraphicsTransformation(diagramType, changedModelURI.fileExtension(), rs, changedModelURI, targetURI);
+				return new TextToGraphicsTransformation(diagramType, changedModelURI.fileExtension(), rs, changedModelURI, targetResourceURI);
 			}
 			
 			@Override

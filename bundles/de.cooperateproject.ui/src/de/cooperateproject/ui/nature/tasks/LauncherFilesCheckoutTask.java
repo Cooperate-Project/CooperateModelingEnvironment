@@ -2,6 +2,7 @@ package de.cooperateproject.ui.nature.tasks;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 
 import com.google.common.base.Optional;
 
+import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.LauncherFactory;
 import de.cooperateproject.ui.launchermodel.Launcher.util.LauncherResourceImpl;
@@ -31,8 +33,11 @@ import de.cooperateproject.ui.util.TextualModelFileExtensions;
 
 /**
  * Assumptions:
- * - Graphical and textual models exist
- * - Naming patterns of graphical and textual models match
+ * <ul>
+ * <li>Graphical and textual models exist</li>
+ * <li>Naming patterns of</li>
+ * </ul>
+ * graphical and textual models match
  */
 public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 
@@ -78,38 +83,54 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 		Set<de.cooperateproject.ui.launchermodel.Launcher.Diagram> diagrams = getRepositoryFolder().getNodes().stream()
 				.filter(n -> NOTATION_FILE_EXTENSION.equals(n.getExtension()))
 				.flatMap(n -> n.eContents().stream().filter(o -> o instanceof Diagram).map(o -> (Diagram) o))
-				.map(this::createLauncher).collect(Collectors.toSet());
+				.map(this::createLauncher).filter(Objects::nonNull).collect(Collectors.toSet());
 		saveLaunchers(diagrams);
 	}
 
 	private de.cooperateproject.ui.launchermodel.Launcher.Diagram createLauncher(Diagram papyrusDiagram) {
-		String originalFileName = papyrusDiagram.eResource().getURI().trimFileExtension().lastSegment();
-		String fileName = String.format("%s - %s", originalFileName, papyrusDiagram.getName());
+		Optional<TextualModelFileExtensions> textualModelType = TextualModelFileExtensions
+				.getByPapyrusType(papyrusDiagram.getType());
+		if (!textualModelType.isPresent()) {
+			LOGGER.warn(String.format("There is no textual model type associated with the papyrus diagram type \"%s\".",
+					papyrusDiagram.getType()));
+			return null;
+		}
 
+		URI graphicalModelURI = papyrusDiagram.eResource().getURI();
+		URI textualModelURI = ModelNamingConventions.getTextualFromGraphicalURI(graphicalModelURI,
+				papyrusDiagram.getName(), textualModelType.get().getExtension());
+
+		String launcherFileName = URI.decode(textualModelURI.trimFileExtension().lastSegment());
 		de.cooperateproject.ui.launchermodel.Launcher.Diagram launcherDiagram = LauncherFactory.eINSTANCE
 				.createDiagram();
-		launcherDiagram.setName(fileName);
+		launcherDiagram.setName(launcherFileName);
 
 		ConcreteSyntaxModel papyrusModel = LauncherFactory.eINSTANCE.createGraphicalConcreteSyntaxModel();
 		papyrusModel.setExtension(NOTATION_FILE_EXTENSION);
 		papyrusModel.setRootElement(papyrusDiagram);
 		launcherDiagram.getConcreteSyntaxModels().add(papyrusModel);
 
-		Optional<TextualModelFileExtensions> textualModelType = TextualModelFileExtensions
-				.getByPapyrusType(papyrusDiagram.getType());
-		if (textualModelType.isPresent()) {
-			
-			String textualModelFileName = createFileName(fileName, textualModelType.get().getExtension());
-
-			CDOResourceNode textualModelResourceNode = getRepositoryFolder().getNode(textualModelFileName);
-			if (textualModelResourceNode != null && textualModelResourceNode instanceof CDOResource) {
-				CDOResource textualModelResource = (CDOResource)textualModelResourceNode;
-				ConcreteSyntaxModel textualModel = LauncherFactory.eINSTANCE.createTextualConcreteSyntaxModel();
-				textualModel.setExtension(textualModelType.get().getExtension());
-				textualModel.setRootElement(textualModelResource.eContents().get(0));
-				launcherDiagram.getConcreteSyntaxModels().add(textualModel);
-			}
+		URI relativeURI = textualModelURI.deresolve(graphicalModelURI);
+		if (relativeURI.segmentCount() > 1) {
+			LOGGER.warn("Textual and graphical models that are not in the same directory are not supported yet.");
+			return null;
 		}
+		
+		CDOResourceNode textualResourceNode = getRepositoryFolder().getNode(URI.decode(relativeURI.lastSegment()));
+		if (!(textualResourceNode instanceof CDOResource)) {
+			LOGGER.error("Textual resource not available.");
+			return null;
+		}
+		
+		CDOResource textualModelResource = (CDOResource)textualResourceNode;
+		if (textualModelResource.getContents().isEmpty()) {
+			LOGGER.warn(String.format("There is no textual model with URI \"%s\".", textualModelURI.toString()));
+		}
+
+		ConcreteSyntaxModel textualModel = LauncherFactory.eINSTANCE.createTextualConcreteSyntaxModel();
+		textualModel.setExtension(textualModelType.get().getExtension());
+		textualModel.setRootElement(textualModelResource.getContents().get(0));
+		launcherDiagram.getConcreteSyntaxModels().add(textualModel);
 
 		return launcherDiagram;
 	}
@@ -139,7 +160,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 	private static IFolder createLauncherFolder(IProject project) throws CoreException {
 		return createWorkspaceFolder(project, MODELS_DIRECTORY_NAME, false);
 	}
-	
+
 	private static String createFileName(String filename, String extension) {
 		return String.format("%s.%s", filename, extension);
 	}

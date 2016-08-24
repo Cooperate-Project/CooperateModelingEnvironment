@@ -3,12 +3,11 @@ package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -28,7 +27,11 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
+
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
+
+	private static final Logger LOGGER = Logger.getLogger(CooperateGlobalScopeProvider.class);
 
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
@@ -56,6 +59,7 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		Iterable<EObject> allContents = Iterables.concat(umlResource.getContents(),
 				() -> umlResource.getContents().get(0).eAllContents());
 		Stream<EObject> allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
+		allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
 		try {
 			Stream<EObject> results = allContentsStream.filter(type::isInstance);
 			return createScopeForStream(results, predicate);
@@ -77,8 +81,8 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	}
 
 	private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-		Collection<EObject> objs = results.map(this::getDescriptionFor)
-				.filter(d -> d != null).filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
+		Collection<EObject> objs = results.map(this::getDescriptionFor).filter(d -> d != null)
+				.filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
 				.collect(Collectors.toList());
 		return createUMLScope(objs);
 	}
@@ -103,20 +107,21 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		return Optional.fromNullable(r);
 	}
 
+	/**
+	 * Finds the URI of an UML file that corresponds to the given model URI. The
+	 * resulting URI might not exist.
+	 * 
+	 * @param ownUri
+	 *            The URI of the model file.
+	 * @return The assumed URI of the UML file.
+	 */
 	private static Optional<URI> findUMLURI(URI ownUri) {
-		String[] uriSegments = ownUri.segments();
-		String modelFileName = URI.decode(uriSegments[uriSegments.length - 1]);
-		Pattern namePattern = Pattern.compile("^(.*?) - .*");
-		Matcher nameMatcher = namePattern.matcher(modelFileName);
-		if (!nameMatcher.matches()) {
-			return Optional.absent();
+		try {
+			return Optional.of(ModelNamingConventions.getUMLFromTextualURI(ownUri));
+		} catch (IllegalArgumentException e) {
+			LOGGER.warn("Could not determine the UML URI on a regular basis.", e);
+			return Optional.of(ownUri.trimFileExtension().appendFileExtension("uml"));
 		}
-		String name = nameMatcher.group(1);
-		uriSegments[uriSegments.length - 1] = name + ".uml";
-
-		URI targetURI = URI.createHierarchicalURI(ownUri.scheme(), ownUri.authority(), ownUri.device(), uriSegments,
-				null, null);
-		return Optional.of(targetURI);
 	}
 
 }

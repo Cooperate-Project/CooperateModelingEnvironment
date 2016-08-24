@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtext
-Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
@@ -10,7 +10,9 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.uml2.uml;bundle-version="5.1.2",
  net.winklerweb.cdoxtext.runtime;bundle-version="0.1.0",
  org.apache.commons.lang3;bundle-version="3.1.0",
- org.apache.log4j
+ org.apache.log4j,
+ de.cooperateproject.util;bundle-version="1.0.0",
+ de.cooperateproject.modeling.textual.common
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping

@@ -15,6 +15,9 @@ public class CooperateResourceHandlingBindingsFragment extends Xtend2GeneratorFr
 			  "org.eclipse.xtext.ui.editor.model.XtextDocument",
 			  "de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument")
 			.addTypeToType(
+			  "org.eclipse.xtext.ui.editor.model.XtextDocumentProvider",
+			  "de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider")
+			.addTypeToType(
 			  "org.eclipse.xtext.ui.resource.IResourceSetProvider",
 			  "org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider")
 			.getBindings();
