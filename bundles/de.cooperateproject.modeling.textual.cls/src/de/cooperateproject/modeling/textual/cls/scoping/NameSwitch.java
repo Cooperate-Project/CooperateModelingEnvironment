@@ -15,12 +15,20 @@ public class NameSwitch extends ClsSwitch<String> {
 	public <T extends NamedElement> String caseNamedElement(
 			de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> object) {
 		Object result = object.eGet(ClsPackage.eINSTANCE.getNamedElement_Name(), false);
-		if (result == null) {
-			List<INode> nodes = NodeModelUtils.findNodesForFeature(object, ClsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
-			if (!nodes.isEmpty()) {
-				return NodeModelUtils.getTokenText(nodes.get(0));
-			}
+		if (result != null) {
+			return (String)result;
 		}
+		
+		Object referencedElement = object.eGet(ClsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement(), false);
+		if (referencedElement instanceof NamedElement) {
+			return ((NamedElement)referencedElement).getName();
+		}
+
+		List<INode> nodes = NodeModelUtils.findNodesForFeature(object, ClsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
+		if (!nodes.isEmpty()) {
+			return NodeModelUtils.getTokenText(nodes.get(0));
+		}
+		
 		return null;
 	}
 

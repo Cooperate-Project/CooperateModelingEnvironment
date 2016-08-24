@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.Validate;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
@@ -40,6 +41,12 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
 				ClsPackage.eINSTANCE.getPackageImport_Package());
 		if (!nodes.isEmpty()) {
 			return Optional.fromNullable(NodeModelUtils.getTokenText(nodes.get(0)));
+		} else {
+			Object result = pgkImport.eGet(ClsPackage.eINSTANCE.getPackageImport_Package(), false);
+			if (result != null) {
+				Package umlPackage = (Package)result;
+				return Optional.of(umlPackage.getQualifiedName().replace(umlPackage.separator(), "."));
+			}
 		}
 		return Optional.absent();
 	}

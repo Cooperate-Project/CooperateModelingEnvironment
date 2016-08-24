@@ -30,7 +30,7 @@ public abstract class CooperateSimpleLocalScopeProvider extends SimpleLocalScope
 			return getRootNormalizers(context);
 		}
 
-		List<ImportNormalizer> parentNormalizers = getImportNormalizers(context.eContainer());
+		List<ImportNormalizer> parentNormalizers = getImportNormalizers(parentContext);
 		String unqualifiedName = getUnqualifiedName(context);
 		if (unqualifiedName == null) {
 			return parentNormalizers;
