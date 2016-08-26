@@ -4,7 +4,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.internal.ui.CDOLobEditorInput;
 
-public class CooperateCDOLobEditorInput extends CDOLobEditorInput {
+import de.cooperateproject.util.editor.ILauncherFileEditorInput;
+
+public class CooperateCDOLobEditorInput extends CDOLobEditorInput implements ILauncherFileEditorInput {
 
 	private final IFile associatedLauncherFile;
 	
@@ -13,6 +15,7 @@ public class CooperateCDOLobEditorInput extends CDOLobEditorInput {
 		this.associatedLauncherFile = associatedLauncherFile;
 	}
 
+	@Override
 	public IFile getAssociatedLauncherFile() {
 		return associatedLauncherFile;
 	}

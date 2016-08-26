@@ -3,6 +3,7 @@ package de.cooperateproject.ui.papyrus.editorlauncher;
 import java.io.IOException;
 import java.util.Optional;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
@@ -12,6 +13,8 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -27,6 +30,8 @@ import org.eclipse.ui.ide.IDE;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
+import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
+import de.cooperateproject.ui.util.EditorFinderUtil;
 
 public class PapyrusCDOLauncher extends EditorLauncher {
 
@@ -36,7 +41,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
 		super(launcherFile, editorType);
 	}
-
+	
 	@Override
 	protected IEditorPart doOpenEditor() throws PartInitException {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -116,6 +121,36 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 	private Resource createCDOResource(EObject rootelement) {
 		CDOResource cdoResource = (CDOResource) rootelement.eResource();
 		return (CDOResource) getCDOView().getObject(cdoResource.cdoID());
+	}
+
+	public static Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+		LauncherModelWrapper diagram = loadLauncherModelReadOnly(launcherFile);
+		try {
+			ConcreteSyntaxModel concreteSyntaxModel = selectConcreteSyntaxModel(diagram.getDiagram(), editorType);
+			URI ownURI = EcoreUtil.getURI(concreteSyntaxModel.getRootElement());
+			return EditorFinderUtil.findEditor(EDITOR_ID_GRAPHICAL, i -> compareEditorInputs(ownURI, i));
+		} finally {
+			IOUtil.closeSilent(diagram);
+		}
+	}
+	
+	private static boolean compareEditorInputs(URI diagramURI, IEditorInput editorInput) {
+		if (!(editorInput instanceof URIEditorInput)) {
+			return false;
+		}
+		
+		URIEditorInput uriInput = (URIEditorInput)editorInput;
+		URI otherURI = uriInput.getURI();
+		
+		if (otherURI.scheme() == null || !otherURI.scheme().startsWith("cdo")) {
+			return false;
+		}
+		
+		if (!ArrayUtils.isEquals(diagramURI.segments(), otherURI.trimFileExtension().appendFileExtension("notation").segments())) {
+			return false;
+		}
+		
+		return true;
 	}
 
 }

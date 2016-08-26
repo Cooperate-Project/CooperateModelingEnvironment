@@ -11,6 +11,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 import de.cooperateproject.ui.constants.UIConstants;
@@ -51,8 +52,13 @@ public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
 			if (!editorLauncherFactory.isPresent()) {
 				throw new PartInitException("No editor available for that type.");
 			}
-			IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile, preferredEditorType.get());
-			launcher.openEditor();
+			Optional<IEditorPart> existingEditor = editorLauncherFactory.get().findExistingEditor(launcherFile, preferredEditorType.get());
+			if (existingEditor.isPresent()) {
+				existingEditor.get().setFocus();
+			} else {				
+				IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile, preferredEditorType.get());
+				launcher.openEditor();				
+			}
 		} catch (IOException e) {
 			LOGGER.error("Could not read launcher file.", e);
 		} catch (ConcreteSyntaxTypeNotAvailableException e) {

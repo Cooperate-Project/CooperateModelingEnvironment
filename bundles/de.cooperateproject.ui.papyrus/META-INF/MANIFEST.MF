@@ -10,4 +10,6 @@ Require-Bundle: de.cooperateproject.ui;bundle-version="1.0.0",
  org.eclipse.emf.cdo.explorer,
  org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.services.openelement,
- org.eclipse.emf.common.ui
+ org.eclipse.emf.common.ui,
+ de.cooperateproject.util,
+ org.apache.commons.lang3

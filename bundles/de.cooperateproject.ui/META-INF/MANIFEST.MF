@@ -34,7 +34,7 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.filesystem;bundle-version="1.5.0",
  de.cooperateproject.cdo.merge;bundle-version="1.0.0",
  de.cooperateproject.modeling.textual.common,
- de.cooperateproject.util
+ de.cooperateproject.util;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

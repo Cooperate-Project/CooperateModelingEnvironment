@@ -1,8 +1,10 @@
 package de.cooperateproject.ui.papyrus.editorlauncher;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.ui.IEditorPart;
 
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
@@ -24,6 +26,12 @@ public class PapyrusCDOLauncherFactory implements IEditorLauncherFactory {
 	public IEditorLauncher create(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
 		return new PapyrusCDOLauncher(launcherFile, editorType);
+	}
+
+	@Override
+	public Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType)
+			throws IOException, ConcreteSyntaxTypeNotAvailableException {
+		return PapyrusCDOLauncher.findExistingEditor(launcherFile, editorType);
 	}
 
 }
