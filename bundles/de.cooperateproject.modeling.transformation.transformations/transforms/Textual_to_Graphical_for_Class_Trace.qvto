@@ -157,16 +157,16 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	var umlAssociation := edge.oclAsType(notation::Edge).element.oclAsType(uml::Association);
 	var aggregatingIndex := if umlAssociation.memberEnd->at(2).aggregation != uml::AggregationKind::none then 2 else 1 endif;
 	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
-	var leftElement := umlAssociation.memberEnd->at(aggregatingIndex);
-	var rightElement := umlAssociation.memberEnd->at(regularIndex);
+	var leftElement := umlAssociation.memberEnd->at(regularIndex);
+	var rightElement := umlAssociation.memberEnd->at(aggregatingIndex);
 
 	result += createEdgeTraceRecord("edgeToRegularAssociation", "Edge", edge, "Association", connector.eobject());
-	result += umlAssociation.memberEnd->at(aggregatingIndex).type.map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
-	result += umlAssociation.memberEnd->at(regularIndex).type.map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));
+	result += leftElement.type.map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
+	result += rightElement.type.map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));
 	
 	// association properties
 	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Association", umlAssociation.eobject(), "AssociationProperties", connector.properties.eobject());
-	associationProperties.parameters.parameters += new trace::VarParameterValue("aggregatingIndex", aggregatingIndex);
+	associationProperties.parameters.parameters += new trace::VarParameterValue("firstIndex", regularIndex);
 	result += associationProperties;	
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", leftElement.eobject(), "Cardinality", connector.properties.cardinalityLeft.eobject());
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", rightElement.eobject(), "Cardinality", connector.properties.cardinalityRight.eobject());

@@ -33,16 +33,16 @@
   </classifiers>
   <connectors xsi:type="cls:Association" aggregationKind="COMPOSITION">
     <left xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
     </left>
     <right xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
     </right>
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
     <comment href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
     <properties>
-      <cardinalityLeft lowerBound="1" upperBound="-1"/>
-      <cardinalityRight lowerBound="1" upperBound="1"/>
+      <cardinalityLeft lowerBound="1" upperBound="1"/>
+      <cardinalityRight lowerBound="1" upperBound="-1"/>
     </properties>
   </connectors>
   <connectors xsi:type="cls:Generalization">
