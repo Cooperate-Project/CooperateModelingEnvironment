@@ -15,7 +15,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import org.eclipse.xtext.serializer.impl.Serializer
-import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
 import org.eclipse.uml2.uml.Operation
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
@@ -23,6 +22,7 @@ import org.eclipse.xtext.Assignment
 import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.util.UMLSwitch
+import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -131,10 +131,15 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	}
 
 	private static class TypeSwitch extends UMLSwitch<TypeReference> {
+		private TypeConverter typeConverter
+		
+		new() {
+			typeConverter = new TypeConverter()
+		} 
 
 		override casePrimitiveType(org.eclipse.uml2.uml.PrimitiveType primitiveType) {
 			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
-			dataType.type = getPrimitive(primitiveType)
+			dataType.type = typeConverter.getPrimitive(primitiveType)
 			return dataType
 		}
 
@@ -149,29 +154,6 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 			dataType.type = classifier
 			return dataType
 		}
-
-		/**
-		 * Converts a UML Type into a Cls PrimitiveType.
-		 */
-		private def getPrimitive(Type type) {
-			switch (type.name) {
-				case "String": return PrimitiveType.STRING
-				case "Boolean": return PrimitiveType.BOOLEAN
-				case "Real": return PrimitiveType.FLOAT
-				case "Integer": return PrimitiveType.INT
-				case "UnlimitedNatural": return PrimitiveType.LONG
-				case "EString": return PrimitiveType.STRING
-				case "EBoolean": return PrimitiveType.BOOLEAN
-				case "EFloat": return PrimitiveType.FLOAT
-				case "EInteger": return PrimitiveType.INT
-				case "ELong": return PrimitiveType.LONG
-				case "EDouble": return PrimitiveType.DOUBLE
-				case "EChar": return PrimitiveType.CHAR
-				case "EShort": return PrimitiveType.SHORT
-			}
-			return PrimitiveType.STRING
-		}
-
 	}
 
 }

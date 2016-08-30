@@ -17,21 +17,20 @@ import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
-import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.uml2.uml.Model
 import com.google.common.collect.Iterables
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Type
-import org.eclipse.uml2.uml.resource.UMLResource
-import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
 
 class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
 
 	@Inject IScopeProvider scope
+	@Inject TypeConverter typeConverter
 
 	/**
 	 * Quickfix for missing Class in the UML-diagram.
@@ -81,6 +80,24 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 		acceptor.accept(issue, 'Create Property', 'Create the Property into the UML Diagram', null) [ element, context |
 			if (element instanceof Attribute) {
 				createMissingMember(new CreateProperty(), context, issue, element)
+			}
+		]
+	}
+
+	/**
+	 * Quickfix for wrong Property type in the Cls-model.
+	 */
+	@Fix(ClsValidator::WRONG_PROPERTY_TYPE)
+	def wrongPropertyType(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Type', 'Change the property type into the right one', null) [ element, context |
+			if (element instanceof Attribute) {
+				var refType = element.referencedElement.type				
+				if (refType instanceof org.eclipse.uml2.uml.Class) {
+					context.xtextDocument.replace(issue.offset, issue.length, refType.name)
+				} else {
+					var type = typeConverter.getPrimitive(refType)
+					context.xtextDocument.replace(issue.offset, issue.length, type.toString.toLowerCase)
+				}
 			}
 		]
 	}
@@ -173,45 +190,25 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 	}
 
 	private static class TypeSwitch extends ClsSwitch<Type> {
+		private TypeConverter typeConverter
 		private Model model
+		
+		new () {
+			typeConverter = new TypeConverter()
+		}
 
 		new(Model model) {
 			this.model = model
+			typeConverter = new TypeConverter()
 		}
 
 		override caseDataTypeReference(DataTypeReference dataTypeReference) {
-			return getType(dataTypeReference.type)
+			return typeConverter.getType(dataTypeReference.type, model)
 
 		}
 
 		override caseUMLTypeReference(UMLTypeReference umlTypeReference) {
 			return umlTypeReference.type;
-		}
-
-		private def getType(PrimitiveType type) {
-			switch (type) {
-				case PrimitiveType.STRING: findEcorePrimitiveType("EString")
-				case PrimitiveType.INT: findEcorePrimitiveType("EInt")
-				case PrimitiveType.DOUBLE: findEcorePrimitiveType("EDouble")
-				case PrimitiveType.BOOLEAN: findEcorePrimitiveType("EBoolean")
-				case PrimitiveType.CHAR: findEcorePrimitiveType("EChar")
-				case PrimitiveType.BYTE: findEcorePrimitiveType("EByte")
-				case PrimitiveType.SHORT: findEcorePrimitiveType("EShort")
-				case PrimitiveType.LONG: findEcorePrimitiveType("ELong")
-				case PrimitiveType.FLOAT: findEcorePrimitiveType("EFloat")
-			}
-		}
-
-		private def findEcorePrimitiveType(String name) {
-			var resource = model.eResource.resourceSet.getResource(
-				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI), true)
-			var model = Iterables.getFirst(resource.contents, null)
-			if (model instanceof Model) {
-				var ecoreTypes = model.ownedTypes
-				return ecoreTypes.findFirst[x|x.name.equals(name)]
-			}
-			return null
-
 		}
 	}
 
