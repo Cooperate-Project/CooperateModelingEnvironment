@@ -22,8 +22,9 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
 	
 	// package imports?
 	children += self.classifiers->map classifierToShape();
-	children += self.connectors->select(oclIsKindOf(cls::CommentLink))->collect(oclAsType(cls::CommentLink))->map commentLinkToShape();
-	edges += self.connectors->sortedBy(oclIsKindOf(cls::CommentLink))->map connectorToConnector(self.classifiers);	
+	children += self.connectors->select(isCommented())->selectByKind(cls::Commentable)->map commentLinkToShape();
+	edges += self.connectors->select(not oclIsKindOf(cls::CommentLink))->map connectorToConnector(self.classifiers);
+	edges += self.connectors->select(isCommented())->selectByKind(cls::Commentable)->map commentableToEdge(self.classifiers);
 	
 	styles += self.map stringValueStyle();
 	styles += self.map diagramStyle();
@@ -59,7 +60,7 @@ when {self.oclIsKindOf(cls::Class)}
 	type := "2008";
 }
 
-mapping cls::CommentLink::commentLinkToShape() : notation::Shape
+mapping cls::Commentable::commentLinkToShape() : notation::Shape
 {
 	type := "2012";
 	element := self.comment.toEObject();
@@ -198,7 +199,7 @@ when {self.oclIsKindOf(cls::Interface)}
 // connectors
 
 mapping cls::Connector::connectorToConnector(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
-disjuncts cls::Association::connectorToEdge, cls::Generalization::generalizationToEdge, cls::Implementation::implementationToEdge, cls::CommentLink::commentLinkToEdge
+disjuncts cls::Association::connectorToEdge, cls::Generalization::generalizationToEdge, cls::Implementation::implementationToEdge
 {
 }
 
@@ -218,7 +219,7 @@ when { self.oclIsKindOf(cls::Association) }
 	children += self.properties.map sourceMultiplicityDecoration();
 	children += self.properties.map targetMultiplicityDecoration();
 	
-	bendpoints := self.map connectorToBendpoint();
+	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
 
@@ -236,7 +237,7 @@ when { self.oclIsKindOf(cls::Generalization) }
 	
 	children += self.map stereotypeDecorationGeneralization();
 	
-	bendpoints := self.map connectorToBendpoint();
+	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
 
@@ -256,26 +257,26 @@ when { self.oclIsKindOf(cls::Implementation) }
 	children += self.map stereotypeDecorationImplementation();
 	children += self.map nameDecorationImplementation();
 	
-	bendpoints := self.map connectorToBendpoint();
+	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
 
-mapping cls::CommentLink::commentLinkToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
+mapping cls::Commentable::commentableToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
 {
 	type := "4013";
 	
-	var commentShape := self.resolveoneIn(cls::CommentLink::commentLinkToShape);
-	var classifier := self.left.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	var commentShape := self.resolveoneIn(cls::Commentable::commentLinkToShape);
+	var classifier := self.getCommentedElement().oclAsType(uml::Classifier);
 	
 	source := commentShape;
 	target := classifier.typeToView();
 	element := null;
 	
-	bendpoints := self.map connectorToBendpoint();
+	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
 
-mapping cls::Connector::connectorToBendpoint() : notation::RelativeBendpoints
+mapping notation::Connector::connectorToBendpoint() : notation::RelativeBendpoints
 {
 }
 
@@ -295,7 +296,7 @@ mapping cls::Connector::connectorToBendpoint() : notation::RelativeBendpoints
 6034 TargetMultiplicity
 */
 
-mapping cls::CommentLink::commentLabelBodyHintDecoration() : notation::DecorationNode
+mapping cls::Commentable::commentLabelBodyHintDecoration() : notation::DecorationNode
 {
 	type := "5038";
 }
@@ -416,4 +417,14 @@ query uml::Type::typeToShape() : notation::Shape
 query uml::Type::typeToEdge() : notation::Edge
 {
 	return resolveoneIn(cls::Connector::connectorToConnector, e : notation::Edge | e.element = self.toEObject());
+}
+
+query cls::Connector::isCommentable() : Boolean
+{
+	return self.oclIsKindOf(cls::Commentable);
+}
+
+query cls::Connector::isCommented() : Boolean
+{
+	return self.isCommentable() and self.oclAsType(cls::Commentable).comment != null;
 }

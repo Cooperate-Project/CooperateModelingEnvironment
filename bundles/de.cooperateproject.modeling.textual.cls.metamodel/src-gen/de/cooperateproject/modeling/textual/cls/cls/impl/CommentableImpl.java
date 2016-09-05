@@ -5,11 +5,14 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,6 +73,29 @@ public abstract class CommentableImpl extends CDOObjectImpl implements Commentab
 	 */
 	public void setComment(Comment newComment) {
 		eSet(ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getCommentedElement() {
+		throw new UnsupportedOperationException("Implement this method in subclass!");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ClsPackage.COMMENTABLE___GET_COMMENTED_ELEMENT:
+				return getCommentedElement();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //CommentableImpl

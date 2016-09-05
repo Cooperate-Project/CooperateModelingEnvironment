@@ -16,7 +16,7 @@ mapping notation::Diagram::diagramToDiagram() : cls::ClassDiagram {
 	name := self.name;
 	packageImports += self->map diagramToPackageImport();
 	classifiers += self.children->select(element.oclIsKindOf(uml::Class) or element.oclIsKindOf(uml::Interface))->map nodeToClassifier();
-	connectors += self.edges->map edgeToConnector(self.edges);
+	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
 }
 
 mapping notation::Diagram::diagramToPackageImport() : cls::PackageImport {
@@ -119,19 +119,7 @@ disjuncts
 {}
 
 mapping notation::Edge::edgeToCommentLink(allEdges : OrderedSet(Edge)) : cls::CommentLink
-	when {
-		self.element = null and	(
-			(
-				self.source.element.oclIsKindOf(uml::Comment) and
-				self.target.element.oclIsKindOf(uml::Classifier)
-			)
-			or
-			(
-				self.source.element.oclIsKindOf(uml::Classifier) and
-				self.target.element.oclIsKindOf(uml::Comment)
-			)
-		)
-	}
+	when {self.isCommentLink()}
 {
 	var classifier := if self.source.element.oclIsKindOf(uml::Classifier) then self.source.element else self.target.element endif;
 	var umlComment := if self.source.element.oclIsKindOf(uml::Comment) then self.source.element else  self.target.element endif; 
@@ -226,6 +214,24 @@ mapping notation::Node::nodeToCommentConnector() : cls::CommentLink
 	
 	left := commentElement.annotatedElement->any(true).oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
 	comment := comment;
+}
+
+query notation::Edge::isCommentLink() : Boolean {
+	return self.element = null and (
+			(
+				self.source.element.oclIsKindOf(uml::Comment) and
+				self.target.element.oclIsKindOf(uml::Classifier)
+			)
+			or
+			(
+				self.source.element.oclIsKindOf(uml::Classifier) and
+				self.target.element.oclIsKindOf(uml::Comment)
+			)
+		)
+}
+
+query notation::Edge::isCommentLinkForAssociation() : Boolean {
+	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
 }
 
 query notation::Edge::findEdgeComments(allEdges : OrderedSet(notation::Edge)) : OrderedSet(uml::Comment) {

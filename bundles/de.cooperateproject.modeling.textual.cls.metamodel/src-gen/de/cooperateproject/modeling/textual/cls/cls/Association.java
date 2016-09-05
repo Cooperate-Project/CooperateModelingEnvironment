@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.uml2.uml.Type;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -75,5 +77,14 @@ public interface Association extends TypedConnector, UMLReferencingElement<org.e
 	 * @generated
 	 */
 	void setAggregationKind(AggregationKind value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getReferencedElement();'"
+	 * @generated
+	 */
+	Type getCommentedElement();
 
 } // Association

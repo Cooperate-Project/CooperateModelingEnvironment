@@ -8,6 +8,7 @@ modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype TEXTUAL uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 
 main() {
 	var traces := graphicalTrace.rootObjects()[trace::Trace];
@@ -47,6 +48,7 @@ mapping trace::TraceRecord::traceRecordExtended() : List(trace::TraceRecord)
 	result += self.map traceRecordExtendedGeneralizationToEdge();
 	result += self.map traceRecordExtendedImplementationToEdge();
 	result += self.map traceRecordExtendedCommentLinkToEdge();
+	result += self.map traceRecordExtendedCommentableToEdge2();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedDiagram() : List(trace::TraceRecord)
@@ -248,7 +250,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
 }
 
 mapping trace::TraceRecord::traceRecordExtendedConnector() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToConnector"}
+when {self.mappingOperation.name = "edgeToConnector" and not self.getResult().modelElement.oclIsKindOf(cls::CommentLink)}
 {
 	var connector := self.getResult().modelElement;
 	var edge := self.getSelf().modelElement;
@@ -275,8 +277,12 @@ mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge_ConnectorBase() :
 {
 	var connector := self.getResult().modelElement.oclAsType(cls::Connector);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
-	
-	result += new TraceRecord("connectorToBendpoint", "Connector", connector.eobject(), "RelativeBendpoints", edge.bendpoints.eobject());
+	result += edge.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(connector, edge);
+}
+
+mapping ecore::EObject::traceRecordExtendedConnectorToEdge_ConnectorBase(connector : cls::Connector, edge : notation::Connector) : List(trace::TraceRecord)
+{
+	result += new TraceRecord("connectorToBendpoint", "Connector", edge.eobject(), "RelativeBendpoints", edge.bendpoints.eobject());
 	result += new TraceRecord("fontStyle", "EObject", edge.eobject() , "FontStyle", edge.styles->selectByKind(notation::FontStyle)->any(true).eobject());
 }
 
@@ -318,23 +324,47 @@ when {self.mappingOperation.name = "edgeToImplementation"}
 	result += edge.children->any(type = "6009").map traceRecordExtended_locationConstraint();
 }
 
-mapping trace::TraceRecord::traceRecordExtendedCommentLinkToEdge() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToCommentLink"}
+mapping trace::TraceRecord::traceRecordExtendedCommentableToEdge2() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
 {
-	var connector := self.getResult().modelElement.oclAsType(cls::CommentLink);
-	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	var classDiagram := self.getResult().modelElement.oclAsType(cls::ClassDiagram);
+	var notationDiagram := self.getSelf().modelElement.oclAsType(notation::Diagram);
 
-	result += createEdgeTraceRecord("commentLinkToEdge", "CommentLink", connector.eobject(), "Connector", edge.eobject());
-	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
-	
-	result += self.map traceRecordExtendedCommentLinkToEdge_Shape(connector, edge);
+	result += notationDiagram.edges->select(isCommentLinkForAssociation())->selectByKind(notation::Connector)->map commentableToEdge(classDiagram.connectors)->flatten(); 
 }
 
-mapping trace::TraceRecord::traceRecordExtendedCommentLinkToEdge_Shape(connector : cls::CommentLink, edge : notation::Connector) : List(trace::TraceRecord)
+
+mapping notation::Connector::commentableToEdge(connectors : OrderedSet(cls::Connector)) : List(trace::TraceRecord)
+{
+	var umlComment := self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->selectByKind(uml::Comment)->any(true);
+	var candidateConnectors := connectors->selectByKind(cls::Commentable)->select(comment = umlComment);
+	assert error (candidateConnectors->size() = 1) with log('We can only handle comments that are used exactly once.');
+	var connector := candidateConnectors->any(true);
+	assert error (connector.oclIsKindOf(cls::Connector)) with log ('We only support commentables that are connectors.');
+		
+	result += createEdgeTraceRecord("commentableToEdge", "Commentable", connector.eobject(), "Connector", self.eobject());
+	result += self.eobject().map traceRecordExtendedCommentLinkToEdge_Shape(connector, self);
+	result += self.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(connector.oclAsType(cls::Connector), self);
+}
+
+
+mapping trace::TraceRecord::traceRecordExtendedCommentLinkToEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToCommentLink" and not self.hasCommentLinkForAssociation()}
+{
+	var connector := self.getResult().modelElement.oclAsType(cls::Commentable);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+
+	result += createEdgeTraceRecord("commentableToEdge", "Commentable", connector.eobject(), "Connector", edge.eobject());
+	result += self.map traceRecordExtendedConnectorToEdge_ConnectorBase();
+	
+	result += self.eobject().map traceRecordExtendedCommentLinkToEdge_Shape(connector, edge);
+}
+
+mapping ecore::EObject::traceRecordExtendedCommentLinkToEdge_Shape(connector : cls::Commentable, edge : notation::Connector) : List(trace::TraceRecord)
 {
 	var commentShape := if edge.source.element = connector.comment.eobject() then edge.source else edge.target endif;
-	result += new TraceRecord("commentLinkToShape", "CommentLink", connector.eobject(), "Shape", commentShape.eobject());
-	result += new TraceRecord("commentLabelBodyHintDecoration", "CommentLink", connector.eobject(), "DecorationNode", commentShape.children->any(type = "5038").eobject());
+	result += new TraceRecord("commentLinkToShape", "Commentable", connector.eobject(), "Shape", commentShape.eobject());
+	result += new TraceRecord("commentLabelBodyHintDecoration", "Commentable", connector.eobject(), "DecorationNode", commentShape.children->any(type = "5038").eobject());
 	result += commentShape.oclAsType(notation::Node).map traceRecordExtended_notationBounds(); 
 }
 
@@ -378,4 +408,15 @@ query createEdgeTraceRecord(mappingName : String, contextType : String, contextV
 query getAllClassifiers() : OrderedSet(cls::Classifier)
 {
 	return textualModel.rootObjects()[cls::ClassDiagram]->any(true).classifiers;
+}
+
+query trace::TraceRecord::hasCommentLinkForAssociation() : Boolean
+{
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	return self.mappingOperation.name = "edgeToCommentLink" and edge.isCommentLinkForAssociation();
+}
+
+query notation::Edge::isCommentLinkForAssociation() : Boolean
+{
+	return self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association));
 }

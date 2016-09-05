@@ -9,9 +9,12 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -126,6 +129,15 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Type getCommentedElement() {
+		return getReferencedElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == UMLReferencingElement.class) {
@@ -163,6 +175,41 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == UMLReferencingElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == Commentable.class) {
+			switch (baseOperationID) {
+				case ClsPackage.COMMENTABLE___GET_COMMENTED_ELEMENT: return ClsPackage.ASSOCIATION___GET_COMMENTED_ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ClsPackage.ASSOCIATION___GET_COMMENTED_ELEMENT:
+				return getCommentedElement();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //AssociationImpl

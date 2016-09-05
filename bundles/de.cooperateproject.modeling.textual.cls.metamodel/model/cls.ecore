@@ -154,6 +154,11 @@
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association">
+    <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getReferencedElement();"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//AssociationProperties"
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregationKind" lowerBound="1"
@@ -185,6 +190,11 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (getLeft() instanceof &lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {&#xD;&#xA;&#x9;return ((&lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();&#xD;&#xA;}&#xD;&#xA;throw new IllegalStateException(&quot;Internal error in determining commented UML element.&quot;);"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ClassifierAssociationEnd"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
@@ -203,6 +213,11 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commentable" abstract="true">
+    <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="throw new UnsupportedOperationException(&quot;Implement this method in subclass!&quot;);"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Visibility">

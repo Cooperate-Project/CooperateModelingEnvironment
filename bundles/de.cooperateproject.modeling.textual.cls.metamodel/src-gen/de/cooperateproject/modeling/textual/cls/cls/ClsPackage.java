@@ -1240,13 +1240,22 @@ public interface ClsPackage extends EPackage {
 	int ASSOCIATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Get Commented Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION___GET_COMMENTED_ELEMENT = TYPED_CONNECTOR_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
+	int ASSOCIATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}' class.
@@ -1440,7 +1449,16 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT_LINK___HAS_COMMENT__DIAGNOSTICCHAIN_MAP = CONNECTOR_OPERATION_COUNT + 0;
+	int COMMENT_LINK___HAS_COMMENT__DIAGNOSTICCHAIN_MAP = CONNECTOR_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Commented Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT_LINK___GET_COMMENTED_ELEMENT = CONNECTOR_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Comment Link</em>' class.
@@ -1449,7 +1467,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT_LINK_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 1;
+	int COMMENT_LINK_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl <em>Association Properties</em>}' class.
@@ -1581,13 +1599,22 @@ public interface ClsPackage extends EPackage {
 	int COMMENTABLE_FEATURE_COUNT = 1;
 
 	/**
+	 * The operation id for the '<em>Get Commented Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENTABLE___GET_COMMENTED_ELEMENT = 0;
+
+	/**
 	 * The number of operations of the '<em>Commentable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENTABLE_OPERATION_COUNT = 0;
+	int COMMENTABLE_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.
@@ -2096,6 +2123,16 @@ public interface ClsPackage extends EPackage {
 	EAttribute getAssociation_AggregationKind();
 
 	/**
+	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getCommentedElement() <em>Get Commented Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Commented Element</em>' operation.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Association#getCommentedElement()
+	 * @generated
+	 */
+	EOperation getAssociation__GetCommentedElement();
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2165,6 +2202,16 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getCommentLink__HasComment__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getCommentedElement() <em>Get Commented Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Commented Element</em>' operation.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink#getCommentedElement()
+	 * @generated
+	 */
+	EOperation getCommentLink__GetCommentedElement();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties <em>Association Properties</em>}'.
@@ -2261,6 +2308,16 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCommentable_Comment();
+
+	/**
+	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.Commentable#getCommentedElement() <em>Get Commented Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Commented Element</em>' operation.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Commentable#getCommentedElement()
+	 * @generated
+	 */
+	EOperation getCommentable__GetCommentedElement();
 
 	/**
 	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}'.
@@ -2716,6 +2773,14 @@ public interface ClsPackage extends EPackage {
 		EAttribute ASSOCIATION__AGGREGATION_KIND = eINSTANCE.getAssociation_AggregationKind();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Commented Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ASSOCIATION___GET_COMMENTED_ELEMENT = eINSTANCE.getAssociation__GetCommentedElement();
+
+		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2780,6 +2845,14 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation COMMENT_LINK___HAS_COMMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCommentLink__HasComment__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Commented Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMMENT_LINK___GET_COMMENTED_ELEMENT = eINSTANCE.getCommentLink__GetCommentedElement();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl <em>Association Properties</em>}' class.
@@ -2858,6 +2931,14 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMMENTABLE__COMMENT = eINSTANCE.getCommentable_Comment();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Commented Element</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMMENTABLE___GET_COMMENTED_ELEMENT = eINSTANCE.getCommentable__GetCommentedElement();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.

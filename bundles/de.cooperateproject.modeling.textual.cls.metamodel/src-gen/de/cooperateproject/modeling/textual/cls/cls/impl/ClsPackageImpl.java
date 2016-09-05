@@ -749,6 +749,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getAssociation__GetCommentedElement() {
+		return associationEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAssociationEnd() {
 		return associationEndEClass;
 	}
@@ -805,6 +814,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 */
 	public EOperation getCommentLink__HasComment__DiagnosticChain_Map() {
 		return commentLinkEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCommentLink__GetCommentedElement() {
+		return commentLinkEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -886,6 +904,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 */
 	public EReference getCommentable_Comment() {
 		return (EReference)commentableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCommentable__GetCommentedElement() {
+		return commentableEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1014,6 +1041,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		associationEClass = createEClass(ASSOCIATION);
 		createEReference(associationEClass, ASSOCIATION__PROPERTIES);
 		createEAttribute(associationEClass, ASSOCIATION__AGGREGATION_KIND);
+		createEOperation(associationEClass, ASSOCIATION___GET_COMMENTED_ELEMENT);
 
 		associationEndEClass = createEClass(ASSOCIATION_END);
 
@@ -1026,6 +1054,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		commentLinkEClass = createEClass(COMMENT_LINK);
 		createEReference(commentLinkEClass, COMMENT_LINK__LEFT);
 		createEOperation(commentLinkEClass, COMMENT_LINK___HAS_COMMENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(commentLinkEClass, COMMENT_LINK___GET_COMMENTED_ELEMENT);
 
 		associationPropertiesEClass = createEClass(ASSOCIATION_PROPERTIES);
 		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__CARDINALITY_LEFT);
@@ -1038,6 +1067,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		commentableEClass = createEClass(COMMENTABLE);
 		createEReference(commentableEClass, COMMENTABLE__COMMENT);
+		createEOperation(commentableEClass, COMMENTABLE___GET_COMMENTED_ELEMENT);
 
 		// Create enums
 		visibilityEEnum = createEEnum(VISIBILITY);
@@ -1227,6 +1257,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEReference(getAssociation_Properties(), this.getAssociationProperties(), null, "properties", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getAssociation__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(associationEndEClass, AssociationEnd.class, "AssociationEnd", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(classifierAssociationEndEClass, ClassifierAssociationEnd.class, "ClassifierAssociationEnd", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1247,6 +1279,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getCommentLink__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(associationPropertiesEClass, AssociationProperties.class, "AssociationProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociationProperties_CardinalityLeft(), this.getCardinality(), null, "cardinalityLeft", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationProperties_CardinalityRight(), this.getCardinality(), null, "cardinalityRight", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1258,6 +1292,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		initEClass(commentableEClass, Commentable.class, "Commentable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCommentable_Comment(), theUMLPackage.getComment(), null, "comment", null, 0, 1, Commentable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getCommentable__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityEEnum, Visibility.class, "Visibility");
