@@ -8,10 +8,11 @@ import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Method
-import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 
 import org.eclipse.xtext.validation.Check
+import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 
 /**
  * This class contains custom validation rules. 
@@ -19,10 +20,12 @@ import org.eclipse.xtext.validation.Check
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ClsValidator extends AbstractClsValidator {
+	@Inject TypeConverter typeConverter
 
 	public static val NO_CLASS_REFERENCE = 'no_class_reference'
 	public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
 	public static val NO_PROPERTY_REFERENCE = 'no_property_reference'
+	public static val WRONG_PROPERTY_TYPE = 'wrong_property_type'
 	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
 
 	@Check
@@ -46,14 +49,29 @@ class ClsValidator extends AbstractClsValidator {
 		if (attribute.referencedElement.model == null) {
 			error("No Referenced UML-Property", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_PROPERTY_REFERENCE)
-		} /*else {
-			var attrType = attribute.type as DataTypeReference
-			
-			var refType = attribute.referencedElement.type
-			if (attrType.equals(refType)) {
-				error("Wrong Type", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+		} 
+	}
+	
+	@Check
+	def checkCorrectPropertyType(Attribute attribute) {
+		if (attribute.referencedElement.model != null) {
+			var attrType = attribute.type
+			if (attrType instanceof DataTypeReference) {
+				var type = attrType.type
+				var refType = typeConverter.getPrimitive(attribute.referencedElement.type)
+
+				if (type.equals(refType)) {
+					return
+				}
+			} else if (attrType instanceof UMLTypeReference) {
+				var type = attrType.type
+				
+				if (type.name.equals(attribute.referencedElement.type.name)) {
+					return
+				}
 			}
-		}*/
+			error("Wrong Type", ClsPackage.eINSTANCE.property_Type, WRONG_PROPERTY_TYPE)
+		}
 	}
 
 	@Check
@@ -62,10 +80,5 @@ class ClsValidator extends AbstractClsValidator {
 			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_OPERATION_REFERENCE)
 		}
-	}
-
-	@Check
-	def checkIfTypeChanged(PrimitiveType type) {
-		var a = 0
 	}
 }
