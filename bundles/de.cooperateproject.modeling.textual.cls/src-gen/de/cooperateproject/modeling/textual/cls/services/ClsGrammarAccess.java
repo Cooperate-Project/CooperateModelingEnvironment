@@ -179,18 +179,19 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferencedElementAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cReferencedElementClassCrossReference_4_0 = (CrossReference)cReferencedElementAssignment_4.eContents().get(0);
 		private final RuleCall cReferencedElementClassIDTerminalRuleCall_4_0_1 = (RuleCall)cReferencedElementClassCrossReference_4_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cMembersAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cMembersMemberParserRuleCall_6_0 = (RuleCall)cMembersAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cMembersAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cMembersMemberParserRuleCall_5_1_0 = (RuleCall)cMembersAssignment_5_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Class:
 		//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class]
-		//	'{' members+=Member* '}';
+		//	('{' members+=Member* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class] '{'
-		//members+=Member* '}'
+		//visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class] ('{'
+		//members+=Member* '}')?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -235,17 +236,20 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getReferencedElementClassIDTerminalRuleCall_4_0_1() { return cReferencedElementClassIDTerminalRuleCall_4_0_1; }
 
+		//('{' members+=Member* '}')?
+		public Group getGroup_5() { return cGroup_5; }
+
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
+		public Keyword getLeftCurlyBracketKeyword_5_0() { return cLeftCurlyBracketKeyword_5_0; }
 
 		//members+=Member*
-		public Assignment getMembersAssignment_6() { return cMembersAssignment_6; }
+		public Assignment getMembersAssignment_5_1() { return cMembersAssignment_5_1; }
 
 		//Member
-		public RuleCall getMembersMemberParserRuleCall_6_0() { return cMembersMemberParserRuleCall_6_0; }
+		public RuleCall getMembersMemberParserRuleCall_5_1_0() { return cMembersMemberParserRuleCall_5_1_0; }
 
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_5_2() { return cRightCurlyBracketKeyword_5_2; }
 	}
 
 	public class InterfaceElements extends AbstractParserRuleElementFinder {
@@ -263,18 +267,19 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferencedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cReferencedElementInterfaceCrossReference_3_0 = (CrossReference)cReferencedElementAssignment_3.eContents().get(0);
 		private final RuleCall cReferencedElementInterfaceIDTerminalRuleCall_3_0_1 = (RuleCall)cReferencedElementInterfaceCrossReference_3_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cMembersAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cMembersMemberParserRuleCall_5_0 = (RuleCall)cMembersAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cMembersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cMembersMemberParserRuleCall_4_1_0 = (RuleCall)cMembersAssignment_4_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//Interface:
-		//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] '{'
-		//	members+=Member* '}';
+		//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] ('{'
+		//	members+=Member* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] '{'
-		//members+=Member* '}'
+		//visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] ('{'
+		//members+=Member* '}')?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -313,17 +318,20 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getReferencedElementInterfaceIDTerminalRuleCall_3_0_1() { return cReferencedElementInterfaceIDTerminalRuleCall_3_0_1; }
 
+		//('{' members+=Member* '}')?
+		public Group getGroup_4() { return cGroup_4; }
+
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
 
 		//members+=Member*
-		public Assignment getMembersAssignment_5() { return cMembersAssignment_5; }
+		public Assignment getMembersAssignment_4_1() { return cMembersAssignment_4_1; }
 
 		//Member
-		public RuleCall getMembersMemberParserRuleCall_5_0() { return cMembersMemberParserRuleCall_5_0; }
+		public RuleCall getMembersMemberParserRuleCall_4_1_0() { return cMembersMemberParserRuleCall_4_1_0; }
 
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
 	}
 
 	public class TypeReferenceElements extends AbstractParserRuleElementFinder {
@@ -760,17 +768,16 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLeftAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLeftClassifierAssociationEndParserRuleCall_0_0 = (RuleCall)cLeftAssignment_0.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cNoteKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cCommentAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cCommentCommentCrossReference_3_0 = (CrossReference)cCommentAssignment_3.eContents().get(0);
-		private final RuleCall cCommentCommentCommentBodyParserRuleCall_3_0_1 = (RuleCall)cCommentCommentCrossReference_3_0.eContents().get(1);
+		private final Keyword cNoteKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cCommentAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cCommentCommentCrossReference_2_0 = (CrossReference)cCommentAssignment_2.eContents().get(0);
+		private final RuleCall cCommentCommentCommentBodyParserRuleCall_2_0_1 = (RuleCall)cCommentCommentCrossReference_2_0.eContents().get(1);
 		
 		//CommentLink:
-		//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|CommentBody];
+		//	left=ClassifierAssociationEnd 'note' comment=[uml::Comment|CommentBody];
 		@Override public ParserRule getRule() { return rule; }
 
-		//left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|CommentBody]
+		//left=ClassifierAssociationEnd 'note' comment=[uml::Comment|CommentBody]
 		public Group getGroup() { return cGroup; }
 
 		//left=ClassifierAssociationEnd
@@ -779,20 +786,17 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierAssociationEnd
 		public RuleCall getLeftClassifierAssociationEndParserRuleCall_0_0() { return cLeftClassifierAssociationEndParserRuleCall_0_0; }
 
-		//'-'
-		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
-
 		//'note'
-		public Keyword getNoteKeyword_2() { return cNoteKeyword_2; }
+		public Keyword getNoteKeyword_1() { return cNoteKeyword_1; }
 
 		//comment=[uml::Comment|CommentBody]
-		public Assignment getCommentAssignment_3() { return cCommentAssignment_3; }
+		public Assignment getCommentAssignment_2() { return cCommentAssignment_2; }
 
 		//[uml::Comment|CommentBody]
-		public CrossReference getCommentCommentCrossReference_3_0() { return cCommentCommentCrossReference_3_0; }
+		public CrossReference getCommentCommentCrossReference_2_0() { return cCommentCommentCrossReference_2_0; }
 
 		//CommentBody
-		public RuleCall getCommentCommentCommentBodyParserRuleCall_3_0_1() { return cCommentCommentCommentBodyParserRuleCall_3_0_1; }
+		public RuleCall getCommentCommentCommentBodyParserRuleCall_2_0_1() { return cCommentCommentCommentBodyParserRuleCall_2_0_1; }
 	}
 
 	public class AssociationElements extends AbstractParserRuleElementFinder {
@@ -884,17 +888,13 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cVerticalLineKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cCardinalityRightAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cCardinalityRightCardinalityParserRuleCall_2_1_0 = (RuleCall)cCardinalityRightAssignment_2_1.eContents().get(0);
-		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
-		private final Keyword cVerticalLineKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
-		private final Assignment cReadingDirectionAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
-		private final RuleCall cReadingDirectionReadingDirectionEnumRuleCall_2_2_1_0 = (RuleCall)cReadingDirectionAssignment_2_2_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//AssociationProperties:
-		//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality ('|' readingDirection=ReadingDirection)?)? ']';
+		//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality)? ']';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality ('|' readingDirection=ReadingDirection)?)? ']'
+		//'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality)? ']'
 		public Group getGroup() { return cGroup; }
 
 		//'['
@@ -906,7 +906,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//Cardinality
 		public RuleCall getCardinalityLeftCardinalityParserRuleCall_1_0() { return cCardinalityLeftCardinalityParserRuleCall_1_0; }
 
-		//('|' cardinalityRight=Cardinality ('|' readingDirection=ReadingDirection)?)?
+		//('|' cardinalityRight=Cardinality)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//'|'
@@ -917,18 +917,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Cardinality
 		public RuleCall getCardinalityRightCardinalityParserRuleCall_2_1_0() { return cCardinalityRightCardinalityParserRuleCall_2_1_0; }
-
-		//('|' readingDirection=ReadingDirection)?
-		public Group getGroup_2_2() { return cGroup_2_2; }
-
-		//'|'
-		public Keyword getVerticalLineKeyword_2_2_0() { return cVerticalLineKeyword_2_2_0; }
-
-		//readingDirection=ReadingDirection
-		public Assignment getReadingDirectionAssignment_2_2_1() { return cReadingDirectionAssignment_2_2_1; }
-
-		//ReadingDirection
-		public RuleCall getReadingDirectionReadingDirectionEnumRuleCall_2_2_1_0() { return cReadingDirectionReadingDirectionEnumRuleCall_2_2_1_0; }
 
 		//']'
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
@@ -1008,21 +996,30 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cPUBLICPlusSignKeyword_0_0 = (Keyword)cPUBLICEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cPRIVATEHyphenMinusKeyword_1_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cPROTECTEDNumberSignKeyword_2_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cPACKAGETildeKeyword_3_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cPUBLICPublicKeyword_1_0 = (Keyword)cPUBLICEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cPRIVATEHyphenMinusKeyword_2_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cPRIVATEPrivateKeyword_3_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cPROTECTEDNumberSignKeyword_4_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cPROTECTEDProtectedKeyword_5_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cPACKAGETildeKeyword_6_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum Visibility:
 		//	PUBLIC='+'
+		//	| PUBLIC='public'
 		//	| PRIVATE='-'
+		//	| PRIVATE='private'
 		//	| PROTECTED='#'
+		//	| PROTECTED='protected'
 		//	| PACKAGE='~';
 		public EnumRule getRule() { return rule; }
 
-		//PUBLIC='+' | PRIVATE='-' | PROTECTED='#' | PACKAGE='~'
+		//PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PUBLIC='+'
@@ -1031,52 +1028,41 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'+'
 		public Keyword getPUBLICPlusSignKeyword_0_0() { return cPUBLICPlusSignKeyword_0_0; }
 
+		//PUBLIC='public'
+		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_1() { return cPUBLICEnumLiteralDeclaration_1; }
+
+		//'public'
+		public Keyword getPUBLICPublicKeyword_1_0() { return cPUBLICPublicKeyword_1_0; }
+
 		//PRIVATE='-'
-		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_1() { return cPRIVATEEnumLiteralDeclaration_1; }
+		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_2() { return cPRIVATEEnumLiteralDeclaration_2; }
 
 		//'-'
-		public Keyword getPRIVATEHyphenMinusKeyword_1_0() { return cPRIVATEHyphenMinusKeyword_1_0; }
+		public Keyword getPRIVATEHyphenMinusKeyword_2_0() { return cPRIVATEHyphenMinusKeyword_2_0; }
+
+		//PRIVATE='private'
+		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_3() { return cPRIVATEEnumLiteralDeclaration_3; }
+
+		//'private'
+		public Keyword getPRIVATEPrivateKeyword_3_0() { return cPRIVATEPrivateKeyword_3_0; }
 
 		//PROTECTED='#'
-		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_2() { return cPROTECTEDEnumLiteralDeclaration_2; }
+		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_4() { return cPROTECTEDEnumLiteralDeclaration_4; }
 
 		//'#'
-		public Keyword getPROTECTEDNumberSignKeyword_2_0() { return cPROTECTEDNumberSignKeyword_2_0; }
+		public Keyword getPROTECTEDNumberSignKeyword_4_0() { return cPROTECTEDNumberSignKeyword_4_0; }
+
+		//PROTECTED='protected'
+		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_5() { return cPROTECTEDEnumLiteralDeclaration_5; }
+
+		//'protected'
+		public Keyword getPROTECTEDProtectedKeyword_5_0() { return cPROTECTEDProtectedKeyword_5_0; }
 
 		//PACKAGE='~'
-		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_3() { return cPACKAGEEnumLiteralDeclaration_3; }
+		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_6() { return cPACKAGEEnumLiteralDeclaration_6; }
 
 		//'~'
-		public Keyword getPACKAGETildeKeyword_3_0() { return cPACKAGETildeKeyword_3_0; }
-	}
-
-	public class ReadingDirectionElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.ReadingDirection");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cLEFTEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cLEFTLessThanSignKeyword_0_0 = (Keyword)cLEFTEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cRIGHTEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cRIGHTGreaterThanSignKeyword_1_0 = (Keyword)cRIGHTEnumLiteralDeclaration_1.eContents().get(0);
-		
-		//enum ReadingDirection:
-		//	LEFT='<'
-		//	| RIGHT='>';
-		public EnumRule getRule() { return rule; }
-
-		//LEFT='<' | RIGHT='>'
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//LEFT='<'
-		public EnumLiteralDeclaration getLEFTEnumLiteralDeclaration_0() { return cLEFTEnumLiteralDeclaration_0; }
-
-		//'<'
-		public Keyword getLEFTLessThanSignKeyword_0_0() { return cLEFTLessThanSignKeyword_0_0; }
-
-		//RIGHT='>'
-		public EnumLiteralDeclaration getRIGHTEnumLiteralDeclaration_1() { return cRIGHTEnumLiteralDeclaration_1; }
-
-		//'>'
-		public Keyword getRIGHTGreaterThanSignKeyword_1_0() { return cRIGHTGreaterThanSignKeyword_1_0; }
+		public Keyword getPACKAGETildeKeyword_6_0() { return cPACKAGETildeKeyword_6_0; }
 	}
 
 	public class PrimitiveTypeElements extends AbstractEnumRuleElementFinder {
@@ -1234,7 +1220,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	private final CommentBodyElements pCommentBody;
 	private final CardinalityBoundElements pCardinalityBound;
 	private final VisibilityElements eVisibility;
-	private final ReadingDirectionElements eReadingDirection;
 	private final PrimitiveTypeElements ePrimitiveType;
 	private final AggregationKindElements eAggregationKind;
 	
@@ -1271,7 +1256,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCommentBody = new CommentBodyElements();
 		this.pCardinalityBound = new CardinalityBoundElements();
 		this.eVisibility = new VisibilityElements();
-		this.eReadingDirection = new ReadingDirectionElements();
 		this.ePrimitiveType = new PrimitiveTypeElements();
 		this.eAggregationKind = new AggregationKindElements();
 	}
@@ -1356,7 +1340,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Class:
 	//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class]
-	//	'{' members+=Member* '}';
+	//	('{' members+=Member* '}')?;
 	public ClassElements getClassAccess() {
 		return pClass;
 	}
@@ -1366,8 +1350,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Interface:
-	//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] '{'
-	//	members+=Member* '}';
+	//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] ('{'
+	//	members+=Member* '}')?;
 	public InterfaceElements getInterfaceAccess() {
 		return pInterface;
 	}
@@ -1502,7 +1486,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CommentLink:
-	//	left=ClassifierAssociationEnd '-' 'note' comment=[uml::Comment|CommentBody];
+	//	left=ClassifierAssociationEnd 'note' comment=[uml::Comment|CommentBody];
 	public CommentLinkElements getCommentLinkAccess() {
 		return pCommentLink;
 	}
@@ -1524,7 +1508,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AssociationProperties:
-	//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality ('|' readingDirection=ReadingDirection)?)? ']';
+	//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality)? ']';
 	public AssociationPropertiesElements getAssociationPropertiesAccess() {
 		return pAssociationProperties;
 	}
@@ -1565,8 +1549,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 	//enum Visibility:
 	//	PUBLIC='+'
+	//	| PUBLIC='public'
 	//	| PRIVATE='-'
+	//	| PRIVATE='private'
 	//	| PROTECTED='#'
+	//	| PROTECTED='protected'
 	//	| PACKAGE='~';
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
@@ -1574,17 +1561,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getVisibilityRule() {
 		return getVisibilityAccess().getRule();
-	}
-
-	//enum ReadingDirection:
-	//	LEFT='<'
-	//	| RIGHT='>';
-	public ReadingDirectionElements getReadingDirectionAccess() {
-		return eReadingDirection;
-	}
-	
-	public EnumRule getReadingDirectionRule() {
-		return getReadingDirectionAccess().getRule();
 	}
 
 	//enum PrimitiveType:

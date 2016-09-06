@@ -396,14 +396,14 @@ ruleClass returns [EObject current=null]
 	}
 
 )
-)	otherlv_6='{' 
+)(	otherlv_6='{' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_5());
+    	newLeafNode(otherlv_6, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_5_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_6_0()); 
+	        newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_5_1_0()); 
 	    }
 		lv_members_7_0=ruleMember		{
 	        if ($current==null) {
@@ -420,9 +420,9 @@ ruleClass returns [EObject current=null]
 )
 )*	otherlv_8='}' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_7());
+    	newLeafNode(otherlv_8, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_5_2());
     }
-)
+)?)
 ;
 
 
@@ -518,14 +518,14 @@ ruleInterface returns [EObject current=null]
 	}
 
 )
-)	otherlv_5='{' 
+)(	otherlv_5='{' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_4());
+    	newLeafNode(otherlv_5, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_4_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getInterfaceAccess().getMembersMemberParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getInterfaceAccess().getMembersMemberParserRuleCall_4_1_0()); 
 	    }
 		lv_members_6_0=ruleMember		{
 	        if ($current==null) {
@@ -542,9 +542,9 @@ ruleInterface returns [EObject current=null]
 )
 )*	otherlv_7='}' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_6());
+    	newLeafNode(otherlv_7, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_4_2());
     }
-)
+)?)
 ;
 
 
@@ -1329,13 +1329,9 @@ ruleCommentLink returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='-' 
+)	otherlv_1='note' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getCommentLinkAccess().getHyphenMinusKeyword_1());
-    }
-	otherlv_2='note' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getCommentLinkAccess().getNoteKeyword_2());
+    	newLeafNode(otherlv_1, grammarAccess.getCommentLinkAccess().getNoteKeyword_1());
     }
 (
 (
@@ -1345,7 +1341,7 @@ ruleCommentLink returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentCommentCrossReference_3_0()); 
+	        newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentCommentCrossReference_2_0()); 
 	    }
 		ruleCommentBody		{ 
 	        afterParserOrEnumRuleCall();
@@ -1542,31 +1538,9 @@ ruleAssociationProperties returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_4='|' 
+))?	otherlv_4=']' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getAssociationPropertiesAccess().getVerticalLineKeyword_2_2_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getAssociationPropertiesAccess().getReadingDirectionReadingDirectionEnumRuleCall_2_2_1_0()); 
-	    }
-		lv_readingDirection_5_0=ruleReadingDirection		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAssociationPropertiesRule());
-	        }
-       		set(
-       			$current, 
-       			"readingDirection",
-        		lv_readingDirection_5_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ReadingDirection");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))?)?	otherlv_6=']' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getAssociationPropertiesAccess().getRightSquareBracketKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getAssociationPropertiesAccess().getRightSquareBracketKeyword_3());
     }
 )
 ;
@@ -1709,41 +1683,40 @@ ruleVisibility returns [Enumerator current=null]
         newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
     }
 )
-    |(	enumLiteral_1='-' 
+    |(	enumLiteral_1='public' 
 	{
-        $current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_1()); 
+        $current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
     }
 )
-    |(	enumLiteral_2='#' 
+    |(	enumLiteral_2='-' 
 	{
-        $current = grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_2()); 
+        $current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_2, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
     }
 )
-    |(	enumLiteral_3='~' 
+    |(	enumLiteral_3='private' 
 	{
-        $current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_3, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_3()); 
-    }
-));
-
-
-
-// Rule ReadingDirection
-ruleReadingDirection returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='<' 
-	{
-        $current = grammarAccess.getReadingDirectionAccess().getLEFTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getReadingDirectionAccess().getLEFTEnumLiteralDeclaration_0()); 
+        $current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_3, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
     }
 )
-    |(	enumLiteral_1='>' 
+    |(	enumLiteral_4='#' 
 	{
-        $current = grammarAccess.getReadingDirectionAccess().getRIGHTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getReadingDirectionAccess().getRIGHTEnumLiteralDeclaration_1()); 
+        $current = grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_4, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+    }
+)
+    |(	enumLiteral_5='protected' 
+	{
+        $current = grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_5, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+    }
+)
+    |(	enumLiteral_6='~' 
+	{
+        $current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_6, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
     }
 ));
 

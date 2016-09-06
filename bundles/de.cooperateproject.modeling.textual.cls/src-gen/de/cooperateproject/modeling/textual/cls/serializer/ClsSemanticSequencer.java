@@ -99,7 +99,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AssociationProperties returns AssociationProperties
 	 *
 	 * Constraint:
-	 *     (cardinalityLeft=Cardinality (cardinalityRight=Cardinality readingDirection=ReadingDirection?)?)
+	 *     (cardinalityLeft=Cardinality cardinalityRight=Cardinality?)
 	 */
 	protected void sequence_AssociationProperties(ISerializationContext context, AssociationProperties semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -193,7 +193,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getCommentLinkAccess().getLeftClassifierAssociationEndParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentCommentBodyParserRuleCall_3_0_1(), semanticObject.getComment());
+		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentCommentBodyParserRuleCall_2_0_1(), semanticObject.getComment());
 		feeder.finish();
 	}
 	
