@@ -90,8 +90,6 @@ mapping uml::Type::typeToPrimitiveTypeReference(parent : OclAny) : cls::DataType
 	when {self.oclIsKindOf(uml::PrimitiveType)}
 {
 	type := self.oclAsType(uml::PrimitiveType).convert();
-	log("Primitive type: ", self);
-	log("Textual   type: ", result.type);
 }
 
 mapping uml::Type::typeToUMLTypeReference(parent : OclAny) : cls::UMLTypeReference
@@ -168,6 +166,10 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 		      UML 2.5, 11.5.4
 	*/
 	
+	var navigableEnds := association.findNavigableEnds();
+	assert warning (navigableEnds->notEmpty()) with log('An association with no navigable end is not useful.');
+		
+	
 	var aggregatingIndex := if association.memberEnd->at(2).aggregation != uml::AggregationKind::none then 2 else 1 endif;
 	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
 	
@@ -183,6 +185,11 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	comment := relevantComments->any(true);
 }
 
+query uml::Association::findNavigableEnds() : OrderedSet(Property)
+{
+	return self.memberEnd->select(it | it.owner != self or self.navigableOwnedEnd->includes(it))
+}
+
 mapping uml::Association::edgeToAssociationProperties(firstIndex : Integer) : cls::AssociationProperties {
 	assert error (self.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
 		
@@ -191,8 +198,6 @@ mapping uml::Association::edgeToAssociationProperties(firstIndex : Integer) : cl
 	
 	cardinalityLeft := left.map multiplicityElementToCardinality();
 	cardinalityRight := right.map multiplicityElementToCardinality();
-
-	//TODO reading direction not considered yet
 }
 
 

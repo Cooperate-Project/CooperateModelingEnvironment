@@ -20,9 +20,12 @@ import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
@@ -71,12 +74,20 @@ public class ClsValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "de.cooperateproject.modeling.textual.cls.cls";
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Referenced Element' of 'Named Element'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int NAMED_ELEMENT__HAS_REFERENCED_ELEMENT = 1;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has Comment' of 'Comment Link'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMMENT_LINK__HAS_COMMENT = 1;
+	public static final int COMMENT_LINK__HAS_COMMENT = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -84,7 +95,7 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -136,6 +147,8 @@ public class ClsValidator extends EObjectValidator {
 				return validateUMLTypeReference((UMLTypeReference)value, diagnostics, context);
 			case ClsPackage.UML_REFERENCING_ELEMENT:
 				return validateUMLReferencingElement((UMLReferencingElement<?>)value, diagnostics, context);
+			case ClsPackage.NAMED_ELEMENT_OPTIONAL:
+				return validateNamedElementOptional((NamedElementOptional<?>)value, diagnostics, context);
 			case ClsPackage.NAMED_ELEMENT:
 				return validateNamedElement((NamedElement<?>)value, diagnostics, context);
 			case ClsPackage.NAMED_ELEMENT_LONG_NAME:
@@ -178,6 +191,10 @@ public class ClsValidator extends EObjectValidator {
 				return validateCardinality((Cardinality)value, diagnostics, context);
 			case ClsPackage.COMMENTABLE:
 				return validateCommentable((Commentable)value, diagnostics, context);
+			case ClsPackage.MULTI_ASSOCIATION:
+				return validateMultiAssociation((MultiAssociation)value, diagnostics, context);
+			case ClsPackage.MEMBER_END:
+				return validateMemberEnd((MemberEnd)value, diagnostics, context);
 			case ClsPackage.VISIBILITY:
 				return validateVisibility((Visibility)value, diagnostics, context);
 			case ClsPackage.PRIMITIVE_TYPE:
@@ -250,8 +267,37 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateNamedElementOptional(NamedElementOptional<?> namedElementOptional, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)namedElementOptional, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateNamedElement(NamedElement<?> namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)namedElement, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)namedElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)namedElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(namedElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the hasReferencedElement constraint of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNamedElement_hasReferencedElement(NamedElement<?> namedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return namedElement.hasReferencedElement(diagnostics, context);
 	}
 
 	/**
@@ -260,7 +306,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateNamedElementLongName(NamedElementLongName<?> namedElementLongName, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)namedElementLongName, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)namedElementLongName, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)namedElementLongName, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(namedElementLongName, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -269,7 +325,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateClassifier(Classifier<?> classifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)classifier, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)classifier, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)classifier, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(classifier, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -278,7 +344,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateClass(de.cooperateproject.modeling.textual.cls.cls.Class class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)class_, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)class_, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(class_, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -287,7 +363,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInterface(Interface interface_, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)interface_, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)interface_, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)interface_, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(interface_, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -296,7 +382,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateProperty(Property<?> property, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)property, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)property, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)property, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(property, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -305,7 +401,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMember(Member<?> member, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)member, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)member, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)member, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(member, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -314,7 +420,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttribute(Attribute attribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)attribute, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)attribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)attribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(attribute, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -323,7 +439,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMethod(Method method, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)method, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)method, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)method, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(method, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -332,7 +458,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)parameter, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)parameter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)parameter, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(parameter, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -359,7 +495,17 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAssociation(Association association, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)association, diagnostics, context);
+		if (!validate_NoCircularContainment((EObject)association, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)association, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(association, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -452,6 +598,34 @@ public class ClsValidator extends EObjectValidator {
 	 */
 	public boolean validateCommentable(Commentable commentable, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)commentable, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMultiAssociation(MultiAssociation multiAssociation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment((EObject)multiAssociation, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)multiAssociation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(multiAssociation, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMemberEnd(MemberEnd memberEnd, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)memberEnd, diagnostics, context);
 	}
 
 	/**

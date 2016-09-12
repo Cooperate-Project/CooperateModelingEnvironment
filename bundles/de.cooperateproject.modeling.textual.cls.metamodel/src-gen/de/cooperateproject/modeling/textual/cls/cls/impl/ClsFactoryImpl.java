@@ -15,7 +15,9 @@ import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
@@ -91,6 +93,8 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 			case ClsPackage.COMMENT_LINK: return (EObject)createCommentLink();
 			case ClsPackage.ASSOCIATION_PROPERTIES: return (EObject)createAssociationProperties();
 			case ClsPackage.CARDINALITY: return (EObject)createCardinality();
+			case ClsPackage.MULTI_ASSOCIATION: return (EObject)createMultiAssociation();
+			case ClsPackage.MEMBER_END: return (EObject)createMemberEnd();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -286,6 +290,26 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	public Cardinality createCardinality() {
 		CardinalityImpl cardinality = new CardinalityImpl();
 		return cardinality;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiAssociation createMultiAssociation() {
+		MultiAssociationImpl multiAssociation = new MultiAssociationImpl();
+		return multiAssociation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MemberEnd createMemberEnd() {
+		MemberEndImpl memberEnd = new MemberEndImpl();
+		return memberEnd;
 	}
 
 	/**

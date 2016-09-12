@@ -1138,6 +1138,16 @@ ruleConnector returns [EObject current=null]
         $current = $this_CommentLink_3.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getConnectorAccess().getMultiAssociationParserRuleCall_4()); 
+    }
+    this_MultiAssociation_4=ruleMultiAssociation
+    { 
+        $current = $this_MultiAssociation_4.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -1474,6 +1484,188 @@ ruleAssociation returns [EObject current=null]
 
 )
 ))?)
+;
+
+
+
+
+
+// Entry rule entryRuleMultiAssociation
+entryRuleMultiAssociation returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMultiAssociationRule()); }
+	 iv_ruleMultiAssociation=ruleMultiAssociation 
+	 { $current=$iv_ruleMultiAssociation.current; } 
+	 EOF 
+;
+
+// Rule MultiAssociation
+ruleMultiAssociation returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='asc' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getMultiAssociationAccess().getAscKeyword_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMultiAssociationRule());
+	        }
+        }
+	otherlv_1=RULE_ID
+	{
+		newLeafNode(otherlv_1, grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationCrossReference_1_0()); 
+	}
+
+)
+)	otherlv_2='{' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getMultiAssociationAccess().getLeftCurlyBracketKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_3_0()); 
+	    }
+		lv_connectorEnds_3_0=ruleMemberEnd		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiAssociationRule());
+	        }
+       		add(
+       			$current, 
+       			"connectorEnds",
+        		lv_connectorEnds_3_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.MemberEnd");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4=';' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_4());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_5_0()); 
+	    }
+		lv_connectorEnds_5_0=ruleMemberEnd		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiAssociationRule());
+	        }
+       		add(
+       			$current, 
+       			"connectorEnds",
+        		lv_connectorEnds_5_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.MemberEnd");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_6=';' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_6());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_7_0_0()); 
+	    }
+		lv_connectorEnds_7_0=ruleMemberEnd		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMultiAssociationRule());
+	        }
+       		add(
+       			$current, 
+       			"connectorEnds",
+        		lv_connectorEnds_7_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.MemberEnd");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_8=';' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_7_1());
+    }
+)+	otherlv_9='}' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getMultiAssociationAccess().getRightCurlyBracketKeyword_8());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleMemberEnd
+entryRuleMemberEnd returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMemberEndRule()); }
+	 iv_ruleMemberEnd=ruleMemberEnd 
+	 { $current=$iv_ruleMemberEnd.current; } 
+	 EOF 
+;
+
+// Rule MemberEnd
+ruleMemberEnd returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMemberEndAccess().getTypeUMLTypeReferenceParserRuleCall_0_0()); 
+	    }
+		lv_type_0_0=ruleUMLTypeReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMemberEndRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_0_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMemberEndRule());
+	        }
+        }
+	otherlv_1=RULE_ID
+	{
+		newLeafNode(otherlv_1, grammarAccess.getMemberEndAccess().getReferencedElementPropertyCrossReference_1_0()); 
+	}
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMemberEndAccess().getCardinalityCardinalityParserRuleCall_2_0()); 
+	    }
+		lv_cardinality_2_0=ruleCardinality		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMemberEndRule());
+	        }
+       		set(
+       			$current, 
+       			"cardinality",
+        		lv_cardinality_2_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.Cardinality");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)
 ;
 
 

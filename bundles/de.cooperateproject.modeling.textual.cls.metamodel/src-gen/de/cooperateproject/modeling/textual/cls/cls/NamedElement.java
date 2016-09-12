@@ -2,38 +2,29 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Named Element</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.NamedElement#getName <em>Name</em>}</li>
- * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getNamedElement()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='hasReferencedElement'"
  * @generated
  */
-public interface NamedElement<T extends org.eclipse.uml2.uml.NamedElement> extends UMLReferencingElement<T> {
+public interface NamedElement<T extends org.eclipse.uml2.uml.NamedElement> extends NamedElementOptional<T> {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getNamedElement_Name()
-	 * @model unique="false" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='return getReferencedElement().getName();'"
+	 * @model unique="false" diagnosticsUnique="false" contextUnique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (getReferencedElement() == null) {\r\n\t<%org.eclipse.emf.common.util.BasicDiagnostic%> basicDiagnostic = new <%org.eclipse.emf.common.util.BasicDiagnostic%>(<%org.eclipse.emf.common.util.BasicDiagnostic%>.ERROR, \"hasReferencedElement\", 1, \"A referenced element is mandatory.\", new Object[]{this});\r\n\tdiagnostics.add(basicDiagnostic);\r\n\treturn false;\r\n}\r\ndiagnostics.add(<%org.eclipse.emf.common.util.BasicDiagnostic%>.OK_INSTANCE);\r\nreturn true;'"
 	 * @generated
 	 */
-	String getName();
+	boolean hasReferencedElement(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // NamedElement

@@ -15,7 +15,9 @@ import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
@@ -77,8 +79,14 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.INTERFACE:
 				sequence_Interface(context, (Interface) semanticObject); 
 				return; 
+			case ClsPackage.MEMBER_END:
+				sequence_MemberEnd(context, (MemberEnd) semanticObject); 
+				return; 
 			case ClsPackage.METHOD:
 				sequence_Method(context, (Method) semanticObject); 
+				return; 
+			case ClsPackage.MULTI_ASSOCIATION:
+				sequence_MultiAssociation(context, (MultiAssociation) semanticObject); 
 				return; 
 			case ClsPackage.PACKAGE_IMPORT:
 				sequence_PackageImport(context, (PackageImport) semanticObject); 
@@ -276,6 +284,18 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     MemberEnd returns MemberEnd
+	 *
+	 * Constraint:
+	 *     (type=UMLTypeReference referencedElement=[Property|ID]? cardinality=Cardinality?)
+	 */
+	protected void sequence_MemberEnd(ISerializationContext context, MemberEnd semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Member returns Method
 	 *     Method returns Method
 	 *
@@ -291,6 +311,19 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_Method(ISerializationContext context, Method semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Connector returns MultiAssociation
+	 *     MultiAssociation returns MultiAssociation
+	 *
+	 * Constraint:
+	 *     (referencedElement=[Association|ID] connectorEnds+=MemberEnd connectorEnds+=MemberEnd connectorEnds+=MemberEnd+)
+	 */
+	protected void sequence_MultiAssociation(ISerializationContext context, MultiAssociation semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

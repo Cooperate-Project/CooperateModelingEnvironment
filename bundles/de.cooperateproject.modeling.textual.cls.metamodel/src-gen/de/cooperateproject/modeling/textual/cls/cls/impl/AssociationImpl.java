@@ -5,10 +5,11 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
+import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-
+import de.cooperateproject.modeling.textual.cls.cls.Connector;
+import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -24,7 +25,8 @@ import org.eclipse.uml2.uml.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getRight <em>Right</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getComment <em>Comment</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getAggregationKind <em>Aggregation Kind</em>}</li>
@@ -32,7 +34,7 @@ import org.eclipse.uml2.uml.Type;
  *
  * @generated
  */
-public class AssociationImpl extends TypedConnectorImpl implements Association {
+public class AssociationImpl extends NamedElementImpl<org.eclipse.uml2.uml.Association> implements Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,8 +59,8 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.uml.Association getReferencedElement() {
-		return (org.eclipse.uml2.uml.Association)eGet(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true);
+	public ClassifierAssociationEnd getLeft() {
+		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
 	}
 
 	/**
@@ -66,8 +68,26 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReferencedElement(org.eclipse.uml2.uml.Association newReferencedElement) {
-		eSet(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+	public void setLeft(ClassifierAssociationEnd newLeft) {
+		eSet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClassifierAssociationEnd getRight() {
+		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRight(ClassifierAssociationEnd newRight) {
+		eSet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
 	}
 
 	/**
@@ -140,9 +160,15 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
+		if (baseClass == Connector.class) {
 			switch (derivedFeatureID) {
-				case ClsPackage.ASSOCIATION__REFERENCED_ELEMENT: return ClsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedConnector.class) {
+			switch (derivedFeatureID) {
+				case ClsPackage.ASSOCIATION__LEFT: return ClsPackage.TYPED_CONNECTOR__LEFT;
+				case ClsPackage.ASSOCIATION__RIGHT: return ClsPackage.TYPED_CONNECTOR__RIGHT;
 				default: return -1;
 			}
 		}
@@ -162,9 +188,15 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
+		if (baseClass == Connector.class) {
 			switch (baseFeatureID) {
-				case ClsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ClsPackage.ASSOCIATION__REFERENCED_ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedConnector.class) {
+			switch (baseFeatureID) {
+				case ClsPackage.TYPED_CONNECTOR__LEFT: return ClsPackage.ASSOCIATION__LEFT;
+				case ClsPackage.TYPED_CONNECTOR__RIGHT: return ClsPackage.ASSOCIATION__RIGHT;
 				default: return -1;
 			}
 		}
@@ -184,7 +216,12 @@ public class AssociationImpl extends TypedConnectorImpl implements Association {
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
+		if (baseClass == Connector.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == TypedConnector.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

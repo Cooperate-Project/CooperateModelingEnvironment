@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.Type;
  * @model
  * @generated
  */
-public interface Association extends TypedConnector, UMLReferencingElement<org.eclipse.uml2.uml.Association>, Commentable {
+public interface Association extends NamedElement<org.eclipse.uml2.uml.Association>, TypedConnector, Commentable {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

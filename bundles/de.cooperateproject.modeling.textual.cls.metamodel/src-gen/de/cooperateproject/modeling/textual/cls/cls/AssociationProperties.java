@@ -15,7 +15,6 @@ import org.eclipse.emf.cdo.CDOObject;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getCardinalityLeft <em>Cardinality Left</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getCardinalityRight <em>Cardinality Right</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getReadingDirection <em>Reading Direction</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociationProperties()
@@ -75,34 +74,5 @@ public interface AssociationProperties extends CDOObject {
 	 * @generated
 	 */
 	void setCardinalityRight(Cardinality value);
-
-	/**
-	 * Returns the value of the '<em><b>Reading Direction</b></em>' attribute.
-	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.cls.cls.ReadingDirection}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Reading Direction</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reading Direction</em>' attribute.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ReadingDirection
-	 * @see #setReadingDirection(ReadingDirection)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociationProperties_ReadingDirection()
-	 * @model unique="false"
-	 * @generated
-	 */
-	ReadingDirection getReadingDirection();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getReadingDirection <em>Reading Direction</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Reading Direction</em>' attribute.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ReadingDirection
-	 * @see #getReadingDirection()
-	 * @generated
-	 */
-	void setReadingDirection(ReadingDirection value);
 
 } // AssociationProperties

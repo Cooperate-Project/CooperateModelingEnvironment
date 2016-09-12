@@ -96,6 +96,7 @@ Connector:
 	| Association
 	| Implementation
 	| CommentLink
+	| MultiAssociation
 ;
 
 ClassifierAssociationEnd:
@@ -117,6 +118,14 @@ CommentLink:
 Association:
 	aggregationKind=AggregationKind  left = ClassifierAssociationEnd referencedElement = [uml::Association] right = ClassifierAssociationEnd
 	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
+;
+
+MultiAssociation:
+	'asc' referencedElement = [uml::Association] '{' connectorEnds+=MemberEnd ';' connectorEnds+=MemberEnd ';' (connectorEnds+=MemberEnd ';')+ '}'
+;
+
+MemberEnd:
+	type = UMLTypeReference (referencedElement=[uml::Property])? (cardinality=Cardinality)?
 ;
 
 AssociationProperties: 

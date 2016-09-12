@@ -31,6 +31,16 @@
       <type xsi:type="cls:DataTypeReference"/>
     </members>
   </classifiers>
+  <classifiers xsi:type="cls:Interface">
+    <referencedElement xsi:type="uml:Interface" href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
+    <members xsi:type="cls:Method">
+      <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_Qoso0HjsEea7c9xs28iX1A"/>
+      <parameters>
+        <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_WCYDQHjsEea7c9xs28iX1A"/>
+        <type xsi:type="cls:DataTypeReference"/>
+      </parameters>
+    </members>
+  </classifiers>
   <connectors xsi:type="cls:Association" aggregationKind="COMPOSITION">
     <left xsi:type="cls:UMLTypeReference">
       <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
@@ -51,6 +61,14 @@
     </left>
     <right xsi:type="cls:UMLTypeReference">
       <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+    </right>
+  </connectors>
+  <connectors xsi:type="cls:Implementation">
+    <left xsi:type="cls:UMLTypeReference">
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+    </left>
+    <right xsi:type="cls:UMLTypeReference">
+      <type xsi:type="uml:Interface" href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
     </right>
   </connectors>
   <connectors xsi:type="cls:CommentLink">
