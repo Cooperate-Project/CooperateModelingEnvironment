@@ -791,6 +791,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAssociation_Bidirectional() {
+		return (EAttribute)associationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getAssociation__GetCommentedElement() {
 		return associationEClass.getEOperations().get(0);
 	}
@@ -1140,6 +1149,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		associationEClass = createEClass(ASSOCIATION);
 		createEReference(associationEClass, ASSOCIATION__PROPERTIES);
 		createEAttribute(associationEClass, ASSOCIATION__AGGREGATION_KIND);
+		createEAttribute(associationEClass, ASSOCIATION__BIDIRECTIONAL);
 		createEOperation(associationEClass, ASSOCIATION___GET_COMMENTED_ELEMENT);
 
 		associationEndEClass = createEClass(ASSOCIATION_END);
@@ -1393,6 +1403,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociation_Properties(), this.getAssociationProperties(), null, "properties", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_Bidirectional(), ecorePackage.getEBoolean(), "bidirectional", "false", 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getAssociation__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
 

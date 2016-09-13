@@ -41,6 +41,9 @@
       </parameters>
     </members>
   </classifiers>
+  <classifiers xsi:type="cls:Class">
+    <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_a_o2UHnPEea_kLaSOi1rnw"/>
+  </classifiers>
   <connectors xsi:type="cls:MultiAssociation">
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
     <connectorEnds>
@@ -94,6 +97,19 @@
     <right xsi:type="cls:UMLTypeReference">
       <type xsi:type="uml:Interface" href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
     </right>
+  </connectors>
+  <connectors xsi:type="cls:Association" aggregationKind="NONE" bidirectional="true">
+    <left xsi:type="cls:UMLTypeReference">
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
+    </left>
+    <right xsi:type="cls:UMLTypeReference">
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_a_o2UHnPEea_kLaSOi1rnw"/>
+    </right>
+    <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_cPAzgHnPEea_kLaSOi1rnw"/>
+    <properties>
+      <cardinalityLeft lowerBound="0" upperBound="-1"/>
+      <cardinalityRight lowerBound="0" upperBound="-1"/>
+    </properties>
   </connectors>
   <connectors xsi:type="cls:CommentLink">
     <comment href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>

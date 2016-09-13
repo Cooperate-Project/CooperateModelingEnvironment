@@ -186,6 +186,8 @@
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregationKind" lowerBound="1"
         eType="#//AggregationKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eGenericSuperTypes eClassifier="#//NamedElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
     </eGenericSuperTypes>

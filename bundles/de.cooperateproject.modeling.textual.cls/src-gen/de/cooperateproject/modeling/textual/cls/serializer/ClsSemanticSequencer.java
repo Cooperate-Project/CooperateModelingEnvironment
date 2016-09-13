@@ -121,6 +121,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         bidirectional?='bi'? 
 	 *         aggregationKind=AggregationKind 
 	 *         left=ClassifierAssociationEnd 
 	 *         referencedElement=[Association|ID] 
@@ -287,7 +288,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     MemberEnd returns MemberEnd
 	 *
 	 * Constraint:
-	 *     (type=UMLTypeReference referencedElement=[Property|ID]? cardinality=Cardinality?)
+	 *     (type=UMLTypeReference referencedElement=[Property|ID]? cardinality=Cardinality? navigable?='<')
 	 */
 	protected void sequence_MemberEnd(ISerializationContext context, MemberEnd semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

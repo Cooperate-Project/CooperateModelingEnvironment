@@ -116,7 +116,7 @@ CommentLink:
 ;
 
 Association:
-	aggregationKind=AggregationKind  left = ClassifierAssociationEnd referencedElement = [uml::Association] right = ClassifierAssociationEnd
+	(bidirectional?='bi')? aggregationKind=AggregationKind  left = ClassifierAssociationEnd referencedElement = [uml::Association] right = ClassifierAssociationEnd
 	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
 ;
 

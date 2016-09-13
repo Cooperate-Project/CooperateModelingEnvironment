@@ -3,17 +3,20 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
-import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -30,11 +33,12 @@ import org.eclipse.uml2.uml.Type;
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getComment <em>Comment</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#getAggregationKind <em>Aggregation Kind</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl#isBidirectional <em>Bidirectional</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationImpl extends NamedElementImpl<org.eclipse.uml2.uml.Association> implements Association {
+public class AssociationImpl extends NamedElementImpl<Association> implements de.cooperateproject.modeling.textual.cls.cls.Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,6 +146,24 @@ public class AssociationImpl extends NamedElementImpl<org.eclipse.uml2.uml.Assoc
 	 */
 	public void setAggregationKind(AggregationKind newAggregationKind) {
 		eSet(ClsPackage.Literals.ASSOCIATION__AGGREGATION_KIND, newAggregationKind);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isBidirectional() {
+		return (Boolean)eGet(ClsPackage.Literals.ASSOCIATION__BIDIRECTIONAL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBidirectional(boolean newBidirectional) {
+		eSet(ClsPackage.Literals.ASSOCIATION__BIDIRECTIONAL, newBidirectional);
 	}
 
 	/**

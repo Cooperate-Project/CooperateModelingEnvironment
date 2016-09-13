@@ -1381,17 +1381,32 @@ ruleAssociation returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getAggregationKindAggregationKindEnumRuleCall_0_0()); 
+		lv_bidirectional_0_0=	'bi' 
+    {
+        newLeafNode(lv_bidirectional_0_0, grammarAccess.getAssociationAccess().getBidirectionalBiKeyword_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAssociationRule());
+	        }
+       		setWithLastConsumed($current, "bidirectional", true, "bi");
 	    }
-		lv_aggregationKind_0_0=ruleAggregationKind		{
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getAggregationKindAggregationKindEnumRuleCall_1_0()); 
+	    }
+		lv_aggregationKind_1_0=ruleAggregationKind		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
 	        }
        		set(
        			$current, 
        			"aggregationKind",
-        		lv_aggregationKind_0_0, 
+        		lv_aggregationKind_1_0, 
         		"de.cooperateproject.modeling.textual.cls.Cls.AggregationKind");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1400,16 +1415,16 @@ ruleAssociation returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getLeftClassifierAssociationEndParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getLeftClassifierAssociationEndParserRuleCall_2_0()); 
 	    }
-		lv_left_1_0=ruleClassifierAssociationEnd		{
+		lv_left_2_0=ruleClassifierAssociationEnd		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
 	        }
        		set(
        			$current, 
        			"left",
-        		lv_left_1_0, 
+        		lv_left_2_0, 
         		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1422,25 +1437,25 @@ ruleAssociation returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getAssociationRule());
 	        }
         }
-	otherlv_2=RULE_ID
+	otherlv_3=RULE_ID
 	{
-		newLeafNode(otherlv_2, grammarAccess.getAssociationAccess().getReferencedElementAssociationCrossReference_2_0()); 
+		newLeafNode(otherlv_3, grammarAccess.getAssociationAccess().getReferencedElementAssociationCrossReference_3_0()); 
 	}
 
 )
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getRightClassifierAssociationEndParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getRightClassifierAssociationEndParserRuleCall_4_0()); 
 	    }
-		lv_right_3_0=ruleClassifierAssociationEnd		{
+		lv_right_4_0=ruleClassifierAssociationEnd		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
 	        }
        		set(
        			$current, 
        			"right",
-        		lv_right_3_0, 
+        		lv_right_4_0, 
         		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1449,24 +1464,24 @@ ruleAssociation returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getPropertiesAssociationPropertiesParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getPropertiesAssociationPropertiesParserRuleCall_5_0()); 
 	    }
-		lv_properties_4_0=ruleAssociationProperties		{
+		lv_properties_5_0=ruleAssociationProperties		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
 	        }
        		set(
        			$current, 
        			"properties",
-        		lv_properties_4_0, 
+        		lv_properties_5_0, 
         		"de.cooperateproject.modeling.textual.cls.Cls.AssociationProperties");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?(	otherlv_5='note' 
+)?(	otherlv_6='note' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getAssociationAccess().getNoteKeyword_5_0());
+    	newLeafNode(otherlv_6, grammarAccess.getAssociationAccess().getNoteKeyword_6_0());
     }
 (
 (
@@ -1476,7 +1491,7 @@ ruleAssociation returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getCommentCommentCrossReference_5_1_0()); 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getCommentCommentCrossReference_6_1_0()); 
 	    }
 		ruleCommentBody		{ 
 	        afterParserOrEnumRuleCall();
@@ -1621,7 +1636,22 @@ ruleMemberEnd returns [EObject current=null]
 	    }
 
 )
-)?)
+)?(
+(
+		lv_navigable_3_0=	'<' 
+    {
+        newLeafNode(lv_navigable_3_0, grammarAccess.getMemberEndAccess().getNavigableLessThanSignKeyword_3_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMemberEndRule());
+	        }
+       		setWithLastConsumed($current, "navigable", true, "<");
+	    }
+
+)
+))
 ;
 
 

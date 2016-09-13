@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.cls.cls;
 
 import org.eclipse.uml2.uml.Type;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Association</b></em>'.
@@ -16,6 +15,7 @@ import org.eclipse.uml2.uml.Type;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getProperties <em>Properties</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getAggregationKind <em>Aggregation Kind</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation()
@@ -77,6 +77,33 @@ public interface Association extends NamedElement<org.eclipse.uml2.uml.Associati
 	 * @generated
 	 */
 	void setAggregationKind(AggregationKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bidirectional</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bidirectional</em>' attribute.
+	 * @see #setBidirectional(boolean)
+	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Bidirectional()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isBidirectional();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
+	 * @see #isBidirectional()
+	 * @generated
+	 */
+	void setBidirectional(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

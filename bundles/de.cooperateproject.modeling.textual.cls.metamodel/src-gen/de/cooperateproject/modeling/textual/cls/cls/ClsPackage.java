@@ -1376,13 +1376,22 @@ public interface ClsPackage extends EPackage {
 	int ASSOCIATION__AGGREGATION_KIND = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Bidirectional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__BIDIRECTIONAL = NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Association</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int ASSOCIATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Has Referenced Element</em>' operation.
@@ -2434,6 +2443,17 @@ public interface ClsPackage extends EPackage {
 	EAttribute getAssociation_AggregationKind();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bidirectional</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional()
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	EAttribute getAssociation_Bidirectional();
+
+	/**
 	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getCommentedElement() <em>Get Commented Element</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3164,6 +3184,14 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ASSOCIATION__AGGREGATION_KIND = eINSTANCE.getAssociation_AggregationKind();
+
+		/**
+		 * The meta object literal for the '<em><b>Bidirectional</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSOCIATION__BIDIRECTIONAL = eINSTANCE.getAssociation_Bidirectional();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Commented Element</b></em>' operation.

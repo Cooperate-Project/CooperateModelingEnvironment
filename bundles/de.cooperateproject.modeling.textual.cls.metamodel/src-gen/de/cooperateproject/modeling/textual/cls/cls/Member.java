@@ -21,13 +21,12 @@ import org.eclipse.uml2.uml.NamedElement;
  * @generated
  */
 public interface Member<T extends NamedElement> extends Property<T> {
-
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getMembers <em>Members</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owner</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -38,4 +37,5 @@ public interface Member<T extends NamedElement> extends Property<T> {
 	 * @generated
 	 */
 	Classifier<?> getOwner();
+
 } // Member

@@ -3,8 +3,8 @@
 package de.cooperateproject.modeling.textual.cls.cls;
 
 import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc -->

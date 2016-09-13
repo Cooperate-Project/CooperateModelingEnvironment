@@ -807,80 +807,88 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	public class AssociationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Association");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cAggregationKindAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cAggregationKindAggregationKindEnumRuleCall_0_0 = (RuleCall)cAggregationKindAssignment_0.eContents().get(0);
-		private final Assignment cLeftAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cLeftClassifierAssociationEndParserRuleCall_1_0 = (RuleCall)cLeftAssignment_1.eContents().get(0);
-		private final Assignment cReferencedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cReferencedElementAssociationCrossReference_2_0 = (CrossReference)cReferencedElementAssignment_2.eContents().get(0);
-		private final RuleCall cReferencedElementAssociationIDTerminalRuleCall_2_0_1 = (RuleCall)cReferencedElementAssociationCrossReference_2_0.eContents().get(1);
-		private final Assignment cRightAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRightClassifierAssociationEndParserRuleCall_3_0 = (RuleCall)cRightAssignment_3.eContents().get(0);
-		private final Assignment cPropertiesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPropertiesAssociationPropertiesParserRuleCall_4_0 = (RuleCall)cPropertiesAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cNoteKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final CrossReference cCommentCommentCrossReference_5_1_0 = (CrossReference)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cCommentCommentCommentBodyParserRuleCall_5_1_0_1 = (RuleCall)cCommentCommentCrossReference_5_1_0.eContents().get(1);
+		private final Assignment cBidirectionalAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cBidirectionalBiKeyword_0_0 = (Keyword)cBidirectionalAssignment_0.eContents().get(0);
+		private final Assignment cAggregationKindAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAggregationKindAggregationKindEnumRuleCall_1_0 = (RuleCall)cAggregationKindAssignment_1.eContents().get(0);
+		private final Assignment cLeftAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLeftClassifierAssociationEndParserRuleCall_2_0 = (RuleCall)cLeftAssignment_2.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cReferencedElementAssociationCrossReference_3_0 = (CrossReference)cReferencedElementAssignment_3.eContents().get(0);
+		private final RuleCall cReferencedElementAssociationIDTerminalRuleCall_3_0_1 = (RuleCall)cReferencedElementAssociationCrossReference_3_0.eContents().get(1);
+		private final Assignment cRightAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRightClassifierAssociationEndParserRuleCall_4_0 = (RuleCall)cRightAssignment_4.eContents().get(0);
+		private final Assignment cPropertiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cPropertiesAssociationPropertiesParserRuleCall_5_0 = (RuleCall)cPropertiesAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cNoteKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cCommentAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final CrossReference cCommentCommentCrossReference_6_1_0 = (CrossReference)cCommentAssignment_6_1.eContents().get(0);
+		private final RuleCall cCommentCommentCommentBodyParserRuleCall_6_1_0_1 = (RuleCall)cCommentCommentCrossReference_6_1_0.eContents().get(1);
 		
 		//Association:
-		//	aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
-		//	right=ClassifierAssociationEnd
+		//	bidirectional?='bi'? aggregationKind=AggregationKind left=ClassifierAssociationEnd
+		//	referencedElement=[uml::Association] right=ClassifierAssociationEnd
 		//	properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
+		//bidirectional?='bi'? aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
 		//right=ClassifierAssociationEnd properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?
 		public Group getGroup() { return cGroup; }
 
+		//bidirectional?='bi'?
+		public Assignment getBidirectionalAssignment_0() { return cBidirectionalAssignment_0; }
+
+		//'bi'
+		public Keyword getBidirectionalBiKeyword_0_0() { return cBidirectionalBiKeyword_0_0; }
+
 		//aggregationKind=AggregationKind
-		public Assignment getAggregationKindAssignment_0() { return cAggregationKindAssignment_0; }
+		public Assignment getAggregationKindAssignment_1() { return cAggregationKindAssignment_1; }
 
 		//AggregationKind
-		public RuleCall getAggregationKindAggregationKindEnumRuleCall_0_0() { return cAggregationKindAggregationKindEnumRuleCall_0_0; }
+		public RuleCall getAggregationKindAggregationKindEnumRuleCall_1_0() { return cAggregationKindAggregationKindEnumRuleCall_1_0; }
 
 		//left=ClassifierAssociationEnd
-		public Assignment getLeftAssignment_1() { return cLeftAssignment_1; }
+		public Assignment getLeftAssignment_2() { return cLeftAssignment_2; }
 
 		//ClassifierAssociationEnd
-		public RuleCall getLeftClassifierAssociationEndParserRuleCall_1_0() { return cLeftClassifierAssociationEndParserRuleCall_1_0; }
+		public RuleCall getLeftClassifierAssociationEndParserRuleCall_2_0() { return cLeftClassifierAssociationEndParserRuleCall_2_0; }
 
 		//referencedElement=[uml::Association]
-		public Assignment getReferencedElementAssignment_2() { return cReferencedElementAssignment_2; }
+		public Assignment getReferencedElementAssignment_3() { return cReferencedElementAssignment_3; }
 
 		//[uml::Association]
-		public CrossReference getReferencedElementAssociationCrossReference_2_0() { return cReferencedElementAssociationCrossReference_2_0; }
+		public CrossReference getReferencedElementAssociationCrossReference_3_0() { return cReferencedElementAssociationCrossReference_3_0; }
 
 		//ID
-		public RuleCall getReferencedElementAssociationIDTerminalRuleCall_2_0_1() { return cReferencedElementAssociationIDTerminalRuleCall_2_0_1; }
+		public RuleCall getReferencedElementAssociationIDTerminalRuleCall_3_0_1() { return cReferencedElementAssociationIDTerminalRuleCall_3_0_1; }
 
 		//right=ClassifierAssociationEnd
-		public Assignment getRightAssignment_3() { return cRightAssignment_3; }
+		public Assignment getRightAssignment_4() { return cRightAssignment_4; }
 
 		//ClassifierAssociationEnd
-		public RuleCall getRightClassifierAssociationEndParserRuleCall_3_0() { return cRightClassifierAssociationEndParserRuleCall_3_0; }
+		public RuleCall getRightClassifierAssociationEndParserRuleCall_4_0() { return cRightClassifierAssociationEndParserRuleCall_4_0; }
 
 		//properties=AssociationProperties?
-		public Assignment getPropertiesAssignment_4() { return cPropertiesAssignment_4; }
+		public Assignment getPropertiesAssignment_5() { return cPropertiesAssignment_5; }
 
 		//AssociationProperties
-		public RuleCall getPropertiesAssociationPropertiesParserRuleCall_4_0() { return cPropertiesAssociationPropertiesParserRuleCall_4_0; }
+		public RuleCall getPropertiesAssociationPropertiesParserRuleCall_5_0() { return cPropertiesAssociationPropertiesParserRuleCall_5_0; }
 
 		//('note' comment=[uml::Comment|CommentBody])?
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_6() { return cGroup_6; }
 
 		//'note'
-		public Keyword getNoteKeyword_5_0() { return cNoteKeyword_5_0; }
+		public Keyword getNoteKeyword_6_0() { return cNoteKeyword_6_0; }
 
 		//comment=[uml::Comment|CommentBody]
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
+		public Assignment getCommentAssignment_6_1() { return cCommentAssignment_6_1; }
 
 		//[uml::Comment|CommentBody]
-		public CrossReference getCommentCommentCrossReference_5_1_0() { return cCommentCommentCrossReference_5_1_0; }
+		public CrossReference getCommentCommentCrossReference_6_1_0() { return cCommentCommentCrossReference_6_1_0; }
 
 		//CommentBody
-		public RuleCall getCommentCommentCommentBodyParserRuleCall_5_1_0_1() { return cCommentCommentCommentBodyParserRuleCall_5_1_0_1; }
+		public RuleCall getCommentCommentCommentBodyParserRuleCall_6_1_0_1() { return cCommentCommentCommentBodyParserRuleCall_6_1_0_1; }
 	}
 
 	public class MultiAssociationElements extends AbstractParserRuleElementFinder {
@@ -945,12 +953,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReferencedElementPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cReferencedElementPropertyCrossReference_1_0.eContents().get(1);
 		private final Assignment cCardinalityAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCardinalityCardinalityParserRuleCall_2_0 = (RuleCall)cCardinalityAssignment_2.eContents().get(0);
+		private final Assignment cNavigableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cNavigableLessThanSignKeyword_3_0 = (Keyword)cNavigableAssignment_3.eContents().get(0);
 		
 		//MemberEnd:
-		//	type=UMLTypeReference referencedElement=[uml::Property]? cardinality=Cardinality?;
+		//	type=UMLTypeReference referencedElement=[uml::Property]? cardinality=Cardinality? navigable?='<';
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=UMLTypeReference referencedElement=[uml::Property]? cardinality=Cardinality?
+		//type=UMLTypeReference referencedElement=[uml::Property]? cardinality=Cardinality? navigable?='<'
 		public Group getGroup() { return cGroup; }
 
 		//type=UMLTypeReference
@@ -973,6 +983,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Cardinality
 		public RuleCall getCardinalityCardinalityParserRuleCall_2_0() { return cCardinalityCardinalityParserRuleCall_2_0; }
+
+		//navigable?='<'
+		public Assignment getNavigableAssignment_3() { return cNavigableAssignment_3; }
+
+		//'<'
+		public Keyword getNavigableLessThanSignKeyword_3_0() { return cNavigableLessThanSignKeyword_3_0; }
 	}
 
 	public class AssociationPropertiesElements extends AbstractParserRuleElementFinder {
@@ -1598,8 +1614,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Association:
-	//	aggregationKind=AggregationKind left=ClassifierAssociationEnd referencedElement=[uml::Association]
-	//	right=ClassifierAssociationEnd
+	//	bidirectional?='bi'? aggregationKind=AggregationKind left=ClassifierAssociationEnd
+	//	referencedElement=[uml::Association] right=ClassifierAssociationEnd
 	//	properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
@@ -1620,7 +1636,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MemberEnd:
-	//	type=UMLTypeReference referencedElement=[uml::Property]? cardinality=Cardinality?;
+	//	type=UMLTypeReference referencedElement=[uml::Property]? cardinality=Cardinality? navigable?='<';
 	public MemberEndElements getMemberEndAccess() {
 		return pMemberEnd;
 	}

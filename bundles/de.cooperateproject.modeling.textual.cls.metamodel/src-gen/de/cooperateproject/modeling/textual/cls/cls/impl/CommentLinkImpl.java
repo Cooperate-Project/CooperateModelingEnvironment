@@ -6,8 +6,8 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
-
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
+
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Map;

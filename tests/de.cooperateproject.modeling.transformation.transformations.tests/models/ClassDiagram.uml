@@ -25,6 +25,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_oNOcoEKSEeaXCq-9LXQNWQ" name="radius">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_cPG6IHnPEea_kLaSOi1rnw" name="screw" type="_a_o2UHnPEea_kLaSOi1rnw" association="_cPAzgHnPEea_kLaSOi1rnw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lp8c4HnPEea_kLaSOi1rnw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lqDxoHnPEea_kLaSOi1rnw" value="*"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_RpctsEKSEeaXCq-9LXQNWQ" name="has" memberEnd="_RpfJ8EKSEeaXCq-9LXQNWQ _RpfJ8UKSEeaXCq-9LXQNWQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Rpd70EKSEeaXCq-9LXQNWQ" source="org.eclipse.papyrus">
@@ -54,6 +58,16 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_NdebAHmREea7c9xs28iX1A" name="ConvertibleCar" type="_xEjCoEKSEeaXCq-9LXQNWQ" association="_IN0fQHmREea7c9xs28iX1A">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NdebAXmREea7c9xs28iX1A"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NdebAnmREea7c9xs28iX1A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_a_o2UHnPEea_kLaSOi1rnw" name="Screw"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_cPAzgHnPEea_kLaSOi1rnw" name="matches" memberEnd="_cPG6IHnPEea_kLaSOi1rnw _cPG6IXnPEea_kLaSOi1rnw" navigableOwnedEnd="_cPG6IXnPEea_kLaSOi1rnw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cPD20HnPEea_kLaSOi1rnw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cPEd4HnPEea_kLaSOi1rnw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_cPG6IXnPEea_kLaSOi1rnw" name="wheel" type="_Qr2dAEKSEeaXCq-9LXQNWQ" association="_cPAzgHnPEea_kLaSOi1rnw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mkLQgHnPEea_kLaSOi1rnw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mkNFsHnPEea_kLaSOi1rnw" value="*"/>
     </ownedEnd>
   </packagedElement>
 </uml:Model>
