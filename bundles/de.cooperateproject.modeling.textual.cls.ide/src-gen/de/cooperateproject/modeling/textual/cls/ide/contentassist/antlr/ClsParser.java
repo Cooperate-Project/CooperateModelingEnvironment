@@ -69,7 +69,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssociationAccess().getGroup(), "rule__Association__Group__0");
 					put(grammarAccess.getAssociationAccess().getGroup_5(), "rule__Association__Group_5__0");
 					put(grammarAccess.getMultiAssociationAccess().getGroup(), "rule__MultiAssociation__Group__0");
-					put(grammarAccess.getMultiAssociationAccess().getGroup_7(), "rule__MultiAssociation__Group_7__0");
+					put(grammarAccess.getMultiAssociationAccess().getGroup_3(), "rule__MultiAssociation__Group_3__0");
 					put(grammarAccess.getMemberEndAccess().getGroup(), "rule__MemberEnd__Group__0");
 					put(grammarAccess.getAssociationPropertiesAccess().getGroup(), "rule__AssociationProperties__Group__0");
 					put(grammarAccess.getAssociationPropertiesAccess().getGroup_2(), "rule__AssociationProperties__Group_2__0");
@@ -122,9 +122,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssociationAccess().getPropertiesAssignment_4(), "rule__Association__PropertiesAssignment_4");
 					put(grammarAccess.getAssociationAccess().getCommentAssignment_5_1(), "rule__Association__CommentAssignment_5_1");
 					put(grammarAccess.getMultiAssociationAccess().getReferencedElementAssignment_1(), "rule__MultiAssociation__ReferencedElementAssignment_1");
-					put(grammarAccess.getMultiAssociationAccess().getConnectorEndsAssignment_3(), "rule__MultiAssociation__ConnectorEndsAssignment_3");
-					put(grammarAccess.getMultiAssociationAccess().getConnectorEndsAssignment_5(), "rule__MultiAssociation__ConnectorEndsAssignment_5");
-					put(grammarAccess.getMultiAssociationAccess().getConnectorEndsAssignment_7_0(), "rule__MultiAssociation__ConnectorEndsAssignment_7_0");
+					put(grammarAccess.getMultiAssociationAccess().getConnectorEndsAssignment_3_0(), "rule__MultiAssociation__ConnectorEndsAssignment_3_0");
 					put(grammarAccess.getMemberEndAccess().getTypeAssignment_0(), "rule__MemberEnd__TypeAssignment_0");
 					put(grammarAccess.getMemberEndAccess().getReferencedElementAssignment_1(), "rule__MemberEnd__ReferencedElementAssignment_1");
 					put(grammarAccess.getMemberEndAccess().getCardinalityAssignment_2(), "rule__MemberEnd__CardinalityAssignment_2");

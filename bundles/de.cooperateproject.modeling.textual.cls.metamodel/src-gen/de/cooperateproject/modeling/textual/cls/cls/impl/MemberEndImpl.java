@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
@@ -27,6 +28,8 @@ import org.eclipse.uml2.uml.Property;
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getAssociation <em>Association</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#isNavigable <em>Navigable</em>}</li>
  * </ul>
  *
  * @generated
@@ -125,6 +128,42 @@ public class MemberEndImpl extends CDOObjectImpl implements MemberEnd {
 	 */
 	public void setType(UMLTypeReference newType) {
 		eSet(ClsPackage.Literals.MEMBER_END__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiAssociation getAssociation() {
+		return (MultiAssociation)eGet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssociation(MultiAssociation newAssociation) {
+		eSet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, newAssociation);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isNavigable() {
+		return (Boolean)eGet(ClsPackage.Literals.MEMBER_END__NAVIGABLE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNavigable(boolean newNavigable) {
+		eSet(ClsPackage.Literals.MEMBER_END__NAVIGABLE, newNavigable);
 	}
 
 	/**

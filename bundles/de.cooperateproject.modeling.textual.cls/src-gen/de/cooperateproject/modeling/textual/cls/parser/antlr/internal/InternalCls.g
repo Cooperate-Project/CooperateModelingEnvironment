@@ -1525,10 +1525,10 @@ ruleMultiAssociation returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getMultiAssociationAccess().getLeftCurlyBracketKeyword_2());
     }
-(
+((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_3_0_0()); 
 	    }
 		lv_connectorEnds_3_0=ruleMemberEnd		{
 	        if ($current==null) {
@@ -1545,55 +1545,11 @@ ruleMultiAssociation returns [EObject current=null]
 )
 )	otherlv_4=';' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_4());
+    	newLeafNode(otherlv_4, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_3_1());
     }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_5_0()); 
-	    }
-		lv_connectorEnds_5_0=ruleMemberEnd		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMultiAssociationRule());
-	        }
-       		add(
-       			$current, 
-       			"connectorEnds",
-        		lv_connectorEnds_5_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.MemberEnd");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_6=';' 
+)+	otherlv_5='}' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_6());
-    }
-((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getConnectorEndsMemberEndParserRuleCall_7_0_0()); 
-	    }
-		lv_connectorEnds_7_0=ruleMemberEnd		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMultiAssociationRule());
-	        }
-       		add(
-       			$current, 
-       			"connectorEnds",
-        		lv_connectorEnds_7_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.MemberEnd");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_8=';' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getMultiAssociationAccess().getSemicolonKeyword_7_1());
-    }
-)+	otherlv_9='}' 
-    {
-    	newLeafNode(otherlv_9, grammarAccess.getMultiAssociationAccess().getRightCurlyBracketKeyword_8());
+    	newLeafNode(otherlv_5, grammarAccess.getMultiAssociationAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;

@@ -121,11 +121,11 @@ Association:
 ;
 
 MultiAssociation:
-	'asc' referencedElement = [uml::Association] '{' connectorEnds+=MemberEnd ';' connectorEnds+=MemberEnd ';' (connectorEnds+=MemberEnd ';')+ '}'
+	'asc' referencedElement = [uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}'
 ;
 
 MemberEnd:
-	type = UMLTypeReference (referencedElement=[uml::Property])? (cardinality=Cardinality)?
+	type = UMLTypeReference (referencedElement=[uml::Property])? (cardinality=Cardinality)? (navigable?='<')
 ;
 
 AssociationProperties: 

@@ -1872,13 +1872,31 @@ public interface ClsPackage extends EPackage {
 	int MEMBER_END__TYPE = ASSOCIATION_END_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Association</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMBER_END__ASSOCIATION = ASSOCIATION_END_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Navigable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMBER_END__NAVIGABLE = ASSOCIATION_END_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Member End</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END_FEATURE_COUNT = ASSOCIATION_END_FEATURE_COUNT + 4;
+	int MEMBER_END_FEATURE_COUNT = ASSOCIATION_END_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Member End</em>' class.
@@ -2655,6 +2673,28 @@ public interface ClsPackage extends EPackage {
 	EReference getMemberEnd_Type();
 
 	/**
+	 * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Association</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation()
+	 * @see #getMemberEnd()
+	 * @generated
+	 */
+	EReference getMemberEnd_Association();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#isNavigable <em>Navigable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Navigable</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.MemberEnd#isNavigable()
+	 * @see #getMemberEnd()
+	 * @generated
+	 */
+	EAttribute getMemberEnd_Navigable();
+
+	/**
 	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3328,6 +3368,22 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MEMBER_END__TYPE = eINSTANCE.getMemberEnd_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Association</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MEMBER_END__ASSOCIATION = eINSTANCE.getMemberEnd_Association();
+
+		/**
+		 * The meta object literal for the '<em><b>Navigable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEMBER_END__NAVIGABLE = eINSTANCE.getMemberEnd_Navigable();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.

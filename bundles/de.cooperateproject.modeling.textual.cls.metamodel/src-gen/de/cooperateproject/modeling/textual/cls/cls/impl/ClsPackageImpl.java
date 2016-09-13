@@ -998,6 +998,24 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMemberEnd_Association() {
+		return (EReference)memberEndEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMemberEnd_Navigable() {
+		return (EAttribute)memberEndEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getVisibility() {
 		return visibilityEEnum;
 	}
@@ -1155,6 +1173,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		memberEndEClass = createEClass(MEMBER_END);
 		createEReference(memberEndEClass, MEMBER_END__CARDINALITY);
 		createEReference(memberEndEClass, MEMBER_END__TYPE);
+		createEReference(memberEndEClass, MEMBER_END__ASSOCIATION);
+		createEAttribute(memberEndEClass, MEMBER_END__NAVIGABLE);
 
 		// Create enums
 		visibilityEEnum = createEEnum(VISIBILITY);
@@ -1412,11 +1432,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEOperation(getCommentable__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(multiAssociationEClass, MultiAssociation.class, "MultiAssociation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiAssociation_ConnectorEnds(), this.getMemberEnd(), null, "connectorEnds", null, 2, -1, MultiAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiAssociation_ConnectorEnds(), this.getMemberEnd(), this.getMemberEnd_Association(), "connectorEnds", null, 2, -1, MultiAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(memberEndEClass, MemberEnd.class, "MemberEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMemberEnd_Cardinality(), this.getCardinality(), null, "cardinality", null, 0, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMemberEnd_Type(), this.getUMLTypeReference(), null, "type", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMemberEnd_Association(), this.getMultiAssociation(), this.getMultiAssociation_ConnectorEnds(), "association", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMemberEnd_Navigable(), ecorePackage.getEBoolean(), "navigable", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityEEnum, Visibility.class, "Visibility");

@@ -37,7 +37,6 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 mapping trace::TraceRecord::traceRecordExtended() : List(trace::TraceRecord)
 {
 	result += self.map traceRecordExtendedDiagram();
-	
 	result += self.map traceRecordExtendedClassifier();
 	result += self.map traceRecordExtendedAttributeShape();
 	result += self.map traceRecordExtendedOperationShape();
@@ -49,6 +48,8 @@ mapping trace::TraceRecord::traceRecordExtended() : List(trace::TraceRecord)
 	result += self.map traceRecordExtendedImplementationToEdge();
 	result += self.map traceRecordExtendedCommentLinkToEdge();
 	result += self.map traceRecordExtendedCommentableToEdge2();
+	result += self.map traceRecordExtendedMultiAssociation();
+	result += self.map traceRecordExtendedMemberEndEdge();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedDiagram() : List(trace::TraceRecord)
@@ -277,10 +278,10 @@ mapping trace::TraceRecord::traceRecordExtendedConnectorToEdge_ConnectorBase() :
 {
 	var connector := self.getResult().modelElement.oclAsType(cls::Connector);
 	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
-	result += edge.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(connector, edge);
+	result += edge.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(edge);
 }
 
-mapping ecore::EObject::traceRecordExtendedConnectorToEdge_ConnectorBase(connector : cls::Connector, edge : notation::Connector) : List(trace::TraceRecord)
+mapping ecore::EObject::traceRecordExtendedConnectorToEdge_ConnectorBase(edge : notation::Connector) : List(trace::TraceRecord)
 {
 	result += new TraceRecord("connectorToBendpoint", "Connector", edge.eobject(), "RelativeBendpoints", edge.bendpoints.eobject());
 	result += new TraceRecord("fontStyle", "EObject", edge.eobject() , "FontStyle", edge.styles->selectByKind(notation::FontStyle)->any(true).eobject());
@@ -344,7 +345,7 @@ mapping notation::Connector::commentableToEdge(connectors : OrderedSet(cls::Conn
 		
 	result += createEdgeTraceRecord("commentableToEdge", "Commentable", connector.eobject(), "Connector", self.eobject());
 	result += self.eobject().map traceRecordExtendedCommentLinkToEdge_Shape(connector, self);
-	result += self.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(connector.oclAsType(cls::Connector), self);
+	result += self.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(self);
 }
 
 
@@ -391,6 +392,37 @@ mapping notation::Node::traceRecordExtended_notationBounds() : trace::TraceRecor
 	}
 }
 
+mapping trace::TraceRecord::traceRecordExtendedMultiAssociation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "associationNodeToMultiAssociation"}
+{
+	var association := self.getResult().modelElement.oclAsType(cls::MultiAssociation);
+	var node := self.getSelf().modelElement.oclAsType(notation::Shape);
+
+	result += new TraceRecord("multiAssociationToShape", "MultiAssociation", association.eobject(), "Shape", node.eobject());
+	result += node.map traceRecordExtended_locationConstraint();
+	var floatLabelDecorationNode := node.children->any(type = "8521");
+	result += new TraceRecord("multiAssociationToFloatingLabelDecorationNode", "MultiAssociation", association.eobject(), "DecorationNode", floatLabelDecorationNode.eobject());
+	result += floatLabelDecorationNode.map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordExtendedMemberEndEdge() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToMemberEnd"}
+{
+	var memberEnd := self.getResult().modelElement.oclAsType(cls::MemberEnd);
+	var edge := self.getSelf().modelElement.oclAsType(notation::Connector);
+	
+	result += new TraceRecord("connectorEndToEdge", "MemberEnd", memberEnd.eobject(), "Connector", edge.eobject());
+	result += memberEnd.eobject().map traceRecordExtendedConnectorToEdge_ConnectorBase(edge);
+	var valueStyle := edge.styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style");
+	result += new TraceRecord("semanticBranchStyle", "MemberEnd", memberEnd.eobject(), "EObjectValueStyle", valueStyle.eobject());
+	var targetRoleNode := edge.children->any(type = "6024");
+	result += new TraceRecord("targetRoleDecorationMemberEnd", "MemberEnd", memberEnd.eobject(), "DecorationNode", targetRoleNode.eobject());
+	result += targetRoleNode.map traceRecordExtended_locationConstraint();
+	var targetMultiNode := edge.children->any(type = "6035");
+	result += new TraceRecord("targetMultiplicityDecorationMemberEnd", "MemberEnd", memberEnd.eobject(), "DecorationNode", targetMultiNode.eobject());
+	result += targetMultiNode.map traceRecordExtended_locationConstraint();
+}
+
 // Helpers
 
 query trace::TraceRecord::getSelfNode() : notation::Node {
@@ -418,5 +450,6 @@ query trace::TraceRecord::hasCommentLinkForAssociation() : Boolean
 
 query notation::Edge::isCommentLinkForAssociation() : Boolean
 {
-	return self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association));
+	var referencedElements := self.source.element.oclAsSet()->union(self.target.element.oclAsSet());
+	return referencedElements->exists(oclIsKindOf(uml::Association)) and referencedElements->exists(oclIsKindOf(uml::Comment));
 }

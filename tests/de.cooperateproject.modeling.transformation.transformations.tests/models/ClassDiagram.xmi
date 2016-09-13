@@ -41,6 +41,30 @@
       </parameters>
     </members>
   </classifiers>
+  <connectors xsi:type="cls:MultiAssociation">
+    <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
+    <connectorEnds>
+      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
+      <cardinality lowerBound="1" upperBound="1"/>
+      <type>
+        <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
+      </type>
+    </connectorEnds>
+    <connectorEnds>
+      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
+      <cardinality lowerBound="1" upperBound="1"/>
+      <type>
+        <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+      </type>
+    </connectorEnds>
+    <connectorEnds navigable="true">
+      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
+      <cardinality upperBound="1"/>
+      <type>
+        <type xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
+      </type>
+    </connectorEnds>
+  </connectors>
   <connectors xsi:type="cls:Association" aggregationKind="COMPOSITION">
     <left xsi:type="cls:UMLTypeReference">
       <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>

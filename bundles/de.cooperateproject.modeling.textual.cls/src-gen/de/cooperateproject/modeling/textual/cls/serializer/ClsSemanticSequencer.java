@@ -321,7 +321,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     MultiAssociation returns MultiAssociation
 	 *
 	 * Constraint:
-	 *     (referencedElement=[Association|ID] connectorEnds+=MemberEnd connectorEnds+=MemberEnd connectorEnds+=MemberEnd+)
+	 *     (referencedElement=[Association|ID] connectorEnds+=MemberEnd+)
 	 */
 	protected void sequence_MultiAssociation(ISerializationContext context, MultiAssociation semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

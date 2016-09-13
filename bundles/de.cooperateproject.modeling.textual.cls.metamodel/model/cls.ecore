@@ -269,7 +269,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiAssociation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectorEnds" lowerBound="2"
-        upperBound="-1" eType="#//MemberEnd" containment="true"/>
+        upperBound="-1" eType="#//MemberEnd" containment="true" eOpposite="#//MemberEnd/association"/>
     <eGenericSuperTypes eClassifier="#//Connector"/>
     <eGenericSuperTypes eClassifier="#//NamedElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
@@ -280,6 +280,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//UMLTypeReference"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
+        eType="#//MultiAssociation" eOpposite="#//MultiAssociation/connectorEnds"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="navigable" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eGenericSuperTypes eClassifier="#//AssociationEnd"/>
     <eGenericSuperTypes eClassifier="#//NamedElementOptional">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>

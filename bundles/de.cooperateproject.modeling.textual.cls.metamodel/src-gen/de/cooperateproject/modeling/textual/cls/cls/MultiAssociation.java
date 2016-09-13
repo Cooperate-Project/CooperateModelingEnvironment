@@ -26,6 +26,7 @@ public interface MultiAssociation extends Connector, NamedElement<Association> {
 	/**
 	 * Returns the value of the '<em><b>Connector Ends</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd}.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation <em>Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connector Ends</em>' containment reference list isn't clear,
@@ -34,7 +35,8 @@ public interface MultiAssociation extends Connector, NamedElement<Association> {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Connector Ends</em>' containment reference list.
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMultiAssociation_ConnectorEnds()
-	 * @model containment="true" lower="2"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation
+	 * @model opposite="association" containment="true" lower="2"
 	 * @generated
 	 */
 	EList<MemberEnd> getConnectorEnds();

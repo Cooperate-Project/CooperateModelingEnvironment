@@ -891,25 +891,17 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cReferencedElementAssociationCrossReference_1_0 = (CrossReference)cReferencedElementAssignment_1.eContents().get(0);
 		private final RuleCall cReferencedElementAssociationIDTerminalRuleCall_1_0_1 = (RuleCall)cReferencedElementAssociationCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cConnectorEndsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cConnectorEndsMemberEndParserRuleCall_3_0 = (RuleCall)cConnectorEndsAssignment_3.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cConnectorEndsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cConnectorEndsMemberEndParserRuleCall_5_0 = (RuleCall)cConnectorEndsAssignment_5.eContents().get(0);
-		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Assignment cConnectorEndsAssignment_7_0 = (Assignment)cGroup_7.eContents().get(0);
-		private final RuleCall cConnectorEndsMemberEndParserRuleCall_7_0_0 = (RuleCall)cConnectorEndsAssignment_7_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cConnectorEndsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cConnectorEndsMemberEndParserRuleCall_3_0_0 = (RuleCall)cConnectorEndsAssignment_3_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//MultiAssociation:
-		//	'asc' referencedElement=[uml::Association] '{' connectorEnds+=MemberEnd ';' connectorEnds+=MemberEnd ';'
-		//	(connectorEnds+=MemberEnd ';')+ '}';
+		//	'asc' referencedElement=[uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'asc' referencedElement=[uml::Association] '{' connectorEnds+=MemberEnd ';' connectorEnds+=MemberEnd ';'
-		//(connectorEnds+=MemberEnd ';')+ '}'
+		//'asc' referencedElement=[uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}'
 		public Group getGroup() { return cGroup; }
 
 		//'asc'
@@ -927,38 +919,20 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//connectorEnds+=MemberEnd
-		public Assignment getConnectorEndsAssignment_3() { return cConnectorEndsAssignment_3; }
-
-		//MemberEnd
-		public RuleCall getConnectorEndsMemberEndParserRuleCall_3_0() { return cConnectorEndsMemberEndParserRuleCall_3_0; }
-
-		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
-
-		//connectorEnds+=MemberEnd
-		public Assignment getConnectorEndsAssignment_5() { return cConnectorEndsAssignment_5; }
-
-		//MemberEnd
-		public RuleCall getConnectorEndsMemberEndParserRuleCall_5_0() { return cConnectorEndsMemberEndParserRuleCall_5_0; }
-
-		//';'
-		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
-
 		//(connectorEnds+=MemberEnd ';')+
-		public Group getGroup_7() { return cGroup_7; }
+		public Group getGroup_3() { return cGroup_3; }
 
 		//connectorEnds+=MemberEnd
-		public Assignment getConnectorEndsAssignment_7_0() { return cConnectorEndsAssignment_7_0; }
+		public Assignment getConnectorEndsAssignment_3_0() { return cConnectorEndsAssignment_3_0; }
 
 		//MemberEnd
-		public RuleCall getConnectorEndsMemberEndParserRuleCall_7_0_0() { return cConnectorEndsMemberEndParserRuleCall_7_0_0; }
+		public RuleCall getConnectorEndsMemberEndParserRuleCall_3_0_0() { return cConnectorEndsMemberEndParserRuleCall_3_0_0; }
 
 		//';'
-		public Keyword getSemicolonKeyword_7_1() { return cSemicolonKeyword_7_1; }
+		public Keyword getSemicolonKeyword_3_1() { return cSemicolonKeyword_3_1; }
 
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class MemberEndElements extends AbstractParserRuleElementFinder {
@@ -1636,8 +1610,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MultiAssociation:
-	//	'asc' referencedElement=[uml::Association] '{' connectorEnds+=MemberEnd ';' connectorEnds+=MemberEnd ';'
-	//	(connectorEnds+=MemberEnd ';')+ '}';
+	//	'asc' referencedElement=[uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}';
 	public MultiAssociationElements getMultiAssociationAccess() {
 		return pMultiAssociation;
 	}

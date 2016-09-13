@@ -45,4 +45,15 @@
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_IN0fQHmREea7c9xs28iX1A" name="has" memberEnd="_IN1tYXmREea7c9xs28iX1A _IN2UcHmREea7c9xs28iX1A _NdebAHmREea7c9xs28iX1A" navigableOwnedEnd="_NdebAHmREea7c9xs28iX1A">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IN1GUHmREea7c9xs28iX1A" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IN1tYHmREea7c9xs28iX1A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_IN1tYXmREea7c9xs28iX1A" name="wheel" type="_Qr2dAEKSEeaXCq-9LXQNWQ" association="_IN0fQHmREea7c9xs28iX1A"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_IN2UcHmREea7c9xs28iX1A" name="car" type="_QHekoEKSEeaXCq-9LXQNWQ" association="_IN0fQHmREea7c9xs28iX1A"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_NdebAHmREea7c9xs28iX1A" name="ConvertibleCar" type="_xEjCoEKSEeaXCq-9LXQNWQ" association="_IN0fQHmREea7c9xs28iX1A">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NdebAXmREea7c9xs28iX1A"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NdebAnmREea7c9xs28iX1A" value="1"/>
+    </ownedEnd>
+  </packagedElement>
 </uml:Model>

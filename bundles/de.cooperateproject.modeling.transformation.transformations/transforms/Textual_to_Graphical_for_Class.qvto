@@ -22,8 +22,10 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
 	
 	// package imports?
 	children += self.classifiers->map classifierToShape();
+	children += self.connectors->selectByKind(cls::MultiAssociation)->map multiAssociationToShape();
 	children += self.connectors->select(isCommented())->selectByKind(cls::Commentable)->map commentLinkToShape();
 	edges += self.connectors->select(not oclIsKindOf(cls::CommentLink))->map connectorToConnector(self.classifiers);
+	edges += self.connectors->selectByKind(cls::MultiAssociation).connectorEnds->map connectorEndToEdge();
 	edges += self.connectors->select(isCommented())->selectByKind(cls::Commentable)->map commentableToEdge(self.classifiers);
 	
 	styles += self.map stringValueStyle();
@@ -66,6 +68,14 @@ mapping cls::Commentable::commentLinkToShape() : notation::Shape
 	element := self.comment.toEObject();
 	children += self.map commentLabelBodyHintDecoration();
 	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping cls::MultiAssociation::multiAssociationToShape() : notation::Shape
+{
+	type := "2015";
+	element := self.referencedElement.toEObject();
+	layoutConstraint := result.toEObject().map locationConstraint();
+	children += self.map multiAssociationToFloatingLabelDecorationNode();
 }
 
 mapping cls::Classifier::classifierToAttributesCompartment() : notation::BasicCompartment
@@ -261,6 +271,29 @@ when { self.oclIsKindOf(cls::Implementation) }
 	styles += result.toEObject().map fontStyle();
 }
 
+mapping cls::MemberEnd::connectorEndToEdge() : notation::Connector
+{
+	type := "4019";
+	
+	var umlAssociation := self.association.referencedElement;
+	element := umlAssociation.toEObject();
+
+	var associationDiamondShape := resolveoneIn(cls::MultiAssociation::multiAssociationToShape, s : notation::Shape | s.element = umlAssociation.toEObject());
+	assert error (associationDiamondShape != null) with log('Could not find the association diamond for a n-ary association.', umlAssociation);
+	source := associationDiamondShape;
+	
+	var referencedNotationElement := self.type.type.typeToView();
+	assert error (referencedNotationElement != null) with log('Could not find the referenced view for a UML type.', self.type);
+	target := referencedNotationElement;
+
+	children += self.map targetRoleDecorationMemberEnd();
+	children += self.map targetMultiplicityDecorationMemberEnd();
+
+	bendpoints := result.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
+	styles += self.map semanticBranchStyle();
+}
+
 mapping cls::Commentable::commentableToEdge(classifiers : OrderedSet(cls::Classifier)) : notation::Connector
 {
 	type := "4013";
@@ -292,8 +325,11 @@ mapping notation::Connector::connectorToBendpoint() : notation::RelativeBendpoin
 6007 Stereotype (Generalization)
 6008 Stereotype (Interface Realization)
 6009 Name (Interface Realization)
+6024 TargetRole (AssociationBranch)
 6033 SourceMultiplicity
 6034 TargetMultiplicity
+6035 TargetMultiplicity (AssociationBranch)
+8521 Floating Label (Association Diamond)
 */
 
 mapping cls::Commentable::commentLabelBodyHintDecoration() : notation::DecorationNode
@@ -343,6 +379,12 @@ mapping cls::Implementation::nameDecorationImplementation() : notation::Decorati
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
+mapping cls::MemberEnd::targetRoleDecorationMemberEnd() : notation::DecorationNode
+{
+	type := "6024";
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
 mapping cls::AssociationProperties::sourceMultiplicityDecoration() : notation::DecorationNode
 when {self.cardinalityLeft != null}
 {
@@ -354,6 +396,19 @@ mapping cls::AssociationProperties::targetMultiplicityDecoration() : notation::D
 when {self.cardinalityRight != null}
 {
 	type := "6034";
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping cls::MemberEnd::targetMultiplicityDecorationMemberEnd() : notation::DecorationNode
+when {self.cardinality != null}
+{
+	type := "6035";
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping cls::MultiAssociation::multiAssociationToFloatingLabelDecorationNode(): notation::DecorationNode
+{
+	type := "8521";
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
@@ -396,6 +451,44 @@ mapping cls::ClassDiagram::diagramStyle() : notation::DiagramStyle
 mapping cls::ClassDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusViewStyle
 {
 	owner := rootElement.toEObject();
+}
+
+mapping cls::MemberEnd::semanticBranchStyle() : notation::EObjectValueStyle
+{
+	name := "Semantic_Branch_Style";
+	eObjectValue := self.determineProperty().toEObject();
+}
+
+query cls::MemberEnd::determineProperty() : uml::Property
+{
+	var umlAssociation := self.association.referencedElement.oclAsType(uml::Association);
+	var referencedProperty := self.referencedElement;
+	
+	var candidates := umlAssociation.memberEnd->select(p | p.matches(self));
+	return if candidates->size() = 1 then candidates->any(true) else referencedProperty.oclAsType(uml::Property) endif;
+}
+
+query uml::Property::matches(memberEnd : cls::MemberEnd) : Boolean
+{
+	return
+		memberEnd.referencedElement = self or
+		(
+			self.type = memberEnd.type.type and
+			(
+				memberEnd.cardinality = null or
+				self.matches(memberEnd.cardinality)
+			)
+		);
+}
+
+query uml::MultiplicityElement::matches(cardinality : cls::Cardinality) : Boolean
+{
+	return
+		self.lower = cardinality.lowerBound and
+		(
+			self.upper = cardinality.upperBound or
+			(cardinality.upperBound = -1 and self.upper = *) 
+		);
 }
 
 // helpers

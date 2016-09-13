@@ -4,7 +4,9 @@ modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notat
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-	
+
+property TYPES_SHAPE_NARY : String = "2015";	
+
 main() {
 	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLClassDiagram");
 	assert fatal (diagrams->size() = 1);
@@ -16,6 +18,7 @@ mapping notation::Diagram::diagramToDiagram() : cls::ClassDiagram {
 	name := self.name;
 	packageImports += self->map diagramToPackageImport();
 	classifiers += self.children->select(element.oclIsKindOf(uml::Class) or element.oclIsKindOf(uml::Interface))->map nodeToClassifier();
+	connectors += self.children->select(type = TYPES_SHAPE_NARY)->map associationNodeToMultiAssociation(self.edges);
 	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
 }
 
@@ -220,6 +223,39 @@ mapping notation::Node::nodeToCommentConnector() : cls::CommentLink
 	left := commentElement.annotatedElement->any(true).oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
 	comment := comment;
 }
+
+
+mapping notation::Node::associationNodeToMultiAssociation(allEdges : OrderedSet(notation::Edge)) : cls::MultiAssociation
+	when {
+		self.element.oclIsKindOf(uml::Association) and self.element.oclAsType(uml::Association).memberEnd->size() > 2
+	}
+{
+	var umlAssociation := self.element.oclAsType(uml::Association);
+	referencedElement := umlAssociation;
+	
+	var accordingEdges := allEdges->select(type = "4019" and (source = self or target = self));
+	connectorEnds += accordingEdges->map edgeToMemberEnd();
+	//connectorEnds += umlAssociation.memberEnd->map propertyToMemberEnd();
+}
+
+mapping notation::Edge::edgeToMemberEnd() : cls::MemberEnd
+{
+	var umlProperty := self.styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
+	referencedElement := if umlProperty.name != null then umlProperty else null endif;
+	cardinality := umlProperty.map multiplicityElementToCardinality();
+	type := umlProperty.type.map typeToUMLTypeReference(result);
+	navigable := umlProperty.association.navigableOwnedEnd->includes(umlProperty);
+}
+
+/*
+mapping uml::Property::propertyToMemberEnd() : cls::MemberEnd
+{
+	referencedElement := if self.name != null then self else null endif;
+	cardinality := self.map multiplicityElementToCardinality();
+	type := self.type.map typeToUMLTypeReference(result);
+	navigable := self.association.navigableOwnedEnd->includes(self);
+}
+*/
 
 query notation::Edge::isCommentLink() : Boolean {
 	return self.element = null and (
