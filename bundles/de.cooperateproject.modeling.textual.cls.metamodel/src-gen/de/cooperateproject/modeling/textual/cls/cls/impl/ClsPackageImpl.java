@@ -31,7 +31,6 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.ReadingDirection;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
@@ -284,13 +283,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * @generated
 	 */
 	private EEnum primitiveTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum readingDirectionEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1043,15 +1035,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getReadingDirection() {
-		return readingDirectionEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getAggregationKind() {
 		return aggregationKindEEnum;
 	}
@@ -1189,7 +1172,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		// Create enums
 		visibilityEEnum = createEEnum(VISIBILITY);
 		primitiveTypeEEnum = createEEnum(PRIMITIVE_TYPE);
-		readingDirectionEEnum = createEEnum(READING_DIRECTION);
 		aggregationKindEEnum = createEEnum(AGGREGATION_KIND);
 	}
 
@@ -1468,10 +1450,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.LONG);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.FLOAT);
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.STRING);
-
-		initEEnum(readingDirectionEEnum, ReadingDirection.class, "ReadingDirection");
-		addEEnumLiteral(readingDirectionEEnum, ReadingDirection.LEFT);
-		addEEnumLiteral(readingDirectionEEnum, ReadingDirection.RIGHT);
 
 		initEEnum(aggregationKindEEnum, AggregationKind.class, "AggregationKind");
 		addEEnumLiteral(aggregationKindEEnum, AggregationKind.NONE);

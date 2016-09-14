@@ -260,10 +260,6 @@
     <eLiterals name="FLOAT" value="8"/>
     <eLiterals name="STRING" value="9"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ReadingDirection">
-    <eLiterals name="LEFT" value="1"/>
-    <eLiterals name="RIGHT" value="2"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
     <eLiterals name="NONE"/>
     <eLiterals name="AGGREGATION" value="1"/>

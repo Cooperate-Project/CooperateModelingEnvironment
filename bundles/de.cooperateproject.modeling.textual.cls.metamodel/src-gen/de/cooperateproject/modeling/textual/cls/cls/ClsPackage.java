@@ -1937,16 +1937,6 @@ public interface ClsPackage extends EPackage {
 	int PRIMITIVE_TYPE = 31;
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.ReadingDirection <em>Reading Direction</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ReadingDirection
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getReadingDirection()
-	 * @generated
-	 */
-	int READING_DIRECTION = 32;
-
-	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1954,7 +1944,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAggregationKind()
 	 * @generated
 	 */
-	int AGGREGATION_KIND = 33;
+	int AGGREGATION_KIND = 32;
 
 
 	/**
@@ -2735,16 +2725,6 @@ public interface ClsPackage extends EPackage {
 	EEnum getPrimitiveType();
 
 	/**
-	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.ReadingDirection <em>Reading Direction</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Reading Direction</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ReadingDirection
-	 * @generated
-	 */
-	EEnum getReadingDirection();
-
-	/**
 	 * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3432,16 +3412,6 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
-
-		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.ReadingDirection <em>Reading Direction</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.cls.cls.ReadingDirection
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getReadingDirection()
-		 * @generated
-		 */
-		EEnum READING_DIRECTION = eINSTANCE.getReadingDirection();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}' enum.

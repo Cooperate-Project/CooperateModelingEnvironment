@@ -30,7 +30,6 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.ReadingDirection;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
@@ -199,8 +198,6 @@ public class ClsValidator extends EObjectValidator {
 				return validateVisibility((Visibility)value, diagnostics, context);
 			case ClsPackage.PRIMITIVE_TYPE:
 				return validatePrimitiveType((PrimitiveType)value, diagnostics, context);
-			case ClsPackage.READING_DIRECTION:
-				return validateReadingDirection((ReadingDirection)value, diagnostics, context);
 			case ClsPackage.AGGREGATION_KIND:
 				return validateAggregationKind((AggregationKind)value, diagnostics, context);
 			default:
@@ -643,15 +640,6 @@ public class ClsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validatePrimitiveType(PrimitiveType primitiveType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateReadingDirection(ReadingDirection readingDirection, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 
