@@ -8,6 +8,8 @@ import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
@@ -24,12 +26,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jdt.ui.ISharedImages
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
-import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 
 /**
  * Provides labels for EObjects.

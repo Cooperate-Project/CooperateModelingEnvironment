@@ -30,6 +30,8 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.scoping.impl.FilteringScope
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
 
 /**
  * This class contains custom scoping description.
@@ -122,6 +124,27 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 				return UMLPackage.Literals.PROPERTY.filterScope[association.referencedElement.memberEnds.contains(EObjectOrProxy) && (EObjectOrProxy as Property).type.equals(wantedTypeFinal)]
 			}
 		}
+		
+		override caseMemberEnd(MemberEnd memberEnd) {
+			if (reference == ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT) {
+				return UMLPackage.Literals.PROPERTY.filterScope[(EObjectOrProxy as Property).type == memberEnd.type.type]
+			}
+		}
+		
+		override caseUMLTypeReference(UMLTypeReference typeRef) {
+			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
+				val container = typeRef.eContainer
+				if (container instanceof MemberEnd) {
+					return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION);
+				}
+			}
+		}
+		
+		override caseMultiAssociation(MultiAssociation multiAssociation) {
+			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
+				return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION);
+			}
+		}
 
 		override defaultCase(EObject o) {
 			return baseScope
@@ -146,6 +169,10 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 		
 		private def filterScope(IScope scope, Predicate<IEObjectDescription> condition) {
 			return new FilteringScope(scope, condition)
+		}
+		
+		private def filterScopeIgnoreType(IScope scope, EClass ignoredType) {
+			return scope.filterScope[d | !EcoreUtil2.isAssignableFrom(ignoredType, d.EObjectOrProxy.eClass)];
 		}
 	}
 

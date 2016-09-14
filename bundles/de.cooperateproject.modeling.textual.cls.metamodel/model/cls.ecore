@@ -33,7 +33,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" unique="false" lowerBound="1"
         eType="#//PrimitiveType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UMLTypeReference" eSuperTypes="#//TypeReference #//ClassifierAssociationEnd">
+  <eClassifiers xsi:type="ecore:EClass" name="UMLTypeReference" eSuperTypes="#//TypeReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UMLReferencingElement" abstract="true">
@@ -194,9 +194,6 @@
     <eGenericSuperTypes eClassifier="#//TypedConnector"/>
     <eGenericSuperTypes eClassifier="#//Commentable"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssociationEnd" abstract="true"
-      interface="true" eSuperTypes="#//AssociationEnd"/>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//TypedConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="Implementation" eSuperTypes="#//TypedConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Connector #//Commentable">
@@ -220,7 +217,7 @@
         <details key="body" value="if (getLeft() instanceof &lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {&#xD;&#xA;&#x9;return ((&lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();&#xD;&#xA;}&#xD;&#xA;throw new IllegalStateException(&quot;Internal error in determining commented UML element.&quot;);"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ClassifierAssociationEnd"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//UMLTypeReference"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationProperties">
@@ -270,7 +267,7 @@
     <eLiterals name="COMPOSITION" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiAssociation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connectorEnds" lowerBound="2"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectorEnds" lowerBound="3"
         upperBound="-1" eType="#//MemberEnd" containment="true" eOpposite="#//MemberEnd/association"/>
     <eGenericSuperTypes eClassifier="#//Connector"/>
     <eGenericSuperTypes eClassifier="#//NamedElement">
@@ -286,7 +283,6 @@
         eType="#//MultiAssociation" eOpposite="#//MultiAssociation/connectorEnds"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="navigable" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eGenericSuperTypes eClassifier="#//AssociationEnd"/>
     <eGenericSuperTypes eClassifier="#//NamedElementOptional">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </eGenericSuperTypes>

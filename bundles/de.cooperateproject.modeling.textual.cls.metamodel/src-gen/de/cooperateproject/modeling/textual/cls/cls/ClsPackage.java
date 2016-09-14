@@ -1421,62 +1421,6 @@ public interface ClsPackage extends EPackage {
 	int ASSOCIATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationEnd
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationEnd()
-	 * @generated
-	 */
-	int ASSOCIATION_END = 20;
-
-	/**
-	 * The number of structural features of the '<em>Association End</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_END_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Association End</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_END_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd <em>Classifier Association End</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassifierAssociationEnd()
-	 * @generated
-	 */
-	int CLASSIFIER_ASSOCIATION_END = 21;
-
-	/**
-	 * The number of structural features of the '<em>Classifier Association End</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_ASSOCIATION_END_FEATURE_COUNT = ASSOCIATION_END_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Classifier Association End</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_ASSOCIATION_END_OPERATION_COUNT = ASSOCIATION_END_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.GeneralizationImpl <em>Generalization</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1484,7 +1428,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getGeneralization()
 	 * @generated
 	 */
-	int GENERALIZATION = 22;
+	int GENERALIZATION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1530,7 +1474,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getImplementation()
 	 * @generated
 	 */
-	int IMPLEMENTATION = 23;
+	int IMPLEMENTATION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1576,7 +1520,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
 	 * @generated
 	 */
-	int COMMENT_LINK = 24;
+	int COMMENT_LINK = 22;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference.
@@ -1640,7 +1584,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationProperties()
 	 * @generated
 	 */
-	int ASSOCIATION_PROPERTIES = 25;
+	int ASSOCIATION_PROPERTIES = 23;
 
 	/**
 	 * The feature id for the '<em><b>Cardinality Left</b></em>' containment reference.
@@ -1713,7 +1657,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCardinality()
 	 * @generated
 	 */
-	int CARDINALITY = 26;
+	int CARDINALITY = 24;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -1759,7 +1703,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentable()
 	 * @generated
 	 */
-	int COMMENTABLE = 27;
+	int COMMENTABLE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' reference.
@@ -1805,7 +1749,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getMultiAssociation()
 	 * @generated
 	 */
-	int MULTI_ASSOCIATION = 28;
+	int MULTI_ASSOCIATION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1869,7 +1813,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getMemberEnd()
 	 * @generated
 	 */
-	int MEMBER_END = 29;
+	int MEMBER_END = 27;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1878,7 +1822,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END__REFERENCED_ELEMENT = ASSOCIATION_END_FEATURE_COUNT + 0;
+	int MEMBER_END__REFERENCED_ELEMENT = NAMED_ELEMENT_OPTIONAL__REFERENCED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1887,7 +1831,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END__NAME = ASSOCIATION_END_FEATURE_COUNT + 1;
+	int MEMBER_END__NAME = NAMED_ELEMENT_OPTIONAL__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' containment reference.
@@ -1896,7 +1840,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END__CARDINALITY = ASSOCIATION_END_FEATURE_COUNT + 2;
+	int MEMBER_END__CARDINALITY = NAMED_ELEMENT_OPTIONAL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -1905,7 +1849,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END__TYPE = ASSOCIATION_END_FEATURE_COUNT + 3;
+	int MEMBER_END__TYPE = NAMED_ELEMENT_OPTIONAL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Association</b></em>' container reference.
@@ -1914,7 +1858,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END__ASSOCIATION = ASSOCIATION_END_FEATURE_COUNT + 4;
+	int MEMBER_END__ASSOCIATION = NAMED_ELEMENT_OPTIONAL_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Navigable</b></em>' attribute.
@@ -1923,7 +1867,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END__NAVIGABLE = ASSOCIATION_END_FEATURE_COUNT + 5;
+	int MEMBER_END__NAVIGABLE = NAMED_ELEMENT_OPTIONAL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Member End</em>' class.
@@ -1932,7 +1876,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END_FEATURE_COUNT = ASSOCIATION_END_FEATURE_COUNT + 6;
+	int MEMBER_END_FEATURE_COUNT = NAMED_ELEMENT_OPTIONAL_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Member End</em>' class.
@@ -1941,7 +1885,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_END_OPERATION_COUNT = ASSOCIATION_END_OPERATION_COUNT + 0;
+	int MEMBER_END_OPERATION_COUNT = NAMED_ELEMENT_OPTIONAL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.Visibility <em>Visibility</em>}' enum.
@@ -1951,7 +1895,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getVisibility()
 	 * @generated
 	 */
-	int VISIBILITY = 30;
+	int VISIBILITY = 28;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.PrimitiveType <em>Primitive Type</em>}' enum.
@@ -1961,7 +1905,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 31;
+	int PRIMITIVE_TYPE = 29;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}' enum.
@@ -1971,7 +1915,7 @@ public interface ClsPackage extends EPackage {
 	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAggregationKind()
 	 * @generated
 	 */
-	int AGGREGATION_KIND = 32;
+	int AGGREGATION_KIND = 30;
 
 
 	/**
@@ -2479,26 +2423,6 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAssociation__GetCommentedElement();
-
-	/**
-	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Association End</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationEnd
-	 * @generated
-	 */
-	EClass getAssociationEnd();
-
-	/**
-	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd <em>Classifier Association End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Classifier Association End</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
-	 * @generated
-	 */
-	EClass getClassifierAssociationEnd();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Generalization <em>Generalization</em>}'.
@@ -3240,26 +3164,6 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ASSOCIATION___GET_COMMENTED_ELEMENT = eINSTANCE.getAssociation__GetCommentedElement();
-
-		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationEnd
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationEnd()
-		 * @generated
-		 */
-		EClass ASSOCIATION_END = eINSTANCE.getAssociationEnd();
-
-		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd <em>Classifier Association End</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getClassifierAssociationEnd()
-		 * @generated
-		 */
-		EClass CLASSIFIER_ASSOCIATION_END = eINSTANCE.getClassifierAssociationEnd();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.GeneralizationImpl <em>Generalization</em>}' class.

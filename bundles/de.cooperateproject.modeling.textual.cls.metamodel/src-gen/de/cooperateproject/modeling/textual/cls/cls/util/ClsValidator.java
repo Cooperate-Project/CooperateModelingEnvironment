@@ -4,13 +4,11 @@ package de.cooperateproject.modeling.textual.cls.cls.util;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -174,10 +172,6 @@ public class ClsValidator extends EObjectValidator {
 				return validateTypedConnector((TypedConnector)value, diagnostics, context);
 			case ClsPackage.ASSOCIATION:
 				return validateAssociation((Association)value, diagnostics, context);
-			case ClsPackage.ASSOCIATION_END:
-				return validateAssociationEnd((AssociationEnd)value, diagnostics, context);
-			case ClsPackage.CLASSIFIER_ASSOCIATION_END:
-				return validateClassifierAssociationEnd((ClassifierAssociationEnd)value, diagnostics, context);
 			case ClsPackage.GENERALIZATION:
 				return validateGeneralization((Generalization)value, diagnostics, context);
 			case ClsPackage.IMPLEMENTATION:
@@ -503,24 +497,6 @@ public class ClsValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)association, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(association, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAssociationEnd(AssociationEnd associationEnd, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)associationEnd, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateClassifierAssociationEnd(ClassifierAssociationEnd classifierAssociationEnd, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)classifierAssociationEnd, diagnostics, context);
 	}
 
 	/**

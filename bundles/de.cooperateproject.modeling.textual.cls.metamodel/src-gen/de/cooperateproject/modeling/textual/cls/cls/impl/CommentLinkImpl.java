@@ -2,7 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -78,8 +77,8 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssociationEnd getLeft() {
-		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
+	public UMLTypeReference getLeft() {
+		return (UMLTypeReference)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
 	}
 
 	/**
@@ -87,7 +86,7 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ClassifierAssociationEnd newLeft) {
+	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.COMMENT_LINK__LEFT, newLeft);
 	}
 

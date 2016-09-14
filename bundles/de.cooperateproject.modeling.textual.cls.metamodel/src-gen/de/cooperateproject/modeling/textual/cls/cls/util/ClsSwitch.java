@@ -3,13 +3,11 @@
 package de.cooperateproject.modeling.textual.cls.cls.util;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -124,8 +122,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				UMLTypeReference umlTypeReference = (UMLTypeReference)theEObject;
 				T1 result = caseUMLTypeReference(umlTypeReference);
 				if (result == null) result = caseTypeReference(umlTypeReference);
-				if (result == null) result = caseClassifierAssociationEnd(umlTypeReference);
-				if (result == null) result = caseAssociationEnd(umlTypeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -267,19 +263,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ClsPackage.ASSOCIATION_END: {
-				AssociationEnd associationEnd = (AssociationEnd)theEObject;
-				T1 result = caseAssociationEnd(associationEnd);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.CLASSIFIER_ASSOCIATION_END: {
-				ClassifierAssociationEnd classifierAssociationEnd = (ClassifierAssociationEnd)theEObject;
-				T1 result = caseClassifierAssociationEnd(classifierAssociationEnd);
-				if (result == null) result = caseAssociationEnd(classifierAssociationEnd);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ClsPackage.GENERALIZATION: {
 				Generalization generalization = (Generalization)theEObject;
 				T1 result = caseGeneralization(generalization);
@@ -335,7 +318,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 			case ClsPackage.MEMBER_END: {
 				MemberEnd memberEnd = (MemberEnd)theEObject;
 				T1 result = caseMemberEnd(memberEnd);
-				if (result == null) result = caseAssociationEnd(memberEnd);
 				if (result == null) result = caseNamedElementOptional(memberEnd);
 				if (result == null) result = caseUMLReferencingElement(memberEnd);
 				if (result == null) result = defaultCase(theEObject);
@@ -642,36 +624,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseAssociation(Association object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Association End</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Association End</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAssociationEnd(AssociationEnd object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Classifier Association End</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Classifier Association End</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseClassifierAssociationEnd(ClassifierAssociationEnd object) {
 		return null;
 	}
 

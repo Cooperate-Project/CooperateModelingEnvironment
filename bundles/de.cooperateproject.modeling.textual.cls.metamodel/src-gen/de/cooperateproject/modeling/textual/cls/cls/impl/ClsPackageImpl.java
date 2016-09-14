@@ -4,13 +4,11 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
@@ -199,20 +197,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * @generated
 	 */
 	private EClass associationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass associationEndEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classifierAssociationEndEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -801,24 +785,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAssociationEnd() {
-		return associationEndEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getClassifierAssociationEnd() {
-		return classifierAssociationEndEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGeneralization() {
 		return generalizationEClass;
 	}
@@ -1162,10 +1128,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		createEAttribute(associationEClass, ASSOCIATION__BIDIRECTIONAL);
 		createEOperation(associationEClass, ASSOCIATION___GET_COMMENTED_ELEMENT);
 
-		associationEndEClass = createEClass(ASSOCIATION_END);
-
-		classifierAssociationEndEClass = createEClass(CLASSIFIER_ASSOCIATION_END);
-
 		generalizationEClass = createEClass(GENERALIZATION);
 
 		implementationEClass = createEClass(IMPLEMENTATION);
@@ -1259,7 +1221,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		// Add supertypes to classes
 		dataTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
 		umlTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
-		umlTypeReferenceEClass.getESuperTypes().add(this.getClassifierAssociationEnd());
 		g1 = createEGenericType(this.getUMLReferencingElement());
 		EGenericType g2 = createEGenericType(namedElementOptionalEClass_T);
 		g1.getETypeArguments().add(g2);
@@ -1313,7 +1274,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		associationEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCommentable());
 		associationEClass.getEGenericSuperTypes().add(g1);
-		classifierAssociationEndEClass.getESuperTypes().add(this.getAssociationEnd());
 		generalizationEClass.getESuperTypes().add(this.getTypedConnector());
 		implementationEClass.getESuperTypes().add(this.getTypedConnector());
 		commentLinkEClass.getESuperTypes().add(this.getConnector());
@@ -1324,8 +1284,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		g2 = createEGenericType(theUMLPackage.getAssociation());
 		g1.getETypeArguments().add(g2);
 		multiAssociationEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAssociationEnd());
-		memberEndEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNamedElementOptional());
 		g2 = createEGenericType(theUMLPackage.getProperty());
 		g1.getETypeArguments().add(g2);
@@ -1419,16 +1377,12 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		initEOperation(getAssociation__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(associationEndEClass, AssociationEnd.class, "AssociationEnd", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(classifierAssociationEndEClass, ClassifierAssociationEnd.class, "ClassifierAssociationEnd", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(implementationEClass, Implementation.class, "Implementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCommentLink_Left(), this.getClassifierAssociationEnd(), null, "left", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCommentLink_Left(), this.getUMLTypeReference(), null, "left", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getCommentLink__HasComment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasComment", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED);
@@ -1458,7 +1412,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEOperation(getCommentable__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(multiAssociationEClass, MultiAssociation.class, "MultiAssociation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiAssociation_ConnectorEnds(), this.getMemberEnd(), this.getMemberEnd_Association(), "connectorEnds", null, 2, -1, MultiAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMultiAssociation_ConnectorEnds(), this.getMemberEnd(), this.getMemberEnd_Association(), "connectorEnds", null, 3, -1, MultiAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(memberEndEClass, MemberEnd.class, "MemberEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMemberEnd_Cardinality(), this.getCardinality(), null, "cardinality", null, 0, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

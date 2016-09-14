@@ -1155,36 +1155,6 @@ ruleConnector returns [EObject current=null]
 
 
 
-// Entry rule entryRuleClassifierAssociationEnd
-entryRuleClassifierAssociationEnd returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getClassifierAssociationEndRule()); }
-	 iv_ruleClassifierAssociationEnd=ruleClassifierAssociationEnd 
-	 { $current=$iv_ruleClassifierAssociationEnd.current; } 
-	 EOF 
-;
-
-// Rule ClassifierAssociationEnd
-ruleClassifierAssociationEnd returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-
-    { 
-        newCompositeNode(grammarAccess.getClassifierAssociationEndAccess().getUMLTypeReferenceParserRuleCall()); 
-    }
-    this_UMLTypeReference_0=ruleUMLTypeReference
-    { 
-        $current = $this_UMLTypeReference_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-;
-
-
-
-
-
 // Entry rule entryRuleGeneralization
 entryRuleGeneralization returns [EObject current=null] 
 	:
@@ -1202,9 +1172,9 @@ ruleGeneralization returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getGeneralizationAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getGeneralizationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); 
 	    }
-		lv_left_0_0=ruleClassifierAssociationEnd		{
+		lv_left_0_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getGeneralizationRule());
 	        }
@@ -1212,7 +1182,7 @@ ruleGeneralization returns [EObject current=null]
        			$current, 
        			"left",
         		lv_left_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1224,9 +1194,9 @@ ruleGeneralization returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getGeneralizationAccess().getRightClassifierAssociationEndParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getGeneralizationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); 
 	    }
-		lv_right_2_0=ruleClassifierAssociationEnd		{
+		lv_right_2_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getGeneralizationRule());
 	        }
@@ -1234,7 +1204,7 @@ ruleGeneralization returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_2_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1263,9 +1233,9 @@ ruleImplementation returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementationAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getImplementationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); 
 	    }
-		lv_left_0_0=ruleClassifierAssociationEnd		{
+		lv_left_0_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementationRule());
 	        }
@@ -1273,7 +1243,7 @@ ruleImplementation returns [EObject current=null]
        			$current, 
        			"left",
         		lv_left_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1285,9 +1255,9 @@ ruleImplementation returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getImplementationAccess().getRightClassifierAssociationEndParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getImplementationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); 
 	    }
-		lv_right_2_0=ruleClassifierAssociationEnd		{
+		lv_right_2_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getImplementationRule());
 	        }
@@ -1295,7 +1265,7 @@ ruleImplementation returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_2_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1324,9 +1294,9 @@ ruleCommentLink returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCommentLinkAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getCommentLinkAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); 
 	    }
-		lv_left_0_0=ruleClassifierAssociationEnd		{
+		lv_left_0_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCommentLinkRule());
 	        }
@@ -1334,7 +1304,7 @@ ruleCommentLink returns [EObject current=null]
        			$current, 
        			"left",
         		lv_left_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1415,9 +1385,9 @@ ruleAssociation returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getLeftClassifierAssociationEndParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getLeftUMLTypeReferenceParserRuleCall_2_0()); 
 	    }
-		lv_left_2_0=ruleClassifierAssociationEnd		{
+		lv_left_2_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
 	        }
@@ -1425,7 +1395,7 @@ ruleAssociation returns [EObject current=null]
        			$current, 
        			"left",
         		lv_left_2_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1446,9 +1416,9 @@ ruleAssociation returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getRightClassifierAssociationEndParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getRightUMLTypeReferenceParserRuleCall_4_0()); 
 	    }
-		lv_right_4_0=ruleClassifierAssociationEnd		{
+		lv_right_4_0=ruleUMLTypeReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
 	        }
@@ -1456,7 +1426,7 @@ ruleAssociation returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_4_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.ClassifierAssociationEnd");
+        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1651,7 +1621,7 @@ ruleMemberEnd returns [EObject current=null]
 	    }
 
 )
-))
+)?)
 ;
 
 

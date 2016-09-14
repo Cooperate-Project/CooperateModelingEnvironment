@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface MemberEnd extends AssociationEnd, NamedElementOptional<Property> {
+public interface MemberEnd extends NamedElementOptional<Property> {
 	/**
 	 * Returns the value of the '<em><b>Cardinality</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

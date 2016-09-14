@@ -99,24 +99,21 @@ Connector:
 	| MultiAssociation
 ;
 
-ClassifierAssociationEnd:
-	UMLTypeReference
-;
 
 Generalization: 
-	left = ClassifierAssociationEnd 'isa' right = ClassifierAssociationEnd
+	left = UMLTypeReference 'isa' right = UMLTypeReference
 ;
 
 Implementation:
-	left = ClassifierAssociationEnd 'impl' right = ClassifierAssociationEnd
+	left = UMLTypeReference 'impl' right = UMLTypeReference
 ;
 
 CommentLink: 
-	left = ClassifierAssociationEnd 'note' comment = [uml::Comment|CommentBody]
+	left = UMLTypeReference 'note' comment = [uml::Comment|CommentBody]
 ;
 
 Association:
-	(bidirectional?='bi')? aggregationKind=AggregationKind  left = ClassifierAssociationEnd referencedElement = [uml::Association] right = ClassifierAssociationEnd
+	(bidirectional?='bi')? aggregationKind=AggregationKind  left = UMLTypeReference referencedElement = [uml::Association] right = UMLTypeReference
 	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
 ;
 
@@ -125,7 +122,7 @@ MultiAssociation:
 ;
 
 MemberEnd:
-	type = UMLTypeReference (referencedElement=[uml::Property])? (cardinality=Cardinality)? (navigable?='<')
+	type = UMLTypeReference (referencedElement=[uml::Property])? (cardinality=Cardinality)? (navigable?='<')?
 ;
 
 AssociationProperties: 

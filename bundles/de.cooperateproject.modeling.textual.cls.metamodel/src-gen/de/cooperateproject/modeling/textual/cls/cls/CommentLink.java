@@ -34,12 +34,12 @@ public interface CommentLink extends Connector, Commentable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(ClassifierAssociationEnd)
+	 * @see #setLeft(UMLTypeReference)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getCommentLink_Left()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ClassifierAssociationEnd getLeft();
+	UMLTypeReference getLeft();
 
 	/**
 	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getLeft <em>Left</em>}' containment reference.
@@ -49,7 +49,7 @@ public interface CommentLink extends Connector, Commentable {
 	 * @see #getLeft()
 	 * @generated
 	 */
-	void setLeft(ClassifierAssociationEnd value);
+	void setLeft(UMLTypeReference value);
 
 	/**
 	 * <!-- begin-user-doc -->

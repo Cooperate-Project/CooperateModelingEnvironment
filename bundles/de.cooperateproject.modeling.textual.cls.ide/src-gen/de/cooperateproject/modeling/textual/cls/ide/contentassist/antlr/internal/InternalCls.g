@@ -448,34 +448,6 @@ finally {
 
 
 
-// Entry rule entryRuleClassifierAssociationEnd
-entryRuleClassifierAssociationEnd 
-:
-{ before(grammarAccess.getClassifierAssociationEndRule()); }
-	 ruleClassifierAssociationEnd
-{ after(grammarAccess.getClassifierAssociationEndRule()); } 
-	 EOF 
-;
-
-// Rule ClassifierAssociationEnd
-ruleClassifierAssociationEnd
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getClassifierAssociationEndAccess().getUMLTypeReferenceParserRuleCall()); }
-	ruleUMLTypeReference
-{ after(grammarAccess.getClassifierAssociationEndAccess().getUMLTypeReferenceParserRuleCall()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleGeneralization
 entryRuleGeneralization 
 :
@@ -3995,7 +3967,7 @@ rule__MemberEnd__Group__3__Impl
 :
 (
 { before(grammarAccess.getMemberEndAccess().getNavigableAssignment_3()); }
-(rule__MemberEnd__NavigableAssignment_3)
+(rule__MemberEnd__NavigableAssignment_3)?
 { after(grammarAccess.getMemberEndAccess().getNavigableAssignment_3()); }
 )
 
@@ -5126,8 +5098,8 @@ rule__Generalization__LeftAssignment_0
     }
 :
 (
-{ before(grammarAccess.getGeneralizationAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getGeneralizationAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); }
+{ before(grammarAccess.getGeneralizationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getGeneralizationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); }
 )
 
 ;
@@ -5141,8 +5113,8 @@ rule__Generalization__RightAssignment_2
     }
 :
 (
-{ before(grammarAccess.getGeneralizationAccess().getRightClassifierAssociationEndParserRuleCall_2_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getGeneralizationAccess().getRightClassifierAssociationEndParserRuleCall_2_0()); }
+{ before(grammarAccess.getGeneralizationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getGeneralizationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); }
 )
 
 ;
@@ -5156,8 +5128,8 @@ rule__Implementation__LeftAssignment_0
     }
 :
 (
-{ before(grammarAccess.getImplementationAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getImplementationAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); }
+{ before(grammarAccess.getImplementationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getImplementationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); }
 )
 
 ;
@@ -5171,8 +5143,8 @@ rule__Implementation__RightAssignment_2
     }
 :
 (
-{ before(grammarAccess.getImplementationAccess().getRightClassifierAssociationEndParserRuleCall_2_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getImplementationAccess().getRightClassifierAssociationEndParserRuleCall_2_0()); }
+{ before(grammarAccess.getImplementationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getImplementationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); }
 )
 
 ;
@@ -5186,8 +5158,8 @@ rule__CommentLink__LeftAssignment_0
     }
 :
 (
-{ before(grammarAccess.getCommentLinkAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getCommentLinkAccess().getLeftClassifierAssociationEndParserRuleCall_0_0()); }
+{ before(grammarAccess.getCommentLinkAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getCommentLinkAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); }
 )
 
 ;
@@ -5258,8 +5230,8 @@ rule__Association__LeftAssignment_2
     }
 :
 (
-{ before(grammarAccess.getAssociationAccess().getLeftClassifierAssociationEndParserRuleCall_2_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getAssociationAccess().getLeftClassifierAssociationEndParserRuleCall_2_0()); }
+{ before(grammarAccess.getAssociationAccess().getLeftUMLTypeReferenceParserRuleCall_2_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getAssociationAccess().getLeftUMLTypeReferenceParserRuleCall_2_0()); }
 )
 
 ;
@@ -5292,8 +5264,8 @@ rule__Association__RightAssignment_4
     }
 :
 (
-{ before(grammarAccess.getAssociationAccess().getRightClassifierAssociationEndParserRuleCall_4_0()); }
-	ruleClassifierAssociationEnd{ after(grammarAccess.getAssociationAccess().getRightClassifierAssociationEndParserRuleCall_4_0()); }
+{ before(grammarAccess.getAssociationAccess().getRightUMLTypeReferenceParserRuleCall_4_0()); }
+	ruleUMLTypeReference{ after(grammarAccess.getAssociationAccess().getRightUMLTypeReferenceParserRuleCall_4_0()); }
 )
 
 ;
