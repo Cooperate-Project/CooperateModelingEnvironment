@@ -1694,31 +1694,65 @@ ruleAssociationProperties returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_2='|' 
+)(	otherlv_2=',' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getAssociationPropertiesAccess().getVerticalLineKeyword_2_0());
+    	newLeafNode(otherlv_2, grammarAccess.getAssociationPropertiesAccess().getCommaKeyword_2_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAssociationPropertiesRule());
+	        }
+        }
+	otherlv_3=RULE_ID
+	{
+		newLeafNode(otherlv_3, grammarAccess.getAssociationPropertiesAccess().getPropertyLeftPropertyCrossReference_2_1_0()); 
+	}
+
+)
+))?(	otherlv_4='|' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getAssociationPropertiesAccess().getVerticalLineKeyword_3_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAssociationPropertiesAccess().getCardinalityRightCardinalityParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getAssociationPropertiesAccess().getCardinalityRightCardinalityParserRuleCall_3_1_0()); 
 	    }
-		lv_cardinalityRight_3_0=ruleCardinality		{
+		lv_cardinalityRight_5_0=ruleCardinality		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAssociationPropertiesRule());
 	        }
        		set(
        			$current, 
        			"cardinalityRight",
-        		lv_cardinalityRight_3_0, 
+        		lv_cardinalityRight_5_0, 
         		"de.cooperateproject.modeling.textual.cls.Cls.Cardinality");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))?	otherlv_4=']' 
+)(	otherlv_6=',' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getAssociationPropertiesAccess().getRightSquareBracketKeyword_3());
+    	newLeafNode(otherlv_6, grammarAccess.getAssociationPropertiesAccess().getCommaKeyword_3_2_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAssociationPropertiesRule());
+	        }
+        }
+	otherlv_7=RULE_ID
+	{
+		newLeafNode(otherlv_7, grammarAccess.getAssociationPropertiesAccess().getPropertyRightPropertyCrossReference_3_2_1_0()); 
+	}
+
+)
+))?)?	otherlv_8=']' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getAssociationPropertiesAccess().getRightSquareBracketKeyword_4());
     }
 )
 ;

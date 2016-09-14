@@ -171,9 +171,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ClassifierAssociationEnd"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//UMLTypeReference"
         containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//ClassifierAssociationEnd"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//UMLTypeReference"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association">
@@ -183,7 +183,7 @@
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//AssociationProperties"
-        containment="true" resolveProxies="false"/>
+        containment="true" resolveProxies="false" eOpposite="#//AssociationProperties/association"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregationKind" lowerBound="1"
         eType="#//AggregationKind"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" lowerBound="1"
@@ -228,6 +228,10 @@
         containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalityRight" eType="#//Cardinality"
         containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyLeft" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyRight" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
+        eType="#//Association" eOpposite="#//Association/properties"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cardinality">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" unique="false"

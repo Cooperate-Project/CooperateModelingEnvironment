@@ -129,7 +129,7 @@ MemberEnd:
 ;
 
 AssociationProperties: 
-	'[' cardinalityLeft = Cardinality ('|' cardinalityRight = Cardinality)? ']'
+	'[' cardinalityLeft = Cardinality (',' propertyLeft = [uml::Property])? ('|' cardinalityRight = Cardinality (',' propertyRight = [uml::Property])?)? ']'
 ;
 
 Cardinality: 

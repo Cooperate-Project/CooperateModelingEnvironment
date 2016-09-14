@@ -73,6 +73,8 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberEndAccess().getGroup(), "rule__MemberEnd__Group__0");
 					put(grammarAccess.getAssociationPropertiesAccess().getGroup(), "rule__AssociationProperties__Group__0");
 					put(grammarAccess.getAssociationPropertiesAccess().getGroup_2(), "rule__AssociationProperties__Group_2__0");
+					put(grammarAccess.getAssociationPropertiesAccess().getGroup_3(), "rule__AssociationProperties__Group_3__0");
+					put(grammarAccess.getAssociationPropertiesAccess().getGroup_3_2(), "rule__AssociationProperties__Group_3_2__0");
 					put(grammarAccess.getCardinalityAccess().getGroup(), "rule__Cardinality__Group__0");
 					put(grammarAccess.getCardinalityAccess().getGroup_1(), "rule__Cardinality__Group_1__0");
 					put(grammarAccess.getClassDiagramAccess().getNameAssignment_2(), "rule__ClassDiagram__NameAssignment_2");
@@ -129,7 +131,9 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberEndAccess().getCardinalityAssignment_2(), "rule__MemberEnd__CardinalityAssignment_2");
 					put(grammarAccess.getMemberEndAccess().getNavigableAssignment_3(), "rule__MemberEnd__NavigableAssignment_3");
 					put(grammarAccess.getAssociationPropertiesAccess().getCardinalityLeftAssignment_1(), "rule__AssociationProperties__CardinalityLeftAssignment_1");
-					put(grammarAccess.getAssociationPropertiesAccess().getCardinalityRightAssignment_2_1(), "rule__AssociationProperties__CardinalityRightAssignment_2_1");
+					put(grammarAccess.getAssociationPropertiesAccess().getPropertyLeftAssignment_2_1(), "rule__AssociationProperties__PropertyLeftAssignment_2_1");
+					put(grammarAccess.getAssociationPropertiesAccess().getCardinalityRightAssignment_3_1(), "rule__AssociationProperties__CardinalityRightAssignment_3_1");
+					put(grammarAccess.getAssociationPropertiesAccess().getPropertyRightAssignment_3_2_1(), "rule__AssociationProperties__PropertyRightAssignment_3_2_1");
 					put(grammarAccess.getCardinalityAccess().getLowerBoundAssignment_0(), "rule__Cardinality__LowerBoundAssignment_0");
 					put(grammarAccess.getCardinalityAccess().getUpperBoundAssignment_1_1(), "rule__Cardinality__UpperBoundAssignment_1_1");
 				}

@@ -4,12 +4,12 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
@@ -63,8 +63,8 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssociationEnd getLeft() {
-		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
+	public UMLTypeReference getLeft() {
+		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ClassifierAssociationEnd newLeft) {
+	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
 	}
 
@@ -81,8 +81,8 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssociationEnd getRight() {
-		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
+	public UMLTypeReference getRight() {
+		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight(ClassifierAssociationEnd newRight) {
+	public void setRight(UMLTypeReference newRight) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
 	}
 

@@ -107,7 +107,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     AssociationProperties returns AssociationProperties
 	 *
 	 * Constraint:
-	 *     (cardinalityLeft=Cardinality cardinalityRight=Cardinality?)
+	 *     (cardinalityLeft=Cardinality propertyLeft=[Property|ID]? (cardinalityRight=Cardinality propertyRight=[Property|ID]?)?)
 	 */
 	protected void sequence_AssociationProperties(ISerializationContext context, AssociationProperties semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

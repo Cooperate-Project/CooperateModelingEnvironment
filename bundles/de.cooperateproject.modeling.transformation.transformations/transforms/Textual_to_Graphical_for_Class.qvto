@@ -350,12 +350,14 @@ mapping cls::Association::nameDecorationAssociation() : notation::DecorationNode
 }
 
 mapping cls::AssociationProperties::targetRoleDecoration() : notation::DecorationNode
+when {self.propertyRight != null}
 {
 	type := "6003";
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationProperties::sourceRoleDecoration() : notation::DecorationNode
+when {self.propertyLeft != null}
 {
 	type := "6005";
 	layoutConstraint := result.toEObject().map locationConstraint();

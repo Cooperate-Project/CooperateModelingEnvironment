@@ -49,7 +49,7 @@
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_IN0fQHmREea7c9xs28iX1A" name="has" memberEnd="_IN1tYXmREea7c9xs28iX1A _IN2UcHmREea7c9xs28iX1A _NdebAHmREea7c9xs28iX1A" navigableOwnedEnd="_NdebAHmREea7c9xs28iX1A">
+  <packagedElement xmi:type="uml:Association" xmi:id="_IN0fQHmREea7c9xs28iX1A" name="akwardAssociation" memberEnd="_IN1tYXmREea7c9xs28iX1A _IN2UcHmREea7c9xs28iX1A _NdebAHmREea7c9xs28iX1A" navigableOwnedEnd="_NdebAHmREea7c9xs28iX1A">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IN1GUHmREea7c9xs28iX1A" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_IN1tYHmREea7c9xs28iX1A" key="nature" value="UML_Nature"/>
     </eAnnotations>

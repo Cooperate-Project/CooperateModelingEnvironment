@@ -900,6 +900,33 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAssociationProperties_PropertyLeft() {
+		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssociationProperties_PropertyRight() {
+		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAssociationProperties_Association() {
+		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCardinality() {
 		return cardinalityEClass;
 	}
@@ -1151,6 +1178,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		associationPropertiesEClass = createEClass(ASSOCIATION_PROPERTIES);
 		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__CARDINALITY_LEFT);
 		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__CARDINALITY_RIGHT);
+		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__PROPERTY_LEFT);
+		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__PROPERTY_RIGHT);
+		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__ASSOCIATION);
 
 		cardinalityEClass = createEClass(CARDINALITY);
 		createEAttribute(cardinalityEClass, CARDINALITY__LOWER_BOUND);
@@ -1379,11 +1409,11 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEClass(connectorEClass, Connector.class, "Connector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typedConnectorEClass, TypedConnector.class, "TypedConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedConnector_Left(), this.getClassifierAssociationEnd(), null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedConnector_Right(), this.getClassifierAssociationEnd(), null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedConnector_Left(), this.getUMLTypeReference(), null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedConnector_Right(), this.getUMLTypeReference(), null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociation_Properties(), this.getAssociationProperties(), null, "properties", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_Properties(), this.getAssociationProperties(), this.getAssociationProperties_Association(), "properties", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_Bidirectional(), ecorePackage.getEBoolean(), "bidirectional", "false", 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1414,6 +1444,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEClass(associationPropertiesEClass, AssociationProperties.class, "AssociationProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociationProperties_CardinalityLeft(), this.getCardinality(), null, "cardinalityLeft", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationProperties_CardinalityRight(), this.getCardinality(), null, "cardinalityRight", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociationProperties_PropertyLeft(), theUMLPackage.getProperty(), null, "propertyLeft", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociationProperties_PropertyRight(), theUMLPackage.getProperty(), null, "propertyRight", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociationProperties_Association(), this.getAssociation(), this.getAssociation_Properties(), "association", null, 1, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cardinalityEClass, Cardinality.class, "Cardinality", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCardinality_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

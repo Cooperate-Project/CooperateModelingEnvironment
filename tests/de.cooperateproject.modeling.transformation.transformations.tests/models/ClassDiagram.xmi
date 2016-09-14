@@ -80,6 +80,8 @@
     <properties>
       <cardinalityLeft lowerBound="1" upperBound="1"/>
       <cardinalityRight lowerBound="1" upperBound="-1"/>
+      <propertyLeft href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
+      <propertyRight href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
     </properties>
   </connectors>
   <connectors xsi:type="cls:Generalization">
@@ -109,6 +111,8 @@
     <properties>
       <cardinalityLeft lowerBound="0" upperBound="-1"/>
       <cardinalityRight lowerBound="0" upperBound="-1"/>
+      <propertyLeft href="ClassDiagram.uml#_cPG6IXnPEea_kLaSOi1rnw"/>
+      <propertyRight href="ClassDiagram.uml#_cPG6IHnPEea_kLaSOi1rnw"/>
     </properties>
   </connectors>
   <connectors xsi:type="cls:CommentLink">

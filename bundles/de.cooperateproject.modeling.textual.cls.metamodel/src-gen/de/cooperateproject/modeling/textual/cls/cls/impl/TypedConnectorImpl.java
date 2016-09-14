@@ -2,10 +2,10 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -47,8 +47,8 @@ public abstract class TypedConnectorImpl extends ConnectorImpl implements TypedC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssociationEnd getLeft() {
-		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
+	public UMLTypeReference getLeft() {
+		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public abstract class TypedConnectorImpl extends ConnectorImpl implements TypedC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ClassifierAssociationEnd newLeft) {
+	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
 	}
 
@@ -65,8 +65,8 @@ public abstract class TypedConnectorImpl extends ConnectorImpl implements TypedC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssociationEnd getRight() {
-		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
+	public UMLTypeReference getRight() {
+		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public abstract class TypedConnectorImpl extends ConnectorImpl implements TypedC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRight(ClassifierAssociationEnd newRight) {
+	public void setRight(UMLTypeReference newRight) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
 	}
 

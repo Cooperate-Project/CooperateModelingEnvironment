@@ -182,7 +182,7 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	right := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference(result);
 	bidirectional := (association.ownedEnd-association.navigableOwnedEnd)->isEmpty();
 	
-	properties := association.map edgeToAssociationProperties(regularIndex);
+	properties := self.map edgeToAssociationProperties(regularIndex);
 	
 	var relevantComments := self.findEdgeComments(allEdges);
 	assert warning (relevantComments->size() = 1) with log ('There can be no more than one comments for an association.');
@@ -194,14 +194,20 @@ query uml::Association::findNavigableEnds() : OrderedSet(Property)
 	return self.memberEnd->select(it | it.owner != self or self.navigableOwnedEnd->includes(it))
 }
 
-mapping uml::Association::edgeToAssociationProperties(firstIndex : Integer) : cls::AssociationProperties {
-	assert error (self.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
+mapping notation::Edge::edgeToAssociationProperties(firstIndex : Integer) : cls::AssociationProperties
+when {self.element.oclIsKindOf(uml::Association)}
+{
+	var umlAssociation := self.element.oclAsType(uml::Association);
+	assert error (umlAssociation.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
 		
-	var left := self.memberEnd->at(firstIndex);
-	var right := self.memberEnd->at(if firstIndex = 1 then 2 else 1 endif);
+	var left := umlAssociation.memberEnd->at(firstIndex);
+	var right := umlAssociation.memberEnd->at(if firstIndex = 1 then 2 else 1 endif);
 	
 	cardinalityLeft := left.map multiplicityElementToCardinality();
 	cardinalityRight := right.map multiplicityElementToCardinality();
+	
+	propertyLeft := if self.children->exists(type = "6005") then left else null endif;
+	propertyRight := if self.children->exists(type = "6003") then right else null endif;
 }
 
 

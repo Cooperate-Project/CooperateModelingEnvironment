@@ -1661,13 +1661,40 @@ public interface ClsPackage extends EPackage {
 	int ASSOCIATION_PROPERTIES__CARDINALITY_RIGHT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Property Left</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_PROPERTIES__PROPERTY_LEFT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Property Right</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_PROPERTIES__PROPERTY_RIGHT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Association</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_PROPERTIES__ASSOCIATION = 4;
+
+	/**
 	 * The number of structural features of the '<em>Association Properties</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_PROPERTIES_FEATURE_COUNT = 2;
+	int ASSOCIATION_PROPERTIES_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Association Properties</em>' class.
@@ -2567,6 +2594,39 @@ public interface ClsPackage extends EPackage {
 	EReference getAssociationProperties_CardinalityRight();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getPropertyLeft <em>Property Left</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property Left</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getPropertyLeft()
+	 * @see #getAssociationProperties()
+	 * @generated
+	 */
+	EReference getAssociationProperties_PropertyLeft();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getPropertyRight <em>Property Right</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property Right</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getPropertyRight()
+	 * @see #getAssociationProperties()
+	 * @generated
+	 */
+	EReference getAssociationProperties_PropertyRight();
+
+	/**
+	 * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation <em>Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Association</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation()
+	 * @see #getAssociationProperties()
+	 * @generated
+	 */
+	EReference getAssociationProperties_Association();
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Cardinality <em>Cardinality</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3280,6 +3340,30 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSOCIATION_PROPERTIES__CARDINALITY_RIGHT = eINSTANCE.getAssociationProperties_CardinalityRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Left</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION_PROPERTIES__PROPERTY_LEFT = eINSTANCE.getAssociationProperties_PropertyLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Right</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION_PROPERTIES__PROPERTY_RIGHT = eINSTANCE.getAssociationProperties_PropertyRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Association</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSOCIATION_PROPERTIES__ASSOCIATION = eINSTANCE.getAssociationProperties_Association();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CardinalityImpl <em>Cardinality</em>}' class.

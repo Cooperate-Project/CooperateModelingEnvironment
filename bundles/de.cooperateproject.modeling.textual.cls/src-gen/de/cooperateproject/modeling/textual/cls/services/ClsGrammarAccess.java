@@ -998,16 +998,28 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCardinalityLeftAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cCardinalityLeftCardinalityParserRuleCall_1_0 = (RuleCall)cCardinalityLeftAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cVerticalLineKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cCardinalityRightAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cCardinalityRightCardinalityParserRuleCall_2_1_0 = (RuleCall)cCardinalityRightAssignment_2_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cPropertyLeftAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cPropertyLeftPropertyCrossReference_2_1_0 = (CrossReference)cPropertyLeftAssignment_2_1.eContents().get(0);
+		private final RuleCall cPropertyLeftPropertyIDTerminalRuleCall_2_1_0_1 = (RuleCall)cPropertyLeftPropertyCrossReference_2_1_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cVerticalLineKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cCardinalityRightAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cCardinalityRightCardinalityParserRuleCall_3_1_0 = (RuleCall)cCardinalityRightAssignment_3_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Assignment cPropertyRightAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final CrossReference cPropertyRightPropertyCrossReference_3_2_1_0 = (CrossReference)cPropertyRightAssignment_3_2_1.eContents().get(0);
+		private final RuleCall cPropertyRightPropertyIDTerminalRuleCall_3_2_1_0_1 = (RuleCall)cPropertyRightPropertyCrossReference_3_2_1_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//AssociationProperties:
-		//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality)? ']';
+		//	'[' cardinalityLeft=Cardinality (',' propertyLeft=[uml::Property])? ('|' cardinalityRight=Cardinality (','
+		//	propertyRight=[uml::Property])?)? ']';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality)? ']'
+		//'[' cardinalityLeft=Cardinality (',' propertyLeft=[uml::Property])? ('|' cardinalityRight=Cardinality (','
+		//propertyRight=[uml::Property])?)? ']'
 		public Group getGroup() { return cGroup; }
 
 		//'['
@@ -1019,20 +1031,50 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//Cardinality
 		public RuleCall getCardinalityLeftCardinalityParserRuleCall_1_0() { return cCardinalityLeftCardinalityParserRuleCall_1_0; }
 
-		//('|' cardinalityRight=Cardinality)?
+		//(',' propertyLeft=[uml::Property])?
 		public Group getGroup_2() { return cGroup_2; }
 
+		//','
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//propertyLeft=[uml::Property]
+		public Assignment getPropertyLeftAssignment_2_1() { return cPropertyLeftAssignment_2_1; }
+
+		//[uml::Property]
+		public CrossReference getPropertyLeftPropertyCrossReference_2_1_0() { return cPropertyLeftPropertyCrossReference_2_1_0; }
+
+		//ID
+		public RuleCall getPropertyLeftPropertyIDTerminalRuleCall_2_1_0_1() { return cPropertyLeftPropertyIDTerminalRuleCall_2_1_0_1; }
+
+		//('|' cardinalityRight=Cardinality (',' propertyRight=[uml::Property])?)?
+		public Group getGroup_3() { return cGroup_3; }
+
 		//'|'
-		public Keyword getVerticalLineKeyword_2_0() { return cVerticalLineKeyword_2_0; }
+		public Keyword getVerticalLineKeyword_3_0() { return cVerticalLineKeyword_3_0; }
 
 		//cardinalityRight=Cardinality
-		public Assignment getCardinalityRightAssignment_2_1() { return cCardinalityRightAssignment_2_1; }
+		public Assignment getCardinalityRightAssignment_3_1() { return cCardinalityRightAssignment_3_1; }
 
 		//Cardinality
-		public RuleCall getCardinalityRightCardinalityParserRuleCall_2_1_0() { return cCardinalityRightCardinalityParserRuleCall_2_1_0; }
+		public RuleCall getCardinalityRightCardinalityParserRuleCall_3_1_0() { return cCardinalityRightCardinalityParserRuleCall_3_1_0; }
+
+		//(',' propertyRight=[uml::Property])?
+		public Group getGroup_3_2() { return cGroup_3_2; }
+
+		//','
+		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+
+		//propertyRight=[uml::Property]
+		public Assignment getPropertyRightAssignment_3_2_1() { return cPropertyRightAssignment_3_2_1; }
+
+		//[uml::Property]
+		public CrossReference getPropertyRightPropertyCrossReference_3_2_1_0() { return cPropertyRightPropertyCrossReference_3_2_1_0; }
+
+		//ID
+		public RuleCall getPropertyRightPropertyIDTerminalRuleCall_3_2_1_0_1() { return cPropertyRightPropertyIDTerminalRuleCall_3_2_1_0_1; }
 
 		//']'
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
 
 	public class CardinalityElements extends AbstractParserRuleElementFinder {
@@ -1646,7 +1688,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AssociationProperties:
-	//	'[' cardinalityLeft=Cardinality ('|' cardinalityRight=Cardinality)? ']';
+	//	'[' cardinalityLeft=Cardinality (',' propertyLeft=[uml::Property])? ('|' cardinalityRight=Cardinality (','
+	//	propertyRight=[uml::Property])?)? ']';
 	public AssociationPropertiesElements getAssociationPropertiesAccess() {
 		return pAssociationProperties;
 	}

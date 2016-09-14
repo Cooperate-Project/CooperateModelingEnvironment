@@ -179,7 +179,7 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	result += rightElement.type.map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));
 	
 	// association properties
-	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Association", umlAssociation.eobject(), "AssociationProperties", connector.properties.eobject());
+	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Edge", edge.eobject(), "AssociationProperties", connector.properties.eobject());
 	associationProperties.parameters.parameters += new trace::VarParameterValue("firstIndex", regularIndex);
 	result += associationProperties;	
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", leftElement.eobject(), "Cardinality", connector.properties.cardinalityLeft.eobject());

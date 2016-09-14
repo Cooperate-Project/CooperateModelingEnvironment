@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Type;
 public interface Association extends NamedElement<org.eclipse.uml2.uml.Association>, TypedConnector, Commentable {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation <em>Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
@@ -34,7 +35,8 @@ public interface Association extends NamedElement<org.eclipse.uml2.uml.Associati
 	 * @return the value of the '<em>Properties</em>' containment reference.
 	 * @see #setProperties(AssociationProperties)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Properties()
-	 * @model containment="true"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation
+	 * @model opposite="association" containment="true"
 	 * @generated
 	 */
 	AssociationProperties getProperties();
