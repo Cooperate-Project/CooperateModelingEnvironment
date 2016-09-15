@@ -41,6 +41,7 @@ mapping notation::Node::nodeToClass() : cls::Class
 	
 	_abstract := clz.isAbstract;
 	
+	aliasExpression := clz.nameExpression; 
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
@@ -53,6 +54,7 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 	var interface := self.element.oclAsType(uml::Interface);
 	referencedElement := interface;
 	
+	aliasExpression := interface.nameExpression;
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
