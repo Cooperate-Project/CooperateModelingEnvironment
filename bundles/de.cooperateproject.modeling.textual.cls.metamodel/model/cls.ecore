@@ -81,14 +81,19 @@
       <eTypeArguments eTypeParameter="#//NamedElement/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElementLongName" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElementAliased" abstract="true">
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longName" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aliasExpression" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//StringExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="if (getAliasExpression() == null) {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}&#xD;&#xA;return getAliasExpression().getName();"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eGenericSuperTypes eClassifier="#//NamedElement">
-      <eTypeArguments eTypeParameter="#//NamedElementLongName/T"/>
+      <eTypeArguments eTypeParameter="#//NamedElementAliased/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Classifier" abstract="true">
@@ -103,7 +108,7 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-    <eGenericSuperTypes eClassifier="#//NamedElementLongName">
+    <eGenericSuperTypes eClassifier="#//NamedElementAliased">
       <eTypeArguments eTypeParameter="#//Classifier/T"/>
     </eGenericSuperTypes>
   </eClassifiers>

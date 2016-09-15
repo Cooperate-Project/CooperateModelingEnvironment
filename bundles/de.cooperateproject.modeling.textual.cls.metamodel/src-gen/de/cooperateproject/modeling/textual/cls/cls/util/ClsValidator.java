@@ -22,7 +22,7 @@ import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
@@ -148,8 +148,8 @@ public class ClsValidator extends EObjectValidator {
 				return validateNamedElementOptional((NamedElementOptional<?>)value, diagnostics, context);
 			case ClsPackage.NAMED_ELEMENT:
 				return validateNamedElement((NamedElement<?>)value, diagnostics, context);
-			case ClsPackage.NAMED_ELEMENT_LONG_NAME:
-				return validateNamedElementLongName((NamedElementLongName<?>)value, diagnostics, context);
+			case ClsPackage.NAMED_ELEMENT_ALIASED:
+				return validateNamedElementAliased((NamedElementAliased<?>)value, diagnostics, context);
 			case ClsPackage.CLASSIFIER:
 				return validateClassifier((Classifier<?>)value, diagnostics, context);
 			case ClsPackage.CLASS:
@@ -296,17 +296,17 @@ public class ClsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNamedElementLongName(NamedElementLongName<?> namedElementLongName, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment((EObject)namedElementLongName, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)namedElementLongName, diagnostics, context);
-		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(namedElementLongName, diagnostics, context);
+	public boolean validateNamedElementAliased(NamedElementAliased<?> namedElementAliased, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment((EObject)namedElementAliased, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)namedElementAliased, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(namedElementAliased, diagnostics, context);
 		return result;
 	}
 

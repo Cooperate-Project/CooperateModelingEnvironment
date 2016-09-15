@@ -56,6 +56,7 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     aliasExpression=[StringExpression|ID] (ambiguity) (rule end)
 	 *     referencedElement=[Class|ID] (ambiguity) (rule end)
 	 */
 	protected void emit_Class___LeftCurlyBracketKeyword_5_0_RightCurlyBracketKeyword_5_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -67,6 +68,7 @@ public class ClsSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     aliasExpression=[StringExpression|ID] (ambiguity) (rule end)
 	 *     referencedElement=[Interface|ID] (ambiguity) (rule end)
 	 */
 	protected void emit_Interface___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

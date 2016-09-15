@@ -19,7 +19,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
@@ -128,8 +128,8 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public <T extends NamedElement> Adapter caseNamedElementLongName(NamedElementLongName<T> object) {
-				return createNamedElementLongNameAdapter();
+			public <T extends NamedElement> Adapter caseNamedElementAliased(NamedElementAliased<T> object) {
+				return createNamedElementAliasedAdapter();
 			}
 			@Override
 			public <T extends Classifier> Adapter caseClassifier(de.cooperateproject.modeling.textual.cls.cls.Classifier<T> object) {
@@ -340,16 +340,16 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName <em>Named Element Long Name</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased <em>Named Element Aliased</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
 	 * @generated
 	 */
-	public Adapter createNamedElementLongNameAdapter() {
+	public Adapter createNamedElementAliasedAdapter() {
 		return null;
 	}
 

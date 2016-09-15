@@ -178,7 +178,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? (longName=STRING | longName=ID)? referencedElement=[Class|ID] members+=Member*)
+	 *     (visibility=Visibility? abstract?='abstract'? referencedElement=[Class|ID] aliasExpression=[StringExpression|ID]? members+=Member*)
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -276,7 +276,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? (longName=STRING | longName=ID)? referencedElement=[Interface|ID] members+=Member*)
+	 *     (visibility=Visibility? referencedElement=[Interface|ID] aliasExpression=[StringExpression|ID]? members+=Member*)
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

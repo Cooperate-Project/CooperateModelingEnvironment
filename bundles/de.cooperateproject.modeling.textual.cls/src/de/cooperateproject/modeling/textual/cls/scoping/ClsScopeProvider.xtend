@@ -12,7 +12,10 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Commentable
 import de.cooperateproject.modeling.textual.cls.cls.Connector
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
@@ -30,8 +33,7 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.scoping.impl.FilteringScope
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
+import org.eclipse.uml2.uml.NamedElement
 
 /**
  * This class contains custom scoping description.
@@ -135,14 +137,20 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
 				val container = typeRef.eContainer
 				if (container instanceof MemberEnd) {
-					return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION);
+					return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION)
 				}
 			}
 		}
 		
 		override caseMultiAssociation(MultiAssociation multiAssociation) {
 			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
-				return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION);
+				return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION)
+			}
+		}
+		
+		override <T extends org.eclipse.uml2.uml.NamedElement> caseNamedElementAliased(NamedElementAliased<T> namedElementAliased) {
+			if (reference == ClsPackage.Literals.NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION) {
+				return UMLPackage.Literals.STRING_EXPRESSION.filterScope(namedElementAliased.referencedElement)
 			}
 		}
 

@@ -38,8 +38,6 @@ public class ClsParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getClassifierAccess().getAlternatives(), "rule__Classifier__Alternatives");
-					put(grammarAccess.getClassAccess().getLongNameAlternatives_3_0_0(), "rule__Class__LongNameAlternatives_3_0_0");
-					put(grammarAccess.getInterfaceAccess().getLongNameAlternatives_2_0_0(), "rule__Interface__LongNameAlternatives_2_0_0");
 					put(grammarAccess.getTypeReferenceAccess().getAlternatives(), "rule__TypeReference__Alternatives");
 					put(grammarAccess.getMemberAccess().getAlternatives(), "rule__Member__Alternatives");
 					put(grammarAccess.getConnectorAccess().getAlternatives(), "rule__Connector__Alternatives");
@@ -52,10 +50,10 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
 					put(grammarAccess.getClassAccess().getGroup(), "rule__Class__Group__0");
-					put(grammarAccess.getClassAccess().getGroup_3(), "rule__Class__Group_3__0");
+					put(grammarAccess.getClassAccess().getGroup_4(), "rule__Class__Group_4__0");
 					put(grammarAccess.getClassAccess().getGroup_5(), "rule__Class__Group_5__0");
 					put(grammarAccess.getInterfaceAccess().getGroup(), "rule__Interface__Group__0");
-					put(grammarAccess.getInterfaceAccess().getGroup_2(), "rule__Interface__Group_2__0");
+					put(grammarAccess.getInterfaceAccess().getGroup_3(), "rule__Interface__Group_3__0");
 					put(grammarAccess.getInterfaceAccess().getGroup_4(), "rule__Interface__Group_4__0");
 					put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
 					put(grammarAccess.getMethodAccess().getGroup(), "rule__Method__Group__0");
@@ -84,12 +82,12 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPackageImportAccess().getPackageAssignment_1(), "rule__PackageImport__PackageAssignment_1");
 					put(grammarAccess.getClassAccess().getVisibilityAssignment_0(), "rule__Class__VisibilityAssignment_0");
 					put(grammarAccess.getClassAccess().getAbstractAssignment_1(), "rule__Class__AbstractAssignment_1");
-					put(grammarAccess.getClassAccess().getLongNameAssignment_3_0(), "rule__Class__LongNameAssignment_3_0");
-					put(grammarAccess.getClassAccess().getReferencedElementAssignment_4(), "rule__Class__ReferencedElementAssignment_4");
+					put(grammarAccess.getClassAccess().getReferencedElementAssignment_3(), "rule__Class__ReferencedElementAssignment_3");
+					put(grammarAccess.getClassAccess().getAliasExpressionAssignment_4_1(), "rule__Class__AliasExpressionAssignment_4_1");
 					put(grammarAccess.getClassAccess().getMembersAssignment_5_1(), "rule__Class__MembersAssignment_5_1");
 					put(grammarAccess.getInterfaceAccess().getVisibilityAssignment_0(), "rule__Interface__VisibilityAssignment_0");
-					put(grammarAccess.getInterfaceAccess().getLongNameAssignment_2_0(), "rule__Interface__LongNameAssignment_2_0");
-					put(grammarAccess.getInterfaceAccess().getReferencedElementAssignment_3(), "rule__Interface__ReferencedElementAssignment_3");
+					put(grammarAccess.getInterfaceAccess().getReferencedElementAssignment_2(), "rule__Interface__ReferencedElementAssignment_2");
+					put(grammarAccess.getInterfaceAccess().getAliasExpressionAssignment_3_1(), "rule__Interface__AliasExpressionAssignment_3_1");
 					put(grammarAccess.getInterfaceAccess().getMembersAssignment_4_1(), "rule__Interface__MembersAssignment_4_1");
 					put(grammarAccess.getDataTypeReferenceAccess().getTypeAssignment(), "rule__DataTypeReference__TypeAssignment");
 					put(grammarAccess.getUMLTypeReferenceAccess().getTypeAssignment(), "rule__UMLTypeReference__TypeAssignment");

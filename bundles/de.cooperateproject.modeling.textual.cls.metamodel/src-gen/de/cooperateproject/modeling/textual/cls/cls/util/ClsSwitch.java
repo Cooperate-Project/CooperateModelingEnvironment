@@ -21,7 +21,7 @@ import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
@@ -146,19 +146,19 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ClsPackage.NAMED_ELEMENT_LONG_NAME: {
-				NamedElementLongName<?> namedElementLongName = (NamedElementLongName<?>)theEObject;
-				T1 result = caseNamedElementLongName(namedElementLongName);
-				if (result == null) result = caseNamedElement(namedElementLongName);
-				if (result == null) result = caseNamedElementOptional(namedElementLongName);
-				if (result == null) result = caseUMLReferencingElement(namedElementLongName);
+			case ClsPackage.NAMED_ELEMENT_ALIASED: {
+				NamedElementAliased<?> namedElementAliased = (NamedElementAliased<?>)theEObject;
+				T1 result = caseNamedElementAliased(namedElementAliased);
+				if (result == null) result = caseNamedElement(namedElementAliased);
+				if (result == null) result = caseNamedElementOptional(namedElementAliased);
+				if (result == null) result = caseUMLReferencingElement(namedElementAliased);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ClsPackage.CLASSIFIER: {
 				Classifier<?> classifier = (Classifier<?>)theEObject;
 				T1 result = caseClassifier(classifier);
-				if (result == null) result = caseNamedElementLongName(classifier);
+				if (result == null) result = caseNamedElementAliased(classifier);
 				if (result == null) result = caseNamedElement(classifier);
 				if (result == null) result = caseNamedElementOptional(classifier);
 				if (result == null) result = caseUMLReferencingElement(classifier);
@@ -169,7 +169,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				de.cooperateproject.modeling.textual.cls.cls.Class class_ = (de.cooperateproject.modeling.textual.cls.cls.Class)theEObject;
 				T1 result = caseClass(class_);
 				if (result == null) result = caseClassifier(class_);
-				if (result == null) result = caseNamedElementLongName(class_);
+				if (result == null) result = caseNamedElementAliased(class_);
 				if (result == null) result = caseNamedElement(class_);
 				if (result == null) result = caseNamedElementOptional(class_);
 				if (result == null) result = caseUMLReferencingElement(class_);
@@ -180,7 +180,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				Interface interface_ = (Interface)theEObject;
 				T1 result = caseInterface(interface_);
 				if (result == null) result = caseClassifier(interface_);
-				if (result == null) result = caseNamedElementLongName(interface_);
+				if (result == null) result = caseNamedElementAliased(interface_);
 				if (result == null) result = caseNamedElement(interface_);
 				if (result == null) result = caseNamedElementOptional(interface_);
 				if (result == null) result = caseUMLReferencingElement(interface_);
@@ -448,17 +448,17 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element Long Name</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element Aliased</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element Long Name</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element Aliased</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends org.eclipse.uml2.uml.NamedElement> T1 caseNamedElementLongName(NamedElementLongName<T> object) {
+	public <T extends org.eclipse.uml2.uml.NamedElement> T1 caseNamedElementAliased(NamedElementAliased<T> object) {
 		return null;
 	}
 

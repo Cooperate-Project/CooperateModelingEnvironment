@@ -401,14 +401,14 @@ public interface ClsPackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPTIONAL_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementLongNameImpl <em>Named Element Long Name</em>}' class.
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementAliasedImpl <em>Named Element Aliased</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementLongNameImpl
-	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getNamedElementLongName()
+	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementAliasedImpl
+	 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getNamedElementAliased()
 	 * @generated
 	 */
-	int NAMED_ELEMENT_LONG_NAME = 8;
+	int NAMED_ELEMENT_ALIASED = 8;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -417,7 +417,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_LONG_NAME__REFERENCED_ELEMENT = NAMED_ELEMENT__REFERENCED_ELEMENT;
+	int NAMED_ELEMENT_ALIASED__REFERENCED_ELEMENT = NAMED_ELEMENT__REFERENCED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -426,25 +426,34 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_LONG_NAME__NAME = NAMED_ELEMENT__NAME;
+	int NAMED_ELEMENT_ALIASED__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Long Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Alias Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_LONG_NAME__LONG_NAME = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Named Element Long Name</em>' class.
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_LONG_NAME_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT_ALIASED__ALIAS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Named Element Aliased</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_ALIASED_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Has Referenced Element</em>' operation.
@@ -453,16 +462,16 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_LONG_NAME___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP;
+	int NAMED_ELEMENT_ALIASED___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The number of operations of the '<em>Named Element Long Name</em>' class.
+	 * The number of operations of the '<em>Named Element Aliased</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_LONG_NAME_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int NAMED_ELEMENT_ALIASED_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl <em>Classifier</em>}' class.
@@ -481,7 +490,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__REFERENCED_ELEMENT = NAMED_ELEMENT_LONG_NAME__REFERENCED_ELEMENT;
+	int CLASSIFIER__REFERENCED_ELEMENT = NAMED_ELEMENT_ALIASED__REFERENCED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -490,16 +499,25 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__NAME = NAMED_ELEMENT_LONG_NAME__NAME;
+	int CLASSIFIER__NAME = NAMED_ELEMENT_ALIASED__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Long Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Alias Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__LONG_NAME = NAMED_ELEMENT_LONG_NAME__LONG_NAME;
+	int CLASSIFIER__ALIAS_EXPRESSION = NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFIER__ALIAS = NAMED_ELEMENT_ALIASED__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -508,7 +526,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__VISIBILITY = NAMED_ELEMENT_LONG_NAME_FEATURE_COUNT + 0;
+	int CLASSIFIER__VISIBILITY = NAMED_ELEMENT_ALIASED_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -517,7 +535,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__MEMBERS = NAMED_ELEMENT_LONG_NAME_FEATURE_COUNT + 1;
+	int CLASSIFIER__MEMBERS = NAMED_ELEMENT_ALIASED_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Classifier</em>' class.
@@ -526,7 +544,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_FEATURE_COUNT = NAMED_ELEMENT_LONG_NAME_FEATURE_COUNT + 2;
+	int CLASSIFIER_FEATURE_COUNT = NAMED_ELEMENT_ALIASED_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Has Referenced Element</em>' operation.
@@ -535,7 +553,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_LONG_NAME___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP;
+	int CLASSIFIER___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_ALIASED___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Classifier</em>' class.
@@ -544,7 +562,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_OPERATION_COUNT = NAMED_ELEMENT_LONG_NAME_OPERATION_COUNT + 0;
+	int CLASSIFIER_OPERATION_COUNT = NAMED_ELEMENT_ALIASED_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassImpl <em>Class</em>}' class.
@@ -575,13 +593,22 @@ public interface ClsPackage extends EPackage {
 	int CLASS__NAME = CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Long Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Alias Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__LONG_NAME = CLASSIFIER__LONG_NAME;
+	int CLASS__ALIAS_EXPRESSION = CLASSIFIER__ALIAS_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ALIAS = CLASSIFIER__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -666,13 +693,22 @@ public interface ClsPackage extends EPackage {
 	int INTERFACE__NAME = CLASSIFIER__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Long Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Alias Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__LONG_NAME = CLASSIFIER__LONG_NAME;
+	int INTERFACE__ALIAS_EXPRESSION = CLASSIFIER__ALIAS_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__ALIAS = CLASSIFIER__ALIAS;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -2108,25 +2144,36 @@ public interface ClsPackage extends EPackage {
 	EOperation getNamedElement__HasReferencedElement__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName <em>Named Element Long Name</em>}'.
+	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased <em>Named Element Aliased</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Named Element Long Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName
+	 * @return the meta object for class '<em>Named Element Aliased</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
 	 * @generated
 	 */
-	EClass getNamedElementLongName();
+	EClass getNamedElementAliased();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName#getLongName <em>Long Name</em>}'.
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased#getAliasExpression <em>Alias Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Long Name</em>'.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName#getLongName()
-	 * @see #getNamedElementLongName()
+	 * @return the meta object for the reference '<em>Alias Expression</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased#getAliasExpression()
+	 * @see #getNamedElementAliased()
 	 * @generated
 	 */
-	EAttribute getNamedElementLongName_LongName();
+	EReference getNamedElementAliased_AliasExpression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alias</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased#getAlias()
+	 * @see #getNamedElementAliased()
+	 * @generated
+	 */
+	EAttribute getNamedElementAliased_Alias();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier <em>Classifier</em>}'.
@@ -2902,22 +2949,30 @@ public interface ClsPackage extends EPackage {
 		EOperation NAMED_ELEMENT___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNamedElement__HasReferencedElement__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementLongNameImpl <em>Named Element Long Name</em>}' class.
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementAliasedImpl <em>Named Element Aliased</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementLongNameImpl
-		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getNamedElementLongName()
+		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.NamedElementAliasedImpl
+		 * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getNamedElementAliased()
 		 * @generated
 		 */
-		EClass NAMED_ELEMENT_LONG_NAME = eINSTANCE.getNamedElementLongName();
+		EClass NAMED_ELEMENT_ALIASED = eINSTANCE.getNamedElementAliased();
 
 		/**
-		 * The meta object literal for the '<em><b>Long Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Alias Expression</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMED_ELEMENT_LONG_NAME__LONG_NAME = eINSTANCE.getNamedElementLongName_LongName();
+		EReference NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION = eINSTANCE.getNamedElementAliased_AliasExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT_ALIASED__ALIAS = eINSTANCE.getNamedElementAliased_Alias();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl <em>Classifier</em>}' class.

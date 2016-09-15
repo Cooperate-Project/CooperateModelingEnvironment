@@ -39,11 +39,11 @@ Classifier:
 ;
 
 Class:
-	visibility=Visibility? (abstract ?= 'abstract')? 'class' (longName = (STRING | ID) 'as')? referencedElement = [uml::Class|ID] ('{' (members += Member)* '}')?
+	visibility=Visibility? (abstract ?= 'abstract')? 'class' referencedElement = [uml::Class|ID] ('as' aliasExpression = [uml::StringExpression|ID])? ('{' (members += Member)* '}')?
 ;
 
 Interface:
-	visibility=Visibility? 'interface' (longName = (STRING | ID) 'as')? referencedElement = [uml::Interface|ID] ('{' (members += Member)* '}')?
+	visibility=Visibility? 'interface' referencedElement = [uml::Interface|ID] ('as' aliasExpression = [uml::StringExpression|ID])? ('{' (members += Member)* '}')?
 ;
 
 TypeReference: 

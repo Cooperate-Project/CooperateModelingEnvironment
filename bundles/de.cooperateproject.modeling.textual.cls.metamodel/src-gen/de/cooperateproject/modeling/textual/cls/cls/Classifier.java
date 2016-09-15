@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends NamedElementLongName<T> {
+public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends NamedElementAliased<T> {
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
 	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.cls.cls.Visibility}.

@@ -343,47 +343,24 @@ ruleClass returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getClassAccess().getClassKeyword_2());
     }
-((
 (
 (
-		lv_longName_3_1=RULE_STRING
 		{
-			newLeafNode(lv_longName_3_1, grammarAccess.getClassAccess().getLongNameSTRINGTerminalRuleCall_3_0_0_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getClassRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"longName",
-        		lv_longName_3_1, 
-        		"org.eclipse.xtext.common.Terminals.STRING");
-	    }
-
-    |		lv_longName_3_2=RULE_ID
-		{
-			newLeafNode(lv_longName_3_2, grammarAccess.getClassAccess().getLongNameIDTerminalRuleCall_3_0_0_1()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getClassRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"longName",
-        		lv_longName_3_2, 
-        		"org.eclipse.xtext.common.Terminals.ID");
-	    }
+        }
+	otherlv_3=RULE_ID
+	{
+		newLeafNode(otherlv_3, grammarAccess.getClassAccess().getReferencedElementClassCrossReference_3_0()); 
+	}
 
 )
-
-)
-)	otherlv_4='as' 
+)(	otherlv_4='as' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getClassAccess().getAsKeyword_3_1());
+    	newLeafNode(otherlv_4, grammarAccess.getClassAccess().getAsKeyword_4_0());
     }
-)?(
+(
 (
 		{
 			if ($current==null) {
@@ -392,11 +369,11 @@ ruleClass returns [EObject current=null]
         }
 	otherlv_5=RULE_ID
 	{
-		newLeafNode(otherlv_5, grammarAccess.getClassAccess().getReferencedElementClassCrossReference_4_0()); 
+		newLeafNode(otherlv_5, grammarAccess.getClassAccess().getAliasExpressionStringExpressionCrossReference_4_1_0()); 
 	}
 
 )
-)(	otherlv_6='{' 
+))?(	otherlv_6='{' 
     {
     	newLeafNode(otherlv_6, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_5_0());
     }
@@ -465,47 +442,24 @@ ruleInterface returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getInterfaceAccess().getInterfaceKeyword_1());
     }
-((
 (
 (
-		lv_longName_2_1=RULE_STRING
 		{
-			newLeafNode(lv_longName_2_1, grammarAccess.getInterfaceAccess().getLongNameSTRINGTerminalRuleCall_2_0_0_0()); 
-		}
-		{
-	        if ($current==null) {
+			if ($current==null) {
 	            $current = createModelElement(grammarAccess.getInterfaceRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"longName",
-        		lv_longName_2_1, 
-        		"org.eclipse.xtext.common.Terminals.STRING");
-	    }
-
-    |		lv_longName_2_2=RULE_ID
-		{
-			newLeafNode(lv_longName_2_2, grammarAccess.getInterfaceAccess().getLongNameIDTerminalRuleCall_2_0_0_1()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getInterfaceRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"longName",
-        		lv_longName_2_2, 
-        		"org.eclipse.xtext.common.Terminals.ID");
-	    }
+        }
+	otherlv_2=RULE_ID
+	{
+		newLeafNode(otherlv_2, grammarAccess.getInterfaceAccess().getReferencedElementInterfaceCrossReference_2_0()); 
+	}
 
 )
-
-)
-)	otherlv_3='as' 
+)(	otherlv_3='as' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getInterfaceAccess().getAsKeyword_2_1());
+    	newLeafNode(otherlv_3, grammarAccess.getInterfaceAccess().getAsKeyword_3_0());
     }
-)?(
+(
 (
 		{
 			if ($current==null) {
@@ -514,11 +468,11 @@ ruleInterface returns [EObject current=null]
         }
 	otherlv_4=RULE_ID
 	{
-		newLeafNode(otherlv_4, grammarAccess.getInterfaceAccess().getReferencedElementInterfaceCrossReference_3_0()); 
+		newLeafNode(otherlv_4, grammarAccess.getInterfaceAccess().getAliasExpressionStringExpressionCrossReference_3_1_0()); 
 	}
 
 )
-)(	otherlv_5='{' 
+))?(	otherlv_5='{' 
     {
     	newLeafNode(otherlv_5, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_4_0());
     }

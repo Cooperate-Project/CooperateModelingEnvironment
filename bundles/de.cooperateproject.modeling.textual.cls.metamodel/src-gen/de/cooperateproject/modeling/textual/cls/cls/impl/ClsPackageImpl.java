@@ -23,7 +23,7 @@ import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.uml2.uml.UMLPackage;
@@ -119,7 +120,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedElementLongNameEClass = null;
+	private EClass namedElementAliasedEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -515,8 +516,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNamedElementLongName() {
-		return namedElementLongNameEClass;
+	public EClass getNamedElementAliased() {
+		return namedElementAliasedEClass;
 	}
 
 	/**
@@ -524,8 +525,17 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNamedElementLongName_LongName() {
-		return (EAttribute)namedElementLongNameEClass.getEStructuralFeatures().get(0);
+	public EReference getNamedElementAliased_AliasExpression() {
+		return (EReference)namedElementAliasedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNamedElementAliased_Alias() {
+		return (EAttribute)namedElementAliasedEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1086,8 +1096,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEOperation(namedElementEClass, NAMED_ELEMENT___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP);
 
-		namedElementLongNameEClass = createEClass(NAMED_ELEMENT_LONG_NAME);
-		createEAttribute(namedElementLongNameEClass, NAMED_ELEMENT_LONG_NAME__LONG_NAME);
+		namedElementAliasedEClass = createEClass(NAMED_ELEMENT_ALIASED);
+		createEReference(namedElementAliasedEClass, NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION);
+		createEAttribute(namedElementAliasedEClass, NAMED_ELEMENT_ALIASED__ALIAS);
 
 		classifierEClass = createEClass(CLASSIFIER);
 		createEAttribute(classifierEClass, CLASSIFIER__VISIBILITY);
@@ -1192,12 +1203,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		// Obtain other dependent packages
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter umlReferencingElementEClass_T = addETypeParameter(umlReferencingElementEClass, "T");
 		ETypeParameter namedElementOptionalEClass_T = addETypeParameter(namedElementOptionalEClass, "T");
 		ETypeParameter namedElementEClass_T = addETypeParameter(namedElementEClass, "T");
-		ETypeParameter namedElementLongNameEClass_T = addETypeParameter(namedElementLongNameEClass, "T");
+		ETypeParameter namedElementAliasedEClass_T = addETypeParameter(namedElementAliasedEClass, "T");
 		ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
 		ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
 		ETypeParameter memberEClass_T = addETypeParameter(memberEClass, "T");
@@ -1210,7 +1222,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		g1 = createEGenericType(theUMLPackage.getNamedElement());
 		namedElementEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(theUMLPackage.getNamedElement());
-		namedElementLongNameEClass_T.getEBounds().add(g1);
+		namedElementAliasedEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(theUMLPackage.getClassifier());
 		classifierEClass_T.getEBounds().add(g1);
 		g1 = createEGenericType(theUMLPackage.getNamedElement());
@@ -1230,10 +1242,10 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		g1.getETypeArguments().add(g2);
 		namedElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getNamedElement());
-		g2 = createEGenericType(namedElementLongNameEClass_T);
+		g2 = createEGenericType(namedElementAliasedEClass_T);
 		g1.getETypeArguments().add(g2);
-		namedElementLongNameEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElementLongName());
+		namedElementAliasedEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getNamedElementAliased());
 		g2 = createEGenericType(classifierEClass_T);
 		g1.getETypeArguments().add(g2);
 		classifierEClass.getEGenericSuperTypes().add(g1);
@@ -1328,8 +1340,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
-		initEClass(namedElementLongNameEClass, NamedElementLongName.class, "NamedElementLongName", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedElementLongName_LongName(), ecorePackage.getEString(), "longName", null, 0, 1, NamedElementLongName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(namedElementAliasedEClass, NamedElementAliased.class, "NamedElementAliased", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNamedElementAliased_AliasExpression(), theUMLPackage.getStringExpression(), null, "aliasExpression", null, 0, 1, NamedElementAliased.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamedElementAliased_Alias(), theEcorePackage.getEString(), "alias", null, 0, 1, NamedElementAliased.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getClassifier_Visibility(), this.getVisibility(), "visibility", null, 0, 1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -170,15 +170,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAbstractAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cAbstractAbstractKeyword_1_0 = (Keyword)cAbstractAssignment_1.eContents().get(0);
 		private final Keyword cClassKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cLongNameAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final Alternatives cLongNameAlternatives_3_0_0 = (Alternatives)cLongNameAssignment_3_0.eContents().get(0);
-		private final RuleCall cLongNameSTRINGTerminalRuleCall_3_0_0_0 = (RuleCall)cLongNameAlternatives_3_0_0.eContents().get(0);
-		private final RuleCall cLongNameIDTerminalRuleCall_3_0_0_1 = (RuleCall)cLongNameAlternatives_3_0_0.eContents().get(1);
-		private final Keyword cAsKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Assignment cReferencedElementAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cReferencedElementClassCrossReference_4_0 = (CrossReference)cReferencedElementAssignment_4.eContents().get(0);
-		private final RuleCall cReferencedElementClassIDTerminalRuleCall_4_0_1 = (RuleCall)cReferencedElementClassCrossReference_4_0.eContents().get(1);
+		private final Assignment cReferencedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cReferencedElementClassCrossReference_3_0 = (CrossReference)cReferencedElementAssignment_3.eContents().get(0);
+		private final RuleCall cReferencedElementClassIDTerminalRuleCall_3_0_1 = (RuleCall)cReferencedElementClassCrossReference_3_0.eContents().get(1);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cAsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cAliasExpressionAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final CrossReference cAliasExpressionStringExpressionCrossReference_4_1_0 = (CrossReference)cAliasExpressionAssignment_4_1.eContents().get(0);
+		private final RuleCall cAliasExpressionStringExpressionIDTerminalRuleCall_4_1_0_1 = (RuleCall)cAliasExpressionStringExpressionCrossReference_4_1_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cMembersAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
@@ -186,12 +185,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
 		//Class:
-		//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class]
-		//	('{' members+=Member* '}')?;
+		//	visibility=Visibility? abstract?='abstract'? 'class' referencedElement=[uml::Class] ('as'
+		//	aliasExpression=[uml::StringExpression])? ('{' members+=Member* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class] ('{'
-		//members+=Member* '}')?
+		//visibility=Visibility? abstract?='abstract'? 'class' referencedElement=[uml::Class] ('as'
+		//aliasExpression=[uml::StringExpression])? ('{' members+=Member* '}')?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -209,32 +208,29 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'class'
 		public Keyword getClassKeyword_2() { return cClassKeyword_2; }
 
-		//(longName=(STRING | ID) 'as')?
-		public Group getGroup_3() { return cGroup_3; }
-
-		//longName=(STRING | ID)
-		public Assignment getLongNameAssignment_3_0() { return cLongNameAssignment_3_0; }
-
-		//(STRING | ID)
-		public Alternatives getLongNameAlternatives_3_0_0() { return cLongNameAlternatives_3_0_0; }
-
-		//STRING
-		public RuleCall getLongNameSTRINGTerminalRuleCall_3_0_0_0() { return cLongNameSTRINGTerminalRuleCall_3_0_0_0; }
-
-		//ID
-		public RuleCall getLongNameIDTerminalRuleCall_3_0_0_1() { return cLongNameIDTerminalRuleCall_3_0_0_1; }
-
-		//'as'
-		public Keyword getAsKeyword_3_1() { return cAsKeyword_3_1; }
-
 		//referencedElement=[uml::Class]
-		public Assignment getReferencedElementAssignment_4() { return cReferencedElementAssignment_4; }
+		public Assignment getReferencedElementAssignment_3() { return cReferencedElementAssignment_3; }
 
 		//[uml::Class]
-		public CrossReference getReferencedElementClassCrossReference_4_0() { return cReferencedElementClassCrossReference_4_0; }
+		public CrossReference getReferencedElementClassCrossReference_3_0() { return cReferencedElementClassCrossReference_3_0; }
 
 		//ID
-		public RuleCall getReferencedElementClassIDTerminalRuleCall_4_0_1() { return cReferencedElementClassIDTerminalRuleCall_4_0_1; }
+		public RuleCall getReferencedElementClassIDTerminalRuleCall_3_0_1() { return cReferencedElementClassIDTerminalRuleCall_3_0_1; }
+
+		//('as' aliasExpression=[uml::StringExpression])?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//'as'
+		public Keyword getAsKeyword_4_0() { return cAsKeyword_4_0; }
+
+		//aliasExpression=[uml::StringExpression]
+		public Assignment getAliasExpressionAssignment_4_1() { return cAliasExpressionAssignment_4_1; }
+
+		//[uml::StringExpression]
+		public CrossReference getAliasExpressionStringExpressionCrossReference_4_1_0() { return cAliasExpressionStringExpressionCrossReference_4_1_0; }
+
+		//ID
+		public RuleCall getAliasExpressionStringExpressionIDTerminalRuleCall_4_1_0_1() { return cAliasExpressionStringExpressionIDTerminalRuleCall_4_1_0_1; }
 
 		//('{' members+=Member* '}')?
 		public Group getGroup_5() { return cGroup_5; }
@@ -258,15 +254,14 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityVisibilityEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
 		private final Keyword cInterfaceKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Assignment cLongNameAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final Alternatives cLongNameAlternatives_2_0_0 = (Alternatives)cLongNameAssignment_2_0.eContents().get(0);
-		private final RuleCall cLongNameSTRINGTerminalRuleCall_2_0_0_0 = (RuleCall)cLongNameAlternatives_2_0_0.eContents().get(0);
-		private final RuleCall cLongNameIDTerminalRuleCall_2_0_0_1 = (RuleCall)cLongNameAlternatives_2_0_0.eContents().get(1);
-		private final Keyword cAsKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cReferencedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cReferencedElementInterfaceCrossReference_3_0 = (CrossReference)cReferencedElementAssignment_3.eContents().get(0);
-		private final RuleCall cReferencedElementInterfaceIDTerminalRuleCall_3_0_1 = (RuleCall)cReferencedElementInterfaceCrossReference_3_0.eContents().get(1);
+		private final Assignment cReferencedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cReferencedElementInterfaceCrossReference_2_0 = (CrossReference)cReferencedElementAssignment_2.eContents().get(0);
+		private final RuleCall cReferencedElementInterfaceIDTerminalRuleCall_2_0_1 = (RuleCall)cReferencedElementInterfaceCrossReference_2_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cAsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cAliasExpressionAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cAliasExpressionStringExpressionCrossReference_3_1_0 = (CrossReference)cAliasExpressionAssignment_3_1.eContents().get(0);
+		private final RuleCall cAliasExpressionStringExpressionIDTerminalRuleCall_3_1_0_1 = (RuleCall)cAliasExpressionStringExpressionCrossReference_3_1_0.eContents().get(1);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cMembersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
@@ -274,12 +269,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//Interface:
-		//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] ('{'
-		//	members+=Member* '}')?;
+		//	visibility=Visibility? 'interface' referencedElement=[uml::Interface] ('as' aliasExpression=[uml::StringExpression])?
+		//	('{' members+=Member* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] ('{'
-		//members+=Member* '}')?
+		//visibility=Visibility? 'interface' referencedElement=[uml::Interface] ('as' aliasExpression=[uml::StringExpression])?
+		//('{' members+=Member* '}')?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=Visibility?
@@ -291,32 +286,29 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'interface'
 		public Keyword getInterfaceKeyword_1() { return cInterfaceKeyword_1; }
 
-		//(longName=(STRING | ID) 'as')?
-		public Group getGroup_2() { return cGroup_2; }
-
-		//longName=(STRING | ID)
-		public Assignment getLongNameAssignment_2_0() { return cLongNameAssignment_2_0; }
-
-		//(STRING | ID)
-		public Alternatives getLongNameAlternatives_2_0_0() { return cLongNameAlternatives_2_0_0; }
-
-		//STRING
-		public RuleCall getLongNameSTRINGTerminalRuleCall_2_0_0_0() { return cLongNameSTRINGTerminalRuleCall_2_0_0_0; }
-
-		//ID
-		public RuleCall getLongNameIDTerminalRuleCall_2_0_0_1() { return cLongNameIDTerminalRuleCall_2_0_0_1; }
-
-		//'as'
-		public Keyword getAsKeyword_2_1() { return cAsKeyword_2_1; }
-
 		//referencedElement=[uml::Interface]
-		public Assignment getReferencedElementAssignment_3() { return cReferencedElementAssignment_3; }
+		public Assignment getReferencedElementAssignment_2() { return cReferencedElementAssignment_2; }
 
 		//[uml::Interface]
-		public CrossReference getReferencedElementInterfaceCrossReference_3_0() { return cReferencedElementInterfaceCrossReference_3_0; }
+		public CrossReference getReferencedElementInterfaceCrossReference_2_0() { return cReferencedElementInterfaceCrossReference_2_0; }
 
 		//ID
-		public RuleCall getReferencedElementInterfaceIDTerminalRuleCall_3_0_1() { return cReferencedElementInterfaceIDTerminalRuleCall_3_0_1; }
+		public RuleCall getReferencedElementInterfaceIDTerminalRuleCall_2_0_1() { return cReferencedElementInterfaceIDTerminalRuleCall_2_0_1; }
+
+		//('as' aliasExpression=[uml::StringExpression])?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//'as'
+		public Keyword getAsKeyword_3_0() { return cAsKeyword_3_0; }
+
+		//aliasExpression=[uml::StringExpression]
+		public Assignment getAliasExpressionAssignment_3_1() { return cAliasExpressionAssignment_3_1; }
+
+		//[uml::StringExpression]
+		public CrossReference getAliasExpressionStringExpressionCrossReference_3_1_0() { return cAliasExpressionStringExpressionCrossReference_3_1_0; }
+
+		//ID
+		public RuleCall getAliasExpressionStringExpressionIDTerminalRuleCall_3_1_0_1() { return cAliasExpressionStringExpressionIDTerminalRuleCall_3_1_0_1; }
 
 		//('{' members+=Member* '}')?
 		public Group getGroup_4() { return cGroup_4; }
@@ -1484,8 +1476,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Class:
-	//	visibility=Visibility? abstract?='abstract'? 'class' (longName=(STRING | ID) 'as')? referencedElement=[uml::Class]
-	//	('{' members+=Member* '}')?;
+	//	visibility=Visibility? abstract?='abstract'? 'class' referencedElement=[uml::Class] ('as'
+	//	aliasExpression=[uml::StringExpression])? ('{' members+=Member* '}')?;
 	public ClassElements getClassAccess() {
 		return pClass;
 	}
@@ -1495,8 +1487,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Interface:
-	//	visibility=Visibility? 'interface' (longName=(STRING | ID) 'as')? referencedElement=[uml::Interface] ('{'
-	//	members+=Member* '}')?;
+	//	visibility=Visibility? 'interface' referencedElement=[uml::Interface] ('as' aliasExpression=[uml::StringExpression])?
+	//	('{' members+=Member* '}')?;
 	public InterfaceElements getInterfaceAccess() {
 		return pInterface;
 	}
