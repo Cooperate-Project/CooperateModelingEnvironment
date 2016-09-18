@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jdt.ui.ISharedImages
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
 
 /**
  * Provides labels for EObjects.
@@ -152,6 +153,20 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 					return UMLImageGetter.getUMLImage("Association.gif")
 				}
 			}
+			
+			def text(MultiAssociation ele) {
+				var text = ele.referencedElement.name
+				for (memberEnd : ele.connectorEnds) {
+					text += " " + memberEnd.type.text
+				}
+				return text
+			}
+
+			def image(MultiAssociation ele) {
+				return UMLImageGetter.getUMLImage("Association.gif")
+			}
+			
+			
 
 			def text(Generalization ele) {
 				val leftChild = ele.left;
