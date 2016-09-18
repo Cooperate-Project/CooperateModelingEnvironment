@@ -3,20 +3,27 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.outline
 
-import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
-import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.Attribute
-import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Parameter
+import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
+import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImageGetter
+import org.eclipse.jdt.ui.ISharedImages
+import org.eclipse.jdt.ui.JavaUI
+import org.eclipse.swt.graphics.RGB
 import org.eclipse.xtext.ui.IImageHelper
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
-import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
-import de.cooperateproject.modeling.textual.cls.cls.Parameter
-import de.cooperateproject.modeling.textual.cls.cls.Method
-import org.eclipse.jdt.ui.JavaUI
-import org.eclipse.jdt.ui.ISharedImages
-import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImageGetter
+import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import org.eclipse.xtext.ui.editor.utils.TextStyle
+import org.eclipse.swt.SWT
+import org.eclipse.xtext.ui.label.StylerFactory
+import org.eclipse.jface.viewers.StyledString
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
+import de.cooperateproject.modeling.textual.cls.cls.Association
 
 /**
  * Customization of the default outline structure.
@@ -26,16 +33,15 @@ import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImageGetter
 class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	@Inject
-	private IImageHelper imageHelper;
+	private StylerFactory stylerFactory;
 	
 	val images = JavaUI.getSharedImages();
 
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
 		val rootNode = createEObjectNode(parentNode, root);
-		val importNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), "Imports", false) {};
-		val classifierNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), "Classifiers", false) {};
-		val connectorNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Association.gif"), "Connectors", false) {};
-
+		val importNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", root.packageImports.size), false) {};
+		val classifierNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", root.classifiers.size), false) {};
+		
 		for (oneImport : root.packageImports) {
 			createNode(importNode, oneImport)
 		}
@@ -44,7 +50,28 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			createNode(classifierNode, oneClassifier);
 		}
 
+		val connectors = newArrayList();
+		val comments = newArrayList();
 		for (oneConnector : root.connectors) {
+			if (oneConnector instanceof CommentLink) {
+				comments.add(oneConnector)
+			} else if (oneConnector instanceof Association && (oneConnector as Association).comment != null) {
+				comments.add(oneConnector)
+				connectors.add(oneConnector)
+			} else {
+				connectors.add(oneConnector)
+			}
+		}
+		
+		val connectorNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors",connectors.size), false) {};
+		val commentNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments",comments.size), false) {};
+		for (oneComment : comments) {
+			createNode(commentNode, oneComment)
+		}
+		for (oneConnector : connectors) {
+			if (oneConnector instanceof Association && (oneConnector as Association).comment != null) {
+				(oneConnector as Association).comment = null
+			}
 			createNode(connectorNode, oneConnector)
 		}
 	}
@@ -73,6 +100,13 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	dispatch def isLeaf(Parameter param) {
 		return true;
+	}
+	
+	private def getStyledString(String name, int counter) {
+		var styledLabel = new StyledString()
+		styledLabel.append(name)
+		styledLabel.append(new StyledString(" : " + counter, StyledString::DECORATIONS_STYLER))
+		return styledLabel
 	}
 
 }

@@ -133,13 +133,18 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 			}
 
 			def text(Association ele) {
+				if (ele.getComment() != null) {
+					return ele.referencedElement.name + " - Comment"
+				}
 				val leftChild = ele.left;
 				val rightChild = ele.right;
-				leftChild.doGetText + " " + ele.referencedElement.name + " " + rightChild.doGetText
+				return leftChild.doGetText + " " + ele.referencedElement.name + " " + rightChild.doGetText
 			}
 
 			def image(Association ele) {
-				if (ele.aggregationKind == AggregationKind.COMPOSITION) {
+				if (ele.getComment() != null) {
+					return UMLImageGetter.getUMLImage("Comment.gif")
+				} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
 					return UMLImageGetter.getUMLImage("Association_composite.gif")
 				} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
 					return UMLImageGetter.getUMLImage("Association_shared.gif")
