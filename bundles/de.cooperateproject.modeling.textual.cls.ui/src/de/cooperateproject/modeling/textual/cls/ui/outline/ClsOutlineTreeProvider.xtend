@@ -24,6 +24,8 @@ import org.eclipse.xtext.ui.label.StylerFactory
 import org.eclipse.jface.viewers.StyledString
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
 
 /**
  * Customization of the default outline structure.
@@ -38,9 +40,8 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	val images = JavaUI.getSharedImages();
 
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
-		val rootNode = createEObjectNode(parentNode, root);
-		val importNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", root.packageImports.size), false) {};
-		val classifierNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", root.classifiers.size), false) {};
+		val importNode = new AbstractOutlineNode(parentNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", root.packageImports.size), false) {};
+		val classifierNode = new AbstractOutlineNode(parentNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", root.classifiers.size), false) {};
 		
 		for (oneImport : root.packageImports) {
 			createNode(importNode, oneImport)
@@ -63,8 +64,8 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 		}
 		
-		val connectorNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors",connectors.size), false) {};
-		val commentNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments",comments.size), false) {};
+		val connectorNode = new AbstractOutlineNode(parentNode, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors",connectors.size), false) {};
+		val commentNode = new AbstractOutlineNode(parentNode, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments",comments.size), false) {};
 		for (oneComment : comments) {
 			createNode(commentNode, oneComment)
 		}
@@ -84,6 +85,13 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		createNode(associationNode, rightChild)
 	}
 	
+	dispatch def createNode(IOutlineNode parent, MultiAssociation multiAsso) {
+		val associationNode = createEObjectNode(parent, multiAsso);
+		for (memberEnd : multiAsso.connectorEnds) {
+			createNode(associationNode, memberEnd.type)
+		}
+	}
+	
 	def _createChildren(IOutlineNode parent, Method method) {
 		for (param : method.parameters) {
 			createNode(parent, param)
@@ -99,6 +107,10 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	dispatch def isLeaf(Parameter param) {
+		return true;
+	}
+	
+	dispatch def isLeaf(CommentLink comLink) {
 		return true;
 	}
 	
