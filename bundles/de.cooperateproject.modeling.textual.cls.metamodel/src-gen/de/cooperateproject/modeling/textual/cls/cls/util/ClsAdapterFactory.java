@@ -22,6 +22,7 @@ import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
+import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
@@ -98,6 +99,14 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseClassDiagram(ClassDiagram object) {
 				return createClassDiagramAdapter();
+			}
+			@Override
+			public Adapter casePackage(de.cooperateproject.modeling.textual.cls.cls.Package object) {
+				return createPackageAdapter();
+			}
+			@Override
+			public Adapter casePackageableElement(PackageableElement object) {
+				return createPackageableElementAdapter();
 			}
 			@Override
 			public Adapter casePackageImport(PackageImport object) {
@@ -238,6 +247,34 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassDiagramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Package <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Package
+	 * @generated
+	 */
+	public Adapter createPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.PackageableElement <em>Packageable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.PackageableElement
+	 * @generated
+	 */
+	public Adapter createPackageableElementAdapter() {
 		return null;
 	}
 

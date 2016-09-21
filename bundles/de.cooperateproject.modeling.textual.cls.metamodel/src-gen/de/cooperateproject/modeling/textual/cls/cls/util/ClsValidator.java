@@ -25,6 +25,7 @@ import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
+import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
@@ -134,6 +135,10 @@ public class ClsValidator extends EObjectValidator {
 		switch (classifierID) {
 			case ClsPackage.CLASS_DIAGRAM:
 				return validateClassDiagram((ClassDiagram)value, diagnostics, context);
+			case ClsPackage.PACKAGE:
+				return validatePackage((de.cooperateproject.modeling.textual.cls.cls.Package)value, diagnostics, context);
+			case ClsPackage.PACKAGEABLE_ELEMENT:
+				return validatePackageableElement((PackageableElement)value, diagnostics, context);
 			case ClsPackage.PACKAGE_IMPORT:
 				return validatePackageImport((PackageImport)value, diagnostics, context);
 			case ClsPackage.TYPE_REFERENCE:
@@ -206,6 +211,34 @@ public class ClsValidator extends EObjectValidator {
 	 */
 	public boolean validateClassDiagram(ClassDiagram classDiagram, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)classDiagram, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePackage(de.cooperateproject.modeling.textual.cls.cls.Package package_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment((EObject)package_, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)package_, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_hasReferencedElement(package_, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePackageableElement(PackageableElement packageableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)packageableElement, diagnostics, context);
 	}
 
 	/**

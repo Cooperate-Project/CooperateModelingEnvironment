@@ -3,13 +3,7 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -22,10 +16,8 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getPackageImports <em>Package Imports</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getClassifiers <em>Classifiers</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getConnectors <em>Connectors</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassDiagramImpl#getRootPackage <em>Root Package</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,9 +57,8 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<PackageImport> getPackageImports() {
-		return (EList<PackageImport>)eGet(ClsPackage.Literals.CLASS_DIAGRAM__PACKAGE_IMPORTS, true);
+	public String getTitle() {
+		return (String)eGet(ClsPackage.Literals.CLASS_DIAGRAM__TITLE, true);
 	}
 
 	/**
@@ -75,9 +66,8 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Classifier<?>> getClassifiers() {
-		return (EList<Classifier<?>>)eGet(ClsPackage.Literals.CLASS_DIAGRAM__CLASSIFIERS, true);
+	public void setTitle(String newTitle) {
+		eSet(ClsPackage.Literals.CLASS_DIAGRAM__TITLE, newTitle);
 	}
 
 	/**
@@ -85,9 +75,8 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public EList<Connector> getConnectors() {
-		return (EList<Connector>)eGet(ClsPackage.Literals.CLASS_DIAGRAM__CONNECTORS, true);
+	public de.cooperateproject.modeling.textual.cls.cls.Package getRootPackage() {
+		return (de.cooperateproject.modeling.textual.cls.cls.Package)eGet(ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE, true);
 	}
 
 	/**
@@ -95,17 +84,8 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return (String)eGet(ClsPackage.Literals.CLASS_DIAGRAM__NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		eSet(ClsPackage.Literals.CLASS_DIAGRAM__NAME, newName);
+	public void setRootPackage(de.cooperateproject.modeling.textual.cls.cls.Package newRootPackage) {
+		eSet(ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE, newRootPackage);
 	}
 
 } //ClassDiagramImpl

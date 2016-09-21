@@ -34,7 +34,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	/**
 	 * Content assist for creating classes into the text editor from the uml file.
 	 */
-	override completeClassDiagram_Classifiers(EObject model, Assignment assignment, ContentAssistContext context,
+	override completePackage_Classifiers(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
 
 		var scope = scope.getScope(model, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
@@ -43,7 +43,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		var classes = elements.map[x|x.EObjectOrProxy].filter(Class)
 		for (class : classes) {
 			var c = createClass(class)
-			var m = model as ClassDiagram
+			var m = model as de.cooperateproject.modeling.textual.cls.cls.Package
 			m.classifiers.add(c)
 
 			acceptor.accept(createCompletionProposal(serializer.serialize(c), class.name, null, context))

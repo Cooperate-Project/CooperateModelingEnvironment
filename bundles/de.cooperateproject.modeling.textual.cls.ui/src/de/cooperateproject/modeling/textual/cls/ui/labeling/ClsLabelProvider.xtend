@@ -65,7 +65,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 			}
 
 			def text(PackageImport ele) {
-				ele.package.name;
+				ele.referencedElement.importedPackage.name;
 			}
 
 			def image(PackageImport ele) {

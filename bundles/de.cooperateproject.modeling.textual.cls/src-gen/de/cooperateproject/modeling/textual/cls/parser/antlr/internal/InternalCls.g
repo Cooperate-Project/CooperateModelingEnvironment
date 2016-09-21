@@ -90,9 +90,9 @@ ruleClassDiagram returns [EObject current=null]
     }
 (
 (
-		lv_name_2_0=RULE_STRING
+		lv_title_2_0=RULE_STRING
 		{
-			newLeafNode(lv_name_2_0, grammarAccess.getClassDiagramAccess().getNameSTRINGTerminalRuleCall_2_0()); 
+			newLeafNode(lv_title_2_0, grammarAccess.getClassDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -100,8 +100,8 @@ ruleClassDiagram returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"name",
-        		lv_name_2_0, 
+       			"title",
+        		lv_title_2_0, 
         		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
@@ -109,11 +109,189 @@ ruleClassDiagram returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getClassDiagramAccess().getPackageImportsPackageImportParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getClassDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0()); 
+	    }
+		lv_rootPackage_3_0=ruleRootPackage		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getClassDiagramRule());
+	        }
+       		set(
+       			$current, 
+       			"rootPackage",
+        		lv_rootPackage_3_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.RootPackage");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4='@endclass' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getClassDiagramAccess().getEndclassKeyword_4());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleRootPackage
+entryRuleRootPackage returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRootPackageRule()); }
+	 iv_ruleRootPackage=ruleRootPackage 
+	 { $current=$iv_ruleRootPackage.current; } 
+	 EOF 
+;
+
+// Rule RootPackage
+ruleRootPackage returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='rootPackage' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getRootPackageAccess().getRootPackageKeyword_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRootPackageRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getRootPackageAccess().getReferencedElementPackageCrossReference_1_0()); 
+	    }
+		ruleFQN		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRootPackageAccess().getPackageImportsPackageImportParserRuleCall_2_0()); 
+	    }
+		lv_packageImports_2_0=rulePackageImport		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRootPackageRule());
+	        }
+       		add(
+       			$current, 
+       			"packageImports",
+        		lv_packageImports_2_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.PackageImport");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRootPackageAccess().getClassifiersClassifierParserRuleCall_3_0()); 
+	    }
+		lv_classifiers_3_0=ruleClassifier		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRootPackageRule());
+	        }
+       		add(
+       			$current, 
+       			"classifiers",
+        		lv_classifiers_3_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.Classifier");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRootPackageAccess().getConnectorsConnectorParserRuleCall_4_0()); 
+	    }
+		lv_connectors_4_0=ruleConnector		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRootPackageRule());
+	        }
+       		add(
+       			$current, 
+       			"connectors",
+        		lv_connectors_4_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.Connector");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRootPackageAccess().getPackagesPackageParserRuleCall_5_0()); 
+	    }
+		lv_packages_5_0=rulePackage		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRootPackageRule());
+	        }
+       		add(
+       			$current, 
+       			"packages",
+        		lv_packages_5_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.Package");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)
+;
+
+
+
+
+
+// Entry rule entryRulePackage
+entryRulePackage returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getPackageRule()); }
+	 iv_rulePackage=rulePackage 
+	 { $current=$iv_rulePackage.current; } 
+	 EOF 
+;
+
+// Rule Package
+rulePackage returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='package' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getPackageAccess().getPackageKeyword_0());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPackageRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPackageAccess().getReferencedElementPackageCrossReference_1_0()); 
+	    }
+		ruleFQN		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='{' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getPackageAccess().getLeftCurlyBracketKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPackageAccess().getPackageImportsPackageImportParserRuleCall_3_0()); 
 	    }
 		lv_packageImports_3_0=rulePackageImport		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getClassDiagramRule());
+	            $current = createModelElementForParent(grammarAccess.getPackageRule());
 	        }
        		add(
        			$current, 
@@ -127,11 +305,11 @@ ruleClassDiagram returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getClassDiagramAccess().getClassifiersClassifierParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getPackageAccess().getClassifiersClassifierParserRuleCall_4_0()); 
 	    }
 		lv_classifiers_4_0=ruleClassifier		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getClassDiagramRule());
+	            $current = createModelElementForParent(grammarAccess.getPackageRule());
 	        }
        		add(
        			$current, 
@@ -145,11 +323,11 @@ ruleClassDiagram returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getClassDiagramAccess().getConnectorsConnectorParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getPackageAccess().getConnectorsConnectorParserRuleCall_5_0()); 
 	    }
 		lv_connectors_5_0=ruleConnector		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getClassDiagramRule());
+	            $current = createModelElementForParent(grammarAccess.getPackageRule());
 	        }
        		add(
        			$current, 
@@ -160,9 +338,27 @@ ruleClassDiagram returns [EObject current=null]
 	    }
 
 )
-)*	otherlv_6='@endclass' 
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getPackageAccess().getPackagesPackageParserRuleCall_6_0()); 
+	    }
+		lv_packages_6_0=rulePackage		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getPackageRule());
+	        }
+       		add(
+       			$current, 
+       			"packages",
+        		lv_packages_6_0, 
+        		"de.cooperateproject.modeling.textual.cls.Cls.Package");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_7='}' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getClassDiagramAccess().getEndclassKeyword_6());
+    	newLeafNode(otherlv_7, grammarAccess.getPackageAccess().getRightCurlyBracketKeyword_7());
     }
 )
 ;
@@ -197,7 +393,7 @@ rulePackageImport returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getPackageImportAccess().getPackagePackageCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getPackageImportAccess().getReferencedElementPackageImportCrossReference_1_0()); 
 	    }
 		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();

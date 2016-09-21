@@ -78,6 +78,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ClsPackage.CLASS_DIAGRAM: return (EObject)createClassDiagram();
+			case ClsPackage.PACKAGE: return (EObject)createPackage();
 			case ClsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
 			case ClsPackage.DATA_TYPE_REFERENCE: return (EObject)createDataTypeReference();
 			case ClsPackage.UML_TYPE_REFERENCE: return (EObject)createUMLTypeReference();
@@ -145,6 +146,16 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	public ClassDiagram createClassDiagram() {
 		ClassDiagramImpl classDiagram = new ClassDiagramImpl();
 		return classDiagram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public de.cooperateproject.modeling.textual.cls.cls.Package createPackage() {
+		PackageImpl package_ = new PackageImpl();
+		return package_;
 	}
 
 	/**

@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -73,7 +74,7 @@ public class ClsCooperateSimpleScopeProviderTest {
 	public void testNestedNormalizing() throws Exception {
 		ClassDiagram cd = loadClassDiagram(rs, "simple.cls");
 
-		IScope scope = subject.getScope(cd.getClassifiers().get(0).getMembers().get(0),
+		IScope scope = subject.getScope(cd.getRootPackage().getClassifiers().get(0).getMembers().get(0),
 				ClsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
 
 		List<ImportNormalizer> normalizers = getNormalizers(scope);
@@ -84,7 +85,7 @@ public class ClsCooperateSimpleScopeProviderTest {
 	
 		assertThat(actualPrefixes, is(equalTo(expectedPrefixes)));
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	private static List<ImportNormalizer> getNormalizers(IScope scope)
 			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {

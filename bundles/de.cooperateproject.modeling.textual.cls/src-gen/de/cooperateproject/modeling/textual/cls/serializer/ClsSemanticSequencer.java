@@ -88,6 +88,16 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.MULTI_ASSOCIATION:
 				sequence_MultiAssociation(context, (MultiAssociation) semanticObject); 
 				return; 
+			case ClsPackage.PACKAGE:
+				if (rule == grammarAccess.getPackageRule()) {
+					sequence_Package(context, (de.cooperateproject.modeling.textual.cls.cls.Package) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRootPackageRule()) {
+					sequence_RootPackage(context, (de.cooperateproject.modeling.textual.cls.cls.Package) semanticObject); 
+					return; 
+				}
+				else break;
 			case ClsPackage.PACKAGE_IMPORT:
 				sequence_PackageImport(context, (PackageImport) semanticObject); 
 				return; 
@@ -165,10 +175,19 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ClassDiagram returns ClassDiagram
 	 *
 	 * Constraint:
-	 *     (name=STRING packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*)
+	 *     (title=STRING rootPackage=RootPackage)
 	 */
 	protected void sequence_ClassDiagram(ISerializationContext context, ClassDiagram semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.CLASS_DIAGRAM__TITLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.CLASS_DIAGRAM__TITLE));
+			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getClassDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
+		feeder.accept(grammarAccess.getClassDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0(), semanticObject.getRootPackage());
+		feeder.finish();
 	}
 	
 	
@@ -334,16 +353,28 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     PackageImport returns PackageImport
 	 *
 	 * Constraint:
-	 *     package=[Package|FQN]
+	 *     referencedElement=[PackageImport|FQN]
 	 */
 	protected void sequence_PackageImport(ISerializationContext context, PackageImport semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.PACKAGE_IMPORT__PACKAGE));
+			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getPackageImportAccess().getPackagePackageFQNParserRuleCall_1_0_1(), semanticObject.getPackage());
+		feeder.accept(grammarAccess.getPackageImportAccess().getReferencedElementPackageImportFQNParserRuleCall_1_0_1(), semanticObject.getReferencedElement());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Package returns Package
+	 *
+	 * Constraint:
+	 *     (referencedElement=[Package|FQN] packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*)
+	 */
+	protected void sequence_Package(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Package semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
@@ -355,6 +386,18 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Parameter|ID] type=TypeReference)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Parameter semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     RootPackage returns Package
+	 *
+	 * Constraint:
+	 *     (referencedElement=[Package|FQN] packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*)
+	 */
+	protected void sequence_RootPackage(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Package semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

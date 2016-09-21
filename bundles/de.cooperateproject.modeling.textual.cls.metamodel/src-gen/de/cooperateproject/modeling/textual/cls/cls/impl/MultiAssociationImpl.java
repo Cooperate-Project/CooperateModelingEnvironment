@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.uml2.uml.Association;
 
 /**
@@ -36,7 +37,7 @@ import org.eclipse.uml2.uml.Association;
  *
  * @generated
  */
-public class MultiAssociationImpl extends ConnectorImpl implements MultiAssociation {
+public class MultiAssociationImpl extends CDOObjectImpl implements MultiAssociation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,6 +55,16 @@ public class MultiAssociationImpl extends ConnectorImpl implements MultiAssociat
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.MULTI_ASSOCIATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
 	}
 
 	/**

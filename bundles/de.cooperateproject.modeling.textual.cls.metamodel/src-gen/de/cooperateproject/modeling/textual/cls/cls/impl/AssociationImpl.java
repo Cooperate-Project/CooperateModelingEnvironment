@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
+import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
@@ -182,6 +183,11 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == PackageableElement.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Connector.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -210,6 +216,11 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == PackageableElement.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Connector.class) {
 			switch (baseFeatureID) {
 				default: return -1;
@@ -238,6 +249,11 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == PackageableElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Connector.class) {
 			switch (baseOperationID) {
 				default: return -1;

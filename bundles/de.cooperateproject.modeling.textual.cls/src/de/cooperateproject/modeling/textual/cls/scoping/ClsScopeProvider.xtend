@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.util.Switch
 import org.eclipse.uml2.uml.Classifier
 import org.eclipse.uml2.uml.Comment
+import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.xtext.EcoreUtil2
@@ -33,7 +34,7 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.scoping.impl.FilteringScope
-import org.eclipse.uml2.uml.NamedElement
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 
 /**
  * This class contains custom scoping description.
@@ -148,9 +149,15 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 			}
 		}
 		
-		override <T extends org.eclipse.uml2.uml.NamedElement> caseNamedElementAliased(NamedElementAliased<T> namedElementAliased) {
+		override <T extends NamedElement> caseNamedElementAliased(NamedElementAliased<T> namedElementAliased) {
 			if (reference == ClsPackage.Literals.NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION) {
 				return UMLPackage.Literals.STRING_EXPRESSION.filterScope(namedElementAliased.referencedElement)
+			}
+		}
+		
+		override casePackageImport(PackageImport packageImport) {
+			if (reference == ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT) {
+				return UMLPackage.Literals.PACKAGE_IMPORT.filterScope(packageImport.importingNamespace.referencedElement)
 			}
 		}
 
@@ -182,6 +189,7 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 		private def filterScopeIgnoreType(IScope scope, EClass ignoredType) {
 			return scope.filterScope[d | !EcoreUtil2.isAssignableFrom(ignoredType, d.EObjectOrProxy.eClass)];
 		}
+		
 	}
 
 }

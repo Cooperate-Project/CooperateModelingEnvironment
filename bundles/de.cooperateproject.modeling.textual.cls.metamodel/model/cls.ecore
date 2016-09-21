@@ -12,21 +12,43 @@
     <details key="basePackage" value="de.cooperateproject.modeling.textual.cls"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootPackage" lowerBound="1"
+        eType="#//Package" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Package">
     <eStructuralFeatures xsi:type="ecore:EReference" name="packageImports" upperBound="-1"
-        eType="#//PackageImport" containment="true" resolveProxies="false"/>
+        eType="#//PackageImport" containment="true" eOpposite="#//PackageImport/importingNamespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifiers" upperBound="-1"
-        containment="true" resolveProxies="false">
+        containment="true">
       <eGenericType eClassifier="#//Classifier">
-        <eTypeArguments/>
+        <eTypeArguments>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+        </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
-        eType="#//Connector" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//Connector" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" eType="#//Package"
+        changeable="false" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="if (eContainer() == null || !(eContainer() instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}&#xD;&#xA;return (de.cooperateproject.modeling.textual.cls.cls.Package)eContainer();"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
+        eType="#//Package" containment="true"/>
+    <eGenericSuperTypes eClassifier="#//NamedElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//PackageableElement"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
+      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageImport" eSuperTypes="#//PackageableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importingNamespace" lowerBound="1"
+        eType="#//Package" eOpposite="#//Package/packageImports"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeReference" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypeReference" eSuperTypes="#//TypeReference">
@@ -111,6 +133,7 @@
     <eGenericSuperTypes eClassifier="#//NamedElementAliased">
       <eTypeArguments eTypeParameter="#//Classifier/T"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//PackageableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
@@ -174,7 +197,8 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true" interface="true"
+      eSuperTypes="#//PackageableElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//UMLTypeReference"
         containment="true" resolveProxies="false"/>

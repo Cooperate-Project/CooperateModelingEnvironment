@@ -1,11 +1,11 @@
+import TransformationUtils_Class;
+
 transformation PapyrusClass2Text(in graphical : NOTATION, out textual : TXT, in umlmodel : UML, in umlprimitives : UML);
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-
-property TYPES_SHAPE_NARY : String = "2015";	
 
 main() {
 	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLClassDiagram");
@@ -15,11 +15,56 @@ main() {
 }
 
 mapping notation::Diagram::diagramToDiagram() : cls::ClassDiagram {
-	name := self.name;
-	packageImports += self->map diagramToPackageImport();
-	classifiers += self.children->select(element.oclIsKindOf(uml::Class) or element.oclIsKindOf(uml::Interface))->map nodeToClassifier();
-	connectors += self.children->select(type = TYPES_SHAPE_NARY)->map associationNodeToMultiAssociation(self.edges);
+	title := self.name;
+	rootPackage := self.map diagramToRootPackage();
+}
+
+mapping notation::Diagram::diagramToRootPackage() : cls::Package {
+	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
+	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
+	connectors += self.children->select(type = PAPYRUS_NOTATION_SHAPE_NARY_REGULAR)->map associationNodeToMultiAssociation(self.edges);
 	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
+	/*
+	var diagramPackage := self.element.oclAsType(uml::Package);
+	self.edges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->select(element.oclAsType(uml::PackageImport).importingNamespace = diagramPackage);
+	packageImports += self->map diagramToPackageImport();
+	*/
+}
+
+mapping notation::Node::nodeToPackage() : cls::Package
+{
+	var umlPackage := self.element.oclAsType(uml::Package);
+	var relevantEdges := self.findRelevantEdges();
+	
+	referencedElement := umlPackage;
+	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
+	connectors += self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NARY_REGULAR)->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
+	connectors += relevantEdges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.diagram.edges);
+	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
+	packageImports += 
+}
+
+query notation::Node::findRelevantEdges() : OrderedSet(notation::Edge)
+{
+	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for nodes that represent packages.');
+	var umlPackage = self.element.oclAsType(uml::Package);
+	
+	return self.diagram.edges->select(findOwningPackage() = umlPackage);
+} 
+
+query notation::Edge::findOwningPackage() : uml::Package
+{
+	return if self.oclIsKindOf(notation::Connector) then self.oclAsType(notation::Connector).findOwningPackage() else null endif;
+}
+
+query notation::Connector::findOwningPackage() : uml::Package
+{
+	return
+		if self.element != null then
+			self.element.oclAsType(uml::Element).getNearestPackage()
+		else
+			self.source.element->asSet()->union(self.target.element->asSet())->selectByKind(uml::Classifier)->any(true).getNearestPackage()
+		endif;
 }
 
 mapping notation::Diagram::diagramToPackageImport() : cls::PackageImport {

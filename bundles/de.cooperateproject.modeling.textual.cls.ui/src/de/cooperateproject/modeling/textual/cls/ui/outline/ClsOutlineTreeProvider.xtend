@@ -36,15 +36,15 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		val classifierNode = new AbstractOutlineNode(rootNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), "Classifiers", false) {};
 		val connectorNode = new AbstractOutlineNode(rootNode, UMLImageGetter.getUMLImage("Association.gif"), "Connectors", false) {};
 
-		for (oneImport : root.packageImports) {
+		for (oneImport : root.rootPackage.packageImports) {
 			createNode(importNode, oneImport)
 		}
 
-		for (oneClassifier : root.classifiers) {
+		for (oneClassifier : root.rootPackage.classifiers) {
 			createNode(classifierNode, oneClassifier);
 		}
 
-		for (oneConnector : root.connectors) {
+		for (oneConnector : root.rootPackage.connectors) {
 			createNode(connectorNode, oneConnector)
 		}
 	}
