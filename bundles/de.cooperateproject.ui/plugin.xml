@@ -68,4 +68,10 @@
             name="Cooperate Editor Launcher">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="de.cooperateproject.ui.nature.StartupBuilder">
+      </startup>
+   </extension>
 </plugin>
