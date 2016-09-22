@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @generated
  */
-public abstract class ClassifierImpl<T extends Classifier> extends NamedElementLongNameImpl<T> implements de.cooperateproject.modeling.textual.cls.cls.Classifier<T> {
+public abstract class ClassifierImpl<T extends Classifier> extends NamedElementAliasedImpl<T> implements de.cooperateproject.modeling.textual.cls.cls.Classifier<T> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

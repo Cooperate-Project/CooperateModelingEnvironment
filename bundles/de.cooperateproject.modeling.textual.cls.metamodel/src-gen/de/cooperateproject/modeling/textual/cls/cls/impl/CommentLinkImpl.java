@@ -2,10 +2,10 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,8 +77,8 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassifierAssociationEnd getLeft() {
-		return (ClassifierAssociationEnd)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
+	public UMLTypeReference getLeft() {
+		return (UMLTypeReference)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeft(ClassifierAssociationEnd newLeft) {
+	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.COMMENT_LINK__LEFT, newLeft);
 	}
 
@@ -102,6 +103,18 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 		}
 		diagnostics.add(BasicDiagnostic.OK_INSTANCE);
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getCommentedElement() {
+		if (getLeft() instanceof UMLTypeReference) {
+			return ((UMLTypeReference)getLeft()).getType();
+		}
+		throw new IllegalStateException("Internal error in determining commented UML element.");
 	}
 
 	/**
@@ -142,11 +155,29 @@ public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
 	 * @generated
 	 */
 	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Commentable.class) {
+			switch (baseOperationID) {
+				case ClsPackage.COMMENTABLE___GET_COMMENTED_ELEMENT: return ClsPackage.COMMENT_LINK___GET_COMMENTED_ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ClsPackage.COMMENT_LINK___HAS_COMMENT__DIAGNOSTICCHAIN_MAP:
 				return hasComment((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ClsPackage.COMMENT_LINK___GET_COMMENTED_ELEMENT:
+				return getCommentedElement();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

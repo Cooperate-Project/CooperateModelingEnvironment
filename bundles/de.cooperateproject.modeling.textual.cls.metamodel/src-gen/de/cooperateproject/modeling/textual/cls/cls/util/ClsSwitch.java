@@ -3,13 +3,11 @@
 package de.cooperateproject.modeling.textual.cls.cls.util;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -19,9 +17,12 @@ import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
@@ -121,8 +122,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				UMLTypeReference umlTypeReference = (UMLTypeReference)theEObject;
 				T1 result = caseUMLTypeReference(umlTypeReference);
 				if (result == null) result = caseTypeReference(umlTypeReference);
-				if (result == null) result = caseClassifierAssociationEnd(umlTypeReference);
-				if (result == null) result = caseAssociationEnd(umlTypeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -132,26 +131,36 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ClsPackage.NAMED_ELEMENT_OPTIONAL: {
+				NamedElementOptional<?> namedElementOptional = (NamedElementOptional<?>)theEObject;
+				T1 result = caseNamedElementOptional(namedElementOptional);
+				if (result == null) result = caseUMLReferencingElement(namedElementOptional);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ClsPackage.NAMED_ELEMENT: {
 				NamedElement<?> namedElement = (NamedElement<?>)theEObject;
 				T1 result = caseNamedElement(namedElement);
+				if (result == null) result = caseNamedElementOptional(namedElement);
 				if (result == null) result = caseUMLReferencingElement(namedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ClsPackage.NAMED_ELEMENT_LONG_NAME: {
-				NamedElementLongName<?> namedElementLongName = (NamedElementLongName<?>)theEObject;
-				T1 result = caseNamedElementLongName(namedElementLongName);
-				if (result == null) result = caseNamedElement(namedElementLongName);
-				if (result == null) result = caseUMLReferencingElement(namedElementLongName);
+			case ClsPackage.NAMED_ELEMENT_ALIASED: {
+				NamedElementAliased<?> namedElementAliased = (NamedElementAliased<?>)theEObject;
+				T1 result = caseNamedElementAliased(namedElementAliased);
+				if (result == null) result = caseNamedElement(namedElementAliased);
+				if (result == null) result = caseNamedElementOptional(namedElementAliased);
+				if (result == null) result = caseUMLReferencingElement(namedElementAliased);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ClsPackage.CLASSIFIER: {
 				Classifier<?> classifier = (Classifier<?>)theEObject;
 				T1 result = caseClassifier(classifier);
-				if (result == null) result = caseNamedElementLongName(classifier);
+				if (result == null) result = caseNamedElementAliased(classifier);
 				if (result == null) result = caseNamedElement(classifier);
+				if (result == null) result = caseNamedElementOptional(classifier);
 				if (result == null) result = caseUMLReferencingElement(classifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -160,8 +169,9 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				de.cooperateproject.modeling.textual.cls.cls.Class class_ = (de.cooperateproject.modeling.textual.cls.cls.Class)theEObject;
 				T1 result = caseClass(class_);
 				if (result == null) result = caseClassifier(class_);
-				if (result == null) result = caseNamedElementLongName(class_);
+				if (result == null) result = caseNamedElementAliased(class_);
 				if (result == null) result = caseNamedElement(class_);
+				if (result == null) result = caseNamedElementOptional(class_);
 				if (result == null) result = caseUMLReferencingElement(class_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -170,8 +180,9 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				Interface interface_ = (Interface)theEObject;
 				T1 result = caseInterface(interface_);
 				if (result == null) result = caseClassifier(interface_);
-				if (result == null) result = caseNamedElementLongName(interface_);
+				if (result == null) result = caseNamedElementAliased(interface_);
 				if (result == null) result = caseNamedElement(interface_);
+				if (result == null) result = caseNamedElementOptional(interface_);
 				if (result == null) result = caseUMLReferencingElement(interface_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -180,6 +191,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				Property<?> property = (Property<?>)theEObject;
 				T1 result = caseProperty(property);
 				if (result == null) result = caseNamedElement(property);
+				if (result == null) result = caseNamedElementOptional(property);
 				if (result == null) result = caseUMLReferencingElement(property);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -189,6 +201,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				T1 result = caseMember(member);
 				if (result == null) result = caseProperty(member);
 				if (result == null) result = caseNamedElement(member);
+				if (result == null) result = caseNamedElementOptional(member);
 				if (result == null) result = caseUMLReferencingElement(member);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -199,6 +212,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseMember(attribute);
 				if (result == null) result = caseProperty(attribute);
 				if (result == null) result = caseNamedElement(attribute);
+				if (result == null) result = caseNamedElementOptional(attribute);
 				if (result == null) result = caseUMLReferencingElement(attribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -209,6 +223,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				if (result == null) result = caseMember(method);
 				if (result == null) result = caseProperty(method);
 				if (result == null) result = caseNamedElement(method);
+				if (result == null) result = caseNamedElementOptional(method);
 				if (result == null) result = caseUMLReferencingElement(method);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -218,6 +233,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				T1 result = caseParameter(parameter);
 				if (result == null) result = caseProperty(parameter);
 				if (result == null) result = caseNamedElement(parameter);
+				if (result == null) result = caseNamedElementOptional(parameter);
 				if (result == null) result = caseUMLReferencingElement(parameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -238,23 +254,12 @@ public class ClsSwitch<T1> extends Switch<T1> {
 			case ClsPackage.ASSOCIATION: {
 				Association association = (Association)theEObject;
 				T1 result = caseAssociation(association);
+				if (result == null) result = caseNamedElement(association);
 				if (result == null) result = caseTypedConnector(association);
-				if (result == null) result = caseUMLReferencingElement(association);
 				if (result == null) result = caseCommentable(association);
+				if (result == null) result = caseNamedElementOptional(association);
 				if (result == null) result = caseConnector(association);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.ASSOCIATION_END: {
-				AssociationEnd associationEnd = (AssociationEnd)theEObject;
-				T1 result = caseAssociationEnd(associationEnd);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.CLASSIFIER_ASSOCIATION_END: {
-				ClassifierAssociationEnd classifierAssociationEnd = (ClassifierAssociationEnd)theEObject;
-				T1 result = caseClassifierAssociationEnd(classifierAssociationEnd);
-				if (result == null) result = caseAssociationEnd(classifierAssociationEnd);
+				if (result == null) result = caseUMLReferencingElement(association);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -297,6 +302,24 @@ public class ClsSwitch<T1> extends Switch<T1> {
 			case ClsPackage.COMMENTABLE: {
 				Commentable commentable = (Commentable)theEObject;
 				T1 result = caseCommentable(commentable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.MULTI_ASSOCIATION: {
+				MultiAssociation multiAssociation = (MultiAssociation)theEObject;
+				T1 result = caseMultiAssociation(multiAssociation);
+				if (result == null) result = caseConnector(multiAssociation);
+				if (result == null) result = caseNamedElement(multiAssociation);
+				if (result == null) result = caseNamedElementOptional(multiAssociation);
+				if (result == null) result = caseUMLReferencingElement(multiAssociation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ClsPackage.MEMBER_END: {
+				MemberEnd memberEnd = (MemberEnd)theEObject;
+				T1 result = caseMemberEnd(memberEnd);
+				if (result == null) result = caseNamedElementOptional(memberEnd);
+				if (result == null) result = caseUMLReferencingElement(memberEnd);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -395,6 +418,21 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element Optional</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element Optional</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <T extends org.eclipse.uml2.uml.NamedElement> T1 caseNamedElementOptional(NamedElementOptional<T> object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -410,17 +448,17 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element Long Name</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element Aliased</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element Long Name</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element Aliased</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <T extends org.eclipse.uml2.uml.NamedElement> T1 caseNamedElementLongName(NamedElementLongName<T> object) {
+	public <T extends org.eclipse.uml2.uml.NamedElement> T1 caseNamedElementAliased(NamedElementAliased<T> object) {
 		return null;
 	}
 
@@ -590,36 +628,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Association End</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Association End</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseAssociationEnd(AssociationEnd object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Classifier Association End</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Classifier Association End</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseClassifierAssociationEnd(ClassifierAssociationEnd object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Generalization</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -706,6 +714,36 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 caseCommentable(Commentable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Association</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseMultiAssociation(MultiAssociation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Member End</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Member End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T1 caseMemberEnd(MemberEnd object) {
 		return null;
 	}
 

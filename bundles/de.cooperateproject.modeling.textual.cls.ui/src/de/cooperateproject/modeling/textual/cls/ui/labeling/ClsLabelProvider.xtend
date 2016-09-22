@@ -8,6 +8,8 @@ import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
@@ -24,12 +26,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jdt.ui.ISharedImages
 import org.eclipse.jdt.ui.JavaUI
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
-import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 
 /**
  * Provides labels for EObjects.
@@ -129,7 +127,19 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 			}
 
 			def text(UMLTypeReference ele) {
+				var cont = ele.eContainer
+				if (cont instanceof Association) {
+					return getAssociationMemberText(ele) 
+				}
 				ele.type.name
+			}
+			
+			def image(UMLTypeReference ele) {
+				if (ele.type instanceof org.eclipse.uml2.uml.Class) {
+					return images.getImage(ISharedImages.IMG_OBJS_CLASS)
+				} else if (ele.type instanceof org.eclipse.uml2.uml.Interface) {
+					return images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+				}
 			}
 
 			def text(DataTypeReference ele) {
@@ -137,19 +147,50 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 			}
 
 			def text(Association ele) {
+				if (ele.getComment() != null) {
+					return ele.referencedElement.name + " - Comment"
+				}
 				val leftChild = ele.left;
 				val rightChild = ele.right;
-				leftChild.doGetText + " " + ele.referencedElement.name + " " + rightChild.doGetText
+				return leftChild.type.name + " " + ele.referencedElement.name + " " + rightChild.type.name
 			}
 
 			def image(Association ele) {
-				if (ele.aggregationKind == AggregationKind.COMPOSITION) {
+				if (ele.getComment() != null) {
+					return UMLImageGetter.getUMLImage("Comment.gif")
+				} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
 					return UMLImageGetter.getUMLImage("Association_composite.gif")
 				} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
 					return UMLImageGetter.getUMLImage("Association_shared.gif")
 				} else {
 					return UMLImageGetter.getUMLImage("Association.gif")
 				}
+			}
+			
+			def getAssociationMemberText(UMLTypeReference ele) {
+				var asso = ele.eContainer as Association
+					if (ele == asso.left) {
+						if (asso.properties != null && asso.properties.propertyLeft != null) {
+							return ele.type.name + " as " + asso.properties.propertyLeft.name
+						}
+					} else if (ele == asso.right) {
+						if (asso.properties != null && asso.properties.propertyRight != null) {
+							return ele.type.name + " as " + asso.properties.propertyRight.name
+						}
+					}
+					return ele.type.name
+			}
+			
+			def text(MultiAssociation ele) {
+				return ele.referencedElement.name
+			}
+
+			def image(MultiAssociation ele) {
+				return UMLImageGetter.getUMLImage("Association.gif")
+			}
+			
+			def text(MemberEnd ele) {
+				return ele.type.text
 			}
 
 			def text(Generalization ele) {

@@ -20,7 +20,6 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @generated
  */
 public interface Parameter extends Property<org.eclipse.uml2.uml.Parameter> {
-
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Method#getParameters <em>Parameters</em>}'.
@@ -48,4 +47,5 @@ public interface Parameter extends Property<org.eclipse.uml2.uml.Parameter> {
 	 * @generated
 	 */
 	void setOwner(Method value);
+
 } // Parameter

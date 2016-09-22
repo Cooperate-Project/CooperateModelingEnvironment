@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,15 +15,17 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getProperties <em>Properties</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getAggregationKind <em>Aggregation Kind</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation()
  * @model
  * @generated
  */
-public interface Association extends TypedConnector, UMLReferencingElement<org.eclipse.uml2.uml.Association>, Commentable {
+public interface Association extends NamedElement<org.eclipse.uml2.uml.Association>, TypedConnector, Commentable {
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation <em>Association</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
@@ -32,7 +35,8 @@ public interface Association extends TypedConnector, UMLReferencingElement<org.e
 	 * @return the value of the '<em>Properties</em>' containment reference.
 	 * @see #setProperties(AssociationProperties)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Properties()
-	 * @model containment="true"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation
+	 * @model opposite="association" containment="true"
 	 * @generated
 	 */
 	AssociationProperties getProperties();
@@ -75,5 +79,41 @@ public interface Association extends TypedConnector, UMLReferencingElement<org.e
 	 * @generated
 	 */
 	void setAggregationKind(AggregationKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bidirectional</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bidirectional</em>' attribute.
+	 * @see #setBidirectional(boolean)
+	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Bidirectional()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isBidirectional();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
+	 * @see #isBidirectional()
+	 * @generated
+	 */
+	void setBidirectional(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getReferencedElement();'"
+	 * @generated
+	 */
+	Type getCommentedElement();
 
 } // Association

@@ -30,12 +30,12 @@ public interface TypedConnector extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(ClassifierAssociationEnd)
+	 * @see #setLeft(UMLTypeReference)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getTypedConnector_Left()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ClassifierAssociationEnd getLeft();
+	UMLTypeReference getLeft();
 
 	/**
 	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.TypedConnector#getLeft <em>Left</em>}' containment reference.
@@ -45,7 +45,7 @@ public interface TypedConnector extends Connector {
 	 * @see #getLeft()
 	 * @generated
 	 */
-	void setLeft(ClassifierAssociationEnd value);
+	void setLeft(UMLTypeReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
@@ -56,12 +56,12 @@ public interface TypedConnector extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right</em>' containment reference.
-	 * @see #setRight(ClassifierAssociationEnd)
+	 * @see #setRight(UMLTypeReference)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getTypedConnector_Right()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ClassifierAssociationEnd getRight();
+	UMLTypeReference getRight();
 
 	/**
 	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.TypedConnector#getRight <em>Right</em>}' containment reference.
@@ -71,6 +71,6 @@ public interface TypedConnector extends Connector {
 	 * @see #getRight()
 	 * @generated
 	 */
-	void setRight(ClassifierAssociationEnd value);
+	void setRight(UMLTypeReference value);
 
 } // TypedConnector

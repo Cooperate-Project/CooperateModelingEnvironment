@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +23,18 @@ public abstract class CooperateSimpleLocalScopeProvider extends SimpleLocalScope
 	public IScope getScope(EObject context, EReference reference) {
 		IScope baseScope = super.getScope(context, reference);
 		List<ImportNormalizer> normalizers = getImportNormalizers(context);
-		return new DuplicateImportScope(normalizers, baseScope, null, reference.getEReferenceType(), false);
+		normalizers.addAll(getAdditionalImportNormalizers(context, reference));
+		normalizers = filterDuplicatedNormalizers(normalizers);
+		return createImportScope(normalizers, baseScope, reference);
+	}
+
+	private List<ImportNormalizer> filterDuplicatedNormalizers(List<ImportNormalizer> normalizers) {
+		return normalizers;
+	}
+
+	protected Collection<? extends ImportNormalizer> getAdditionalImportNormalizers(EObject context,
+			EReference reference) {
+		return Collections.emptyList();
 	}
 
 	protected List<ImportNormalizer> getImportNormalizers(EObject context) {
@@ -51,6 +64,10 @@ public abstract class CooperateSimpleLocalScopeProvider extends SimpleLocalScope
 		String[] segments = name.split(QUALIFIED_NAME_SPLIT_REGEX);
 		QualifiedName qn = QualifiedName.create(segments);
 		return new ImportNormalizer(qn, true, false);
+	}
+	
+	protected IScope createImportScope(List<ImportNormalizer> normalizers, IScope baseScope, EReference reference) {
+		return new DuplicateImportScope(normalizers, baseScope, null, reference.getEReferenceType(), false);
 	}
 	
 }

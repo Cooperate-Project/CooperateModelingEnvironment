@@ -32,11 +32,13 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordShapeClassifier();
 	result += self.map traceRecordShapeAttribute();
 	result += self.map traceRecordShapeOperation();
+	result += self.map traceRecordShapeMultiAssociation();
 	result += self.map traceRecordEdgeParent();
 	result += self.map traceRecordEdgeGeneralization();
 	result += self.map traceRecordEdgeImplementation();
 	result += self.map traceRecordEdgeRegularAssociation();
 	result += self.map traceRecordEdgeCommentLink();
+	result += self.map traceRecordEdgeMemberEnd();
 }
 
 /*
@@ -116,8 +118,20 @@ mapping cls::Parameter::traceRecordShapeOperation_Parameter() : List(trace::Trac
 	result += self.referencedElement.oclAsType(uml::TypedElement).type.map typeToTypeReference(self.type);
 }
 
+mapping trace::TraceRecord::traceRecordShapeMultiAssociation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "multiAssociationToShape"}
+{
+	var diamondShape := self.getResult().modelElement;
+	var multiAssociation := self.getSelf().modelElement;
+	
+	result += createEdgeTraceRecord("associationNodeToMultiAssociation", "Node", diamondShape, "MultiAssociation", multiAssociation);
+}
+
 mapping trace::TraceRecord::traceRecordEdgeParent() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "connectorToConnector"}
+when {
+	self.mappingOperation.name = "connectorToConnector" or
+	(self.mappingOperation.name = "commentableToEdge" and not self.getSelf().modelElement.oclIsKindOf(cls::Association))
+}
 {
 	var connector := self.getSelf().modelElement;
 	var edge := self.getResult().modelElement;
@@ -165,7 +179,7 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	result += rightElement.type.map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));
 	
 	// association properties
-	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Association", umlAssociation.eobject(), "AssociationProperties", connector.properties.eobject());
+	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Edge", edge.eobject(), "AssociationProperties", connector.properties.eobject());
 	associationProperties.parameters.parameters += new trace::VarParameterValue("firstIndex", regularIndex);
 	result += associationProperties;	
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", leftElement.eobject(), "Cardinality", connector.properties.cardinalityLeft.eobject());
@@ -173,13 +187,26 @@ when {self.mappingOperation.name = "connectorToEdge"}
 }
 
 mapping trace::TraceRecord::traceRecordEdgeCommentLink() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "commentLinkToEdge"}
+when {self.mappingOperation.name = "commentableToEdge" and self.getSelf().modelElement.oclIsKindOf(cls::CommentLink)}
 {
 	var connector := self.getSelf().modelElement.oclAsType(cls::CommentLink);
 	var edge := self.getResult().modelElement;
 	var typeReference := connector.left.oclAsType(cls::UMLTypeReference);
 	
 	result += createEdgeTraceRecord("edgeToCommentLink", "Edge", edge, "CommentLink", connector.eobject());
+	result += typeReference.type.map typeToTypeReference_Classifier(typeReference);
+}
+
+mapping trace::TraceRecord::traceRecordEdgeMemberEnd() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "connectorEndToEdge"}
+{
+	var memberEnd := self.getSelf().modelElement.oclAsType(cls::MemberEnd);
+	var edge := self.getResult().modelElement.oclAsType(notation::Connector);
+	var umlProperty := edge.styles->selectByKind(notation::EObjectValueStyle)->any(true).eObjectValue;
+	var typeReference := memberEnd.type;
+	
+	result += new TraceRecord("edgeToMemberEnd", "Edge", edge.eobject(), "MemberEnd", memberEnd.eobject());
+	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", umlProperty, "Cardinality", memberEnd.cardinality.eobject());
 	result += typeReference.type.map typeToTypeReference_Classifier(typeReference);
 }
 

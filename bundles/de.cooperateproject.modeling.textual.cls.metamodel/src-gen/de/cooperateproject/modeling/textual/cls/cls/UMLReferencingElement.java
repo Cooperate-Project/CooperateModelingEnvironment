@@ -35,7 +35,7 @@ public interface UMLReferencingElement<T extends NamedElement> extends CDOObject
 	 * @return the value of the '<em>Referenced Element</em>' reference.
 	 * @see #setReferencedElement(NamedElement)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getUMLReferencingElement_ReferencedElement()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	T getReferencedElement();

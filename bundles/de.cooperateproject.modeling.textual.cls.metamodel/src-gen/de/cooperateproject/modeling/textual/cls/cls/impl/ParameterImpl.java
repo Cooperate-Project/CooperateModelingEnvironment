@@ -3,8 +3,8 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.Parameter;

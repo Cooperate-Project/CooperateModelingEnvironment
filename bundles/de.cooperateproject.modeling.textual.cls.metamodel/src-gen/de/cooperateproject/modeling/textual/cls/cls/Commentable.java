@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.cls.cls;
 import org.eclipse.emf.cdo.CDOObject;
 
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,5 +50,14 @@ public interface Commentable extends CDOObject {
 	 * @generated
 	 */
 	void setComment(Comment value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new UnsupportedOperationException(\"Implement this method in subclass!\");'"
+	 * @generated
+	 */
+	Type getCommentedElement();
 
 } // Commentable

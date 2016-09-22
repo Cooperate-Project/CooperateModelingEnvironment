@@ -26,7 +26,9 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PUBLIC(0, "PUBLIC", "PUBLIC"), /**
+	PUBLIC(0, "PUBLIC", "PUBLIC"),
+
+	/**
 	 * The '<em><b>PRIVATE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,7 +36,9 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRIVATE(1, "PRIVATE", "PRIVATE"), /**
+	PRIVATE(1, "PRIVATE", "PRIVATE"),
+
+	/**
 	 * The '<em><b>PROTECTED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

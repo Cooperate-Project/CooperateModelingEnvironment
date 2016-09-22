@@ -1,7 +1,7 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,14 +17,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.resource.impl.AliasedEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
+import org.eclipse.xtext.scoping.impl.SimpleScope;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
@@ -35,6 +39,9 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
+	
+	@Inject
+	private IAlternativeNameProvider alternativeQualifiedNameProvider;
 
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
@@ -81,20 +88,25 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	}
 
 	private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-		Collection<EObject> objs = results.map(this::getDescriptionFor).filter(d -> d != null)
-				.filter(d -> predicate == null ? true : predicate.apply(d)).map(d -> d.getEObjectOrProxy())
-				.collect(Collectors.toList());
-		return createUMLScope(objs);
+		Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(d -> d.stream()).filter(d -> d != null)
+				.filter(d -> predicate == null ? true : predicate.apply(d)).collect(Collectors.toList());
+		return new SimpleScope(descriptions);
 	}
 
-	private IScope createUMLScope(Iterable<EObject> objects) {
-		return Scopes.scopeFor(objects, e -> qualifiedNameProvider.apply(e), IScope.NULLSCOPE);
-	}
-
-	private IEObjectDescription getDescriptionFor(EObject obj) {
-		List<EObject> elements = Arrays.asList(obj);
-		Iterable<IEObjectDescription> descriptions = Scopes.scopedElementsFor(elements, qualifiedNameProvider::apply);
-		return Iterables.getFirst(descriptions, null);
+	private Collection<IEObjectDescription> getDescriptionFor(EObject obj) {
+		List<IEObjectDescription> descriptions = Lists.newArrayList();
+		QualifiedName qualifiedName = qualifiedNameProvider.getFullyQualifiedName(obj);
+		if (qualifiedName == null) {
+			return Collections.emptyList();
+		}
+		IEObjectDescription description = new EObjectDescription(qualifiedName, obj, null);
+		descriptions.add(description);
+		Optional<QualifiedName> alternativeName = alternativeQualifiedNameProvider.getAlternativeFullyQualifiedName(obj);
+		if (alternativeName.isPresent()) {
+			IEObjectDescription alternativeDescription = new AliasedEObjectDescription(alternativeName.get(), description);
+			descriptions.add(alternativeDescription);
+		}
+		return descriptions;
 	}
 
 	private static Optional<Resource> findUMLResource(Resource self) {

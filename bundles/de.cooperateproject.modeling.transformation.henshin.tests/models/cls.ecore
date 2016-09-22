@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cls" nsURI="http://www.cooperateproject.de/modeling/textual/cls/Cls"
+    nsPrefix="cls">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="rootExtendsClass" value="org.eclipse.emf.internal.cdo.CDOObjectImpl"/>
+    <details key="rootExtendsInterface" value="org.eclipse.emf.cdo.CDOObject"/>
+    <details key="providerRootExtendsClass" value="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"/>
+    <details key="modelName" value="cls"/>
+    <details key="modelDirectory" value="/de.cooperateproject.modeling.textual.cls.metamodel/src-gen"/>
+    <details key="featureDelegation" value="Dynamic"/>
+    <details key="basePackage" value="de.cooperateproject.modeling.textual.cls"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packageImports" upperBound="-1"
+        eType="#//PackageImport" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifiers" upperBound="-1"
+        containment="true" resolveProxies="false">
+      <eGenericType eClassifier="#//Classifier">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
+        eType="#//Connector" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeReference" eSuperTypes="#//TypeReference">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" unique="false" lowerBound="1"
+        eType="#//PrimitiveType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLTypeReference" eSuperTypes="#//TypeReference #//ClassifierAssociationEnd">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLReferencingElement" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement" lowerBound="1">
+      <eGenericType eTypeParameter="#//UMLReferencingElement/T"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="return getReferencedElement().getName();"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eTypeParameter="#//NamedElement/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElementLongName" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longName" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eGenericSuperTypes eClassifier="#//NamedElement">
+      <eTypeArguments eTypeParameter="#//NamedElementLongName/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Classifier" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
+        eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        containment="true" resolveProxies="false" eOpposite="#//Member/owner">
+      <eGenericType eClassifier="#//Member">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//NamedElementLongName">
+      <eTypeArguments eTypeParameter="#//Classifier/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eGenericSuperTypes eClassifier="#//Classifier">
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interface">
+    <eGenericSuperTypes eClassifier="#//Classifier">
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Interface"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
+        eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeReference"
+        containment="true" resolveProxies="false"/>
+    <eGenericSuperTypes eClassifier="#//NamedElement">
+      <eTypeArguments eTypeParameter="#//Property/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Member" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" changeable="false"
+        eOpposite="#//Classifier/members">
+      <eGenericType eClassifier="#//Classifier">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//Property">
+      <eTypeArguments eTypeParameter="#//Member/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute">
+    <eGenericSuperTypes eClassifier="#//Member">
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Method">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true" resolveProxies="false" eOpposite="#//Parameter/owner"/>
+    <eGenericSuperTypes eClassifier="#//Member">
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Method"
+        eOpposite="#//Method/parameters"/>
+    <eGenericSuperTypes eClassifier="#//Property">
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Parameter"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ClassifierAssociationEnd"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//ClassifierAssociationEnd"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association">
+    <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getReferencedElement();"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//AssociationProperties"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregationKind" lowerBound="1"
+        eType="#//AggregationKind"/>
+    <eGenericSuperTypes eClassifier="#//TypedConnector"/>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//Commentable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifierAssociationEnd" abstract="true"
+      interface="true" eSuperTypes="#//AssociationEnd"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//TypedConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Implementation" eSuperTypes="#//TypedConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Connector #//Commentable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="hasComment"/>
+    </eAnnotations>
+    <eOperations name="hasComment" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (getComment() == null) {&#xD;&#xA;&#x9;&lt;%org.eclipse.emf.common.util.BasicDiagnostic%> basicDiagnostic = new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>(&lt;%org.eclipse.emf.common.util.BasicDiagnostic%>.ERROR, &quot;hasComment&quot;, 1, &quot;A comment link must have a comment.&quot;, new Object[]{this});&#xD;&#xA;&#x9;diagnostics.add(basicDiagnostic);&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;diagnostics.add(&lt;%org.eclipse.emf.common.util.BasicDiagnostic%>.OK_INSTANCE);&#xD;&#xA;return true;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context" unique="false">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (getLeft() instanceof &lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {&#xD;&#xA;&#x9;return ((&lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();&#xD;&#xA;}&#xD;&#xA;throw new IllegalStateException(&quot;Internal error in determining commented UML element.&quot;);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//ClassifierAssociationEnd"
+        containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationProperties">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalityLeft" eType="#//Cardinality"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalityRight" eType="#//Cardinality"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="readingDirection" unique="false"
+        eType="#//ReadingDirection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cardinality">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Commentable" abstract="true">
+    <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Type">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="throw new UnsupportedOperationException(&quot;Implement this method in subclass!&quot;);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comment" eType="ecore:EClass http://www.eclipse.org/uml2/5.0.0/UML#//Comment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="PUBLIC"/>
+    <eLiterals name="PRIVATE" value="1"/>
+    <eLiterals name="PROTECTED" value="2"/>
+    <eLiterals name="PACKAGE" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
+    <eLiterals name="INT" value="1"/>
+    <eLiterals name="DOUBLE" value="2"/>
+    <eLiterals name="BOOLEAN" value="3"/>
+    <eLiterals name="CHAR" value="4"/>
+    <eLiterals name="BYTE" value="5"/>
+    <eLiterals name="SHORT" value="6"/>
+    <eLiterals name="LONG" value="7"/>
+    <eLiterals name="FLOAT" value="8"/>
+    <eLiterals name="STRING" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ReadingDirection">
+    <eLiterals name="LEFT" value="1"/>
+    <eLiterals name="RIGHT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
+    <eLiterals name="NONE"/>
+    <eLiterals name="AGGREGATION" value="1"/>
+    <eLiterals name="COMPOSITION" value="2"/>
+  </eClassifiers>
+</ecore:EPackage>

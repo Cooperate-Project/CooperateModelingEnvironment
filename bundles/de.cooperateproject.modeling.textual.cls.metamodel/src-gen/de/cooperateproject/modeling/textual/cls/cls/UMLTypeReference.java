@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.Type;
  * @model
  * @generated
  */
-public interface UMLTypeReference extends TypeReference, ClassifierAssociationEnd {
+public interface UMLTypeReference extends TypeReference {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->

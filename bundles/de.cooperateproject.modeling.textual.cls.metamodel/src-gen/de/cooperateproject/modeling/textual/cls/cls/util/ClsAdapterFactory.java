@@ -3,12 +3,10 @@
 package de.cooperateproject.modeling.textual.cls.cls.util;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
@@ -18,8 +16,11 @@ import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName;
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
@@ -119,12 +120,16 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 				return createUMLReferencingElementAdapter();
 			}
 			@Override
+			public <T extends NamedElement> Adapter caseNamedElementOptional(NamedElementOptional<T> object) {
+				return createNamedElementOptionalAdapter();
+			}
+			@Override
 			public <T extends NamedElement> Adapter caseNamedElement(de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> object) {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public <T extends NamedElement> Adapter caseNamedElementLongName(NamedElementLongName<T> object) {
-				return createNamedElementLongNameAdapter();
+			public <T extends NamedElement> Adapter caseNamedElementAliased(NamedElementAliased<T> object) {
+				return createNamedElementAliasedAdapter();
 			}
 			@Override
 			public <T extends Classifier> Adapter caseClassifier(de.cooperateproject.modeling.textual.cls.cls.Classifier<T> object) {
@@ -171,14 +176,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 				return createAssociationAdapter();
 			}
 			@Override
-			public Adapter caseAssociationEnd(AssociationEnd object) {
-				return createAssociationEndAdapter();
-			}
-			@Override
-			public Adapter caseClassifierAssociationEnd(ClassifierAssociationEnd object) {
-				return createClassifierAssociationEndAdapter();
-			}
-			@Override
 			public Adapter caseGeneralization(Generalization object) {
 				return createGeneralizationAdapter();
 			}
@@ -201,6 +198,14 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCommentable(Commentable object) {
 				return createCommentableAdapter();
+			}
+			@Override
+			public Adapter caseMultiAssociation(MultiAssociation object) {
+				return createMultiAssociationAdapter();
+			}
+			@Override
+			public Adapter caseMemberEnd(MemberEnd object) {
+				return createMemberEndAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -307,6 +312,20 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional <em>Named Element Optional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional
+	 * @generated
+	 */
+	public Adapter createNamedElementOptionalAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -321,16 +340,16 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName <em>Named Element Long Name</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased <em>Named Element Aliased</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementLongName
+	 * @see de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
 	 * @generated
 	 */
-	public Adapter createNamedElementLongNameAdapter() {
+	public Adapter createNamedElementAliasedAdapter() {
 		return null;
 	}
 
@@ -489,34 +508,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationEnd <em>Association End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationEnd
-	 * @generated
-	 */
-	public Adapter createAssociationEndAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd <em>Classifier Association End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassifierAssociationEnd
-	 * @generated
-	 */
-	public Adapter createClassifierAssociationEndAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Generalization <em>Generalization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -597,6 +588,34 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCommentableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.MultiAssociation <em>Multi Association</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
+	 * @generated
+	 */
+	public Adapter createMultiAssociationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd <em>Member End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.MemberEnd
+	 * @generated
+	 */
+	public Adapter createMemberEndAdapter() {
 		return null;
 	}
 

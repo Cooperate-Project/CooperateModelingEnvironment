@@ -14,7 +14,7 @@ public class NameSwitch extends ClsSwitch<String> {
 	@Override
 	public <T extends NamedElement> String caseNamedElement(
 			de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> object) {
-		Object result = object.eGet(ClsPackage.eINSTANCE.getNamedElement_Name(), false);
+		Object result = object.eGet(ClsPackage.eINSTANCE.getNamedElementOptional_Name(), false);
 		if (result != null) {
 			return (String)result;
 		}

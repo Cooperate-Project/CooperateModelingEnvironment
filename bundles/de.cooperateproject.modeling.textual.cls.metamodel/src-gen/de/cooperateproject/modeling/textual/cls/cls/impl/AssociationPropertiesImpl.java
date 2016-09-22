@@ -2,14 +2,15 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
+import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.ReadingDirection;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,9 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getCardinalityLeft <em>Cardinality Left</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getCardinalityRight <em>Cardinality Right</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getReadingDirection <em>Reading Direction</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getPropertyLeft <em>Property Left</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getPropertyRight <em>Property Right</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationPropertiesImpl#getAssociation <em>Association</em>}</li>
  * </ul>
  *
  * @generated
@@ -97,8 +100,8 @@ public class AssociationPropertiesImpl extends CDOObjectImpl implements Associat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadingDirection getReadingDirection() {
-		return (ReadingDirection)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__READING_DIRECTION, true);
+	public Property getPropertyLeft() {
+		return (Property)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT, true);
 	}
 
 	/**
@@ -106,8 +109,44 @@ public class AssociationPropertiesImpl extends CDOObjectImpl implements Associat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReadingDirection(ReadingDirection newReadingDirection) {
-		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__READING_DIRECTION, newReadingDirection);
+	public void setPropertyLeft(Property newPropertyLeft) {
+		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT, newPropertyLeft);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Property getPropertyRight() {
+		return (Property)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPropertyRight(Property newPropertyRight) {
+		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT, newPropertyRight);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Association getAssociation() {
+		return (Association)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__ASSOCIATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssociation(Association newAssociation) {
+		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__ASSOCIATION, newAssociation);
 	}
 
 } //AssociationPropertiesImpl

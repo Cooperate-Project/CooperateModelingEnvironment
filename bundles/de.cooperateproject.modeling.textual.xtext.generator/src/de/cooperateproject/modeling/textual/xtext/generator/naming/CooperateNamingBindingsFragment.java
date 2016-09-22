@@ -14,6 +14,9 @@ public class CooperateNamingBindingsFragment extends Xtend2GeneratorFragment {
 		return new BindFactory().addTypeToType(
 			  "org.eclipse.xtext.naming.IQualifiedNameProvider",
 			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider")
+			.addTypeToType(
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNameProvider",
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider")
 			.getBindings();
 	}
 	

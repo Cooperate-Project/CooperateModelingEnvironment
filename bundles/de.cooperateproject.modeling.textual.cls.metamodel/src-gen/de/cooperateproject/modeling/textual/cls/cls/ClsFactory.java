@@ -157,6 +157,24 @@ public interface ClsFactory extends EFactory {
 	Cardinality createCardinality();
 
 	/**
+	 * Returns a new object of class '<em>Multi Association</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Association</em>'.
+	 * @generated
+	 */
+	MultiAssociation createMultiAssociation();
+
+	/**
+	 * Returns a new object of class '<em>Member End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Member End</em>'.
+	 * @generated
+	 */
+	MemberEnd createMemberEnd();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

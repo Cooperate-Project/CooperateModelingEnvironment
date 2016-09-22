@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.uml2.uml.Type;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Comment Link</b></em>'.
@@ -32,12 +34,12 @@ public interface CommentLink extends Connector, Commentable {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(ClassifierAssociationEnd)
+	 * @see #setLeft(UMLTypeReference)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getCommentLink_Left()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ClassifierAssociationEnd getLeft();
+	UMLTypeReference getLeft();
 
 	/**
 	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getLeft <em>Left</em>}' containment reference.
@@ -47,7 +49,7 @@ public interface CommentLink extends Connector, Commentable {
 	 * @see #getLeft()
 	 * @generated
 	 */
-	void setLeft(ClassifierAssociationEnd value);
+	void setLeft(UMLTypeReference value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -57,5 +59,14 @@ public interface CommentLink extends Connector, Commentable {
 	 * @generated
 	 */
 	boolean hasComment(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (getLeft() instanceof <%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {\r\n\treturn ((<%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();\r\n}\r\nthrow new IllegalStateException(\"Internal error in determining commented UML element.\");'"
+	 * @generated
+	 */
+	Type getCommentedElement();
 
 } // CommentLink

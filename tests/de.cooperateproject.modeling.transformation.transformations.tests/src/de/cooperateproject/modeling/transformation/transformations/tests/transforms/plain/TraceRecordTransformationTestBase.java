@@ -64,16 +64,16 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 				return resultType;
 			}
 			
-			EObject self1 = o1.getContext().getContext().getValue().getModelElement();
-			EObject self2 = o2.getContext().getContext().getValue().getModelElement();
-			int self = self2.hashCode() - self1.hashCode();
+			Object self1 = o1.getContext().getContext().getValue().getModelElement();
+			Object self2 = o2.getContext().getContext().getValue().getModelElement();
+			int self = (self2 == null ? 0 : self2.hashCode()) - (self1 == null ? 0 : self1.hashCode());
 			if (self != 0) {
 				return self;
 			}
 
 			EObject result1 = o1.getResult().getResult().get(0).getValue().getModelElement();
 			EObject result2 = o2.getResult().getResult().get(0).getValue().getModelElement();
-			int result = result2.hashCode() - result1.hashCode();
+			int result = (result2 == null ? 0 : result2.hashCode()) - (result1 == null ? 0 : result1.hashCode());
 			if (result != 0) {
 				return result;
 			}

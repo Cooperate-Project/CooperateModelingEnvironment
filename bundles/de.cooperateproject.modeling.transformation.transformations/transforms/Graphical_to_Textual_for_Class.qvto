@@ -4,7 +4,9 @@ modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notat
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-	
+
+property TYPES_SHAPE_NARY : String = "2015";	
+
 main() {
 	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLClassDiagram");
 	assert fatal (diagrams->size() = 1);
@@ -16,7 +18,8 @@ mapping notation::Diagram::diagramToDiagram() : cls::ClassDiagram {
 	name := self.name;
 	packageImports += self->map diagramToPackageImport();
 	classifiers += self.children->select(element.oclIsKindOf(uml::Class) or element.oclIsKindOf(uml::Interface))->map nodeToClassifier();
-	connectors += self.edges->map edgeToConnector(self.edges);
+	connectors += self.children->select(type = TYPES_SHAPE_NARY)->map associationNodeToMultiAssociation(self.edges);
+	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
 }
 
 mapping notation::Diagram::diagramToPackageImport() : cls::PackageImport {
@@ -38,6 +41,7 @@ mapping notation::Node::nodeToClass() : cls::Class
 	
 	_abstract := clz.isAbstract;
 	
+	aliasExpression := clz.nameExpression; 
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
@@ -50,6 +54,7 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 	var interface := self.element.oclAsType(uml::Interface);
 	referencedElement := interface;
 	
+	aliasExpression := interface.nameExpression;
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 }
@@ -90,8 +95,6 @@ mapping uml::Type::typeToPrimitiveTypeReference(parent : OclAny) : cls::DataType
 	when {self.oclIsKindOf(uml::PrimitiveType)}
 {
 	type := self.oclAsType(uml::PrimitiveType).convert();
-	log("Primitive type: ", self);
-	log("Textual   type: ", result.type);
 }
 
 mapping uml::Type::typeToUMLTypeReference(parent : OclAny) : cls::UMLTypeReference
@@ -119,19 +122,7 @@ disjuncts
 {}
 
 mapping notation::Edge::edgeToCommentLink(allEdges : OrderedSet(Edge)) : cls::CommentLink
-	when {
-		self.element = null and	(
-			(
-				self.source.element.oclIsKindOf(uml::Comment) and
-				self.target.element.oclIsKindOf(uml::Classifier)
-			)
-			or
-			(
-				self.source.element.oclIsKindOf(uml::Classifier) and
-				self.target.element.oclIsKindOf(uml::Comment)
-			)
-		)
-	}
+	when {self.isCommentLink()}
 {
 	var classifier := if self.source.element.oclIsKindOf(uml::Classifier) then self.source.element else self.target.element endif;
 	var umlComment := if self.source.element.oclIsKindOf(uml::Comment) then self.source.element else  self.target.element endif; 
@@ -180,6 +171,10 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 		      UML 2.5, 11.5.4
 	*/
 	
+	var navigableEnds := association.findNavigableEnds();
+	assert warning (navigableEnds->notEmpty()) with log('An association with no navigable end is not useful.');
+		
+	
 	var aggregatingIndex := if association.memberEnd->at(2).aggregation != uml::AggregationKind::none then 2 else 1 endif;
 	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
 	
@@ -187,24 +182,34 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	aggregationKind := association.memberEnd->at(aggregatingIndex).aggregation.convert();
 	left := association.memberEnd->at(regularIndex).type.map typeToUMLTypeReference(result);
 	right := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference(result);
+	bidirectional := (association.ownedEnd-association.navigableOwnedEnd)->isEmpty();
 	
-	properties := association.map edgeToAssociationProperties(regularIndex);
+	properties := self.map edgeToAssociationProperties(regularIndex);
 	
 	var relevantComments := self.findEdgeComments(allEdges);
 	assert warning (relevantComments->size() = 1) with log ('There can be no more than one comments for an association.');
 	comment := relevantComments->any(true);
 }
 
-mapping uml::Association::edgeToAssociationProperties(firstIndex : Integer) : cls::AssociationProperties {
-	assert error (self.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
+query uml::Association::findNavigableEnds() : OrderedSet(Property)
+{
+	return self.memberEnd->select(it | it.owner != self or self.navigableOwnedEnd->includes(it))
+}
+
+mapping notation::Edge::edgeToAssociationProperties(firstIndex : Integer) : cls::AssociationProperties
+when {self.element.oclIsKindOf(uml::Association)}
+{
+	var umlAssociation := self.element.oclAsType(uml::Association);
+	assert error (umlAssociation.memberEnd->size() = 2) with log('Could not transform association because there are not exactly two association ends.', self);
 		
-	var left := self.memberEnd->at(firstIndex);
-	var right := self.memberEnd->at(if firstIndex = 1 then 2 else 1 endif);
+	var left := umlAssociation.memberEnd->at(firstIndex);
+	var right := umlAssociation.memberEnd->at(if firstIndex = 1 then 2 else 1 endif);
 	
 	cardinalityLeft := left.map multiplicityElementToCardinality();
 	cardinalityRight := right.map multiplicityElementToCardinality();
-
-	//TODO reading direction not considered yet
+	
+	propertyLeft := if self.children->exists(type = "6005") then left else null endif;
+	propertyRight := if self.children->exists(type = "6003") then right else null endif;
 }
 
 
@@ -226,6 +231,57 @@ mapping notation::Node::nodeToCommentConnector() : cls::CommentLink
 	
 	left := commentElement.annotatedElement->any(true).oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
 	comment := comment;
+}
+
+
+mapping notation::Node::associationNodeToMultiAssociation(allEdges : OrderedSet(notation::Edge)) : cls::MultiAssociation
+	when {
+		self.element.oclIsKindOf(uml::Association) and self.element.oclAsType(uml::Association).memberEnd->size() > 2
+	}
+{
+	var umlAssociation := self.element.oclAsType(uml::Association);
+	referencedElement := umlAssociation;
+	
+	var accordingEdges := allEdges->select(type = "4019" and (source = self or target = self));
+	connectorEnds += accordingEdges->map edgeToMemberEnd();
+	//connectorEnds += umlAssociation.memberEnd->map propertyToMemberEnd();
+}
+
+mapping notation::Edge::edgeToMemberEnd() : cls::MemberEnd
+{
+	var umlProperty := self.styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
+	referencedElement := if umlProperty.name != null then umlProperty else null endif;
+	cardinality := umlProperty.map multiplicityElementToCardinality();
+	type := umlProperty.type.map typeToUMLTypeReference(result);
+	navigable := umlProperty.association.navigableOwnedEnd->includes(umlProperty);
+}
+
+/*
+mapping uml::Property::propertyToMemberEnd() : cls::MemberEnd
+{
+	referencedElement := if self.name != null then self else null endif;
+	cardinality := self.map multiplicityElementToCardinality();
+	type := self.type.map typeToUMLTypeReference(result);
+	navigable := self.association.navigableOwnedEnd->includes(self);
+}
+*/
+
+query notation::Edge::isCommentLink() : Boolean {
+	return self.element = null and (
+			(
+				self.source.element.oclIsKindOf(uml::Comment) and
+				self.target.element.oclIsKindOf(uml::Classifier)
+			)
+			or
+			(
+				self.source.element.oclIsKindOf(uml::Classifier) and
+				self.target.element.oclIsKindOf(uml::Comment)
+			)
+		)
+}
+
+query notation::Edge::isCommentLinkForAssociation() : Boolean {
+	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
 }
 
 query notation::Edge::findEdgeComments(allEdges : OrderedSet(notation::Edge)) : OrderedSet(uml::Comment) {
