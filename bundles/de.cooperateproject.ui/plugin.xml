@@ -74,4 +74,17 @@
             class="de.cooperateproject.ui.nature.StartupBuilder">
       </startup>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.cooperateproject.ui.cooperateWizards"
+            name="Cooperate">
+      </category>
+      <wizard
+            category="de.cooperateproject.ui.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.NewCooperateProjectWizard"
+            id="de.cooperateproject.ui.newCooperateProjectWizard"
+            name="Cooperate Project">
+      </wizard>
+   </extension>
 </plugin>
