@@ -3,11 +3,16 @@ package de.cooperateproject.modeling.transformation.henshin.tests;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -75,10 +80,13 @@ public class IncrementalTest {
 
 		// Load the example model into an EGraph:
 		Resource textualClassDiagram = resourceSet.getResource("ClassDiagram.xmi");
+		EList<EObject> diagrams = textualClassDiagram.getContents();
 		EGraph inputGraph = new EGraphImpl(textualClassDiagram);
 
 		TggTransformationInfo trafoInfo = new TggTransformationInfoImpl();
-		trafoInfo.fillTranslatedMaps(inputGraph.getRoots(), false);
+		//only mark the top most diagram elements
+		trafoInfo.fillTranslatedMaps(diagrams, false);
+		
 
 		// TggHenshineGraph
 		// Create an engine and a rule application:
@@ -119,7 +127,8 @@ public class IncrementalTest {
 		// Load the example model into an EGraph:
 		Resource umlBaseModelRes = resourceSet.getResource("ClassDiagram.uml");
 		Resource textualClassDiagramRes = resourceSet.getResource("ClassDiagram.xmi");
-		Resource graphicalClassDiagramRes = resourceSet.getResource("ClassDiagram.notation");
+		Resource graphicalClassDiagramRes = resourceSet.getResource("ft_classDiagram.notation");
+		Resource tracesRes = resourceSet.getResource("ft_traces.xmi");
 		EcoreUtil.resolveAll(resourceSet);
 		
 		EGraph inputGraph = new EGraphImpl(textualClassDiagramRes);
@@ -127,10 +136,16 @@ public class IncrementalTest {
 		//add graphical diagram
 		Diagram papyrusClassDiagram = (Diagram) graphicalClassDiagramRes.getContents().get(0);
 		inputGraph.addGraph(papyrusClassDiagram);
+		
+		//add trace file
+		EList<EObject> traces = tracesRes.getContents();
+		inputGraph.addAll(traces);
+		
 
 		TggTransformationInfo trafoInfo = new TggTransformationInfoImpl();
-		trafoInfo.fillTranslatedMaps(inputGraph.getRoots(), false);
 
+		trafoInfo.fillTranslatedMaps(inputGraph.getRoots(), false);
+		
 		// TggHenshineGraph
 		// Create an engine and a rule application:
 		TggEngine engine = new TggEngineOperational(inputGraph, trafoInfo);
@@ -145,8 +160,9 @@ public class IncrementalTest {
 		}
 
 		List<EObject> graphRoots = inputGraph.getRoots();
-		Collection<Trace> traces = EcoreUtil.getObjectsByType(graphRoots, TracePackage.eINSTANCE.getTrace());
-		Assert.isTrue(!traces.isEmpty(), "no traces were created");
+		Collection<Trace> newTraces = EcoreUtil.getObjectsByType(graphRoots, TracePackage.eINSTANCE.getTrace());
+		 
+		Assert.isTrue(!newTraces.isEmpty(), "no traces were created");
 		
 		
 		
