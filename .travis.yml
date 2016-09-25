@@ -7,7 +7,6 @@ before_install:
 - . /tmp/BuildUtils/travisci/setup.sh
 install: true
 script:
-- mvn -U clean
 - mavenBuild.sh
 cache:
   directories:
