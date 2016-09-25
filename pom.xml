@@ -23,9 +23,9 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
-		<xtext.version>2.9.1</xtext.version>
+		<xtext.version>2.10.0</xtext.version>
 		
-		<tycho.version>0.24.0</tycho.version>
+		<tycho.version>0.25.0</tycho.version>
 		<maven.deploy-plugin.version>2.8.2</maven.deploy-plugin.version>
 		
 		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
@@ -49,12 +49,12 @@
 		<repository>
 			<id>eclipse</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/mars</url>
+			<url>http://download.eclipse.org/releases/neon</url>
 		</repository>
 		<repository>
 			<id>eclipse-orbit</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20151118145958/repository/</url>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/</url>
 		</repository>
 		<repository>
 			<id>eclipse-license-feature</id>

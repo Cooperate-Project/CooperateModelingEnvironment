@@ -28,6 +28,7 @@ mapping trace::Trace::trace() : trace::Trace
 
 mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
+
 	result += self.map traceRecordDiagram();
 	result += self.map traceRecordShapeClassifier();
 	result += self.map traceRecordShapeAttribute();
@@ -39,6 +40,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordEdgeRegularAssociation();
 	result += self.map traceRecordEdgeCommentLink();
 	result += self.map traceRecordEdgeMemberEnd();
+	
 }
 
 /*
@@ -96,7 +98,8 @@ when {self.mappingOperation.name = "attributeToShape"}
 	var umlType := attributeShape.oclAsType(notation::Shape).element.oclAsType(uml::TypedElement).type;
 	
 	result += new TraceRecord("nodeToProperty", "Node", attributeShape, "Attribute", attribute.eobject());	
-	result += umlType.map typeToTypeReference(attribute.type);
+	var typeRecords := umlType.map typeToTypeReference(attribute.type);
+	result += if typeRecords->oclIsInvalid() then object OrderedSet(trace::TraceRecord){} else typeRecords endif;
 }
 
 mapping trace::TraceRecord::traceRecordShapeOperation() : List(trace::TraceRecord)
@@ -109,13 +112,16 @@ when {self.mappingOperation.name = "methodToShape"}
 	
 	result += new TraceRecord("nodeToOperation", "Node", methodShape, "Method", method.eobject());	
 	result += method.parameters->map traceRecordShapeOperation_Parameter()->flatten();
-	result += umlType.map typeToTypeReference(method.type);
+	var typeRecords := umlType.map typeToTypeReference(method.type);
+	result += if typeRecords->oclIsInvalid() then object OrderedSet(trace::TraceRecord){} else typeRecords endif;
 }
 
 mapping cls::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {
 	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
-	result += self.referencedElement.oclAsType(uml::TypedElement).type.map typeToTypeReference(self.type);
+	var umlType := self.referencedElement.oclAsType(uml::TypedElement).type;
+	var typeRecords := umlType.map typeToTypeReference(self.type);
+	result += if typeRecords->oclIsInvalid() then object OrderedSet(trace::TraceRecord){} else typeRecords endif;
 }
 
 mapping trace::TraceRecord::traceRecordShapeMultiAssociation() : List(trace::TraceRecord)

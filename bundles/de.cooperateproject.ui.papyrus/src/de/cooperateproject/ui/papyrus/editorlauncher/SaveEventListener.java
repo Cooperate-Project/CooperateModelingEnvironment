@@ -1,7 +1,8 @@
 package de.cooperateproject.ui.papyrus.editorlauncher;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
+
+import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
 import org.eclipse.ui.IEditorPart;
 
 
