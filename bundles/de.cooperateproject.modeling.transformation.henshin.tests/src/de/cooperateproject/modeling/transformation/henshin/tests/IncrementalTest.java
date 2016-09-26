@@ -3,11 +3,14 @@ package de.cooperateproject.modeling.transformation.henshin.tests;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -25,6 +28,8 @@ import org.eclipse.emf.henshin.trace.TracePackage;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.junit.Before;
@@ -38,6 +43,8 @@ import de.tub.tfs.henshin.tgg.interpreter.impl.TggEngineOperational;
 import de.tub.tfs.henshin.tgg.interpreter.impl.TggTransformationInfoImpl;
 
 public class IncrementalTest {
+	
+	final static Logger LOG = Logger.getLogger(IncrementalTest.class);
 	
 	/**
 	 * Relative path to the example model files.
@@ -79,6 +86,7 @@ public class IncrementalTest {
 
 
 		// Load the example model into an EGraph:
+		Resource umlBaseModelRes = resourceSet.getResource("ClassDiagram.uml");
 		Resource textualClassDiagram = resourceSet.getResource("ClassDiagram.xmi");
 		EList<EObject> diagrams = textualClassDiagram.getContents();
 		EGraph inputGraph = new EGraphImpl(textualClassDiagram);
@@ -131,6 +139,8 @@ public class IncrementalTest {
 		Resource tracesRes = resourceSet.getResource("ft_traces.xmi");
 		EcoreUtil.resolveAll(resourceSet);
 		
+		//add textual diagram
+		EObject textDiag = textualClassDiagramRes.getContents().get(0);
 		EGraph inputGraph = new EGraphImpl(textualClassDiagramRes);
 		
 		//add graphical diagram
@@ -143,8 +153,20 @@ public class IncrementalTest {
 		
 
 		TggTransformationInfo trafoInfo = new TggTransformationInfoImpl();
+		
+		List<EObject> roots = inputGraph.getRoots();
+		
+		//mark fixed model as visited
+		for(EObject root: roots) 
+			if (root instanceof Model)
+				trafoInfo.fillTranslatedMaps(root, true);
 
-		trafoInfo.fillTranslatedMaps(inputGraph.getRoots(), false);
+		//mark other models as not visited
+		for(EObject root: roots) 
+			if (!(root instanceof Model))
+				trafoInfo.fillTranslatedMaps(root, false);
+
+		
 		
 		// TggHenshineGraph
 		// Create an engine and a rule application:
@@ -161,9 +183,23 @@ public class IncrementalTest {
 
 		List<EObject> graphRoots = inputGraph.getRoots();
 		Collection<Trace> newTraces = EcoreUtil.getObjectsByType(graphRoots, TracePackage.eINSTANCE.getTrace());
-		 
 		Assert.isTrue(!newTraces.isEmpty(), "no traces were created");
 		
+		Set<EObject> unmarkedNodes = new HashSet<>();
+		Set<EObject> unmarkedEdges = new HashSet<>();
+		trafoInfo.getTranslationMaps().getIsTranslatedNodeMap().forEach((k, v) -> {
+			if (!v)
+				unmarkedNodes.add(k);
+		});
+		
+		
+		for(EObject node : unmarkedNodes)
+			LOG.debug(node);
+		
+//		trafoInfo.getTranslationMaps().getIsTranslatedEdgeMap().forEach((k, v) -> {
+//			if (!v)
+//				unmarkedNodes.add(k);
+//		});
 		
 		
 		
