@@ -2471,76 +2471,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         try {
             // InternalCls.g:915:1: ( ( ruleGeneralization ) | ( ruleAssociation ) | ( ruleImplementation ) | ( ruleCommentLink ) | ( ruleMultiAssociation ) )
             int alt4=5;
-            switch ( input.LA(1) ) {
-            case RULE_ID:
-                {
-                switch ( input.LA(2) ) {
-                case 48:
-                    {
-                    alt4=4;
-                    }
-                    break;
-                case 46:
-                    {
-                    alt4=1;
-                    }
-                    break;
-                case 47:
-                    {
-                    alt4=3;
-                    }
-                    break;
-                default:
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 4, 1, input);
-
-                    throw nvae;
-                }
-
-                }
-                break;
-            case 29:
-            case 30:
-            case 57:
-                {
-                alt4=2;
-                }
-                break;
-            case 28:
-                {
-                int LA4_3 = input.LA(2);
-
-                if ( (LA4_3==RULE_ID) ) {
-                    int LA4_7 = input.LA(3);
-
-                    if ( (LA4_7==35) ) {
-                        alt4=5;
-                    }
-                    else if ( (LA4_7==RULE_ID) ) {
-                        alt4=2;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 4, 7, input);
-
-                        throw nvae;
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 4, 3, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
-
-                throw nvae;
-            }
-
+            alt4 = dfa4.predict(input);
             switch (alt4) {
                 case 1 :
                     // InternalCls.g:916:1: ( ruleGeneralization )
@@ -14448,25 +14379,29 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UMLTypeReference__TypeAssignment"
-    // InternalCls.g:5262:1: rule__UMLTypeReference__TypeAssignment : ( ( RULE_ID ) ) ;
+    // InternalCls.g:5262:1: rule__UMLTypeReference__TypeAssignment : ( ( ruleFQN ) ) ;
     public final void rule__UMLTypeReference__TypeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:5266:1: ( ( ( RULE_ID ) ) )
-            // InternalCls.g:5267:1: ( ( RULE_ID ) )
+            // InternalCls.g:5266:1: ( ( ( ruleFQN ) ) )
+            // InternalCls.g:5267:1: ( ( ruleFQN ) )
             {
-            // InternalCls.g:5267:1: ( ( RULE_ID ) )
-            // InternalCls.g:5268:1: ( RULE_ID )
+            // InternalCls.g:5267:1: ( ( ruleFQN ) )
+            // InternalCls.g:5268:1: ( ruleFQN )
             {
              before(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeCrossReference_0()); 
-            // InternalCls.g:5269:1: ( RULE_ID )
-            // InternalCls.g:5270:1: RULE_ID
+            // InternalCls.g:5269:1: ( ruleFQN )
+            // InternalCls.g:5270:1: ruleFQN
             {
-             before(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeIDTerminalRuleCall_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeIDTerminalRuleCall_0_1()); 
+             before(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeFQNParserRuleCall_0_1()); 
+            pushFollow(FOLLOW_2);
+            ruleFQN();
+
+            state._fsp--;
+
+             after(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeFQNParserRuleCall_0_1()); 
 
             }
 
@@ -16343,6 +16278,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
     protected DFA1 dfa1 = new DFA1(this);
     protected DFA3 dfa3 = new DFA3(this);
+    protected DFA4 dfa4 = new DFA4(this);
     static final String dfa_1s = "\12\uffff";
     static final String dfa_2s = "\1\14\7\47\2\uffff";
     static final String dfa_3s = "\10\66\2\uffff";
@@ -16428,6 +16364,49 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
         }
         public String getDescription() {
             return "889:1: rule__Member__Alternatives : ( ( ruleAttribute ) | ( ruleMethod ) );";
+        }
+    }
+    static final String dfa_13s = "\13\uffff";
+    static final String dfa_14s = "\1\6\1\46\1\uffff\2\6\3\uffff\1\6\1\46\1\uffff";
+    static final String dfa_15s = "\1\71\1\60\1\uffff\2\6\3\uffff\1\46\1\60\1\uffff";
+    static final String dfa_16s = "\2\uffff\1\2\2\uffff\1\4\1\1\1\3\2\uffff\1\5";
+    static final String dfa_17s = "\13\uffff}>";
+    static final String[] dfa_18s = {
+            "\1\1\25\uffff\1\3\2\2\32\uffff\1\2",
+            "\1\4\7\uffff\1\6\1\7\1\5",
+            "",
+            "\1\10",
+            "\1\11",
+            "",
+            "",
+            "",
+            "\1\2\34\uffff\1\12\2\uffff\1\2",
+            "\1\4\7\uffff\1\6\1\7\1\5",
+            ""
+    };
+
+    static final short[] dfa_13 = DFA.unpackEncodedString(dfa_13s);
+    static final char[] dfa_14 = DFA.unpackEncodedStringToUnsignedChars(dfa_14s);
+    static final char[] dfa_15 = DFA.unpackEncodedStringToUnsignedChars(dfa_15s);
+    static final short[] dfa_16 = DFA.unpackEncodedString(dfa_16s);
+    static final short[] dfa_17 = DFA.unpackEncodedString(dfa_17s);
+    static final short[][] dfa_18 = unpackEncodedStringArray(dfa_18s);
+
+    class DFA4 extends DFA {
+
+        public DFA4(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 4;
+            this.eot = dfa_13;
+            this.eof = dfa_13;
+            this.min = dfa_14;
+            this.max = dfa_15;
+            this.accept = dfa_16;
+            this.special = dfa_17;
+            this.transition = dfa_18;
+        }
+        public String getDescription() {
+            return "911:1: rule__Connector__Alternatives : ( ( ruleGeneralization ) | ( ruleAssociation ) | ( ruleImplementation ) | ( ruleCommentLink ) | ( ruleMultiAssociation ) );";
         }
     }
  

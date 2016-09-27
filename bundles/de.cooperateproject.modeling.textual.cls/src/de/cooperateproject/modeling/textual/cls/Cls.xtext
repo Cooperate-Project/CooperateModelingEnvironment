@@ -70,7 +70,7 @@ DataTypeReference:
 ;
 
 UMLTypeReference: 
-	type = [uml::Type]
+	type = [uml::Type|FQN]
 ;
 
 

@@ -408,7 +408,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     UMLTypeReference returns UMLTypeReference
 	 *
 	 * Constraint:
-	 *     type=[Type|ID]
+	 *     type=[Type|FQN]
 	 */
 	protected void sequence_UMLTypeReference(ISerializationContext context, UMLTypeReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -416,7 +416,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeIDTerminalRuleCall_0_1(), semanticObject.getType());
+		feeder.accept(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeFQNParserRuleCall_0_1(), semanticObject.getType());
 		feeder.finish();
 	}
 	

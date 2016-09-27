@@ -5267,8 +5267,8 @@ rule__UMLTypeReference__TypeAssignment
 (
 { before(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeCrossReference_0()); }
 (
-{ before(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeIDTerminalRuleCall_0_1()); }
-	RULE_ID{ after(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeIDTerminalRuleCall_0_1()); }
+{ before(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeFQNParserRuleCall_0_1()); }
+	ruleFQN{ after(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeFQNParserRuleCall_0_1()); }
 )
 { after(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeCrossReference_0()); }
 )

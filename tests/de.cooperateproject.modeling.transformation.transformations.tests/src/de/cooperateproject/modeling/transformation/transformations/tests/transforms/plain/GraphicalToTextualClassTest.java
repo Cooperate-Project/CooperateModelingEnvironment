@@ -20,12 +20,31 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 	static {
 		ClsPackage.eINSTANCE.eClass();
 	}
+	
+	@Test
+	public void testWithoutPackages() throws Exception {
+		testRegular("ClassDiagram");
+	}
 
 	@Test
-	public void test() throws Exception {
-		URI sourceModelURI = createResourceModelURI("ClassDiagram.notation");
-		URI umlModelURI = createResourceModelURI("ClassDiagram.uml");
-		URI resultModelURI = createResourceModelURI("ClassDiagram.xmi");
+	public void testWithoutPackagesIncremental() throws Exception {
+		testIncremental("ClassDiagram");
+	}
+	
+	@Test
+	public void testPackages() throws Exception {
+		testRegular("ClassDiagramPackages");
+	}
+	
+	@Test
+	public void testPackagesIncremental() throws Exception {
+		testIncremental("ClassDiagramPackages");
+	}
+	
+	private void testRegular(String modelName) throws Exception {
+		URI sourceModelURI = createResourceModelURI(modelName + ".notation");
+		URI umlModelURI = createResourceModelURI(modelName+ ".uml");
+		URI resultModelURI = createResourceModelURI(modelName + ".xmi");
 		
 		ModelExtent transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI);
 		
@@ -35,11 +54,10 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		
 		assertModelEquals(expected, actual);
 	}
-
-	@Test
-	public void testIncremental() throws Exception {
-		URI sourceModelURI = createResourceModelURI("ClassDiagram.notation");
-		URI umlModelURI = createResourceModelURI("ClassDiagram.uml");
+		
+	private void testIncremental(String modelName) throws Exception {
+		URI sourceModelURI = createResourceModelURI(modelName + ".notation");
+		URI umlModelURI = createResourceModelURI(modelName + ".uml");
 		URI resultModelURI = createTemporaryModelURI();
 		URI traceModelURI = createTemporaryModelURI();
 		

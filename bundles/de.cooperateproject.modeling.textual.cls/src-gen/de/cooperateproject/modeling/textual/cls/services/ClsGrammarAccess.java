@@ -485,20 +485,20 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cTypeTypeCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
-		private final RuleCall cTypeTypeIDTerminalRuleCall_0_1 = (RuleCall)cTypeTypeCrossReference_0.eContents().get(1);
+		private final RuleCall cTypeTypeFQNParserRuleCall_0_1 = (RuleCall)cTypeTypeCrossReference_0.eContents().get(1);
 		
 		//UMLTypeReference:
-		//	type=[uml::Type];
+		//	type=[uml::Type|FQN];
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[uml::Type]
+		//type=[uml::Type|FQN]
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
-		//[uml::Type]
+		//[uml::Type|FQN]
 		public CrossReference getTypeTypeCrossReference_0() { return cTypeTypeCrossReference_0; }
 
-		//ID
-		public RuleCall getTypeTypeIDTerminalRuleCall_0_1() { return cTypeTypeIDTerminalRuleCall_0_1; }
+		//FQN
+		public RuleCall getTypeTypeFQNParserRuleCall_0_1() { return cTypeTypeFQNParserRuleCall_0_1; }
 	}
 
 	public class MemberElements extends AbstractParserRuleElementFinder {
@@ -1667,7 +1667,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UMLTypeReference:
-	//	type=[uml::Type];
+	//	type=[uml::Type|FQN];
 	public UMLTypeReferenceElements getUMLTypeReferenceAccess() {
 		return pUMLTypeReference;
 	}

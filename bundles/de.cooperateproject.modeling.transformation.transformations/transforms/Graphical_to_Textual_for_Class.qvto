@@ -20,35 +20,81 @@ mapping notation::Diagram::diagramToDiagram() : cls::ClassDiagram {
 }
 
 mapping notation::Diagram::diagramToRootPackage() : cls::Package {
+	var relevantEdges := self.findRelevantEdges();
+
+	referencedElement := self.element.oclAsType(uml::Package);
+		
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
-	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
-	connectors += self.children->select(type = PAPYRUS_NOTATION_SHAPE_NARY_REGULAR)->map associationNodeToMultiAssociation(self.edges);
+	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
 	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
-	/*
-	var diagramPackage := self.element.oclAsType(uml::Package);
-	self.edges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->select(element.oclAsType(uml::PackageImport).importingNamespace = diagramPackage);
-	packageImports += self->map diagramToPackageImport();
-	*/
+	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
+	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
 }
 
 mapping notation::Node::nodeToPackage() : cls::Package
 {
 	var umlPackage := self.element.oclAsType(uml::Package);
 	var relevantEdges := self.findRelevantEdges();
+	var packagedElementsNode := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_INPACKAGE or type = PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_REGULAR);
 	
 	referencedElement := umlPackage;
-	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
-	connectors += self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NARY_REGULAR)->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
+	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
+	connectors += self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
 	connectors += relevantEdges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.diagram.edges);
-	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
-	packageImports += 
+	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
+	packages += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
+}
+
+query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
+{
+	// too many elements are contained by the root object, so only heuristics apply
+	return self.findRelevantEdgesByHeuristics();
 }
 
 query notation::Node::findRelevantEdges() : OrderedSet(notation::Edge)
 {
-	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for nodes that represent packages.');
+	//TODO check if contained edges should be considered as well
+	return self.findRelevantEdgesByHeuristics();
+}
+
+query notation::View::findRelevantEdgesByHeuristics() : OrderedSet(notation::Edge)
+{
+	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for views that represent packages.');
 	var umlPackage = self.element.oclAsType(uml::Package);
+
+	// associations
+	var relevantAssociations := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_ASSOCIATION)->select(
+		// all navigable ends are in umlPackage
+		element.oclAsType(uml::Association).memberEnd->select(isNavigable() and getNearestPackage() != umlPackage)->isEmpty()
+		or
+		// Convention: The association belongs to the package in which the first navigable member end is located
+		element.oclAsType(uml::Association).memberEnd->select(isNavigable())->first().getNearestPackage() = umlPackage
+	);
 	
+	// multi associations
+	var relevantAssociationBranches := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH);
+	
+	// comment links
+	var relevantCommentLinks := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_COMMENTLINK)->select(source.element->asSet()->union(target.element->asSet())->any(oclIsKindOf(uml::Classifier)).oclAsType(uml::Classifier).getNearestPackage() = umlPackage);
+	
+	// interface realizations
+	var relevantInterfaceRealizations := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_IMPLEMENTATION)->select(element.oclAsType(uml::InterfaceRealization).implementingClassifier.getNearestPackage()->select(p | p != umlPackage)->isEmpty());
+	
+	// generalizations
+	var relevantGeneralizations := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_GENERALIZATION)->select(element.oclAsType(uml::Generalization).specific.getNearestPackage() = umlPackage);
+
+	// package imports
+	var relevantPackageImports := self.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->select(element.oclAsType(uml::PackageImport).importingNamespace = umlPackage);
+
+	// maintain edge order	
+	return self.diagram.edges->select(e | relevantAssociations->union(relevantAssociationBranches)->union(relevantCommentLinks)->union(relevantInterfaceRealizations)->union(relevantGeneralizations)->union(relevantPackageImports)->asSet()->includes(e));
+}
+
+query notation::View::findRelevantEdgesByContainment() : OrderedSet(notation::Edge)
+{
+	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for views that represent packages.');
+	var umlPackage = self.element.oclAsType(uml::Package);
+
 	return self.diagram.edges->select(findOwningPackage() = umlPackage);
 } 
 
@@ -67,8 +113,18 @@ query notation::Connector::findOwningPackage() : uml::Package
 		endif;
 }
 
-mapping notation::Diagram::diagramToPackageImport() : cls::PackageImport {
-	package := self.element.oclAsType(uml::Package);
+query notation::View::findRelevantAssociationBranches() : OrderedSet(notation::Node)
+{
+	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for views that represent packages.');
+	var umlPackage = self.element.oclAsType(uml::Package);
+	
+	return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_NARY_REGULAR)->select(true);
+}
+
+mapping notation::Edge::edgeToPackageImport() : cls::PackageImport
+{
+	assert error (self.element.oclIsKindOf(uml::PackageImport)) with log('Only edges containing a package import can be mapped to a package import.');
+	referencedElement := self.element.oclAsType(uml::PackageImport);
 }
 
 mapping notation::Node::nodeToClassifier() : cls::Classifier
@@ -148,16 +204,6 @@ mapping uml::Type::typeToUMLTypeReference(parent : OclAny) : cls::UMLTypeReferen
 	type := self;
 }
 
-/*
-constructor cls::DataTypeReference::DataTypeReference(umlType : uml::PrimitiveType) {
-	type := umlType.convert();
-}
-
-constructor cls::UMLTypeReference::UMLTypeReference(umlType : uml::Type) {
-	type := umlType;
-}
-*/
-
 mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
 disjuncts
 	notation::Edge::edgeToCommentLink,
@@ -227,7 +273,7 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	aggregationKind := association.memberEnd->at(aggregatingIndex).aggregation.convert();
 	left := association.memberEnd->at(regularIndex).type.map typeToUMLTypeReference(result);
 	right := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference(result);
-	bidirectional := (association.ownedEnd-association.navigableOwnedEnd)->isEmpty();
+		bidirectional := association.memberEnd->select(e | not e.isNavigable())->isEmpty();
 	
 	properties := self.map edgeToAssociationProperties(regularIndex);
 	
@@ -253,8 +299,8 @@ when {self.element.oclIsKindOf(uml::Association)}
 	cardinalityLeft := left.map multiplicityElementToCardinality();
 	cardinalityRight := right.map multiplicityElementToCardinality();
 	
-	propertyLeft := if self.children->exists(type = "6005") then left else null endif;
-	propertyRight := if self.children->exists(type = "6003") then right else null endif;
+	propertyLeft := if self.children->exists(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE) then left else null endif;
+	propertyRight := if self.children->exists(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETROLE) then right else null endif;
 }
 
 
@@ -287,7 +333,7 @@ mapping notation::Node::associationNodeToMultiAssociation(allEdges : OrderedSet(
 	var umlAssociation := self.element.oclAsType(uml::Association);
 	referencedElement := umlAssociation;
 	
-	var accordingEdges := allEdges->select(type = "4019" and (source = self or target = self));
+	var accordingEdges := allEdges->select(type = PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH and (source = self or target = self));
 	connectorEnds += accordingEdges->map edgeToMemberEnd();
 	//connectorEnds += umlAssociation.memberEnd->map propertyToMemberEnd();
 }
