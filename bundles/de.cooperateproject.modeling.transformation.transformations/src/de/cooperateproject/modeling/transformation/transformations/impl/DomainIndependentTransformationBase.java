@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.internal.qvt.oml.evaluator.QVTEvaluationOptions;
 import org.eclipse.m2m.internal.qvt.oml.expressions.DirectionKind;
 import org.eclipse.m2m.internal.qvt.oml.expressions.OperationalTransformation;
@@ -48,13 +49,13 @@ public abstract class DomainIndependentTransformationBase {
 	}
 
 	private IStatus transform(URI transformationURI, Optional<URI> traceURI, Collection<URI> parameterURIs) throws IOException {
-		final Optional<Trace> transformationTrace = createTrace(traceURI);
 		final List<Pair<ModelExtent, Resource>> transformationResources = Lists.newArrayList();
 		for (URI parameterURI : parameterURIs) {
 			transformationResources.add(createPair(createModelExtent(parameterURI), createResource(parameterURI)));
 		}
 		final Collection<ModelExtent> transformationParameters = transformationResources.stream().map(r -> r.getFirst())
 				.collect(Collectors.toList());
+		final Optional<Trace> transformationTrace = createTrace(traceURI);
 
 		IStatus transformationResult = transform(transformationURI, transformationParameters, transformationTrace);
 		if (transformationResult.getSeverity() == IStatus.OK) {
@@ -123,14 +124,16 @@ public abstract class DomainIndependentTransformationBase {
 		if (!traceURI.isPresent()) {
 			return Optional.empty();
 		}
+		Resource traceResource = null;
 		Trace traceModel = Trace.createEmptyTrace();
 		if (rs.getURIConverter().exists(traceURI.get(), Collections.emptyMap())) {
-			Resource traceResource = rs.getResource(traceURI.get(), true);
+			traceResource = rs.getResource(traceURI.get(), true);
 			traceModel = new Trace(traceResource.getContents());
 		} else {
-			Resource traceResource = rs.createResource(traceURI.get());
+			traceResource = rs.createResource(traceURI.get());
 			traceResource.getContents().addAll(traceModel.getTraceContent());
 		}
+		EcoreUtil.resolveAll(traceResource);
 		return Optional.of(traceModel);
 	}
 

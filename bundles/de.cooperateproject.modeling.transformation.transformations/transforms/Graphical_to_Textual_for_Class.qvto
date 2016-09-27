@@ -232,7 +232,7 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	properties := self.map edgeToAssociationProperties(regularIndex);
 	
 	var relevantComments := self.findEdgeComments(allEdges);
-	assert warning (relevantComments->size() = 1) with log ('There can be no more than one comments for an association.');
+	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
 	comment := relevantComments->any(true);
 }
 

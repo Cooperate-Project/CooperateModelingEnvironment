@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -58,7 +58,6 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 			EObject rootObject = getConcreteSyntaxModel().getRootElement();
 			CDOObject rootObjectCDO = CDOUtil.getCDOObject(rootObject);
 			final CDOID rootObjectID = rootObjectCDO.cdoID();
-
 			IPageManager pageManager = servicesRegistry.getService(IPageManager.class);
 			Optional<CDOObject> pagedElement = pageManager.allPages().stream().filter(p -> p instanceof EObject)
 					.map(p -> (EObject) p).map(CDOUtil::getCDOObject)
