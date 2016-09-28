@@ -7,8 +7,6 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Package Import</b></em>'.
@@ -23,7 +21,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class PackageImportImpl extends CDOObjectImpl implements PackageImport {
+public class PackageImportImpl extends ElementImpl implements PackageImport {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,16 +39,6 @@ public class PackageImportImpl extends CDOObjectImpl implements PackageImport {
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.PACKAGE_IMPORT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

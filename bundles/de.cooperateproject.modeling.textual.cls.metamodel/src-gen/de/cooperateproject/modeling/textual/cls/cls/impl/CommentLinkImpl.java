@@ -16,8 +16,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -35,7 +33,7 @@ import org.eclipse.uml2.uml.Type;
  *
  * @generated
  */
-public class CommentLinkImpl extends CDOObjectImpl implements CommentLink {
+public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,16 +51,6 @@ public class CommentLinkImpl extends CDOObjectImpl implements CommentLink {
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.COMMENT_LINK;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

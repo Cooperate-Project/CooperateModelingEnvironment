@@ -19,11 +19,14 @@ property PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE : String = "Interface_Shape_
 
 property PAPYRUS_NOTATION_SHAPE_CLASS_ATTRIBUTE : String = "Property_ClassAttributeLabel";
 property PAPYRUS_NOTATION_SHAPE_CLASS_OPERATION : String = "Operation_ClassOperationLabel";
-property PAPYRUS_NOTATION_SHAPE_CLASS_RECEPTION : String = "Reception_ReceptionLabel";
-//property PAPYRUS_NOTATION_SHAPE_CLASS_CLASS : String = "3014";
+
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_ATTRIBUTE : String = "Property_InterfaceAttributeLabel";
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_OPERATION : String = "Operation_InterfaceOperationLabel";
 
 property PAPYRUS_NOTATION_SHAPE_NARY_REGULAR : String = "Association_Shape";
 
+property PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR : String = "Comment_Shape";
+property PAPYRUS_NOTATION_SHAPE_COMMENT_INPACKAGE : String = "Comment_Shape_CN";
 
 
 property PAPYRUS_NOTATION_NODE_PACKAGE_NAME_REGULAR : String = "Package_NameLabel";
@@ -42,18 +45,21 @@ property PAPYRUS_NOTATION_NODE_CLASS_FLOATINGLABEL_REGULAR : String = "Class_Flo
 property PAPYRUS_NOTATION_NODE_CLASS_FLOATINGLABEL_INPACKAGE : String = "Class_FloatingNameLabel_CN";
 
 
+property PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR : String = "Comment_BodyLabel";
+property PAPYRUS_NOTATION_NODE_COMMENT_BODY_INPACKAGE : String = "Comment_BodyLabel_CN";
+
 
 property PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_REGULAR : String = "Package_PackagedElementCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_INPACKAGE : String = "Package_PackagedElementCompartment_CN";
 
-property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR : String = "Class_AttributeCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR : String = "Interface_AttributeCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_INPACKAGE : String = "Interface_AttributeCompartment";
 
-property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR : String = "Class_OperationCompartment";
-property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_INPACKAGE : String = "Class_OperationCompartment_CN";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR : String = "Interface_OperationCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_INPACKAGE : String = "Interface_OperationCompartment_CN";
 
-property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_NESTED_REGULAR : String = "Class_NestedClassifierCompartment";
-property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_NESTED_INPACKAGE : String = "Class_NestedClassifierCompartment_CN";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_NESTED_REGULAR : String = "Interface_NestedClassifierCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_NESTED_INPACKAGE : String = "Interface_NestedClassifierCompartment_CN";
 
 property PAPYRUS_NOTATION_COMPARTMENT_CLASS_PROPERTIES_REGULAR : String = "Class_AttributeCompartment";
 property PAPYRUS_NOTATION_COMPARTMENT_CLASS_PROPERTIES_INPACKAGE : String = "Class_AttributeCompartment_CN";
@@ -69,15 +75,21 @@ property PAPYRUS_NOTATION_COMPARTMENT_CLASS_NESTED_INPACKAGE : String = "Class_N
 
 // Edges and related elements
 
-property PAPYRUS_NOTATION_EDGE_IMPLEMENTATION : String = "InterfaceRealization_Edge";
 property PAPYRUS_NOTATION_EDGE_ASSOCIATION : String = "Association_Edge";
 property PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT : String = "PackageImport_Edge";
-property PAPYRUS_NOTATION_EDGE_GENERALIZATION : String = "Generalization_Edge";
-property PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH : String = "Association_BranchEdge";
 property PAPYRUS_NOTATION_EDGE_COMMENTLINK : String = "Comment_AnnotatedElementEdge";
 
+property PAPYRUS_NOTATION_EDGE_IMPLEMENTATION : String = "InterfaceRealization_Edge";
 property PAPYRUS_NOTATION_NODE_INTERFACEREALIZATION_STEREOTYPE : String = "InterfaceRealization_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_INTERFACEREALIZATION_NAME : String = "InterfaceRealization_NameLabel";
+
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION : String = "Generalization_Edge";
+property PAPYRUS_NOTATION_NODE_GENERALIZATION_STEREOTYPE : String = "Generalization_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH : String = "Association_BranchEdge";
+property PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_ROLENAME : String = "Association_BranchRoleLabel";
+property PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_MULTIPLICITY : String = "Association_BranchMultiplicityLabel";
+property PAPYRUS_NOTATION_NODE_NARY_NAME : String = "Association_FloatingNameLabel";
 
 property PAPYRUS_NOTATION_NODE_ASSOCIATION_STEREOTYPE : String = "Association_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_ASSOCIATION_NAME : String = "Association_NameLabel";
@@ -86,5 +98,4 @@ property PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE : String = "Association_So
 property PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY : String = "Association_SourceMultiplicityLabel";
 property PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY : String = "Association_TargetMultiplicityLabel";
 
-property PAPYRUS_NOTATION_NODE_PACKAGEIMPORT_STEREOTYPE : String = "PackageImport_StereotypeLabel";
-	
+property PAPYRUS_NOTATION_NODE_PACKAGEIMPORT_STEREOTYPE : String = "PackageImport_StereotypeLabel";	

@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Packageable Element</b></em>'.
@@ -12,8 +10,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getPackageableElement()
  * @model interface="true" abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface PackageableElement extends CDOObject {
+public interface PackageableElement extends Element {
 } // PackageableElement

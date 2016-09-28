@@ -76,17 +76,18 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	EList<Connector> getConnectors();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Package#getPackages <em>Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Package</em>' reference.
+	 * @return the value of the '<em>Owning Package</em>' container reference.
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getPackage_OwningPackage()
-	 * @model transient="true" changeable="false" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='if (eContainer() == null || !(eContainer() instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {\r\n\treturn null;\r\n}\r\nreturn (de.cooperateproject.modeling.textual.cls.cls.Package)eContainer();'"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Package#getPackages
+	 * @model opposite="packages" changeable="false" derived="true"
 	 * @generated
 	 */
 	Package getOwningPackage();
@@ -94,6 +95,7 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	/**
 	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Package}.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Package#getOwningPackage <em>Owning Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Packages</em>' containment reference list isn't clear,
@@ -102,7 +104,8 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Packages</em>' containment reference list.
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getPackage_Packages()
-	 * @model containment="true"
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Package#getOwningPackage
+	 * @model opposite="owningPackage" containment="true"
 	 * @generated
 	 */
 	EList<Package> getPackages();

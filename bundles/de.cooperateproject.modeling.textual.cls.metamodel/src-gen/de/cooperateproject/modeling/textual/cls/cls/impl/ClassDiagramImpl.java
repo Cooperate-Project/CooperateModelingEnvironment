@@ -4,6 +4,11 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Connector;
+import java.lang.reflect.InvocationTargetException;
+import java.util.LinkedList;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -86,6 +91,60 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 */
 	public void setRootPackage(de.cooperateproject.modeling.textual.cls.cls.Package newRootPackage) {
 		eSet(ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE, newRootPackage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Connector> getAllTransitiveConnectors() {
+		EList<Connector> transitiveConnectors = new BasicEList<Connector>();
+		
+		LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package> queue = new LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package>();
+		queue.add(getRootPackage());
+		while (!queue.isEmpty()) {
+			de.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();
+			queue.addAll(0, currentPackage.getPackages());
+			transitiveConnectors.addAll(currentPackage.getConnectors());
+		}
+		
+		return transitiveConnectors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<de.cooperateproject.modeling.textual.cls.cls.Package> getAllTransitivePackages() {
+		EList<de.cooperateproject.modeling.textual.cls.cls.Package> transitivePackages = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Package>();
+		
+		LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package> queue = new LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package>();
+		queue.add(getRootPackage());
+		while (!queue.isEmpty()) {
+			de.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();
+			queue.addAll(0, currentPackage.getPackages());
+			transitivePackages.add(currentPackage);
+		}
+		
+		return transitivePackages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ClsPackage.CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CONNECTORS:
+				return getAllTransitiveConnectors();
+			case ClsPackage.CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES:
+				return getAllTransitivePackages();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ClassDiagramImpl

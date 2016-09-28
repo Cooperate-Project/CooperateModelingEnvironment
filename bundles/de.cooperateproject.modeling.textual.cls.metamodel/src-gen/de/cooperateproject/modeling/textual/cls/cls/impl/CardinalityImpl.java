@@ -7,8 +7,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Cardinality</b></em>'.
@@ -23,7 +21,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
+public class CardinalityImpl extends ElementImpl implements Cardinality {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,16 +39,6 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.CARDINALITY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

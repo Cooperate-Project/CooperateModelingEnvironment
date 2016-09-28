@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Property<T extends NamedElement> extends de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> {
+public interface Property<T extends NamedElement> extends de.cooperateproject.modeling.textual.cls.cls.NamedElement<T>, Element {
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
 	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.cls.cls.Visibility}.

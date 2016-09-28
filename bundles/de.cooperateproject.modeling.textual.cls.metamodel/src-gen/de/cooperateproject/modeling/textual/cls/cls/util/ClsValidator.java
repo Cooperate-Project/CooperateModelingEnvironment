@@ -14,6 +14,7 @@ import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
+import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
@@ -193,6 +194,8 @@ public class ClsValidator extends EObjectValidator {
 				return validateMultiAssociation((MultiAssociation)value, diagnostics, context);
 			case ClsPackage.MEMBER_END:
 				return validateMemberEnd((MemberEnd)value, diagnostics, context);
+			case ClsPackage.ELEMENT:
+				return validateElement((Element)value, diagnostics, context);
 			case ClsPackage.VISIBILITY:
 				return validateVisibility((Visibility)value, diagnostics, context);
 			case ClsPackage.PRIMITIVE_TYPE:
@@ -632,6 +635,15 @@ public class ClsValidator extends EObjectValidator {
 	 */
 	public boolean validateMemberEnd(MemberEnd memberEnd, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)memberEnd, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateElement(Element element, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint((EObject)element, diagnostics, context);
 	}
 
 	/**

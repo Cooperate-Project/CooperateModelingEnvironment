@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.net4j.util.collection.Pair;
 
@@ -155,6 +156,15 @@ public class ModelComparator {
 					super.attributeChange(match, attribute, value, kind, source);
 				}
 			}
+
+			@Override
+			public void referenceChange(Match match, EReference reference, EObject value, DifferenceKind kind,
+					DifferenceSource source) {
+				if (reference != NotationPackage.Literals.VIEW__STYLES && !(value instanceof BooleanValueStyle)) {
+					super.referenceChange(match, reference, value, kind, source);					
+				}
+			}
+			
 		};
 		IDiffEngine diffEngine = new DefaultDiffEngine(customDiffProcessor);
 
@@ -196,6 +206,8 @@ public class ModelComparator {
 		
 		filter.add(NotationPackage.eINSTANCE.getLocation_X());
 		filter.add(NotationPackage.eINSTANCE.getLocation_Y());
+		filter.add(NotationPackage.eINSTANCE.getSize_Height());
+		filter.add(NotationPackage.eINSTANCE.getSize_Width());
 		filter.add(NotationPackage.eINSTANCE.getRelativeBendpoints_Points());
 		
 		return filter;

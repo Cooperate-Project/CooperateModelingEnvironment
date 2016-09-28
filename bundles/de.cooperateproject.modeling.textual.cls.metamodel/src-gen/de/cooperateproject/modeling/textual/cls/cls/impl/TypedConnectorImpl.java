@@ -7,7 +7,6 @@ import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +22,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class TypedConnectorImpl extends CDOObjectImpl implements TypedConnector {
+public abstract class TypedConnectorImpl extends ElementImpl implements TypedConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,16 +40,6 @@ public abstract class TypedConnectorImpl extends CDOObjectImpl implements TypedC
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.TYPED_CONNECTOR;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**
