@@ -94,4 +94,13 @@ public interface ClassDiagram extends CDOObject {
 	 */
 	EList<de.cooperateproject.modeling.textual.cls.cls.Package> getAllTransitivePackages();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>> transitiveClassifiers = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>>();\r\n\r\nLinkedList<de.cooperateproject.modeling.textual.cls.cls.Package> queue = new LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package>();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\tde.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitiveClassifiers.addAll(currentPackage.getClassifiers());\r\n}\r\n\r\nreturn transitiveClassifiers;'"
+	 * @generated
+	 */
+	EList<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getAllTransitiveClassifiers();
+
 } // ClassDiagram

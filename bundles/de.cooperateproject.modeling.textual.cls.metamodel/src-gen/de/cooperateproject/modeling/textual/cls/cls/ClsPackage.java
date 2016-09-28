@@ -115,13 +115,22 @@ public interface ClsPackage extends EPackage {
 	int CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES = 1;
 
 	/**
+	 * The operation id for the '<em>Get All Transitive Classifiers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CLASSIFIERS = 2;
+
+	/**
 	 * The number of operations of the '<em>Class Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_DIAGRAM_OPERATION_COUNT = 2;
+	int CLASS_DIAGRAM_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.PackageImportImpl <em>Package Import</em>}' class.
@@ -2406,6 +2415,16 @@ public interface ClsPackage extends EPackage {
 	EOperation getClassDiagram__GetAllTransitivePackages();
 
 	/**
+	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.ClassDiagram#getAllTransitiveClassifiers() <em>Get All Transitive Classifiers</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get All Transitive Classifiers</em>' operation.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.ClassDiagram#getAllTransitiveClassifiers()
+	 * @generated
+	 */
+	EOperation getClassDiagram__GetAllTransitiveClassifiers();
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Package <em>Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3332,6 +3351,14 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES = eINSTANCE.getClassDiagram__GetAllTransitivePackages();
+
+		/**
+		 * The meta object literal for the '<em><b>Get All Transitive Classifiers</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CLASSIFIERS = eINSTANCE.getClassDiagram__GetAllTransitiveClassifiers();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.PackageImpl <em>Package</em>}' class.

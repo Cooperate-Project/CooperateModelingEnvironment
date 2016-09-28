@@ -422,6 +422,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getClassDiagram__GetAllTransitiveClassifiers() {
+		return classDiagramEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPackage() {
 		return packageEClass;
 	}
@@ -1188,6 +1197,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		createEReference(classDiagramEClass, CLASS_DIAGRAM__ROOT_PACKAGE);
 		createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CONNECTORS);
 		createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES);
+		createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CLASSIFIERS);
 
 		packageEClass = createEClass(PACKAGE);
 		createEReference(packageEClass, PACKAGE__PACKAGE_IMPORTS);
@@ -1455,12 +1465,20 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		initEOperation(getClassDiagram__GetAllTransitivePackages(), this.getPackage(), "getAllTransitivePackages", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = initEOperation(getClassDiagram__GetAllTransitiveClassifiers(), null, "getAllTransitiveClassifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getClassifier());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		EGenericType g3 = createEGenericType(theUMLPackage.getClassifier());
+		g2.setEUpperBound(g3);
+		initEOperation(op, g1);
+
 		initEClass(packageEClass, de.cooperateproject.modeling.textual.cls.cls.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPackage_PackageImports(), this.getPackageImport(), this.getPackageImport_ImportingNamespace(), "packageImports", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(this.getClassifier());
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(theUMLPackage.getClassifier());
+		g3 = createEGenericType(theUMLPackage.getClassifier());
 		g2.setEUpperBound(g3);
 		initEReference(getPackage_Classifiers(), g1, null, "classifiers", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_Connectors(), this.getConnector(), null, "connectors", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1490,7 +1508,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = initEOperation(getNamedElement__HasReferencedElement__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasReferencedElement", 0, 1, !IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getNamedElement__HasReferencedElement__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasReferencedElement", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());

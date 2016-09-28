@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import java.lang.reflect.InvocationTargetException;
@@ -136,6 +137,25 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getAllTransitiveClassifiers() {
+		EList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>> transitiveClassifiers = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>>();
+		
+		LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package> queue = new LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package>();
+		queue.add(getRootPackage());
+		while (!queue.isEmpty()) {
+			de.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();
+			queue.addAll(0, currentPackage.getPackages());
+			transitiveClassifiers.addAll(currentPackage.getClassifiers());
+		}
+		
+		return transitiveClassifiers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
@@ -143,6 +163,8 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 				return getAllTransitiveConnectors();
 			case ClsPackage.CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES:
 				return getAllTransitivePackages();
+			case ClsPackage.CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CLASSIFIERS:
+				return getAllTransitiveClassifiers();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
