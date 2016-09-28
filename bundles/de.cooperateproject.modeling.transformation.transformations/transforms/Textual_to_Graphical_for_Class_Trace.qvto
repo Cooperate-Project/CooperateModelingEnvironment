@@ -30,6 +30,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 {
 
 	result += self.map traceRecordDiagram();
+	result += self.map traceRecordShapePackage();
 	result += self.map traceRecordShapeClassifier();
 	result += self.map traceRecordShapeAttribute();
 	result += self.map traceRecordShapeOperation();
@@ -40,6 +41,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordEdgeRegularAssociation();
 	result += self.map traceRecordEdgeCommentLink();
 	result += self.map traceRecordEdgeMemberEnd();
+	result += self.map traceRecordEdgePackageImport();
 	
 }
 
@@ -60,7 +62,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	var classDiagram := self.getSelf().modelElement.oclAsType(cls::ClassDiagram);
 	
 	result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram, "ClassDiagram", classDiagram.eobject());
-	result += new TraceRecord("diagramToPackageImport", "Diagram", notationDiagram, "PackageImport", classDiagram.packageImports->first().eobject());
+	result += new TraceRecord("diagramToRootPackage", "Diagram", notationDiagram, "Package", classDiagram.rootPackage.eobject());
 }
 
 mapping trace::TraceRecord::traceRecordShapeClassifier() : List(trace::TraceRecord)
@@ -68,6 +70,15 @@ when {self.mappingOperation.name = "classifierToShape"}
 {
 	result += self.map traceRecordShapeClassifier_Class();
 	result += self.map traceRecordShapeClassifier_Interface();
+}
+
+mapping trace::TraceRecord::traceRecordShapePackage() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "packageToShape"}
+{
+	var shape := self.getResult().modelElement;
+	var package := self.getSelf().modelElement;
+
+	result += new TraceRecord("nodeToPackage", "Node", shape, "Package", package);
 }
 
 mapping trace::TraceRecord::traceRecordShapeClassifier_Class() : List(trace::TraceRecord)
@@ -214,6 +225,15 @@ when {self.mappingOperation.name = "connectorEndToEdge"}
 	result += new TraceRecord("edgeToMemberEnd", "Edge", edge.eobject(), "MemberEnd", memberEnd.eobject());
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", umlProperty, "Cardinality", memberEnd.cardinality.eobject());
 	result += typeReference.type.map typeToTypeReference_Classifier(typeReference);
+}
+
+mapping trace::TraceRecord::traceRecordEdgePackageImport() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "packageImportToEdge"}
+{
+	var packageImport := self.getSelf().modelElement;
+	var edge := self.getResult().modelElement;
+	
+	result += new TraceRecord("edgeToPackageImport", "Edge", edge, "PackageImport", packageImport);
 }
 
 

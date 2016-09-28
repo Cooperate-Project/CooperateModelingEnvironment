@@ -23,11 +23,20 @@ public class TextualToGraphicalClassTraceTest extends TraceRecordTransformationT
 	}
 	
 	@Test
-	public void testTransformationYieldsEquivalentResult() throws Exception {
+	public void testWithoutPackages() throws Exception {
+		testTraceTransformation("ClassDiagram");
+	}
+	
+	@Test
+	public void testWithPackages() throws Exception {
+		testTraceTransformation("ClassDiagramPackages");
+	}
+	
+	private void testTraceTransformation(String modelName) throws Exception {
 		// test parameters
-		URI graphicalModelURI = createResourceModelURI("ClassDiagram.notation");
-		URI umlModelURI = createResourceModelURI("ClassDiagram.uml");
-		URI textualModelURI = createResourceModelURI("ClassDiagram_tmp.xmi");
+		URI graphicalModelURI = createResourceModelURI(modelName + ".notation");
+		URI umlModelURI = createResourceModelURI(modelName + ".uml");
+		URI textualModelURI = createResourceModelURI(modelName + "_tmp.xmi");
 
 		/*
 		 * Run original transformation that yields
