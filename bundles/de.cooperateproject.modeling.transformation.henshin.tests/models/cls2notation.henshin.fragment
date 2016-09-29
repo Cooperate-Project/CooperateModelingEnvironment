@@ -1,19 +1,70 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:tgg="http://tgg.tu-berlin.de">
   <tgg:TGG xmi:id="_rWPkgHRBEealXoPpvgbLvA">
-    <importedPkgs xmi:id="_aIbGoIM0Eea7pYXDEB9H2w">
+    <importedPkgs xmi:id="_ndht0IYZEea46K5KgL82qQ">
       <package href="http://www.cooperateproject.de/modeling/textual/cls/Cls#/"/>
     </importedPkgs>
-    <importedPkgs xmi:id="_aIbGoYM0Eea7pYXDEB9H2w" component="TARGET">
+    <importedPkgs xmi:id="_ndht0YYZEea46K5KgL82qQ" component="TARGET">
       <package href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#/"/>
     </importedPkgs>
-    <importedPkgs xmi:id="_aIbGooM0Eea7pYXDEB9H2w" component="CORRESPONDENCE">
+    <importedPkgs xmi:id="_ndht0oYZEea46K5KgL82qQ" component="CORRESPONDENCE">
       <package href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </importedPkgs>
-    <importedPkgs xmi:id="_aIbGo4M0Eea7pYXDEB9H2w" component="CORRESPONDENCE">
+    <importedPkgs xmi:id="_ndht04YZEea46K5KgL82qQ" component="CORRESPONDENCE">
       <package href="http://www.eclipse.org/emf/2011/Henshin/Trace#/"/>
     </importedPkgs>
   </tgg:TGG>
+  <tgg:TGGRule xmi:id="_DsNKEIYaEea46K5KgL82qQ"/>
+  <tgg:TripleGraph xmi:id="_DsNKE4YaEea46K5KgL82qQ"/>
+  <tgg:TNode xmi:id="_IrzQk4YaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKE4YaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_JQbAkIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKE4YaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_UyFF4IYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKE4YaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_zxLVIIY3Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKE4YaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TEdge xmi:id="_M1x9sIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKE4YaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_W2a8MIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKE4YaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TripleGraph xmi:id="_DsNKFIYaEea46K5KgL82qQ" dividerSC_X="300" dividerCT_X="421" dividerMaxY="234"/>
+  <tgg:TNode xmi:id="_IrypgIYaEea46K5KgL82qQ" x="353" y="77">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_JQaZgIYaEea46K5KgL82qQ" x="510" y="86">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_KfFMEIYaEea46K5KgL82qQ" x="114" y="194">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_UyEe0IYaEea46K5KgL82qQ" x="336" y="149">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_zxKuEIY3Eea46K5KgL82qQ" x="145" y="74">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TEdge xmi:id="_LbBP4IYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_MSJsMIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_M1xWoIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_WiSfQIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_W2aVIIYaEea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_DsNKFIYaEea46K5KgL82qQ"/>
+  </tgg:TEdge>
   <tgg:TGGRule xmi:id="_Ij17IHmoEea1wuL3eKFlqg"/>
   <tgg:TripleGraph xmi:id="_Ij17I3moEea1wuL3eKFlqg"/>
   <tgg:TNode xmi:id="_Jrxzk3moEea1wuL3eKFlqg">
@@ -7814,5 +7865,113 @@
   </tgg:TEdge>
   <tgg:TEdge xmi:id="_b9VaGYM0Eea7pYXDEB9H2w">
     <graph href="cls2notation.henshin#_b9VZ54M0Eea7pYXDEB9H2w"/>
+  </tgg:TEdge>
+  <tgg:TGGRule xmi:id="_BDhU8IY4Eea46K5KgL82qQ"/>
+  <tgg:TripleGraph xmi:id="_BDhU84Y4Eea46K5KgL82qQ"/>
+  <tgg:TNode xmi:id="_BDhVAIY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDsUEIY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhU9IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhU-IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhU_IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TEdge xmi:id="_BDhVBIY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_BDhVBYY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_BDuwUIY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhU84Y4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TripleGraph xmi:id="_BDhVBoY4Eea46K5KgL82qQ" dividerSC_X="300" dividerCT_X="421" dividerMaxY="234"/>
+  <tgg:TNode xmi:id="_BDhVB4Y4Eea46K5KgL82qQ" x="353" y="77">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhVC4Y4Eea46K5KgL82qQ" x="510" y="86">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhVD4Y4Eea46K5KgL82qQ" x="114" y="194">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhVE4Y4Eea46K5KgL82qQ" x="336" y="149">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_BDhVF4Y4Eea46K5KgL82qQ" x="145" y="74">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TEdge xmi:id="_BDhVG4Y4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_BDhVHoY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_BDhVIYY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_BDhVJIY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_BDhVJ4Y4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_BDhVBoY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TGGRule xmi:id="_CSis0IY4Eea46K5KgL82qQ"/>
+  <tgg:TripleGraph xmi:id="_CSis04Y4Eea46K5KgL82qQ"/>
+  <tgg:TNode xmi:id="_CSis2IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis04Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis4IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis04Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis1IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis04Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis3IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis04Y4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TEdge xmi:id="_CSis5IY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis04Y4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_CSis5YY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis04Y4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TripleGraph xmi:id="_CSis5oY4Eea46K5KgL82qQ" dividerSC_X="300" dividerCT_X="421" dividerMaxY="234"/>
+  <tgg:TNode xmi:id="_CSis54Y4Eea46K5KgL82qQ" x="353" y="77">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis64Y4Eea46K5KgL82qQ" x="510" y="86">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis74Y4Eea46K5KgL82qQ" x="114" y="194">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis84Y4Eea46K5KgL82qQ" x="336" y="149">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CSis94Y4Eea46K5KgL82qQ" x="145" y="74">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TNode>
+  <tgg:TEdge xmi:id="_CSis-4Y4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_CSis_oY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_CSitAYY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_CSitBIY4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_CSitB4Y4Eea46K5KgL82qQ">
+    <graph href="cls2notation.henshin#_CSis5oY4Eea46K5KgL82qQ"/>
   </tgg:TEdge>
 </xmi:XMI>
