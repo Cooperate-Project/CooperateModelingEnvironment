@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:trace="http://www.eclipse.org/emf/2011/Henshin/Trace">
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#/"/>
+    <target href="ft_classDiagram.notation#/"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.2"/>
+    <target href="ft_classDiagram.notation#//@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.1"/>
+    <target href="ft_classDiagram.notation#//@children.1"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.0"/>
+    <target href="ft_classDiagram.notation#//@children.2"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@connectors.2"/>
+    <source href="ClassDiagram.xmi#//@connectors.1"/>
+    <target href="ft_classDiagram.notation#//@edges.0"/>
+    <target href="ft_classDiagram.notation#//@edges.1"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@connectors.0"/>
+    <target href="ft_classDiagram.notation#//@edges.2"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.0/@members.1"/>
+    <target href="ft_classDiagram.notation#//@children.2/@children.2/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.2/@members.0"/>
+    <target href="ft_classDiagram.notation#//@children.0/@children.1/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.1/@members.0"/>
+    <target href="ft_classDiagram.notation#//@children.1/@children.1/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@classifiers.0/@members.0"/>
+    <target href="ft_classDiagram.notation#//@children.2/@children.1/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@connectors.0/@properties/@cardinalityLeft"/>
+    <target href="ft_classDiagram.notation#//@edges.2/@children.2"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@connectors.0/@properties/@cardinalityRight"/>
+    <target href="ft_classDiagram.notation#//@edges.2/@children.3"/>
+  </trace:Trace>
+</xmi:XMI>

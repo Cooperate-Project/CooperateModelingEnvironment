@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="PapyrusUMLClassDiagram" name="Class Diagram">
+  <children xsi:type="notation:Shape" type="2008">
+    <children xsi:type="notation:DecorationNode" type="5029"/>
+    <children xsi:type="notation:Compartment" type="7017">
+      <children xsi:type="notation:Shape" type="3012">
+        <element href="ClassDiagram.uml#_5_7pQEKSEeaXCq-9LXQNWQ"/>
+      </children>
+    </children>
+    <children xsi:type="notation:Compartment" type="7018"/>
+    <children xsi:type="notation:Compartment" type="7019"/>
+    <element href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
+  </children>
+  <children xsi:type="notation:Shape" type="2008">
+    <children xsi:type="notation:DecorationNode" type="5029"/>
+    <children xsi:type="notation:Compartment" type="7017">
+      <children xsi:type="notation:Shape" type="3012">
+        <element href="ClassDiagram.uml#_oNOcoEKSEeaXCq-9LXQNWQ"/>
+      </children>
+    </children>
+    <children xsi:type="notation:Compartment" type="7018"/>
+    <children xsi:type="notation:Compartment" type="7019"/>
+    <element href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
+  </children>
+  <children xsi:type="notation:Shape" type="2008">
+    <children xsi:type="notation:DecorationNode" type="5029"/>
+    <children xsi:type="notation:Compartment" type="7017">
+      <children xsi:type="notation:Shape" type="3012">
+        <element href="ClassDiagram.uml#_sLlvoEKSEeaXCq-9LXQNWQ"/>
+      </children>
+    </children>
+    <children xsi:type="notation:Compartment" type="7018">
+      <children xsi:type="notation:Shape" type="3013">
+        <element href="ClassDiagram.uml#_WwgHEEKSEeaXCq-9LXQNWQ"/>
+      </children>
+    </children>
+    <children xsi:type="notation:Compartment" type="7019"/>
+    <element href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+  </children>
+  <children xsi:type="notation:Shape" type="2012">
+    <element href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>
+  </children>
+  <children xsi:type="notation:Shape" type="2012">
+    <element href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
+  </children>
+  <element href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
+  <edges xsi:type="notation:Connector" type="4013" source="//@children.3" target="//@children.0"/>
+  <edges xsi:type="notation:Connector" type="4002" source="//@children.0" target="//@children.2"/>
+  <edges xsi:type="notation:Connector" type="4001" source="//@children.2" target="//@children.1">
+    <children xsi:type="notation:DecorationNode" type="6001"/>
+    <children xsi:type="notation:DecorationNode" type="6002"/>
+    <children xsi:type="notation:DecorationNode" type="6033"/>
+    <children xsi:type="notation:DecorationNode" type="6034"/>
+    <element href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="4013" source="//@children.4" target="//@edges.2"/>
+</notation:Diagram>
