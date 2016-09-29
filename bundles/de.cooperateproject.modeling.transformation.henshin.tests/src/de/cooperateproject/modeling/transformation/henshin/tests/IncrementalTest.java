@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -186,21 +190,41 @@ public class IncrementalTest {
 		Assert.isTrue(!newTraces.isEmpty(), "no traces were created");
 		
 		Set<EObject> unmarkedNodes = new HashSet<>();
-		Set<EObject> unmarkedEdges = new HashSet<>();
+		Set<Pair<EObject, EAttribute>> unmarkedAttributes = new HashSet<>();
+		Set<Pair<EReference, Pair<EObject, EObject>>> unmarkedEdges = new HashSet<>();
+		
 		trafoInfo.getTranslationMaps().getIsTranslatedNodeMap().forEach((k, v) -> {
 			if (!v)
 				unmarkedNodes.add(k);
 		});
 		
+		trafoInfo.getTranslationMaps().getIsTranslatedAttributeMap().forEach((n, p) -> p.forEach((a, v) ->
+
+		{
+			if (!v && !a.isDerived())
+				unmarkedAttributes.add(ImmutablePair.of(n, a));
+		}));
+
+		trafoInfo.getTranslationMaps().getIsTranslatedEdgeMap()
+				.forEach((source, triple) -> triple.forEach((edge, pair) -> pair.forEach((target, v) ->
+
+		{
+					if (!v)
+						unmarkedEdges.add(ImmutablePair.of(edge, ImmutablePair.of(source, target)));
+				})));
+		
 		
 		for(EObject node : unmarkedNodes)
 			LOG.debug(node);
 		
-//		trafoInfo.getTranslationMaps().getIsTranslatedEdgeMap().forEach((k, v) -> {
-//			if (!v)
-//				unmarkedNodes.add(k);
-//		});
+
+		for(Pair<EObject, EAttribute> pair : unmarkedAttributes) {
+			LOG.debug(pair.getLeft() + " " + pair.getRight().getName());
+		}
 		
+//		for(Pair<EReference, Pair<EObject, EObject>> triple : unmarkedEdges)
+//			LOG.debug(triple);
+//		
 		
 		
 	}

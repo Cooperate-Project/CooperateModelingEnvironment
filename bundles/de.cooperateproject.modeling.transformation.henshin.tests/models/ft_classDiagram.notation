@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" name="Class Diagram">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="PapyrusUMLClassDiagram" name="Class Diagram">
   <children xsi:type="notation:Shape" type="2008">
     <children xsi:type="notation:DecorationNode" type="5029"/>
     <children xsi:type="notation:Compartment" type="7017">
