@@ -70,17 +70,19 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 		traceResource.getContents().addAll(transformationTrace.getTraceContent());
 		traceResource.save(Collections.emptyMap());
 		
+		// unload result and trace
 		resultResource.unload();
 		traceResource.unload();
 		
 		// load transformation output model and trace
 		resultResource.load(Collections.emptyMap());
 		traceResource.load(Collections.emptyMap());		
-		transformationResult = new BasicModelExtent(resultResource.getContents());
-		EObject expected = EcoreUtil.copy(transformationResult.getContents().get(0));
-		transformationTrace = new Trace(traceResource.getContents());
+		EcoreUtil.resolveAll(traceResource);
 		
 		// execute transformation (incremental)
+		transformationResult = new BasicModelExtent(resultResource.getContents());
+		EObject expected = EcoreUtil.copy(transformationResult.getContents().get(0));
+		transformationTrace = new Trace(traceResource.getContents());		
 		transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationResult, transformationTrace);
 		
 		// assert

@@ -115,6 +115,7 @@ query trace::TraceRecord::getContextMapping() : trace::VarParameterValue
 
 query OclAny::eobject() : ecore::EObject
 {
+	assert fatal (self.oclIsKindOf(ecore::EObject)) with log('Conversion to EObject only possible for EObjects.');
 	return self.oclAsType(ecore::EObject);
 }
 

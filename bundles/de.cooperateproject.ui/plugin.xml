@@ -46,6 +46,24 @@
          <command
                commandId="de.cooperateproject.ui.AddProjectNatureCommand"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IProject">
+                        <not>
+                           <test
+                                 property="org.eclipse.core.resources.projectNature"
+                                 value="de.cooperateproject.ui.CooperateProjectNature">
+                           </test>
+                        </not>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
@@ -55,6 +73,15 @@
             class="de.cooperateproject.ui.properties.ProjectPropertiesPage"
             id="de.cooperateproject.ui.nature.properties"
             name="Cooperate">
+         <enabledWhen>
+            <adapt
+                  type="org.eclipse.core.resources.IProject">
+               <test
+                     property="org.eclipse.core.resources.projectNature"
+                     value="de.cooperateproject.ui.CooperateProjectNature">
+               </test>
+            </adapt>
+         </enabledWhen>
       </page>
    </extension>
    <extension
@@ -67,5 +94,24 @@
             launcher="de.cooperateproject.ui.editors.launcher.EditorLauncher"
             name="Cooperate Editor Launcher">
       </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="de.cooperateproject.ui.nature.StartupBuilder">
+      </startup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.cooperateproject.ui.cooperateWizards"
+            name="Cooperate">
+      </category>
+      <wizard
+            category="de.cooperateproject.ui.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.NewCooperateProjectWizard"
+            id="de.cooperateproject.ui.newCooperateProjectWizard"
+            name="Cooperate Project">
+      </wizard>
    </extension>
 </plugin>
