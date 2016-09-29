@@ -3,26 +3,27 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
-import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import com.google.inject.Inject
-import org.eclipse.xtext.scoping.IScopeProvider
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import org.eclipse.uml2.uml.Class
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
-import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference
-import org.eclipse.xtext.serializer.impl.Serializer
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.uml2.uml.Class
+import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.Operation
+import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
-import org.eclipse.xtext.Assignment
 import org.eclipse.uml2.uml.VisibilityKind
-import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.util.UMLSwitch
-import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
+import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.eclipse.xtext.serializer.impl.Serializer
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -43,7 +44,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		var classes = elements.map[x|x.EObjectOrProxy].filter(Class)
 		for (class : classes) {
 			var c = createClass(class)
-			var m = model as de.cooperateproject.modeling.textual.cls.cls.Package
+			var m = model as Package
 			m.classifiers.add(c)
 
 			acceptor.accept(createCompletionProposal(serializer.serialize(c), class.name, null, context))
@@ -137,9 +138,9 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 			typeConverter = new TypeConverter()
 		} 
 
-		override casePrimitiveType(org.eclipse.uml2.uml.PrimitiveType primitiveType) {
+		override casePrimitiveType(PrimitiveType primitiveType) {
 			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
-			dataType.type = typeConverter.getPrimitive(primitiveType)
+			dataType.type = TypeConverter.getPrimitive(primitiveType)
 			return dataType
 		}
 

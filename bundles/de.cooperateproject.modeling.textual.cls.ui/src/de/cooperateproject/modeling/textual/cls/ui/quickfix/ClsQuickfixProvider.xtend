@@ -3,34 +3,37 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.quickfix
 
-import com.google.inject.Inject
-import org.eclipse.xtext.scoping.IScopeProvider
-import org.eclipse.xtext.ui.editor.quickfix.Fix
-import de.cooperateproject.modeling.textual.cls.validation.ClsValidator
-import org.eclipse.xtext.validation.Issue
-import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
-import de.cooperateproject.modeling.textual.cls.cls.Class
-import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
-import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.uml2.uml.Model
-import com.google.common.collect.Iterables
-import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.uml2.uml.Type
-import org.eclipse.emf.common.util.BasicEList
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import de.cooperateproject.modeling.textual.cls.cls.Member
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Property
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import de.cooperateproject.modeling.textual.cls.validation.ClsValidator
 import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
+import java.util.Collection
+import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.uml2.uml.Class
+import org.eclipse.uml2.uml.Classifier
+import org.eclipse.uml2.uml.Interface
+import org.eclipse.uml2.uml.NamedElement
+import org.eclipse.uml2.uml.Operation
+import org.eclipse.uml2.uml.Package
+import org.eclipse.uml2.uml.Parameter
+import org.eclipse.uml2.uml.PrimitiveType
+import org.eclipse.uml2.uml.Type
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
+import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import org.eclipse.xtext.validation.Issue
 
-class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
-
-	@Inject IScopeProvider scope
-	@Inject TypeConverter typeConverter
+class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
 	/**
 	 * Quickfix for missing Class in the UML-diagram.
@@ -38,7 +41,7 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 	@Fix(ClsValidator::NO_CLASS_REFERENCE)
 	def createMissingUMLClass(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create Class', 'Create the Class into the UML Diagram', null) [ element, context |
-			createMissingClassifier(new CreateClass(), context, issue, element)
+			element.fixMissingClassifier(issue, context)
 		]
 	}
 
@@ -48,60 +51,32 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 	@Fix(ClsValidator::NO_INTERFACE_REFERENCE)
 	def createMissingUMLInterface(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create Interface', 'Create the Interface into the UML Diagram', null) [ element, context |
-			createMissingClassifier(new CreateInterface(), context, issue, element)
+			element.fixMissingClassifier(issue, context)
 		]
 	}
-
-	/**
-	 * Creates a missing classifier into the UML-diagram.
-	 */
-	private def createMissingClassifier(CreateClassifier createClassifier, IModificationContext context, Issue issue,
-		EObject element) {
-		var name = context.xtextDocument.get(issue.offset, issue.length)
-
-		var scope = scope.getScope(element, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
-		var first = Iterables.getFirst(scope.allElements, null)
-
-		if (first != null) {
-			var umlModel = EcoreUtil.getRootContainer(first.EObjectOrProxy)
-
-			if (umlModel instanceof Model) {
-				createClassifier.createClassifier(name, umlModel, false)
-				context.xtextDocument.replace(issue.offset, issue.length, name)
-			}
-		}
-	}
-
+	
 	/**
 	 * Quickfix for missing Property in the UML-diagram.
 	 */
 	@Fix(ClsValidator::NO_PROPERTY_REFERENCE)
 	def createMissingUMLProperty(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create Property', 'Create the Property into the UML Diagram', null) [ element, context |
-			if (element instanceof Attribute) {
-				createMissingMember(new CreateProperty(), context, issue, element)
-			}
+			element.fixMissingMember(issue, context)
 		]
 	}
-
+	
 	/**
 	 * Quickfix for wrong Property type in the Cls-model.
 	 */
 	@Fix(ClsValidator::WRONG_PROPERTY_TYPE)
 	def wrongPropertyType(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Change Type', 'Change the property type into the right one', null) [ element, context |
-			if (element instanceof Attribute) {
-				var refType = element.referencedElement.type				
-				if (refType instanceof org.eclipse.uml2.uml.Class) {
-					context.xtextDocument.replace(issue.offset, issue.length, refType.name)
-				} else {
-					var type = typeConverter.getPrimitive(refType)
-					context.xtextDocument.replace(issue.offset, issue.length, type.toString.toLowerCase)
-				}
+			if (element instanceof Property) {
+				element.fixWrongType(issue, context)
 			}
 		]
 	}
-
+	
 	/**
 	 * Quickfix for missing Operation in the UML-diagram.
 	 */
@@ -109,132 +84,140 @@ class ClsQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQu
 	def createMissingUMLOperation(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create Operation', 'Create the Operation into the UML Diagram', null) [ element, context |
 			if (element instanceof Method) {
-				createMissingMember(new CreateOperation(), context, issue, element)
+				element.fixMissingMember(issue, context)
 			}
 		]
 	}
+	
+	private static def fixMissingClassifier(EObject element, Issue issue, IModificationContext context) {
+		var name = context.xtextDocument.get(issue.offset, issue.length)
+		val brokenClassifier = element as de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends Classifier>
+		val parentPackage = brokenClassifier.nearestPackage
+		val umlPackage = parentPackage.referencedElement
+		if (umlPackage == null) {
+			return
+		}
+		brokenClassifier.fixCreate(umlPackage, name)
+	}
+	
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Class brokenClassifier, Package parentPackage, String name) {
+		val umlClass = parentPackage.createOwnedClass(name, brokenClassifier.abstract);
+		brokenClassifier.referencedElement = umlClass;
+	}
+	
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Interface brokenClassifier, Package parentPackage, String name) {
+		val umlInterface = parentPackage.createOwnedInterface(name);
+		brokenClassifier.referencedElement = umlInterface;
+	}
+	
+	private static def fixWrongType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
+		val umlElement = property.referencedElement
+		val umlType = umlElement?.getType
+		property.type = getClsType(umlType)
+	}
+	
+	private static def dispatch Type getType(Operation umlOperation) {
+		return umlOperation.type
+	}
+	
+	private static def dispatch Type getType(org.eclipse.uml2.uml.Property umlAttribute) {
+		return umlAttribute.type
+	}
+	
+	private static def dispatch Type getType(Parameter umlParameter) {
+		return umlParameter.type
+	}
 
-	/**
-	 * Creates a missing member into the UML-diagram.
-	 */
-	private def createMissingMember(CreateMember createMember, IModificationContext context, Issue issue,
-		EObject element) {
+	private def fixMissingMember(EObject element, Issue issue, IModificationContext context) {
 		val name = context.xtextDocument.get(issue.offset, issue.length)
-		val class = element.eContainer
-
-		if (class instanceof Class) {
-
-			var scope = scope.getScope(class, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
-			var umlClass = scope.allElements.map[x|x.EObjectOrProxy].filter(org.eclipse.uml2.uml.Class).findFirst [ x |
-				x.name.equals(class.name)
-			]
-
-			if (umlClass != null) {
-				var umlModel = EcoreUtil.getRootContainer(umlClass)
-
-				if (umlModel instanceof Model) {
-					createMember.createMember(name, element, umlClass)
-					context.xtextDocument.replace(issue.offset, issue.length, name)
-				}
-			}
+		val brokenMember = element as Member<?>
+		val classifier = brokenMember.owner
+		val umlClassifier = classifier.referencedElement
+		if (umlClassifier == null) {
+			return
 		}
+		brokenMember.fixCreate(umlClassifier, name)
 	}
-
-	/**
-	 * Interface using the command pattern to create a member.
-	 */
-	private static abstract class CreateMember {
-		def void createMember(String name, EObject type, org.eclipse.uml2.uml.Class umlClass)
-
-		public def getType(TypeReference type, Model model) {
-			if (type == null) {
-				return null
-			}
-			var typeSwitch = new TypeSwitch(model)
-			var t = typeSwitch.doSwitch(type)
-			typeSwitch = null
-			return t
-		}
-	}
-
-	/**
-	 * Implementation of the CreateMember interface that creates a Property into the UML-diagram.
-	 */
-	private static class CreateProperty extends CreateMember {
-		override createMember(String name, EObject attribute, org.eclipse.uml2.uml.Class umlClass) {
-			if (attribute instanceof Attribute) {
-				umlClass.createOwnedAttribute(name, getType(attribute.type, umlClass.model))
-			}
-		}
-	}
-
-	/**
-	 * Implementation of the CreateMember interface that creates a Operation into the UML-diagram.
-	 */
-	private static class CreateOperation extends CreateMember {
-		override createMember(String name, EObject operation, org.eclipse.uml2.uml.Class umlClass) {
-			if (operation instanceof Method) {
-				var parameterNames = new BasicEList<String>()
-				var nodes = operation.parameters.map[x|NodeModelUtils.getNode(x)]
-				var names = nodes.map[x|NodeModelUtils.getTokenText(x)]
-				parameterNames.addAll(names.map[x|x.split(":").get(0).trim])
-
-				var parameterTypes = new BasicEList<Type>()
-				var types = operation.parameters.map[x|getType(x.type, umlClass.model)]
-				parameterTypes.addAll(types)
-
-				umlClass.createOwnedOperation(name, parameterNames, parameterTypes,
-					getType(operation.type, umlClass.model))
-			}
-		}
-	}
-
-	private static class TypeSwitch extends ClsSwitch<Type> {
-		private TypeConverter typeConverter
-		private Model model
 		
-		new () {
-			typeConverter = new TypeConverter()
-		}
-
-		new(Model model) {
-			this.model = model
-			typeConverter = new TypeConverter()
-		}
-
-		override caseDataTypeReference(DataTypeReference dataTypeReference) {
-			return typeConverter.getType(dataTypeReference.type, model)
-
-		}
-
-		override caseUMLTypeReference(UMLTypeReference umlTypeReference) {
-			return umlTypeReference.type;
-		}
+	private static def dispatch void fixCreate(Attribute brokenAttribute, Class umlClassifier, String name) {
+		val umlType = getUMLType(brokenAttribute.type)
+		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
+		brokenAttribute.referencedElement = umlAttribute
 	}
-
-	/**
-	 * Interface using the command pattern to create a classifier.
-	 */
-	private interface CreateClassifier {
-		def void createClassifier(String name, Model model, boolean isAbstract)
+	
+	private static def dispatch void fixCreate(Attribute brokenAttribute, Interface umlClassifier, String name) {
+		val umlType = getUMLType(brokenAttribute.type)
+		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
+		brokenAttribute.referencedElement = umlAttribute
 	}
-
-	/**
-	 * Implementation of the CreateMember interface that creates a Class into the UML-diagram.
-	 */
-	private static class CreateClass implements CreateClassifier {
-		override createClassifier(String name, Model model, boolean isAbstract) {
-			model.createOwnedClass(name, isAbstract)
-		}
+	
+	private static def dispatch void fixCreate(Method brokenMethod, Class umlClassifier, String name) {
+		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
+			val umlOperation = umlClassifier.createOwnedOperation(name, paramNames, paramTypes, returnType)
+			brokenMethod.referencedElement = umlOperation
+		]
 	}
-
-	/**
-	 * Implementation of the CreateMember interface that creates a Interface into the UML-diagram.
-	 */
-	private static class CreateInterface implements CreateClassifier {
-		override createClassifier(String name, Model model, boolean isAbstract) {
-			model.createOwnedInterface(name)
+	
+	private static def dispatch void fixCreate(Method brokenMethod, Interface umlClassifier, String name) {
+		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
+			val umlOperation = umlClassifier.createOwnedOperation(name, paramNames, paramTypes, returnType)
+			brokenMethod.referencedElement = umlOperation
+		]
+	}
+	
+	private interface MethodCreateFixer {
+		def void fix(EList<String> parameterNames, EList<Type> parameterTypes, Type returnType)
+	}
+	
+	private static def void fixCreate(Method brokenMethod, MethodCreateFixer fixer) {
+		val parameterNames = brokenMethod.parameters.map[p | NodeModelUtils.findNodesForFeature(p, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).map[n | NodeModelUtils.getTokenText(n)].findFirst[true]]
+		val parameterTypes = brokenMethod.parameters.map[p | p.type.getUMLType]
+		val returnType = brokenMethod.type.getUMLType
+		
+		if (parameterNames.size != parameterTypes.size) {
+			return
 		}
+		
+		fixer.fix(parameterNames.encapsulate, parameterTypes.encapsulate, returnType)
+	}
+	
+	private static def <T> EList<T> encapsulate(Collection<T> elements) {
+		return new BasicEList<T>(elements)
+	}
+	
+	private static def dispatch getClsType(PrimitiveType type) {
+		val primitiveType = TypeConverter.getPrimitive(type)
+		if (primitiveType == null) {
+			return null
+		}
+		val dataTypeReference = ClsFactory.eINSTANCE.createDataTypeReference
+		dataTypeReference.type = primitiveType
+		return dataTypeReference
+	}
+	
+	private static def dispatch getClsType(Type type) {
+		if (type == null) {
+			return null
+		}
+		val umlTypeReference = ClsFactory.eINSTANCE.createUMLTypeReference
+		umlTypeReference.type = type
+		return umlTypeReference
+	}
+	
+	private static def dispatch getClsType(Void type) {
+		return null
+	}
+	
+	private static def dispatch getUMLType(DataTypeReference type) {
+		return TypeConverter.getType(type.type, type.eResource.resourceSet)
+	}
+	
+	private static def dispatch getUMLType(UMLTypeReference type) {
+		return type.type
+	}
+	
+	private static def dispatch getUMLType(Void type) {
+		return null
 	}
 
 }
