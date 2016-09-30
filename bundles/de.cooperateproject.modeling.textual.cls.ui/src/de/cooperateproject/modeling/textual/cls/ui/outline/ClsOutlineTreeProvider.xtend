@@ -40,20 +40,30 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	val images = JavaUI.getSharedImages();
 
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
-		val importNode = new AbstractOutlineNode(parentNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", root.packageImports.size), false) {};
-		val classifierNode = new AbstractOutlineNode(parentNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", root.classifiers.size), false) {};
+		createNode(parentNode, root.rootPackage);
+	}
+	
+	dispatch def createNode(IOutlineNode parentNode, de.cooperateproject.modeling.textual.cls.cls.Package pkg) {
+		val newParentNode = createEObjectNode(parentNode, pkg);
+		val packageNode = new AbstractOutlineNode(newParentNode, UMLImageGetter.getUMLImage("Package.gif"), getStyledString("Packages", pkg.classifiers.size), false) {};
+		val importNode = new AbstractOutlineNode(newParentNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", pkg.packageImports.size), false) {};
+		val classifierNode = new AbstractOutlineNode(newParentNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", pkg.classifiers.size), false) {};
 		
-		for (oneImport : root.packageImports) {
+		for (onePackage : pkg.packages) {
+			createNode(packageNode, onePackage)
+		}
+		
+		for (oneImport : pkg.packageImports) {
 			createNode(importNode, oneImport)
 		}
 
-		for (oneClassifier : root.classifiers) {
+		for (oneClassifier : pkg.classifiers) {
 			createNode(classifierNode, oneClassifier);
 		}
 
 		val connectors = newArrayList();
 		val comments = newArrayList();
-		for (oneConnector : root.connectors) {
+		for (oneConnector : pkg.connectors) {
 			if (oneConnector instanceof CommentLink) {
 				comments.add(oneConnector)
 			} else if (oneConnector instanceof Association && (oneConnector as Association).comment != null) {
@@ -64,8 +74,8 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 		}
 		
-		val connectorNode = new AbstractOutlineNode(parentNode, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors",connectors.size), false) {};
-		val commentNode = new AbstractOutlineNode(parentNode, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments",comments.size), false) {};
+		val connectorNode = new AbstractOutlineNode(newParentNode, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors",connectors.size), false) {};
+		val commentNode = new AbstractOutlineNode(newParentNode, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments",comments.size), false) {};
 		for (oneComment : comments) {
 			createNode(commentNode, oneComment)
 		}

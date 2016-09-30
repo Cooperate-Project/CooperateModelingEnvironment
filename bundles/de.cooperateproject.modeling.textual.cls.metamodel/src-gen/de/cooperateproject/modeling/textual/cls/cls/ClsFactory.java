@@ -31,6 +31,15 @@ public interface ClsFactory extends EFactory {
 	ClassDiagram createClassDiagram();
 
 	/**
+	 * Returns a new object of class '<em>Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Package</em>'.
+	 * @generated
+	 */
+	Package createPackage();
+
+	/**
 	 * Returns a new object of class '<em>Package Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

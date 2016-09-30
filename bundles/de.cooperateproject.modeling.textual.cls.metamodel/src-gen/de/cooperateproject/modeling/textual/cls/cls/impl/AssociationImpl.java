@@ -7,6 +7,8 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
+import de.cooperateproject.modeling.textual.cls.cls.Element;
+import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
@@ -16,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
@@ -180,8 +183,31 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
+		EObject focus = this;
+		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {
+			focus = focus.eContainer();
+		}
+		return (de.cooperateproject.modeling.textual.cls.cls.Package)focus;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Element.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == PackageableElement.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Connector.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -210,6 +236,16 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Element.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == PackageableElement.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Connector.class) {
 			switch (baseFeatureID) {
 				default: return -1;
@@ -238,6 +274,17 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Element.class) {
+			switch (baseOperationID) {
+				case ClsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ClsPackage.ASSOCIATION___GET_NEAREST_PACKAGE;
+				default: return -1;
+			}
+		}
+		if (baseClass == PackageableElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Connector.class) {
 			switch (baseOperationID) {
 				default: return -1;
@@ -267,6 +314,8 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 		switch (operationID) {
 			case ClsPackage.ASSOCIATION___GET_COMMENTED_ELEMENT:
 				return getCommentedElement();
+			case ClsPackage.ASSOCIATION___GET_NEAREST_PACKAGE:
+				return getNearestPackage();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="ClassDiagramPackages.uml#_SnrXgH9OEeasAogjkkM7gQ"/>
+    <packages>
+      <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_ihbecH9OEeaePt6Hzoa1yQ"/>
+      <classifiers xsi:type="cls:Class">
+        <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
+      </classifiers>
+      <classifiers xsi:type="cls:Class">
+        <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_3KYQQH_OEeaePt6Hzoa1yQ"/>
+      </classifiers>
+      <connectors xsi:type="cls:Association" aggregationKind="COMPOSITION" bidirectional="true">
+        <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_7PhI0H9OEeaePt6Hzoa1yQ"/>
+        <left>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
+        </left>
+        <right>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_t2ZyoH9OEeaePt6Hzoa1yQ"/>
+        </right>
+        <properties>
+          <cardinalityLeft lowerBound="1" upperBound="1"/>
+          <cardinalityRight upperBound="-1"/>
+          <propertyLeft href="ClassDiagramPackages.uml#_7PukMH9OEeaePt6Hzoa1yQ"/>
+          <propertyRight href="ClassDiagramPackages.uml#_7PsvAH9OEeaePt6Hzoa1yQ"/>
+        </properties>
+      </connectors>
+      <connectors xsi:type="cls:Association" bidirectional="true">
+        <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_fuLkMH_REeaePt6Hzoa1yQ"/>
+        <left>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
+        </left>
+        <right>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_3KYQQH_OEeaePt6Hzoa1yQ"/>
+        </right>
+        <properties>
+          <cardinalityLeft lowerBound="1" upperBound="1"/>
+          <cardinalityRight lowerBound="1" upperBound="1"/>
+          <propertyLeft href="ClassDiagramPackages.uml#_fuMyUX_REeaePt6Hzoa1yQ"/>
+          <propertyRight href="ClassDiagramPackages.uml#_fuMyUH_REeaePt6Hzoa1yQ"/>
+        </properties>
+      </connectors>
+      <packages>
+        <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_o3uSIH9OEeaePt6Hzoa1yQ"/>
+        <classifiers xsi:type="cls:Class">
+          <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_t2ZyoH9OEeaePt6Hzoa1yQ"/>
+        </classifiers>
+        <classifiers xsi:type="cls:Interface">
+          <referencedElement xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
+        </classifiers>
+        <connectors xsi:type="cls:Implementation">
+          <left>
+            <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_t2ZyoH9OEeaePt6Hzoa1yQ"/>
+          </left>
+          <right>
+            <type xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
+          </right>
+        </connectors>
+      </packages>
+    </packages>
+    <packages>
+      <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_nYq6MH9OEeaePt6Hzoa1yQ"/>
+      <packageImports>
+        <referencedElement href="ClassDiagramPackages.uml#_IMO24H9PEeaePt6Hzoa1yQ"/>
+      </packageImports>
+      <classifiers xsi:type="cls:Class">
+        <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_r3cyoH9OEeaePt6Hzoa1yQ"/>
+      </classifiers>
+      <connectors xsi:type="cls:Association">
+        <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_AVC4MH9PEeaePt6Hzoa1yQ"/>
+        <left>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_r3cyoH9OEeaePt6Hzoa1yQ"/>
+        </left>
+        <right>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
+        </right>
+        <properties>
+          <cardinalityLeft lowerBound="1" upperBound="1"/>
+          <cardinalityRight upperBound="-1"/>
+          <propertyLeft href="ClassDiagramPackages.uml#_AVEtYH9PEeaePt6Hzoa1yQ"/>
+          <propertyRight href="ClassDiagramPackages.uml#_AVEGUn9PEeaePt6Hzoa1yQ"/>
+        </properties>
+      </connectors>
+      <connectors xsi:type="cls:Association">
+        <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_I-A5IH9PEeaePt6Hzoa1yQ"/>
+        <left>
+          <type xsi:type="uml:Class" href="ClassDiagramPackages.uml#_r3cyoH9OEeaePt6Hzoa1yQ"/>
+        </left>
+        <right>
+          <type xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
+        </right>
+        <properties>
+          <cardinalityLeft lowerBound="1" upperBound="1"/>
+          <cardinalityRight upperBound="-1"/>
+          <propertyLeft href="ClassDiagramPackages.uml#_I-DVYH9PEeaePt6Hzoa1yQ"/>
+          <propertyRight href="ClassDiagramPackages.uml#_I-CuUX9PEeaePt6Hzoa1yQ"/>
+        </properties>
+      </connectors>
+    </packages>
+  </rootPackage>
+</cls:ClassDiagram>

@@ -7,8 +7,6 @@ import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Type Reference</b></em>'.
@@ -16,7 +14,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class TypeReferenceImpl extends CDOObjectImpl implements TypeReference {
+public abstract class TypeReferenceImpl extends ElementImpl implements TypeReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,16 +32,6 @@ public abstract class TypeReferenceImpl extends CDOObjectImpl implements TypeRef
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.TYPE_REFERENCE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 } //TypeReferenceImpl

@@ -1,6 +1,6 @@
 @startclass
 
-import RootElement
+rootPackage RootElement
 
 class Class1 {
 	# abstract someOP()

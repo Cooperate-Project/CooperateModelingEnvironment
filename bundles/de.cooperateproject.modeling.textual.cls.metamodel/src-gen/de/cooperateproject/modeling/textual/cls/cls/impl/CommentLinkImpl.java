@@ -16,7 +16,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -34,7 +33,7 @@ import org.eclipse.uml2.uml.Type;
  *
  * @generated
  */
-public class CommentLinkImpl extends ConnectorImpl implements CommentLink {
+public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -21,10 +19,9 @@ import org.eclipse.uml2.uml.Type;
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getCommentable()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface Commentable extends CDOObject {
+public interface Commentable extends Element {
 	/**
 	 * Returns the value of the '<em><b>Comment</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -2,7 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -23,10 +22,9 @@ import org.eclipse.uml2.uml.Property;
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociationProperties()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface AssociationProperties extends CDOObject {
+public interface AssociationProperties extends Element {
 	/**
 	 * Returns the value of the '<em><b>Cardinality Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

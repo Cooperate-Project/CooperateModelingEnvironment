@@ -1,18 +1,20 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
-public class CooperateQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider implements IAlternativeNameProvider {
+public class CooperateQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider
+		implements IAlternativeNameProvider {
 
 	/**
 	 * Converts a UML named element to a qualified name.
@@ -46,10 +48,22 @@ public class CooperateQualifiedNameProvider extends DefaultDeclarativeQualifiedN
 		return QualifiedName.create(element.getBody());
 	}
 
+	/**
+	 * Converts a UML package import to a qualified name object. The result is
+	 * not the qualified name of the package import but the imported package.
+	 * 
+	 * @param packageImport The package import to be converted.
+	 * @return The qualified name.
+	 */
+	protected QualifiedName qualifiedName(PackageImport packageImport) {
+		Package importedPackage = packageImport.getImportedPackage();
+		return QualifiedName.create(importedPackage.getQualifiedName().split(importedPackage.separator()));
+	}
+
 	@Override
 	public Optional<QualifiedName> getAlternativeFullyQualifiedName(EObject obj) {
 		if (obj instanceof NamedElement) {
-			NamedElement ne = (NamedElement)obj;
+			NamedElement ne = (NamedElement) obj;
 			if (ne.getNameExpression() != null) {
 				String alternativeName = ne.getNameExpression().getName();
 				if (alternativeName != null) {

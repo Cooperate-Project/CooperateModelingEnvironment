@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.uml2.uml.Association;
 
 /**
@@ -36,7 +35,7 @@ import org.eclipse.uml2.uml.Association;
  *
  * @generated
  */
-public class MultiAssociationImpl extends ConnectorImpl implements MultiAssociation {
+public class MultiAssociationImpl extends ElementImpl implements MultiAssociation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

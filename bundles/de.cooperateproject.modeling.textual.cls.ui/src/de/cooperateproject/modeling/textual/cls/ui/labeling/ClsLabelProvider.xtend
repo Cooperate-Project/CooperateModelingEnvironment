@@ -41,186 +41,188 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		Visibility.PROTECTED -> ISharedImages.IMG_FIELD_PROTECTED,
 		Visibility.PACKAGE -> ISharedImages.IMG_FIELD_DEFAULT}
 
-		val visibilityMethodsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_OBJS_PUBLIC,
-			Visibility.PRIVATE -> ISharedImages.IMG_OBJS_PRIVATE,
-			Visibility.PROTECTED -> ISharedImages.IMG_OBJS_PROTECTED,
-			Visibility.PACKAGE -> ISharedImages.IMG_OBJS_DEFAULT}
+	val visibilityMethodsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_OBJS_PUBLIC,
+		Visibility.PRIVATE -> ISharedImages.IMG_OBJS_PRIVATE,
+		Visibility.PROTECTED -> ISharedImages.IMG_OBJS_PROTECTED,
+		Visibility.PACKAGE -> ISharedImages.IMG_OBJS_DEFAULT}
 
-			val images = JavaUI.getSharedImages();
+	val images = JavaUI.getSharedImages();
 
-			@Inject
-			new(AdapterFactoryLabelProvider delegate) {
-				super(delegate)
-			}
-			
-			def image(ClassDiagram ele) {
-				return UMLImageGetter.getUMLImage("Model.gif")
-			}
+	@Inject
+	new(AdapterFactoryLabelProvider delegate) {
+		super(delegate)
+	}
+	
+	def image(ClassDiagram ele) {
+		return UMLImageGetter.getUMLImage("Model.gif")
+	}
 
-			def text(Class ele) {
-				var name = ele.name
-				return name
-			}
+	def text(Class ele) {
+		var name = ele.name
+		return name
+	}
 
-			def text(NamedElement ele) {
-				ele.name
-			}
+	def text(NamedElement ele) {
+		ele.name
+	}
 
-			def text(PackageImport ele) {
-				ele.package.name;
-			}
+	def text(PackageImport ele) {
+		ele.referencedElement.importedPackage.name;
+	}
 
-			def image(PackageImport ele) {
-				images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
-			}
+	def image(PackageImport ele) {
+		images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
+	}
 
-			def text(Method ele) {
-				var text = text(ele as Property)
-				if (text.contains(":")) {
-					text = text.replaceAll(":", "():")
-				} else {
-					text += "()"
-				}
-				return text
-			}
-
-			def text(Property ele) {
-				val typeRef = ele.type
-				var type = ""
-				if (typeRef != null) {
-					type = ": " + text(typeRef)
-				}
-				ele.name + type
-			}
-
-			def image(Class ele) {
-				images.getImage(ISharedImages.IMG_OBJS_CLASS)
-			}
-
-			def image(Interface ele) {
-				images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
-			}
-
-			def image(Attribute ele) {
-				val visibility = ele.visibility
-				val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
-				return image
-			}
-
-			def image(Parameter ele) {
-				val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
-				return image
-			}
-
-			def image(Method ele) {
-				val visibility = ele.visibility
-				val image = images.getImage(visibilityMethodsMap.get(ele.visibility))
-				return image
-			}
-
-			def text(TypeReference ele) {
-				if (ele instanceof UMLTypeReference) {
-					text(ele as UMLTypeReference)
-				} else if (ele instanceof DataTypeReference) {
-					text(ele as DataTypeReference)
-				}
-			}
-
-			def text(UMLTypeReference ele) {
-				var cont = ele.eContainer
-				if (cont instanceof Association) {
-					return getAssociationMemberText(ele) 
-				}
-				ele.type.name
-			}
-			
-			def image(UMLTypeReference ele) {
-				if (ele.type instanceof org.eclipse.uml2.uml.Class) {
-					return images.getImage(ISharedImages.IMG_OBJS_CLASS)
-				} else if (ele.type instanceof org.eclipse.uml2.uml.Interface) {
-					return images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
-				}
-			}
-
-			def text(DataTypeReference ele) {
-				ele.type.name()
-			}
-
-			def text(Association ele) {
-				if (ele.getComment() != null) {
-					return ele.referencedElement.name + " - Comment"
-				}
-				val leftChild = ele.left;
-				val rightChild = ele.right;
-				return leftChild.type.name + " " + ele.referencedElement.name + " " + rightChild.type.name
-			}
-
-			def image(Association ele) {
-				if (ele.getComment() != null) {
-					return UMLImageGetter.getUMLImage("Comment.gif")
-				} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
-					return UMLImageGetter.getUMLImage("Association_composite.gif")
-				} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
-					return UMLImageGetter.getUMLImage("Association_shared.gif")
-				} else {
-					return UMLImageGetter.getUMLImage("Association.gif")
-				}
-			}
-			
-			def getAssociationMemberText(UMLTypeReference ele) {
-				var asso = ele.eContainer as Association
-					if (ele == asso.left) {
-						if (asso.properties != null && asso.properties.propertyLeft != null) {
-							return ele.type.name + " as " + asso.properties.propertyLeft.name
-						}
-					} else if (ele == asso.right) {
-						if (asso.properties != null && asso.properties.propertyRight != null) {
-							return ele.type.name + " as " + asso.properties.propertyRight.name
-						}
-					}
-					return ele.type.name
-			}
-			
-			def text(MultiAssociation ele) {
-				return ele.referencedElement.name
-			}
-
-			def image(MultiAssociation ele) {
-				return UMLImageGetter.getUMLImage("Association.gif")
-			}
-			
-			def text(MemberEnd ele) {
-				return ele.type.text
-			}
-
-			def text(Generalization ele) {
-				val leftChild = ele.left;
-				val rightChild = ele.right;
-				leftChild.doGetText + " is a " + rightChild.doGetText
-			}
-
-			def image(Generalization ele) {
-				return UMLImageGetter.getUMLImage("Generalization.gif")
-			}
-
-			def text(Implementation ele) {
-				val leftChild = ele.left;
-				val rightChild = ele.right;
-				leftChild.doGetText + " implements " + rightChild.doGetText
-			}
-
-			def image(Implementation ele) {
-				return UMLImageGetter.getUMLImage("Realization.gif")
-			}
-			
-			def text(CommentLink ele) {
-				val leftChild = ele.left;
-				return leftChild.doGetText + " - Comment"
-			}
-			
-			def image(CommentLink ele) {
-				return UMLImageGetter.getUMLImage("Comment.gif")
-			}
-			
+	def text(Method ele) {
+		var text = text(ele as Property)
+		if (text.contains(":")) {
+			text = text.replaceAll(":", "():")
+		} else {
+			text += "()"
 		}
-		
+		return text
+	}
+
+	def text(Property ele) {
+		val typeRef = ele.type
+		var type = ""
+		if (typeRef != null) {
+			type = ": " + text(typeRef)
+		}
+		ele.name + type
+	}
+
+	def image(Class ele) {
+		images.getImage(ISharedImages.IMG_OBJS_CLASS)
+	}
+
+	def image(Interface ele) {
+		images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+	}
+
+	def image(Attribute ele) {
+		val visibility = ele.visibility
+		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
+		return image
+	}
+
+	def image(Parameter ele) {
+		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
+		return image
+	}
+
+	def image(Method ele) {
+		val visibility = ele.visibility
+		val image = images.getImage(visibilityMethodsMap.get(ele.visibility))
+		return image
+	}
+
+	def text(TypeReference ele) {
+		if (ele instanceof UMLTypeReference) {
+			text(ele as UMLTypeReference)
+		} else if (ele instanceof DataTypeReference) {
+			text(ele as DataTypeReference)
+		}
+	}
+
+	def text(UMLTypeReference ele) {
+		var cont = ele.eContainer
+		if (cont instanceof Association) {
+			return getAssociationMemberText(ele) 
+		}
+		ele.type.name
+	}
+	
+	def image(UMLTypeReference ele) {
+		if (ele.type instanceof org.eclipse.uml2.uml.Class) {
+			return images.getImage(ISharedImages.IMG_OBJS_CLASS)
+		} else if (ele.type instanceof org.eclipse.uml2.uml.Interface) {
+			return images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+		}
+	}
+
+	def text(DataTypeReference ele) {
+		ele.type.name()
+	}
+
+	def text(Association ele) {
+		if (ele.getComment() != null) {
+			return ele.referencedElement.name + " - Comment"
+		}
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		return leftChild.type.name + " " + ele.referencedElement.name + " " + rightChild.type.name
+	}
+
+	def image(Association ele) {
+		if (ele.getComment() != null) {
+			return UMLImageGetter.getUMLImage("Comment.gif")
+		} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
+			return UMLImageGetter.getUMLImage("Association_composite.gif")
+		} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
+			return UMLImageGetter.getUMLImage("Association_shared.gif")
+		} else {
+			return UMLImageGetter.getUMLImage("Association.gif")
+		}
+	}
+	
+	def getAssociationMemberText(UMLTypeReference ele) {
+		var asso = ele.eContainer as Association
+			if (ele == asso.left) {
+				if (asso.properties != null && asso.properties.propertyLeft != null) {
+					return ele.type.name + " as " + asso.properties.propertyLeft.name
+				}
+			} else if (ele == asso.right) {
+				if (asso.properties != null && asso.properties.propertyRight != null) {
+					return ele.type.name + " as " + asso.properties.propertyRight.name
+				}
+			}
+			return ele.type.name
+	}
+	
+	def text(MultiAssociation ele) {
+		return ele.referencedElement.name
+	}
+
+	def image(MultiAssociation ele) {
+		return UMLImageGetter.getUMLImage("Association.gif")
+	}
+	
+	def text(MemberEnd ele) {
+		return ele.type.text
+	}
+
+	def text(Generalization ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " is a " + rightChild.doGetText
+	}
+
+	def image(Generalization ele) {
+		return UMLImageGetter.getUMLImage("Generalization.gif")
+	}
+
+	def text(Implementation ele) {
+		val leftChild = ele.left;
+		val rightChild = ele.right;
+		leftChild.doGetText + " implements " + rightChild.doGetText
+	}
+
+	def image(Implementation ele) {
+		return UMLImageGetter.getUMLImage("Realization.gif")
+	}
+	
+	def text(CommentLink ele) {
+		val leftChild = ele.left;
+		return leftChild.doGetText + " - Comment"
+	}
+	
+	def image(CommentLink ele) {
+		return UMLImageGetter.getUMLImage("Comment.gif")
+	}
+	
+	def image(de.cooperateproject.modeling.textual.cls.cls.Package pkg) {
+		return UMLImageGetter.getUMLImage("Package.gif")
+	}
+}	

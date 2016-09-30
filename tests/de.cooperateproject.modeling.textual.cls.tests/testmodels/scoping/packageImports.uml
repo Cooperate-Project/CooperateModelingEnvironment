@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dkiBQH87EeabM6K0yRF8IA" name="rootElement">
+  <packagedElement xmi:type="uml:Package" xmi:id="_FuZdIH88EeabM6K0yRF8IA" name="package1">
+    <packagedElement xmi:type="uml:Package" xmi:id="_HKj5IH88EeabM6K0yRF8IA" name="package1_1">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Iwy3IH88EeabM6K0yRF8IA" name="package1_1_1">
+        <packagedElement xmi:type="uml:Class" xmi:id="_h5Vn4H9HEea2I93O_htC_w" name="AnotherClass"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_M7NpIH88EeabM6K0yRF8IA" name="package1_2">
+      <packagedElement xmi:type="uml:Package" xmi:id="_QzQRsH88EeabM6K0yRF8IA" name="package1_2_1">
+        <packageImport xmi:id="_UupJMH88EeabM6K0yRF8IA" importedPackage="_Iwy3IH88EeabM6K0yRF8IA"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_fUNZsH88EeabM6K0yRF8IA" name="SomeClass">
+          <ownedAttribute xmi:id="_iByaQH88EeabM6K0yRF8IA" name="someAttr">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="_k83DQH9HEea2I93O_htC_w" name="anotherAttr" type="_h5Vn4H9HEea2I93O_htC_w"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

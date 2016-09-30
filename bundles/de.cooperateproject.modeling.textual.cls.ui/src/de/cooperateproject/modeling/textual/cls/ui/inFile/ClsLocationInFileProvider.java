@@ -19,7 +19,7 @@ public class ClsLocationInFileProvider extends DefaultLocationInFileProvider {
 		} else if (obj instanceof UMLReferencingElement<?>) {
 			return ClsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement();
 		} else if (obj instanceof PackageImport) {
-			return ClsPackage.eINSTANCE.getPackageImport_Package();
+			return ClsPackage.eINSTANCE.getPackageImport_ReferencedElement();
 		}
 			return super.getIdentifierFeature(obj);
 	}

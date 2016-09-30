@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Connector</b></em>'.
@@ -11,9 +9,8 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getConnector()
- * @model abstract="true"
- * @extends CDOObject
+ * @model interface="true" abstract="true"
  * @generated
  */
-public interface Connector extends CDOObject {
+public interface Connector extends PackageableElement {
 } // Connector

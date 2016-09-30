@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class TypedConnectorImpl extends ConnectorImpl implements TypedConnector {
+public abstract class TypedConnectorImpl extends ElementImpl implements TypedConnector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

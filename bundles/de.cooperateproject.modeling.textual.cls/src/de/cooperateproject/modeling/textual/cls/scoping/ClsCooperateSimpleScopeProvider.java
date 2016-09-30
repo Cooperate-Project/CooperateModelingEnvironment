@@ -12,11 +12,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
@@ -24,7 +26,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateSimpleLocalScopeProvider;
 
 public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopeProvider {
@@ -45,22 +46,56 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
 	@Override
 	protected List<ImportNormalizer> getRootNormalizers(EObject rootObject) {
 		Validate.isInstanceOf(ClassDiagram.class, rootObject);
-
-		ClassDiagram root = (ClassDiagram) rootObject;
-		return root.getPackageImports().stream().map(ClsCooperateSimpleScopeProvider::getPackageImportText)
-				.filter(t -> t.isPresent()).map(t -> t.get()).map(ClsCooperateSimpleScopeProvider::createNormalizer)
-				.collect(Collectors.toList());
+		return Collections.emptyList();
 	}
 
-	private static Optional<String> getPackageImportText(PackageImport pgkImport) {
-		List<INode> nodes = NodeModelUtils.findNodesForFeature(pgkImport,
-				ClsPackage.eINSTANCE.getPackageImport_Package());
+	@Override
+	protected Collection<ImportNormalizer> getImportNormalizers(List<ImportNormalizer> parentNormalizers,
+			EObject context) {
+
+		String name = NAME_SWITCH.doSwitch(context);
+		if (name == null) {
+			return Collections.emptyList();
+		}
+		QualifiedName unqualifiedName = QualifiedName.create(name);
+
+		Collection<ImportNormalizer> normalizers = Lists.newArrayList();
+		if (parentNormalizers.isEmpty()) {
+			normalizers.add(createNormalizer(name));			
+		}
+		normalizers.addAll(createNormalizers(parentNormalizers, unqualifiedName));
+
+		if (context instanceof de.cooperateproject.modeling.textual.cls.cls.Package) {
+			de.cooperateproject.modeling.textual.cls.cls.Package pkg = (de.cooperateproject.modeling.textual.cls.cls.Package) context;
+			 List<QualifiedName> packageImports = pkg.getPackageImports().stream()
+					.map(ClsCooperateSimpleScopeProvider::getPackageImportText).filter(Optional::isPresent)
+					.map(Optional::get).map(CooperateSimpleLocalScopeProvider::createQualifiedName).collect(Collectors.toList());
+			Collection<ImportNormalizer> packageImportNormalizers = packageImports.stream().map(QualifiedName::toString).map(CooperateSimpleLocalScopeProvider::createNormalizer).collect(Collectors.toList());
+			normalizers.addAll(packageImportNormalizers);
+			packageImportNormalizers = packageImports.stream().flatMap(n -> createNormalizers(parentNormalizers, n).stream()).collect(Collectors.toList());
+			normalizers.addAll(packageImportNormalizers);
+		}
+
+		return normalizers;
+	}
+
+	private Collection<ImportNormalizer> createNormalizers(Collection<ImportNormalizer> parentNormalizers,
+			QualifiedName name) {
+		return parentNormalizers.stream().map(n -> n.resolve(name).toString())
+				.map(CooperateSimpleLocalScopeProvider::createNormalizer).collect(Collectors.toList());
+	}
+
+	private static Optional<String> getPackageImportText(
+			de.cooperateproject.modeling.textual.cls.cls.PackageImport pkgImport) {
+		List<INode> nodes = NodeModelUtils.findNodesForFeature(pkgImport,
+				ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT);
 		if (!nodes.isEmpty()) {
 			return Optional.fromNullable(NodeModelUtils.getTokenText(nodes.get(0)));
 		} else {
-			Object result = pgkImport.eGet(ClsPackage.eINSTANCE.getPackageImport_Package(), false);
+			Object result = pkgImport.eGet(ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT, false);
 			if (result != null) {
 				Package umlPackage = (Package) result;
+				// TODO use qualified name provider for this operation
 				return Optional.of(umlPackage.getQualifiedName().replace(umlPackage.separator(), "."));
 			}
 		}

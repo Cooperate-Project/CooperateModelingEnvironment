@@ -8,8 +8,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -29,7 +27,7 @@ import org.eclipse.uml2.uml.Property;
  *
  * @generated
  */
-public class AssociationPropertiesImpl extends CDOObjectImpl implements AssociationProperties {
+public class AssociationPropertiesImpl extends ElementImpl implements AssociationProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,16 +45,6 @@ public class AssociationPropertiesImpl extends CDOObjectImpl implements Associat
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.ASSOCIATION_PROPERTIES;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

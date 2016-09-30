@@ -37,24 +37,42 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 	}
 
 	@Test
-	public void test() throws Exception {
-		URI sourceModelURI = createResourceModelURI("ClassDiagram.xmi");
-		URI umlModelURI = createResourceModelURI("ClassDiagram.uml");
-		URI resultModelURI = createResourceModelURI("ClassDiagram.notation");
-
+	public void testWithoutPackages() throws Exception {
+		testRegular("ClassDiagram");
+	}
+	
+	@Test
+	public void testWithoutPackagesIncremental() throws Exception {
+		testIncremental("ClassDiagram");
+	}
+	
+	@Test
+	public void testPackages() throws Exception {
+		testRegular("ClassDiagramPackages");
+	}
+	
+	@Test
+	public void testPackagesIncremental() throws Exception {
+		testIncremental("ClassDiagramPackages");
+	}
+	
+	private void testRegular(String modelName) throws Exception {
+		URI sourceModelURI = createResourceModelURI(modelName + ".xmi");
+		URI umlModelURI = createResourceModelURI(modelName + ".uml");
+		URI resultModelURI = createResourceModelURI(modelName + ".notation");
+		
 		ModelExtent transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI);
 
 		EObject expected = getRootElement(resultModelURI);
 		EObject actual = transformationResult.getContents().get(0);
 		EcoreUtil.resolveAll(getResourceSet());
-
-		assertModelEquals(expected, actual, this::postProcessDifferences);
+		
+		assertModelEquals(expected, actual, TextualToGraphicalClassTest::postProcessDifferences);
 	}
 	
-	@Test
-	public void testIncremental() throws Exception {
-		URI sourceModelURI = createResourceModelURI("ClassDiagram.xmi");
-		URI umlModelURI = createResourceModelURI("ClassDiagram.uml");
+	private void testIncremental(String modelName) throws Exception {
+		URI sourceModelURI = createResourceModelURI(modelName + ".xmi");
+		URI umlModelURI = createResourceModelURI(modelName+ ".uml");
 		URI resultModelURI = createTemporaryModelURI();
 		URI traceModelURI = createTemporaryModelURI();
 		
@@ -91,7 +109,7 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 		assertModelEqualsStrict(expected, actual);
 	}
 
-	private Collection<Diff> postProcessDifferences(Collection<Diff> diffs) {
+	private static Collection<Diff> postProcessDifferences(Collection<Diff> diffs) {
 		List<Diff> result = Lists.newLinkedList();
 
 		LinkedList<ReferenceChange> potentialCorrectReferences = Lists

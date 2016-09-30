@@ -2,6 +2,7 @@ package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +18,12 @@ import com.google.common.collect.Lists;
 
 public abstract class CooperateSimpleLocalScopeProvider extends SimpleLocalScopeProvider {
 
-	protected static final String QUALIFIED_NAME_SPLIT_REGEX = "\\.";
+	public interface ImportNormalizerProducer {
+		public Collection<ImportNormalizer> createNormalizer(Collection<ImportNormalizer> parentNormalizers, EObject currentObject);
+	}
 	
+	protected static final String QUALIFIED_NAME_SPLIT_REGEX = "\\.";
+
 	@Override
 	public IScope getScope(EObject context, EReference reference) {
 		IScope baseScope = super.getScope(context, reference);
@@ -29,7 +34,10 @@ public abstract class CooperateSimpleLocalScopeProvider extends SimpleLocalScope
 	}
 
 	private List<ImportNormalizer> filterDuplicatedNormalizers(List<ImportNormalizer> normalizers) {
-		return normalizers;
+		return normalizers
+				.stream().collect(Collectors.groupingBy(ImportNormalizer::getImportedNamespacePrefix,
+						LinkedHashMap::new, Collectors.toSet()))
+				.values().stream().flatMap(v -> v.stream()).collect(Collectors.toList());
 	}
 
 	protected Collection<? extends ImportNormalizer> getAdditionalImportNormalizers(EObject context,
@@ -44,30 +52,29 @@ public abstract class CooperateSimpleLocalScopeProvider extends SimpleLocalScope
 		}
 
 		List<ImportNormalizer> parentNormalizers = getImportNormalizers(parentContext);
-		String unqualifiedName = getUnqualifiedName(context);
-		if (unqualifiedName == null) {
-			return parentNormalizers;
-		}
-		
-		QualifiedName unqualifiedContextName = QualifiedName.create(getUnqualifiedName(context));
-		List<ImportNormalizer> newNormalizers = parentNormalizers.stream().map(n -> n.resolve(unqualifiedContextName))
-				.map(n -> new ImportNormalizer(n, true, false)).collect(Collectors.toList());
-		
+		Collection<ImportNormalizer> newNormalizers = getImportNormalizers(parentNormalizers, context);
 		return Lists.newArrayList(Iterables.concat(parentNormalizers, newNormalizers));
 	}
+	
+	protected abstract Collection<ImportNormalizer> getImportNormalizers(List<ImportNormalizer> parentNormalizers,
+			EObject context);
 
 	protected abstract String getUnqualifiedName(EObject context);
-	
+
 	protected abstract List<ImportNormalizer> getRootNormalizers(EObject rootObject);
 
 	protected static ImportNormalizer createNormalizer(String name) {
-		String[] segments = name.split(QUALIFIED_NAME_SPLIT_REGEX);
-		QualifiedName qn = QualifiedName.create(segments);
+		QualifiedName qn = createQualifiedName(name);
 		return new ImportNormalizer(qn, true, false);
 	}
 	
+	protected static QualifiedName createQualifiedName(String name) {
+		String[] segments = name.split(QUALIFIED_NAME_SPLIT_REGEX);
+		return QualifiedName.create(segments);
+	}
+
 	protected IScope createImportScope(List<ImportNormalizer> normalizers, IScope baseScope, EReference reference) {
 		return new DuplicateImportScope(normalizers, baseScope, null, reference.getEReferenceType(), false);
 	}
-	
+
 }

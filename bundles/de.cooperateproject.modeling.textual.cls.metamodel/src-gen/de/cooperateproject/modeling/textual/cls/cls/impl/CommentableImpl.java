@@ -10,9 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -29,7 +26,7 @@ import org.eclipse.uml2.uml.Type;
  *
  * @generated
  */
-public abstract class CommentableImpl extends CDOObjectImpl implements Commentable {
+public abstract class CommentableImpl extends ElementImpl implements Commentable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,16 +44,6 @@ public abstract class CommentableImpl extends CDOObjectImpl implements Commentab
 	@Override
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.COMMENTABLE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

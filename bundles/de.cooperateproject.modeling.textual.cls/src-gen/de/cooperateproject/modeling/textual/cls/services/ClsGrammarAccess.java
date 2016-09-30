@@ -23,30 +23,23 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cClassDiagramAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cStartclassKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Assignment cPackageImportsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPackageImportsPackageImportParserRuleCall_3_0 = (RuleCall)cPackageImportsAssignment_3.eContents().get(0);
-		private final Assignment cClassifiersAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cClassifiersClassifierParserRuleCall_4_0 = (RuleCall)cClassifiersAssignment_4.eContents().get(0);
-		private final Assignment cConnectorsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cConnectorsConnectorParserRuleCall_5_0 = (RuleCall)cConnectorsAssignment_5.eContents().get(0);
-		private final Keyword cEndclassKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cTitleAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
+		private final Assignment cRootPackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRootPackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootPackageAssignment_3.eContents().get(0);
+		private final Keyword cEndclassKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//// ------------------------------------------------------------------------------------------
 		//// ---------------------------------Root-----------------------------------------------------
 		//// ------------------------------------------------------------------------------------------
 		//ClassDiagram:
 		//	{ClassDiagram}
-		//	'@startclass' name=STRING
-		//	packageImports+=PackageImport*
-		//	classifiers+=Classifier*
-		//	connectors+=Connector*
+		//	'@startclass' title=STRING
+		//	rootPackage=RootPackage
 		//	'@endclass';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ClassDiagram} '@startclass' name=STRING packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
-		//'@endclass'
+		//{ClassDiagram} '@startclass' title=STRING rootPackage=RootPackage '@endclass'
 		public Group getGroup() { return cGroup; }
 
 		//{ClassDiagram}
@@ -55,11 +48,131 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'@startclass'
 		public Keyword getStartclassKeyword_1() { return cStartclassKeyword_1; }
 
-		//name=STRING
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		//title=STRING
+		public Assignment getTitleAssignment_2() { return cTitleAssignment_2; }
 
 		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_2_0() { return cNameSTRINGTerminalRuleCall_2_0; }
+		public RuleCall getTitleSTRINGTerminalRuleCall_2_0() { return cTitleSTRINGTerminalRuleCall_2_0; }
+
+		//rootPackage=RootPackage
+		public Assignment getRootPackageAssignment_3() { return cRootPackageAssignment_3; }
+
+		//RootPackage
+		public RuleCall getRootPackageRootPackageParserRuleCall_3_0() { return cRootPackageRootPackageParserRuleCall_3_0; }
+
+		//'@endclass'
+		public Keyword getEndclassKeyword_4() { return cEndclassKeyword_4; }
+	}
+
+	public class RootPackageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.RootPackage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRootPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cReferencedElementPackageCrossReference_1_0 = (CrossReference)cReferencedElementAssignment_1.eContents().get(0);
+		private final RuleCall cReferencedElementPackageFQNParserRuleCall_1_0_1 = (RuleCall)cReferencedElementPackageCrossReference_1_0.eContents().get(1);
+		private final Assignment cPackageImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPackageImportsPackageImportParserRuleCall_2_0 = (RuleCall)cPackageImportsAssignment_2.eContents().get(0);
+		private final Assignment cClassifiersAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cClassifiersClassifierParserRuleCall_3_0 = (RuleCall)cClassifiersAssignment_3.eContents().get(0);
+		private final Assignment cConnectorsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cConnectorsConnectorParserRuleCall_4_0 = (RuleCall)cConnectorsAssignment_4.eContents().get(0);
+		private final Assignment cPackagesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cPackagesPackageParserRuleCall_5_0 = (RuleCall)cPackagesAssignment_5.eContents().get(0);
+		
+		//RootPackage Package:
+		//	'rootPackage' referencedElement=[uml::Package|FQN] packageImports+=PackageImport*
+		//	classifiers+=Classifier*
+		//	connectors+=Connector*
+		//	packages+=Package*
+		@Override public ParserRule getRule() { return rule; }
+
+		//'rootPackage' referencedElement=[uml::Package|FQN] packageImports+=PackageImport* classifiers+=Classifier*
+		//connectors+=Connector* packages+=Package*
+		public Group getGroup() { return cGroup; }
+
+		//'rootPackage'
+		public Keyword getRootPackageKeyword_0() { return cRootPackageKeyword_0; }
+
+		//referencedElement=[uml::Package|FQN]
+		public Assignment getReferencedElementAssignment_1() { return cReferencedElementAssignment_1; }
+
+		//[uml::Package|FQN]
+		public CrossReference getReferencedElementPackageCrossReference_1_0() { return cReferencedElementPackageCrossReference_1_0; }
+
+		//FQN
+		public RuleCall getReferencedElementPackageFQNParserRuleCall_1_0_1() { return cReferencedElementPackageFQNParserRuleCall_1_0_1; }
+
+		//packageImports+=PackageImport*
+		public Assignment getPackageImportsAssignment_2() { return cPackageImportsAssignment_2; }
+
+		//PackageImport
+		public RuleCall getPackageImportsPackageImportParserRuleCall_2_0() { return cPackageImportsPackageImportParserRuleCall_2_0; }
+
+		//classifiers+=Classifier*
+		public Assignment getClassifiersAssignment_3() { return cClassifiersAssignment_3; }
+
+		//Classifier
+		public RuleCall getClassifiersClassifierParserRuleCall_3_0() { return cClassifiersClassifierParserRuleCall_3_0; }
+
+		//connectors+=Connector*
+		public Assignment getConnectorsAssignment_4() { return cConnectorsAssignment_4; }
+
+		//Connector
+		public RuleCall getConnectorsConnectorParserRuleCall_4_0() { return cConnectorsConnectorParserRuleCall_4_0; }
+
+		//packages+=Package*
+		public Assignment getPackagesAssignment_5() { return cPackagesAssignment_5; }
+
+		//Package
+		public RuleCall getPackagesPackageParserRuleCall_5_0() { return cPackagesPackageParserRuleCall_5_0; }
+	}
+
+	public class PackageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Package");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cReferencedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cReferencedElementPackageCrossReference_1_0 = (CrossReference)cReferencedElementAssignment_1.eContents().get(0);
+		private final RuleCall cReferencedElementPackageFQNParserRuleCall_1_0_1 = (RuleCall)cReferencedElementPackageCrossReference_1_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cPackageImportsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPackageImportsPackageImportParserRuleCall_3_0 = (RuleCall)cPackageImportsAssignment_3.eContents().get(0);
+		private final Assignment cClassifiersAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cClassifiersClassifierParserRuleCall_4_0 = (RuleCall)cClassifiersAssignment_4.eContents().get(0);
+		private final Assignment cConnectorsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cConnectorsConnectorParserRuleCall_5_0 = (RuleCall)cConnectorsAssignment_5.eContents().get(0);
+		private final Assignment cPackagesAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cPackagesPackageParserRuleCall_6_0 = (RuleCall)cPackagesAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		
+		//Package:
+		//	'package' referencedElement=[uml::Package|FQN] '{'
+		//	packageImports+=PackageImport*
+		//	classifiers+=Classifier*
+		//	connectors+=Connector*
+		//	packages+=Package*
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+
+		//'package' referencedElement=[uml::Package|FQN] '{' packageImports+=PackageImport* classifiers+=Classifier*
+		//connectors+=Connector* packages+=Package* '}'
+		public Group getGroup() { return cGroup; }
+
+		//'package'
+		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+
+		//referencedElement=[uml::Package|FQN]
+		public Assignment getReferencedElementAssignment_1() { return cReferencedElementAssignment_1; }
+
+		//[uml::Package|FQN]
+		public CrossReference getReferencedElementPackageCrossReference_1_0() { return cReferencedElementPackageCrossReference_1_0; }
+
+		//FQN
+		public RuleCall getReferencedElementPackageFQNParserRuleCall_1_0_1() { return cReferencedElementPackageFQNParserRuleCall_1_0_1; }
+
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
 		//packageImports+=PackageImport*
 		public Assignment getPackageImportsAssignment_3() { return cPackageImportsAssignment_3; }
@@ -79,36 +192,42 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//Connector
 		public RuleCall getConnectorsConnectorParserRuleCall_5_0() { return cConnectorsConnectorParserRuleCall_5_0; }
 
-		//'@endclass'
-		public Keyword getEndclassKeyword_6() { return cEndclassKeyword_6; }
+		//packages+=Package*
+		public Assignment getPackagesAssignment_6() { return cPackagesAssignment_6; }
+
+		//Package
+		public RuleCall getPackagesPackageParserRuleCall_6_0() { return cPackagesPackageParserRuleCall_6_0; }
+
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class PackageImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.PackageImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPackageAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cPackagePackageCrossReference_1_0 = (CrossReference)cPackageAssignment_1.eContents().get(0);
-		private final RuleCall cPackagePackageFQNParserRuleCall_1_0_1 = (RuleCall)cPackagePackageCrossReference_1_0.eContents().get(1);
+		private final Assignment cReferencedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cReferencedElementPackageImportCrossReference_1_0 = (CrossReference)cReferencedElementAssignment_1.eContents().get(0);
+		private final RuleCall cReferencedElementPackageImportFQNParserRuleCall_1_0_1 = (RuleCall)cReferencedElementPackageImportCrossReference_1_0.eContents().get(1);
 		
 		//PackageImport:
-		//	"import" package=[uml::Package|FQN];
+		//	"import" referencedElement=[uml::PackageImport|FQN];
 		@Override public ParserRule getRule() { return rule; }
 
-		//"import" package=[uml::Package|FQN]
+		//"import" referencedElement=[uml::PackageImport|FQN]
 		public Group getGroup() { return cGroup; }
 
 		//"import"
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 
-		//package=[uml::Package|FQN]
-		public Assignment getPackageAssignment_1() { return cPackageAssignment_1; }
+		//referencedElement=[uml::PackageImport|FQN]
+		public Assignment getReferencedElementAssignment_1() { return cReferencedElementAssignment_1; }
 
-		//[uml::Package|FQN]
-		public CrossReference getPackagePackageCrossReference_1_0() { return cPackagePackageCrossReference_1_0; }
+		//[uml::PackageImport|FQN]
+		public CrossReference getReferencedElementPackageImportCrossReference_1_0() { return cReferencedElementPackageImportCrossReference_1_0; }
 
 		//FQN
-		public RuleCall getPackagePackageFQNParserRuleCall_1_0_1() { return cPackagePackageFQNParserRuleCall_1_0_1; }
+		public RuleCall getReferencedElementPackageImportFQNParserRuleCall_1_0_1() { return cReferencedElementPackageImportFQNParserRuleCall_1_0_1; }
 	}
 
 	public class FQNElements extends AbstractParserRuleElementFinder {
@@ -366,20 +485,20 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
 		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cTypeTypeCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
-		private final RuleCall cTypeTypeIDTerminalRuleCall_0_1 = (RuleCall)cTypeTypeCrossReference_0.eContents().get(1);
+		private final RuleCall cTypeTypeFQNParserRuleCall_0_1 = (RuleCall)cTypeTypeCrossReference_0.eContents().get(1);
 		
 		//UMLTypeReference:
-		//	type=[uml::Type];
+		//	type=[uml::Type|FQN];
 		@Override public ParserRule getRule() { return rule; }
 
-		//type=[uml::Type]
+		//type=[uml::Type|FQN]
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 
-		//[uml::Type]
+		//[uml::Type|FQN]
 		public CrossReference getTypeTypeCrossReference_0() { return cTypeTypeCrossReference_0; }
 
-		//ID
-		public RuleCall getTypeTypeIDTerminalRuleCall_0_1() { return cTypeTypeIDTerminalRuleCall_0_1; }
+		//FQN
+		public RuleCall getTypeTypeFQNParserRuleCall_0_1() { return cTypeTypeFQNParserRuleCall_0_1; }
 	}
 
 	public class MemberElements extends AbstractParserRuleElementFinder {
@@ -1332,6 +1451,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private final ClassDiagramElements pClassDiagram;
+	private final RootPackageElements pRootPackage;
+	private final PackageElements pPackage;
 	private final PackageImportElements pPackageImport;
 	private final FQNElements pFQN;
 	private final ClassifierElements pClassifier;
@@ -1369,6 +1490,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pClassDiagram = new ClassDiagramElements();
+		this.pRootPackage = new RootPackageElements();
+		this.pPackage = new PackageElements();
 		this.pPackageImport = new PackageImportElements();
 		this.pFQN = new FQNElements();
 		this.pClassifier = new ClassifierElements();
@@ -1429,10 +1552,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	//// ------------------------------------------------------------------------------------------
 	//ClassDiagram:
 	//	{ClassDiagram}
-	//	'@startclass' name=STRING
-	//	packageImports+=PackageImport*
-	//	classifiers+=Classifier*
-	//	connectors+=Connector*
+	//	'@startclass' title=STRING
+	//	rootPackage=RootPackage
 	//	'@endclass';
 	public ClassDiagramElements getClassDiagramAccess() {
 		return pClassDiagram;
@@ -1442,8 +1563,36 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDiagramAccess().getRule();
 	}
 
+	//RootPackage Package:
+	//	'rootPackage' referencedElement=[uml::Package|FQN] packageImports+=PackageImport*
+	//	classifiers+=Classifier*
+	//	connectors+=Connector*
+	//	packages+=Package*
+	public RootPackageElements getRootPackageAccess() {
+		return pRootPackage;
+	}
+	
+	public ParserRule getRootPackageRule() {
+		return getRootPackageAccess().getRule();
+	}
+
+	//Package:
+	//	'package' referencedElement=[uml::Package|FQN] '{'
+	//	packageImports+=PackageImport*
+	//	classifiers+=Classifier*
+	//	connectors+=Connector*
+	//	packages+=Package*
+	//	'}';
+	public PackageElements getPackageAccess() {
+		return pPackage;
+	}
+	
+	public ParserRule getPackageRule() {
+		return getPackageAccess().getRule();
+	}
+
 	//PackageImport:
-	//	"import" package=[uml::Package|FQN];
+	//	"import" referencedElement=[uml::PackageImport|FQN];
 	public PackageImportElements getPackageImportAccess() {
 		return pPackageImport;
 	}
@@ -1518,7 +1667,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UMLTypeReference:
-	//	type=[uml::Type];
+	//	type=[uml::Type|FQN];
 	public UMLTypeReferenceElements getUMLTypeReferenceAccess() {
 		return pUMLTypeReference;
 	}
