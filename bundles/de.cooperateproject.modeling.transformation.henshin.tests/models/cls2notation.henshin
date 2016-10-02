@@ -10,6 +10,398 @@
   <imports href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#/"/>
   <imports href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   <imports href="http://www.eclipse.org/emf/2011/Henshin/Trace#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_TkjxkIiFEeaLkq6Pk-i__w" name="MultiAssociationCardinality2Decoration" activated="true" checkDangling="true" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_TkjxkYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_TkjxkoiFEeaLkq6Pk-i__w" key="marker" value="tgg"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_Tkjxk4iFEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_U68VsIiFEeaLkq6Pk-i__w" name="" outgoing="_rWYoAoiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_-oSWgoiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_-oSWg4iFEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_-oSWhIiFEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_V03AQIiFEeaLkq6Pk-i__w" name="" incoming="_rWYoAoiFEeaLkq6Pk-i__w _eF7pIoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_-oSWh4iFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_-oSWiIiFEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_-oSWiYiFEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_XQxkpIiFEeaLkq6Pk-i__w" name="" outgoing="_pzob0oiFEeaLkq6Pk-i__w _eF7pIoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_-oSWj4iFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_-oSWkIiFEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_-oSWkYiFEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_YGBxoIiFEeaLkq6Pk-i__w" name="" incoming="_pzob0oiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_-oSWmIiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_-oSWmYiFEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_-oSWmoiFEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_ks2vQYiFEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_pzob0oiFEeaLkq6Pk-i__w" source="_XQxkpIiFEeaLkq6Pk-i__w" target="_YGBxoIiFEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_rWYoAoiFEeaLkq6Pk-i__w" source="_U68VsIiFEeaLkq6Pk-i__w" target="_V03AQIiFEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_eF7pIoiGEeaLkq6Pk-i__w" source="_XQxkpIiFEeaLkq6Pk-i__w" target="_V03AQIiFEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_TkjxlIiFEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_U67uoIiFEeaLkq6Pk-i__w" name="" outgoing="_rWYA8IiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_U67uoYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_U67uooiFEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_U67uo4iFEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_V02ZMIiFEeaLkq6Pk-i__w" name="" incoming="_rWYA8IiFEeaLkq6Pk-i__w _eF5z8IiGEeaLkq6Pk-i__w" outgoing="_ry_EcIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_V02ZMYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_V02ZMoiFEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_V02ZM4iFEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_WX1KcIiFEeaLkq6Pk-i__w" name="" incoming="_ry_EcIiFEeaLkq6Pk-i__w _vCdRIIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_WX1KcYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_WX1KcoiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_WX1Kc4iFEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_XQxkoIiFEeaLkq6Pk-i__w" name="" outgoing="_pzn0wIiFEeaLkq6Pk-i__w _eF5z8IiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_XQxkoYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_XQxkooiFEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_XQxko4iFEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_YGBKkIiFEeaLkq6Pk-i__w" name="" incoming="_pzn0wIiFEeaLkq6Pk-i__w" outgoing="_otLxIIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_YGBKkYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_YGBKkoiFEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_YGBKk4iFEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_ks2vQIiFEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_Z7sSwIiFEeaLkq6Pk-i__w" name="" incoming="_otLxIIiFEeaLkq6Pk-i__w _wHwsUIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_Z7sSwYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_Z7sSwoiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_Z7sSw4iFEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_gfv1oIiFEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_wrvjIIiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_wrvjIYiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_stRicIiFEeaLkq6Pk-i__w" name="" outgoing="_vCdRIIiFEeaLkq6Pk-i__w _wHwsUIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_stRicYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_stRicoiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_stRic4iFEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_otLxIIiFEeaLkq6Pk-i__w" source="_YGBKkIiFEeaLkq6Pk-i__w" target="_Z7sSwIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_otLxIYiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_otLxIoiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_pzn0wIiFEeaLkq6Pk-i__w" source="_XQxkoIiFEeaLkq6Pk-i__w" target="_YGBKkIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_pzob0IiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_pzob0YiFEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_rWYA8IiFEeaLkq6Pk-i__w" source="_U67uoIiFEeaLkq6Pk-i__w" target="_V02ZMIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_rWYoAIiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_rWYoAYiFEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_ry_EcIiFEeaLkq6Pk-i__w" source="_V02ZMIiFEeaLkq6Pk-i__w" target="_WX1KcIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_ry_rgIiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_ry_rgYiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_vCdRIIiFEeaLkq6Pk-i__w" source="_stRicIiFEeaLkq6Pk-i__w" target="_WX1KcIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_vCd4MIiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_vCd4MYiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_wHwsUIiFEeaLkq6Pk-i__w" source="_stRicIiFEeaLkq6Pk-i__w" target="_Z7sSwIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_wHx6cIiFEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_wHx6cYiFEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_eF5z8IiGEeaLkq6Pk-i__w" source="_XQxkoIiFEeaLkq6Pk-i__w" target="_V02ZMIiFEeaLkq6Pk-i__w">
+        <annotations xmi:id="_eF7pIIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_eF7pIYiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_U688wIiFEeaLkq6Pk-i__w" origin="_U68VsIiFEeaLkq6Pk-i__w" image="_U67uoIiFEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_V03nUIiFEeaLkq6Pk-i__w" origin="_V03AQIiFEeaLkq6Pk-i__w" image="_V02ZMIiFEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_XQyLsIiFEeaLkq6Pk-i__w" origin="_XQxkpIiFEeaLkq6Pk-i__w" image="_XQxkoIiFEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_YGCYsIiFEeaLkq6Pk-i__w" origin="_YGBxoIiFEeaLkq6Pk-i__w" image="_YGBKkIiFEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_MVm-8IiCEeaLkq6Pk-i__w" name="MultiAssociationEnd2BranchEdge" activated="true" checkDangling="true" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_MVm-8YiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_MVm-8oiCEeaLkq6Pk-i__w" key="marker" value="tgg"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_MVm-84iCEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_OJae4IiCEeaLkq6Pk-i__w" name="" incoming="_t89JAIiCEeaLkq6Pk-i__w" outgoing="_4ms5coiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJdjwoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJdjw4iEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_kJdjxIiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_O3-OAIiCEeaLkq6Pk-i__w" name="" outgoing="_t89JAIiCEeaLkq6Pk-i__w _u6jZsoiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJdjxYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJdjxoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_kJdjx4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_Pw4L8IiCEeaLkq6Pk-i__w" name="" incoming="_u6jZsoiCEeaLkq6Pk-i__w" outgoing="_3K1YYoiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5LwgIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5LwgYiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5LwgoiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_1s7scIiCEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_k5M-oIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5M-oYiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5M-ooiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_0PdMYIiDEeaLkq6Pk-i__w" name="" incoming="_3K1YYoiDEeaLkq6Pk-i__w _4ms5coiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5M-o4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5M-pIiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5M-pYiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_Vk348IiEEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_k5M-poiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5M-p4iEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5M-qIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_t89JAIiCEeaLkq6Pk-i__w" source="_O3-OAIiCEeaLkq6Pk-i__w" target="_OJae4IiCEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_u6jZsoiCEeaLkq6Pk-i__w" source="_O3-OAIiCEeaLkq6Pk-i__w" target="_Pw4L8IiCEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_3K1YYoiDEeaLkq6Pk-i__w" source="_Pw4L8IiCEeaLkq6Pk-i__w" target="_0PdMYIiDEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_4ms5coiDEeaLkq6Pk-i__w" source="_OJae4IiCEeaLkq6Pk-i__w" target="_0PdMYIiDEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_MVm-9IiCEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_OJZQwIiCEeaLkq6Pk-i__w" name="" incoming="_t88h8IiCEeaLkq6Pk-i__w" outgoing="_sYOm4IiCEeaLkq6Pk-i__w _4msSYIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_OJZQwYiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_OJZQwoiCEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_OJZQw4iCEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_O38_4IiCEeaLkq6Pk-i__w" name="" outgoing="_t88h8IiCEeaLkq6Pk-i__w _u6iyoIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_O38_4YiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_O38_4oiCEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_O38_44iCEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_Pw290IiCEeaLkq6Pk-i__w" name="" incoming="_u6iyoIiCEeaLkq6Pk-i__w" outgoing="_3K0KQIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_Pw290YiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_Pw290oiCEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_Pw2904iCEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_AG57gIiEEeaLkq6Pk-i__w" value="'Association_Shape'">
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_RfaxYIiCEeaLkq6Pk-i__w" name="" incoming="_sYOm4IiCEeaLkq6Pk-i__w _F4I6UIiEEeaLkq6Pk-i__w" outgoing="_2-9VAIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_RfaxYYiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_RfaxYoiCEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_RfaxY4iCEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_WZVtsIiCEeaLkq6Pk-i__w" name="" incoming="_GqsYoIiEEeaLkq6Pk-i__w _XUW5kIiEEeaLkq6Pk-i__w" outgoing="_sBtkUIiCEeaLkq6Pk-i__w _b85ncIiDEeaLkq6Pk-i__w _32FU0IiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_WZVtsYiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_WZVtsoiCEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_WZVts4iCEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_bVPnAIiCEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_IiKQkIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_IiKQkYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_l16wcIiCEeaLkq6Pk-i__w" name="" incoming="_sBtkUIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_l16wcYiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_l16wcoiCEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_l16wc4iCEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_p3tx8IiCEeaLkq6Pk-i__w" value="'Association_BranchRoleLabel'">
+          <annotations xmi:id="_I8LTEIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_I8LTEYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_1s6eUIiCEeaLkq6Pk-i__w" name="" incoming="_2-9VAIiCEeaLkq6Pk-i__w _fW6QMIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_1s6eUYiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_1s6eUoiCEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_1s6eU4iCEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_aOjPQIiDEeaLkq6Pk-i__w" name="" incoming="_b85ncIiDEeaLkq6Pk-i__w" outgoing="_fW6QMIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_aOjPQYiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_aOjPQoiDEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_aOjPQ4iDEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_0PclUIiDEeaLkq6Pk-i__w" name="" incoming="_3K0KQIiDEeaLkq6Pk-i__w _32FU0IiDEeaLkq6Pk-i__w _4msSYIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_0PclUYiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_0PclUoiDEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_0PclU4iDEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_EObKgIiEEeaLkq6Pk-i__w" name="" outgoing="_F4I6UIiEEeaLkq6Pk-i__w _GqsYoIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_EObKgYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_EObKgoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_EObKg4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_Vk3R4IiEEeaLkq6Pk-i__w" name="" outgoing="_XUW5kIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_Vk3R4YiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_Vk3R4oiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_Vk3R44iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_sBtkUIiCEeaLkq6Pk-i__w" source="_WZVtsIiCEeaLkq6Pk-i__w" target="_l16wcIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_sBtkUYiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_sBtkUoiCEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_sYOm4IiCEeaLkq6Pk-i__w" source="_OJZQwIiCEeaLkq6Pk-i__w" target="_RfaxYIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_sYPN8IiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_sYPN8YiCEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_t88h8IiCEeaLkq6Pk-i__w" source="_O38_4IiCEeaLkq6Pk-i__w" target="_OJZQwIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_t88h8YiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_t88h8oiCEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_u6iyoIiCEeaLkq6Pk-i__w" source="_O38_4IiCEeaLkq6Pk-i__w" target="_Pw290IiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_u6jZsIiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_u6jZsYiCEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_2-9VAIiCEeaLkq6Pk-i__w" source="_RfaxYIiCEeaLkq6Pk-i__w" target="_1s6eUIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_2-98EIiCEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_2-98EYiCEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_b85ncIiDEeaLkq6Pk-i__w" source="_WZVtsIiCEeaLkq6Pk-i__w" target="_aOjPQIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_b86OgIiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_b86OgYiDEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/styles"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fW6QMIiDEeaLkq6Pk-i__w" source="_aOjPQIiDEeaLkq6Pk-i__w" target="_1s6eUIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fW63QIiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fW63QYiDEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle/eObjectValue"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_3K0KQIiDEeaLkq6Pk-i__w" source="_Pw290IiCEeaLkq6Pk-i__w" target="_0PclUIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_3K1YYIiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_3K1YYYiDEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_32FU0IiDEeaLkq6Pk-i__w" source="_WZVtsIiCEeaLkq6Pk-i__w" target="_0PclUIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_32F74IiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_32F74YiDEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_4msSYIiDEeaLkq6Pk-i__w" source="_OJZQwIiCEeaLkq6Pk-i__w" target="_0PclUIiDEeaLkq6Pk-i__w">
+        <annotations xmi:id="_4ms5cIiDEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_4ms5cYiDEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_F4I6UIiEEeaLkq6Pk-i__w" source="_EObKgIiEEeaLkq6Pk-i__w" target="_RfaxYIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_F4KvgIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_F4KvgYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_GqsYoIiEEeaLkq6Pk-i__w" source="_EObKgIiEEeaLkq6Pk-i__w" target="_WZVtsIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_GqtmwIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_GqtmwYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_XUW5kIiEEeaLkq6Pk-i__w" source="_Vk3R4IiEEeaLkq6Pk-i__w" target="_WZVtsIiCEeaLkq6Pk-i__w">
+        <annotations xmi:id="_XUYuwIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_XUYuwYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram/edges"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_OJbtAIiCEeaLkq6Pk-i__w" origin="_OJae4IiCEeaLkq6Pk-i__w" image="_OJZQwIiCEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_O3_cIIiCEeaLkq6Pk-i__w" origin="_O3-OAIiCEeaLkq6Pk-i__w" image="_O38_4IiCEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_Pw5aEIiCEeaLkq6Pk-i__w" origin="_Pw4L8IiCEeaLkq6Pk-i__w" image="_Pw290IiCEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_1s-IsIiCEeaLkq6Pk-i__w" origin="_1s7scIiCEeaLkq6Pk-i__w" image="_1s6eUIiCEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_0PdzcIiDEeaLkq6Pk-i__w" origin="_0PdMYIiDEeaLkq6Pk-i__w" image="_0PclUIiDEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_Vk4gAIiEEeaLkq6Pk-i__w" origin="_Vk348IiEEeaLkq6Pk-i__w" image="_Vk3R4IiEEeaLkq6Pk-i__w"/>
+  </units>
   <units xsi:type="henshin:Rule" xmi:id="_YPtK0IcAEeaLkq6Pk-i__w" name="MultiAssociation2Shape" activated="true" checkDangling="true" injectiveMatching="true" javaImports="">
     <annotations xmi:id="_YPtK0YcAEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
       <annotations xmi:id="_YPtK0ocAEeaLkq6Pk-i__w" key="marker" value="tgg"/>
@@ -3430,11 +3822,11 @@
       </edges>
     </rhs>
   </units>
-  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX8HRBEealXoPpvgbLvA" name="RuleFolder" description="ruleFolder.png" activated="true" subUnits="_YPtK0IcAEeaLkq6Pk-i__w _bOhw0IZaEeaUS8sLj-IDYw _X-0s4IZVEeaUS8sLj-IDYw _HZWIYIZVEeaUS8sLj-IDYw _aZY8wIZTEeaUS8sLj-IDYw _5AgJoIZLEeaUS8sLj-IDYw _qlZyAIZLEeaUS8sLj-IDYw _OrUswIZLEeaUS8sLj-IDYw _QZ9VoIZHEea46K5KgL82qQ _DsNKEIYaEea46K5KgL82qQ _Ij17IHmoEea1wuL3eKFlqg _IpVxEHmmEea1wuL3eKFlqg _dF3WUHaKEeazIeq7YNuKtg _ZPk-EHaGEeazIeq7YNuKtg __flO8HZ-EeazIeq7YNuKtg _rqMIQHUSEeaP7--o8tUdyg _SQQWcHUQEeaP7--o8tUdyg _xDed8HUOEeaP7--o8tUdyg _8RiuUHUNEeaP7--o8tUdyg _wBBxMHUIEeaP7--o8tUdyg _Fq4RUHTDEeaibZ9fI_0wfQ _YHvOoHRJEeaibZ9fI_0wfQ _gaaowHREEealXoPpvgbLvA _VMgbUHRDEealXoPpvgbLvA _n5EdkHRCEealXoPpvgbLvA _-yeuwHmnEea1wuL3eKFlqg _IVDG8IbqEeaLkq6Pk-i__w _sYzMkIbrEeaLkq6Pk-i__w _rDlygIb-EeaLkq6Pk-i__w _TaGjQIb_EeaLkq6Pk-i__w"/>
-  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX8XRBEealXoPpvgbLvA" name="ITRuleFolder" description="ITRules.png" activated="true" subUnits="_gj_0sIbeEeaa6qcl6Bgr6g _gkF7UIbeEeaa6qcl6Bgr6g _gkJlsIbeEeaa6qcl6Bgr6g _gkNQEIbeEeaa6qcl6Bgr6g _gkQTYIbeEeaa6qcl6Bgr6g _gkT9wIbeEeaa6qcl6Bgr6g _gkYPMIbeEeaa6qcl6Bgr6g _gkdHsIbeEeaa6qcl6Bgr6g _gkhZIIbeEeaa6qcl6Bgr6g _gklDgIbeEeaa6qcl6Bgr6g _gkpU8IbeEeaa6qcl6Bgr6g _gkuNcIbeEeaa6qcl6Bgr6g _gk7o0IbeEeaa6qcl6Bgr6g _glCWgIbeEeaa6qcl6Bgr6g _glXtsIbeEeaa6qcl6Bgr6g _glaJ8IbeEeaa6qcl6Bgr6g _Tzfu8IbkEeaLkq6Pk-i__w _w4NbUIbkEeaLkq6Pk-i__w _M3qd4IbnEeaLkq6Pk-i__w _lqqdcIbnEeaLkq6Pk-i__w _66J6AIbnEeaLkq6Pk-i__w _r7fF0IboEeaLkq6Pk-i__w _ppuXMIbrEeaLkq6Pk-i__w _LFMjQIb-EeaLkq6Pk-i__w _GhNlQIb_EeaLkq6Pk-i__w _QjrvwIb_EeaLkq6Pk-i__w _fqvOcIb_EeaLkq6Pk-i__w _U2FoAIceEeaLkq6Pk-i__w _31GIkIceEeaLkq6Pk-i__w _g2QY0IcfEeaLkq6Pk-i__w"/>
-  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX8nRBEealXoPpvgbLvA" name="FTRuleFolder" description="FTRules.png" activated="true" subUnits="_hBMuEIbeEeaa6qcl6Bgr6g _hBPKUIbeEeaa6qcl6Bgr6g _hBSNoIbeEeaa6qcl6Bgr6g _hBUp4IbeEeaa6qcl6Bgr6g _hBdMwIbeEeaa6qcl6Bgr6g _hBisUIbeEeaa6qcl6Bgr6g _hBzyEIbeEeaa6qcl6Bgr6g _hB21YIbeEeaa6qcl6Bgr6g _THxRYIbkEeaLkq6Pk-i__w _xPFqQIbkEeaLkq6Pk-i__w _NM1coIbnEeaLkq6Pk-i__w _l-95gIbnEeaLkq6Pk-i__w _7LBnkIbnEeaLkq6Pk-i__w _sOMmcIboEeaLkq6Pk-i__w _qCTPQIbrEeaLkq6Pk-i__w _LZO5kIb-EeaLkq6Pk-i__w _G00dwIb_EeaLkq6Pk-i__w _Q5SMUIb_EeaLkq6Pk-i__w _gC6d4Ib_EeaLkq6Pk-i__w _UaTD4IceEeaLkq6Pk-i__w _4Sz_UIceEeaLkq6Pk-i__w _e5g_UIcfEeaLkq6Pk-i__w"/>
-  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX83RBEealXoPpvgbLvA" name="BTRuleFolder" description="BTRules.png" activated="true" subUnits="_hfBSgIbeEeaa6qcl6Bgr6g _hfDuwIbeEeaa6qcl6Bgr6g _hfGyEIbeEeaa6qcl6Bgr6g _hfLqkIbeEeaa6qcl6Bgr6g _hfP8AIbeEeaa6qcl6Bgr6g _hfTmYIbeEeaa6qcl6Bgr6g _hfX30IbeEeaa6qcl6Bgr6g _hfcJQIbeEeaa6qcl6Bgr6g _hfhBwIbeEeaa6qcl6Bgr6g _hfksIIbeEeaa6qcl6Bgr6g _hfoWgIbeEeaa6qcl6Bgr6g _hfqywIbeEeaa6qcl6Bgr6g _hf3nEIbeEeaa6qcl6Bgr6g _hf9GoIbeEeaa6qcl6Bgr6g _hgVhIIbeEeaa6qcl6Bgr6g _hgZLgIbeEeaa6qcl6Bgr6g _UKrf4IbkEeaLkq6Pk-i__w _xqM48IbkEeaLkq6Pk-i__w _NfO0MIbnEeaLkq6Pk-i__w _mWSNUIbnEeaLkq6Pk-i__w _72HzAIbnEeaLkq6Pk-i__w _szx_wIboEeaLkq6Pk-i__w _qTiJMIbrEeaLkq6Pk-i__w _L0c18Ib-EeaLkq6Pk-i__w _HExlUIb_EeaLkq6Pk-i__w _ROfnUIb_EeaLkq6Pk-i__w _gX0W4Ib_EeaLkq6Pk-i__w _VMxCoIceEeaLkq6Pk-i__w _46viAIceEeaLkq6Pk-i__w _hL7t4IcfEeaLkq6Pk-i__w"/>
-  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX9HRBEealXoPpvgbLvA" name="CCRuleFolder" description="CCRules.png" activated="true" subUnits="_h4jz4IbeEeaa6qcl6Bgr6g _h4m3MIbeEeaa6qcl6Bgr6g _h4p6gIbeEeaa6qcl6Bgr6g _h4sWwIbeEeaa6qcl6Bgr6g _h4uzAIbeEeaa6qcl6Bgr6g _h4xPQIbeEeaa6qcl6Bgr6g _h4zrgIbeEeaa6qcl6Bgr6g _h4388IbeEeaa6qcl6Bgr6g _h48OYIbeEeaa6qcl6Bgr6g _h4_4wIbeEeaa6qcl6Bgr6g _h5C8EIbeEeaa6qcl6Bgr6g _h5GmcIbeEeaa6qcl6Bgr6g _h5SzsIbeEeaa6qcl6Bgr6g _h5avgIbeEeaa6qcl6Bgr6g _h5zKAIbeEeaa6qcl6Bgr6g _h51mQIbeEeaa6qcl6Bgr6g _UlfMkIbkEeaLkq6Pk-i__w _yEH00IbkEeaLkq6Pk-i__w _N09MkIbnEeaLkq6Pk-i__w _mqEsAIbnEeaLkq6Pk-i__w _8RzpcIbnEeaLkq6Pk-i__w _tG5wEIboEeaLkq6Pk-i__w _qs8HsIbrEeaLkq6Pk-i__w _MJvJcIb-EeaLkq6Pk-i__w _HaIKQIb_EeaLkq6Pk-i__w _Rv1Z0Ib_EeaLkq6Pk-i__w _gx2AcIb_EeaLkq6Pk-i__w _Ve24MIceEeaLkq6Pk-i__w _5WxWsIceEeaLkq6Pk-i__w _hfrwUIcfEeaLkq6Pk-i__w"/>
+  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX8HRBEealXoPpvgbLvA" name="RuleFolder" description="ruleFolder.png" activated="true" subUnits="_TkjxkIiFEeaLkq6Pk-i__w _MVm-8IiCEeaLkq6Pk-i__w _YPtK0IcAEeaLkq6Pk-i__w _bOhw0IZaEeaUS8sLj-IDYw _X-0s4IZVEeaUS8sLj-IDYw _HZWIYIZVEeaUS8sLj-IDYw _aZY8wIZTEeaUS8sLj-IDYw _5AgJoIZLEeaUS8sLj-IDYw _qlZyAIZLEeaUS8sLj-IDYw _OrUswIZLEeaUS8sLj-IDYw _QZ9VoIZHEea46K5KgL82qQ _DsNKEIYaEea46K5KgL82qQ _Ij17IHmoEea1wuL3eKFlqg _IpVxEHmmEea1wuL3eKFlqg _dF3WUHaKEeazIeq7YNuKtg _ZPk-EHaGEeazIeq7YNuKtg __flO8HZ-EeazIeq7YNuKtg _rqMIQHUSEeaP7--o8tUdyg _SQQWcHUQEeaP7--o8tUdyg _xDed8HUOEeaP7--o8tUdyg _8RiuUHUNEeaP7--o8tUdyg _wBBxMHUIEeaP7--o8tUdyg _Fq4RUHTDEeaibZ9fI_0wfQ _YHvOoHRJEeaibZ9fI_0wfQ _gaaowHREEealXoPpvgbLvA _VMgbUHRDEealXoPpvgbLvA _n5EdkHRCEealXoPpvgbLvA _-yeuwHmnEea1wuL3eKFlqg _IVDG8IbqEeaLkq6Pk-i__w _sYzMkIbrEeaLkq6Pk-i__w _rDlygIb-EeaLkq6Pk-i__w _TaGjQIb_EeaLkq6Pk-i__w"/>
+  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX8XRBEealXoPpvgbLvA" name="ITRuleFolder" description="ITRules.png" activated="true" subUnits="_gj_0sIbeEeaa6qcl6Bgr6g _gkF7UIbeEeaa6qcl6Bgr6g _gkJlsIbeEeaa6qcl6Bgr6g _gkNQEIbeEeaa6qcl6Bgr6g _gkQTYIbeEeaa6qcl6Bgr6g _gkT9wIbeEeaa6qcl6Bgr6g _gkYPMIbeEeaa6qcl6Bgr6g _gkdHsIbeEeaa6qcl6Bgr6g _gkhZIIbeEeaa6qcl6Bgr6g _gklDgIbeEeaa6qcl6Bgr6g _gkpU8IbeEeaa6qcl6Bgr6g _gkuNcIbeEeaa6qcl6Bgr6g _gk7o0IbeEeaa6qcl6Bgr6g _glCWgIbeEeaa6qcl6Bgr6g _glXtsIbeEeaa6qcl6Bgr6g _glaJ8IbeEeaa6qcl6Bgr6g _Tzfu8IbkEeaLkq6Pk-i__w _w4NbUIbkEeaLkq6Pk-i__w _M3qd4IbnEeaLkq6Pk-i__w _lqqdcIbnEeaLkq6Pk-i__w _66J6AIbnEeaLkq6Pk-i__w _r7fF0IboEeaLkq6Pk-i__w _ppuXMIbrEeaLkq6Pk-i__w _LFMjQIb-EeaLkq6Pk-i__w _GhNlQIb_EeaLkq6Pk-i__w _QjrvwIb_EeaLkq6Pk-i__w _fqvOcIb_EeaLkq6Pk-i__w _U2FoAIceEeaLkq6Pk-i__w _31GIkIceEeaLkq6Pk-i__w _g2QY0IcfEeaLkq6Pk-i__w _kJagcIiEEeaLkq6Pk-i__w _fVM4oIiGEeaLkq6Pk-i__w"/>
+  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX8nRBEealXoPpvgbLvA" name="FTRuleFolder" description="FTRules.png" activated="true" subUnits="_hBMuEIbeEeaa6qcl6Bgr6g _hBPKUIbeEeaa6qcl6Bgr6g _hBSNoIbeEeaa6qcl6Bgr6g _hBUp4IbeEeaa6qcl6Bgr6g _hBdMwIbeEeaa6qcl6Bgr6g _hBisUIbeEeaa6qcl6Bgr6g _hBzyEIbeEeaa6qcl6Bgr6g _hB21YIbeEeaa6qcl6Bgr6g _THxRYIbkEeaLkq6Pk-i__w _xPFqQIbkEeaLkq6Pk-i__w _NM1coIbnEeaLkq6Pk-i__w _l-95gIbnEeaLkq6Pk-i__w _7LBnkIbnEeaLkq6Pk-i__w _sOMmcIboEeaLkq6Pk-i__w _qCTPQIbrEeaLkq6Pk-i__w _LZO5kIb-EeaLkq6Pk-i__w _G00dwIb_EeaLkq6Pk-i__w _Q5SMUIb_EeaLkq6Pk-i__w _gC6d4Ib_EeaLkq6Pk-i__w _UaTD4IceEeaLkq6Pk-i__w _4Sz_UIceEeaLkq6Pk-i__w _e5g_UIcfEeaLkq6Pk-i__w _k5G4AIiEEeaLkq6Pk-i__w _f6syYIiGEeaLkq6Pk-i__w"/>
+  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX83RBEealXoPpvgbLvA" name="BTRuleFolder" description="BTRules.png" activated="true" subUnits="_hfBSgIbeEeaa6qcl6Bgr6g _hfDuwIbeEeaa6qcl6Bgr6g _hfGyEIbeEeaa6qcl6Bgr6g _hfLqkIbeEeaa6qcl6Bgr6g _hfP8AIbeEeaa6qcl6Bgr6g _hfTmYIbeEeaa6qcl6Bgr6g _hfX30IbeEeaa6qcl6Bgr6g _hfcJQIbeEeaa6qcl6Bgr6g _hfhBwIbeEeaa6qcl6Bgr6g _hfksIIbeEeaa6qcl6Bgr6g _hfoWgIbeEeaa6qcl6Bgr6g _hfqywIbeEeaa6qcl6Bgr6g _hf3nEIbeEeaa6qcl6Bgr6g _hf9GoIbeEeaa6qcl6Bgr6g _hgVhIIbeEeaa6qcl6Bgr6g _hgZLgIbeEeaa6qcl6Bgr6g _UKrf4IbkEeaLkq6Pk-i__w _xqM48IbkEeaLkq6Pk-i__w _NfO0MIbnEeaLkq6Pk-i__w _mWSNUIbnEeaLkq6Pk-i__w _72HzAIbnEeaLkq6Pk-i__w _szx_wIboEeaLkq6Pk-i__w _qTiJMIbrEeaLkq6Pk-i__w _L0c18Ib-EeaLkq6Pk-i__w _HExlUIb_EeaLkq6Pk-i__w _ROfnUIb_EeaLkq6Pk-i__w _gX0W4Ib_EeaLkq6Pk-i__w _VMxCoIceEeaLkq6Pk-i__w _46viAIceEeaLkq6Pk-i__w _hL7t4IcfEeaLkq6Pk-i__w _lhtJEIiEEeaLkq6Pk-i__w _gsRZQIiGEeaLkq6Pk-i__w"/>
+  <units xsi:type="henshin:IndependentUnit" xmi:id="_rWnX9HRBEealXoPpvgbLvA" name="CCRuleFolder" description="CCRules.png" activated="true" subUnits="_h4jz4IbeEeaa6qcl6Bgr6g _h4m3MIbeEeaa6qcl6Bgr6g _h4p6gIbeEeaa6qcl6Bgr6g _h4sWwIbeEeaa6qcl6Bgr6g _h4uzAIbeEeaa6qcl6Bgr6g _h4xPQIbeEeaa6qcl6Bgr6g _h4zrgIbeEeaa6qcl6Bgr6g _h4388IbeEeaa6qcl6Bgr6g _h48OYIbeEeaa6qcl6Bgr6g _h4_4wIbeEeaa6qcl6Bgr6g _h5C8EIbeEeaa6qcl6Bgr6g _h5GmcIbeEeaa6qcl6Bgr6g _h5SzsIbeEeaa6qcl6Bgr6g _h5avgIbeEeaa6qcl6Bgr6g _h5zKAIbeEeaa6qcl6Bgr6g _h51mQIbeEeaa6qcl6Bgr6g _UlfMkIbkEeaLkq6Pk-i__w _yEH00IbkEeaLkq6Pk-i__w _N09MkIbnEeaLkq6Pk-i__w _mqEsAIbnEeaLkq6Pk-i__w _8RzpcIbnEeaLkq6Pk-i__w _tG5wEIboEeaLkq6Pk-i__w _qs8HsIbrEeaLkq6Pk-i__w _MJvJcIb-EeaLkq6Pk-i__w _HaIKQIb_EeaLkq6Pk-i__w _Rv1Z0Ib_EeaLkq6Pk-i__w _gx2AcIb_EeaLkq6Pk-i__w _Ve24MIceEeaLkq6Pk-i__w _5WxWsIceEeaLkq6Pk-i__w _hfrwUIcfEeaLkq6Pk-i__w _mEee8IiEEeaLkq6Pk-i__w _hI8HIIiGEeaLkq6Pk-i__w"/>
   <units xsi:type="henshin:Rule" xmi:id="_-yeuwHmnEea1wuL3eKFlqg" name="CardinalityRight2Decoration" activated="true" checkDangling="true" injectiveMatching="true" javaImports="">
     <annotations xmi:id="_-yeuwXmnEea1wuL3eKFlqg" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
       <annotations xmi:id="_-yeuwnmnEea1wuL3eKFlqg" key="marker" value="tgg"/>
@@ -25339,5 +25731,1739 @@
     <mappings xmi:id="_hfvatIcfEeaLkq6Pk-i__w" origin="_hfvasIcfEeaLkq6Pk-i__w" image="_hfrwdYcfEeaLkq6Pk-i__w"/>
     <mappings xmi:id="_hfwo0IcfEeaLkq6Pk-i__w" origin="_hfwBx4cfEeaLkq6Pk-i__w" image="_hfrwiYcfEeaLkq6Pk-i__w"/>
     <mappings xmi:id="_hfxP4IcfEeaLkq6Pk-i__w" origin="_hfwo0YcfEeaLkq6Pk-i__w" image="_hfrwjYcfEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_kJagcIiEEeaLkq6Pk-i__w" name="IT_MultiAssociationEnd2BranchEdge" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_kJagcYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_kJagcoiEEeaLkq6Pk-i__w" key="marker" value="it"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_kJagc4iEEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagdIiEEeaLkq6Pk-i__w" name="" incoming="_kJageoiEEeaLkq6Pk-i__w" outgoing="_kJagfYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJdjwIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJdjwYiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagdYiEEeaLkq6Pk-i__w" name="" outgoing="_kJageoiEEeaLkq6Pk-i__w _kJage4iEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagdoiEEeaLkq6Pk-i__w" name="" incoming="_kJage4iEEeaLkq6Pk-i__w" outgoing="_kJagfIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJdjyIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJdjyYiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagd4iEEeaLkq6Pk-i__w" name="">
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJageIiEEeaLkq6Pk-i__w" name="" incoming="_kJagfIiEEeaLkq6Pk-i__w _kJagfYiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJageYiEEeaLkq6Pk-i__w" name="">
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJageoiEEeaLkq6Pk-i__w" source="_kJagdYiEEeaLkq6Pk-i__w" target="_kJagdIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJage4iEEeaLkq6Pk-i__w" source="_kJagdYiEEeaLkq6Pk-i__w" target="_kJagdoiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagfIiEEeaLkq6Pk-i__w" source="_kJagdoiEEeaLkq6Pk-i__w" target="_kJageIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagfYiEEeaLkq6Pk-i__w" source="_kJagdIiEEeaLkq6Pk-i__w" target="_kJageIiEEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_kJagfoiEEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagf4iEEeaLkq6Pk-i__w" name="" incoming="_kJaguIiEEeaLkq6Pk-i__w" outgoing="_kJagtYiEEeaLkq6Pk-i__w _kJagzYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJaggIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJaggYiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_kJaggoiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagg4iEEeaLkq6Pk-i__w" name="" outgoing="_kJaguIiEEeaLkq6Pk-i__w _kJagu4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJaghIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJaghYiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_kJaghoiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagh4iEEeaLkq6Pk-i__w" name="" incoming="_kJagu4iEEeaLkq6Pk-i__w" outgoing="_kJagx4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagiIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagiYiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_kJagioiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_kJagi4iEEeaLkq6Pk-i__w" value="'Association_Shape'">
+          <annotations xmi:id="_kJdjyoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_kJdjy4iEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagjIiEEeaLkq6Pk-i__w" name="" incoming="_kJagtYiEEeaLkq6Pk-i__w _kJag0IiEEeaLkq6Pk-i__w" outgoing="_kJagvoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagjYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagjoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_kJagj4iEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagkIiEEeaLkq6Pk-i__w" name="" incoming="_kJag04iEEeaLkq6Pk-i__w _kJag1oiEEeaLkq6Pk-i__w" outgoing="_kJagsoiEEeaLkq6Pk-i__w _kJagwYiEEeaLkq6Pk-i__w _kJagyoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagkYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagkoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_kJagk4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_kJaglIiEEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_kJaglYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_kJagloiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagl4iEEeaLkq6Pk-i__w" name="" incoming="_kJagsoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagmIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagmYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_kJagmoiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_kJagm4iEEeaLkq6Pk-i__w" value="'Association_BranchRoleLabel'">
+          <annotations xmi:id="_kJagnIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_kJagnYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagnoiEEeaLkq6Pk-i__w" name="" incoming="_kJagvoiEEeaLkq6Pk-i__w _kJagxIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagn4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagoIiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_kJagoYiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagooiEEeaLkq6Pk-i__w" name="" incoming="_kJagwYiEEeaLkq6Pk-i__w" outgoing="_kJagxIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJago4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagpIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_kJagpYiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagpoiEEeaLkq6Pk-i__w" name="" incoming="_kJagx4iEEeaLkq6Pk-i__w _kJagyoiEEeaLkq6Pk-i__w _kJagzYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagp4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagqIiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_kJagqYiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagqoiEEeaLkq6Pk-i__w" name="" outgoing="_kJag0IiEEeaLkq6Pk-i__w _kJag04iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagq4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagrIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_kJagrYiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_kJagroiEEeaLkq6Pk-i__w" name="" outgoing="_kJag1oiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagr4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagsIiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_kJagsYiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagsoiEEeaLkq6Pk-i__w" source="_kJagkIiEEeaLkq6Pk-i__w" target="_kJagl4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJags4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagtIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagtYiEEeaLkq6Pk-i__w" source="_kJagf4iEEeaLkq6Pk-i__w" target="_kJagjIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagtoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagt4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJaguIiEEeaLkq6Pk-i__w" source="_kJagg4iEEeaLkq6Pk-i__w" target="_kJagf4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJaguYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJaguoiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagu4iEEeaLkq6Pk-i__w" source="_kJagg4iEEeaLkq6Pk-i__w" target="_kJagh4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagvIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagvYiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagvoiEEeaLkq6Pk-i__w" source="_kJagjIiEEeaLkq6Pk-i__w" target="_kJagnoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagv4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagwIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagwYiEEeaLkq6Pk-i__w" source="_kJagkIiEEeaLkq6Pk-i__w" target="_kJagooiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagwoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagw4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/styles"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagxIiEEeaLkq6Pk-i__w" source="_kJagooiEEeaLkq6Pk-i__w" target="_kJagnoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagxYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagxoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle/eObjectValue"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagx4iEEeaLkq6Pk-i__w" source="_kJagh4iEEeaLkq6Pk-i__w" target="_kJagpoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagyIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagyYiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagyoiEEeaLkq6Pk-i__w" source="_kJagkIiEEeaLkq6Pk-i__w" target="_kJagpoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagy4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagzIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJagzYiEEeaLkq6Pk-i__w" source="_kJagf4iEEeaLkq6Pk-i__w" target="_kJagpoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJagzoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJagz4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJag0IiEEeaLkq6Pk-i__w" source="_kJagqoiEEeaLkq6Pk-i__w" target="_kJagjIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJag0YiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJag0oiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJag04iEEeaLkq6Pk-i__w" source="_kJagqoiEEeaLkq6Pk-i__w" target="_kJagkIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJag1IiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJag1YiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_kJag1oiEEeaLkq6Pk-i__w" source="_kJagroiEEeaLkq6Pk-i__w" target="_kJagkIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_kJag14iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_kJag2IiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram/edges"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_kJag2YiEEeaLkq6Pk-i__w" origin="_kJagdIiEEeaLkq6Pk-i__w" image="_kJagf4iEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_kJag2oiEEeaLkq6Pk-i__w" origin="_kJagdYiEEeaLkq6Pk-i__w" image="_kJagg4iEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_kJag24iEEeaLkq6Pk-i__w" origin="_kJagdoiEEeaLkq6Pk-i__w" image="_kJagh4iEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_kJag3IiEEeaLkq6Pk-i__w" origin="_kJagd4iEEeaLkq6Pk-i__w" image="_kJagnoiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_kJag3YiEEeaLkq6Pk-i__w" origin="_kJageIiEEeaLkq6Pk-i__w" image="_kJagpoiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_kJag3oiEEeaLkq6Pk-i__w" origin="_kJageYiEEeaLkq6Pk-i__w" image="_kJagroiEEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_k5G4AIiEEeaLkq6Pk-i__w" name="FT_MultiAssociationEnd2BranchEdge" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_k5G4AYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_k5G4AoiEEeaLkq6Pk-i__w" key="marker" value="ft"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_k5G4A4iEEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4BIiEEeaLkq6Pk-i__w" name="" incoming="_k5G4EIiEEeaLkq6Pk-i__w" outgoing="_k5G4E4iEEeaLkq6Pk-i__w _k5M-qYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4BYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4BoiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_k5G4B4iEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5Lwg4iEEeaLkq6Pk-i__w" name="" incoming="_k5M-qYiEEeaLkq6Pk-i__w" outgoing="_k5NlsoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5LwhIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5LwhYiEEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_k5LwhoiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4D4iEEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_k5OMwIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5OMwYiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5OMwoiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4CIiEEeaLkq6Pk-i__w" name="" outgoing="_k5G4EIiEEeaLkq6Pk-i__w _k5G4EYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4CYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4CoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5G4C4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4DYiEEeaLkq6Pk-i__w" name="" incoming="_k5NlsoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5NluIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5NluYiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5NluoiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4DoiEEeaLkq6Pk-i__w" name="" incoming="_k5G4EoiEEeaLkq6Pk-i__w _k5G4E4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5Nlu4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5NlvIiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5NlvYiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4DIiEEeaLkq6Pk-i__w" name="" incoming="_k5G4EYiEEeaLkq6Pk-i__w" outgoing="_k5G4EoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5NltYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5NltoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_k5Nlt4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4EIiEEeaLkq6Pk-i__w" source="_k5G4CIiEEeaLkq6Pk-i__w" target="_k5G4BIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4EYiEEeaLkq6Pk-i__w" source="_k5G4CIiEEeaLkq6Pk-i__w" target="_k5G4DIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4EoiEEeaLkq6Pk-i__w" source="_k5G4DIiEEeaLkq6Pk-i__w" target="_k5G4DoiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4E4iEEeaLkq6Pk-i__w" source="_k5G4BIiEEeaLkq6Pk-i__w" target="_k5G4DoiEEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5M-qYiEEeaLkq6Pk-i__w" source="_k5G4BIiEEeaLkq6Pk-i__w" target="_k5Lwg4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5NlsIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5NlsYiEEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5NlsoiEEeaLkq6Pk-i__w" source="_k5Lwg4iEEeaLkq6Pk-i__w" target="_k5G4DYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5Nls4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5NltIiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_k5G4FIiEEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4FYiEEeaLkq6Pk-i__w" name="" incoming="_k5G4ToiEEeaLkq6Pk-i__w" outgoing="_k5G4S4iEEeaLkq6Pk-i__w _k5G4Y4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4FoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4F4iEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_k5G4GIiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4GYiEEeaLkq6Pk-i__w" name="" outgoing="_k5G4ToiEEeaLkq6Pk-i__w _k5G4UYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4GoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4G4iEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_k5G4HIiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4HYiEEeaLkq6Pk-i__w" name="" incoming="_k5G4UYiEEeaLkq6Pk-i__w" outgoing="_k5G4XYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4HoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4H4iEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_k5G4IIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_k5G4IYiEEeaLkq6Pk-i__w" value="'Association_Shape'">
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4IoiEEeaLkq6Pk-i__w" name="" incoming="_k5G4S4iEEeaLkq6Pk-i__w _k5G4ZoiEEeaLkq6Pk-i__w" outgoing="_k5G4VIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4I4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4JIiEEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_k5G4JYiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4JoiEEeaLkq6Pk-i__w" name="" incoming="_k5G4aYiEEeaLkq6Pk-i__w _k5G4bIiEEeaLkq6Pk-i__w" outgoing="_k5G4SIiEEeaLkq6Pk-i__w _k5G4V4iEEeaLkq6Pk-i__w _k5G4YIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4J4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4KIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_k5G4KYiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_k5G4KoiEEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_k5G4K4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_k5G4LIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4LYiEEeaLkq6Pk-i__w" name="" incoming="_k5G4SIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4LoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4L4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_k5G4MIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_k5G4MYiEEeaLkq6Pk-i__w" value="'Association_BranchRoleLabel'">
+          <annotations xmi:id="_k5G4MoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_k5G4M4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4NIiEEeaLkq6Pk-i__w" name="" incoming="_k5G4VIiEEeaLkq6Pk-i__w _k5G4WoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4NYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4NoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_k5G4N4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4OIiEEeaLkq6Pk-i__w" name="" incoming="_k5G4V4iEEeaLkq6Pk-i__w" outgoing="_k5G4WoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4OYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4OoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_k5G4O4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4PIiEEeaLkq6Pk-i__w" name="" incoming="_k5G4XYiEEeaLkq6Pk-i__w _k5G4YIiEEeaLkq6Pk-i__w _k5G4Y4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4PYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4PoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_k5G4P4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4QIiEEeaLkq6Pk-i__w" name="" outgoing="_k5G4ZoiEEeaLkq6Pk-i__w _k5G4aYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4QYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4QoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_k5G4Q4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_k5G4RIiEEeaLkq6Pk-i__w" name="" outgoing="_k5G4bIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4RYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4RoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_k5G4R4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4SIiEEeaLkq6Pk-i__w" source="_k5G4JoiEEeaLkq6Pk-i__w" target="_k5G4LYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4SYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4SoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4S4iEEeaLkq6Pk-i__w" source="_k5G4FYiEEeaLkq6Pk-i__w" target="_k5G4IoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4TIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4TYiEEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4ToiEEeaLkq6Pk-i__w" source="_k5G4GYiEEeaLkq6Pk-i__w" target="_k5G4FYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4T4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4UIiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4UYiEEeaLkq6Pk-i__w" source="_k5G4GYiEEeaLkq6Pk-i__w" target="_k5G4HYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4UoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4U4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4VIiEEeaLkq6Pk-i__w" source="_k5G4IoiEEeaLkq6Pk-i__w" target="_k5G4NIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4VYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4VoiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4V4iEEeaLkq6Pk-i__w" source="_k5G4JoiEEeaLkq6Pk-i__w" target="_k5G4OIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4WIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4WYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/styles"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4WoiEEeaLkq6Pk-i__w" source="_k5G4OIiEEeaLkq6Pk-i__w" target="_k5G4NIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4W4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4XIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle/eObjectValue"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4XYiEEeaLkq6Pk-i__w" source="_k5G4HYiEEeaLkq6Pk-i__w" target="_k5G4PIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4XoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4X4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4YIiEEeaLkq6Pk-i__w" source="_k5G4JoiEEeaLkq6Pk-i__w" target="_k5G4PIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4YYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4YoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4Y4iEEeaLkq6Pk-i__w" source="_k5G4FYiEEeaLkq6Pk-i__w" target="_k5G4PIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4ZIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4ZYiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4ZoiEEeaLkq6Pk-i__w" source="_k5G4QIiEEeaLkq6Pk-i__w" target="_k5G4IoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4Z4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4aIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4aYiEEeaLkq6Pk-i__w" source="_k5G4QIiEEeaLkq6Pk-i__w" target="_k5G4JoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4aoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4a4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_k5G4bIiEEeaLkq6Pk-i__w" source="_k5G4RIiEEeaLkq6Pk-i__w" target="_k5G4JoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_k5G4bYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_k5G4boiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram/edges"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_k5G4b4iEEeaLkq6Pk-i__w" origin="_k5G4BIiEEeaLkq6Pk-i__w" image="_k5G4FYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_k5G4cIiEEeaLkq6Pk-i__w" origin="_k5G4CIiEEeaLkq6Pk-i__w" image="_k5G4GYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_k5G4cYiEEeaLkq6Pk-i__w" origin="_k5G4DIiEEeaLkq6Pk-i__w" image="_k5G4HYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_k5G4coiEEeaLkq6Pk-i__w" origin="_k5G4DYiEEeaLkq6Pk-i__w" image="_k5G4NIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_k5G4c4iEEeaLkq6Pk-i__w" origin="_k5G4DoiEEeaLkq6Pk-i__w" image="_k5G4PIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_k5G4dIiEEeaLkq6Pk-i__w" origin="_k5G4D4iEEeaLkq6Pk-i__w" image="_k5G4RIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_k5MXkIiEEeaLkq6Pk-i__w" origin="_k5Lwg4iEEeaLkq6Pk-i__w" image="_k5G4IoiEEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_lhtJEIiEEeaLkq6Pk-i__w" name="BT_MultiAssociationEnd2BranchEdge" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_lhtJEYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_lhtJEoiEEeaLkq6Pk-i__w" key="marker" value="bt"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_lhtJE4iEEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJFIiEEeaLkq6Pk-i__w" name="" incoming="_lhtJLIiEEeaLkq6Pk-i__w" outgoing="_lhtJL4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJFYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJFoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_lhtJF4iEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJGIiEEeaLkq6Pk-i__w" name="" outgoing="_lhtJLIiEEeaLkq6Pk-i__w _lhtJLYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJGYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJGoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_lhtJG4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJHIiEEeaLkq6Pk-i__w" name="" incoming="_lhtJLYiEEeaLkq6Pk-i__w" outgoing="_lhtJLoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJHYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJHoiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_lhtJH4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJIIiEEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_lhtJIYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJIoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_lhtJI4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJJIiEEeaLkq6Pk-i__w" name="" incoming="_lhtJLoiEEeaLkq6Pk-i__w _lhtJL4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJJYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJJoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_lhtJJ4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJKIiEEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_lhtJKYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJKoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_lhtJK4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJLIiEEeaLkq6Pk-i__w" source="_lhtJGIiEEeaLkq6Pk-i__w" target="_lhtJFIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJLYiEEeaLkq6Pk-i__w" source="_lhtJGIiEEeaLkq6Pk-i__w" target="_lhtJHIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJLoiEEeaLkq6Pk-i__w" source="_lhtJHIiEEeaLkq6Pk-i__w" target="_lhtJJIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJL4iEEeaLkq6Pk-i__w" source="_lhtJFIiEEeaLkq6Pk-i__w" target="_lhtJJIiEEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_lhtJMIiEEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJMYiEEeaLkq6Pk-i__w" name="" incoming="_lhtJaoiEEeaLkq6Pk-i__w" outgoing="_lhtJZ4iEEeaLkq6Pk-i__w _lhtJf4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJMoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJM4iEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_lhtJNIiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJNYiEEeaLkq6Pk-i__w" name="" outgoing="_lhtJaoiEEeaLkq6Pk-i__w _lhtJbYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJNoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJN4iEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_lhtJOIiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJOYiEEeaLkq6Pk-i__w" name="" incoming="_lhtJbYiEEeaLkq6Pk-i__w" outgoing="_lhtJeYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJOoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJO4iEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_lhtJPIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_lhtJPYiEEeaLkq6Pk-i__w" value="'Association_Shape'">
+          <annotations xmi:id="_lhwMYIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_lhwMYYiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJPoiEEeaLkq6Pk-i__w" name="" incoming="_lhtJZ4iEEeaLkq6Pk-i__w _lhtJgoiEEeaLkq6Pk-i__w" outgoing="_lhtJcIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJP4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJQIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_lhtJQYiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJQoiEEeaLkq6Pk-i__w" name="" incoming="_lhtJhYiEEeaLkq6Pk-i__w _lhtJiIiEEeaLkq6Pk-i__w" outgoing="_lhtJZIiEEeaLkq6Pk-i__w _lhtJc4iEEeaLkq6Pk-i__w _lhtJfIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJQ4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJRIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_lhtJRYiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_lhtJRoiEEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_lhtJR4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_lhtJSIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJSYiEEeaLkq6Pk-i__w" name="" incoming="_lhtJZIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJSoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJS4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_lhtJTIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_lhtJTYiEEeaLkq6Pk-i__w" value="'Association_BranchRoleLabel'">
+          <annotations xmi:id="_lhtJToiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_lhtJT4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJUIiEEeaLkq6Pk-i__w" name="" incoming="_lhtJcIiEEeaLkq6Pk-i__w _lhtJdoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJUYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJUoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_lhtJU4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJVIiEEeaLkq6Pk-i__w" name="" incoming="_lhtJc4iEEeaLkq6Pk-i__w" outgoing="_lhtJdoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJVYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJVoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_lhtJV4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJWIiEEeaLkq6Pk-i__w" name="" incoming="_lhtJeYiEEeaLkq6Pk-i__w _lhtJfIiEEeaLkq6Pk-i__w _lhtJf4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJWYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJWoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_lhtJW4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJXIiEEeaLkq6Pk-i__w" name="" outgoing="_lhtJgoiEEeaLkq6Pk-i__w _lhtJhYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJXYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJXoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_lhtJX4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_lhtJYIiEEeaLkq6Pk-i__w" name="" outgoing="_lhtJiIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJYYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJYoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_lhtJY4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJZIiEEeaLkq6Pk-i__w" source="_lhtJQoiEEeaLkq6Pk-i__w" target="_lhtJSYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJZYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJZoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJZ4iEEeaLkq6Pk-i__w" source="_lhtJMYiEEeaLkq6Pk-i__w" target="_lhtJPoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJaIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJaYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJaoiEEeaLkq6Pk-i__w" source="_lhtJNYiEEeaLkq6Pk-i__w" target="_lhtJMYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJa4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJbIiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJbYiEEeaLkq6Pk-i__w" source="_lhtJNYiEEeaLkq6Pk-i__w" target="_lhtJOYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJboiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJb4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJcIiEEeaLkq6Pk-i__w" source="_lhtJPoiEEeaLkq6Pk-i__w" target="_lhtJUIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJcYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJcoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJc4iEEeaLkq6Pk-i__w" source="_lhtJQoiEEeaLkq6Pk-i__w" target="_lhtJVIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJdIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJdYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/styles"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJdoiEEeaLkq6Pk-i__w" source="_lhtJVIiEEeaLkq6Pk-i__w" target="_lhtJUIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJd4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJeIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle/eObjectValue"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJeYiEEeaLkq6Pk-i__w" source="_lhtJOYiEEeaLkq6Pk-i__w" target="_lhtJWIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJeoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJe4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJfIiEEeaLkq6Pk-i__w" source="_lhtJQoiEEeaLkq6Pk-i__w" target="_lhtJWIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJfYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJfoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJf4iEEeaLkq6Pk-i__w" source="_lhtJMYiEEeaLkq6Pk-i__w" target="_lhtJWIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJgIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJgYiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJgoiEEeaLkq6Pk-i__w" source="_lhtJXIiEEeaLkq6Pk-i__w" target="_lhtJPoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJg4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJhIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJhYiEEeaLkq6Pk-i__w" source="_lhtJXIiEEeaLkq6Pk-i__w" target="_lhtJQoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJhoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJh4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_lhtJiIiEEeaLkq6Pk-i__w" source="_lhtJYIiEEeaLkq6Pk-i__w" target="_lhtJQoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_lhtJiYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_lhtJioiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram/edges"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_lhtJi4iEEeaLkq6Pk-i__w" origin="_lhtJFIiEEeaLkq6Pk-i__w" image="_lhtJMYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_lhtJjIiEEeaLkq6Pk-i__w" origin="_lhtJGIiEEeaLkq6Pk-i__w" image="_lhtJNYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_lhtJjYiEEeaLkq6Pk-i__w" origin="_lhtJHIiEEeaLkq6Pk-i__w" image="_lhtJOYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_lhtJjoiEEeaLkq6Pk-i__w" origin="_lhtJIIiEEeaLkq6Pk-i__w" image="_lhtJUIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_lhtJj4iEEeaLkq6Pk-i__w" origin="_lhtJJIiEEeaLkq6Pk-i__w" image="_lhtJWIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_lhtJkIiEEeaLkq6Pk-i__w" origin="_lhtJKIiEEeaLkq6Pk-i__w" image="_lhtJYIiEEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_mEee8IiEEeaLkq6Pk-i__w" name="CC_MultiAssociationEnd2BranchEdge" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_mEee8YiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_mEee8oiEEeaLkq6Pk-i__w" key="marker" value="cc"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_mEee84iEEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_mEee9IiEEeaLkq6Pk-i__w" name="" incoming="_mEefDIiEEeaLkq6Pk-i__w" outgoing="_mEefD4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEee9YiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEee9oiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_mEee94iEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEee-IiEEeaLkq6Pk-i__w" name="" outgoing="_mEefDIiEEeaLkq6Pk-i__w _mEefDYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEee-YiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEee-oiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_mEee-4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEee_IiEEeaLkq6Pk-i__w" name="" incoming="_mEefDYiEEeaLkq6Pk-i__w" outgoing="_mEefDoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEee_YiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEee_oiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_mEee_4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefAIiEEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_mEefAYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefAoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_mEefA4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefBIiEEeaLkq6Pk-i__w" name="" incoming="_mEefDoiEEeaLkq6Pk-i__w _mEefD4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefBYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefBoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_mEefB4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefCIiEEeaLkq6Pk-i__w" name="">
+        <annotations xmi:id="_mEefCYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefCoiEEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_mEefC4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefDIiEEeaLkq6Pk-i__w" source="_mEee-IiEEeaLkq6Pk-i__w" target="_mEee9IiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefDYiEEeaLkq6Pk-i__w" source="_mEee-IiEEeaLkq6Pk-i__w" target="_mEee_IiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefDoiEEeaLkq6Pk-i__w" source="_mEee_IiEEeaLkq6Pk-i__w" target="_mEefBIiEEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefD4iEEeaLkq6Pk-i__w" source="_mEee9IiEEeaLkq6Pk-i__w" target="_mEefBIiEEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_mEefEIiEEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefEYiEEeaLkq6Pk-i__w" name="" incoming="_mEefSoiEEeaLkq6Pk-i__w" outgoing="_mEefR4iEEeaLkq6Pk-i__w _mEefX4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefEoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefE4iEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_mEefFIiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefFYiEEeaLkq6Pk-i__w" name="" outgoing="_mEefSoiEEeaLkq6Pk-i__w _mEefTYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefFoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefF4iEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_mEefGIiEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefGYiEEeaLkq6Pk-i__w" name="" incoming="_mEefTYiEEeaLkq6Pk-i__w" outgoing="_mEefWYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefGoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefG4iEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_mEefHIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Shape"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_mEefHYiEEeaLkq6Pk-i__w" value="'Association_Shape'">
+          <annotations xmi:id="_mEiJUIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_mEiJUYiEEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefHoiEEeaLkq6Pk-i__w" name="" incoming="_mEefR4iEEeaLkq6Pk-i__w _mEefYoiEEeaLkq6Pk-i__w" outgoing="_mEefUIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefH4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefIIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_mEefIYiEEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefIoiEEeaLkq6Pk-i__w" name="" incoming="_mEefZYiEEeaLkq6Pk-i__w _mEefaIiEEeaLkq6Pk-i__w" outgoing="_mEefRIiEEeaLkq6Pk-i__w _mEefU4iEEeaLkq6Pk-i__w _mEefXIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefI4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefJIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_mEefJYiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_mEefJoiEEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_mEefJ4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_mEefKIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefKYiEEeaLkq6Pk-i__w" name="" incoming="_mEefRIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefKoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefK4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_mEefLIiEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_mEefLYiEEeaLkq6Pk-i__w" value="'Association_BranchRoleLabel'">
+          <annotations xmi:id="_mEefLoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_mEefL4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefMIiEEeaLkq6Pk-i__w" name="" incoming="_mEefUIiEEeaLkq6Pk-i__w _mEefVoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefMYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefMoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_mEefM4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefNIiEEeaLkq6Pk-i__w" name="" incoming="_mEefU4iEEeaLkq6Pk-i__w" outgoing="_mEefVoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefNYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefNoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_mEefN4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefOIiEEeaLkq6Pk-i__w" name="" incoming="_mEefWYiEEeaLkq6Pk-i__w _mEefXIiEEeaLkq6Pk-i__w _mEefX4iEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefOYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefOoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_mEefO4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/uml2/5.0.0/UML#//Association"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefPIiEEeaLkq6Pk-i__w" name="" outgoing="_mEefYoiEEeaLkq6Pk-i__w _mEefZYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefPYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefPoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_mEefP4iEEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_mEefQIiEEeaLkq6Pk-i__w" name="" outgoing="_mEefaIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefQYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefQoiEEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_mEefQ4iEEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefRIiEEeaLkq6Pk-i__w" source="_mEefIoiEEeaLkq6Pk-i__w" target="_mEefKYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefRYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefRoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefR4iEEeaLkq6Pk-i__w" source="_mEefEYiEEeaLkq6Pk-i__w" target="_mEefHoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefSIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefSYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefSoiEEeaLkq6Pk-i__w" source="_mEefFYiEEeaLkq6Pk-i__w" target="_mEefEYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefS4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefTIiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefTYiEEeaLkq6Pk-i__w" source="_mEefFYiEEeaLkq6Pk-i__w" target="_mEefGYiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefToiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefT4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefUIiEEeaLkq6Pk-i__w" source="_mEefHoiEEeaLkq6Pk-i__w" target="_mEefMIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefUYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefUoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefU4iEEeaLkq6Pk-i__w" source="_mEefIoiEEeaLkq6Pk-i__w" target="_mEefNIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefVIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefVYiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/styles"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefVoiEEeaLkq6Pk-i__w" source="_mEefNIiEEeaLkq6Pk-i__w" target="_mEefMIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefV4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefWIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//EObjectValueStyle/eObjectValue"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefWYiEEeaLkq6Pk-i__w" source="_mEefGYiEEeaLkq6Pk-i__w" target="_mEefOIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefWoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefW4iEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefXIiEEeaLkq6Pk-i__w" source="_mEefIoiEEeaLkq6Pk-i__w" target="_mEefOIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefXYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefXoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefX4iEEeaLkq6Pk-i__w" source="_mEefEYiEEeaLkq6Pk-i__w" target="_mEefOIiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefYIiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefYYiEEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//UMLReferencingElement/referencedElement"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefYoiEEeaLkq6Pk-i__w" source="_mEefPIiEEeaLkq6Pk-i__w" target="_mEefHoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefY4iEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefZIiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefZYiEEeaLkq6Pk-i__w" source="_mEefPIiEEeaLkq6Pk-i__w" target="_mEefIoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefZoiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefZ4iEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_mEefaIiEEeaLkq6Pk-i__w" source="_mEefQIiEEeaLkq6Pk-i__w" target="_mEefIoiEEeaLkq6Pk-i__w">
+        <annotations xmi:id="_mEefaYiEEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_mEefaoiEEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram/edges"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_mEefa4iEEeaLkq6Pk-i__w" origin="_mEee9IiEEeaLkq6Pk-i__w" image="_mEefEYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_mEefbIiEEeaLkq6Pk-i__w" origin="_mEee-IiEEeaLkq6Pk-i__w" image="_mEefFYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_mEefbYiEEeaLkq6Pk-i__w" origin="_mEee_IiEEeaLkq6Pk-i__w" image="_mEefGYiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_mEefboiEEeaLkq6Pk-i__w" origin="_mEefAIiEEeaLkq6Pk-i__w" image="_mEefMIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_mEefb4iEEeaLkq6Pk-i__w" origin="_mEefBIiEEeaLkq6Pk-i__w" image="_mEefOIiEEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_mEefcIiEEeaLkq6Pk-i__w" origin="_mEefCIiEEeaLkq6Pk-i__w" image="_mEefQIiEEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_fVM4oIiGEeaLkq6Pk-i__w" name="IT_MultiAssociationCardinality2Decoration" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_fVM4oYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_fVM4ooiGEeaLkq6Pk-i__w" key="marker" value="it"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_fVM4o4iGEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4qIiGEeaLkq6Pk-i__w" name="" incoming="_fVM4toiGEeaLkq6Pk-i__w _fVM4t4iGEeaLkq6Pk-i__w" outgoing="_fVP8BoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4qYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4qoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_fVM4q4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4pIiGEeaLkq6Pk-i__w" name="" outgoing="_fVM4toiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4pYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4poiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_fVM4p4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVP78IiGEeaLkq6Pk-i__w" name="" incoming="_fVP8BoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVP78YiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVP78oiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_fVP784iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4rIiGEeaLkq6Pk-i__w" name="" outgoing="_fVM4tYiGEeaLkq6Pk-i__w _fVM4t4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4rYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4roiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_fVM4r4iGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4sIiGEeaLkq6Pk-i__w" name="" incoming="_fVM4tYiGEeaLkq6Pk-i__w" outgoing="_fVP8AYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4sYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4soiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_fVM4s4iGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_fVM4tIiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_fVP794iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_fVP7-IiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVP7-YiGEeaLkq6Pk-i__w" name="" incoming="_fVP8AYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVP7-oiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVP7-4iGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_fVP7_IiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_fVP7_oiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_fVP7_4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_fVP8AIiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM4tYiGEeaLkq6Pk-i__w" source="_fVM4rIiGEeaLkq6Pk-i__w" target="_fVM4sIiGEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM4toiGEeaLkq6Pk-i__w" source="_fVM4pIiGEeaLkq6Pk-i__w" target="_fVM4qIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVP8BIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVP8BYiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM4t4iGEeaLkq6Pk-i__w" source="_fVM4rIiGEeaLkq6Pk-i__w" target="_fVM4qIiGEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVP8AYiGEeaLkq6Pk-i__w" source="_fVM4sIiGEeaLkq6Pk-i__w" target="_fVP7-YiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVP8AoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVP8A4iGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVP8BoiGEeaLkq6Pk-i__w" source="_fVM4qIiGEeaLkq6Pk-i__w" target="_fVP78IiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVP8B4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVP8CIiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_fVM4uIiGEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4uYiGEeaLkq6Pk-i__w" name="" outgoing="_fVM434iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4uoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4u4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_fVM4vIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4vYiGEeaLkq6Pk-i__w" name="" incoming="_fVM434iGEeaLkq6Pk-i__w _fVM464iGEeaLkq6Pk-i__w" outgoing="_fVM44oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4voiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4v4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_fVM4wIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4wYiGEeaLkq6Pk-i__w" name="" incoming="_fVM44oiGEeaLkq6Pk-i__w _fVM45YiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4woiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4w4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_fVM4xIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4xYiGEeaLkq6Pk-i__w" name="" outgoing="_fVM43IiGEeaLkq6Pk-i__w _fVM464iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4xoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4x4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_fVM4yIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4yYiGEeaLkq6Pk-i__w" name="" incoming="_fVM43IiGEeaLkq6Pk-i__w" outgoing="_fVM42YiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4yoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM4y4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_fVM4zIiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_fVM4zYiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_fVP79YiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_fVP79oiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM4zoiGEeaLkq6Pk-i__w" name="" incoming="_fVM42YiGEeaLkq6Pk-i__w _fVM46IiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM4z4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM40IiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_fVM40YiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_fVM40oiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_fVM404iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_fVM41IiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_fVM41YiGEeaLkq6Pk-i__w" name="" outgoing="_fVM45YiGEeaLkq6Pk-i__w _fVM46IiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM41oiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM414iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_fVM42IiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM42YiGEeaLkq6Pk-i__w" source="_fVM4yYiGEeaLkq6Pk-i__w" target="_fVM4zoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM42oiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM424iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM43IiGEeaLkq6Pk-i__w" source="_fVM4xYiGEeaLkq6Pk-i__w" target="_fVM4yYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM43YiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM43oiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM434iGEeaLkq6Pk-i__w" source="_fVM4uYiGEeaLkq6Pk-i__w" target="_fVM4vYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM44IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM44YiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM44oiGEeaLkq6Pk-i__w" source="_fVM4vYiGEeaLkq6Pk-i__w" target="_fVM4wYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM444iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM45IiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM45YiGEeaLkq6Pk-i__w" source="_fVM41YiGEeaLkq6Pk-i__w" target="_fVM4wYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM45oiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM454iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM46IiGEeaLkq6Pk-i__w" source="_fVM41YiGEeaLkq6Pk-i__w" target="_fVM4zoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM46YiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM46oiGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_fVM464iGEeaLkq6Pk-i__w" source="_fVM4xYiGEeaLkq6Pk-i__w" target="_fVM4vYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_fVM47IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_fVM47YiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_fVM47oiGEeaLkq6Pk-i__w" origin="_fVM4pIiGEeaLkq6Pk-i__w" image="_fVM4uYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_fVM474iGEeaLkq6Pk-i__w" origin="_fVM4qIiGEeaLkq6Pk-i__w" image="_fVM4vYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_fVM48IiGEeaLkq6Pk-i__w" origin="_fVM4rIiGEeaLkq6Pk-i__w" image="_fVM4xYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_fVM48YiGEeaLkq6Pk-i__w" origin="_fVM4sIiGEeaLkq6Pk-i__w" image="_fVM4yYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_fVP79IiGEeaLkq6Pk-i__w" origin="_fVP78IiGEeaLkq6Pk-i__w" image="_fVM4wYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_fVP7_YiGEeaLkq6Pk-i__w" origin="_fVP7-YiGEeaLkq6Pk-i__w" image="_fVM4zoiGEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_f6syYIiGEeaLkq6Pk-i__w" name="FT_MultiAssociationCardinality2Decoration" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_f6syYYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_f6syYoiGEeaLkq6Pk-i__w" key="marker" value="ft"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_f6syY4iGEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syaIiGEeaLkq6Pk-i__w" name="" incoming="_f6sydoiGEeaLkq6Pk-i__w _f6syd4iGEeaLkq6Pk-i__w" outgoing="_f6xq4oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syaYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syaoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_f6sya4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syZIiGEeaLkq6Pk-i__w" name="" outgoing="_f6sydoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syZYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syZoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_f6syZ4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6wcwIiGEeaLkq6Pk-i__w" name="" incoming="_f6xq4oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6wcwYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6wcwoiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_f6wcw4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6sybIiGEeaLkq6Pk-i__w" name="" outgoing="_f6sydYiGEeaLkq6Pk-i__w _f6syd4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6sybYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syboiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_f6syb4iGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6sycIiGEeaLkq6Pk-i__w" name="" incoming="_f6sydYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6sycYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6sycoiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_f6syc4iGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_f6sydIiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6sydYiGEeaLkq6Pk-i__w" source="_f6sybIiGEeaLkq6Pk-i__w" target="_f6sycIiGEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6sydoiGEeaLkq6Pk-i__w" source="_f6syZIiGEeaLkq6Pk-i__w" target="_f6syaIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6xq4IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6xq4YiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6syd4iGEeaLkq6Pk-i__w" source="_f6sybIiGEeaLkq6Pk-i__w" target="_f6syaIiGEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6xq4oiGEeaLkq6Pk-i__w" source="_f6syaIiGEeaLkq6Pk-i__w" target="_f6wcwIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6yR8IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6yR8YiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_f6syeIiGEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syeYiGEeaLkq6Pk-i__w" name="" outgoing="_f6syn4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syeoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6sye4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_f6syfIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syfYiGEeaLkq6Pk-i__w" name="" incoming="_f6syn4iGEeaLkq6Pk-i__w _f6syq4iGEeaLkq6Pk-i__w" outgoing="_f6syooiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syfoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syf4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_f6sygIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6sygYiGEeaLkq6Pk-i__w" name="" incoming="_f6syooiGEeaLkq6Pk-i__w _f6sypYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6sygoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syg4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_f6syhIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syhYiGEeaLkq6Pk-i__w" name="" outgoing="_f6synIiGEeaLkq6Pk-i__w _f6syq4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syhoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syh4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_f6syiIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syiYiGEeaLkq6Pk-i__w" name="" incoming="_f6synIiGEeaLkq6Pk-i__w" outgoing="_f6symYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syioiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syi4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_f6syjIiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_f6syjYiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6syjoiGEeaLkq6Pk-i__w" name="" incoming="_f6symYiGEeaLkq6Pk-i__w _f6syqIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syj4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6sykIiGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_f6sykYiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_f6sykoiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_f6syk4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_f6sylIiGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_f6sylYiGEeaLkq6Pk-i__w" name="" outgoing="_f6sypYiGEeaLkq6Pk-i__w _f6syqIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syloiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syl4iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_f6symIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6symYiGEeaLkq6Pk-i__w" source="_f6syiYiGEeaLkq6Pk-i__w" target="_f6syjoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6symoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6sym4iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6synIiGEeaLkq6Pk-i__w" source="_f6syhYiGEeaLkq6Pk-i__w" target="_f6syiYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6synYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6synoiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6syn4iGEeaLkq6Pk-i__w" source="_f6syeYiGEeaLkq6Pk-i__w" target="_f6syfYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syoIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syoYiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6syooiGEeaLkq6Pk-i__w" source="_f6syfYiGEeaLkq6Pk-i__w" target="_f6sygYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syo4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6sypIiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6sypYiGEeaLkq6Pk-i__w" source="_f6sylYiGEeaLkq6Pk-i__w" target="_f6sygYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6sypoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syp4iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6syqIiGEeaLkq6Pk-i__w" source="_f6sylYiGEeaLkq6Pk-i__w" target="_f6syjoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syqYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syqoiGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_f6syq4iGEeaLkq6Pk-i__w" source="_f6syhYiGEeaLkq6Pk-i__w" target="_f6syfYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_f6syrIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_f6syrYiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_f6syroiGEeaLkq6Pk-i__w" origin="_f6syZIiGEeaLkq6Pk-i__w" image="_f6syeYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_f6syr4iGEeaLkq6Pk-i__w" origin="_f6syaIiGEeaLkq6Pk-i__w" image="_f6syfYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_f6sysIiGEeaLkq6Pk-i__w" origin="_f6sybIiGEeaLkq6Pk-i__w" image="_f6syhYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_f6sysYiGEeaLkq6Pk-i__w" origin="_f6sycIiGEeaLkq6Pk-i__w" image="_f6syiYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_f6xD0IiGEeaLkq6Pk-i__w" origin="_f6wcwIiGEeaLkq6Pk-i__w" image="_f6sygYiGEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_gsRZQIiGEeaLkq6Pk-i__w" name="BT_MultiAssociationCardinality2Decoration" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_gsRZQYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_gsRZQoiGEeaLkq6Pk-i__w" key="marker" value="bt"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_gsRZQ4iGEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_gsRZUIiGEeaLkq6Pk-i__w" name="" incoming="_gsSAUYiGEeaLkq6Pk-i__w" outgoing="_gsWRxIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsRZUYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsRZUoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_gsRZU4iGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_gsSAUIiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_gsVqsoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_gsVqs4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsVqtIiGEeaLkq6Pk-i__w" name="" incoming="_gsWRxIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsVqtYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsVqtoiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_gsVqt4iGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_gsWRwYiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_gsWRwoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_gsWRw4iGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsRZRIiGEeaLkq6Pk-i__w" name="" outgoing="_gsSAUoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsRZRYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsRZRoiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_gsRZR4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsRZSIiGEeaLkq6Pk-i__w" name="" incoming="_gsSAUoiGEeaLkq6Pk-i__w _gsSAU4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsRZSYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsRZSoiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_gsRZS4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsRZTIiGEeaLkq6Pk-i__w" name="" outgoing="_gsSAUYiGEeaLkq6Pk-i__w _gsSAU4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsRZTYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsRZToiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_gsRZT4iGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAUYiGEeaLkq6Pk-i__w" source="_gsRZTIiGEeaLkq6Pk-i__w" target="_gsRZUIiGEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAUoiGEeaLkq6Pk-i__w" source="_gsRZRIiGEeaLkq6Pk-i__w" target="_gsRZSIiGEeaLkq6Pk-i__w">
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAU4iGEeaLkq6Pk-i__w" source="_gsRZTIiGEeaLkq6Pk-i__w" target="_gsRZSIiGEeaLkq6Pk-i__w">
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsWRxIiGEeaLkq6Pk-i__w" source="_gsRZUIiGEeaLkq6Pk-i__w" target="_gsVqtIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsW40IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsW40YiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_gsSAVIiGEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAVYiGEeaLkq6Pk-i__w" name="" outgoing="_gsSAe4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAVoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAV4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_gsSAWIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAWYiGEeaLkq6Pk-i__w" name="" incoming="_gsSAe4iGEeaLkq6Pk-i__w _gsSAh4iGEeaLkq6Pk-i__w" outgoing="_gsSAfoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAWoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAW4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_gsSAXIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAXYiGEeaLkq6Pk-i__w" name="" incoming="_gsSAfoiGEeaLkq6Pk-i__w _gsSAgYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAXoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAX4iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_gsSAYIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAYYiGEeaLkq6Pk-i__w" name="" outgoing="_gsSAeIiGEeaLkq6Pk-i__w _gsSAh4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAYoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAY4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_gsSAZIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAZYiGEeaLkq6Pk-i__w" name="" incoming="_gsSAeIiGEeaLkq6Pk-i__w" outgoing="_gsSAdYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAZoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAZ4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_gsSAaIiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_gsSAaYiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_gsVqsIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_gsVqsYiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAaoiGEeaLkq6Pk-i__w" name="" incoming="_gsSAdYiGEeaLkq6Pk-i__w _gsSAhIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAa4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAbIiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_gsSAbYiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_gsSAboiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_gsSAb4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_gsSAcIiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_gsSAcYiGEeaLkq6Pk-i__w" name="" outgoing="_gsSAgYiGEeaLkq6Pk-i__w _gsSAhIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAcoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAc4iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+          <annotations xmi:id="_gsSAdIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAdYiGEeaLkq6Pk-i__w" source="_gsSAZYiGEeaLkq6Pk-i__w" target="_gsSAaoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAdoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAd4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAeIiGEeaLkq6Pk-i__w" source="_gsSAYYiGEeaLkq6Pk-i__w" target="_gsSAZYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAeYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAeoiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAe4iGEeaLkq6Pk-i__w" source="_gsSAVYiGEeaLkq6Pk-i__w" target="_gsSAWYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAfIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAfYiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAfoiGEeaLkq6Pk-i__w" source="_gsSAWYiGEeaLkq6Pk-i__w" target="_gsSAXYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAf4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAgIiGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAgYiGEeaLkq6Pk-i__w" source="_gsSAcYiGEeaLkq6Pk-i__w" target="_gsSAXYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAgoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAg4iGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAhIiGEeaLkq6Pk-i__w" source="_gsSAcYiGEeaLkq6Pk-i__w" target="_gsSAaoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAhYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAhoiGEeaLkq6Pk-i__w" key="marker" value="&lt;++>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_gsSAh4iGEeaLkq6Pk-i__w" source="_gsSAYYiGEeaLkq6Pk-i__w" target="_gsSAWYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_gsSAiIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_gsSAiYiGEeaLkq6Pk-i__w" key="marker"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_gsSAioiGEeaLkq6Pk-i__w" origin="_gsRZRIiGEeaLkq6Pk-i__w" image="_gsSAVYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_gsSAi4iGEeaLkq6Pk-i__w" origin="_gsRZSIiGEeaLkq6Pk-i__w" image="_gsSAWYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_gsSAjIiGEeaLkq6Pk-i__w" origin="_gsRZTIiGEeaLkq6Pk-i__w" image="_gsSAYYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_gsSAjYiGEeaLkq6Pk-i__w" origin="_gsRZUIiGEeaLkq6Pk-i__w" image="_gsSAZYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_gsWRwIiGEeaLkq6Pk-i__w" origin="_gsVqtIiGEeaLkq6Pk-i__w" image="_gsSAaoiGEeaLkq6Pk-i__w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_hI8HIIiGEeaLkq6Pk-i__w" name="CC_MultiAssociationCardinality2Decoration" activated="true" checkDangling="false" injectiveMatching="true" javaImports="">
+    <annotations xmi:id="_hI8HIYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+      <annotations xmi:id="_hI8HIoiGEeaLkq6Pk-i__w" key="marker" value="cc"/>
+    </annotations>
+    <lhs xsi:type="henshin:Graph" xmi:id="_hI8HI4iGEeaLkq6Pk-i__w" name="lhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HKIiGEeaLkq6Pk-i__w" name="" incoming="_hI8HNoiGEeaLkq6Pk-i__w _hI8HN4iGEeaLkq6Pk-i__w" outgoing="_hJC01oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HKYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HKoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_hI8HK4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HJIiGEeaLkq6Pk-i__w" name="" outgoing="_hI8HNoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HJYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HJoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_hI8HJ4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI_xgIiGEeaLkq6Pk-i__w" name="" incoming="_hJC01oiGEeaLkq6Pk-i__w _hJDb4oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI_xgYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI_xgoiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_hI_xg4iGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HLIiGEeaLkq6Pk-i__w" name="" outgoing="_hI8HNYiGEeaLkq6Pk-i__w _hI8HN4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HLYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HLoiGEeaLkq6Pk-i__w"/>
+          <annotations xmi:id="_hI8HL4iGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hJBms4iGEeaLkq6Pk-i__w" name="" outgoing="_hJDb4oiGEeaLkq6Pk-i__w _hJEC8oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJBmtIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJBmtYiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_hJBmtoiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HMIiGEeaLkq6Pk-i__w" name="" incoming="_hI8HNYiGEeaLkq6Pk-i__w" outgoing="_hJCNwYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HMYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HMoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_hI8HM4iGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_hI8HNIiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_hJA_ooiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_hJA_o4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hJA_pIiGEeaLkq6Pk-i__w" name="" incoming="_hJCNwYiGEeaLkq6Pk-i__w _hJEC8oiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJA_pYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJA_poiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          <annotations xmi:id="_hJA_p4iGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_hJBmsIiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_hJBmsYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_hJBmsoiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HNYiGEeaLkq6Pk-i__w" source="_hI8HLIiGEeaLkq6Pk-i__w" target="_hI8HMIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJC00oiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJC004iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HNoiGEeaLkq6Pk-i__w" source="_hI8HJIiGEeaLkq6Pk-i__w" target="_hI8HKIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJC01IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJC01YiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HN4iGEeaLkq6Pk-i__w" source="_hI8HLIiGEeaLkq6Pk-i__w" target="_hI8HKIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJEC9YiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJEC9oiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hJCNwYiGEeaLkq6Pk-i__w" source="_hI8HMIiGEeaLkq6Pk-i__w" target="_hJA_pIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJC00IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJC00YiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hJC01oiGEeaLkq6Pk-i__w" source="_hI8HKIiGEeaLkq6Pk-i__w" target="_hI_xgIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJDb4IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJDb4YiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hJDb4oiGEeaLkq6Pk-i__w" source="_hJBms4iGEeaLkq6Pk-i__w" target="_hI_xgIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJEC8IiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJEC8YiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hJEC8oiGEeaLkq6Pk-i__w" source="_hJBms4iGEeaLkq6Pk-i__w" target="_hJA_pIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hJEC84iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hJEC9IiGEeaLkq6Pk-i__w" key="marker" value="[!tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+    </lhs>
+    <rhs xsi:type="henshin:Graph" xmi:id="_hI8HOIiGEeaLkq6Pk-i__w" name="rhs">
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HOYiGEeaLkq6Pk-i__w" name="" outgoing="_hI8HX4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HOoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HO4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_hI8HPIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HPYiGEeaLkq6Pk-i__w" name="" incoming="_hI8HX4iGEeaLkq6Pk-i__w _hI8Ha4iGEeaLkq6Pk-i__w" outgoing="_hI8HYoiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HPoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HP4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_hI8HQIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HQYiGEeaLkq6Pk-i__w" name="" incoming="_hI8HYoiGEeaLkq6Pk-i__w _hI8HZYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HQoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HQ4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_hI8HRIiGEeaLkq6Pk-i__w" key="component" value="SOURCE"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//Cardinality"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HRYiGEeaLkq6Pk-i__w" name="" outgoing="_hI8HXIiGEeaLkq6Pk-i__w _hI8Ha4iGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HRoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HR4iGEeaLkq6Pk-i__w" key="marker"/>
+          <annotations xmi:id="_hI8HSIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HSYiGEeaLkq6Pk-i__w" name="" incoming="_hI8HXIiGEeaLkq6Pk-i__w" outgoing="_hI8HWYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HSoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HS4iGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          <annotations xmi:id="_hI8HTIiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Connector"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_hI8HTYiGEeaLkq6Pk-i__w" value="'Association_BranchEdge'">
+          <annotations xmi:id="_hJA_oIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_hJA_oYiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HToiGEeaLkq6Pk-i__w" name="" incoming="_hI8HWYiGEeaLkq6Pk-i__w _hI8HaIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HT4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HUIiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_hI8HUYiGEeaLkq6Pk-i__w" key="component" value="TARGET"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//DecorationNode"/>
+        <attributes xsi:type="henshin:Attribute" xmi:id="_hI8HUoiGEeaLkq6Pk-i__w" value="'Association_BranchMultiplicityLabel'">
+          <annotations xmi:id="_hI8HU4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+            <annotations xmi:id="_hI8HVIiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          </annotations>
+          <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/type"/>
+        </attributes>
+      </nodes>
+      <nodes xsi:type="henshin:Node" xmi:id="_hI8HVYiGEeaLkq6Pk-i__w" name="" outgoing="_hI8HZYiGEeaLkq6Pk-i__w _hI8HaIiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HVoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HV4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+          <annotations xmi:id="_hI8HWIiGEeaLkq6Pk-i__w" key="component" value="CORRESPONDENCE"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace"/>
+      </nodes>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HWYiGEeaLkq6Pk-i__w" source="_hI8HSYiGEeaLkq6Pk-i__w" target="_hI8HToiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HWoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HW4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/children"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HXIiGEeaLkq6Pk-i__w" source="_hI8HRYiGEeaLkq6Pk-i__w" target="_hI8HSYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HXYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HXoiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HX4iGEeaLkq6Pk-i__w" source="_hI8HOYiGEeaLkq6Pk-i__w" target="_hI8HPYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HYIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HYYiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MultiAssociation/connectorEnds"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HYoiGEeaLkq6Pk-i__w" source="_hI8HPYiGEeaLkq6Pk-i__w" target="_hI8HQYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HY4iGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HZIiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.cooperateproject.de/modeling/textual/cls/Cls#//MemberEnd/cardinality"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HZYiGEeaLkq6Pk-i__w" source="_hI8HVYiGEeaLkq6Pk-i__w" target="_hI8HQYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HZoiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HZ4iGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8HaIiGEeaLkq6Pk-i__w" source="_hI8HVYiGEeaLkq6Pk-i__w" target="_hI8HToiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HaYiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HaoiGEeaLkq6Pk-i__w" key="marker" value="&lt;tr>"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/target"/>
+      </edges>
+      <edges xsi:type="henshin:Edge" xmi:id="_hI8Ha4iGEeaLkq6Pk-i__w" source="_hI8HRYiGEeaLkq6Pk-i__w" target="_hI8HPYiGEeaLkq6Pk-i__w">
+        <annotations xmi:id="_hI8HbIiGEeaLkq6Pk-i__w" key="de.tu-berlin.tfs.henshin.tgg" value="tgg">
+          <annotations xmi:id="_hI8HbYiGEeaLkq6Pk-i__w" key="marker" value="[tr]"/>
+        </annotations>
+        <type href="http://www.eclipse.org/emf/2011/Henshin/Trace#//Trace/source"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_hI8HboiGEeaLkq6Pk-i__w" origin="_hI8HJIiGEeaLkq6Pk-i__w" image="_hI8HOYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_hI8Hb4iGEeaLkq6Pk-i__w" origin="_hI8HKIiGEeaLkq6Pk-i__w" image="_hI8HPYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_hI8HcIiGEeaLkq6Pk-i__w" origin="_hI8HLIiGEeaLkq6Pk-i__w" image="_hI8HRYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_hI8HcYiGEeaLkq6Pk-i__w" origin="_hI8HMIiGEeaLkq6Pk-i__w" image="_hI8HSYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_hJAYkIiGEeaLkq6Pk-i__w" origin="_hI_xgIiGEeaLkq6Pk-i__w" image="_hI8HQYiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_hJA_qIiGEeaLkq6Pk-i__w" origin="_hJA_pIiGEeaLkq6Pk-i__w" image="_hI8HToiGEeaLkq6Pk-i__w"/>
+    <mappings xmi:id="_hJCNwIiGEeaLkq6Pk-i__w" origin="_hJBms4iGEeaLkq6Pk-i__w" image="_hI8HVYiGEeaLkq6Pk-i__w"/>
   </units>
 </henshin:Module>
