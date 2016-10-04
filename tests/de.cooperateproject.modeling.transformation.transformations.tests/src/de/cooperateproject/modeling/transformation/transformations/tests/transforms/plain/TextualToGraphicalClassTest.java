@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -64,6 +66,7 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 		ModelExtent transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI);
 
 		EObject expected = getRootElement(resultModelURI);
+		assertEquals(1, transformationResult.getContents().size());
 		EObject actual = transformationResult.getContents().get(0);
 		EcoreUtil.resolveAll(getResourceSet());
 		
@@ -99,6 +102,7 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 		
 		// execute transformation (incremental)
 		transformationResult = new BasicModelExtent(resultResource.getContents());
+		assertEquals(1, transformationResult.getContents().size());
 		EObject expected = EcoreUtil.copy(transformationResult.getContents().get(0));
 		transformationTrace = new Trace(traceResource.getContents());		
 		transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationResult, transformationTrace);

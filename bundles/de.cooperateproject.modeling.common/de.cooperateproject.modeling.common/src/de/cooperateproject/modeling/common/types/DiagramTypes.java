@@ -1,9 +1,7 @@
-package de.cooperateproject.modeling.transformation.transformations.registry;
+package de.cooperateproject.modeling.common.types;
 
 import java.util.Arrays;
 import java.util.Optional;
-
-import com.google.common.collect.Iterables;
 
 public enum DiagramTypes {
 
@@ -24,10 +22,6 @@ public enum DiagramTypes {
 	}
 	
 	public static Optional<DiagramTypes> getByName(String name) {
-		com.google.common.base.Optional<DiagramTypes> foundType = Iterables.tryFind(Arrays.asList(values()), t -> t.getName().equals(name));
-		if (foundType.isPresent()) {
-			Optional.of(foundType.get());
-		}
-		return Optional.empty();
+		return Arrays.stream(values()).filter(t -> t.getName().equals(name)).findFirst();
 	}
 }

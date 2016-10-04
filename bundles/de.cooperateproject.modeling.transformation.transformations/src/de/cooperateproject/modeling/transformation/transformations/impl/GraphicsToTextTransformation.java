@@ -3,8 +3,8 @@ package de.cooperateproject.modeling.transformation.transformations.impl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.cooperateproject.modeling.transformation.transformations.registry.ConcreteSyntaxTypes;
-import de.cooperateproject.modeling.transformation.transformations.registry.DiagramTypes;
+import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationCharacteristic;
 
 public class GraphicsToTextTransformation extends TransformationBase {

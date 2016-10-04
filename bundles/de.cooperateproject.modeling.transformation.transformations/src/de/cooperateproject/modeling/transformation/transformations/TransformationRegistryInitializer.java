@@ -12,10 +12,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
+import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
 import de.cooperateproject.modeling.transformation.transformations.impl.GraphicsToTextTransformation;
 import de.cooperateproject.modeling.transformation.transformations.impl.TextToGraphicsTransformation;
-import de.cooperateproject.modeling.transformation.transformations.registry.DiagramTypes;
 import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactory;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactoryRegistry;

@@ -27,13 +27,13 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 		this.characteristics = characteristics;
 		this.sourceURI = source;
 		this.targetURI = target;
-		this.traceTransformation = createTraceTransformation(characteristics, targetURI, rs);
-		rs.getResources().stream().filter(r -> "qvto".equals(r.getURI().scheme())).forEach(r -> r.unload());
-		rs.getResources().stream().filter(r -> !r.isLoaded()).forEach(r -> rs.getResources().remove(r));
+		this.traceTransformation = createTraceTransformation(characteristics, sourceURI, targetURI, rs);
+//		rs.getResources().stream().filter(r -> "qvto".equals(r.getURI().scheme())).forEach(r -> r.unload());
+//		rs.getResources().stream().filter(r -> !r.isLoaded()).forEach(r -> rs.getResources().remove(r));
 	}
 	
-	private TraceTransformation createTraceTransformation(TransformationCharacteristic sourceCharacteristics, URI targetModelURI, ResourceSet rs) {
-		return new TraceTransformationBase(sourceCharacteristics, targetModelURI, rs);
+	private TraceTransformation createTraceTransformation(TransformationCharacteristic sourceCharacteristics, URI sourceModelURI, URI targetModelURI, ResourceSet rs) {
+		return new TraceTransformationBase(sourceCharacteristics, sourceModelURI, targetModelURI, rs);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 		URI transformationURI = TransformationNameUtils.createTransformationURI(getCharacteristics());
 		URI umlURI = createUMLURI(sourceURI, targetURI);
 		List<URI> transformationParameters = Lists.newArrayList(sourceURI, targetURI, umlURI, UML_PRIMITIVE_TYPES);
-		IStatus transformationStatus = transform(transformationURI, createTraceURI(traceBase), transformationParameters);
+		IStatus transformationStatus = transform(transformationURI, createTraceURI(traceBase, sourceURI, targetURI), transformationParameters);
 		if (transformationStatus.getSeverity() == IStatus.OK) {
 			IStatus traceTransformationStatus = traceTransformation.transform(traceBase);
 			if (traceTransformationStatus.getSeverity() != IStatus.OK) {
@@ -62,8 +62,8 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 	
 	protected abstract URI getGraphicalModelURI(URI from, URI to);
 
-	private URI createTraceURI(URI traceBase) {
-		return TransformationNameUtils.createTraceURI(getCharacteristics(), traceBase);
+	private URI createTraceURI(URI traceBase, URI from, URI to) {
+		return TransformationNameUtils.createTraceURI(getCharacteristics(), from, to, traceBase);
 	}
 
 }

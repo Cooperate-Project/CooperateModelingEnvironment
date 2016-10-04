@@ -1,6 +1,6 @@
 import TransformationUtils_Class;
 
-transformation PapyrusClass2Text(in graphical : NOTATION, out textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+transformation PapyrusClass2Text(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');

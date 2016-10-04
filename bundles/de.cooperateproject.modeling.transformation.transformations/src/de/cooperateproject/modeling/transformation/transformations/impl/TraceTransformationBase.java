@@ -13,12 +13,14 @@ import de.cooperateproject.modeling.transformation.transformations.registry.Tran
 public class TraceTransformationBase extends DomainIndependentTransformationBase implements TraceTransformation {
 
 	private final TransformationCharacteristic sourceTransformationCharacteristic;
+	private final URI sourceModelURI;
 	private final URI targetModelURI;
 
-	public TraceTransformationBase(TransformationCharacteristic sourceCharacteristics, URI targetModelURI,
+	public TraceTransformationBase(TransformationCharacteristic sourceCharacteristics, URI sourceModelURI, URI targetModelURI,
 			ResourceSet rs) {
 		super(rs);
 		this.sourceTransformationCharacteristic = sourceCharacteristics;
+		this.sourceModelURI = sourceModelURI;
 		this.targetModelURI = targetModelURI;
 	}
 
@@ -27,8 +29,8 @@ public class TraceTransformationBase extends DomainIndependentTransformationBase
 		URI transformationURI = TransformationNameUtils.createTraceTransformationURI(sourceTransformationCharacteristic);
 		//URI sourceTransformationURI = TransformationNameUtils.createTransformationURI(sourceTransformationCharacteristic);
 		URI targetTransformationURI = TransformationNameUtils.createTransformationURI(sourceTransformationCharacteristic.inverse());
-		URI traceSourceURI = TransformationNameUtils.createTraceURI(sourceTransformationCharacteristic, traceBase);
-		URI traceTargetURI = TransformationNameUtils.createTraceURI(sourceTransformationCharacteristic.inverse(), traceBase);
+		URI traceSourceURI = TransformationNameUtils.createTraceURI(sourceTransformationCharacteristic, sourceModelURI, targetModelURI, traceBase);
+		URI traceTargetURI = TransformationNameUtils.createTraceURI(sourceTransformationCharacteristic.inverse(), targetModelURI, sourceModelURI, traceBase);
 		
 		Collection<URI> parameterURIs = Arrays.asList(traceSourceURI, traceTargetURI, targetModelURI, targetTransformationURI);
 		return transform(transformationURI, parameterURIs);

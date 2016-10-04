@@ -13,7 +13,6 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import de.cooperateproject.ui.nature.CooperateProjectNature;
 import de.cooperateproject.ui.nature.NatureUtils;
-import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 
 public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard implements INewWizard {
