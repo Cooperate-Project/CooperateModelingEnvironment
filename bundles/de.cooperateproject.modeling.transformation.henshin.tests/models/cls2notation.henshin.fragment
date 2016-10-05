@@ -37,7 +37,7 @@
   <tgg:TEdge xmi:id="_JLVfkoooEeaLkq6Pk-i__w">
     <graph href="cls2notation.henshin#_2ocBk4omEeaLkq6Pk-i__w"/>
   </tgg:TEdge>
-  <tgg:TripleGraph xmi:id="_2ocBlIomEeaLkq6Pk-i__w" dividerSC_X="300" dividerCT_X="400" dividerMaxY="323"/>
+  <tgg:TripleGraph xmi:id="_2ocBlIomEeaLkq6Pk-i__w" dividerSC_X="300" dividerCT_X="400" dividerMaxY="324"/>
   <tgg:TNode xmi:id="_35SlcIomEeaLkq6Pk-i__w" x="161" y="115">
     <graph href="cls2notation.henshin#_2ocBlIomEeaLkq6Pk-i__w"/>
   </tgg:TNode>
@@ -148,7 +148,7 @@
   <tgg:TEdge xmi:id="_0PHJ84iKEeaLkq6Pk-i__w">
     <graph href="cls2notation.henshin#_EwvtE4iHEeaLkq6Pk-i__w"/>
   </tgg:TEdge>
-  <tgg:TripleGraph xmi:id="_EwvtFIiHEeaLkq6Pk-i__w" dividerSC_X="300" dividerCT_X="441" dividerMaxY="335"/>
+  <tgg:TripleGraph xmi:id="_EwvtFIiHEeaLkq6Pk-i__w" dividerSC_X="300" dividerCT_X="441" dividerMaxY="336"/>
   <tgg:TNode xmi:id="_GuXQUIiHEeaLkq6Pk-i__w" x="34" y="88">
     <graph href="cls2notation.henshin#_EwvtFIiHEeaLkq6Pk-i__w"/>
   </tgg:TNode>
@@ -1344,13 +1344,19 @@
   <tgg:TNode xmi:id="_KVzlIIbnEeaLkq6Pk-i__w">
     <graph href="cls2notation.henshin#_SQQWc3UQEeaP7--o8tUdyg"/>
   </tgg:TNode>
+  <tgg:TNode xmi:id="_CbREQIrIEeaLkq6Pk-i__w">
+    <graph href="cls2notation.henshin#_SQQWc3UQEeaP7--o8tUdyg"/>
+  </tgg:TNode>
   <tgg:TEdge xmi:id="_fIPVg3UQEeaP7--o8tUdyg">
     <graph href="cls2notation.henshin#_SQQWc3UQEeaP7--o8tUdyg"/>
   </tgg:TEdge>
   <tgg:TEdge xmi:id="_fwJDAHUQEeaP7--o8tUdyg">
     <graph href="cls2notation.henshin#_SQQWc3UQEeaP7--o8tUdyg"/>
   </tgg:TEdge>
-  <tgg:TEdge xmi:id="_LTNBgobnEeaLkq6Pk-i__w">
+  <tgg:TEdge xmi:id="_GDDqUorIEeaLkq6Pk-i__w">
+    <graph href="cls2notation.henshin#_SQQWc3UQEeaP7--o8tUdyg"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_HE7-EorIEeaLkq6Pk-i__w">
     <graph href="cls2notation.henshin#_SQQWc3UQEeaP7--o8tUdyg"/>
   </tgg:TEdge>
   <tgg:TripleGraph xmi:id="_SQQWdHUQEeaP7--o8tUdyg" dividerSC_X="300" dividerCT_X="400" dividerMaxY="460"/>
@@ -1372,10 +1378,10 @@
   <tgg:TNode xmi:id="_ZNkt4HUQEeaP7--o8tUdyg" x="353" y="56">
     <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
   </tgg:TNode>
-  <tgg:TNode xmi:id="_Z_RQkHUQEeaP7--o8tUdyg" x="326" y="247">
+  <tgg:TNode xmi:id="_Z_RQkHUQEeaP7--o8tUdyg" x="329" y="317">
     <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
   </tgg:TNode>
-  <tgg:TNode xmi:id="_eHrQYHUQEeaP7--o8tUdyg" x="319" y="336">
+  <tgg:TNode xmi:id="_eHrQYHUQEeaP7--o8tUdyg" x="323" y="233">
     <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
   </tgg:TNode>
   <tgg:TNode xmi:id="_IHEtUHmtEeasDLKCwVDtNw" x="629" y="390">
@@ -1391,6 +1397,9 @@
     <node href="cls2notation.henshin#_Z_qfgHmtEeasDLKCwVDtNw"/>
   </tgg:TAttribute>
   <tgg:TNode xmi:id="_KVy-EIbnEeaLkq6Pk-i__w" x="96" y="145">
+    <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
+  </tgg:TNode>
+  <tgg:TNode xmi:id="_CbQdMIrIEeaLkq6Pk-i__w" x="338" y="150">
     <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
   </tgg:TNode>
   <tgg:TEdge xmi:id="_fIPVgHUQEeaP7--o8tUdyg">
@@ -1423,7 +1432,10 @@
   <tgg:TEdge xmi:id="_K8Nd0IbnEeaLkq6Pk-i__w">
     <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
   </tgg:TEdge>
-  <tgg:TEdge xmi:id="_LTMacIbnEeaLkq6Pk-i__w">
+  <tgg:TEdge xmi:id="_GDDDQIrIEeaLkq6Pk-i__w">
+    <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
+  </tgg:TEdge>
+  <tgg:TEdge xmi:id="_HE7XAIrIEeaLkq6Pk-i__w">
     <graph href="cls2notation.henshin#_SQQWdHUQEeaP7--o8tUdyg"/>
   </tgg:TEdge>
   <tgg:TGGRule xmi:id="_xDed8HUOEeaP7--o8tUdyg"/>
@@ -1949,7 +1961,7 @@
   </tgg:TEdge>
   <tgg:TGGRule xmi:id="_n5EdkHRCEealXoPpvgbLvA"/>
   <tgg:TripleGraph xmi:id="_n5Edk3RCEealXoPpvgbLvA"/>
-  <tgg:TripleGraph xmi:id="_n5EdlHRCEealXoPpvgbLvA" dividerSC_X="277" dividerCT_X="461" dividerMaxY="245"/>
+  <tgg:TripleGraph xmi:id="_n5EdlHRCEealXoPpvgbLvA" dividerSC_X="277" dividerCT_X="461" dividerMaxY="247"/>
   <tgg:TNode xmi:id="_sFL4sHRCEealXoPpvgbLvA" x="98" y="60">
     <graph href="cls2notation.henshin#_n5EdlHRCEealXoPpvgbLvA"/>
   </tgg:TNode>
