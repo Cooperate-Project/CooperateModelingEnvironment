@@ -188,9 +188,9 @@ public abstract class DomainIndependentTransformationBase {
 		if ("qvto".equals(uri.fileExtension())) {
 			rootObject = getQVTOResource(uri).getFirstTransformation();
 		} else if (uri.hasFragment()) {
-			rootObject = rs.getEObject(uri, false);
-		} else {
-			Resource r = rs.getResource(uri, false);
+			rootObject = rs.getEObject(uri, true);
+		} else if (rs.getURIConverter().exists(uri, Collections.emptyMap())) {
+			Resource r = rs.getResource(uri, true);
 			rootObject = r != null && !r.getContents().isEmpty() ? r.getContents().get(0) : null;
 		}
 		return createModelExtent(rootObject);
