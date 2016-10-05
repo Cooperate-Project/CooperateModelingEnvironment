@@ -12,7 +12,7 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UCRmQEKSEeaXCq-9LXQNWQ" value="*"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_sLlvoEKSEeaXCq-9LXQNWQ" name="TypeName">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </ownedAttribute>
     <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_YCfg4HjsEea7c9xs28iX1A" client="_QHekoEKSEeaXCq-9LXQNWQ" supplier="_PJ3TUHjsEea7c9xs28iX1A" contract="_PJ3TUHjsEea7c9xs28iX1A"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_WwgHEEKSEeaXCq-9LXQNWQ" name="drive">
