@@ -5,68 +5,36 @@
     <target href="ft_classDiagram.notation#/"/>
   </trace:Trace>
   <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.3"/>
+    <target href="ft_classDiagram.notation#//@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0"/>
+    <target href="ft_classDiagram.notation#//@children.1"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.4"/>
+    <target href="ft_classDiagram.notation#//@children.2"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.2"/>
+    <target href="ft_classDiagram.notation#//@children.3"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.1"/>
+    <target href="ft_classDiagram.notation#//@children.4"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0"/>
+    <target href="ft_classDiagram.notation#//@children.5"/>
+  </trace:Trace>
+  <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.4"/>
     <target href="ft_classDiagram.notation#//@edges.0"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.1"/>
     <target href="ft_classDiagram.notation#//@edges.1"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.4"/>
-    <target href="ft_classDiagram.notation#//@children.0"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.2"/>
-    <target href="ft_classDiagram.notation#//@children.1"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.1"/>
-    <target href="ft_classDiagram.notation#//@children.2"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0"/>
-    <target href="ft_classDiagram.notation#//@children.3"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@connectors.2"/>
-    <target href="ft_classDiagram.notation#//@edges.2"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@connectors.5"/>
-    <target href="ft_classDiagram.notation#//@edges.3"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.3"/>
-    <target href="ft_classDiagram.notation#//@children.5"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.2/@members.0"/>
-    <target href="ft_classDiagram.notation#//@children.1/@children.1/@children.0"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.1/@members.0"/>
-    <target href="ft_classDiagram.notation#//@children.2/@children.1/@children.0"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0/@members.0"/>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.2/@members.0"/>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.1/@members.0"/>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.3/@members.0/@parameters.0"/>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0/@members.1/@parameters.0"/>
-    <target href="ft_classDiagram.notation#//@children.3/@children.1/@children.0"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0/@members.1"/>
-    <target href="ft_classDiagram.notation#//@children.3/@children.2/@children.0"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.3/@members.0"/>
-    <target href="ft_classDiagram.notation#//@children.5/@children.2/@children.0"/>
-  </trace:Trace>
-  <trace:Trace>
-    <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0"/>
-    <target href="ft_classDiagram.notation#//@children.6"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.4/@properties/@cardinalityLeft"/>
@@ -85,27 +53,54 @@
     <target href="ft_classDiagram.notation#//@edges.1/@children.3"/>
   </trace:Trace>
   <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@connectors.2"/>
+    <target href="ft_classDiagram.notation#//@edges.3"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@connectors.5"/>
+    <target href="ft_classDiagram.notation#//@edges.4"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.2/@members.0"/>
+    <target href="ft_classDiagram.notation#//@children.3/@children.1/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.1/@members.0"/>
+    <target href="ft_classDiagram.notation#//@children.4/@children.1/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0/@members.0"/>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.2/@members.0"/>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.1/@members.0"/>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0/@members.1/@parameters.0"/>
+    <target href="ft_classDiagram.notation#//@children.5/@children.1/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
+    <source href="ClassDiagram.xmi#//@rootPackage/@classifiers.0/@members.1"/>
+    <target href="ft_classDiagram.notation#//@children.5/@children.2/@children.0"/>
+  </trace:Trace>
+  <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0/@connectorEnds.2"/>
-    <target href="ft_classDiagram.notation#//@edges.6"/>
+    <target href="ft_classDiagram.notation#//@edges.5"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0/@connectorEnds.1"/>
-    <target href="ft_classDiagram.notation#//@edges.7"/>
+    <target href="ft_classDiagram.notation#//@edges.6"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0/@connectorEnds.0"/>
-    <target href="ft_classDiagram.notation#//@edges.8"/>
+    <target href="ft_classDiagram.notation#//@edges.7"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0/@connectorEnds.2/@cardinality"/>
-    <target href="ft_classDiagram.notation#//@edges.6/@children.1"/>
+    <target href="ft_classDiagram.notation#//@edges.5/@children.1"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0/@connectorEnds.1/@cardinality"/>
-    <target href="ft_classDiagram.notation#//@edges.7/@children.1"/>
+    <target href="ft_classDiagram.notation#//@edges.6/@children.1"/>
   </trace:Trace>
   <trace:Trace>
     <source href="ClassDiagram.xmi#//@rootPackage/@connectors.0/@connectorEnds.0/@cardinality"/>
-    <target href="ft_classDiagram.notation#//@edges.8/@children.1"/>
+    <target href="ft_classDiagram.notation#//@edges.7/@children.1"/>
   </trace:Trace>
 </xmi:XMI>
