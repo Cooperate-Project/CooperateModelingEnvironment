@@ -10,17 +10,18 @@ import org.eclipse.ui.IStartup;
 public class StartupBuilder implements IStartup {
 
 	private static final Logger LOGGER = Logger.getLogger(StartupBuilder.class);
-	
+
 	@Override
 	public void earlyStartup() {
-		try {
-			for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
-				if(NatureUtils.hasCooperateNature(project)){
+		for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			try {
+				if (project.isOpen() && NatureUtils.hasCooperateNature(project)) {
 					project.build(IncrementalProjectBuilder.CLEAN_BUILD, null);
 				}
+			} catch (CoreException e) {
+				LOGGER.error("Exception during rebuild on startup", e);
 			}
-		} catch (CoreException e) {
-			LOGGER.error("Exception during rebuild on startup", e);
+
 		}
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(new ProjectOpenedListener());
 	}

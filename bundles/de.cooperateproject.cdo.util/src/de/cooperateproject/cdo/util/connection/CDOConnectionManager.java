@@ -1,6 +1,5 @@
 package de.cooperateproject.cdo.util.connection;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
@@ -63,7 +62,7 @@ public enum CDOConnectionManager {
 		try {
 			int branchId = 0;
 			if (createBranch) {
-				CDOBranch newBranch = session.getBranchManager().getMainBranch().createBranch(createRandomBranchName());
+				CDOBranch newBranch = CDOHelper.createRandomBranchFromMain(session);
 				branchId = newBranch.getID();
 			}
 			return CDOHelper.createCheckout(repository, branchId);			
@@ -82,10 +81,6 @@ public enum CDOConnectionManager {
 			throw new IllegalStateException("This project has not been registered yet.");
 		}
 		return repository;
-	}
-	
-	private static String createRandomBranchName() {
-		return String.format("z_cooperate_%s_%s", System.currentTimeMillis(), RandomStringUtils.randomAlphanumeric(2));
 	}
 
 }

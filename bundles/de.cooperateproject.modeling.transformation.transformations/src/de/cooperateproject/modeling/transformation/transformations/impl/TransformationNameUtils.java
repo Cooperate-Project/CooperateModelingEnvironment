@@ -5,9 +5,9 @@ import java.util.Optional;
 import org.apache.commons.lang3.Validate;
 import org.eclipse.emf.common.util.URI;
 
+import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
-import de.cooperateproject.modeling.transformation.transformations.registry.ConcreteSyntaxTypes;
-import de.cooperateproject.modeling.transformation.transformations.registry.DiagramTypes;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationCharacteristic;
 
 public class TransformationNameUtils {
@@ -26,9 +26,10 @@ public class TransformationNameUtils {
 		return URI.createPlatformPluginURI(path, true);
 	}
 	
-	public static URI createTraceURI(TransformationCharacteristic characteristics, URI traceBase) {
+	public static URI createTraceURI(TransformationCharacteristic characteristics, URI from, URI to, URI traceBase) {
 		final String fileName = TransformationNameUtils.createTransformationFileName(characteristics);
-		return traceBase.appendSegment(fileName).trimFileExtension().appendFileExtension("qvtotrace");
+		String modelSpecificPart = String.format("_f_%s_t_%s", from.lastSegment(), to.lastSegment());
+		return traceBase.appendSegment(modelSpecificPart + fileName).trimFileExtension().appendFileExtension("qvtotrace");
 	}
 	
 	public static TransformationCharacteristic parseTransformationName(String name) {

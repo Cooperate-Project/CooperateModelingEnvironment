@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.m2m.internal.qvt.oml.trace.EDirectionKind;
+import org.eclipse.m2m.internal.qvt.oml.trace.EMappingResults;
 import org.eclipse.m2m.internal.qvt.oml.trace.EValue;
 import org.eclipse.m2m.internal.qvt.oml.trace.TracePackage;
 import org.eclipse.m2m.internal.qvt.oml.trace.TraceRecord;
@@ -30,6 +32,7 @@ import org.eclipse.m2m.qvt.oml.util.Trace;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 
+import de.cooperateproject.modeling.transformation.transformations.impl.DomainIndependentTransformationBase;
 import de.cooperateproject.modeling.transformation.transformations.tests.util.ModelComparator;
 
 /**
@@ -49,21 +52,21 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 			if (mappingOperationName != 0) {
 				return mappingOperationName;
 			}
-			
+
 			String selfType1 = o1.getContext().getContext().getType();
 			String selfType2 = o2.getContext().getContext().getType();
 			int selfType = selfType1.compareTo(selfType2);
 			if (selfType != 0) {
 				return selfType;
 			}
-			
+
 			String resultType1 = o1.getResult().getResult().get(0).getType();
 			String resultType2 = o2.getResult().getResult().get(0).getType();
 			int resultType = resultType1.compareTo(resultType2);
 			if (resultType != 0) {
 				return resultType;
 			}
-			
+
 			Object self1 = o1.getContext().getContext().getValue().getModelElement();
 			Object self2 = o2.getContext().getContext().getValue().getModelElement();
 			int self = (self2 == null ? 0 : self2.hashCode()) - (self1 == null ? 0 : self1.hashCode());
@@ -83,14 +86,37 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 		}
 
 	}
-	
-	private static final File DEBUG_SERIALIZATION_DIR = null;
 
+	private static final File DEBUG_SERIALIZATION_DIR = null;
+	
+	protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters, Trace traceModel) throws IOException {
+		super.runTransformation(transformationURI, transformationParameters, traceModel);
+		repairTransformationTrace(traceModel);
+	}
+	
 	protected static void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
 		Comparison comparisonResult = ModelComparator.compare(expectedModel.getContents().get(0),
 				actualModel.getContents().get(0));
-		ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents()).stream().filter(o -> o instanceof EValue)
-				.map(o -> (EValue) o).forEach(o -> replaceModelElementWithMatchingOne(o, comparisonResult));
+		ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
+		allContents.stream().filter(o -> o instanceof EValue).map(o -> (EValue) o)
+				.forEach(o -> replaceModelElementWithMatchingOne(o, comparisonResult));
+	}
+
+	private static void repairTransformationTrace(Trace trace) {
+		ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
+		allContents.stream().filter(EMappingResults.class::isInstance).map(EMappingResults.class::cast)
+				.forEach(TraceRecordTransformationTestBase::repairResultDirection);
+	}
+	
+	/**
+	 * Fixes the direction of result parameters in traces.
+	 * 
+	 * @param results
+	 *            The object to be fixed.
+	 * @see DomainIndependentTransformationBase#repairTraceObject
+	 */
+	private static void repairResultDirection(EMappingResults results) {
+		results.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
 	}
 
 	protected void assertTraceEquals(Trace t2gTraceModel, ModelExtent actualTraceModel) throws Exception {
@@ -132,12 +158,13 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 	private void debugSerialization(EObject expectedTrace, Collection<EObject> actualTrace) throws IOException {
 		debugSerialization(Arrays.asList(expectedTrace), actualTrace);
 	}
-	
-	private void debugSerialization(Collection<EObject> expectedTrace, Collection<EObject> actualTrace) throws IOException {
+
+	private void debugSerialization(Collection<EObject> expectedTrace, Collection<EObject> actualTrace)
+			throws IOException {
 		if (DEBUG_SERIALIZATION_DIR == null) {
 			return;
 		}
-		
+
 		URI expectedURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "expectedXMI.txt").getAbsolutePath());
 		URI actualURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "actualXMI.txt").getAbsolutePath());
 
@@ -170,7 +197,5 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 		ECollections.sort(((org.eclipse.m2m.internal.qvt.oml.trace.Trace) trace).getTraceRecords(),
 				new TraceRecordComparator());
 	}
-
-
 
 }

@@ -1891,13 +1891,22 @@ public interface ClsPackage extends EPackage {
 	int GENERALIZATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERALIZATION__REFERENCED_ELEMENT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Generalization</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+	int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1936,13 +1945,22 @@ public interface ClsPackage extends EPackage {
 	int IMPLEMENTATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLEMENTATION__REFERENCED_ELEMENT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Implementation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
+	int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2984,6 +3002,17 @@ public interface ClsPackage extends EPackage {
 	EClass getGeneralization();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Generalization#getReferencedElement <em>Referenced Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Element</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Generalization#getReferencedElement()
+	 * @see #getGeneralization()
+	 * @generated
+	 */
+	EReference getGeneralization_ReferencedElement();
+
+	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Implementation <em>Implementation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2992,6 +3021,17 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getImplementation();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Implementation#getReferencedElement <em>Referenced Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Element</em>'.
+	 * @see de.cooperateproject.modeling.textual.cls.cls.Implementation#getReferencedElement()
+	 * @see #getImplementation()
+	 * @generated
+	 */
+	EReference getImplementation_ReferencedElement();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink <em>Comment Link</em>}'.
@@ -3829,6 +3869,14 @@ public interface ClsPackage extends EPackage {
 		EClass GENERALIZATION = eINSTANCE.getGeneralization();
 
 		/**
+		 * The meta object literal for the '<em><b>Referenced Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERALIZATION__REFERENCED_ELEMENT = eINSTANCE.getGeneralization_ReferencedElement();
+
+		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl <em>Implementation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3837,6 +3885,14 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IMPLEMENTATION = eINSTANCE.getImplementation();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPLEMENTATION__REFERENCED_ELEMENT = eINSTANCE.getImplementation_ReferencedElement();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl <em>Comment Link</em>}' class.

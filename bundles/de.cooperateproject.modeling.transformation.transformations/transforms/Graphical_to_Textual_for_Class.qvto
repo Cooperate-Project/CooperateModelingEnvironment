@@ -1,6 +1,6 @@
 import TransformationUtils_Class;
 
-transformation PapyrusClass2Text(in graphical : NOTATION, out textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+transformation PapyrusClass2Text(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
@@ -47,16 +47,15 @@ mapping notation::Node::nodeToPackage() : cls::Package
 
 query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
 {
-	// too many elements are contained by the root object, so only heuristics apply
-	return self.findRelevantEdgesByHeuristics();
+	return self.findRelevantEdgesByContainment();
 }
 
 query notation::Node::findRelevantEdges() : OrderedSet(notation::Edge)
 {
-	//TODO check if contained edges should be considered as well
-	return self.findRelevantEdgesByHeuristics();
+	return self.findRelevantEdgesByContainment();
 }
 
+/*
 query notation::View::findRelevantEdgesByHeuristics() : OrderedSet(notation::Edge)
 {
 	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for views that represent packages.');
@@ -89,6 +88,7 @@ query notation::View::findRelevantEdgesByHeuristics() : OrderedSet(notation::Edg
 	// maintain edge order	
 	return self.diagram.edges->select(e | relevantAssociations->union(relevantAssociationBranches)->union(relevantCommentLinks)->union(relevantInterfaceRealizations)->union(relevantGeneralizations)->union(relevantPackageImports)->asSet()->includes(e));
 }
+*/
 
 query notation::View::findRelevantEdgesByContainment() : OrderedSet(notation::Edge)
 {

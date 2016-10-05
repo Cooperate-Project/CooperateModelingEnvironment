@@ -104,14 +104,20 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            id="de.cooperateproject.ui.cooperateWizards"
+            id="de.cooperateproject.ui.wizards.cooperateWizards"
             name="Cooperate">
       </category>
       <wizard
-            category="de.cooperateproject.ui.cooperateWizards"
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
             class="de.cooperateproject.ui.wizards.NewCooperateProjectWizard"
             id="de.cooperateproject.ui.newCooperateProjectWizard"
             name="Cooperate Project">
+      </wizard>
+      <wizard
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard"
+            id="de.cooperateproject.ui.wizards.newClassDiagram"
+            name="Class Diagram">
       </wizard>
    </extension>
 </plugin>

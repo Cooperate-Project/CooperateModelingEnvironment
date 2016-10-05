@@ -1,5 +1,8 @@
 package de.cooperateproject.modeling.transformation.transformations.registry;
 
+import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
+import de.cooperateproject.modeling.common.types.DiagramTypes;
+
 public class TransformationCharacteristic {
 
 	private final DiagramTypes diagramType;

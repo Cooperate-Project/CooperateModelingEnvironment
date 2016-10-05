@@ -3,8 +3,10 @@ package de.cooperateproject.cdo.util.utils;
 import java.util.Arrays;
 import java.util.Properties;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.revision.CDORevision;
 import org.eclipse.emf.cdo.common.revision.CDORevisionCache;
 import org.eclipse.emf.cdo.common.revision.CDORevisionUtil;
@@ -18,6 +20,7 @@ import org.eclipse.emf.cdo.internal.explorer.repositories.RemoteCDORepository;
 import org.eclipse.emf.cdo.net4j.CDONet4jSession;
 import org.eclipse.emf.cdo.net4j.CDONet4jSessionConfiguration;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
+import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
@@ -110,6 +113,14 @@ public class CDOHelper {
 			return java.util.Optional.empty();
 		}
 		return java.util.Optional.of(checkout);
+	}
+	
+	public static CDOBranch createRandomBranchFromMain(CDOSession session) {
+		return session.getBranchManager().getMainBranch().createBranch(CDOHelper.createRandomBranchName());
+	}
+	
+	private static String createRandomBranchName() {
+		return String.format("z_cooperate_%s_%s", System.currentTimeMillis(), RandomStringUtils.randomAlphanumeric(2));
 	}
 	
 	private static Properties createProperties(String repositoryLabel, CDOConnectionSettings settings) {

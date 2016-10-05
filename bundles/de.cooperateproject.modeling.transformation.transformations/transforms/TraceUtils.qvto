@@ -98,7 +98,7 @@ query trace::TraceRecord::getResult() : trace::EValue
 
 query trace::TraceRecord::getResultMapping() : trace::VarParameterValue
 {
-	var results := self._result._result->select(kind = EDirectionKind::OUT and name = "result");
+	var results := self._result._result->select((kind = EDirectionKind::OUT or kind = EDirectionKind::INOUT) and name = "result");
 	assert error (results->size() = 1) with log('Records with multiple results are not supported.', self);
 	return results->any(true);
 }
@@ -170,7 +170,7 @@ constructor trace::VarParameterValue::VarParameterValue(parameterName : String, 
 constructor trace::EMappingResults::EMappingResults(typeName : String, resultObject : ecore::EObject)
 {
 	result.result := object trace::VarParameterValue {
-		kind := trace::EDirectionKind::OUT;
+		kind := trace::EDirectionKind::INOUT;
 		name := "result";
 		type := typeName;
 		value := new EValue(resultObject);

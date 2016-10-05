@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.internal.qvt.oml.evaluator.QVTEvaluationOptions;
 import org.eclipse.m2m.internal.qvt.oml.expressions.DirectionKind;
 import org.eclipse.m2m.internal.qvt.oml.expressions.OperationalTransformation;
+import org.eclipse.m2m.internal.qvt.oml.trace.EDirectionKind;
+import org.eclipse.m2m.internal.qvt.oml.trace.EMappingResults;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
@@ -39,16 +41,17 @@ public abstract class DomainIndependentTransformationBase {
 	protected DomainIndependentTransformationBase(ResourceSet rs) {
 		this.rs = rs;
 	}
-	
+
 	protected IStatus transform(URI transformationURI, Collection<URI> parameterURIs) throws IOException {
 		return transform(transformationURI, Optional.empty(), parameterURIs);
 	}
-	
+
 	protected IStatus transform(URI transformationURI, URI traceURI, Collection<URI> parameterURIs) throws IOException {
 		return transform(transformationURI, Optional.of(traceURI), parameterURIs);
 	}
 
-	private IStatus transform(URI transformationURI, Optional<URI> traceURI, Collection<URI> parameterURIs) throws IOException {
+	private IStatus transform(URI transformationURI, Optional<URI> traceURI, Collection<URI> parameterURIs)
+			throws IOException {
 		final List<Pair<ModelExtent, Resource>> transformationResources = Lists.newArrayList();
 		for (URI parameterURI : parameterURIs) {
 			transformationResources.add(createPair(createModelExtent(parameterURI), createResource(parameterURI)));
@@ -148,7 +151,19 @@ public abstract class DomainIndependentTransformationBase {
 		}
 		traceResource.getContents().clear();
 		traceResource.getContents().addAll(traceModel.get().getTraceContent());
+		traceResource.getAllContents().forEachRemaining(DomainIndependentTransformationBase::repairTraceObject);
 		traceResource.save(Collections.emptyMap());
+	}
+
+	private static void repairTraceObject(EObject obj) {
+		// QVTo removes resources of EObjects that are stored in a trace with
+		// direction OUT as of commit 8578144 (see bug 478006). This breaks CDO
+		// legacy models. Unfortunately, traces store results always as OUT.
+		// Therefore, we set the direction kind to INOUT.
+		if (obj instanceof EMappingResults) {
+			EMappingResults result = (EMappingResults) obj;
+			result.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
+		}
 	}
 
 	private Resource createResource(URI uri) throws IOException {
@@ -160,7 +175,7 @@ public abstract class DomainIndependentTransformationBase {
 			return rs.createResource(uri);
 		}
 	}
-	
+
 	private QVTOResource getQVTOResource(URI uri) throws IOException {
 		if (!specialMappings.containsKey(uri)) {
 			specialMappings.put(uri, new QVTOResource(uri, rs.getPackageRegistry()));
@@ -173,10 +188,10 @@ public abstract class DomainIndependentTransformationBase {
 		if ("qvto".equals(uri.fileExtension())) {
 			rootObject = getQVTOResource(uri).getFirstTransformation();
 		} else if (uri.hasFragment()) {
-			rootObject = rs.getEObject(uri, false);
-		} else {
-			Resource r = rs.getResource(uri, false);
-			rootObject = r != null ? r.getContents().get(0) : null;
+			rootObject = rs.getEObject(uri, true);
+		} else if (rs.getURIConverter().exists(uri, Collections.emptyMap())) {
+			Resource r = rs.getResource(uri, true);
+			rootObject = r != null && !r.getContents().isEmpty() ? r.getContents().get(0) : null;
 		}
 		return createModelExtent(rootObject);
 	}
@@ -184,7 +199,7 @@ public abstract class DomainIndependentTransformationBase {
 	private static ModelExtent createModelExtent(EObject rootElement) {
 		BasicModelExtent modelExtent = new BasicModelExtent();
 		if (rootElement != null) {
-			modelExtent.add(rootElement);			
+			modelExtent.add(rootElement);
 		}
 		return modelExtent;
 	}
