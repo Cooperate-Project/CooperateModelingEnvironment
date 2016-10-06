@@ -4,9 +4,9 @@
 package de.cooperateproject.modeling.textual.cls.tests
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.ClsInjectorProvider
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.util.Map
@@ -28,13 +28,13 @@ import org.eclipse.xtext.junit4.util.ParseHelper
 import org.junit.AfterClass
 import org.junit.Assert
 import org.junit.BeforeClass
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Ignore
 
 //TODO Reactivate tests if a stable meta model state is reached.
 @RunWith(XtextRunner)
-@InjectWith(ClsInjectorProvider)
+@InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class ClsParsingTest {
 	@Inject extension ParseHelper<ClassDiagram>
 	// @Inject extension ValidationTestHelper

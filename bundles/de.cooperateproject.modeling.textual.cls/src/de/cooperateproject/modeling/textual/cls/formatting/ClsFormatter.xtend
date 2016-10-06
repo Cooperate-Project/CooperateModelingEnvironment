@@ -19,41 +19,38 @@ import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
+@Deprecated
 class ClsFormatter extends AbstractDeclarativeFormatter {
 
 	//@Inject extension ClsGrammarAccess grammar
 	override protected void configureFormatting(FormattingConfig c) {
 		val access = grammarAccess as ClsGrammarAccess
-		//val allKeywords = GrammarUtil.getAllKeywords(grammar.grammar)
-		//val allRules = GrammarUtil.getAllAlternatives(grammar.grammar)
-		//val alt = access.connectorAccess
-		//val alt2 = access.connectorAccess.alternatives.elements
-		//val f = access.connectorAccess.rule
-		/*c.setLinewrap.before(access.connectorRule)*/
-		/*for (alt : access.connectorAccess.alternatives.elements) {
-			val rule = (alt as RuleCall).rule
-			c.setLinewrap.before(rule)
-		}*/
-		/*c.setLinewrap.before(access.generalizationRule.)
-		c.setLinewrap.before(access.associationRule)
-		c.setLinewrap.before(access.implementationRule)
-		c.setLinewrap.before(access.commentRule)*/
-		// c.setLinewrap.between(access.connectorRule, access.connectorRule)
 		
-		c.setLinewrap.around(access.connectorRule)
+		c.configureGeneralFormattingRules(access)
+		c.configureCoarseGrainedContainerFormattingRules(access)
+		c.configureClassifierFormattingRules(access)
+		c.configureConnectorFormattingRules(access)
+
 		
-		c.setLinewrap.after(access.classifierRule)
-		c.setLinewrap.after(access.memberRule)
-		
-		c.setLinewrap(1, 2, 2).after(access.findKeywords("@startclass").get(0))
-		c.setLinewrap.before(access.findKeywords("@endclass").get(0))
+/*
 		
 		c.setLinewrap.after(access.packageImportRule)
 		c.setLinewrap.around(access.packageImportRule)
 
-		// set no space around all parentheses
+ */
+
+	}
+
+	private def configureGeneralFormattingRules(FormattingConfig c, ClsGrammarAccess access) {
+ 		// set no space around all parentheses
 		for (p : access.findKeywordPairs("(", ")")) {
 			c.setNoSpace().around(p.getFirst());
+			c.setNoSpace().before(p.getSecond());
+		}
+		
+		// set no space around all parentheses
+		for (p : access.findKeywordPairs("[", "]")) {
+			c.setNoSpace().after(p.getFirst());
 			c.setNoSpace().before(p.getSecond());
 		}
 
@@ -71,6 +68,29 @@ class ClsFormatter extends AbstractDeclarativeFormatter {
 		for (comma : access.findKeywords(",")) {
 			c.setNoSpace().before(comma);
 		}
-
 	}
+	
+	def configureClassifierFormattingRules(FormattingConfig c, ClsGrammarAccess access) {
+		c.setLinewrap.after(access.classifierRule)
+		c.setLinewrap(2).after(access.classAccess.rightCurlyBracketKeyword_5_2)
+		c.setLinewrap(2).after(access.interfaceAccess.rightCurlyBracketKeyword_4_2)
+		c.setLinewrap.after(access.memberRule)
+	}
+	
+	def configureCoarseGrainedContainerFormattingRules(FormattingConfig c, ClsGrammarAccess access) {
+		c.setLinewrap(2).before(access.rootPackageRule)
+		
+		c.setLinewrap(2).before(access.rootPackageAccess.packageImportsPackageImportParserRuleCall_2_0)
+		c.setLinewrap(2).before(access.rootPackageAccess.classifiersClassifierParserRuleCall_3_0)
+		c.setLinewrap(2).before(access.rootPackageAccess.connectorsConnectorParserRuleCall_4_0)
+		c.setLinewrap(2).before(access.rootPackageAccess.packagesPackageParserRuleCall_5_0)
+		
+		c.setLinewrap(2).before(access.classDiagramAccess.endclassKeyword_4)
+	}
+	
+	def configureConnectorFormattingRules(FormattingConfig c, ClsGrammarAccess access) {
+		c.setLinewrap.after(access.connectorRule)
+		c.setNoSpace.around(access.cardinalityAccess.fullStopFullStopKeyword_1_0)
+	}
+	
 }

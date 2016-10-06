@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.cls;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
 import com.google.inject.Binder;
 
@@ -14,17 +13,12 @@ import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeP
 import de.cooperateproject.modeling.textual.cls.scoping.ClsQualifiedNameProvider;
 import de.cooperateproject.modeling.textual.cls.services.ClsLinkingService;
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the
  * Equinox extension registry.
  */
 public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.AbstractClsRuntimeModule {
-
-	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return CooperateGlobalScopeProvider.class;
-	}
 
 	@Override
 	public void configureIScopeProviderDelegate(Binder binder) {

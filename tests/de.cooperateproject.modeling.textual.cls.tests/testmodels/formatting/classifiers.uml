@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_d3tLMIuMEeavr5tC4_lknw" name="RootElement">
+  <packagedElement xmi:type="uml:Class" xmi:id="_goa_UIuMEeavr5tC4_lknw" name="AbstractClass" isAbstract="true">
+    <ownedAttribute xmi:id="_kwK30IuMEeavr5tC4_lknw" name="someName">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_Fs2UQIuNEeavr5tC4_lknw" name="someOperation">
+      <ownedParameter xmi:id="_IxJywIuNEeavr5tC4_lknw" name="anObject" type="_goa_UIuMEeavr5tC4_lknw"/>
+      <ownedParameter xmi:id="_PFNx0IuNEeavr5tC4_lknw" name="aPrimitive">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_TIFKUIuNEeavr5tC4_lknw" name="result" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7NsQ8IuQEeavr5tC4_lknw" name="AnotherConcreteClass">
+    <nameExpression xmi:id="_IYh6kIuREeavr5tC4_lknw" name="ShortName"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_91ARcIuQEeavr5tC4_lknw" name="SomeInterface"/>
+</uml:Model>

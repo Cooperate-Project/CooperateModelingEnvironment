@@ -109,11 +109,6 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
-	public Class<? extends org.eclipse.xtext.scoping.IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider.class;
-	}
-
-	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public void configureIgnoreCaseLinking(com.google.inject.Binder binder) {
 		binder.bindConstant().annotatedWith(org.eclipse.xtext.scoping.IgnoreCaseLinking.class).to(false);
 	}
@@ -143,14 +138,29 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
 		return de.cooperateproject.modeling.textual.cls.generator.ClsGenerator.class;
 	}
 
-	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
-	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
-		return de.cooperateproject.modeling.textual.cls.formatting.ClsFormatter.class;
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
+		return de.cooperateproject.modeling.textual.cls.formatting2.ClsFormatter.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public void configureFormatterPreferences(com.google.inject.Binder binder) {
+		binder.bind(org.eclipse.xtext.preferences.IPreferenceValuesProvider.class).annotatedWith(org.eclipse.xtext.formatting2.FormatterPreferences.class).to(org.eclipse.xtext.formatting2.FormatterPreferenceValuesProvider.class);
 	}
 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
 	public Class<? extends org.eclipse.xtext.resource.XtextResourceSet> bindXtextResourceSet() {
 		return de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet.class;
+	}
+
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
+	public Class<? extends org.eclipse.xtext.scoping.IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider.class;
+	}
+
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
+	public Class<? extends de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder> bindIUMLUriFinder() {
+		return de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder.class;
 	}
 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment

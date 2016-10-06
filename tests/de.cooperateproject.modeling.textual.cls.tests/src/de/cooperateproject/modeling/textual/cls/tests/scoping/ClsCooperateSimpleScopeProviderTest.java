@@ -16,7 +16,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -37,14 +36,14 @@ import org.junit.runner.RunWith;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.cls.ClsInjectorProvider;
 import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeProvider;
+import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider;
 
 @RunWith(XtextRunner.class)
-@InjectWith(ClsInjectorProvider.class)
+@InjectWith(ClsCustomizedInjectorProvider.DefaultProvider.class)
 public class ClsCooperateSimpleScopeProviderTest {
 
 	private static String TEST_FOLDER = "testmodels/scoping/";
@@ -129,3 +128,4 @@ public class ClsCooperateSimpleScopeProviderTest {
 	}
 
 }
+

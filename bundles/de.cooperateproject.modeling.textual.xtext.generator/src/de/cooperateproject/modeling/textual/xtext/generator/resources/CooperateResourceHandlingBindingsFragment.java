@@ -28,6 +28,12 @@ public class CooperateResourceHandlingBindingsFragment extends Xtend2GeneratorFr
 		return new BindFactory().addTypeToType(
 			  "org.eclipse.xtext.resource.XtextResourceSet",
 			  "de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet")
+			.addTypeToType(
+			  "org.eclipse.xtext.scoping.IGlobalScopeProvider",
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider")
+			.addTypeToType(
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder",
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder")
 			.getBindings();
 	}
 	

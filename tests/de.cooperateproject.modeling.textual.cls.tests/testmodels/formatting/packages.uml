@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_d3tLMIuMEeavr5tC4_lknw" name="RootElement">
+  <packagedElement xmi:type="uml:Package" xmi:id="_r1wywIuSEeavr5tC4_lknw" name="SubPackage">
+    <packagedElement xmi:type="uml:Class" xmi:id="_4AVSMIuSEeavr5tC4_lknw" name="NestedClass1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_vL_HsIuSEeavr5tC4_lknw" name="SubPackage2">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_7dTIUIuSEeavr5tC4_lknw" name="NestedInterface2"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ydk0QIuSEeavr5tC4_lknw" name="BasicClass"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_aVU-EIvjEeaEueGuCbdekA" name="SubPackage3"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_q-YbAIvjEeaEueGuCbdekA" name="SubPackage4">
+    <packageImport xmi:id="_sTfz0IvjEeaEueGuCbdekA" importedPackage="_aVU-EIvjEeaEueGuCbdekA"/>
+    <packageImport xmi:id="__E1y8IvjEeaEueGuCbdekA" importedPackage="_vL_HsIuSEeavr5tC4_lknw"/>
+  </packagedElement>
+</uml:Model>

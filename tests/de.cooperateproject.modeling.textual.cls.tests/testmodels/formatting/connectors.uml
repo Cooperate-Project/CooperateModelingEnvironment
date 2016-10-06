@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_W1JDMIuTEeavr5tC4_lknw" name="RootElement">
+  <ownedComment xmi:id="_bd1loIvgEeaEueGuCbdekA" annotatedElement="_ZWha0IuTEeavr5tC4_lknw">
+    <body>A comment.</body>
+  </ownedComment>
+  <ownedComment xmi:id="_FPe3oIvhEeaEueGuCbdekA" annotatedElement="_tdFjoIuXEeavr5tC4_lknw">
+    <body>B comment.</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZWha0IuTEeavr5tC4_lknw" name="A">
+    <ownedAttribute xmi:id="_j-_1YIuTEeavr5tC4_lknw" name="second" type="_ahW2QIuTEeavr5tC4_lknw" association="_e0jw0IuTEeavr5tC4_lknw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2tCo4IuTEeavr5tC4_lknw" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_w_CAYIuXEeavr5tC4_lknw" name="second2" type="_ahW2QIuTEeavr5tC4_lknw" association="_tdFjoIuXEeavr5tC4_lknw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ahW2QIuTEeavr5tC4_lknw" name="B">
+    <generalization xmi:id="_ibZiYIuYEeavr5tC4_lknw" general="_ZWha0IuTEeavr5tC4_lknw"/>
+    <ownedAttribute xmi:id="_tdFjoYuXEeavr5tC4_lknw" name="first2" type="_ZWha0IuTEeavr5tC4_lknw" association="_tdFjoIuXEeavr5tC4_lknw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_dDVDwIuTEeavr5tC4_lknw" name="C"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_e0jw0IuTEeavr5tC4_lknw" name="asc1" memberEnd="_h8l4wIuTEeavr5tC4_lknw _j-_1YIuTEeavr5tC4_lknw">
+    <ownedEnd xmi:id="_h8l4wIuTEeavr5tC4_lknw" name="first" type="_ZWha0IuTEeavr5tC4_lknw" association="_e0jw0IuTEeavr5tC4_lknw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_tdFjoIuXEeavr5tC4_lknw" name="asc2" memberEnd="_tdFjoYuXEeavr5tC4_lknw _w_CAYIuXEeavr5tC4_lknw"/>
+  <packagedElement xmi:type="uml:InterfaceRealization" xmi:id="_biHWYIuYEeavr5tC4_lknw" client="_ZWha0IuTEeavr5tC4_lknw" supplier="_dDVDwIuTEeavr5tC4_lknw" contract="_dDVDwIuTEeavr5tC4_lknw"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_arhp0IveEeaEueGuCbdekA" name="asc3" memberEnd="_cYF5UIveEeaEueGuCbdekA _c-w3wIveEeaEueGuCbdekA _do9rUIveEeaEueGuCbdekA" navigableOwnedEnd="_cYF5UIveEeaEueGuCbdekA _c-w3wIveEeaEueGuCbdekA">
+    <ownedEnd xmi:id="_cYF5UIveEeaEueGuCbdekA" name="a" type="_ZWha0IuTEeavr5tC4_lknw" association="_arhp0IveEeaEueGuCbdekA"/>
+    <ownedEnd xmi:id="_c-w3wIveEeaEueGuCbdekA" name="b" type="_ahW2QIuTEeavr5tC4_lknw" association="_arhp0IveEeaEueGuCbdekA"/>
+    <ownedEnd xmi:id="_do9rUIveEeaEueGuCbdekA" type="_dDVDwIuTEeavr5tC4_lknw" association="_arhp0IveEeaEueGuCbdekA"/>
+  </packagedElement>
+</uml:Model>

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -31,17 +30,16 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
-
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
-
-	private static final Logger LOGGER = Logger.getLogger(CooperateGlobalScopeProvider.class);
 
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
 	
 	@Inject
 	private IAlternativeNameProvider alternativeQualifiedNameProvider;
+	
+	@Inject
+	private IUMLUriFinder umlUriFinder;
 
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
@@ -109,31 +107,14 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		return descriptions;
 	}
 
-	private static Optional<Resource> findUMLResource(Resource self) {
-		Optional<URI> umlUri = findUMLURI(self.getURI());
+	private Optional<Resource> findUMLResource(Resource self) {
+		java.util.Optional<URI> umlUri = umlUriFinder.findUMLURI(self.getURI());
 		if (!umlUri.isPresent()) {
 			return Optional.absent();
 		}
 
 		Resource r = self.getResourceSet().getResource(umlUri.get(), true);
 		return Optional.fromNullable(r);
-	}
-
-	/**
-	 * Finds the URI of an UML file that corresponds to the given model URI. The
-	 * resulting URI might not exist.
-	 * 
-	 * @param ownUri
-	 *            The URI of the model file.
-	 * @return The assumed URI of the UML file.
-	 */
-	private static Optional<URI> findUMLURI(URI ownUri) {
-		try {
-			return Optional.of(ModelNamingConventions.getUMLFromTextualURI(ownUri));
-		} catch (IllegalArgumentException e) {
-			LOGGER.warn("Could not determine the UML URI on a regular basis.", e);
-			return Optional.of(ownUri.trimFileExtension().appendFileExtension("uml"));
-		}
 	}
 
 }
