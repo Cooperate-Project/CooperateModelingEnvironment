@@ -1,57 +1,110 @@
 <?xml version="1.0" encoding="ASCII"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" type="PapyrusUMLClassDiagram" name="Class Diagram">
-  <children xsi:type="notation:Shape" type="2008">
-    <children xsi:type="notation:DecorationNode" type="5029"/>
-    <children xsi:type="notation:Compartment" type="7017">
-      <children xsi:type="notation:Shape" type="3012">
+  <children xsi:type="notation:Shape" type="Interface_Shape">
+    <children xsi:type="notation:DecorationNode" type="Interface_NameLabel"/>
+    <element href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
+  </children>
+  <children xsi:type="notation:Shape" type="Association_Shape">
+    <children xsi:type="notation:DecorationNode" type="Association_FloatingNameLabel"/>
+    <element href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
+  </children>
+  <children xsi:type="notation:Shape" type="Class_Shape">
+    <children xsi:type="notation:DecorationNode" type="Class_NameLabel"/>
+    <children xsi:type="notation:Compartment" type="Class_AttributeCompartment"/>
+    <children xsi:type="notation:Compartment" type="Class_OperationCompartment"/>
+    <children xsi:type="notation:Compartment" type="Class_NestedClassifierCompartment"/>
+    <element href="ClassDiagram.uml#_a_o2UHnPEea_kLaSOi1rnw"/>
+  </children>
+  <children xsi:type="notation:Shape" type="Class_Shape">
+    <children xsi:type="notation:DecorationNode" type="Class_NameLabel"/>
+    <children xsi:type="notation:Compartment" type="Class_AttributeCompartment">
+      <children xsi:type="notation:Shape" type="Property_ClassAttributeLabel">
         <element href="ClassDiagram.uml#_5_7pQEKSEeaXCq-9LXQNWQ"/>
       </children>
     </children>
-    <children xsi:type="notation:Compartment" type="7018"/>
-    <children xsi:type="notation:Compartment" type="7019"/>
+    <children xsi:type="notation:Compartment" type="Class_OperationCompartment"/>
+    <children xsi:type="notation:Compartment" type="Class_NestedClassifierCompartment"/>
     <element href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
   </children>
-  <children xsi:type="notation:Shape" type="2008">
-    <children xsi:type="notation:DecorationNode" type="5029"/>
-    <children xsi:type="notation:Compartment" type="7017">
-      <children xsi:type="notation:Shape" type="3012">
+  <children xsi:type="notation:Shape" type="Class_Shape">
+    <children xsi:type="notation:DecorationNode" type="Class_NameLabel"/>
+    <children xsi:type="notation:Compartment" type="Class_AttributeCompartment">
+      <children xsi:type="notation:Shape" type="Property_ClassAttributeLabel">
         <element href="ClassDiagram.uml#_oNOcoEKSEeaXCq-9LXQNWQ"/>
       </children>
     </children>
-    <children xsi:type="notation:Compartment" type="7018"/>
-    <children xsi:type="notation:Compartment" type="7019"/>
+    <children xsi:type="notation:Compartment" type="Class_OperationCompartment"/>
+    <children xsi:type="notation:Compartment" type="Class_NestedClassifierCompartment"/>
     <element href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
   </children>
-  <children xsi:type="notation:Shape" type="2008">
-    <children xsi:type="notation:DecorationNode" type="5029"/>
-    <children xsi:type="notation:Compartment" type="7017">
-      <children xsi:type="notation:Shape" type="3012">
+  <children xsi:type="notation:Shape" type="Class_Shape">
+    <children xsi:type="notation:DecorationNode" type="Class_NameLabel"/>
+    <children xsi:type="notation:Compartment" type="Class_AttributeCompartment">
+      <children xsi:type="notation:Shape" type="Property_ClassAttributeLabel">
         <element href="ClassDiagram.uml#_sLlvoEKSEeaXCq-9LXQNWQ"/>
       </children>
     </children>
-    <children xsi:type="notation:Compartment" type="7018">
-      <children xsi:type="notation:Shape" type="3013">
+    <children xsi:type="notation:Compartment" type="Class_OperationCompartment">
+      <children xsi:type="notation:Shape" type="Operation_ClassOperationLabel">
         <element href="ClassDiagram.uml#_WwgHEEKSEeaXCq-9LXQNWQ"/>
       </children>
     </children>
-    <children xsi:type="notation:Compartment" type="7019"/>
+    <children xsi:type="notation:Compartment" type="Class_NestedClassifierCompartment"/>
     <element href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
   </children>
-  <children xsi:type="notation:Shape" type="2012">
-    <element href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>
-  </children>
-  <children xsi:type="notation:Shape" type="2012">
+  <children xsi:type="notation:Shape" type="Comment_Shape">
     <element href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
   </children>
+  <children xsi:type="notation:Shape" type="Comment_Shape">
+    <element href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>
+  </children>
+  <styles xsi:type="notation:StringValueStyle" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xsi:type="notation:DiagramStyle"/>
   <element href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
-  <edges xsi:type="notation:Connector" type="4013" source="//@children.3" target="//@children.0"/>
-  <edges xsi:type="notation:Connector" type="4002" source="//@children.0" target="//@children.2"/>
-  <edges xsi:type="notation:Connector" type="4001" source="//@children.2" target="//@children.1">
-    <children xsi:type="notation:DecorationNode" type="6001"/>
-    <children xsi:type="notation:DecorationNode" type="6002"/>
-    <children xsi:type="notation:DecorationNode" type="6033"/>
-    <children xsi:type="notation:DecorationNode" type="6034"/>
+  <edges xsi:type="notation:Connector" type="Association_Edge" source="//@children.4" target="//@children.2">
+    <children xsi:type="notation:DecorationNode" type="Association_StereotypeLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_NameLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_SourceMultiplicityLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_TargetMultiplicityLabel"/>
+    <element href="ClassDiagram.uml#_cPAzgHnPEea_kLaSOi1rnw"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="Association_Edge" source="//@children.5" target="//@children.4">
+    <children xsi:type="notation:DecorationNode" type="Association_StereotypeLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_NameLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_SourceMultiplicityLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_TargetMultiplicityLabel"/>
     <element href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
   </edges>
-  <edges xsi:type="notation:Connector" type="4013" source="//@children.4" target="//@edges.2"/>
+  <edges xsi:type="notation:Connector" type="Comment_AnnotatedElementEdge" source="//@children.6" target="//@edges.1"/>
+  <edges xsi:type="notation:Connector" type="Generalization_Edge" source="//@children.3" target="//@children.5"/>
+  <edges xsi:type="notation:Connector" type="Comment_AnnotatedElementEdge" source="//@children.7" target="//@children.3"/>
+  <edges xsi:type="notation:Connector" type="Association_BranchEdge">
+    <children xsi:type="notation:DecorationNode" type="Association_BranchRoleLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_BranchMultiplicityLabel"/>
+    <styles xsi:type="notation:EObjectValueStyle">
+      <eObjectValue href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
+    </styles>
+    <element href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="Association_BranchEdge">
+    <children xsi:type="notation:DecorationNode" type="Association_BranchRoleLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_BranchMultiplicityLabel"/>
+    <styles xsi:type="notation:EObjectValueStyle">
+      <eObjectValue href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
+    </styles>
+    <element href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="Association_BranchEdge">
+    <children xsi:type="notation:DecorationNode" type="Association_BranchRoleLabel"/>
+    <children xsi:type="notation:DecorationNode" type="Association_BranchMultiplicityLabel"/>
+    <styles xsi:type="notation:EObjectValueStyle">
+      <eObjectValue href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
+    </styles>
+    <element href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
+  </edges>
+  <edges xsi:type="notation:Connector" type="InterfaceRealization_Edge" source="//@children.5" target="//@children.0">
+    <children xsi:type="notation:DecorationNode" type="InterfaceRealization_StereotypeLabel"/>
+    <children xsi:type="notation:DecorationNode" type="InterfaceRealization_NameLabel"/>
+    <element href="ClassDiagram.uml#_YCfg4HjsEea7c9xs28iX1A"/>
+  </edges>
 </notation:Diagram>

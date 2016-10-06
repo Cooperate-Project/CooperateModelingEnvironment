@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 import org.junit.Before;
 import org.junit.Test;
 
-
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.tub.tfs.henshin.tgg.interpreter.TggEngine;
 import de.tub.tfs.henshin.tgg.interpreter.TggTransformationInfo;
 import de.tub.tfs.henshin.tgg.interpreter.impl.TggApplicationImpl;
@@ -70,6 +70,7 @@ public class IncrementalTest {
 		UMLPackage.eINSTANCE.getName();
 		NotationPackage.eINSTANCE.getName();
 		StylePackage.eINSTANCE.getName();
+		ClsPackage.eINSTANCE.getName();
 		resourceSet.registerXMIResourceFactories("notation");
 
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
@@ -77,7 +78,7 @@ public class IncrementalTest {
 		m.put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
 	
 		// Load MMs
-		resourceSet.registerDynamicEPackages("cls.ecore");
+		//resourceSet.registerDynamicEPackages("cls.ecore");
 		
 		// Load the module:
 		module = resourceSet.getModule("cls2notation.henshin", false);
