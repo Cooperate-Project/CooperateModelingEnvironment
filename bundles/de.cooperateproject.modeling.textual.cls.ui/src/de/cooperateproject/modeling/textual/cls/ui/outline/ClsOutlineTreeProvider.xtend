@@ -40,6 +40,9 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	val images = JavaUI.getSharedImages();
 
 	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
+		if (root.rootPackage == null) {
+			return
+		}
 		createNode(parentNode, root.rootPackage);
 	}
 	
