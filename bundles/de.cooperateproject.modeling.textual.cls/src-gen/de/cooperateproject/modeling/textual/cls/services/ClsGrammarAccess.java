@@ -925,68 +925,64 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cCommentCommentCrossReference_6_1_0 = (CrossReference)cCommentAssignment_6_1.eContents().get(0);
 		private final RuleCall cCommentCommentCommentBodyParserRuleCall_6_1_0_1 = (RuleCall)cCommentCommentCrossReference_6_1_0.eContents().get(1);
 		
-		//Association:
-		//	bidirectional?='bi'? aggregationKind=AggregationKind left=UMLTypeReference referencedElement=[uml::Association]
-		//	right=UMLTypeReference
-		//	properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?;
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/Association'
 		@Override public ParserRule getRule() { return rule; }
 
-		//bidirectional?='bi'? aggregationKind=AggregationKind left=UMLTypeReference referencedElement=[uml::Association]
-		//right=UMLTypeReference properties=AssociationProperties? ('note' comment=[uml::Comment|CommentBody])?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives'
 		public Group getGroup() { return cGroup; }
 
-		//bidirectional?='bi'?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.0'
 		public Assignment getBidirectionalAssignment_0() { return cBidirectionalAssignment_0; }
 
-		//'bi'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.0/@terminal'
 		public Keyword getBidirectionalBiKeyword_0_0() { return cBidirectionalBiKeyword_0_0; }
 
-		//aggregationKind=AggregationKind
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.1'
 		public Assignment getAggregationKindAssignment_1() { return cAggregationKindAssignment_1; }
 
-		//AggregationKind
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.1/@terminal'
 		public RuleCall getAggregationKindAggregationKindEnumRuleCall_1_0() { return cAggregationKindAggregationKindEnumRuleCall_1_0; }
 
-		//left=UMLTypeReference
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.2'
 		public Assignment getLeftAssignment_2() { return cLeftAssignment_2; }
 
-		//UMLTypeReference
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.2/@terminal'
 		public RuleCall getLeftUMLTypeReferenceParserRuleCall_2_0() { return cLeftUMLTypeReferenceParserRuleCall_2_0; }
 
-		//referencedElement=[uml::Association]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.3'
 		public Assignment getReferencedElementAssignment_3() { return cReferencedElementAssignment_3; }
 
-		//[uml::Association]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.3/@terminal'
 		public CrossReference getReferencedElementAssociationCrossReference_3_0() { return cReferencedElementAssociationCrossReference_3_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.3/@terminal/@terminal'
 		public RuleCall getReferencedElementAssociationIDTerminalRuleCall_3_0_1() { return cReferencedElementAssociationIDTerminalRuleCall_3_0_1; }
 
-		//right=UMLTypeReference
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.4'
 		public Assignment getRightAssignment_4() { return cRightAssignment_4; }
 
-		//UMLTypeReference
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.4/@terminal'
 		public RuleCall getRightUMLTypeReferenceParserRuleCall_4_0() { return cRightUMLTypeReferenceParserRuleCall_4_0; }
 
-		//properties=AssociationProperties?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.5'
 		public Assignment getPropertiesAssignment_5() { return cPropertiesAssignment_5; }
 
-		//AssociationProperties
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.5/@terminal'
 		public RuleCall getPropertiesAssociationPropertiesParserRuleCall_5_0() { return cPropertiesAssociationPropertiesParserRuleCall_5_0; }
 
-		//('note' comment=[uml::Comment|CommentBody])?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.6'
 		public Group getGroup_6() { return cGroup_6; }
 
-		//'note'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.6/@elements.0'
 		public Keyword getNoteKeyword_6_0() { return cNoteKeyword_6_0; }
 
-		//comment=[uml::Comment|CommentBody]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.6/@elements.1'
 		public Assignment getCommentAssignment_6_1() { return cCommentAssignment_6_1; }
 
-		//[uml::Comment|CommentBody]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.6/@elements.1/@terminal'
 		public CrossReference getCommentCommentCrossReference_6_1_0() { return cCommentCommentCrossReference_6_1_0; }
 
-		//CommentBody
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.19/@alternatives/@elements.6/@elements.1/@terminal/@terminal'
 		public RuleCall getCommentCommentCommentBodyParserRuleCall_6_1_0_1() { return cCommentCommentCommentBodyParserRuleCall_6_1_0_1; }
 	}
 
@@ -1004,23 +1000,22 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//MultiAssociation:
-		//	'asc' referencedElement=[uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}';
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#XtextFragmentProvider_de.cooperateproject.modeling.textual.cls.Cls/MultiAssociation'
 		@Override public ParserRule getRule() { return rule; }
 
-		//'asc' referencedElement=[uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.20/@alternatives'
 		public Group getGroup() { return cGroup; }
 
-		//'asc'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.20/@alternatives/@elements.0'
 		public Keyword getAscKeyword_0() { return cAscKeyword_0; }
 
-		//referencedElement=[uml::Association]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.20/@alternatives/@elements.1'
 		public Assignment getReferencedElementAssignment_1() { return cReferencedElementAssignment_1; }
 
-		//[uml::Association]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.20/@alternatives/@elements.1/@terminal'
 		public CrossReference getReferencedElementAssociationCrossReference_1_0() { return cReferencedElementAssociationCrossReference_1_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.20/@alternatives/@elements.1/@terminal/@terminal'
 		public RuleCall getReferencedElementAssociationIDTerminalRuleCall_1_0_1() { return cReferencedElementAssociationIDTerminalRuleCall_1_0_1; }
 
 		//'{'
@@ -1440,10 +1435,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//AGGREGATION='agg'
 		public EnumLiteralDeclaration getAGGREGATIONEnumLiteralDeclaration_1() { return cAGGREGATIONEnumLiteralDeclaration_1; }
 
-		//'agg'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.28/@alternatives/@elements.1/@literal'
 		public Keyword getAGGREGATIONAggKeyword_1_0() { return cAGGREGATIONAggKeyword_1_0; }
 
-		//COMPOSITION='com'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/de/cooperateproject/modeling/textual/cls/Cls.xtext#/0/@rules.28/@alternatives/@elements.2'
 		public EnumLiteralDeclaration getCOMPOSITIONEnumLiteralDeclaration_2() { return cCOMPOSITIONEnumLiteralDeclaration_2; }
 
 		//'com'
