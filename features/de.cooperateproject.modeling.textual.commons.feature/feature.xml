@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.cooperateproject.modeling.textual.commons.feature"
+      label="%featureName"
+      version="1.0.0.qualifier"
+      license-feature="de.cooperateproject.license"
+      license-feature-version="1.0.0">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="de.cooperateproject.cdoxtext.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.emf.cdo" version="4.5.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.gmf.runtime.notation" version="1.10.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.uml2.uml" version="5.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf.compare" version="3.2.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="de.cooperateproject.modeling.textual.xtext.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.textual.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.cooperateproject.modeling.transformation.feature"
+      label="%featureName"
+      version="1.0.0.qualifier"
+      license-feature="de.cooperateproject.license"
+      license-feature-version="1.0.0">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="de.cooperateproject.modeling.textual.metamodels.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.m2m.qvt.oml.sdk" version="3.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.gmf.runtime.notation.sdk" version="1.10.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.papyrus.infra.viewpoints.feature" version="2.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="de.cooperateproject.modeling.transformation.engine"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.transformation.transformations"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.textual.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

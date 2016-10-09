@@ -1,49 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="de.cooperateproject.modeling.textual.feature"
-      label="Textual Modeling"
+      label="%featureName"
       version="1.0.0.qualifier"
-      license-feature="org.eclipse.license"
-      license-feature-version="1.0.1.v20140414-1359">
+      license-feature="de.cooperateproject.license"
+      license-feature-version="1.0.0">
 
    <description>
-      Support for textual modeling in the Cooperate modeling environment.
+      %description
    </description>
 
    <copyright>
-      Copyright (c) 2015-2017 Cooperate Project Team, Germany
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
       %license
    </license>
 
-   <plugin
-         id="de.cooperateproject.modeling.textual.cls"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.cooperateproject.modeling.textual.cls.ide"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.cooperateproject.modeling.textual.cls.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.cooperateproject.modeling.textual.cls.metamodel"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="de.cooperateproject.modeling.textual.class.feature"
+         version="0.0.0"/>
 
 </feature>
