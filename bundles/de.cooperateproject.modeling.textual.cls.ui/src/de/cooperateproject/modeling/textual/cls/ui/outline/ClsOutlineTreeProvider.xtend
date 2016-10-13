@@ -3,29 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.outline
 
-import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import com.google.common.base.Predicate
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.Method
-import de.cooperateproject.modeling.textual.cls.cls.Parameter
-import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
+import de.cooperateproject.modeling.textual.cls.cls.Commentable
+import de.cooperateproject.modeling.textual.cls.cls.Connector
+import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImageGetter
+import java.util.Collection
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.jdt.ui.ISharedImages
 import org.eclipse.jdt.ui.JavaUI
-import org.eclipse.swt.graphics.RGB
-import org.eclipse.xtext.ui.IImageHelper
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.jface.viewers.StyledString
+import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
-import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
-import org.eclipse.xtext.ui.editor.utils.TextStyle
-import org.eclipse.swt.SWT
-import org.eclipse.xtext.ui.label.StylerFactory
-import org.eclipse.jface.viewers.StyledString
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
+import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
 
 /**
  * Customization of the default outline structure.
@@ -33,105 +28,72 @@ import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
  */
 class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
-
-	@Inject
-	private StylerFactory stylerFactory;
 	
 	val images = JavaUI.getSharedImages();
 
-	def _createChildren(DocumentRootNode parentNode, ClassDiagram root) {
+	dispatch def createChildren(AbstractOutlineNode parentNode, ClassDiagram root) {
 		if (root.rootPackage == null) {
 			return
 		}
-		createNode(parentNode, root.rootPackage);
+		createNode(parentNode, root.rootPackage)
 	}
 	
-	dispatch def createNode(IOutlineNode parentNode, de.cooperateproject.modeling.textual.cls.cls.Package pkg) {
-		val newParentNode = createEObjectNode(parentNode, pkg);
-		val packageNode = new AbstractOutlineNode(newParentNode, UMLImageGetter.getUMLImage("Package.gif"), getStyledString("Packages", pkg.classifiers.size), false) {};
-		val importNode = new AbstractOutlineNode(newParentNode, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", pkg.packageImports.size), false) {};
-		val classifierNode = new AbstractOutlineNode(newParentNode, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", pkg.classifiers.size), false) {};
-		
-		for (onePackage : pkg.packages) {
-			createNode(packageNode, onePackage)
-		}
-		
-		for (oneImport : pkg.packageImports) {
-			createNode(importNode, oneImport)
-		}
-
-		for (oneClassifier : pkg.classifiers) {
-			createNode(classifierNode, oneClassifier);
-		}
-
-		val connectors = newArrayList();
-		val comments = newArrayList();
-		for (oneConnector : pkg.connectors) {
-			if (oneConnector instanceof CommentLink) {
-				comments.add(oneConnector)
-			} else if (oneConnector instanceof Association && (oneConnector as Association).comment != null) {
-				comments.add(oneConnector)
-				connectors.add(oneConnector)
-			} else {
-				connectors.add(oneConnector)
-			}
-		}
-		
-		val connectorNode = new AbstractOutlineNode(newParentNode, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors",connectors.size), false) {};
-		val commentNode = new AbstractOutlineNode(newParentNode, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments",comments.size), false) {};
-		for (oneComment : comments) {
-			createNode(commentNode, oneComment)
-		}
-		for (oneConnector : connectors) {
-			if (oneConnector instanceof Association && (oneConnector as Association).comment != null) {
-				(oneConnector as Association).comment = null
-			}
-			createNode(connectorNode, oneConnector)
+	dispatch def createChildren(AbstractOutlineNode parentNode, Package pkg) {
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__PACKAGES, UMLImageGetter.getUMLImage("Package.gif"), getStyledString("Packages", pkg.packages.size), false)
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__PACKAGE_IMPORTS, images.getImage(ISharedImages.IMG_OBJS_IMPCONT), getStyledString("Imports", pkg.packageImports.size), false)
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, images.getImage(ISharedImages.IMG_OBJS_CLASS), getStyledString("Classifiers", pkg.classifiers.size), false)
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImageGetter.getUMLImage("Association.gif"), getStyledString("Connectors", pkg.connectors.size), false)
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImageGetter.getUMLImage("Comment.gif"), getStyledString("Comments", pkg.connectors.filter(Commentable).filter[comment != null].size), false, [!pkg.connectors.filter(Commentable).filter[comment != null].empty])
+	}
+	
+	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
+		if ((parentNode.text as StyledString).toString.contains("Comments")) {
+			createCommentNode(parentNode, c)
+		} else {
+			createConnectorNode(parentNode, c)
 		}
 	}
 	
-	dispatch def createNode(IOutlineNode parent, TypedConnector typedCon) {
-		val associationNode = createEObjectNode(parent, typedCon);
-		val leftChild = typedCon.left;
-		val rightChild = typedCon.right;
-		createNode(associationNode, leftChild)
-		createNode(associationNode, rightChild)
-	}
-	
-	dispatch def createNode(IOutlineNode parent, MultiAssociation multiAsso) {
-		val associationNode = createEObjectNode(parent, multiAsso);
-		for (memberEnd : multiAsso.connectorEnds) {
-			createNode(associationNode, memberEnd.type)
+	def dispatch createCommentNode(AbstractOutlineNode parentNode, Commentable connector) {
+		if (connector.comment != null) {
+			createEObjectNode(parentNode, connector)
 		}
 	}
 	
-	def _createChildren(IOutlineNode parent, Method method) {
-		for (param : method.parameters) {
-			createNode(parent, param)
-		}
+	def dispatch createCommentNode(AbstractOutlineNode parentNode, Connector connector) {
+		// do nothing
 	}
 	
-	dispatch def isLeaf(Method meth) {
-		return meth.parameters.isEmpty
+	def dispatch createConnectorNode(AbstractOutlineNode parentNode, Connector connector) {
+		createEObjectNode(parentNode, connector)
 	}
 	
-	dispatch def isLeaf(Attribute att) {
-		return true;
+	def dispatch createConnectorNode(AbstractOutlineNode parentNode, CommentLink connector) {
+		// do nothing
 	}
 	
-	dispatch def isLeaf(Parameter param) {
-		return true;
-	}
-	
-	dispatch def isLeaf(CommentLink comLink) {
-		return true;
-	}
 	
 	private def getStyledString(String name, int counter) {
 		var styledLabel = new StyledString()
 		styledLabel.append(name)
 		styledLabel.append(new StyledString(" : " + counter, StyledString::DECORATIONS_STYLER))
 		return styledLabel
+	}
+	
+	
+	private def <T extends EObject> ceateFeatureNode(AbstractOutlineNode parentNode, T parent, EReference ref, Image img, StyledString text, boolean isLeaf) {
+		val result = parent.eGet(ref);
+		if (result instanceof Collection<?>) {
+			ceateFeatureNode(parentNode, parent, ref, img, text, isLeaf, [!result.empty])
+		} else if (result != null) {
+			ceateFeatureNode(parentNode, parent, ref, img, text, isLeaf, [true])
+		}
+	}
+	
+	private def <T extends EObject> ceateFeatureNode(AbstractOutlineNode parentNode, T parent, EReference ref, Image img, StyledString text, boolean isLeaf, Predicate<T> pred) {
+		if (pred.apply(parent)) {
+			createEStructuralFeatureNode(parentNode, parent, ref, img, text, false)		
+		}
 	}
 
 }
