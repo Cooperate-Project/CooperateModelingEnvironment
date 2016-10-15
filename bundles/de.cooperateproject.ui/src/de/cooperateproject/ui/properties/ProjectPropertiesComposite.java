@@ -93,8 +93,10 @@ public class ProjectPropertiesComposite extends Composite {
 		IObservableValue cdoPortPreferencesDTOObserveValue = BeanProperties.value("cdoPort").observe(preferencesDTO);
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
 		strategy.setConverter(new StringToNumberConverter());
+		strategy.setAfterGetValidator(new StringToNumberConverter());
 		UpdateValueStrategy strategy_1 = new UpdateValueStrategy();
 		strategy_1.setConverter(new NumberToStringConverter());
+		strategy_1.setAfterGetValidator(new NumberToStringConverter());
 		bindingContext.bindValue(observeTextTxtCDOPortObserveWidget, cdoPortPreferencesDTOObserveValue, strategy, strategy_1);
 		//
 		IObservableValue observeTextTxtCDORepositoryObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtCDORepository);
