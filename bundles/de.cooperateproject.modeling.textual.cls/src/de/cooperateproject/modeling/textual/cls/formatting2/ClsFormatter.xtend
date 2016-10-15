@@ -7,6 +7,7 @@ import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
@@ -169,6 +170,14 @@ class ClsFormatter extends AbstractFormatter2 {
 	def dispatch void format(AssociationProperties associationproperties, extension IFormattableDocument document) {
 		format(associationproperties.getCardinalityLeft(), document);
 		format(associationproperties.getCardinalityRight(), document);
+		associationproperties.regionFor.keyword(associationPropertiesAccess.leftSquareBracketKeyword_0).append[noSpace]
+		associationproperties.regionFor.keyword(associationPropertiesAccess.rightSquareBracketKeyword_4).prepend[noSpace]
+		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_2_0).prepend[noSpace]
+		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_3_2_0).prepend[noSpace]
 	}
 
+	def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {
+		cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).append[noSpace]
+		cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).prepend[noSpace]
+	}
 }
