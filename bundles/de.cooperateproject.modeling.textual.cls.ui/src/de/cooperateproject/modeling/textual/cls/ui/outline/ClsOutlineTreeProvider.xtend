@@ -11,7 +11,9 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Commentable
 import de.cooperateproject.modeling.textual.cls.cls.Connector
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Package
+import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
 import java.util.Collection
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -21,7 +23,6 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
-import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
 
 /**
  * Customization of the default outline structure.
@@ -54,6 +55,10 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	protected def dispatch createNode(IOutlineNode node, AssociationProperties ap) {
+		// do nothing
+	}
+	
+	protected def dispatch createNode(IOutlineNode node, DataTypeReference ref) {
 		// do nothing
 	}
 	
