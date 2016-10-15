@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
@@ -79,8 +80,8 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		if (view == null) {
 			return IScope.NULLSCOPE;
 		}
-		String queryString = String.format("%s.allInstances()", type.getName());
-		CDOQuery query = view.createQuery("ocl", queryString, umlResource.getContents().get(0));
+		String queryString = String.format("%s.allInstances()->select(u : %s | self = u or self.allOwnedElements()->includes(u))", type.getName(), type.getName());
+		CDOQuery query = view.createQuery("ocl", queryString, CDOUtil.getCDOObject(umlResource.getContents().get(0)).cdoID());
 		List<EObject> results = query.getResult(EObject.class);
 		return createScopeForStream(results.stream(), predicate);
 	}
