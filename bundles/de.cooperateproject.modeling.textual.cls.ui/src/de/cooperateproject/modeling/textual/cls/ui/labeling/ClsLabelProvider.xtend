@@ -14,8 +14,11 @@ import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
+import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement
+import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
@@ -23,11 +26,10 @@ import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
-import org.eclipse.jdt.ui.ISharedImages
-import org.eclipse.jdt.ui.JavaUI
+import org.eclipse.jface.viewers.DecorationOverlayIcon
+import org.eclipse.jface.viewers.IDecoration
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
+import org.eclipse.swt.graphics.Image
 
 /**
  * Provides labels for EObjects.
@@ -36,17 +38,10 @@ import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
  */
 class ClsLabelProvider extends DefaultEObjectLabelProvider {
 
-	val visibilityFieldsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_FIELD_PUBLIC,
-		Visibility.PRIVATE -> ISharedImages.IMG_FIELD_PRIVATE,
-		Visibility.PROTECTED -> ISharedImages.IMG_FIELD_PROTECTED,
-		Visibility.PACKAGE -> ISharedImages.IMG_FIELD_DEFAULT}
-
-	val visibilityMethodsMap = #{Visibility.PUBLIC -> ISharedImages.IMG_OBJS_PUBLIC,
-		Visibility.PRIVATE -> ISharedImages.IMG_OBJS_PRIVATE,
-		Visibility.PROTECTED -> ISharedImages.IMG_OBJS_PROTECTED,
-		Visibility.PACKAGE -> ISharedImages.IMG_OBJS_DEFAULT}
-
-	val images = JavaUI.getSharedImages();
+	static val visibilityMap = #{Visibility.PUBLIC -> UMLImage.VISIBILITY_PUBLIC.image,
+		Visibility.PRIVATE -> UMLImage.VISIBILITY_PRIVATE.image,
+		Visibility.PROTECTED -> UMLImage.VISIBILITY_PROTECTED.image,
+		Visibility.PACKAGE -> UMLImage.VISIBILITY_PACKAGE.image}
 
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
@@ -54,7 +49,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	def image(ClassDiagram ele) {
-		return UMLImageGetter.getUMLImage("Model.gif")
+		return UMLImage.MODEL.image
 	}
 
 	def text(Class ele) {
@@ -71,7 +66,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def image(PackageImport ele) {
-		images.getImage(ISharedImages.IMG_OBJS_IMPDECL)
+		UMLImage.PACKAGE_IMPORT.image
 	}
 
 	def text(Method ele) {
@@ -94,28 +89,23 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def image(Class ele) {
-		images.getImage(ISharedImages.IMG_OBJS_CLASS)
+		UMLImage.CLASS.image
 	}
 
 	def image(Interface ele) {
-		images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+		UMLImage.INTERFACE.image
 	}
 
 	def image(Attribute ele) {
-		val visibility = ele.visibility
-		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
-		return image
+		UMLImage.PROPERTY.image.decorate(ele.visibility)
 	}
 
 	def image(Parameter ele) {
-		val image = images.getImage(visibilityFieldsMap.get(ele.visibility))
-		return image
+		UMLImage.PARAMETER.image.decorate(ele.visibility)
 	}
 
 	def image(Method ele) {
-		val visibility = ele.visibility
-		val image = images.getImage(visibilityMethodsMap.get(ele.visibility))
-		return image
+		UMLImage.OPERATION.image.decorate(ele.visibility)
 	}
 
 	def text(TypeReference ele) {
@@ -136,9 +126,9 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	
 	def image(UMLTypeReference ele) {
 		if (ele.type instanceof org.eclipse.uml2.uml.Class) {
-			return images.getImage(ISharedImages.IMG_OBJS_CLASS)
+			return UMLImage.CLASS.image
 		} else if (ele.type instanceof org.eclipse.uml2.uml.Interface) {
-			return images.getImage(ISharedImages.IMG_OBJS_INTERFACE)
+			return UMLImage.INTERFACE.image
 		}
 	}
 
@@ -157,13 +147,13 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 
 	def image(Association ele) {
 		if (ele.getComment() != null) {
-			return UMLImageGetter.getUMLImage("Comment.gif")
+			return UMLImage.COMMENT.image
 		} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
-			return UMLImageGetter.getUMLImage("Association_composite.gif")
+			return UMLImage.ASSOCIATION_COMPOSITE.image
 		} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
-			return UMLImageGetter.getUMLImage("Association_shared.gif")
+			return UMLImage.ASSOCIATION_SHARED.image
 		} else {
-			return UMLImageGetter.getUMLImage("Association.gif")
+			return UMLImage.ASSOCIATION.image
 		}
 	}
 	
@@ -186,11 +176,18 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def image(MultiAssociation ele) {
-		return UMLImageGetter.getUMLImage("Association.gif")
+		return UMLImage.ASSOCIATION.image
 	}
 	
 	def text(MemberEnd ele) {
+		if (ele.name != null) {
+			return ele.name
+		}
 		return ele.type.text
+	}
+	
+	def image(MemberEnd ele) {
+		UMLImage.PROPERTY.image
 	}
 
 	def text(Generalization ele) {
@@ -200,7 +197,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def image(Generalization ele) {
-		return UMLImageGetter.getUMLImage("Generalization.gif")
+		return UMLImage.GENERALIZATION.image
 	}
 
 	def text(Implementation ele) {
@@ -210,7 +207,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def image(Implementation ele) {
-		return UMLImageGetter.getUMLImage("Realization.gif")
+		return UMLImage.INTERFACE_REALIZATION.image
 	}
 	
 	def text(CommentLink ele) {
@@ -219,10 +216,19 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	def image(CommentLink ele) {
-		return UMLImageGetter.getUMLImage("Comment.gif")
+		return UMLImage.COMMENT.image
 	}
 	
-	def image(de.cooperateproject.modeling.textual.cls.cls.Package pkg) {
-		return UMLImageGetter.getUMLImage("Package.gif")
+	def image(Package pkg) {
+		return UMLImage.PACKAGE.image
+	}
+	
+	private def decorate(Image img, Visibility visibility) {
+		if (visibility == null) {
+			return img
+		}
+		val visibilityImage = visibilityMap.get(visibility)
+		val imgDescriptor = new DecorationOverlayIcon(img, convertToImageDescriptor(visibilityImage), IDecoration.BOTTOM_RIGHT)
+		imgDescriptor.createImage
 	}
 }	
