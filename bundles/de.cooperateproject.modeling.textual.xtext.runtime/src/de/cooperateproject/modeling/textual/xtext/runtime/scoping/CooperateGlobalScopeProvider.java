@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.util.CDOUtil;
-import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -35,10 +33,10 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
-	
+
 	@Inject
 	private IAlternativeNameProvider alternativeQualifiedNameProvider;
-	
+
 	@Inject
 	private IUMLUriFinder umlUriFinder;
 
@@ -80,15 +78,17 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		if (view == null) {
 			return IScope.NULLSCOPE;
 		}
-		String queryString = String.format("%s.allInstances()->select(u : %s | self = u or self.allOwnedElements()->includes(u))", type.getName(), type.getName());
-		CDOQuery query = view.createQuery("ocl", queryString, CDOUtil.getCDOObject(umlResource.getContents().get(0)).cdoID());
-		List<EObject> results = query.getResult(EObject.class);
+		// TODO this only returns elements with a clean state, so save is
+		// required. We should find a better way...
+		Collection<EObject> results = view.queryInstances(type).stream().filter(o -> o.eResource() == umlResource)
+				.collect(Collectors.toList());
 		return createScopeForStream(results.stream(), predicate);
 	}
 
 	private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-		Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(d -> d.stream()).filter(d -> d != null)
-				.filter(d -> predicate == null ? true : predicate.apply(d)).collect(Collectors.toList());
+		Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(d -> d.stream())
+				.filter(d -> d != null).filter(d -> predicate == null ? true : predicate.apply(d))
+				.collect(Collectors.toList());
 		return new SimpleScope(descriptions);
 	}
 
@@ -100,9 +100,11 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 		}
 		IEObjectDescription description = new EObjectDescription(qualifiedName, obj, null);
 		descriptions.add(description);
-		Optional<QualifiedName> alternativeName = alternativeQualifiedNameProvider.getAlternativeFullyQualifiedName(obj);
+		Optional<QualifiedName> alternativeName = alternativeQualifiedNameProvider
+				.getAlternativeFullyQualifiedName(obj);
 		if (alternativeName.isPresent()) {
-			IEObjectDescription alternativeDescription = new AliasedEObjectDescription(alternativeName.get(), description);
+			IEObjectDescription alternativeDescription = new AliasedEObjectDescription(alternativeName.get(),
+					description);
 			descriptions.add(alternativeDescription);
 		}
 		return descriptions;

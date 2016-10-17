@@ -32,6 +32,7 @@ import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
 import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
+import java.util.Collections
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -102,11 +103,13 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Class brokenClassifier, Package parentPackage, String name) {
 		val umlClass = parentPackage.createOwnedClass(name, brokenClassifier.abstract);
+		parentPackage.save
 		brokenClassifier.referencedElement = umlClass;
 	}
 	
 	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Interface brokenClassifier, Package parentPackage, String name) {
 		val umlInterface = parentPackage.createOwnedInterface(name);
+		parentPackage.save
 		brokenClassifier.referencedElement = umlInterface;
 	}
 	
@@ -142,18 +145,21 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	private static def dispatch void fixCreate(Attribute brokenAttribute, Class umlClassifier, String name) {
 		val umlType = getUMLType(brokenAttribute.type)
 		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
+		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
 	}
 	
 	private static def dispatch void fixCreate(Attribute brokenAttribute, Interface umlClassifier, String name) {
 		val umlType = getUMLType(brokenAttribute.type)
 		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
+		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
 	}
 	
 	private static def dispatch void fixCreate(Method brokenMethod, Class umlClassifier, String name) {
 		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
 			val umlOperation = umlClassifier.createOwnedOperation(name, paramNames, paramTypes, returnType)
+			umlClassifier.save
 			brokenMethod.referencedElement = umlOperation
 		]
 	}
@@ -161,6 +167,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	private static def dispatch void fixCreate(Method brokenMethod, Interface umlClassifier, String name) {
 		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
 			val umlOperation = umlClassifier.createOwnedOperation(name, paramNames, paramTypes, returnType)
+			umlClassifier.save
 			brokenMethod.referencedElement = umlOperation
 		]
 	}
@@ -218,6 +225,10 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def dispatch getUMLType(Void type) {
 		return null
+	}
+	
+	private static def save (EObject o) {
+		o.eResource.save(Collections.emptyMap)
 	}
 
 }

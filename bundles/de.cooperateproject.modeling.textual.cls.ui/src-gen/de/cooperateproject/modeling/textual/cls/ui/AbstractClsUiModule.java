@@ -217,6 +217,11 @@ public abstract class AbstractClsUiModule extends org.eclipse.xtext.ui.DefaultUi
 		return net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder.class;
 	}
 
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
+	public void configureLanguageSpecificURIEditorOpener(com.google.inject.Binder binder) {
+		if (org.eclipse.ui.PlatformUI.isWorkbenchRunning())binder.bind(org.eclipse.xtext.ui.editor.IURIEditorOpener.class).annotatedWith(org.eclipse.xtext.ui.LanguageSpecific.class).to(net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener.class);
+	}
+
 	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment
 	public Class<? extends org.eclipse.emf.compare.match.IMatchEngine.Factory> bindIMatchEngine$Factory() {
 		return de.cooperateproject.modeling.textual.cls.ui.cdoxtext.ClsMatchEngineFactory.class;
