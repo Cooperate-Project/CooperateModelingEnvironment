@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Generator
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.generator
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.1.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext.generator;bundle-version="2.9.1",
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="1.0.0",
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.0",
  org.eclipse.xtext
 Export-Package: de.cooperateproject.modeling.textual.xtext.generator.naming,
  de.cooperateproject.modeling.textual.xtext.generator.resources
