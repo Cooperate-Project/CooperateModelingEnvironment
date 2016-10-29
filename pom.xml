@@ -58,6 +58,11 @@
 			<url>https://mammutbaum36.fzi.de/p2/cooperate</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>papyrus</id>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 
 	<build>
