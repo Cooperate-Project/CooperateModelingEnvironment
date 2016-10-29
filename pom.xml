@@ -49,11 +49,6 @@
 			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/</url>
 		</repository>
 		<repository>
-			<id>cooperate-dev</id>
-			<url>https://mammutbaum36.fzi.de/p2/cooperate-dev</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
 			<id>cooperate</id>
 			<url>https://mammutbaum36.fzi.de/p2/cooperate</url>
 			<layout>p2</layout>
