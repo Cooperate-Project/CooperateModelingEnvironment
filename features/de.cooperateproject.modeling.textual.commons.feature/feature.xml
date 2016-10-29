@@ -18,15 +18,12 @@
       %license
    </license>
 
-   <includes
-         id="de.cooperateproject.cdoxtext.feature"
-         version="0.0.0"/>
-
    <requires>
       <import feature="org.eclipse.emf.cdo" version="4.5.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.gmf.runtime.notation" version="1.10.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.uml2.uml" version="5.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf.compare" version="3.2.0" match="greaterOrEqual"/>
+      <import feature="de.cooperateproject.cdoxtext.feature" version="0.1.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
