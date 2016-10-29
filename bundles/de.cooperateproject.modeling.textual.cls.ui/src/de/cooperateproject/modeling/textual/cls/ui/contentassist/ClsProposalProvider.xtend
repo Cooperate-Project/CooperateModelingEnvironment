@@ -4,6 +4,7 @@
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Package
@@ -19,9 +20,9 @@ import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.uml2.uml.util.UMLSwitch
-import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.RuleCall
 import org.eclipse.xtext.scoping.IScopeProvider
-import org.eclipse.xtext.serializer.impl.Serializer
+import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 
@@ -30,41 +31,68 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
  */
 class ClsProposalProvider extends AbstractClsProposalProvider {
 	@Inject IScopeProvider scope
-	@Inject Serializer serializer
+	@Inject ISerializer serializer
 
 	/**
 	 * Content assist for creating classes into the text editor from the uml file.
 	 */
-	override completePackage_Classifiers(EObject model, Assignment assignment, ContentAssistContext context,
-		ICompletionProposalAcceptor acceptor) {
+	override complete_Classifier(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
 		var scope = scope.getScope(model, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
 
 		var elements = scope.allElements
 		var classes = elements.map[x|x.EObjectOrProxy].filter(Class)
+		var interfaces = elements.map[x|x.EObjectOrProxy].filter(Interface)
 		for (class : classes) {
 			var c = createClass(class)
 			var m = model as Package
 			m.classifiers.add(c)
 
-			acceptor.accept(createCompletionProposal(serializer.serialize(c), class.name, null, context))
+			createAcceptor(c, acceptor, context)
+		}
+		
+		for (iface : interfaces) {
+			var i = createInterface(iface)
+			var m = model as Package
+			m.classifiers.add(i)
+			
+			createAcceptor(i, acceptor, context)
 		}
 	}
-
+	
+	private def createAcceptor(Classifier classifier, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+		acceptor.accept(createCompletionProposal(serializer.serialize(classifier), classifier.name, null, context))
+	}
+	
 	/**
 	 * Creates an Cls Class out of a UML Class.
 	 */
 	private def createClass(Class refClass) {
-		var class = ClsFactory.eINSTANCE.createClass
-		class.referencedElement = refClass
+		var c = ClsFactory.eINSTANCE.createClass
+		c.referencedElement = refClass
 
 		for (attribute : refClass.attributes) {
-			class.members.add(createAttributes(attribute))
+			c.members.add(createAttributes(attribute))
 		}
 		for (operation : refClass.operations) {
-			class.members.add(createOperations(operation))
+			c.members.add(createOperations(operation))
 		}
-		return class
+		//m.classifiers.add(c)
+		return c
+	}
+	
+	private def createInterface(Interface refInterface) {
+		var iface = ClsFactory.eINSTANCE.createInterface
+		iface.referencedElement = refInterface
+
+		/*for (attribute : refInterface.attributes) {
+			class.members.add(createAttributes(attribute))
+		}*/
+		for (operation : refInterface.operations) {
+			iface.members.add(createOperations(operation))
+		}
+		//m.classifiers.add(iface)
+		return iface
 	}
 
 	/**
@@ -132,11 +160,11 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	}
 
 	private static class TypeSwitch extends UMLSwitch<TypeReference> {
-		private TypeConverter typeConverter
+		/*private TypeConverter typeConverter
 		
 		new() {
 			typeConverter = new TypeConverter()
-		} 
+		} */
 
 		override casePrimitiveType(PrimitiveType primitiveType) {
 			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
