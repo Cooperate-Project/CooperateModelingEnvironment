@@ -12,16 +12,4 @@
 	<artifactId>de.cooperateproject.modeling.updatesite</artifactId>
 	<packaging>eclipse-repository</packaging>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>${maven.deploy-plugin.version}</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>
