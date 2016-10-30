@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.cooperateproject.modeling</groupId>
+		<artifactId>releng</artifactId>
+		<version>0.1.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>de.cooperateproject.modeling.updatesite.aggregated</artifactId>
+	<packaging>pom</packaging>
+	<name>Update Site Aggregated</name>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>workspace-clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>workspace</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-eclipserun-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<repositories>
+						<repository>
+							<id>Eclipse Neon</id>
+							<layout>p2</layout>
+							<url>http://download.eclipse.org/releases/neon/</url>
+						</repository>
+						<repository>
+							<id>Eclipse Neon Update</id>
+							<layout>p2</layout>
+							<url>http://download.eclipse.org/eclipse/updates/4.6</url>
+						</repository>
+						<repository>
+							<id>Eclipse B3 Aggregator</id>
+							<layout>p2</layout>
+							<url>http://download.eclipse.org/modeling/emft/b3/headless-4.4</url>
+						</repository>
+					</repositories>
+					<jvmArgs>
+						<args>-Xmx1024m</args>
+					</jvmArgs>
+					<applicationsArgs>
+						<args>-application</args>
+						<args>org.eclipse.b3.cli.headless</args>
+						<args>aggregate</args>
+						<args>--buildModel</args>
+						<args>updatesite.b3aggr</args>
+						<args>--action</args>
+						<args>BUILD</args>
+					</applicationsArgs>
+					<dependencies>
+						<dependency>
+							<artifactId>org.eclipse.b3.aggregator.engine.feature</artifactId>
+							<type>eclipse-feature</type>
+						</dependency>                 
+					</dependencies>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>eclipse-run</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly_descriptor.xml</descriptor>
+					</descriptors>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+</project>

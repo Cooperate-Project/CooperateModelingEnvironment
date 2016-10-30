@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aggregator="http://www.eclipse.org/b3/2011/aggregator/1.1.0" label="Cooperate Modeling Environment" buildRoot="target">
+  <validationSets label="main">
+    <contributions label="local">
+      <repositories location="../de.cooperateproject.modeling.updatesite/target/repository"/>
+    </contributions>
+    <contributions label="externals">
+      <repositories location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/" mirrorArtifacts="false" categoryPrefix="External Dependencies -">
+        <categories description="All possible external dependencies from the Eclipse Orbit." name="org.eclipse.orbit.category.all"/>
+        <mapRules xsi:type="aggregator:ExclusionRule" name="org.eclipse.orbit.build.feature.set1.feature.group"/>
+        <mapRules xsi:type="aggregator:ExclusionRule" name="org.apache.commons.daemon"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/releases/neon/" mirrorArtifacts="false">
+        <features name="org.eclipse.jdt.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.emf.cdo.sdk.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="https://mammutbaum36.fzi.de/p2/cooperate/" mirrorArtifacts="false">
+        <features name="de.cooperateproject.cdo.patched.client.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="de.cooperateproject.cdo.patched.server.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="de.cooperateproject.cdoxtext.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="de.cooperateproject.license.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="de.cooperateproject.cdo.patch.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="de.cooperateproject.cdo.server.patch.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" mirrorArtifacts="false">
+        <features name="org.eclipse.papyrus.extra.cdo.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+        <features name="org.eclipse.papyrus.sdk.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
+      </repositories>
+    </contributions>
+  </validationSets>
+  <configurations/>
+  <configurations architecture="x86_64"/>
+  <configurations operatingSystem="linux" windowSystem="gtk"/>
+  <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
+  <configurations operatingSystem="macosx" windowSystem="cocoa"/>
+  <configurations operatingSystem="macosx" windowSystem="cocoa" architecture="x86_64"/>
+  <customCategories identifier="externals" label="External Dependencies" features="//@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.2 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.3 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.1/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.0 //@validationSets[label='main']/@contributions[label='externals']/@repositories.3/@features.1 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.4 //@validationSets[label='main']/@contributions[label='externals']/@repositories.2/@features.5"/>
+</aggregator:Aggregation>
