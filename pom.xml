@@ -5,8 +5,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>de.cooperateproject</groupId>
-		<artifactId>de.cooperateproject.parent</artifactId>
-		<version>1.0.0</version>
+		<artifactId>de.cooperateproject.parent.eclipse</artifactId>
+		<version>1.0.2</version>
 		<relativePath></relativePath>
 	</parent>
 	<groupId>de.cooperateproject.modeling</groupId>
@@ -23,25 +23,30 @@
 	</modules>
 
 	<properties>
-		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<xtext.version>2.10.0</xtext.version>
-		
 		<tycho.version>0.26.0</tycho.version>
 		<maven.deploy-plugin.version>2.8.2</maven.deploy-plugin.version>
-		
+		<bintray.deploy.plugin.version>0.1.1</bintray.deploy.plugin.version>
+		<bintray.deploy.repository>CooperateModelingEnvironment</bintray.deploy.repository>
 		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
 	</properties>
 
 	<repositories>
+		<!-- If you adjust a repository here, please also adjust the repository in the b3 aggregator. -->
 		<repository>
 			<id>eclipse</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/neon</url>
+		</repository>
+		<repository>
+			<id>papyrus</id>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon</url>
+			<layout>p2</layout>
 		</repository>
 		<repository>
 			<id>eclipse-orbit</id>
@@ -49,13 +54,18 @@
 			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/</url>
 		</repository>
 		<repository>
-			<id>cooperate</id>
-			<url>https://mammutbaum36.fzi.de/p2/cooperate</url>
+			<id>cooperate-license</id>
+			<url>https://dl.bintray.com/cooperate-project/CooperateLicense/updatesite/1.0.0/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>papyrus</id>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon</url>
+			<id>cooperate-cdoxtext</id>
+			<url>https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.1.1/</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>cooperate-cdo</id>
+			<url>https://dl.bintray.com/cooperate-project/CDO/updatesite/4.5.1/</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>

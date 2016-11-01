@@ -12,6 +12,10 @@
 	<packaging>pom</packaging>
 	<name>Update Site Aggregated</name>
 
+	<properties>
+		<bintray.deploy.file>${project.build.directory}/final</bintray.deploy.file>
+	</properties>
+
 	<build>
 		<plugins>
 
@@ -104,6 +108,21 @@
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>de.cooperateproject.maven</groupId>
+				<artifactId>de.cooperateproject.maven.bintray.deploy</artifactId>
+				<version>${bintray.deploy.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>bintray-deployment</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
 						</goals>
 					</execution>
 				</executions>
