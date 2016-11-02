@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.ui.papyrusContentOutline">
+      <contentoutline
+            class="de.cooperate.modeling.graphical.papyrus.extensions.PapyrusContentOutlinePage"
+            priority="100">
+      </contentoutline>
+   </extension>
+
+</plugin>

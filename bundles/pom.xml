@@ -31,6 +31,7 @@
 		<module>de.cooperateproject.ui.papyrus</module>
 		<module>de.cooperateproject.ui.textualeditors</module>
 		<module>de.cooperateproject.util</module>
+		<module>de.cooperateproject.modeling.graphical.papyrus.extensions</module>
 	</modules>
 
 </project>
