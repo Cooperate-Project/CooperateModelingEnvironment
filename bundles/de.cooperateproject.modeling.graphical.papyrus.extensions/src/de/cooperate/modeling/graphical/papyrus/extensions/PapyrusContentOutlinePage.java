@@ -10,7 +10,7 @@ import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 
-public class PapyrusContentOutlinePage extends ContentOutlinePage implements IPapyrusContentOutlinePage, ITabbedPropertySheetPageContributor{
+public class PapyrusContentOutlinePage extends ContentOutlinePage implements IPapyrusContentOutlinePage {
 
 	private TreeViewer viewer;
 	private IMultiDiagramEditor editor;
@@ -27,7 +27,7 @@ public class PapyrusContentOutlinePage extends ContentOutlinePage implements IPa
 		viewer.setLabelProvider(new UMLLabelProvider());
 		viewer.setInput(editor.getActiveEditor());
 	}
-	
+
 	@Override
 	public void init(IMultiDiagramEditor arg0) throws BackboneException {
 		editor = arg0;
@@ -39,9 +39,4 @@ public class PapyrusContentOutlinePage extends ContentOutlinePage implements IPa
 		});
 	}
 
-	@Override
-	public String getContributorId() {
-		return "42";
-	}
-	
 }
