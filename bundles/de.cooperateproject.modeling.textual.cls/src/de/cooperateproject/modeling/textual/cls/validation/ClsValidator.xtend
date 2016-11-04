@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.TypedElement
 import org.eclipse.xtext.validation.Check
 import org.eclipse.uml2.uml.Operation
+import de.cooperateproject.modeling.textual.cls.cls.Association
 
 /**
  * This class contains custom validation rules. 
@@ -30,6 +31,17 @@ class ClsValidator extends AbstractClsValidator {
 	public static val NO_PROPERTY_REFERENCE = 'no_property_reference'
 	public static val WRONG_PROPERTY_TYPE = 'wrong_property_type'
 	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
+	public static val NO_ASSOCIATION_REFERENCE = 'no_association_reference'
+
+
+	@Check
+	def checkIfAssociationExists(Association association) {
+		if (association.referencedElement.model == null) {
+			error("No Referenced UML-Association Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_ASSOCIATION_REFERENCE)
+		}
+	}
+	 
 
 	@Check
 	def checkIfClassExists(Class classifier) {
@@ -62,6 +74,14 @@ class ClsValidator extends AbstractClsValidator {
 		}
 	}
 	
+	@Check
+	def checkIfOperationExists(Method method) {
+		if (method.referencedElement.model == null) {
+			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_OPERATION_REFERENCE)
+		}
+	}
+	
 	private static def hasCorrectType(Property<? extends NamedElement> property) {
 		val umlReferencedElement = property.referencedElement
 		var Type umlType = null
@@ -87,11 +107,4 @@ class ClsValidator extends AbstractClsValidator {
 			return true
 	}
 
-	@Check
-	def checkIfOperationExists(Method method) {
-		if (method.referencedElement.model == null) {
-			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_OPERATION_REFERENCE)
-		}
-	}
 }

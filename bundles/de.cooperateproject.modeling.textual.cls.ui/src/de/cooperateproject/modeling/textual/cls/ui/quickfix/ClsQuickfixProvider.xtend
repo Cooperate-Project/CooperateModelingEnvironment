@@ -33,6 +33,7 @@ import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
 import java.util.Collections
+import org.eclipse.uml2.uml.UMLFactory
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -45,6 +46,18 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			element.fixMissingClassifier(issue, context)
 		]
 	}
+	
+	
+	/**
+	 * Quickfix for missing Association in the UML-diagram.
+	 */
+	@Fix(ClsValidator::NO_ASSOCIATION_REFERENCE)
+	def createMissingUMLAssociation(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Create Association', 'Create the Association into the UML Diagram', null) [ element, context |
+			element.fixMissingClassifier(issue, context)
+		]
+	}
+	
 
 	/**
 	 * Quickfix for missing Interface in the UML-diagram.
@@ -92,13 +105,13 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def fixMissingClassifier(EObject element, Issue issue, IModificationContext context) {
 		var name = context.xtextDocument.get(issue.offset, issue.length)
-		val brokenClassifier = element as de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends Classifier>
-		val parentPackage = brokenClassifier.nearestPackage
+		val brokenElement = element as de.cooperateproject.modeling.textual.cls.cls.Element;
+		val parentPackage = brokenElement.nearestPackage
 		val umlPackage = parentPackage.referencedElement
 		if (umlPackage == null) {
 			return
 		}
-		brokenClassifier.fixCreate(umlPackage, name)
+		brokenElement.fixCreate(umlPackage, name)
 	}
 	
 	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Class brokenClassifier, Package parentPackage, String name) {
@@ -111,6 +124,15 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val umlInterface = parentPackage.createOwnedInterface(name);
 		parentPackage.save
 		brokenClassifier.referencedElement = umlInterface;
+	}
+	
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Association brokenClassifier, Package parentPackage, String name) {
+		val umlAssociation = UMLFactory.eINSTANCE.createAssociation;
+		umlAssociation.name = name
+		//TODO: Check where we want to put our Associations
+		parentPackage.packagedElements.add(umlAssociation);
+		parentPackage.save
+		brokenClassifier.referencedElement = umlAssociation;
 	}
 	
 	private static def fixWrongType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
