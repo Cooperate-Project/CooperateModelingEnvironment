@@ -10,9 +10,13 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
 
+import de.cooperateproject.ui.util.PropertiesPageValidationProcessor;
+
 public class ProjectPropertiesPage extends PropertyPage implements IWorkbenchPropertyPage {
 
+	private PropertiesPageValidationProcessor validationProcessor;
 	private ProjectPropertiesStore preferenceStore;
+	private ProjectPropertiesComposite composite;
 
 	private IProject getProject() {
 		return (IProject) getElement().getAdapter(IResource.class);
@@ -22,12 +26,15 @@ public class ProjectPropertiesPage extends PropertyPage implements IWorkbenchPro
 	protected Control createContents(Composite parent) {
 		preferenceStore = new ProjectPropertiesStore(getProject());
 		preferenceStore.initFromStore();
-		return new ProjectPropertiesComposite(parent, SWT.FILL, preferenceStore.getPreferences());
+		validationProcessor = new PropertiesPageValidationProcessor(this, preferenceStore.getPreferences());
+		composite = new ProjectPropertiesComposite(parent, SWT.FILL, preferenceStore.getPreferences(), validationProcessor);
+		return composite;
 	}
 
 	@Override
 	protected void performDefaults() {
 		preferenceStore.initFromDefaults();
+		composite.updateTargets();
 		super.performDefaults();
 	}
 
@@ -40,6 +47,12 @@ public class ProjectPropertiesPage extends PropertyPage implements IWorkbenchPro
 			//TODO log error
 			return false;
 		}
+	}
+
+	@Override
+	public void dispose() {
+		validationProcessor.stop();
+		super.dispose();
 	}	
 	
 }

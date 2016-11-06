@@ -14,9 +14,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 
 import de.cooperateproject.ui.nature.NatureUtils;
+import de.cooperateproject.ui.util.IValidateable;
 import de.cooperateproject.ui.wizards.modelnew.AtomicModelNameProcessor.ModelName;
 
-public class SelectedNamesDTO {
+public class SelectedNamesDTO implements IValidateable {
 	
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final ObservableList<IProject> availableProjects = createProjectList();
@@ -53,6 +54,7 @@ public class SelectedNamesDTO {
 		return availableProjects;
 	}
 	
+	@Override
 	public boolean isValid() {
 		return selectedModelName != null && selectedDiagramName != null;
 	}

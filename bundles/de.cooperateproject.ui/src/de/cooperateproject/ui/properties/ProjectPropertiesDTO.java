@@ -3,7 +3,12 @@ package de.cooperateproject.ui.properties;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ProjectPropertiesDTO {
+import org.eclipse.core.runtime.IStatus;
+
+import de.cooperateproject.ui.util.IValidateable;
+import de.cooperateproject.ui.wizards.projectnew.CDOCredentialsValidator;
+
+public class ProjectPropertiesDTO implements IValidateable {
 
 	private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 	private String cdoHost;
@@ -87,6 +92,12 @@ public class ProjectPropertiesDTO {
 		} else if (!cdoRepo.equals(other.cdoRepo))
 			return false;
 		return true;
+	}
+
+	@Override
+	public boolean isValid() {
+		IStatus result = CDOCredentialsValidator.validate(getCdoHost(), getCdoPort(), getCdoRepo());
+		return result.isOK();
 	}
 	
 }

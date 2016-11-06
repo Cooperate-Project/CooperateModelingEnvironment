@@ -109,7 +109,7 @@
       </category>
       <wizard
             category="de.cooperateproject.ui.wizards.cooperateWizards"
-            class="de.cooperateproject.ui.wizards.NewCooperateProjectWizard"
+            class="de.cooperateproject.ui.wizards.projectnew.NewCooperateProjectWizard"
             id="de.cooperateproject.ui.newCooperateProjectWizard"
             name="Cooperate Project">
       </wizard>

@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.wizards;
+package de.cooperateproject.ui.wizards.projectnew;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
@@ -20,6 +21,7 @@ public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard imp
 	private static final Logger LOGGER = Logger.getLogger(NewCooperateProjectWizard.class);
 
 	private CDOConfigurationWizardPage cdoPage;
+	private boolean codPageShown = false;
 
 	public NewCooperateProjectWizard() {
 		super();
@@ -33,10 +35,22 @@ public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard imp
 		addPage(cdoPage);
 	};
 
+	
+	
+	@Override
+	public IWizardPage getNextPage(IWizardPage page) {
+		IWizardPage nextPage = super.getNextPage(page);
+		if (nextPage == cdoPage) {
+			codPageShown = true;
+		}
+		return nextPage;
+	}
+
 	@Override
 	public boolean canFinish() {
-		return super.canFinish();
-	};
+		boolean baseCanFinish = super.canFinish();
+		return codPageShown && baseCanFinish;
+	}
 
 	@Override
 	public boolean performFinish() {

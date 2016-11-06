@@ -17,10 +17,15 @@ public class ProjectPropertiesStore {
 	private static final StoreAwareStringProperty CDO_REPO = new StoreAwareStringProperty("cdo.repo", "repo1");
 	
 	private final IPersistentPreferenceStore preferencesStore;
-	private ProjectPropertiesDTO preferences = new ProjectPropertiesDTO();
+	private ProjectPropertiesDTO preferences;
+	
+	public ProjectPropertiesStore(IProject project, ProjectPropertiesDTO preferencesObject) {
+		preferences = preferencesObject;
+		preferencesStore = createStore(project);		
+	}
 	
 	public ProjectPropertiesStore(IProject project) {
-		preferencesStore = createStore(project);
+		this (project, new ProjectPropertiesDTO());
 	}
 	
 	public void setPreferences(ProjectPropertiesDTO preferences) {
@@ -32,9 +37,7 @@ public class ProjectPropertiesStore {
 	}
 	
 	public void initFromDefaults() {
-		preferences.setCdoHost(CDO_HOST.getDefault());
-		preferences.setCdoPort(CDO_PORT.getDefault());
-		preferences.setCdoRepo(CDO_REPO.getDefault());
+		initWtihDefaults(preferences);
 	}
 	
 	public void initFromStore() {
@@ -50,6 +53,12 @@ public class ProjectPropertiesStore {
 		preferencesStore.save();
 	}
 	
+	private static void initWtihDefaults(ProjectPropertiesDTO dto) {
+		dto.setCdoHost(CDO_HOST.getDefault());
+		dto.setCdoPort(CDO_PORT.getDefault());
+		dto.setCdoRepo(CDO_REPO.getDefault());
+	}
+	
 	private static IPersistentPreferenceStore createStore(IProject project) {
 		IScopeContext projectScope = new ProjectScope(project);
 		IPersistentPreferenceStore store = new ScopedPreferenceStore(projectScope, CooperateProjectNature.NATURE_ID);
@@ -57,6 +66,12 @@ public class ProjectPropertiesStore {
 		CDO_PORT.init(store);
 		CDO_REPO.init(store);
 		return store;
+	}
+	
+	public static ProjectPropertiesDTO getDefaults() {
+		ProjectPropertiesDTO dto = new ProjectPropertiesDTO();
+		initWtihDefaults(dto);
+		return dto;
 	}
 	
 }
