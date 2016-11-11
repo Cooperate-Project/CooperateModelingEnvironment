@@ -9,6 +9,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 
 import com.google.inject.Binder;
 
+import de.cooperateproject.modeling.textual.cls.formatting2.FormatterContext;
 import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeProvider;
 import de.cooperateproject.modeling.textual.cls.scoping.ClsQualifiedNameProvider;
 import de.cooperateproject.modeling.textual.cls.services.ClsLinkingService;
@@ -42,6 +43,9 @@ public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.A
 	public Class<? extends ILinkingService> bindILinkingService() {
 		return ClsLinkingService.class;
 	}
-
 	
+	@Override
+	public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
+		return FormatterContext.class;
+	}	
 }

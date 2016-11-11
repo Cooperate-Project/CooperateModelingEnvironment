@@ -26,4 +26,5 @@ public class ClsUiModule extends de.cooperateproject.modeling.textual.cls.ui.Abs
 	      bindILocationInFileProvider() {
 	    return ClsLocationInFileProvider.class;
 	  }
+	 
 }

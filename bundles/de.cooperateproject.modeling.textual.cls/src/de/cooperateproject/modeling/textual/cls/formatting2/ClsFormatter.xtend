@@ -7,7 +7,6 @@ import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
@@ -25,26 +24,25 @@ import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess
-import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
-class ClsFormatter extends AbstractFormatter2 {
+class ClsFormatter extends AbstractClsFormatter {
 	
 	@Inject extension ClsGrammarAccess
 
 	def dispatch void format(ClassDiagram classdiagram, extension IFormattableDocument document) {
-		classdiagram.regionFor.feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
+		region.regionFor(classdiagram).feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
 		format(classdiagram.getRootPackage(), document);
-		classdiagram.regionFor.keyword(classDiagramAccess.endclassKeyword_4).prepend[newLines = 2]
+		region.regionFor(classdiagram).keyword(classDiagramAccess.endclassKeyword_4).prepend[newLines = 2]
 	}
 
-	def dispatch void format(Package pkg, extension IFormattableDocument document) {
-		interior(
-			pkg.regionFor.keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine],
-			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 2],
+	def dispatch void format(Package pkg, extension IFormattableDocument document) {		
+		interior(			
+			region.regionFor(pkg).keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine],
+			region.regionFor(pkg).keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 2],
 			[indent]
 		)
-		pkg.regionFor.assignment(rootPackageAccess.referencedElementAssignment_1).append[newLines = 2]
+		region.regionFor(pkg).assignment(rootPackageAccess.referencedElementAssignment_1).append[newLines = 2]
 			
 		for (PackageImport packageImports : pkg.getPackageImports()) {
 			format(packageImports, document);
@@ -72,8 +70,8 @@ class ClsFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Class clz, extension IFormattableDocument document) {
 		interior(
-			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_5_0).append[newLine],
-			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_5_2),
+			region.regionFor(clz).keyword(classAccess.leftCurlyBracketKeyword_5_0).append[newLine],
+			region.regionFor(clz).keyword(classAccess.rightCurlyBracketKeyword_5_2),
 			[indent]
 		)
 		
@@ -90,8 +88,8 @@ class ClsFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Interface interfaze, extension IFormattableDocument document) {
 		interior(
-			interfaze.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_4_0).append[newLine],
-			interfaze.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_4_2),
+			region.regionFor(interfaze).keyword(interfaceAccess.leftCurlyBracketKeyword_4_0).append[newLine],
+			region.regionFor(interfaze).keyword(interfaceAccess.rightCurlyBracketKeyword_4_2),
 			[indent]
 		)
 		
@@ -150,11 +148,11 @@ class ClsFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(MultiAssociation multiassociation, extension IFormattableDocument document) {
 		interior(
-			multiassociation.regionFor.keyword(multiAssociationAccess.leftCurlyBracketKeyword_2).append[newLine],
-			multiassociation.regionFor.keyword(multiAssociationAccess.rightCurlyBracketKeyword_4).prepend[newLine],
+			region.regionFor(multiassociation).keyword(multiAssociationAccess.leftCurlyBracketKeyword_2).append[newLine],
+			region.regionFor(multiassociation).keyword(multiAssociationAccess.rightCurlyBracketKeyword_4).prepend[newLine],
 			[indent]
 		)
-		multiassociation.allRegionsFor.keyword(multiAssociationAccess.semicolonKeyword_3_1).prepend[noSpace].append[newLine]
+		region.regionFor(multiassociation).keyword(multiAssociationAccess.semicolonKeyword_3_1).prepend[noSpace].append[newLine]
 		for (MemberEnd connectorEnds : multiassociation.getConnectorEnds()) {
 			format(connectorEnds, document);
 			connectorEnds.prepend[newLine]
@@ -170,14 +168,5 @@ class ClsFormatter extends AbstractFormatter2 {
 	def dispatch void format(AssociationProperties associationproperties, extension IFormattableDocument document) {
 		format(associationproperties.getCardinalityLeft(), document);
 		format(associationproperties.getCardinalityRight(), document);
-		associationproperties.regionFor.keyword(associationPropertiesAccess.leftSquareBracketKeyword_0).append[noSpace]
-		associationproperties.regionFor.keyword(associationPropertiesAccess.rightSquareBracketKeyword_4).prepend[noSpace]
-		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_2_0).prepend[noSpace]
-		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_3_2_0).prepend[noSpace]
-	}
-
-	def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {
-		cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).append[noSpace]
-		cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).prepend[noSpace]
 	}
 }
