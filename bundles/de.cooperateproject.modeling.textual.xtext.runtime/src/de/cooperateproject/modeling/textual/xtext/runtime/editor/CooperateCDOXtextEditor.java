@@ -7,7 +7,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 
@@ -42,6 +47,23 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 	
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
+		IXtextDocument document = getDocument();
+		CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
+		IStatus status = scheduleValidation(cooperateXtextDocument);
+		if (status.isOK()) {
+			List<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
+			if (!errors.isEmpty()) {
+				openErrorDialog("Save Error", "Can't save because of editor errors");
+				return;
+			}			
+			saveDocument(progressMonitor);				
+		} else if (status.matches(IStatus.CANCEL)) {
+			openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
+			return;
+		}		
+	}	
+	
+	private void saveDocument(IProgressMonitor progressMonitor) {
 		if (getDocument() != null) {
 			saveAllAssociated(getDocument());
 		}
@@ -53,6 +75,23 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 		}
 	}
 	
+	private IStatus scheduleValidation(CooperateXtextDocument cooperateXtextDocument) {
+		Job validationJob = cooperateXtextDocument.getValidationJob();
+		validationJob.schedule();
+		try {
+			validationJob.join();			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return validationJob.getResult();
+	}
+	
+	private void openErrorDialog(String title, String body) {
+		MessageDialog dialog = new MessageDialog(Display.getCurrent().getActiveShell(), title, null,
+				body, MessageDialog.ERROR, new String[] { "OK" }, 0);
+		dialog.open();
+	}
+		
 	private void saveAllAssociated(IXtextDocument iXtextDocument) {
 		CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
 		if (cooperateXtextDocument != null) {
@@ -80,6 +119,5 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 		}
 		return super.getAdapter(requestedClass);
 	}
-
 	
 }
