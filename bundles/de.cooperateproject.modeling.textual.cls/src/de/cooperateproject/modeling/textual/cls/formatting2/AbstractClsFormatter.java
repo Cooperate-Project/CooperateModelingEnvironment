@@ -18,4 +18,7 @@ public abstract class AbstractClsFormatter extends AbstractFormatter2{
 
 	//public abstract void format(ITextRegionExtensions region, Object obj, @Extension final IFormattableDocument document);
 
+	public abstract String getId();
+	
+	public abstract String getLabel();
 }

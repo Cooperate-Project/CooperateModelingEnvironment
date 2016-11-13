@@ -100,7 +100,7 @@
 		</page>
   		<page
   			category="de.cooperateproject.modeling.textual.cls.Cls"
-        	class="de.cooperateproject.modeling.textual.cls.ui.FormatterPreferencePage"
+        	class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.cls.ui.FormatterPreferencePage"
         	id="de.cooperateproject.modeling.textual.cls.ui.formatter"
         	name="Formatter">
      		<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>

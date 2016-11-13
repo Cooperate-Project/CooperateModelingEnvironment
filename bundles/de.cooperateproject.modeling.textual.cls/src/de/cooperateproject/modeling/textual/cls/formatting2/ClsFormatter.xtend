@@ -28,7 +28,17 @@ import org.eclipse.xtext.formatting2.IFormattableDocument
 
 class ClsFormatter extends AbstractClsFormatter {
 	
+	public static val ID = ClsFormatter.name
+	
 	@Inject extension ClsGrammarAccess
+
+	override getId() {
+		ID
+	}
+	
+	override getLabel() {
+		"Default"
+	}
 
 	def dispatch void format(ClassDiagram classdiagram, extension IFormattableDocument document) {
 		region.regionFor(classdiagram).feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
@@ -169,4 +179,5 @@ class ClsFormatter extends AbstractClsFormatter {
 		format(associationproperties.getCardinalityLeft(), document);
 		format(associationproperties.getCardinalityRight(), document);
 	}
+	
 }

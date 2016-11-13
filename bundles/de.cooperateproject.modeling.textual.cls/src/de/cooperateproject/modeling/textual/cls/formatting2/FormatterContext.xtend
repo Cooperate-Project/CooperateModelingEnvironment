@@ -1,20 +1,16 @@
 package de.cooperateproject.modeling.textual.cls.formatting2
 
-import org.eclipse.xtext.formatting2.IFormattableDocument
+import com.google.inject.Inject
 import org.eclipse.xtext.formatting2.AbstractFormatter2
-import de.cooperateproject.util.eclipse.ExtensionPointHelper
-import com.google.inject.Guice
-import de.cooperateproject.modeling.textual.cls.ClsRuntimeModule
-import de.cooperateproject.modeling.textual.cls.Activator
+import org.eclipse.xtext.formatting2.IFormattableDocument
 
 class FormatterContext extends AbstractFormatter2 {
 	
+	@Inject
+	var IFormatterSelector formatterSelector
+	
 	override format(Object obj, IFormattableDocument document) {
-		
-		var formatter = Activator.instance.getFormatter()
-		var injector = Guice.createInjector(new ClsRuntimeModule())
-        injector.injectMembers(formatter)
-        
+		val formatter = formatterSelector.selectedFormatter        
         formatter.format(textRegionExtensions, obj, document)		
 	}
 	

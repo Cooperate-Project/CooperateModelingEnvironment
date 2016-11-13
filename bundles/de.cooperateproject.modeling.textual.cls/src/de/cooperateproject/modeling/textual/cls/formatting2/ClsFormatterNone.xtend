@@ -6,7 +6,16 @@ package de.cooperateproject.modeling.textual.cls.formatting2;
 import org.eclipse.xtext.formatting2.IFormattableDocument
 
 public class ClsFormatterNone extends AbstractClsFormatter {
+
+	override getId() {
+		ClsFormatterNone.name
+	}
 	
+	override getLabel() {
+		"Empty"
+	}
+
 	override format(Object obj, IFormattableDocument document) {
 	}
+
 }

@@ -1,17 +1,9 @@
 package de.cooperateproject.modeling.textual.cls;
 
-import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.osgi.framework.BundleContext;
 
-import de.cooperateproject.modeling.textual.cls.formatting2.AbstractClsFormatter;
-import de.cooperateproject.modeling.textual.cls.formatting2.FormatterRegistry;
-
 public class Activator extends AbstractUIPlugin {
-	
-		private static final String CLS_UI_PLUGIN_ID = "de.cooperateproject.modeling.textual.cls.ui";
 		
 		private static Activator INSTANCE;
 		
@@ -43,11 +35,5 @@ public class Activator extends AbstractUIPlugin {
 		public static Activator getInstance() {
 			return INSTANCE;
 		}
-		
-		public AbstractClsFormatter getFormatter() {			
-			IPreferenceStore store = new ScopedPreferenceStore(InstanceScope.INSTANCE, CLS_UI_PLUGIN_ID);
-			String choosenFormatterName = store.getString("CHOICE");
-			
-			return FormatterRegistry.getInstance().getFormatter(choosenFormatterName);
-		}
+
 }
