@@ -3,25 +3,35 @@
  */
 package de.cooperateproject.modeling.textual.cls;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.formatting2.IFormatter2;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 
 import com.google.inject.Binder;
 
-import de.cooperateproject.modeling.textual.cls.formatting2.FormatterContext;
-import de.cooperateproject.modeling.textual.cls.formatting2.FormatterSelector;
-import de.cooperateproject.modeling.textual.cls.formatting2.IFormatterSelector;
+import de.cooperateproject.modeling.textual.cls.formatting2.ClsFormatter;
 import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeProvider;
 import de.cooperateproject.modeling.textual.cls.scoping.ClsQualifiedNameProvider;
 import de.cooperateproject.modeling.textual.cls.services.ClsLinkingService;
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter;
+import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
 /**
  * Use this class to register components to be used at runtime / without the
  * Equinox extension registry.
  */
 public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.AbstractClsRuntimeModule {
+
+	private static final String FORMATTER_EXTENSION_ID = "de.cooperateproject.modeling.textual.cls.formatter";
+	private static final String FORMATTER_EXTENSION_ATTRIBUTE = "class";
+	private static final String FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY = "priority";
 
 	@Override
 	public void configureIScopeProviderDelegate(Binder binder) {
@@ -45,14 +55,21 @@ public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.A
 	public Class<? extends ILinkingService> bindILinkingService() {
 		return ClsLinkingService.class;
 	}
-	
+
 	@Override
+	@SuppressWarnings("restriction")
 	public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
-		return FormatterContext.class;
+		Collection<Pair<IFormatter2, Map<String, String>>> formatters = ExtensionPointHelper
+				.getExtensions(FORMATTER_EXTENSION_ID, FORMATTER_EXTENSION_ATTRIBUTE, IFormatter2.class, FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY);
+		Optional<Pair<IFormatter2, Integer>> selectedFormatter = formatters.stream()
+				.filter(f -> NumberUtils.isNumber(f.getRight().get(FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY)))
+				.map(f -> Pair.of(f.getLeft(), Integer.parseInt(f.getRight().get(FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY))))
+				.max((f1, f2) -> f1.getRight() - f2.getRight());
+		if (!selectedFormatter.isPresent()) {
+			return ClsFormatter.class;
+		}
+		Class<? extends IFormatter2> formatterclass = selectedFormatter.get().getLeft().getClass();
+		return formatterclass;
 	}
-	
-	public void configureIFormatterSelector(Binder binder) {
-		binder.bind(IFormatterSelector.class).toInstance(new FormatterSelector());
-	}
-	
+
 }

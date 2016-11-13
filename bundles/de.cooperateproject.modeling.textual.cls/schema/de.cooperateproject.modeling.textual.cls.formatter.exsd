@@ -49,14 +49,14 @@
 
    <element name="client">
       <complexType>
-         <attribute name="id" type="string">
+         <attribute name="priority" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="class" type="string">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="de.cooperateproject.modeling.textual.cls.formatter" name="Cls Formatter" schema="schema/de.cooperateproject.modeling.textual.cls.formatter.exsd"/>
+   <extension-point id="de.cooperateproject.modeling.textual.cls.formatter" name="ClsFormatter" schema="schema/de.cooperateproject.modeling.textual.cls.formatter.exsd"/>
    <extension
          point="de.cooperateproject.modeling.textual.cls.formatter">
       <client
             class="de.cooperateproject.modeling.textual.cls.formatting2.ClsFormatter"
-            id="ClsFormatter">
+            priority="1">
       </client>
    </extension>
 

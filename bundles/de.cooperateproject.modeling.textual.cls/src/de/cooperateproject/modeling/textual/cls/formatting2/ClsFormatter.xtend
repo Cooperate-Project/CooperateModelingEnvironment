@@ -25,34 +25,25 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 
 class ClsFormatter extends AbstractClsFormatter {
 	
-	public static val ID = ClsFormatter.name
-	
 	@Inject extension ClsGrammarAccess
 
-	override getId() {
-		ID
-	}
-	
-	override getLabel() {
-		"Default"
-	}
-
 	def dispatch void format(ClassDiagram classdiagram, extension IFormattableDocument document) {
-		region.regionFor(classdiagram).feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
+		classdiagram.regionFor.feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
 		format(classdiagram.getRootPackage(), document);
-		region.regionFor(classdiagram).keyword(classDiagramAccess.endclassKeyword_4).prepend[newLines = 2]
+		classdiagram.regionFor.keyword(classDiagramAccess.endclassKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(Package pkg, extension IFormattableDocument document) {		
 		interior(			
-			region.regionFor(pkg).keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine],
-			region.regionFor(pkg).keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 2],
+			pkg.regionFor.keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine],
+			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 2],
 			[indent]
 		)
-		region.regionFor(pkg).assignment(rootPackageAccess.referencedElementAssignment_1).append[newLines = 2]
+		pkg.regionFor.assignment(rootPackageAccess.referencedElementAssignment_1).append[newLines = 2]
 			
 		for (PackageImport packageImports : pkg.getPackageImports()) {
 			format(packageImports, document);
@@ -80,8 +71,8 @@ class ClsFormatter extends AbstractClsFormatter {
 	
 	def dispatch void format(Class clz, extension IFormattableDocument document) {
 		interior(
-			region.regionFor(clz).keyword(classAccess.leftCurlyBracketKeyword_5_0).append[newLine],
-			region.regionFor(clz).keyword(classAccess.rightCurlyBracketKeyword_5_2),
+			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_5_0).append[newLine],
+			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_5_2),
 			[indent]
 		)
 		
@@ -98,8 +89,8 @@ class ClsFormatter extends AbstractClsFormatter {
 
 	def dispatch void format(Interface interfaze, extension IFormattableDocument document) {
 		interior(
-			region.regionFor(interfaze).keyword(interfaceAccess.leftCurlyBracketKeyword_4_0).append[newLine],
-			region.regionFor(interfaze).keyword(interfaceAccess.rightCurlyBracketKeyword_4_2),
+			interfaze.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_4_0).append[newLine],
+			interfaze.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_4_2),
 			[indent]
 		)
 		
@@ -158,11 +149,11 @@ class ClsFormatter extends AbstractClsFormatter {
 
 	def dispatch void format(MultiAssociation multiassociation, extension IFormattableDocument document) {
 		interior(
-			region.regionFor(multiassociation).keyword(multiAssociationAccess.leftCurlyBracketKeyword_2).append[newLine],
-			region.regionFor(multiassociation).keyword(multiAssociationAccess.rightCurlyBracketKeyword_4).prepend[newLine],
+			multiassociation.regionFor.keyword(multiAssociationAccess.leftCurlyBracketKeyword_2).append[newLine],
+			multiassociation.regionFor.keyword(multiAssociationAccess.rightCurlyBracketKeyword_4).prepend[newLine],
 			[indent]
 		)
-		region.regionFor(multiassociation).keyword(multiAssociationAccess.semicolonKeyword_3_1).prepend[noSpace].append[newLine]
+		multiassociation.regionFor.keyword(multiAssociationAccess.semicolonKeyword_3_1).prepend[noSpace].append[newLine]
 		for (MemberEnd connectorEnds : multiassociation.getConnectorEnds()) {
 			format(connectorEnds, document);
 			connectorEnds.prepend[newLine]
@@ -176,8 +167,16 @@ class ClsFormatter extends AbstractClsFormatter {
 	}
 
 	def dispatch void format(AssociationProperties associationproperties, extension IFormattableDocument document) {
+		associationproperties.regionFor.keyword(associationPropertiesAccess.leftSquareBracketKeyword_0).append[noSpace]
+		associationproperties.regionFor.keyword(associationPropertiesAccess.rightSquareBracketKeyword_4).prepend[noSpace]
+		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_2_0).append[space = " "].prepend[noSpace]
+		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_3_2_0).append[space = " "].prepend[noSpace]
 		format(associationproperties.getCardinalityLeft(), document);
 		format(associationproperties.getCardinalityRight(), document);
+	}
+	
+	def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {
+		cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).prepend[noSpace].append[noSpace]
 	}
 	
 }
