@@ -14,6 +14,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
+import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
+
 public class ProjectOpenedListener implements IResourceChangeListener {
 
 	private static final Logger LOGGER = Logger.getLogger(ProjectOpenedListener.class);
@@ -43,6 +45,10 @@ public class ProjectOpenedListener implements IResourceChangeListener {
 						rebuild.schedule();
 					}
 
+					if (isRelevantForDelete(delta)) {
+						IProject project = (IProject) delta.getResource();
+						BackgroundTasksAdapter.getManager().deregisterProject(project);
+					}
 					return true;
 				}
 			});
@@ -58,6 +64,14 @@ public class ProjectOpenedListener implements IResourceChangeListener {
 		
 		if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
 			return true;
+		}
+		
+		return false;
+	}
+	
+	private static boolean isRelevantForDelete(IResourceDelta delta) {
+		if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
+			return false;
 		}
 		
 		if (delta.getKind() == IResourceDelta.REMOVED) {
