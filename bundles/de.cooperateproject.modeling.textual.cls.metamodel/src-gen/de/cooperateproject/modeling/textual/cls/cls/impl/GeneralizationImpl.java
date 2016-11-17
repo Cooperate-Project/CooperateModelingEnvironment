@@ -40,6 +40,17 @@ public class GeneralizationImpl extends TypedConnectorImpl implements Generaliza
 		return ClsPackage.Literals.GENERALIZATION;
 	}
 
+
+
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		if(featureID == 2)
+			return getReferencedElement();
+		// TODO Auto-generated method stub
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
