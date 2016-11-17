@@ -34,6 +34,7 @@ import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
 import java.util.Collections
 import org.eclipse.uml2.uml.UMLFactory
+import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -147,11 +148,32 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	}
 	
 	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Association brokenClassifier, Package parentPackage, String name) {
-		val umlAssociation = UMLFactory.eINSTANCE.createAssociation;
+
+		val leftType = brokenClassifier.left.UMLType
+		val rightType = brokenClassifier.right.UMLType
+		val props = brokenClassifier.properties
+		
+		//val umlAssociation = UMLFactory.eINSTANCE.createAssociation;
+		val umlAssociation = leftType.createAssociation(
+			true,
+			brokenClassifier.aggregationKind.UMLAggregationKind,
+			leftType.name.toFirstLower,
+			if(props!= null) props.cardinalityLeft.lowerBound else 0,
+			if(props!= null) props.cardinalityLeft.upperBound else -1,
+			rightType,
+			brokenClassifier.bidirectional,
+			AggregationKind.NONE.UMLAggregationKind,
+			rightType.name.toFirstLower,
+			if(props!= null) props.cardinalityRight.lowerBound else 0,
+			if(props!= null) props.cardinalityRight.upperBound else -1
+		)
 		umlAssociation.name = name
+		
 		//TODO: Check where we want to put our Associations
-		parentPackage.packagedElements.add(umlAssociation);
-		parentPackage.save
+		//parentPackage.packagedElements.add(umlAssociation);
+		val nearestPackage = umlAssociation.package
+		
+		nearestPackage.save
 		brokenClassifier.referencedElement = umlAssociation;
 	}
 	
@@ -278,6 +300,15 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def dispatch getClsType(Void type) {
 		return null
+	}
+	
+	private static def getUMLAggregationKind(AggregationKind kind) {
+		switch kind {
+			case AGGREGATION :  org.eclipse.uml2.uml.AggregationKind.SHARED_LITERAL
+			case COMPOSITION : org.eclipse.uml2.uml.AggregationKind.COMPOSITE_LITERAL
+			case NONE : org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL
+		}
+		
 	}
 	
 	private static def dispatch getUMLType(DataTypeReference type) {
