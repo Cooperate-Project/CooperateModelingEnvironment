@@ -10,14 +10,53 @@ import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory
 import org.eclipse.emf.compare.match.DefaultMatchEngine
 import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher
 import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
+import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher.DefaultIDFunction
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import com.google.common.base.Function
+import org.eclipse.emf.ecore.EObject
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher
+import org.eclipse.emf.cdo.CDOObject
+import org.eclipse.emf.cdo.common.id.CDOIDUtil
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
+import org.eclipse.emf.cdo.util.CDOUtil
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
 	@Inject
-	Provider<ProximityEObjectMatcher$DistanceFunction> dfProvider
+	Provider<ProximityEObjectMatcher$DistanceFunction> dfProvider;
+	
+	
 	
 	override getMatchEngine() {
-		val matcher = new ProximityEObjectMatcher(dfProvider.get)
+		val idComputation = new Function<EObject, String>() {
+			override apply(EObject input) {
+				val cdoObject = CDOUtil.getCDOObject(input)
+				cdoObject.cdoID.toString
+				//val adapter = EcoreUtil.getExistingAdapter(input, typeof(CDOLegacyAdapter))
+				//println((adapter as CDOLegacyAdapter).cdoID)
+				//(adapter as CDOLegacyAdapter).cdoID.toString
+				//val cdoid = CDOIDUtil.getCDOID(input)
+				//return cdoid.toString
+				
+			}
+		}
+		
+		val idFunction = new Function<EObject, String>() {
+			override apply(EObject input) {
+				switch input {
+					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
+					Generalization: "Generalization" + idComputation.apply(input.referencedElement)
+					UMLTypeReference: "UMLTypeReference" + idComputation.apply(input.type)
+					default: null
+				}
+			}
+		}
+		
+		val proxMatcher = new ProximityEObjectMatcher(dfProvider.get)
+		val matcher = new IdentifierEObjectMatcher(proxMatcher, idFunction)
 		return new DefaultMatchEngine(matcher, new DefaultComparisonFactory(new DefaultEqualityHelperFactory()))
 	}	
 }
