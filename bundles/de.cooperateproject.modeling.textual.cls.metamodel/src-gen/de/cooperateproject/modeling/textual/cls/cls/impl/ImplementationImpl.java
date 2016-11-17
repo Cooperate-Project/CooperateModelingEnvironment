@@ -40,6 +40,14 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.IMPLEMENTATION;
 	}
+	
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		if(featureID == 2)
+			return getReferencedElement();
+		// TODO Auto-generated method stub
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

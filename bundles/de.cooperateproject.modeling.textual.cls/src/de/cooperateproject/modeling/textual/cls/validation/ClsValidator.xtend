@@ -19,6 +19,7 @@ import org.eclipse.xtext.validation.Check
 import org.eclipse.uml2.uml.Operation
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
 
 /**
  * This class contains custom validation rules. 
@@ -34,6 +35,7 @@ class ClsValidator extends AbstractClsValidator {
 	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
 	public static val NO_ASSOCIATION_REFERENCE = 'no_association_reference'
 	public static val NO_GENERALIZATION_REFERENCE = 'no_generalization_reference'
+	public static val NO_REALIZATION_REFERENCE = 'no_realization_reference'
 
 
 	@Check
@@ -49,6 +51,14 @@ class ClsValidator extends AbstractClsValidator {
 		if (generalization.referencedElement == null) {
 			error("No Referenced UML-Generalization Element", ClsPackage.eINSTANCE.generalization_ReferencedElement,
 				NO_GENERALIZATION_REFERENCE)
+		}
+	}
+	
+	@Check
+	def checkIfRealizationExists(Implementation realization) {
+		if (realization.referencedElement == null) {
+			error("No Referenced UML-InterfaceRealization Element", ClsPackage.eINSTANCE.implementation_ReferencedElement,
+				NO_REALIZATION_REFERENCE)
 		}
 	}
 	 

@@ -68,6 +68,16 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		]
 	}
 	
+	/**
+	 * Quickfix for missing Generalization in the UML-diagram.
+	 */
+	@Fix(ClsValidator::NO_REALIZATION_REFERENCE)
+	def createMissingUMLRealizationn(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Create InterfaceRealization', 'Create the InterfaceRealization into the UML Diagram', null) [ element, context |
+			element.fixCreateRealization()
+		]
+	}
+	
 
 	/**
 	 * Quickfix for missing Interface in the UML-diagram.
@@ -151,6 +161,18 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val left = generalization.left.type as org.eclipse.uml2.uml.Class
 		val right = generalization.right.type as org.eclipse.uml2.uml.Class
 		val umlGeneralization = left.createGeneralization(right)
+		left.save
+		//TODO: This is currently derived automatically
+		//generalization.referencedElement = umlGeneralization;
+	}
+	
+	private static def void fixCreateRealization(EObject element) {
+		val implementation = element as de.cooperateproject.modeling.textual.cls.cls.Implementation
+		val left = implementation.left.type as org.eclipse.uml2.uml.Class
+		val right = implementation.right.type as Interface
+		val umlInterfaceRealization = UMLFactory.eINSTANCE.createInterfaceRealization
+		umlInterfaceRealization.contract = right
+		umlInterfaceRealization.implementingClassifier = left
 		left.save
 		//TODO: This is currently derived automatically
 		//generalization.referencedElement = umlGeneralization;
