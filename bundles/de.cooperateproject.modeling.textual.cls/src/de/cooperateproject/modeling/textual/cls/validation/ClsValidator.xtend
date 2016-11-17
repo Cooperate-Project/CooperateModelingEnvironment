@@ -18,6 +18,7 @@ import org.eclipse.uml2.uml.TypedElement
 import org.eclipse.xtext.validation.Check
 import org.eclipse.uml2.uml.Operation
 import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
 
 /**
  * This class contains custom validation rules. 
@@ -32,6 +33,7 @@ class ClsValidator extends AbstractClsValidator {
 	public static val WRONG_PROPERTY_TYPE = 'wrong_property_type'
 	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
 	public static val NO_ASSOCIATION_REFERENCE = 'no_association_reference'
+	public static val NO_GENERALIZATION_REFERENCE = 'no_generalization_reference'
 
 
 	@Check
@@ -39,6 +41,14 @@ class ClsValidator extends AbstractClsValidator {
 		if (association.referencedElement.model == null) {
 			error("No Referenced UML-Association Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_ASSOCIATION_REFERENCE)
+		}
+	}
+	
+	@Check
+	def checkIfGeneralizationExists(Generalization generalization) {
+		if (generalization.referencedElement == null) {
+			error("No Referenced UML-Generalization Element", ClsPackage.eINSTANCE.generalization_ReferencedElement,
+				NO_GENERALIZATION_REFERENCE)
 		}
 	}
 	 

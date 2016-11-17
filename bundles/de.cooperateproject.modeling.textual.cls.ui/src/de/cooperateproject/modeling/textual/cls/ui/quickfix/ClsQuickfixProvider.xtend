@@ -58,6 +58,16 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		]
 	}
 	
+	/**
+	 * Quickfix for missing Generalization in the UML-diagram.
+	 */
+	@Fix(ClsValidator::NO_GENERALIZATION_REFERENCE)
+	def createMissingUMLGeneralization(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Create Generalization', 'Create the Generalization into the UML Diagram', null) [ element, context |
+			element.fixCreateGeneralization()
+		]
+	}
+	
 
 	/**
 	 * Quickfix for missing Interface in the UML-diagram.
@@ -133,6 +143,17 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		parentPackage.packagedElements.add(umlAssociation);
 		parentPackage.save
 		brokenClassifier.referencedElement = umlAssociation;
+	}
+	
+	
+	private static def void fixCreateGeneralization(EObject element) {
+		val generalization = element as de.cooperateproject.modeling.textual.cls.cls.Generalization
+		val left = generalization.left.type as org.eclipse.uml2.uml.Class
+		val right = generalization.right.type as org.eclipse.uml2.uml.Class
+		val umlGeneralization = left.createGeneralization(right)
+		left.save
+		//TODO: This is currently derived automatically
+		//generalization.referencedElement = umlGeneralization;
 	}
 	
 	private static def fixWrongType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
