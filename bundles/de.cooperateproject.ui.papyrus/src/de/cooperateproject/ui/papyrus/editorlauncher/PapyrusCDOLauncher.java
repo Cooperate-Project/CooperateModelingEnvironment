@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
@@ -13,6 +14,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
@@ -26,6 +28,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
@@ -36,7 +39,9 @@ import de.cooperateproject.ui.util.EditorFinderUtil;
 public class PapyrusCDOLauncher extends EditorLauncher {
 
 	private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
-
+	private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
+	private static final Logger LOGGER = Logger.getLogger(PapyrusCDOLauncher.class);
+	
 	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
 		super(launcherFile, editorType);
@@ -67,6 +72,14 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 				rootObject = pagedElement.get();
 			}
 
+			// enforce loading of primitive types
+			ResourceSet rs = rootObject.eResource().getResourceSet();
+			if (rs != null) {
+				rs.getResource(UML_PRIMITIVE_TYPES_URI, true);
+			} else {
+				LOGGER.warn("The element about to be selected is not contained in a resource set.");
+			}
+			
 			OpenElementService openElementService = servicesRegistry.getService(OpenElementService.class);
 			openElementService.openElement(rootObject);
 		} catch (ServiceException e) {
