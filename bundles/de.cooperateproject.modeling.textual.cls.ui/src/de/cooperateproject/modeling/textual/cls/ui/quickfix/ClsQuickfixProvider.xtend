@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Class
-import org.eclipse.uml2.uml.Classifier
 import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Operation
@@ -35,6 +34,8 @@ import org.eclipse.xtext.validation.Issue
 import java.util.Collections
 import org.eclipse.uml2.uml.UMLFactory
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
+import org.eclipse.xtext.util.concurrent.IUnitOfWork
+import org.eclipse.xtext.resource.XtextResource
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -43,7 +44,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	 */
 	@Fix(ClsValidator::NO_CLASS_REFERENCE)
 	def createMissingUMLClass(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue, 'Create Class', 'Create the Class into the UML Diagram', null) [ element, context |
+		val className = issue.data.get(0)
+		acceptor.accept(issue, 'Create Class ' + className, 'Create the Class ' + className + ' in the UML Model', null) [ element, context |
 			element.fixMissingClassifier(issue, context)
 		]
 	}
@@ -54,7 +56,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	 */
 	@Fix(ClsValidator::NO_ASSOCIATION_REFERENCE)
 	def createMissingUMLAssociation(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue, 'Create Association', 'Create the Association into the UML Diagram', null) [ element, context |
+		val assoName = issue.data.get(0)
+		acceptor.accept(issue, 'Create Association ' + assoName, 'Create the Association into the UML Diagram', null) [ element, context |
 			element.fixMissingClassifier(issue, context)
 		]
 	}
@@ -66,6 +69,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	def createMissingUMLGeneralization(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create Generalization', 'Create the Generalization into the UML Diagram', null) [ element, context |
 			element.fixCreateGeneralization()
+			context.relinkState
 		]
 	}
 	
@@ -76,6 +80,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	def createMissingUMLRealizationn(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create InterfaceRealization', 'Create the InterfaceRealization into the UML Diagram', null) [ element, context |
 			element.fixCreateRealization()
+			context.relinkState
 		]
 	}
 	
@@ -85,7 +90,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	 */
 	@Fix(ClsValidator::NO_INTERFACE_REFERENCE)
 	def createMissingUMLInterface(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue, 'Create Interface', 'Create the Interface into the UML Diagram', null) [ element, context |
+		val interfaceName = issue.data.get(0)
+		acceptor.accept(issue, 'Create Interface ' + interfaceName, 'Create the Interface into the UML Diagram', null) [ element, context |
 			element.fixMissingClassifier(issue, context)
 		]
 	}
@@ -108,6 +114,18 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		acceptor.accept(issue, 'Change Type', 'Change the property type into the right one', null) [ element, context |
 			if (element instanceof Property) {
 				element.fixWrongType(issue, context)
+			}
+		]
+	}
+	
+	/**
+	 * Quickfix for wrong Property type in the Cls-model.
+	 */
+	@Fix(ClsValidator::WRONG_PROPERTY_TYPE)
+	def adjustModelPropertyType(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Adjust Type in model to', 'Change the property type in the model', null) [ element, context |
+			if (element instanceof Property) {
+				element.adjustModelType(issue, context)
 			}
 		]
 	}
@@ -196,6 +214,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		umlInterfaceRealization.contract = right
 		umlInterfaceRealization.implementingClassifier = left
 		left.save
+		//implementation.eResource.modified = true
 		//TODO: This is currently derived automatically
 		//generalization.referencedElement = umlGeneralization;
 	}
@@ -204,6 +223,15 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val umlElement = property.referencedElement
 		val umlType = umlElement?.getType
 		property.type = getClsType(umlType)
+	}
+	
+	private static def adjustModelType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
+		val umlElement = property.referencedElement
+		umlElement.type = property.type.UMLType
+		umlElement.save
+		property.eResource.modified = true
+		property.type.save
+		
 	}
 	
 	private static def dispatch Type getType(Operation umlOperation) {
@@ -217,6 +245,19 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	private static def dispatch Type getType(Parameter umlParameter) {
 		return umlParameter.type
 	}
+	
+	private static def dispatch setType(Operation umlOperation, Type type) {
+		umlOperation.type = type
+	}
+	
+	private static def dispatch setType(org.eclipse.uml2.uml.Property umlAttribute, Type type) {
+		umlAttribute.type = type
+	}
+	
+	private static def dispatch setType(Parameter umlParameter, Type type) {
+		umlParameter.type = type
+	}
+	
 
 	private def fixMissingMember(EObject element, Issue issue, IModificationContext context) {
 		val name = context.xtextDocument.get(issue.offset, issue.length)
@@ -327,4 +368,12 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		o.eResource.save(Collections.emptyMap)
 	}
 
+	private static def relinkState(IModificationContext context) {
+		context.xtextDocument.modify(new IUnitOfWork.Void<XtextResource>() {
+				
+				override process(XtextResource state) throws Exception {
+					state.relink
+				}
+			})
+	}
 }

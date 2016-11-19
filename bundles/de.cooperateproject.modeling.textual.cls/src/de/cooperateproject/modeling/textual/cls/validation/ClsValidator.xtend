@@ -20,6 +20,9 @@ import org.eclipse.uml2.uml.Operation
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EObject
 
 /**
  * This class contains custom validation rules. 
@@ -41,8 +44,10 @@ class ClsValidator extends AbstractClsValidator {
 	@Check
 	def checkIfAssociationExists(Association association) {
 		if (association.referencedElement.model == null) {
+			val refNode = association.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val associationName = refNode.text ?: "associationName"
 			error("No Referenced UML-Association Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_ASSOCIATION_REFERENCE)
+				NO_ASSOCIATION_REFERENCE, {associationName})
 		}
 	}
 	
@@ -66,24 +71,30 @@ class ClsValidator extends AbstractClsValidator {
 	@Check
 	def checkIfClassExists(Class classifier) {
 		if (classifier.referencedElement.model == null) {
-			error("No Referenced UML-Class Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_CLASS_REFERENCE)
+			val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val classifierName = refNode.text ?: "className"
+			error("Couldn't find UML-Class '" + classifierName + "' in model", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_CLASS_REFERENCE, {classifierName})
 		}
 	}
 
 	@Check
 	def checkIfInterfaceExists(Interface classifier) {
 		if (classifier.referencedElement.model == null) {
-			error("No Referenced UML-Interface Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_INTERFACE_REFERENCE)
+			val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val classifierName = refNode.text ?: "interfaceName"
+			error("Couldn't find UML-Interface '" + classifierName + "' in model", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_INTERFACE_REFERENCE, {classifierName})
 		}
 	}
 
 	@Check
 	def checkIfPropertyExists(Attribute attribute) {
 		if (attribute.referencedElement.model == null) {
+			val refNode = attribute.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val attributeName = refNode.text ?: "attributeName"
 			error("No Referenced UML-Property", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_PROPERTY_REFERENCE)
+				NO_PROPERTY_REFERENCE, {attributeName})
 		} 
 	}
 	
@@ -100,6 +111,10 @@ class ClsValidator extends AbstractClsValidator {
 			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_OPERATION_REFERENCE)
 		}
+	}
+	
+	private static def extractRefNode(EObject element, EReference ref) {
+		 NodeModelUtils.findNodesForFeature(element, ref).head
 	}
 	
 	private static def hasCorrectType(Property<? extends NamedElement> property) {
