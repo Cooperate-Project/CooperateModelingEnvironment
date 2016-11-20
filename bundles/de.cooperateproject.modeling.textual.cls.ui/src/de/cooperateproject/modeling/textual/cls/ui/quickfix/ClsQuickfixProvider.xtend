@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.UMLFactory
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import org.eclipse.xtext.util.concurrent.IUnitOfWork
 import org.eclipse.xtext.resource.XtextResource
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -127,6 +128,29 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		acceptor.accept(issue, "Adjust Type in model to '" + newType + "'", 'Change the property type in the model', null) [ element, context |
 			if (element instanceof Property) {
 				element.adjustModelType(issue, context)
+			}
+		]
+	}
+	
+	/**
+	 * Quickfix for Alias.
+	 */
+	@Fix(ClsValidator::NO_ALIAS_NAME)
+	def createAliasExpression(Issue issue, IssueResolutionAcceptor acceptor) {
+		val alias = issue.data.get(0)
+		acceptor.accept(issue, "Define alias '" + alias + "' in model", 'Create the nameExpression in the model', null) [ element, context |
+			if (element instanceof Classifier) {
+				element.fixCreateNameExpression(issue, context)
+			}
+		]
+	}
+	
+	@Fix(ClsValidator::WRONG_ALIAS_NAME)
+	def changeAliasExpression(Issue issue, IssueResolutionAcceptor acceptor) {
+		val alias = issue.data.get(0)
+		acceptor.accept(issue, "Change alias to '" + alias + "' in model", 'Create the nameExpression in the model', null) [ element, context |
+			if (element instanceof Classifier) {
+				element.fixChangeNameExpression(issue, context)
 			}
 		]
 	}
@@ -233,6 +257,26 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		relinkState(context)	
 		
 	}
+	
+	private static def fixCreateNameExpression(Classifier classifier, Issue issue, IModificationContext context) {
+		val nameString = issue.data.get(0)
+		val umlElement = classifier.referencedElement
+		val expression = umlElement.createNameExpression(nameString, null)
+		umlElement.save
+		classifier.aliasExpression = expression
+		
+	}
+	
+	private static def fixChangeNameExpression(Classifier classifier, Issue issue, IModificationContext context) {
+		val nameString = issue.data.get(0)
+		val umlElement = classifier.referencedElement
+		val expression = umlElement.nameExpression
+		expression.name = nameString
+		umlElement.save
+		classifier.aliasExpression = expression
+		
+	}
+	
 	
 	private static def dispatch Type getType(Operation umlOperation) {
 		return umlOperation.type

@@ -23,6 +23,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EObject
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 
 /**
  * This class contains custom validation rules. 
@@ -39,6 +40,33 @@ class ClsValidator extends AbstractClsValidator {
 	public static val NO_ASSOCIATION_REFERENCE = 'no_association_reference'
 	public static val NO_GENERALIZATION_REFERENCE = 'no_generalization_reference'
 	public static val NO_REALIZATION_REFERENCE = 'no_realization_reference'
+	public static val NO_ALIAS_NAME = 'no_alias_name'
+	public static val WRONG_ALIAS_NAME = 'wrong_alias_name'
+
+	@Check
+	def checkAliasExpression(Classifier classifier) {
+		val model = classifier.referencedElement.model
+		val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.namedElementAliased_AliasExpression)
+		
+		if (model != null && refNode != null) {
+			val modelAlias = classifier.referencedElement.nameExpression
+			val aliasString = refNode.text ?: "aliasString"
+			val textModelAlias = classifier.alias
+			if (modelAlias == null)
+				error("No alias '" + aliasString + "' found", ClsPackage.eINSTANCE.namedElementAliased_AliasExpression,
+					NO_ALIAS_NAME, {
+						aliasString
+					})
+			else if (modelAlias.name != classifier.alias) {
+				error("Inconsistent alias '" + aliasString + "' found",
+					ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, WRONG_ALIAS_NAME, {
+						aliasString
+					})
+
+			}
+		}
+		 
+	}
 
 
 	@Check

@@ -22,6 +22,11 @@ import org.eclipse.emf.cdo.common.id.CDOIDUtil
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
 import org.eclipse.emf.cdo.util.CDOUtil
+import org.eclipse.uml2.uml.StringExpression
+import org.eclipse.uml2.uml.InterfaceRealization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
@@ -45,11 +50,14 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 		}
 		
 		val idFunction = new Function<EObject, String>() {
-			override apply(EObject input) {
+			override apply(EObject input) {				
 				switch input {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					Generalization: "Generalization" + idComputation.apply(input.referencedElement)
+					Implementation: "InterfaceRealization" + idComputation.apply(input.referencedElement)
 					UMLTypeReference: "UMLTypeReference" + idComputation.apply(input.type)
+					DataTypeReference: "PrimitiveType" + input.type.toString
+					StringExpression: "StringExp" + input.name
 					default: null
 				}
 			}
