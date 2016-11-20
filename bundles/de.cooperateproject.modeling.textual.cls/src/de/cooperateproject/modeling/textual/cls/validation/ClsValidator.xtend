@@ -100,8 +100,12 @@ class ClsValidator extends AbstractClsValidator {
 	
 	@Check
 	def checkCorrectPropertyType(Property<? extends NamedElement> property) {
-		if (!property.hasCorrectType) {
-			error("Wrong Type", ClsPackage.eINSTANCE.property_Type, WRONG_PROPERTY_TYPE)
+		val model = property.referencedElement.model
+		val refNode = property.extractRefNode(ClsPackage.eINSTANCE.property_Type)
+		val typeName = refNode.text ?: "typeName"
+		
+		if (model != null && !property.hasCorrectType) {
+			error("Inconsistent Type detected", ClsPackage.eINSTANCE.property_Type, WRONG_PROPERTY_TYPE, {typeName})
 		}
 	}
 	

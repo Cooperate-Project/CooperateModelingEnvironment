@@ -123,7 +123,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	 */
 	@Fix(ClsValidator::WRONG_PROPERTY_TYPE)
 	def adjustModelPropertyType(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue, 'Adjust Type in model to', 'Change the property type in the model', null) [ element, context |
+		val newType = issue.data.get(0)
+		acceptor.accept(issue, "Adjust Type in model to '" + newType + "'", 'Change the property type in the model', null) [ element, context |
 			if (element instanceof Property) {
 				element.adjustModelType(issue, context)
 			}
@@ -229,8 +230,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val umlElement = property.referencedElement
 		umlElement.type = property.type.UMLType
 		umlElement.save
-		property.eResource.modified = true
-		property.type.save
+		relinkState(context)	
 		
 	}
 	
