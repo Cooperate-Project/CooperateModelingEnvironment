@@ -108,16 +108,19 @@
             name="Cooperate">
       </category>
       <wizard
+            id="de.cooperateproject.ui.newCooperateProjectWizard"
+            name="Cooperate Project"
+            icon="src/de/cooperateproject/ui/resources/cooperate_16.png"
             category="de.cooperateproject.ui.wizards.cooperateWizards"
             class="de.cooperateproject.ui.wizards.projectnew.NewCooperateProjectWizard"
-            id="de.cooperateproject.ui.newCooperateProjectWizard"
-            name="Cooperate Project">
+            project="true">
       </wizard>
       <wizard
-            category="de.cooperateproject.ui.wizards.cooperateWizards"
-            class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard"
             id="de.cooperateproject.ui.wizards.newClassDiagram"
-            name="Class Diagram">
+            name="Class Diagram"
+            icon="src/de/cooperateproject/ui/resources/cooperate_16.png"
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard">
       </wizard>
    </extension>
 </plugin>
