@@ -18,7 +18,7 @@ class ClsValueConverter extends DefaultTerminalConverters {
 	def IValueConverter<String> FQN() {
 		return new IValueConverter<String>() {
 			override toString(String value) throws ValueConverterException {
-				if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9]*")) {
+				if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9.]*")) {
 					return value;
 				}
 				return String.format("\"%s\"", value)
