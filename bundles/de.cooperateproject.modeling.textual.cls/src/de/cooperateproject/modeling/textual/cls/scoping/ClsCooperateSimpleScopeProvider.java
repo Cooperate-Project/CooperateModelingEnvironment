@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.INode;
@@ -94,7 +95,7 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
 		} else {
 			Object result = pkgImport.eGet(ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT, false);
 			if (result != null) {
-				Package umlPackage = (Package) result;
+				Package umlPackage = ((PackageImport) result).getImportedPackage();
 				// TODO use qualified name provider for this operation
 				return Optional.of(umlPackage.getQualifiedName().replace(umlPackage.separator(), "."));
 			}

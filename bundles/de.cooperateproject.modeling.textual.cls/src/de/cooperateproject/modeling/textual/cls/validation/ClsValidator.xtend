@@ -24,6 +24,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EObject
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 
 /**
  * This class contains custom validation rules. 
@@ -35,6 +36,7 @@ class ClsValidator extends AbstractClsValidator {
 	public static val NO_CLASS_REFERENCE = 'no_class_reference'
 	public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
 	public static val NO_PACKAGE_REFERENCE = 'no_package_reference'
+	public static val NO_IMPORT_REFERENCE = 'no_import_reference'
 	public static val NO_PROPERTY_REFERENCE = 'no_property_reference'
 	public static val WRONG_PROPERTY_TYPE = 'wrong_property_type'
 	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
@@ -124,6 +126,16 @@ class ClsValidator extends AbstractClsValidator {
 			val packageName = refNode.text ?: "packageName"
 			error("Couldn't find UML-Package '" + packageName + "' in model", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_PACKAGE_REFERENCE, {packageName})
+		}
+	}
+	
+	@Check
+	def checkIfPackageImportExists(PackageImport imported) {
+		if (imported.referencedElement.model == null) {
+			val refNode = imported.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val packageName = refNode.text ?: "packageName"
+			error("Couldn't find  PackageImport for '" + packageName + "' in model", ClsPackage.eINSTANCE.packageImport_ReferencedElement,
+				NO_IMPORT_REFERENCE, {packageName})
 		}
 	}
 

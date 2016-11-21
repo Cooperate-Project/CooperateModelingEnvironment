@@ -38,6 +38,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork
 import org.eclipse.xtext.resource.XtextResource
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import org.apache.log4j.Logger
+import org.eclipse.uml2.uml.util.UMLUtil
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -107,6 +108,17 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	def createMissingUMLPackage(Issue issue, IssueResolutionAcceptor acceptor) {
 		val packageName = issue.data.get(0)
 		acceptor.accept(issue, 'Create Package ' + packageName, 'Create the Package into the UML Diagram', null) [ element, context |
+			element.fixMissingClassifier(issue, context)
+		]
+	}
+	
+	/**
+	 * Quickfix for missing PackageImport in the UML-diagram.
+	 */
+	@Fix(ClsValidator::NO_IMPORT_REFERENCE)
+	def createMissingUMLImport(Issue issue, IssueResolutionAcceptor acceptor) {
+		val packageName = issue.data.get(0)
+		acceptor.accept(issue, 'Create PackageImport ' + packageName, 'Create the PackageImport into the UML Diagram', null) [ element, context |
 			element.fixMissingClassifier(issue, context)
 		]
 	}
@@ -203,6 +215,17 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val umlPackage = parentPackage.createNestedPackage(name)
 		parentPackage.save
 		brokenClassifier.referencedElement = umlPackage;
+	}
+	
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.PackageImport brokenClassifier, Package parentPackage, String name) {
+		//TODO: What about FQN?
+		val model = parentPackage.model
+		//UMLUtil.findNamedElements
+		
+		val importedPackage = model.getNestedPackage(name)
+		val umlImport = parentPackage.createPackageImport(importedPackage)
+		parentPackage.save
+		brokenClassifier.referencedElement = umlImport;
 	}
 	
 	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Interface brokenClassifier, Package parentPackage, String name) {
