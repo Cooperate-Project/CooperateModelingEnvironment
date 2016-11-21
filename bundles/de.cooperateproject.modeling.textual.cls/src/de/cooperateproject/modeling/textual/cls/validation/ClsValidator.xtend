@@ -34,6 +34,7 @@ class ClsValidator extends AbstractClsValidator {
 
 	public static val NO_CLASS_REFERENCE = 'no_class_reference'
 	public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
+	public static val NO_PACKAGE_REFERENCE = 'no_package_reference'
 	public static val NO_PROPERTY_REFERENCE = 'no_property_reference'
 	public static val WRONG_PROPERTY_TYPE = 'wrong_property_type'
 	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
@@ -113,6 +114,16 @@ class ClsValidator extends AbstractClsValidator {
 			val classifierName = refNode.text ?: "interfaceName"
 			error("Couldn't find UML-Interface '" + classifierName + "' in model", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_INTERFACE_REFERENCE, {classifierName})
+		}
+	}
+	
+	@Check
+	def checkIfPackageExists(de.cooperateproject.modeling.textual.cls.cls.Package pack) {
+		if (pack.referencedElement.model == null) {
+			val refNode = pack.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val packageName = refNode.text ?: "packageName"
+			error("Couldn't find UML-Package '" + packageName + "' in model", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				NO_PACKAGE_REFERENCE, {packageName})
 		}
 	}
 

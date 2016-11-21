@@ -98,6 +98,17 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	}
 	
 	/**
+	 * Quickfix for missing Package in the UML-diagram.
+	 */
+	@Fix(ClsValidator::NO_PACKAGE_REFERENCE)
+	def createMissingUMLPackage(Issue issue, IssueResolutionAcceptor acceptor) {
+		val packageName = issue.data.get(0)
+		acceptor.accept(issue, 'Create Package ' + packageName, 'Create the Package into the UML Diagram', null) [ element, context |
+			element.fixMissingClassifier(issue, context)
+		]
+	}
+	
+	/**
 	 * Quickfix for missing Property in the UML-diagram.
 	 */
 	@Fix(ClsValidator::NO_PROPERTY_REFERENCE)
@@ -182,6 +193,12 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val umlClass = parentPackage.createOwnedClass(name, brokenClassifier.abstract);
 		parentPackage.save
 		brokenClassifier.referencedElement = umlClass;
+	}
+	
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Package brokenClassifier, Package parentPackage, String name) {
+		val umlPackage = parentPackage.createNestedPackage(name)
+		parentPackage.save
+		brokenClassifier.referencedElement = umlPackage;
 	}
 	
 	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Interface brokenClassifier, Package parentPackage, String name) {
@@ -327,6 +344,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
 	}
+	
 	
 	private static def dispatch void fixCreate(Method brokenMethod, Class umlClassifier, String name) {
 		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
