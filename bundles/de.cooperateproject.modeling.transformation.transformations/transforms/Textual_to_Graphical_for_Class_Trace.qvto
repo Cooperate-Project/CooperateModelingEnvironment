@@ -192,8 +192,8 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	var rightElement := umlAssociation.memberEnd->at(aggregatingIndex);
 
 	result += createEdgeTraceRecord("edgeToRegularAssociation", "Edge", edge, "Association", connector.eobject());
-	result += leftElement.type.map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
-	result += rightElement.type.map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));
+	result += leftElement.type.map typeToTypeReference2_Classifier(connector.left.oclAsType(cls::UMLTypeReference), regularIndex);
+	result += rightElement.type.map typeToTypeReference2_Classifier(connector.right.oclAsType(cls::UMLTypeReference), aggregatingIndex);
 	
 	// association properties
 	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Edge", edge.eobject(), "AssociationProperties", connector.properties.eobject());
@@ -277,6 +277,25 @@ when {not self.oclIsKindOf(uml::PrimitiveType)}
 		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
 		var parentRecord := new TraceRecord("typeToUMLTypeReference", "Type", self.eobject(), "UMLTypeReference", typeReference.eobject());
 		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
+		result := parentRecord;
+	}
+}
+
+mapping uml::Type::typeToTypeReference2_Classifier(typeReference : cls::TypeReference, discriminator : Integer) : trace::TraceRecord
+when {not self.oclIsKindOf(uml::PrimitiveType)}
+{
+	init {
+		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
+		var parentRecord := new TraceRecord("typeToUMLTypeReference2", "Type", self.eobject(), "UMLTypeReference", typeReference.eobject());
+		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
+		parentRecord.parameters.parameters += object trace::VarParameterValue{
+			name := "discriminator";
+			type := "OclAny";
+			value := object trace::EValue{
+				primitiveValue := discriminator.toString();
+				collectionType := "Integer";
+			}
+		};
 		result := parentRecord;
 	}
 }

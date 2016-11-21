@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_cE-dkLAQEeaCyqV64VKpeQ" name="RootElement">
+  <packagedElement xmi:type="uml:Class" xmi:id="_cgmCkLAQEeaCyqV64VKpeQ" name="Class1">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_dmxAcLAQEeaCyqV64VKpeQ" name="class1" type="_cgmCkLAQEeaCyqV64VKpeQ" association="_dmukMLAQEeaCyqV64VKpeQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_dmukMLAQEeaCyqV64VKpeQ" name="test" memberEnd="_dmxAcLAQEeaCyqV64VKpeQ _dmxngLAQEeaCyqV64VKpeQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dmvyULAQEeaCyqV64VKpeQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dmwZYLAQEeaCyqV64VKpeQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_dmxngLAQEeaCyqV64VKpeQ" name="class1" type="_cgmCkLAQEeaCyqV64VKpeQ" association="_dmukMLAQEeaCyqV64VKpeQ"/>
+  </packagedElement>
+</uml:Model>

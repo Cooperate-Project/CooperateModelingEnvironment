@@ -32,6 +32,11 @@ public class GraphicalToTextualClassTraceTest extends TraceRecordTransformationT
 		test("ClassDiagramPackages");
 	}
 	
+	@Test
+	public void testSelfReference() throws Exception {
+		test("ClassDiagramSelfReference");
+	}
+	
 	private void test(String modelName) throws Exception {
 		// test parameters
 		URI textualModelURI = createResourceModelURI(modelName + ".xmi");

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="ClassDiagramSelfReference.uml#_cE-dkLAQEeaCyqV64VKpeQ"/>
+      <classifiers xsi:type="cls:Class">
+        <referencedElement xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
+      </classifiers>
+     <connectors xsi:type="cls:Association">
+        <referencedElement xsi:type="uml:Association" href="ClassDiagramSelfReference.uml#_dmukMLAQEeaCyqV64VKpeQ"/>
+        <left>
+          <type xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
+        </left>
+        <right>
+          <type xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
+        </right>
+        <properties>
+          <cardinalityLeft lowerBound="1" upperBound="1"/>
+          <cardinalityRight lowerBound="1" upperBound="1"/>
+          <propertyLeft href="ClassDiagramSelfReference.uml#_dmxngLAQEeaCyqV64VKpeQ"/>
+          <propertyRight href="ClassDiagramSelfReference.uml#_dmxAcLAQEeaCyqV64VKpeQ"/>
+        </properties>
+      </connectors>
+
+  </rootPackage>
+</cls:ClassDiagram>
