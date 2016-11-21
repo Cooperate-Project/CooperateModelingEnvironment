@@ -70,7 +70,9 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
 			de.cooperateproject.modeling.textual.cls.cls.Package pkg = (de.cooperateproject.modeling.textual.cls.cls.Package) context;
 			 List<QualifiedName> packageImports = pkg.getPackageImports().stream()
 					.map(ClsCooperateSimpleScopeProvider::getPackageImportText).filter(Optional::isPresent)
-					.map(Optional::get).map(CooperateSimpleLocalScopeProvider::createQualifiedName).collect(Collectors.toList());
+					.map(Optional::get).map(CooperateSimpleLocalScopeProvider::createQualifiedName)
+					//.forEach(createNormalizer(name).resolve(r)) 
+					.collect(Collectors.toList());
 			Collection<ImportNormalizer> packageImportNormalizers = packageImports.stream().map(QualifiedName::toString).map(CooperateSimpleLocalScopeProvider::createNormalizer).collect(Collectors.toList());
 			normalizers.addAll(packageImportNormalizers);
 			packageImportNormalizers = packageImports.stream().flatMap(n -> createNormalizers(parentNormalizers, n).stream()).collect(Collectors.toList());
@@ -88,17 +90,21 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
 
 	private static Optional<String> getPackageImportText(
 			de.cooperateproject.modeling.textual.cls.cls.PackageImport pkgImport) {
+		
+		Object result = pkgImport.eGet(ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT, false);
+		
 		List<INode> nodes = NodeModelUtils.findNodesForFeature(pkgImport,
 				ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT);
-		if (!nodes.isEmpty()) {
-			return Optional.fromNullable(NodeModelUtils.getTokenText(nodes.get(0)));
-		} else {
-			Object result = pkgImport.eGet(ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT, false);
-			if (result != null) {
-				Package umlPackage = ((PackageImport) result).getImportedPackage();
+		if(result != null) {
+			Package umlPackage = ((PackageImport) result).getImportedPackage();
+			if(umlPackage != null)
 				// TODO use qualified name provider for this operation
 				return Optional.of(umlPackage.getQualifiedName().replace(umlPackage.separator(), "."));
-			}
+			
+		}
+		
+		if (!nodes.isEmpty()) {//TODO: should alway return absolut import path, so we should resolve that text with the parent 
+			return Optional.fromNullable(NodeModelUtils.getTokenText(nodes.get(0)));
 		}
 		return Optional.absent();
 	}
