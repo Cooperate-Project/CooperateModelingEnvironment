@@ -235,9 +235,12 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		
 		//TODO: Check where we want to put our Associations
 		//parentPackage.packagedElements.add(umlAssociation);
-		val nearestPackage = umlAssociation.package
+		//val nodeRoot = brokenClassifier.eContainer as Package
 		
-		nearestPackage.save
+		umlAssociation.package = parentPackage
+		//val nearestPackage = umlAssociation.package
+		
+		parentPackage.save
 		brokenClassifier.referencedElement = umlAssociation;
 	}
 	
