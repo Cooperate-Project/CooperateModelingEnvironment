@@ -13,58 +13,64 @@ import com.google.common.collect.HashBiMap;
 import de.cooperateproject.cdo.util.utils.CDOHelper;
 
 public enum CDOConnectionManager {
-	
+
 	INSTANCE;
-	
+
 	public static CDOConnectionManager getInstance() {
 		return INSTANCE;
 	}
-	
+
 	private static final Logger LOGGER = Logger.getLogger(CDOConnectionManager.class);
-	private final BiMap<CDORepository, IProject> repositories = HashBiMap.create(); 
+	private final BiMap<CDORepository, IProject> repositories = HashBiMap.create();
 	private final BiMap<CDORepository, CDOSession> sessions = HashBiMap.create();
-	
+
 	public void register(IProject project, CDOConnectionSettings settings) {
-		if (!repositories.inverse().containsKey(project)) {
-			CDOHelper.deleteRepositoryFor(project);
-			CDORepository repo = CDOHelper.createRepositoryFor(project, settings);
-			repo.connect();
-			repositories.put(repo, project);		
+		synchronized (repositories) {
+			if (!repositories.inverse().containsKey(project)) {
+				CDOHelper.deleteRepositoryFor(project);
+				CDORepository repo = CDOHelper.createRepositoryFor(project, settings);
+				repo.connect();
+				repositories.put(repo, project);
+			}
 		}
 	}
-	
+
 	public void unregister(IProject project) {
-		CDORepository repository = repositories.inverse().get(project);
-		if (repository == null) {
-			return;
+		synchronized (repositories) {
+			synchronized (sessions) {
+				CDORepository repository = repositories.inverse().get(project);
+				if (repository == null) {
+					return;
+				}
+				CDOHelper.delete(repository);
+				sessions.remove(repository);
+				repositories.remove(repository);
+			}
 		}
-		CDOHelper.delete(repository);
-		sessions.remove(repository);
-		repositories.remove(repository);
 	}
-	
+
 	public CDOSession acquireSession(IProject project) {
-		synchronized(sessions) {
+		synchronized (sessions) {
 			LOGGER.debug(String.format("Acquirering session for %s", project.getName()));
 			CDORepository repository = getRepository(project);
 			CDOSession session = repository.acquireSession();
 			sessions.put(repository, session);
-			return session;			
+			return session;
 		}
 	}
-	
+
 	public void releaseSession(CDOSession session) {
-		synchronized(sessions) {
+		synchronized (sessions) {
 			CDORepository repository = sessions.inverse().get(session);
 			if (repository == null) {
 				LOGGER.warn("Tried to release session for non existing repository.");
 			} else {
 				repository.releaseSession();
 				LOGGER.debug(String.format("Released session for project %s.", repositories.get(repository).getName()));
-			}			
+			}
 		}
 	}
-	
+
 	public CDOCheckout createCDOCheckout(IProject project, boolean createBranch) {
 		CDORepository repository = getRepository(project);
 		CDOSession session = acquireSession(project);
@@ -74,22 +80,24 @@ public enum CDOConnectionManager {
 				CDOBranch newBranch = CDOHelper.createRandomBranchFromMain(session);
 				branchId = newBranch.getID();
 			}
-			return CDOHelper.createCheckout(repository, branchId);			
+			return CDOHelper.createCheckout(repository, branchId);
 		} finally {
 			releaseSession(session);
 		}
 	}
-	
+
 	public void deleteCDOCheckout(CDOCheckout checkout) {
 		CDOHelper.delete(checkout);
 	}
-	
+
 	private CDORepository getRepository(IProject project) throws IllegalStateException {
-		CDORepository repository = repositories.inverse().get(project);
-		if (repository == null) {
-			throw new IllegalStateException("This project has not been registered yet.");
+		synchronized (repositories) {
+			CDORepository repository = repositories.inverse().get(project);
+			if (repository == null) {
+				throw new IllegalStateException("This project has not been registered yet.");
+			}
+			return repository;
 		}
-		return repository;
 	}
 
 }
