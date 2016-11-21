@@ -483,15 +483,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPackage__GetNearestPackage() {
-		return packageEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPackageableElement() {
 		return packageableElementEClass;
 	}
@@ -1230,7 +1221,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		createEReference(packageEClass, PACKAGE__CONNECTORS);
 		createEReference(packageEClass, PACKAGE__OWNING_PACKAGE);
 		createEReference(packageEClass, PACKAGE__PACKAGES);
-		createEOperation(packageEClass, PACKAGE___GET_NEAREST_PACKAGE);
 
 		packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
 
@@ -1511,8 +1501,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEReference(getPackage_Connectors(), this.getConnector(), null, "connectors", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_OwningPackage(), this.getPackage(), this.getPackage_Packages(), "owningPackage", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Package.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_Packages(), this.getPackage(), this.getPackage_OwningPackage(), "packages", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getPackage__GetNearestPackage(), this.getPackage(), "getNearestPackage", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

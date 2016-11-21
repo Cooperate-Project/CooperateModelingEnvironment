@@ -37,8 +37,11 @@ import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import org.eclipse.xtext.util.concurrent.IUnitOfWork
 import org.eclipse.xtext.resource.XtextResource
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import org.apache.log4j.Logger
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
+
+	static val LOGGER = Logger.getLogger(ClsQuickfixProvider)
 
 	/**
 	 * Quickfix for missing Class in the UML-diagram.
@@ -182,8 +185,9 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		var name = context.xtextDocument.get(issue.offset, issue.length)
 		val brokenElement = element as de.cooperateproject.modeling.textual.cls.cls.Element;
 		val parentPackage = brokenElement.nearestPackage
-		val umlPackage = parentPackage.referencedElement
+		val umlPackage = parentPackage?.referencedElement
 		if (umlPackage == null) {
+			LOGGER.warn("Could not create classifier because of missing parent.")
 			return
 		}
 		brokenElement.fixCreate(umlPackage, name)

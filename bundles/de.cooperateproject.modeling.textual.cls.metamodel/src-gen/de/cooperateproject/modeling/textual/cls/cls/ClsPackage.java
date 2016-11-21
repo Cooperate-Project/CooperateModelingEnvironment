@@ -408,7 +408,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE___GET_NEAREST_PACKAGE = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int PACKAGE___GET_NEAREST_PACKAGE = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Package</em>' class.
@@ -417,7 +417,7 @@ public interface ClsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int PACKAGE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.PackageableElement <em>Packageable Element</em>}' class.
@@ -2508,16 +2508,6 @@ public interface ClsPackage extends EPackage {
 	EReference getPackage_Packages();
 
 	/**
-	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.Package#getNearestPackage() <em>Get Nearest Package</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Nearest Package</em>' operation.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.Package#getNearestPackage()
-	 * @generated
-	 */
-	EOperation getPackage__GetNearestPackage();
-
-	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.PackageableElement <em>Packageable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3459,14 +3449,6 @@ public interface ClsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PACKAGE__PACKAGES = eINSTANCE.getPackage_Packages();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Nearest Package</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PACKAGE___GET_NEAREST_PACKAGE = eINSTANCE.getPackage__GetNearestPackage();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.PackageableElement <em>Packageable Element</em>}' class.

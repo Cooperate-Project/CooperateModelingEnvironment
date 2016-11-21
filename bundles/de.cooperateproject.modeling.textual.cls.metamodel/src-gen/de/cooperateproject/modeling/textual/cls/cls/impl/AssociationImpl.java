@@ -184,7 +184,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * @generated
 	 */
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
-		EObject focus = this;
+		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {
 			focus = focus.eContainer();
 		}

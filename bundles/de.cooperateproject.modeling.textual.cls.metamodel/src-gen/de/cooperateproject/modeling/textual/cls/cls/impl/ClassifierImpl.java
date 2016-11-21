@@ -84,7 +84,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends NamedElementA
 	 * @generated
 	 */
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
-		EObject focus = this;
+		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {
 			focus = focus.eContainer();
 		}
