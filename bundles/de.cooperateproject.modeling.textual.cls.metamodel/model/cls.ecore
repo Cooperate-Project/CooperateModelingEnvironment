@@ -37,6 +37,11 @@
         eType="#//Package" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Package">
+    <eOperations name="getNearestPackage" lowerBound="1" eType="#//Package">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="&lt;%org.eclipse.emf.ecore.EObject%> focus = this.eContainer();&#xD;&#xA;while (focus != null &amp;&amp; !(focus instanceof &lt;%de.cooperateproject.modeling.textual.cls.cls.Package%>)) {&#xD;&#xA;&#x9;focus = focus.eContainer();&#xD;&#xA;}&#xD;&#xA;return (&lt;%de.cooperateproject.modeling.textual.cls.cls.Package%>)focus;"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packageImports" upperBound="-1"
         eType="#//PackageImport" containment="true" eOpposite="#//PackageImport/importingNamespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifiers" upperBound="-1"

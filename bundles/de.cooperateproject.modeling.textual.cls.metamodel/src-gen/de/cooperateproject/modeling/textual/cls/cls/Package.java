@@ -110,4 +110,13 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	 */
 	EList<Package> getPackages();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.ecore.EObject%> focus = this.eContainer();\r\nwhile (focus != null && !(focus instanceof <%de.cooperateproject.modeling.textual.cls.cls.Package%>)) {\r\n\tfocus = focus.eContainer();\r\n}\r\nreturn (<%de.cooperateproject.modeling.textual.cls.cls.Package%>)focus;'"
+	 * @generated
+	 */
+	Package getNearestPackage();
+
 } // Package
