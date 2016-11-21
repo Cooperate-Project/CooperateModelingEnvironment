@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -17,6 +16,7 @@ import org.eclipse.core.runtime.Platform;
 
 public class ExtensionPointHelper {
 
+	@FunctionalInterface
 	interface AttributeProvider {
 		Map<String, String> getAttributes(IConfigurationElement config);
 	}
@@ -32,15 +32,14 @@ public class ExtensionPointHelper {
 			return Collections.emptyList();
 		}
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(extensionPointId);
-		Set<Pair<T, Map<String, String>>> extensions = Arrays.asList(config).stream()
+		return Arrays.asList(config).stream()
 				.map(c -> convert(c, extensionAttributeName, extensionType, relevantAttributeIds)).filter(Objects::nonNull).collect(Collectors.toSet());
-		return extensions;
 	}
 	
 	private static <T> Pair<T, Map<String, String>> convert(IConfigurationElement c, String extensionAttributeName, Class<T> extensionType,
 			String[] relevantAttributeIds) {
 		Optional<T> extensionObject = convert(c, extensionAttributeName, extensionType);
-		Map<String, String> attributes = Arrays.stream(relevantAttributeIds).collect(Collectors.toMap(a -> a, a -> c.getAttribute(a)));		
+		Map<String, String> attributes = Arrays.stream(relevantAttributeIds).collect(Collectors.toMap(a -> a, c::getAttribute));
 		if (!extensionObject.isPresent()) {
 			return null;
 		}
