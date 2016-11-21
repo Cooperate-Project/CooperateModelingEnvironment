@@ -38,7 +38,7 @@ public class CDOCredentialsValidator extends MultiValidator {
 	}
 	
 	private static IStatus createFailedConnectionStatus() {
-		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Connection to the repository was not successfull.");
+		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Connection to the repository was not successful.");
 	}
 	
 }
