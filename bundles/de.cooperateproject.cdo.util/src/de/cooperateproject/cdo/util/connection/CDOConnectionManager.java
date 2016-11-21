@@ -1,5 +1,6 @@
 package de.cooperateproject.cdo.util.connection;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
@@ -12,13 +13,14 @@ import com.google.common.collect.HashBiMap;
 import de.cooperateproject.cdo.util.utils.CDOHelper;
 
 public enum CDOConnectionManager {
-
+	
 	INSTANCE;
 	
 	public static CDOConnectionManager getInstance() {
 		return INSTANCE;
 	}
 	
+	private static final Logger LOGGER = Logger.getLogger(CDOConnectionManager.class);
 	private final BiMap<CDORepository, IProject> repositories = HashBiMap.create(); 
 	private final BiMap<CDORepository, CDOSession> sessions = HashBiMap.create();
 	
@@ -26,6 +28,7 @@ public enum CDOConnectionManager {
 		if (!repositories.inverse().containsKey(project)) {
 			CDOHelper.deleteRepositoryFor(project);
 			CDORepository repo = CDOHelper.createRepositoryFor(project, settings);
+			repo.connect();
 			repositories.put(repo, project);		
 		}
 	}
@@ -41,18 +44,24 @@ public enum CDOConnectionManager {
 	}
 	
 	public CDOSession acquireSession(IProject project) {
-		CDORepository repository = getRepository(project);
-		CDOSession session = repository.acquireSession();
-		sessions.put(repository, session);
-		return session;
+		synchronized(sessions) {
+			LOGGER.debug(String.format("Acquirering session for %s", project.getName()));
+			CDORepository repository = getRepository(project);
+			CDOSession session = repository.acquireSession();
+			sessions.put(repository, session);
+			return session;			
+		}
 	}
 	
 	public void releaseSession(CDOSession session) {
-		CDORepository repository = sessions.inverse().get(session);
-		if (repository == null) {
-			// log
-		} else {
-			repository.releaseSession();
+		synchronized(sessions) {
+			CDORepository repository = sessions.inverse().get(session);
+			if (repository == null) {
+				LOGGER.warn("Tried to release session for non existing repository.");
+			} else {
+				repository.releaseSession();
+				LOGGER.debug(String.format("Released session for project %s.", repositories.get(repository).getName()));
+			}			
 		}
 	}
 	

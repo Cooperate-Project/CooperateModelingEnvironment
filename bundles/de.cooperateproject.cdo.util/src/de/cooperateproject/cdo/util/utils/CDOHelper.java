@@ -20,13 +20,14 @@ import org.eclipse.emf.cdo.explorer.repositories.CDORepository.VersioningMode;
 import org.eclipse.emf.cdo.explorer.repositories.CDORepositoryManager;
 import org.eclipse.emf.cdo.internal.explorer.repositories.CDORepositoryImpl;
 import org.eclipse.emf.cdo.internal.explorer.repositories.RemoteCDORepository;
-import org.eclipse.emf.cdo.net4j.CDONet4jSession;
 import org.eclipse.emf.cdo.net4j.CDONet4jSessionConfiguration;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
+import org.eclipse.net4j.tcp.TCPUtil;
 import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.io.IOUtil;
 
@@ -43,9 +44,17 @@ public class CDOHelper {
 	
 	public static boolean connectionInfoIsValid(String host, int port, String repository, int timeout) {
 		Socket socket = new Socket();
-		CDOSession session = null;
 		try {
 			socket.connect(new InetSocketAddress(InetAddress.getByName(host), port), timeout);
+		}
+		catch (Exception e) {
+			return false;
+		} finally {
+			IOUtil.closeSilent(socket);			
+		}
+		
+		CDOSession session = null;
+		try {
 			session = createSession(host, port, repository);
 		} catch (Exception e) {
 			return false;
@@ -53,19 +62,17 @@ public class CDOHelper {
 			if (session != null) {
 				IOUtil.closeSilent(session);
 			}
-			IOUtil.closeSilent(socket);
 		}
 		return true;
 	}
 	
-	public static CDONet4jSession createSession(String host, int port, String repository) {
+	public static CDOSession createSession(String host, int port, String repository) {
 		String connectionString = String.format("%s:%d", host, port);
-		IConnector connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, "tcp", connectionString);
-
+		IConnector connector = TCPUtil.getConnector(IPluginContainer.INSTANCE, connectionString);
+		
 		CDONet4jSessionConfiguration sessionConfiguration = CDONet4jUtil.createNet4jSessionConfiguration();
 		sessionConfiguration.setConnector(connector);
 		sessionConfiguration.setRepositoryName(repository);
-		sessionConfiguration.setRevisionManager(CDORevisionUtil.createRevisionManager(CDORevisionCache.NOOP));
 		return sessionConfiguration.openNet4jSession();
 	}
 	
