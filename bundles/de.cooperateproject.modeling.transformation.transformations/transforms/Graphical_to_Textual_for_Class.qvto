@@ -204,6 +204,12 @@ mapping uml::Type::typeToUMLTypeReference(parent : OclAny) : cls::UMLTypeReferen
 	type := self;
 }
 
+mapping uml::Type::typeToUMLTypeReference2(parent : OclAny, discriminator : OclAny) : cls::UMLTypeReference
+	when {not self.oclIsKindOf(uml::PrimitiveType)}
+{
+	type := self;
+}
+
 mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
 disjuncts
 	notation::Edge::edgeToCommentLink,
@@ -271,8 +277,8 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	
 	referencedElement := association;
 	aggregationKind := association.memberEnd->at(aggregatingIndex).aggregation.convert();
-	left := association.memberEnd->at(regularIndex).type.map typeToUMLTypeReference(result);
-	right := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference(result);
+	left := association.memberEnd->at(regularIndex).type.map typeToUMLTypeReference2(result, regularIndex);
+	right := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference2(result, aggregatingIndex);
 		bidirectional := association.memberEnd->select(e | not e.isNavigable())->isEmpty();
 	
 	properties := self.map edgeToAssociationProperties(regularIndex);

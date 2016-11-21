@@ -43,6 +43,16 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		testIncremental("ClassDiagramPackages");
 	}
 	
+	@Test
+	public void testSelfReference() throws Exception {
+		testRegular("ClassDiagramSelfReference");
+	}
+	
+	@Test
+	public void testSelfReferenceIncremental() throws Exception {
+		testIncremental("ClassDiagramSelfReference");
+	}
+	
 	private void testRegular(String modelName) throws Exception {
 		URI sourceModelURI = createResourceModelURI(modelName + ".notation");
 		URI umlModelURI = createResourceModelURI(modelName+ ".uml");
@@ -54,6 +64,10 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		assertEquals(1, transformationResult.getContents().size());
 		EObject actual = transformationResult.getContents().get(0);
 		EcoreUtil.resolveAll(getResourceSet());
+		
+		Resource r = getResourceSet().createResource(URI.createFileURI("asdflhasdflkj"));
+		r.getContents().add(actual);
+		r.save(System.out, null);
 		
 		assertModelEquals(expected, actual);
 	}

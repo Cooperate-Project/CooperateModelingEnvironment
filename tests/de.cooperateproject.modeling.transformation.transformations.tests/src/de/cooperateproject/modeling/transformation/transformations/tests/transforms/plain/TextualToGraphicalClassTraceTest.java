@@ -32,6 +32,11 @@ public class TextualToGraphicalClassTraceTest extends TraceRecordTransformationT
 		testTraceTransformation("ClassDiagramPackages");
 	}
 	
+	@Test
+	public void testSelfReference() throws Exception {
+		testTraceTransformation("ClassDiagramSelfReference");
+	}
+	
 	private void testTraceTransformation(String modelName) throws Exception {
 		// test parameters
 		URI graphicalModelURI = createResourceModelURI(modelName + ".notation");

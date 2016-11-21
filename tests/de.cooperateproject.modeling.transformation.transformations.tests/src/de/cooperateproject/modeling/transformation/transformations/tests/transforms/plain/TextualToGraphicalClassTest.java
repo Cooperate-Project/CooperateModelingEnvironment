@@ -58,6 +58,17 @@ public class TextualToGraphicalClassTest extends PlainTransformationTestBase {
 		testIncremental("ClassDiagramPackages");
 	}
 	
+	@Test
+	public void testSelfReference() throws Exception {
+		testIncremental("ClassDiagramSelfReference");
+	}
+	
+	@Test
+	public void testSelfReferenceIncremental() throws Exception {
+		testIncremental("ClassDiagramSelfReference");
+	}
+	
+	
 	private void testRegular(String modelName) throws Exception {
 		URI sourceModelURI = createResourceModelURI(modelName + ".xmi");
 		URI umlModelURI = createResourceModelURI(modelName + ".uml");
