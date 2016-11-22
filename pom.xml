@@ -179,6 +179,7 @@
 				<version>${maven.deploy-plugin.version}</version>
 				<configuration>
 					<deployAtEnd>true</deployAtEnd>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 
