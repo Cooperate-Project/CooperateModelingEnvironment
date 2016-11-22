@@ -39,10 +39,16 @@ import org.eclipse.xtext.resource.XtextResource
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import org.apache.log4j.Logger
 import org.eclipse.uml2.uml.util.UMLUtil
+import de.cooperateproject.modeling.textual.cls.cls.Commentable
+import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
 	static val LOGGER = Logger.getLogger(ClsQuickfixProvider)
+
+	@Inject
+	ClsValueConverter valueConverter
 
 	/**
 	 * Quickfix for missing Class in the UML-diagram.
@@ -191,6 +197,27 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 				element.fixMissingMember(issue, context)
 			}
 		]
+	}
+	
+	@Fix(ClsValidator::NO_COMMENT_REFERENCE)
+	def createMissingUMLComment(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Create Comment', 'Create the Comment into the UML Diagram', null) [ element, context |
+			if (element instanceof Commentable) {
+				element.fixMissingComment(issue, context)
+			}
+		]
+	}
+	
+	def void fixMissingComment(Commentable commentable, Issue issue, IModificationContext context) {
+		var commentBody = context.xtextDocument.get(issue.offset, issue.length)
+		commentBody = valueConverter.convertCommentBody.toValue(commentBody, NodeModelUtils.getNode(commentable))
+		val commentedElement = commentable.commentedElement
+		val umlComment = UMLFactory.eINSTANCE.createComment
+		commentedElement.nearestPackage.ownedComments.add(umlComment)
+		umlComment.annotatedElements.add(commentedElement)
+		umlComment.body = commentBody
+		umlComment.save
+		commentable.comment = umlComment
 	}
 	
 	private static def fixMissingClassifier(EObject element, Issue issue, IModificationContext context) {

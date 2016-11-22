@@ -3,28 +3,30 @@
  */
 package de.cooperateproject.modeling.textual.cls.validation
 
+import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.Commentable
 import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Package
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Property
 import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.uml2.uml.NamedElement
+import org.eclipse.uml2.uml.Operation
 import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.TypedElement
-import org.eclipse.xtext.validation.Check
-import org.eclipse.uml2.uml.Operation
-import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.Generalization
-import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
-import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.EObject
-import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class contains custom validation rules. 
@@ -45,6 +47,7 @@ class ClsValidator extends AbstractClsValidator {
 	public static val NO_REALIZATION_REFERENCE = 'no_realization_reference'
 	public static val NO_ALIAS_NAME = 'no_alias_name'
 	public static val WRONG_ALIAS_NAME = 'wrong_alias_name'
+	public static val NO_COMMENT_REFERENCE = 'no_comment_reference'
 
 	@Check
 	def checkAliasExpression(Classifier classifier) {
@@ -60,7 +63,7 @@ class ClsValidator extends AbstractClsValidator {
 					NO_ALIAS_NAME, {
 						aliasString
 					})
-			else if (modelAlias.name != classifier.alias) {
+			else if (modelAlias.name != textModelAlias) {
 				error("Inconsistent alias '" + aliasString + "' found",
 					ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, WRONG_ALIAS_NAME, {
 						aliasString
@@ -120,7 +123,7 @@ class ClsValidator extends AbstractClsValidator {
 	}
 	
 	@Check
-	def checkIfPackageExists(de.cooperateproject.modeling.textual.cls.cls.Package pack) {
+	def checkIfPackageExists(Package pack) {
 		if (pack.referencedElement.model == null) {
 			val refNode = pack.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val packageName = refNode.text ?: "packageName"
@@ -165,6 +168,13 @@ class ClsValidator extends AbstractClsValidator {
 		if (method.referencedElement.model == null) {
 			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
 				NO_OPERATION_REFERENCE)
+		}
+	}
+	
+	@Check
+	def checkIfCommentExists(Commentable commentable) {
+		if (commentable.comment.model == null) {
+			error("No Referenced UML-Comment", ClsPackage.eINSTANCE.commentable_Comment, NO_COMMENT_REFERENCE)
 		}
 	}
 	
