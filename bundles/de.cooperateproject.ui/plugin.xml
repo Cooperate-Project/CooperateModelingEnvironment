@@ -89,7 +89,7 @@
       <editor
             default="false"
             extensions="cooperate"
-            icon="src/de/cooperateproject/ui/resources/cooperate_16.png"
+            icon="icons/16/cooperate_16.png"
             id="de.cooperateproject.ui.editors.launcher.EditorLauncher"
             launcher="de.cooperateproject.ui.editors.launcher.EditorLauncher"
             name="Cooperate Editor Launcher">
@@ -110,7 +110,7 @@
       <wizard
             id="de.cooperateproject.ui.newCooperateProjectWizard"
             name="Cooperate Project"
-            icon="src/de/cooperateproject/ui/resources/cooperate_16.png"
+            icon="icons/16/cooperate_16.png"
             category="de.cooperateproject.ui.wizards.cooperateWizards"
             class="de.cooperateproject.ui.wizards.projectnew.NewCooperateProjectWizard"
             project="true">
@@ -118,7 +118,7 @@
       <wizard
             id="de.cooperateproject.ui.wizards.newClassDiagram"
             name="Class Diagram"
-            icon="src/de/cooperateproject/ui/resources/cooperate_16.png"
+            icon="icons/16/cooperate_16.png"
             category="de.cooperateproject.ui.wizards.cooperateWizards"
             class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard">
       </wizard>
