@@ -65,10 +65,6 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		EObject actual = transformationResult.getContents().get(0);
 		EcoreUtil.resolveAll(getResourceSet());
 		
-		Resource r = getResourceSet().createResource(URI.createFileURI("asdflhasdflkj"));
-		r.getContents().add(actual);
-		r.save(System.out, null);
-		
 		assertModelEquals(expected, actual);
 	}
 		
