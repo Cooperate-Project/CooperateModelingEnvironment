@@ -51,7 +51,7 @@ public enum CDOConnectionManager {
 
 	public CDOSession acquireSession(IProject project) {
 		synchronized (sessions) {
-			LOGGER.debug(String.format("Acquirering session for %s", project.getName()));
+			LOGGER.trace(String.format("Acquirering session for %s", project.getName()));
 			CDORepository repository = getRepository(project);
 			CDOSession session = repository.acquireSession();
 			sessions.put(repository, session);
@@ -66,7 +66,7 @@ public enum CDOConnectionManager {
 				LOGGER.warn("Tried to release session for non existing repository.");
 			} else {
 				repository.releaseSession();
-				LOGGER.debug(String.format("Released session for project %s.", repositories.get(repository).getName()));
+				LOGGER.trace(String.format("Released session for project %s.", repositories.get(repository).getName()));
 			}
 		}
 	}
@@ -87,7 +87,9 @@ public enum CDOConnectionManager {
 	}
 
 	public void deleteCDOCheckout(CDOCheckout checkout) {
-		CDOHelper.delete(checkout);
+		if (checkout.getRepository() != null) {
+			CDOHelper.delete(checkout);			
+		}
 	}
 
 	private CDORepository getRepository(IProject project) throws IllegalStateException {
