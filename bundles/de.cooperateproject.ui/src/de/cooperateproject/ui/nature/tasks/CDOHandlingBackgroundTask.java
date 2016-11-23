@@ -1,10 +1,14 @@
 package de.cooperateproject.ui.nature.tasks;
 
+import java.util.stream.Stream;
+
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
@@ -26,7 +30,10 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 		@Override
 		public void notifyEvent(IEvent arg0) {
 			if (arg0 instanceof CDOViewInvalidationEvent) {
-				handleChange((CDOViewInvalidationEvent) arg0);
+				CDOViewInvalidationEvent event = (CDOViewInvalidationEvent) arg0;
+				if (isRelevantChange(event)) {
+					handleChange(event);					
+				}
 			} else {
 				handleChange(arg0);
 			}
@@ -38,6 +45,23 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 
 	protected CDOHandlingBackgroundTask(IProject project, ProjectPropertiesDTO properties) {
 		super(project, properties);
+	}
+	
+	private boolean isRelevantChange(CDOViewInvalidationEvent event) {
+		Stream<CDOObject> changedObjects = Stream.concat(event.getDetachedObjects().stream(), event.getDirtyObjects().stream());
+		return changedObjects.anyMatch(this::isDirectlyContainedInRepositoryFolder);
+	}
+	
+	private boolean isDirectlyContainedInRepositoryFolder(CDOObject o) {
+		if (repositoryFolder.equals(o)) {
+			return true;
+		}
+		CDOResource resource = o.cdoResource();
+		if (resource == null) {
+			return false;
+		}
+		CDOResourceFolder folder = resource.getFolder();
+		return repositoryFolder.equals(folder);
 	}
 	
 	@Override
