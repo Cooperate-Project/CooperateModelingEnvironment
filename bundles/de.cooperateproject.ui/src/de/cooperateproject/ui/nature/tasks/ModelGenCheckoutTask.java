@@ -8,7 +8,9 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.transfer.CDOTransfer;
 import org.eclipse.emf.cdo.transfer.spi.repository.RepositoryTransferSystem;
 import org.eclipse.emf.cdo.transfer.spi.workspace.WorkspaceTransferSystem;
@@ -18,10 +20,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.net4j.util.io.IOUtil;
 
 import com.google.common.collect.Sets;
 
+import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.util.CDOTransferUMLFirst;
 
@@ -107,8 +109,10 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 			transfer.perform();
 
 			getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+		} catch (RuntimeException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to transfer models", e));
 		} finally {
-			IOUtil.closeSilent(view);
+			view.close();
 		}
 
 	}
