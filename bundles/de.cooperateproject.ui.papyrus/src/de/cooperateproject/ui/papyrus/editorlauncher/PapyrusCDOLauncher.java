@@ -67,8 +67,9 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 			Optional<CDOObject> pagedElement = pageManager.allPages().stream().filter(p -> p instanceof EObject)
 					.map(p -> (EObject) p).map(CDOUtil::getCDOObject)
 					.filter(o -> rootObjectID.equals(o.cdoID())).findFirst();
-
+			
 			if (pagedElement.isPresent()) {
+				pageManager.closeOtherPages(pagedElement.get());
 				rootObject = pagedElement.get();
 			}
 
