@@ -72,7 +72,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
 		return launcherFile;
 	}
 	
-	private void registerListener(IEditorPart editorPart) {
+	protected void registerListener(IEditorPart editorPart) {
 		Validate.notNull(editorPart);
 		
 		disposeListener = new DisposedListener(editorPart, this::editorClosed);

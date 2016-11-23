@@ -21,7 +21,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.ui.services.EditorLifecycleEventListener;
+import org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -41,6 +44,27 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 	private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
 	private static final Logger LOGGER = Logger.getLogger(PapyrusCDOLauncher.class);
+	
+	private final EditorLifecycleEventListener editorCloseListener = new EditorLifecycleEventListener() {
+		
+		@Override
+		public void postInit(IMultiDiagramEditor arg0) {
+			// intentionally do nothing
+			return;
+		}
+		
+		@Override
+		public void postDisplay(IMultiDiagramEditor arg0) {
+			// intentionally do nothing
+			return;
+		}
+		
+		@Override
+		public void beforeClose(IMultiDiagramEditor arg0) {
+			handleEditorAboutToBeClosed(arg0);
+		}
+		
+	};
 	
 	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
@@ -166,4 +190,34 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 		return true;
 	}
 
+	@Override
+	protected void registerListener(IEditorPart editorPart) {
+		super.registerListener(editorPart);
+		
+		try {
+			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
+			EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
+			lifecycleManager.addEditorLifecycleEventsListener(editorCloseListener);
+		} catch (ServiceException e) {
+			LOGGER.error("Could not add editor close listener.");
+			// we should change the control flow based on this...
+		}
+	}
+
+	private void deregisterListener(IEditorPart editorPart) {
+		try {
+			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
+			EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
+			lifecycleManager.removeEditorLifecycleEventsListener(editorCloseListener);
+		} catch (ServiceException e) {
+			LOGGER.error("Could not remove editor close listener.");
+			// we should change the control flow based on this...
+		}
+	}
+	
+	private void handleEditorAboutToBeClosed(IEditorPart editorPart) {
+		deregisterListener(editorPart);
+		getCDOView().close();
+	}
+	
 }
