@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 
 import com.google.common.collect.Maps;
@@ -15,6 +16,7 @@ import de.cooperateproject.ui.nature.NatureUtils;
 
 public class CooperateProjectBackgroundTaskManager {
 
+	private static final Logger LOGGER = Logger.getLogger(CooperateProjectBackgroundTaskManager.class);
 	private final Map<IProject, Collection<BackgroundTask>> tasks = Maps.newHashMap();
 	private final Collection<BackgroundTaskFactory<?>> taskFactories = Sets.newHashSet();
 
@@ -52,12 +54,15 @@ public class CooperateProjectBackgroundTaskManager {
 
 	private void startTaskFor(IProject project, BackgroundTaskFactory<?> taskFactory) {
 		BackgroundTask task = taskFactory.create(project, NatureUtils.createProjectProperties(project));
-		tasks.get(project).add(task);
+		LOGGER.debug(String.format("Starting of task %s for project %s.", task.getClass().getSimpleName(),
+				project.getName()));
 		try {
+			tasks.get(project).add(task);
 			task.start();
 		} catch (TaskException e) {
-			// TODO Log error
-			e.printStackTrace();
+			tasks.get(project).remove(task);
+			LOGGER.error(String.format("Starting of task %s for project %s failed.", task.getClass().getSimpleName(),
+					project.getName()), e);
 		}
 
 	}
@@ -88,6 +93,5 @@ public class CooperateProjectBackgroundTaskManager {
 		tasksToRemove.forEach(t -> t.stop());
 		tasks.get(project).removeAll(tasksToRemove);
 	}
-
 
 }
