@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.Validate;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -28,11 +30,14 @@ import org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
@@ -123,11 +128,17 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 	}
 
 	private static ServicesRegistry getServicesRegistery(IEditorPart editorPart) throws ServiceException {
+		return getServicesRegistery(editorPart, true);
+	}
+	
+	private static ServicesRegistry getServicesRegistery(IEditorPart editorPart, boolean startOnDemand) throws ServiceException {
 		ServicesRegistry servicesRegistry = editorPart.getAdapter(ServicesRegistry.class);
 		if (servicesRegistry == null) {
 			throw new ServiceException("Editor does not support service registry.");
 		}
-		servicesRegistry.startRegistry();
+		if (startOnDemand) {
+			servicesRegistry.startRegistry();			
+		}
 		return servicesRegistry;
 	}
 
@@ -193,7 +204,6 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 	@Override
 	protected void registerListener(IEditorPart editorPart) {
 		super.registerListener(editorPart);
-		
 		try {
 			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
 			EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
@@ -203,21 +213,36 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 			// we should change the control flow based on this...
 		}
 	}
+	
+	
 
-	private void deregisterListener(IEditorPart editorPart) {
-		try {
-			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
-			EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
-			lifecycleManager.removeEditorLifecycleEventsListener(editorCloseListener);
-		} catch (ServiceException e) {
-			LOGGER.error("Could not remove editor close listener.");
-			// we should change the control flow based on this...
-		}
+	@Override
+	protected DisposedListener createDisposeListener(IEditorPart editorPart) {
+		return new DisposedListener(editorPart, this::editorClosed, this::editorDisposed);
 	}
+
+//	private void deregisterListener(IEditorPart editorPart) {
+//		try {
+//			ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
+//			EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
+//			lifecycleManager.removeEditorLifecycleEventsListener(editorCloseListener);
+//		} catch (ServiceException e) {
+//			LOGGER.error("Could not remove editor close listener.");
+//			// we should change the control flow based on this...
+//		}
+//	}
 	
 	private void handleEditorAboutToBeClosed(IEditorPart editorPart) {
-		deregisterListener(editorPart);
+		// TODO we cannot deregister the listener here because of a concurrent modification exception
 		getCDOView().close();
+	}
+	
+	private boolean editorDisposed(IWorkbenchPartReference partRef) {
+		IWorkbenchPart part = partRef.getPart(false);
+		if (part == null || !(part instanceof IEditorPart)) {
+			return true;
+		}
+		return false;
 	}
 	
 }

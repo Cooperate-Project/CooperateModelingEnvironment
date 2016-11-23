@@ -18,12 +18,23 @@ public class DisposedListener extends EmptyPartListener2 {
 		public void editorClosed(IWorkbenchPage page);
 	}
 	
+	@FunctionalInterface
+	public interface PartDisposedChecker {
+		public boolean partDisposed(IWorkbenchPartReference partRef);
+	}
+	
 	private final PartClosedHandler partClosedHandler;
+	private final PartDisposedChecker partDisposedChecker;
 	private final IEditorPart editorPart;
 
 	public DisposedListener(IEditorPart editorPart, PartClosedHandler partClosedHandler) {
+		this(editorPart, partClosedHandler, p -> p.getPart(false) == null);
+	}
+	
+	public DisposedListener(IEditorPart editorPart, PartClosedHandler partClosedHandler, PartDisposedChecker partDisposedChecker) {
 		this.editorPart = editorPart;
 		this.partClosedHandler = partClosedHandler;
+		this.partDisposedChecker = partDisposedChecker;
 	}
 
 	@Override
@@ -45,7 +56,7 @@ public class DisposedListener extends EmptyPartListener2 {
 		executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				while (partRef.getPart(false) != null) {
+				while (!partDisposedChecker.partDisposed(partRef)) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {

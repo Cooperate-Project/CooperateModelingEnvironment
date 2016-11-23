@@ -44,7 +44,7 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	public EditorLauncher(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
 		cdoCheckout = CDOConnectionManager.getInstance().createCDOCheckout(launcherFile.getProject(), true);
 		cdoCheckout.open();
-		cdoView = cdoCheckout.openView();
+		cdoView = cdoCheckout.openView(true);
 		this.launcherFile = launcherFile;
 		Diagram launcherModel = loadDiagram(cdoView, launcherFile);
 		concreteSyntaxModel = selectConcreteSyntaxModel(launcherModel, editorType);
@@ -75,8 +75,12 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	protected void registerListener(IEditorPart editorPart) {
 		Validate.notNull(editorPart);
 		
-		disposeListener = new DisposedListener(editorPart, this::editorClosed);
+		disposeListener = createDisposeListener(editorPart);
 		editorPart.getSite().getPage().addPartListener(disposeListener);
+	}
+	
+	protected DisposedListener createDisposeListener(IEditorPart editorPart) {
+		return new DisposedListener(editorPart, this::editorClosed);
 	}
 	
 	protected void editorClosed(IWorkbenchPage p) {
