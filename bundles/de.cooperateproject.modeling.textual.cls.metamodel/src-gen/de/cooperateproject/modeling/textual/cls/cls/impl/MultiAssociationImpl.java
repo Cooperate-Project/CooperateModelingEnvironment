@@ -60,6 +60,7 @@ public class MultiAssociationImpl extends ElementImpl implements MultiAssociatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Association getReferencedElement() {
 		return (Association)eGet(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true);
 	}
@@ -69,6 +70,7 @@ public class MultiAssociationImpl extends ElementImpl implements MultiAssociatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedElement(Association newReferencedElement) {
 		eSet(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
 	}
@@ -78,6 +80,7 @@ public class MultiAssociationImpl extends ElementImpl implements MultiAssociatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		if (getReferencedElement() == null) {
 			return null;
@@ -90,6 +93,7 @@ public class MultiAssociationImpl extends ElementImpl implements MultiAssociatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<MemberEnd> getConnectorEnds() {
 		return (EList<MemberEnd>)eGet(ClsPackage.Literals.MULTI_ASSOCIATION__CONNECTOR_ENDS, true);
@@ -100,6 +104,7 @@ public class MultiAssociationImpl extends ElementImpl implements MultiAssociatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean hasReferencedElement(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		if (getReferencedElement() == null) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(BasicDiagnostic.ERROR, "hasReferencedElement", 1, "A referenced element is mandatory.", new Object[]{this});

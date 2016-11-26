@@ -46,6 +46,7 @@ public class DataTypeReferenceImpl extends TypeReferenceImpl implements DataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PrimitiveType getType() {
 		return (PrimitiveType)eGet(ClsPackage.Literals.DATA_TYPE_REFERENCE__TYPE, true);
 	}
@@ -55,6 +56,7 @@ public class DataTypeReferenceImpl extends TypeReferenceImpl implements DataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(PrimitiveType newType) {
 		eSet(ClsPackage.Literals.DATA_TYPE_REFERENCE__TYPE, newType);
 	}

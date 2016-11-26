@@ -51,6 +51,7 @@ public class MethodImpl extends MemberImpl<Operation> implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAbstract() {
 		return (Boolean)eGet(ClsPackage.Literals.METHOD__ABSTRACT, true);
 	}
@@ -60,6 +61,7 @@ public class MethodImpl extends MemberImpl<Operation> implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAbstract(boolean newAbstract) {
 		eSet(ClsPackage.Literals.METHOD__ABSTRACT, newAbstract);
 	}
@@ -69,6 +71,7 @@ public class MethodImpl extends MemberImpl<Operation> implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<Parameter> getParameters() {
 		return (EList<Parameter>)eGet(ClsPackage.Literals.METHOD__PARAMETERS, true);

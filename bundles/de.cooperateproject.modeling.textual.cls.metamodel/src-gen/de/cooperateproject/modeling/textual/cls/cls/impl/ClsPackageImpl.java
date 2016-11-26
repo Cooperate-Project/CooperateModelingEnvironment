@@ -375,6 +375,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClassDiagram() {
 		return classDiagramEClass;
 	}
@@ -384,6 +385,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClassDiagram_Title() {
 		return (EAttribute)classDiagramEClass.getEStructuralFeatures().get(0);
 	}
@@ -393,6 +395,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassDiagram_RootPackage() {
 		return (EReference)classDiagramEClass.getEStructuralFeatures().get(1);
 	}
@@ -402,6 +405,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getClassDiagram__GetAllTransitiveConnectors() {
 		return classDiagramEClass.getEOperations().get(0);
 	}
@@ -411,6 +415,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getClassDiagram__GetAllTransitivePackages() {
 		return classDiagramEClass.getEOperations().get(1);
 	}
@@ -420,6 +425,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getClassDiagram__GetAllTransitiveClassifiers() {
 		return classDiagramEClass.getEOperations().get(2);
 	}
@@ -429,6 +435,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackage() {
 		return packageEClass;
 	}
@@ -438,6 +445,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_PackageImports() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(0);
 	}
@@ -447,6 +455,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_Classifiers() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(1);
 	}
@@ -456,6 +465,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_Connectors() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(2);
 	}
@@ -465,6 +475,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_OwningPackage() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(3);
 	}
@@ -474,6 +485,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackage_Packages() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(4);
 	}
@@ -483,6 +495,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackageableElement() {
 		return packageableElementEClass;
 	}
@@ -492,6 +505,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPackageImport() {
 		return packageImportEClass;
 	}
@@ -501,6 +515,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageImport_ReferencedElement() {
 		return (EReference)packageImportEClass.getEStructuralFeatures().get(0);
 	}
@@ -510,6 +525,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPackageImport_ImportingNamespace() {
 		return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
 	}
@@ -519,6 +535,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypeReference() {
 		return typeReferenceEClass;
 	}
@@ -528,6 +545,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataTypeReference() {
 		return dataTypeReferenceEClass;
 	}
@@ -537,6 +555,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDataTypeReference_Type() {
 		return (EAttribute)dataTypeReferenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -546,6 +565,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUMLTypeReference() {
 		return umlTypeReferenceEClass;
 	}
@@ -555,6 +575,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUMLTypeReference_Type() {
 		return (EReference)umlTypeReferenceEClass.getEStructuralFeatures().get(0);
 	}
@@ -564,6 +585,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUMLReferencingElement() {
 		return umlReferencingElementEClass;
 	}
@@ -573,6 +595,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUMLReferencingElement_ReferencedElement() {
 		return (EReference)umlReferencingElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -582,6 +605,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedElementOptional() {
 		return namedElementOptionalEClass;
 	}
@@ -591,6 +615,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedElementOptional_Name() {
 		return (EAttribute)namedElementOptionalEClass.getEStructuralFeatures().get(0);
 	}
@@ -600,6 +625,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedElement() {
 		return namedElementEClass;
 	}
@@ -609,6 +635,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getNamedElement__HasReferencedElement__DiagnosticChain_Map() {
 		return namedElementEClass.getEOperations().get(0);
 	}
@@ -618,6 +645,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedElementAliased() {
 		return namedElementAliasedEClass;
 	}
@@ -627,6 +655,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNamedElementAliased_AliasExpression() {
 		return (EReference)namedElementAliasedEClass.getEStructuralFeatures().get(0);
 	}
@@ -636,6 +665,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedElementAliased_Alias() {
 		return (EAttribute)namedElementAliasedEClass.getEStructuralFeatures().get(1);
 	}
@@ -645,6 +675,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClassifier() {
 		return classifierEClass;
 	}
@@ -654,6 +685,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClassifier_Visibility() {
 		return (EAttribute)classifierEClass.getEStructuralFeatures().get(0);
 	}
@@ -663,6 +695,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getClassifier_Members() {
 		return (EReference)classifierEClass.getEStructuralFeatures().get(1);
 	}
@@ -672,6 +705,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getClass_() {
 		return classEClass;
 	}
@@ -681,6 +715,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getClass_Abstract() {
 		return (EAttribute)classEClass.getEStructuralFeatures().get(0);
 	}
@@ -690,6 +725,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInterface() {
 		return interfaceEClass;
 	}
@@ -699,6 +735,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProperty() {
 		return propertyEClass;
 	}
@@ -708,6 +745,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_Visibility() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
 	}
@@ -717,6 +755,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_Static() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
 	}
@@ -726,6 +765,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getProperty_Final() {
 		return (EAttribute)propertyEClass.getEStructuralFeatures().get(2);
 	}
@@ -735,6 +775,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProperty_Type() {
 		return (EReference)propertyEClass.getEStructuralFeatures().get(3);
 	}
@@ -744,6 +785,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMember() {
 		return memberEClass;
 	}
@@ -753,6 +795,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMember_Owner() {
 		return (EReference)memberEClass.getEStructuralFeatures().get(0);
 	}
@@ -762,6 +805,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAttribute() {
 		return attributeEClass;
 	}
@@ -771,6 +815,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMethod() {
 		return methodEClass;
 	}
@@ -780,6 +825,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethod_Abstract() {
 		return (EAttribute)methodEClass.getEStructuralFeatures().get(0);
 	}
@@ -789,6 +835,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMethod_Parameters() {
 		return (EReference)methodEClass.getEStructuralFeatures().get(1);
 	}
@@ -798,6 +845,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getParameter() {
 		return parameterEClass;
 	}
@@ -807,6 +855,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getParameter_Owner() {
 		return (EReference)parameterEClass.getEStructuralFeatures().get(0);
 	}
@@ -816,6 +865,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConnector() {
 		return connectorEClass;
 	}
@@ -825,6 +875,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTypedConnector() {
 		return typedConnectorEClass;
 	}
@@ -834,6 +885,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedConnector_Left() {
 		return (EReference)typedConnectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -843,6 +895,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getTypedConnector_Right() {
 		return (EReference)typedConnectorEClass.getEStructuralFeatures().get(1);
 	}
@@ -852,6 +905,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociation() {
 		return associationEClass;
 	}
@@ -861,6 +915,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociation_Properties() {
 		return (EReference)associationEClass.getEStructuralFeatures().get(0);
 	}
@@ -870,6 +925,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAssociation_AggregationKind() {
 		return (EAttribute)associationEClass.getEStructuralFeatures().get(1);
 	}
@@ -879,6 +935,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAssociation_Bidirectional() {
 		return (EAttribute)associationEClass.getEStructuralFeatures().get(2);
 	}
@@ -888,6 +945,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAssociation__GetCommentedElement() {
 		return associationEClass.getEOperations().get(0);
 	}
@@ -897,6 +955,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGeneralization() {
 		return generalizationEClass;
 	}
@@ -906,6 +965,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeneralization_ReferencedElement() {
 		return (EReference)generalizationEClass.getEStructuralFeatures().get(0);
 	}
@@ -915,6 +975,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImplementation() {
 		return implementationEClass;
 	}
@@ -924,6 +985,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getImplementation_ReferencedElement() {
 		return (EReference)implementationEClass.getEStructuralFeatures().get(0);
 	}
@@ -933,6 +995,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCommentLink() {
 		return commentLinkEClass;
 	}
@@ -942,6 +1005,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCommentLink_Left() {
 		return (EReference)commentLinkEClass.getEStructuralFeatures().get(0);
 	}
@@ -951,6 +1015,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCommentLink__HasComment__DiagnosticChain_Map() {
 		return commentLinkEClass.getEOperations().get(0);
 	}
@@ -960,6 +1025,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCommentLink__GetCommentedElement() {
 		return commentLinkEClass.getEOperations().get(1);
 	}
@@ -969,6 +1035,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssociationProperties() {
 		return associationPropertiesEClass;
 	}
@@ -978,6 +1045,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationProperties_CardinalityLeft() {
 		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(0);
 	}
@@ -987,6 +1055,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationProperties_CardinalityRight() {
 		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(1);
 	}
@@ -996,6 +1065,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationProperties_PropertyLeft() {
 		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(2);
 	}
@@ -1005,6 +1075,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationProperties_PropertyRight() {
 		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(3);
 	}
@@ -1014,6 +1085,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssociationProperties_Association() {
 		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(4);
 	}
@@ -1023,6 +1095,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCardinality() {
 		return cardinalityEClass;
 	}
@@ -1032,6 +1105,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCardinality_LowerBound() {
 		return (EAttribute)cardinalityEClass.getEStructuralFeatures().get(0);
 	}
@@ -1041,6 +1115,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getCardinality_UpperBound() {
 		return (EAttribute)cardinalityEClass.getEStructuralFeatures().get(1);
 	}
@@ -1050,6 +1125,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCommentable() {
 		return commentableEClass;
 	}
@@ -1059,6 +1135,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCommentable_Comment() {
 		return (EReference)commentableEClass.getEStructuralFeatures().get(0);
 	}
@@ -1068,6 +1145,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getCommentable__GetCommentedElement() {
 		return commentableEClass.getEOperations().get(0);
 	}
@@ -1077,6 +1155,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMultiAssociation() {
 		return multiAssociationEClass;
 	}
@@ -1086,6 +1165,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMultiAssociation_ConnectorEnds() {
 		return (EReference)multiAssociationEClass.getEStructuralFeatures().get(0);
 	}
@@ -1095,6 +1175,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMemberEnd() {
 		return memberEndEClass;
 	}
@@ -1104,6 +1185,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMemberEnd_Cardinality() {
 		return (EReference)memberEndEClass.getEStructuralFeatures().get(0);
 	}
@@ -1113,6 +1195,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMemberEnd_Type() {
 		return (EReference)memberEndEClass.getEStructuralFeatures().get(1);
 	}
@@ -1122,6 +1205,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMemberEnd_Association() {
 		return (EReference)memberEndEClass.getEStructuralFeatures().get(2);
 	}
@@ -1131,6 +1215,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMemberEnd_Navigable() {
 		return (EAttribute)memberEndEClass.getEStructuralFeatures().get(3);
 	}
@@ -1140,6 +1225,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -1149,6 +1235,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getElement__GetNearestPackage() {
 		return elementEClass.getEOperations().get(0);
 	}
@@ -1158,6 +1245,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getVisibility() {
 		return visibilityEEnum;
 	}
@@ -1167,6 +1255,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getPrimitiveType() {
 		return primitiveTypeEEnum;
 	}
@@ -1176,6 +1265,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getAggregationKind() {
 		return aggregationKindEEnum;
 	}
@@ -1185,6 +1275,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClsFactory getClsFactory() {
 		return (ClsFactory)getEFactoryInstance();
 	}

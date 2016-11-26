@@ -54,6 +54,7 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InterfaceRealization getReferencedElement() {
 		org.eclipse.uml2.uml.Type implementor = getLeft().getType();
 		org.eclipse.uml2.uml.Type contract = getRight().getType();

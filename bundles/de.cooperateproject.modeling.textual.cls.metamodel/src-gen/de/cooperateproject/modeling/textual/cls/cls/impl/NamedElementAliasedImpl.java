@@ -49,6 +49,7 @@ public abstract class NamedElementAliasedImpl<T extends NamedElement> extends Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StringExpression getAliasExpression() {
 		return (StringExpression)eGet(ClsPackage.Literals.NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION, true);
 	}
@@ -58,6 +59,7 @@ public abstract class NamedElementAliasedImpl<T extends NamedElement> extends Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAliasExpression(StringExpression newAliasExpression) {
 		eSet(ClsPackage.Literals.NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION, newAliasExpression);
 	}
@@ -67,6 +69,7 @@ public abstract class NamedElementAliasedImpl<T extends NamedElement> extends Na
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAlias() {
 		if (getAliasExpression() == null) {
 			return null;

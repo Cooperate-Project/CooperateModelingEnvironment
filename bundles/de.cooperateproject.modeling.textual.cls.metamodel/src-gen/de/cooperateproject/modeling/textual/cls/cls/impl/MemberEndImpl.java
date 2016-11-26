@@ -56,6 +56,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Cardinality getCardinality() {
 		return (Cardinality)eGet(ClsPackage.Literals.MEMBER_END__CARDINALITY, true);
 	}
@@ -65,6 +66,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCardinality(Cardinality newCardinality) {
 		eSet(ClsPackage.Literals.MEMBER_END__CARDINALITY, newCardinality);
 	}
@@ -74,6 +76,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference getType() {
 		return (UMLTypeReference)eGet(ClsPackage.Literals.MEMBER_END__TYPE, true);
 	}
@@ -83,6 +86,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(UMLTypeReference newType) {
 		eSet(ClsPackage.Literals.MEMBER_END__TYPE, newType);
 	}
@@ -92,6 +96,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MultiAssociation getAssociation() {
 		return (MultiAssociation)eGet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, true);
 	}
@@ -101,6 +106,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAssociation(MultiAssociation newAssociation) {
 		eSet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, newAssociation);
 	}
@@ -110,6 +116,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isNavigable() {
 		return (Boolean)eGet(ClsPackage.Literals.MEMBER_END__NAVIGABLE, true);
 	}
@@ -119,6 +126,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNavigable(boolean newNavigable) {
 		eSet(ClsPackage.Literals.MEMBER_END__NAVIGABLE, newNavigable);
 	}
@@ -128,6 +136,7 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
 		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {

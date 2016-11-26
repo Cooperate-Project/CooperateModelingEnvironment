@@ -114,6 +114,7 @@ public interface Association extends NamedElement<org.eclipse.uml2.uml.Associati
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getReferencedElement();'"
 	 * @generated
 	 */
+	@Override
 	Type getCommentedElement();
 
 } // Association

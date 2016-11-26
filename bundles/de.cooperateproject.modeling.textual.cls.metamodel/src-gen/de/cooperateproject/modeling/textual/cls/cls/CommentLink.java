@@ -67,6 +67,7 @@ public interface CommentLink extends Connector, Commentable {
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (getLeft() instanceof <%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {\r\n\treturn ((<%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();\r\n}\r\nthrow new IllegalStateException(\"Internal error in determining commented UML element.\");'"
 	 * @generated
 	 */
+	@Override
 	Type getCommentedElement();
 
 } // CommentLink

@@ -59,6 +59,7 @@ public abstract class UMLReferencingElementImpl<T extends NamedElement> extends 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public T getReferencedElement() {
 		return (T)eGet(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true);
@@ -69,6 +70,7 @@ public abstract class UMLReferencingElementImpl<T extends NamedElement> extends 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedElement(T newReferencedElement) {
 		eSet(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
 	}

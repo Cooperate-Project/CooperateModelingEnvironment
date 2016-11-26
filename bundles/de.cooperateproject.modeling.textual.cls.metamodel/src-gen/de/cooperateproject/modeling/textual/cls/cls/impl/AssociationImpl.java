@@ -66,6 +66,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference getLeft() {
 		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
 	}
@@ -75,6 +76,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
 	}
@@ -84,6 +86,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference getRight() {
 		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
 	}
@@ -93,6 +96,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRight(UMLTypeReference newRight) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
 	}
@@ -102,6 +106,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Comment getComment() {
 		return (Comment)eGet(ClsPackage.Literals.COMMENTABLE__COMMENT, true);
 	}
@@ -111,6 +116,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setComment(Comment newComment) {
 		eSet(ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
 	}
@@ -120,6 +126,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssociationProperties getProperties() {
 		return (AssociationProperties)eGet(ClsPackage.Literals.ASSOCIATION__PROPERTIES, true);
 	}
@@ -129,6 +136,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProperties(AssociationProperties newProperties) {
 		eSet(ClsPackage.Literals.ASSOCIATION__PROPERTIES, newProperties);
 	}
@@ -138,6 +146,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AggregationKind getAggregationKind() {
 		return (AggregationKind)eGet(ClsPackage.Literals.ASSOCIATION__AGGREGATION_KIND, true);
 	}
@@ -147,6 +156,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAggregationKind(AggregationKind newAggregationKind) {
 		eSet(ClsPackage.Literals.ASSOCIATION__AGGREGATION_KIND, newAggregationKind);
 	}
@@ -156,6 +166,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isBidirectional() {
 		return (Boolean)eGet(ClsPackage.Literals.ASSOCIATION__BIDIRECTIONAL, true);
 	}
@@ -165,6 +176,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBidirectional(boolean newBidirectional) {
 		eSet(ClsPackage.Literals.ASSOCIATION__BIDIRECTIONAL, newBidirectional);
 	}
@@ -174,6 +186,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getCommentedElement() {
 		return getReferencedElement();
 	}
@@ -183,6 +196,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
 		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {

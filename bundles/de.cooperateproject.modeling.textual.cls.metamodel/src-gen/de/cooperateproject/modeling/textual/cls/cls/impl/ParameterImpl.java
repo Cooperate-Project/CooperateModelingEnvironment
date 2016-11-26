@@ -47,6 +47,7 @@ public class ParameterImpl extends PropertyImpl<Parameter> implements de.coopera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Method getOwner() {
 		return (Method)eGet(ClsPackage.Literals.PARAMETER__OWNER, true);
 	}
@@ -56,6 +57,7 @@ public class ParameterImpl extends PropertyImpl<Parameter> implements de.coopera
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwner(Method newOwner) {
 		eSet(ClsPackage.Literals.PARAMETER__OWNER, newOwner);
 	}

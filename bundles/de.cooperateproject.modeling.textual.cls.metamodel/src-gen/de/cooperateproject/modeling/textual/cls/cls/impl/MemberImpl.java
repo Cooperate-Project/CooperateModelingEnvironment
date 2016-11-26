@@ -48,6 +48,7 @@ public abstract class MemberImpl<T extends NamedElement> extends PropertyImpl<T>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Classifier<?> getOwner() {
 		return (Classifier<?>)eGet(ClsPackage.Literals.MEMBER__OWNER, true);
 	}

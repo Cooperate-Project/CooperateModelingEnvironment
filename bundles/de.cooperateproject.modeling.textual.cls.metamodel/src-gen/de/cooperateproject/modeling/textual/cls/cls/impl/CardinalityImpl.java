@@ -46,6 +46,7 @@ public class CardinalityImpl extends ElementImpl implements Cardinality {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getLowerBound() {
 		return (Integer)eGet(ClsPackage.Literals.CARDINALITY__LOWER_BOUND, true);
 	}
@@ -55,6 +56,7 @@ public class CardinalityImpl extends ElementImpl implements Cardinality {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLowerBound(int newLowerBound) {
 		eSet(ClsPackage.Literals.CARDINALITY__LOWER_BOUND, newLowerBound);
 	}
@@ -64,6 +66,7 @@ public class CardinalityImpl extends ElementImpl implements Cardinality {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getUpperBound() {
 		return (Integer)eGet(ClsPackage.Literals.CARDINALITY__UPPER_BOUND, true);
 	}
@@ -73,6 +76,7 @@ public class CardinalityImpl extends ElementImpl implements Cardinality {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpperBound(int newUpperBound) {
 		eSet(ClsPackage.Literals.CARDINALITY__UPPER_BOUND, newUpperBound);
 	}

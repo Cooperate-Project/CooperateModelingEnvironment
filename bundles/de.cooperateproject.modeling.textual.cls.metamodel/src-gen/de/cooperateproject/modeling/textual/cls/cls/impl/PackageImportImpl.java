@@ -46,6 +46,7 @@ public class PackageImportImpl extends ElementImpl implements PackageImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.PackageImport getReferencedElement() {
 		return (org.eclipse.uml2.uml.PackageImport)eGet(ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT, true);
 	}
@@ -55,6 +56,7 @@ public class PackageImportImpl extends ElementImpl implements PackageImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedElement(org.eclipse.uml2.uml.PackageImport newReferencedElement) {
 		eSet(ClsPackage.Literals.PACKAGE_IMPORT__REFERENCED_ELEMENT, newReferencedElement);
 	}
@@ -64,6 +66,7 @@ public class PackageImportImpl extends ElementImpl implements PackageImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getImportingNamespace() {
 		return (de.cooperateproject.modeling.textual.cls.cls.Package)eGet(ClsPackage.Literals.PACKAGE_IMPORT__IMPORTING_NAMESPACE, true);
 	}
@@ -73,6 +76,7 @@ public class PackageImportImpl extends ElementImpl implements PackageImport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImportingNamespace(de.cooperateproject.modeling.textual.cls.cls.Package newImportingNamespace) {
 		eSet(ClsPackage.Literals.PACKAGE_IMPORT__IMPORTING_NAMESPACE, newImportingNamespace);
 	}

@@ -47,6 +47,7 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference getLeft() {
 		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
 	}
@@ -56,6 +57,7 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
 	}
@@ -65,6 +67,7 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference getRight() {
 		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
 	}
@@ -74,6 +77,7 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRight(UMLTypeReference newRight) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
 	}

@@ -63,6 +63,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTitle() {
 		return (String)eGet(ClsPackage.Literals.CLASS_DIAGRAM__TITLE, true);
 	}
@@ -72,6 +73,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTitle(String newTitle) {
 		eSet(ClsPackage.Literals.CLASS_DIAGRAM__TITLE, newTitle);
 	}
@@ -81,6 +83,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getRootPackage() {
 		return (de.cooperateproject.modeling.textual.cls.cls.Package)eGet(ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE, true);
 	}
@@ -90,6 +93,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRootPackage(de.cooperateproject.modeling.textual.cls.cls.Package newRootPackage) {
 		eSet(ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE, newRootPackage);
 	}
@@ -99,6 +103,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Connector> getAllTransitiveConnectors() {
 		EList<Connector> transitiveConnectors = new BasicEList<Connector>();
 		
@@ -118,6 +123,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<de.cooperateproject.modeling.textual.cls.cls.Package> getAllTransitivePackages() {
 		EList<de.cooperateproject.modeling.textual.cls.cls.Package> transitivePackages = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Package>();
 		
@@ -137,6 +143,7 @@ public class ClassDiagramImpl extends CDOObjectImpl implements ClassDiagram {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getAllTransitiveClassifiers() {
 		EList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>> transitiveClassifiers = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>>();
 		

@@ -56,6 +56,7 @@ public abstract class ElementImpl extends CDOObjectImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
 		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {

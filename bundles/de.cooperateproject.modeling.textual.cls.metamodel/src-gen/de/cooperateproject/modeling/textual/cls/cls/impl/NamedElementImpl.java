@@ -48,6 +48,7 @@ public abstract class NamedElementImpl<T extends NamedElement> extends NamedElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean hasReferencedElement(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		if (getReferencedElement() == null) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(BasicDiagnostic.ERROR, "hasReferencedElement", 1, "A referenced element is mandatory.", new Object[]{this});

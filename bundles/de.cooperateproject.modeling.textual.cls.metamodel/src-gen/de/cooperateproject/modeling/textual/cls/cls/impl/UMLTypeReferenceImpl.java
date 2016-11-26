@@ -47,6 +47,7 @@ public class UMLTypeReferenceImpl extends TypeReferenceImpl implements UMLTypeRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getType() {
 		return (Type)eGet(ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE, true);
 	}
@@ -56,6 +57,7 @@ public class UMLTypeReferenceImpl extends TypeReferenceImpl implements UMLTypeRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(Type newType) {
 		eSet(ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE, newType);
 	}

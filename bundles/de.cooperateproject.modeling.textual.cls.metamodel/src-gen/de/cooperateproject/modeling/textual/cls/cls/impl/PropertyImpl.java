@@ -56,6 +56,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Visibility getVisibility() {
 		return (Visibility)eGet(ClsPackage.Literals.PROPERTY__VISIBILITY, true);
 	}
@@ -65,6 +66,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibility(Visibility newVisibility) {
 		eSet(ClsPackage.Literals.PROPERTY__VISIBILITY, newVisibility);
 	}
@@ -74,6 +76,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStatic() {
 		return (Boolean)eGet(ClsPackage.Literals.PROPERTY__STATIC, true);
 	}
@@ -83,6 +86,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatic(boolean newStatic) {
 		eSet(ClsPackage.Literals.PROPERTY__STATIC, newStatic);
 	}
@@ -92,6 +96,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isFinal() {
 		return (Boolean)eGet(ClsPackage.Literals.PROPERTY__FINAL, true);
 	}
@@ -101,6 +106,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFinal(boolean newFinal) {
 		eSet(ClsPackage.Literals.PROPERTY__FINAL, newFinal);
 	}
@@ -110,6 +116,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeReference getType() {
 		return (TypeReference)eGet(ClsPackage.Literals.PROPERTY__TYPE, true);
 	}
@@ -119,6 +126,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(TypeReference newType) {
 		eSet(ClsPackage.Literals.PROPERTY__TYPE, newType);
 	}
@@ -128,6 +136,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
 		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {

@@ -56,6 +56,7 @@ public class PackageImpl extends NamedElementImpl<org.eclipse.uml2.uml.Package> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<PackageImport> getPackageImports() {
 		return (EList<PackageImport>)eGet(ClsPackage.Literals.PACKAGE__PACKAGE_IMPORTS, true);
@@ -66,6 +67,7 @@ public class PackageImpl extends NamedElementImpl<org.eclipse.uml2.uml.Package> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getClassifiers() {
 		return (EList<Classifier<? extends org.eclipse.uml2.uml.Classifier>>)eGet(ClsPackage.Literals.PACKAGE__CLASSIFIERS, true);
@@ -76,6 +78,7 @@ public class PackageImpl extends NamedElementImpl<org.eclipse.uml2.uml.Package> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<Connector> getConnectors() {
 		return (EList<Connector>)eGet(ClsPackage.Literals.PACKAGE__CONNECTORS, true);
@@ -86,6 +89,7 @@ public class PackageImpl extends NamedElementImpl<org.eclipse.uml2.uml.Package> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getOwningPackage() {
 		return (de.cooperateproject.modeling.textual.cls.cls.Package)eGet(ClsPackage.Literals.PACKAGE__OWNING_PACKAGE, true);
 	}
@@ -95,6 +99,7 @@ public class PackageImpl extends NamedElementImpl<org.eclipse.uml2.uml.Package> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<de.cooperateproject.modeling.textual.cls.cls.Package> getPackages() {
 		return (EList<de.cooperateproject.modeling.textual.cls.cls.Package>)eGet(ClsPackage.Literals.PACKAGE__PACKAGES, true);
@@ -105,6 +110,7 @@ public class PackageImpl extends NamedElementImpl<org.eclipse.uml2.uml.Package> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
 		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {

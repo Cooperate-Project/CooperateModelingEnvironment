@@ -44,6 +44,7 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAbstract() {
 		return (Boolean)eGet(ClsPackage.Literals.CLASS__ABSTRACT, true);
 	}
@@ -53,6 +54,7 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAbstract(boolean newAbstract) {
 		eSet(ClsPackage.Literals.CLASS__ABSTRACT, newAbstract);
 	}

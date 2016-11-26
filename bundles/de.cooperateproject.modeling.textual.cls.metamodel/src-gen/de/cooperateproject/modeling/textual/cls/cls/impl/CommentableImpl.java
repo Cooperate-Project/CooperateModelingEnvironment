@@ -51,6 +51,7 @@ public abstract class CommentableImpl extends ElementImpl implements Commentable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Comment getComment() {
 		return (Comment)eGet(ClsPackage.Literals.COMMENTABLE__COMMENT, true);
 	}
@@ -60,6 +61,7 @@ public abstract class CommentableImpl extends ElementImpl implements Commentable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setComment(Comment newComment) {
 		eSet(ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
 	}
@@ -69,6 +71,7 @@ public abstract class CommentableImpl extends ElementImpl implements Commentable
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getCommentedElement() {
 		throw new UnsupportedOperationException("Implement this method in subclass!");
 	}

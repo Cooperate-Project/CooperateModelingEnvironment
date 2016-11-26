@@ -47,6 +47,7 @@ public abstract class NamedElementOptionalImpl<T extends NamedElement> extends U
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		if (getReferencedElement() == null) {
 			return null;

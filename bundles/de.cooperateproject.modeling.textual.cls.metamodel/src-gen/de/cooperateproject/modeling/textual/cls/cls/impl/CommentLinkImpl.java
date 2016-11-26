@@ -58,6 +58,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Comment getComment() {
 		return (Comment)eGet(ClsPackage.Literals.COMMENTABLE__COMMENT, true);
 	}
@@ -67,6 +68,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setComment(Comment newComment) {
 		eSet(ClsPackage.Literals.COMMENTABLE__COMMENT, newComment);
 	}
@@ -76,6 +78,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference getLeft() {
 		return (UMLTypeReference)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
 	}
@@ -85,6 +88,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLeft(UMLTypeReference newLeft) {
 		eSet(ClsPackage.Literals.COMMENT_LINK__LEFT, newLeft);
 	}
@@ -94,6 +98,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean hasComment(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		if (getComment() == null) {
 			BasicDiagnostic basicDiagnostic = new BasicDiagnostic(BasicDiagnostic.ERROR, "hasComment", 1, "A comment link must have a comment.", new Object[]{this});
@@ -109,6 +114,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getCommentedElement() {
 		if (getLeft() instanceof UMLTypeReference) {
 			return ((UMLTypeReference)getLeft()).getType();

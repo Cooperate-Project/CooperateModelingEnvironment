@@ -56,6 +56,7 @@ public class GeneralizationImpl extends TypedConnectorImpl implements Generaliza
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.uml2.uml.Generalization getReferencedElement() {
 		org.eclipse.uml2.uml.Type special = getLeft().getType();
 		org.eclipse.uml2.uml.Type general = getRight().getType();

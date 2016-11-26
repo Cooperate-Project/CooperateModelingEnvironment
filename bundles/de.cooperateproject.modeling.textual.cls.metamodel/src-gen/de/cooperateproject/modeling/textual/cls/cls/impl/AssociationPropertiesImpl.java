@@ -52,6 +52,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Cardinality getCardinalityLeft() {
 		return (Cardinality)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__CARDINALITY_LEFT, true);
 	}
@@ -61,6 +62,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCardinalityLeft(Cardinality newCardinalityLeft) {
 		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__CARDINALITY_LEFT, newCardinalityLeft);
 	}
@@ -70,6 +72,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Cardinality getCardinalityRight() {
 		return (Cardinality)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__CARDINALITY_RIGHT, true);
 	}
@@ -79,6 +82,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCardinalityRight(Cardinality newCardinalityRight) {
 		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__CARDINALITY_RIGHT, newCardinalityRight);
 	}
@@ -88,6 +92,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getPropertyLeft() {
 		return (Property)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT, true);
 	}
@@ -97,6 +102,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPropertyLeft(Property newPropertyLeft) {
 		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT, newPropertyLeft);
 	}
@@ -106,6 +112,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Property getPropertyRight() {
 		return (Property)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT, true);
 	}
@@ -115,6 +122,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPropertyRight(Property newPropertyRight) {
 		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT, newPropertyRight);
 	}
@@ -124,6 +132,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Association getAssociation() {
 		return (Association)eGet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__ASSOCIATION, true);
 	}
@@ -133,6 +142,7 @@ public class AssociationPropertiesImpl extends ElementImpl implements Associatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAssociation(Association newAssociation) {
 		eSet(ClsPackage.Literals.ASSOCIATION_PROPERTIES__ASSOCIATION, newAssociation);
 	}

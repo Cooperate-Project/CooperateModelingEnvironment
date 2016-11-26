@@ -55,6 +55,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends NamedElementA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Visibility getVisibility() {
 		return (Visibility)eGet(ClsPackage.Literals.CLASSIFIER__VISIBILITY, true);
 	}
@@ -64,6 +65,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends NamedElementA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibility(Visibility newVisibility) {
 		eSet(ClsPackage.Literals.CLASSIFIER__VISIBILITY, newVisibility);
 	}
@@ -73,6 +75,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends NamedElementA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public EList<Member<?>> getMembers() {
 		return (EList<Member<?>>)eGet(ClsPackage.Literals.CLASSIFIER__MEMBERS, true);
@@ -83,6 +86,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends NamedElementA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
 		EObject focus = this.eContainer();
 		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {

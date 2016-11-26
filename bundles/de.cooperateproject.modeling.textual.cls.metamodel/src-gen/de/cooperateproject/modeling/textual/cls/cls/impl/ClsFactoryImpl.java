@@ -143,6 +143,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClassDiagram createClassDiagram() {
 		ClassDiagramImpl classDiagram = new ClassDiagramImpl();
 		return classDiagram;
@@ -153,6 +154,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
@@ -163,6 +165,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PackageImport createPackageImport() {
 		PackageImportImpl packageImport = new PackageImportImpl();
 		return packageImport;
@@ -173,6 +176,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataTypeReference createDataTypeReference() {
 		DataTypeReferenceImpl dataTypeReference = new DataTypeReferenceImpl();
 		return dataTypeReference;
@@ -183,6 +187,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLTypeReference createUMLTypeReference() {
 		UMLTypeReferenceImpl umlTypeReference = new UMLTypeReferenceImpl();
 		return umlTypeReference;
@@ -193,6 +198,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public de.cooperateproject.modeling.textual.cls.cls.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
@@ -203,6 +209,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Interface createInterface() {
 		InterfaceImpl interface_ = new InterfaceImpl();
 		return interface_;
@@ -213,6 +220,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Attribute createAttribute() {
 		AttributeImpl attribute = new AttributeImpl();
 		return attribute;
@@ -223,6 +231,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Method createMethod() {
 		MethodImpl method = new MethodImpl();
 		return method;
@@ -233,6 +242,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Parameter createParameter() {
 		ParameterImpl parameter = new ParameterImpl();
 		return parameter;
@@ -243,6 +253,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Association createAssociation() {
 		AssociationImpl association = new AssociationImpl();
 		return association;
@@ -253,6 +264,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Generalization createGeneralization() {
 		GeneralizationImpl generalization = new GeneralizationImpl();
 		return generalization;
@@ -263,6 +275,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Implementation createImplementation() {
 		ImplementationImpl implementation = new ImplementationImpl();
 		return implementation;
@@ -273,6 +286,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public CommentLink createCommentLink() {
 		CommentLinkImpl commentLink = new CommentLinkImpl();
 		return commentLink;
@@ -283,6 +297,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssociationProperties createAssociationProperties() {
 		AssociationPropertiesImpl associationProperties = new AssociationPropertiesImpl();
 		return associationProperties;
@@ -293,6 +308,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Cardinality createCardinality() {
 		CardinalityImpl cardinality = new CardinalityImpl();
 		return cardinality;
@@ -303,6 +319,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MultiAssociation createMultiAssociation() {
 		MultiAssociationImpl multiAssociation = new MultiAssociationImpl();
 		return multiAssociation;
@@ -313,6 +330,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MemberEnd createMemberEnd() {
 		MemberEndImpl memberEnd = new MemberEndImpl();
 		return memberEnd;
@@ -383,6 +401,7 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ClsPackage getClsPackage() {
 		return (ClsPackage)getEPackage();
 	}
