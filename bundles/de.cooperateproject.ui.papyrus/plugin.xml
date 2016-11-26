@@ -7,4 +7,11 @@
             class="de.cooperateproject.ui.papyrus.editorlauncher.PapyrusCDOLauncherFactory">
       </provider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.sashModelProvider">
+      <sashModelProvider
+            class="de.cooperateproject.ui.papyrus.editorlauncher.DummySashModelProvider"
+            scheme="cdo.checkout">
+      </sashModelProvider>
+   </extension>
 </plugin>
