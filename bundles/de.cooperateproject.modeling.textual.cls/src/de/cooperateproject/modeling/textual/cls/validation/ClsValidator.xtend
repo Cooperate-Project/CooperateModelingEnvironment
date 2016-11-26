@@ -79,9 +79,12 @@ class ClsValidator extends AbstractClsValidator {
 	def checkIfAssociationExists(Association association) {
 		if (association.referencedElement.model == null) {
 			val refNode = association.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+			val propertyNameLeft = association.properties?.extractRefNode(ClsPackage.eINSTANCE.associationProperties_PropertyLeft)?.text ?: ""
+			val propertyNameRight = association.properties?.extractRefNode(ClsPackage.eINSTANCE.associationProperties_PropertyRight)?.text ?: ""
 			val associationName = refNode.text ?: "associationName"
+			val String[] issueData = #[associationName, propertyNameLeft, propertyNameRight]
 			error("No Referenced UML-Association Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_ASSOCIATION_REFERENCE, {associationName})
+				NO_ASSOCIATION_REFERENCE, issueData)
 		}
 	}
 	
