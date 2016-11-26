@@ -41,10 +41,10 @@ public abstract class EditorLauncher implements IEditorLauncher {
 	private final TransformationManager transformationManager;
 	private DisposedListener disposeListener;
 	
-	public EditorLauncher(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+	public EditorLauncher(IFile launcherFile, EditorType editorType, boolean readOnlyView) throws IOException, ConcreteSyntaxTypeNotAvailableException {
 		cdoCheckout = CDOConnectionManager.getInstance().createCDOCheckout(launcherFile.getProject(), true);
 		cdoCheckout.open();
-		cdoView = cdoCheckout.openView(true);
+		cdoView = cdoCheckout.openView(readOnlyView);
 		this.launcherFile = launcherFile;
 		Diagram launcherModel = loadDiagram(cdoView, launcherFile);
 		concreteSyntaxModel = selectConcreteSyntaxModel(launcherModel, editorType);

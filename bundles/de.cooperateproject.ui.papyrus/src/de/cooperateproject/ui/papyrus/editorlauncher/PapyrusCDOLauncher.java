@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.Validate;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
@@ -18,7 +17,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -73,7 +71,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 	
 	public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType);
+		super(launcherFile, editorType, true);
 	}
 	
 	@Override

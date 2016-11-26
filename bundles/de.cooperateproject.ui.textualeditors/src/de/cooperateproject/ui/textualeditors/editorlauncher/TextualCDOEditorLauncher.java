@@ -29,7 +29,7 @@ public class TextualCDOEditorLauncher extends EditorLauncher {
 
 	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType)
 			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType);
+		super(launcherFile, editorType, false);
 	}
 
 	@Override
