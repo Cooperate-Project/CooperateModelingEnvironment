@@ -34,6 +34,27 @@ class ClsValueConverter extends DefaultTerminalConverters {
 			}
 		}
 	}
+	@ValueConverter(rule="STRING")
+	override IValueConverter<String> STRING() {
+		return new IValueConverter<String>() {
+			override toString(String value) throws ValueConverterException {
+				if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9\\s]*")) {
+					return value;
+				}
+				var s = String.format("\"%s\"", value)
+				return s
+			}
+			override toValue(String value, INode node) throws ValueConverterException {
+				if (value == null) {
+					throw new ValueConverterException("null value", node, null)
+				}
+				if (value.matches("\\\".*\\\"")) {
+					return value.subSequence(1, value.length - 1).toString;
+				}
+				return value
+			}
+		}
+	}
 
 	@ValueConverter(rule="CardinalityBound")
 	public def convertCardinalityBound() {

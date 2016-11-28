@@ -72,8 +72,8 @@ class ClsFormatter extends AbstractDeclarativeFormatter {
 	
 	def configureClassifierFormattingRules(FormattingConfig c, ClsGrammarAccess access) {
 		c.setLinewrap.after(access.classifierRule)
-		c.setLinewrap(2).after(access.classAccess.rightCurlyBracketKeyword_5_2)
-		c.setLinewrap(2).after(access.interfaceAccess.rightCurlyBracketKeyword_4_2)
+		c.setLinewrap(2).after(access.classAccess.rightCurlyBracketKeyword_4_2)
+		c.setLinewrap(2).after(access.interfaceAccess.rightCurlyBracketKeyword_3_2)
 		c.setLinewrap.after(access.memberRule)
 	}
 	

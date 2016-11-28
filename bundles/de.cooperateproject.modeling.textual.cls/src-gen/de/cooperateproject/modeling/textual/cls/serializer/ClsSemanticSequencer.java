@@ -134,7 +134,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         bidirectional?='bi'? 
 	 *         aggregationKind=AggregationKind 
 	 *         left=UMLTypeReference 
-	 *         referencedElement=[Association|ID] 
+	 *         (referencedElement=[Association|ID] | referencedElement=[Association|STRING]) 
 	 *         right=UMLTypeReference 
 	 *         properties=AssociationProperties? 
 	 *         comment=[Comment|CommentBody]?
@@ -197,7 +197,15 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? referencedElement=[Class|ID] aliasExpression=[StringExpression|ID]? members+=Member*)
+	 *     (
+	 *         visibility=Visibility? 
+	 *         abstract?='abstract'? 
+	 *         (
+	 *             (referencedElement=[Class|ID] aliasExpression=[StringExpression|ID]?) | 
+	 *             (referencedElement=[Class|STRING] aliasExpression=[StringExpression|ID])
+	 *         ) 
+	 *         members+=Member*
+	 *     )
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -295,7 +303,14 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? referencedElement=[Interface|ID] aliasExpression=[StringExpression|ID]? members+=Member*)
+	 *     (
+	 *         visibility=Visibility? 
+	 *         (
+	 *             (referencedElement=[Interface|ID] aliasExpression=[StringExpression|ID]?) | 
+	 *             (referencedElement=[Interface|STRING] aliasExpression=[StringExpression|ID])
+	 *         ) 
+	 *         members+=Member*
+	 *     )
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -341,7 +356,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     MultiAssociation returns MultiAssociation
 	 *
 	 * Constraint:
-	 *     (referencedElement=[Association|ID] connectorEnds+=MemberEnd+)
+	 *     ((referencedElement=[Association|ID] | referencedElement=[Association|STRING]) connectorEnds+=MemberEnd+)
 	 */
 	protected void sequence_MultiAssociation(ISerializationContext context, MultiAssociation semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

@@ -54,11 +54,11 @@ Classifier:
 ;
 
 Class:
-	visibility=Visibility? (abstract ?= 'abstract')? 'class' referencedElement = [uml::Class|ID] ('as' aliasExpression = [uml::StringExpression|ID])? ('{' (members += Member)* '}')?
+	visibility=Visibility? (abstract ?= 'abstract')? 'class' (referencedElement = [uml::Class|ID] ('as' aliasExpression = [uml::StringExpression|ID])?|referencedElement = [uml::Class|STRING] 'as' aliasExpression = [uml::StringExpression|ID]) ('{' (members += Member)* '}')?
 ;
 
 Interface:
-	visibility=Visibility? 'interface' referencedElement = [uml::Interface|ID] ('as' aliasExpression = [uml::StringExpression|ID])? ('{' (members += Member)* '}')?
+	visibility=Visibility? 'interface' (referencedElement = [uml::Interface|ID] ('as' aliasExpression = [uml::StringExpression|ID])?|referencedElement = [uml::Interface|STRING] 'as' aliasExpression = [uml::StringExpression|ID]) ('{' (members += Member)* '}')?
 ;
 
 TypeReference: 
@@ -128,12 +128,12 @@ CommentLink:
 ;
 
 Association:
-	(bidirectional?='bi')? aggregationKind=AggregationKind  left = UMLTypeReference referencedElement = [uml::Association] right = UMLTypeReference
+	(bidirectional?='bi')? aggregationKind=AggregationKind  left = UMLTypeReference (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|STRING]) right = UMLTypeReference
 	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
 ;
 
 MultiAssociation:
-	'asc' referencedElement = [uml::Association] '{' (connectorEnds+=MemberEnd ';')+ '}'
+	'asc' (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|STRING]) '{' (connectorEnds+=MemberEnd ';')+ '}'
 ;
 
 MemberEnd:

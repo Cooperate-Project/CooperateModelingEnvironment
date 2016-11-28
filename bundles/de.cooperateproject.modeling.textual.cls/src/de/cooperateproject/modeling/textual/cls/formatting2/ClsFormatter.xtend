@@ -71,8 +71,8 @@ class ClsFormatter extends AbstractClsFormatter {
 	
 	def dispatch void format(Class clz, extension IFormattableDocument document) {
 		interior(
-			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_5_0).append[newLine],
-			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_5_2),
+			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_4_0).append[newLine],
+			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_4_2),
 			[indent]
 		)
 		
@@ -89,8 +89,8 @@ class ClsFormatter extends AbstractClsFormatter {
 
 	def dispatch void format(Interface interfaze, extension IFormattableDocument document) {
 		interior(
-			interfaze.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_4_0).append[newLine],
-			interfaze.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_4_2),
+			interfaze.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_3_0).append[newLine],
+			interfaze.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_3_2),
 			[indent]
 		)
 		
