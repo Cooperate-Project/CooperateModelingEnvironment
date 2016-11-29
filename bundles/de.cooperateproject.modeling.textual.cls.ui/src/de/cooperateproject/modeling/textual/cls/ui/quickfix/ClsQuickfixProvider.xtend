@@ -222,8 +222,11 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		commentable.comment = umlComment
 	}
 	
-	private static def fixMissingClassifier(EObject element, Issue issue, IModificationContext context) {
+	private def fixMissingClassifier(EObject element, Issue issue, IModificationContext context) {
 		var name = context.xtextDocument.get(issue.offset, issue.length)
+		if (name.matches("\\\".*\\\"")) {
+ 			name = valueConverter.STRING.toValue(name, NodeModelUtils.getNode(element))
+ 		}
 		val brokenElement = element as de.cooperateproject.modeling.textual.cls.cls.Element;
 		val parentPackage = brokenElement.nearestPackage
 		val umlPackage = parentPackage?.referencedElement
