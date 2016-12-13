@@ -148,7 +148,6 @@ public interface LauncherPackage extends EPackage {
 	 */
 	int CONCRETE_SYNTAX_MODEL_OPERATION_COUNT = 0;
 
-
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.ui.launchermodel.Launcher.impl.TextualConcreteSyntaxModelImpl <em>Textual Concrete Syntax Model</em>}' class.
 	 * <!-- begin-user-doc -->

@@ -7,8 +7,8 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.Launcher.GraphicalConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.LauncherFactory;
 import de.cooperateproject.ui.launchermodel.Launcher.LauncherPackage;
-
 import de.cooperateproject.ui.launchermodel.Launcher.TextualConcreteSyntaxModel;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
