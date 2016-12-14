@@ -407,6 +407,34 @@ rulePackageImport returns [EObject current=null]
 
 
 
+// Entry rule entryRuleNameString
+entryRuleNameString returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getNameStringRule()); } 
+	 iv_ruleNameString=ruleNameString 
+	 { $current=$iv_ruleNameString.current.getText(); }  
+	 EOF 
+;
+
+// Rule NameString
+ruleNameString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_STRING_0=RULE_STRING    {
+		$current.merge(this_STRING_0);
+    }
+
+    { 
+    newLeafNode(this_STRING_0, grammarAccess.getNameStringAccess().getSTRINGTerminalRuleCall()); 
+    }
+
+    ;
+
+
+
+
+
 // Entry rule entryRuleFQN
 entryRuleFQN returns [String current=null] 
 	:
@@ -577,10 +605,12 @@ ruleClass returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getClassRule());
 	        }
         }
-	otherlv_6=RULE_STRING
-	{
-		newLeafNode(otherlv_6, grammarAccess.getClassAccess().getReferencedElementClassCrossReference_3_1_0_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getClassAccess().getReferencedElementClassCrossReference_3_1_0_0()); 
+	    }
+		ruleNameString		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 )	otherlv_7='as' 
@@ -707,10 +737,12 @@ ruleInterface returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getInterfaceRule());
 	        }
         }
-	otherlv_5=RULE_STRING
-	{
-		newLeafNode(otherlv_5, grammarAccess.getInterfaceAccess().getReferencedElementInterfaceCrossReference_2_1_0_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceCrossReference_2_1_0_0()); 
+	    }
+		ruleNameString		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 )	otherlv_6='as' 
@@ -1635,10 +1667,12 @@ ruleAssociation returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getAssociationRule());
 	        }
         }
-	otherlv_4=RULE_STRING
-	{
-		newLeafNode(otherlv_4, grammarAccess.getAssociationAccess().getReferencedElementAssociationCrossReference_3_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getReferencedElementAssociationCrossReference_3_1_0()); 
+	    }
+		ruleNameString		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))(
@@ -1742,10 +1776,12 @@ ruleMultiAssociation returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getMultiAssociationRule());
 	        }
         }
-	otherlv_2=RULE_STRING
-	{
-		newLeafNode(otherlv_2, grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationCrossReference_1_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationCrossReference_1_1_0()); 
+	    }
+		ruleNameString		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))	otherlv_3='{' 

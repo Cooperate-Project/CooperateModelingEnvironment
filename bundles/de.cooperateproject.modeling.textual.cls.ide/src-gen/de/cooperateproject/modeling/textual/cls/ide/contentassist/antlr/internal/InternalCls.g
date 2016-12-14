@@ -168,6 +168,34 @@ finally {
 
 
 
+// Entry rule entryRuleNameString
+entryRuleNameString 
+:
+{ before(grammarAccess.getNameStringRule()); }
+	 ruleNameString
+{ after(grammarAccess.getNameStringRule()); } 
+	 EOF 
+;
+
+// Rule NameString
+ruleNameString
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getNameStringAccess().getSTRINGTerminalRuleCall()); }
+	RULE_STRING
+{ after(grammarAccess.getNameStringAccess().getSTRINGTerminalRuleCall()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleFQN
 entryRuleFQN 
 :
@@ -5505,8 +5533,8 @@ rule__Class__ReferencedElementAssignment_3_1_0
 (
 { before(grammarAccess.getClassAccess().getReferencedElementClassCrossReference_3_1_0_0()); }
 (
-{ before(grammarAccess.getClassAccess().getReferencedElementClassSTRINGTerminalRuleCall_3_1_0_0_1()); }
-	RULE_STRING{ after(grammarAccess.getClassAccess().getReferencedElementClassSTRINGTerminalRuleCall_3_1_0_0_1()); }
+{ before(grammarAccess.getClassAccess().getReferencedElementClassNameStringParserRuleCall_3_1_0_0_1()); }
+	ruleNameString{ after(grammarAccess.getClassAccess().getReferencedElementClassNameStringParserRuleCall_3_1_0_0_1()); }
 )
 { after(grammarAccess.getClassAccess().getReferencedElementClassCrossReference_3_1_0_0()); }
 )
@@ -5611,8 +5639,8 @@ rule__Interface__ReferencedElementAssignment_2_1_0
 (
 { before(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceCrossReference_2_1_0_0()); }
 (
-{ before(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceSTRINGTerminalRuleCall_2_1_0_0_1()); }
-	RULE_STRING{ after(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceSTRINGTerminalRuleCall_2_1_0_0_1()); }
+{ before(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceNameStringParserRuleCall_2_1_0_0_1()); }
+	ruleNameString{ after(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceNameStringParserRuleCall_2_1_0_0_1()); }
 )
 { after(grammarAccess.getInterfaceAccess().getReferencedElementInterfaceCrossReference_2_1_0_0()); }
 )
@@ -6202,8 +6230,8 @@ rule__Association__ReferencedElementAssignment_3_1
 (
 { before(grammarAccess.getAssociationAccess().getReferencedElementAssociationCrossReference_3_1_0()); }
 (
-{ before(grammarAccess.getAssociationAccess().getReferencedElementAssociationSTRINGTerminalRuleCall_3_1_0_1()); }
-	RULE_STRING{ after(grammarAccess.getAssociationAccess().getReferencedElementAssociationSTRINGTerminalRuleCall_3_1_0_1()); }
+{ before(grammarAccess.getAssociationAccess().getReferencedElementAssociationNameStringParserRuleCall_3_1_0_1()); }
+	ruleNameString{ after(grammarAccess.getAssociationAccess().getReferencedElementAssociationNameStringParserRuleCall_3_1_0_1()); }
 )
 { after(grammarAccess.getAssociationAccess().getReferencedElementAssociationCrossReference_3_1_0()); }
 )
@@ -6289,8 +6317,8 @@ rule__MultiAssociation__ReferencedElementAssignment_1_1
 (
 { before(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationCrossReference_1_1_0()); }
 (
-{ before(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationSTRINGTerminalRuleCall_1_1_0_1()); }
-	RULE_STRING{ after(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationSTRINGTerminalRuleCall_1_1_0_1()); }
+{ before(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationNameStringParserRuleCall_1_1_0_1()); }
+	ruleNameString{ after(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationNameStringParserRuleCall_1_1_0_1()); }
 )
 { after(grammarAccess.getMultiAssociationAccess().getReferencedElementAssociationCrossReference_1_1_0()); }
 )

@@ -134,7 +134,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         bidirectional?='bi'? 
 	 *         aggregationKind=AggregationKind 
 	 *         left=UMLTypeReference 
-	 *         (referencedElement=[Association|ID] | referencedElement=[Association|STRING]) 
+	 *         (referencedElement=[Association|ID] | referencedElement=[Association|NameString]) 
 	 *         right=UMLTypeReference 
 	 *         properties=AssociationProperties? 
 	 *         comment=[Comment|CommentBody]?
@@ -202,7 +202,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         abstract?='abstract'? 
 	 *         (
 	 *             (referencedElement=[Class|ID] aliasExpression=[StringExpression|ID]?) | 
-	 *             (referencedElement=[Class|STRING] aliasExpression=[StringExpression|ID])
+	 *             (referencedElement=[Class|NameString] aliasExpression=[StringExpression|ID])
 	 *         ) 
 	 *         members+=Member*
 	 *     )
@@ -307,7 +307,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         visibility=Visibility? 
 	 *         (
 	 *             (referencedElement=[Interface|ID] aliasExpression=[StringExpression|ID]?) | 
-	 *             (referencedElement=[Interface|STRING] aliasExpression=[StringExpression|ID])
+	 *             (referencedElement=[Interface|NameString] aliasExpression=[StringExpression|ID])
 	 *         ) 
 	 *         members+=Member*
 	 *     )
@@ -356,7 +356,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     MultiAssociation returns MultiAssociation
 	 *
 	 * Constraint:
-	 *     ((referencedElement=[Association|ID] | referencedElement=[Association|STRING]) connectorEnds+=MemberEnd+)
+	 *     ((referencedElement=[Association|ID] | referencedElement=[Association|NameString]) connectorEnds+=MemberEnd+)
 	 */
 	protected void sequence_MultiAssociation(ISerializationContext context, MultiAssociation semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
