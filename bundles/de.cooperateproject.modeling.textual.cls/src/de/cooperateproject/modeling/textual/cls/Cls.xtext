@@ -45,7 +45,7 @@ NameString returns ecore::EString:
 	STRING
 ;
 
-FQN returns ecore::EString:
+FQN:
     ID ("." ID)*
 ;
 

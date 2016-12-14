@@ -10,6 +10,26 @@ import org.eclipse.xtext.conversion.IValueConverter
 
 class ClsValueConverter extends DefaultTerminalConverters {
 	
+	@ValueConverter(rule="FQN")
+	def IValueConverter<String> FQN() {
+		return new AbstractNullSafeConverter<String>() {
+			
+			override protected internalToString(String value) {
+				// this prohibits FQNs with spaces to be serialized
+				if (value.contains(" ")) {
+					throw new ValueConverterException("Spaces are not allowed inside FQNs.", null, null)
+				}
+				return value;
+			}
+			
+			override protected internalToValue(String string, INode node) throws ValueConverterException {
+				return string;
+			}
+			
+		}
+		
+	}
+	
 	@ValueConverter(rule="NameString")
 	def IValueConverter<String> NameString() {
 		return new AbstractNullSafeConverter<String>() {			
