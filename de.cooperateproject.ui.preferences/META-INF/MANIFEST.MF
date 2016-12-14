@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Preferences
+Bundle-SymbolicName: de.cooperateproject.ui.preferences;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.cooperateproject.ui.preferences.PreferenceActivator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.ui;bundle-version="2.10.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: de.cooperateproject.ui.preferences,
+ de.cooperateproject.ui.preferences.preferencepage
