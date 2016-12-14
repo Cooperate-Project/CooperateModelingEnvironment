@@ -50,6 +50,8 @@ class ClsValidator extends AbstractClsValidator {
 	public static val WRONG_ALIAS_NAME = 'wrong_alias_name'
 	public static val NO_COMMENT_REFERENCE = 'no_comment_reference'
 	public static val ALIAS_EXISTS = 'alias_exists'
+	public static val NOT_AN_INTERFACE = 'not_an_interface'
+	public static val NOT_A_CLASS = 'not_a_class'
 
 	@Check
 	def checkAliasExpression(Classifier classifier) {
@@ -137,26 +139,41 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfClassExists(Class classifier) {
-		if (classifier.referencedElement.model == null) {
-			val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
-			val classifierName = refNode.text ?: "className"
-			error("Couldn't find UML-Class '" + classifierName + "' in model",
-				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_CLASS_REFERENCE, {
-					classifierName
-				})
+		var eClass = classifier.eGet(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement);
+		
+		if (eClass instanceof org.eclipse.uml2.uml.Class) {
+			checkIfClassifierExists(classifier, "className", "Couldn't find UML-Class '", NO_CLASS_REFERENCE)
+		} else {
+			wrongClassifierType(classifier.name, " is not a class", NOT_A_CLASS)
 		}
 	}
 
 	@Check
 	def checkIfInterfaceExists(Interface classifier) {
+		var eInterface = classifier.eGet(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+		
+		if (eInterface instanceof org.eclipse.uml2.uml.Interface) {
+			checkIfClassifierExists(classifier, "interfaceName", "Couldn't find UML-Interface '", NO_INTERFACE_REFERENCE)
+		} else {
+			wrongClassifierType(classifier.name, " is not an interface", NOT_AN_INTERFACE)
+		}
+	}
+
+	private def checkIfClassifierExists(Classifier classifier, String defaultName, String errorMsg, String errorType) {
 		if (classifier.referencedElement.model == null) {
 			val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
-			val classifierName = refNode.text ?: "interfaceName"
-			error("Couldn't find UML-Interface '" + classifierName + "' in model",
-				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_INTERFACE_REFERENCE, {
+			val classifierName = refNode.text ?: defaultName
+			error(errorMsg + classifierName + "' in model",
+				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, errorType, {
 					classifierName
 				})
 		}
+	}
+
+	private def wrongClassifierType(String classifier, String errorMsg, String errorType) {
+		error(classifier + errorMsg, ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, errorType, {
+			classifier
+		})
 	}
 
 	@Check
