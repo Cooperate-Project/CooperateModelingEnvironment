@@ -3,6 +3,7 @@
 package de.cooperateproject.ui.launchermodel.Launcher.util;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
  * @generated
  */
 public class LauncherResourceImpl extends XMIResourceImpl {
+	
 	/**
 	 * @generated not
 	 */
