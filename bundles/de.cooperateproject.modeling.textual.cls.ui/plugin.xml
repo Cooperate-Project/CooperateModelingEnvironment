@@ -79,9 +79,10 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="de.cooperateproject.modeling.textual.cls.Cls"
-			name="Cls">
+        category="de.cooperateproject.modeling.textual.cls.ui.cooperate"
+        class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+        id="de.cooperateproject.modeling.textual.cls.Cls"
+        name="Cls">
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
 		<page
@@ -99,13 +100,9 @@
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
   <page
-        category="de.cooperateproject.modeling.textual.cls.Cls"
-        class="de.cooperateproject.modeling.textual.cls.ui.WorkbenchPreferenceErrorBeep"
-        id="de.cooperateproject.modeling.textual.cls.Cls.errorbeep"
-        name="Error Beep">
-     <keywordReference
-           id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls">
-     </keywordReference>
+        class="org.eclipse.ui.internal.dialogs.EmptyPreferencePage"
+        id="de.cooperateproject.modeling.textual.cls.ui.cooperate"
+        name="Cooperate">
   </page>
 	</extension>
 	<extension

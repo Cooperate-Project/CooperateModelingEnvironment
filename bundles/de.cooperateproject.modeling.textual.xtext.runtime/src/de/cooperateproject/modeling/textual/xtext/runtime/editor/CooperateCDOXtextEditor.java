@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -19,7 +19,9 @@ import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 
 import com.google.common.collect.Sets;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.ErrorSignalContext.ErrorSignalType;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorsignalization.ErrorSignalContext;
+import de.cooperateproject.ui.preferences.PreferenceActivator;
+import de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorBeep;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 
 public class CooperateCDOXtextEditor extends CDOXtextEditor {
@@ -54,10 +56,12 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 		super.handleCursorPositionChanged();
 		IXtextDocument document = getDocument();
 		CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
-		String s = ConfigurationScope.INSTANCE.getNode(ConfigurationScope.SCOPE).get("CHOICE", "");
-		if (!s.equals("")) {
-			errorSignalContext.createSignal(cooperateXtextDocument.getResource().getErrors(), getCursorPosition(), ErrorSignalType.valueOf(s));
-		}
+
+		String signalType = PreferenceActivator.getDefault().getPreferenceStore()
+				.getString(WorkbenchPreferenceErrorBeep.ERROR_BEEP_PREFERENCE_NAME);
+		EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
+
+		errorSignalContext.createSignal(errors, getCursorPosition(), signalType);
 	}
 
 	@Override

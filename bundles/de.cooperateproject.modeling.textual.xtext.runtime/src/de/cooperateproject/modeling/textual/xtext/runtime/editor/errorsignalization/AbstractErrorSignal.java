@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+package de.cooperateproject.modeling.textual.xtext.runtime.editor.errorsignalization;
 
 import java.awt.Toolkit;
 import java.util.List;
@@ -13,4 +13,8 @@ public abstract class AbstractErrorSignal {
 		Runnable runnable = () -> Toolkit.getDefaultToolkit().beep();
 		new Thread(runnable).start();
 	}
+	
+	/*private void beep() {
+		System.out.println("beep");
+	}*/
 }
