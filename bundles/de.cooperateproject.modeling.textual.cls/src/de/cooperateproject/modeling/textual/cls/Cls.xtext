@@ -58,11 +58,17 @@ Classifier:
 ;
 
 Class:
-	visibility=Visibility? (abstract ?= 'abstract')? 'class' (referencedElement = [uml::Class|ID] ('as' aliasExpression = [uml::StringExpression|ID])?|referencedElement = [uml::Class|NameString] 'as' aliasExpression = [uml::StringExpression|ID]) ('{' (members += Member)* '}')?
+	visibility=Visibility? (abstract ?= 'abstract')? 'class' (
+		(referencedElement = [uml::Class|NameString] 'as' aliasExpression = [uml::StringExpression|ID])
+		|referencedElement = [uml::Class|ID])
+	('{' (members += Member)* '}')?
 ;
 
 Interface:
-	visibility=Visibility? 'interface' (referencedElement = [uml::Interface|ID] ('as' aliasExpression = [uml::StringExpression|ID])?|referencedElement = [uml::Interface|NameString] 'as' aliasExpression = [uml::StringExpression|ID]) ('{' (members += Member)* '}')?
+	visibility=Visibility? 'interface' (
+		(referencedElement = [uml::Interface|NameString] 'as' aliasExpression = [uml::StringExpression|ID])
+		|referencedElement = [uml::Interface|ID]
+		) ('{' (members += Member)* '}')?
 ;
 
 TypeReference: 

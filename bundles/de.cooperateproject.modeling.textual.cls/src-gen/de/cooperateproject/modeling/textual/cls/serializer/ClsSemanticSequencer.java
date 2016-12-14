@@ -200,10 +200,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         visibility=Visibility? 
 	 *         abstract?='abstract'? 
-	 *         (
-	 *             (referencedElement=[Class|ID] aliasExpression=[StringExpression|ID]?) | 
-	 *             (referencedElement=[Class|NameString] aliasExpression=[StringExpression|ID])
-	 *         ) 
+	 *         ((referencedElement=[Class|NameString] aliasExpression=[StringExpression|ID]) | referencedElement=[Class|ID]) 
 	 *         members+=Member*
 	 *     )
 	 */
@@ -305,10 +302,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         visibility=Visibility? 
-	 *         (
-	 *             (referencedElement=[Interface|ID] aliasExpression=[StringExpression|ID]?) | 
-	 *             (referencedElement=[Interface|NameString] aliasExpression=[StringExpression|ID])
-	 *         ) 
+	 *         ((referencedElement=[Interface|NameString] aliasExpression=[StringExpression|ID]) | referencedElement=[Interface|ID]) 
 	 *         members+=Member*
 	 *     )
 	 */
