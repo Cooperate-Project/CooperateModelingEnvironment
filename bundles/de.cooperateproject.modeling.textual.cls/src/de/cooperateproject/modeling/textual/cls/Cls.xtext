@@ -41,7 +41,11 @@ PackageImport:
 	"import" referencedElement=[uml::PackageImport|FQN]
 ;
 
-FQN returns ecore::EString:
+NameString returns ecore::EString:
+	STRING
+;
+
+FQN:
     ID ("." ID)*
 ;
 
@@ -54,11 +58,17 @@ Classifier:
 ;
 
 Class:
-	visibility=Visibility? (abstract ?= 'abstract')? 'class' (referencedElement = [uml::Class|ID] ('as' aliasExpression = [uml::StringExpression|ID])?|referencedElement = [uml::Class|STRING] 'as' aliasExpression = [uml::StringExpression|ID]) ('{' (members += Member)* '}')?
+	visibility=Visibility? (abstract ?= 'abstract')? 'class' (
+		(referencedElement = [uml::Class|NameString] 'as' aliasExpression = [uml::StringExpression|ID])
+		|referencedElement = [uml::Class|ID])
+	('{' (members += Member)* '}')?
 ;
 
 Interface:
-	visibility=Visibility? 'interface' (referencedElement = [uml::Interface|ID] ('as' aliasExpression = [uml::StringExpression|ID])?|referencedElement = [uml::Interface|STRING] 'as' aliasExpression = [uml::StringExpression|ID]) ('{' (members += Member)* '}')?
+	visibility=Visibility? 'interface' (
+		(referencedElement = [uml::Interface|NameString] 'as' aliasExpression = [uml::StringExpression|ID])
+		|referencedElement = [uml::Interface|ID]
+		) ('{' (members += Member)* '}')?
 ;
 
 TypeReference: 
@@ -128,12 +138,12 @@ CommentLink:
 ;
 
 Association:
-	(bidirectional?='bi')? aggregationKind=AggregationKind  left = UMLTypeReference (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|STRING]) right = UMLTypeReference
+	(bidirectional?='bi')? aggregationKind=AggregationKind  left = UMLTypeReference (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|NameString]) right = UMLTypeReference
 	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
 ;
 
 MultiAssociation:
-	'asc' (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|STRING]) '{' (connectorEnds+=MemberEnd ';')+ '}'
+	'asc' (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|NameString]) '{' (connectorEnds+=MemberEnd ';')+ '}'
 ;
 
 MemberEnd:

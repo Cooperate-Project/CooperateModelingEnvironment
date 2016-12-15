@@ -9,53 +9,45 @@ import org.eclipse.xtext.nodemodel.INode
 import org.eclipse.xtext.conversion.IValueConverter
 
 class ClsValueConverter extends DefaultTerminalConverters {
-	//http://pettergraff.blogspot.de/2009/11/xtext-valueconverter.html
-	/**
-	 * Allows to create classes with strings containing empty spaces as names.
-	 * @return The Value of the String containing no quotation marks.
-	 */
+	
 	@ValueConverter(rule="FQN")
 	def IValueConverter<String> FQN() {
-		return new IValueConverter<String>() {
-			override toString(String value) throws ValueConverterException {
-				if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9.]*")) {
-					return value;
+		return new AbstractNullSafeConverter<String>() {
+			
+			override protected internalToString(String value) {
+				// this prohibits FQNs with spaces to be serialized
+				if (value.contains(" ")) {
+					throw new ValueConverterException("Spaces are not allowed inside FQNs.", null, null)
 				}
+				return value;
+			}
+			
+			override protected internalToValue(String string, INode node) throws ValueConverterException {
+				return string;
+			}
+			
+		}
+		
+	}
+	
+	@ValueConverter(rule="NameString")
+	def IValueConverter<String> NameString() {
+		return new AbstractNullSafeConverter<String>() {			
+			override protected internalToString(String value) {
 				return String.format("\"%s\"", value)
 			}
-			override toValue(String value, INode node) throws ValueConverterException {
-				if (value == null) {
-					throw new ValueConverterException("null value", node, null)
+			
+			override protected internalToValue(String string, INode node) throws ValueConverterException {
+				if (string.matches("\\\".*\\\"")) {
+					return string.subSequence(1, string.length - 1).toString;
 				}
-				if (value.matches("\\\".*\\\"")) {
-					return value.subSequence(1, value.length - 1).toString;
-				}
-				return value
+				return string
 			}
-		}
-	}
-	@ValueConverter(rule="STRING")
-	override IValueConverter<String> STRING() {
-		return new IValueConverter<String>() {
-			override toString(String value) throws ValueConverterException {
-				if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9\\s]*")) {
-					return value;
-				}
-				var s = String.format("\"%s\"", value)
-				return s
-			}
-			override toValue(String value, INode node) throws ValueConverterException {
-				if (value == null) {
-					throw new ValueConverterException("null value", node, null)
-				}
-				if (value.matches("\\\".*\\\"")) {
-					return value.subSequence(1, value.length - 1).toString;
-				}
-				return value
-			}
+			
 		}
 	}
 
+	// http://pettergraff.blogspot.de/2009/11/xtext-valueconverter.html
 	@ValueConverter(rule="CardinalityBound")
 	public def convertCardinalityBound() {
 		return new AbstractNullSafeConverter<Integer>() {

@@ -7,7 +7,7 @@ abstract class AbstractClass {
 	someOperation(anObject : AbstractClass, aPrimtiive : int) : long
 }
 
-class AnotherConcreteClass as ShortName
+class "AnotherConcreteClass" as ShortName
 interface SomeInterface
 
 @endclass
