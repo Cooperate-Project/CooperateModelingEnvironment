@@ -33,7 +33,7 @@ public class NameSwitch extends ClsSwitch<String> {
 	private String determineNameOfReferencedNamedElement(EObject object, EReference umlReference) {
 		List<INode> nodes = NodeModelUtils.findNodesForFeature(object, umlReference);
 		if (!nodes.isEmpty()) {
-			return NodeModelUtils.getTokenText(nodes.get(0));
+			return normalizeNodeName(NodeModelUtils.getTokenText(nodes.get(0)));
 		}
 		
 		Object referencedElement = object.eGet(umlReference, false);
@@ -44,4 +44,10 @@ public class NameSwitch extends ClsSwitch<String> {
 		return null;
 	}
 	
+	private static String normalizeNodeName(String nodeName) {
+		if (nodeName != null && nodeName.matches("\\\".*\\\"")) {
+			return nodeName.subSequence(1, nodeName.length() - 1).toString();
+		}
+		return nodeName;
+	}
 }
