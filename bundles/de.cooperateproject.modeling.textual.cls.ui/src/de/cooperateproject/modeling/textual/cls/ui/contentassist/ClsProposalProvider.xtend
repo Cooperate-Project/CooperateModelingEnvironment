@@ -25,6 +25,7 @@ import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import com.google.common.base.Strings
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -71,12 +72,13 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		var c = ClsFactory.eINSTANCE.createClass
 		c.referencedElement = refClass
 
-		for (attribute : refClass.attributes) {
-			c.members.add(createAttributes(attribute))
+		for (member : refClass.members) {
+			val createdMember = createMember(member)
+			if (createdMember != null) {
+				c.members.add(createdMember)
+			}
 		}
-		for (operation : refClass.operations) {
-			c.members.add(createOperations(operation))
-		}
+
 		//m.classifiers.add(c)
 		return c
 	}
@@ -89,7 +91,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 			class.members.add(createAttributes(attribute))
 		}*/
 		for (operation : refInterface.operations) {
-			iface.members.add(createOperations(operation))
+			iface.members.add(createMember(operation))
 		}
 		//m.classifiers.add(iface)
 		return iface
@@ -98,7 +100,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	/**
 	 * Creates an Cls Method out of an UML Operation.
 	 */
-	private def createOperations(Operation refOperation) {
+	private def dispatch createMember(Operation refOperation) {
 		if (refOperation == null) {
 			return null
 		}
@@ -124,8 +126,8 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	/**
 	 * Creates an Cls Attribute out of an UML Property.
 	 */
-	private def createAttributes(Property refAttribute) {
-		if (refAttribute == null) {
+	private def dispatch createMember(Property refAttribute) {
+		if (refAttribute == null || Strings.isNullOrEmpty(refAttribute.name)) {
 			return null
 		}
 		var attribute = ClsFactory.eINSTANCE.createAttribute
