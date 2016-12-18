@@ -42,7 +42,8 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Export-Package: de.cooperateproject.ui.editors.launcher,
+Export-Package: de.cooperateproject.ui.constants,
+ de.cooperateproject.ui.editors.launcher,
  de.cooperateproject.ui.editors.launcher.extensions,
  de.cooperateproject.ui.util
 
