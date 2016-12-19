@@ -3,37 +3,36 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.cdoxtext
 
+import com.google.common.base.Function
 import com.google.inject.Inject
 import com.google.inject.Provider
+import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
+import org.eclipse.emf.cdo.util.CDOUtil
 import org.eclipse.emf.compare.match.DefaultComparisonFactory
 import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory
 import org.eclipse.emf.compare.match.DefaultMatchEngine
+import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher
 import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher
 import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
-import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher.DefaultIDFunction
-import de.cooperateproject.modeling.textual.cls.cls.Generalization
-import com.google.common.base.Function
+import org.eclipse.emf.compare.scope.IComparisonScope
 import org.eclipse.emf.ecore.EObject
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
-import org.eclipse.emf.compare.match.eobject.IdentifierEObjectMatcher
-import org.eclipse.emf.cdo.CDOObject
-import org.eclipse.emf.cdo.common.id.CDOIDUtil
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.internal.cdo.object.CDOLegacyAdapter
-import org.eclipse.emf.cdo.util.CDOUtil
 import org.eclipse.uml2.uml.StringExpression
-import org.eclipse.uml2.uml.InterfaceRealization
-import de.cooperateproject.modeling.textual.cls.cls.Implementation
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
+	private static final String NS_URI = "http://www.cooperateproject.de/modeling/textual/cls/Cls"
+	
 	@Inject
-	Provider<ProximityEObjectMatcher$DistanceFunction> dfProvider;
+	Provider<ProximityEObjectMatcher.DistanceFunction> dfProvider
 	
-	
+	override isMatchEngineFactoryFor(IComparisonScope scope) {
+		val nsURIs = #{scope.left, scope.right, scope.origin}.filter(EObject).map[eClass.EPackage.nsURI].toSet
+		return nsURIs.size == 1 && NS_URI.equals(nsURIs.head)
+	}
 	
 	override getMatchEngine() {
 		val idComputation = new Function<EObject, String>() {

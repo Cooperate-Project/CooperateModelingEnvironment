@@ -148,6 +148,11 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
 		binder.bind(org.eclipse.xtext.preferences.IPreferenceValuesProvider.class).annotatedWith(org.eclipse.xtext.formatting2.FormatterPreferences.class).to(org.eclipse.xtext.formatting2.FormatterPreferenceValuesProvider.class);
 	}
 
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
+	public Class<? extends org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder> bindTextRegionAccessBuilder() {
+		return net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder.class;
+	}
+
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
 	public Class<? extends org.eclipse.xtext.resource.XtextResourceSet> bindXtextResourceSet() {
 		return de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet.class;

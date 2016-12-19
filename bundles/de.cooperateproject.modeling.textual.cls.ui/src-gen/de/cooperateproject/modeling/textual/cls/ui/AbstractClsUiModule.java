@@ -213,11 +213,6 @@ public abstract class AbstractClsUiModule extends org.eclipse.xtext.ui.DefaultUi
 	}
 
 	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
-	public Class<? extends org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder> bindTextRegionAccessBuilder() {
-		return net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder.class;
-	}
-
-	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
 	public void configureLanguageSpecificURIEditorOpener(com.google.inject.Binder binder) {
 		if (org.eclipse.ui.PlatformUI.isWorkbenchRunning())binder.bind(org.eclipse.xtext.ui.editor.IURIEditorOpener.class).annotatedWith(org.eclipse.xtext.ui.LanguageSpecific.class).to(net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener.class);
 	}
