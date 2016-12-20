@@ -13,6 +13,7 @@ import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.formatting2.IFormatter2;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.validation.IResourceValidator;
 
 import com.google.inject.Binder;
 
@@ -72,4 +73,7 @@ public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.A
 		return formatterclass;
 	}
 
+	public Class<? extends IResourceValidator> bindIResourceValidator() {
+		return de.cooperateproject.modeling.textual.cls.validation.ClsResourceValidator.class;
+	}
 }
