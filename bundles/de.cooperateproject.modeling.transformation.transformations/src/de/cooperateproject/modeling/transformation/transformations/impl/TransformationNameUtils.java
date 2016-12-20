@@ -9,9 +9,12 @@ import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationCharacteristic;
+import de.cooperateproject.util.conventions.Constants;
 
 public class TransformationNameUtils {
 
+    public static final String TRACE_FILE_EXTENTION = Constants.TRACE_FILE_EXTENTION;
+    
 	public static URI createTraceTransformationURI(TransformationCharacteristic characteristics) {
 		return createTransformationURI(characteristics, true);
 	}
@@ -29,7 +32,7 @@ public class TransformationNameUtils {
 	public static URI createTraceURI(TransformationCharacteristic characteristics, URI from, URI to, URI traceBase) {
 		final String fileName = TransformationNameUtils.createTransformationFileName(characteristics);
 		String modelSpecificPart = String.format("_f_%s_t_%s", from.lastSegment(), to.lastSegment());
-		return traceBase.appendSegment(modelSpecificPart + fileName).trimFileExtension().appendFileExtension("qvtotrace");
+		return traceBase.appendSegment(modelSpecificPart + fileName).trimFileExtension().appendFileExtension(TRACE_FILE_EXTENTION);
 	}
 	
 	public static TransformationCharacteristic parseTransformationName(String name) {
