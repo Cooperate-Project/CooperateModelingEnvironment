@@ -3,7 +3,6 @@ package de.cooperateproject.ui.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorBeep;
 
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 
@@ -11,8 +10,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = PreferenceActivator.getDefault().getPreferenceStore();
 		
-		store.setDefault(WorkbenchPreferenceErrorBeep.ERROR_BEEP_PREFERENCE_NAME,
-				WorkbenchPreferenceErrorBeep.NO_SIGNALIZATION);
+		store.setDefault(PreferenceHandler.INSTANCE.getErrorIndicatorPreferenceStore(),
+				ErrorIndicatorSettings.NONE.toString());
 	}
 
 }

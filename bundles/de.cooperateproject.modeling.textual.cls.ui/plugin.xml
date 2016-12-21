@@ -100,7 +100,7 @@
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
   <page
-        class="org.eclipse.ui.internal.dialogs.EmptyPreferencePage"
+        class="de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorIndicator"
         id="de.cooperateproject.modeling.textual.cls.ui.cooperate"
         name="Cooperate">
   </page>

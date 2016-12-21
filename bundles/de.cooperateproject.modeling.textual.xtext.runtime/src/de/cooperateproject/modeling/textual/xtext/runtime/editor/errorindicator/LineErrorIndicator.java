@@ -1,10 +1,10 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.editor.errorsignalization;
+package de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 
-public class LineErrorSignal extends AbstractErrorSignal {
+public class LineErrorIndicator extends AbstractErrorIndicator {
 	
 	@Override
 	public void doSignal(List<Diagnostic> errors, int x, int line, int oldLine, int oldColumn) {
