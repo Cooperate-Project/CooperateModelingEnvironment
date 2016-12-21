@@ -3,7 +3,6 @@ package de.cooperateproject.ui.nature.tasks;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -67,14 +66,14 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 
 			CDOTransfer transfer = new CDOTransferUMLFirst(source, target);
 			transfer.setTargetPath(workspaceFolder.getFullPath());
-			transfer.map(getRepositoryFolder().getPath(), new NullProgressMonitor());
+			getRepositoryFolder().getNodes().forEach(n -> transfer.map(n.getPath(), new NullProgressMonitor()));
 
 			// no default factory is registered in the CDO utilities
 			transfer.getModelTransferContext().registerTargetExtension("*", new XMIResourceFactoryImpl());
 
 			transfer.perform();
 
-			getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+			refreshFolder(workspaceFolder);
 		} catch (RuntimeException e) {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to transfer models", e));
 		}

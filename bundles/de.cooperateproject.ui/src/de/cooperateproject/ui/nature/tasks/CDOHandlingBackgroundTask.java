@@ -6,7 +6,11 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
@@ -21,6 +25,7 @@ import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.io.IOUtil;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 
 public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgroundTask {
@@ -103,6 +108,21 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 	private CDOResourceFolder createCDOProjectFolder() throws CommitException {
 		String cdoRepoPath = getProject().getName();
 		return createCDOResource(getProject(), cdoRepoPath, cdoChangeListener);
+	}
+
+	protected void refreshFolder(IFolder folder) {
+		Job j = new Job("Refresh") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				try {
+					folder.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+				} catch (CoreException e) {
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not refresh folder.", e);
+				}
+				return Status.OK_STATUS;
+			}
+		};
+		j.schedule(1000);
 	}
 
 	private static CDOResourceFolder createCDOResource(IProject project, String cdoRepoPath,
