@@ -1,4 +1,4 @@
-@startclass "Test"
+@start-cls "Test"
 
 rootPackage rootElement
 
@@ -29,4 +29,4 @@ package package1 {
 
 }
 
-@endclass
+@end-cls

@@ -1,4 +1,4 @@
-@startclass "SomeName"
+@start-cls "SomeName"
 
 rootPackage RootElement
 
@@ -10,4 +10,4 @@ abstract class AbstractClass {
 class "AnotherConcreteClass" as ShortName
 interface SomeInterface
 
-@endclass
+@end-cls

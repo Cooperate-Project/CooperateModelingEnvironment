@@ -1,4 +1,4 @@
-@startclass "SomeName"
+@start-cls "SomeName"
 
 rootPackage RootElement
 
@@ -18,4 +18,4 @@ asc asc3 {
 
 A note "A comment."
 
-@endclass
+@end-cls
