@@ -96,12 +96,14 @@ class ClsParsingTest {
 
 	@Test @Ignore
 	def void classDefTest() {
+		val foo = getDiagram(TEST_FOLDER + "foo.cls");
 		val model = '''
-			@startclass
-			class Alice {}
+			@startclass ""
+			rootPackage
+			class Alice
 			@endclass
 		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classDef.xmi")
+		val xmiModel = getDiagram(TEST_FOLDER + "foo.xmi")
 
 		assertEqualsModel(model, xmiModel)
 	}

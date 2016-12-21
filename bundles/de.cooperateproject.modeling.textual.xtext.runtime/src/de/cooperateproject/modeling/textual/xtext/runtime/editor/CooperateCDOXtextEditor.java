@@ -19,9 +19,9 @@ import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 
 import com.google.common.collect.Sets;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorsignalization.ErrorSignalContext;
-import de.cooperateproject.ui.preferences.PreferenceActivator;
-import de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorBeep;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
+import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
+import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 
 public class CooperateCDOXtextEditor extends CDOXtextEditor {
@@ -49,7 +49,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 	}
 
 	private final PostProcessorHandler postProcessorHandler = new PostProcessorHandler();
-	private final ErrorSignalContext errorSignalContext = new ErrorSignalContext();
+	private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
 
 	@Override
 	protected void handleCursorPositionChanged() {
@@ -57,8 +57,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 		IXtextDocument document = getDocument();
 		CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
 
-		String signalType = PreferenceActivator.getDefault().getPreferenceStore()
-				.getString(WorkbenchPreferenceErrorBeep.ERROR_BEEP_PREFERENCE_NAME);
+		ErrorIndicatorSettings signalType = PreferenceHandler.INSTANCE.getErrorIndicatorSetting();
 		EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
 
 		errorSignalContext.createSignal(errors, getCursorPosition(), signalType);
