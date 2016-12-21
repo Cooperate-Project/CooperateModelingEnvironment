@@ -502,10 +502,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:31:7: ( '@startclass' )
-            // InternalCls.g:31:9: '@startclass'
+            // InternalCls.g:31:7: ( '@start-cls' )
+            // InternalCls.g:31:9: '@start-cls'
             {
-            match("@startclass"); 
+            match("@start-cls"); 
 
 
             }
@@ -523,10 +523,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:32:7: ( '@endclass' )
-            // InternalCls.g:32:9: '@endclass'
+            // InternalCls.g:32:7: ( '@end-cls' )
+            // InternalCls.g:32:9: '@end-cls'
             {
-            match("@endclass"); 
+            match("@end-cls"); 
 
 
             }
@@ -1979,7 +1979,7 @@ public class InternalClsLexer extends Lexer {
     static final String DFA12_acceptS =
         "\1\uffff\1\1\1\2\1\uffff\1\4\1\6\1\10\12\uffff\1\31\1\32\1\uffff\1\40\1\41\1\42\1\43\1\uffff\1\47\1\50\1\51\1\52\1\60\1\uffff\1\61\1\62\3\uffff\1\66\1\67\1\1\1\2\3\uffff\1\61\1\4\1\6\1\10\22\uffff\1\25\1\26\1\uffff\1\31\1\32\1\53\1\34\1\40\1\41\1\42\1\43\1\uffff\1\47\1\50\1\51\1\52\1\60\1\62\1\63\1\64\1\65\1\66\15\uffff\1\57\7\uffff\1\36\14\uffff\1\12\2\uffff\1\44\4\uffff\1\24\4\uffff\1\22\1\23\14\uffff\1\45\2\uffff\1\16\1\15\1\uffff\1\20\4\uffff\1\46\6\uffff\1\17\4\uffff\1\35\1\21\1\56\2\uffff\1\3\3\uffff\1\11\1\55\1\uffff\1\33\1\13\3\uffff\1\5\1\uffff\1\30\1\uffff\1\14\4\uffff\1\54\1\uffff\1\7\1\37\2\uffff\1\27";
     static final String DFA12_specialS =
-        "\1\1\40\uffff\1\2\1\0\u00a9\uffff}>";
+        "\1\2\40\uffff\1\1\1\0\u00a9\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\45\2\44\2\45\1\44\22\45\1\44\1\45\1\41\1\5\3\45\1\42\1\25\1\26\1\1\1\2\1\27\1\4\1\23\1\43\12\40\1\24\1\31\1\35\3\45\1\17\32\37\1\32\1\45\1\33\1\36\1\37\1\45\1\16\1\12\1\13\1\11\1\37\1\15\2\37\1\10\2\37\1\14\1\37\1\30\1\37\1\3\1\37\1\20\1\7\7\37\1\21\1\34\1\22\1\6\uff81\45",
             "",
@@ -2234,6 +2234,16 @@ public class InternalClsLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA12_33 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_33>='\u0000' && LA12_33<='\uFFFF')) ) {s = 83;}
+
+                        else s = 37;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -2310,16 +2320,6 @@ public class InternalClsLexer extends Lexer {
                         else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 36;}
 
                         else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='$' && LA12_0<='&')||(LA12_0>='=' && LA12_0<='?')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='\u007F' && LA12_0<='\uFFFF')) ) {s = 37;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA12_33 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_33>='\u0000' && LA12_33<='\uFFFF')) ) {s = 83;}
-
-                        else s = 37;
 
                         if ( s>=0 ) return s;
                         break;

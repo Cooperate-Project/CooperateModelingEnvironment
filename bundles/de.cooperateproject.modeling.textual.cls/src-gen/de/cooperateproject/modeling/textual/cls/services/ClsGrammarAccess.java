@@ -22,31 +22,31 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.ClassDiagram");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cClassDiagramAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cStartclassKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cStartClsKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTitleAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
 		private final Assignment cRootPackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootPackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootPackageAssignment_3.eContents().get(0);
-		private final Keyword cEndclassKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cEndClsKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//// ------------------------------------------------------------------------------------------
 		//// ---------------------------------Root-----------------------------------------------------
 		//// ------------------------------------------------------------------------------------------
 		//ClassDiagram:
 		//	{ClassDiagram}
-		//	'@startclass' title=STRING
+		//	'@start-cls' title=STRING
 		//	rootPackage=RootPackage
-		//	'@endclass';
+		//	'@end-cls';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ClassDiagram} '@startclass' title=STRING rootPackage=RootPackage '@endclass'
+		//{ClassDiagram} '@start-cls' title=STRING rootPackage=RootPackage '@end-cls'
 		public Group getGroup() { return cGroup; }
 
 		//{ClassDiagram}
 		public Action getClassDiagramAction_0() { return cClassDiagramAction_0; }
 
-		//'@startclass'
-		public Keyword getStartclassKeyword_1() { return cStartclassKeyword_1; }
+		//'@start-cls'
+		public Keyword getStartClsKeyword_1() { return cStartClsKeyword_1; }
 
 		//title=STRING
 		public Assignment getTitleAssignment_2() { return cTitleAssignment_2; }
@@ -60,8 +60,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//RootPackage
 		public RuleCall getRootPackageRootPackageParserRuleCall_3_0() { return cRootPackageRootPackageParserRuleCall_3_0; }
 
-		//'@endclass'
-		public Keyword getEndclassKeyword_4() { return cEndclassKeyword_4; }
+		//'@end-cls'
+		public Keyword getEndClsKeyword_4() { return cEndClsKeyword_4; }
 	}
 
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
@@ -1635,9 +1635,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	//// ------------------------------------------------------------------------------------------
 	//ClassDiagram:
 	//	{ClassDiagram}
-	//	'@startclass' title=STRING
+	//	'@start-cls' title=STRING
 	//	rootPackage=RootPackage
-	//	'@endclass';
+	//	'@end-cls';
 	public ClassDiagramElements getClassDiagramAccess() {
 		return pClassDiagram;
 	}
