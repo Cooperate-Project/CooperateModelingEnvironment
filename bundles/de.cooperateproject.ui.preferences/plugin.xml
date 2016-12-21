@@ -7,17 +7,5 @@
             class="de.cooperateproject.ui.preferences.PreferenceInitializer">
       </initializer>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            category="de.cooperateproject.modeling.textual.cls.ui.cooperate"
-            class="de.cooperateproject.ui.preferences.preferencepage.WorkbenchPreferenceErrorIndicator"
-            id="de.cooperateproject.ui.preferences.errorbeeppage"
-            name="Error Signalization">
-         <keywordReference
-               id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls">
-         </keywordReference>
-      </page>
-   </extension>
 
 </plugin>
