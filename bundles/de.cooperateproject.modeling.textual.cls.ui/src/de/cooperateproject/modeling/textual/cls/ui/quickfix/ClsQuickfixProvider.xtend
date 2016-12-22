@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Member
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Property
 import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
-import de.cooperateproject.modeling.textual.cls.validation.ClsValidator
 import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
 import java.util.Collection
 import org.eclipse.emf.common.util.BasicEList
@@ -323,6 +322,9 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		if (cardinality.upperBound == 0) {
 			leftUpper = leftLower
 		}
+		if (leftLower == -1 && leftUpper == -1) {
+			leftLower = 0
+		}
 		return Pair.of(leftLower, leftUpper)
 	}
 	
@@ -340,9 +342,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		val implementation = element as de.cooperateproject.modeling.textual.cls.cls.Implementation
 		val left = implementation.left.type as org.eclipse.uml2.uml.Class
 		val right = implementation.right.type as Interface
-		val umlInterfaceRealization = UMLFactory.eINSTANCE.createInterfaceRealization
-		umlInterfaceRealization.contract = right
-		umlInterfaceRealization.implementingClassifier = left
+		left.createInterfaceRealization(null, right)
 		left.save
 		//implementation.eResource.modified = true
 		//TODO: This is currently derived automatically
