@@ -13,10 +13,12 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.CDOObjectHistory;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOAdapterPolicy;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -70,6 +72,24 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 			return isChild(repositoryFolder.getURI(), resourceURI);
 		}
 		
+		if (o.cdoInvalid()) {
+			CDOObjectHistory objectHistory = repositoryFolder.cdoView().getHistory(o);
+			long validTimeStamp = objectHistory.getLastElement().getTimeStamp();
+			if (validTimeStamp == CDOView.INVALID_DATE || validTimeStamp == CDOView.UNSPECIFIED_DATE) {
+				// we do not know, so better refresh
+				return true;
+			}
+			CDOView historicView = o.cdoView().getSession().openView(o.cdoView().getBranch(), validTimeStamp);
+			try {
+				CDOObject lastValidObject = historicView.getObject(o.cdoID());
+				if (lastValidObject == null) {
+					return true;
+				}
+				return isDirectlyContainedInRepositoryFolder(lastValidObject);
+			} finally {
+				IOUtil.closeSilent(historicView);
+			}
+		}
 		CDOResource resource = o.cdoResource();
 		if (resource == null) {
 			return false;
