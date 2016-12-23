@@ -21,6 +21,7 @@ import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.ui.IEditorInput;
 
 import de.cooperateproject.cdo.merge.MergeHelper;
+import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.utils.CDOResourceSet;
 import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.util.EditorInputSwitch;
@@ -65,7 +66,7 @@ public class TransformationManager {
 			CDOBranchPoint sourceFromRevision = editorBranch.getPoint(lastMergeTimeBranch);
 			CDOBranchPoint sourceToRevision = editorBranch.getHead();
 			CDOBranchPoint targetFromRevision = mainBranch.getPoint(lastMergeTimeMain);
-			MergeHelper.merge(mergeTransaction, sourceToRevision, sourceFromRevision, targetFromRevision, new DefaultCDOMerger.PerFeature.ManyValued());
+			MergeHelper.merge(mergeTransaction, sourceToRevision, sourceFromRevision, targetFromRevision, new CustomCDOMerger());
 			CDOCommitInfo mergeCommitInfo = mergeTransaction.commit();
 			mergeCommitInfo.getTimeStamp();
 			lastMergeTimeBranch = getTimestampOfBranch(cdoCheckout, editorBranch);

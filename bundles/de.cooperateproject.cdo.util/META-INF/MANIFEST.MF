@@ -13,4 +13,5 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.net4j.tcp,
  org.apache.log4j
 Export-Package: de.cooperateproject.cdo.util.connection,
+ de.cooperateproject.cdo.util.merger,
  de.cooperateproject.cdo.util.utils
