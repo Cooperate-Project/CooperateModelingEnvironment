@@ -2,6 +2,7 @@ package de.cooperateproject.ui.nature.tasks;
 
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -20,6 +21,7 @@ import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOAdapterPolicy;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.io.IOUtil;
@@ -61,12 +63,28 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 		if (repositoryFolder.equals(o)) {
 			return true;
 		}
+		
+		if (o instanceof CDOResource) {
+			CDOResource r = (CDOResource)o;
+			URI resourceURI = r.getURI();
+			return isChild(repositoryFolder.getURI(), resourceURI);
+		}
+		
 		CDOResource resource = o.cdoResource();
 		if (resource == null) {
 			return false;
 		}
 		CDOResourceFolder folder = resource.getFolder();
 		return repositoryFolder.equals(folder);
+	}
+	
+	private static boolean isChild(URI baseURI, URI candidate) {
+		if (baseURI == null || candidate == null) {
+			return false;
+		}
+		String baseURIString = baseURI.toString();
+		String commonPrefix = StringUtils.getCommonPrefix(baseURIString, candidate.toString());
+		return baseURIString.equals(commonPrefix); 
 	}
 	
 	@Override
