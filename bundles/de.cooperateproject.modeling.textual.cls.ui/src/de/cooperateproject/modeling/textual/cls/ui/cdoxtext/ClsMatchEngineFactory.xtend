@@ -21,6 +21,8 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
 import org.eclipse.emf.compare.scope.IComparisonScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.StringExpression
+import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
@@ -54,9 +56,11 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					Generalization: "Generalization" + idComputation.apply(input.referencedElement)
 					Implementation: "InterfaceRealization" + idComputation.apply(input.referencedElement)
-					UMLTypeReference: "UMLTypeReference" + idComputation.apply(input.type)
-					DataTypeReference: "PrimitiveType" + input.type.toString
+					UMLTypeReference: "UMLTypeReference" + input.eContainmentFeature.name + apply(input.eContainer) ?: "" + idComputation.apply(input.type)
+					DataTypeReference: "PrimitiveType" + input.eContainmentFeature.name + apply(input.eContainer) ?: "" + input.type.toString
 					StringExpression: "StringExp" + input.name
+					AssociationProperties: "AssociationProperties" + apply(input.eContainer)
+					Cardinality: "Cardinality" + input.eContainmentFeature.name + apply(input.eContainer)
 					default: null
 				}
 			}
