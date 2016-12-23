@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>de.cooperateproject.modeling</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.3-SNAPSHOT</version>
+	<version>0.1.3</version>
 	<packaging>pom</packaging>
 	<name>Cooperate Modeling Environment</name>
 
