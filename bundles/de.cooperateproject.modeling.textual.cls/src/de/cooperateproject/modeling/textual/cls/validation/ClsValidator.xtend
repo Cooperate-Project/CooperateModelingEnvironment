@@ -219,7 +219,7 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfCommentExists(Commentable commentable) {
-		if (commentable.comment.model == null && commentable.comment.owner != null) {
+		if (commentable.comment.model == null && commentable.commentedElement.model != null) {
 			error("No Referenced UML-Comment", ClsPackage.eINSTANCE.commentable_Comment, ClsValidatorIssueId.NO_COMMENT_REFERENCE)
 		}
 	}
