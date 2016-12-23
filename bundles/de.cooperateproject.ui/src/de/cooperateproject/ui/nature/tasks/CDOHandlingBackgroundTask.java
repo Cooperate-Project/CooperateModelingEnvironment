@@ -13,9 +13,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.CDOObject;
-import org.eclipse.emf.cdo.CDOObjectHistory;
-import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
@@ -56,45 +55,23 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 	}
 	
 	private boolean isRelevantChange(CDOViewInvalidationEvent event) {
-		Stream<CDOObject> changedObjects = Stream.concat(event.getDetachedObjects().stream(), event.getDirtyObjects().stream());
+		Stream<CDOObject> changedObjects = event.getRevisionDeltas().keySet().stream();
 		return changedObjects.anyMatch(this::isDirectlyContainedInRepositoryFolder);
 	}
 	
 	private boolean isDirectlyContainedInRepositoryFolder(CDOObject o) {
-		if (repositoryFolder.equals(o)) {
-			return true;
-		}
-		
-		if (o instanceof CDOResource) {
-			CDOResource r = (CDOResource)o;
-			URI resourceURI = r.getURI();
+		if (!o.cdoInvalid()) {
+			URI resourceURI = null;
+			if (o.cdoResource() != null) {
+				resourceURI = o.cdoResource().getURI();
+			}
+			if (o instanceof CDOResourceNode) {
+				resourceURI = ((CDOResourceNode)o).getURI();
+			}
 			return isChild(repositoryFolder.getURI(), resourceURI);
 		}
-		
-		if (o.cdoInvalid()) {
-			CDOObjectHistory objectHistory = repositoryFolder.cdoView().getHistory(o);
-			long validTimeStamp = objectHistory.getLastElement().getTimeStamp();
-			if (validTimeStamp == CDOView.INVALID_DATE || validTimeStamp == CDOView.UNSPECIFIED_DATE) {
-				// we do not know, so better refresh
-				return true;
-			}
-			CDOView historicView = o.cdoView().getSession().openView(o.cdoView().getBranch(), validTimeStamp);
-			try {
-				CDOObject lastValidObject = historicView.getObject(o.cdoID());
-				if (lastValidObject == null) {
-					return true;
-				}
-				return isDirectlyContainedInRepositoryFolder(lastValidObject);
-			} finally {
-				IOUtil.closeSilent(historicView);
-			}
-		}
-		CDOResource resource = o.cdoResource();
-		if (resource == null) {
-			return false;
-		}
-		CDOResourceFolder folder = resource.getFolder();
-		return repositoryFolder.equals(folder);
+
+		return false;
 	}
 	
 	private static boolean isChild(URI baseURI, URI candidate) {
