@@ -140,14 +140,11 @@ public class CommitManager {
 	       	  	if(value != null){
 	       	  		if(comparisonResult.getMatch(value) != null){
 		       	  		EObject left = comparisonResult.getMatch(value).getLeft();
-		       	  		//System.out.println(left);
 		       	  		EObject right = comparisonResult.getMatch(value).getRight();	
 		       	  		sumList.add(new SummaryItem(left, right, resultList.get(i).getKind()));
 	       	  		}
 	       	  	}	
 	       	}
-       	  	
-       	  	
        	  	CDOResource resourceOnCurrentView = currentState.getResource(resourceDiagramPath);
        	  	
        	  	setRoot(new DiffTreeBuilder(resourceOnCurrentView, sumList).buildTree());
@@ -284,6 +281,7 @@ public class CommitManager {
 	   
 	   private static EObject getValue(Comparison comparison, Diff diff) {
 	   		EObject value = null;
+
 	   		if (diff instanceof ReferenceChange) {
 	   			value = ((ReferenceChange)diff).getValue();
 	   		} 
