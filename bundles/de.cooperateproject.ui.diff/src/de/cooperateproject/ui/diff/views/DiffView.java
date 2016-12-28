@@ -10,6 +10,7 @@ import org.eclipse.ui.part.*;
 import de.cooperateproject.ui.diff.content.CommitContentProvider;
 import de.cooperateproject.ui.diff.internal.CommitInfo;
 import de.cooperateproject.ui.diff.internal.CommitManager;
+import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
 import de.cooperateproject.ui.diff.labeling.CommitLabelProvider;
 import de.cooperateproject.ui.diff.labeling.DiffViewLabelProvider;
 import de.cooperateproject.ui.diff.labeling.SummaryLabelProvider;
@@ -68,6 +69,9 @@ public class DiffView extends ViewPart {
 	public void setSelectedFile(IFile file){
 		commitManager.setFile(file);
 		commitViewer.setInput(commitManager.getAllCommitInfos());
+		for (TableColumn c : commitViewer.getTable().getColumns()){
+			c.pack();
+		}
 		tabFolder.setSelection(0);
 	}
 
@@ -122,9 +126,19 @@ public class DiffView extends ViewPart {
         formData.left = new FormAttachment(0,5);
         formData.right = new FormAttachment(100,-5);
 
-		commitViewer = new TableViewer(commitHistoryComposite, SWT.H_SCROLL | SWT.V_SCROLL);
+    	commitViewer = new TableViewer(commitHistoryComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		commitViewer.setContentProvider(ArrayContentProvider.getInstance());
 		commitViewer.setLabelProvider(new CommitLabelProvider());
+		commitViewer.getTable().setHeaderVisible(true);
+		commitViewer.getTable().setLinesVisible(false);
+		commitViewer.setComparator(new CommitViewerComparator());
+		String[] columnNames1 = new String[] {
+				"Date", "Time", "Number of changes"};
+		for(int i = 0; i < columnNames1.length; i++){
+			TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
+			tableColumn.setText(columnNames1[i]);
+			tableColumn.pack();
+		}
 		getSite().setSelectionProvider(commitViewer); //it will start up with the commitHistory
         commitViewer.getTable().setLayoutData(formData);
 		
@@ -177,16 +191,16 @@ public class DiffView extends ViewPart {
 		diffViewer.setContentProvider(new CommitContentProvider());
 		diffViewer.setLabelProvider(new DiffViewLabelProvider());
 	
-		summaryViewer = new TableViewer(diffViewComposite, SWT.H_SCROLL | SWT.V_SCROLL);
+		summaryViewer = new TableViewer(diffViewComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		summaryViewer.setContentProvider(ArrayContentProvider.getInstance());
 		summaryViewer.setLabelProvider(new SummaryLabelProvider());
 		summaryViewer.getTable().setHeaderVisible(true);
 		summaryViewer.getTable().setLinesVisible(true);
-		String[] columnNames = new String[] {
+		String[] columnNames2 = new String[] {
 				"Change Kind", "From", "To"};
-		for(int i = 0; i < columnNames.length; i++){
+		for(int i = 0; i < columnNames2.length; i++){
 			TableColumn tableColumn = new TableColumn(summaryViewer.getTable(), SWT.LEFT);
-			tableColumn.setText(columnNames[i]);
+			tableColumn.setText(columnNames2[i]);
 			tableColumn.pack();
 		}
 
