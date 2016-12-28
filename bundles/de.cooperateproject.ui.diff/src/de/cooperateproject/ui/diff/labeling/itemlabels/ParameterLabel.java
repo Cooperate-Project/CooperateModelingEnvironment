@@ -8,16 +8,18 @@ import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 public class ParameterLabel implements SummaryItemLabelHandler{
 	private final String classText = "Parameter";
+	private UMLTypeReferenceLabel umlRefLabel = new UMLTypeReferenceLabel();
+	private DataTypeReferenceLabel dataRefLabel = new DataTypeReferenceLabel();
 	
 	public String getText(EObject item ){
 		Parameter param = (Parameter)item;
 		String type = "";
 		if(param.getType() instanceof DataTypeReference){
-			type = ": " + ((DataTypeReference)param.getType()).getType().getLiteral();
+			type = ": " + dataRefLabel.getText(param.getType());
 		}else if(param.getType() instanceof UMLTypeReference){
-			type = ": " + ((UMLTypeReference)param.getType()).getType().getName();
+			type = ": " + umlRefLabel.getText(param.getType());
 		}
-		return param.getName()+ type;
+		return param.getName() + type;
 	}
 	
 	public String getClassText(){
