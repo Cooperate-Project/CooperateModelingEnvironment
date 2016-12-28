@@ -10,14 +10,17 @@ import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 public class MethodLabel implements SummaryItemLabelHandler{
 	private final String classText = "Method";
+	private UMLTypeReferenceLabel umlRefLabel = new UMLTypeReferenceLabel();
+	private DataTypeReferenceLabel dataRefLabel = new DataTypeReferenceLabel();
+	private ParameterLabel paramLabel = new ParameterLabel();
 	
 	public String getText(EObject item ){
 		Method method = (Method)item;
 		String type = "";
 		if(method.getType() instanceof DataTypeReference){
-			type = ": " + ((DataTypeReference)method.getType()).getType().getLiteral();
+			type = ": " + dataRefLabel.getText(method.getType());
 		}else if(method.getType() instanceof UMLTypeReference){
-			type = ": " + ((UMLTypeReference)method.getType()).getType().getName();
+			type = ": " + umlRefLabel.getText(method.getType());
 		}
 		EList<Parameter> params = method.getParameters();
 		return method.getName() + "("+ paramsToString(params) +")" + type;
@@ -27,18 +30,15 @@ public class MethodLabel implements SummaryItemLabelHandler{
 		return classText;
 	}
 	
-	private static String paramsToString(EList<Parameter> params){
+	private String paramsToString(EList<Parameter> params){
 		String ret = "";
 		if(params.size() <= 0 ) return ret;
-
+		
 		for(Parameter param : params){
-			String type = "";
-			if(param.getType() instanceof DataTypeReference){
-				type = ": " + ((DataTypeReference)param.getType()).getType().getLiteral();
-			}else if(param.getType() instanceof UMLTypeReference){
-				type = ": " + ((UMLTypeReference)param.getType()).getType().getName();
+			ret = paramLabel.getText(param);
+			if(params.indexOf(param) < params.size() - 1){
+				ret += ", ";
 			}
-			ret += param.getName() + type + " ";
 		}
 		
 		return ret;

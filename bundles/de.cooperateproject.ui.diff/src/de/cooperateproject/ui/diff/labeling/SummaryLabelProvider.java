@@ -8,10 +8,16 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import de.cooperateproject.ui.diff.internal.SummaryItem;
+import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.DataTypeReferenceLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
 import de.cooperateproject.ui.diff.labeling.itemlabels.UMLTypeReferenceLabel;
@@ -34,6 +40,12 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("DataTypeReferenceImpl", new DataTypeReferenceLabel());
 		itemHandling.put("MethodImpl", new MethodLabel());
 		itemHandling.put("ParameterImpl", new ParameterLabel());
+		itemHandling.put("PackageImpl", new PackageLabel());
+		itemHandling.put("InterfaceImpl", new InterfaceLabel());
+		itemHandling.put("AssociationImpl", new AssociationLabel());
+		itemHandling.put("GeneralizationImpl", new GeneralizationLabel());
+		itemHandling.put("ImplementationImpl", new ImplementationLabel());
+		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
 	}
 	
 	@Override
@@ -43,6 +55,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
+		
 		String ret = "";
 		EObject notNull;
 
@@ -56,7 +69,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			}else{
 				notNull = item.getRight();
 			}
-			
+			System.out.println(notNull.getClass());
 			SummaryItemLabelHandler handlerClass = itemHandling.get(notNull.getClass().getSimpleName());
 			if(handlerClass != null){
 				switch(columnIndex){
