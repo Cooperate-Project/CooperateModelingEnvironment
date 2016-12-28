@@ -69,7 +69,6 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			}else{
 				notNull = item.getRight();
 			}
-			System.out.println(notNull.getClass());
 			SummaryItemLabelHandler handlerClass = itemHandling.get(notNull.getClass().getSimpleName());
 			if(handlerClass != null){
 				switch(columnIndex){

@@ -17,7 +17,8 @@ import de.cooperateproject.ui.diff.internal.CommitInfo;
  */
 public class CommitLabelProvider extends LabelProvider implements ITableLabelProvider{
 	
-	private final DateFormat formatter = new SimpleDateFormat("EEE, d. MMM HH:mm:s");
+	private final DateFormat formatterTime = new SimpleDateFormat("HH:mm:s");
+	private final DateFormat formatterDate = new SimpleDateFormat("EEE, d. MMM");
 
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
@@ -29,12 +30,15 @@ public class CommitLabelProvider extends LabelProvider implements ITableLabelPro
 		String info ="";
 		if(element instanceof CommitInfo){
 			CommitInfo element_temp = ((CommitInfo)element);
-			info = formatter.format(new Date(element_temp.getCDOCommitInfo().getTimeStamp())) + " changes: " + element_temp.getAmountOfChangedObjects();
-		
+			Date date = new Date(element_temp.getCDOCommitInfo().getTimeStamp());
+			
+			switch(columnIndex){
+				case 0: info = formatterDate.format(date); break;
+				case 1: info = formatterTime.format(date); break;
+				case 2: info = "changes: " + element_temp.getAmountOfChangedObjects(); break;
+				default:
+			}
 		}
 		return info;
 	}
-	
-	
-
 }
