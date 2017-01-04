@@ -132,7 +132,7 @@ public class CommitManager {
 			CDOView previousState = session.openView(mainBranch, cdoInfo.getPreviousTimeStamp());
 			CDOView currentState = session.openView(mainBranch, cdoInfo.getTimeStamp());
 
-			IComparisonScope scope = CDOComparisonScope.Minimal.create(previousState, currentState, null, cdoIds.get(cdoInfo));
+			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(cdoInfo));
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
        	  	EList<Diff> resultList = comparisonResult.getDifferences();
        	  	
