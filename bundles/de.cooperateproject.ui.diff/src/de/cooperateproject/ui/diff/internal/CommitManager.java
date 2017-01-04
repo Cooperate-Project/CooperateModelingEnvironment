@@ -18,8 +18,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
+import org.eclipse.emf.cdo.common.commit.CDOCommitHistory;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
-import org.eclipse.emf.cdo.common.commit.CDOCommitInfoHandler;
+import org.eclipse.emf.cdo.common.commit.CDOCommitInfoManager;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.revision.CDOIDAndVersion;
 import org.eclipse.emf.cdo.compare.CDOCompareUtil;
@@ -27,6 +28,7 @@ import org.eclipse.emf.cdo.compare.CDOComparisonScope;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -157,58 +159,65 @@ public class CommitManager {
 		}
 		
 		private void findAllCommits(){
-			
 			IProject project = currentFile.getProject();
 			CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
-			CDOBranch mainBranch = session.getBranchManager().getMainBranch();
-			CDOCommitInfo firstCommit = session.getCommitInfoManager().getFirstOfBranch(mainBranch);
-			CDOCommitInfo lastCommit = session.getCommitInfoManager().getLastOfBranch(mainBranch);
-			
-			CDOView view = session.openView();
-	        ConcreteSyntaxModel textmodel = null;
-	        Diagram launcherModel = null;
-	            
-	        try{
-	         launcherModel = loadDiagram(view, currentFile);
-			 textmodel = selectConcreteSyntaxModel(launcherModel, EditorType.TEXTUAL);
-	        }catch(Exception e){}
+			try {
+				CDOView view = session.openView();
+				try {
+					
+					CDOBranch mainBranch = session.getBranchManager().getMainBranch();
+			        ConcreteSyntaxModel textmodel = null;
+			        Diagram launcherModel = null;
+			            
+			        try{
+			         launcherModel = loadDiagram(view, currentFile);
+					 textmodel = selectConcreteSyntaxModel(launcherModel, EditorType.TEXTUAL);
+					 resourceDiagramPath = CDOURIUtil.extractResourcePath(EcoreUtil.getURI(textmodel.getRootElement()));
+			        }catch(Exception e){}
+			        
+			        CDOObject txtRoot = CDOUtil.getCDOObject(textmodel.getRootElement());
+			        CDOResource resource = txtRoot.cdoResource();	        
+			        CDOID resourceCDOId = resource.cdoID();
+			        long firstCommitTimeStamp = view.getRevision(resourceCDOId).getTimeStamp();
 
-	        resourceDiagramPath = CDOURIUtil.extractResourcePath(EcoreUtil.getURI(textmodel.getRootElement()));
-	        CDOResource resource = view.getResource(resourceDiagramPath);
-	       
-	        CDOID resourceCDOId = resource.cdoID();
-			//get all commits from main branch
-			session.getCommitInfoManager().getCommitInfos(mainBranch, firstCommit.getTimeStamp(), lastCommit.getTimeStamp(), new CDOCommitInfoHandler()
-            {
-          	  
-                public void handleCommitInfo(CDOCommitInfo commitInfo)
-                {
-					 if (commitInfo.getPreviousTimeStamp() == CDOCommitInfo.INVALID_DATE) {
-						 return;
-	             	  }
-					 
-					 CDOView previousState = session.openView(mainBranch, commitInfo.getPreviousTimeStamp());
-		          	 CDOView currentState = session.openView(mainBranch, commitInfo.getTimeStamp());
-		          	 
-		          	 try {
-		          		 List<CDOIDAndVersion> changedObjects = Lists.newArrayList(Iterables.concat(commitInfo.getNewObjects(), commitInfo.getDetachedObjects(), commitInfo.getChangedObjects()));
-		          		 //Set of all IDs of the objects that have been changed in the two states and hence are of interest
-		          		 Set<CDOID> value = changedObjects.stream().filter(object -> parentMatches(object.getID(), resourceCDOId, previousState, currentState)).map(CDOIDAndVersion::getID).collect(Collectors.toSet());
-		          		 
-		          		 if(value.size() > 0){
-		          			 cdoIds.put(commitInfo, value);
-		              	}
-      		
-		          	 } finally {
-		          		 IOUtil.closeSilent(previousState);
-		          		 IOUtil.closeSilent(currentState);
-		          	 }
-                }
-            });
-
-
-            CDOConnectionManager.getInstance().releaseSession(session);
-			
+					//get all commits from main branch
+			        CDOCommitInfoManager commitManager = session.getCommitInfoManager();
+			        CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
+			        for (int i = 0; i < mainHistory.size(); i++) {
+			        	CDOCommitInfo commitInfo = mainHistory.getElement(i);
+			        	if (commitInfo.getTimeStamp() < firstCommitTimeStamp) {
+			        		break;
+			        	}
+			        	
+						 if (commitInfo.getPreviousTimeStamp() == CDOCommitInfo.INVALID_DATE) {
+							 return;
+		             	  }
+						 
+						 CDOCommitInfo previousCommitInfo = mainHistory.getElement(i+1);
+						 CDOView previousState = session.openView(mainBranch, previousCommitInfo.getTimeStamp());
+			          	 CDOView currentState = session.openView(mainBranch, commitInfo.getTimeStamp());
+			          	 
+			          	 try {
+			          		 List<CDOIDAndVersion> changedObjects = Lists.newArrayList(Iterables.concat(commitInfo.getNewObjects(), commitInfo.getDetachedObjects(), commitInfo.getChangedObjects()));
+			          		 //Set of all IDs of the objects that have been changed in the two states and hence are of interest
+			          		 Set<CDOID> value = changedObjects.stream().filter(object -> parentMatches(object.getID(), resourceCDOId, previousState, currentState)).map(CDOIDAndVersion::getID).collect(Collectors.toSet());
+			          		 
+			          		 if(value.size() > 0){
+			          			 cdoIds.put(commitInfo, value);
+			              	}
+		  		
+			          	 } finally {
+			          		 IOUtil.closeSilent(previousState);
+			          		 IOUtil.closeSilent(currentState);
+			          	 }
+			        }
+					
+				} finally {
+					IOUtil.closeSilent(view);
+				}
+			} finally {
+				CDOConnectionManager.getInstance().releaseSession(session);
+			}
 		}
 			
 		private void setRoot(DiffTreeItem resource) {
@@ -263,23 +272,17 @@ public class CommitManager {
 	      	}
 	   
 	   private boolean parentMatches(CDOID objectId, CDOID parentId, CDOView previousView, CDOView currentView) {
-    	   CDOObject object = null;
-    	   CDOObject object2 = null;
     	   try{
-    		   object = previousView.getObject(objectId);
+    		   CDOObject object = previousView.getObject(objectId);
+    		   return object.cdoResource().cdoID().equals(parentId);
     	   }
     	   catch(Exception e){}
     	   try{
-    		   object2 = currentView.getObject(objectId);
+    		   CDOObject object2 = currentView.getObject(objectId);
+    		   return  object2.cdoResource().cdoID().equals(parentId);
     	   }catch(Exception e){}
     	   
-    	   if(object == null){ // if it is null, the object couldn't be found in either the two states
-    		   return  object2.cdoResource().cdoID().equals(parentId);
-    	   }else{
-    		   return  object.cdoResource().cdoID().equals(parentId);
-    	   }
-    	  
-    	   
+    	   return false;
        }
 	   
 	   private static EObject getValue(Comparison comparison, Diff diff) {
