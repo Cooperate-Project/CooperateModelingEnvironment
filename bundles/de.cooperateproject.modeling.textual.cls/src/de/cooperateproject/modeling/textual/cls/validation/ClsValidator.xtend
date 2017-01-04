@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.TypedElement
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.validation.Check
 import org.eclipse.uml2.uml.Model
+import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class contains custom validation rules. 
@@ -35,23 +36,6 @@ import org.eclipse.uml2.uml.Model
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ClsValidator extends AbstractClsValidator {
-
-	public static val NO_CLASS_REFERENCE = 'no_class_reference'
-	public static val NO_INTERFACE_REFERENCE = 'no_interface_reference'
-	public static val NO_PACKAGE_REFERENCE = 'no_package_reference'
-	public static val NO_IMPORT_REFERENCE = 'no_import_reference'
-	public static val NO_PROPERTY_REFERENCE = 'no_property_reference'
-	public static val WRONG_PROPERTY_TYPE = 'wrong_property_type'
-	public static val NO_OPERATION_REFERENCE = 'no_operation_reference'
-	public static val NO_ASSOCIATION_REFERENCE = 'no_association_reference'
-	public static val NO_GENERALIZATION_REFERENCE = 'no_generalization_reference'
-	public static val NO_REALIZATION_REFERENCE = 'no_realization_reference'
-	public static val NO_ALIAS_NAME = 'no_alias_name'
-	public static val WRONG_ALIAS_NAME = 'wrong_alias_name'
-	public static val NO_COMMENT_REFERENCE = 'no_comment_reference'
-	public static val ALIAS_EXISTS = 'alias_exists'
-	public static val NOT_AN_INTERFACE = 'not_an_interface'
-	public static val NOT_A_CLASS = 'not_a_class'
 
 	@Check
 	def checkAliasExpression(Classifier classifier) {
@@ -67,7 +51,7 @@ class ClsValidator extends AbstractClsValidator {
 					aliasExistError(aliasString)
 				} else {
 					error("No alias '" + aliasString + "' found",
-						ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, NO_ALIAS_NAME, {
+						ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, ClsValidatorIssueId.NO_ALIAS_NAME, {
 							aliasString
 						})
 				}
@@ -76,7 +60,7 @@ class ClsValidator extends AbstractClsValidator {
 					aliasExistError(aliasString)
 				} else {
 					error("Inconsistent alias '" + aliasString + "' found",
-						ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, WRONG_ALIAS_NAME, {
+						ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, ClsValidatorIssueId.WRONG_ALIAS_NAME, {
 							aliasString
 						})
 				}
@@ -87,7 +71,7 @@ class ClsValidator extends AbstractClsValidator {
 
 	private def aliasExistError(String alias) {
 		error('''Alias: «alias» already exists!''', ClsPackage.eINSTANCE.namedElementAliased_AliasExpression,
-			ALIAS_EXISTS, {
+			ClsValidatorIssueId.ALIAS_EXISTS, {
 				alias
 			})
 	}
@@ -108,7 +92,7 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfAssociationExists(Association association) {
-		if (association.referencedElement.model == null) {
+		if (association.referencedElement?.model == null && association.nearestPackage?.referencedElement?.model != null) {
 			val refNode = association.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val propertyNameLeft = association.properties?.extractRefNode(
 				ClsPackage.eINSTANCE.associationProperties_PropertyLeft)?.text ?: ""
@@ -117,23 +101,23 @@ class ClsValidator extends AbstractClsValidator {
 			val associationName = refNode.text ?: "associationName"
 			val String[] issueData = #[associationName, propertyNameLeft, propertyNameRight]
 			error("No Referenced UML-Association Element", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_ASSOCIATION_REFERENCE, issueData)
+				ClsValidatorIssueId.NO_ASSOCIATION_REFERENCE, issueData)
 		}
 	}
 
 	@Check
 	def checkIfGeneralizationExists(Generalization generalization) {
-		if (generalization.referencedElement == null) {
+		if (generalization.referencedElement?.model == null && generalization.nearestPackage?.referencedElement?.model != null) {
 			error("No Referenced UML-Generalization Element", ClsPackage.eINSTANCE.generalization_ReferencedElement,
-				NO_GENERALIZATION_REFERENCE)
+				ClsValidatorIssueId.NO_GENERALIZATION_REFERENCE)
 		}
 	}
 
 	@Check
 	def checkIfRealizationExists(Implementation realization) {
-		if (realization.referencedElement == null) {
+		if (realization.referencedElement?.model == null && realization.nearestPackage?.referencedElement?.model != null) {
 			error("No Referenced UML-InterfaceRealization Element",
-				ClsPackage.eINSTANCE.implementation_ReferencedElement, NO_REALIZATION_REFERENCE)
+				ClsPackage.eINSTANCE.implementation_ReferencedElement, ClsValidatorIssueId.NO_REALIZATION_REFERENCE)
 		}
 	}
 
@@ -142,9 +126,9 @@ class ClsValidator extends AbstractClsValidator {
 		var eClass = classifier.eGet(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement);
 		
 		if (eClass instanceof org.eclipse.uml2.uml.Class) {
-			checkIfClassifierExists(classifier, "className", "Couldn't find UML-Class '", NO_CLASS_REFERENCE)
+			checkIfClassifierExists(classifier, "className", "Couldn't find UML-Class '", ClsValidatorIssueId.NO_CLASS_REFERENCE)
 		} else {
-			wrongClassifierType(classifier.name, " is not a class", NOT_A_CLASS)
+			wrongClassifierType(classifier.name, " is not a class", ClsValidatorIssueId.NOT_A_CLASS)
 		}
 	}
 
@@ -153,14 +137,14 @@ class ClsValidator extends AbstractClsValidator {
 		var eInterface = classifier.eGet(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 		
 		if (eInterface instanceof org.eclipse.uml2.uml.Interface) {
-			checkIfClassifierExists(classifier, "interfaceName", "Couldn't find UML-Interface '", NO_INTERFACE_REFERENCE)
+			checkIfClassifierExists(classifier, "interfaceName", "Couldn't find UML-Interface '", ClsValidatorIssueId.NO_INTERFACE_REFERENCE)
 		} else {
-			wrongClassifierType(classifier.name, " is not an interface", NOT_AN_INTERFACE)
+			wrongClassifierType(classifier.name, " is not an interface", ClsValidatorIssueId.NOT_AN_INTERFACE)
 		}
 	}
 
-	private def checkIfClassifierExists(Classifier classifier, String defaultName, String errorMsg, String errorType) {
-		if (classifier.referencedElement.model == null) {
+	private def checkIfClassifierExists(Classifier classifier, String defaultName, String errorMsg, ClsValidatorIssueId errorType) {
+		if (classifier.referencedElement?.model == null && classifier.nearestPackage?.referencedElement?.model != null) {
 			val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val classifierName = refNode.text ?: defaultName
 			error(errorMsg + classifierName + "' in model",
@@ -170,7 +154,7 @@ class ClsValidator extends AbstractClsValidator {
 		}
 	}
 
-	private def wrongClassifierType(String classifier, String errorMsg, String errorType) {
+	private def wrongClassifierType(String classifier, String errorMsg, ClsValidatorIssueId errorType) {
 		error(classifier + errorMsg, ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, errorType, {
 			classifier
 		})
@@ -178,11 +162,11 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfPackageExists(Package pack) {
-		if (pack.referencedElement.model == null) {
+		if (pack.referencedElement?.model == null && pack.owningPackage?.referencedElement?.model != null) {
 			val refNode = pack.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val packageName = refNode.text ?: "packageName"
 			error("Couldn't find UML-Package '" + packageName + "' in model",
-				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, NO_PACKAGE_REFERENCE, {
+				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, ClsValidatorIssueId.NO_PACKAGE_REFERENCE, {
 					packageName
 				})
 		}
@@ -190,11 +174,11 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfPackageImportExists(PackageImport imported) {
-		if (imported.referencedElement.model == null) {
+		if (imported.referencedElement?.model == null && imported.importingNamespace?.referencedElement?.model != null) {
 			val refNode = imported.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val packageName = refNode.text ?: "packageName"
 			error("Couldn't find  PackageImport for '" + packageName + "' in model",
-				ClsPackage.eINSTANCE.packageImport_ReferencedElement, NO_IMPORT_REFERENCE, {
+				ClsPackage.eINSTANCE.packageImport_ReferencedElement, ClsValidatorIssueId.NO_IMPORT_REFERENCE, {
 					packageName
 				})
 		}
@@ -202,11 +186,11 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfPropertyExists(Attribute attribute) {
-		if (attribute.referencedElement.model == null) {
+		if (attribute.referencedElement?.model == null && attribute.owner?.referencedElement?.model != null) {
 			val refNode = attribute.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val attributeName = refNode.text ?: "attributeName"
 			error("No Referenced UML-Property", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_PROPERTY_REFERENCE, {
+				ClsValidatorIssueId.NO_PROPERTY_REFERENCE, {
 					attributeName
 				})
 		}
@@ -219,7 +203,7 @@ class ClsValidator extends AbstractClsValidator {
 		val typeName = refNode.text ?: "typeName"
 
 		if (model != null && !property.hasCorrectType) {
-			error("Inconsistent Type detected", ClsPackage.eINSTANCE.property_Type, WRONG_PROPERTY_TYPE, {
+			error("Inconsistent Type detected", ClsPackage.eINSTANCE.property_Type, ClsValidatorIssueId.WRONG_PROPERTY_TYPE, {
 				typeName
 			})
 		}
@@ -227,17 +211,21 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfOperationExists(Method method) {
-		if (method.referencedElement.model == null) {
+		if (method.referencedElement?.model == null && method.owner?.referencedElement?.model != null) {
 			error("No Referenced UML-Operation", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
-				NO_OPERATION_REFERENCE)
+				ClsValidatorIssueId.NO_OPERATION_REFERENCE)
 		}
 	}
 
 	@Check
 	def checkIfCommentExists(Commentable commentable) {
-		if (commentable.comment.model == null) {
-			error("No Referenced UML-Comment", ClsPackage.eINSTANCE.commentable_Comment, NO_COMMENT_REFERENCE)
+		if (commentable.comment.model == null && commentable.commentedElement.model != null) {
+			error("No Referenced UML-Comment", ClsPackage.eINSTANCE.commentable_Comment, ClsValidatorIssueId.NO_COMMENT_REFERENCE)
 		}
+	}
+	
+	private def error(String message, EStructuralFeature feature, ClsValidatorIssueId code, String... issueData) {
+		error(message, feature, code.ID, issueData);
 	}
 
 	private static def extractRefNode(EObject element, EReference ref) {

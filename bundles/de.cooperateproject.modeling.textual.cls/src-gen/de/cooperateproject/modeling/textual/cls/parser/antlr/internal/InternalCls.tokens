@@ -10,8 +10,8 @@
 ':'=25
 ';'=34
 '<'=35
-'@endclass'=12
-'@startclass'=11
+'@end-cls'=12
+'@start-cls'=11
 '['=36
 ']'=38
 'abstract'=19

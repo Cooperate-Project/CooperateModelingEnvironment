@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.INewWizard;
+import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import de.cooperateproject.ui.nature.CooperateProjectNature;
@@ -35,19 +36,28 @@ public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard imp
 		addPage(cdoPage);
 	};
 
-	
-	
 	@Override
 	public IWizardPage getNextPage(IWizardPage page) {
-		IWizardPage nextPage = super.getNextPage(page);
-		if (nextPage == cdoPage) {
-			codPageShown = true;
+		if (page instanceof WizardNewProjectCreationPage && !validateProjectName((WizardNewProjectCreationPage)page)) {
+			return null;
 		}
-		return nextPage;
+		return super.getNextPage(page);
+	}
+	
+	private boolean validateProjectName(WizardNewProjectCreationPage projectCreationPage) {
+		if (!projectCreationPage.getProjectName().matches("[a-zA-Z0-9._ ]+")) {
+			projectCreationPage.setErrorMessage("The project name must only contain alphanumeric characters and dots, underscores, and whitespaces.");
+			return false;
+		}
+		projectCreationPage.setErrorMessage(null);
+		return true;
 	}
 
 	@Override
 	public boolean canFinish() {
+		if (!codPageShown && getContainer().getCurrentPage() == cdoPage) {
+			codPageShown = true;
+		}
 		boolean baseCanFinish = super.canFinish();
 		return codPageShown && baseCanFinish;
 	}

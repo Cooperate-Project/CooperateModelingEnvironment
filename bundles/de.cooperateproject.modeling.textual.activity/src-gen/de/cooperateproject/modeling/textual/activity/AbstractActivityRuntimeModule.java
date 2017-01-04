@@ -153,4 +153,9 @@ public abstract class AbstractActivityRuntimeModule extends org.eclipse.xtext.se
 		return de.cooperateproject.modeling.textual.activity.formatting.ActivityFormatter.class;
 	}
 
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment
+	public Class<? extends org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder> bindTextRegionAccessBuilder() {
+		return net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder.class;
+	}
+
 }

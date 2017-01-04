@@ -85,7 +85,7 @@ class ClsFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap(2).before(access.rootPackageAccess.connectorsConnectorParserRuleCall_4_0)
 		c.setLinewrap(2).before(access.rootPackageAccess.packagesPackageParserRuleCall_5_0)
 		
-		c.setLinewrap(2).before(access.classDiagramAccess.endclassKeyword_4)
+		c.setLinewrap(2).before(access.classDiagramAccess.endClsKeyword_4)
 	}
 	
 	def configureConnectorFormattingRules(FormattingConfig c, ClsGrammarAccess access) {

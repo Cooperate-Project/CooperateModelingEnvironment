@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalClsParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'asc'", "'agg'", "'com'", "'@startclass'", "'@endclass'", "'rootPackage'", "'package'", "'{'", "'}'", "'import'", "'.'", "'class'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'note'", "';'", "'['", "']'", "'|'", "'..'", "'abstract'", "'static'", "'final'", "'bi'", "'<'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'string'", "'int'", "'double'", "'boolean'", "'char'", "'byte'", "'short'", "'long'", "'float'", "'asc'", "'agg'", "'com'", "'@start-cls'", "'@end-cls'", "'rootPackage'", "'package'", "'{'", "'}'", "'import'", "'.'", "'class'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'note'", "';'", "'['", "']'", "'|'", "'..'", "'abstract'", "'static'", "'final'", "'bi'", "'<'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -3800,21 +3800,21 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__1__Impl"
-    // InternalCls.g:1299:1: rule__ClassDiagram__Group__1__Impl : ( '@startclass' ) ;
+    // InternalCls.g:1299:1: rule__ClassDiagram__Group__1__Impl : ( '@start-cls' ) ;
     public final void rule__ClassDiagram__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:1303:1: ( ( '@startclass' ) )
-            // InternalCls.g:1304:1: ( '@startclass' )
+            // InternalCls.g:1303:1: ( ( '@start-cls' ) )
+            // InternalCls.g:1304:1: ( '@start-cls' )
             {
-            // InternalCls.g:1304:1: ( '@startclass' )
-            // InternalCls.g:1305:1: '@startclass'
+            // InternalCls.g:1304:1: ( '@start-cls' )
+            // InternalCls.g:1305:1: '@start-cls'
             {
-             before(grammarAccess.getClassDiagramAccess().getStartclassKeyword_1()); 
+             before(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); 
             match(input,31,FOLLOW_2); 
-             after(grammarAccess.getClassDiagramAccess().getStartclassKeyword_1()); 
+             after(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); 
 
             }
 
@@ -4040,21 +4040,21 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__4__Impl"
-    // InternalCls.g:1387:1: rule__ClassDiagram__Group__4__Impl : ( '@endclass' ) ;
+    // InternalCls.g:1387:1: rule__ClassDiagram__Group__4__Impl : ( '@end-cls' ) ;
     public final void rule__ClassDiagram__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalCls.g:1391:1: ( ( '@endclass' ) )
-            // InternalCls.g:1392:1: ( '@endclass' )
+            // InternalCls.g:1391:1: ( ( '@end-cls' ) )
+            // InternalCls.g:1392:1: ( '@end-cls' )
             {
-            // InternalCls.g:1392:1: ( '@endclass' )
-            // InternalCls.g:1393:1: '@endclass'
+            // InternalCls.g:1392:1: ( '@end-cls' )
+            // InternalCls.g:1393:1: '@end-cls'
             {
-             before(grammarAccess.getClassDiagramAccess().getEndclassKeyword_4()); 
+             before(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); 
             match(input,32,FOLLOW_2); 
-             after(grammarAccess.getClassDiagramAccess().getEndclassKeyword_4()); 
+             after(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); 
 
             }
 

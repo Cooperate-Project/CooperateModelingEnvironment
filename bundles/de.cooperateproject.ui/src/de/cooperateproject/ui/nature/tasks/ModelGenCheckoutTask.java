@@ -1,12 +1,8 @@
 package de.cooperateproject.ui.nature.tasks;
 
-import java.util.Arrays;
-import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -16,12 +12,7 @@ import org.eclipse.emf.cdo.transfer.spi.repository.RepositoryTransferSystem;
 import org.eclipse.emf.cdo.transfer.spi.workspace.WorkspaceTransferSystem;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-
-import com.google.common.collect.Sets;
 
 import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
@@ -31,32 +22,6 @@ import de.cooperateproject.ui.util.CDOTransferUMLFirst;
  * Assumptions - none
  */
 public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
-
-	/**
-	 * Blocks resolving of various URI types to EObjects. Instead, null is
-	 * returned that allows creating proxies.
-	 *
-	 * This is intended as a workaround for special resources that throw errors
-	 * if they cannot resolve the given URI but still return null (which is
-	 * correct).
-	 */
-	private static class FilteringResourceSet extends ResourceSetImpl {
-
-		private final Set<String> blockedSchemes = Sets.newHashSet();
-
-		public FilteringResourceSet(String... blockedSchemes) {
-			this.blockedSchemes.addAll(Arrays.asList(blockedSchemes));
-		}
-
-		@Override
-		public EObject getEObject(URI uri, boolean loadOnDemand) {
-			if (blockedSchemes.stream().anyMatch(s -> s.equals(uri.scheme()))) {
-				return null;
-			}
-			return super.getEObject(uri, loadOnDemand);
-		}
-
-	}
 
 	private static final Logger LOGGER = Logger.getLogger(ModelGenCheckoutTask.class);
 	private static final String WORKSPACE_FOLDER_NAME = "model-gen";
@@ -92,7 +57,7 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 	}
 
 	private void doFullCheckout() throws CoreException {
-		CDOView view = getRepositoryFolder().cdoView().getSession().openView(new FilteringResourceSet("qvto"));
+		CDOView view = getRepositoryFolder().cdoView();
 		try {
 			WorkspaceTransferSystem target = WorkspaceTransferSystem.INSTANCE;
 			RepositoryTransferSystem source = new RepositoryTransferSystem(view);
@@ -101,20 +66,17 @@ public class ModelGenCheckoutTask extends CDOHandlingBackgroundTask {
 
 			CDOTransfer transfer = new CDOTransferUMLFirst(source, target);
 			transfer.setTargetPath(workspaceFolder.getFullPath());
-			transfer.map(getRepositoryFolder().getPath(), new NullProgressMonitor());
+			getRepositoryFolder().getNodes().forEach(n -> transfer.map(n.getPath(), new NullProgressMonitor()));
 
 			// no default factory is registered in the CDO utilities
 			transfer.getModelTransferContext().registerTargetExtension("*", new XMIResourceFactoryImpl());
 
 			transfer.perform();
 
-			getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+			refreshFolder(workspaceFolder);
 		} catch (RuntimeException e) {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to transfer models", e));
-		} finally {
-			view.close();
 		}
-
 	}
 
 }

@@ -10,11 +10,20 @@ import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory
 import org.eclipse.emf.compare.match.DefaultMatchEngine
 import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher
 import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
+import org.eclipse.emf.compare.scope.IComparisonScope
+import org.eclipse.emf.ecore.EObject
 
 class ActivityMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
+	private static final String NS_URI = "http://www.cooperateproject.de/modeling/textual/activity/Activity"
+	
 	@Inject
 	Provider<ProximityEObjectMatcher$DistanceFunction> dfProvider
+	
+	override isMatchEngineFactoryFor(IComparisonScope scope) {
+		val nsURIs = #{scope.left, scope.right, scope.origin}.filter(EObject).map[eClass.EPackage.nsURI].toSet
+		return nsURIs.size == 1 && NS_URI.equals(nsURIs.head)
+	}
 	
 	override getMatchEngine() {
 		val matcher = new ProximityEObjectMatcher(dfProvider.get)
