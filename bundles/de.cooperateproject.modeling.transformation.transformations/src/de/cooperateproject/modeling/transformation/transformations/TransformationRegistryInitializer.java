@@ -62,7 +62,7 @@ public class TransformationRegistryInitializer {
 				String diagramName = ModelNamingConventions.getDiagramNameFromTextualURI(changedModelURI);
 
 				if (rs.getURIConverter().exists(targetResourceURI, Collections.emptyMap())) {
-					Resource r = rs.getResource(targetResourceURI, false);
+					Resource r = rs.getResource(targetResourceURI, true);
 					Optional<Diagram> diagram = r.getContents().stream().filter(o -> o instanceof Diagram).map(o -> ((Diagram)o)).filter(d -> diagramName.equals(d.getName())).findAny();
 					if (diagram.isPresent()) {
 						String targetUriFragment = r.getURIFragment(diagram.get());

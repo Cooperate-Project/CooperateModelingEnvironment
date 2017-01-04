@@ -14,4 +14,5 @@ Require-Bundle: de.cooperateproject.ui;bundle-version="0.1.5",
  de.cooperateproject.util,
  org.apache.commons.lang3,
  org.eclipse.uml2.uml,
- org.apache.log4j
+ org.apache.log4j,
+ org.eclipse.papyrus.editor;bundle-version="1.3.0"
