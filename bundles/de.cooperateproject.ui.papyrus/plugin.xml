@@ -14,4 +14,15 @@
             scheme="cdo.checkout">
       </sashModelProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="de.cooperateproject.ui.papyrus.editor.CooperatePapyrusEditor"
+            default="false"
+            extensions="di"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.papyrus.editor"
+            name="Cooperate Papyrus Editor">
+      </editor>
+   </extension>
 </plugin>
