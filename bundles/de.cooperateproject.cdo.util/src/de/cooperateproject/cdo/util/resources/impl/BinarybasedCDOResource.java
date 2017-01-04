@@ -3,65 +3,52 @@ package de.cooperateproject.cdo.util.resources.impl;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.cdo.common.lob.CDOBlob;
 import org.eclipse.emf.cdo.eresource.CDOBinaryResource;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOUtil;
-import org.eclipse.emf.cdo.util.CommitException;
-import org.eclipse.emf.cdo.util.ConcurrentAccessException;
 import org.eclipse.emf.cdo.view.CDOView;
-import org.eclipse.emf.cdo.view.CDOViewSet;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
-public class BinarybasedCDOResource extends XMIResourceImpl {
+import com.google.common.collect.Maps;
 
-    BinarybasedCDOResource(URI uri) {
+public class BinarybasedCDOResource extends VirtualCDOFileResource {
+
+    private static final String ADDITIONAL_FILE_EXTENSION = "bin";
+
+	BinarybasedCDOResource(URI uri) {
         super(uri);
     }
 
-    public void save(Map<?, ?> options) throws IOException {
-        CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
-        CDOTransaction trans = (CDOTransaction) cdoVS.getViews()[0];
-        String actualURI = getURI().deresolve(trans.getRootResource().getURI()).toString();
-        CDOBinaryResource binRes = trans.getOrCreateBinaryResource(actualURI + ".bin");
-        
-        //TODO Put this Option in options instead of creating an extra map
-        Map<Object, Object> opt = new HashMap<Object, Object>();
-        opt.put(XMIResource.OPTION_BINARY, Boolean.TRUE);
-        
+	@Override
+	protected String getAdditionalFileExtension() {
+		return ADDITIONAL_FILE_EXTENSION;
+	}
+
+	@Override
+	protected void doSave(XMISerializer serializer, CDOTransaction trans, String realCdoRepositoryPath) throws IOException {
+        CDOBinaryResource binRes = trans.getOrCreateBinaryResource(realCdoRepositoryPath);
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            save(baos, opt);
+        	serializer.serialize(baos);
             CDOBlob blob = new CDOBlob(new ByteArrayInputStream(baos.toByteArray()));
             binRes.setContents(blob);
-            try {
-                trans.commit();
-            } catch (ConcurrentAccessException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (CommitException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
         }
-    }
+	}
 
-    public void load(Map<?, ?> options) throws IOException {
-        CDOViewSet cdoVS = CDOUtil.getViewSet(getResourceSet());
-        CDOView view = cdoVS.getViews()[0];
-        String actualURI = getURI().deresolve(view.getRootResource().getURI()).toString();
-        
-        //TODO Put this Option in options instead of creating an extra map
-        Map<Object, Object> opt = new HashMap<Object, Object>();
-        opt.put(XMIResource.OPTION_BINARY, Boolean.TRUE);
-        
-        if (view.hasResource(actualURI + ".bin")) {
-            CDOBinaryResource binRes = view.getBinaryResource(actualURI + ".bin");
-            load(binRes.getContents().getContents(), opt);
+	@Override
+	protected void doLoad(XMISerializer serializer, CDOView view, String realCdoRepositoryPath) throws IOException {
+        if (view.hasResource(realCdoRepositoryPath)) {
+            CDOBinaryResource binRes = view.getBinaryResource(realCdoRepositoryPath);
+            serializer.parse(binRes.getContents().getContents());
         }
-    }
+	}
+
+	@Override
+	protected Map<?, ?> getNewOptions() {
+		Map<Object, Object> opt = Maps.newHashMap();
+        opt.put(XMIResource.OPTION_BINARY, Boolean.TRUE);
+        return opt;
+	}
 }
