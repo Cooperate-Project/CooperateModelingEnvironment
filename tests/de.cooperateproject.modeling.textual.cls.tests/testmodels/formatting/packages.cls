@@ -1,4 +1,4 @@
-@startclass "SomeName"
+@start-cls "SomeName"
 
 rootPackage RootElement
 
@@ -20,4 +20,4 @@ package SubPackage4 {
 	import SubPackage2
 }
 
-@endclass
+@end-cls

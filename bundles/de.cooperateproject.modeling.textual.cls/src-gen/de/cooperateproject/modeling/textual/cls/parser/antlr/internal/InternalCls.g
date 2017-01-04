@@ -84,9 +84,9 @@ ruleClassDiagram returns [EObject current=null]
             grammarAccess.getClassDiagramAccess().getClassDiagramAction_0(),
             $current);
     }
-)	otherlv_1='@startclass' 
+)	otherlv_1='@start-cls' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getClassDiagramAccess().getStartclassKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getClassDiagramAccess().getStartClsKeyword_1());
     }
 (
 (
@@ -124,9 +124,9 @@ ruleClassDiagram returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4='@endclass' 
+)	otherlv_4='@end-cls' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getClassDiagramAccess().getEndclassKeyword_4());
+    	newLeafNode(otherlv_4, grammarAccess.getClassDiagramAccess().getEndClsKeyword_4());
     }
 )
 ;

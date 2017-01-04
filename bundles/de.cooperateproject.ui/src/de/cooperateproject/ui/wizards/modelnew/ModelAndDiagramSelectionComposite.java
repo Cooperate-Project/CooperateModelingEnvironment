@@ -12,6 +12,8 @@ import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.VerifyEvent;
+import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -64,7 +66,7 @@ public class ModelAndDiagramSelectionComposite extends Composite {
 		textDiagramName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		m_bindingContext = initDataBindings();
 		initCustomDataBindings();
-
+		initCustomListeners();
 	}
 
 	@Override
@@ -125,4 +127,32 @@ public class ModelAndDiagramSelectionComposite extends Composite {
 		}
 		super.dispose();
 	}
+	
+	private static abstract class TextFieldVerifier implements VerifyListener {
+		
+		@Override
+		public void verifyText(VerifyEvent e) {
+			if (e.text == null) {
+				e.doit = true;
+			}
+			e.doit = allowModification(e.text);
+		}
+
+		protected abstract boolean allowModification(String text);
+		
+	}
+	
+	private void initCustomListeners() {
+		textDiagramName.addVerifyListener(new TextFieldVerifier() {
+			protected boolean allowModification(String text) {
+				return text.matches("[a-zA-Z0-9_ .]*");
+			}
+		});
+		textModel.addVerifyListener(new TextFieldVerifier() {
+			@Override
+			protected boolean allowModification(String text) {
+				return text.matches("[a-zA-Z0-9_ ./]*");
+			}});
+	}
+	
 }

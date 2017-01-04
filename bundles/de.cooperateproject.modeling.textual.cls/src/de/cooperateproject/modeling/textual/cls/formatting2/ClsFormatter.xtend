@@ -34,7 +34,7 @@ class ClsFormatter extends AbstractClsFormatter {
 	def dispatch void format(ClassDiagram classdiagram, extension IFormattableDocument document) {
 		classdiagram.regionFor.feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
 		format(classdiagram.getRootPackage(), document);
-		classdiagram.regionFor.keyword(classDiagramAccess.endclassKeyword_4).prepend[newLines = 2]
+		classdiagram.regionFor.keyword(classDiagramAccess.endClsKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(Package pkg, extension IFormattableDocument document) {		

@@ -1302,11 +1302,11 @@ rule__ClassDiagram__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getClassDiagramAccess().getStartclassKeyword_1()); }
+{ before(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); }
 
-	'@startclass' 
+	'@start-cls' 
 
-{ after(grammarAccess.getClassDiagramAccess().getStartclassKeyword_1()); }
+{ after(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); }
 )
 
 ;
@@ -1390,11 +1390,11 @@ rule__ClassDiagram__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getClassDiagramAccess().getEndclassKeyword_4()); }
+{ before(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); }
 
-	'@endclass' 
+	'@end-cls' 
 
-{ after(grammarAccess.getClassDiagramAccess().getEndclassKeyword_4()); }
+{ after(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); }
 )
 
 ;

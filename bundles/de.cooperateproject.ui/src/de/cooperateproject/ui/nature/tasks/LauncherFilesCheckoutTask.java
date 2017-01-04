@@ -10,10 +10,9 @@ import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
 import org.eclipse.emf.common.util.URI;
@@ -69,25 +68,25 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 	}
 
 	private void recreateAllLauncherFiles() throws CoreException {
-		removeAllLauncherFiles();
-		createAllLauncherFiles();
-		getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+		IFolder folder = createLauncherFolder(getProject());
+		removeAllLauncherFiles(folder);
+		createAllLauncherFiles(folder, getRepositoryFolder());
+		refreshFolder(folder);
 	}
 
-	private void removeAllLauncherFiles() throws CoreException {
-		IFolder launcherFolder = createLauncherFolder(getProject());
+	private static void removeAllLauncherFiles(IFolder launcherFolder) throws CoreException {
 		cleanUpFolder(launcherFolder);
 	}
 
-	private void createAllLauncherFiles() throws CoreException {
-		Set<de.cooperateproject.ui.launchermodel.Launcher.Diagram> diagrams = getRepositoryFolder().getNodes().stream()
+	private static void createAllLauncherFiles(IFolder folder, CDOResourceFolder repositoryFolder) throws CoreException {
+		Set<de.cooperateproject.ui.launchermodel.Launcher.Diagram> diagrams = repositoryFolder.getNodes().stream()
 				.filter(n -> NOTATION_FILE_EXTENSION.equals(n.getExtension()))
 				.flatMap(n -> n.eContents().stream().filter(o -> o instanceof Diagram).map(o -> (Diagram) o))
-				.map(this::createLauncher).filter(Objects::nonNull).collect(Collectors.toSet());
-		saveLaunchers(diagrams);
+				.map(d -> createLauncher(d, repositoryFolder)).filter(Objects::nonNull).collect(Collectors.toSet());
+		saveLaunchers(diagrams, folder);
 	}
 
-	private de.cooperateproject.ui.launchermodel.Launcher.Diagram createLauncher(Diagram papyrusDiagram) {
+	private static de.cooperateproject.ui.launchermodel.Launcher.Diagram createLauncher(Diagram papyrusDiagram, CDOResourceFolder repositoryFolder) {
 		Optional<TextualModelFileExtensions> textualModelType = TextualModelFileExtensions
 				.getByPapyrusType(papyrusDiagram.getType());
 		if (!textualModelType.isPresent()) {
@@ -116,7 +115,7 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 			return null;
 		}
 		
-		CDOResourceNode textualResourceNode = getRepositoryFolder().getNode(URI.decode(relativeURI.lastSegment()));
+		CDOResourceNode textualResourceNode = repositoryFolder.getNode(URI.decode(relativeURI.lastSegment()));
 		if (!(textualResourceNode instanceof CDOResource)) {
 			LOGGER.error("Textual resource not available.");
 			return null;
@@ -135,21 +134,20 @@ public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 		return launcherDiagram;
 	}
 
-	private void saveLaunchers(Iterable<de.cooperateproject.ui.launchermodel.Launcher.Diagram> launchers)
+	private static void saveLaunchers(Iterable<de.cooperateproject.ui.launchermodel.Launcher.Diagram> launchers, IFolder launchersFolder)
 			throws CoreException {
 		for (de.cooperateproject.ui.launchermodel.Launcher.Diagram launcher : launchers) {
 			try {
-				saveLauncher(launcher);
+				saveLauncher(launcher, launchersFolder);
 			} catch (IOException e) {
 				LOGGER.warn("Could not create launcher file.", e);
 			}
 		}
 	}
 
-	private void saveLauncher(de.cooperateproject.ui.launchermodel.Launcher.Diagram launcher)
+	private static void saveLauncher(de.cooperateproject.ui.launchermodel.Launcher.Diagram launcher, IFolder launchersFolder)
 			throws IOException, CoreException {
 		ResourceSet rs = new ResourceSetImpl();
-		IFolder launchersFolder = createLauncherFolder(getProject());
 		IFile destinationFile = launchersFolder.getFile(createFileName(launcher.getName(), LAUNCHER_FILE_EXTENSION));
 		URI destinationURI = URI.createPlatformResourceURI(destinationFile.getFullPath().toString(), true);
 		Resource r = rs.createResource(destinationURI, LAUNCHER_FILE_EXTENSION);

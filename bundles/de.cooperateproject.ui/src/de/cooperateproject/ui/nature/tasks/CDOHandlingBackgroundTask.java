@@ -2,25 +2,32 @@ package de.cooperateproject.ui.nature.tasks;
 
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.cdo.CDOObject;
-import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
 import org.eclipse.emf.cdo.view.CDOAdapterPolicy;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.io.IOUtil;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.ui.Activator;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 
 public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgroundTask {
@@ -48,20 +55,32 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 	}
 	
 	private boolean isRelevantChange(CDOViewInvalidationEvent event) {
-		Stream<CDOObject> changedObjects = Stream.concat(event.getDetachedObjects().stream(), event.getDirtyObjects().stream());
+		Stream<CDOObject> changedObjects = event.getRevisionDeltas().keySet().stream();
 		return changedObjects.anyMatch(this::isDirectlyContainedInRepositoryFolder);
 	}
 	
 	private boolean isDirectlyContainedInRepositoryFolder(CDOObject o) {
-		if (repositoryFolder.equals(o)) {
-			return true;
+		if (!o.cdoInvalid()) {
+			URI resourceURI = null;
+			if (o.cdoResource() != null) {
+				resourceURI = o.cdoResource().getURI();
+			}
+			if (o instanceof CDOResourceNode) {
+				resourceURI = ((CDOResourceNode)o).getURI();
+			}
+			return isChild(repositoryFolder.getURI(), resourceURI);
 		}
-		CDOResource resource = o.cdoResource();
-		if (resource == null) {
+
+		return false;
+	}
+	
+	private static boolean isChild(URI baseURI, URI candidate) {
+		if (baseURI == null || candidate == null) {
 			return false;
 		}
-		CDOResourceFolder folder = resource.getFolder();
-		return repositoryFolder.equals(folder);
+		String baseURIString = baseURI.toString();
+		String commonPrefix = StringUtils.getCommonPrefix(baseURIString, candidate.toString());
+		return baseURIString.equals(commonPrefix); 
 	}
 	
 	@Override
@@ -103,6 +122,21 @@ public abstract class CDOHandlingBackgroundTask extends CooperateProjectBackgrou
 	private CDOResourceFolder createCDOProjectFolder() throws CommitException {
 		String cdoRepoPath = getProject().getName();
 		return createCDOResource(getProject(), cdoRepoPath, cdoChangeListener);
+	}
+
+	protected void refreshFolder(IFolder folder) {
+		Job j = new Job("Refresh") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				try {
+					folder.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+				} catch (CoreException e) {
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not refresh folder.", e);
+				}
+				return Status.OK_STATUS;
+			}
+		};
+		j.schedule(1000);
 	}
 
 	private static CDOResourceFolder createCDOResource(IProject project, String cdoRepoPath,
