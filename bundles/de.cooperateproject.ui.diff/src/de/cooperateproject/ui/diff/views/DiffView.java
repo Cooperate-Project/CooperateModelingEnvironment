@@ -4,17 +4,18 @@ package de.cooperateproject.ui.diff.views;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.*;
 
 import de.cooperateproject.ui.diff.content.CommitContentProvider;
 import de.cooperateproject.ui.diff.internal.CommitInfo;
 import de.cooperateproject.ui.diff.internal.CommitManager;
+import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
 import de.cooperateproject.ui.diff.labeling.CommitLabelProvider;
 import de.cooperateproject.ui.diff.labeling.DiffViewLabelProvider;
 import de.cooperateproject.ui.diff.labeling.SummaryLabelProvider;
 
 import org.eclipse.jface.viewers.*;
+
 import java.util.Calendar;
 
 import org.eclipse.core.resources.IFile;
@@ -22,6 +23,7 @@ import org.eclipse.jface.action.*;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -68,6 +70,9 @@ public class DiffView extends ViewPart {
 	public void setSelectedFile(IFile file){
 		commitManager.setFile(file);
 		commitViewer.setInput(commitManager.getAllCommitInfos());
+		for (TableColumn c : commitViewer.getTable().getColumns()){
+			c.pack();
+		}
 		tabFolder.setSelection(0);
 	}
 
@@ -80,26 +85,30 @@ public class DiffView extends ViewPart {
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
 
 				if(obj instanceof CommitInfo){
-					summaryViewer.setInput(commitManager.compare((CommitInfo)obj));
-					for (TableColumn c : summaryViewer.getTable().getColumns()){
-						c.pack();
-					}
-					tabFolder.setSelection(1);
-					diffViewer.setInput(commitManager.getRoot());
-					diffViewer.expandAll();
+					showDiffViewOfCommit((CommitInfo)obj);
 				}
 				
 			}
 		};
 	}
-
+	private void showDiffViewOfCommit(CommitInfo obj){
+		summaryViewer.setInput(commitManager.compare(obj));
+		for (TableColumn c : summaryViewer.getTable().getColumns()){
+			c.pack();
+		}
+		tabFolder.setSelection(1);
+		diffViewer.setInput(commitManager.getRoot());
+		diffViewer.expandAll();
+		diffViewer.getControl().setFocus();
+	}
+	
 	private void hookDoubleClickAction() {
 		commitViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				doubleClickAction.run();
 			}
 		});
-	}	
+	}
 	
 	/**
 	 * Initializes the view of this plugin. 
@@ -122,14 +131,24 @@ public class DiffView extends ViewPart {
         formData.left = new FormAttachment(0,5);
         formData.right = new FormAttachment(100,-5);
 
-		commitViewer = new TableViewer(commitHistoryComposite, SWT.H_SCROLL | SWT.V_SCROLL);
+    	commitViewer = new TableViewer(commitHistoryComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		commitViewer.setContentProvider(ArrayContentProvider.getInstance());
 		commitViewer.setLabelProvider(new CommitLabelProvider());
+		commitViewer.getTable().setHeaderVisible(true);
+		commitViewer.getTable().setLinesVisible(false);
+		commitViewer.setComparator(new CommitViewerComparator());
+		String[] columnNames1 = new String[] {
+				"Date", "Time", "Number of changes"};
+		for(int i = 0; i < columnNames1.length; i++){
+			TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
+			tableColumn.setText(columnNames1[i]);
+			tableColumn.pack();
+		}
 		getSite().setSelectionProvider(commitViewer); //it will start up with the commitHistory
         commitViewer.getTable().setLayoutData(formData);
 		
-        Label filterLabel = new Label(commitHistoryComposite, SWT.HORIZONTAL | SWT.LEFT | SWT.WRAP);
-		filterLabel.setText("Filter commits by time range:");
+        final Text filterText = new Text(commitHistoryComposite, SWT.HORIZONTAL | SWT.LEFT | SWT.WRAP | SWT.READ_ONLY);
+		filterText.setText("Filter commits by time range:");
 		
 		final DateTime selectDateToFilter = new DateTime(commitHistoryComposite, SWT.DATE);
 		final Button filterButton = new Button(commitHistoryComposite, SWT.PUSH);
@@ -149,7 +168,7 @@ public class DiffView extends ViewPart {
 		formData = new FormData();
 		formData.top = new FormAttachment(commitViewer.getTable(), 5);
 		formData.bottom = new FormAttachment(100, -5);
-		formData.left = new FormAttachment(filterLabel, 5);
+		formData.left = new FormAttachment(filterText, 5);
 		formData.right = new FormAttachment(80, -5);
 		selectDateToFilter.setLayoutData(formData);
 		
@@ -158,7 +177,7 @@ public class DiffView extends ViewPart {
 		formData.bottom = new FormAttachment(100, -5);
 		formData.left = new FormAttachment(0, 5);
 		formData.right = new FormAttachment(20, -5);
-		filterLabel.setLayoutData(formData);
+		filterText.setLayoutData(formData);
 		
 		formData = new FormData();
 		formData.top = new FormAttachment(commitViewer.getTable(), 5);
@@ -177,16 +196,16 @@ public class DiffView extends ViewPart {
 		diffViewer.setContentProvider(new CommitContentProvider());
 		diffViewer.setLabelProvider(new DiffViewLabelProvider());
 	
-		summaryViewer = new TableViewer(diffViewComposite, SWT.H_SCROLL | SWT.V_SCROLL);
+		summaryViewer = new TableViewer(diffViewComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		summaryViewer.setContentProvider(ArrayContentProvider.getInstance());
 		summaryViewer.setLabelProvider(new SummaryLabelProvider());
 		summaryViewer.getTable().setHeaderVisible(true);
 		summaryViewer.getTable().setLinesVisible(true);
-		String[] columnNames = new String[] {
+		String[] columnNames2 = new String[] {
 				"Change Kind", "From", "To"};
-		for(int i = 0; i < columnNames.length; i++){
+		for(int i = 0; i < columnNames2.length; i++){
 			TableColumn tableColumn = new TableColumn(summaryViewer.getTable(), SWT.LEFT);
-			tableColumn.setText(columnNames[i]);
+			tableColumn.setText(columnNames2[i]);
 			tableColumn.pack();
 		}
 
