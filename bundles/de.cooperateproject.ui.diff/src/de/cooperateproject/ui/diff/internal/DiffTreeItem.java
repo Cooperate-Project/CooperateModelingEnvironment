@@ -23,6 +23,14 @@ public class DiffTreeItem{
 		return children;
 	}
 	
+	public List<DiffTreeItem> getAllContents(){
+		List<DiffTreeItem> allChildren = new ArrayList<DiffTreeItem>();
+		for(DiffTreeItem item: children){
+			allChildren.addAll(item.getAllContents());
+		}
+		return allChildren;
+	}
+	
 	public EObject getEObject(){
 		return object;
 	}
