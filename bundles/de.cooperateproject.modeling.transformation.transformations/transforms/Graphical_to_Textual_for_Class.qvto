@@ -140,6 +140,7 @@ mapping notation::Node::nodeToClass() : cls::Class
 	var clz := self.element.oclAsType(uml::Class);
 	referencedElement := clz;
 	
+	visibility := clz.getVisibility();
 	_abstract := clz.isAbstract;
 	
 	aliasExpression := clz.nameExpression; 
@@ -155,6 +156,8 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 	var interface := self.element.oclAsType(uml::Interface);
 	referencedElement := interface;
 	
+	visibility := interface.getVisibility();
+	
 	aliasExpression := interface.nameExpression;
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
@@ -163,7 +166,7 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 mapping notation::Node::nodeToOperation() : cls::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
-	visibility := operation.visibility.covert();
+	visibility := operation.getVisibility();
 	_static := operation.isStatic;
 	final := operation.isLeaf;
 	_abstract := operation.isAbstract;
@@ -173,14 +176,14 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
-	visibility := self.visibility.covert();
+	visibility := self.getVisibility();
 	type := self.type.map typeToTypeReference(result);
 }
 
 mapping notation::Node::nodeToProperty() : cls::Attribute {
 	var prop := self.element.oclAsType(uml::Property);
 	referencedElement := prop;
-	visibility := prop.visibility.covert();
+	visibility := prop.getVisibility();
 	_static := prop.isStatic;
 	final := prop.isLeaf;
 	type := prop.type.map typeToTypeReference(result);
@@ -409,12 +412,22 @@ query uml::PrimitiveType::convert() : cls::PrimitiveType {
 	return null;
 }
 
-query uml::VisibilityKind::covert() : cls::Visibility {
+query uml::NamedElement::getVisibility() : cls::Visibility {
+	// we have to ensure that the visibility is set before using it
+	// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=437449
+	var visibilityKind := 
+		if self.oclAsType(ecore::EObject).eIsSet(uml::NamedElement.oclAsType(ecore::EClass).eStructuralFeatures->select(name = "visibility")->first())
+			then
+				self.visibility
+			else
+				null
+		endif;
+		
 	switch {
-		case(self = uml::VisibilityKind::public) {return cls::Visibility::PUBLIC}
-		case(self = uml::VisibilityKind::private) {return cls::Visibility::PRIVATE}
-		case(self = uml::VisibilityKind::protected) {return cls::Visibility::PROTECTED}
-		case(self = uml::VisibilityKind::package) {return cls::Visibility::PACKAGE}
+		case(visibilityKind = uml::VisibilityKind::public) {return cls::Visibility::PUBLIC}
+		case(visibilityKind = uml::VisibilityKind::private) {return cls::Visibility::PRIVATE}
+		case(visibilityKind = uml::VisibilityKind::protected) {return cls::Visibility::PROTECTED}
+		case(visibilityKind = uml::VisibilityKind::package) {return cls::Visibility::PACKAGE}
 	};
 	return cls::Visibility::UNDEFINED
 }

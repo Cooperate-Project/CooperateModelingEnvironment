@@ -224,7 +224,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	private def decorate(Image img, Visibility visibility) {
-		if (visibility == null) {
+		if (visibility == null || visibility == Visibility.UNDEFINED) {
 			return img
 		}
 		val visibilityImage = visibilityMap.get(visibility)

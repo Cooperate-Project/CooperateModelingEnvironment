@@ -26,6 +26,7 @@ import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 import com.google.common.base.Strings
+import org.eclipse.uml2.uml.NamedElement
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -71,6 +72,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	private def createClass(Class refClass) {
 		var c = ClsFactory.eINSTANCE.createClass
 		c.referencedElement = refClass
+		c.visibility = getVisibility(refClass)
 
 		for (member : refClass.members) {
 			val createdMember = createMember(member)
@@ -86,6 +88,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	private def createInterface(Interface refInterface) {
 		var iface = ClsFactory.eINSTANCE.createInterface
 		iface.referencedElement = refInterface
+		iface.visibility = getVisibility(refInterface)
 
 		/*for (attribute : refInterface.attributes) {
 			class.members.add(createAttributes(attribute))
@@ -105,7 +108,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 			return null
 		}
 		var operation = ClsFactory.eINSTANCE.createMethod
-		operation.visibility = getVisibility(refOperation.visibility)
+		operation.visibility = getVisibility(refOperation)
 		operation.referencedElement = refOperation
 
 		operation.type = getType(refOperation.type)
@@ -132,7 +135,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		}
 		var attribute = ClsFactory.eINSTANCE.createAttribute
 
-		attribute.visibility = getVisibility(refAttribute.visibility)
+		attribute.visibility = getVisibility(refAttribute)
 		attribute.referencedElement = refAttribute
 
 		/*var typeSwitch = new TypeSwitch
@@ -157,11 +160,11 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	/**
 	 * Converts a VisibilityKind into a Cls Visibility.
 	 */
-	private def getVisibility(VisibilityKind visibility) {
-		if (visibility == null) {
+	private def getVisibility(NamedElement sourceElement) {
+		if (!sourceElement.isSetVisibility()) {
 			return Visibility.UNDEFINED
 		}
-		Visibility.get(visibility.literal.toUpperCase)
+		Visibility.get(sourceElement.visibility.literal.toUpperCase)
 	}
 
 	private static class TypeSwitch extends UMLSwitch<TypeReference> {

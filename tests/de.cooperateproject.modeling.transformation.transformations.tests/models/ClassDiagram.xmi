@@ -4,11 +4,11 @@
   	<referencedElement xsi:type="uml:Package" href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
   <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
-    <members xsi:type="cls:Attribute" visibility="PUBLIC">
+    <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_sLlvoEKSEeaXCq-9LXQNWQ"/>
       <type xsi:type="cls:DataTypeReference" type="STRING"/>
     </members>
-    <members xsi:type="cls:Method" visibility="PUBLIC">
+    <members xsi:type="cls:Method">
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_WwgHEEKSEeaXCq-9LXQNWQ"/>
       <parameters visibility="PROTECTED">
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_Z8Kx0EKSEeaXCq-9LXQNWQ"/>
@@ -18,14 +18,14 @@
   </classifiers>
   <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
-    <members xsi:type="cls:Attribute" visibility="PUBLIC">
+    <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_oNOcoEKSEeaXCq-9LXQNWQ"/>
       <type xsi:type="cls:DataTypeReference" type="DOUBLE"/>
     </members>
   </classifiers>
   <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
-    <members xsi:type="cls:Attribute" visibility="PUBLIC">
+    <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_5_7pQEKSEeaXCq-9LXQNWQ"/>
       <type xsi:type="cls:DataTypeReference"/>
     </members>
