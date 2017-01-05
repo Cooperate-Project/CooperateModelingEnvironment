@@ -7,18 +7,12 @@ public class SummaryItem {
 	
 	private EObject left;
 	private EObject right;
-	private DiffKind kind;
+	private DifferenceKind kind;
 
 	public SummaryItem(EObject left, EObject right, DifferenceKind kind) {
 		this.left = left;
 		this.right = right;
-		switch(kind){ //TODO MEMO if you change the non-intuitive emf compare add/delete/change, do it here
-			case ADD: this.kind = DiffKind.added; break;
-			case DELETE: this.kind = DiffKind.deleted; break;
-			case CHANGE: this.kind = DiffKind.changed; break;
-		default:
-			this.kind = null;
-		}
+		this.kind = kind;
 	}
 	
 	public EObject getLeft(){
@@ -29,7 +23,7 @@ public class SummaryItem {
 		return right;
 	}
 	
-	public DiffKind getKind(){
+	public DifferenceKind getDifferenceKind(){
 		return kind;
 	}
 	
