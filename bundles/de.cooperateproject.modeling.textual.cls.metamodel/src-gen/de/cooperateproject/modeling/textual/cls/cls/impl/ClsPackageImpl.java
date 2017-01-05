@@ -1726,6 +1726,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityEEnum, Visibility.class, "Visibility");
+		addEEnumLiteral(visibilityEEnum, Visibility.UNDEFINED);
 		addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
 		addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
 		addEEnumLiteral(visibilityEEnum, Visibility.PROTECTED);

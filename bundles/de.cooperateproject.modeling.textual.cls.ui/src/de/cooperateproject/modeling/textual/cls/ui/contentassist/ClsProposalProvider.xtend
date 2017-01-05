@@ -158,6 +158,9 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	 * Converts a VisibilityKind into a Cls Visibility.
 	 */
 	private def getVisibility(VisibilityKind visibility) {
+		if (visibility == null) {
+			return Visibility.UNDEFINED
+		}
 		Visibility.get(visibility.literal.toUpperCase)
 	}
 

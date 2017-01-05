@@ -416,8 +416,7 @@ query uml::VisibilityKind::covert() : cls::Visibility {
 		case(self = uml::VisibilityKind::protected) {return cls::Visibility::PROTECTED}
 		case(self = uml::VisibilityKind::package) {return cls::Visibility::PACKAGE}
 	};
-	assert error (false) with log('Could not convert UML visibility type.', self);
-	return null;
+	return cls::Visibility::UNDEFINED
 }
 
 query uml::AggregationKind::convert() : cls::AggregationKind {
