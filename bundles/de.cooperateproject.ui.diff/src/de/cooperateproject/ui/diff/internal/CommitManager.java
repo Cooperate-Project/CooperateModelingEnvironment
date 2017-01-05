@@ -135,8 +135,8 @@ public class CommitManager {
 			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(cdoInfo));
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
        	  	EList<Diff> resultList = comparisonResult.getDifferences();
-       	  	
-       	  	
+       	    
+       	    
        	  	for(int i = 0; i < resultList.size(); i++){
        	  		EObject value = getValue(comparisonResult, resultList.get(i));
 	       	  	if(value != null){
