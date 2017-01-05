@@ -10,20 +10,26 @@ import de.cooperateproject.ui.diff.content.CommitContentProvider;
 import de.cooperateproject.ui.diff.internal.CommitInfo;
 import de.cooperateproject.ui.diff.internal.CommitManager;
 import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
+import de.cooperateproject.ui.diff.internal.DiffTreeItem;
+import de.cooperateproject.ui.diff.internal.SummaryItem;
 import de.cooperateproject.ui.diff.labeling.CommitLabelProvider;
 import de.cooperateproject.ui.diff.labeling.DiffViewLabelProvider;
 import de.cooperateproject.ui.diff.labeling.SummaryLabelProvider;
 
 import org.eclipse.jface.viewers.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.*;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -41,7 +47,7 @@ public class DiffView extends ViewPart {
 	private CommitManager commitManager;
 	private TableViewer commitViewer, summaryViewer;
 	private TreeViewer diffViewer;
-	private Action doubleClickAction;
+	private Action doubleClickActionCommitViewer, doubleClickActionDiffViewer, doubleClickActionSummaryViewer;
 	private TabFolder tabFolder;
 	private TabItem commitHistoryTab, diffViewTab;
 	private Composite commitHistoryComposite, diffViewComposite;
@@ -79,7 +85,7 @@ public class DiffView extends ViewPart {
 
 
 	private void makeActions() {
-		doubleClickAction = new Action() {
+		doubleClickActionCommitViewer = new Action() {
 			public void run() {
 				ISelection selection = commitViewer.getSelection();
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
@@ -87,7 +93,63 @@ public class DiffView extends ViewPart {
 				if(obj instanceof CommitInfo){
 					showDiffViewOfCommit((CommitInfo)obj);
 				}
+			}
+		};
+		
+		doubleClickActionDiffViewer = new Action() {
+			public void run() {
+				ISelection selection = diffViewer.getSelection();
+				Object obj = ((IStructuredSelection)selection).getFirstElement();
 				
+				if(obj instanceof DiffTreeItem){
+					DiffTreeItem item = (DiffTreeItem)obj;
+					for(TableItem tableItem : summaryViewer.getTable().getItems()){
+						if(tableItem.getData() instanceof SummaryItem){
+							SummaryItem summaryItem = (SummaryItem) tableItem.getData();
+							if(summaryItem.getLeft() == item.getEObject() || summaryItem.getRight() == item.getEObject()){
+								summaryViewer.getTable().setSelection(tableItem);
+								summaryViewer.getControl().setFocus();
+								break;
+								//TODO Add sound?
+							}
+						}
+					}
+				}
+			}
+		};
+		
+		doubleClickActionSummaryViewer = new Action() {
+			public void run() {
+				ISelection selection = summaryViewer.getSelection();
+				Object obj = ((IStructuredSelection)selection).getFirstElement();
+				
+				if(obj instanceof SummaryItem){
+					SummaryItem item = (SummaryItem)obj;
+					for(TreeItem treeItem : diffViewer.getTree().getItems()){ //gets all roots of the diff viewer
+							for(TreeItem child: allItems(treeItem)){
+								
+								if(child.getData() instanceof DiffTreeItem){
+									DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
+									if(diffTreeItem.getEObject() == item.getLeft() || diffTreeItem.getEObject() == item.getRight()){
+										diffViewer.getTree().setSelection(child);
+										diffViewer.getControl().setFocus();
+										break;
+										//TODO Add sound?
+								}
+							}
+							
+						}
+					}
+				}
+			}
+			
+			private List<TreeItem> allItems(TreeItem parent){
+				List<TreeItem> allItems = new ArrayList<TreeItem>();
+				allItems.add(parent);
+				for(TreeItem child: parent.getItems()){
+					allItems.addAll(allItems(child));
+				}
+				return allItems;
 			}
 		};
 	}
@@ -105,7 +167,17 @@ public class DiffView extends ViewPart {
 	private void hookDoubleClickAction() {
 		commitViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				doubleClickAction.run();
+				doubleClickActionCommitViewer.run();
+			}
+		});
+		diffViewer.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				doubleClickActionDiffViewer.run();
+			}
+		});
+		summaryViewer.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				doubleClickActionSummaryViewer.run();
 			}
 		});
 	}
