@@ -14,7 +14,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -31,10 +30,8 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsValidator;
@@ -48,6 +45,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.uml2.uml.UMLPackage;
@@ -86,27 +84,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * @generated
 	 */
 	private EClass packageImportEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typeReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass dataTypeReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass umlTypeReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -356,7 +333,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		EValidator.Registry.INSTANCE.put
 			(theClsPackage, 
 			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
+				 @Override
+				public EValidator getEValidator() {
 					 return ClsValidator.INSTANCE;
 				 }
 			 });
@@ -528,56 +506,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	@Override
 	public EReference getPackageImport_ImportingNamespace() {
 		return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTypeReference() {
-		return typeReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getDataTypeReference() {
-		return dataTypeReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getDataTypeReference_Type() {
-		return (EAttribute)dataTypeReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUMLTypeReference() {
-		return umlTypeReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getUMLTypeReference_Type() {
-		return (EReference)umlTypeReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1206,8 +1134,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getMemberEnd_Association() {
-		return (EReference)memberEndEClass.getEStructuralFeatures().get(2);
+	public EAttribute getMemberEnd_Navigable() {
+		return (EAttribute)memberEndEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1216,8 +1144,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMemberEnd_Navigable() {
-		return (EAttribute)memberEndEClass.getEStructuralFeatures().get(3);
+	public EReference getMemberEnd_Association() {
+		return (EReference)memberEndEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1319,14 +1247,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		createEReference(packageImportEClass, PACKAGE_IMPORT__REFERENCED_ELEMENT);
 		createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 
-		typeReferenceEClass = createEClass(TYPE_REFERENCE);
-
-		dataTypeReferenceEClass = createEClass(DATA_TYPE_REFERENCE);
-		createEAttribute(dataTypeReferenceEClass, DATA_TYPE_REFERENCE__TYPE);
-
-		umlTypeReferenceEClass = createEClass(UML_TYPE_REFERENCE);
-		createEReference(umlTypeReferenceEClass, UML_TYPE_REFERENCE__TYPE);
-
 		umlReferencingElementEClass = createEClass(UML_REFERENCING_ELEMENT);
 		createEReference(umlReferencingElementEClass, UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
 
@@ -1411,8 +1331,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		memberEndEClass = createEClass(MEMBER_END);
 		createEReference(memberEndEClass, MEMBER_END__CARDINALITY);
 		createEReference(memberEndEClass, MEMBER_END__TYPE);
-		createEReference(memberEndEClass, MEMBER_END__ASSOCIATION);
 		createEAttribute(memberEndEClass, MEMBER_END__NAVIGABLE);
+		createEReference(memberEndEClass, MEMBER_END__ASSOCIATION);
 
 		elementEClass = createEClass(ELEMENT);
 		createEOperation(elementEClass, ELEMENT___GET_NEAREST_PACKAGE);
@@ -1483,9 +1403,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		packageEClass.getEGenericSuperTypes().add(g1);
 		packageableElementEClass.getESuperTypes().add(this.getElement());
 		packageImportEClass.getESuperTypes().add(this.getPackageableElement());
-		typeReferenceEClass.getESuperTypes().add(this.getElement());
-		dataTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
-		umlTypeReferenceEClass.getESuperTypes().add(this.getTypeReference());
 		g1 = createEGenericType(this.getUMLReferencingElement());
 		g2 = createEGenericType(namedElementOptionalEClass_T);
 		g1.getETypeArguments().add(g2);
@@ -1599,14 +1516,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEReference(getPackageImport_ReferencedElement(), theUMLPackage.getPackageImport(), null, "referencedElement", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackageImport_ImportingNamespace(), this.getPackage(), this.getPackage_PackageImports(), "importingNamespace", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(typeReferenceEClass, TypeReference.class, "TypeReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(dataTypeReferenceEClass, DataTypeReference.class, "DataTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDataTypeReference_Type(), this.getPrimitiveType(), "type", null, 1, 1, DataTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(umlTypeReferenceEClass, UMLTypeReference.class, "UMLTypeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUMLTypeReference_Type(), theUMLPackage.getType(), null, "type", null, 1, 1, UMLTypeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(umlReferencingElementEClass_T);
 		initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1645,7 +1554,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEAttribute(getProperty_Visibility(), this.getVisibility(), "visibility", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProperty_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProperty_Type(), this.getTypeReference(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_Type(), theUMLPackage.getType(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(memberEClass, Member.class, "Member", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(this.getClassifier());
@@ -1665,8 +1574,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEClass(connectorEClass, Connector.class, "Connector", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(typedConnectorEClass, TypedConnector.class, "TypedConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedConnector_Left(), this.getUMLTypeReference(), null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedConnector_Right(), this.getUMLTypeReference(), null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedConnector_Left(), theUMLPackage.getClassifier(), null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedConnector_Right(), theUMLPackage.getClassifier(), null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociation_Properties(), this.getAssociationProperties(), this.getAssociationProperties_Association(), "properties", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1682,7 +1591,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 		initEReference(getImplementation_ReferencedElement(), theUMLPackage.getInterfaceRealization(), null, "referencedElement", null, 1, 1, Implementation.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCommentLink_Left(), this.getUMLTypeReference(), null, "left", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCommentLink_Left(), theUMLPackage.getClassifier(), null, "left", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getCommentLink__HasComment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasComment", 0, 1, !IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED);
@@ -1716,9 +1625,9 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
 		initEClass(memberEndEClass, MemberEnd.class, "MemberEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMemberEnd_Cardinality(), this.getCardinality(), null, "cardinality", null, 0, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMemberEnd_Type(), this.getUMLTypeReference(), null, "type", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMemberEnd_Association(), this.getMultiAssociation(), this.getMultiAssociation_ConnectorEnds(), "association", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMemberEnd_Type(), theUMLPackage.getClassifier(), null, "type", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMemberEnd_Navigable(), ecorePackage.getEBoolean(), "navigable", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMemberEnd_Association(), this.getMultiAssociation(), this.getMultiAssociation_ConnectorEnds(), "association", null, 0, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -261,8 +261,8 @@ when { self.oclIsKindOf(cls::Association) }
 {
 	type := PAPYRUS_NOTATION_EDGE_ASSOCIATION;
 	
-	source := self.left.oclAsType(UMLTypeReference).type.typeToView();
-	target := self.right.oclAsType(UMLTypeReference).type.typeToView();
+	source := self.left.typeToView();
+	target := self.right.typeToView();
 	element := self.referencedElement.toEObject();
 
 	children += self.map stereotypeDecorationAssocation();
@@ -281,8 +281,8 @@ when { self.oclIsKindOf(cls::Generalization) }
 {
 	type := PAPYRUS_NOTATION_EDGE_GENERALIZATION;
 	
-	var specialClassifier := self.left.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
-	var generalClassifier := self.right.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	var specialClassifier := self.left;
+	var generalClassifier := self.right;
 	
 	source := specialClassifier.typeToView();
 	target := generalClassifier.typeToView();
@@ -299,8 +299,8 @@ when { self.oclIsKindOf(cls::Implementation) }
 {
 	type := PAPYRUS_NOTATION_EDGE_IMPLEMENTATION;
 	
-	var implementingClassifier := self.left.oclAsType(UMLTypeReference).type.oclAsType(uml::BehavioredClassifier);
-	var implementedInterface := self.right.oclAsType(UMLTypeReference).type.oclAsType(uml::Classifier);
+	var implementingClassifier := self.left.oclAsType(uml::BehavioredClassifier);
+	var implementedInterface := self.right;
 	
 	source := implementingClassifier.typeToView();
 	target := implementedInterface.typeToView();
@@ -325,7 +325,7 @@ mapping cls::MemberEnd::connectorEndToEdge() : notation::Connector
 	assert error (associationDiamondShape != null) with log('Could not find the association diamond for a n-ary association.', umlAssociation);
 	source := associationDiamondShape;
 	
-	var referencedNotationElement := self.type.type.typeToView();
+	var referencedNotationElement := self.type.typeToView();
 	assert error (referencedNotationElement != null) with log('Could not find the referenced view for a UML type.', self.type);
 	target := referencedNotationElement;
 
@@ -544,7 +544,7 @@ query uml::Property::matches(memberEnd : cls::MemberEnd) : Boolean
 	return
 		memberEnd.referencedElement = self or
 		(
-			self.type = memberEnd.type.type and
+			self.type = memberEnd.type and
 			(
 				memberEnd.cardinality = null or
 				self.matches(memberEnd.cardinality)

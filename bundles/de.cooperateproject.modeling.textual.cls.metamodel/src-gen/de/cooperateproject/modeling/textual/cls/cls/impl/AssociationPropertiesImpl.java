@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.Property;
 
 /**

@@ -3,30 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
+import com.google.common.base.Strings
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Package
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
-import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Interface
+import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Operation
-import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Property
-import org.eclipse.uml2.uml.Type
-import org.eclipse.uml2.uml.VisibilityKind
-import org.eclipse.uml2.uml.util.UMLSwitch
 import org.eclipse.xtext.RuleCall
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
-import com.google.common.base.Strings
-import org.eclipse.uml2.uml.NamedElement
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -111,14 +105,14 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		operation.visibility = getVisibility(refOperation)
 		operation.referencedElement = refOperation
 
-		operation.type = getType(refOperation.type)
+		operation.type = refOperation.type
 		var parameters = refOperation.getOwnedParameters
 		
 		for (parameter : parameters) {
 			if (parameter.name != null) {
 				var param = ClsFactory.eINSTANCE.createParameter
 				param.referencedElement = parameter
-				param.type = getType(parameter.type)
+				param.type = parameter.type
 				operation.parameters.add(param)
 			}
 		}
@@ -137,24 +131,9 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 
 		attribute.visibility = getVisibility(refAttribute)
 		attribute.referencedElement = refAttribute
-
-		/*var typeSwitch = new TypeSwitch
-		 * attribute.type = typeSwitch.doSwitch(refAttribute.type)
-		 typeSwitch = null*/
-		attribute.type = getType(refAttribute.type)
+		attribute.type = refAttribute.type
 
 		return attribute
-	}
-
-	private def getType(Type type) {
-		if (type == null) {
-			return null
-		}
-		var typeSwitch = new TypeSwitch
-		var t = typeSwitch.doSwitch(type)
-		typeSwitch = null
-
-		return t
 	}
 
 	/**
@@ -165,32 +144,6 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 			return Visibility.UNDEFINED
 		}
 		Visibility.get(sourceElement.visibility.literal.toUpperCase)
-	}
-
-	private static class TypeSwitch extends UMLSwitch<TypeReference> {
-		/*private TypeConverter typeConverter
-		
-		new() {
-			typeConverter = new TypeConverter()
-		} */
-
-		override casePrimitiveType(PrimitiveType primitiveType) {
-			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
-			dataType.type = TypeConverter.getPrimitive(primitiveType)
-			return dataType
-		}
-
-		override caseClass(Class classifier) {
-			var dataType = ClsFactory.eINSTANCE.createUMLTypeReference
-			dataType.type = classifier
-			return dataType
-		}
-
-		override caseInterface(Interface classifier) {
-			var dataType = ClsFactory.eINSTANCE.createUMLTypeReference
-			dataType.type = classifier
-			return dataType
-		}
 	}
 
 }

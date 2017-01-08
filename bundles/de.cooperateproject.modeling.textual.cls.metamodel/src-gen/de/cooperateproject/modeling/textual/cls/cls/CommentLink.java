@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -26,30 +27,30 @@ import org.eclipse.uml2.uml.Type;
  */
 public interface CommentLink extends Connector, Commentable {
 	/**
-	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Left</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Left</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Left</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(UMLTypeReference)
+	 * @return the value of the '<em>Left</em>' reference.
+	 * @see #setLeft(Classifier)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getCommentLink_Left()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	UMLTypeReference getLeft();
+	Classifier getLeft();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getLeft <em>Left</em>}' containment reference.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getLeft <em>Left</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left</em>' containment reference.
+	 * @param value the new value of the '<em>Left</em>' reference.
 	 * @see #getLeft()
 	 * @generated
 	 */
-	void setLeft(UMLTypeReference value);
+	void setLeft(Classifier value);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,7 +65,7 @@ public interface CommentLink extends Connector, Commentable {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (getLeft() instanceof <%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {\r\n\treturn ((<%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();\r\n}\r\nthrow new IllegalStateException(\"Internal error in determining commented UML element.\");'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getLeft();'"
 	 * @generated
 	 */
 	@Override

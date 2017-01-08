@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
@@ -22,14 +21,14 @@ import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jface.viewers.DecorationOverlayIcon
 import org.eclipse.jface.viewers.IDecoration
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 import org.eclipse.swt.graphics.Image
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.uml2.uml.PrimitiveType
 
 /**
  * Provides labels for EObjects.
@@ -42,6 +41,9 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		Visibility.PRIVATE -> UMLImage.VISIBILITY_PRIVATE.image,
 		Visibility.PROTECTED -> UMLImage.VISIBILITY_PROTECTED.image,
 		Visibility.PACKAGE -> UMLImage.VISIBILITY_PACKAGE.image}
+
+	@Inject
+	IQualifiedNameProvider qualifiedNameProvider;
 
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
@@ -83,7 +85,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		val typeRef = ele.type
 		var type = ""
 		if (typeRef != null) {
-			type = ": " + text(typeRef)
+			type = ": " + typeRef.doGetText
 		}
 		ele.name + type
 	}
@@ -108,41 +110,13 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		UMLImage.OPERATION.image.decorate(ele.visibility)
 	}
 
-	def text(TypeReference ele) {
-		if (ele instanceof UMLTypeReference) {
-			text(ele as UMLTypeReference)
-		} else if (ele instanceof DataTypeReference) {
-			text(ele as DataTypeReference)
-		}
-	}
-
-	def text(UMLTypeReference ele) {
-		var cont = ele.eContainer
-		if (cont instanceof Association) {
-			return getAssociationMemberText(ele) 
-		}
-		ele.type.name
-	}
-	
-	def image(UMLTypeReference ele) {
-		if (ele.type instanceof org.eclipse.uml2.uml.Class) {
-			return UMLImage.CLASS.image
-		} else if (ele.type instanceof org.eclipse.uml2.uml.Interface) {
-			return UMLImage.INTERFACE.image
-		}
-	}
-
-	def text(DataTypeReference ele) {
-		ele.type.name()
-	}
-
 	def text(Association ele) {
 		if (ele.getComment() != null) {
 			return ele.referencedElement.name + " - Comment"
 		}
 		val leftChild = ele.left;
 		val rightChild = ele.right;
-		return leftChild.type.name + " " + ele.referencedElement.name + " " + rightChild.type.name
+		return leftChild.name + " " + ele.referencedElement.name + " " + rightChild.name
 	}
 
 	def image(Association ele) {
@@ -157,20 +131,6 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		}
 	}
 	
-	def getAssociationMemberText(UMLTypeReference ele) {
-		var asso = ele.eContainer as Association
-			if (ele == asso.left) {
-				if (asso.properties != null && asso.properties.propertyLeft != null) {
-					return ele.type.name + " as " + asso.properties.propertyLeft.name
-				}
-			} else if (ele == asso.right) {
-				if (asso.properties != null && asso.properties.propertyRight != null) {
-					return ele.type.name + " as " + asso.properties.propertyRight.name
-				}
-			}
-			return ele.type.name
-	}
-	
 	def text(MultiAssociation ele) {
 		return ele.referencedElement.name
 	}
@@ -183,7 +143,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		if (ele.name != null) {
 			return ele.name
 		}
-		return ele.type.text
+		return ele.referencedElement.name
 	}
 	
 	def image(MemberEnd ele) {
@@ -223,6 +183,10 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		return UMLImage.PACKAGE.image
 	}
 	
+	def text(PrimitiveType type) {
+		return qualifiedNameProvider.getFullyQualifiedName(type).toString;
+	}
+	
 	private def decorate(Image img, Visibility visibility) {
 		if (visibility == null || visibility == Visibility.UNDEFINED) {
 			return img
@@ -231,4 +195,5 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		val imgDescriptor = new DecorationOverlayIcon(img, convertToImageDescriptor(visibilityImage), IDecoration.BOTTOM_RIGHT)
 		imgDescriptor.createImage
 	}
+
 }	

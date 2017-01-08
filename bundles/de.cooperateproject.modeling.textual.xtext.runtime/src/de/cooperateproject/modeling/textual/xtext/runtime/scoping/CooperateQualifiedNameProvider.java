@@ -7,6 +7,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 
@@ -16,6 +17,14 @@ import com.google.common.collect.Lists;
 public class CooperateQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider
 		implements IAlternativeNameProvider {
 
+	protected QualifiedName qualifiedName(PrimitiveType element) {
+		String primitiveTypeName = element.getName();
+		if (primitiveTypeName.startsWith("E") && primitiveTypeName.charAt(1) == primitiveTypeName.toUpperCase().charAt(1)) {
+			return QualifiedName.create(primitiveTypeName.substring(1).toLowerCase());
+		}
+		return qualifiedName((NamedElement)element);
+	}
+	
 	/**
 	 * Converts a UML named element to a qualified name.
 	 * 

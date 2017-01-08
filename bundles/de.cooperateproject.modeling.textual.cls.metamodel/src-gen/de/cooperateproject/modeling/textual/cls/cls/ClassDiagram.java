@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.cls.cls;
 
 import org.eclipse.emf.cdo.CDOObject;
+
 import org.eclipse.emf.common.util.EList;
 
 /**

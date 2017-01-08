@@ -6,6 +6,7 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**
@@ -40,14 +41,6 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
 	protected EClass eStaticClass() {
 		return ClsPackage.Literals.IMPLEMENTATION;
 	}
-	
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		if(featureID == 2)
-			return getReferencedElement();
-		// TODO Auto-generated method stub
-		return super.eGet(featureID, resolve, coreType);
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -56,8 +49,8 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
 	 */
 	@Override
 	public InterfaceRealization getReferencedElement() {
-		org.eclipse.uml2.uml.Type implementor = getLeft().getType();
-		org.eclipse.uml2.uml.Type contract = getRight().getType();
+		org.eclipse.uml2.uml.Type implementor = getLeft();
+		org.eclipse.uml2.uml.Type contract = getRight();
 		
 		if (implementor instanceof org.eclipse.uml2.uml.BehavioredClassifier) {
 			org.eclipse.uml2.uml.BehavioredClassifier implementingClassifier = (org.eclipse.uml2.uml.BehavioredClassifier)implementor;

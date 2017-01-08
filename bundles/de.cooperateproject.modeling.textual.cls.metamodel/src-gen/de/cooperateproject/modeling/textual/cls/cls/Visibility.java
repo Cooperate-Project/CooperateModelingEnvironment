@@ -26,7 +26,9 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	UNDEFINED(0, "UNDEFINED", "UNDEFINED"), /**
+	UNDEFINED(0, "UNDEFINED", "UNDEFINED"),
+
+	/**
 	 * The '<em><b>PUBLIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -178,4 +178,9 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
 		return de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider.class;
 	}
 
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment
+	public Class<? extends de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
+		return de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector.class;
+	}
+
 }

@@ -134,9 +134,9 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
 		Association association = ((AssociationProperties) context).getAssociation();
 		EObject wantedUMLClassifier = null;
 		if (ref == ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT) {
-			wantedUMLClassifier = association.getRight().getType();
+			wantedUMLClassifier = association.getRight();
 		} else if (ref == ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT) {
-			wantedUMLClassifier = association.getLeft().getType();
+			wantedUMLClassifier = association.getLeft();
 		}
 
 		Collection<EObject> additionalContextObjects = Sets.newHashSet();

@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
@@ -19,7 +18,6 @@ import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -67,9 +65,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.COMMENT_LINK:
 				sequence_CommentLink(context, (CommentLink) semanticObject); 
 				return; 
-			case ClsPackage.DATA_TYPE_REFERENCE:
-				sequence_DataTypeReference(context, (DataTypeReference) semanticObject); 
-				return; 
 			case ClsPackage.GENERALIZATION:
 				sequence_Generalization(context, (Generalization) semanticObject); 
 				return; 
@@ -104,9 +99,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ClsPackage.PARAMETER:
 				sequence_Parameter(context, (de.cooperateproject.modeling.textual.cls.cls.Parameter) semanticObject); 
 				return; 
-			case ClsPackage.UML_TYPE_REFERENCE:
-				sequence_UMLTypeReference(context, (UMLTypeReference) semanticObject); 
-				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -133,9 +125,9 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         bidirectional?='bi'? 
 	 *         aggregationKind=AggregationKind 
-	 *         left=UMLTypeReference 
+	 *         left=[Classifier|FQN] 
 	 *         (referencedElement=[Association|ID] | referencedElement=[Association|NameString]) 
-	 *         right=UMLTypeReference 
+	 *         right=[Classifier|FQN] 
 	 *         properties=AssociationProperties? 
 	 *         comment=[Comment|CommentBody]?
 	 *     )
@@ -151,7 +143,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Property|ID] type=TypeReference)
+	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Property|ID] type=[Type|FQN])
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -215,7 +207,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CommentLink returns CommentLink
 	 *
 	 * Constraint:
-	 *     (left=UMLTypeReference comment=[Comment|CommentBody])
+	 *     (left=[Classifier|FQN] comment=[Comment|CommentBody])
 	 */
 	protected void sequence_CommentLink(ISerializationContext context, CommentLink semanticObject) {
 		if (errorAcceptor != null) {
@@ -225,27 +217,8 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.COMMENTABLE__COMMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getCommentLinkAccess().getLeftUMLTypeReferenceParserRuleCall_0_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getCommentLinkAccess().getLeftClassifierFQNParserRuleCall_0_0_1(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getCommentLinkAccess().getCommentCommentCommentBodyParserRuleCall_2_0_1(), semanticObject.getComment());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypeReference returns DataTypeReference
-	 *     DataTypeReference returns DataTypeReference
-	 *
-	 * Constraint:
-	 *     type=PrimitiveType
-	 */
-	protected void sequence_DataTypeReference(ISerializationContext context, DataTypeReference semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.DATA_TYPE_REFERENCE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.DATA_TYPE_REFERENCE__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getDataTypeReferenceAccess().getTypePrimitiveTypeEnumRuleCall_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -256,7 +229,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Generalization returns Generalization
 	 *
 	 * Constraint:
-	 *     (left=UMLTypeReference right=UMLTypeReference)
+	 *     (left=[Classifier|FQN] right=[Classifier|FQN])
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		if (errorAcceptor != null) {
@@ -266,8 +239,8 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getGeneralizationAccess().getRightUMLTypeReferenceParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftClassifierFQNParserRuleCall_0_0_1(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getGeneralizationAccess().getRightClassifierFQNParserRuleCall_2_0_1(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -278,7 +251,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Implementation returns Implementation
 	 *
 	 * Constraint:
-	 *     (left=UMLTypeReference right=UMLTypeReference)
+	 *     (left=[Classifier|FQN] right=[Classifier|FQN])
 	 */
 	protected void sequence_Implementation(ISerializationContext context, Implementation semanticObject) {
 		if (errorAcceptor != null) {
@@ -288,8 +261,8 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getImplementationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getImplementationAccess().getRightUMLTypeReferenceParserRuleCall_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getImplementationAccess().getLeftClassifierFQNParserRuleCall_0_0_1(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getImplementationAccess().getRightClassifierFQNParserRuleCall_2_0_1(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -316,7 +289,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     MemberEnd returns MemberEnd
 	 *
 	 * Constraint:
-	 *     (type=UMLTypeReference referencedElement=[Property|ID]? cardinality=Cardinality? navigable?='<'?)
+	 *     (type=[Classifier|FQN] referencedElement=[Property|ID]? cardinality=Cardinality? navigable?='<'?)
 	 */
 	protected void sequence_MemberEnd(ISerializationContext context, MemberEnd semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -336,7 +309,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         final?='final'? 
 	 *         referencedElement=[Operation|ID] 
 	 *         (parameters+=Parameter parameters+=Parameter*)* 
-	 *         type=TypeReference?
+	 *         type=[Type|FQN]?
 	 *     )
 	 */
 	protected void sequence_Method(ISerializationContext context, Method semanticObject) {
@@ -392,7 +365,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Parameter|ID] type=TypeReference)
+	 *     (visibility=Visibility? static?='static'? final?='final'? referencedElement=[Parameter|ID] type=[Type|FQN])
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -408,25 +381,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Package semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TypeReference returns UMLTypeReference
-	 *     UMLTypeReference returns UMLTypeReference
-	 *
-	 * Constraint:
-	 *     type=[Type|FQN]
-	 */
-	protected void sequence_UMLTypeReference(ISerializationContext context, UMLTypeReference semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeFQNParserRuleCall_0_1(), semanticObject.getType());
-		feeder.finish();
 	}
 	
 	

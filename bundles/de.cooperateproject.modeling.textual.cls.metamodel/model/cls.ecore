@@ -66,14 +66,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="importingNamespace" lowerBound="1"
         eType="#//Package" eOpposite="#//Package/packageImports"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeReference" abstract="true" eSuperTypes="#//Element"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataTypeReference" eSuperTypes="#//TypeReference">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" unique="false" lowerBound="1"
-        eType="#//PrimitiveType"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UMLTypeReference" eSuperTypes="#//TypeReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UMLReferencingElement" abstract="true">
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
@@ -172,8 +164,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="final" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeReference"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
     <eGenericSuperTypes eClassifier="#//NamedElement">
       <eTypeArguments eTypeParameter="#//Property/T"/>
     </eGenericSuperTypes>
@@ -217,10 +208,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true" interface="true"
       eSuperTypes="#//PackageableElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//UMLTypeReference"
-        containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//UMLTypeReference"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association">
     <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type">
@@ -245,7 +234,7 @@
         eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"
         changeable="false" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="org.eclipse.uml2.uml.Type special = getLeft().getType();&#xD;&#xA;org.eclipse.uml2.uml.Type general = getRight().getType();&#xD;&#xA;&#xD;&#xA;if (special instanceof org.eclipse.uml2.uml.Classifier) {&#xD;&#xA;&#x9;org.eclipse.uml2.uml.Classifier specialClassifier = (org.eclipse.uml2.uml.Classifier)special;&#xD;&#xA;&#x9;return specialClassifier.getGeneralizations().stream().filter(g -> g.getGeneral() == general).findFirst().orElse(null);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return null;"/>
+        <details key="get" value="org.eclipse.uml2.uml.Type special = getLeft();&#xD;&#xA;org.eclipse.uml2.uml.Type general = getRight();&#xD;&#xA;&#xD;&#xA;if (special instanceof org.eclipse.uml2.uml.Classifier) {&#xD;&#xA;&#x9;org.eclipse.uml2.uml.Classifier specialClassifier = (org.eclipse.uml2.uml.Classifier)special;&#xD;&#xA;&#x9;return specialClassifier.getGeneralizations().stream().filter(g -> g.getGeneral() == general).findFirst().orElse(null);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return null;"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -254,7 +243,7 @@
         eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="org.eclipse.uml2.uml.Type implementor = getLeft().getType();&#xD;&#xA;org.eclipse.uml2.uml.Type contract = getRight().getType();&#xD;&#xA;&#xD;&#xA;if (implementor instanceof org.eclipse.uml2.uml.BehavioredClassifier) {&#xD;&#xA;&#x9;org.eclipse.uml2.uml.BehavioredClassifier implementingClassifier = (org.eclipse.uml2.uml.BehavioredClassifier)implementor;&#xD;&#xA;&#x9;return implementingClassifier.getInterfaceRealizations().stream().filter(r -> r.getContract() == contract).findFirst().orElse(null);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return null;"/>
+        <details key="get" value="org.eclipse.uml2.uml.Type implementor = getLeft();&#xD;&#xA;org.eclipse.uml2.uml.Type contract = getRight();&#xD;&#xA;&#xD;&#xA;if (implementor instanceof org.eclipse.uml2.uml.BehavioredClassifier) {&#xD;&#xA;&#x9;org.eclipse.uml2.uml.BehavioredClassifier implementingClassifier = (org.eclipse.uml2.uml.BehavioredClassifier)implementor;&#xD;&#xA;&#x9;return implementingClassifier.getInterfaceRealizations().stream().filter(r -> r.getContract() == contract).findFirst().orElse(null);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return null;"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -276,11 +265,10 @@
     </eOperations>
     <eOperations name="getCommentedElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="if (getLeft() instanceof &lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>) {&#xD;&#xA;&#x9;return ((&lt;%de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference%>)getLeft()).getType();&#xD;&#xA;}&#xD;&#xA;throw new IllegalStateException(&quot;Internal error in determining commented UML element.&quot;);"/>
+        <details key="body" value="return getLeft();"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//UMLTypeReference"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationProperties" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalityLeft" eType="#//Cardinality"
@@ -340,12 +328,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="MemberEnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cardinality" eType="#//Cardinality"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//UMLTypeReference"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
-        eType="#//MultiAssociation" eOpposite="#//MultiAssociation/connectorEnds"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="navigable" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="association" eType="#//MultiAssociation"
+        eOpposite="#//MultiAssociation/connectorEnds"/>
     <eGenericSuperTypes eClassifier="#//NamedElementOptional">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </eGenericSuperTypes>

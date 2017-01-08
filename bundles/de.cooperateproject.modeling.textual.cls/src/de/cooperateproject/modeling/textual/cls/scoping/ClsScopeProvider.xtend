@@ -16,8 +16,9 @@ import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
 import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased
+import de.cooperateproject.modeling.textual.cls.cls.Package
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch
 import java.util.Set
 import org.eclipse.emf.ecore.EClass
@@ -34,7 +35,6 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.scoping.impl.FilteringScope
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 
 /**
  * This class contains custom scoping description.
@@ -91,6 +91,15 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 			}
 		}
 		
+		override casePackage(Package object) {
+			if (reference == ClsPackage.eINSTANCE.typedConnector_Left || reference == ClsPackage.eINSTANCE.typedConnector_Right) {
+				return #{UMLPackage.Literals.CLASS, UMLPackage.Literals.INTERFACE}.filterScope
+			}
+			if (reference == ClsPackage.Literals.COMMENT_LINK__LEFT) {
+				return #{UMLPackage.Literals.CLASS, UMLPackage.Literals.INTERFACE}.filterScope
+			}
+		}
+		
 		override caseAssociation(Association association) {
 			if (reference == ClsPackage.Literals.COMMENTABLE__COMMENT) {
 				return UMLPackage.Literals.COMMENT.filterScope([(EObjectOrProxy as Comment).annotatedElements.contains(association.referencedElement)])
@@ -99,10 +108,8 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 		
 		override caseCommentLink(CommentLink commentLink) {
 			if (reference == ClsPackage.Literals.COMMENTABLE__COMMENT) {
-				if (commentLink.left instanceof UMLTypeReference) {
-					val annotatedType = (commentLink.left as UMLTypeReference).type
-					return UMLPackage.Literals.COMMENT.filterScope([(EObjectOrProxy as Comment).annotatedElements.contains(annotatedType)])
-				}
+				val annotatedType = commentLink.left
+				return UMLPackage.Literals.COMMENT.filterScope([(EObjectOrProxy as Comment).annotatedElements.contains(annotatedType)])
 			}
 		}
 
@@ -117,9 +124,9 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 				val association = properties.association
 				var Classifier wantedType
 				if (ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT == reference) {
-					wantedType = association?.left?.type as Classifier
+					wantedType = association?.left
 				} else if (ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT == reference) {
-					wantedType = association?.right?.type as Classifier
+					wantedType = association?.right
 				} else {
 					return null
 				}
@@ -130,21 +137,21 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 		
 		override caseMemberEnd(MemberEnd memberEnd) {
 			if (reference == ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT) {
-				return UMLPackage.Literals.PROPERTY.filterScope[(EObjectOrProxy as Property).type == memberEnd.type.type]
+				return UMLPackage.Literals.PROPERTY.filterScope[(EObjectOrProxy as Property).type == memberEnd.type]
 			}
 		}
 		
-		override caseUMLTypeReference(UMLTypeReference typeRef) {
-			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
-				val container = typeRef.eContainer
-				if (container instanceof MemberEnd) {
-					return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION)
-				}
-			}
-		}
+//		override caseUMLTypeReference(UMLTypeReference typeRef) {
+//			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
+//				val container = typeRef.eContainer
+//				if (container instanceof MemberEnd) {
+//					return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION)
+//				}
+//			}
+//		}
 		
 		override caseMultiAssociation(MultiAssociation multiAssociation) {
-			if (reference == ClsPackage.Literals.UML_TYPE_REFERENCE__TYPE) {
+			if (reference == ClsPackage.Literals.MEMBER_END__TYPE) {
 				return UMLPackage.Literals.CLASSIFIER.filterScope.filterScopeIgnoreType(UMLPackage.Literals.ASSOCIATION)
 			}
 		}
@@ -166,7 +173,11 @@ class ClsScopeProvider extends AbstractDeclarativeScopeProvider {
 		}
 		
 		private def filterScope(EClass clazz) {
-			return new FilteringScope(baseScope, [EcoreUtil2.isAssignableFrom(clazz, EObjectOrProxy.eClass)])
+			return #{clazz}.filterScope
+		}
+		
+		private def filterScope(Set<EClass> classes) {
+			return new FilteringScope(baseScope, [o | classes.exists[c | EcoreUtil2.isAssignableFrom(c, o.EObjectOrProxy.eClass)]])
 		}
 
 		private def filterScope(EClass clazz, EObject container) {

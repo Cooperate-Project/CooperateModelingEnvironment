@@ -106,11 +106,8 @@ when {self.mappingOperation.name = "attributeToShape"}
 {
 	var attributeShape := self.getResult().modelElement;
 	var attribute := self.getSelf().modelElement.oclAsType(cls::Attribute);
-	var umlType := attributeShape.oclAsType(notation::Shape).element.oclAsType(uml::TypedElement).type;
 	
 	result += new TraceRecord("nodeToProperty", "Node", attributeShape, "Attribute", attribute.eobject());	
-	var typeRecords := umlType.map typeToTypeReference(attribute.type);
-	result += if typeRecords->oclIsInvalid() then object OrderedSet(trace::TraceRecord){} else typeRecords endif;
 }
 
 mapping trace::TraceRecord::traceRecordShapeOperation() : List(trace::TraceRecord)
@@ -119,20 +116,14 @@ when {self.mappingOperation.name = "methodToShape"}
 	var methodShape := self.getResult().modelElement;
 	var method := self.getSelf().modelElement.oclAsType(cls::Method);
 	var umlOperation := methodShape.oclAsType(notation::Shape).element.oclAsType(uml::Operation);
-	var umlType := umlOperation.type;
 	
 	result += new TraceRecord("nodeToOperation", "Node", methodShape, "Method", method.eobject());	
 	result += method.parameters->map traceRecordShapeOperation_Parameter()->flatten();
-	var typeRecords := umlType.map typeToTypeReference(method.type);
-	result += if typeRecords->oclIsInvalid() then object OrderedSet(trace::TraceRecord){} else typeRecords endif;
 }
 
 mapping cls::Parameter::traceRecordShapeOperation_Parameter() : List(trace::TraceRecord)
 {
 	result += new TraceRecord("umlParameterToParameter", "Parameter", self.referencedElement.eobject(), "Parameter", self.eobject());
-	var umlType := self.referencedElement.oclAsType(uml::TypedElement).type;
-	var typeRecords := umlType.map typeToTypeReference(self.type);
-	result += if typeRecords->oclIsInvalid() then object OrderedSet(trace::TraceRecord){} else typeRecords endif;
 }
 
 mapping trace::TraceRecord::traceRecordShapeMultiAssociation() : List(trace::TraceRecord)
@@ -163,9 +154,7 @@ when {self.mappingOperation.name = "generalizationToEdge"}
 	var edge := self.getResult().modelElement;
 	var umlGeneralization := edge.oclAsType(notation::Edge).element.oclAsType(uml::Generalization);
 
-	result += createEdgeTraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", connector.eobject());
-	result += umlGeneralization.specific.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
-	result += umlGeneralization.general.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));	
+	result += createEdgeTraceRecord("edgeToGeneralization", "Edge", edge, "Generalization", connector.eobject());	
 }
 
 mapping trace::TraceRecord::traceRecordEdgeImplementation() : List(trace::TraceRecord)
@@ -176,8 +165,6 @@ when {self.mappingOperation.name = "implementationToEdge"}
 	var umlImplementation := edge.oclAsType(notation::Edge).element.oclAsType(uml::InterfaceRealization);
 
 	result += createEdgeTraceRecord("edgeToImplementation", "Edge", edge, "Implementation", connector.eobject());
-	result += umlImplementation.implementingClassifier.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.left.oclAsType(cls::UMLTypeReference));
-	result += umlImplementation.contract.oclAsType(uml::Type).map typeToTypeReference_Classifier(connector.right.oclAsType(cls::UMLTypeReference));	
 }
 
 mapping trace::TraceRecord::traceRecordEdgeRegularAssociation() : List(trace::TraceRecord)
@@ -192,8 +179,6 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	var rightElement := umlAssociation.memberEnd->at(aggregatingIndex);
 
 	result += createEdgeTraceRecord("edgeToRegularAssociation", "Edge", edge, "Association", connector.eobject());
-	result += leftElement.type.map typeToTypeReference2_Classifier(connector.left.oclAsType(cls::UMLTypeReference), regularIndex);
-	result += rightElement.type.map typeToTypeReference2_Classifier(connector.right.oclAsType(cls::UMLTypeReference), aggregatingIndex);
 	
 	// association properties
 	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Edge", edge.eobject(), "AssociationProperties", connector.properties.eobject());
@@ -208,10 +193,8 @@ when {self.mappingOperation.name = "commentableToEdge" and self.getSelf().modelE
 {
 	var connector := self.getSelf().modelElement.oclAsType(cls::CommentLink);
 	var edge := self.getResult().modelElement;
-	var typeReference := connector.left.oclAsType(cls::UMLTypeReference);
 	
 	result += createEdgeTraceRecord("edgeToCommentLink", "Edge", edge, "CommentLink", connector.eobject());
-	result += typeReference.type.map typeToTypeReference_Classifier(typeReference);
 }
 
 mapping trace::TraceRecord::traceRecordEdgeMemberEnd() : List(trace::TraceRecord)
@@ -220,11 +203,9 @@ when {self.mappingOperation.name = "connectorEndToEdge"}
 	var memberEnd := self.getSelf().modelElement.oclAsType(cls::MemberEnd);
 	var edge := self.getResult().modelElement.oclAsType(notation::Connector);
 	var umlProperty := edge.styles->selectByKind(notation::EObjectValueStyle)->any(true).eObjectValue;
-	var typeReference := memberEnd.type;
 	
 	result += new TraceRecord("edgeToMemberEnd", "Edge", edge.eobject(), "MemberEnd", memberEnd.eobject());
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", umlProperty, "Cardinality", memberEnd.cardinality.eobject());
-	result += typeReference.type.map typeToTypeReference_Classifier(typeReference);
 }
 
 mapping trace::TraceRecord::traceRecordEdgePackageImport() : List(trace::TraceRecord)
@@ -234,70 +215,6 @@ when {self.mappingOperation.name = "packageImportToEdge"}
 	var edge := self.getResult().modelElement;
 	
 	result += new TraceRecord("edgeToPackageImport", "Edge", edge, "PackageImport", packageImport);
-}
-
-
-/*
-=============================================
-                Inner Mappings            
-=============================================
-
-General notes
-- only call these mappings from within other mappings
-
-*/
-
-
-mapping uml::Type::typeToTypeReference(typeReference : cls::TypeReference) : List(trace::TraceRecord)
-{
-	var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
-	var parentRecord := new TraceRecord("typeToTypeReference", "Type", self.eobject(), "TypeReference", typeReference.eobject());
-	parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
-	result += parentRecord;
-	
-	result += self.map typeToTypeReference_Primitive(typeReference);
-	result += self.map typeToTypeReference_Classifier(typeReference);
-}
-
-mapping uml::Type::typeToTypeReference_Primitive(typeReference : cls::TypeReference) : trace::TraceRecord
-when {self.oclIsKindOf(uml::PrimitiveType)}
-{
-	init {
-		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
-		var parentRecord := new TraceRecord("typeToPrimitiveTypeReference", "Type", self.eobject(), "DataTypeReference", typeReference.eobject());
-		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
-		result := parentRecord;
-	}
-}
-
-mapping uml::Type::typeToTypeReference_Classifier(typeReference : cls::TypeReference) : trace::TraceRecord
-when {not self.oclIsKindOf(uml::PrimitiveType)}
-{
-	init {
-		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
-		var parentRecord := new TraceRecord("typeToUMLTypeReference", "Type", self.eobject(), "UMLTypeReference", typeReference.eobject());
-		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
-		result := parentRecord;
-	}
-}
-
-mapping uml::Type::typeToTypeReference2_Classifier(typeReference : cls::TypeReference, discriminator : Integer) : trace::TraceRecord
-when {not self.oclIsKindOf(uml::PrimitiveType)}
-{
-	init {
-		var typedElement := typeReference.oclAsType(ecore::EObject).eContainer();
-		var parentRecord := new TraceRecord("typeToUMLTypeReference2", "Type", self.eobject(), "UMLTypeReference", typeReference.eobject());
-		parentRecord.parameters.parameters += new trace::VarParameterValue("parent", "OclAny", typedElement);
-		parentRecord.parameters.parameters += object trace::VarParameterValue{
-			name := "discriminator";
-			type := "OclAny";
-			value := object trace::EValue{
-				primitiveValue := discriminator.toString();
-				collectionType := "Integer";
-			}
-		};
-		result := parentRecord;
-	}
 }
 
 

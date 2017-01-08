@@ -17,6 +17,9 @@ public class CooperateNamingBindingsFragment extends Xtend2GeneratorFragment {
 			.addTypeToType(
 			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNameProvider",
 			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider")
+			.addTypeToType(
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector",
+			  "de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector")
 			.getBindings();
 	}
 	

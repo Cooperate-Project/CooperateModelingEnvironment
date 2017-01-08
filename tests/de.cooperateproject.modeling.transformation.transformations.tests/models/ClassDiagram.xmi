@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.cooperateproject.de/modeling/textual/cls/Cls ../../de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore" title="Class Diagram">
+<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
   <rootPackage xsi:type="cls:Package">
-  	<referencedElement xsi:type="uml:Package" href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
+  	<referencedElement xsi:type="uml:Model" href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
   <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
     <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_sLlvoEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="cls:DataTypeReference" type="STRING"/>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </members>
     <members xsi:type="cls:Method">
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_WwgHEEKSEeaXCq-9LXQNWQ"/>
       <parameters visibility="PROTECTED">
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_Z8Kx0EKSEeaXCq-9LXQNWQ"/>
-        <type xsi:type="cls:DataTypeReference"/>
+        <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       </parameters>
     </members>
   </classifiers>
@@ -20,14 +20,14 @@
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
     <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_oNOcoEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="cls:DataTypeReference" type="DOUBLE"/>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
     </members>
   </classifiers>
   <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
     <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_5_7pQEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="cls:DataTypeReference"/>
+      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </members>
   </classifiers>
   <classifiers xsi:type="cls:Interface">
@@ -36,7 +36,7 @@
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_Qoso0HjsEea7c9xs28iX1A"/>
       <parameters>
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_WCYDQHjsEea7c9xs28iX1A"/>
-        <type xsi:type="cls:DataTypeReference"/>
+        <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       </parameters>
     </members>
   </classifiers>
@@ -48,32 +48,22 @@
     <connectorEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
       <cardinality lowerBound="1" upperBound="1"/>
-      <type>
-        <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
-      </type>
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
     </connectorEnds>
     <connectorEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
       <cardinality lowerBound="1" upperBound="1"/>
-      <type>
-        <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
-      </type>
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
     </connectorEnds>
     <connectorEnds navigable="true">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
       <cardinality upperBound="1"/>
-      <type>
-        <type xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
-      </type>
+      <type xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
     </connectorEnds>
   </connectors>
   <connectors xsi:type="cls:Association" aggregationKind="COMPOSITION">
-    <left xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
-    </left>
-    <right xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
-    </right>
+    <left xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+    <right xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
     <comment href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
     <properties>
@@ -84,28 +74,16 @@
     </properties>
   </connectors>
   <connectors xsi:type="cls:Generalization">
-    <left xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
-    </left>
-    <right xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
-    </right>
+    <left xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
+    <right xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
   </connectors>
   <connectors xsi:type="cls:Implementation">
-    <left xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
-    </left>
-    <right xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Interface" href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
-    </right>
+    <left xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
+    <right xsi:type="uml:Interface" href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
   </connectors>
   <connectors xsi:type="cls:Association" aggregationKind="NONE" bidirectional="true">
-    <left xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
-    </left>
-    <right xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_a_o2UHnPEea_kLaSOi1rnw"/>
-    </right>
+    <left xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
+    <right xsi:type="uml:Class" href="ClassDiagram.uml#_a_o2UHnPEea_kLaSOi1rnw"/>
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_cPAzgHnPEea_kLaSOi1rnw"/>
     <properties>
       <cardinalityLeft lowerBound="0" upperBound="-1"/>
@@ -116,9 +94,7 @@
   </connectors>
   <connectors xsi:type="cls:CommentLink">
     <comment href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>
-    <left xsi:type="cls:UMLTypeReference">
-      <type xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
-    </left>
+    <left xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
   </connectors>
   </rootPackage>
 </cls:ClassDiagram>

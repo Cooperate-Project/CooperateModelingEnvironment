@@ -12,7 +12,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -28,10 +27,8 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -124,29 +121,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 				T1 result = casePackageImport(packageImport);
 				if (result == null) result = casePackageableElement(packageImport);
 				if (result == null) result = caseElement(packageImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.TYPE_REFERENCE: {
-				TypeReference typeReference = (TypeReference)theEObject;
-				T1 result = caseTypeReference(typeReference);
-				if (result == null) result = caseElement(typeReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.DATA_TYPE_REFERENCE: {
-				DataTypeReference dataTypeReference = (DataTypeReference)theEObject;
-				T1 result = caseDataTypeReference(dataTypeReference);
-				if (result == null) result = caseTypeReference(dataTypeReference);
-				if (result == null) result = caseElement(dataTypeReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ClsPackage.UML_TYPE_REFERENCE: {
-				UMLTypeReference umlTypeReference = (UMLTypeReference)theEObject;
-				T1 result = caseUMLTypeReference(umlTypeReference);
-				if (result == null) result = caseTypeReference(umlTypeReference);
-				if (result == null) result = caseElement(umlTypeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -444,51 +418,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
 	 * @generated
 	 */
 	public T1 casePackageImport(PackageImport object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseTypeReference(TypeReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseDataTypeReference(DataTypeReference object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>UML Type Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>UML Type Reference</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T1 caseUMLTypeReference(UMLTypeReference object) {
 		return null;
 	}
 

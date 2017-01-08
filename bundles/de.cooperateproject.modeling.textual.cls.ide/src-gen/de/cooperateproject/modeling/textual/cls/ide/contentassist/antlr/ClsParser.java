@@ -40,7 +40,6 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassifierAccess().getAlternatives(), "rule__Classifier__Alternatives");
 					put(grammarAccess.getClassAccess().getAlternatives_3(), "rule__Class__Alternatives_3");
 					put(grammarAccess.getInterfaceAccess().getAlternatives_2(), "rule__Interface__Alternatives_2");
-					put(grammarAccess.getTypeReferenceAccess().getAlternatives(), "rule__TypeReference__Alternatives");
 					put(grammarAccess.getMemberAccess().getAlternatives(), "rule__Member__Alternatives");
 					put(grammarAccess.getConnectorAccess().getAlternatives(), "rule__Connector__Alternatives");
 					put(grammarAccess.getAssociationAccess().getAlternatives_3(), "rule__Association__Alternatives_3");
@@ -105,8 +104,6 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInterfaceAccess().getAliasExpressionAssignment_2_0_2(), "rule__Interface__AliasExpressionAssignment_2_0_2");
 					put(grammarAccess.getInterfaceAccess().getReferencedElementAssignment_2_1(), "rule__Interface__ReferencedElementAssignment_2_1");
 					put(grammarAccess.getInterfaceAccess().getMembersAssignment_3_1(), "rule__Interface__MembersAssignment_3_1");
-					put(grammarAccess.getDataTypeReferenceAccess().getTypeAssignment(), "rule__DataTypeReference__TypeAssignment");
-					put(grammarAccess.getUMLTypeReferenceAccess().getTypeAssignment(), "rule__UMLTypeReference__TypeAssignment");
 					put(grammarAccess.getAttributeAccess().getVisibilityAssignment_1(), "rule__Attribute__VisibilityAssignment_1");
 					put(grammarAccess.getAttributeAccess().getStaticAssignment_2(), "rule__Attribute__StaticAssignment_2");
 					put(grammarAccess.getAttributeAccess().getFinalAssignment_3(), "rule__Attribute__FinalAssignment_3");

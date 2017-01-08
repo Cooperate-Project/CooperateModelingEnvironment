@@ -170,14 +170,14 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 	_static := operation.isStatic;
 	final := operation.isLeaf;
 	_abstract := operation.isAbstract;
-	type := operation.type.map typeToTypeReference(result);
+	type := operation.type;
 	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
 	visibility := self.getVisibility();
-	type := self.type.map typeToTypeReference(result);
+	type := self.type;
 }
 
 mapping notation::Node::nodeToProperty() : cls::Attribute {
@@ -186,31 +186,7 @@ mapping notation::Node::nodeToProperty() : cls::Attribute {
 	visibility := prop.getVisibility();
 	_static := prop.isStatic;
 	final := prop.isLeaf;
-	type := prop.type.map typeToTypeReference(result);
-}
-
-mapping uml::Type::typeToTypeReference(parent : OclAny) : cls::TypeReference 
-disjuncts uml::Type::typeToPrimitiveTypeReference, uml::Type::typeToUMLTypeReference 
-{
-}
-
-
-mapping uml::Type::typeToPrimitiveTypeReference(parent : OclAny) : cls::DataTypeReference 
-	when {self.oclIsKindOf(uml::PrimitiveType)}
-{
-	type := self.oclAsType(uml::PrimitiveType).convert();
-}
-
-mapping uml::Type::typeToUMLTypeReference(parent : OclAny) : cls::UMLTypeReference
-	when {not self.oclIsKindOf(uml::PrimitiveType)}
-{
-	type := self;
-}
-
-mapping uml::Type::typeToUMLTypeReference2(parent : OclAny, discriminator : OclAny) : cls::UMLTypeReference
-	when {not self.oclIsKindOf(uml::PrimitiveType)}
-{
-	type := self;
+	type := prop.type;
 }
 
 mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
@@ -226,7 +202,7 @@ mapping notation::Edge::edgeToCommentLink(allEdges : OrderedSet(Edge)) : cls::Co
 {
 	var classifier := if self.source.element.oclIsKindOf(uml::Classifier) then self.source.element else self.target.element endif;
 	var umlComment := if self.source.element.oclIsKindOf(uml::Comment) then self.source.element else  self.target.element endif; 
-	left := classifier.oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
+	left := classifier.oclAsType(uml::Classifier);
 	comment := umlComment.oclAsType(uml::Comment);
 }
 
@@ -239,8 +215,8 @@ mapping notation::Edge::edgeToGeneralization(allEdges : OrderedSet(Edge)) : cls:
 	var association := self.element.oclAsType(uml::Generalization);
 	assert error (association.source->size() = 1 and association.target->size() = 1) with log ('Generalizations must of exactly one source and one target.', association);
 	
-	left := association.specific.map typeToUMLTypeReference(result);
-	right := association.general.map typeToUMLTypeReference(result);
+	left := association.specific;
+	right := association.general;
 }
 
 mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls::Implementation
@@ -252,8 +228,8 @@ mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls:
 	var association := self.element.oclAsType(uml::InterfaceRealization);
 	assert error (association.source->size() = 1 and association.target->size() = 1) with log ('Interface realizations must of exactly one source and one target.', association);
 	
-	left := association.implementingClassifier.map typeToUMLTypeReference(result);
-	right := association.contract.map typeToUMLTypeReference(result);
+	left := association.implementingClassifier;
+	right := association.contract;
 }
 
 mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : cls::Association
@@ -280,8 +256,8 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	
 	referencedElement := association;
 	aggregationKind := association.memberEnd->at(aggregatingIndex).aggregation.convert();
-	left := association.memberEnd->at(regularIndex).type.map typeToUMLTypeReference2(result, regularIndex);
-	right := association.memberEnd->at(aggregatingIndex).type.map typeToUMLTypeReference2(result, aggregatingIndex);
+	left := association.memberEnd->at(regularIndex).type.oclAsType(uml::Classifier);
+	right := association.memberEnd->at(aggregatingIndex).type.oclAsType(uml::Classifier);
 		bidirectional := association.memberEnd->select(e | not e.isNavigable())->isEmpty();
 	
 	properties := self.map edgeToAssociationProperties(regularIndex);
@@ -329,7 +305,7 @@ mapping notation::Node::nodeToCommentConnector() : cls::CommentLink
 	var commentElement := self.element.oclAsType(uml::Comment);
 	assert error (commentElement.annotatedElement->size() = 1) with log ("Comments must not comment more than one element.", commentElement);
 	
-	left := commentElement.annotatedElement->any(true).oclAsType(uml::Classifier).map typeToUMLTypeReference(result);
+	left := commentElement.annotatedElement->any(true).oclAsType(uml::Classifier);
 	comment := comment;
 }
 
@@ -352,7 +328,7 @@ mapping notation::Edge::edgeToMemberEnd() : cls::MemberEnd
 	var umlProperty := self.styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
 	referencedElement := if umlProperty.name != null then umlProperty else null endif;
 	cardinality := umlProperty.map multiplicityElementToCardinality();
-	type := umlProperty.type.map typeToUMLTypeReference(result);
+	type := umlProperty.type.oclAsType(uml::Classifier);
 	navigable := umlProperty.association.navigableOwnedEnd->includes(umlProperty);
 }
 

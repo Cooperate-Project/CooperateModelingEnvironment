@@ -7,12 +7,15 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -25,8 +28,8 @@ import org.eclipse.uml2.uml.Property;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getType <em>Type</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#isNavigable <em>Navigable</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.MemberEndImpl#getAssociation <em>Association</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,8 +80,8 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * @generated
 	 */
 	@Override
-	public UMLTypeReference getType() {
-		return (UMLTypeReference)eGet(ClsPackage.Literals.MEMBER_END__TYPE, true);
+	public Classifier getType() {
+		return (Classifier)eGet(ClsPackage.Literals.MEMBER_END__TYPE, true);
 	}
 
 	/**
@@ -87,28 +90,8 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	 * @generated
 	 */
 	@Override
-	public void setType(UMLTypeReference newType) {
+	public void setType(Classifier newType) {
 		eSet(ClsPackage.Literals.MEMBER_END__TYPE, newType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public MultiAssociation getAssociation() {
-		return (MultiAssociation)eGet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setAssociation(MultiAssociation newAssociation) {
-		eSet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, newAssociation);
 	}
 
 	/**
@@ -129,6 +112,26 @@ public class MemberEndImpl extends NamedElementOptionalImpl<Property> implements
 	@Override
 	public void setNavigable(boolean newNavigable) {
 		eSet(ClsPackage.Literals.MEMBER_END__NAVIGABLE, newNavigable);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MultiAssociation getAssociation() {
+		return (MultiAssociation)eGet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setAssociation(MultiAssociation newAssociation) {
+		eSet(ClsPackage.Literals.MEMBER_END__ASSOCIATION, newAssociation);
 	}
 
 	/**

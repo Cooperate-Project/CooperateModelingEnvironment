@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Connector</b></em>'.
