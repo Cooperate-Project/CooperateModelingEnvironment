@@ -1,86 +1,64 @@
 package de.cooperateproject.ui.diff.labeling;
 
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.jface.viewers.LabelProvider;
 
-import de.cooperateproject.modeling.textual.cls.cls.Attribute;
-import de.cooperateproject.modeling.textual.cls.cls.Class;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
-import de.cooperateproject.modeling.textual.cls.cls.Method;
-import de.cooperateproject.modeling.textual.cls.cls.Parameter;
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.ui.diff.internal.DiffTreeItem;
+import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.DataTypeReferenceLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
+import de.cooperateproject.ui.diff.labeling.itemlabels.UMLTypeReferenceLabel;
 
 
 public class DiffViewLabelProvider extends LabelProvider{
 	
+	private Map<String, SummaryItemLabelHandler> itemHandling = 
+	        new HashMap<String, SummaryItemLabelHandler>();
+
+	
+	public DiffViewLabelProvider() {
+		itemHandling.put("AttributeImpl", new AttributeLabel());
+		itemHandling.put("ClassImpl", new ClassLabel());
+		itemHandling.put("UMLTypeReferenceImpl", new UMLTypeReferenceLabel());
+		itemHandling.put("DataTypeReferenceImpl", new DataTypeReferenceLabel());
+		itemHandling.put("MethodImpl", new MethodLabel());
+		itemHandling.put("ParameterImpl", new ParameterLabel());
+		itemHandling.put("PackageImpl", new PackageLabel());
+		itemHandling.put("InterfaceImpl", new InterfaceLabel());
+		itemHandling.put("AssociationImpl", new AssociationLabel());
+		itemHandling.put("GeneralizationImpl", new GeneralizationLabel());
+		itemHandling.put("ImplementationImpl", new ImplementationLabel());
+		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
+	}
+	
+	
 	@Override
-	public String getText(Object pElement) {
-
-		if(!(pElement instanceof DiffTreeItem)){
-			return null;
-		}
-		
-		DiffTreeItem element = (DiffTreeItem)pElement;
-		String diff;
-		String elementName = "";
-		
-		if(element.getDiffKind() == null){
-			diff = "";
-		}else{
-			diff = element.getDiffKind().toString() + "- ";
-		}
-		
-		elementName = makeText(element.getEObject());
-	
-		return diff + elementName;
-
-	}
-	
-	private String makeText(EObject element){
+	public String getText(Object element) {
 		String ret = "";
-		if(element instanceof Class){
-			ret = makeTextClass((Class)element);
-		}else if(element instanceof Method){
-			ret = makeTextMethod((Method)element) + makeTextTypeReference(((Method) element).getType());
-		}else if(element instanceof Attribute){
-			ret = makeTextAttribute((Attribute)element) + makeTextTypeReference(((Attribute) element).getType());
+		if(element instanceof DiffTreeItem){
+			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getEObject().getClass().getSimpleName());
+			if(handlerClass != null){
+				if(((DiffTreeItem) element).getDiffKind() != null){
+					ret = ((DiffTreeItem) element).getDiffKind().toString()+ " - " + handlerClass.getClassText() + " " + handlerClass.getText(((DiffTreeItem) element).getEObject());
+				}
+				else{
+					ret = handlerClass.getClassText() + " " + handlerClass.getText(((DiffTreeItem) element).getEObject());
+				}
+				}
 		}
 		return ret;
 	}
 	
-	private String makeTextTypeReference(TypeReference ref) {
-		String ret = "";
-		if(ref != null){
-			if(ref instanceof DataTypeReference){
-				ret = ": " + ((DataTypeReference)ref).getType().getName();
-			}else if(ref instanceof UMLTypeReference){
-				ret = ":" + ((UMLTypeReference)ref).getType().getName();
-			}
-		}
-		
-		return ret;
-	}
-
-	private String makeTextClass(Class element){
-		return element.getName();
-	}
-	
-	private String makeTextAttribute(Attribute element){	
-			return element.getName();
-	}
-	
-	private String makeTextMethod(Method element){
-		String ret = "";
-		EList<Parameter> list = (EList<Parameter>) element.getParameters();
-		ret = ret + element.getName()+"(";
-		for(Parameter param: list){
-			ret = ret + param.getName()+": "+makeTextTypeReference(param.getType()) + ",";
-		}
-		return ret + ")";
-	}
-
 }

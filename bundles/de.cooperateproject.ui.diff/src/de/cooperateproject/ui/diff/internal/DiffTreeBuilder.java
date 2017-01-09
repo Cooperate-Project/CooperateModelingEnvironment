@@ -2,9 +2,11 @@ package de.cooperateproject.ui.diff.internal;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import de.cooperateproject.modeling.textual.cls.cls.Package;
+
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +19,12 @@ import java.util.List;
 public class DiffTreeBuilder {
 	
 	private Resource resource;
-	private List<SummaryItem> changedItems;
+	private List<SummaryItem> changes;
 	private HashMap<EObject, DiffTreeItem> tree;
 	
-	public DiffTreeBuilder(Resource pRes, List<SummaryItem> pChangedItems){
+	public DiffTreeBuilder(Resource pRes, List<SummaryItem> sumList){
 		resource = pRes;
-		changedItems = pChangedItems;
+		changes = sumList;
 		tree = new HashMap<EObject, DiffTreeItem>();
 	}
 	
@@ -37,7 +39,7 @@ public class DiffTreeBuilder {
 			DiffTreeItem temp = new DiffTreeItem(obj);
 			tree.put(obj, temp);
 			
-			if(obj instanceof Package){
+			if(obj instanceof ClassDiagram){
 				newResource = temp;
 			}
 		}
@@ -46,30 +48,28 @@ public class DiffTreeBuilder {
 		while(it.hasNext()){
 			EObject obj = it.next();
 			DiffTreeItem diffItem = tree.get(obj);
-			
 			for(EObject child: obj.eContents()){
 				diffItem.addChild(tree.get(child));
 			}
 
 		}
 		
-		for(SummaryItem item: changedItems){
-			if(item.getLeft() != null && item.getRight() == null){ //element was deleted
-				EObject deletedItem = item.getLeft();
-				
+		for(SummaryItem item: changes){
+			if(item.getDifferenceKind() == DifferenceKind.DELETE){ //element was deleted
+				EObject deletedItem = item.getRight();
 				if(tree.containsKey(deletedItem.eContainer())){
 					DiffTreeItem affectedParent = tree.get(deletedItem.eContainer());
 					DiffTreeItem newChild = new DiffTreeItem(deletedItem);
 					affectedParent.addChild(newChild);
 					addDeletedChildren(newChild);
-					newChild.setDiffKind(DiffKind.deleted);
+					newChild.setDiffKind(DifferenceKind.DELETE);
 				}
 			}
-			else if(item.getRight() != null){ //changed or added element
-				if(tree.containsKey(item.getRight())){ 
-					tree.get(item.getRight()).setDiffKind(item.getKind());
-				}else if(tree.containsKey(item.getLeft())){
-					tree.get(item.getLeft()).setDiffKind(item.getKind());
+			else if(item.getDifferenceKind() == DifferenceKind.ADD || item.getDifferenceKind() == DifferenceKind.CHANGE || item.getDifferenceKind() == DifferenceKind.MOVE){ //changed, moved or added element
+				if(tree.containsKey(item.getLeft())){ 
+					tree.get(item.getLeft()).setDiffKind(item.getDifferenceKind());
+				}else if(tree.containsKey(item.getRight())){
+					tree.get(item.getRight()).setDiffKind(item.getDifferenceKind());
 				}
 				
 			}
