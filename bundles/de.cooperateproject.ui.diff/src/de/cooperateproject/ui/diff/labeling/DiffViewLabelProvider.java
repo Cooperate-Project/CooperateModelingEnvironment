@@ -47,12 +47,11 @@ public class DiffViewLabelProvider extends LabelProvider{
 			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getEObject().getClass().getSimpleName());
 			if(handlerClass != null){
 				if(((DiffTreeItem) element).getDiffKind() != null){
-					ret = ((DiffTreeItem) element).getDiffKind().toString()+ " - " + handlerClass.getClassText() + " " + handlerClass.getText(((DiffTreeItem) element).getEObject());
+					ret = ((DiffTreeItem) element).getDiffKind().toString()+ " - ";
 				}
-				else{
-					ret = handlerClass.getClassText() + " " + handlerClass.getText(((DiffTreeItem) element).getEObject());
-				}
-				}
+				
+				ret = ret + handlerClass.getText(((DiffTreeItem) element).getEObject());
+			}
 		}
 		return ret;
 	}

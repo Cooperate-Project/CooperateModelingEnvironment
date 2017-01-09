@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 
 public class ClassDiagramLabel implements SummaryItemLabelHandler{
-	private final String classText = "ClassDiagram";
+	private final String classText = "classDiagram";
 
-	public String getText(EObject item ){
+	public String getText(EObject item){
 		return ((ClassDiagram)item).getTitle();
 	}
 
