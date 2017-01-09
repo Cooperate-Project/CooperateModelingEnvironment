@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 
 public class ImplementationLabel implements SummaryItemLabelHandler{
-	private final String classText = "Implementation";
+	private final String classText = "implementation";
 
-	public String getText(EObject item ){
+	public String getText(EObject item){
 		Implementation imp = (Implementation)item;
 		String left = imp.getLeft().getName();
 		String right = imp.getLeft().getName();

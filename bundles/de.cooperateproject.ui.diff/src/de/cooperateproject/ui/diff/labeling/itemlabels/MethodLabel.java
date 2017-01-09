@@ -7,14 +7,18 @@ import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 
 public class MethodLabel implements SummaryItemLabelHandler{
-	private final String classText = "Method";
+	private final String classText = "method";
 	private ParameterLabel paramLabel = new ParameterLabel();
 	
-	public String getText(EObject item ){
+	public String getText(EObject item){
 		Method method = (Method)item;
 		String type = ": " + method.getType().getName();
 		EList<Parameter> params = method.getParameters();
-		return method.getName() + "("+ paramsToString(params) +")" + type;
+		String isAbstract = "";
+		if(method.isAbstract()){
+			isAbstract = "abstract ";
+		}
+		return method.getVisibility().getName().toLowerCase() + " " + isAbstract + method.getName() + "("+ paramsToString(params) +")" + type;
 	}
 	
 	public String getClassText(){

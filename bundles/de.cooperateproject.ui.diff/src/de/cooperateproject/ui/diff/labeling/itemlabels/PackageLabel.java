@@ -5,10 +5,10 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
 
 public class PackageLabel implements SummaryItemLabelHandler{
-	private final String classText = "Package";
+	private final String classText = "package";
 
 	public String getText(EObject item){
-		return ((Package)item).getName();
+		return classText + " " + ((Package)item).getName();
 	}
 
 	public String getClassText(){

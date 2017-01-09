@@ -7,9 +7,9 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 
 public class AssociationLabel implements SummaryItemLabelHandler{
 	private AssociationPropertiesLabel propLabel = new AssociationPropertiesLabel();
-	private final String classText = "Association";
+	private final String classText = "association";
 
-	public String getText(EObject item ){
+	public String getText(EObject item){
 		Association ass = (Association)item;
 		String typeRefLeft = ass.getLeft().getName();
 		String typeRefRight = ass.getRight().getName();
@@ -23,7 +23,7 @@ public class AssociationLabel implements SummaryItemLabelHandler{
 	private class AssociationPropertiesLabel implements SummaryItemLabelHandler {
 		private final String classText = "AssociationProperties";
 
-		public String getText(EObject item ){
+		public String getText(EObject item){
 			AssociationProperties ass = (AssociationProperties)item;
 			
 			String left = ass.getCardinalityLeft().getLowerBound() + ".." + ass.getCardinalityLeft().getUpperBound(); //TODO: Look what UpperBound has as value for "nothing" and "*"

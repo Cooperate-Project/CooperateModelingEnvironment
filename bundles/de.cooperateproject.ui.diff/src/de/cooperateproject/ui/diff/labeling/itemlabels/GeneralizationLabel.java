@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 
 public class GeneralizationLabel implements SummaryItemLabelHandler{
-	private final String classText = "Generalization";
+	private final String classText = "generalization";
 
-	public String getText(EObject item ){
+	public String getText(EObject item){
 		Generalization gen = (Generalization)item;
 		String left = gen.getLeft().getName();
 		String right = gen.getRight().getName();
