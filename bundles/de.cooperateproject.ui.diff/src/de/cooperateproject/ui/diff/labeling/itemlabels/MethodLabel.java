@@ -12,7 +12,13 @@ public class MethodLabel implements SummaryItemLabelHandler{
 	
 	public String getText(EObject item){
 		Method method = (Method)item;
-		String type = ": " + method.getType().getName();
+		
+		String type = ": "; 
+		if(method.getType() != null){
+			type = type + method.getType().getName();
+		}else{
+			type = type + "void";
+		}
 		EList<Parameter> params = method.getParameters();
 		String isAbstract = "";
 		if(method.isAbstract()){
