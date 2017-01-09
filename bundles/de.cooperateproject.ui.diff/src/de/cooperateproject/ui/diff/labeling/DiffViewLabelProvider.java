@@ -11,7 +11,6 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.DataTypeReferenceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
@@ -19,7 +18,6 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
-import de.cooperateproject.ui.diff.labeling.itemlabels.UMLTypeReferenceLabel;
 
 
 public class DiffViewLabelProvider extends LabelProvider{
@@ -31,8 +29,6 @@ public class DiffViewLabelProvider extends LabelProvider{
 	public DiffViewLabelProvider() {
 		itemHandling.put("AttributeImpl", new AttributeLabel());
 		itemHandling.put("ClassImpl", new ClassLabel());
-		itemHandling.put("UMLTypeReferenceImpl", new UMLTypeReferenceLabel());
-		itemHandling.put("DataTypeReferenceImpl", new DataTypeReferenceLabel());
 		itemHandling.put("MethodImpl", new MethodLabel());
 		itemHandling.put("ParameterImpl", new ParameterLabel());
 		itemHandling.put("PackageImpl", new PackageLabel());

@@ -2,6 +2,7 @@ package de.cooperateproject.ui.diff.labeling;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -12,7 +13,6 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.DataTypeReferenceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
@@ -20,7 +20,6 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
-import de.cooperateproject.ui.diff.labeling.itemlabels.UMLTypeReferenceLabel;
 
 /**
  * Label Provider for a table viewer which lists all changes in a commit 
@@ -36,8 +35,6 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	public SummaryLabelProvider() {
 		itemHandling.put("AttributeImpl", new AttributeLabel());
 		itemHandling.put("ClassImpl", new ClassLabel());
-		itemHandling.put("UMLTypeReferenceImpl", new UMLTypeReferenceLabel());
-		itemHandling.put("DataTypeReferenceImpl", new DataTypeReferenceLabel());
 		itemHandling.put("MethodImpl", new MethodLabel());
 		itemHandling.put("ParameterImpl", new ParameterLabel());
 		itemHandling.put("PackageImpl", new PackageLabel());

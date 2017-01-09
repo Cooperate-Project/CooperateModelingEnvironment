@@ -6,14 +6,13 @@ import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 
 public class AssociationLabel implements SummaryItemLabelHandler{
-	private UMLTypeReferenceLabel refLabel = new UMLTypeReferenceLabel();
 	private AssociationPropertiesLabel propLabel = new AssociationPropertiesLabel();
 	private final String classText = "Association";
 
 	public String getText(EObject item ){
 		Association ass = (Association)item;
-		String typeRefLeft = refLabel.getText(ass.getLeft());
-		String typeRefRight = refLabel.getText(ass.getRight());
+		String typeRefLeft = ass.getLeft().getName();
+		String typeRefRight = ass.getRight().getName();
 		return typeRefLeft + ass.getName() + typeRefRight + propLabel.getText(ass.getProperties());
 	}
 
