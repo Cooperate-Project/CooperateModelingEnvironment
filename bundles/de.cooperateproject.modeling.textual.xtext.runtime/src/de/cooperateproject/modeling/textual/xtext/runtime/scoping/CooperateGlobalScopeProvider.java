@@ -13,7 +13,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
@@ -31,6 +33,8 @@ import com.google.inject.Inject;
 
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
+	private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
+	
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
 
@@ -40,6 +44,9 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 	@Inject
 	private IUMLUriFinder umlUriFinder;
 
+	@Inject
+	private IUMLPrimitiveTypeSelector umlPrimitiveTypeSelector;
+	
 	@Override
 	protected IScope getScope(Resource resource, boolean ignoreCase, EClass type,
 			Predicate<IEObjectDescription> predicate) {
@@ -56,33 +63,45 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider {
 
 	private IScope getScopeFromUMLResource(Resource umlResource, boolean ignoreCase, EClass type,
 			Predicate<IEObjectDescription> predicate) {
+		Stream<EObject> umlResourceElements = null;
 		if (umlResource instanceof CDOResource) {
-			return getScopeFromUMLResource((CDOResource) umlResource, ignoreCase, type, predicate);
+			umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, ignoreCase, type);
 		}
+		umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
+		Stream<EObject> umlPrimitiveElements = getPrimitiveTypesIfRequested(umlResource, type);
+		
+		Stream<EObject> scopeElements = Stream.concat(umlPrimitiveElements, umlResourceElements);
+		return createScopeForStream(scopeElements, predicate);
+	}
 
+	private Stream<EObject> getPrimitiveTypesIfRequested(Resource umlResource, EClass type) {
+		Resource umlPrimitives = umlResource.getResourceSet().getResource(UML_PRIMITIVE_TYPES_URI, true);
+		return getScopeElementsFromUMLResource(umlPrimitives, type).filter(PrimitiveType.class::isInstance)
+				.map(PrimitiveType.class::cast).filter(umlPrimitiveTypeSelector::isSelected)
+				.map(EObject.class::cast);
+	}
+
+	private Stream<EObject> getScopeElementsFromUMLResource(Resource umlResource, EClass type) {
 		Iterable<EObject> allContents = Iterables.concat(umlResource.getContents(),
 				() -> umlResource.getContents().get(0).eAllContents());
 		Stream<EObject> allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
 		allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
-		try {
-			Stream<EObject> results = allContentsStream.filter(type::isInstance);
-			return createScopeForStream(results, predicate);
-		} finally {
-			allContentsStream.close();
-		}
+		Stream<EObject> results = allContentsStream.filter(type::isInstance);
+		return results;
 	}
+	
+	
 
-	private IScope getScopeFromUMLResource(CDOResource umlResource, boolean ignoreCase, EClass type,
-			Predicate<IEObjectDescription> predicate) {
+	private Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, boolean ignoreCase, EClass type) {
 		CDOView view = umlResource.cdoView();
 		if (view == null) {
-			return IScope.NULLSCOPE;
+			return Stream.empty();
 		}
 		// TODO this only returns elements with a clean state, so save is
 		// required. We should find a better way...
 		Collection<EObject> results = view.queryInstances(type).stream().filter(o -> o.eResource() == umlResource)
 				.collect(Collectors.toList());
-		return createScopeForStream(results.stream(), predicate);
+		return results.stream();
 	}
 
 	private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {

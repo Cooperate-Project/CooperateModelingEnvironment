@@ -16,13 +16,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.spi.cdo.DefaultCDOMerger;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.ui.IEditorInput;
 
 import de.cooperateproject.cdo.merge.MergeHelper;
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
-import de.cooperateproject.cdo.util.utils.CDOResourceSet;
+import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
@@ -102,9 +101,9 @@ public class TransformationManager {
 	
 	private void triggerTransformation(URI uri) throws IOException, CommitException {
 		if (!uri.scheme().startsWith(CDOProtocolConstants.PROTOCOL_NAME)) {
-			triggerTransformationRegular(uri);
+		    triggerTransformationRegular(uri);
 		} else {
-			triggerTransformationCDO(uri);
+            triggerTransformationCDO(uri);
 		}
 	}
 	
@@ -115,7 +114,8 @@ public class TransformationManager {
 	
 	private void triggerTransformationCDO(URI uri) throws IOException, CommitException {
 		CDOTransaction transaction = cdoCheckout.openTransaction();
-		ResourceSet rs = new CDOResourceSet(transaction);
+		ResourceSet rs = transaction.getResourceSet();
+		rs.setResourceFactoryRegistry(CDOResourceHandler.createFactoryWrapper(rs.getResourceFactoryRegistry()));
 		try {
 			triggerTransformation(uri, rs);
 			transaction.commit();
@@ -132,7 +132,7 @@ public class TransformationManager {
 	}
 	
 	private static Iterable<URI> createRootElementURIs(URI normalizedURI, ResourceSet rs) {
-		Resource r = rs.getResource(normalizedURI, false);
+		Resource r = rs.getResource(normalizedURI, true);
 		return r.getContents().stream().map(o -> r.getURIFragment(o)).map(f -> normalizedURI.trimFragment().appendFragment(f)).collect(Collectors.toSet());
 	}
 	

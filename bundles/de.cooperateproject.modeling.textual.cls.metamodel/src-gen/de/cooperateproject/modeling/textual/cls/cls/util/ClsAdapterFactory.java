@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -26,10 +25,8 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -112,18 +109,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePackageImport(PackageImport object) {
 				return createPackageImportAdapter();
-			}
-			@Override
-			public Adapter caseTypeReference(TypeReference object) {
-				return createTypeReferenceAdapter();
-			}
-			@Override
-			public Adapter caseDataTypeReference(DataTypeReference object) {
-				return createDataTypeReferenceAdapter();
-			}
-			@Override
-			public Adapter caseUMLTypeReference(UMLTypeReference object) {
-				return createUMLTypeReferenceAdapter();
 			}
 			@Override
 			public <T extends NamedElement> Adapter caseUMLReferencingElement(UMLReferencingElement<T> object) {
@@ -294,48 +279,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPackageImportAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.TypeReference <em>Type Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.TypeReference
-	 * @generated
-	 */
-	public Adapter createTypeReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.DataTypeReference <em>Data Type Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
-	 * @generated
-	 */
-	public Adapter createDataTypeReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference <em>UML Type Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
-	 * @generated
-	 */
-	public Adapter createUMLTypeReferenceAdapter() {
 		return null;
 	}
 

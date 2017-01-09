@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
@@ -21,7 +20,6 @@ import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import org.eclipse.emf.ecore.EClass;
@@ -80,8 +78,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 			case ClsPackage.CLASS_DIAGRAM: return (EObject)createClassDiagram();
 			case ClsPackage.PACKAGE: return (EObject)createPackage();
 			case ClsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
-			case ClsPackage.DATA_TYPE_REFERENCE: return (EObject)createDataTypeReference();
-			case ClsPackage.UML_TYPE_REFERENCE: return (EObject)createUMLTypeReference();
 			case ClsPackage.CLASS: return (EObject)createClass();
 			case ClsPackage.INTERFACE: return (EObject)createInterface();
 			case ClsPackage.ATTRIBUTE: return (EObject)createAttribute();
@@ -169,28 +165,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
 	public PackageImport createPackageImport() {
 		PackageImportImpl packageImport = new PackageImportImpl();
 		return packageImport;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public DataTypeReference createDataTypeReference() {
-		DataTypeReferenceImpl dataTypeReference = new DataTypeReferenceImpl();
-		return dataTypeReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public UMLTypeReference createUMLTypeReference() {
-		UMLTypeReferenceImpl umlTypeReference = new UMLTypeReferenceImpl();
-		return umlTypeReference;
 	}
 
 	/**

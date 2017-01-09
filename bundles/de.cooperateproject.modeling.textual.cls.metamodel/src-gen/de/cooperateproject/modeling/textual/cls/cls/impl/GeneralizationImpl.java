@@ -40,17 +40,6 @@ public class GeneralizationImpl extends TypedConnectorImpl implements Generaliza
 		return ClsPackage.Literals.GENERALIZATION;
 	}
 
-
-
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		if(featureID == 2)
-			return getReferencedElement();
-		// TODO Auto-generated method stub
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,8 +47,8 @@ public class GeneralizationImpl extends TypedConnectorImpl implements Generaliza
 	 */
 	@Override
 	public org.eclipse.uml2.uml.Generalization getReferencedElement() {
-		org.eclipse.uml2.uml.Type special = getLeft().getType();
-		org.eclipse.uml2.uml.Type general = getRight().getType();
+		org.eclipse.uml2.uml.Type special = getLeft();
+		org.eclipse.uml2.uml.Type general = getRight();
 		
 		if (special instanceof org.eclipse.uml2.uml.Classifier) {
 			org.eclipse.uml2.uml.Classifier specialClassifier = (org.eclipse.uml2.uml.Classifier)special;

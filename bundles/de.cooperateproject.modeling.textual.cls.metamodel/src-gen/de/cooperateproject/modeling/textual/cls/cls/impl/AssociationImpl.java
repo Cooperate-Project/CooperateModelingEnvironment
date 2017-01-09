@@ -11,15 +11,15 @@ import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -67,8 +67,8 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * @generated
 	 */
 	@Override
-	public UMLTypeReference getLeft() {
-		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
+	public Classifier getLeft() {
+		return (Classifier)eGet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * @generated
 	 */
 	@Override
-	public void setLeft(UMLTypeReference newLeft) {
+	public void setLeft(Classifier newLeft) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
 	}
 
@@ -87,8 +87,8 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * @generated
 	 */
 	@Override
-	public UMLTypeReference getRight() {
-		return (UMLTypeReference)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
+	public Classifier getRight() {
+		return (Classifier)eGet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class AssociationImpl extends NamedElementImpl<Association> implements de
 	 * @generated
 	 */
 	@Override
-	public void setRight(UMLTypeReference newRight) {
+	public void setRight(Classifier newRight) {
 		eSet(ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
 	}
 

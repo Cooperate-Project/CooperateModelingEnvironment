@@ -5,15 +5,17 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -117,8 +119,8 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * @generated
 	 */
 	@Override
-	public TypeReference getType() {
-		return (TypeReference)eGet(ClsPackage.Literals.PROPERTY__TYPE, true);
+	public Type getType() {
+		return (Type)eGet(ClsPackage.Literals.PROPERTY__TYPE, true);
 	}
 
 	/**
@@ -127,7 +129,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends NamedElementI
 	 * @generated
 	 */
 	@Override
-	public void setType(TypeReference newType) {
+	public void setType(Type newType) {
 		eSet(ClsPackage.Literals.PROPERTY__TYPE, newType);
 	}
 

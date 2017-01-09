@@ -71,19 +71,6 @@ Interface:
 		) ('{' (members += Member)* '}')?
 ;
 
-TypeReference: 
-	DataTypeReference | UMLTypeReference
-;
-
-DataTypeReference: 
-	type = PrimitiveType
-;
-
-UMLTypeReference: 
-	type = [uml::Type|FQN]
-;
-
-
 Member: 
 	Attribute 
 	| Method
@@ -94,7 +81,7 @@ Attribute:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	referencedElement = [uml::Property|ID] ':' type = TypeReference
+	referencedElement = [uml::Property|ID] ':' type = [uml::Type|FQN]
 ;
 	
 Method: 
@@ -104,14 +91,14 @@ Method:
 	(final ?= 'final')? 
 	referencedElement = [uml::Operation|ID] '(' 
 	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
-	(':' type = TypeReference)?
+	(':' type = [uml::Type|FQN])?
 ;
 
 Parameter:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	referencedElement = [uml::Parameter|ID] ':' type = TypeReference
+	referencedElement = [uml::Parameter|ID] ':' type = [uml::Type|FQN]
 ;
 
 
@@ -126,19 +113,19 @@ Connector:
 
 
 Generalization: 
-	left = UMLTypeReference 'isa' right = UMLTypeReference
+	left = [uml::Classifier|FQN] 'isa' right = [uml::Classifier|FQN]
 ;
 
 Implementation:
-	left = UMLTypeReference 'impl' right = UMLTypeReference
+	left = [uml::Classifier|FQN] 'impl' right = [uml::Classifier|FQN]
 ;
 
 CommentLink: 
-	left = UMLTypeReference 'note' comment = [uml::Comment|CommentBody]
+	left = [uml::Classifier|FQN] 'note' comment = [uml::Comment|CommentBody]
 ;
 
 Association:
-	(bidirectional?='bi')? aggregationKind=AggregationKind  left = UMLTypeReference (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|NameString]) right = UMLTypeReference
+	(bidirectional?='bi')? aggregationKind=AggregationKind  left = [uml::Classifier|FQN] (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|NameString]) right = [uml::Classifier|FQN]
 	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
 ;
 
@@ -147,7 +134,7 @@ MultiAssociation:
 ;
 
 MemberEnd:
-	type = UMLTypeReference (referencedElement=[uml::Property])? (cardinality=Cardinality)? (navigable?='<')?
+	type = [uml::Classifier|FQN] (referencedElement=[uml::Property])? (cardinality=Cardinality)? (navigable?='<')?
 ;
 
 AssociationProperties: 

@@ -13,7 +13,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -30,10 +29,8 @@ import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 import java.util.Map;
@@ -142,12 +139,6 @@ public class ClsValidator extends EObjectValidator {
 				return validatePackageableElement((PackageableElement)value, diagnostics, context);
 			case ClsPackage.PACKAGE_IMPORT:
 				return validatePackageImport((PackageImport)value, diagnostics, context);
-			case ClsPackage.TYPE_REFERENCE:
-				return validateTypeReference((TypeReference)value, diagnostics, context);
-			case ClsPackage.DATA_TYPE_REFERENCE:
-				return validateDataTypeReference((DataTypeReference)value, diagnostics, context);
-			case ClsPackage.UML_TYPE_REFERENCE:
-				return validateUMLTypeReference((UMLTypeReference)value, diagnostics, context);
 			case ClsPackage.UML_REFERENCING_ELEMENT:
 				return validateUMLReferencingElement((UMLReferencingElement<?>)value, diagnostics, context);
 			case ClsPackage.NAMED_ELEMENT_OPTIONAL:
@@ -251,33 +242,6 @@ public class ClsValidator extends EObjectValidator {
 	 */
 	public boolean validatePackageImport(PackageImport packageImport, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)packageImport, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTypeReference(TypeReference typeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)typeReference, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateDataTypeReference(DataTypeReference dataTypeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)dataTypeReference, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUMLTypeReference(UMLTypeReference umlTypeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)umlTypeReference, diagnostics, context);
 	}
 
 	/**

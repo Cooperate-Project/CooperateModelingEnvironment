@@ -19,6 +19,16 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum Visibility implements Enumerator {
 	/**
+	 * The '<em><b>UNDEFINED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNDEFINED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNDEFINED(0, "UNDEFINED", "UNDEFINED"),
+
+	/**
 	 * The '<em><b>PUBLIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26,7 +36,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PUBLIC(0, "PUBLIC", "PUBLIC"),
+	PUBLIC(1, "PUBLIC", "PUBLIC"),
 
 	/**
 	 * The '<em><b>PRIVATE</b></em>' literal object.
@@ -36,7 +46,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRIVATE(1, "PRIVATE", "PRIVATE"),
+	PRIVATE(2, "PRIVATE", "PRIVATE"),
 
 	/**
 	 * The '<em><b>PROTECTED</b></em>' literal object.
@@ -46,7 +56,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROTECTED(2, "PROTECTED", "PROTECTED"),
+	PROTECTED(3, "PROTECTED", "PROTECTED"),
 
 	/**
 	 * The '<em><b>PACKAGE</b></em>' literal object.
@@ -56,7 +66,22 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PACKAGE(3, "PACKAGE", "PACKAGE");
+	PACKAGE(4, "PACKAGE", "PACKAGE");
+
+	/**
+	 * The '<em><b>UNDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>UNDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UNDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNDEFINED_VALUE = 0;
 
 	/**
 	 * The '<em><b>PUBLIC</b></em>' literal value.
@@ -71,7 +96,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PUBLIC_VALUE = 0;
+	public static final int PUBLIC_VALUE = 1;
 
 	/**
 	 * The '<em><b>PRIVATE</b></em>' literal value.
@@ -86,7 +111,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRIVATE_VALUE = 1;
+	public static final int PRIVATE_VALUE = 2;
 
 	/**
 	 * The '<em><b>PROTECTED</b></em>' literal value.
@@ -101,7 +126,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROTECTED_VALUE = 2;
+	public static final int PROTECTED_VALUE = 3;
 
 	/**
 	 * The '<em><b>PACKAGE</b></em>' literal value.
@@ -116,7 +141,7 @@ public enum Visibility implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PACKAGE_VALUE = 3;
+	public static final int PACKAGE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Visibility</b></em>' enumerators.
@@ -126,6 +151,7 @@ public enum Visibility implements Enumerator {
 	 */
 	private static final Visibility[] VALUES_ARRAY =
 		new Visibility[] {
+			UNDEFINED,
 			PUBLIC,
 			PRIVATE,
 			PROTECTED,
@@ -186,6 +212,7 @@ public enum Visibility implements Enumerator {
 	 */
 	public static Visibility get(int value) {
 		switch (value) {
+			case UNDEFINED_VALUE: return UNDEFINED;
 			case PUBLIC_VALUE: return PUBLIC;
 			case PRIVATE_VALUE: return PRIVATE;
 			case PROTECTED_VALUE: return PROTECTED;

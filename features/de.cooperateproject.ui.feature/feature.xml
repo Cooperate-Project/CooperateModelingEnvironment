@@ -26,6 +26,10 @@
          id="de.cooperateproject.modeling.textual.feature"
          version="0.0.0"/>
 
+   <includes
+         id="de.cooperateproject.modeling.graphical.feature"
+         version="0.0.0"/>
+
    <requires>
       <import feature="de.cooperateproject.cdo.patched.client.feature" version="4.5.1" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf.cdo" version="4.5.0" match="greaterOrEqual"/>
@@ -59,13 +63,6 @@
 
    <plugin
          id="de.cooperateproject.ui.textualeditors"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.cooperateproject.modeling.graphical.common"
          download-size="0"
          install-size="0"
          version="0.0.0"

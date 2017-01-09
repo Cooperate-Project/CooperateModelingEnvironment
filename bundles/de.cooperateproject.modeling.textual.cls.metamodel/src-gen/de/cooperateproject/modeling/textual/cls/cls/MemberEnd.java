@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -15,8 +16,8 @@ import org.eclipse.uml2.uml.Property;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getType <em>Type</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation <em>Association</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#isNavigable <em>Navigable</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation <em>Association</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMemberEnd()
@@ -51,58 +52,30 @@ public interface MemberEnd extends NamedElementOptional<Property>, Element {
 	void setCardinality(Cardinality value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' containment reference.
-	 * @see #setType(UMLTypeReference)
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(Classifier)
 	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMemberEnd_Type()
-	 * @model containment="true" required="true"
+	 * @model required="true"
 	 * @generated
 	 */
-	UMLTypeReference getType();
+	Classifier getType();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getType <em>Type</em>}' containment reference.
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' containment reference.
+	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(UMLTypeReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Association</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.MultiAssociation#getConnectorEnds <em>Connector Ends</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Association</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Association</em>' container reference.
-	 * @see #setAssociation(MultiAssociation)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMemberEnd_Association()
-	 * @see de.cooperateproject.modeling.textual.cls.cls.MultiAssociation#getConnectorEnds
-	 * @model opposite="connectorEnds" required="true" transient="false"
-	 * @generated
-	 */
-	MultiAssociation getAssociation();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation <em>Association</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Association</em>' container reference.
-	 * @see #getAssociation()
-	 * @generated
-	 */
-	void setAssociation(MultiAssociation value);
+	void setType(Classifier value);
 
 	/**
 	 * Returns the value of the '<em><b>Navigable</b></em>' attribute.
@@ -129,5 +102,33 @@ public interface MemberEnd extends NamedElementOptional<Property>, Element {
 	 * @generated
 	 */
 	void setNavigable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Association</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.MultiAssociation#getConnectorEnds <em>Connector Ends</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Association</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Association</em>' container reference.
+	 * @see #setAssociation(MultiAssociation)
+	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMemberEnd_Association()
+	 * @see de.cooperateproject.modeling.textual.cls.cls.MultiAssociation#getConnectorEnds
+	 * @model opposite="connectorEnds" transient="false"
+	 * @generated
+	 */
+	MultiAssociation getAssociation();
+
+	/**
+	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.MemberEnd#getAssociation <em>Association</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Association</em>' container reference.
+	 * @see #getAssociation()
+	 * @generated
+	 */
+	void setAssociation(MultiAssociation value);
 
 } // MemberEnd

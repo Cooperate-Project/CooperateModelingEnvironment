@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Commentable;
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -16,6 +15,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Type;
 
@@ -79,8 +80,8 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * @generated
 	 */
 	@Override
-	public UMLTypeReference getLeft() {
-		return (UMLTypeReference)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
+	public Classifier getLeft() {
+		return (Classifier)eGet(ClsPackage.Literals.COMMENT_LINK__LEFT, true);
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 * @generated
 	 */
 	@Override
-	public void setLeft(UMLTypeReference newLeft) {
+	public void setLeft(Classifier newLeft) {
 		eSet(ClsPackage.Literals.COMMENT_LINK__LEFT, newLeft);
 	}
 
@@ -116,10 +117,7 @@ public class CommentLinkImpl extends ElementImpl implements CommentLink {
 	 */
 	@Override
 	public Type getCommentedElement() {
-		if (getLeft() instanceof UMLTypeReference) {
-			return ((UMLTypeReference)getLeft()).getType();
-		}
-		throw new IllegalStateException("Internal error in determining commented UML element.");
+		return getLeft();
 	}
 
 	/**

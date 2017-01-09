@@ -35,196 +35,200 @@ import de.cooperateproject.modeling.transformation.transformations.Activator;
 
 public abstract class DomainIndependentTransformationBase {
 
-	private final Map<URI, QVTOResource> specialMappings = Maps.newHashMap();
-	private final ResourceSet rs;
+    private final Map<URI, QVTOResource> specialMappings = Maps.newHashMap();
+    private final Map<URI, TransformationExecutor> transformationExecutors = Maps.newHashMap();
+    private final ResourceSet rs;
 
-	protected DomainIndependentTransformationBase(ResourceSet rs) {
-		this.rs = rs;
-	}
+    protected DomainIndependentTransformationBase(ResourceSet rs) {
+        this.rs = rs;
+    }
 
-	protected IStatus transform(URI transformationURI, Collection<URI> parameterURIs) throws IOException {
-		return transform(transformationURI, Optional.empty(), parameterURIs);
-	}
+    protected IStatus transform(URI transformationURI, Collection<URI> parameterURIs) throws IOException {
+        return transform(transformationURI, Optional.empty(), parameterURIs);
+    }
 
-	protected IStatus transform(URI transformationURI, URI traceURI, Collection<URI> parameterURIs) throws IOException {
-		return transform(transformationURI, Optional.of(traceURI), parameterURIs);
-	}
+    protected IStatus transform(URI transformationURI, URI traceURI, Collection<URI> parameterURIs) throws IOException {
+        return transform(transformationURI, Optional.of(traceURI), parameterURIs);
+    }
 
-	private IStatus transform(URI transformationURI, Optional<URI> traceURI, Collection<URI> parameterURIs)
-			throws IOException {
-		final List<Pair<ModelExtent, Resource>> transformationResources = Lists.newArrayList();
-		for (URI parameterURI : parameterURIs) {
-			transformationResources.add(createPair(createModelExtent(parameterURI), createResource(parameterURI)));
-		}
-		final Collection<ModelExtent> transformationParameters = transformationResources.stream().map(r -> r.getFirst())
-				.collect(Collectors.toList());
-		final Optional<Trace> transformationTrace = createTrace(traceURI);
+    private IStatus transform(URI transformationURI, Optional<URI> traceURI, Collection<URI> parameterURIs)
+            throws IOException {
+        final List<Pair<ModelExtent, Resource>> transformationResources = Lists.newArrayList();
+        for (URI parameterURI : parameterURIs) {
+            transformationResources.add(createPair(createModelExtent(parameterURI), createResource(parameterURI)));
+        }
+        final Collection<ModelExtent> transformationParameters = transformationResources.stream().map(r -> r.getFirst())
+                .collect(Collectors.toList());
+        final Optional<Trace> transformationTrace = createTrace(traceURI);
 
-		IStatus transformationResult = transform(transformationURI, transformationParameters, transformationTrace);
-		if (transformationResult.getSeverity() == IStatus.OK) {
-			saveTransformationResources(transformationURI, transformationResources);
-			saveTraceModel(traceURI, transformationTrace);
-		}
-		return transformationResult;
-	}
+        IStatus transformationResult = transform(transformationURI, transformationParameters, transformationTrace);
+        if (transformationResult.getSeverity() == IStatus.OK) {
+            saveTransformationResources(transformationURI, transformationResources);
+            saveTraceModel(traceURI, transformationTrace);
+        }
+        return transformationResult;
+    }
 
-	private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
-			Optional<Trace> transformationTrace) {
+    private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
+            Optional<Trace> transformationTrace) {
 
-		ExecutionContextImpl context = new ExecutionContextImpl();
-		if (transformationTrace.isPresent()) {
-			context.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, transformationTrace.get());
-		}
-		context.setConfigProperty("keepModeling", true);
+        ExecutionContextImpl context = new ExecutionContextImpl();
+        if (transformationTrace.isPresent()) {
+            context.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, transformationTrace.get());
+        }
+        context.setConfigProperty("keepModeling", true);
 
-		TransformationExecutor executor = new TransformationExecutor(transformationURI);
-		ExecutionDiagnostic result = executor.execute(context, transformationParameters.toArray(new ModelExtent[0]));
+        TransformationExecutor executor = getOrCreateTransformationExecutor(transformationURI);
+        ExecutionDiagnostic result = executor.execute(context, transformationParameters.toArray(new ModelExtent[0]));
 
-		if (result.getSeverity() != Diagnostic.OK) {
-			IStatus status = BasicDiagnostic.toIStatus(result);
-			Activator.getDefault().getLog().log(status);
-		}
+        if (result.getSeverity() != Diagnostic.OK) {
+            IStatus status = BasicDiagnostic.toIStatus(result);
+            Activator.getDefault().getLog().log(status);
+        }
 
-		return BasicDiagnostic.toIStatus(result);
-	}
+        return BasicDiagnostic.toIStatus(result);
+    }
 
-	private void saveTransformationResources(URI transformationURI,
-			List<Pair<ModelExtent, Resource>> transformationResources) throws IOException {
-		List<Integer> indicesToSave = determineParameterIndicesToSave(transformationURI);
-		List<Pair<ModelExtent, Resource>> resourcesToSave = indicesToSave.stream()
-				.map(i -> transformationResources.get(i)).collect(Collectors.toList());
-		save(resourcesToSave);
-	}
+    private TransformationExecutor getOrCreateTransformationExecutor(URI transformationURI) {
+        if (!transformationExecutors.containsKey(transformationURI)) {
+            transformationExecutors.put(transformationURI, new TransformationExecutor(transformationURI));
+        }
+        return transformationExecutors.get(transformationURI);
+    }
 
-	private List<Integer> determineParameterIndicesToSave(URI transformationURI) throws IOException {
-		QVTOResource resource = getQVTOResource(transformationURI);
-		OperationalTransformation transformation = resource.getFirstTransformation();
-		List<Integer> saveIndices = transformation.getModelParameter().stream()
-				.filter(p -> p.getKind() != DirectionKind.IN).map(p -> transformation.getModelParameter().indexOf(p))
-				.collect(Collectors.toList());
-		return saveIndices;
-	}
+    private void saveTransformationResources(URI transformationURI,
+            List<Pair<ModelExtent, Resource>> transformationResources) throws IOException {
+        List<Integer> indicesToSave = determineParameterIndicesToSave(transformationURI);
+        List<Pair<ModelExtent, Resource>> resourcesToSave = indicesToSave.stream()
+                .map(i -> transformationResources.get(i)).collect(Collectors.toList());
+        save(resourcesToSave);
+    }
 
-	private void save(List<Pair<ModelExtent, Resource>> transformationResources) throws IOException {
-		for (Pair<ModelExtent, Resource> transformationResource : transformationResources) {
-			save(transformationResource);
-		}
-	}
+    private List<Integer> determineParameterIndicesToSave(URI transformationURI) throws IOException {
+        QVTOResource resource = getQVTOResource(transformationURI);
+        OperationalTransformation transformation = resource.getFirstTransformation();
+        List<Integer> saveIndices = transformation.getModelParameter().stream()
+                .filter(p -> p.getKind() != DirectionKind.IN).map(p -> transformation.getModelParameter().indexOf(p))
+                .collect(Collectors.toList());
+        return saveIndices;
+    }
 
-	private void save(Pair<ModelExtent, Resource> transformationResource) throws IOException {
-		Resource resource = transformationResource.getSecond();
-		ModelExtent transformationResult = transformationResource.getFirst();
+    private void save(List<Pair<ModelExtent, Resource>> transformationResources) throws IOException {
+        for (Pair<ModelExtent, Resource> transformationResource : transformationResources) {
+            save(transformationResource);
+        }
+    }
 
-		if (transformationResult.getContents().stream().anyMatch(o -> !resource.equals(o.eResource()))) {
-			resource.getContents().clear();
-			resource.getContents().addAll(transformationResource.getFirst().getContents());
-		}
+    private void save(Pair<ModelExtent, Resource> transformationResource) throws IOException {
+        Resource resource = transformationResource.getSecond();
+        ModelExtent transformationResult = transformationResource.getFirst();
 
-		resource.save(Collections.emptyMap());
-	}
+        if (transformationResult.getContents().stream().anyMatch(o -> !resource.equals(o.eResource()))) {
+            resource.getContents().clear();
+            resource.getContents().addAll(transformationResource.getFirst().getContents());
+        }
+        resource.save(Collections.emptyMap());
+    }
 
-	private Optional<Trace> createTrace(Optional<URI> traceURI) {
-		if (!traceURI.isPresent()) {
-			return Optional.empty();
-		}
-		Resource traceResource = null;
-		Trace traceModel = Trace.createEmptyTrace();
-		if (rs.getURIConverter().exists(traceURI.get(), Collections.emptyMap())) {
-			traceResource = rs.getResource(traceURI.get(), true);
-			traceModel = new Trace(traceResource.getContents());
-		} else {
-			traceResource = rs.createResource(traceURI.get());
-			traceResource.getContents().addAll(traceModel.getTraceContent());
-		}
-		EcoreUtil.resolveAll(traceResource);
-		return Optional.of(traceModel);
-	}
+    private Optional<Trace> createTrace(Optional<URI> traceURI) {
+        if (!traceURI.isPresent()) {
+            return Optional.empty();
+        }
+        Resource traceResource = null;
+        Trace traceModel = Trace.createEmptyTrace();
+        traceResource = rs.getResource(traceURI.get(), true);
+        traceModel = new Trace(traceResource.getContents());
+        EcoreUtil.resolveAll(traceResource);
+        return Optional.of(traceModel);
+    }
 
-	private void saveTraceModel(Optional<URI> traceURI, Optional<Trace> traceModel) throws IOException {
-		if (!traceModel.isPresent() || !traceURI.isPresent()) {
-			return;
-		}
+    private void saveTraceModel(Optional<URI> traceURI, Optional<Trace> traceModel) throws IOException {
+        if (!traceModel.isPresent() || !traceURI.isPresent()) {
+            return;
+        }
 
-		Resource traceResource = rs.getResource(traceURI.get(), true);
-		if (traceResource == null) {
-			traceResource = rs.createResource(traceURI.get());
-		}
-		traceResource.getContents().clear();
-		traceResource.getContents().addAll(traceModel.get().getTraceContent());
-		traceResource.getAllContents().forEachRemaining(DomainIndependentTransformationBase::repairTraceObject);
-		traceResource.save(Collections.emptyMap());
-	}
+        Resource traceResource = rs.getResource(traceURI.get(), true);
 
-	private static void repairTraceObject(EObject obj) {
-		// QVTo removes resources of EObjects that are stored in a trace with
-		// direction OUT as of commit 8578144 (see bug 478006). This breaks CDO
-		// legacy models. Unfortunately, traces store results always as OUT.
-		// Therefore, we set the direction kind to INOUT.
-		if (obj instanceof EMappingResults) {
-			EMappingResults result = (EMappingResults) obj;
-			result.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
-		}
-	}
+        if (traceResource == null) {
+            traceResource = rs.createResource(traceURI.get());
+        }
 
-	private Resource createResource(URI uri) throws IOException {
-		if ("qvto".equals(uri.fileExtension())) {
-			return getQVTOResource(uri);
-		} else if (rs.getURIConverter().exists(uri, Collections.emptyMap())) {
-			return rs.getResource(uri.trimFragment().trimQuery(), false);
-		} else {
-			return rs.createResource(uri);
-		}
-	}
+        traceResource.getContents().clear();
+        traceResource.getContents().addAll(traceModel.get().getTraceContent());
+        traceResource.getAllContents().forEachRemaining(DomainIndependentTransformationBase::repairTraceObject);
+        traceResource.save(Collections.emptyMap());
 
-	private QVTOResource getQVTOResource(URI uri) throws IOException {
-		if (!specialMappings.containsKey(uri)) {
-			specialMappings.put(uri, new QVTOResource(uri, rs.getPackageRegistry()));
-		}
-		return specialMappings.get(uri);
-	}
+    }
 
-	private ModelExtent createModelExtent(URI uri) throws IOException {
-		EObject rootObject = null;
-		if ("qvto".equals(uri.fileExtension())) {
-			rootObject = getQVTOResource(uri).getFirstTransformation();
-		} else if (uri.hasFragment()) {
-			rootObject = rs.getEObject(uri, true);
-		} else if (rs.getURIConverter().exists(uri, Collections.emptyMap())) {
-			Resource r = rs.getResource(uri, true);
-			rootObject = r != null && !r.getContents().isEmpty() ? r.getContents().get(0) : null;
-		}
-		return createModelExtent(rootObject);
-	}
+    private static void repairTraceObject(EObject obj) {
+        // QVTo removes resources of EObjects that are stored in a trace with
+        // direction OUT as of commit 8578144 (see bug 478006). This breaks CDO
+        // legacy models. Unfortunately, traces store results always as OUT.
+        // Therefore, we set the direction kind to INOUT.
+        if (obj instanceof EMappingResults) {
+            EMappingResults result = (EMappingResults) obj;
+            result.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
+        }
+    }
 
-	private static ModelExtent createModelExtent(EObject rootElement) {
-		BasicModelExtent modelExtent = new BasicModelExtent();
-		if (rootElement != null) {
-			modelExtent.add(rootElement);
-		}
-		return modelExtent;
-	}
+    private Resource createResource(URI uri) throws IOException {
+        if ("qvto".equals(uri.fileExtension())) {
+            return getQVTOResource(uri);
+        } else {
+            return rs.getResource(uri.trimFragment().trimQuery(), true);
+        }
+    }
 
-	private static <T, S> Pair<T, S> createPair(T first, S second) {
-		return new Pair<T, S>(first, second);
-	}
+    private QVTOResource getQVTOResource(URI uri) throws IOException {
+        if (!specialMappings.containsKey(uri)) {
+            specialMappings.put(uri, new QVTOResource(uri, rs.getPackageRegistry()));
+        }
+        return specialMappings.get(uri);
+    }
 
-	protected static class Pair<T, S> {
-		private final T first;
-		private final S second;
+    private ModelExtent createModelExtent(URI uri) throws IOException {
+        EObject rootObject = null;
 
-		public Pair(T first, S second) {
-			super();
-			this.first = first;
-			this.second = second;
-		}
+        if ("qvto".equals(uri.fileExtension())) {
+            rootObject = getQVTOResource(uri).getFirstTransformation();
+        } else if (uri.hasFragment()) {
+            rootObject = rs.getEObject(uri, true);
+        } else if (rs.getURIConverter().exists(uri, Collections.emptyMap()) || rs.getResource(uri, false) != null) {
+            Resource r = rs.getResource(uri, true);
+            rootObject = r != null && !r.getContents().isEmpty() ? r.getContents().get(0) : null;
+        }
 
-		public T getFirst() {
-			return first;
-		}
+        return createModelExtent(rootObject);
+    }
 
-		public S getSecond() {
-			return second;
-		}
-	}
+    private static ModelExtent createModelExtent(EObject rootElement) {
+        BasicModelExtent modelExtent = new BasicModelExtent();
+        if (rootElement != null) {
+            modelExtent.add(rootElement);
+        }
+        return modelExtent;
+    }
 
+    private static <T, S> Pair<T, S> createPair(T first, S second) {
+        return new Pair<T, S>(first, second);
+    }
+
+    protected static class Pair<T, S> {
+        private final T first;
+        private final S second;
+
+        public Pair(T first, S second) {
+            super();
+            this.first = first;
+            this.second = second;
+        }
+
+        public T getFirst() {
+            return first;
+        }
+
+        public S getSecond() {
+            return second;
+        }
+    }
 }

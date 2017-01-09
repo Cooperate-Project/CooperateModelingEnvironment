@@ -3,29 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
+import com.google.common.base.Strings
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Package
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Visibility
-import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Interface
+import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Operation
-import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Property
-import org.eclipse.uml2.uml.Type
-import org.eclipse.uml2.uml.VisibilityKind
-import org.eclipse.uml2.uml.util.UMLSwitch
 import org.eclipse.xtext.RuleCall
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
-import com.google.common.base.Strings
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -71,6 +66,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	private def createClass(Class refClass) {
 		var c = ClsFactory.eINSTANCE.createClass
 		c.referencedElement = refClass
+		c.visibility = getVisibility(refClass)
 
 		for (member : refClass.members) {
 			val createdMember = createMember(member)
@@ -86,6 +82,7 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	private def createInterface(Interface refInterface) {
 		var iface = ClsFactory.eINSTANCE.createInterface
 		iface.referencedElement = refInterface
+		iface.visibility = getVisibility(refInterface)
 
 		/*for (attribute : refInterface.attributes) {
 			class.members.add(createAttributes(attribute))
@@ -105,17 +102,17 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 			return null
 		}
 		var operation = ClsFactory.eINSTANCE.createMethod
-		operation.visibility = getVisibility(refOperation.visibility)
+		operation.visibility = getVisibility(refOperation)
 		operation.referencedElement = refOperation
 
-		operation.type = getType(refOperation.type)
+		operation.type = refOperation.type
 		var parameters = refOperation.getOwnedParameters
 		
 		for (parameter : parameters) {
 			if (parameter.name != null) {
 				var param = ClsFactory.eINSTANCE.createParameter
 				param.referencedElement = parameter
-				param.type = getType(parameter.type)
+				param.type = parameter.type
 				operation.parameters.add(param)
 			}
 		}
@@ -132,59 +129,21 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 		}
 		var attribute = ClsFactory.eINSTANCE.createAttribute
 
-		attribute.visibility = getVisibility(refAttribute.visibility)
+		attribute.visibility = getVisibility(refAttribute)
 		attribute.referencedElement = refAttribute
-
-		/*var typeSwitch = new TypeSwitch
-		 * attribute.type = typeSwitch.doSwitch(refAttribute.type)
-		 typeSwitch = null*/
-		attribute.type = getType(refAttribute.type)
+		attribute.type = refAttribute.type
 
 		return attribute
-	}
-
-	private def getType(Type type) {
-		if (type == null) {
-			return null
-		}
-		var typeSwitch = new TypeSwitch
-		var t = typeSwitch.doSwitch(type)
-		typeSwitch = null
-
-		return t
 	}
 
 	/**
 	 * Converts a VisibilityKind into a Cls Visibility.
 	 */
-	private def getVisibility(VisibilityKind visibility) {
-		Visibility.get(visibility.literal.toUpperCase)
-	}
-
-	private static class TypeSwitch extends UMLSwitch<TypeReference> {
-		/*private TypeConverter typeConverter
-		
-		new() {
-			typeConverter = new TypeConverter()
-		} */
-
-		override casePrimitiveType(PrimitiveType primitiveType) {
-			var dataType = ClsFactory.eINSTANCE.createDataTypeReference
-			dataType.type = TypeConverter.getPrimitive(primitiveType)
-			return dataType
+	private def getVisibility(NamedElement sourceElement) {
+		if (!sourceElement.isSetVisibility()) {
+			return Visibility.UNDEFINED
 		}
-
-		override caseClass(Class classifier) {
-			var dataType = ClsFactory.eINSTANCE.createUMLTypeReference
-			dataType.type = classifier
-			return dataType
-		}
-
-		override caseInterface(Interface classifier) {
-			var dataType = ClsFactory.eINSTANCE.createUMLTypeReference
-			dataType.type = classifier
-			return dataType
-		}
+		Visibility.get(sourceElement.visibility.literal.toUpperCase)
 	}
 
 }

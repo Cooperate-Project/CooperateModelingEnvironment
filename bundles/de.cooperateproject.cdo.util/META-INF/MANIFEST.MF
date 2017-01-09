@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Util
-Bundle-SymbolicName: de.cooperateproject.cdo.util
+Bundle-SymbolicName: de.cooperateproject.cdo.util;singleton:=true
 Bundle-Version: 0.1.5.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore,
@@ -11,7 +11,11 @@ Require-Bundle: org.eclipse.emf.ecore,
  com.google.guava;bundle-version="15.0.0",
  org.apache.commons.lang3;bundle-version="3.1.0",
  org.eclipse.net4j.tcp,
- org.apache.log4j
+ org.apache.log4j,
+ org.apache.commons.io;bundle-version="2.2.0",
+ de.cooperateproject.util,
+ org.eclipse.e4.core.di;bundle-version="1.6.1"
 Export-Package: de.cooperateproject.cdo.util.connection,
  de.cooperateproject.cdo.util.merger,
+ de.cooperateproject.cdo.util.resources,
  de.cooperateproject.cdo.util.utils

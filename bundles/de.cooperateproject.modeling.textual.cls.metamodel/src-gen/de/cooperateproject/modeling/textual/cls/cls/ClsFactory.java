@@ -49,24 +49,6 @@ public interface ClsFactory extends EFactory {
 	PackageImport createPackageImport();
 
 	/**
-	 * Returns a new object of class '<em>Data Type Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type Reference</em>'.
-	 * @generated
-	 */
-	DataTypeReference createDataTypeReference();
-
-	/**
-	 * Returns a new object of class '<em>UML Type Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>UML Type Reference</em>'.
-	 * @generated
-	 */
-	UMLTypeReference createUMLTypeReference();
-
-	/**
 	 * Returns a new object of class '<em>Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

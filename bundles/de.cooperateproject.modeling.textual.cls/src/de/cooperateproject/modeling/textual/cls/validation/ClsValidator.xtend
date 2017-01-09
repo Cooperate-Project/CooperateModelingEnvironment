@@ -9,7 +9,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Commentable
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
@@ -17,18 +16,16 @@ import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Property
-import de.cooperateproject.modeling.textual.cls.cls.TypeReference
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Operation
 import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.TypedElement
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.validation.Check
-import org.eclipse.uml2.uml.Model
-import org.eclipse.emf.ecore.EStructuralFeature
 
 /**
  * This class contains custom validation rules. 
@@ -240,21 +237,7 @@ class ClsValidator extends AbstractClsValidator {
 		} else if (umlReferencedElement instanceof Operation) {
 			umlType = umlReferencedElement.type
 		}
-		return property.type.matches(umlType)
-	}
-
-	private static def matches(TypeReference clsType, Type umlType) {
-		if (clsType instanceof DataTypeReference) {
-			var type = clsType.type
-			var refType = TypeConverter.getPrimitive(umlType)
-			return type.equals(refType)
-		} else if (clsType instanceof UMLTypeReference) {
-			var type = clsType.type
-			return type.name.equals(umlType.name)
-		} else if (clsType == null) {
-			return umlType == null
-		}
-		return true
+		return property.type.equals(umlType)
 	}
 
 }

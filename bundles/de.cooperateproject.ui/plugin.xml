@@ -123,4 +123,10 @@
             class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard">
       </wizard>
    </extension>
+   <extension
+         point="de.cooperateproject.cdo.util.resources">
+      <provider
+            class="de.cooperateproject.ui.editors.launcher.extensions.TraceModelFileExtensionProvider">
+      </provider>
+   </extension>
 </plugin>

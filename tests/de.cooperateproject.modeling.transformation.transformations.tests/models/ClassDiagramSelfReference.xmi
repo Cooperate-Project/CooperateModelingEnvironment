@@ -7,12 +7,8 @@
       </classifiers>
      <connectors xsi:type="cls:Association">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramSelfReference.uml#_dmukMLAQEeaCyqV64VKpeQ"/>
-        <left>
-          <type xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
-        </left>
-        <right>
-          <type xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
-        </right>
+        <left xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
+        <right xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
         <properties>
           <cardinalityLeft lowerBound="1" upperBound="1"/>
           <cardinalityRight lowerBound="1" upperBound="1"/>
@@ -20,6 +16,5 @@
           <propertyRight href="ClassDiagramSelfReference.uml#_dmxAcLAQEeaCyqV64VKpeQ"/>
         </properties>
       </connectors>
-
   </rootPackage>
 </cls:ClassDiagram>

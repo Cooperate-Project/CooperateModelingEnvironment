@@ -2,9 +2,9 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
-import org.eclipse.emf.ecore.EClass;
-
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->

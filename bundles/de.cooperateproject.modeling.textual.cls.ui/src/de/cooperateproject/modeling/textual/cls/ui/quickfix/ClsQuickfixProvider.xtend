@@ -3,46 +3,46 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui.quickfix
 
+import com.google.common.base.Strings
+import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
-import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import de.cooperateproject.modeling.textual.cls.cls.DataTypeReference
+import de.cooperateproject.modeling.textual.cls.cls.Commentable
+import de.cooperateproject.modeling.textual.cls.cls.Element
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Member
 import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Property
-import de.cooperateproject.modeling.textual.cls.cls.UMLTypeReference
-import de.cooperateproject.modeling.textual.cls.validation.TypeConverter
+import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter
+import de.cooperateproject.modeling.textual.cls.validation.ClsValidatorConstants
 import java.util.Collection
+import java.util.Collections
+import org.apache.log4j.Logger
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Operation
 import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.Parameter
-import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Type
+import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
+import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
 import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
-import org.eclipse.xtext.validation.Issue
-import java.util.Collections
-import org.eclipse.uml2.uml.UMLFactory
-import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import org.eclipse.xtext.util.concurrent.IUnitOfWork
-import org.eclipse.xtext.resource.XtextResource
-import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import org.apache.log4j.Logger
-import de.cooperateproject.modeling.textual.cls.cls.Commentable
-import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter
-import com.google.common.base.Strings
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality
-import de.cooperateproject.modeling.textual.cls.validation.ClsValidatorConstants
+import org.eclipse.xtext.validation.Issue
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -226,7 +226,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		if (name.matches("\\\".*\\\"")) {
  			name = valueConverter.STRING.toValue(name, NodeModelUtils.getNode(element))
  		}
-		val brokenElement = element as de.cooperateproject.modeling.textual.cls.cls.Element;
+		val brokenElement = element as Element;
 		val parentPackage = brokenElement.nearestPackage
 		val umlPackage = parentPackage?.referencedElement
 		if (umlPackage == null) {
@@ -248,7 +248,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		brokenClassifier.referencedElement = umlPackage;
 	}
 	
-	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.PackageImport brokenClassifier, Package parentPackage, String name, Issue issue) {
+	private static def dispatch void fixCreate(PackageImport brokenClassifier, Package parentPackage, String name, Issue issue) {
 		//TODO: What about FQN?
 		val model = parentPackage.model
 		//UMLUtil.findNamedElements
@@ -265,10 +265,10 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		brokenClassifier.referencedElement = umlInterface;
 	}
 	
-	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Association brokenClassifier, Package parentPackage, String name, Issue issue) {
+	private static def dispatch void fixCreate(Association brokenClassifier, Package parentPackage, String name, Issue issue) {
 
-		val leftType = brokenClassifier.left.UMLType
-		val rightType = brokenClassifier.right.UMLType
+		val leftType = brokenClassifier.left
+		val rightType = brokenClassifier.right
 		val props = brokenClassifier.properties
 		
 		var leftCardinality = Pair.of(0, -1)
@@ -293,7 +293,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			rightCardinality.value,
 			rightType,
 			brokenClassifier.bidirectional,
-			AggregationKind.NONE.UMLAggregationKind,
+			de.cooperateproject.modeling.textual.cls.cls.AggregationKind.NONE.UMLAggregationKind,
 			leftPropertyName,
 			leftCardinality.key,
 			leftCardinality.value
@@ -329,9 +329,9 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	}
 	
 	private static def void fixCreateGeneralization(EObject element) {
-		val generalization = element as de.cooperateproject.modeling.textual.cls.cls.Generalization
-		val left = generalization.left.type as org.eclipse.uml2.uml.Class
-		val right = generalization.right.type as org.eclipse.uml2.uml.Class
+		val generalization = element as Generalization
+		val left = generalization.left.type as Class
+		val right = generalization.right.type as Class
 		val umlGeneralization = left.createGeneralization(right)
 		left.save
 		//TODO: This is currently derived automatically
@@ -339,8 +339,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	}
 	
 	private static def void fixCreateRealization(EObject element) {
-		val implementation = element as de.cooperateproject.modeling.textual.cls.cls.Implementation
-		val left = implementation.left.type as org.eclipse.uml2.uml.Class
+		val implementation = element as Implementation
+		val left = implementation.left.type as Class
 		val right = implementation.right.type as Interface
 		left.createInterfaceRealization(null, right)
 		left.save
@@ -351,13 +351,12 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def fixWrongType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
 		val umlElement = property.referencedElement
-		val umlType = umlElement?.getType
-		property.type = getClsType(umlType)
+		property.type = umlElement?.getType
 	}
 	
 	private static def adjustModelType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
 		val umlElement = property.referencedElement
-		umlElement.type = property.type.UMLType
+		umlElement.type = property.type
 		umlElement.save
 		relinkState(context)	
 		
@@ -420,14 +419,14 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	}
 		
 	private static def dispatch void fixCreate(Attribute brokenAttribute, Class umlClassifier, String name, Issue issue) {
-		val umlType = getUMLType(brokenAttribute.type)
+		val umlType = brokenAttribute.type
 		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
 		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
 	}
 	
 	private static def dispatch void fixCreate(Attribute brokenAttribute, Interface umlClassifier, String name, Issue issue) {
-		val umlType = getUMLType(brokenAttribute.type)
+		val umlType = brokenAttribute.type
 		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
 		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
@@ -456,8 +455,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def void fixCreate(Method brokenMethod, MethodCreateFixer fixer) {
 		val parameterNames = brokenMethod.parameters.map[p | NodeModelUtils.findNodesForFeature(p, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).map[n | NodeModelUtils.getTokenText(n)].findFirst[true]]
-		val parameterTypes = brokenMethod.parameters.map[p | p.type.getUMLType]
-		val returnType = brokenMethod.type.getUMLType
+		val parameterTypes = brokenMethod.parameters.map[p | p.type]
+		val returnType = brokenMethod.type
 		
 		if (parameterNames.size != parameterTypes.size) {
 			return
@@ -470,48 +469,13 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		return new BasicEList<T>(elements)
 	}
 	
-	private static def dispatch getClsType(PrimitiveType type) {
-		val primitiveType = TypeConverter.getPrimitive(type)
-		if (primitiveType == null) {
-			return null
-		}
-		val dataTypeReference = ClsFactory.eINSTANCE.createDataTypeReference
-		dataTypeReference.type = primitiveType
-		return dataTypeReference
-	}
-	
-	private static def dispatch getClsType(Type type) {
-		if (type == null) {
-			return null
-		}
-		val umlTypeReference = ClsFactory.eINSTANCE.createUMLTypeReference
-		umlTypeReference.type = type
-		return umlTypeReference
-	}
-	
-	private static def dispatch getClsType(Void type) {
-		return null
-	}
-	
-	private static def getUMLAggregationKind(AggregationKind kind) {
+	private static def getUMLAggregationKind(de.cooperateproject.modeling.textual.cls.cls.AggregationKind kind) {
 		switch kind {
-			case AGGREGATION :  org.eclipse.uml2.uml.AggregationKind.SHARED_LITERAL
-			case COMPOSITION : org.eclipse.uml2.uml.AggregationKind.COMPOSITE_LITERAL
-			case NONE : org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL
+			case AGGREGATION :  AggregationKind.SHARED_LITERAL
+			case COMPOSITION : AggregationKind.COMPOSITE_LITERAL
+			case NONE : AggregationKind.NONE_LITERAL
 		}
 		
-	}
-	
-	private static def dispatch getUMLType(DataTypeReference type) {
-		return TypeConverter.getType(type.type, type.eResource.resourceSet)
-	}
-	
-	private static def dispatch getUMLType(UMLTypeReference type) {
-		return type.type
-	}
-	
-	private static def dispatch getUMLType(Void type) {
-		return null
 	}
 	
 	private static def save (EObject o) {

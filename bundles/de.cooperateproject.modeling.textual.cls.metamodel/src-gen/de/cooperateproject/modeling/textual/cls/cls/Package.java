@@ -31,7 +31,7 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.PackageImport#getImportingNamespace <em>Importing Namespace</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Package Imports</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Package Imports</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -48,7 +48,7 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}&lt;? extends org.eclipse.uml2.uml.Classifier>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Classifiers</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Classifiers</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -64,7 +64,7 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Connector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Connectors</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Connectors</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -80,7 +80,7 @@ public interface Package extends NamedElement<org.eclipse.uml2.uml.Package>, Pac
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Package#getPackages <em>Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Owning Package</em>' reference isn't clear,
+	 * If the meaning of the '<em>Owning Package</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

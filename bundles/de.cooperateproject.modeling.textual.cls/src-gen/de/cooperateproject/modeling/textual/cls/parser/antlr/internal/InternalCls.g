@@ -761,121 +761,6 @@ ruleInterface returns [EObject current=null]
 
 
 
-// Entry rule entryRuleTypeReference
-entryRuleTypeReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getTypeReferenceRule()); }
-	 iv_ruleTypeReference=ruleTypeReference 
-	 { $current=$iv_ruleTypeReference.current; } 
-	 EOF 
-;
-
-// Rule TypeReference
-ruleTypeReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getTypeReferenceAccess().getDataTypeReferenceParserRuleCall_0()); 
-    }
-    this_DataTypeReference_0=ruleDataTypeReference
-    { 
-        $current = $this_DataTypeReference_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getTypeReferenceAccess().getUMLTypeReferenceParserRuleCall_1()); 
-    }
-    this_UMLTypeReference_1=ruleUMLTypeReference
-    { 
-        $current = $this_UMLTypeReference_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleDataTypeReference
-entryRuleDataTypeReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getDataTypeReferenceRule()); }
-	 iv_ruleDataTypeReference=ruleDataTypeReference 
-	 { $current=$iv_ruleDataTypeReference.current; } 
-	 EOF 
-;
-
-// Rule DataTypeReference
-ruleDataTypeReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getDataTypeReferenceAccess().getTypePrimitiveTypeEnumRuleCall_0()); 
-	    }
-		lv_type_0_0=rulePrimitiveType		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getDataTypeReferenceRule());
-	        }
-       		set(
-       			$current, 
-       			"type",
-        		lv_type_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.PrimitiveType");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-;
-
-
-
-
-
-// Entry rule entryRuleUMLTypeReference
-entryRuleUMLTypeReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getUMLTypeReferenceRule()); }
-	 iv_ruleUMLTypeReference=ruleUMLTypeReference 
-	 { $current=$iv_ruleUMLTypeReference.current; } 
-	 EOF 
-;
-
-// Rule UMLTypeReference
-ruleUMLTypeReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getUMLTypeReferenceRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getUMLTypeReferenceAccess().getTypeTypeCrossReference_0()); 
-	    }
-		ruleFQN		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)
-;
-
-
-
-
-
 // Entry rule entryRuleMember
 entryRuleMember returns [EObject current=null] 
 	:
@@ -1003,18 +888,15 @@ ruleAttribute returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getAttributeAccess().getTypeTypeReferenceParserRuleCall_6_0()); 
-	    }
-		lv_type_6_0=ruleTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAttributeRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAttributeRule());
 	        }
-       		set(
-       			$current, 
-       			"type",
-        		lv_type_6_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.TypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getAttributeAccess().getTypeTypeCrossReference_6_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1170,18 +1052,15 @@ ruleMethod returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getMethodAccess().getTypeTypeReferenceParserRuleCall_8_1_0()); 
-	    }
-		lv_type_11_0=ruleTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMethodRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMethodRule());
 	        }
-       		set(
-       			$current, 
-       			"type",
-        		lv_type_11_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.TypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getMethodAccess().getTypeTypeCrossReference_8_1_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1274,18 +1153,15 @@ ruleParameter returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getParameterAccess().getTypeTypeReferenceParserRuleCall_5_0()); 
-	    }
-		lv_type_5_0=ruleTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getParameterRule());
 	        }
-       		set(
-       			$current, 
-       			"type",
-        		lv_type_5_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.TypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getParameterAccess().getTypeTypeCrossReference_5_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1383,18 +1259,15 @@ ruleGeneralization returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getGeneralizationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); 
-	    }
-		lv_left_0_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getGeneralizationRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getGeneralizationRule());
 	        }
-       		set(
-       			$current, 
-       			"left",
-        		lv_left_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getGeneralizationAccess().getLeftClassifierCrossReference_0_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1405,18 +1278,15 @@ ruleGeneralization returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getGeneralizationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); 
-	    }
-		lv_right_2_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getGeneralizationRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getGeneralizationRule());
 	        }
-       		set(
-       			$current, 
-       			"right",
-        		lv_right_2_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getGeneralizationAccess().getRightClassifierCrossReference_2_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1444,18 +1314,15 @@ ruleImplementation returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getImplementationAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); 
-	    }
-		lv_left_0_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getImplementationRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementationRule());
 	        }
-       		set(
-       			$current, 
-       			"left",
-        		lv_left_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementationAccess().getLeftClassifierCrossReference_0_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1466,18 +1333,15 @@ ruleImplementation returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getImplementationAccess().getRightUMLTypeReferenceParserRuleCall_2_0()); 
-	    }
-		lv_right_2_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getImplementationRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getImplementationRule());
 	        }
-       		set(
-       			$current, 
-       			"right",
-        		lv_right_2_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getImplementationAccess().getRightClassifierCrossReference_2_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1505,18 +1369,15 @@ ruleCommentLink returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getCommentLinkAccess().getLeftUMLTypeReferenceParserRuleCall_0_0()); 
-	    }
-		lv_left_0_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCommentLinkRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCommentLinkRule());
 	        }
-       		set(
-       			$current, 
-       			"left",
-        		lv_left_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getCommentLinkAccess().getLeftClassifierCrossReference_0_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1596,18 +1457,15 @@ ruleAssociation returns [EObject current=null]
 )
 )(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getLeftUMLTypeReferenceParserRuleCall_2_0()); 
-	    }
-		lv_left_2_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAssociationRule());
 	        }
-       		set(
-       			$current, 
-       			"left",
-        		lv_left_2_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getLeftClassifierCrossReference_2_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1643,18 +1501,15 @@ ruleAssociation returns [EObject current=null]
 )
 ))(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getAssociationAccess().getRightUMLTypeReferenceParserRuleCall_4_0()); 
-	    }
-		lv_right_5_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getAssociationRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getAssociationRule());
 	        }
-       		set(
-       			$current, 
-       			"right",
-        		lv_right_5_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getAssociationAccess().getRightClassifierCrossReference_4_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1803,18 +1658,15 @@ ruleMemberEnd returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getMemberEndAccess().getTypeUMLTypeReferenceParserRuleCall_0_0()); 
-	    }
-		lv_type_0_0=ruleUMLTypeReference		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMemberEndRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMemberEndRule());
 	        }
-       		set(
-       			$current, 
-       			"type",
-        		lv_type_0_0, 
-        		"de.cooperateproject.modeling.textual.cls.Cls.UMLTypeReference");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getMemberEndAccess().getTypeClassifierCrossReference_0_0()); 
+	    }
+		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2147,65 +1999,6 @@ ruleVisibility returns [Enumerator current=null]
 ));
 
 
-
-// Rule PrimitiveType
-rulePrimitiveType returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='string' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getPrimitiveTypeAccess().getSTRINGEnumLiteralDeclaration_0()); 
-    }
-)
-    |(	enumLiteral_1='int' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getINTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getPrimitiveTypeAccess().getINTEnumLiteralDeclaration_1()); 
-    }
-)
-    |(	enumLiteral_2='double' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getDOUBLEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getPrimitiveTypeAccess().getDOUBLEEnumLiteralDeclaration_2()); 
-    }
-)
-    |(	enumLiteral_3='boolean' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getBOOLEANEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_3, grammarAccess.getPrimitiveTypeAccess().getBOOLEANEnumLiteralDeclaration_3()); 
-    }
-)
-    |(	enumLiteral_4='char' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getCHAREnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_4, grammarAccess.getPrimitiveTypeAccess().getCHAREnumLiteralDeclaration_4()); 
-    }
-)
-    |(	enumLiteral_5='byte' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getBYTEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_5, grammarAccess.getPrimitiveTypeAccess().getBYTEEnumLiteralDeclaration_5()); 
-    }
-)
-    |(	enumLiteral_6='short' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getSHORTEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_6, grammarAccess.getPrimitiveTypeAccess().getSHORTEnumLiteralDeclaration_6()); 
-    }
-)
-    |(	enumLiteral_7='long' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getLONGEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_7, grammarAccess.getPrimitiveTypeAccess().getLONGEnumLiteralDeclaration_7()); 
-    }
-)
-    |(	enumLiteral_8='float' 
-	{
-        $current = grammarAccess.getPrimitiveTypeAccess().getFLOATEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_8, grammarAccess.getPrimitiveTypeAccess().getFLOATEnumLiteralDeclaration_8()); 
-    }
-));
 
 
 
