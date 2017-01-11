@@ -110,7 +110,6 @@ public class DiffView extends ViewPart {
 								summaryViewer.getTable().setSelection(tableItem);
 								summaryViewer.getControl().setFocus();
 								break;
-								//TODO Add sound?
 							}
 						}
 					}
@@ -134,7 +133,6 @@ public class DiffView extends ViewPart {
 										diffViewer.getTree().setSelection(child);
 										diffViewer.getControl().setFocus();
 										break;
-										//TODO Add sound?
 								}
 							}
 							
@@ -274,7 +272,7 @@ public class DiffView extends ViewPart {
 		summaryViewer.getTable().setHeaderVisible(true);
 		summaryViewer.getTable().setLinesVisible(true);
 		String[] columnNames2 = new String[] {
-				"Change Kind", "From", "To"};
+				"Change Kind", "At", "From", "To"};
 		for(int i = 0; i < columnNames2.length; i++){
 			TableColumn tableColumn = new TableColumn(summaryViewer.getTable(), SWT.LEFT);
 			tableColumn.setText(columnNames2[i]);
