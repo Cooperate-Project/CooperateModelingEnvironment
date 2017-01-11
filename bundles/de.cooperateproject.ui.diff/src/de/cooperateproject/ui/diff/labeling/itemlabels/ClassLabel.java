@@ -3,6 +3,7 @@ package de.cooperateproject.ui.diff.labeling.itemlabels;
 import org.eclipse.emf.ecore.EObject;
 
 import de.cooperateproject.modeling.textual.cls.cls.Class;
+import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 public class ClassLabel implements SummaryItemLabelHandler{
 	private final String classText = "class";
@@ -13,7 +14,13 @@ public class ClassLabel implements SummaryItemLabelHandler{
 		if(obj.isAbstract()){
 			isAbstract = "abstract ";
 		}
-		return obj.getVisibility().getName().toLowerCase() + " " + isAbstract + classText + " " + obj.getName();
+		Visibility visibility = obj.getVisibility();
+		String visibString = "";
+		switch(visibility){
+		case UNDEFINED: break;
+		default: visibString = visibility.getLiteral().toLowerCase() + " ";
+		}
+		return visibString + isAbstract + classText + " " + obj.getName();
 	}
 
 	public String getClassText(){

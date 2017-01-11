@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
+import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 
 public class MethodLabel implements SummaryItemLabelHandler{
 	private final String classText = "method";
@@ -24,7 +25,14 @@ public class MethodLabel implements SummaryItemLabelHandler{
 		if(method.isAbstract()){
 			isAbstract = "abstract ";
 		}
-		return method.getVisibility().getName().toLowerCase() + " " + isAbstract + method.getName() + "("+ paramsToString(params) +")" + type;
+		
+		Visibility visibility = method.getVisibility();
+		String visibString = "";
+		switch(visibility){
+		case UNDEFINED: break;
+		default: visibString = visibility.getLiteral().toLowerCase() + " ";
+		}
+		return visibString + isAbstract + method.getName() + "(" + paramsToString(params) + ")" + type;
 	}
 	
 	public String getClassText(){

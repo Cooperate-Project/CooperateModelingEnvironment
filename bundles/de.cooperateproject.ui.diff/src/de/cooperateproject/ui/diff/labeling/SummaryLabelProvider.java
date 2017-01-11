@@ -66,11 +66,17 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 				notNull = item.getRight();
 			}
 			SummaryItemLabelHandler handlerClass = itemHandling.get(notNull.getClass().getSimpleName());
+			SummaryItemLabelHandler handlerClassParent = null;
+			if(item.getCommonParent() != null){
+				 handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
+			}
+			
 			if(handlerClass != null){
 				switch(columnIndex){
 	  				case 0: ret = item.getDifferenceKind().toString()+ " " + handlerClass.getClassText(); break;
-	  				case 1: if(item.getRight() != null) ret = handlerClass.getText(item.getRight()); break;
-	  				case 2: if(item.getLeft() != null) ret = handlerClass.getText(item.getLeft()); break;
+	  				case 1: if(handlerClassParent != null) ret = handlerClassParent.getText(item.getCommonParent()); break;
+	  				case 2: if(item.getRight() != null) ret = handlerClass.getText(item.getRight()); break;
+	  				case 3: if(item.getLeft() != null) ret = handlerClass.getText(item.getLeft()); break;
 	  				default: 
 			  	}
 			}
