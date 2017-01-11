@@ -1,11 +1,17 @@
 package de.cooperateproject.modeling.transformation.transformations.impl;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.m2m.qvt.oml.ModelExtent;
+import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 import com.google.common.collect.Lists;
@@ -21,15 +27,15 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 	private final URI sourceURI;
 	private final URI targetURI;
 	private final TraceTransformation traceTransformation;
+	private final SortedSet<PostProcessor> postProcessors = new TreeSet<>();
 
-	protected TransformationBase(TransformationCharacteristic characteristics, ResourceSet rs, URI source, URI target) {
+	protected TransformationBase(TransformationCharacteristic characteristics, ResourceSet rs, URI source, URI target, Collection<PostProcessor> postProcessors) {
 		super(rs);
 		this.characteristics = characteristics;
 		this.sourceURI = source;
 		this.targetURI = target;
 		this.traceTransformation = createTraceTransformation(characteristics, sourceURI, targetURI, rs);
-//		rs.getResources().stream().filter(r -> "qvto".equals(r.getURI().scheme())).forEach(r -> r.unload());
-//		rs.getResources().stream().filter(r -> !r.isLoaded()).forEach(r -> rs.getResources().remove(r));
+		this.postProcessors.addAll(postProcessors);
 	}
 	
 	private TraceTransformation createTraceTransformation(TransformationCharacteristic sourceCharacteristics, URI sourceModelURI, URI targetModelURI, ResourceSet rs) {
@@ -64,6 +70,12 @@ public abstract class TransformationBase extends DomainIndependentTransformation
 
 	private URI createTraceURI(URI traceBase, URI from, URI to) {
 		return TransformationNameUtils.createTraceURI(getCharacteristics(), from, to, traceBase);
+	}
+
+	@Override
+	protected void postProcessTransformationParametersBeforeSave(Collection<ModelExtent> transformationParameters,
+			Optional<Trace> transformationTrace) {
+		postProcessors.forEach(p -> p.process(transformationParameters, transformationTrace));
 	}
 
 }

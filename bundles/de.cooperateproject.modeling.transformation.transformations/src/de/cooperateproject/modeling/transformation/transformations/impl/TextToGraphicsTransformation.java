@@ -1,5 +1,8 @@
 package de.cooperateproject.modeling.transformation.transformations.impl;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -10,7 +13,11 @@ import de.cooperateproject.modeling.transformation.transformations.registry.Tran
 public class TextToGraphicsTransformation extends TransformationBase {
 	
 	public TextToGraphicsTransformation(DiagramTypes diagramType, String fileExtension, ResourceSet rs, URI source, URI target) {
-		super(createCharacteristics(diagramType), rs, source, target);
+		this(diagramType, fileExtension, rs, source, target, Collections.emptySet());
+	}
+	
+	public TextToGraphicsTransformation(DiagramTypes diagramType, String fileExtension, ResourceSet rs, URI source, URI target, Collection<PostProcessor> postProcessors) {
+		super(createCharacteristics(diagramType), rs, source, target, postProcessors);
 	}
 
 	@Override
