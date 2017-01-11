@@ -40,13 +40,11 @@ import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotA
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
-import de.cooperateproject.ui.papyrus.editor.CooperatePapyrusEditor;
 import de.cooperateproject.ui.util.EditorFinderUtil;
 
 public class PapyrusCDOLauncher extends EditorLauncher {
 
-	//private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
-	private static final String EDITOR_ID_GRAPHICAL = CooperatePapyrusEditor.ID;
+	private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
 	private static final Logger LOGGER = Logger.getLogger(PapyrusCDOLauncher.class);
 	
