@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.FeatureMapChange;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.ResourceAttachmentChange;
@@ -135,15 +136,21 @@ public class CommitManager {
 			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(cdoInfo));
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
        	  	EList<Diff> resultList = comparisonResult.getDifferences();
-       	    
-       	    
+
        	  	for(int i = 0; i < resultList.size(); i++){
        	  		EObject value = getValue(comparisonResult, resultList.get(i));
 	       	  	if(value != null){
 	       	  		if(comparisonResult.getMatch(value) != null){
-		       	  		EObject left = comparisonResult.getMatch(value).getLeft();
-		       	  		EObject right = comparisonResult.getMatch(value).getRight();	
-		       	  		sumList.add(new SummaryItem(left, right, resultList.get(i).getKind()));
+	       	  			EObject left = null;
+	       	  			EObject right = null;
+	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
+	       	  			
+	       	  			switch(resultList.get(i).getKind()){
+	       	  				case DELETE: right = value; break;
+	       	  			 	default: left = value;
+	       	  			}
+	       	  			
+		       	  		sumList.add(new SummaryItem(left, right, parent, resultList.get(i).getKind()));
 	       	  		}
 	       	  	}	
 	       	}
