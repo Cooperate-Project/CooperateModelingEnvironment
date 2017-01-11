@@ -8,11 +8,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.junit.Test;
 
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
@@ -51,6 +54,25 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 	@Test
 	public void testSelfReferenceIncremental() throws Exception {
 		testIncremental("ClassDiagramSelfReference");
+	}
+	
+	@Test
+	public void testDeleteClass() throws Exception {
+		URI sourceModelURI = createResourceModelURI("ClassDiagramSingleClass.notation");
+		URI umlModelURI = createResourceModelURI("ClassDiagramSingleClass.uml");
+		
+		Trace transformationTrace = new Trace(Collections.emptyList());
+		ModelExtent transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationTrace);
+		
+		Resource notationResource = getResourceSet().getResource(sourceModelURI, false);
+		Shape umlClassShape = ((Shape)((Diagram)notationResource.getContents().get(0)).getChildren().get(0));
+		org.eclipse.uml2.uml.Class umlClass = (org.eclipse.uml2.uml.Class)umlClassShape.getElement();
+		EcoreUtil.delete(umlClassShape);
+		EcoreUtil.delete(umlClass);
+		
+		transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationResult, transformationTrace);
+		
+		assertEquals(0, ((ClassDiagram)transformationResult.getContents().get(0)).getRootPackage().getClassifiers().size());
 	}
 	
 	private void testRegular(String modelName) throws Exception {
