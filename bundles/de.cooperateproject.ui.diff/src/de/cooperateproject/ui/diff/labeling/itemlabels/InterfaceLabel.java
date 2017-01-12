@@ -8,7 +8,12 @@ public class InterfaceLabel implements SummaryItemLabelHandler{
 
 
 	public String getText(Object item){
-		return visibLabel.getText(((Interface)item).getVisibility()) + classText + " " + ((Interface)item).getName() + " as " + ((Interface)item).getAlias();
+		Interface intf = (Interface)item;
+		String alias = "";
+		if(intf.getAlias() != null){
+			alias = " as " + intf.getAlias();
+		}
+		return visibLabel.getText(intf.getVisibility()) + classText + " " + intf.getName() + alias;
 	}
 
 	public String getClassText(){

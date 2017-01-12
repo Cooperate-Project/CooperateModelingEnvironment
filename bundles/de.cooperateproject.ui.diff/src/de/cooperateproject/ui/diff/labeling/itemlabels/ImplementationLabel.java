@@ -8,7 +8,7 @@ public class ImplementationLabel implements SummaryItemLabelHandler{
 	public String getText(Object item){
 		Implementation imp = (Implementation)item;
 		String left = imp.getLeft().getName();
-		String right = imp.getLeft().getName();
+		String right = imp.getRight().getName();
 		return left + " impl " + right;
 	}
 
