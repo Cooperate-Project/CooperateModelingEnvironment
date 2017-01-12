@@ -13,6 +13,7 @@ public class DiffTreeItem{
 
 	public DiffTreeItem(Object object){
 		this.object = object;
+		this.kind = null;
 		children = new ArrayList<DiffTreeItem>();
 	}
 	public void addChild(DiffTreeItem pChild){

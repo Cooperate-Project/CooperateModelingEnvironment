@@ -103,15 +103,22 @@ public class DiffView extends ViewPart {
 				
 				if(obj instanceof DiffTreeItem){
 					DiffTreeItem item = (DiffTreeItem)obj;
+					TableItem backupParent = null; //if it can't find a linking with the elements, just set the focus to its parent (if existing)
 					for(TableItem tableItem : summaryViewer.getTable().getItems()){
 						if(tableItem.getData() instanceof SummaryItem){
 							SummaryItem summaryItem = (SummaryItem) tableItem.getData();
 							if(summaryItem.getLeft() == item.getObject() || summaryItem.getRight() == item.getObject()){
 								summaryViewer.getTable().setSelection(tableItem);
 								summaryViewer.getControl().setFocus();
-								break;
+								return;
+							}else if(item.getObject() == summaryItem.getCommonParent()){
+								backupParent = tableItem; 
 							}
 						}
+					}
+					if(backupParent != null){
+						summaryViewer.getTable().setSelection(backupParent);
+						summaryViewer.getControl().setFocus();
 					}
 				}
 			}
@@ -124,6 +131,7 @@ public class DiffView extends ViewPart {
 				
 				if(obj instanceof SummaryItem){
 					SummaryItem item = (SummaryItem)obj;
+					TreeItem backupParent = null; //if it can't find a linking with the elements, just set the focus to its parent (if existing)
 					for(TreeItem treeItem : diffViewer.getTree().getItems()){ //gets all roots of the diff viewer
 							for(TreeItem child: allItems(treeItem)){
 								
@@ -132,11 +140,17 @@ public class DiffView extends ViewPart {
 									if(diffTreeItem.getObject() == item.getLeft() || diffTreeItem.getObject() == item.getRight()){
 										diffViewer.getTree().setSelection(child);
 										diffViewer.getControl().setFocus();
-										break;
+										return;
+									}else if(item.getCommonParent() == diffTreeItem.getObject()){
+										backupParent = child;
+									}
 								}
-							}
 							
-						}
+							}		
+							if(backupParent != null){
+								diffViewer.getTree().setSelection(backupParent);
+								diffViewer.getControl().setFocus();
+							}
 					}
 				}
 			}
