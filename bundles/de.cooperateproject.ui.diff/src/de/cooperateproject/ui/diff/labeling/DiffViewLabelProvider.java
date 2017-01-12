@@ -18,6 +18,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
+import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
 
 public class DiffViewLabelProvider extends LabelProvider{
@@ -37,6 +38,8 @@ public class DiffViewLabelProvider extends LabelProvider{
 		itemHandling.put("GeneralizationImpl", new GeneralizationLabel());
 		itemHandling.put("ImplementationImpl", new ImplementationLabel());
 		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
+		itemHandling.put("Visibility", new VisibilityLabel());
+
 	}
 	
 	
@@ -44,13 +47,13 @@ public class DiffViewLabelProvider extends LabelProvider{
 	public String getText(Object element) {
 		String ret = "";
 		if(element instanceof DiffTreeItem){
-			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getEObject().getClass().getSimpleName());
+			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getObject().getClass().getSimpleName());
 			if(handlerClass != null){
 				if(((DiffTreeItem) element).getDiffKind() != null){
 					ret = ((DiffTreeItem) element).getDiffKind().toString()+ " - ";
 				}
 				
-				ret = ret + handlerClass.getText(((DiffTreeItem) element).getEObject());
+				ret = ret + handlerClass.getText(((DiffTreeItem) element).getObject());
 			}
 		}
 		return ret;
