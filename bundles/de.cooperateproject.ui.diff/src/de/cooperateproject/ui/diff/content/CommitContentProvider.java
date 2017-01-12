@@ -25,7 +25,11 @@ public class CommitContentProvider implements ITreeContentProvider{
 
 	@Override
 	public Object getParent(Object element) {
-		return null;
+		Object ret = null;
+		if(element instanceof DiffTreeItem){
+			ret = ((DiffTreeItem)element).getParent();
+		}
+		return ret;
 	}
 
 	@Override
