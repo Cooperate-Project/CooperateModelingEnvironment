@@ -11,8 +11,14 @@ public class AssociationLabel implements SummaryItemLabelHandler{
 		Association ass = (Association)item;
 		String typeRefLeft = ass.getLeft().getName();
 		String typeRefRight = ass.getRight().getName();
-		return typeRefLeft + " " + ass.getName() + " " + typeRefRight + " " + 
-				" [" + cardLabel.getText(ass.getProperties().getCardinalityLeft()) + " | " + cardLabel.getText(ass.getProperties().getCardinalityRight()) + "]";
+
+		String ret = typeRefLeft + " " + ass.getName() + " " + typeRefRight;
+		if(ass.getProperties() != null){
+			ret += " [" + cardLabel.getText(ass.getProperties().getCardinalityLeft()) + " | " + cardLabel.getText(ass.getProperties().getCardinalityRight()) + "]";
+		}
+
+		return ret;
+				
 		//TODO: Where are the rolenames?
 	}
 
