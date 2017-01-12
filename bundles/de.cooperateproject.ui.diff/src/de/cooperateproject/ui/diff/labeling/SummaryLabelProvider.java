@@ -2,8 +2,6 @@ package de.cooperateproject.ui.diff.labeling;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -20,6 +18,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
+import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
 /**
  * Label Provider for a table viewer which lists all changes in a commit 
@@ -43,6 +42,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("GeneralizationImpl", new GeneralizationLabel());
 		itemHandling.put("ImplementationImpl", new ImplementationLabel());
 		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
+		itemHandling.put("Visibility", new VisibilityLabel());
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	public String getColumnText(Object element, int columnIndex) {
 		
 		String ret = "";
-		EObject notNull;
+		Object notNull;
 
 		if(element instanceof SummaryItem){
 
@@ -70,7 +70,6 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			if(item.getCommonParent() != null){
 				 handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
 			}
-			
 			if(handlerClass != null){
 				switch(columnIndex){
 	  				case 0: ret = item.getDifferenceKind().toString()+ " " + handlerClass.getClassText(); break;

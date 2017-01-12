@@ -106,7 +106,7 @@ public class DiffView extends ViewPart {
 					for(TableItem tableItem : summaryViewer.getTable().getItems()){
 						if(tableItem.getData() instanceof SummaryItem){
 							SummaryItem summaryItem = (SummaryItem) tableItem.getData();
-							if(summaryItem.getLeft() == item.getEObject() || summaryItem.getRight() == item.getEObject()){
+							if(summaryItem.getLeft() == item.getObject() || summaryItem.getRight() == item.getObject()){
 								summaryViewer.getTable().setSelection(tableItem);
 								summaryViewer.getControl().setFocus();
 								break;
@@ -129,7 +129,7 @@ public class DiffView extends ViewPart {
 								
 								if(child.getData() instanceof DiffTreeItem){
 									DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
-									if(diffTreeItem.getEObject() == item.getLeft() || diffTreeItem.getEObject() == item.getRight()){
+									if(diffTreeItem.getObject() == item.getLeft() || diffTreeItem.getObject() == item.getRight()){
 										diffViewer.getTree().setSelection(child);
 										diffViewer.getControl().setFocus();
 										break;

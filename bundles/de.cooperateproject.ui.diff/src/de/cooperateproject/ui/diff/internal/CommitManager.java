@@ -40,6 +40,7 @@ import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.ResourceAttachmentChange;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.compare.utils.MatchUtil;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -139,7 +140,7 @@ public class CommitManager {
        	  	for(int i = 0; i < resultList.size(); i++){
        	  		EObject value = getValue(comparisonResult, resultList.get(i));
 	       	  	if(value != null){
-	       	  		if(comparisonResult.getMatch(value) != null){
+	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute){
 	       	  			EObject left = null;
 	       	  			EObject right = null;
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
@@ -309,7 +310,7 @@ public class CommitManager {
 	   			}
 	   		} 
 	   		else if(diff instanceof AttributeChange){
-	   			value = ((AttributeChange)diff).getAttribute();		
+	   			value = ((AttributeChange)diff).getAttribute();
 	   		}	
 	   		return value;
 	   	}
