@@ -33,7 +33,7 @@ public class ClassTextualPostProcessor extends ContentIteratingPostProcessor {
 			if (!mappedTargets.contains(object)) {
 				EcoreUtil.delete(object);
 			}
-			return true;
+			return false;
 		}
 		
 	}
