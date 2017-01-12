@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.uml2.uml.PrimitiveType;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -140,7 +141,7 @@ public class CommitManager {
        	  	for(int i = 0; i < resultList.size(); i++){
        	  		EObject value = getValue(comparisonResult, resultList.get(i));
 	       	  	if(value != null){
-	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute){
+	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute || value instanceof PrimitiveType){ //TODO: find a better way to filter through relevant diffs
 	       	  			EObject left = null;
 	       	  			EObject right = null;
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
