@@ -1,36 +1,23 @@
 package de.cooperateproject.ui.diff.labeling.itemlabels;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 
 public class AssociationLabel implements SummaryItemLabelHandler{
-	private AssociationPropertiesLabel propLabel = new AssociationPropertiesLabel();
+	//private AssociationPropertiesLabel propLabel = new AssociationPropertiesLabel(); not used atm
+	private CardinalityLabel cardLabel = new CardinalityLabel();
 	private final String classText = "association";
 
 	public String getText(Object item){
 		Association ass = (Association)item;
 		String typeRefLeft = ass.getLeft().getName();
 		String typeRefRight = ass.getRight().getName();
-		return typeRefLeft + ass.getName() + typeRefRight + propLabel.getText(ass.getProperties());
+		return typeRefLeft + " " + ass.getName() + " " + typeRefRight + " " + 
+				" [" + cardLabel.getText(ass.getProperties().getCardinalityLeft()) + " | " + cardLabel.getText(ass.getProperties().getCardinalityRight()) + "]";
+		//TODO: Where are the rolenames?
 	}
 
 	public String getClassText(){
 		return classText;
 	}
 	
-	private class AssociationPropertiesLabel implements SummaryItemLabelHandler {
-		private final String classText = "AssociationProperties";
-
-		public String getText(Object item){
-			AssociationProperties ass = (AssociationProperties)item;
-			
-			String left = ass.getCardinalityLeft().getLowerBound() + ".." + ass.getCardinalityLeft().getUpperBound(); //TODO: Look what UpperBound has as value for "nothing" and "*"
-			String right = ass.getCardinalityRight().getLowerBound() + ".." + ass.getCardinalityRight().getUpperBound(); //TODO: Look what UpperBound has as value for "nothing" and "*"
-			return "[" + left + " | " + right + "]"; //TODO: where are the role names?
-		}
-
-		public String getClassText(){
-			return classText;
-		}
-	}
 }

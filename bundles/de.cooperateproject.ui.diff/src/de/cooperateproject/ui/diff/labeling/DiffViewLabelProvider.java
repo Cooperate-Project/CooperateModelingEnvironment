@@ -8,11 +8,14 @@ import org.eclipse.jface.viewers.LabelProvider;
 
 import de.cooperateproject.ui.diff.internal.DiffTreeItem;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationPropertiesLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.CardinalityLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
@@ -39,6 +42,9 @@ public class DiffViewLabelProvider extends LabelProvider{
 		itemHandling.put("ImplementationImpl", new ImplementationLabel());
 		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
 		itemHandling.put("Visibility", new VisibilityLabel());
+		itemHandling.put("AssociationPropertiesImpl", new AssociationPropertiesLabel());
+		itemHandling.put("CardinalityImpl", new CardinalityLabel());
+		itemHandling.put("Integer", new IntegerLabel());
 
 	}
 	
