@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.compare.DifferenceKind;
-import org.eclipse.emf.ecore.EObject;
-
 public class DiffTreeItem{
 	
 	private List<DiffTreeItem> children;

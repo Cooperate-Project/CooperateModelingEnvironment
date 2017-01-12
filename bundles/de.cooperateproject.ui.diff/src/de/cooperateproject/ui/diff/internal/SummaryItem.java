@@ -4,8 +4,6 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
-import de.cooperateproject.ui.diff.labeling.CardinalityHelper;
-
 public class SummaryItem {
 	
 	private Object left;
@@ -20,18 +18,10 @@ public class SummaryItem {
 		if(left instanceof EAttribute){
 			this.left = commonParent.eGet((EAttribute)left);
 		}
+		
 		if(right instanceof EAttribute){
 			this.right = commonParent.eGet((EAttribute)right);
 		}
-		if(left instanceof Integer){
-			CardinalityHelper helper = new CardinalityHelper();
-			this.left = helper.convertToString((Integer)left);
-		}
-		if(right instanceof Integer){
-			CardinalityHelper helper = new CardinalityHelper();
-			this.right = helper.convertToString((Integer)right);
-		}
-		
 		this.kind = kind;
 		this.commonParent = commonParent;
 	}

@@ -20,6 +20,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.PrimitiveTypeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
 import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
@@ -49,6 +50,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("AssociationPropertiesImpl", new AssociationPropertiesLabel());
 		itemHandling.put("CardinalityImpl", new CardinalityLabel());
 		itemHandling.put("Integer", new IntegerLabel());
+		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
 
 	}
 	
