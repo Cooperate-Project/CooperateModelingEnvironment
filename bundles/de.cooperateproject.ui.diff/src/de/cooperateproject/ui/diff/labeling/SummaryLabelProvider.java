@@ -8,11 +8,14 @@ import org.eclipse.swt.graphics.Image;
 
 import de.cooperateproject.ui.diff.internal.SummaryItem;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationPropertiesLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.CardinalityLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
@@ -43,6 +46,10 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("ImplementationImpl", new ImplementationLabel());
 		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
 		itemHandling.put("Visibility", new VisibilityLabel());
+		itemHandling.put("AssociationPropertiesImpl", new AssociationPropertiesLabel());
+		itemHandling.put("CardinalityImpl", new CardinalityLabel());
+		itemHandling.put("Integer", new IntegerLabel());
+
 	}
 	
 	@Override
@@ -70,6 +77,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			if(item.getCommonParent() != null){
 				 handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
 			}
+			
 			if(handlerClass != null){
 				switch(columnIndex){
 	  				case 0: ret = item.getDifferenceKind().toString()+ " " + handlerClass.getClassText(); break;
