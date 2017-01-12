@@ -70,8 +70,12 @@ public class DiffTreeBuilder {
 					tree.get(item.getLeft()).setDiffKind(item.getDifferenceKind());
 				}else if(tree.containsKey(item.getRight())){
 					tree.get(item.getRight()).setDiffKind(item.getDifferenceKind());
+				}else if(tree.containsKey(item.getCommonParent())){ //if the difference's source isn't in the tree, but its parent is: change the difference kind only if there isn't already another one set
+					DiffTreeItem temp = tree.get(item.getCommonParent());
+					if(temp.getDiffKind() == null){
+						temp.setDiffKind(item.getDifferenceKind());
+					}
 				}
-				
 			}
 		}
 		return newResource;
