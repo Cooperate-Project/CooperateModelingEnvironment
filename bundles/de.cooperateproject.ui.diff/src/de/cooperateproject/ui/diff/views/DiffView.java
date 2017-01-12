@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FormAttachment;
@@ -66,6 +68,7 @@ public class DiffView extends ViewPart {
 		commitManager = new CommitManager();
 		setUpView(parent);
 		makeActions();
+		hookKeyboard();
 		hookDoubleClickAction();
 	}
 	
@@ -133,7 +136,8 @@ public class DiffView extends ViewPart {
 					SummaryItem item = (SummaryItem)obj;
 					TreeItem backupParent = null; //if it can't find a linking with the elements, just set the focus to its parent (if existing)
 					for(TreeItem treeItem : diffViewer.getTree().getItems()){ //gets all roots of the diff viewer
-							for(TreeItem child: allItems(treeItem)){
+							for(TreeItem child: getAllTreeItems(treeItem)){
+								
 								
 								if(child.getData() instanceof DiffTreeItem){
 									DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
@@ -155,16 +159,18 @@ public class DiffView extends ViewPart {
 				}
 			}
 			
-			private List<TreeItem> allItems(TreeItem parent){
-				List<TreeItem> allItems = new ArrayList<TreeItem>();
-				allItems.add(parent);
-				for(TreeItem child: parent.getItems()){
-					allItems.addAll(allItems(child));
-				}
-				return allItems;
-			}
 		};
 	}
+	
+	private List<TreeItem> getAllTreeItems(TreeItem parent){
+		List<TreeItem> allItems = new ArrayList<TreeItem>();
+		allItems.add(parent);
+		for(TreeItem child: parent.getItems()){
+			allItems.addAll(getAllTreeItems(child));
+		}
+		return allItems;
+	}
+
 	private void showDiffViewOfCommit(CommitInfo obj){
 		summaryViewer.setInput(commitManager.compare(obj));
 		for (TableColumn c : summaryViewer.getTable().getColumns()){
@@ -194,6 +200,51 @@ public class DiffView extends ViewPart {
 		});
 	}
 	
+	private void hookKeyboard(){
+		KeyListener kl = new KeyListener(){
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				handleKeyReleased(e);
+			}
+		};
+		diffViewer.getTree().addKeyListener(kl);
+	}
+	
+	private void handleKeyReleased(KeyEvent event) {
+		if(event.character == SWT.SPACE){
+			focusOnParentTreeItem();
+		}
+	}
+	
+	private void focusOnParentTreeItem() {
+		ISelection selection = diffViewer.getSelection();
+		Object obj = ((IStructuredSelection)selection).getFirstElement();
+		
+		if(obj instanceof DiffTreeItem){
+			DiffTreeItem item = (DiffTreeItem)obj;
+			DiffTreeItem parent = item.getParent();
+			
+			for(TreeItem treeItem : diffViewer.getTree().getItems()){ //gets all roots of the diff viewer
+				for(TreeItem child: getAllTreeItems(treeItem)){
+					if(child.getData() instanceof DiffTreeItem){
+						DiffTreeItem diffTreeItem = (DiffTreeItem) child.getData();
+						if(diffTreeItem == parent){
+							diffViewer.getTree().setSelection(child);
+							diffViewer.getControl().setFocus();
+							return;
+						}
+					}
+				
+				}
+			}
+			
+		}
+	}
+
 	/**
 	 * Initializes the view of this plugin. 
 	 * @param parent 

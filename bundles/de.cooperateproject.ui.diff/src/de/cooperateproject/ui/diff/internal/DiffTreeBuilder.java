@@ -50,8 +50,8 @@ public class DiffTreeBuilder {
 			DiffTreeItem diffItem = tree.get(obj);
 			for(EObject child: obj.eContents()){
 				diffItem.addChild(tree.get(child));
+				tree.get(child).setParent(diffItem);
 			}
-
 		}
 		
 		for(SummaryItem item: changes){
@@ -61,6 +61,7 @@ public class DiffTreeBuilder {
 					DiffTreeItem affectedParent = tree.get(item.getCommonParent());
 					DiffTreeItem newChild = new DiffTreeItem(deletedItem);
 					affectedParent.addChild(newChild);
+					newChild.setParent(affectedParent);
 					addDeletedChildren(newChild);
 					newChild.setDiffKind(DifferenceKind.DELETE);
 				}
@@ -90,10 +91,10 @@ public class DiffTreeBuilder {
 				EList<EObject> childrenList = eObj.eContents();
 				
 				for(EObject obj: childrenList){ // a child from the deleted parent
-					
 					DiffTreeItem diffItem = new DiffTreeItem(obj); //make a new diffTreeItem, because the deleted item is not contained yet in the tree
 					diffItem.setDiffKind(DifferenceKind.DELETE);
 					parent.addChild(diffItem);
+					diffItem.setParent(parent);
 				}
 				
 			}
