@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
+import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EAttribute;
@@ -141,6 +142,7 @@ public class CommitManager {
 	       	  			Object left = null;
 	       	  			Object right = null;
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
+	       	  			if(parent == null) break; //don't add a summary item that has no parent class
 	       	  			
 	       	  			switch(resultList.get(i).getKind()){
 	       	  				case DELETE: 
@@ -150,7 +152,7 @@ public class CommitManager {
 	       	  			 	default: 
 	       	  			 		left = value;
 	       	  			 		if(resultList.get(i).getMatch().getRight() != null){
-	       	  			 			right = getOldValue(resultList.get(i));
+	       	  			 			right = getOldValue(resultList.get(i), comparisonResult, value);
 	       	  			 		}
 
 	       	  			}
@@ -305,14 +307,18 @@ public class CommitManager {
 	   	}
 	   
 	   @SuppressWarnings("rawtypes")
-	private Object getOldValue(Diff diff){
+	private Object getOldValue(Diff diff, Comparison comparisonResult, EObject value){
 		   Object oldValue = null;
 		   if(diff instanceof AttributeChange){
 		 	oldValue =  diff.getMatch().getRight().eGet(((AttributeChange)diff).getAttribute());
 		   } else if(diff instanceof ReferenceChange){
-		 	oldValue = diff.getMatch().getRight().eGet(((ReferenceChange)diff).getReference());
-		   }
-		   
+			   if(diff.getKind() == DifferenceKind.MOVE){
+				   oldValue = comparisonResult.getMatch(value).getRight().eContainer();
+			   }
+			   else{
+				   oldValue = diff.getMatch().getRight().eGet(((ReferenceChange)diff).getReference());
+			   }
+			}
 		 	if(oldValue instanceof org.eclipse.emf.ecore.util.DelegatingEcoreEList){
 		 		oldValue = ((org.eclipse.emf.ecore.util.DelegatingEcoreEList)oldValue).getEObject();
 		 	}

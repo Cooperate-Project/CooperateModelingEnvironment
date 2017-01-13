@@ -2,6 +2,9 @@ package de.cooperateproject.ui.diff.labeling;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.eclipse.emf.compare.DifferenceKind;
+import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -63,33 +66,52 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	public String getColumnText(Object element, int columnIndex) {
 		
 		String ret = "";
-		Object notNull;
 
 		if(element instanceof SummaryItem){
 
 			SummaryItem item = ((SummaryItem)element);
 		
-			if(item.getLeft() != null){
-				notNull = item.getLeft();
-			}else{
-				notNull = item.getRight();
-			}
-			SummaryItemLabelHandler handlerClass = itemHandling.get(notNull.getClass().getSimpleName());
+			SummaryItemLabelHandler handlerClassLeft = null;
+			SummaryItemLabelHandler handlerClassRight = null;
 			SummaryItemLabelHandler handlerClassParent = null;
+
+			
+			if(item.getLeft() != null){
+				 handlerClassLeft = itemHandling.get(item.getLeft().getClass().getSimpleName());
+			}
+			if(item.getRight() != null){
+				 handlerClassRight = itemHandling.get(item.getRight().getClass().getSimpleName()); //important to differentiate because of MOVE
+			}
 			if(item.getCommonParent() != null){
 				 handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
 			}
 			
-			if(handlerClass != null){
+			if(item.getDifferenceKind() == DifferenceKind.MOVE){
 				switch(columnIndex){
-	  				case 0: ret = item.getDifferenceKind().toString()+ " " + handlerClass.getClassText(); break;
+  				case 0: if(handlerClassLeft != null){
+  							ret = item.getDifferenceKind().toString()+ " " + handlerClassLeft.getClassText();
+  						}
+  						break;
+  				case 1: if(handlerClassLeft != null) ret = handlerClassLeft.getText(item.getLeft()); break;
+  				case 2: if(handlerClassRight != null) ret = handlerClassRight.getText(item.getRight()); break;
+  				case 3: if(handlerClassParent != null) ret = handlerClassParent.getText(item.getCommonParent()); break;
+  				default: 
+				}
+			}
+			else{
+				switch(columnIndex){
+	  				case 0: if(handlerClassLeft != null){
+	  							ret = item.getDifferenceKind().toString()+ " " + handlerClassLeft.getClassText();
+	  						}else{
+	  							ret = item.getDifferenceKind().toString()+ " " + handlerClassRight.getClassText();
+	  						}
+	  						break;
 	  				case 1: if(handlerClassParent != null) ret = handlerClassParent.getText(item.getCommonParent()); break;
-	  				case 2: if(item.getRight() != null) ret = handlerClass.getText(item.getRight()); break;
-	  				case 3: if(item.getLeft() != null) ret = handlerClass.getText(item.getLeft()); break;
+	  				case 2: if(handlerClassRight != null) ret = handlerClassRight.getText(item.getRight()); break;
+	  				case 3: if(handlerClassLeft != null) ret = handlerClassLeft.getText(item.getLeft()); break;
 	  				default: 
 			  	}
 			}
-
 		}
 		
 		return ret;
