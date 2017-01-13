@@ -38,7 +38,7 @@ public class MethodLabel implements SummaryItemLabelHandler{
 		if(params.size() <= 0 ) return ret;
 		
 		for(Parameter param : params){
-			ret = paramLabel.getText(param);
+			ret = ret + paramLabel.getText(param);
 			if(params.indexOf(param) < params.size() - 1){
 				ret += ", ";
 			}
