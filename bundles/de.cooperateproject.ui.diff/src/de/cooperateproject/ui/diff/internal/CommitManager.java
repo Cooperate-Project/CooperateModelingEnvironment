@@ -35,17 +35,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
-import org.eclipse.emf.compare.FeatureMapChange;
 import org.eclipse.emf.compare.ReferenceChange;
-import org.eclipse.emf.compare.ResourceAttachmentChange;
 import org.eclipse.emf.compare.scope.IComparisonScope;
-import org.eclipse.emf.compare.utils.MatchUtil;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.uml2.uml.PrimitiveType;
 
@@ -139,19 +135,26 @@ public class CommitManager {
        	  	EList<Diff> resultList = comparisonResult.getDifferences();
 
        	  	for(int i = 0; i < resultList.size(); i++){
-       	  		EObject value = getValue(comparisonResult, resultList.get(i));
+       	  		EObject value = getValue(resultList.get(i));
 	       	  	if(value != null){
-	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute || value instanceof PrimitiveType){ //TODO: find a better way to filter through relevant diffs
-	       	  			EObject left = null;
-	       	  			EObject right = null;
+	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute || value instanceof PrimitiveType){
+	       	  			Object left = null;
+	       	  			Object right = null;
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
 	       	  			
 	       	  			switch(resultList.get(i).getKind()){
-	       	  				case DELETE: right = value; break;
-	       	  			 	default: left = value;
+	       	  				case DELETE: 
+	       	  					right = value; break;
+	       	  				case ADD:
+	       	  					left = value; break;
+	       	  			 	default: 
+	       	  			 		left = value;
+	       	  			 		if(resultList.get(i).getMatch().getRight() != null){
+	       	  			 			right = getOldValue(resultList.get(i));
+	       	  			 		}
+
 	       	  			}
-	       	  			
-		       	  		sumList.add(new SummaryItem(left, right, parent, resultList.get(i).getKind()));
+	       	  			sumList.add(new SummaryItem(left, right, parent, resultList.get(i).getKind()));
 	       	  		}
 	       	  	}	
 	       	}
@@ -290,31 +293,32 @@ public class CommitManager {
     	   return false;
        }
 	   
-	   private static EObject getValue(Comparison comparison, Diff diff) {
+	   private EObject getValue(Diff diff) {
 	   		EObject value = null;
 
 	   		if (diff instanceof ReferenceChange) {
 	   			value = ((ReferenceChange)diff).getValue();
-	   		} 
-	   		else if (diff instanceof ResourceAttachmentChange) {
-	   			value = MatchUtil.getContainer(comparison, diff);
-	   			
-	   		} 
-	   		else if (diff instanceof FeatureMapChange) {
-	   			Object entry = ((FeatureMapChange)diff).getValue();
-	   			
-	   			if (entry instanceof FeatureMap.Entry) {
-	   				Object entryValue = ((FeatureMap.Entry)entry).getValue();
-	   				if (entryValue instanceof EObject) {
-	   					value = (EObject)entryValue;
-	   				}
-	   			}
-	   		} 
-	   		else if(diff instanceof AttributeChange){
+	   		} else if(diff instanceof AttributeChange){
 	   			value = ((AttributeChange)diff).getAttribute();
 	   		}	
 	   		return value;
 	   	}
+	   
+	   @SuppressWarnings("rawtypes")
+	private Object getOldValue(Diff diff){
+		   Object oldValue = null;
+		   if(diff instanceof AttributeChange){
+		 	oldValue =  diff.getMatch().getRight().eGet(((AttributeChange)diff).getAttribute());
+		   } else if(diff instanceof ReferenceChange){
+		 	oldValue = diff.getMatch().getRight().eGet(((ReferenceChange)diff).getReference());
+		   }
+		   
+		 	if(oldValue instanceof org.eclipse.emf.ecore.util.DelegatingEcoreEList){
+		 		oldValue = ((org.eclipse.emf.ecore.util.DelegatingEcoreEList)oldValue).getEObject();
+		 	}
+		 	
+		   return oldValue;
+	   }
 	  
 
 		   
