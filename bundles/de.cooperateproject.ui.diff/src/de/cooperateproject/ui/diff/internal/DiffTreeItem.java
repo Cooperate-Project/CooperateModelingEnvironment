@@ -1,12 +1,13 @@
 package de.cooperateproject.ui.diff.internal;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.compare.DifferenceKind;
 public class DiffTreeItem{
 	
-	private List<DiffTreeItem> children;
+	private HashSet<DiffTreeItem> children;
 	private Object object;
 	private DiffTreeItem parent;
 	private DifferenceKind kind;
@@ -15,12 +16,16 @@ public class DiffTreeItem{
 		this.object = object;
 		this.kind = null;
 		this.parent = null;
-		children = new ArrayList<DiffTreeItem>();
+		children = new HashSet<DiffTreeItem>();
 	}
 	public void addChild(DiffTreeItem pChild){
 			children.add(pChild);
 	}
-	public List<DiffTreeItem> getContents(){
+	
+	public void removeChild(DiffTreeItem pChild){
+		children.remove(pChild);
+	}
+	public HashSet<DiffTreeItem> getContents(){
 		return children;
 	}
 	

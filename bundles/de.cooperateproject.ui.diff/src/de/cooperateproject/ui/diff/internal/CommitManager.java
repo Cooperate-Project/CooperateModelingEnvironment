@@ -50,6 +50,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.ui.constants.UIConstants;
 import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
@@ -135,6 +136,8 @@ public class CommitManager {
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
        	  	EList<Diff> resultList = comparisonResult.getDifferences();
 
+       	  	CommentLinkAdapt.setCDOView(currentState);
+       	  	
        	  	for(int i = 0; i < resultList.size(); i++){
        	  		EObject value = getValue(resultList.get(i));
 	       	  	if(value != null){
@@ -142,6 +145,11 @@ public class CommitManager {
 	       	  			Object left = null;
 	       	  			Object right = null;
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
+	       	  			
+	       	  			if(value instanceof CommentLink){
+	       	  				parent = CommentLinkAdapt.findParent((CommentLink)value);	
+	       	  			}
+	       	  			
 	       	  			if(parent == null) break; //don't add a summary item that has no parent class
 	       	  			
 	       	  			switch(resultList.get(i).getKind()){

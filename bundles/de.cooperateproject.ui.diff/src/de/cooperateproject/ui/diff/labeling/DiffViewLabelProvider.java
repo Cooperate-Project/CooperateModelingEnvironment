@@ -13,6 +13,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.CardinalityLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.CommentLinkLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
@@ -47,9 +48,7 @@ public class DiffViewLabelProvider extends LabelProvider{
 		itemHandling.put("CardinalityImpl", new CardinalityLabel());
 		itemHandling.put("Integer", new IntegerLabel());
 		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
-
-
-
+		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
 	}
 	
 	
