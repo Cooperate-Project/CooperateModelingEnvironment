@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.compare.DifferenceKind;
-import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -16,6 +15,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.CardinalityLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.CommentLinkLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
@@ -54,6 +54,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("CardinalityImpl", new CardinalityLabel());
 		itemHandling.put("Integer", new IntegerLabel());
 		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
+		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
 
 	}
 	
@@ -102,7 +103,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 				switch(columnIndex){
 	  				case 0: if(handlerClassLeft != null){
 	  							ret = item.getDifferenceKind().toString()+ " " + handlerClassLeft.getClassText();
-	  						}else{
+	  						}else if(handlerClassRight != null){
 	  							ret = item.getDifferenceKind().toString()+ " " + handlerClassRight.getClassText();
 	  						}
 	  						break;

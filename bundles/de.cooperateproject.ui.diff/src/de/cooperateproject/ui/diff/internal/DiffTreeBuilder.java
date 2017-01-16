@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
+import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +36,6 @@ public class DiffTreeBuilder {
 		DiffTreeItem newResource = null;
 		
 		while(it.hasNext()){
-		
 			EObject obj = it.next();
 			DiffTreeItem temp = new DiffTreeItem(obj);
 			tree.put(obj, temp);
@@ -52,6 +53,19 @@ public class DiffTreeBuilder {
 				diffItem.addChild(tree.get(child));
 				tree.get(child).setParent(diffItem);
 			}
+
+			if(obj instanceof CommentLink){ //in this case, the object isn't the child of its parent in emf containment hierarchy and has to be changed
+				@SuppressWarnings("rawtypes")
+				NamedElement parent = CommentLinkAdapt.findParent((CommentLink)obj);
+				if(tree.get(parent) != null){
+					if(tree.get(obj.eContainer()) != null){
+						tree.get(obj.eContainer()).removeChild(tree.get(obj));
+					}
+					tree.get(obj).setParent(tree.get(parent));
+					tree.get(parent).addChild(tree.get(obj));
+					
+				}
+			}
 		}
 		
 		for(SummaryItem item: changes){
@@ -67,7 +81,7 @@ public class DiffTreeBuilder {
 				}
 			}
 			else if(item.getDifferenceKind() == DifferenceKind.ADD || item.getDifferenceKind() == DifferenceKind.CHANGE || item.getDifferenceKind() == DifferenceKind.MOVE){ //changed, moved or added element
-				if(tree.containsKey(item.getLeft())){ 
+				if(tree.containsKey(item.getLeft())){
 					tree.get(item.getLeft()).setDiffKind(item.getDifferenceKind());
 				}else if(tree.containsKey(item.getRight())){
 					tree.get(item.getRight()).setDiffKind(item.getDifferenceKind());
