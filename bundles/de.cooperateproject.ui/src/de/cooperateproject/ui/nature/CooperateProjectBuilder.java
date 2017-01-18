@@ -15,51 +15,62 @@ import com.google.common.collect.Maps;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.connection.CDOConnectionSettings;
+import de.cooperateproject.cdo.util.utils.CDOHelper;
 import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 
 public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 
-	private static final Logger LOGGER = Logger.getLogger(CooperateProjectBuilder.class);
-	public static final String BUILDER_ID = "de.cooperateproject.ui.CooperateProjectBuilder";
-	private final Map<IProject, ProjectPropertiesDTO> oldProperties = Maps.newHashMap(); 
-	
-	@Override
-	protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
-		LOGGER.debug(String.format("%s started with kind %d.", CooperateProjectBuilder.class.getSimpleName(), kind));
-		boolean treatAsNew = (kind == CLEAN_BUILD || kind == FULL_BUILD) ;
-		Collection<IProject> processedProjects = Lists.newArrayList();
-		for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
-			if (project.isOpen() && NatureUtils.hasCooperateNature(project)) {
-				buildProject(project, treatAsNew);
-				processedProjects.add(project);
-			}
-			if (!project.isOpen()) {
-				BackgroundTasksAdapter.getManager().deregisterProject(project);
-			}
-		}
-		return processedProjects.toArray(new IProject[0]);
-	}
+    private static final Logger LOGGER = Logger.getLogger(CooperateProjectBuilder.class);
+    public static final String BUILDER_ID = "de.cooperateproject.ui.CooperateProjectBuilder";
+    private final Map<IProject, ProjectPropertiesDTO> oldProperties = Maps.newHashMap();
 
-	private void buildProject(IProject project, boolean treatAsNew) {
-		LOGGER.info(String.format("Starting build of project %s.", project.getName()));
-		
-		ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(project);
-		propertiesStore.initFromStore();
-		ProjectPropertiesDTO currentProperties = propertiesStore.getPreferences();
-		
-		if (treatAsNew || !currentProperties.equals(oldProperties.get(project))) {
-			BackgroundTasksAdapter.getManager().deregisterProject(project);
-			CDOConnectionManager.getInstance().unregister(project);
-		}
-		CDOConnectionManager.getInstance().register(project, convert(currentProperties));
-		BackgroundTasksAdapter.getManager().registerProject(project);
+    @Override
+    protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
+        LOGGER.debug(String.format("%s started with kind %d.", CooperateProjectBuilder.class.getSimpleName(), kind));
+        boolean treatAsNew = (kind == CLEAN_BUILD || kind == FULL_BUILD);
+        Collection<IProject> processedProjects = Lists.newArrayList();
+        for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+            if (project.isOpen() && NatureUtils.hasCooperateNature(project)) {
+                buildProject(project, treatAsNew, monitor);
+                processedProjects.add(project);
+            }
+            if (!project.isOpen()) {
+                BackgroundTasksAdapter.getManager().deregisterProject(project);
+            }
+        }
+        return processedProjects.toArray(new IProject[0]);
+    }
 
-		oldProperties.put(project, currentProperties);
-	}
+    private void buildProject(IProject project, boolean treatAsNew, IProgressMonitor monitor) {
+        LOGGER.info(String.format("Starting build of project %s.", project.getName()));
 
-	private static CDOConnectionSettings convert(ProjectPropertiesDTO properties) {
-		return CDOConnectionSettings.builder().setHost(properties.getCdoHost()).setPort(properties.getCdoPort()).setRepo(properties.getCdoRepo()).build();
-	}
+        ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(project);
+        propertiesStore.initFromStore();
+        ProjectPropertiesDTO currentProperties = propertiesStore.getPreferences();
+
+        if (CDOHelper.connectionInfoIsValid(currentProperties.getCdoHost(), currentProperties.getCdoPort(),
+                currentProperties.getCdoRepo(), 100000)) {
+            if (treatAsNew || !currentProperties.equals(oldProperties.get(project))) {
+                BackgroundTasksAdapter.getManager().deregisterProject(project);
+                CDOConnectionManager.getInstance().unregister(project);
+            }
+            CDOConnectionManager.getInstance().register(project, convert(currentProperties));
+            BackgroundTasksAdapter.getManager().registerProject(project);
+        } else {
+            try {
+                project.close(monitor);
+            } catch (CoreException e) {
+                LOGGER.error(e.getMessage());
+            }
+        }
+
+        oldProperties.put(project, currentProperties);
+    }
+
+    private static CDOConnectionSettings convert(ProjectPropertiesDTO properties) {
+        return CDOConnectionSettings.builder().setHost(properties.getCdoHost()).setPort(properties.getCdoPort())
+                .setRepo(properties.getCdoRepo()).build();
+    }
 }
