@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 
 public class CDOTextDecorator implements ILightweightLabelDecorator {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateProjectBuilder.class);
+    private static final Logger LOGGER = Logger.getLogger(CDOTextDecorator.class);
 
     @Override
     public void addListener(ILabelProviderListener listener) {
@@ -44,7 +44,7 @@ public class CDOTextDecorator implements ILightweightLabelDecorator {
                         }
                     }
                 } catch (CoreException e) {
-                    LOGGER.error(e.getMessage());
+                    LOGGER.error(project.getLocation().append("/.project") + " can't be accessed.", e);
                 }
             }
         }

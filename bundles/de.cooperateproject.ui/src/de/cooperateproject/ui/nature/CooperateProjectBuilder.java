@@ -62,7 +62,7 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
             try {
                 project.close(monitor);
             } catch (CoreException e) {
-                LOGGER.error(e.getMessage());
+                LOGGER.error("Project can't be closed.", e);
             }
         }
 
