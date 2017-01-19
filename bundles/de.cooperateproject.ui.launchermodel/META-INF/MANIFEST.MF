@@ -9,8 +9,11 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.ui.launchermodel.Launcher,
  de.cooperateproject.ui.launchermodel.Launcher.impl,
- de.cooperateproject.ui.launchermodel.Launcher.util
+ de.cooperateproject.ui.launchermodel.Launcher.util,
+ de.cooperateproject.ui.launchermodel.helper
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.core.resources,
+ org.apache.commons.lang3
 Bundle-ActivationPolicy: lazy

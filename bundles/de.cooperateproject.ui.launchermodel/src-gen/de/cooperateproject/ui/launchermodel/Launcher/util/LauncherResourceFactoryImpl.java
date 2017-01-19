@@ -17,25 +17,25 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  */
 public class LauncherResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
-	 * Creates an instance of the resource factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the resource factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public LauncherResourceFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the resource.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Resource createResource(URI uri) {
-		Resource result = new LauncherResourceImpl(uri);
-		return result;
-	}
+        Resource result = new LauncherResourceImpl(uri);
+        return result;
+    }
 
 } //LauncherResourceFactoryImpl

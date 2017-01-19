@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.ui.IEditorPart;
 
-import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncherFactory;
+import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 
 
 public class TextualCDOEditorLauncherFactory implements IEditorLauncherFactory {

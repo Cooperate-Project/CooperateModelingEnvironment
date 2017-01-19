@@ -3,6 +3,20 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Launcher" nsURI="http://www.cooperateproject.de/ui/launchermodel/Launcher"
     nsPrefix="launcher">
   <eClassifiers xsi:type="ecore:EClass" name="Diagram">
+    <eOperations name="getConcreteSyntaxModel" eExceptions="#//ConcreteSyntaxTypeNotAvailableExceptionWrapper">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="&lt;%org.apache.commons.lang3.Validate%>.notNull(type);&#xD;&#xA;&#xD;&#xA;Set&lt;T> matchingModels = getConcreteSyntaxModels().stream().filter(type::isInstance).map(type::cast).collect(Collectors.toSet());&#xD;&#xA;if (matchingModels.size() != 1) {&#xD;&#xA;    throw new ConcreteSyntaxTypeNotAvailableException(&quot;The concrete syntax type &quot; + type.getSimpleName() + &quot; is not available.&quot;);&#xD;&#xA;}&#xD;&#xA;return matchingModels.iterator().next();"/>
+      </eAnnotations>
+      <eGenericType eTypeParameter="#//Diagram/getConcreteSyntaxModel/T"/>
+      <eTypeParameters name="T">
+        <eBounds eClassifier="#//ConcreteSyntaxModel"/>
+      </eTypeParameters>
+      <eParameters name="type" lowerBound="1">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments eTypeParameter="#//Diagram/getConcreteSyntaxModel/T"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concreteSyntaxModels" upperBound="-1"
         eType="#//ConcreteSyntaxModel" containment="true"/>
@@ -15,4 +29,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TextualConcreteSyntaxModel" eSuperTypes="#//ConcreteSyntaxModel"/>
   <eClassifiers xsi:type="ecore:EClass" name="GraphicalConcreteSyntaxModel" eSuperTypes="#//ConcreteSyntaxModel"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ConcreteSyntaxTypeNotAvailableExceptionWrapper"
+      instanceClassName="de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException"/>
 </ecore:EPackage>

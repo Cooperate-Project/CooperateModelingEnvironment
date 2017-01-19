@@ -21,14 +21,14 @@ public class LauncherResourceImpl extends XMIResourceImpl {
 	public static final String EXTENSION = "cooperate";
 	
 	/**
-	 * Creates an instance of the resource.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the resource.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param uri the URI of the new resource.
-	 * @generated
-	 */
+     * @param uri the URI of the new resource.
+     * @generated
+     */
 	public LauncherResourceImpl(URI uri) {
-		super(uri);
-	}
+        super(uri);
+    }
 
 } //LauncherResourceImpl

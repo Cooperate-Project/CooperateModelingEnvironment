@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.editors.launcher.extensions;
+package de.cooperateproject.ui.launchermodel.helper;
 
 public class ConcreteSyntaxTypeNotAvailableException extends Exception {
 
