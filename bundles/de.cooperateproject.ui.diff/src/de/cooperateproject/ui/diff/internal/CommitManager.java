@@ -3,17 +3,14 @@ package de.cooperateproject.ui.diff.internal;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.Validate;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.CDOObject;
@@ -31,7 +28,6 @@ import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.AttributeChange;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
@@ -40,8 +36,6 @@ import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.scope.IComparisonScope;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.uml2.uml.PrimitiveType;
@@ -51,12 +45,10 @@ import com.google.common.collect.Lists;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
-import de.cooperateproject.ui.constants.UIConstants;
-import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
-import de.cooperateproject.ui.util.ConversionUtils;
+import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
 /**
  * Provides functions for receiving information about commits from a resource
@@ -189,7 +181,7 @@ public class CommitManager {
 			            
 			        try{
 			         launcherModel = loadDiagram(view, currentFile);
-					 textmodel = selectConcreteSyntaxModel(launcherModel, EditorType.TEXTUAL);
+					 textmodel = launcherModel.getConcreteSyntaxModel(EditorType.TEXTUAL.getSupportedSyntaxModel());
 					 resourceDiagramPath = CDOURIUtil.extractResourcePath(EcoreUtil.getURI(textmodel.getRootElement()));
 			        }catch(Exception e){}
 			        
@@ -257,37 +249,9 @@ public class CommitManager {
 			resourceDiagramPath = null;
 		}
 
-		//TODO: use this from the class where it was first implemented (this is only copy and paste for testing)
 	   private Diagram loadDiagram(CDOView cdoView, IFile launcherFile) throws IOException {
-	      		
-	      	ResourceSet rs = cdoView.getResourceSet();
-	      	URI fileUri = URI.createPlatformResourceURI(launcherFile.getFullPath().toString(), true);
-	      	Resource r = rs.createResource(fileUri, UIConstants.LAUNCHER_EXTENSION);
-	     	r.load(Collections.emptyMap());
-	     	EObject rootObject = r.getContents().get(0);
-	   		if (!(rootObject instanceof Diagram)) {
-	   			throw new IllegalArgumentException("");
-      		}
-	      		return (Diagram) rootObject;
-	      	}
-	         
-	   //TODO: use this from the class where it was first implemented (this is only copy and paste for testing)
-	   private ConcreteSyntaxModel selectConcreteSyntaxModel(Diagram launcherModel,
-	    			EditorType editorType) throws ConcreteSyntaxTypeNotAvailableException {
-     		Validate.notNull(launcherModel);
-     		Validate.notNull(editorType);
-	      	
-	   		Optional<ConcreteSyntaxModel> model = ConversionUtils.convert(Iterables.tryFind(launcherModel.getConcreteSyntaxModels(), m -> editorType.getSupportedSyntaxModels()
-	      				.stream().anyMatch(t -> t.isAssignableFrom(m.getClass()))));
-	      		
-	   		if (!model.isPresent()) {
-      			throw new ConcreteSyntaxTypeNotAvailableException("The concrete syntax type " + editorType + " is not available.");
-	      		
-	   		}
-	   		
-	   		
-	   		return model.get();
-	      	}
+	      	return LauncherModelHelper.loadDiagram(cdoView.getResourceSet(), launcherFile);
+	   }
 	   
 	   private boolean parentMatches(CDOID objectId, CDOID parentId, CDOView previousView, CDOView currentView) {
     	   try{
