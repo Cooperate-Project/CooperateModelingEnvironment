@@ -14,47 +14,47 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface LauncherFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	LauncherFactory eINSTANCE = de.cooperateproject.ui.launchermodel.Launcher.impl.LauncherFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Diagram</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Diagram</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Diagram</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Diagram</em>'.
+     * @generated
+     */
 	Diagram createDiagram();
 
 	/**
-	 * Returns a new object of class '<em>Textual Concrete Syntax Model</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Textual Concrete Syntax Model</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Textual Concrete Syntax Model</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Textual Concrete Syntax Model</em>'.
+     * @generated
+     */
 	TextualConcreteSyntaxModel createTextualConcreteSyntaxModel();
 
 	/**
-	 * Returns a new object of class '<em>Graphical Concrete Syntax Model</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Graphical Concrete Syntax Model</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Graphical Concrete Syntax Model</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Graphical Concrete Syntax Model</em>'.
+     * @generated
+     */
 	GraphicalConcreteSyntaxModel createGraphicalConcreteSyntaxModel();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	LauncherPackage getLauncherPackage();
 
 } //LauncherFactory

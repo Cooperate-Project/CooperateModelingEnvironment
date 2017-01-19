@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_d3tLMIuMEeavr5tC4_lknw" name="RootElement">
+  <ownedComment xmi:id="_96AlkN2HEea6b7D5DMjHeA" annotatedElement="_V9sWUNjNEea-99wzQVCiMQ">
+    <body>this is a note</body>
+  </ownedComment>
+  <ownedComment xmi:id="_eDfOAN2JEea6b7D5DMjHeA" annotatedElement="_lALiEN2DEea6b7D5DMjHeA">
+    <body>this is another note</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V9sWUNjNEea-99wzQVCiMQ" name="Alice">
+    <ownedAttribute xmi:id="_V9sWUdjNEea-99wzQVCiMQ" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_V9sWUtjNEea-99wzQVCiMQ" name="age" visibility="private" isStatic="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_CVeR0N1oEeakUKZ9oCN90w" name="ALICE_ID" isReadOnly="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_y4-d4N2DEea6b7D5DMjHeA" type="_V9sWW9jNEea-99wzQVCiMQ" association="_lALiEN2DEea6b7D5DMjHeA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3E8IAN2DEea6b7D5DMjHeA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5HDwwN2DEea6b7D5DMjHeA" value="*"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_V9sWU9jNEea-99wzQVCiMQ" name="getName" visibility="protected" isStatic="true">
+      <ownedParameter xmi:id="_V9sWVNjNEea-99wzQVCiMQ" name="" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_V9sWVdjNEea-99wzQVCiMQ" name="setName" visibility="protected">
+      <ownedParameter xmi:id="_V9sWVtjNEea-99wzQVCiMQ" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_V9sWV9jNEea-99wzQVCiMQ" name="calculateAge" visibility="package" isAbstract="true">
+      <ownedParameter xmi:id="_V9sWWNjNEea-99wzQVCiMQ" name="date">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_V9sWWdjNEea-99wzQVCiMQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_V9sWWtjNEea-99wzQVCiMQ" name="IAlice"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V9sWW9jNEea-99wzQVCiMQ" name="Bob">
+    <generalization xmi:id="_2FPs8N2AEea6b7D5DMjHeA" general="_V9sWUNjNEea-99wzQVCiMQ"/>
+    <ownedAttribute xmi:id="_c-fr8N11Eea6b7D5DMjHeA" name="alice" type="_V9sWUNjNEea-99wzQVCiMQ"/>
+    <ownedAttribute xmi:id="_NX-T8N1-Eea6b7D5DMjHeA" name="asd">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <interfaceRealization xmi:id="_a-OxcN2CEea6b7D5DMjHeA" name="" client="_V9sWW9jNEea-99wzQVCiMQ" supplier="_V9sWXNjNEea-99wzQVCiMQ" contract="_V9sWXNjNEea-99wzQVCiMQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_V9sWXNjNEea-99wzQVCiMQ" name="IBob"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V9sWXdjNEea-99wzQVCiMQ" name="Alias Alice">
+    <nameExpression xmi:id="_V9sWXtjNEea-99wzQVCiMQ" name="AA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_V9sWX9jNEea-99wzQVCiMQ" name="AbstractAlice" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6XDJEN1vEeakUKZ9oCN90w" name="AliceAllTypes">
+    <ownedAttribute xmi:id="_9pw3AN1vEeakUKZ9oCN90w" name="stringMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_-zuIsN1vEeakUKZ9oCN90w" name="intMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="__c1-MN1vEeakUKZ9oCN90w" name="doubleMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="__hemkN1vEeakUKZ9oCN90w" name="floatMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EFloat"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="__6HJAN1vEeakUKZ9oCN90w" name="booleanMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="__-XW4N1vEeakUKZ9oCN90w" name="byteMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByte"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_ABj00N1wEeakUKZ9oCN90w" name="charMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EChar"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AE6DwN1wEeakUKZ9oCN90w" name="longMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_DO_aIN1wEeakUKZ9oCN90w" name="shortMember">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EShort"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_lALiEN2DEea6b7D5DMjHeA" name="association" memberEnd="_y4-d4N2DEea6b7D5DMjHeA _8MFoAN2DEea6b7D5DMjHeA">
+    <ownedEnd xmi:id="_8MFoAN2DEea6b7D5DMjHeA" type="_V9sWUNjNEea-99wzQVCiMQ" association="_lALiEN2DEea6b7D5DMjHeA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ACTroN2EEea6b7D5DMjHeA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B3AjcN2EEea6b7D5DMjHeA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

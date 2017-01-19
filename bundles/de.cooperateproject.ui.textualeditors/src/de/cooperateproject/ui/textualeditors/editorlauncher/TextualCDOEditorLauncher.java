@@ -19,10 +19,10 @@ import org.eclipse.ui.part.FileEditorInput;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.SavePostProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.SaveablePostProcessingSupport;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
-import de.cooperateproject.ui.editors.launcher.extensions.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
+import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.util.EditorFinderUtil;
 
 public class TextualCDOEditorLauncher extends EditorLauncher {

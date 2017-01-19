@@ -62,14 +62,19 @@ public abstract class DomainIndependentTransformationBase {
         final Optional<Trace> transformationTrace = createTrace(traceURI);
 
         IStatus transformationResult = transform(transformationURI, transformationParameters, transformationTrace);
+        postProcessTransformationParametersBeforeSave(transformationParameters, transformationTrace);
         if (transformationResult.getSeverity() == IStatus.OK) {
             saveTransformationResources(transformationURI, transformationResources);
             saveTraceModel(traceURI, transformationTrace);
         }
+        
         return transformationResult;
     }
 
-    private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
+    protected abstract void postProcessTransformationParametersBeforeSave(Collection<ModelExtent> transformationParameters,
+			Optional<Trace> transformationTrace);
+
+	private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
             Optional<Trace> transformationTrace) {
 
         ExecutionContextImpl context = new ExecutionContextImpl();
@@ -157,7 +162,6 @@ public abstract class DomainIndependentTransformationBase {
         traceResource.getContents().addAll(traceModel.get().getTraceContent());
         traceResource.getAllContents().forEachRemaining(DomainIndependentTransformationBase::repairTraceObject);
         traceResource.save(Collections.emptyMap());
-
     }
 
     private static void repairTraceObject(EObject obj) {

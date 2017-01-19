@@ -61,18 +61,23 @@ public class GraphicalToTextualClassTest extends PlainTransformationTestBase {
 		URI sourceModelURI = createResourceModelURI("ClassDiagramSingleClass.notation");
 		URI umlModelURI = createResourceModelURI("ClassDiagramSingleClass.uml");
 		
+		// first transformation
 		Trace transformationTrace = new Trace(Collections.emptyList());
 		ModelExtent transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationTrace);
 		
+		// delete class from graphical model
 		Resource notationResource = getResourceSet().getResource(sourceModelURI, false);
 		Shape umlClassShape = ((Shape)((Diagram)notationResource.getContents().get(0)).getChildren().get(0));
 		org.eclipse.uml2.uml.Class umlClass = (org.eclipse.uml2.uml.Class)umlClassShape.getElement();
-		EcoreUtil.delete(umlClassShape);
-		EcoreUtil.delete(umlClass);
+		EcoreUtil.remove(umlClassShape);
+		EcoreUtil.remove(umlClass);
+		ClassDiagram textualDiagram = (ClassDiagram)transformationResult.getContents().get(0);
+		textualDiagram.getRootPackage().getClassifiers().get(0).eUnset(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
 		
+		// second transformation (incremental)
 		transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationResult, transformationTrace);
 		
-		assertEquals(0, ((ClassDiagram)transformationResult.getContents().get(0)).getRootPackage().getClassifiers().size());
+		assertEquals(0, textualDiagram.getRootPackage().getClassifiers().size());
 	}
 	
 	private void testRegular(String modelName) throws Exception {

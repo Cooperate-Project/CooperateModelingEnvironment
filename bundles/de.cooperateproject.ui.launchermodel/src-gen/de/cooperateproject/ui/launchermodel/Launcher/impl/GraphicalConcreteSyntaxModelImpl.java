@@ -16,22 +16,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class GraphicalConcreteSyntaxModelImpl extends ConcreteSyntaxModelImpl implements GraphicalConcreteSyntaxModel {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected GraphicalConcreteSyntaxModelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LauncherPackage.Literals.GRAPHICAL_CONCRETE_SYNTAX_MODEL;
-	}
+        return LauncherPackage.Literals.GRAPHICAL_CONCRETE_SYNTAX_MODEL;
+    }
 
 } //GraphicalConcreteSyntaxModelImpl

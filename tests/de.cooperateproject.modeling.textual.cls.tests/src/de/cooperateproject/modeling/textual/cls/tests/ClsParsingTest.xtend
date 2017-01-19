@@ -3,385 +3,617 @@
  */
 package de.cooperateproject.modeling.textual.cls.tests
 
+import static org.junit.Assert.assertEquals
+import static org.junit.Assert.assertTrue
+import static org.junit.Assert.assertNotNull
+import static org.junit.Assert.assertNull
+
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
-import java.util.Map
-import org.apache.commons.io.IOUtils
-import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.compare.Comparison
-import org.eclipse.emf.compare.EMFCompare
-import org.eclipse.emf.compare.scope.DefaultComparisonScope
-import org.eclipse.emf.compare.utils.EMFComparePrettyPrinter
-import org.eclipse.emf.ecore.EPackage
-import org.eclipse.emf.ecore.EPackage.Registry
-import org.eclipse.emf.ecore.resource.Resource
+import de.cooperateproject.modeling.textual.cls.cls.Class
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
 import org.junit.AfterClass
-import org.junit.Assert
+
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil
+import org.eclipse.emf.ecore.resource.ResourceSet
+import de.cooperateproject.modeling.textual.cls.tests.util.ClsTestInjectorProvider
+import de.cooperateproject.modeling.textual.cls.cls.Interface
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import org.eclipse.uml2.uml.PrimitiveType
+import org.eclipse.uml2.uml.VisibilityKind
+import org.eclipse.uml2.uml.Property
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 
-//TODO Reactivate tests if a stable meta model state is reached.
 @RunWith(XtextRunner)
-@InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
+@InjectWith(ClsTestInjectorProvider.DefaultProvider)
 class ClsParsingTest {
 	@Inject extension ParseHelper<ClassDiagram>
-	// @Inject extension ValidationTestHelper
-	private static val TEST_FOLDER = "testmodels/"
 
-	private static Resource.Factory.Registry registry
-	private static Map<String, Object> map
-	private static Registry preg
+	private static ResourceSet rs;
 
 	@BeforeClass
-	static def void ressourceSetUp() {
-		registry = Resource.Factory.Registry.INSTANCE
-
-		map = registry.getExtensionToFactoryMap()
-		map.put("xmi", new XMIResourceFactoryImpl())
-
-		preg = EPackage.Registry.INSTANCE
-		preg.replace(ClsPackage.eNS_URI, ClsPackage.eINSTANCE)
+	static def void setup() {
+		rs = new ResourceSetImpl
+		UMLResourcesUtil.init(rs);
 	}
 
 	@AfterClass
-	static def void cleanUp() {
-		registry = null
-		map = null
-		preg = null
-	}
-
-	def ClassDiagram getDiagram(String uri) {
-		val resSet = new ResourceSetImpl()
-		val resource = resSet.getResource(URI.createURI(uri), true)
-
-		return resource.getContents().get(0) as ClassDiagram
-	}
-
-	def compare(ClassDiagram expected, ClassDiagram diagram) {
-		val scope = new DefaultComparisonScope(expected, diagram, null)
-		return EMFCompare.builder().build().compare(scope)
-	}
-
-	def assertEqualsModel(ClassDiagram expected, ClassDiagram diagram) {
-		EcoreUtil.resolveAll(expected)
-		val diff = compare(expected, diagram)
-		Assert::assertTrue(diff.toPrettyString, diff.differences.empty);
-	}
-
-	def toPrettyString(Comparison comparison) {
-		var ByteArrayOutputStream baos = null
-		var PrintStream ps = null
-		try {
-			baos = new ByteArrayOutputStream
-			ps = new PrintStream(baos)
-			EMFComparePrettyPrinter.printDifferences(comparison, ps)
-			return new String(baos.toByteArray, "UTF-8")
-		} finally {
-			IOUtils.closeQuietly(ps)
-			IOUtils.closeQuietly(baos)
+	static def void tearDown() {
+		if (rs != null) {
+			rs.resources.forEach[r|r.unload]
 		}
+		rs = null
 	}
 
-	@Test @Ignore
+	@Test
 	def void classDefTest() {
-		val foo = getDiagram(TEST_FOLDER + "foo.cls");
-		val model = '''
-			@startclass ""
-			rootPackage
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
 			class Alice
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "foo.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val refClass = clsClass.referencedElement
+			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
+			assertEquals("Alice", refClass.name)
+		]
 	}
 
-	@Test @Ignore
-	def interfaceDefTest() {
-		val model = '''
-			@startclass
-			interface Alice {}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "interfaceDef.xmi")
+	@Test
+	def void interfaceDefTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			interface IAlice {}
+			@end-cls
+		'''.parse(rs) => [
+			val clsInterface = allTransitiveClassifiers.findFirst[x|x.name.equals("IAlice")]
+			assertNotNull(clsInterface)
+			assertTrue(clsInterface instanceof Interface)
 
-		assertEqualsModel(model, xmiModel)
+			val refInterface = clsInterface.referencedElement
+			assertTrue(refInterface instanceof org.eclipse.uml2.uml.Interface)
+			assertEquals("IAlice", refInterface.name)
+		]
 	}
 
-	@Test @Ignore
-	def longnameToShortnameTest() {
-		ClsPackage.eINSTANCE.eClass()
-		val model = '''
-			@startclass
-			class Alice as A {
+	@Test
+	def void aliasTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class "Alias Alice" as AA {
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "longnameToShortname.xmi")
-		assertEqualsModel(model, xmiModel)
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alias Alice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
+			assertEquals("AA", clsClass.alias)
+
+			val refClass = clsClass.referencedElement
+			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
+			assertEquals("Alias Alice", refClass.name)
+			assertEquals("AA", refClass.nameExpression.name)
+		]
 	}
 
-	@Test @Ignore
-	def abstractClassWithoutMembersTest() {
-		val model = '''
-			@startclass
-			abstract class Alice {
+	@Test
+	def void abstractClassWithoutMembersTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			abstract class AbstractAlice {
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "abstractClassWithoutMembers.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("AbstractAlice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
+			assertTrue((clsClass as Class).abstract)
 
-		assertEqualsModel(model, xmiModel)
+			val refClass = clsClass.referencedElement
+			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
+			assertEquals("AbstractAlice", refClass.name)
+			assertTrue((refClass as org.eclipse.uml2.uml.Class).abstract)
+		]
 	}
 
-	@Test @Ignore
-	def classWithAttributesTest() {
-		val model = '''
-			@startclass
+	@Test
+	def void classWithAttributesTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
 			class Alice {
-				firstName : string
-				lastName : string
+				name : string
 				age : int
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithAttributes.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val clsMembers = clsClass.members
+			assertEquals(2, clsMembers.size)
+
+			val nameMember = clsMembers.findFirst[x|x.name.equals("name")] as Attribute
+			val ageMember = clsMembers.findFirst[x|x.name.equals("age")] as Attribute
+
+			assertNotNull(nameMember)
+			assertTrue(nameMember.type instanceof PrimitiveType)
+			assertEquals("EString", nameMember.type.name)
+
+			assertNotNull(ageMember)
+			assertTrue(ageMember.type instanceof PrimitiveType)
+			assertEquals("EInt", ageMember.type.name)
+		]
 	}
 
-	@Test @Ignore
-	def classWithMethodesTest() {
-		val model = '''
-			@startclass
+	@Test
+	def void classWithMethodesTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
 			class Alice {
-				getFirstName() : string
-				setFirstName(name : string)
+				getName() : string
+				setName(name : string)
 				calculateAge(date : int) : int
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodes.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val clsMembers = clsClass.members
+			assertEquals(3, clsMembers.size)
+
+			val getNameMember = clsMembers.findFirst[x|x.name.equals("getName")] as Method
+			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
+			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
+
+			assertNotNull(getNameMember)
+			assertEquals(0, getNameMember.parameters.size)
+			assertTrue(getNameMember.type instanceof PrimitiveType)
+			assertEquals("EString", getNameMember.type.name)
+
+			assertNotNull(setNameMember)
+			val setNameMemberParameter = setNameMember.parameters
+			assertNull(setNameMember.type)
+			assertEquals(1, setNameMemberParameter.size)
+			assertEquals("name", setNameMemberParameter.last.name)
+			assertTrue(setNameMemberParameter.last.type instanceof PrimitiveType)
+			assertEquals("EString", setNameMemberParameter.last.type.name)
+
+			assertNotNull(calculateAgeMember)
+			assertTrue(calculateAgeMember.type instanceof PrimitiveType)
+			assertEquals("EInt", calculateAgeMember.type.name)
+
+			val calculateAgeMemberParameter = calculateAgeMember.parameters
+			assertEquals(1, calculateAgeMemberParameter.size)
+			assertEquals("date", calculateAgeMemberParameter.last.name)
+			assertTrue(calculateAgeMemberParameter.last.type instanceof PrimitiveType)
+			assertEquals("EInt", calculateAgeMemberParameter.last.type.name)
+		]
 	}
 
-	@Test @Ignore
-	def visibiliesTest() {
-		val model = '''
-			@startclass
+	@Test
+	def void visibiliesTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
 			class Alice {
-				-firstName : string
-				+lastName : string
-				~age : int
-				#height : int
+				+name : string
+				-age : int
+				#getName() : string
+				#setName(name : string)
+				~calculateAge(date : int) : int
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "visibilies.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val clsMembers = clsClass.members
+			assertEquals(5, clsMembers.size)
+
+			val nameMember = clsMembers.findFirst[x|x.name.equals("name")] as Attribute
+			val ageMember = clsMembers.findFirst[x|x.name.equals("age")] as Attribute
+
+			val getNameMember = clsMembers.findFirst[x|x.name.equals("getName")] as Method
+			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
+			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
+
+			assertNotNull(nameMember)
+			assertEquals(Visibility.PUBLIC, nameMember.visibility)
+			assertEquals(VisibilityKind.PUBLIC_LITERAL, nameMember.referencedElement.visibility)
+
+			assertNotNull(ageMember)
+			assertEquals(Visibility.PRIVATE, ageMember.visibility)
+			assertEquals(VisibilityKind.PRIVATE_LITERAL, ageMember.referencedElement.visibility)
+
+			assertNotNull(getNameMember)
+			assertEquals(Visibility.PROTECTED, getNameMember.visibility)
+			assertEquals(VisibilityKind.PROTECTED_LITERAL, getNameMember.referencedElement.visibility)
+
+			assertNotNull(setNameMember)
+			assertEquals(Visibility.PROTECTED, setNameMember.visibility)
+			assertEquals(VisibilityKind.PROTECTED_LITERAL, setNameMember.referencedElement.visibility)
+
+			assertNotNull(calculateAgeMember)
+			assertEquals(Visibility.PACKAGE, calculateAgeMember.visibility)
+			assertEquals(VisibilityKind.PACKAGE_LITERAL, calculateAgeMember.referencedElement.visibility)
+		]
 	}
 
-	@Test @Ignore
-	def classWithMethodsAndAttributesTest() {
-		val model = '''
-			@startclass
+	@Test
+	def void classWithStaticAndFinalAttributesTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
 			class Alice {
-				- firstName : string
-				+ getFirstName() : string
+				name : string
+				static age : int
+				final ALICE_ID : string
+				
+				static getName() : string
+				setName(name : string)
+				abstract calculateAge(date : int) : int
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithMethodsAndAttributes.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val clsMembers = clsClass.members
+			assertEquals(6, clsMembers.size)
+
+			val nameMember = clsMembers.findFirst[x|x.name.equals("name")] as Attribute
+			val ageMember = clsMembers.findFirst[x|x.name.equals("age")] as Attribute
+			val idMember = clsMembers.findFirst[x|x.name.equals("ALICE_ID")] as Attribute
+
+			val getNameMember = clsMembers.findFirst[x|x.name.equals("getName")] as Method
+			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
+			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
+
+			assertNotNull(nameMember)
+			assertEquals(false, nameMember.isStatic)
+			assertEquals(false, nameMember.isFinal)
+			assertEquals(false, nameMember.referencedElement.isStatic)
+			// TODO UML final
+			assertNotNull(ageMember)
+			assertEquals(true, ageMember.isStatic)
+			assertEquals(false, ageMember.isFinal)
+			assertEquals(true, ageMember.referencedElement.isStatic)
+			// TODO UML final		
+			assertNotNull(idMember)
+			assertEquals(false, idMember.isStatic)
+			assertEquals(true, idMember.isFinal)
+			assertEquals(false, idMember.referencedElement.isStatic)
+			// TODO UML final
+			assertNotNull(getNameMember)
+			assertEquals(true, getNameMember.isStatic)
+			assertEquals(false, getNameMember.isFinal)
+			assertEquals(false, getNameMember.isAbstract)
+			assertEquals(true, getNameMember.referencedElement.isStatic)
+			assertEquals(false, getNameMember.referencedElement.isAbstract)
+			// TODO UML final
+			assertNotNull(setNameMember)
+			assertEquals(false, setNameMember.isStatic)
+			assertEquals(false, setNameMember.isFinal)
+			assertEquals(false, setNameMember.isAbstract)
+			assertEquals(false, setNameMember.referencedElement.isStatic)
+			assertEquals(false, setNameMember.referencedElement.isAbstract)
+			// TODO UML final
+			assertNotNull(calculateAgeMember)
+			assertEquals(false, calculateAgeMember.isStatic)
+			assertEquals(false, calculateAgeMember.isFinal)
+			assertEquals(true, calculateAgeMember.isAbstract)
+			assertEquals(false, calculateAgeMember.referencedElement.isStatic)
+			assertEquals(true, calculateAgeMember.referencedElement.isAbstract)
+		// TODO UML final	
+		]
 	}
 
-	@Test @Ignore
-	def classWithStaticAndFinalAttributesTest() {
-		val model = '''
-			@startclass
-			class Alice {
-				static firstName : string
-				final lastName : string
-				static final height : int
+	@Test
+	def void datatypeTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class AliceAllTypes {
+				stringMember : string
+				intMember : int 
+				doubleMember : double
+				booleanMember : boolean
+				charMember : char
+				byteMember : byte
+				shortMember : short
+				longMember : long
+				floatMember : float
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithStaticAndFinalAttributes.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("AliceAllTypes")]
+			assertNotNull(clsClass)
+			assertTrue(clsClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val clsMembers = clsClass.members
+			assertEquals(9, clsMembers.size)
+
+			val stringMember = clsMembers.findFirst[x|x.name.equals("stringMember")] as Attribute
+			val intMember = clsMembers.findFirst[x|x.name.equals("intMember")] as Attribute
+			val doubleMember = clsMembers.findFirst[x|x.name.equals("doubleMember")] as Attribute
+			val booleanMember = clsMembers.findFirst[x|x.name.equals("booleanMember")] as Attribute
+			val charMember = clsMembers.findFirst[x|x.name.equals("charMember")] as Attribute
+			val byteMember = clsMembers.findFirst[x|x.name.equals("byteMember")] as Attribute
+			val shortMember = clsMembers.findFirst[x|x.name.equals("shortMember")] as Attribute
+			val longMember = clsMembers.findFirst[x|x.name.equals("longMember")] as Attribute
+			val floatMember = clsMembers.findFirst[x|x.name.equals("floatMember")] as Attribute
+
+			assertNotNull(stringMember)
+			assertTrue(stringMember.type instanceof PrimitiveType)
+			assertEquals("EString", stringMember.type.name)
+
+			assertNotNull(intMember)
+			assertTrue(intMember.type instanceof PrimitiveType)
+			assertEquals("EInt", intMember.type.name)
+
+			assertNotNull(doubleMember)
+			assertTrue(doubleMember.type instanceof PrimitiveType)
+			assertEquals("EDouble", doubleMember.type.name)
+
+			assertNotNull(booleanMember)
+			assertTrue(booleanMember.type instanceof PrimitiveType)
+			assertEquals("EBoolean", booleanMember.type.name)
+
+			assertNotNull(charMember)
+			assertTrue(charMember.type instanceof PrimitiveType)
+			assertEquals("EChar", charMember.type.name)
+
+			assertNotNull(byteMember)
+			assertTrue(byteMember.type instanceof PrimitiveType)
+			assertEquals("EByte", byteMember.type.name)
+
+			assertNotNull(shortMember)
+			assertTrue(shortMember.type instanceof PrimitiveType)
+			assertEquals("EShort", shortMember.type.name)
+
+			assertNotNull(longMember)
+			assertTrue(longMember.type instanceof PrimitiveType)
+			assertEquals("ELong", longMember.type.name)
+
+			assertNotNull(floatMember)
+			assertTrue(floatMember.type instanceof PrimitiveType)
+			assertEquals("EFloat", floatMember.type.name)
+
+		]
 	}
 
-	@Test @Ignore
-	def classWithAbstractStaticAndFinalMethodesTest() {
-		val model = '''
-			@startclass
-			class Alice {
-				abstract buildHouse()
-				static getDate() : int
-				final getHeight() : int
-				abstract static final work()
+	@Test
+	def void classTypeTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class Alice
+			class Bob {
+				alice : Alice
 			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithAbstractStaticAndFinalMethodes.xmi")
+			@end-cls
+		'''.parse(rs) => [
+			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+			assertNotNull(aliceClass)
+			assertNotNull(bobClass)
+			assertTrue(aliceClass instanceof Class)
+			assertTrue(bobClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
+			val bobMembers = bobClass.members
+			assertEquals(1, bobMembers.size)
+			val bobsMember = bobMembers.findFirst[x|x.name.equals("alice")] as Attribute
+
+			assertNotNull(bobsMember)
+			assertTrue(bobsMember.type instanceof org.eclipse.uml2.uml.Class)
+			assertEquals("Alice", (bobsMember.type as org.eclipse.uml2.uml.Class).name)
+		]
 	}
 
-	@Test @Ignore
-	def classGeneralizationTest() {
-		val model = '''
-			@startclass
-			class Person {}
-			class Alice {}
-			Alice isa Person
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classGeneralization.xmi")
+	@Test
+	def void classGeneralizationTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class Alice
+			class Bob
+			asc Bob isa Alice
+			@end-cls
+		'''.parse(rs) => [
+			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+			val generalization = allTransitiveConnectors.findFirst[x|x instanceof Generalization] as Generalization
 
-		assertEqualsModel(model, xmiModel)
+			assertNotNull(aliceClass)
+			assertNotNull(bobClass)
+			assertNotNull(generalization)
+
+			assertTrue(aliceClass instanceof Class)
+			assertTrue(bobClass instanceof Class)
+
+			assertEquals("Bob", generalization.left.name)
+			assertEquals("Alice", generalization.right.name)
+
+			assertEquals("Alice", generalization.referencedElement.general.name)
+
+		]
 	}
 
-	@Test @Ignore
-	def classImplementationTest() {
-		val model = '''
-			@startclass
-			class Person {}
-			class Alice {}
-			Alice impl Person
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classImplementation.xmi")
+	@Test
+	def void classImplementationTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class Bob
+			interface IBob
+			asc Bob impl IBob
+			@end-cls
+		'''.parse(rs) => [
+			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+			val bobInterface = allTransitiveClassifiers.findFirst[x|x.name.equals("IBob")]
+			val interface = allTransitiveConnectors.findFirst[x|x instanceof Implementation] as Implementation
 
-		assertEqualsModel(model, xmiModel)
+			assertNotNull(bobClass)
+			assertNotNull(bobInterface)
+			assertNotNull(interface)
+
+			assertTrue(bobClass instanceof Class)
+			assertTrue(bobInterface instanceof Interface)
+
+			assertEquals("Bob", interface.left.name)
+			assertEquals("IBob", interface.right.name)
+
+			assertEquals("IBob", interface.referencedElement.contract.name)
+
+		]
+
 	}
 
-	@Test @Ignore
-	def simpleClassAssociationTest() {
-		val model = '''
-			@startclass
-			class Bob {}
-			class Alice {}
-			Alice - Bob
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "simpleClassAssociation.xmi")
+	@Test
+	def void simpleClassAssociationTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class Alice
+			class Bob
+			asc Alice association Bob
+			@end-cls
+		'''.parse(rs) => [
+			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+			val association = allTransitiveConnectors.findFirst[x|x instanceof Association] as Association
 
-		assertEqualsModel(model, xmiModel)
+			assertNotNull(aliceClass)
+			assertNotNull(bobClass)
+			assertNotNull(association)
+
+			assertTrue(aliceClass instanceof Class)
+			assertTrue(bobClass instanceof Class)
+
+			assertEquals("Alice", association.left.name)
+			assertEquals("Bob", association.right.name)
+
+			var aliceAscEnd = association.referencedElement.ownedEnds.findFirst[x|x.type.name.equals("Alice")]
+			assertNotNull(aliceAscEnd)
+
+			var aliceProperties = aliceClass.referencedElement.members.filter(Property)
+			var bobAscEnd = aliceProperties.findFirst [x|
+				x.association != null && x.type instanceof org.eclipse.uml2.uml.Class
+			]
+			assertEquals("Bob", bobAscEnd.type.name)
+
+		]
+
 	}
 
-	@Test @Ignore
-	def classWithNoteTest() {
-		val model = '''
-			@startclass
-			class Alice {}
-			Alice - note["this is a note"]
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classWithNote.xmi")
+	@Test
+	def void classWithNoteTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class Alice
+			Alice note "this is a note"
+			@end-cls
+		'''.parse(rs) => [
+			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			val comment = allTransitiveConnectors.findFirst[x|x instanceof CommentLink] as CommentLink
 
-		assertEqualsModel(model, xmiModel)
+			assertNotNull(aliceClass)
+			assertNotNull(comment)
+
+			assertTrue(aliceClass instanceof Class)
+
+			assertEquals("Alice", comment.left.name)
+			assertEquals("this is a note", comment.comment.body)
+		]
+		
 	}
 
-	@Test @Ignore
-	def ClassAsscociationWithNoteTest() {
-		val model = '''
-			@startclass
-			class Alice {}
-			class Bob {}
-			Alice - Bob note["this is a note"]
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classAsscociationWithNote.xmi")
+ @Test
+  def void ClassAsscociationWithNoteTest() {
+  	'''
+  		@start-cls "SomeName"
+  		rootPackage RootElement
+  		class Alice
+  		class Bob
+  		asc Alice association Bob note "this is another note"
+  		@end-cls
+  	'''.parse(rs) => [
+			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+			val association = allTransitiveConnectors.findFirst[x|x instanceof Association] as Association
 
-		assertEqualsModel(model, xmiModel)
-	}
+			assertNotNull(aliceClass)
+			assertNotNull(bobClass)
+			assertNotNull(association)
 
-	@Test @Ignore
-	def CardinalityTest() {
-		val model = '''
-			@startclass
-			class Alice {}
-			class Bob {}
-			Alice - Bob [*]
-			Alice - Bob [|1..*]
-			Alice - Bob [24|24..42]
-			Alice - Bob [*|*|"this is a label"]
-			Alice - Bob []
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "cardinality.xmi")
+			assertTrue(aliceClass instanceof Class)
+			assertTrue(bobClass instanceof Class)
 
-		assertEqualsModel(model, xmiModel)
-	}
+			assertEquals("Alice", association.left.name)
+			assertEquals("Bob", association.right.name)
+			
+			assertEquals("this is another note", association.comment.body)
+		]
+  }
+  
 
-	@Test @Ignore
-	def classAssociationDirectionTest() {
-		val model = '''
-			@startclass
-			class Alice {}
-			class Bob {}
-			Alice - Bob [24|42|labelID <]
-			Alice - Bob [42|24|labelID >]
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classAssociationDirection.xmi")
+ /* @Test @Ignore
+ * def CardinalityTest() {
+ * 	val model = '''
+ * 		@startclass
+ * 		class Alice {}
+ * 		class Bob {}
+ * 		Alice - Bob [*]
+ * 		Alice - Bob [|1..*]
+ * 		Alice - Bob [24|24..42]
+ * 		Alice - Bob [*|*|"this is a label"]
+ * 		Alice - Bob []
+ * 		@endclass
+ * 	'''.parse
+ * 	val xmiModel = getDiagram(TEST_FOLDER + "cardinality.xmi")
 
-		assertEqualsModel(model, xmiModel)
-	}
+ * 	assertEqualsModel(model, xmiModel)
+ * }
 
-	@Test @Ignore
-	def datatypeTest() {
-		val model = '''
-			@startclass
-			class Alice {}
-			Alice {
-				a : string
-				b : int 
-				c : double
-				d : boolean
-				e : char
-				f : byte
-				g : short
-				h : long
-				i : float
-			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "datatype.xmi")
+ * @Test @Ignore
+ * def classAssociationDirectionTest() {
+ * 	val model = '''
+ * 		@startclass
+ * 		class Alice {}
+ * 		class Bob {}
+ * 		Alice - Bob [24|42|labelID <]
+ * 		Alice - Bob [42|24|labelID >]
+ * 		@endclass
+ * 	'''.parse
+ * 	val xmiModel = getDiagram(TEST_FOLDER + "classAssociationDirection.xmi")
 
-		assertEqualsModel(model, xmiModel)
-	}
-
-	@Test @Ignore
-	def classTypeTest() {
-		val model = '''
-			@startclass
-			class Alice {}
-			class Bob {}
-			Alice {
-				bob : Bob
-			}
-			@endclass
-		'''.parse
-		val xmiModel = getDiagram(TEST_FOLDER + "classType.xmi")
-
-		assertEqualsModel(model, xmiModel)
-	}
-
+ * 	assertEqualsModel(model, xmiModel)
+ * }
+ */
 }

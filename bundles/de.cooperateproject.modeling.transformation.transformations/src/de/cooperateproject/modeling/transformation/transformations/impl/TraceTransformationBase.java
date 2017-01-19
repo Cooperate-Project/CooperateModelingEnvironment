@@ -3,10 +3,13 @@ package de.cooperateproject.modeling.transformation.transformations.impl;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.m2m.qvt.oml.ModelExtent;
+import org.eclipse.m2m.qvt.oml.util.Trace;
 
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationCharacteristic;
 
@@ -34,6 +37,13 @@ public class TraceTransformationBase extends DomainIndependentTransformationBase
 		
 		Collection<URI> parameterURIs = Arrays.asList(traceSourceURI, traceTargetURI, targetModelURI, targetTransformationURI);
 		return transform(transformationURI, parameterURIs);
+	}
+
+	@Override
+	protected void postProcessTransformationParametersBeforeSave(Collection<ModelExtent> transformationParameters,
+			Optional<Trace> transformationTrace) {
+		// intentionally left blank
+		return;
 	}
 
 }

@@ -3,6 +3,7 @@ package de.cooperateproject.modeling.transformation.transformations;
 import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -15,7 +16,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
 import de.cooperateproject.modeling.transformation.transformations.impl.GraphicsToTextTransformation;
+import de.cooperateproject.modeling.transformation.transformations.impl.PostProcessor;
 import de.cooperateproject.modeling.transformation.transformations.impl.TextToGraphicsTransformation;
+import de.cooperateproject.modeling.transformation.transformations.impl.postprocessors.ClassTextualPostProcessor;
 import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactory;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactoryRegistry;
@@ -25,11 +28,11 @@ public class TransformationRegistryInitializer {
 	private final TransformationFactoryRegistry registry = TransformationFactoryRegistry.getInstance();
 	
 	public void init() {
-		registry.registerTransformation(createN2T(DiagramTypes.CLASS, "cls"));
+		registry.registerTransformation(createN2T(DiagramTypes.CLASS, "cls", new ClassTextualPostProcessor(50)));
 		registry.registerTransformation(createT2N(DiagramTypes.CLASS, "cls"));
 	}
 	
-	private static TransformationFactory createN2T(DiagramTypes diagramType, String textualFileExtension) {
+	private static TransformationFactory createN2T(DiagramTypes diagramType, String textualFileExtension, PostProcessor...postProcessors) {
 		return new TransformationFactory() {
 			
 			@Override
@@ -41,7 +44,7 @@ public class TransformationRegistryInitializer {
 				EObject changedEObject = rs.getEObject(changedModelURI, false);
 				String diagramName = ((Diagram)changedEObject).getName();
 				URI targetURI = ModelNamingConventions.getTextualFromGraphicalURI(changedModelURI, diagramName, textualFileExtension);
-				return new GraphicsToTextTransformation(diagramType, rs, changedModelURI, targetURI);
+				return new GraphicsToTextTransformation(diagramType, rs, changedModelURI, targetURI, Arrays.asList(postProcessors));
 			}
 			
 			@Override

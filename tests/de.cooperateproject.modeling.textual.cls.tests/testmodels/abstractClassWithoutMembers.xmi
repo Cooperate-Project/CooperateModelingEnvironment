@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls">
-  <classifiers xsi:type="cls:Class" name="Alice" abstract="true"/>
-</cls:ClassDiagram>

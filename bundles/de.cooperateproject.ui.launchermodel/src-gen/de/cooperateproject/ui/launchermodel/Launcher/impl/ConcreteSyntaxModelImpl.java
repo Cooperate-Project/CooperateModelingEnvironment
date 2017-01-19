@@ -30,196 +30,196 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public abstract class ConcreteSyntaxModelImpl extends MinimalEObjectImpl.Container implements ConcreteSyntaxModel {
 	/**
-	 * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getExtension() <em>Extension</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtension()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtension()
+     * @generated
+     * @ordered
+     */
 	protected static final String EXTENSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getExtension() <em>Extension</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExtension() <em>Extension</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExtension()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExtension()
+     * @generated
+     * @ordered
+     */
 	protected String extension = EXTENSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRootElement() <em>Root Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getRootElement() <em>Root Element</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRootElement()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRootElement()
+     * @generated
+     * @ordered
+     */
 	protected EObject rootElement;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConcreteSyntaxModelImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LauncherPackage.Literals.CONCRETE_SYNTAX_MODEL;
-	}
+        return LauncherPackage.Literals.CONCRETE_SYNTAX_MODEL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getExtension() {
-		return extension;
-	}
+        return extension;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExtension(String newExtension) {
-		String oldExtension = extension;
-		extension = newExtension;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION, oldExtension, extension));
-	}
+        String oldExtension = extension;
+        extension = newExtension;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION, oldExtension, extension));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EObject getRootElement() {
-		if (rootElement != null && rootElement.eIsProxy()) {
-			InternalEObject oldRootElement = (InternalEObject)rootElement;
-			rootElement = eResolveProxy(oldRootElement);
-			if (rootElement != oldRootElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT, oldRootElement, rootElement));
-			}
-		}
-		return rootElement;
-	}
+        if (rootElement != null && rootElement.eIsProxy()) {
+            InternalEObject oldRootElement = (InternalEObject)rootElement;
+            rootElement = eResolveProxy(oldRootElement);
+            if (rootElement != oldRootElement) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT, oldRootElement, rootElement));
+            }
+        }
+        return rootElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EObject basicGetRootElement() {
-		return rootElement;
-	}
+        return rootElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRootElement(EObject newRootElement) {
-		EObject oldRootElement = rootElement;
-		rootElement = newRootElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT, oldRootElement, rootElement));
-	}
+        EObject oldRootElement = rootElement;
+        rootElement = newRootElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT, oldRootElement, rootElement));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
-				return getExtension();
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
-				if (resolve) return getRootElement();
-				return basicGetRootElement();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
+                return getExtension();
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
+                if (resolve) return getRootElement();
+                return basicGetRootElement();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
-				setExtension((String)newValue);
-				return;
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
-				setRootElement((EObject)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
+                setExtension((String)newValue);
+                return;
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
+                setRootElement((EObject)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
-				setExtension(EXTENSION_EDEFAULT);
-				return;
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
-				setRootElement((EObject)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
+                setExtension(EXTENSION_EDEFAULT);
+                return;
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
+                setRootElement((EObject)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
-				return EXTENSION_EDEFAULT == null ? extension != null : !EXTENSION_EDEFAULT.equals(extension);
-			case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
-				return rootElement != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__EXTENSION:
+                return EXTENSION_EDEFAULT == null ? extension != null : !EXTENSION_EDEFAULT.equals(extension);
+            case LauncherPackage.CONCRETE_SYNTAX_MODEL__ROOT_ELEMENT:
+                return rootElement != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (extension: ");
-		result.append(extension);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (extension: ");
+        result.append(extension);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ConcreteSyntaxModelImpl
