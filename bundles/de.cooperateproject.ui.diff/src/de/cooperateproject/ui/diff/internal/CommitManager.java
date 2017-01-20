@@ -131,9 +131,9 @@ public class CommitManager {
        	  	CommentLinkAdapt.setCDOView(currentState);
        	  	
        	  	for(int i = 0; i < resultList.size(); i++){
-       	  		EObject value = getValue(resultList.get(i));
+    	  		EObject value = getValue(resultList.get(i));
 	       	  	if(value != null){
-	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute || value instanceof PrimitiveType){
+	       	  		if(!value.getClass().getPackage().getName().contentEquals("org.eclipse.uml2.uml.internal.impl")){
 	       	  			Object left = null;
 	       	  			Object right = null;
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();

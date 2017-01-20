@@ -178,7 +178,7 @@ public class DiffView extends ViewPart {
 		}
 		tabFolder.setSelection(1);
 		diffViewer.setInput(commitManager.getRoot());
-		diffViewer.expandAll();
+		diffViewer.collapseAll();
 		diffViewer.getControl().setFocus();
 	}
 	
