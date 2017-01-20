@@ -34,11 +34,9 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.scope.IComparisonScope;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.uml2.uml.PrimitiveType;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;

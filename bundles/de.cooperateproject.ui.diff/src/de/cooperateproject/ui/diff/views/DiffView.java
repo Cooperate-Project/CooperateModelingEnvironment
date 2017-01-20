@@ -346,14 +346,14 @@ public class DiffView extends ViewPart {
 
 		formData = new FormData();
 		formData.left = new FormAttachment(0,5);
-		formData.right = new FormAttachment(100,-5);
-		formData.bottom = new FormAttachment(70,-5);
+		formData.right = new FormAttachment(50,-5);
+		formData.bottom = new FormAttachment(100,-5);
 		formData.top = new FormAttachment(0,5);
 		diffViewer.getTree().setLayoutData(formData);
 		
 		formData = new FormData();
-		formData.top = new FormAttachment(diffViewer.getTree(), 5);
-		formData.left = new FormAttachment(0,5);
+		formData.top = new FormAttachment(0, 5);
+		formData.left = new FormAttachment(diffViewer.getTree() ,5);
 		formData.right = new FormAttachment(100,-5);
 		formData.bottom = new FormAttachment(100,-5);
 		summaryViewer.getTable().setLayoutData(formData);
