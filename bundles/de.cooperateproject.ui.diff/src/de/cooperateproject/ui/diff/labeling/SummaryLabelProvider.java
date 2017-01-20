@@ -21,6 +21,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.PackageImportLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PrimitiveTypeLabel;
@@ -55,7 +56,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("Integer", new IntegerLabel());
 		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
 		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
-
+		itemHandling.put("PackageImportImpl", new PackageImportLabel());
 	}
 	
 	@Override
