@@ -20,21 +20,26 @@ import java.util.List;
  */
 public class DiffTreeBuilder {
 	
-	private Resource resource;
-	private List<SummaryItem> changes;
-	private HashMap<EObject, DiffTreeItem> tree;
+	private final Resource resource;
+	private final List<SummaryItem> changes; //a list of all changes on the diagram in this commit
+	private final HashMap<EObject, DiffTreeItem> tree; //links all diffTreeItems to their corresponding EObject
 	
 	public DiffTreeBuilder(Resource pRes, List<SummaryItem> sumList){
 		resource = pRes;
 		changes = sumList;
 		tree = new HashMap<EObject, DiffTreeItem>();
 	}
-	
+	/**
+	 * Builds the whole tree of the diagram, also with objects that were deleted in the commit, so it will be visible.
+	 * Creates for all EObjects in the EMF Containment Hierarchy an own DiffTreeItem with added information such as the DiffKind.
+	 * @return the new resource/first element of the tree's hierarchy
+	 */
 	public DiffTreeItem buildTree(){
 		
 		TreeIterator<EObject> it = resource.getAllContents();
 		DiffTreeItem newResource = null;
 		
+		//firstly: create new DiffTreeItems for all EObjects in the EMF Containment Hierarchy of this diagram and set the new resource
 		while(it.hasNext()){
 			EObject obj = it.next();
 			DiffTreeItem temp = new DiffTreeItem(obj);
@@ -46,6 +51,7 @@ public class DiffTreeBuilder {
 		}
 		
 		it = resource.getAllContents();
+		//then: iterate a second time over all contents and build our own parent/child structure on the diffTreeItems
 		while(it.hasNext()){
 			EObject obj = it.next();
 			DiffTreeItem diffItem = tree.get(obj);
@@ -68,6 +74,8 @@ public class DiffTreeBuilder {
 			}
 		}
 		
+		//finally: iterate over all changes in the changes' list and set the information about changes for affected diffTreeItems,
+		//also deleted items will be re-added here.
 		for(SummaryItem item: changes){
 			if(item.getDifferenceKind() == DifferenceKind.DELETE){ //element was deleted
 				Object deletedItem = item.getRight();
@@ -96,6 +104,10 @@ public class DiffTreeBuilder {
 		return newResource;
 	}
 	
+	/**
+	 * Adds the deleted children of a parent, that has been deleted itself in the commit.
+	 * @param parent the parent that has been deleted and whose children should be added
+	 */
 	private void addDeletedChildren(DiffTreeItem parent){
 		
 		if(parent.getObject() instanceof EObject){

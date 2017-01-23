@@ -26,7 +26,11 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.PrimitiveTypeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
 import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
-
+/**
+ * Label Provider for the diff viewer's items of the diagram.
+ * @author Jasmin
+ *
+ */
 public class DiffViewLabelProvider extends LabelProvider{
 	
 	private Map<String, SummaryItemLabelHandler> itemHandling = 

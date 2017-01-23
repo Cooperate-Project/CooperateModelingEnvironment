@@ -12,7 +12,7 @@ import org.eclipse.swt.graphics.Image;
 import de.cooperateproject.ui.diff.internal.CommitInfo;
 
 /**
- * Label Provider for a table view which lists all found commits to one diagram
+ * Label Provider for a table view which lists all found commits to one diagram.
  * @author Jasmin
  *
  */
