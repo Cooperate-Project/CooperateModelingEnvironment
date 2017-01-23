@@ -3,6 +3,11 @@ package de.cooperateproject.ui.diff.internal;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 
+/** 
+ * Comparator for comparing two commitInfos by time in order to sort them in descending order.
+ * @author Jasmin
+ *
+ */
 public class CommitViewerComparator extends ViewerComparator{
 	
 	public int compare(Viewer viewer, Object o1, Object o2){

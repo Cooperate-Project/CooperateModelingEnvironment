@@ -88,6 +88,7 @@ public class DiffView extends ViewPart {
 
 
 	private void makeActions() {
+		//tells this class to open the diff view of the diagram's selected commit if Enter is pressed on it
 		doubleClickActionCommitViewer = new Action() {
 			public void run() {
 				ISelection selection = commitViewer.getSelection();
@@ -99,6 +100,7 @@ public class DiffView extends ViewPart {
 			}
 		};
 		
+		//on Enter(doubleClick), sets the focus from the tree viewer to the corresponding element in the summary table
 		doubleClickActionDiffViewer = new Action() {
 			public void run() {
 				ISelection selection = diffViewer.getSelection();
@@ -127,6 +129,7 @@ public class DiffView extends ViewPart {
 			}
 		};
 		
+		//on Enter(doubleClick), sets the focus from the summary viewer to the corresponding element in the tree viewer
 		doubleClickActionSummaryViewer = new Action() {
 			public void run() {
 				ISelection selection = summaryViewer.getSelection();
@@ -171,6 +174,10 @@ public class DiffView extends ViewPart {
 		return allItems;
 	}
 
+	/**
+	 * Opens the tabFolder with the tree viewer and summary table for the selected commit.
+	 * @param obj the commit of interest and to be opened in the tree viewer and summary table
+	 */
 	private void showDiffViewOfCommit(CommitInfo obj){
 		summaryViewer.setInput(commitManager.compare(obj));
 		for (TableColumn c : summaryViewer.getTable().getColumns()){
@@ -214,12 +221,19 @@ public class DiffView extends ViewPart {
 		diffViewer.getTree().addKeyListener(kl);
 	}
 	
+	/**
+	 * If space was released, set the focus on the item's parent in the tree
+	 * @param event
+	 */
 	private void handleKeyReleased(KeyEvent event) {
 		if(event.character == SWT.SPACE){
 			focusOnParentTreeItem();
 		}
 	}
 	
+	/**
+	 * Finds the parent of the current selection in the diffViewer and sets the focus on it.
+	 */
 	private void focusOnParentTreeItem() {
 		ISelection selection = diffViewer.getSelection();
 		Object obj = ((IStructuredSelection)selection).getFirstElement();

@@ -17,7 +17,7 @@ import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
  */
 public class CommentLinkAdapt {
 
-	private static CDOView view;
+	private static CDOView view; //The cdo view on the diagram on which we can start an ocl-query.
 	
 	/**
 	 * The view has to be set first (done by CommitManager) in order to be functional.
