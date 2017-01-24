@@ -58,14 +58,14 @@ public class CommitManager {
 		private IFile currentFile; //The .cooperate diagram file, on which we are working
 		private DiffTreeItem root; //the root diffTreeItem of a selected diagram version (commit), will be needed, when the diagram's tree is constructed here and the root will be returned to the DiffViewer to be shown in the GUI
 		private Map<CDOCommitInfo, Set<CDOID>> cdoIds = new HashMap<CDOCommitInfo, Set<CDOID>>(); //contains the IDs of all changed objects during all found commits of the file
-		private Set<CommitInfo> commitInfos = new HashSet<CommitInfo>(); //contains information about all relevant commits on the file
+		private Set<CDOCommitInfo> commitInfos = new HashSet<CDOCommitInfo>(); //contains information about all relevant commits on the file
 		private String resourceDiagramPath; //the file path to the textual diagram
 		
 		/**
-		 * Returns all commits as text representation found in CDO Repository from the current file.
-		 * @return
+		 * Returns all commits found in CDO Repository from the current file.
+		 * @return a Set containing all commits
 		 */
-		public Set<CommitInfo> getAllCommitInfos(){
+		public Set<CDOCommitInfo> getAllCommitInfos(){
 			
 			if(currentFile != null && cdoIds.size() <= 0){
 				findAllCommits();
@@ -74,8 +74,7 @@ public class CommitManager {
 			
 			while(it.hasNext()){
 				CDOCommitInfo cdoInfo = it.next();
-				CommitInfo info = new CommitInfo(cdoInfo, cdoIds.get(cdoInfo).size());
-				commitInfos.add(info);
+				commitInfos.add(cdoInfo);
 			}
 			return commitInfos;
 			
@@ -83,15 +82,16 @@ public class CommitManager {
 
 		/**
 		 * Returns all commits from today until the given date as found in CDO Repository from the current file.
-		 * @param date: the given date in milliseconds
+		 * @param dateMillis: the given date in milliseconds
+		 * @return a Set containing all commits in the time span
 		 */
-		public Set<CommitInfo> getAllCommitInfos(long dateMillis){
+		public Set<CDOCommitInfo> getAllCommitInfos(long dateMillis){
 
 			if(currentFile != null && cdoIds.size() <= 0){
 				getAllCommitInfos();
 			}
 		
-			Set<CommitInfo> commitInfosTemp = new HashSet<CommitInfo>();
+			Set<CDOCommitInfo> commitInfosTemp = new HashSet<CDOCommitInfo>();
 			Calendar today = Calendar.getInstance();
 			long current_timestamp = today.getTimeInMillis();
 
@@ -100,8 +100,7 @@ public class CommitManager {
 			while(it.hasNext()){
 				CDOCommitInfo cdoInfo = it.next();
 				if(cdoInfo.getTimeStamp() >= dateMillis && cdoInfo.getTimeStamp() <= current_timestamp){
-					CommitInfo info = new CommitInfo(cdoInfo, cdoIds.get(cdoInfo).size());
-					commitInfosTemp.add(info);
+					commitInfosTemp.add(cdoInfo);
 				}
 			}
 				
@@ -114,16 +113,15 @@ public class CommitManager {
 		 * @param commit the commit to be compared to its old version
 		 * @return a list with objects which respectively carry the two matched objects from EMF Compare
 		 */
-		public List<SummaryItem> compare(CommitInfo commit){
+		public List<SummaryItem> compare(CDOCommitInfo commit){
 			List<SummaryItem> sumList = new ArrayList<SummaryItem>();
-			CDOCommitInfo cdoInfo = commit.getCDOCommitInfo();
 			CDOSession session = CDOConnectionManager.getInstance().acquireSession(currentFile.getProject());
 			CDOBranch mainBranch = session.getBranchManager().getMainBranch();
 			
-			CDOView previousState = session.openView(mainBranch, cdoInfo.getPreviousTimeStamp());
-			CDOView currentState = session.openView(mainBranch, cdoInfo.getTimeStamp());
+			CDOView previousState = session.openView(mainBranch, commit.getPreviousTimeStamp());
+			CDOView currentState = session.openView(mainBranch, commit.getTimeStamp());
 
-			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(cdoInfo)); //Create the scope, on which differences should be detected. Only the items with the given cdoIds (all elements from textual cooperate diagram) are considered.
+			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(commit)); //Create the scope, on which differences should be detected. Only the items with the given cdoIds (all elements from textual cooperate diagram) are considered.
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
        	  	EList<Diff> resultList = comparisonResult.getDifferences(); //contains all found differences
 

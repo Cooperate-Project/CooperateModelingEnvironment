@@ -65,7 +65,7 @@ public class DiffViewLabelProvider extends LabelProvider{
 			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getObject().getClass().getSimpleName());
 			if(handlerClass != null){
 				if(((DiffTreeItem) element).getDiffKind() != null){
-					ret = ((DiffTreeItem) element).getDiffKind().toString()+ " - ";
+					ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
 				}
 				
 				ret = ret + handlerClass.getText(((DiffTreeItem) element).getObject());

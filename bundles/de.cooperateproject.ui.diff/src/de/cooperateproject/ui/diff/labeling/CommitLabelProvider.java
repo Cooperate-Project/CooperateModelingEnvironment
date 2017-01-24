@@ -5,11 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-
-import de.cooperateproject.ui.diff.internal.CommitInfo;
 
 /**
  * Label Provider for a table view which lists all found commits to one diagram.
@@ -29,14 +28,13 @@ public class CommitLabelProvider extends LabelProvider implements ITableLabelPro
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
 		String info ="";
-		if(element instanceof CommitInfo){
-			CommitInfo element_temp = ((CommitInfo)element);
-			Date date = new Date(element_temp.getCDOCommitInfo().getTimeStamp());
+		if(element instanceof CDOCommitInfo){
+			CDOCommitInfo element_temp = ((CDOCommitInfo)element);
+			Date date = new Date(element_temp.getTimeStamp());
 			
 			switch(columnIndex){
 				case 0: info = formatterDate.format(date); break;
 				case 1: info = formatterTime.format(date); break;
-				case 2: info = String.valueOf(element_temp.getAmountOfChangedObjects()); break;
 				default:
 			}
 		}
