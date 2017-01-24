@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.ui.part.*;
 
 import de.cooperateproject.ui.diff.content.CommitContentProvider;
-import de.cooperateproject.ui.diff.internal.CommitInfo;
 import de.cooperateproject.ui.diff.internal.CommitManager;
 import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
 import de.cooperateproject.ui.diff.internal.DiffTreeItem;
@@ -23,6 +22,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.jface.action.*;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
@@ -94,8 +94,8 @@ public class DiffView extends ViewPart {
 				ISelection selection = commitViewer.getSelection();
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
 
-				if(obj instanceof CommitInfo){
-					showDiffViewOfCommit((CommitInfo)obj);
+				if(obj instanceof CDOCommitInfo){
+					showDiffViewOfCommit((CDOCommitInfo)obj);
 				}
 			}
 		};
@@ -178,7 +178,7 @@ public class DiffView extends ViewPart {
 	 * Opens the tabFolder with the tree viewer and summary table for the selected commit.
 	 * @param obj the commit of interest and to be opened in the tree viewer and summary table
 	 */
-	private void showDiffViewOfCommit(CommitInfo obj){
+	private void showDiffViewOfCommit(CDOCommitInfo obj){
 		summaryViewer.setInput(commitManager.compare(obj));
 		for (TableColumn c : summaryViewer.getTable().getColumns()){
 			c.pack();
@@ -221,12 +221,9 @@ public class DiffView extends ViewPart {
 		diffViewer.getTree().addKeyListener(kl);
 	}
 	
-	/**
-	 * If space was released, set the focus on the item's parent in the tree
-	 * @param event
-	 */
+
 	private void handleKeyReleased(KeyEvent event) {
-		if(event.character == SWT.SPACE){
+		if(event.character == SWT.SPACE){ // If space was released, set the focus on the item's parent in the tree.
 			focusOnParentTreeItem();
 		}
 	}
@@ -287,7 +284,7 @@ public class DiffView extends ViewPart {
 		commitViewer.getTable().setLinesVisible(false);
 		commitViewer.setComparator(new CommitViewerComparator());
 		String[] columnNames1 = new String[] {
-				"Date", "Time", "Number of changes"};
+				"Date", "Time"};
 		for(int i = 0; i < columnNames1.length; i++){
 			TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
 			tableColumn.setText(columnNames1[i]);
