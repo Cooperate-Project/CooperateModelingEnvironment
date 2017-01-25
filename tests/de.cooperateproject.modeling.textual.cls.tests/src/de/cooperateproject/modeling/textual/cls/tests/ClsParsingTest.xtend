@@ -34,6 +34,9 @@ import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.Member
 
 @RunWith(XtextRunner)
 @InjectWith(ClsTestInjectorProvider.DefaultProvider)
@@ -64,14 +67,31 @@ class ClsParsingTest {
 			class Alice
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			assertNotNull(clsClass)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 			assertTrue(clsClass instanceof Class)
 
 			val refClass = clsClass.referencedElement
 			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
 			assertEquals("Alice", refClass.name)
 		]
+	}
+
+	private def Class findAndCheckClass(Iterable<Classifier> classifiers, String expectedClassifier) {
+		val clsClass = findAndCheckClassifier(classifiers, expectedClassifier)
+		assertTrue(clsClass instanceof Class)
+		return clsClass as Class
+	}
+
+	private def Interface findAndCheckInterface(Iterable<Classifier> classifiers, String expectedClassifier) {
+		val clsInterface = findAndCheckClassifier(classifiers, expectedClassifier)
+		assertTrue(clsInterface instanceof Interface)
+		return clsInterface as Interface
+	}
+
+	private def Classifier findAndCheckClassifier(Iterable<Classifier> classifiers, String expectedClassifier) {
+		val clsClass = classifiers.findFirst[x|x.name.equals(expectedClassifier)]
+		assertNotNull(clsClass)
+		return clsClass
 	}
 
 	@Test
@@ -82,9 +102,7 @@ class ClsParsingTest {
 			interface IAlice {}
 			@end-cls
 		'''.parse(rs) => [
-			val clsInterface = allTransitiveClassifiers.findFirst[x|x.name.equals("IAlice")]
-			assertNotNull(clsInterface)
-			assertTrue(clsInterface instanceof Interface)
+			val clsInterface = findAndCheckInterface(allTransitiveClassifiers.filter(Classifier), "IAlice")
 
 			val refInterface = clsInterface.referencedElement
 			assertTrue(refInterface instanceof org.eclipse.uml2.uml.Interface)
@@ -101,9 +119,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alias Alice")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alias Alice")
 			assertEquals("AA", clsClass.alias)
 
 			val refClass = clsClass.referencedElement
@@ -122,9 +138,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("AbstractAlice")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "AbstractAlice")
 			assertTrue((clsClass as Class).abstract)
 
 			val refClass = clsClass.referencedElement
@@ -145,9 +159,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 
 			val clsMembers = clsClass.members
 			assertEquals(2, clsMembers.size)
@@ -177,9 +189,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 
 			val clsMembers = clsClass.members
 			assertEquals(3, clsMembers.size)
@@ -188,10 +198,8 @@ class ClsParsingTest {
 			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
 			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
 
-			assertNotNull(getNameMember)
+			checkType(getNameMember, "EString")
 			assertEquals(0, getNameMember.parameters.size)
-			assertTrue(getNameMember.type instanceof PrimitiveType)
-			assertEquals("EString", getNameMember.type.name)
 
 			assertNotNull(setNameMember)
 			val setNameMemberParameter = setNameMember.parameters
@@ -201,9 +209,7 @@ class ClsParsingTest {
 			assertTrue(setNameMemberParameter.last.type instanceof PrimitiveType)
 			assertEquals("EString", setNameMemberParameter.last.type.name)
 
-			assertNotNull(calculateAgeMember)
-			assertTrue(calculateAgeMember.type instanceof PrimitiveType)
-			assertEquals("EInt", calculateAgeMember.type.name)
+			checkType(calculateAgeMember, "EInt")
 
 			val calculateAgeMemberParameter = calculateAgeMember.parameters
 			assertEquals(1, calculateAgeMemberParameter.size)
@@ -227,9 +233,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 
 			val clsMembers = clsClass.members
 			assertEquals(5, clsMembers.size)
@@ -241,26 +245,18 @@ class ClsParsingTest {
 			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
 			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
 
-			assertNotNull(nameMember)
-			assertEquals(Visibility.PUBLIC, nameMember.visibility)
-			assertEquals(VisibilityKind.PUBLIC_LITERAL, nameMember.referencedElement.visibility)
-
-			assertNotNull(ageMember)
-			assertEquals(Visibility.PRIVATE, ageMember.visibility)
-			assertEquals(VisibilityKind.PRIVATE_LITERAL, ageMember.referencedElement.visibility)
-
-			assertNotNull(getNameMember)
-			assertEquals(Visibility.PROTECTED, getNameMember.visibility)
-			assertEquals(VisibilityKind.PROTECTED_LITERAL, getNameMember.referencedElement.visibility)
-
-			assertNotNull(setNameMember)
-			assertEquals(Visibility.PROTECTED, setNameMember.visibility)
-			assertEquals(VisibilityKind.PROTECTED_LITERAL, setNameMember.referencedElement.visibility)
-
-			assertNotNull(calculateAgeMember)
-			assertEquals(Visibility.PACKAGE, calculateAgeMember.visibility)
-			assertEquals(VisibilityKind.PACKAGE_LITERAL, calculateAgeMember.referencedElement.visibility)
+			checkVisibility(nameMember, Visibility.PUBLIC, VisibilityKind.PUBLIC_LITERAL)
+			checkVisibility(ageMember, Visibility.PRIVATE, VisibilityKind.PRIVATE_LITERAL)
+			checkVisibility(getNameMember, Visibility.PROTECTED, VisibilityKind.PROTECTED_LITERAL)
+			checkVisibility(setNameMember, Visibility.PROTECTED, VisibilityKind.PROTECTED_LITERAL)
+			checkVisibility(calculateAgeMember, Visibility.PACKAGE, VisibilityKind.PACKAGE_LITERAL)
 		]
+	}
+
+	private def void checkVisibility(Member member, Visibility visibility, VisibilityKind kind) {
+		assertNotNull(member)
+		assertEquals(visibility, member.visibility)
+		assertEquals(kind, member.referencedElement.visibility)
 	}
 
 	@Test
@@ -279,9 +275,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 
 			val clsMembers = clsClass.members
 			assertEquals(6, clsMembers.size)
@@ -294,43 +288,31 @@ class ClsParsingTest {
 			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
 			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
 
-			assertNotNull(nameMember)
-			assertEquals(false, nameMember.isStatic)
-			assertEquals(false, nameMember.isFinal)
-			assertEquals(false, nameMember.referencedElement.isStatic)
-			// TODO UML final
-			assertNotNull(ageMember)
-			assertEquals(true, ageMember.isStatic)
-			assertEquals(false, ageMember.isFinal)
-			assertEquals(true, ageMember.referencedElement.isStatic)
-			// TODO UML final		
-			assertNotNull(idMember)
-			assertEquals(false, idMember.isStatic)
-			assertEquals(true, idMember.isFinal)
-			assertEquals(false, idMember.referencedElement.isStatic)
-			// TODO UML final
-			assertNotNull(getNameMember)
-			assertEquals(true, getNameMember.isStatic)
-			assertEquals(false, getNameMember.isFinal)
-			assertEquals(false, getNameMember.isAbstract)
-			assertEquals(true, getNameMember.referencedElement.isStatic)
-			assertEquals(false, getNameMember.referencedElement.isAbstract)
-			// TODO UML final
-			assertNotNull(setNameMember)
-			assertEquals(false, setNameMember.isStatic)
-			assertEquals(false, setNameMember.isFinal)
-			assertEquals(false, setNameMember.isAbstract)
-			assertEquals(false, setNameMember.referencedElement.isStatic)
-			assertEquals(false, setNameMember.referencedElement.isAbstract)
-			// TODO UML final
-			assertNotNull(calculateAgeMember)
-			assertEquals(false, calculateAgeMember.isStatic)
-			assertEquals(false, calculateAgeMember.isFinal)
-			assertEquals(true, calculateAgeMember.isAbstract)
-			assertEquals(false, calculateAgeMember.referencedElement.isStatic)
-			assertEquals(true, calculateAgeMember.referencedElement.isAbstract)
-		// TODO UML final	
+			checkPropertyQualifier(nameMember, false, false)
+			checkPropertyQualifier(ageMember, true, false)
+			checkPropertyQualifier(idMember, false, true)
+			checkOperationQualifier(getNameMember, true, false, false)
+			checkOperationQualifier(setNameMember, false, false, false)
+			checkOperationQualifier(calculateAgeMember, false, false, true)
 		]
+	}
+
+	private def void checkPropertyQualifier(Attribute member, boolean isStatic, boolean isFinal) {
+		assertNotNull(member)
+		assertEquals(isStatic, member.isStatic)
+		assertEquals(isFinal, member.isFinal)
+		assertEquals(isStatic, member.referencedElement.isStatic)
+	// TODO UML final
+	}
+
+	private def void checkOperationQualifier(Method member, boolean isStatic, boolean isFinal, boolean isAbstract) {
+		assertNotNull(member)
+		assertEquals(isStatic, member.isStatic)
+		assertEquals(isFinal, member.isFinal)
+		assertEquals(isAbstract, member.isAbstract)
+		assertEquals(isStatic, member.referencedElement.isStatic)
+		assertEquals(isAbstract, member.referencedElement.isAbstract)
+	// TODO UML final
 	}
 
 	@Test
@@ -351,9 +333,7 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val clsClass = allTransitiveClassifiers.findFirst[x|x.name.equals("AliceAllTypes")]
-			assertNotNull(clsClass)
-			assertTrue(clsClass instanceof Class)
+			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "AliceAllTypes")
 
 			val clsMembers = clsClass.members
 			assertEquals(9, clsMembers.size)
@@ -368,43 +348,23 @@ class ClsParsingTest {
 			val longMember = clsMembers.findFirst[x|x.name.equals("longMember")] as Attribute
 			val floatMember = clsMembers.findFirst[x|x.name.equals("floatMember")] as Attribute
 
-			assertNotNull(stringMember)
-			assertTrue(stringMember.type instanceof PrimitiveType)
-			assertEquals("EString", stringMember.type.name)
-
-			assertNotNull(intMember)
-			assertTrue(intMember.type instanceof PrimitiveType)
-			assertEquals("EInt", intMember.type.name)
-
-			assertNotNull(doubleMember)
-			assertTrue(doubleMember.type instanceof PrimitiveType)
-			assertEquals("EDouble", doubleMember.type.name)
-
-			assertNotNull(booleanMember)
-			assertTrue(booleanMember.type instanceof PrimitiveType)
-			assertEquals("EBoolean", booleanMember.type.name)
-
-			assertNotNull(charMember)
-			assertTrue(charMember.type instanceof PrimitiveType)
-			assertEquals("EChar", charMember.type.name)
-
-			assertNotNull(byteMember)
-			assertTrue(byteMember.type instanceof PrimitiveType)
-			assertEquals("EByte", byteMember.type.name)
-
-			assertNotNull(shortMember)
-			assertTrue(shortMember.type instanceof PrimitiveType)
-			assertEquals("EShort", shortMember.type.name)
-
-			assertNotNull(longMember)
-			assertTrue(longMember.type instanceof PrimitiveType)
-			assertEquals("ELong", longMember.type.name)
-
-			assertNotNull(floatMember)
-			assertTrue(floatMember.type instanceof PrimitiveType)
-			assertEquals("EFloat", floatMember.type.name)
+			checkType(stringMember, "EString")
+			checkType(intMember, "EInt")
+			checkType(doubleMember, "EDouble")
+			checkType(booleanMember, "EBoolean")
+			checkType(charMember, "EChar")
+			checkType(byteMember, "EByte")
+			checkType(shortMember, "EShort")
+			checkType(longMember, "ELong")
+			checkType(floatMember, "EFloat")
 
 		]
+	}
+
+	private def void checkType(Member member, String expected) {
+		assertNotNull(member)
+		assertTrue(member.type instanceof PrimitiveType)
+		assertEquals(expected, member.type.name)
 	}
 
 	@Test
@@ -418,12 +378,8 @@ class ClsParsingTest {
 			}
 			@end-cls
 		'''.parse(rs) => [
-			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
-			assertNotNull(aliceClass)
-			assertNotNull(bobClass)
-			assertTrue(aliceClass instanceof Class)
-			assertTrue(bobClass instanceof Class)
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
+			val bobClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Bob")
 
 			val bobMembers = bobClass.members
 			assertEquals(1, bobMembers.size)
@@ -445,19 +401,13 @@ class ClsParsingTest {
 			asc Bob isa Alice
 			@end-cls
 		'''.parse(rs) => [
-			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Bob")
 			val generalization = allTransitiveConnectors.findFirst[x|x instanceof Generalization] as Generalization
 
-			assertNotNull(aliceClass)
-			assertNotNull(bobClass)
 			assertNotNull(generalization)
 
-			assertTrue(aliceClass instanceof Class)
-			assertTrue(bobClass instanceof Class)
-
-			assertEquals("Bob", generalization.left.name)
-			assertEquals("Alice", generalization.right.name)
+			checkConnectorEnds(generalization, "Bob", "Alice")
 
 			assertEquals("Alice", generalization.referencedElement.general.name)
 
@@ -474,19 +424,13 @@ class ClsParsingTest {
 			asc Bob impl IBob
 			@end-cls
 		'''.parse(rs) => [
-			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
-			val bobInterface = allTransitiveClassifiers.findFirst[x|x.name.equals("IBob")]
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Bob")
+			findAndCheckInterface(allTransitiveClassifiers.filter(Classifier), "IBob")
 			val interface = allTransitiveConnectors.findFirst[x|x instanceof Implementation] as Implementation
 
-			assertNotNull(bobClass)
-			assertNotNull(bobInterface)
 			assertNotNull(interface)
 
-			assertTrue(bobClass instanceof Class)
-			assertTrue(bobInterface instanceof Interface)
-
-			assertEquals("Bob", interface.left.name)
-			assertEquals("IBob", interface.right.name)
+			checkConnectorEnds(interface, "Bob", "IBob")
 
 			assertEquals("IBob", interface.referencedElement.contract.name)
 
@@ -504,31 +448,43 @@ class ClsParsingTest {
 			asc Alice association Bob
 			@end-cls
 		'''.parse(rs) => [
-			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
-			val association = allTransitiveConnectors.findFirst[x|x instanceof Association] as Association
+			val aliceClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Bob")
+			val associations = allTransitiveConnectors.filter(Association)
 
-			assertNotNull(aliceClass)
-			assertNotNull(bobClass)
+			assertEquals(1, associations.size)
+			val association = associations.last
+
 			assertNotNull(association)
 
-			assertTrue(aliceClass instanceof Class)
-			assertTrue(bobClass instanceof Class)
-
-			assertEquals("Alice", association.left.name)
-			assertEquals("Bob", association.right.name)
+			checkConnectorEnds(association, "Alice", "Bob")
 
 			var aliceAscEnd = association.referencedElement.ownedEnds.findFirst[x|x.type.name.equals("Alice")]
 			assertNotNull(aliceAscEnd)
 
 			var aliceProperties = aliceClass.referencedElement.members.filter(Property)
-			var bobAscEnd = aliceProperties.findFirst [x|
+			var bobAscEnd = aliceProperties.findFirst [ x |
 				x.association != null && x.type instanceof org.eclipse.uml2.uml.Class
 			]
 			assertEquals("Bob", bobAscEnd.type.name)
-
 		]
+	}
 
+	private def dispatch void checkConnectorEnds(Association association, String expectedLeft, String expectedRight) {
+		assertEquals(expectedLeft, association.left.name)
+		assertEquals(expectedRight, association.right.name)
+	}
+
+	private def dispatch void checkConnectorEnds(Implementation implementation, String expectedLeft,
+		String expectedRight) {
+		assertEquals(expectedLeft, implementation.left.name)
+		assertEquals(expectedRight, implementation.right.name)
+	}
+
+	private def dispatch void checkConnectorEnds(Generalization generalization, String expectedLeft,
+		String expectedRight) {
+		assertEquals(expectedLeft, generalization.left.name)
+		assertEquals(expectedRight, generalization.right.name)
 	}
 
 	@Test
@@ -540,68 +496,201 @@ class ClsParsingTest {
 			Alice note "this is a note"
 			@end-cls
 		'''.parse(rs) => [
-			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
 			val comment = allTransitiveConnectors.findFirst[x|x instanceof CommentLink] as CommentLink
 
-			assertNotNull(aliceClass)
 			assertNotNull(comment)
-
-			assertTrue(aliceClass instanceof Class)
 
 			assertEquals("Alice", comment.left.name)
 			assertEquals("this is a note", comment.comment.body)
 		]
-		
+
 	}
 
- @Test
-  def void ClassAsscociationWithNoteTest() {
-  	'''
-  		@start-cls "SomeName"
-  		rootPackage RootElement
-  		class Alice
-  		class Bob
-  		asc Alice association Bob note "this is another note"
-  		@end-cls
-  	'''.parse(rs) => [
-			val aliceClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Alice")]
-			val bobClass = allTransitiveClassifiers.findFirst[x|x.name.equals("Bob")]
+	@Test
+	def void ClassAsscociationWithNoteTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class Alice
+			class Bob
+			asc Alice association Bob note "this is another note"
+			@end-cls
+		'''.parse(rs) => [
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Bob")
 			val association = allTransitiveConnectors.findFirst[x|x instanceof Association] as Association
 
-			assertNotNull(aliceClass)
-			assertNotNull(bobClass)
 			assertNotNull(association)
 
-			assertTrue(aliceClass instanceof Class)
-			assertTrue(bobClass instanceof Class)
+			checkConnectorEnds(association, "Alice", "Bob")
 
-			assertEquals("Alice", association.left.name)
-			assertEquals("Bob", association.right.name)
-			
 			assertEquals("this is another note", association.comment.body)
 		]
-  }
-  
+	}
 
- /* @Test @Ignore
- * def CardinalityTest() {
- * 	val model = '''
- * 		@startclass
- * 		class Alice {}
- * 		class Bob {}
- * 		Alice - Bob [*]
- * 		Alice - Bob [|1..*]
- * 		Alice - Bob [24|24..42]
- * 		Alice - Bob [*|*|"this is a label"]
- * 		Alice - Bob []
- * 		@endclass
- * 	'''.parse
- * 	val xmiModel = getDiagram(TEST_FOLDER + "cardinality.xmi")
+	@Test
+	def void CardinalityTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class AliceAsc 
+			class BobAsc
+			asc AliceAsc card0 BobAsc [*]
+			asc AliceAsc card1 BobAsc [42|1..*]
+			asc AliceAsc card2 BobAsc [*|24..42]
+			asc AliceAsc card3 BobAsc [24..42|*]
+			asc AliceAsc card4 BobAsc [*|*]
+			@end-cls
+		'''.parse(rs) =>
+			[
+				val aliceClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "AliceAsc")
+				findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "BobAsc")
+				val associations = allTransitiveConnectors.filter(Association)
 
- * 	assertEqualsModel(model, xmiModel)
- * }
+				assertEquals(5, associations.size)
 
- * @Test @Ignore
+				val asc0 = associations.findFirst[x|x.referencedElement.name.equals("card0")]
+				val asc1 = associations.findFirst[x|x.referencedElement.name.equals("card1")]
+				val asc2 = associations.findFirst[x|x.referencedElement.name.equals("card2")]
+				val asc3 = associations.findFirst[x|x.referencedElement.name.equals("card3")]
+				val asc4 = associations.findFirst[x|x.referencedElement.name.equals("card4")]
+
+				assertNotNull(asc0)
+				assertNotNull(asc1)
+				assertNotNull(asc2)
+				assertNotNull(asc3)
+				assertNotNull(asc4)
+
+				checkConnectorEnds(asc0, "AliceAsc", "BobAsc")
+				checkConnectorEnds(asc1, "AliceAsc", "BobAsc")
+				checkConnectorEnds(asc2, "AliceAsc", "BobAsc")
+				checkConnectorEnds(asc3, "AliceAsc", "BobAsc")
+				checkConnectorEnds(asc4, "AliceAsc", "BobAsc")
+
+				// Check UML and cls cardinalities
+				val aliceClassMembers = aliceClass.referencedElement.members.filter(Property)
+				// card0 [*]
+				checkClsCardinality(asc0.properties.cardinalityLeft, asc0.properties.cardinalityRight, -1, 0, 0, 0)
+				checkUMLCardinality(aliceClassMembers, asc0.referencedElement.members.filter(Property), "AliceAsc",
+					"BobAsc", 0, -1, 0, -1)
+
+				// card1 [42|1..*]
+				checkClsCardinality(asc1.properties.cardinalityLeft, asc1.properties.cardinalityRight, 42, 0, 1, -1)
+				checkUMLCardinality(aliceClassMembers, asc1.referencedElement.members.filter(Property), "AliceAsc",
+					"BobAsc", 42, 42, 1, -1)
+				// card2 [*|24..42]
+				checkClsCardinality(asc2.properties.cardinalityLeft, asc2.properties.cardinalityRight, -1, 0, 24, 42)
+				checkUMLCardinality(aliceClassMembers, asc2.referencedElement.members.filter(Property), "AliceAsc",
+					"BobAsc", 0, -1, 24, 42)
+				// card3 [24..42|*]
+				checkClsCardinality(asc3.properties.cardinalityLeft, asc3.properties.cardinalityRight, 24, 42, -1, 0)
+				checkUMLCardinality(aliceClassMembers, asc3.referencedElement.members.filter(Property), "AliceAsc",
+					"BobAsc", 24, 42, 0, -1)
+				// card4 [*|*]
+				checkClsCardinality(asc4.properties.cardinalityLeft, asc4.properties.cardinalityRight, -1, 0, -1, 0)
+				checkUMLCardinality(aliceClassMembers, asc4.referencedElement.members.filter(Property), "AliceAsc",
+					"BobAsc", 0, -1, 0, -1)
+
+			]
+	}
+
+	private def void checkClsCardinality(Cardinality left, Cardinality right, int leftLower, int leftUpper,
+		int rightLower, int rightUpper) {
+		checkClsCardinality(left, leftLower, leftUpper)
+		if (right != null) {
+			checkClsCardinality(right, rightLower, rightUpper)
+		}
+	}
+
+	private def void checkClsCardinality(Cardinality cardinality, int lower, int upper) {
+		assertEquals(lower, cardinality.lowerBound)
+		assertEquals(upper, cardinality.upperBound)
+	}
+
+	private def void checkUMLCardinality(Iterable<Property> leftProperties, Iterable<Property> rightroperties,
+		String ascLeftName, String ascRightName, int leftLower, int leftUpper, int rightLower, int rightUpper) {
+
+		var leftAscEnd = rightroperties.findFirst[x|x.type.name.equals(ascLeftName)]
+		assertNotNull(leftAscEnd)
+		assertEquals(leftUpper, leftAscEnd.upper)
+		assertEquals(leftLower, leftAscEnd.lower)
+
+		var rightAscEnd = leftProperties.findFirst [ x |
+			/*x.association == asc &&*/ x.type.name.equals(ascRightName) && x.upper == rightUpper &&
+				x.lower == rightLower
+		]
+		assertNotNull(rightAscEnd)
+	}
+
+	@Test
+	def void bidirectionTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class AliceBi
+			class BobBi
+			bi asc AliceBi bidirection BobBi
+			bi asc AliceBi bidirectionCard BobBi [24|42]
+			@end-cls
+		'''.parse(rs) =>
+			[
+				val aliceClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "AliceBi")
+				val bobClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "BobBi")
+				val associations = allTransitiveConnectors.filter(Association)
+
+				assertEquals(2, associations.size)
+				val association = associations.findFirst[x|x.name.equals("bidirection")]
+				val associationCard = associations.findFirst[x|x.name.equals("bidirectionCard")]
+
+				assertNotNull(association)
+				assertNotNull(associationCard)
+
+				checkConnectorEnds(association, "AliceBi", "BobBi")
+				assertTrue(association.isBidirectional)
+
+				checkConnectorEnds(associationCard, "AliceBi", "BobBi")
+				assertTrue(associationCard.isBidirectional)
+
+				// check if association is bidirectional in uml
+				bidirectionalCardinalityTest(aliceClass.referencedElement.members.filter(Property),
+					bobClass.referencedElement.members.filter(Property), "AliceBi", "BobBi", association, 0, -1, 0, -1)
+
+				checkClsCardinality(associationCard.properties.cardinalityLeft,
+					associationCard.properties.cardinalityRight, 24, 0, 42, 0)
+
+				bidirectionalCardinalityTest(aliceClass.referencedElement.members.filter(Property),
+					bobClass.referencedElement.members.filter(Property), "AliceBi", "BobBi", associationCard, 24, 24,
+					42, 42)
+
+			]
+	}
+
+	private def void bidirectionalCardinalityTest(Iterable<Property> leftProperties, Iterable<Property> rightroperties,
+		String ascLeftName, String ascRightName, Association association, int leftLower, int leftUpper, int rightLower,
+		int rightUpper) {
+
+		val leftPropertiesFiltered = leftProperties.filter[x|x.association == association.referencedElement]
+		val rightPropertiesFiltered = rightroperties.filter[x|x.association == association.referencedElement]
+
+		checkUMLCardinality(leftPropertiesFiltered, rightPropertiesFiltered, ascLeftName, ascRightName, leftLower,
+			leftUpper, rightLower, rightUpper)
+	}
+
+	def void aggregationTest() {
+		'''
+			@start-cls "SomeName"
+			rootPackage RootElement
+			class AliceAgr
+			class BobAgr
+			asc AliceAgr association BobAgr
+			agg AliceAgr aggregation BobAgr
+			com AliceAgr composition BobAgr
+			@end-cls
+		'''.parse(rs) => []
+	}
+
+/* @Test @Ignore
  * def classAssociationDirectionTest() {
  * 	val model = '''
  * 		@startclass
