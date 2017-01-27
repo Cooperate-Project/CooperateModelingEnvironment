@@ -5,6 +5,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="UseCaseDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootPackage" eType="#//RootPackage"
         containment="true" eOpposite="#//RootPackage/diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -29,8 +30,11 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
+        eType="#//Visibility"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ActorType"/>
     <eGenericSuperTypes eClassifier="#//AliasedElement"/>
     <eGenericSuperTypes eClassifier="#//BehavioredClassifier"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
@@ -133,5 +137,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ActorType">
+    <eLiterals name="UNDEFINED"/>
+    <eLiterals name="HUMAN" value="1"/>
+    <eLiterals name="MACHINE" value="2" literal=""/>
   </eClassifiers>
 </ecore:EPackage>

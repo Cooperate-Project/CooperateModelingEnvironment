@@ -30,28 +30,36 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.UseCaseDiagram");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cStartUcKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cRootPackageAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cRootPackageRootPackageParserRuleCall_1_0 = (RuleCall)cRootPackageAssignment_1.eContents().get(0);
-		private final Keyword cEndUcKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cTitleAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTitleSTRINGTerminalRuleCall_1_0 = (RuleCall)cTitleAssignment_1.eContents().get(0);
+		private final Assignment cRootPackageAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRootPackageRootPackageParserRuleCall_2_0 = (RuleCall)cRootPackageAssignment_2.eContents().get(0);
+		private final Keyword cEndUcKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//UseCaseDiagram:
-		//	'@start-uc' rootPackage=RootPackage '@end-uc';
+		//	'@start-uc' title=STRING rootPackage=RootPackage '@end-uc';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'@start-uc' rootPackage=RootPackage '@end-uc'
+		//'@start-uc' title=STRING rootPackage=RootPackage '@end-uc'
 		public Group getGroup() { return cGroup; }
 		
 		//'@start-uc'
 		public Keyword getStartUcKeyword_0() { return cStartUcKeyword_0; }
 		
+		//title=STRING
+		public Assignment getTitleAssignment_1() { return cTitleAssignment_1; }
+		
+		//STRING
+		public RuleCall getTitleSTRINGTerminalRuleCall_1_0() { return cTitleSTRINGTerminalRuleCall_1_0; }
+		
 		//rootPackage=RootPackage
-		public Assignment getRootPackageAssignment_1() { return cRootPackageAssignment_1; }
+		public Assignment getRootPackageAssignment_2() { return cRootPackageAssignment_2; }
 		
 		//RootPackage
-		public RuleCall getRootPackageRootPackageParserRuleCall_1_0() { return cRootPackageRootPackageParserRuleCall_1_0; }
+		public RuleCall getRootPackageRootPackageParserRuleCall_2_0() { return cRootPackageRootPackageParserRuleCall_2_0; }
 		
 		//'@end-uc'
-		public Keyword getEndUcKeyword_2() { return cEndUcKeyword_2; }
+		public Keyword getEndUcKeyword_3() { return cEndUcKeyword_3; }
 	}
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.RootPackage");
@@ -110,7 +118,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVisibilityVisibilityEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
 		private final Assignment cAbstractAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cAbstractAbstractKeyword_1_0 = (Keyword)cAbstractAssignment_1.eContents().get(0);
-		private final Keyword cActKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cActorKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Assignment cNameAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_3_0_0 = (RuleCall)cNameAssignment_3_0.eContents().get(0);
@@ -120,12 +128,17 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAsKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
 		private final Assignment cAliasAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
 		private final RuleCall cAliasIDTerminalRuleCall_3_1_2_0 = (RuleCall)cAliasAssignment_3_1_2.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cTypeActorTypeEnumRuleCall_4_1_0 = (RuleCall)cTypeAssignment_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//Actor:
-		//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID);
+		//	visibility=Visibility? abstract?='abstract'? 'actor' (name=ID | name=STRING 'as' alias=ID) ('[' type=ActorType ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID)
+		//visibility=Visibility? abstract?='abstract'? 'actor' (name=ID | name=STRING 'as' alias=ID) ('[' type=ActorType ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -140,8 +153,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//'abstract'
 		public Keyword getAbstractAbstractKeyword_1_0() { return cAbstractAbstractKeyword_1_0; }
 		
-		//'act'
-		public Keyword getActKeyword_2() { return cActKeyword_2; }
+		//'actor'
+		public Keyword getActorKeyword_2() { return cActorKeyword_2; }
 		
 		//(name=ID | name=STRING 'as' alias=ID)
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
@@ -169,11 +182,26 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getAliasIDTerminalRuleCall_3_1_2_0() { return cAliasIDTerminalRuleCall_3_1_2_0; }
+		
+		//('[' type=ActorType ']')?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4_0() { return cLeftSquareBracketKeyword_4_0; }
+		
+		//type=ActorType
+		public Assignment getTypeAssignment_4_1() { return cTypeAssignment_4_1; }
+		
+		//ActorType
+		public RuleCall getTypeActorTypeEnumRuleCall_4_1_0() { return cTypeActorTypeEnumRuleCall_4_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4_2() { return cRightSquareBracketKeyword_4_2; }
 	}
 	public class SystemElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.System");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSysKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cSystemKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -182,14 +210,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//System:
-		//	'sys' name=FQN '{' usecases+=UseCase* '}';
+		//	'system' name=FQN '{' usecases+=UseCase* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'sys' name=FQN '{' usecases+=UseCase* '}'
+		//'system' name=FQN '{' usecases+=UseCase* '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'sys'
-		public Keyword getSysKeyword_0() { return cSysKeyword_0; }
+		//'system'
+		public Keyword getSystemKeyword_0() { return cSystemKeyword_0; }
 		
 		//name=FQN
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -216,7 +244,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVisibilityVisibilityEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
 		private final Assignment cAbstractAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cAbstractAbstractKeyword_1_0 = (Keyword)cAbstractAssignment_1.eContents().get(0);
-		private final Keyword cUcKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cUsecaseKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Assignment cNameAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_3_0_0 = (RuleCall)cNameAssignment_3_0.eContents().get(0);
@@ -233,11 +261,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//UseCase:
-		//	visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | name=STRING 'as' alias=ID) ('{'
+		//	visibility=Visibility? abstract?='abstract'? 'usecase' (name=ID | name=STRING 'as' alias=ID) ('{'
 		//	extensionPoints+=ExtensionPoint* '}')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | name=STRING 'as' alias=ID) ('{'
+		//visibility=Visibility? abstract?='abstract'? 'usecase' (name=ID | name=STRING 'as' alias=ID) ('{'
 		//extensionPoints+=ExtensionPoint* '}')?
 		public Group getGroup() { return cGroup; }
 		
@@ -253,8 +281,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//'abstract'
 		public Keyword getAbstractAbstractKeyword_1_0() { return cAbstractAbstractKeyword_1_0; }
 		
-		//'uc'
-		public Keyword getUcKeyword_2() { return cUcKeyword_2; }
+		//'usecase'
+		public Keyword getUsecaseKeyword_2() { return cUsecaseKeyword_2; }
 		
 		//(name=ID | name=STRING 'as' alias=ID)
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
@@ -301,7 +329,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class ExtensionPointElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.ExtensionPoint");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEpKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cExtensionpointKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_1_0_0 = (RuleCall)cNameAssignment_1_0.eContents().get(0);
@@ -313,14 +341,14 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAliasIDTerminalRuleCall_1_1_2_0 = (RuleCall)cAliasAssignment_1_1_2.eContents().get(0);
 		
 		//ExtensionPoint:
-		//	'ep' (name=ID | name=STRING 'as' alias=ID);
+		//	'extensionpoint' (name=ID | name=STRING 'as' alias=ID);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'ep' (name=ID | name=STRING 'as' alias=ID)
+		//'extensionpoint' (name=ID | name=STRING 'as' alias=ID)
 		public Group getGroup() { return cGroup; }
 		
-		//'ep'
-		public Keyword getEpKeyword_0() { return cEpKeyword_0; }
+		//'extensionpoint'
+		public Keyword getExtensionpointKeyword_0() { return cExtensionpointKeyword_0; }
 		
 		//(name=ID | name=STRING 'as' alias=ID)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
@@ -386,7 +414,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cActorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cActorActorCrossReference_0_0 = (CrossReference)cActorAssignment_0.eContents().get(0);
 		private final RuleCall cActorActorFQNParserRuleCall_0_0_1 = (RuleCall)cActorActorCrossReference_0_0.eContents().get(1);
-		private final Keyword cUsesKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cIacKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cUsecaseAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cUsecaseUseCaseCrossReference_2_0 = (CrossReference)cUsecaseAssignment_2.eContents().get(0);
 		private final RuleCall cUsecaseUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cUsecaseUseCaseCrossReference_2_0.eContents().get(1);
@@ -400,11 +428,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		
 		//Association:
-		//	actor=[Actor|FQN] 'uses' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
+		//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
 		//	']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//actor=[Actor|FQN] 'uses' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality ']')?
+		//actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//actor=[Actor|FQN]
@@ -416,8 +444,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getActorActorFQNParserRuleCall_0_0_1() { return cActorActorFQNParserRuleCall_0_0_1; }
 		
-		//'uses'
-		public Keyword getUsesKeyword_1() { return cUsesKeyword_1; }
+		//'iac'
+		public Keyword getIacKeyword_1() { return cIacKeyword_1; }
 		
 		//usecase=[UseCase|FQN]
 		public Assignment getUsecaseAssignment_2() { return cUsecaseAssignment_2; }
@@ -725,26 +753,23 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class VisibilityElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Visibility");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cUNDEFINEDEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cUNDEFINEDUNDEFINEDKeyword_0_0 = (Keyword)cUNDEFINEDEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPUBLICPlusSignKeyword_0_0 = (Keyword)cPUBLICEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cPUBLICPlusSignKeyword_1_0 = (Keyword)cPUBLICEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cPUBLICPublicKeyword_2_0 = (Keyword)cPUBLICEnumLiteralDeclaration_2.eContents().get(0);
+		private final Keyword cPUBLICPublicKeyword_1_0 = (Keyword)cPUBLICEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cPRIVATEHyphenMinusKeyword_2_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_2.eContents().get(0);
 		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cPRIVATEHyphenMinusKeyword_3_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cPRIVATEPrivateKeyword_4_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_4.eContents().get(0);
+		private final Keyword cPRIVATEPrivateKeyword_3_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cPROTECTEDNumberSignKeyword_4_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_4.eContents().get(0);
 		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
-		private final Keyword cPROTECTEDNumberSignKeyword_5_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_5.eContents().get(0);
-		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
-		private final Keyword cPROTECTEDProtectedKeyword_6_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_6.eContents().get(0);
-		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
-		private final Keyword cPACKAGETildeKeyword_7_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_7.eContents().get(0);
+		private final Keyword cPROTECTEDProtectedKeyword_5_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cPACKAGETildeKeyword_6_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum Visibility:
-		//	UNDEFINED
-		//	| PUBLIC='+'
+		//	PUBLIC='+'
 		//	| PUBLIC='public'
 		//	| PRIVATE='-'
 		//	| PRIVATE='private'
@@ -753,57 +778,78 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//	| PACKAGE='~';
 		public EnumRule getRule() { return rule; }
 		
-		//UNDEFINED | PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' |
-		//PACKAGE='~'
+		//PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//UNDEFINED
-		public EnumLiteralDeclaration getUNDEFINEDEnumLiteralDeclaration_0() { return cUNDEFINEDEnumLiteralDeclaration_0; }
-		
-		//"UNDEFINED"
-		public Keyword getUNDEFINEDUNDEFINEDKeyword_0_0() { return cUNDEFINEDUNDEFINEDKeyword_0_0; }
-		
 		//PUBLIC='+'
-		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_1() { return cPUBLICEnumLiteralDeclaration_1; }
+		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_0() { return cPUBLICEnumLiteralDeclaration_0; }
 		
 		//'+'
-		public Keyword getPUBLICPlusSignKeyword_1_0() { return cPUBLICPlusSignKeyword_1_0; }
+		public Keyword getPUBLICPlusSignKeyword_0_0() { return cPUBLICPlusSignKeyword_0_0; }
 		
 		//PUBLIC='public'
-		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_2() { return cPUBLICEnumLiteralDeclaration_2; }
+		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_1() { return cPUBLICEnumLiteralDeclaration_1; }
 		
 		//'public'
-		public Keyword getPUBLICPublicKeyword_2_0() { return cPUBLICPublicKeyword_2_0; }
+		public Keyword getPUBLICPublicKeyword_1_0() { return cPUBLICPublicKeyword_1_0; }
 		
 		//PRIVATE='-'
-		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_3() { return cPRIVATEEnumLiteralDeclaration_3; }
+		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_2() { return cPRIVATEEnumLiteralDeclaration_2; }
 		
 		//'-'
-		public Keyword getPRIVATEHyphenMinusKeyword_3_0() { return cPRIVATEHyphenMinusKeyword_3_0; }
+		public Keyword getPRIVATEHyphenMinusKeyword_2_0() { return cPRIVATEHyphenMinusKeyword_2_0; }
 		
 		//PRIVATE='private'
-		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_4() { return cPRIVATEEnumLiteralDeclaration_4; }
+		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_3() { return cPRIVATEEnumLiteralDeclaration_3; }
 		
 		//'private'
-		public Keyword getPRIVATEPrivateKeyword_4_0() { return cPRIVATEPrivateKeyword_4_0; }
+		public Keyword getPRIVATEPrivateKeyword_3_0() { return cPRIVATEPrivateKeyword_3_0; }
 		
 		//PROTECTED='#'
-		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_5() { return cPROTECTEDEnumLiteralDeclaration_5; }
+		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_4() { return cPROTECTEDEnumLiteralDeclaration_4; }
 		
 		//'#'
-		public Keyword getPROTECTEDNumberSignKeyword_5_0() { return cPROTECTEDNumberSignKeyword_5_0; }
+		public Keyword getPROTECTEDNumberSignKeyword_4_0() { return cPROTECTEDNumberSignKeyword_4_0; }
 		
 		//PROTECTED='protected'
-		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_6() { return cPROTECTEDEnumLiteralDeclaration_6; }
+		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_5() { return cPROTECTEDEnumLiteralDeclaration_5; }
 		
 		//'protected'
-		public Keyword getPROTECTEDProtectedKeyword_6_0() { return cPROTECTEDProtectedKeyword_6_0; }
+		public Keyword getPROTECTEDProtectedKeyword_5_0() { return cPROTECTEDProtectedKeyword_5_0; }
 		
 		//PACKAGE='~'
-		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_7() { return cPACKAGEEnumLiteralDeclaration_7; }
+		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_6() { return cPACKAGEEnumLiteralDeclaration_6; }
 		
 		//'~'
-		public Keyword getPACKAGETildeKeyword_7_0() { return cPACKAGETildeKeyword_7_0; }
+		public Keyword getPACKAGETildeKeyword_6_0() { return cPACKAGETildeKeyword_6_0; }
+	}
+	public class ActorTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.ActorType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cHUMANEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cHUMANHumanKeyword_0_0 = (Keyword)cHUMANEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cMACHINEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cMACHINEMachineKeyword_1_0 = (Keyword)cMACHINEEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum ActorType:
+		//	HUMAN='human'
+		//	| MACHINE='machine';
+		public EnumRule getRule() { return rule; }
+		
+		//HUMAN='human' | MACHINE='machine'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//HUMAN='human'
+		public EnumLiteralDeclaration getHUMANEnumLiteralDeclaration_0() { return cHUMANEnumLiteralDeclaration_0; }
+		
+		//'human'
+		public Keyword getHUMANHumanKeyword_0_0() { return cHUMANHumanKeyword_0_0; }
+		
+		//MACHINE='machine'
+		public EnumLiteralDeclaration getMACHINEEnumLiteralDeclaration_1() { return cMACHINEEnumLiteralDeclaration_1; }
+		
+		//'machine'
+		public Keyword getMACHINEMachineKeyword_1_0() { return cMACHINEMachineKeyword_1_0; }
 	}
 	
 	private final UseCaseDiagramElements pUseCaseDiagram;
@@ -822,6 +868,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	private final CardinalityBoundElements pCardinalityBound;
 	private final FQNElements pFQN;
 	private final VisibilityElements eVisibility;
+	private final ActorTypeElements eActorType;
 	
 	private final Grammar grammar;
 	
@@ -848,6 +895,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCardinalityBound = new CardinalityBoundElements();
 		this.pFQN = new FQNElements();
 		this.eVisibility = new VisibilityElements();
+		this.eActorType = new ActorTypeElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -878,7 +926,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//UseCaseDiagram:
-	//	'@start-uc' rootPackage=RootPackage '@end-uc';
+	//	'@start-uc' title=STRING rootPackage=RootPackage '@end-uc';
 	public UseCaseDiagramElements getUseCaseDiagramAccess() {
 		return pUseCaseDiagram;
 	}
@@ -901,7 +949,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Actor:
-	//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID);
+	//	visibility=Visibility? abstract?='abstract'? 'actor' (name=ID | name=STRING 'as' alias=ID) ('[' type=ActorType ']')?;
 	public ActorElements getActorAccess() {
 		return pActor;
 	}
@@ -911,7 +959,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//System:
-	//	'sys' name=FQN '{' usecases+=UseCase* '}';
+	//	'system' name=FQN '{' usecases+=UseCase* '}';
 	public SystemElements getSystemAccess() {
 		return pSystem;
 	}
@@ -921,7 +969,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//UseCase:
-	//	visibility=Visibility? abstract?='abstract'? 'uc' (name=ID | name=STRING 'as' alias=ID) ('{'
+	//	visibility=Visibility? abstract?='abstract'? 'usecase' (name=ID | name=STRING 'as' alias=ID) ('{'
 	//	extensionPoints+=ExtensionPoint* '}')?;
 	public UseCaseElements getUseCaseAccess() {
 		return pUseCase;
@@ -932,7 +980,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExtensionPoint:
-	//	'ep' (name=ID | name=STRING 'as' alias=ID);
+	//	'extensionpoint' (name=ID | name=STRING 'as' alias=ID);
 	public ExtensionPointElements getExtensionPointAccess() {
 		return pExtensionPoint;
 	}
@@ -952,7 +1000,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Association:
-	//	actor=[Actor|FQN] 'uses' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
+	//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
 	//	']')?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
@@ -1033,8 +1081,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum Visibility:
-	//	UNDEFINED
-	//	| PUBLIC='+'
+	//	PUBLIC='+'
 	//	| PUBLIC='public'
 	//	| PRIVATE='-'
 	//	| PRIVATE='private'
@@ -1047,6 +1094,17 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getVisibilityRule() {
 		return getVisibilityAccess().getRule();
+	}
+	
+	//enum ActorType:
+	//	HUMAN='human'
+	//	| MACHINE='machine';
+	public ActorTypeElements getActorTypeAccess() {
+		return eActorType;
+	}
+	
+	public EnumRule getActorTypeRule() {
+		return getActorTypeAccess().getRule();
 	}
 	
 	//terminal ID:

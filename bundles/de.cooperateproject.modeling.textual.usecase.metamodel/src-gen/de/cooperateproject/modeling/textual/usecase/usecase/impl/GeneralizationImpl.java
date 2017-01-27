@@ -26,216 +26,216 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class GeneralizationImpl extends RelationshipImpl implements Generalization {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected GeneralizationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UsecasePackage.Literals.GENERALIZATION;
-	}
+        return UsecasePackage.Literals.GENERALIZATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public org.eclipse.uml2.uml.Generalization getReferencedElement() {
-		return (org.eclipse.uml2.uml.Generalization)eDynamicGet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-	}
+        return (org.eclipse.uml2.uml.Generalization)eDynamicGet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public org.eclipse.uml2.uml.Generalization basicGetReferencedElement() {
-		return (org.eclipse.uml2.uml.Generalization)eDynamicGet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-	}
+        return (org.eclipse.uml2.uml.Generalization)eDynamicGet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferencedElement(org.eclipse.uml2.uml.Generalization newReferencedElement) {
-		eDynamicSet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-	}
+        eDynamicSet(UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BehavioredClassifier getClient() {
-		return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__CLIENT, UsecasePackage.Literals.GENERALIZATION__CLIENT, true, true);
-	}
+        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__CLIENT, UsecasePackage.Literals.GENERALIZATION__CLIENT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BehavioredClassifier basicGetClient() {
-		return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__CLIENT, UsecasePackage.Literals.GENERALIZATION__CLIENT, false, true);
-	}
+        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__CLIENT, UsecasePackage.Literals.GENERALIZATION__CLIENT, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setClient(BehavioredClassifier newClient) {
-		eDynamicSet(UsecasePackage.GENERALIZATION__CLIENT, UsecasePackage.Literals.GENERALIZATION__CLIENT, newClient);
-	}
+        eDynamicSet(UsecasePackage.GENERALIZATION__CLIENT, UsecasePackage.Literals.GENERALIZATION__CLIENT, newClient);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BehavioredClassifier getSupplier() {
-		return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__SUPPLIER, UsecasePackage.Literals.GENERALIZATION__SUPPLIER, true, true);
-	}
+        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__SUPPLIER, UsecasePackage.Literals.GENERALIZATION__SUPPLIER, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BehavioredClassifier basicGetSupplier() {
-		return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__SUPPLIER, UsecasePackage.Literals.GENERALIZATION__SUPPLIER, false, true);
-	}
+        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__SUPPLIER, UsecasePackage.Literals.GENERALIZATION__SUPPLIER, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSupplier(BehavioredClassifier newSupplier) {
-		eDynamicSet(UsecasePackage.GENERALIZATION__SUPPLIER, UsecasePackage.Literals.GENERALIZATION__SUPPLIER, newSupplier);
-	}
+        eDynamicSet(UsecasePackage.GENERALIZATION__SUPPLIER, UsecasePackage.Literals.GENERALIZATION__SUPPLIER, newSupplier);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
-				if (resolve) return getReferencedElement();
-				return basicGetReferencedElement();
-			case UsecasePackage.GENERALIZATION__CLIENT:
-				if (resolve) return getClient();
-				return basicGetClient();
-			case UsecasePackage.GENERALIZATION__SUPPLIER:
-				if (resolve) return getSupplier();
-				return basicGetSupplier();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
+            case UsecasePackage.GENERALIZATION__CLIENT:
+                if (resolve) return getClient();
+                return basicGetClient();
+            case UsecasePackage.GENERALIZATION__SUPPLIER:
+                if (resolve) return getSupplier();
+                return basicGetSupplier();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
-				setReferencedElement((org.eclipse.uml2.uml.Generalization)newValue);
-				return;
-			case UsecasePackage.GENERALIZATION__CLIENT:
-				setClient((BehavioredClassifier)newValue);
-				return;
-			case UsecasePackage.GENERALIZATION__SUPPLIER:
-				setSupplier((BehavioredClassifier)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
+                setReferencedElement((org.eclipse.uml2.uml.Generalization)newValue);
+                return;
+            case UsecasePackage.GENERALIZATION__CLIENT:
+                setClient((BehavioredClassifier)newValue);
+                return;
+            case UsecasePackage.GENERALIZATION__SUPPLIER:
+                setSupplier((BehavioredClassifier)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
-				setReferencedElement((org.eclipse.uml2.uml.Generalization)null);
-				return;
-			case UsecasePackage.GENERALIZATION__CLIENT:
-				setClient((BehavioredClassifier)null);
-				return;
-			case UsecasePackage.GENERALIZATION__SUPPLIER:
-				setSupplier((BehavioredClassifier)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
+                setReferencedElement((org.eclipse.uml2.uml.Generalization)null);
+                return;
+            case UsecasePackage.GENERALIZATION__CLIENT:
+                setClient((BehavioredClassifier)null);
+                return;
+            case UsecasePackage.GENERALIZATION__SUPPLIER:
+                setSupplier((BehavioredClassifier)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
-				return basicGetReferencedElement() != null;
-			case UsecasePackage.GENERALIZATION__CLIENT:
-				return basicGetClient() != null;
-			case UsecasePackage.GENERALIZATION__SUPPLIER:
-				return basicGetSupplier() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
+                return basicGetReferencedElement() != null;
+            case UsecasePackage.GENERALIZATION__CLIENT:
+                return basicGetClient() != null;
+            case UsecasePackage.GENERALIZATION__SUPPLIER:
+                return basicGetSupplier() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
-			switch (derivedFeatureID) {
-				case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
-			switch (baseFeatureID) {
-				case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //GeneralizationImpl

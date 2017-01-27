@@ -18,32 +18,32 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  */
 public class BehavioredClassifierImpl extends CDOObjectImpl implements BehavioredClassifier {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BehavioredClassifierImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UsecasePackage.Literals.BEHAVIORED_CLASSIFIER;
-	}
+        return UsecasePackage.Literals.BEHAVIORED_CLASSIFIER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected int eStaticFeatureCount() {
-		return 0;
-	}
+        return 0;
+    }
 
 } //BehavioredClassifierImpl

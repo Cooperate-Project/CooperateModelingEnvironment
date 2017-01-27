@@ -16,6 +16,10 @@ import de.cooperateproject.modeling.textual.usecase.serializer.UsecaseSemanticSe
 import de.cooperateproject.modeling.textual.usecase.serializer.UsecaseSyntacticSequencer;
 import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAccess;
 import de.cooperateproject.modeling.textual.usecase.validation.UsecaseValidator;
+import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import java.util.Properties;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
@@ -36,6 +40,7 @@ import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.parser.antlr.LexerProvider;
 import org.eclipse.xtext.resource.IContainer;
 import org.eclipse.xtext.resource.IResourceDescriptions;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.resource.containers.ResourceSetBasedAllContainersStateProvider;
 import org.eclipse.xtext.resource.containers.StateBasedContainerManager;
@@ -45,7 +50,6 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.IgnoreCaseLinking;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.serializer.impl.Serializer;
@@ -191,11 +195,6 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return DefaultGlobalScopeProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
 	public void configureIgnoreCaseLinking(Binder binder) {
 		binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
 	}
@@ -203,6 +202,21 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return DefaultDeclarativeQualifiedNameProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
+		return CooperateResourceSet.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return CooperateGlobalScopeProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IUMLUriFinder> bindIUMLUriFinder() {
+		return ConventionalUMLUriFinder.class;
 	}
 	
 }

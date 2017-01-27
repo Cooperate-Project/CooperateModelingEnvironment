@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
+import de.cooperateproject.modeling.textual.usecase.usecase.ActorType;
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
 import de.cooperateproject.modeling.textual.usecase.usecase.Commentable;
 import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
@@ -22,242 +23,281 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ActorImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ActorImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ActorImpl#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ActorImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ActorImpl extends AliasedElementImpl implements Actor {
 	/**
-	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVisibility()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getVisibility()
+     * @generated
+     * @ordered
+     */
 	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
 
 	/**
-	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isAbstract()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean ABSTRACT_EDEFAULT = false;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
+    protected static final ActorType TYPE_EDEFAULT = ActorType.UNDEFINED;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ActorImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UsecasePackage.Literals.ACTOR;
-	}
+        return UsecasePackage.Literals.ACTOR;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public org.eclipse.uml2.uml.Actor getReferencedElement() {
-		return (org.eclipse.uml2.uml.Actor)eDynamicGet(UsecasePackage.ACTOR__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-	}
+        return (org.eclipse.uml2.uml.Actor)eDynamicGet(UsecasePackage.ACTOR__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public org.eclipse.uml2.uml.Actor basicGetReferencedElement() {
-		return (org.eclipse.uml2.uml.Actor)eDynamicGet(UsecasePackage.ACTOR__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-	}
+        return (org.eclipse.uml2.uml.Actor)eDynamicGet(UsecasePackage.ACTOR__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferencedElement(org.eclipse.uml2.uml.Actor newReferencedElement) {
-		eDynamicSet(UsecasePackage.ACTOR__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-	}
+        eDynamicSet(UsecasePackage.ACTOR__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Visibility getVisibility() {
-		return (Visibility)eDynamicGet(UsecasePackage.ACTOR__VISIBILITY, UsecasePackage.Literals.ACTOR__VISIBILITY, true, true);
-	}
+        return (Visibility)eDynamicGet(UsecasePackage.ACTOR__VISIBILITY, UsecasePackage.Literals.ACTOR__VISIBILITY, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setVisibility(Visibility newVisibility) {
-		eDynamicSet(UsecasePackage.ACTOR__VISIBILITY, UsecasePackage.Literals.ACTOR__VISIBILITY, newVisibility);
-	}
+        eDynamicSet(UsecasePackage.ACTOR__VISIBILITY, UsecasePackage.Literals.ACTOR__VISIBILITY, newVisibility);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isAbstract() {
-		return (Boolean)eDynamicGet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT, true, true);
-	}
+        return (Boolean)eDynamicGet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAbstract(boolean newAbstract) {
-		eDynamicSet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT, newAbstract);
-	}
+        eDynamicSet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT, newAbstract);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ActorType getType() {
+        return (ActorType)eDynamicGet(UsecasePackage.ACTOR__TYPE, UsecasePackage.Literals.ACTOR__TYPE, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setType(ActorType newType) {
+        eDynamicSet(UsecasePackage.ACTOR__TYPE, UsecasePackage.Literals.ACTOR__TYPE, newType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
-				if (resolve) return getReferencedElement();
-				return basicGetReferencedElement();
-			case UsecasePackage.ACTOR__VISIBILITY:
-				return getVisibility();
-			case UsecasePackage.ACTOR__ABSTRACT:
-				return isAbstract();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
+            case UsecasePackage.ACTOR__VISIBILITY:
+                return getVisibility();
+            case UsecasePackage.ACTOR__ABSTRACT:
+                return isAbstract();
+            case UsecasePackage.ACTOR__TYPE:
+                return getType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
-				setReferencedElement((org.eclipse.uml2.uml.Actor)newValue);
-				return;
-			case UsecasePackage.ACTOR__VISIBILITY:
-				setVisibility((Visibility)newValue);
-				return;
-			case UsecasePackage.ACTOR__ABSTRACT:
-				setAbstract((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
+                setReferencedElement((org.eclipse.uml2.uml.Actor)newValue);
+                return;
+            case UsecasePackage.ACTOR__VISIBILITY:
+                setVisibility((Visibility)newValue);
+                return;
+            case UsecasePackage.ACTOR__ABSTRACT:
+                setAbstract((Boolean)newValue);
+                return;
+            case UsecasePackage.ACTOR__TYPE:
+                setType((ActorType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
-				setReferencedElement((org.eclipse.uml2.uml.Actor)null);
-				return;
-			case UsecasePackage.ACTOR__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
-				return;
-			case UsecasePackage.ACTOR__ABSTRACT:
-				setAbstract(ABSTRACT_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
+                setReferencedElement((org.eclipse.uml2.uml.Actor)null);
+                return;
+            case UsecasePackage.ACTOR__VISIBILITY:
+                setVisibility(VISIBILITY_EDEFAULT);
+                return;
+            case UsecasePackage.ACTOR__ABSTRACT:
+                setAbstract(ABSTRACT_EDEFAULT);
+                return;
+            case UsecasePackage.ACTOR__TYPE:
+                setType(TYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
-				return basicGetReferencedElement() != null;
-			case UsecasePackage.ACTOR__VISIBILITY:
-				return getVisibility() != VISIBILITY_EDEFAULT;
-			case UsecasePackage.ACTOR__ABSTRACT:
-				return isAbstract() != ABSTRACT_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.ACTOR__REFERENCED_ELEMENT:
+                return basicGetReferencedElement() != null;
+            case UsecasePackage.ACTOR__VISIBILITY:
+                return getVisibility() != VISIBILITY_EDEFAULT;
+            case UsecasePackage.ACTOR__ABSTRACT:
+                return isAbstract() != ABSTRACT_EDEFAULT;
+            case UsecasePackage.ACTOR__TYPE:
+                return getType() != TYPE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Commentable.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == BehavioredClassifier.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == UMLReferencingElement.class) {
-			switch (derivedFeatureID) {
-				case UsecasePackage.ACTOR__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == BehavioredClassifier.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.ACTOR__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Commentable.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == BehavioredClassifier.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == UMLReferencingElement.class) {
-			switch (baseFeatureID) {
-				case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ACTOR__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == BehavioredClassifier.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ACTOR__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //ActorImpl
