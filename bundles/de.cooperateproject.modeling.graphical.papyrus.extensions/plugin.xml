@@ -8,5 +8,61 @@
             priority="100">
       </contentoutline>
    </extension>
-
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateContext">
+         <selector
+               class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateClientSelector">
+         </selector>
+      </clientContext>
+      <binding
+            category="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints"
+            context="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateContext">
+      </binding>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints"
+            name="Cooperate Constraints">
+      </category>
+      <constraintProvider
+            cache="true">
+         <constraints
+               categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.AssociationConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.associationConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="Association Constraint"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} has no proper name.
+               </message>
+               <description>
+                  An association needs a proper non null and non empty name.
+               </description>
+               <target
+                     class="Association">
+               </target>
+            </constraint>
+         </constraints>
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </package>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateSaveAndDirtyService"
+            id="org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService"
+            priority="2"
+            startKind="startup">
+      </service>
+   </extension>
 </plugin>
