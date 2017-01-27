@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Focus transfer"
+            id="de.cooperateproject.ui.focus">
+      </category>
+      <view
+            name="Focus View"
+            icon="icons/sample.gif"
+            category="de.cooperateproject.ui.focus"
+            class="de.cooperateproject.ui.focus.views.FocusView"
+            id="de.cooperateproject.ui.focus.views.FocusView">
+      </view>
+   </extension>
+
+</plugin>
