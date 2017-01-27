@@ -22,6 +22,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 
 
 public class FocusView extends ViewPart {
+	public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
 	private TableViewer historyViewer; //lists all deictic gestures (element focuses) that have been made
 	private Composite focusComposite;
 	private Action doubleClickActionHistoryViewer;

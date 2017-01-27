@@ -16,5 +16,9 @@
             id="de.cooperateproject.ui.focus.views.FocusView">
       </view>
    </extension>
+   
+    <extension point="org.eclipse.ui.startup">
+     <startup class="de.cooperateproject.ui.focus.StartManager"/>
+   </extension>
 
 </plugin>
