@@ -1,7 +1,6 @@
 package de.cooperateproject.ui.focus;
 
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IStartup;
@@ -10,7 +9,10 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.ResourceUtil;
 
+import de.cooperateproject.ui.focus.connection.ConnectionManager;
+import de.cooperateproject.ui.focus.connection.SubscriberManager;
 import de.cooperateproject.ui.focus.views.FocusView;
 
 public class StartManager implements IStartup, IPartListener {
@@ -56,7 +58,7 @@ public class StartManager implements IStartup, IPartListener {
 	@Override
 	public void partClosed(IWorkbenchPart part) {
 		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID)){
-			//TODO unsubscribe the topic and delete information from the view
+			ConnectionManager.disconnect();
 		}
 	}
 
@@ -70,30 +72,20 @@ public class StartManager implements IStartup, IPartListener {
 		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID)){
 			
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			
 			try {
-				page.showView(FocusView.ID);
+				focusView = (FocusView) page.showView(FocusView.ID);
             } catch (PartInitException e) {
             	throw new RuntimeException(e);
             }
 			
-			focusView = (FocusView) page.findView(FocusView.ID);
-			IEditorInput file = part.getSite().getPage().getActiveEditor().getEditorInput();
+			IEditorInput fileInput = part.getSite().getPage().getActiveEditor().getEditorInput();
 					
-			if(part.getSite().getId().contentEquals(papyrusEditorID)){
-				URI fileURI = ((URIEditorInput)file).getURI();
-				//TODO get the diagram from URI
-
-			}
-			
-			else{
-				//TODO de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput
-			}
-			
-			focusView.setTitleText(part.getTitle());
-			
-			//TODO focusView.setDiagram(...)
-			//TODO subscribe the topic and feed the view with information
+		 	IFile file = ResourceUtil.getFile(fileInput);
+		 	if(file != null){
+		 		focusView.setTitleText(part.getTitle());
+				SubscriberManager.setView(focusView);
+			 	ConnectionManager.connect(file);
+		 	}
 
 		}
 		
