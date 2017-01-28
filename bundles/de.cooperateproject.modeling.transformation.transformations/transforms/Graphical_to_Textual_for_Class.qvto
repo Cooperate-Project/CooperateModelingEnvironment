@@ -343,8 +343,7 @@ mapping uml::Property::propertyToMemberEnd() : cls::MemberEnd
 */
 
 query notation::Edge::isCommentLink() : Boolean {
-	return self.element = null and (
-			(
+	return  (
 				self.source.element.oclIsKindOf(uml::Comment) and
 				self.target.element.oclIsKindOf(uml::Classifier)
 			)
@@ -353,7 +352,6 @@ query notation::Edge::isCommentLink() : Boolean {
 				self.source.element.oclIsKindOf(uml::Classifier) and
 				self.target.element.oclIsKindOf(uml::Comment)
 			)
-		)
 }
 
 query notation::Edge::isCommentLinkForAssociation() : Boolean {

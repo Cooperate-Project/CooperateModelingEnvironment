@@ -25,8 +25,8 @@ public class ClassDiagramPostProcessor extends ContentIteratingPostProcessor {
 
         private final Map<EPackage, PostProcessingSwitch> switches = new HashMap<>();
 
-        public CombinedPostProcessor(Set<Object> mappedElements) {
-            switches.put(NotationPackage.eINSTANCE, new NotationPostProcessingSwitch());
+        public CombinedPostProcessor(Set<EObject> mappedElements) {
+            switches.put(NotationPackage.eINSTANCE, new NotationPostProcessingSwitch(mappedElements));
             switches.put(ClsPackage.eINSTANCE, new ClsPostProcessingSwitch(mappedElements));
         }
 

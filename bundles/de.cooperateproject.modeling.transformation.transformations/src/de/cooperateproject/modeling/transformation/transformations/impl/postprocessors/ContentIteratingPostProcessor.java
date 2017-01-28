@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -24,7 +25,7 @@ public abstract class ContentIteratingPostProcessor extends PostProcessorBase {
 
     @FunctionalInterface
     public static interface PostProcessingSwitchFactory {
-        public PostProcessingSwitch create(Set<Object> mappedElements);
+        public PostProcessingSwitch create(Set<EObject> mappedElements);
     }
 
     private final PostProcessingSwitchFactory factory;
@@ -43,11 +44,13 @@ public abstract class ContentIteratingPostProcessor extends PostProcessorBase {
         Set<org.eclipse.m2m.internal.qvt.oml.trace.Trace> traces = transformationTrace.get().getTraceContent().stream()
                 .filter(org.eclipse.m2m.internal.qvt.oml.trace.Trace.class::isInstance)
                 .map(org.eclipse.m2m.internal.qvt.oml.trace.Trace.class::cast).collect(Collectors.toSet());
-        Set<Object> mappedTargets = traces.stream()
-                .map(org.eclipse.m2m.internal.qvt.oml.trace.Trace::getTargetToTraceRecordMap).map(m -> m.keySet())
-                .flatMap(Collection::stream).collect(Collectors.toSet());
 
-        PostProcessingSwitch postProcessor = factory.create(mappedTargets);
+        Set<EObject> mappedElements = traces.stream()
+                .flatMap(t -> Stream.concat(t.getTargetToTraceRecordMap().keySet().stream(),
+                        t.getSourceToTraceRecordMap().keySet().stream()))
+                .filter(EObject.class::isInstance).map(EObject.class::cast).collect(Collectors.toSet());
+
+        PostProcessingSwitch postProcessor = factory.create(mappedElements);
 
         Set<EObject> relevantObjects = transformationParameters.stream().flatMap(m -> m.getContents().stream())
                 .filter(o -> postProcessor.isPackageSupported(o.eClass().getEPackage())).collect(Collectors.toSet());
