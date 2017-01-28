@@ -90,6 +90,8 @@ public class StartManager implements IStartup, IPartListener {
 				//TODO de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput
 			}
 			
+			focusView.setTitleText(part.getTitle());
+			
 			//TODO focusView.setDiagram(...)
 			//TODO subscribe the topic and feed the view with information
 

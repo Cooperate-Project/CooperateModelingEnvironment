@@ -14,6 +14,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -28,6 +30,7 @@ public class FocusView extends ViewPart {
 	private Action doubleClickActionHistoryViewer;
 	private FocusDialog focusDialog;
 	private Button muteButton;
+	private Text titleText;
 
 	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
 		public String getColumnText(Object obj, int index) {
@@ -88,6 +91,9 @@ public class FocusView extends ViewPart {
 		});
 	}
 	
+	public void setTitleText(String title){
+		titleText.setText(title);
+	}
 
 	/**
 	 * Initializes the view of this plugin. 
@@ -96,16 +102,33 @@ public class FocusView extends ViewPart {
 	private void setUpView(Composite parent){
 		
 		focusComposite = new Composite(parent, SWT.NULL);
-		focusComposite.setLayout(new FormLayout());
+		GridLayout layout = new GridLayout();
+		GridData gridData;
+		layout.numColumns = 4;
+		layout.makeColumnsEqualWidth = true;
+		focusComposite.setLayout(layout);
+		titleText = new Text(focusComposite, SWT.HORIZONTAL | SWT.CENTER | SWT.READ_ONLY | SWT.WRAP);
 		historyViewer = new TableViewer(focusComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);	
+		titleText.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_GRAY));
 		
-		FormData formData = new FormData();
-	    formData.top = new FormAttachment(0,5);
-	    formData.bottom = new FormAttachment(100,-5);
-	    formData.left = new FormAttachment(0,5);
-	   	formData.right = new FormAttachment(80,-5);
+		gridData = new GridData();
+		gridData.horizontalSpan = 4;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.grabExcessVerticalSpace = false;
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.verticalAlignment = SWT.CENTER;
+		gridData.heightHint = 15;
 		
-		historyViewer.getTable().setLayoutData(formData);
+		titleText.setLayoutData(gridData);
+		
+		gridData = new GridData();
+		gridData.horizontalSpan = 3;
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.verticalAlignment = SWT.FILL;
+		gridData.grabExcessVerticalSpace = true;
+		gridData.grabExcessHorizontalSpace = true;
+		
+		historyViewer.getTable().setLayoutData(gridData);
 		historyViewer.getTable().setHeaderVisible(true);
 		historyViewer.getTable().setLinesVisible(false);
 		String[] columnNames = new String[] {
@@ -131,13 +154,12 @@ public class FocusView extends ViewPart {
 			}
 		});
 		
-		formData = new FormData();
-	    formData.top = new FormAttachment(0,10);
-	    formData.bottom = new FormAttachment(20,-10);
-	    formData.left = new FormAttachment(historyViewer.getTable(),10);
-	   	formData.right = new FormAttachment(100,-10);
+		gridData = new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.verticalAlignment = SWT.TOP;
+		gridData.heightHint = 50;
 	   	
-	   	muteButton.setLayoutData(formData);
+	   	muteButton.setLayoutData(gridData);
 		
 		historyViewer.setContentProvider(ArrayContentProvider.getInstance());
 		historyViewer.setInput(new String[] { "One", "Two", "Three" });
