@@ -24,6 +24,7 @@
       <import feature="org.eclipse.uml2.uml" version="5.2.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.emf.compare" version="3.2.0" match="greaterOrEqual"/>
       <import feature="de.cooperateproject.cdoxtext.feature" version="0.1.0" match="greaterOrEqual"/>
+      <import feature="de.cooperateproject.cdo.patched.client.feature" version="4.5.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
