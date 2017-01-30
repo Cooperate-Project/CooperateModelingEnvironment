@@ -8,12 +8,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.*;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.SWT;
@@ -23,7 +21,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 
 
-public class FocusView extends ViewPart {
+public class FocusView extends ViewPart{
 	public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
 	private TableViewer historyViewer; //lists all deictic gestures (element focuses) that have been made
 	private Composite focusComposite;
@@ -54,6 +52,7 @@ public class FocusView extends ViewPart {
 	 * This is a callback that will allow us
 	 * to create the viewer and initialize it.
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 		setUpView(parent);
 		setUpDialogs(parent);
@@ -171,6 +170,7 @@ public class FocusView extends ViewPart {
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
+	@Override
 	public void setFocus() {
 		historyViewer.getControl().setFocus();	
 	}
@@ -233,4 +233,5 @@ public class FocusView extends ViewPart {
 		}
 		
 	}
+
 }

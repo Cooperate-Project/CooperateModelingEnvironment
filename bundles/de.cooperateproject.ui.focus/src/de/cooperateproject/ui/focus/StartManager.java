@@ -1,15 +1,15 @@
 package de.cooperateproject.ui.focus;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.ui.IEditorInput;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.ide.ResourceUtil;
 
 import de.cooperateproject.ui.focus.connection.ConnectionManager;
 import de.cooperateproject.ui.focus.connection.SubscriberManager;
@@ -19,6 +19,7 @@ public class StartManager implements IStartup, IPartListener {
 	
 	private final String papyrusEditorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private final String xTextEditorID = "de.cooperateproject.modeling.textual.cls.Cls";
+	private final String projectExplorer = "org.eclipse.ui.navigator.ProjectExplorer";
 	private FocusView focusView;
 
 	@Override
@@ -57,9 +58,9 @@ public class StartManager implements IStartup, IPartListener {
 
 	@Override
 	public void partClosed(IWorkbenchPart part) {
-		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID)){
-			ConnectionManager.disconnect();
-		}
+		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID) || part == focusView){
+			ConnectionManager.getInstance().disconnect();
+	 	}
 	}
 
 	@Override	
@@ -71,24 +72,29 @@ public class StartManager implements IStartup, IPartListener {
 
 		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID)){
 			
-			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			try {
-				focusView = (FocusView) page.showView(FocusView.ID);
-            } catch (PartInitException e) {
-            	throw new RuntimeException(e);
-            }
+			IWorkbenchWindow window =  PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			ISelectionService service = window.getSelectionService();
+			IWorkbenchPage page = window.getActivePage();
+			IStructuredSelection selection = (IStructuredSelection) service.getSelection(projectExplorer);
+			IFile file = null;
 			
-			IEditorInput fileInput = part.getSite().getPage().getActiveEditor().getEditorInput();
-					
-		 	IFile file = ResourceUtil.getFile(fileInput);
-		 	if(file != null){
-		 		focusView.setTitleText(part.getTitle());
-				SubscriberManager.setView(focusView);
-			 	ConnectionManager.connect(file);
+			if(selection != null && selection.getFirstElement() instanceof IFile){
+				file = (IFile) selection.getFirstElement();
+				
+				try {
+		 			focusView = (FocusView) page.showView(FocusView.ID);
+		 		} catch (PartInitException e) {
+		 			throw new RuntimeException(e);
+		 		}
+
+		 		focusView.setTitleText(file.getName());
+		 		SubscriberManager.getInstance().setView(focusView);
+		 		ConnectionManager.getInstance().connect(file);
 		 	}
-
+			
 		}
-		
-	}
 
+
+	}
+		
 }
