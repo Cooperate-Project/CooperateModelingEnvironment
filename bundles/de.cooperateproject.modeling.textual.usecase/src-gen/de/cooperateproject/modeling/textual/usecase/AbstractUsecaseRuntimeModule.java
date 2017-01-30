@@ -19,6 +19,10 @@ import de.cooperateproject.modeling.textual.usecase.validation.UsecaseValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateQualifiedNameProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNameProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import java.util.Properties;
 import org.eclipse.xtext.Constants;
@@ -27,7 +31,6 @@ import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.formatting.IFormatter;
 import org.eclipse.xtext.generator.IGenerator2;
-import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.parser.ITokenToStringConverter;
@@ -199,11 +202,6 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 		binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
-	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return DefaultDeclarativeQualifiedNameProvider.class;
-	}
-	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
 		return CooperateResourceSet.class;
@@ -217,6 +215,21 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IUMLUriFinder> bindIUMLUriFinder() {
 		return ConventionalUMLUriFinder.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
+		return DefaultUMLPrimitiveTypeSelector.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return CooperateQualifiedNameProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2
+	public Class<? extends IAlternativeNameProvider> bindIAlternativeNameProvider() {
+		return CooperateQualifiedNameProvider.class;
 	}
 	
 }
