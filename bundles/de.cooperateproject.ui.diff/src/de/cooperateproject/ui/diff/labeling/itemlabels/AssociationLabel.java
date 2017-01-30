@@ -3,7 +3,6 @@ package de.cooperateproject.ui.diff.labeling.itemlabels;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
 
 public class AssociationLabel implements SummaryItemLabelHandler{
-	//private AssociationPropertiesLabel propLabel = new AssociationPropertiesLabel(); not used atm
 	private CardinalityLabel cardLabel = new CardinalityLabel();
 	private final String classText = "association";
 
@@ -14,12 +13,18 @@ public class AssociationLabel implements SummaryItemLabelHandler{
 
 		String ret = typeRefLeft + " " + ass.getName() + " " + typeRefRight;
 		if(ass.getProperties() != null){
-			ret += " [" + cardLabel.getText(ass.getProperties().getCardinalityLeft()) + " | " + cardLabel.getText(ass.getProperties().getCardinalityRight()) + "]";
+			String leftRole = "";
+			String rightRole = "";
+			if(ass.getProperties().getPropertyLeft().getName() != null)
+				leftRole = ", " + ass.getProperties().getPropertyLeft().getName();
+			if(ass.getProperties().getPropertyRight().getName() != null)
+				rightRole =  ", " + ass.getProperties().getPropertyRight().getName();
+			
+			ret += " [" + cardLabel.getText(ass.getProperties().getCardinalityLeft()) + leftRole;
+			ret += " | " + cardLabel.getText(ass.getProperties().getCardinalityRight()) + rightRole + "]";
 		}
 
 		return ret;
-				
-		//TODO: Where are the rolenames?
 	}
 
 	public String getClassText(){
@@ -27,3 +32,4 @@ public class AssociationLabel implements SummaryItemLabelHandler{
 	}
 	
 }
+

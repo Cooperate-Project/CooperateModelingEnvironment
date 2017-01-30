@@ -34,11 +34,9 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.compare.scope.IComparisonScope;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.uml2.uml.PrimitiveType;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -51,23 +49,23 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
 /**
- * Provides functions for receiving information about commits from a resource
+ * Provides functions for receiving information about commits from a resource.
  * @author Jasmin
  *
  */
 public class CommitManager {
 	
-		private IFile currentFile;
-		private DiffTreeItem root;
+		private IFile currentFile; //The .cooperate diagram file, on which we are working
+		private DiffTreeItem root; //the root diffTreeItem of a selected diagram version (commit), will be needed, when the diagram's tree is constructed here and the root will be returned to the DiffViewer to be shown in the GUI
 		private Map<CDOCommitInfo, Set<CDOID>> cdoIds = new HashMap<CDOCommitInfo, Set<CDOID>>(); //contains the IDs of all changed objects during all found commits of the file
-		private Set<CommitInfo> commitInfos = new HashSet<CommitInfo>();
-		private String resourceDiagramPath;
+		private Set<CDOCommitInfo> commitInfos = new HashSet<CDOCommitInfo>(); //contains information about all relevant commits on the file
+		private String resourceDiagramPath; //the file path to the textual diagram
 		
 		/**
-		 * Returns all commits as text representation found in CDO Repository from the current file.
-		 * @return
+		 * Returns all commits found in CDO Repository from the current file.
+		 * @return a Set containing all commits
 		 */
-		public Set<CommitInfo> getAllCommitInfos(){
+		public Set<CDOCommitInfo> getAllCommitInfos(){
 			
 			if(currentFile != null && cdoIds.size() <= 0){
 				findAllCommits();
@@ -76,24 +74,24 @@ public class CommitManager {
 			
 			while(it.hasNext()){
 				CDOCommitInfo cdoInfo = it.next();
-				CommitInfo info = new CommitInfo(cdoInfo, cdoIds.get(cdoInfo).size());
-				commitInfos.add(info);
+				commitInfos.add(cdoInfo);
 			}
 			return commitInfos;
 			
 		}
 
 		/**
-		 * Returns all commits until the given date as text representation found in CDO Repository from the current file.
-		 * @param date: the given date in milliseconds
+		 * Returns all commits from today until the given date as found in CDO Repository from the current file.
+		 * @param dateMillis: the given date in milliseconds
+		 * @return a Set containing all commits in the time span
 		 */
-		public Set<CommitInfo> getAllCommitInfos(long dateMillis){
+		public Set<CDOCommitInfo> getAllCommitInfos(long dateMillis){
 
 			if(currentFile != null && cdoIds.size() <= 0){
 				getAllCommitInfos();
 			}
 		
-			Set<CommitInfo> commitInfosTemp = new HashSet<CommitInfo>();
+			Set<CDOCommitInfo> commitInfosTemp = new HashSet<CDOCommitInfo>();
 			Calendar today = Calendar.getInstance();
 			long current_timestamp = today.getTimeInMillis();
 
@@ -102,8 +100,7 @@ public class CommitManager {
 			while(it.hasNext()){
 				CDOCommitInfo cdoInfo = it.next();
 				if(cdoInfo.getTimeStamp() >= dateMillis && cdoInfo.getTimeStamp() <= current_timestamp){
-					CommitInfo info = new CommitInfo(cdoInfo, cdoIds.get(cdoInfo).size());
-					commitInfosTemp.add(info);
+					commitInfosTemp.add(cdoInfo);
 				}
 			}
 				
@@ -111,31 +108,31 @@ public class CommitManager {
 		}
 		
 		/**
-		 * Computes the comparison of the commit and returns it
+		 * Computes the comparison of the commit and returns it.
+		 * Also already constructs the diagram's tree of this commit.
 		 * @param commit the commit to be compared to its old version
 		 * @return a list with objects which respectively carry the two matched objects from EMF Compare
 		 */
-		public List<SummaryItem> compare(CommitInfo commit){
+		public List<SummaryItem> compare(CDOCommitInfo commit){
 			List<SummaryItem> sumList = new ArrayList<SummaryItem>();
-			CDOCommitInfo cdoInfo = commit.getCDOCommitInfo();
 			CDOSession session = CDOConnectionManager.getInstance().acquireSession(currentFile.getProject());
 			CDOBranch mainBranch = session.getBranchManager().getMainBranch();
 			
-			CDOView previousState = session.openView(mainBranch, cdoInfo.getPreviousTimeStamp());
-			CDOView currentState = session.openView(mainBranch, cdoInfo.getTimeStamp());
+			CDOView previousState = session.openView(mainBranch, commit.getPreviousTimeStamp());
+			CDOView currentState = session.openView(mainBranch, commit.getTimeStamp());
 
-			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(cdoInfo));
+			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(commit)); //Create the scope, on which differences should be detected. Only the items with the given cdoIds (all elements from textual cooperate diagram) are considered.
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
-       	  	EList<Diff> resultList = comparisonResult.getDifferences();
+       	  	EList<Diff> resultList = comparisonResult.getDifferences(); //contains all found differences
 
        	  	CommentLinkAdapt.setCDOView(currentState);
        	  	
        	  	for(int i = 0; i < resultList.size(); i++){
-       	  		EObject value = getValue(resultList.get(i));
+    	  		EObject value = getValue(resultList.get(i));
 	       	  	if(value != null){
-	       	  		if(comparisonResult.getMatch(value) != null || value instanceof EAttribute || value instanceof PrimitiveType){
-	       	  			Object left = null;
-	       	  			Object right = null;
+	       	  		if(!value.getClass().getPackage().getName().contentEquals("org.eclipse.uml2.uml.internal.impl")){ //Don't consider changes of objects that are from this package, because we have internal cooperate instances for those, which are being handled here.
+	       	  			Object left = null; //left side is the object in the "new version" of the commit
+	       	  			Object right = null; //right side is the object in the "old version" of the commit
 	       	  			EObject parent = resultList.get(i).getMatch().getLeft();
 	       	  			
 	       	  			if(value instanceof CommentLink){
@@ -168,6 +165,9 @@ public class CommitManager {
        	  				
 		}
 		
+		/**
+		 * Finds all commits on the selected .cooperate-file and stores all cdoIds of the changed objects in the Map cdoIds.
+		 */
 		private void findAllCommits(){
 			IProject project = currentFile.getProject();
 			CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
@@ -233,6 +233,7 @@ public class CommitManager {
 		private void setRoot(DiffTreeItem resource) {
 			root = resource;
 		}
+		
 		public DiffTreeItem getRoot(){
 			return root;
 		}
@@ -253,6 +254,14 @@ public class CommitManager {
 	      	return LauncherModelHelper.loadDiagram(cdoView.getResourceSet(), launcherFile);
 	   }
 	   
+	   /**
+	    * Checks if the Object with objectId really belongs to the textual model.
+	    * @param objectId the CDOID of the object to be examined
+	    * @param parentId the CDOID of the textual model/resource
+	    * @param previousView the previous view of the commit
+	    * @param currentView the current view of the commit
+	    * @return true if it belongs to the textual model, false if not
+	    */
 	   private boolean parentMatches(CDOID objectId, CDOID parentId, CDOView previousView, CDOView currentView) {
     	   try{
     		   CDOObject object = previousView.getObject(objectId);
@@ -267,6 +276,11 @@ public class CommitManager {
     	   return false;
        }
 	   
+	   /**
+	    * Makes out, of which type the Diff was and returns the item, on which the actual difference was detected.
+	    * @param diff the Diff to be examined.
+	    * @return the value on which the difference was detected
+	    */
 	   private EObject getValue(Diff diff) {
 	   		EObject value = null;
 
@@ -279,7 +293,14 @@ public class CommitManager {
 	   	}
 	   
 	   @SuppressWarnings("rawtypes")
-	private Object getOldValue(Diff diff, Comparison comparisonResult, EObject value){
+	/**
+	 * Finds and returns the old value, the "old version" of the given value, on which a difference has been detected. 
+	 * @param diff the Diff, in which the given EObject has experienced a difference
+	 * @param comparisonResult the whole Comparison, in which the diff is contained.
+	 * @param value the value, for which we look for its old/before version
+	 * @return the old value
+	 */
+	   	private Object getOldValue(Diff diff, Comparison comparisonResult, EObject value){
 		   Object oldValue = null;
 		   if(diff instanceof AttributeChange){
 		 	oldValue =  diff.getMatch().getRight().eGet(((AttributeChange)diff).getAttribute());

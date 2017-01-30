@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.ui.part.*;
 
 import de.cooperateproject.ui.diff.content.CommitContentProvider;
-import de.cooperateproject.ui.diff.internal.CommitInfo;
 import de.cooperateproject.ui.diff.internal.CommitManager;
 import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
 import de.cooperateproject.ui.diff.internal.DiffTreeItem;
@@ -23,6 +22,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.jface.action.*;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
@@ -88,17 +88,19 @@ public class DiffView extends ViewPart {
 
 
 	private void makeActions() {
+		//tells this class to open the diff view of the diagram's selected commit if Enter is pressed on it
 		doubleClickActionCommitViewer = new Action() {
 			public void run() {
 				ISelection selection = commitViewer.getSelection();
 				Object obj = ((IStructuredSelection)selection).getFirstElement();
 
-				if(obj instanceof CommitInfo){
-					showDiffViewOfCommit((CommitInfo)obj);
+				if(obj instanceof CDOCommitInfo){
+					showDiffViewOfCommit((CDOCommitInfo)obj);
 				}
 			}
 		};
 		
+		//on Enter(doubleClick), sets the focus from the tree viewer to the corresponding element in the summary table
 		doubleClickActionDiffViewer = new Action() {
 			public void run() {
 				ISelection selection = diffViewer.getSelection();
@@ -127,6 +129,7 @@ public class DiffView extends ViewPart {
 			}
 		};
 		
+		//on Enter(doubleClick), sets the focus from the summary viewer to the corresponding element in the tree viewer
 		doubleClickActionSummaryViewer = new Action() {
 			public void run() {
 				ISelection selection = summaryViewer.getSelection();
@@ -171,14 +174,18 @@ public class DiffView extends ViewPart {
 		return allItems;
 	}
 
-	private void showDiffViewOfCommit(CommitInfo obj){
+	/**
+	 * Opens the tabFolder with the tree viewer and summary table for the selected commit.
+	 * @param obj the commit of interest and to be opened in the tree viewer and summary table
+	 */
+	private void showDiffViewOfCommit(CDOCommitInfo obj){
 		summaryViewer.setInput(commitManager.compare(obj));
 		for (TableColumn c : summaryViewer.getTable().getColumns()){
 			c.pack();
 		}
 		tabFolder.setSelection(1);
 		diffViewer.setInput(commitManager.getRoot());
-		diffViewer.expandAll();
+		diffViewer.collapseAll();
 		diffViewer.getControl().setFocus();
 	}
 	
@@ -214,12 +221,16 @@ public class DiffView extends ViewPart {
 		diffViewer.getTree().addKeyListener(kl);
 	}
 	
+
 	private void handleKeyReleased(KeyEvent event) {
-		if(event.character == SWT.SPACE){
+		if(event.character == SWT.SPACE){ // If space was released, set the focus on the item's parent in the tree.
 			focusOnParentTreeItem();
 		}
 	}
 	
+	/**
+	 * Finds the parent of the current selection in the diffViewer and sets the focus on it.
+	 */
 	private void focusOnParentTreeItem() {
 		ISelection selection = diffViewer.getSelection();
 		Object obj = ((IStructuredSelection)selection).getFirstElement();
@@ -273,7 +284,7 @@ public class DiffView extends ViewPart {
 		commitViewer.getTable().setLinesVisible(false);
 		commitViewer.setComparator(new CommitViewerComparator());
 		String[] columnNames1 = new String[] {
-				"Date", "Time", "Number of changes"};
+				"Date", "Time"};
 		for(int i = 0; i < columnNames1.length; i++){
 			TableColumn tableColumn = new TableColumn(commitViewer.getTable(), SWT.LEFT);
 			tableColumn.setText(columnNames1[i]);
@@ -346,14 +357,14 @@ public class DiffView extends ViewPart {
 
 		formData = new FormData();
 		formData.left = new FormAttachment(0,5);
-		formData.right = new FormAttachment(100,-5);
-		formData.bottom = new FormAttachment(70,-5);
+		formData.right = new FormAttachment(50,-5);
+		formData.bottom = new FormAttachment(100,-5);
 		formData.top = new FormAttachment(0,5);
 		diffViewer.getTree().setLayoutData(formData);
 		
 		formData = new FormData();
-		formData.top = new FormAttachment(diffViewer.getTree(), 5);
-		formData.left = new FormAttachment(0,5);
+		formData.top = new FormAttachment(0, 5);
+		formData.left = new FormAttachment(diffViewer.getTree() ,5);
 		formData.right = new FormAttachment(100,-5);
 		formData.bottom = new FormAttachment(100,-5);
 		summaryViewer.getTable().setLayoutData(formData);

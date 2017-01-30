@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.*;
 import de.cooperateproject.ui.diff.internal.DiffTreeItem;
 /**
- * Content Provider for a treeviewer which lists the content of a diagram from one commit
+ * Content Provider for a tree viewer which lists the content of a diagram
  * @author Jasmin
  *
  */

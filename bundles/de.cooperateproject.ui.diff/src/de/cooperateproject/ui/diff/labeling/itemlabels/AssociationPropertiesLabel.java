@@ -7,10 +7,11 @@ public class AssociationPropertiesLabel implements SummaryItemLabelHandler {
 
 	public String getText(Object item){
 		AssociationProperties ass = (AssociationProperties)item;
-		return "left type: " + ass.getPropertyLeft().getType().getLabel() + ", right type: " + ass.getPropertyRight().getType().getLabel(); //TODO: What to show here? Rolenames?
+		return "left role: " + ass.getPropertyLeft().getName() + ", right role: " + ass.getPropertyRight().getName();
 	}
 
 	public String getClassText(){
 		return classText;
 	}
 }
+

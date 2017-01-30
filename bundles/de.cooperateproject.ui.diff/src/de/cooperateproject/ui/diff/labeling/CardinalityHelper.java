@@ -1,7 +1,7 @@
 package de.cooperateproject.ui.diff.labeling;
 
 /**
- * Helps converting the Integers coming from Cardinality into String
+ * Helps converting the Integers coming from Cardinality into String.
  * @author Jasmin
  *
  */

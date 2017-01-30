@@ -21,6 +21,7 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.PackageImportLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PrimitiveTypeLabel;
@@ -55,7 +56,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("Integer", new IntegerLabel());
 		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
 		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
-
+		itemHandling.put("PackageImportImpl", new PackageImportLabel());
 	}
 	
 	@Override
@@ -90,7 +91,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			if(item.getDifferenceKind() == DifferenceKind.MOVE){
 				switch(columnIndex){
   				case 0: if(handlerClassLeft != null){
-  							ret = item.getDifferenceKind().toString()+ " " + handlerClassLeft.getClassText();
+  							ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " " + handlerClassLeft.getClassText();
   						}
   						break;
   				case 1: if(handlerClassLeft != null) ret = handlerClassLeft.getText(item.getLeft()); break;
@@ -102,9 +103,9 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			else{
 				switch(columnIndex){
 	  				case 0: if(handlerClassLeft != null){
-	  							ret = item.getDifferenceKind().toString()+ " " + handlerClassLeft.getClassText();
+	  							ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " " + handlerClassLeft.getClassText();
 	  						}else if(handlerClassRight != null){
-	  							ret = item.getDifferenceKind().toString()+ " " + handlerClassRight.getClassText();
+	  							ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " " + handlerClassRight.getClassText();
 	  						}
 	  						break;
 	  				case 1: if(handlerClassParent != null) ret = handlerClassParent.getText(item.getCommonParent()); break;

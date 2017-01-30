@@ -19,13 +19,18 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
+import de.cooperateproject.ui.diff.labeling.itemlabels.PackageImportLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.PrimitiveTypeLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
 import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
-
+/**
+ * Label Provider for the diff viewer's items of the diagram.
+ * @author Jasmin
+ *
+ */
 public class DiffViewLabelProvider extends LabelProvider{
 	
 	private Map<String, SummaryItemLabelHandler> itemHandling = 
@@ -49,6 +54,7 @@ public class DiffViewLabelProvider extends LabelProvider{
 		itemHandling.put("Integer", new IntegerLabel());
 		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
 		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
+		itemHandling.put("PackageImportImpl", new PackageImportLabel());
 	}
 	
 	
@@ -59,7 +65,7 @@ public class DiffViewLabelProvider extends LabelProvider{
 			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getObject().getClass().getSimpleName());
 			if(handlerClass != null){
 				if(((DiffTreeItem) element).getDiffKind() != null){
-					ret = ((DiffTreeItem) element).getDiffKind().toString()+ " - ";
+					ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
 				}
 				
 				ret = ret + handlerClass.getText(((DiffTreeItem) element).getObject());
