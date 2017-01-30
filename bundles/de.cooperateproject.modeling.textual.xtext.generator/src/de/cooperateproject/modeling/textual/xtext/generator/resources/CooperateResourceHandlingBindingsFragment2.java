@@ -15,6 +15,8 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextD
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 
 @SuppressWarnings("restriction")
@@ -35,6 +37,7 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(XtextResourceSet.class), typeRef(CooperateResourceSet.class))
                 .addTypeToType(typeRef(IGlobalScopeProvider.class), typeRef(CooperateGlobalScopeProvider.class))
                 .addTypeToType(typeRef(IUMLUriFinder.class), typeRef(ConventionalUMLUriFinder.class))
+                .addTypeToType(typeRef(IUMLPrimitiveTypeSelector.class), typeRef(DefaultUMLPrimitiveTypeSelector.class))
                 .contributeTo(getLanguage().getRuntimeGenModule());
         getProjectConfig().getRuntime().getManifest().getRequiredBundles()
                 .add("de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport");
