@@ -88,7 +88,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Actor returns Actor
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (name=STRING alias=ID)))
+	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (name=STRING alias=ID)) type=ActorType?)
 	 */
 	protected void sequence_Actor(ISerializationContext context, Actor semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -240,15 +240,18 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     UseCaseDiagram returns UseCaseDiagram
 	 *
 	 * Constraint:
-	 *     rootPackage=RootPackage
+	 *     (title=STRING rootPackage=RootPackage)
 	 */
 	protected void sequence_UseCaseDiagram(ISerializationContext context, UseCaseDiagram semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE));
 			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getRootPackageRootPackageParserRuleCall_1_0(), semanticObject.getRootPackage());
+		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getTitleSTRINGTerminalRuleCall_1_0(), semanticObject.getTitle());
+		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getRootPackageRootPackageParserRuleCall_2_0(), semanticObject.getRootPackage());
 		feeder.finish();
 	}
 	

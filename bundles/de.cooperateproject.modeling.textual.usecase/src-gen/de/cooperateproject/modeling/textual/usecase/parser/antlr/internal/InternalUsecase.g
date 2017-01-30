@@ -83,10 +83,28 @@ ruleUseCaseDiagram returns [EObject current=null]
 		}
 		(
 			(
+				lv_title_1_0=RULE_STRING
 				{
-					newCompositeNode(grammarAccess.getUseCaseDiagramAccess().getRootPackageRootPackageParserRuleCall_1_0());
+					newLeafNode(lv_title_1_0, grammarAccess.getUseCaseDiagramAccess().getTitleSTRINGTerminalRuleCall_1_0());
 				}
-				lv_rootPackage_1_0=ruleRootPackage
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getUseCaseDiagramRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"title",
+						lv_title_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getUseCaseDiagramAccess().getRootPackageRootPackageParserRuleCall_2_0());
+				}
+				lv_rootPackage_2_0=ruleRootPackage
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getUseCaseDiagramRule());
@@ -94,15 +112,15 @@ ruleUseCaseDiagram returns [EObject current=null]
 					set(
 						$current,
 						"rootPackage",
-						lv_rootPackage_1_0,
+						lv_rootPackage_2_0,
 						"de.cooperateproject.modeling.textual.usecase.Usecase.RootPackage");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2='@end-uc'
+		otherlv_3='@end-uc'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getUseCaseDiagramAccess().getEndUcKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getUseCaseDiagramAccess().getEndUcKeyword_3());
 		}
 	)
 ;
@@ -255,9 +273,9 @@ ruleActor returns [EObject current=null]
 				}
 			)
 		)?
-		otherlv_2='act'
+		otherlv_2='actor'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getActorAccess().getActKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getActorAccess().getActorKeyword_2());
 		}
 		(
 			(
@@ -322,6 +340,35 @@ ruleActor returns [EObject current=null]
 				)
 			)
 		)
+		(
+			otherlv_7='['
+			{
+				newLeafNode(otherlv_7, grammarAccess.getActorAccess().getLeftSquareBracketKeyword_4_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getActorAccess().getTypeActorTypeEnumRuleCall_4_1_0());
+					}
+					lv_type_8_0=ruleActorType
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getActorRule());
+						}
+						set(
+							$current,
+							"type",
+							lv_type_8_0,
+							"de.cooperateproject.modeling.textual.usecase.Usecase.ActorType");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_9=']'
+			{
+				newLeafNode(otherlv_9, grammarAccess.getActorAccess().getRightSquareBracketKeyword_4_2());
+			}
+		)?
 	)
 ;
 
@@ -341,9 +388,9 @@ ruleSystem returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='sys'
+		otherlv_0='system'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getSystemAccess().getSysKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getSystemAccess().getSystemKeyword_0());
 		}
 		(
 			(
@@ -443,9 +490,9 @@ ruleUseCase returns [EObject current=null]
 				}
 			)
 		)?
-		otherlv_2='uc'
+		otherlv_2='usecase'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getUseCaseAccess().getUcKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getUseCaseAccess().getUsecaseKeyword_2());
 		}
 		(
 			(
@@ -558,9 +605,9 @@ ruleExtensionPoint returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='ep'
+		otherlv_0='extensionpoint'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getExtensionPointAccess().getEpKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getExtensionPointAccess().getExtensionpointKeyword_0());
 		}
 		(
 			(
@@ -723,9 +770,9 @@ ruleAssociation returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='uses'
+		otherlv_1='iac'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getAssociationAccess().getUsesKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getAssociationAccess().getIacKeyword_1());
 		}
 		(
 			(
@@ -1210,15 +1257,15 @@ ruleVisibility returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='UNDEFINED'
+			enumLiteral_0='+'
 			{
-				$current = grammarAccess.getVisibilityAccess().getUNDEFINEDEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getUNDEFINEDEnumLiteralDeclaration_0());
+				$current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='+'
+			enumLiteral_1='public'
 			{
 				$current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1());
@@ -1226,15 +1273,15 @@ ruleVisibility returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_2='public'
+			enumLiteral_2='-'
 			{
-				$current = grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_2());
+				$current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2());
 			}
 		)
 		    |
 		(
-			enumLiteral_3='-'
+			enumLiteral_3='private'
 			{
 				$current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_3, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3());
@@ -1242,15 +1289,15 @@ ruleVisibility returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_4='private'
+			enumLiteral_4='#'
 			{
-				$current = grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_4, grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_4());
+				$current = grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4());
 			}
 		)
 		    |
 		(
-			enumLiteral_5='#'
+			enumLiteral_5='protected'
 			{
 				$current = grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_5, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5());
@@ -1258,18 +1305,37 @@ ruleVisibility returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_6='protected'
+			enumLiteral_6='~'
 			{
-				$current = grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_6, grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_6());
+				$current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_6, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6());
+			}
+		)
+	)
+;
+
+// Rule ActorType
+ruleActorType returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='human'
+			{
+				$current = grammarAccess.getActorTypeAccess().getHUMANEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getActorTypeAccess().getHUMANEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_7='~'
+			enumLiteral_1='machine'
 			{
-				$current = grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_7, grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_7());
+				$current = grammarAccess.getActorTypeAccess().getMACHINEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getActorTypeAccess().getMACHINEEnumLiteralDeclaration_1());
 			}
 		)
 	)

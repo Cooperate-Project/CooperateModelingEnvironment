@@ -5,28 +5,52 @@ package de.cooperateproject.modeling.textual.usecase
 
 import com.google.inject.Binder
 import com.google.inject.name.Names
-import de.cooperateproject.modeling.textual.usecase.scoping.UseCaseGlobalScopeProvider
+import de.cooperateproject.modeling.textual.usecase.generator.UsecaseDerivedStateGenerator
 import de.cooperateproject.modeling.textual.usecase.scoping.UseCaseImportedNamespaceAwareLocalScopeProvider
-import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.eclipse.xtext.scoping.IScopeProvider
-import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.resource.DerivedStateAwareResource
+import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager
+import org.eclipse.xtext.resource.IDerivedStateComputer
+import org.eclipse.xtext.resource.IResourceDescription
+import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule {
-	
+
 	override void configureIScopeProviderDelegate(Binder binder) {
-		binder.bind(IScopeProvider).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(UseCaseImportedNamespaceAwareLocalScopeProvider)
+		binder.bind(IScopeProvider).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(
+			UseCaseImportedNamespaceAwareLocalScopeProvider)
 	}
-	
-	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return UseCaseGlobalScopeProvider
-	}
-	
+
+//	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+//		return UseCaseGlobalScopeProvider
+//	}
+
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return DefaultDeclarativeQualifiedNameProvider;
+	}
+
+	// derived state
+	def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
+		return UsecaseDerivedStateGenerator;
+	}
+
+	override Class<? extends XtextResource> bindXtextResource() {
+		return DerivedStateAwareResource;
+	}
+
+	def Class<? extends IResourceDescription.Manager> bindIResourceDescriptionManager() {
+		return DerivedStateAwareResourceDescriptionManager;
+	}
+	
+	def Class<? extends IGlobalScopeTypeQueryProvider> bindIGlobalScopeTypeQueryProvider() {
+		return CooperateGlobalScopeProvider
 	}
 }

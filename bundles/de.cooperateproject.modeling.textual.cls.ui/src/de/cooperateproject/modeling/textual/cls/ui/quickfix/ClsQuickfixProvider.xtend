@@ -330,8 +330,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def void fixCreateGeneralization(EObject element) {
 		val generalization = element as Generalization
-		val left = generalization.left.type as Class
-		val right = generalization.right.type as Class
+		val left = generalization.left as Class
+		val right = generalization.right as Class
 		val umlGeneralization = left.createGeneralization(right)
 		left.save
 		//TODO: This is currently derived automatically
@@ -340,8 +340,8 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 	
 	private static def void fixCreateRealization(EObject element) {
 		val implementation = element as Implementation
-		val left = implementation.left.type as Class
-		val right = implementation.right.type as Interface
+		val left = implementation.left as Class
+		val right = implementation.right as Interface
 		left.createInterfaceRealization(null, right)
 		left.save
 		//implementation.eResource.modified = true

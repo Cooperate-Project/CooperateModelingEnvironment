@@ -18,32 +18,32 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  */
 public class RelationshipImpl extends CDOObjectImpl implements Relationship {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RelationshipImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UsecasePackage.Literals.RELATIONSHIP;
-	}
+        return UsecasePackage.Literals.RELATIONSHIP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected int eStaticFeatureCount() {
-		return 0;
-	}
+        return 0;
+    }
 
 } //RelationshipImpl

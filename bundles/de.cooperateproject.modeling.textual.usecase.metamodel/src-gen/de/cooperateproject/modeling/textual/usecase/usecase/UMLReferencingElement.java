@@ -25,29 +25,29 @@ import org.eclipse.uml2.uml.Element;
  */
 public interface UMLReferencingElement<UMLType extends Element> extends CDOObject {
 	/**
-	 * Returns the value of the '<em><b>Referenced Element</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referenced Element</em>' reference.
-	 * @see #setReferencedElement(Element)
-	 * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUMLReferencingElement_ReferencedElement()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Referenced Element</em>' reference.
+     * @see #setReferencedElement(Element)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUMLReferencingElement_ReferencedElement()
+     * @model
+     * @generated
+     */
 	UMLType getReferencedElement();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement#getReferencedElement <em>Referenced Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement#getReferencedElement <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Referenced Element</em>' reference.
-	 * @see #getReferencedElement()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Referenced Element</em>' reference.
+     * @see #getReferencedElement()
+     * @generated
+     */
 	void setReferencedElement(UMLType value);
 
 } // UMLReferencingElement

@@ -18,69 +18,75 @@ import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConvent
 import de.cooperateproject.modeling.transformation.transformations.impl.GraphicsToTextTransformation;
 import de.cooperateproject.modeling.transformation.transformations.impl.PostProcessor;
 import de.cooperateproject.modeling.transformation.transformations.impl.TextToGraphicsTransformation;
-import de.cooperateproject.modeling.transformation.transformations.impl.postprocessors.ClassTextualPostProcessor;
+import de.cooperateproject.modeling.transformation.transformations.impl.postprocessors.ClassDiagramPostProcessor;
 import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactory;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactoryRegistry;
 
 public class TransformationRegistryInitializer {
 
-	private final TransformationFactoryRegistry registry = TransformationFactoryRegistry.getInstance();
-	
-	public void init() {
-		registry.registerTransformation(createN2T(DiagramTypes.CLASS, "cls", new ClassTextualPostProcessor(50)));
-		registry.registerTransformation(createT2N(DiagramTypes.CLASS, "cls"));
-	}
-	
-	private static TransformationFactory createN2T(DiagramTypes diagramType, String textualFileExtension, PostProcessor...postProcessors) {
-		return new TransformationFactory() {
-			
-			@Override
-			public Transformation create(URI changedModelURI, ResourceSet rs) {
-				notNull(changedModelURI);
-				notNull(rs);
-				isTrue(changedModelURI.hasFragment());
-				
-				EObject changedEObject = rs.getEObject(changedModelURI, false);
-				String diagramName = ((Diagram)changedEObject).getName();
-				URI targetURI = ModelNamingConventions.getTextualFromGraphicalURI(changedModelURI, diagramName, textualFileExtension);
-				return new GraphicsToTextTransformation(diagramType, rs, changedModelURI, targetURI, Arrays.asList(postProcessors));
-			}
-			
-			@Override
-			public boolean canHandle(URI changedModelURI) {
-				return "notation".equals(changedModelURI.fileExtension());
-			}
-		};
+    private final TransformationFactoryRegistry registry = TransformationFactoryRegistry.getInstance();
 
-	}
-	
-	private static TransformationFactory createT2N(DiagramTypes diagramType, String textualFileExtension) {
-		return new TransformationFactory() {
-			
-			@Override
-			public Transformation create(URI changedModelURI, ResourceSet rs) {
-				
-				URI targetResourceURI = ModelNamingConventions.getGraphicalFromTextualURI(changedModelURI);
-				String diagramName = ModelNamingConventions.getDiagramNameFromTextualURI(changedModelURI);
+    public void init() {
+        registry.registerTransformation(createN2T(DiagramTypes.CLASS, "cls", new ClassDiagramPostProcessor(50)));
+        registry.registerTransformation(createT2N(DiagramTypes.CLASS, "cls", new ClassDiagramPostProcessor(50)));
+    }
 
-				if (rs.getURIConverter().exists(targetResourceURI, Collections.emptyMap())) {
-					Resource r = rs.getResource(targetResourceURI, true);
-					Optional<Diagram> diagram = r.getContents().stream().filter(o -> o instanceof Diagram).map(o -> ((Diagram)o)).filter(d -> diagramName.equals(d.getName())).findAny();
-					if (diagram.isPresent()) {
-						String targetUriFragment = r.getURIFragment(diagram.get());
-						targetResourceURI = targetResourceURI.trimFragment().appendFragment(targetUriFragment);
-					}
-				}
-				return new TextToGraphicsTransformation(diagramType, changedModelURI.fileExtension(), rs, changedModelURI, targetResourceURI);
-			}
-			
-			@Override
-			public boolean canHandle(URI changedModelURI) {
-				return textualFileExtension.equals(changedModelURI.fileExtension());
-			}
-		};
-		
-	}
-	
+    private static TransformationFactory createN2T(DiagramTypes diagramType, String textualFileExtension,
+            PostProcessor... postProcessors) {
+        return new TransformationFactory() {
+
+            @Override
+            public Transformation create(URI changedModelURI, ResourceSet rs) {
+                notNull(changedModelURI);
+                notNull(rs);
+                isTrue(changedModelURI.hasFragment());
+
+                EObject changedEObject = rs.getEObject(changedModelURI, false);
+                String diagramName = ((Diagram) changedEObject).getName();
+                URI targetURI = ModelNamingConventions.getTextualFromGraphicalURI(changedModelURI, diagramName,
+                        textualFileExtension);
+                return new GraphicsToTextTransformation(diagramType, rs, changedModelURI, targetURI,
+                        Arrays.asList(postProcessors));
+            }
+
+            @Override
+            public boolean canHandle(URI changedModelURI) {
+                return "notation".equals(changedModelURI.fileExtension());
+            }
+        };
+
+    }
+
+    private static TransformationFactory createT2N(DiagramTypes diagramType, String textualFileExtension,
+            PostProcessor... postProcessors) {
+        return new TransformationFactory() {
+
+            @Override
+            public Transformation create(URI changedModelURI, ResourceSet rs) {
+
+                URI targetResourceURI = ModelNamingConventions.getGraphicalFromTextualURI(changedModelURI);
+                String diagramName = ModelNamingConventions.getDiagramNameFromTextualURI(changedModelURI);
+
+                if (rs.getURIConverter().exists(targetResourceURI, Collections.emptyMap())) {
+                    Resource r = rs.getResource(targetResourceURI, true);
+                    Optional<Diagram> diagram = r.getContents().stream().filter(o -> o instanceof Diagram)
+                            .map(o -> ((Diagram) o)).filter(d -> diagramName.equals(d.getName())).findAny();
+                    if (diagram.isPresent()) {
+                        String targetUriFragment = r.getURIFragment(diagram.get());
+                        targetResourceURI = targetResourceURI.trimFragment().appendFragment(targetUriFragment);
+                    }
+                }
+                return new TextToGraphicsTransformation(diagramType, changedModelURI.fileExtension(), rs,
+                        changedModelURI, targetResourceURI, Arrays.asList(postProcessors));
+            }
+
+            @Override
+            public boolean canHandle(URI changedModelURI) {
+                return textualFileExtension.equals(changedModelURI.fileExtension());
+            }
+        };
+
+    }
+
 }
