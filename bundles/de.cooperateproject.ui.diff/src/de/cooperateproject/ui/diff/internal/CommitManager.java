@@ -124,8 +124,6 @@ public class CommitManager {
 			IComparisonScope scope = CDOComparisonScope.Minimal.create(currentState, previousState, null, cdoIds.get(commit)); //Create the scope, on which differences should be detected. Only the items with the given cdoIds (all elements from textual cooperate diagram) are considered.
        	  	Comparison comparisonResult = CDOCompareUtil.compare(scope);	
        	  	EList<Diff> resultList = comparisonResult.getDifferences(); //contains all found differences
-
-       	  	CommentLinkAdapt.setCDOView(currentState);
        	  	
        	  	for(int i = 0; i < resultList.size(); i++){
     	  		EObject value = getValue(resultList.get(i));
