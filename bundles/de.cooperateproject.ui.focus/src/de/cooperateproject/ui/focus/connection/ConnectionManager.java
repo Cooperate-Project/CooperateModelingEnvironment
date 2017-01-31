@@ -14,7 +14,7 @@ public class ConnectionManager{
 	
 	private static ConnectionManager instance = null;
 	private IFile currentFile = null;
-	private final String address = "tcp://localhost:2036";
+	private final String address = "tcp://localhost:61616";
 	private TopicConnection connection = null;
 	private TopicSession session = null;
 	
@@ -49,9 +49,10 @@ public class ConnectionManager{
 	}
 	
 	public void disconnect(){
-		if(connection != null && session != null){
+		if(connection != null){
 			try {
-				session.close();
+				if(session != null)
+					session.close();
 				connection.close();
 			} catch (JMSException e) {
 				e.printStackTrace();
