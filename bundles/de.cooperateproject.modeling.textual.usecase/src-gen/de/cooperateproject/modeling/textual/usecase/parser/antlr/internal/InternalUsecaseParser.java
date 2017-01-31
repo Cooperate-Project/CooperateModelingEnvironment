@@ -2061,7 +2061,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getGeneralizationAccess().getClientBehavioredClassifierCrossReference_0_0());
+            					newCompositeNode(grammarAccess.getGeneralizationAccess().getSpecificBehavioredClassifierCrossReference_0_0());
             				
             pushFollow(FOLLOW_26);
             ruleFQN();
@@ -2093,7 +2093,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getGeneralizationAccess().getSupplierBehavioredClassifierCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getGeneralizationAccess().getGeneralBehavioredClassifierCrossReference_2_0());
             				
             pushFollow(FOLLOW_2);
             ruleFQN();
@@ -2196,7 +2196,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getIncludeAccess().getClientUseCaseCrossReference_0_0());
+            					newCompositeNode(grammarAccess.getIncludeAccess().getIncludingCaseUseCaseCrossReference_0_0());
             				
             pushFollow(FOLLOW_27);
             ruleFQN();
@@ -2228,7 +2228,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getIncludeAccess().getSupplierUseCaseCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getIncludeAccess().getAdditionUseCaseCrossReference_2_0());
             				
             pushFollow(FOLLOW_2);
             ruleFQN();
@@ -2336,7 +2336,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getExtendAccess().getClientUseCaseCrossReference_0_0());
+            					newCompositeNode(grammarAccess.getExtendAccess().getExtensionUseCaseCrossReference_0_0());
             				
             pushFollow(FOLLOW_28);
             ruleFQN();
@@ -2368,7 +2368,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getExtendAccess().getSupplierUseCaseCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getExtendAccess().getExtendedCaseUseCaseCrossReference_2_0());
             				
             pushFollow(FOLLOW_29);
             ruleFQN();
@@ -2401,7 +2401,7 @@ public class InternalUsecaseParser extends AbstractInternalAntlrParser {
             				
             otherlv_4=(Token)match(input,RULE_ID,FOLLOW_30); 
 
-            					newLeafNode(otherlv_4, grammarAccess.getExtendAccess().getExtensionPointExtensionPointCrossReference_4_0());
+            					newLeafNode(otherlv_4, grammarAccess.getExtendAccess().getExtensionLocationExtensionPointCrossReference_4_0());
             				
 
             }

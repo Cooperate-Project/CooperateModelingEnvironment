@@ -746,24 +746,24 @@ public interface UsecasePackage extends EPackage {
 	int GENERALIZATION__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Client</b></em>' reference.
+     * The feature id for the '<em><b>Specific</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int GENERALIZATION__CLIENT = RELATIONSHIP_FEATURE_COUNT + 1;
+    int GENERALIZATION__SPECIFIC = RELATIONSHIP_FEATURE_COUNT + 1;
 
-	/**
-     * The feature id for the '<em><b>Supplier</b></em>' reference.
+    /**
+     * The feature id for the '<em><b>General</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int GENERALIZATION__SUPPLIER = RELATIONSHIP_FEATURE_COUNT + 2;
+    int GENERALIZATION__GENERAL = RELATIONSHIP_FEATURE_COUNT + 2;
 
-	/**
+    /**
      * The number of structural features of the '<em>Generalization</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -801,24 +801,24 @@ public interface UsecasePackage extends EPackage {
 	int INCLUDE__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Client</b></em>' reference.
+     * The feature id for the '<em><b>Addition</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int INCLUDE__CLIENT = RELATIONSHIP_FEATURE_COUNT + 1;
+    int INCLUDE__ADDITION = RELATIONSHIP_FEATURE_COUNT + 1;
 
-	/**
-     * The feature id for the '<em><b>Supplier</b></em>' reference.
+    /**
+     * The feature id for the '<em><b>Including Case</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int INCLUDE__SUPPLIER = RELATIONSHIP_FEATURE_COUNT + 2;
+    int INCLUDE__INCLUDING_CASE = RELATIONSHIP_FEATURE_COUNT + 2;
 
-	/**
+    /**
      * The number of structural features of the '<em>Include</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -856,33 +856,33 @@ public interface UsecasePackage extends EPackage {
 	int EXTEND__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
 
 	/**
-     * The feature id for the '<em><b>Client</b></em>' reference.
+     * The feature id for the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int EXTEND__CLIENT = RELATIONSHIP_FEATURE_COUNT + 1;
+    int EXTEND__EXTENSION = RELATIONSHIP_FEATURE_COUNT + 1;
 
-	/**
-     * The feature id for the '<em><b>Supplier</b></em>' reference.
+    /**
+     * The feature id for the '<em><b>Extended Case</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int EXTEND__SUPPLIER = RELATIONSHIP_FEATURE_COUNT + 2;
+    int EXTEND__EXTENDED_CASE = RELATIONSHIP_FEATURE_COUNT + 2;
 
-	/**
-     * The feature id for the '<em><b>Extension Point</b></em>' reference.
+    /**
+     * The feature id for the '<em><b>Extension Location</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int EXTEND__EXTENSION_POINT = RELATIONSHIP_FEATURE_COUNT + 3;
+    int EXTEND__EXTENSION_LOCATION = RELATIONSHIP_FEATURE_COUNT + 3;
 
-	/**
+    /**
      * The feature id for the '<em><b>Condition</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1442,28 +1442,28 @@ public interface UsecasePackage extends EPackage {
 	EClass getGeneralization();
 
 	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getClient <em>Client</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSpecific <em>Specific</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Client</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getClient()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Specific</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSpecific()
      * @see #getGeneralization()
      * @generated
      */
-	EReference getGeneralization_Client();
+    EReference getGeneralization_Specific();
 
-	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSupplier <em>Supplier</em>}'.
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getGeneral <em>General</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Supplier</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSupplier()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>General</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getGeneral()
      * @see #getGeneralization()
      * @generated
      */
-	EReference getGeneralization_Supplier();
+    EReference getGeneralization_General();
 
-	/**
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include <em>Include</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1474,28 +1474,28 @@ public interface UsecasePackage extends EPackage {
 	EClass getInclude();
 
 	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getClient <em>Client</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getAddition <em>Addition</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Client</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Include#getClient()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Addition</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Include#getAddition()
      * @see #getInclude()
      * @generated
      */
-	EReference getInclude_Client();
+    EReference getInclude_Addition();
 
-	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getSupplier <em>Supplier</em>}'.
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getIncludingCase <em>Including Case</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Supplier</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Include#getSupplier()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Including Case</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Include#getIncludingCase()
      * @see #getInclude()
      * @generated
      */
-	EReference getInclude_Supplier();
+    EReference getInclude_IncludingCase();
 
-	/**
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend <em>Extend</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1506,39 +1506,39 @@ public interface UsecasePackage extends EPackage {
 	EClass getExtend();
 
 	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getClient <em>Client</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtension <em>Extension</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Client</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Extend#getClient()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Extension</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtension()
      * @see #getExtend()
      * @generated
      */
-	EReference getExtend_Client();
+    EReference getExtend_Extension();
 
-	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getSupplier <em>Supplier</em>}'.
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtendedCase <em>Extended Case</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Supplier</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Extend#getSupplier()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Extended Case</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtendedCase()
      * @see #getExtend()
      * @generated
      */
-	EReference getExtend_Supplier();
+    EReference getExtend_ExtendedCase();
 
-	/**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionPoint <em>Extension Point</em>}'.
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionLocation <em>Extension Location</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Extension Point</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionPoint()
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Extension Location</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionLocation()
      * @see #getExtend()
      * @generated
      */
-	EReference getExtend_ExtensionPoint();
+    EReference getExtend_ExtensionLocation();
 
-	/**
+    /**
      * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getCondition <em>Condition</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1984,22 +1984,22 @@ public interface UsecasePackage extends EPackage {
 		EClass GENERALIZATION = eINSTANCE.getGeneralization();
 
 		/**
-         * The meta object literal for the '<em><b>Client</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Specific</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference GENERALIZATION__CLIENT = eINSTANCE.getGeneralization_Client();
+        EReference GENERALIZATION__SPECIFIC = eINSTANCE.getGeneralization_Specific();
 
-		/**
-         * The meta object literal for the '<em><b>Supplier</b></em>' reference feature.
+        /**
+         * The meta object literal for the '<em><b>General</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference GENERALIZATION__SUPPLIER = eINSTANCE.getGeneralization_Supplier();
+        EReference GENERALIZATION__GENERAL = eINSTANCE.getGeneralization_General();
 
-		/**
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl <em>Include</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2010,22 +2010,22 @@ public interface UsecasePackage extends EPackage {
 		EClass INCLUDE = eINSTANCE.getInclude();
 
 		/**
-         * The meta object literal for the '<em><b>Client</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Addition</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference INCLUDE__CLIENT = eINSTANCE.getInclude_Client();
+        EReference INCLUDE__ADDITION = eINSTANCE.getInclude_Addition();
 
-		/**
-         * The meta object literal for the '<em><b>Supplier</b></em>' reference feature.
+        /**
+         * The meta object literal for the '<em><b>Including Case</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference INCLUDE__SUPPLIER = eINSTANCE.getInclude_Supplier();
+        EReference INCLUDE__INCLUDING_CASE = eINSTANCE.getInclude_IncludingCase();
 
-		/**
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl <em>Extend</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2036,30 +2036,30 @@ public interface UsecasePackage extends EPackage {
 		EClass EXTEND = eINSTANCE.getExtend();
 
 		/**
-         * The meta object literal for the '<em><b>Client</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Extension</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference EXTEND__CLIENT = eINSTANCE.getExtend_Client();
+        EReference EXTEND__EXTENSION = eINSTANCE.getExtend_Extension();
 
-		/**
-         * The meta object literal for the '<em><b>Supplier</b></em>' reference feature.
+        /**
+         * The meta object literal for the '<em><b>Extended Case</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference EXTEND__SUPPLIER = eINSTANCE.getExtend_Supplier();
+        EReference EXTEND__EXTENDED_CASE = eINSTANCE.getExtend_ExtendedCase();
 
-		/**
-         * The meta object literal for the '<em><b>Extension Point</b></em>' reference feature.
+        /**
+         * The meta object literal for the '<em><b>Extension Location</b></em>' reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference EXTEND__EXTENSION_POINT = eINSTANCE.getExtend_ExtensionPoint();
+        EReference EXTEND__EXTENSION_LOCATION = eINSTANCE.getExtend_ExtensionLocation();
 
-		/**
+        /**
          * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

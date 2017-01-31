@@ -31,12 +31,12 @@ class UsecaseScopeProvider extends AbstractUsecaseScopeProvider {
 	}
 
 	def dispatch doGetScope(Extend extend, EReference reference, IScope parentScope) {
-		if (reference == UsecasePackage.Literals.EXTEND__EXTENSION_POINT) {
-			val supplier = extend.eGet(UsecasePackage.Literals.EXTEND__SUPPLIER, false) as UseCase
-			if (supplier == null) {
+		if (reference == UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION) {
+			val extendedCase = extend.eGet(UsecasePackage.Literals.EXTEND__EXTENDED_CASE, false) as UseCase
+			if (extendedCase == null) {
 				return null
 			}
-			val descriptions = parentScope.allElements.filter[EObjectOrProxy instanceof ExtensionPoint].filter[(EObjectOrProxy as ExtensionPoint).useCase == supplier];
+			val descriptions = parentScope.allElements.filter[EObjectOrProxy instanceof ExtensionPoint].filter[(EObjectOrProxy as ExtensionPoint).useCase == extendedCase];
 			val unqualifiedDescriptions = descriptions.unqualified
 			return new SimpleScope(parentScope, Iterables.concat(descriptions, unqualifiedDescriptions));
 		}
