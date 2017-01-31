@@ -108,6 +108,8 @@ public class DiffView extends ViewPart {
 				
 				if(obj instanceof DiffTreeItem){
 					DiffTreeItem item = (DiffTreeItem)obj;
+					if(item.getDiffKind() == null) return;
+					
 					TableItem backupParent = null; //if it can't find a linking with the elements, just set the focus to its parent (if existing)
 					for(TableItem tableItem : summaryViewer.getTable().getItems()){
 						if(tableItem.getData() instanceof SummaryItem){
@@ -185,7 +187,7 @@ public class DiffView extends ViewPart {
 		}
 		tabFolder.setSelection(1);
 		diffViewer.setInput(commitManager.getRoot());
-		diffViewer.collapseAll();
+		diffViewer.expandAll();
 		diffViewer.getControl().setFocus();
 	}
 	
@@ -225,6 +227,18 @@ public class DiffView extends ViewPart {
 	private void handleKeyReleased(KeyEvent event) {
 		if(event.character == SWT.SPACE){ // If space was released, set the focus on the item's parent in the tree.
 			focusOnParentTreeItem();
+		}
+		else if(event.keyCode == SWT.KEYPAD_1){ //collapse to level of classes
+			diffViewer.collapseAll();
+			diffViewer.expandToLevel(2);
+		}
+		else if(event.keyCode == SWT.KEYPAD_2){ //expand to level of attributes and methods
+			diffViewer.collapseAll();
+			diffViewer.expandToLevel(3);
+
+		}
+		else if(event.keyCode == SWT.KEYPAD_3){ //expand all levels
+			diffViewer.expandAll();
 		}
 	}
 	

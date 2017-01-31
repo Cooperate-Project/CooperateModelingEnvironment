@@ -13,10 +13,10 @@ public class DifferenceKindHelper {
 		String ret;
 		
 		switch(diffKind){
-			case ADD: ret = "a"; break;
-			case DELETE: ret = "d"; break; 
-			case MOVE: ret = "m"; break; 
-			case CHANGE: ret = "c"; break;
+			case ADD: ret = "add"; break;
+			case DELETE: ret = "del"; break; 
+			case MOVE: ret = "mov"; break; 
+			case CHANGE: ret = "cha"; break;
 			default: ret = diffKind.toString();
 		}
 		
@@ -32,10 +32,10 @@ public class DifferenceKindHelper {
 		String ret;
 		
 		switch(diffKind){
-			case ADD: ret = "added"; break;
-			case DELETE: ret = "deleted"; break; 
-			case MOVE: ret = "moved"; break; 
-			case CHANGE: ret = "changed"; break;
+			case ADD: ret = "add"; break;
+			case DELETE: ret = "del"; break; 
+			case MOVE: ret = "mov"; break; 
+			case CHANGE: ret = "cha"; break;
 			default: ret = diffKind.toString();
 	}
 	
