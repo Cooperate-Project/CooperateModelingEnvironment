@@ -13,6 +13,7 @@ import org.eclipse.ui.PlatformUI;
 
 import de.cooperateproject.ui.focus.connection.ConnectionManager;
 import de.cooperateproject.ui.focus.connection.SubscriberManager;
+import de.cooperateproject.ui.focus.internal.FocusManager;
 import de.cooperateproject.ui.focus.views.FocusView;
 
 public class StartManager implements IStartup, IPartListener {
@@ -86,7 +87,8 @@ public class StartManager implements IStartup, IPartListener {
 		 		} catch (PartInitException e) {
 		 			throw new RuntimeException(e);
 		 		}
-
+				
+				FocusManager.getInstance().setEditor(part);
 		 		focusView.setTitleText(file.getName());
 		 		SubscriberManager.getInstance().setView(focusView);
 		 		ConnectionManager.getInstance().connect(file);

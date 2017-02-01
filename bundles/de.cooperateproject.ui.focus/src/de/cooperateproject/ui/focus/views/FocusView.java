@@ -9,6 +9,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.*;
 
+import de.cooperateproject.ui.focus.internal.FocusManager;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.graphics.Image;
@@ -147,7 +149,7 @@ public class FocusView extends ViewPart{
 	            	//TODO user just muted, unsubscribe from topic
 	            	button.setText("unmute");
 	            }else{
-	            	//TODO user just unmuted, subscribe the topic
+	            	//TODO user just unmuted, subscribe the topic 
 	            	button.setText("mute");
 	            }
 			}
