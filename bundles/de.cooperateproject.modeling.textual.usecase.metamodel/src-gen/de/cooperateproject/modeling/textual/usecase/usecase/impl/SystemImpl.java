@@ -37,249 +37,249 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class SystemImpl extends NamedElementImpl implements de.cooperateproject.modeling.textual.usecase.usecase.System {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SystemImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UsecasePackage.Literals.SYSTEM;
-	}
+        return UsecasePackage.Literals.SYSTEM;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Classifier getReferencedElement() {
-		return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-	}
+        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Classifier basicGetReferencedElement() {
-		return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-	}
+        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferencedElement(Classifier newReferencedElement) {
-		eDynamicSet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-	}
+        eDynamicSet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public EList<UseCase> getUsecases() {
-		return (EList<UseCase>)eDynamicGet(UsecasePackage.SYSTEM__USECASES, UsecasePackage.Literals.SYSTEM__USECASES, true, true);
-	}
+        return (EList<UseCase>)eDynamicGet(UsecasePackage.SYSTEM__USECASES, UsecasePackage.Literals.SYSTEM__USECASES, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RootPackage getPackage() {
-		return (RootPackage)eDynamicGet(UsecasePackage.SYSTEM__PACKAGE, UsecasePackage.Literals.SYSTEM__PACKAGE, true, true);
-	}
+        return (RootPackage)eDynamicGet(UsecasePackage.SYSTEM__PACKAGE, UsecasePackage.Literals.SYSTEM__PACKAGE, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetPackage(RootPackage newPackage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newPackage, UsecasePackage.SYSTEM__PACKAGE, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newPackage, UsecasePackage.SYSTEM__PACKAGE, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPackage(RootPackage newPackage) {
-		eDynamicSet(UsecasePackage.SYSTEM__PACKAGE, UsecasePackage.Literals.SYSTEM__PACKAGE, newPackage);
-	}
+        eDynamicSet(UsecasePackage.SYSTEM__PACKAGE, UsecasePackage.Literals.SYSTEM__PACKAGE, newPackage);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UsecasePackage.SYSTEM__USECASES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsecases()).basicAdd(otherEnd, msgs);
-			case UsecasePackage.SYSTEM__PACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetPackage((RootPackage)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UsecasePackage.SYSTEM__USECASES:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsecases()).basicAdd(otherEnd, msgs);
+            case UsecasePackage.SYSTEM__PACKAGE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetPackage((RootPackage)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UsecasePackage.SYSTEM__USECASES:
-				return ((InternalEList<?>)getUsecases()).basicRemove(otherEnd, msgs);
-			case UsecasePackage.SYSTEM__PACKAGE:
-				return basicSetPackage(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UsecasePackage.SYSTEM__USECASES:
+                return ((InternalEList<?>)getUsecases()).basicRemove(otherEnd, msgs);
+            case UsecasePackage.SYSTEM__PACKAGE:
+                return basicSetPackage(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case UsecasePackage.SYSTEM__PACKAGE:
-				return eInternalContainer().eInverseRemove(this, UsecasePackage.ROOT_PACKAGE__SYSTEMS, RootPackage.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case UsecasePackage.SYSTEM__PACKAGE:
+                return eInternalContainer().eInverseRemove(this, UsecasePackage.ROOT_PACKAGE__SYSTEMS, RootPackage.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-				if (resolve) return getReferencedElement();
-				return basicGetReferencedElement();
-			case UsecasePackage.SYSTEM__USECASES:
-				return getUsecases();
-			case UsecasePackage.SYSTEM__PACKAGE:
-				return getPackage();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
+            case UsecasePackage.SYSTEM__USECASES:
+                return getUsecases();
+            case UsecasePackage.SYSTEM__PACKAGE:
+                return getPackage();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-				setReferencedElement((Classifier)newValue);
-				return;
-			case UsecasePackage.SYSTEM__USECASES:
-				getUsecases().clear();
-				getUsecases().addAll((Collection<? extends UseCase>)newValue);
-				return;
-			case UsecasePackage.SYSTEM__PACKAGE:
-				setPackage((RootPackage)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
+                setReferencedElement((Classifier)newValue);
+                return;
+            case UsecasePackage.SYSTEM__USECASES:
+                getUsecases().clear();
+                getUsecases().addAll((Collection<? extends UseCase>)newValue);
+                return;
+            case UsecasePackage.SYSTEM__PACKAGE:
+                setPackage((RootPackage)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-				setReferencedElement((Classifier)null);
-				return;
-			case UsecasePackage.SYSTEM__USECASES:
-				getUsecases().clear();
-				return;
-			case UsecasePackage.SYSTEM__PACKAGE:
-				setPackage((RootPackage)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
+                setReferencedElement((Classifier)null);
+                return;
+            case UsecasePackage.SYSTEM__USECASES:
+                getUsecases().clear();
+                return;
+            case UsecasePackage.SYSTEM__PACKAGE:
+                setPackage((RootPackage)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-				return basicGetReferencedElement() != null;
-			case UsecasePackage.SYSTEM__USECASES:
-				return !getUsecases().isEmpty();
-			case UsecasePackage.SYSTEM__PACKAGE:
-				return getPackage() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
+                return basicGetReferencedElement() != null;
+            case UsecasePackage.SYSTEM__USECASES:
+                return !getUsecases().isEmpty();
+            case UsecasePackage.SYSTEM__PACKAGE:
+                return getPackage() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
-			switch (derivedFeatureID) {
-				case UsecasePackage.SYSTEM__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.SYSTEM__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
-			switch (baseFeatureID) {
-				case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.SYSTEM__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.SYSTEM__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //SystemImpl

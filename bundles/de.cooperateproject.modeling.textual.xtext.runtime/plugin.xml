@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
+            name="CooperateCDOXtextEditor"
+            parentId="org.eclipse.xtext.ui.XtextEditorScope">
+      </context>
+   </extension>
+
+</plugin>

@@ -39,7 +39,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.Member
 import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
-import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(ClsTestInjectorProvider.DefaultProvider)
@@ -473,7 +472,7 @@ class ClsParsingTest {
 		]
 	}
 
-	@Test @Ignore //referenced Element not set
+	@Test
 	def void classGeneralizationTest() {
 		val model = '''
 			@start-cls "SomeName"
@@ -498,7 +497,7 @@ class ClsParsingTest {
 		]
 	}
 
-	@Test @Ignore //referenced Element not set
+	@Test
 	def void classImplementationTest() {
 		val model = '''
 			@start-cls "SomeName"

@@ -22,155 +22,194 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseDiagramImpl#getRootPackage <em>Root Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseDiagramImpl#getTitle <em>Title</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram {
 	/**
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTitle()
+     * @generated
+     * @ordered
+     */
+    protected static final String TITLE_EDEFAULT = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UseCaseDiagramImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return UsecasePackage.Literals.USE_CASE_DIAGRAM;
-	}
+        return UsecasePackage.Literals.USE_CASE_DIAGRAM;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected int eStaticFeatureCount() {
-		return 0;
-	}
+        return 0;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RootPackage getRootPackage() {
-		return (RootPackage)eDynamicGet(UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE, true, true);
-	}
+        return (RootPackage)eDynamicGet(UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetRootPackage(RootPackage newRootPackage, NotificationChain msgs) {
-		msgs = eDynamicInverseAdd((InternalEObject)newRootPackage, UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, msgs);
-		return msgs;
-	}
+        msgs = eDynamicInverseAdd((InternalEObject)newRootPackage, UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setRootPackage(RootPackage newRootPackage) {
-		eDynamicSet(UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE, newRootPackage);
-	}
+        eDynamicSet(UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE, newRootPackage);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getTitle() {
+        return (String)eDynamicGet(UsecasePackage.USE_CASE_DIAGRAM__TITLE, UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTitle(String newTitle) {
+        eDynamicSet(UsecasePackage.USE_CASE_DIAGRAM__TITLE, UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE, newTitle);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
-				RootPackage rootPackage = getRootPackage();
-				if (rootPackage != null)
-					msgs = ((InternalEObject)rootPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, null, msgs);
-				return basicSetRootPackage((RootPackage)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
+                RootPackage rootPackage = getRootPackage();
+                if (rootPackage != null)
+                    msgs = ((InternalEObject)rootPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, null, msgs);
+                return basicSetRootPackage((RootPackage)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
-				return basicSetRootPackage(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
+                return basicSetRootPackage(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
-				return getRootPackage();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
+                return getRootPackage();
+            case UsecasePackage.USE_CASE_DIAGRAM__TITLE:
+                return getTitle();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
-				setRootPackage((RootPackage)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
+                setRootPackage((RootPackage)newValue);
+                return;
+            case UsecasePackage.USE_CASE_DIAGRAM__TITLE:
+                setTitle((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
-				setRootPackage((RootPackage)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
+                setRootPackage((RootPackage)null);
+                return;
+            case UsecasePackage.USE_CASE_DIAGRAM__TITLE:
+                setTitle(TITLE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
-				return getRootPackage() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
+                return getRootPackage() != null;
+            case UsecasePackage.USE_CASE_DIAGRAM__TITLE:
+                return TITLE_EDEFAULT == null ? getTitle() != null : !TITLE_EDEFAULT.equals(getTitle());
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //UseCaseDiagramImpl
