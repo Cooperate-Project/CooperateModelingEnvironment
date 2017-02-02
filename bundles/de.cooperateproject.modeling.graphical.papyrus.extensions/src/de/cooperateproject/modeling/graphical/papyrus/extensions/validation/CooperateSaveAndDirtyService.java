@@ -14,11 +14,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
+import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.infra.services.validation.IValidationMarkersService;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.SaveAndDirtyService;
 import org.eclipse.swt.widgets.Shell;
@@ -46,10 +50,16 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
     @Override
     public void doSave(IProgressMonitor monitor) {
-        // TODO Command wird nicht ausgeführt, wenn Fokus im Property Fenster ist
         ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
         Command validateCommand = commandService.getCommand("org.eclipse.papyrus.validation.ValidateModelCommand");
         try {
+            // Select arbitrary element from ModelSet, so ValidateModelCommand can operate
+            OpenElementService openElementService = serviceRegistry.getService(OpenElementService.class);
+            ModelSet modelSet = serviceRegistry.getService(ModelSet.class);
+            Resource resource = modelSet.getResources().stream()
+                    .filter(r -> r.getURI().lastSegment().matches(".*\\.uml")).findFirst().get();
+            EObject object = resource.getAllContents().next();
+            openElementService.openSemanticElement(object);
             if (validateCommand.isEnabled()) {
                 // Validate Model
                 validateCommand.executeWithChecks(new ExecutionEvent());
