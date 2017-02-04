@@ -9,8 +9,10 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.*;
 
+import de.cooperateproject.ui.focus.connection.SubscriberManager;
 import de.cooperateproject.ui.focus.internal.FocusManager;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.graphics.Image;
@@ -32,23 +34,6 @@ public class FocusView extends ViewPart{
 	private Button muteButton;
 	private Text titleText;
 
-	class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
-		public String getColumnText(Object obj, int index) {
-			return getText(obj);
-		}
-
-		@Override
-		public Image getColumnImage(Object element, int columnIndex) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	}
-
-/**
-	 * The constructor.
-	 */
-	public FocusView() {
-	}
 	
 	/**
 	 * This is a callback that will allow us
@@ -72,14 +57,10 @@ public class FocusView extends ViewPart{
 	private void makeActions(){
 		doubleClickActionHistoryViewer = new Action(){
 			public void run() {
-				//jump to the selection in the editor
-				//ISelection selection = historyViewer.getSelection();
-				//Object obj = ((IStructuredSelection)selection).getFirstElement();
-
-				//if(obj instanceof don't know yet){
-				//	focusElementInEditor((casting)element)
-}
-				//}
+				IStructuredSelection selection = (IStructuredSelection) historyViewer.getSelection();
+				if(selection.getFirstElement() instanceof EObject)
+					FocusManager.getInstance().setFocusedElement((EObject) selection.getFirstElement());
+			}
 		};
 	}
 
@@ -146,10 +127,10 @@ public class FocusView extends ViewPart{
 			public void widgetSelected(SelectionEvent event){
 				Button button = ((Button) event.widget);
 	            if(button.getSelection()){ //selected means muted
-	            	//TODO user just muted, unsubscribe from topic
+	            	SubscriberManager.getInstance().unsubscribe();
 	            	button.setText("unmute");
 	            }else{
-	            	//TODO user just unmuted, subscribe the topic 
+	            	SubscriberManager.getInstance().subscribe();
 	            	button.setText("mute");
 	            }
 			}
@@ -177,9 +158,21 @@ public class FocusView extends ViewPart{
 		historyViewer.getControl().setFocus();	
 	}
 	
+	private class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
+		public String getColumnText(Object obj, int index) {
+			return getText(obj);
+		}
+
+		@Override
+		public Image getColumnImage(Object element, int columnIndex) {
+			return null;
+		}
+	}
+
+	
 	private class FocusDialog extends Dialog {
 		
-		private Object focusedElement;	
+		private EObject focusedElement;	
 
 		protected FocusDialog(Shell parentShell) {
 			super(parentShell);
@@ -193,7 +186,7 @@ public class FocusView extends ViewPart{
 		@Override
 		protected void okPressed(){
 			super.okPressed();
-			//TODO: change focus to focused element in editor
+			FocusManager.getInstance().setFocusedElement(focusedElement);
 		}
 		
 		@Override
@@ -209,7 +202,7 @@ public class FocusView extends ViewPart{
 			container.getShell().setText("Incoming element focus");
 			final Text text = new Text(container, SWT.HORIZONTAL | SWT.LEFT | SWT.WRAP | SWT.READ_ONLY);
 
-			text.setText("Element XYZ has been focused. Would you like to jump to it?"); //TODO
+			text.setText("Element XYZ has been focused. Would you like to jump to it?");
 			
 			return text;
 		}
@@ -230,7 +223,7 @@ public class FocusView extends ViewPart{
 			return focusedElement;
 		}
 
-		public void setFocusedElement(Object focusedElement) {
+		public void setFocusedElement(EObject focusedElement) {
 			this.focusedElement = focusedElement;
 		}
 		

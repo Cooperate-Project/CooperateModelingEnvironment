@@ -4,25 +4,18 @@ Bundle-Name: Focus
 Bundle-SymbolicName: de.cooperateproject.ui.focus;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.cooperateproject.ui.focus.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.ui.workbench,
- org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.emf.compare;bundle-version="3.3.1",
- org.eclipse.emf.common.ui,
- org.eclipse.emf.cdo;bundle-version="4.5.1",
- org.eclipse.ui.ide,
- org.eclipse.core.resources,
+Require-Bundle: org.eclipse.core.runtime,
  org.apache.geronimo.specs.geronimo-jms_1.1_spec;bundle-version="1.1.1",
  org.apache.geronimo.specs.geronimo-j2ee-management_1.1_spec;bundle-version="1.0.1",
  org.apache.activemq.activemq-client;bundle-version="5.14.3",
  org.eclipse.ui.workbench.texteditor,
  de.cooperateproject.modeling.textual.xtext.runtime,
  org.eclipse.papyrus.editor,
- org.eclipse.emf.ecore,
  de.cooperateproject.util;bundle-version="0.1.5",
- org.eclipse.papyrus.infra.emf;bundle-version="2.1.0",
- de.cooperateproject.modeling.textual.cls.metamodel
+ de.cooperateproject.modeling.textual.cls.metamodel,
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="2.1.0",
+ org.eclipse.papyrus.infra.services.openelement,
+ org.eclipse.ui.workbench
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.uml2.uml

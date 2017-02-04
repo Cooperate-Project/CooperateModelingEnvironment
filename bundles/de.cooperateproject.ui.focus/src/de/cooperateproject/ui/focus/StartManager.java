@@ -21,6 +21,7 @@ public class StartManager implements IStartup, IPartListener {
 	private final String papyrusEditorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private final String xTextEditorID = "de.cooperateproject.modeling.textual.cls.Cls";
 	private final String projectExplorer = "org.eclipse.ui.navigator.ProjectExplorer";
+
 	private FocusView focusView;
 
 	@Override
@@ -92,11 +93,9 @@ public class StartManager implements IStartup, IPartListener {
 		 		focusView.setTitleText(file.getName());
 		 		SubscriberManager.getInstance().setView(focusView);
 		 		ConnectionManager.getInstance().connect(file);
-		 	}
+			}
+				
+		 }
 			
-		}
-
-
-	}
-		
+	}	
 }
