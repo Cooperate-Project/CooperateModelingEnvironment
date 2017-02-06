@@ -2,6 +2,8 @@ module de.cooperateproject.modeling.textual.usecase.GenerateUsecase
 
 import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
+import de.cooperateproject.modeling.textual.xtext.generator.*
+import net.winklerweb.cdoxtext.generator.*
 
 var rootPath = ".."
 var basename = "de.cooperateproject.modeling.textual.usecase"
@@ -61,6 +63,10 @@ Workflow {
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
 			}
+			
+			fragment = AddCDOXtextBindingsFragment2 auto-inject {}
+			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
+			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
 		}
 	}
 }

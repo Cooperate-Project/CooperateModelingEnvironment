@@ -14,10 +14,16 @@ import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseDescripti
 import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseLabelProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.outline.UsecaseOutlineTreeProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.quickfix.UsecaseQuickfixProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
+import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
+import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import org.eclipse.compare.IViewerCreator;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.builder.BuilderParticipant;
 import org.eclipse.xtext.builder.EclipseOutputConfigurationProvider;
@@ -40,6 +46,7 @@ import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
 import org.eclipse.xtext.service.SingletonBinding;
 import org.eclipse.xtext.ui.DefaultUiModule;
+import org.eclipse.xtext.ui.LanguageSpecific;
 import org.eclipse.xtext.ui.codetemplates.ui.AccessibleCodetemplatesActivator;
 import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.IPartialEditingContentAssistContextFactory;
 import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.PartialEditingContentAssistContextFactory;
@@ -49,7 +56,9 @@ import org.eclipse.xtext.ui.codetemplates.ui.registry.LanguageRegistrar;
 import org.eclipse.xtext.ui.codetemplates.ui.registry.LanguageRegistry;
 import org.eclipse.xtext.ui.compare.DefaultViewerCreator;
 import org.eclipse.xtext.ui.editor.DocumentBasedDirtyResource;
+import org.eclipse.xtext.ui.editor.IURIEditorOpener;
 import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.FQNPrefixMatcher;
 import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider;
@@ -57,6 +66,9 @@ import org.eclipse.xtext.ui.editor.contentassist.IProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AntlrProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.DelegatingContentAssistContextFactory;
+import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
+import org.eclipse.xtext.ui.editor.model.XtextDocument;
+import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider;
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
@@ -73,7 +85,9 @@ import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameStrategy;
 import org.eclipse.xtext.ui.refactoring.ui.DefaultRenameSupport;
 import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
 import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
+import org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider;
 import org.eclipse.xtext.ui.shared.Access;
 
 /**
@@ -275,6 +289,39 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
 	public Class<? extends IDependentElementsCalculator> bindIDependentElementsCalculator() {
 		return DefaultDependentElementsCalculator.class;
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public Class<? extends IResourceForEditorInputFactory> bindIResourceForEditorInputFactory() {
+		return CDOResourceForEditorInputFactory.class;
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public Class<? extends XtextEditor> bindXtextEditor() {
+		return CDOXtextEditor.class;
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public void configureLanguageSpecificURIEditorOpener(Binder binder) {
+		if (PlatformUI.isWorkbenchRunning())
+			binder.bind(IURIEditorOpener.class)
+				.annotatedWith(LanguageSpecific.class)
+				.to(CDOLanguageSpecificURIEditorOpener.class);
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends XtextDocument> bindXtextDocument() {
+		return CooperateXtextDocument.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends XtextDocumentProvider> bindXtextDocumentProvider() {
+		return CooperateCDOXtextDocumentProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IResourceSetProvider> bindIResourceSetProvider() {
+		return XtextLiveScopeResourceSetProvider.class;
 	}
 	
 }

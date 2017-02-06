@@ -12,8 +12,8 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getClient <em>Client</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSupplier <em>Supplier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSpecific <em>Specific</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getGeneral <em>General</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization()
@@ -22,55 +22,55 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  */
 public interface Generalization extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Generalization> {
 	/**
-	 * Returns the value of the '<em><b>Client</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Client</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Client</em>' reference.
-	 * @see #setClient(BehavioredClassifier)
-	 * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization_Client()
-	 * @model
-	 * @generated
-	 */
-	BehavioredClassifier getClient();
+     * Returns the value of the '<em><b>Specific</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Specific</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Specific</em>' reference.
+     * @see #setSpecific(BehavioredClassifier)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization_Specific()
+     * @model required="true"
+     * @generated
+     */
+    BehavioredClassifier getSpecific();
 
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getClient <em>Client</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Client</em>' reference.
-	 * @see #getClient()
-	 * @generated
-	 */
-	void setClient(BehavioredClassifier value);
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSpecific <em>Specific</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Specific</em>' reference.
+     * @see #getSpecific()
+     * @generated
+     */
+    void setSpecific(BehavioredClassifier value);
 
-	/**
-	 * Returns the value of the '<em><b>Supplier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supplier</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supplier</em>' reference.
-	 * @see #setSupplier(BehavioredClassifier)
-	 * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization_Supplier()
-	 * @model
-	 * @generated
-	 */
-	BehavioredClassifier getSupplier();
+    /**
+     * Returns the value of the '<em><b>General</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>General</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>General</em>' reference.
+     * @see #setGeneral(BehavioredClassifier)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization_General()
+     * @model required="true"
+     * @generated
+     */
+    BehavioredClassifier getGeneral();
 
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getSupplier <em>Supplier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Supplier</em>' reference.
-	 * @see #getSupplier()
-	 * @generated
-	 */
-	void setSupplier(BehavioredClassifier value);
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization#getGeneral <em>General</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>General</em>' reference.
+     * @see #getGeneral()
+     * @generated
+     */
+    void setGeneral(BehavioredClassifier value);
 
 } // Generalization

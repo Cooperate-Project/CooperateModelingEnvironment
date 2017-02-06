@@ -12,8 +12,8 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getClient <em>Client</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getSupplier <em>Supplier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getAddition <em>Addition</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getIncludingCase <em>Including Case</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude()
@@ -22,55 +22,55 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  */
 public interface Include extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Include> {
 	/**
-	 * Returns the value of the '<em><b>Client</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Client</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Client</em>' reference.
-	 * @see #setClient(UseCase)
-	 * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude_Client()
-	 * @model
-	 * @generated
-	 */
-	UseCase getClient();
+     * Returns the value of the '<em><b>Addition</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Addition</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Addition</em>' reference.
+     * @see #setAddition(UseCase)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude_Addition()
+     * @model required="true"
+     * @generated
+     */
+    UseCase getAddition();
 
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getClient <em>Client</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Client</em>' reference.
-	 * @see #getClient()
-	 * @generated
-	 */
-	void setClient(UseCase value);
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getAddition <em>Addition</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Addition</em>' reference.
+     * @see #getAddition()
+     * @generated
+     */
+    void setAddition(UseCase value);
 
-	/**
-	 * Returns the value of the '<em><b>Supplier</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supplier</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supplier</em>' reference.
-	 * @see #setSupplier(UseCase)
-	 * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude_Supplier()
-	 * @model
-	 * @generated
-	 */
-	UseCase getSupplier();
+    /**
+     * Returns the value of the '<em><b>Including Case</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Including Case</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Including Case</em>' reference.
+     * @see #setIncludingCase(UseCase)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude_IncludingCase()
+     * @model required="true"
+     * @generated
+     */
+    UseCase getIncludingCase();
 
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getSupplier <em>Supplier</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Supplier</em>' reference.
-	 * @see #getSupplier()
-	 * @generated
-	 */
-	void setSupplier(UseCase value);
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Include#getIncludingCase <em>Including Case</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Including Case</em>' reference.
+     * @see #getIncludingCase()
+     * @generated
+     */
+    void setIncludingCase(UseCase value);
 
 } // Include
