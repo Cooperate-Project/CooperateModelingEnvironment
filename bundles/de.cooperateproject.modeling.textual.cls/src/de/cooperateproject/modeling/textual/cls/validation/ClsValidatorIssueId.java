@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public enum ClsValidatorIssueId {
 
+    WRONG_LEFT_CARDINALITY(ClsValidatorConstants.WRONG_LEFT_CARDINALITY),
+    WRONG_RIGHT_CARDINALITY(ClsValidatorConstants.WRONG_RIGHT_CARDINALITY),
     NO_CLASS_REFERENCE(ClsValidatorConstants.NO_CLASS_REFERENCE),
     NO_INTERFACE_REFERENCE(ClsValidatorConstants.NO_INTERFACE_REFERENCE),
     NO_PACKAGE_REFERENCE(ClsValidatorConstants.NO_PACKAGE_REFERENCE),

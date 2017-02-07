@@ -26,6 +26,8 @@ import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.TypedElement
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.validation.Check
+import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 
 /**
  * This class contains custom validation rules. 
@@ -33,6 +35,41 @@ import org.eclipse.xtext.validation.Check
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ClsValidator extends AbstractClsValidator {
+
+	@Check
+	def checkCardinality(AssociationProperties properties) {
+		val association = properties.association
+		val leftClass = association.left
+		val rightClass = association.right
+		val associationRef = association.referencedElement
+		val associationProperties = association.properties
+
+		val leftAscEnd = leftClass.ownedElements.filter(org.eclipse.uml2.uml.Property).findFirst [ x |
+			x.type.name.equals(rightClass.name)
+		]
+		val cardRight = associationProperties.cardinalityRight
+		if (!checkCardinality(association, cardRight, leftAscEnd, rightClass)) {
+			error("Wrong Right Cardinalities", ClsPackage.eINSTANCE.associationProperties_CardinalityRight,
+				ClsValidatorIssueId.WRONG_RIGHT_CARDINALITY)
+		}
+
+		val rigthAscEnd = associationRef.ownedEnds.findFirst[x|x.type.name.equals(leftClass.name)]
+		val cardLeft = associationProperties.cardinalityLeft
+		if (!checkCardinality(association, cardLeft, rigthAscEnd, leftClass)) {
+			error("Wrong Left Cardinalities", ClsPackage.eINSTANCE.associationProperties_CardinalityLeft,
+				ClsValidatorIssueId.WRONG_LEFT_CARDINALITY)
+		}
+	}
+
+	private def checkCardinality(Association association, Cardinality cardinality, org.eclipse.uml2.uml.Property ascEnd,
+		org.eclipse.uml2.uml.Classifier classifier) {
+		if (!(cardinality.lowerBound == -1 && ascEnd.lower == 0 && cardinality.upperBound == 0 && ascEnd.upper == -1)) {
+			if (cardinality.lowerBound != ascEnd.lower || cardinality.upperBound != ascEnd.upper) {
+				return false
+			}
+		}
+		return true
+	}
 
 	@Check
 	def checkAliasExpression(Classifier classifier) {
@@ -240,7 +277,7 @@ class ClsValidator extends AbstractClsValidator {
 			}
 		}
 	}
-	
+
 	@Check
 	def checkCorrectPropertyQualifier(Class property) {
 		val model = property.referencedElement.model
@@ -301,7 +338,7 @@ class ClsValidator extends AbstractClsValidator {
 		val clsIsStatic = property.static
 		return clsIsStatic == umlIsStatic
 	}
-	
+
 	private static dispatch def checkAbstractQualifier(Method property) {
 		val umlReferencedElement = property.referencedElement
 		var umlIsAbstract = false
@@ -311,7 +348,7 @@ class ClsValidator extends AbstractClsValidator {
 		val clsIsAbstract = property.isAbstract
 		return clsIsAbstract == umlIsAbstract
 	}
-	
+
 	private static dispatch def checkAbstractQualifier(Class property) {
 		val umlReferencedElement = property.referencedElement
 		var umlIsAbstract = false

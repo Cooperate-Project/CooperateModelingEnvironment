@@ -20,5 +20,7 @@ public class ClsValidatorConstants {
     public static final String ALIAS_EXISTS = "alias_exists";
     public static final String NOT_AN_INTERFACE = "not_an_interface";
     public static final String NOT_A_CLASS = "not_a_class";
+    public static final String WRONG_LEFT_CARDINALITY = "wrong_left_cardinality";
+    public static final String WRONG_RIGHT_CARDINALITY = "wrong_right_cardinality";
 
 }
