@@ -40,15 +40,15 @@ Association:
 ;
 
 Generalization:
-	client = [BehavioredClassifier|FQN] 'isA' supplier = [BehavioredClassifier|FQN]
+	specific = [BehavioredClassifier|FQN] 'isA' general = [BehavioredClassifier|FQN]
 ;
 
 Include:
-	client = [UseCase|FQN] 'inc' supplier = [UseCase|FQN]
+	includingCase = [UseCase|FQN] 'inc' addition = [UseCase|FQN]
 ;
 
 Extend:
-	client = [UseCase|FQN] 'ext' supplier = [UseCase|FQN] '[' extensionPoint = [ExtensionPoint] ('|' condition=STRING)? ']'
+	extension = [UseCase|FQN] 'ext' extendedCase = [UseCase|FQN] '[' extensionLocation = [ExtensionPoint] ('|' condition=STRING)? ']'
 ;
 
 Comment:

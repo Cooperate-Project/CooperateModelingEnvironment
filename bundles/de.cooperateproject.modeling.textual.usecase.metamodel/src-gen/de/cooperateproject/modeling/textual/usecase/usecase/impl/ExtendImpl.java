@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getReferencedElement <em>Referenced Element</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getClient <em>Client</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getSupplier <em>Supplier</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtensionPoint <em>Extension Point</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtension <em>Extension</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtendedCase <em>Extended Case</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getExtensionLocation <em>Extension Location</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtendImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -86,86 +86,86 @@ public class ExtendImpl extends RelationshipImpl implements Extend {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase getClient() {
-        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__CLIENT, UsecasePackage.Literals.EXTEND__CLIENT, true, true);
+    public UseCase getExtension() {
+        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__EXTENSION, UsecasePackage.Literals.EXTEND__EXTENSION, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase basicGetClient() {
-        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__CLIENT, UsecasePackage.Literals.EXTEND__CLIENT, false, true);
+    public UseCase basicGetExtension() {
+        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__EXTENSION, UsecasePackage.Literals.EXTEND__EXTENSION, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setClient(UseCase newClient) {
-        eDynamicSet(UsecasePackage.EXTEND__CLIENT, UsecasePackage.Literals.EXTEND__CLIENT, newClient);
+    public void setExtension(UseCase newExtension) {
+        eDynamicSet(UsecasePackage.EXTEND__EXTENSION, UsecasePackage.Literals.EXTEND__EXTENSION, newExtension);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase getSupplier() {
-        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__SUPPLIER, UsecasePackage.Literals.EXTEND__SUPPLIER, true, true);
+    public UseCase getExtendedCase() {
+        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__EXTENDED_CASE, UsecasePackage.Literals.EXTEND__EXTENDED_CASE, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase basicGetSupplier() {
-        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__SUPPLIER, UsecasePackage.Literals.EXTEND__SUPPLIER, false, true);
+    public UseCase basicGetExtendedCase() {
+        return (UseCase)eDynamicGet(UsecasePackage.EXTEND__EXTENDED_CASE, UsecasePackage.Literals.EXTEND__EXTENDED_CASE, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setSupplier(UseCase newSupplier) {
-        eDynamicSet(UsecasePackage.EXTEND__SUPPLIER, UsecasePackage.Literals.EXTEND__SUPPLIER, newSupplier);
+    public void setExtendedCase(UseCase newExtendedCase) {
+        eDynamicSet(UsecasePackage.EXTEND__EXTENDED_CASE, UsecasePackage.Literals.EXTEND__EXTENDED_CASE, newExtendedCase);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public ExtensionPoint getExtensionPoint() {
-        return (ExtensionPoint)eDynamicGet(UsecasePackage.EXTEND__EXTENSION_POINT, UsecasePackage.Literals.EXTEND__EXTENSION_POINT, true, true);
+    public ExtensionPoint getExtensionLocation() {
+        return (ExtensionPoint)eDynamicGet(UsecasePackage.EXTEND__EXTENSION_LOCATION, UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public ExtensionPoint basicGetExtensionPoint() {
-        return (ExtensionPoint)eDynamicGet(UsecasePackage.EXTEND__EXTENSION_POINT, UsecasePackage.Literals.EXTEND__EXTENSION_POINT, false, true);
+    public ExtensionPoint basicGetExtensionLocation() {
+        return (ExtensionPoint)eDynamicGet(UsecasePackage.EXTEND__EXTENSION_LOCATION, UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setExtensionPoint(ExtensionPoint newExtensionPoint) {
-        eDynamicSet(UsecasePackage.EXTEND__EXTENSION_POINT, UsecasePackage.Literals.EXTEND__EXTENSION_POINT, newExtensionPoint);
+    public void setExtensionLocation(ExtensionPoint newExtensionLocation) {
+        eDynamicSet(UsecasePackage.EXTEND__EXTENSION_LOCATION, UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION, newExtensionLocation);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -194,15 +194,15 @@ public class ExtendImpl extends RelationshipImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
-            case UsecasePackage.EXTEND__CLIENT:
-                if (resolve) return getClient();
-                return basicGetClient();
-            case UsecasePackage.EXTEND__SUPPLIER:
-                if (resolve) return getSupplier();
-                return basicGetSupplier();
-            case UsecasePackage.EXTEND__EXTENSION_POINT:
-                if (resolve) return getExtensionPoint();
-                return basicGetExtensionPoint();
+            case UsecasePackage.EXTEND__EXTENSION:
+                if (resolve) return getExtension();
+                return basicGetExtension();
+            case UsecasePackage.EXTEND__EXTENDED_CASE:
+                if (resolve) return getExtendedCase();
+                return basicGetExtendedCase();
+            case UsecasePackage.EXTEND__EXTENSION_LOCATION:
+                if (resolve) return getExtensionLocation();
+                return basicGetExtensionLocation();
             case UsecasePackage.EXTEND__CONDITION:
                 return getCondition();
         }
@@ -220,14 +220,14 @@ public class ExtendImpl extends RelationshipImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)newValue);
                 return;
-            case UsecasePackage.EXTEND__CLIENT:
-                setClient((UseCase)newValue);
+            case UsecasePackage.EXTEND__EXTENSION:
+                setExtension((UseCase)newValue);
                 return;
-            case UsecasePackage.EXTEND__SUPPLIER:
-                setSupplier((UseCase)newValue);
+            case UsecasePackage.EXTEND__EXTENDED_CASE:
+                setExtendedCase((UseCase)newValue);
                 return;
-            case UsecasePackage.EXTEND__EXTENSION_POINT:
-                setExtensionPoint((ExtensionPoint)newValue);
+            case UsecasePackage.EXTEND__EXTENSION_LOCATION:
+                setExtensionLocation((ExtensionPoint)newValue);
                 return;
             case UsecasePackage.EXTEND__CONDITION:
                 setCondition((String)newValue);
@@ -247,14 +247,14 @@ public class ExtendImpl extends RelationshipImpl implements Extend {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)null);
                 return;
-            case UsecasePackage.EXTEND__CLIENT:
-                setClient((UseCase)null);
+            case UsecasePackage.EXTEND__EXTENSION:
+                setExtension((UseCase)null);
                 return;
-            case UsecasePackage.EXTEND__SUPPLIER:
-                setSupplier((UseCase)null);
+            case UsecasePackage.EXTEND__EXTENDED_CASE:
+                setExtendedCase((UseCase)null);
                 return;
-            case UsecasePackage.EXTEND__EXTENSION_POINT:
-                setExtensionPoint((ExtensionPoint)null);
+            case UsecasePackage.EXTEND__EXTENSION_LOCATION:
+                setExtensionLocation((ExtensionPoint)null);
                 return;
             case UsecasePackage.EXTEND__CONDITION:
                 setCondition(CONDITION_EDEFAULT);
@@ -273,12 +273,12 @@ public class ExtendImpl extends RelationshipImpl implements Extend {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
-            case UsecasePackage.EXTEND__CLIENT:
-                return basicGetClient() != null;
-            case UsecasePackage.EXTEND__SUPPLIER:
-                return basicGetSupplier() != null;
-            case UsecasePackage.EXTEND__EXTENSION_POINT:
-                return basicGetExtensionPoint() != null;
+            case UsecasePackage.EXTEND__EXTENSION:
+                return basicGetExtension() != null;
+            case UsecasePackage.EXTEND__EXTENDED_CASE:
+                return basicGetExtendedCase() != null;
+            case UsecasePackage.EXTEND__EXTENSION_LOCATION:
+                return basicGetExtensionLocation() != null;
             case UsecasePackage.EXTEND__CONDITION:
                 return CONDITION_EDEFAULT == null ? getCondition() != null : !CONDITION_EDEFAULT.equals(getCondition());
         }

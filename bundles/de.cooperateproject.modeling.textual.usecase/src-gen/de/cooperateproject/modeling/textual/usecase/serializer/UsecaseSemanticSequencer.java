@@ -148,7 +148,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Extend returns Extend
 	 *
 	 * Constraint:
-	 *     (client=[UseCase|FQN] supplier=[UseCase|FQN] extensionPoint=[ExtensionPoint|ID] condition=STRING?)
+	 *     (extension=[UseCase|FQN] extendedCase=[UseCase|FQN] extensionLocation=[ExtensionPoint|ID] condition=STRING?)
 	 */
 	protected void sequence_Extend(ISerializationContext context, Extend semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -173,18 +173,18 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Generalization returns Generalization
 	 *
 	 * Constraint:
-	 *     (client=[BehavioredClassifier|FQN] supplier=[BehavioredClassifier|FQN])
+	 *     (specific=[BehavioredClassifier|FQN] general=[BehavioredClassifier|FQN])
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__CLIENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__CLIENT));
-			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__SUPPLIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__SUPPLIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__SPECIFIC) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__SPECIFIC));
+			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__GENERAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__GENERAL));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getClientBehavioredClassifierFQNParserRuleCall_0_0_1(), semanticObject.getClient());
-		feeder.accept(grammarAccess.getGeneralizationAccess().getSupplierBehavioredClassifierFQNParserRuleCall_2_0_1(), semanticObject.getSupplier());
+		feeder.accept(grammarAccess.getGeneralizationAccess().getSpecificBehavioredClassifierFQNParserRuleCall_0_0_1(), semanticObject.getSpecific());
+		feeder.accept(grammarAccess.getGeneralizationAccess().getGeneralBehavioredClassifierFQNParserRuleCall_2_0_1(), semanticObject.getGeneral());
 		feeder.finish();
 	}
 	
@@ -195,18 +195,18 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Include returns Include
 	 *
 	 * Constraint:
-	 *     (client=[UseCase|FQN] supplier=[UseCase|FQN])
+	 *     (includingCase=[UseCase|FQN] addition=[UseCase|FQN])
 	 */
 	protected void sequence_Include(ISerializationContext context, Include semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__CLIENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__CLIENT));
-			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__SUPPLIER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__SUPPLIER));
+			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE));
+			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__ADDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__ADDITION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getIncludeAccess().getClientUseCaseFQNParserRuleCall_0_0_1(), semanticObject.getClient());
-		feeder.accept(grammarAccess.getIncludeAccess().getSupplierUseCaseFQNParserRuleCall_2_0_1(), semanticObject.getSupplier());
+		feeder.accept(grammarAccess.getIncludeAccess().getIncludingCaseUseCaseFQNParserRuleCall_0_0_1(), semanticObject.getIncludingCase());
+		feeder.accept(grammarAccess.getIncludeAccess().getAdditionUseCaseFQNParserRuleCall_2_0_1(), semanticObject.getAddition());
 		feeder.finish();
 	}
 	
