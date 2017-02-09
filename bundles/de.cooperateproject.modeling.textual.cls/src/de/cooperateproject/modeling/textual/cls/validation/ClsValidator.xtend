@@ -26,6 +26,8 @@ import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.TypedElement
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 import org.eclipse.xtext.validation.Check
+import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
+import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 
 /**
  * This class contains custom validation rules. 
@@ -33,6 +35,41 @@ import org.eclipse.xtext.validation.Check
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ClsValidator extends AbstractClsValidator {
+
+	@Check
+	def checkCardinality(AssociationProperties properties) {
+		val association = properties.association
+		val leftClass = association.left
+		val rightClass = association.right
+		val associationRef = association.referencedElement
+		val associationProperties = association.properties
+
+		val leftAscEnd = leftClass.ownedElements.filter(org.eclipse.uml2.uml.Property).findFirst [ x |
+			x.type.name.equals(rightClass.name)
+		]
+		val cardRight = associationProperties.cardinalityRight
+		if (!checkCardinality(association, cardRight, leftAscEnd, rightClass)) {
+			error("Wrong Right Cardinalities", ClsPackage.eINSTANCE.associationProperties_CardinalityRight,
+				ClsValidatorIssueId.WRONG_RIGHT_CARDINALITY)
+		}
+
+		val rigthAscEnd = associationRef.ownedEnds.findFirst[x|x.type.name.equals(leftClass.name)]
+		val cardLeft = associationProperties.cardinalityLeft
+		if (!checkCardinality(association, cardLeft, rigthAscEnd, leftClass)) {
+			error("Wrong Left Cardinalities", ClsPackage.eINSTANCE.associationProperties_CardinalityLeft,
+				ClsValidatorIssueId.WRONG_LEFT_CARDINALITY)
+		}
+	}
+
+	private def checkCardinality(Association association, Cardinality cardinality, org.eclipse.uml2.uml.Property ascEnd,
+		org.eclipse.uml2.uml.Classifier classifier) {
+		if (!(cardinality.lowerBound == -1 && ascEnd.lower == 0 && cardinality.upperBound == 0 && ascEnd.upper == -1)) {
+			if (cardinality.lowerBound != ascEnd.lower || cardinality.upperBound != ascEnd.upper) {
+				return false
+			}
+		}
+		return true
+	}
 
 	@Check
 	def checkAliasExpression(Classifier classifier) {
@@ -57,7 +94,8 @@ class ClsValidator extends AbstractClsValidator {
 					aliasExistError(aliasString)
 				} else {
 					error("Inconsistent alias '" + aliasString + "' found",
-						ClsPackage.eINSTANCE.namedElementAliased_AliasExpression, ClsValidatorIssueId.WRONG_ALIAS_NAME, {
+						ClsPackage.eINSTANCE.namedElementAliased_AliasExpression,
+						ClsValidatorIssueId.WRONG_ALIAS_NAME, {
 							aliasString
 						})
 				}
@@ -67,7 +105,7 @@ class ClsValidator extends AbstractClsValidator {
 	}
 
 	private def aliasExistError(String alias) {
-		error('''Alias: «alias» already exists!''', ClsPackage.eINSTANCE.namedElementAliased_AliasExpression,
+		error('''Alias: Â«aliasÂ» already exists!''', ClsPackage.eINSTANCE.namedElementAliased_AliasExpression,
 			ClsValidatorIssueId.ALIAS_EXISTS, {
 				alias
 			})
@@ -89,7 +127,8 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfAssociationExists(Association association) {
-		if (association.referencedElement?.model == null && association.nearestPackage?.referencedElement?.model != null) {
+		if (association.referencedElement?.model == null &&
+			association.nearestPackage?.referencedElement?.model != null) {
 			val refNode = association.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val propertyNameLeft = association.properties?.extractRefNode(
 				ClsPackage.eINSTANCE.associationProperties_PropertyLeft)?.text ?: ""
@@ -104,7 +143,8 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfGeneralizationExists(Generalization generalization) {
-		if (generalization.referencedElement?.model == null && generalization.nearestPackage?.referencedElement?.model != null) {
+		if (generalization.referencedElement?.model == null &&
+			generalization.nearestPackage?.referencedElement?.model != null) {
 			error("No Referenced UML-Generalization Element", ClsPackage.eINSTANCE.generalization_ReferencedElement,
 				ClsValidatorIssueId.NO_GENERALIZATION_REFERENCE)
 		}
@@ -112,7 +152,8 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfRealizationExists(Implementation realization) {
-		if (realization.referencedElement?.model == null && realization.nearestPackage?.referencedElement?.model != null) {
+		if (realization.referencedElement?.model == null &&
+			realization.nearestPackage?.referencedElement?.model != null) {
 			error("No Referenced UML-InterfaceRealization Element",
 				ClsPackage.eINSTANCE.implementation_ReferencedElement, ClsValidatorIssueId.NO_REALIZATION_REFERENCE)
 		}
@@ -121,9 +162,10 @@ class ClsValidator extends AbstractClsValidator {
 	@Check
 	def checkIfClassExists(Class classifier) {
 		var eClass = classifier.eGet(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement);
-		
+
 		if (eClass instanceof org.eclipse.uml2.uml.Class) {
-			checkIfClassifierExists(classifier, "className", "Couldn't find UML-Class '", ClsValidatorIssueId.NO_CLASS_REFERENCE)
+			checkIfClassifierExists(classifier, "className", "Couldn't find UML-Class '",
+				ClsValidatorIssueId.NO_CLASS_REFERENCE)
 		} else {
 			wrongClassifierType(classifier.name, " is not a class", ClsValidatorIssueId.NOT_A_CLASS)
 		}
@@ -132,16 +174,19 @@ class ClsValidator extends AbstractClsValidator {
 	@Check
 	def checkIfInterfaceExists(Interface classifier) {
 		var eInterface = classifier.eGet(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
-		
+
 		if (eInterface instanceof org.eclipse.uml2.uml.Interface) {
-			checkIfClassifierExists(classifier, "interfaceName", "Couldn't find UML-Interface '", ClsValidatorIssueId.NO_INTERFACE_REFERENCE)
+			checkIfClassifierExists(classifier, "interfaceName", "Couldn't find UML-Interface '",
+				ClsValidatorIssueId.NO_INTERFACE_REFERENCE)
 		} else {
 			wrongClassifierType(classifier.name, " is not an interface", ClsValidatorIssueId.NOT_AN_INTERFACE)
 		}
 	}
 
-	private def checkIfClassifierExists(Classifier classifier, String defaultName, String errorMsg, ClsValidatorIssueId errorType) {
-		if (classifier.referencedElement?.model == null && classifier.nearestPackage?.referencedElement?.model != null) {
+	private def checkIfClassifierExists(Classifier classifier, String defaultName, String errorMsg,
+		ClsValidatorIssueId errorType) {
+		if (classifier.referencedElement?.model == null &&
+			classifier.nearestPackage?.referencedElement?.model != null) {
 			val refNode = classifier.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val classifierName = refNode.text ?: defaultName
 			error(errorMsg + classifierName + "' in model",
@@ -163,7 +208,8 @@ class ClsValidator extends AbstractClsValidator {
 			val refNode = pack.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val packageName = refNode.text ?: "packageName"
 			error("Couldn't find UML-Package '" + packageName + "' in model",
-				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement, ClsValidatorIssueId.NO_PACKAGE_REFERENCE, {
+				ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				ClsValidatorIssueId.NO_PACKAGE_REFERENCE, {
 					packageName
 				})
 		}
@@ -171,7 +217,8 @@ class ClsValidator extends AbstractClsValidator {
 
 	@Check
 	def checkIfPackageImportExists(PackageImport imported) {
-		if (imported.referencedElement?.model == null && imported.importingNamespace?.referencedElement?.model != null) {
+		if (imported.referencedElement?.model == null &&
+			imported.importingNamespace?.referencedElement?.model != null) {
 			val refNode = imported.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
 			val packageName = refNode.text ?: "packageName"
 			error("Couldn't find  PackageImport for '" + packageName + "' in model",
@@ -200,9 +247,48 @@ class ClsValidator extends AbstractClsValidator {
 		val typeName = refNode.text ?: "typeName"
 
 		if (model != null && !property.hasCorrectType) {
-			error("Inconsistent Type detected", ClsPackage.eINSTANCE.property_Type, ClsValidatorIssueId.WRONG_PROPERTY_TYPE, {
-				typeName
-			})
+			error("Inconsistent Type detected", ClsPackage.eINSTANCE.property_Type,
+				ClsValidatorIssueId.WRONG_PROPERTY_TYPE, {
+					typeName
+				})
+		}
+	}
+
+	@Check
+	def checkCorrectPropertyQualifier(Property<? extends NamedElement> property) {
+		val model = property.referencedElement.model
+		val refNode = property.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+		val typeName = refNode.text ?: "typeName"
+
+		if (model != null && !property.checkStaticQualifier) {
+			error("Wrong static Qualifier", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				ClsValidatorIssueId.WRONG_PROPERTY_STATIC_QUALIFIER, {
+					typeName
+				})
+		}
+		if (model != null) {
+			if (property instanceof Method) {
+				if (!property.checkAbstractQualifier) {
+					error("Wrong abstract Qualifier", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+						ClsValidatorIssueId.WRONG_ABSTRACT_QUALIFIER, {
+							typeName
+						})
+				}
+			}
+		}
+	}
+
+	@Check
+	def checkCorrectPropertyQualifier(Class property) {
+		val model = property.referencedElement.model
+		val refNode = property.extractRefNode(ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement)
+		val typeName = refNode.text ?: "typeName"
+
+		if (model != null && !property.checkAbstractQualifier) {
+			error("Wrong abstract Qualifier", ClsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement,
+				ClsValidatorIssueId.WRONG_ABSTRACT_QUALIFIER, {
+					typeName
+				})
 		}
 	}
 
@@ -217,10 +303,11 @@ class ClsValidator extends AbstractClsValidator {
 	@Check
 	def checkIfCommentExists(Commentable commentable) {
 		if (commentable.comment.model == null && commentable.commentedElement.model != null) {
-			error("No Referenced UML-Comment", ClsPackage.eINSTANCE.commentable_Comment, ClsValidatorIssueId.NO_COMMENT_REFERENCE)
+			error("No Referenced UML-Comment", ClsPackage.eINSTANCE.commentable_Comment,
+				ClsValidatorIssueId.NO_COMMENT_REFERENCE)
 		}
 	}
-	
+
 	private def error(String message, EStructuralFeature feature, ClsValidatorIssueId code, String... issueData) {
 		error(message, feature, code.ID, issueData);
 	}
@@ -240,4 +327,35 @@ class ClsValidator extends AbstractClsValidator {
 		return property.type.equals(umlType)
 	}
 
+	private static def checkStaticQualifier(Property<? extends NamedElement> property) {
+		val umlReferencedElement = property.referencedElement
+		var umlIsStatic = false
+		if (umlReferencedElement instanceof Operation) {
+			umlIsStatic = umlReferencedElement.isStatic
+		} else if (umlReferencedElement instanceof org.eclipse.uml2.uml.Property) {
+			umlIsStatic = umlReferencedElement.isStatic
+		}
+		val clsIsStatic = property.static
+		return clsIsStatic == umlIsStatic
+	}
+
+	private static dispatch def checkAbstractQualifier(Method property) {
+		val umlReferencedElement = property.referencedElement
+		var umlIsAbstract = false
+		if (umlReferencedElement instanceof Operation) {
+			umlIsAbstract = umlReferencedElement.isAbstract
+		}
+		val clsIsAbstract = property.isAbstract
+		return clsIsAbstract == umlIsAbstract
+	}
+
+	private static dispatch def checkAbstractQualifier(Class property) {
+		val umlReferencedElement = property.referencedElement
+		var umlIsAbstract = false
+		if (umlReferencedElement instanceof org.eclipse.uml2.uml.Class) {
+			umlIsAbstract = umlReferencedElement.isAbstract
+		}
+		val clsIsAbstract = property.isAbstract
+		return clsIsAbstract == umlIsAbstract
+	}
 }
