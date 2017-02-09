@@ -38,8 +38,12 @@ public class FocusManager {
 	public void setFocusedElement(EObject element){ 
 		//set focus in textual editor
 		if(xTextEditor != null){
-			//TODO check if this works with the UMLReferencedElements, otherwise I need the cooperate-internal element here
+			//TODO get the cooperate-internal element here
 			ICompositeNode node = NodeModelUtils.findActualNodeFor(element);
+			if(node == null){
+				System.err.println("Focus View: Couldn't set the focus on requested element");
+				return;
+			}
 			ITextSelection selection = new TextSelection(xTextEditor.getDocument(), node.getOffset(), 0);
 			xTextEditor.getSelectionProvider().setSelection(selection);
 		}
@@ -91,6 +95,10 @@ public class FocusManager {
 		}else if(pSite instanceof PapyrusMultiDiagramEditor){
 			papyrusEditor = (PapyrusMultiDiagramEditor) pSite;
 		}
+	}
+	
+	public void setInvalid(){
+		instance = null;
 	}
 	
 	private NamedElement getSelectedUmlObject(Object selection) {

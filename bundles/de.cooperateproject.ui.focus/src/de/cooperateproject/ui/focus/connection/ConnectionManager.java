@@ -49,6 +49,7 @@ public class ConnectionManager{
 			try {
 				SubscriberManager.getInstance().disconnect();
 				connection.close();
+				instance = null;
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}

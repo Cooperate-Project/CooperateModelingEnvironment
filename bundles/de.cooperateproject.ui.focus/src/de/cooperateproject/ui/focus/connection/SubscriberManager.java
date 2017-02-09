@@ -81,6 +81,7 @@ public class SubscriberManager implements javax.jms.MessageListener{
 		try {
 			unsubscribe();
 			topicSession.close();
+			instance = null;
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -122,7 +123,7 @@ public class SubscriberManager implements javax.jms.MessageListener{
 				CDOSession session = CDOConnectionManager.getInstance().acquireSession(ConnectionManager.getInstance().getFile().getProject());
 				CDOView cdoView = session.openView();
 				CDOObject focusedObject = cdoView.getObject((CDOID)obj);
-				SubscriberManager.getInstance().view.handleFocusRequest(CDOUtil.getEObject(focusedObject));
+				SubscriberManager.getInstance().view.handleFocusRequest(CDOUtil.getEObject(focusedObject), message.getJMSTimestamp());
 				cdoView.close();
 				CDOConnectionManager.getInstance().releaseSession(session);
 			}

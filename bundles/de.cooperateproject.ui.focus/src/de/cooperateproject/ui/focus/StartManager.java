@@ -62,6 +62,9 @@ public class StartManager implements IStartup, IPartListener {
 	public void partClosed(IWorkbenchPart part) {
 		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID) || part == focusView){
 			ConnectionManager.getInstance().disconnect();
+			FocusManager.getInstance().setInvalid();
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			page.hideView(focusView);
 	 	}
 	}
 

@@ -11,11 +11,15 @@ import org.eclipse.ui.part.*;
 
 import de.cooperateproject.ui.focus.connection.SubscriberManager;
 import de.cooperateproject.ui.focus.internal.FocusManager;
+import de.cooperateproject.ui.focus.labeling.FocusViewLabelProvider;
+import de.cooperateproject.ui.focus.labeling.HistoryElement;
+import de.cooperateproject.ui.focus.labeling.UMLelementToStringSwitch;
+
+import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.*;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.SWT;
@@ -28,11 +32,9 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 public class FocusView extends ViewPart{
 	public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
 	private TableViewer historyViewer; //lists all deictic gestures (element focuses) that have been made
-	private Composite focusComposite;
-	private Composite buttonComposite;
+	private LinkedList<HistoryElement> historyFocusEntries = new LinkedList<HistoryElement>();
 	private Action doubleClickActionHistoryViewer;
 	private FocusDialog focusDialog;
-	private Button muteButton, focusButton;
 	private Text titleText;
 
 	
@@ -53,7 +55,15 @@ public class FocusView extends ViewPart{
 	}
 	
 	
-	public void handleFocusRequest(EObject focusedObject){
+	public void handleFocusRequest(EObject focusedObject, long timeStamp){
+		if(focusedObject == null){
+			return;
+		}
+		historyFocusEntries.add(new HistoryElement(focusedObject, timeStamp));
+		historyViewer.refresh();
+		for (TableColumn c : historyViewer.getTable().getColumns()){
+			c.pack();
+		}
 		focusDialog.setFocusedElement(focusedObject);
 		focusDialog.open();
 	}
@@ -98,7 +108,7 @@ public class FocusView extends ViewPart{
 	 */
 	private void setUpView(Composite parent){
 		
-		focusComposite = new Composite(parent, SWT.NULL);
+		final Composite focusComposite = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
 		GridLayout layoutForButtons = new GridLayout();
 		GridData gridData;
@@ -107,7 +117,7 @@ public class FocusView extends ViewPart{
 		focusComposite.setLayout(layout);
 		titleText = new Text(focusComposite, SWT.HORIZONTAL | SWT.CENTER | SWT.READ_ONLY | SWT.WRAP);
 		historyViewer = new TableViewer(focusComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
-		buttonComposite = new Composite(focusComposite, SWT.NULL);
+		final Composite buttonComposite = new Composite(focusComposite, SWT.NULL);
 		buttonComposite.setLayout(layoutForButtons);
 		titleText.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_GRAY));
 		
@@ -144,7 +154,7 @@ public class FocusView extends ViewPart{
 		gridData.verticalAlignment = SWT.FILL;
 		buttonComposite.setLayoutData(gridData);
 		
-		muteButton = new Button(buttonComposite, SWT.TOGGLE);
+		final Button muteButton = new Button(buttonComposite, SWT.TOGGLE);
 		muteButton.setText("mute");
 		muteButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent event){
@@ -166,7 +176,7 @@ public class FocusView extends ViewPart{
 
 	   	muteButton.setLayoutData(gridData);
 	   	
-	   	focusButton = new Button(buttonComposite, SWT.PUSH);
+	   	final Button focusButton = new Button(buttonComposite, SWT.PUSH);
 	   	focusButton.setText("send focus");
 	   	focusButton.addSelectionListener(new SelectionAdapter(){
 	   		public void widgetSelected(SelectionEvent event){
@@ -180,28 +190,34 @@ public class FocusView extends ViewPart{
 		gridData.heightHint = 50;
 	   	
 	   	focusButton.setLayoutData(gridData);
+	   	
+	   	final Button clearButton = new Button(buttonComposite, SWT.PUSH);
+	   	clearButton.setText("clear history");
+	   	clearButton.addSelectionListener(new SelectionAdapter(){
+	   		public void widgetSelected(SelectionEvent event){
+	   			historyFocusEntries.clear();
+	   			historyViewer.refresh();
+	   		}
+	   	});
+	   	
+	   	gridData = new GridData();
+	   	gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.heightHint = 50;
+	   	
+		clearButton.setLayoutData(gridData);
+	   	
 		
 		historyViewer.setContentProvider(ArrayContentProvider.getInstance());
-		historyViewer.setInput(new String[] { "One", "Two", "Three" });
-		historyViewer.setLabelProvider(new ViewLabelProvider());
+		historyViewer.setInput(historyFocusEntries);
+		historyViewer.setLabelProvider(new FocusViewLabelProvider());
 		getSite().setSelectionProvider(historyViewer);
 	}
-	
-	private class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
-		public String getColumnText(Object obj, int index) {
-			return getText(obj);
-		}
-
-		@Override
-		public Image getColumnImage(Object element, int columnIndex) {
-			return null;
-		}
-	}
-
 	
 	private class FocusDialog extends Dialog {
 		
 		private EObject focusedElement;	
+		UMLelementToStringSwitch umlSwitch = new UMLelementToStringSwitch();
 
 		protected FocusDialog(Shell parentShell) {
 			super(parentShell);
@@ -230,9 +246,7 @@ public class FocusView extends ViewPart{
 			Composite container = (Composite) super.createDialogArea(parent);
 			container.getShell().setText("Incoming element focus");
 			final Text text = new Text(container, SWT.HORIZONTAL | SWT.LEFT | SWT.WRAP | SWT.READ_ONLY);
-
-			text.setText("Element " + focusedElement.toString() + " has been focused. Would you like to jump to it?");
-			
+			text.setText(umlSwitch.doSwitch(focusedElement) + " has been focused. Would you like to jump to it?");
 			return text;
 		}
 		
