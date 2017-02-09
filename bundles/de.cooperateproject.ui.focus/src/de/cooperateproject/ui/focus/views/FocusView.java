@@ -29,9 +29,10 @@ public class FocusView extends ViewPart{
 	public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
 	private TableViewer historyViewer; //lists all deictic gestures (element focuses) that have been made
 	private Composite focusComposite;
+	private Composite buttonComposite;
 	private Action doubleClickActionHistoryViewer;
 	private FocusDialog focusDialog;
-	private Button muteButton;
+	private Button muteButton, focusButton;
 	private Text titleText;
 
 	
@@ -45,6 +46,24 @@ public class FocusView extends ViewPart{
 		setUpDialogs(parent);
 		makeActions();
 		hookDoubleClickAction();
+	}
+	
+	public void setTitleText(String title){
+		titleText.setText(title);
+	}
+	
+	
+	public void handleFocusRequest(EObject focusedObject){
+		focusDialog.setFocusedElement(focusedObject);
+		focusDialog.open();
+	}
+	
+	/**
+	 * Passing the focus request to the viewer's control.
+	 */
+	@Override
+	public void setFocus() {
+		historyViewer.getControl().setFocus();	
 	}
 	
 	/**
@@ -72,10 +91,6 @@ public class FocusView extends ViewPart{
 			}
 		});
 	}
-	
-	public void setTitleText(String title){
-		titleText.setText(title);
-	}
 
 	/**
 	 * Initializes the view of this plugin. 
@@ -85,12 +100,15 @@ public class FocusView extends ViewPart{
 		
 		focusComposite = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
+		GridLayout layoutForButtons = new GridLayout();
 		GridData gridData;
 		layout.numColumns = 4;
 		layout.makeColumnsEqualWidth = true;
 		focusComposite.setLayout(layout);
 		titleText = new Text(focusComposite, SWT.HORIZONTAL | SWT.CENTER | SWT.READ_ONLY | SWT.WRAP);
-		historyViewer = new TableViewer(focusComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);	
+		historyViewer = new TableViewer(focusComposite, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
+		buttonComposite = new Composite(focusComposite, SWT.NULL);
+		buttonComposite.setLayout(layoutForButtons);
 		titleText.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_GRAY));
 		
 		gridData = new GridData();
@@ -121,7 +139,12 @@ public class FocusView extends ViewPart{
 			tableColumn.pack();
 		}
 
-		muteButton = new Button(focusComposite, SWT.TOGGLE);
+		gridData = new GridData();	
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.verticalAlignment = SWT.FILL;
+		buttonComposite.setLayoutData(gridData);
+		
+		muteButton = new Button(buttonComposite, SWT.TOGGLE);
 		muteButton.setText("mute");
 		muteButton.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent event){
@@ -138,24 +161,30 @@ public class FocusView extends ViewPart{
 		
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
-		gridData.verticalAlignment = SWT.TOP;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.heightHint = 50;
+
+	   	muteButton.setLayoutData(gridData);
+	   	
+	   	focusButton = new Button(buttonComposite, SWT.PUSH);
+	   	focusButton.setText("send focus");
+	   	focusButton.addSelectionListener(new SelectionAdapter(){
+	   		public void widgetSelected(SelectionEvent event){
+	   			SubscriberManager.getInstance().sendFocusRequest(FocusManager.getInstance().getFocusedElement());
+	   		}
+	   	});
+	   	
+	   	gridData = new GridData();
+	   	gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
 		gridData.heightHint = 50;
 	   	
-	   	muteButton.setLayoutData(gridData);
+	   	focusButton.setLayoutData(gridData);
 		
 		historyViewer.setContentProvider(ArrayContentProvider.getInstance());
 		historyViewer.setInput(new String[] { "One", "Two", "Three" });
 		historyViewer.setLabelProvider(new ViewLabelProvider());
 		getSite().setSelectionProvider(historyViewer);
-	}
-
-
-	/**
-	 * Passing the focus request to the viewer's control.
-	 */
-	@Override
-	public void setFocus() {
-		historyViewer.getControl().setFocus();	
 	}
 	
 	private class ViewLabelProvider extends LabelProvider implements ITableLabelProvider {
@@ -202,7 +231,7 @@ public class FocusView extends ViewPart{
 			container.getShell().setText("Incoming element focus");
 			final Text text = new Text(container, SWT.HORIZONTAL | SWT.LEFT | SWT.WRAP | SWT.READ_ONLY);
 
-			text.setText("Element XYZ has been focused. Would you like to jump to it?");
+			text.setText("Element " + focusedElement.toString() + " has been focused. Would you like to jump to it?");
 			
 			return text;
 		}
@@ -216,11 +245,6 @@ public class FocusView extends ViewPart{
 			Button no = getButton(IDialogConstants.CANCEL_ID);
 			no.setText("No");
 			setButtonLayoutData(no);
-		}
-
-		
-		public Object getFocusedElement() {
-			return focusedElement;
 		}
 
 		public void setFocusedElement(EObject focusedElement) {

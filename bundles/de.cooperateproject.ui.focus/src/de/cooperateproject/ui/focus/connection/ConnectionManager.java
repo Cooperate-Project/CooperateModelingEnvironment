@@ -6,9 +6,7 @@ import org.eclipse.core.resources.IFile;
 import java.net.URISyntaxException;
 
 import javax.jms.JMSException;
-import javax.jms.Session;
 import javax.jms.TopicConnection;
-import javax.jms.TopicSession;
 
 public class ConnectionManager{
 	
@@ -16,7 +14,6 @@ public class ConnectionManager{
 	private IFile currentFile = null;
 	private final String address = "tcp://localhost:61616";
 	private TopicConnection connection = null;
-	private TopicSession session = null;
 	
 	public static ConnectionManager getInstance(){
 		if(instance == null){
@@ -29,18 +26,16 @@ public class ConnectionManager{
 		
 		try {
 			if(currentFile == null){
-					connection = ActiveMQConnection.makeConnection(address);
-					session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
-					SubscriberManager.getInstance().initialize(session, file.getName());
-					SubscriberManager.getInstance().subscribe();
-					connection.start();
+				connection = ActiveMQConnection.makeConnection(address);
+				SubscriberManager.getInstance().initialize(connection, file.getName());
+				SubscriberManager.getInstance().subscribe();
+				connection.start();
 			}else if(currentFile != file){
 				SubscriberManager.getInstance().unsubscribe();
-				SubscriberManager.getInstance().initialize(session, file.getName());
+				SubscriberManager.getInstance().initialize(connection, file.getName());
 				SubscriberManager.getInstance().subscribe();
 			}
-		}
-		 catch (JMSException | URISyntaxException e) {
+		} catch (JMSException | URISyntaxException e) {
 				e.printStackTrace();	
 		 	}
 		
@@ -49,15 +44,19 @@ public class ConnectionManager{
 	}
 	
 	public void disconnect(){
+		currentFile = null;
 		if(connection != null){
 			try {
-				if(session != null)
-					session.close();
+				SubscriberManager.getInstance().disconnect();
 				connection.close();
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public IFile getFile(){
+		return currentFile;
 	}
 
 }

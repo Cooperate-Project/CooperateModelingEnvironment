@@ -18,6 +18,8 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+
+import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 
 public class FocusManager {
@@ -34,12 +36,15 @@ public class FocusManager {
 	}
 	
 	public void setFocusedElement(EObject element){ 
-		if(xTextEditor != null){ //set focus in textual editor
+		//set focus in textual editor
+		if(xTextEditor != null){
+			//TODO check if this works with the UMLReferencedElements, otherwise I need the cooperate-internal element here
 			ICompositeNode node = NodeModelUtils.findActualNodeFor(element);
 			ITextSelection selection = new TextSelection(xTextEditor.getDocument(), node.getOffset(), 0);
 			xTextEditor.getSelectionProvider().setSelection(selection);
 		}
-		else if(papyrusEditor != null){ //set focus in graphical editor
+		 //set focus in graphical editor
+		else if(papyrusEditor != null){
 			try {
 				OpenElementService openService = papyrusEditor.getServicesRegistry().getService(OpenElementService.class);
 				openService.openSemanticElement(element);
@@ -49,19 +54,26 @@ public class FocusManager {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public EObject getFocusedElement(){
-		//TODO somewhere add conversion from org.eclipse.uml2.uml.internal.impl to de.cooperateproject.modeling.textual.cls.cls and vice versa
-		//At the moment, focus in textual editor is of cooperate-internal types and the focus in graphical editor of eclipse-internal types.
-
+		
 		EObject focusedElement = null;
-		if(xTextEditor != null){ //user is currently working with textual editor 		
+		//user is currently working with textual editor 
+		if(xTextEditor != null){ 		
 			FocusIUnitOfWork unit = new FocusIUnitOfWork();
 			unit.setOffset(((TextSelection)xTextEditor.getSelectionProvider().getSelection()).getOffset());
 			xTextEditor.getDocument().modify(unit);
 			
 			focusedElement = unit.getFocusedElement();
+			//TODO find out if here can be objects which aren't of type UMLReferencingElement and handle them too.
+			if(focusedElement instanceof UMLReferencingElement){
+				//get the referenced element corresponding to the UML model from the cooperate-internal element
+				focusedElement = ((UMLReferencingElement)focusedElement).getReferencedElement();
+			}
+			
 		}
-		else if(papyrusEditor != null){ //user is currently working with graphical editor
+		 //user is currently working with graphical editor
+		else if(papyrusEditor != null){
 			ISelection selection = papyrusEditor.getSite().getSelectionProvider().getSelection();
 			Object selectedObject = null;
 			if(selection instanceof IStructuredSelection){
@@ -70,6 +82,15 @@ public class FocusManager {
 			focusedElement = getSelectedUmlObject(selectedObject);
 		}		
 		return focusedElement;
+	}
+		 
+	public void setEditor(IWorkbenchPart pSite){
+		if(pSite instanceof CooperateCDOXtextEditor){
+			xTextEditor = (CooperateCDOXtextEditor)pSite;
+
+		}else if(pSite instanceof PapyrusMultiDiagramEditor){
+			papyrusEditor = (PapyrusMultiDiagramEditor) pSite;
+		}
 	}
 	
 	private NamedElement getSelectedUmlObject(Object selection) {
@@ -85,15 +106,6 @@ public class FocusManager {
 			    }	
 			}
 		  return result;
-	}
-		 
-	public void setEditor(IWorkbenchPart pSite){
-		if(pSite instanceof CooperateCDOXtextEditor){
-			xTextEditor = (CooperateCDOXtextEditor)pSite;
-
-		}else if(pSite instanceof PapyrusMultiDiagramEditor){
-			papyrusEditor = (PapyrusMultiDiagramEditor) pSite;
-		}
 	}
 	
 	private class FocusIUnitOfWork extends IUnitOfWork.Void<XtextResource>{

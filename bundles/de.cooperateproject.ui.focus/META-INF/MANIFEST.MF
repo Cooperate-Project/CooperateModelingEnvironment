@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.cooperateproject.modeling.textual.cls.metamodel,
  org.eclipse.papyrus.views.modelexplorer;bundle-version="2.1.0",
  org.eclipse.papyrus.infra.services.openelement,
- org.eclipse.ui.workbench
+ org.eclipse.ui.workbench,
+ de.cooperateproject.cdo.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.uml2.uml
