@@ -2,8 +2,7 @@
 
 rootPackage RootElement
 
-class Class1 {
-	# abstract someOP()
-}
+class Q
+class "Other Q" as QQ
 
 @end-cls

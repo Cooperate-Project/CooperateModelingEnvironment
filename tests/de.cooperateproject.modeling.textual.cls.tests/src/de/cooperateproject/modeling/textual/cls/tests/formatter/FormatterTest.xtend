@@ -6,42 +6,20 @@ import java.io.File
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil
 import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.resource.SaveOptions
 import org.eclipse.xtext.serializer.ISerializer
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
 
-@RunWith(XtextRunner)
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
-class FormatterTest {
+class FormatterTest extends AbstractClsTest {
 
 	static val TEST_FOLDER = "testmodels/formatting/"
 
 	@Inject extension ISerializer
-	var ResourceSet rs;
-
-	@Before
-	def void setup() {
-		rs = new ResourceSetImpl
-		UMLResourcesUtil.init(rs);
-	}
-
-	@After
-	def void tearDown() {
-		if (rs != null) {
-			rs.resources.forEach[r|r.unload]
-		}
-		rs = null
-	}
 
 	@Test
 	def testMinimalModel() {
