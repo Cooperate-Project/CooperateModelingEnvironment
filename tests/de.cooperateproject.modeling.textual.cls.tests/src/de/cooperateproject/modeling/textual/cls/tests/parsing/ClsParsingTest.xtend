@@ -33,6 +33,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Member
 import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
+import org.junit.Ignore
 
 @InjectWith(ClsTestInjectorProvider.DefaultProvider)
 class ClsParsingTest extends AbstractClsTest {
@@ -204,7 +205,7 @@ class ClsParsingTest extends AbstractClsTest {
 			rootPackage RootElement
 			class Alice {
 				name : string
-				age : int
+				static age : int
 			}
 			@end-cls
 		'''.parse(rs)
@@ -234,9 +235,9 @@ class ClsParsingTest extends AbstractClsTest {
 			@start-cls "SomeName"
 			rootPackage RootElement
 			class Alice {
-				getName() : string
+				static getName() : string
 				setName(name : string)
-				calculateAge(date : int) : int
+				abstract calculateAge(date : int) : int
 			}
 			@end-cls
 		'''.parse(rs)
@@ -279,10 +280,10 @@ class ClsParsingTest extends AbstractClsTest {
 			rootPackage RootElement
 			class Alice {
 				+name : string
-				-age : int
-				#getName() : string
+				- static age : int
+				# static getName() : string
 				#setName(name : string)
-				~calculateAge(date : int) : int
+				~ abstract calculateAge(date : int) : int
 			}
 			@end-cls
 		'''.parse(rs)
@@ -645,7 +646,7 @@ class ClsParsingTest extends AbstractClsTest {
 		]
 	}
 
-	@Test
+	@Test @Ignore
 	def void CardinalityTest() {
 		val model = '''
 			@start-cls "SomeName"
@@ -772,7 +773,7 @@ class ClsParsingTest extends AbstractClsTest {
 		assertNotNull(rightAscEnd)
 	}
 
-	@Test
+	@Test @Ignore
 	def void bidirectionTest() {
 		val model = '''
 			@start-cls "SomeName"
