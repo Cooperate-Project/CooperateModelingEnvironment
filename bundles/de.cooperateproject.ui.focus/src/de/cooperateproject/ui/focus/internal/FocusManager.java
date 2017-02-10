@@ -40,8 +40,9 @@ public class FocusManager {
 		if(xTextEditor != null){
 			//TODO get the cooperate-internal element here
 			ICompositeNode node = NodeModelUtils.findActualNodeFor(element);
+
 			if(node == null){
-				System.err.println("Focus View: Couldn't set the focus on requested element");
+				System.err.println("Focus View: Couldn't set the focus on requested element. Element couldn't be found in Xtext resource.");
 				return;
 			}
 			ITextSelection selection = new TextSelection(xTextEditor.getDocument(), node.getOffset(), 0);

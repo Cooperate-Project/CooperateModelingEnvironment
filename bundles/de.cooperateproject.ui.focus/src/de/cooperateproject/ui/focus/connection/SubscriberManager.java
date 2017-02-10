@@ -56,7 +56,9 @@ public class SubscriberManager implements javax.jms.MessageListener{
 		try {
 			 //only one subscriber should exist
 			unsubscribe();
-			subscriber = topicSession.createSubscriber(topic);
+			//TODO set noLocal Attribute, so that the user won't be informed about his own focus request
+			//only for testing purposes at the moment
+			subscriber = topicSession.createSubscriber(topic); 
 			subscriber.setMessageListener(this);
 		} catch (JMSException e) {
 			e.printStackTrace();

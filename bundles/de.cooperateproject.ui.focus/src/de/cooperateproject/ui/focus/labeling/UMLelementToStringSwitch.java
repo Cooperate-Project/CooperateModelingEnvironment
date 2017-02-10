@@ -1,14 +1,29 @@
 package de.cooperateproject.ui.focus.labeling;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 public class UMLelementToStringSwitch extends UMLSwitch<String>{
+	
+	private static final EClass[] SET_VALUES = new EClass[] {UMLPackage.Literals.CLASS, UMLPackage.Literals.ASSOCIATION, UMLPackage.Literals.INTERFACE,
+			UMLPackage.Literals.OPERATION, UMLPackage.Literals.PROPERTY, UMLPackage.Literals.PACKAGE};
+	private static final Set<EClass> supportedTypes = new HashSet<EClass>(Arrays.asList(SET_VALUES));
+	
+	public static boolean isOfSupportedType(EObject obj){
+		return supportedTypes.contains(obj.eClass());
+	}
 
 	@Override 
 	public String caseClass(org.eclipse.uml2.uml.Class object){

@@ -15,6 +15,7 @@ import de.cooperateproject.ui.focus.labeling.FocusViewLabelProvider;
 import de.cooperateproject.ui.focus.labeling.HistoryElement;
 import de.cooperateproject.ui.focus.labeling.UMLelementToStringSwitch;
 
+import java.awt.Toolkit;
 import java.util.LinkedList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -27,6 +28,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 
 
 public class FocusView extends ViewPart{
@@ -87,8 +89,8 @@ public class FocusView extends ViewPart{
 		doubleClickActionHistoryViewer = new Action(){
 			public void run() {
 				IStructuredSelection selection = (IStructuredSelection) historyViewer.getSelection();
-				if(selection.getFirstElement() instanceof EObject)
-					FocusManager.getInstance().setFocusedElement((EObject) selection.getFirstElement());
+				if(selection.getFirstElement() instanceof HistoryElement)
+					FocusManager.getInstance().setFocusedElement(((HistoryElement) selection.getFirstElement()).getFocusedElement());
 			}
 		};
 	}
@@ -180,7 +182,18 @@ public class FocusView extends ViewPart{
 	   	focusButton.setText("send focus");
 	   	focusButton.addSelectionListener(new SelectionAdapter(){
 	   		public void widgetSelected(SelectionEvent event){
-	   			SubscriberManager.getInstance().sendFocusRequest(FocusManager.getInstance().getFocusedElement());
+	   			EObject focusedElement = FocusManager.getInstance().getFocusedElement();
+	   			if(UMLelementToStringSwitch.isOfSupportedType(focusedElement)){
+	   				SubscriberManager.getInstance().sendFocusRequest(FocusManager.getInstance().getFocusedElement());
+	   				//TODO
+		   			//testing purpose: handleFocusRequest(FocusManager.getInstance().getFocusedElement(), System.currentTimeMillis()); 
+	   			}else{
+	   				Toolkit.getDefaultToolkit().beep();
+	   				final String message = "Unsupported object type: focus on this object couldn't be sent.";
+	   				MessageDialog focusTypeNotSupportedDialog = new MessageDialog(parent.getShell(), "Focus not sent", null, message, MessageDialog.WARNING, new String[]{"Ok"}, 0);
+	   				focusTypeNotSupportedDialog.open();
+	   			}
+	   			
 	   		}
 	   	});
 	   	
@@ -237,7 +250,6 @@ public class FocusView extends ViewPart{
 		@Override
 		public int open(){
 			int ret = super.open();
-			//TODO: make a sound
 			return ret;
 		}
 		
@@ -262,6 +274,7 @@ public class FocusView extends ViewPart{
 		}
 
 		public void setFocusedElement(EObject focusedElement) {
+			Toolkit.getDefaultToolkit().beep();
 			this.focusedElement = focusedElement;
 		}
 		
