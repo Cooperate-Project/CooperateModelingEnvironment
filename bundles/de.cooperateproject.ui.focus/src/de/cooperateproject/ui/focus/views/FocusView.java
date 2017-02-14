@@ -192,8 +192,6 @@ public class FocusView extends ViewPart{
 	   			EObject focusedElement = FocusManager.getInstance().getFocusedElement();
 	   			if(UMLelementToStringSwitch.isOfSupportedType(focusedElement)){
 	   				SubscriberManager.getInstance().sendFocusRequest(FocusManager.getInstance().getFocusedElement());
-	   				//TODO
-		   			//testing purpose: handleFocusRequest(FocusManager.getInstance().getFocusedElement(), System.currentTimeMillis()); 
 	   			}else{
 	   				Toolkit.getDefaultToolkit().beep();
 	   				final String message = "Unsupported object type: focus on this object couldn't be sent.";

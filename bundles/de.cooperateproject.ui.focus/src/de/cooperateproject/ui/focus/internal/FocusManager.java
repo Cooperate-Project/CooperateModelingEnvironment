@@ -2,7 +2,9 @@ package de.cooperateproject.ui.focus.internal;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ISelection;
@@ -38,9 +40,12 @@ public class FocusManager {
 	public void setFocusedElement(EObject element){ 
 		//set focus in textual editor
 		if(xTextEditor != null){
-			//TODO get the cooperate-internal element here
-			ICompositeNode node = NodeModelUtils.findActualNodeFor(element);
 
+			UMLToClsIUnitOfWork unit = new UMLToClsIUnitOfWork();
+			unit.setUmlElement(element);
+			xTextEditor.getDocument().modify(unit);
+			
+			ICompositeNode node = NodeModelUtils.findActualNodeFor(unit.getClsElement());
 			if(node == null){
 				System.err.println("Focus View: Couldn't set the focus on requested element. Element couldn't be found in Xtext resource.");
 				return;
@@ -70,7 +75,7 @@ public class FocusManager {
 			xTextEditor.getDocument().modify(unit);
 			
 			focusedElement = unit.getFocusedElement();
-			//TODO find out if here can be objects which aren't of type UMLReferencingElement and handle them too.
+
 			if(focusedElement instanceof UMLReferencingElement){
 				//get the referenced element corresponding to the UML model from the cooperate-internal element
 				focusedElement = ((UMLReferencingElement)focusedElement).getReferencedElement();
@@ -138,4 +143,42 @@ public class FocusManager {
 		}
 		
 	}
+	
+	private class UMLToClsIUnitOfWork extends IUnitOfWork.Void<XtextResource>{
+
+		private EObject umlElement = null;
+		private EObject clsElement = null;
+		
+		public void setUmlElement(EObject element){
+			umlElement = element;
+		}
+		
+		@Override
+		public void process(XtextResource state) throws Exception {
+			  if(umlElement == null){
+				  return;
+			  }
+			  SwitchUMLToCls clsSwitch = new SwitchUMLToCls();
+			  TreeIterator<EObject> it = state.getAllContents(); 
+			  while(it.hasNext()){
+				  EObject clsTempElement = it.next();
+				  EObject referencedUMLElement = clsSwitch.doSwitch(clsTempElement);
+				 
+				  
+				  if(EcoreUtil.equals(referencedUMLElement, umlElement)){
+					  clsElement = clsTempElement;
+					  break;
+				  }
+			  }
+		}
+		
+		public EObject getClsElement(){
+			return clsElement;
+		}
+		
+	}
+	
+	
+	
+	
 }
