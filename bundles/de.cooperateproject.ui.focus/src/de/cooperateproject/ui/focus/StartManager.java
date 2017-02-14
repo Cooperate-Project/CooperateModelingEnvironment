@@ -17,7 +17,7 @@ import de.cooperateproject.ui.focus.internal.FocusManager;
 import de.cooperateproject.ui.focus.views.FocusView;
 
 public class StartManager implements IStartup, IPartListener {
-	
+
 	private final String papyrusEditorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private final String xTextEditorID = "de.cooperateproject.modeling.textual.cls.Cls";
 	private final String projectExplorer = "org.eclipse.ui.navigator.ProjectExplorer";
@@ -28,24 +28,21 @@ public class StartManager implements IStartup, IPartListener {
 	public void earlyStartup() {
 		IWorkbenchPage page = null;
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (window != null)
-		{
-		    page = window.getActivePage();
+		if (window != null) {
+			page = window.getActivePage();
 		}
-		
-		if (page == null)
-		{
-		    IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
-		    for (int i = 0; i < windows.length; i++)
-		    {
-		        if (windows[i] != null)
-		        {
-		            window = windows[i];
-		            page = windows[i].getActivePage();
-		            if (page != null) break;
-		        }
-		    }
-		}	
+
+		if (page == null) {
+			IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
+			for (int i = 0; i < windows.length; i++) {
+				if (windows[i] != null) {
+					window = windows[i];
+					page = windows[i].getActivePage();
+					if (page != null)
+						break;
+				}
+			}
+		}
 		page.addPartListener(this);
 
 	}
@@ -55,50 +52,52 @@ public class StartManager implements IStartup, IPartListener {
 	}
 
 	@Override
-	public void partBroughtToTop(IWorkbenchPart part) {	
+	public void partBroughtToTop(IWorkbenchPart part) {
 	}
 
 	@Override
 	public void partClosed(IWorkbenchPart part) {
-		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID) || part == focusView){
+		if (part.getSite().getId().contentEquals(papyrusEditorID) || part.getSite().getId().contentEquals(xTextEditorID)
+				|| part == focusView) {
 			ConnectionManager.getInstance().disconnect();
 			FocusManager.getInstance().setInvalid();
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			page.hideView(focusView);
-	 	}
+		}
 	}
 
-	@Override	
+	@Override
 	public void partDeactivated(IWorkbenchPart part) {
 	}
 
 	@Override
 	public void partOpened(IWorkbenchPart part) {
 
-		if(part.getSite().getId().contentEquals(papyrusEditorID)|| part.getSite().getId().contentEquals(xTextEditorID)){
-			
-			IWorkbenchWindow window =  PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (part.getSite().getId().contentEquals(papyrusEditorID)
+				|| part.getSite().getId().contentEquals(xTextEditorID)) {
+
+			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 			ISelectionService service = window.getSelectionService();
 			IWorkbenchPage page = window.getActivePage();
 			IStructuredSelection selection = (IStructuredSelection) service.getSelection(projectExplorer);
 			IFile file = null;
-			
-			if(selection != null && selection.getFirstElement() instanceof IFile){
+
+			if (selection != null && selection.getFirstElement() instanceof IFile) {
 				file = (IFile) selection.getFirstElement();
-				
+
 				try {
-		 			focusView = (FocusView) page.showView(FocusView.ID);
-		 		} catch (PartInitException e) {
-		 			throw new RuntimeException(e);
-		 		}
-				
+					focusView = (FocusView) page.showView(FocusView.ID);
+				} catch (PartInitException e) {
+					throw new RuntimeException(e);
+				}
+
 				FocusManager.getInstance().setEditor(part);
-		 		focusView.setTitleText(file.getName());
-		 		SubscriberManager.getInstance().setView(focusView);
-		 		ConnectionManager.getInstance().connect(file);
+				focusView.setTitleText(file.getName());
+				SubscriberManager.getInstance().setView(focusView);
+				ConnectionManager.getInstance().connect(file);
 			}
-				
-		 }
-			
-	}	
+
+		}
+
+	}
 }

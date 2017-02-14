@@ -25,38 +25,40 @@ import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 
 public class FocusManager {
-	
+
 	private static FocusManager instance;
 	private CooperateCDOXtextEditor xTextEditor;
 	private PapyrusMultiDiagramEditor papyrusEditor;
-		
-	public static FocusManager getInstance(){
-		if(instance == null){
+
+	public static FocusManager getInstance() {
+		if (instance == null) {
 			instance = new FocusManager();
 		}
 		return instance;
 	}
-	
-	public void setFocusedElement(EObject element){ 
-		//set focus in textual editor
-		if(xTextEditor != null){
+
+	public void setFocusedElement(EObject element) {
+		// set focus in textual editor
+		if (xTextEditor != null) {
 
 			UMLToClsIUnitOfWork unit = new UMLToClsIUnitOfWork();
 			unit.setUmlElement(element);
 			xTextEditor.getDocument().modify(unit);
-			
+
 			ICompositeNode node = NodeModelUtils.findActualNodeFor(unit.getClsElement());
-			if(node == null){
-				System.err.println("Focus View: Couldn't set the focus on requested element. Element couldn't be found in Xtext resource.");
+			if (node == null) {
+				System.err.println(
+						"Focus View: Couldn't set the focus on requested element. Element couldn't be found in Xtext resource.");
 				return;
 			}
 			ITextSelection selection = new TextSelection(xTextEditor.getDocument(), node.getOffset(), 0);
 			xTextEditor.getSelectionProvider().setSelection(selection);
 		}
-		 //set focus in graphical editor
-		else if(papyrusEditor != null){
+		// set focus in graphical editor
+		else if (papyrusEditor != null) {
 			try {
-				OpenElementService openService = papyrusEditor.getServicesRegistry().getService(OpenElementService.class);
+				OpenElementService openService = papyrusEditor.getServicesRegistry()
+						.getService(OpenElementService.class);
 				openService.openSemanticElement(element);
 			} catch (PartInitException | ServiceException e) {
 				e.printStackTrace();
@@ -65,120 +67,117 @@ public class FocusManager {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public EObject getFocusedElement(){
-		
+	public EObject getFocusedElement() {
+
 		EObject focusedElement = null;
-		//user is currently working with textual editor 
-		if(xTextEditor != null){ 		
+		// user is currently working with textual editor
+		if (xTextEditor != null) {
 			FocusIUnitOfWork unit = new FocusIUnitOfWork();
-			unit.setOffset(((TextSelection)xTextEditor.getSelectionProvider().getSelection()).getOffset());
+			unit.setOffset(((TextSelection) xTextEditor.getSelectionProvider().getSelection()).getOffset());
 			xTextEditor.getDocument().modify(unit);
-			
+
 			focusedElement = unit.getFocusedElement();
 
-			if(focusedElement instanceof UMLReferencingElement){
-				//get the referenced element corresponding to the UML model from the cooperate-internal element
-				focusedElement = ((UMLReferencingElement)focusedElement).getReferencedElement();
+			if (focusedElement instanceof UMLReferencingElement) {
+				// get the referenced element corresponding to the UML model
+				// from the cooperate-internal element
+				focusedElement = ((UMLReferencingElement) focusedElement).getReferencedElement();
 			}
-			
+
 		}
-		 //user is currently working with graphical editor
-		else if(papyrusEditor != null){
+		// user is currently working with graphical editor
+		else if (papyrusEditor != null) {
 			ISelection selection = papyrusEditor.getSite().getSelectionProvider().getSelection();
 			Object selectedObject = null;
-			if(selection instanceof IStructuredSelection){
-				selectedObject = ((IStructuredSelection)selection).getFirstElement();
+			if (selection instanceof IStructuredSelection) {
+				selectedObject = ((IStructuredSelection) selection).getFirstElement();
 			}
 			focusedElement = getSelectedUmlObject(selectedObject);
-		}		
+		}
 		return focusedElement;
 	}
-		 
-	public void setEditor(IWorkbenchPart pSite){
-		if(pSite instanceof CooperateCDOXtextEditor){
-			xTextEditor = (CooperateCDOXtextEditor)pSite;
 
-		}else if(pSite instanceof PapyrusMultiDiagramEditor){
+	public void setEditor(IWorkbenchPart pSite) {
+		if (pSite instanceof CooperateCDOXtextEditor) {
+			xTextEditor = (CooperateCDOXtextEditor) pSite;
+
+		} else if (pSite instanceof PapyrusMultiDiagramEditor) {
 			papyrusEditor = (PapyrusMultiDiagramEditor) pSite;
 		}
 	}
-	
-	public void setInvalid(){
+
+	public void setInvalid() {
 		instance = null;
 	}
-	
+
 	private NamedElement getSelectedUmlObject(Object selection) {
-		
-		  NamedElement result = null;
-		  
-		  if(selection != null){
-			    if(selection instanceof IAdaptable) {
-			      result = (NamedElement)((IAdaptable)selection).getAdapter(NamedElement.class);
-			    }
-			    else{
-			      result = (NamedElement)Platform.getAdapterManager().getAdapter(selection, NamedElement.class);
-			    }	
+
+		NamedElement result = null;
+
+		if (selection != null) {
+			if (selection instanceof IAdaptable) {
+				result = (NamedElement) ((IAdaptable) selection).getAdapter(NamedElement.class);
+			} else {
+				result = (NamedElement) Platform.getAdapterManager().getAdapter(selection, NamedElement.class);
 			}
-		  return result;
+		}
+		return result;
 	}
-	
-	private class FocusIUnitOfWork extends IUnitOfWork.Void<XtextResource>{
+
+	private class FocusIUnitOfWork extends IUnitOfWork.Void<XtextResource> {
 
 		private int offset = -1;
 		private EObject focusedElement = null;
-		
-		public void setOffset(int offset){
+
+		public void setOffset(int offset) {
 			this.offset = offset;
 		}
+
 		@Override
 		public void process(XtextResource state) throws Exception {
-			  EObjectAtOffsetHelper helper = new EObjectAtOffsetHelper();
-			  if(offset != -1){
-				  focusedElement = helper.resolveContainedElementAt(state, offset);
-			  }    
+			EObjectAtOffsetHelper helper = new EObjectAtOffsetHelper();
+			if (offset != -1) {
+				focusedElement = helper.resolveContainedElementAt(state, offset);
+			}
 		}
-		
-		public EObject getFocusedElement(){
+
+		public EObject getFocusedElement() {
 			return focusedElement;
 		}
-		
+
 	}
-	
-	private class UMLToClsIUnitOfWork extends IUnitOfWork.Void<XtextResource>{
+
+	private class UMLToClsIUnitOfWork extends IUnitOfWork.Void<XtextResource> {
 
 		private EObject umlElement = null;
 		private EObject clsElement = null;
-		
-		public void setUmlElement(EObject element){
+
+		public void setUmlElement(EObject element) {
 			umlElement = element;
 		}
-		
+
 		@Override
 		public void process(XtextResource state) throws Exception {
-			  if(umlElement == null){
-				  return;
-			  }
-			  SwitchUMLToCls clsSwitch = new SwitchUMLToCls();
-			  TreeIterator<EObject> it = state.getAllContents(); 
-			  while(it.hasNext()){
-				  EObject clsTempElement = it.next();
-				  EObject referencedUMLElement = clsSwitch.doSwitch(clsTempElement);
-				 
-				  
-				  if(EcoreUtil.equals(referencedUMLElement, umlElement)){
-					  clsElement = clsTempElement;
-					  break;
-				  }
-			  }
+			if (umlElement == null) {
+				return;
+			}
+			SwitchUMLToCls clsSwitch = new SwitchUMLToCls();
+			TreeIterator<EObject> it = state.getAllContents();
+			while (it.hasNext()) {
+				EObject clsTempElement = it.next();
+				EObject referencedUMLElement = clsSwitch.doSwitch(clsTempElement);
+
+				if (EcoreUtil.equals(referencedUMLElement, umlElement)) {
+					clsElement = clsTempElement;
+					break;
+				}
+			}
 		}
-		
-		public EObject getClsElement(){
+
+		public EObject getClsElement() {
 			return clsElement;
 		}
-		
+
 	}
-	
-	
-	
-	
+
 }
