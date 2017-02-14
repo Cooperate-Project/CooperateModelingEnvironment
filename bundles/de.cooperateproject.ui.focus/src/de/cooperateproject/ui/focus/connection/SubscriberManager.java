@@ -2,8 +2,8 @@ package de.cooperateproject.ui.focus.connection;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
-import javax.jms.ObjectMessage;
 import javax.jms.Session;
+import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.jms.TopicConnection;
 import javax.jms.TopicPublisher;
@@ -12,6 +12,7 @@ import javax.jms.TopicSubscriber;
 
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
+import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -29,6 +30,8 @@ public class SubscriberManager implements javax.jms.MessageListener{
 	private TopicPublisher publisher = null;
 	private TopicSession topicSession = null;
 	private boolean isInitialized = false;
+	CDOSession cdoSession;
+	CDOView cdoView;
 	
 	public static SubscriberManager getInstance(){
 		if(instance == null){
@@ -42,7 +45,11 @@ public class SubscriberManager implements javax.jms.MessageListener{
 				topicSession = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 				topic = topicSession.createTopic(fileName);
 				publisher = topicSession.createPublisher(topic);
+				
+				cdoSession = CDOConnectionManager.getInstance().acquireSession(ConnectionManager.getInstance().getFile().getProject());
+				cdoView = cdoSession.openView();
 				isInitialized = true;
+				
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
@@ -58,7 +65,7 @@ public class SubscriberManager implements javax.jms.MessageListener{
 			unsubscribe();
 			//TODO set noLocal Attribute, so that the user won't be informed about his own focus request
 			//only for testing purposes at the moment
-			subscriber = topicSession.createSubscriber(topic); 
+			subscriber = topicSession.createSubscriber(topic);
 			subscriber.setMessageListener(this);
 		} catch (JMSException e) {
 			e.printStackTrace();
@@ -81,6 +88,8 @@ public class SubscriberManager implements javax.jms.MessageListener{
 		}
 	
 		try {
+			cdoView.close();
+			CDOConnectionManager.getInstance().releaseSession(cdoSession);
 			unsubscribe();
 			topicSession.close();
 			instance = null;
@@ -100,7 +109,9 @@ public class SubscriberManager implements javax.jms.MessageListener{
 		}
 		CDOID id = CDOUtil.getCDOObject(obj).cdoID();
 		try {
-			ObjectMessage msg = topicSession.createObjectMessage(id);
+			StringBuilder builder = new StringBuilder();
+			CDOIDUtil.write(builder, id);
+			TextMessage msg = topicSession.createTextMessage(builder.toString());
 			publisher.publish(msg);
 		} catch (JMSException e) {
 			e.printStackTrace();
@@ -112,24 +123,20 @@ public class SubscriberManager implements javax.jms.MessageListener{
 	@Override
 	public void onMessage(Message msg) {
 		try{
-			if(!(msg instanceof ObjectMessage)){
+			if(!(msg instanceof TextMessage)){
 				return;
 			}
 			
-			ObjectMessage message = (ObjectMessage) msg;
-			Object obj;
-				
-			obj = message.getObject();
+			TextMessage message = (TextMessage) msg;
 			
-			if(obj instanceof CDOID){
-				CDOSession session = CDOConnectionManager.getInstance().acquireSession(ConnectionManager.getInstance().getFile().getProject());
-				CDOView cdoView = session.openView();
-				CDOObject focusedObject = cdoView.getObject((CDOID)obj);
+			String text = message.getText();
+			
+			CDOID id = CDOIDUtil.read(text);
+			CDOObject focusedObject = cdoView.getObject(id);
+			if(focusedObject != null){
 				SubscriberManager.getInstance().view.handleFocusRequest(CDOUtil.getEObject(focusedObject), message.getJMSTimestamp());
-				cdoView.close();
-				CDOConnectionManager.getInstance().releaseSession(session);
 			}
-		
+			
 		}catch (JMSException e) {
 			e.printStackTrace();
 		}

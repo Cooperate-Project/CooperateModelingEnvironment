@@ -4,6 +4,7 @@ package de.cooperateproject.ui.focus.views;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
@@ -62,12 +63,18 @@ public class FocusView extends ViewPart{
 			return;
 		}
 		historyFocusEntries.add(new HistoryElement(focusedObject, timeStamp));
-		historyViewer.refresh();
-		for (TableColumn c : historyViewer.getTable().getColumns()){
-			c.pack();
-		}
-		focusDialog.setFocusedElement(focusedObject);
-		focusDialog.open();
+		Display.getDefault().asyncExec(new Runnable() {
+		    public void run() {
+		    	historyViewer.refresh();
+				
+				for (TableColumn c : historyViewer.getTable().getColumns()){
+					c.pack();
+				}
+				focusDialog.setFocusedElement(focusedObject);
+				focusDialog.open();
+		    }
+		});
+
 	}
 	
 	/**

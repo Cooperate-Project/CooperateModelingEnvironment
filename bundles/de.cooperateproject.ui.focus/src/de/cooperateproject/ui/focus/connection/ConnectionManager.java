@@ -26,11 +26,13 @@ public class ConnectionManager{
 		
 		try {
 			if(currentFile == null){
+				currentFile = file;
 				connection = ActiveMQConnection.makeConnection(address);
+				connection.start();
 				SubscriberManager.getInstance().initialize(connection, file.getName());
 				SubscriberManager.getInstance().subscribe();
-				connection.start();
 			}else if(currentFile != file){
+				currentFile = file;
 				SubscriberManager.getInstance().unsubscribe();
 				SubscriberManager.getInstance().initialize(connection, file.getName());
 				SubscriberManager.getInstance().subscribe();
@@ -39,7 +41,7 @@ public class ConnectionManager{
 				e.printStackTrace();	
 		 	}
 		
-		currentFile = file;
+		
 		
 	}
 	
