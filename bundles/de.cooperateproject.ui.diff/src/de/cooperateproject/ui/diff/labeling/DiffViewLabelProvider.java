@@ -1,6 +1,5 @@
 package de.cooperateproject.ui.diff.labeling;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,15 +27,14 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
 /**
  * Label Provider for the diff viewer's items of the diagram.
+ * 
  * @author Jasmin
  *
  */
-public class DiffViewLabelProvider extends LabelProvider{
-	
-	private Map<String, SummaryItemLabelHandler> itemHandling = 
-	        new HashMap<String, SummaryItemLabelHandler>();
+public class DiffViewLabelProvider extends LabelProvider {
 
-	
+	private Map<String, SummaryItemLabelHandler> itemHandling = new HashMap<String, SummaryItemLabelHandler>();
+
 	public DiffViewLabelProvider() {
 		itemHandling.put("AttributeImpl", new AttributeLabel());
 		itemHandling.put("ClassImpl", new ClassLabel());
@@ -56,22 +54,22 @@ public class DiffViewLabelProvider extends LabelProvider{
 		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
 		itemHandling.put("PackageImportImpl", new PackageImportLabel());
 	}
-	
-	
+
 	@Override
 	public String getText(Object element) {
 		String ret = "";
-		if(element instanceof DiffTreeItem){
-			SummaryItemLabelHandler handlerClass = itemHandling.get(((DiffTreeItem) element).getObject().getClass().getSimpleName());
-			if(handlerClass != null){
-				if(((DiffTreeItem) element).getDiffKind() != null){
+		if (element instanceof DiffTreeItem) {
+			SummaryItemLabelHandler handlerClass = itemHandling
+					.get(((DiffTreeItem) element).getObject().getClass().getSimpleName());
+			if (handlerClass != null) {
+				if (((DiffTreeItem) element).getDiffKind() != null) {
 					ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
 				}
-				
+
 				ret = ret + handlerClass.getText(((DiffTreeItem) element).getObject());
 			}
 		}
 		return ret;
 	}
-	
+
 }

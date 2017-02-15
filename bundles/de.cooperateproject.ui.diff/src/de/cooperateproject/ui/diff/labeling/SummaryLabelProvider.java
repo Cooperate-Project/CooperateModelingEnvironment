@@ -29,16 +29,15 @@ import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
 import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
 /**
- * Label Provider for a table viewer which lists all changes in a commit 
+ * Label Provider for a table viewer which lists all changes in a commit
+ * 
  * @author Jasmin
  *
  */
-public class SummaryLabelProvider extends LabelProvider implements ITableLabelProvider{
-	
-	private Map<String, SummaryItemLabelHandler> itemHandling = 
-	        new HashMap<String, SummaryItemLabelHandler>();
+public class SummaryLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-	
+	private Map<String, SummaryItemLabelHandler> itemHandling = new HashMap<String, SummaryItemLabelHandler>();
+
 	public SummaryLabelProvider() {
 		itemHandling.put("AttributeImpl", new AttributeLabel());
 		itemHandling.put("ClassImpl", new ClassLabel());
@@ -58,7 +57,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
 		itemHandling.put("PackageImportImpl", new PackageImportLabel());
 	}
-	
+
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
 		return null;
@@ -66,58 +65,79 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
-		
+
 		String ret = "";
 
-		if(element instanceof SummaryItem){
+		if (element instanceof SummaryItem) {
 
-			SummaryItem item = ((SummaryItem)element);
-		
+			SummaryItem item = ((SummaryItem) element);
+
 			SummaryItemLabelHandler handlerClassLeft = null;
 			SummaryItemLabelHandler handlerClassRight = null;
 			SummaryItemLabelHandler handlerClassParent = null;
 
-			
-			if(item.getLeft() != null){
-				 handlerClassLeft = itemHandling.get(item.getLeft().getClass().getSimpleName());
+			if (item.getLeft() != null) {
+				handlerClassLeft = itemHandling.get(item.getLeft().getClass().getSimpleName());
 			}
-			if(item.getRight() != null){
-				 handlerClassRight = itemHandling.get(item.getRight().getClass().getSimpleName()); //important to differentiate because of MOVE
+			if (item.getRight() != null) {
+				// important to differentiate because of MOVE
+				handlerClassRight = itemHandling.get(item.getRight().getClass().getSimpleName());
 			}
-			if(item.getCommonParent() != null){
-				 handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
+			if (item.getCommonParent() != null) {
+				handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
 			}
-			
-			if(item.getDifferenceKind() == DifferenceKind.MOVE){
-				switch(columnIndex){
-  				case 0: if(handlerClassLeft != null){
-  							ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " " + handlerClassLeft.getClassText();
-  						}
-  						break;
-  				case 1: if(handlerClassLeft != null) ret = handlerClassLeft.getText(item.getLeft()); break;
-  				case 2: if(handlerClassRight != null) ret = handlerClassRight.getText(item.getRight()); break;
-  				case 3: if(handlerClassParent != null) ret = handlerClassParent.getText(item.getCommonParent()); break;
-  				default: 
+
+			if (item.getDifferenceKind() == DifferenceKind.MOVE) {
+				switch (columnIndex) {
+				case 0:
+					if (handlerClassLeft != null) {
+						ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
+								+ handlerClassLeft.getClassText();
+					}
+					break;
+				case 1:
+					if (handlerClassLeft != null)
+						ret = handlerClassLeft.getText(item.getLeft());
+					break;
+				case 2:
+					if (handlerClassRight != null)
+						ret = handlerClassRight.getText(item.getRight());
+					break;
+				case 3:
+					if (handlerClassParent != null)
+						ret = handlerClassParent.getText(item.getCommonParent());
+					break;
+				default:
+				}
+			} else {
+				switch (columnIndex) {
+				case 0:
+					if (handlerClassLeft != null) {
+						ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
+								+ handlerClassLeft.getClassText();
+					} else if (handlerClassRight != null) {
+						ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
+								+ handlerClassRight.getClassText();
+					}
+					break;
+				case 1:
+					if (handlerClassParent != null)
+						ret = handlerClassParent.getText(item.getCommonParent());
+					break;
+				case 2:
+					if (handlerClassRight != null)
+						ret = handlerClassRight.getText(item.getRight());
+					break;
+				case 3:
+					if (handlerClassLeft != null)
+						ret = handlerClassLeft.getText(item.getLeft());
+					break;
+				default:
 				}
 			}
-			else{
-				switch(columnIndex){
-	  				case 0: if(handlerClassLeft != null){
-	  							ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " " + handlerClassLeft.getClassText();
-	  						}else if(handlerClassRight != null){
-	  							ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " " + handlerClassRight.getClassText();
-	  						}
-	  						break;
-	  				case 1: if(handlerClassParent != null) ret = handlerClassParent.getText(item.getCommonParent()); break;
-	  				case 2: if(handlerClassRight != null) ret = handlerClassRight.getText(item.getRight()); break;
-	  				case 3: if(handlerClassLeft != null) ret = handlerClassLeft.getText(item.getLeft()); break;
-	  				default: 
-			  	}
-			}
 		}
-		
+
 		return ret;
 	}
-
 
 }

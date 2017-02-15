@@ -10,7 +10,7 @@
       </category>
       <view
             name="Diff View"
-            icon="icons/sample.gif"
+            icon="icons/16/cooperate_16.png"
             category="de.cooperateproject.ui.diff"
             class="de.cooperateproject.ui.diff.views.DiffView"
             id="de.cooperateproject.ui.diff.views.DiffView">
