@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.internal;
+package de.cooperateproject.ui.diff.content;
 
 import java.util.ArrayList;
 import java.util.HashSet;
