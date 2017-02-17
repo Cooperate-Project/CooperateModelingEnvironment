@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.internal;
+package de.cooperateproject.ui.diff.content;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
+import de.cooperateproject.ui.diff.internal.CommentLinkAdapt;
 
 import java.util.HashMap;
 import java.util.List;

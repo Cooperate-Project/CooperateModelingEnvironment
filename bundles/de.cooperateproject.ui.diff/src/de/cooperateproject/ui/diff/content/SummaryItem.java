@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.internal;
+package de.cooperateproject.ui.diff.content;
 
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;

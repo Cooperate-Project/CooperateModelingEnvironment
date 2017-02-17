@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.eclipse.jface.viewers.LabelProvider;
 
-import de.cooperateproject.ui.diff.internal.DiffTreeItem;
+import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationPropertiesLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;

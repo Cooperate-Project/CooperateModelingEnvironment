@@ -1,9 +1,11 @@
 package de.cooperateproject.ui.diff.handlers;
 
+import java.awt.Toolkit;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IFile;
-
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
@@ -31,6 +33,8 @@ public class OpenViewHandler extends AbstractHandler {
 		DiffView diffView = null;
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
+		MessageDialog errorDialog;
+		final String errorTitle = "Error: Diff View";
 		/**
 		 * The current user's selection, has to be a .cooperate-file, since the
 		 * command is only visible on them.
@@ -43,7 +47,13 @@ public class OpenViewHandler extends AbstractHandler {
 				// open the DiffView
 				diffView = (DiffView) page.showView(DiffView.ID);
 			} catch (PartInitException e) {
-				throw new RuntimeException(e);
+				e.printStackTrace();
+				Toolkit.getDefaultToolkit().beep();
+				final String message = "Diff View couldn't be initialized. " + e.getMessage();
+				errorDialog = new MessageDialog(window.getShell(), errorTitle, null, message, MessageDialog.ERROR,
+						new String[] { "Ok" }, 0);
+				errorDialog.open();
+				return null;
 			}
 
 			if (diffView != null) {
@@ -53,6 +63,12 @@ public class OpenViewHandler extends AbstractHandler {
 				diffView.setSelectedFile((IFile) strucSelection.getFirstElement());
 			}
 
+		} else {
+			Toolkit.getDefaultToolkit().beep();
+			final String message = "Diff View wasn't opened due to unexpected selection type.";
+			errorDialog = new MessageDialog(window.getShell(), errorTitle, null, message, MessageDialog.ERROR,
+					new String[] { "Ok" }, 0);
+			errorDialog.open();
 		}
 
 		return null;

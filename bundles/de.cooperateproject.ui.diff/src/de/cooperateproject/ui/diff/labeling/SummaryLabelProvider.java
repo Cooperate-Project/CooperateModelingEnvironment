@@ -8,7 +8,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import de.cooperateproject.ui.diff.internal.SummaryItem;
+import de.cooperateproject.ui.diff.content.SummaryItem;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationPropertiesLabel;
 import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
