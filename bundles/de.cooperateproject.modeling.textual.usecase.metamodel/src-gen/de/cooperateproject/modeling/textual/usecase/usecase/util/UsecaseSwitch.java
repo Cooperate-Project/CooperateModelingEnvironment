@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.Element;
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
  * @generated
  */
-public class UsecaseSwitch<T> extends Switch<T> {
+public class UsecaseSwitch<T1> extends Switch<T1> {
 	/**
      * The cached model package
      * <!-- begin-user-doc -->
@@ -83,43 +83,44 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @generated
      */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
+	protected T1 doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
             case UsecasePackage.USE_CASE_DIAGRAM: {
                 UseCaseDiagram useCaseDiagram = (UseCaseDiagram)theEObject;
-                T result = caseUseCaseDiagram(useCaseDiagram);
+                T1 result = caseUseCaseDiagram(useCaseDiagram);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.NAMED_ELEMENT: {
                 NamedElement namedElement = (NamedElement)theEObject;
-                T result = caseNamedElement(namedElement);
+                T1 result = caseNamedElement(namedElement);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.ALIASED_ELEMENT: {
                 AliasedElement aliasedElement = (AliasedElement)theEObject;
-                T result = caseAliasedElement(aliasedElement);
+                T1 result = caseAliasedElement(aliasedElement);
                 if (result == null) result = caseNamedElement(aliasedElement);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.BEHAVIORED_CLASSIFIER: {
-                BehavioredClassifier behavioredClassifier = (BehavioredClassifier)theEObject;
-                T result = caseBehavioredClassifier(behavioredClassifier);
+                BehavioredClassifier<?> behavioredClassifier = (BehavioredClassifier<?>)theEObject;
+                T1 result = caseBehavioredClassifier(behavioredClassifier);
                 if (result == null) result = caseCommentable(behavioredClassifier);
+                if (result == null) result = caseUMLReferencingElement(behavioredClassifier);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.COMMENTABLE: {
                 Commentable commentable = (Commentable)theEObject;
-                T result = caseCommentable(commentable);
+                T1 result = caseCommentable(commentable);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.ROOT_PACKAGE: {
                 RootPackage rootPackage = (RootPackage)theEObject;
-                T result = caseRootPackage(rootPackage);
+                T1 result = caseRootPackage(rootPackage);
                 if (result == null) result = caseNamedElement(rootPackage);
                 if (result == null) result = caseUMLReferencingElement(rootPackage);
                 if (result == null) result = defaultCase(theEObject);
@@ -127,18 +128,18 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.ACTOR: {
                 Actor actor = (Actor)theEObject;
-                T result = caseActor(actor);
+                T1 result = caseActor(actor);
                 if (result == null) result = caseAliasedElement(actor);
                 if (result == null) result = caseBehavioredClassifier(actor);
-                if (result == null) result = caseUMLReferencingElement(actor);
                 if (result == null) result = caseNamedElement(actor);
                 if (result == null) result = caseCommentable(actor);
+                if (result == null) result = caseUMLReferencingElement(actor);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.SYSTEM: {
                 de.cooperateproject.modeling.textual.usecase.usecase.System system = (de.cooperateproject.modeling.textual.usecase.usecase.System)theEObject;
-                T result = caseSystem(system);
+                T1 result = caseSystem(system);
                 if (result == null) result = caseNamedElement(system);
                 if (result == null) result = caseUMLReferencingElement(system);
                 if (result == null) result = defaultCase(theEObject);
@@ -146,18 +147,18 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.USE_CASE: {
                 UseCase useCase = (UseCase)theEObject;
-                T result = caseUseCase(useCase);
+                T1 result = caseUseCase(useCase);
                 if (result == null) result = caseAliasedElement(useCase);
                 if (result == null) result = caseBehavioredClassifier(useCase);
-                if (result == null) result = caseUMLReferencingElement(useCase);
                 if (result == null) result = caseNamedElement(useCase);
                 if (result == null) result = caseCommentable(useCase);
+                if (result == null) result = caseUMLReferencingElement(useCase);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.EXTENSION_POINT: {
                 ExtensionPoint extensionPoint = (ExtensionPoint)theEObject;
-                T result = caseExtensionPoint(extensionPoint);
+                T1 result = caseExtensionPoint(extensionPoint);
                 if (result == null) result = caseAliasedElement(extensionPoint);
                 if (result == null) result = caseUMLReferencingElement(extensionPoint);
                 if (result == null) result = caseNamedElement(extensionPoint);
@@ -166,13 +167,13 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.RELATIONSHIP: {
                 Relationship relationship = (Relationship)theEObject;
-                T result = caseRelationship(relationship);
+                T1 result = caseRelationship(relationship);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.ASSOCIATION: {
                 Association association = (Association)theEObject;
-                T result = caseAssociation(association);
+                T1 result = caseAssociation(association);
                 if (result == null) result = caseRelationship(association);
                 if (result == null) result = caseUMLReferencingElement(association);
                 if (result == null) result = defaultCase(theEObject);
@@ -180,7 +181,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.GENERALIZATION: {
                 Generalization generalization = (Generalization)theEObject;
-                T result = caseGeneralization(generalization);
+                T1 result = caseGeneralization(generalization);
                 if (result == null) result = caseRelationship(generalization);
                 if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
@@ -188,7 +189,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.INCLUDE: {
                 Include include = (Include)theEObject;
-                T result = caseInclude(include);
+                T1 result = caseInclude(include);
                 if (result == null) result = caseRelationship(include);
                 if (result == null) result = caseUMLReferencingElement(include);
                 if (result == null) result = defaultCase(theEObject);
@@ -196,7 +197,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.EXTEND: {
                 Extend extend = (Extend)theEObject;
-                T result = caseExtend(extend);
+                T1 result = caseExtend(extend);
                 if (result == null) result = caseRelationship(extend);
                 if (result == null) result = caseUMLReferencingElement(extend);
                 if (result == null) result = defaultCase(theEObject);
@@ -204,7 +205,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.COMMENT: {
                 Comment comment = (Comment)theEObject;
-                T result = caseComment(comment);
+                T1 result = caseComment(comment);
                 if (result == null) result = caseRelationship(comment);
                 if (result == null) result = caseUMLReferencingElement(comment);
                 if (result == null) result = defaultCase(theEObject);
@@ -212,13 +213,13 @@ public class UsecaseSwitch<T> extends Switch<T> {
             }
             case UsecasePackage.CARDINALITY: {
                 Cardinality cardinality = (Cardinality)theEObject;
-                T result = caseCardinality(cardinality);
+                T1 result = caseCardinality(cardinality);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case UsecasePackage.UML_REFERENCING_ELEMENT: {
                 UMLReferencingElement<?> umlReferencingElement = (UMLReferencingElement<?>)theEObject;
-                T result = caseUMLReferencingElement(umlReferencingElement);
+                T1 result = caseUMLReferencingElement(umlReferencingElement);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -237,7 +238,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseUseCaseDiagram(UseCaseDiagram object) {
+	public T1 caseUseCaseDiagram(UseCaseDiagram object) {
         return null;
     }
 
@@ -252,7 +253,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseNamedElement(NamedElement object) {
+	public T1 caseNamedElement(NamedElement object) {
         return null;
     }
 
@@ -267,7 +268,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseAliasedElement(AliasedElement object) {
+	public T1 caseAliasedElement(AliasedElement object) {
         return null;
     }
 
@@ -282,7 +283,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseBehavioredClassifier(BehavioredClassifier object) {
+	public <T extends org.eclipse.uml2.uml.BehavioredClassifier> T1 caseBehavioredClassifier(BehavioredClassifier<T> object) {
         return null;
     }
 
@@ -297,7 +298,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseCommentable(Commentable object) {
+	public T1 caseCommentable(Commentable object) {
         return null;
     }
 
@@ -312,7 +313,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseRootPackage(RootPackage object) {
+	public T1 caseRootPackage(RootPackage object) {
         return null;
     }
 
@@ -327,7 +328,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseActor(Actor object) {
+	public T1 caseActor(Actor object) {
         return null;
     }
 
@@ -342,7 +343,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseSystem(de.cooperateproject.modeling.textual.usecase.usecase.System object) {
+	public T1 caseSystem(de.cooperateproject.modeling.textual.usecase.usecase.System object) {
         return null;
     }
 
@@ -357,7 +358,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseUseCase(UseCase object) {
+	public T1 caseUseCase(UseCase object) {
         return null;
     }
 
@@ -372,7 +373,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseExtensionPoint(ExtensionPoint object) {
+	public T1 caseExtensionPoint(ExtensionPoint object) {
         return null;
     }
 
@@ -387,7 +388,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseRelationship(Relationship object) {
+	public T1 caseRelationship(Relationship object) {
         return null;
     }
 
@@ -402,7 +403,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseAssociation(Association object) {
+	public T1 caseAssociation(Association object) {
         return null;
     }
 
@@ -417,7 +418,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseGeneralization(Generalization object) {
+	public T1 caseGeneralization(Generalization object) {
         return null;
     }
 
@@ -432,7 +433,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseInclude(Include object) {
+	public T1 caseInclude(Include object) {
         return null;
     }
 
@@ -447,7 +448,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseExtend(Extend object) {
+	public T1 caseExtend(Extend object) {
         return null;
     }
 
@@ -462,7 +463,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseComment(Comment object) {
+	public T1 caseComment(Comment object) {
         return null;
     }
 
@@ -477,7 +478,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public T caseCardinality(Cardinality object) {
+	public T1 caseCardinality(Cardinality object) {
         return null;
     }
 
@@ -492,7 +493,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public <UMLType extends Element> T caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
+	public <UMLType extends Element> T1 caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
         return null;
     }
 
@@ -508,7 +509,7 @@ public class UsecaseSwitch<T> extends Switch<T> {
      * @generated
      */
 	@Override
-	public T defaultCase(EObject object) {
+	public T1 defaultCase(EObject object) {
         return null;
     }
 

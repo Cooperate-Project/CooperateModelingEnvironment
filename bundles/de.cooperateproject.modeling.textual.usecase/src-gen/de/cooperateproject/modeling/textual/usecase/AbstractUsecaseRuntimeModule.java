@@ -16,6 +16,8 @@ import de.cooperateproject.modeling.textual.usecase.serializer.UsecaseSemanticSe
 import de.cooperateproject.modeling.textual.usecase.serializer.UsecaseSyntacticSequencer;
 import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAccess;
 import de.cooperateproject.modeling.textual.usecase.validation.UsecaseValidator;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
@@ -220,6 +222,11 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
 		return DefaultUMLPrimitiveTypeSelector.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IDerivedStateResourceHandlerFactory> bindIDerivedStateResourceHandlerFactory() {
+		return DerivedStateResourceHandlerFactory.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2

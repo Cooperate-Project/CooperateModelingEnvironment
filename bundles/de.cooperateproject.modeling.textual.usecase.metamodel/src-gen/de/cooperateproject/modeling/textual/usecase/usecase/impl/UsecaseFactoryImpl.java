@@ -4,16 +4,13 @@ package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.ActorType;
-import de.cooperateproject.modeling.textual.usecase.usecase.AliasedElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
 import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality;
 import de.cooperateproject.modeling.textual.usecase.usecase.Comment;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
-import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
@@ -75,14 +72,11 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 	public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case UsecasePackage.USE_CASE_DIAGRAM: return (EObject)createUseCaseDiagram();
-            case UsecasePackage.ALIASED_ELEMENT: return (EObject)createAliasedElement();
-            case UsecasePackage.BEHAVIORED_CLASSIFIER: return (EObject)createBehavioredClassifier();
             case UsecasePackage.ROOT_PACKAGE: return (EObject)createRootPackage();
             case UsecasePackage.ACTOR: return (EObject)createActor();
             case UsecasePackage.SYSTEM: return (EObject)createSystem();
             case UsecasePackage.USE_CASE: return (EObject)createUseCase();
             case UsecasePackage.EXTENSION_POINT: return (EObject)createExtensionPoint();
-            case UsecasePackage.RELATIONSHIP: return (EObject)createRelationship();
             case UsecasePackage.ASSOCIATION: return (EObject)createAssociation();
             case UsecasePackage.GENERALIZATION: return (EObject)createGeneralization();
             case UsecasePackage.INCLUDE: return (EObject)createInclude();
@@ -143,26 +137,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public AliasedElement createAliasedElement() {
-        AliasedElementImpl aliasedElement = new AliasedElementImpl();
-        return aliasedElement;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public BehavioredClassifier createBehavioredClassifier() {
-        BehavioredClassifierImpl behavioredClassifier = new BehavioredClassifierImpl();
-        return behavioredClassifier;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
 	public RootPackage createRootPackage() {
         RootPackageImpl rootPackage = new RootPackageImpl();
         return rootPackage;
@@ -206,16 +180,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
 	public ExtensionPoint createExtensionPoint() {
         ExtensionPointImpl extensionPoint = new ExtensionPointImpl();
         return extensionPoint;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public Relationship createRelationship() {
-        RelationshipImpl relationship = new RelationshipImpl();
-        return relationship;
     }
 
 	/**

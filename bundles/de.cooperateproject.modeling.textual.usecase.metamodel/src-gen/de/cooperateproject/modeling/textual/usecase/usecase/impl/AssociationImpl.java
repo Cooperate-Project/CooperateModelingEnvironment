@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.InternalEObject;
  *
  * @generated
  */
-public class AssociationImpl extends RelationshipImpl implements Association {
+public class AssociationImpl extends CDOObjectImpl implements Association {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +53,16 @@ public class AssociationImpl extends RelationshipImpl implements Association {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.editor;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -19,9 +20,16 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolution;
+import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.xtext.validation.Issue;
 
 import com.google.common.collect.Sets;
+import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.PreferenceHandler;
@@ -56,12 +64,23 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
     private IContextActivation contextActivation;
 
+    @Inject
+    private IResourceValidator resourceValidator;
+
+    @Inject
+    private IAutomatedIssueResolutionProvider preSaveValidationIssueFixer;
+
+    @Inject
+    private IDerivedStateResourceHandlerFactory derivedStateResourceHandlerFactory;
+
     @Override
     protected void handleCursorPositionChanged() {
         super.handleCursorPositionChanged();
         IXtextDocument document = getDocument();
         CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
-
+        if (cooperateXtextDocument.getResource() == null) {
+            return;
+        }
         ErrorIndicatorSettings signalType = PreferenceHandler.INSTANCE.getErrorIndicatorSetting();
         EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
 
@@ -71,6 +90,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
         IXtextDocument document = getDocument();
+        performPreSaveActions();
         CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
         IStatus status = scheduleValidation(cooperateXtextDocument);
         if (status.isOK()) {
@@ -83,6 +103,34 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         } else if (status.matches(IStatus.CANCEL)) {
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
             return;
+        }
+    }
+
+    private void performPreSaveActions() {
+        performValidationIssueFixing();
+    }
+
+    private void performValidationIssueFixing() {
+        if (preSaveValidationIssueFixer == null) {
+            return;
+        }
+
+        CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+        Collection<Issue> detectedIssues = Collections.emptyList();
+        Collection<IssueResolution> issueResolutions = Collections.emptyList();
+
+        IDerivedStateHandler derivedStateHandler = derivedStateResourceHandlerFactory
+                .create(cooperateXtextDocument.getResource());
+        try {
+            derivedStateHandler.disableCalculation();
+            do {
+                detectedIssues = resourceValidator.validate(cooperateXtextDocument.getResource(), CheckMode.ALL,
+                        CancelIndicator.NullImpl);
+                issueResolutions = preSaveValidationIssueFixer.get(detectedIssues);
+                issueResolutions.forEach(i -> i.apply());
+            } while (!issueResolutions.isEmpty());
+        } finally {
+            derivedStateHandler.enableCalculation();
         }
     }
 

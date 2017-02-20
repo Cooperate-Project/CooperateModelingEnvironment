@@ -260,14 +260,14 @@ public class ActorImpl extends AliasedElementImpl implements Actor {
                 default: return -1;
             }
         }
-        if (baseClass == BehavioredClassifier.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case UsecasePackage.ACTOR__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == BehavioredClassifier.class) {
+            switch (derivedFeatureID) {
                 default: return -1;
             }
         }
@@ -286,14 +286,14 @@ public class ActorImpl extends AliasedElementImpl implements Actor {
                 default: return -1;
             }
         }
-        if (baseClass == BehavioredClassifier.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ACTOR__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == BehavioredClassifier.class) {
+            switch (baseFeatureID) {
                 default: return -1;
             }
         }

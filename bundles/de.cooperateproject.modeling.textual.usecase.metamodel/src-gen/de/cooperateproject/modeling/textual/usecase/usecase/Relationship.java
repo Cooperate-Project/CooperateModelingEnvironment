@@ -11,7 +11,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getRelationship()
- * @model
+ * @model interface="true" abstract="true"
  * @extends CDOObject
  * @generated
  */

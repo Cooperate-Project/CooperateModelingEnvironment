@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class AliasedElementImpl extends NamedElementImpl implements AliasedElement {
+public abstract class AliasedElementImpl extends NamedElementImpl implements AliasedElement {
 	/**
      * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
      * <!-- begin-user-doc -->

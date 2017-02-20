@@ -99,7 +99,7 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
                 return createAliasedElementAdapter();
             }
             @Override
-            public Adapter caseBehavioredClassifier(BehavioredClassifier object) {
+            public <T extends org.eclipse.uml2.uml.BehavioredClassifier> Adapter caseBehavioredClassifier(BehavioredClassifier<T> object) {
                 return createBehavioredClassifierAdapter();
             }
             @Override

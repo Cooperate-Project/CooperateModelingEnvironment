@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IncludeImpl extends RelationshipImpl implements Include {
+public class IncludeImpl extends CDOObjectImpl implements Include {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,6 +46,16 @@ public class IncludeImpl extends RelationshipImpl implements Include {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

@@ -873,26 +873,32 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
         // Create type parameters
+        ETypeParameter behavioredClassifierEClass_T = addETypeParameter(behavioredClassifierEClass, "T");
         ETypeParameter umlReferencingElementEClass_UMLType = addETypeParameter(umlReferencingElementEClass, "UMLType");
 
         // Set bounds for type parameters
-        EGenericType g1 = createEGenericType(theUMLPackage.getElement());
+        EGenericType g1 = createEGenericType(theUMLPackage.getBehavioredClassifier());
+        behavioredClassifierEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getElement());
         umlReferencingElementEClass_UMLType.getEBounds().add(g1);
 
         // Add supertypes to classes
         aliasedElementEClass.getESuperTypes().add(this.getNamedElement());
-        behavioredClassifierEClass.getESuperTypes().add(this.getCommentable());
+        g1 = createEGenericType(this.getCommentable());
+        behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getUMLReferencingElement());
+        EGenericType g2 = createEGenericType(behavioredClassifierEClass_T);
+        g1.getETypeArguments().add(g2);
+        behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getNamedElement());
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getUMLReferencingElement());
-        EGenericType g2 = createEGenericType(theUMLPackage.getPackage());
+        g2 = createEGenericType(theUMLPackage.getPackage());
         g1.getETypeArguments().add(g2);
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getAliasedElement());
         actorEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
-        actorEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getActor());
         g1.getETypeArguments().add(g2);
         actorEClass.getEGenericSuperTypes().add(g1);
@@ -905,8 +911,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g1 = createEGenericType(this.getAliasedElement());
         useCaseEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
-        useCaseEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getUseCase());
         g1.getETypeArguments().add(g2);
         useCaseEClass.getEGenericSuperTypes().add(g1);
@@ -955,10 +959,10 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(aliasedElementEClass, AliasedElement.class, "AliasedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(aliasedElementEClass, AliasedElement.class, "AliasedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAliasedElement_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, AliasedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(behavioredClassifierEClass, BehavioredClassifier.class, "BehavioredClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(behavioredClassifierEClass, BehavioredClassifier.class, "BehavioredClassifier", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(commentableEClass, Commentable.class, "Commentable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -986,7 +990,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEClass(extensionPointEClass, ExtensionPoint.class, "ExtensionPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getExtensionPoint_UseCase(), this.getUseCase(), this.getUseCase_ExtensionPoints(), "useCase", null, 1, 1, ExtensionPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(relationshipEClass, Relationship.class, "Relationship", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getAssociation_Actor(), this.getActor(), null, "actor", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -995,8 +999,14 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEReference(getAssociation_RightCardinality(), this.getCardinality(), null, "rightCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getGeneralization_Specific(), this.getBehavioredClassifier(), null, "specific", null, 1, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getGeneralization_General(), this.getBehavioredClassifier(), null, "general", null, 1, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getBehavioredClassifier());
+        g2 = createEGenericType(theUMLPackage.getBehavioredClassifier());
+        g1.getETypeArguments().add(g2);
+        initEReference(getGeneralization_Specific(), g1, null, "specific", null, 1, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getBehavioredClassifier());
+        g2 = createEGenericType(theUMLPackage.getBehavioredClassifier());
+        g1.getETypeArguments().add(g2);
+        initEReference(getGeneralization_General(), g1, null, "general", null, 1, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(includeEClass, Include.class, "Include", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getInclude_Addition(), this.getUseCase(), null, "addition", null, 1, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1018,7 +1028,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
         initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
-        initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(visibilityEEnum, Visibility.class, "Visibility");

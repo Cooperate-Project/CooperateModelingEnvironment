@@ -35,7 +35,7 @@ public interface UMLReferencingElement<UMLType extends Element> extends CDOObjec
      * @return the value of the '<em>Referenced Element</em>' reference.
      * @see #setReferencedElement(Element)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUMLReferencingElement_ReferencedElement()
-     * @model
+     * @model transient="true"
      * @generated
      */
 	UMLType getReferencedElement();

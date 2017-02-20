@@ -215,23 +215,32 @@ public interface UsecasePackage extends EPackage {
 	int COMMENTABLE_OPERATION_COUNT = 0;
 
 	/**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl <em>Behaviored Classifier</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier <em>Behaviored Classifier</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getBehavioredClassifier()
      * @generated
      */
 	int BEHAVIORED_CLASSIFIER = 3;
 
 	/**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT = COMMENTABLE_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Behaviored Classifier</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BEHAVIORED_CLASSIFIER_FEATURE_COUNT = COMMENTABLE_FEATURE_COUNT + 0;
+	int BEHAVIORED_CLASSIFIER_FEATURE_COUNT = COMMENTABLE_FEATURE_COUNT + 1;
 
 	/**
      * The number of operations of the '<em>Behaviored Classifier</em>' class.
@@ -626,10 +635,10 @@ public interface UsecasePackage extends EPackage {
 	int EXTENSION_POINT_OPERATION_COUNT = ALIASED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl <em>Relationship</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Relationship <em>Relationship</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Relationship
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getRelationship()
      * @generated
      */
@@ -1740,10 +1749,10 @@ public interface UsecasePackage extends EPackage {
 		EAttribute ALIASED_ELEMENT__ALIAS = eINSTANCE.getAliasedElement_Alias();
 
 		/**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl <em>Behaviored Classifier</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier <em>Behaviored Classifier</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
          * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getBehavioredClassifier()
          * @generated
          */
@@ -1922,10 +1931,10 @@ public interface UsecasePackage extends EPackage {
 		EReference EXTENSION_POINT__USE_CASE = eINSTANCE.getExtensionPoint_UseCase();
 
 		/**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl <em>Relationship</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Relationship <em>Relationship</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.Relationship
          * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getRelationship()
          * @generated
          */

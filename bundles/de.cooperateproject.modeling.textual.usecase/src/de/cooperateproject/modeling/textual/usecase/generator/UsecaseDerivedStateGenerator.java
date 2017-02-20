@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.textual.usecase.generator;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
@@ -24,7 +24,6 @@ import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.resource.IDerivedStateComputer;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
@@ -111,6 +110,10 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
             UMLReferencingElement<Element> commentedElement = (UMLReferencingElement<Element>) object
                     .getCommentedElement();
             Element umlCommentedElement = commentedElement.getReferencedElement();
+            if (umlCommentedElement == null) {
+                return false;
+            }
+
             EObject rootElement = EcoreUtil.getRootContainer(umlCommentedElement);
             Set<org.eclipse.uml2.uml.Comment> candidates = StreamSupport
                     .stream(Spliterators.spliteratorUnknownSize(rootElement.eAllContents(), Spliterator.ORDERED), false)
@@ -153,8 +156,11 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
 
         @Override
         public Boolean caseGeneralization(Generalization object) {
-            UMLReferencingElement<Classifier> specific = ((UMLReferencingElement<Classifier>) object.getSpecific());
-            UMLReferencingElement<Classifier> general = ((UMLReferencingElement<Classifier>) object.getGeneral());
+
+            @SuppressWarnings({ "rawtypes", "unchecked" })
+            UMLReferencingElement<Classifier> specific = (UMLReferencingElement) object.getSpecific();
+            @SuppressWarnings({ "rawtypes", "unchecked" })
+            UMLReferencingElement<Classifier> general = (UMLReferencingElement) object.getGeneral();
 
             Classifier umlSpecific = specific.getReferencedElement();
             Classifier umlGeneral = general.getReferencedElement();
@@ -196,6 +202,10 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
             Actor actor = object.getActor().getReferencedElement();
             UseCase usecase = object.getUsecase().getReferencedElement();
 
+            if (actor == null || usecase == null) {
+                return false;
+            }
+
             Set<org.eclipse.uml2.uml.Association> matchingAssociations = actor.getAssociations().stream()
                     .filter(a -> isAssociationBetween(a, actor, usecase)).collect(Collectors.toSet());
             if (matchingAssociations.size() == 1) {
@@ -220,14 +230,11 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
         public <UMLType extends Element> Boolean caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
             QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
 
-            Set<EClass> requiredTypes = object.eClass().getEGenericSuperTypes().stream()
-                    .filter(t -> t.getEClassifier() == UsecasePackage.Literals.UML_REFERENCING_ELEMENT)
-                    .map(EGenericType::getETypeArguments).flatMap(EList::stream).map(EGenericType::getEClassifier)
-                    .filter(EClass.class::isInstance).map(EClass.class::cast).collect(Collectors.toSet());
-            Set<IEObjectDescription> foundElements = requiredTypes.stream()
-                    .map(t -> globalScopeProvider.queryScope(object.eResource(), true, t, Predicates.alwaysTrue()))
-                    .map(IScope::getAllElements).flatMap(c -> StreamSupport.stream(c.spliterator(), false))
-                    .collect(Collectors.toSet());
+            EGenericType requiredType = object.eClass()
+                    .getFeatureType(UsecasePackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
+            Collection<IEObjectDescription> foundElements = Sets
+                    .newHashSet(globalScopeProvider.queryScope(object.eResource(), true,
+                            (EClass) requiredType.getEClassifier(), Predicates.alwaysTrue()).getAllElements());
 
             List<EObject> matchingElements = foundElements.stream().filter(d -> qn.equals(d.getQualifiedName()))
                     .map(IEObjectDescription::getEObjectOrProxy).distinct().collect(Collectors.toList());

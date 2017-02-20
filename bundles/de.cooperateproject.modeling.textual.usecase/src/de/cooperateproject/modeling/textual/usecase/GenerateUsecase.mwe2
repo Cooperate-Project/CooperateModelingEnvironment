@@ -62,11 +62,13 @@ Workflow {
 			}
 			validator = {
 				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+				generateXtendStub = false
 			}
 			
 			fragment = AddCDOXtextBindingsFragment2 auto-inject {}
 			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
 			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
+			fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
 		}
 	}
 }

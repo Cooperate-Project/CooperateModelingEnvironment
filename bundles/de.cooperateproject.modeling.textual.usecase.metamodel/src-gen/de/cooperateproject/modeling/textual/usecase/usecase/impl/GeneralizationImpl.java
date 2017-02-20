@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElemen
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class GeneralizationImpl extends RelationshipImpl implements Generalization {
+public class GeneralizationImpl extends CDOObjectImpl implements Generalization {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,6 +46,16 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -76,8 +87,9 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
      * <!-- end-user-doc -->
      * @generated
      */
-    public BehavioredClassifier getSpecific() {
-        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, true, true);
+    @SuppressWarnings("unchecked")
+    public BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> getSpecific() {
+        return (BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)eDynamicGet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, true, true);
     }
 
     /**
@@ -85,8 +97,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
      * <!-- end-user-doc -->
      * @generated
      */
-    public BehavioredClassifier basicGetSpecific() {
-        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, false, true);
+    public BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> basicGetSpecific() {
+        return (BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)eDynamicGet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, false, true);
     }
 
     /**
@@ -94,7 +106,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setSpecific(BehavioredClassifier newSpecific) {
+    public void setSpecific(BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> newSpecific) {
         eDynamicSet(UsecasePackage.GENERALIZATION__SPECIFIC, UsecasePackage.Literals.GENERALIZATION__SPECIFIC, newSpecific);
     }
 
@@ -103,8 +115,9 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
      * <!-- end-user-doc -->
      * @generated
      */
-    public BehavioredClassifier getGeneral() {
-        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__GENERAL, true, true);
+    @SuppressWarnings("unchecked")
+    public BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> getGeneral() {
+        return (BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)eDynamicGet(UsecasePackage.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__GENERAL, true, true);
     }
 
     /**
@@ -112,8 +125,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
      * <!-- end-user-doc -->
      * @generated
      */
-    public BehavioredClassifier basicGetGeneral() {
-        return (BehavioredClassifier)eDynamicGet(UsecasePackage.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__GENERAL, false, true);
+    public BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> basicGetGeneral() {
+        return (BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)eDynamicGet(UsecasePackage.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__GENERAL, false, true);
     }
 
     /**
@@ -121,7 +134,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setGeneral(BehavioredClassifier newGeneral) {
+    public void setGeneral(BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> newGeneral) {
         eDynamicSet(UsecasePackage.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__GENERAL, newGeneral);
     }
 
@@ -151,17 +164,18 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	 * <!-- end-user-doc -->
      * @generated
      */
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.GENERALIZATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)newValue);
                 return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
-                setSpecific((BehavioredClassifier)newValue);
+                setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)newValue);
                 return;
             case UsecasePackage.GENERALIZATION__GENERAL:
-                setGeneral((BehavioredClassifier)newValue);
+                setGeneral((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -179,10 +193,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
                 setReferencedElement((org.eclipse.uml2.uml.Generalization)null);
                 return;
             case UsecasePackage.GENERALIZATION__SPECIFIC:
-                setSpecific((BehavioredClassifier)null);
+                setSpecific((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)null);
                 return;
             case UsecasePackage.GENERALIZATION__GENERAL:
-                setGeneral((BehavioredClassifier)null);
+                setGeneral((BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>)null);
                 return;
         }
         super.eUnset(featureID);

@@ -21,7 +21,7 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * @model
  * @generated
  */
-public interface Actor extends AliasedElement, BehavioredClassifier, UMLReferencingElement<org.eclipse.uml2.uml.Actor> {
+public interface Actor extends AliasedElement, BehavioredClassifier<org.eclipse.uml2.uml.Actor> {
 	/**
      * Returns the value of the '<em><b>Visibility</b></em>' attribute.
      * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.usecase.usecase.Visibility}.

@@ -9,19 +9,27 @@ import com.google.inject.name.Names;
 import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.PartialUsecaseContentAssistParser;
 import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.UsecaseParser;
 import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.internal.InternalUsecaseLexer;
+import de.cooperateproject.modeling.textual.usecase.ui.cdoxtext.UsecaseDistanceFunction;
+import de.cooperateproject.modeling.textual.usecase.ui.cdoxtext.UsecaseMatchEngineFactory;
 import de.cooperateproject.modeling.textual.usecase.ui.contentassist.UsecaseProposalProvider;
+import de.cooperateproject.modeling.textual.usecase.ui.editor.UsecaseAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseDescriptionLabelProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseLabelProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.outline.UsecaseOutlineTreeProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.quickfix.UsecaseQuickfixProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.automatedfixing.IAutomatedIssueResolutionProvider;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import org.eclipse.compare.IViewerCreator;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.compare.match.IMatchEngine.Factory;
+import org.eclipse.emf.compare.match.eobject.ProximityEObjectMatcher.DistanceFunction;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -322,6 +330,26 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IResourceSetProvider> bindIResourceSetProvider() {
 		return XtextLiveScopeResourceSetProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IDerivedStateResourceHandlerFactory> bindIDerivedStateResourceHandlerFactory() {
+		return DerivedStateResourceHandlerFactory.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IAutomatedIssueResolutionProvider> bindIAutomatedIssueResolutionProvider() {
+		return UsecaseAutomatedIssueResolutionProvider.class;
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2
+	public Class<? extends Factory> bindFactory() {
+		return UsecaseMatchEngineFactory.class;
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2
+	public Class<? extends DistanceFunction> bindDistanceFunction() {
+		return UsecaseDistanceFunction.class;
 	}
 	
 }

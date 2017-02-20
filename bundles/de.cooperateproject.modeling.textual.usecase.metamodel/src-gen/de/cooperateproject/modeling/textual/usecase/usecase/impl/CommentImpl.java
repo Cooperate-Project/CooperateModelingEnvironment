@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElemen
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class CommentImpl extends RelationshipImpl implements Comment {
+public class CommentImpl extends CDOObjectImpl implements Comment {
 	/**
      * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -55,6 +56,16 @@ public class CommentImpl extends RelationshipImpl implements Comment {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
