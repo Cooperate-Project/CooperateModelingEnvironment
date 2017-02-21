@@ -64,8 +64,6 @@ public class ComparisonManager {
 	 */
 	private String resourceDiagramPath;
 
-	private CommitCDOViewManager cvm;
-
 	/**
 	 * Constructor, sets the file on which the CommitManager should work.
 	 * 
@@ -113,20 +111,28 @@ public class ComparisonManager {
 	 *            The commit to be compared to its old version
 	 * @return The computed comparison
 	 */
-	public Comparison getComparison(CDOCommitInfo commit) {
-		cvm = new CommitCDOViewManager(commit, currentFile);
+	public Comparison getComparison(CDOCommitInfo commit, CDOView previousView, CDOView currentView) {
 		// Creates the scope, on which differences should be detected. Only the
 		// items with the given cdoIds (all elements from textual cooperate
 		// diagram) are considered.
-		IComparisonScope scope = CDOComparisonScope.Minimal.create(cvm.getCurrentView(), cvm.getPreviousView(), null,
+		IComparisonScope scope = CDOComparisonScope.Minimal.create(currentView, previousView, null,
 				cdoIdsMappedToCommit.get(commit));
 
 		Comparison comparison = CDOCompareUtil.compare(scope);
 		return comparison;
 	}
 
-	public CDOResource getResource(CDOCommitInfo commit) {
-		return cvm.getCurrentView().getResource(resourceDiagramPath);
+	/**
+	 * Gets the resource of the textual diagram in the commit's current version.
+	 * 
+	 * @param commit
+	 *            the commit info of the commit
+	 * @param currentView
+	 *            the current view on the diagram
+	 * @return the corresponding resource
+	 */
+	public CDOResource getResource(CDOCommitInfo commit, CDOView currentView) {
+		return currentView.getResource(resourceDiagramPath);
 	}
 
 	/**
