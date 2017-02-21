@@ -6,7 +6,6 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
 import de.cooperateproject.ui.diff.internal.CommentLinkAdapt;
@@ -52,28 +51,29 @@ public class DiffTreeBuilder {
 		TreeIterator<EObject> it = resource.getAllContents();
 		DiffTreeItem newResource = null;
 
-		// firstly: create new DiffTreeItems for all EObjects in the EMF
-		// Containment Hierarchy of this diagram and set the new resource
+		// Create new DiffTreeItems for all EObjects in the EMF Containment
+		// Hierarchy of this diagram and set the new resource, plus
+		// build our own parent/child structure on the diffTreeItems
 		while (it.hasNext()) {
 			EObject obj = it.next();
-			DiffTreeItem temp = new DiffTreeItem(obj);
-			tree.put(obj, temp);
-
-			if (obj instanceof ClassDiagram) {
-				newResource = temp;
+			DiffTreeItem temp;
+			if (!tree.containsKey(obj)) {
+				temp = new DiffTreeItem(obj);
+			} else {
+				temp = tree.get(obj);
 			}
-		}
 
-		it = resource.getAllContents();
-		// then: iterate a second time over all contents and build our own
-		// parent/child structure on the diffTreeItems
-		while (it.hasNext()) {
-			EObject obj = it.next();
-			DiffTreeItem diffItem = tree.get(obj);
 			for (EObject child : obj.eContents()) {
-				diffItem.addChild(tree.get(child));
-				tree.get(child).setParent(diffItem);
+				if (tree.containsKey(child)) {
+					continue;
+				}
+				DiffTreeItem tempChild = new DiffTreeItem(child);
+				temp.addChild(tempChild);
+				tempChild.setParent(temp);
+				tree.put(child, tempChild);
 			}
+
+			// TODO Move this to some kind of post-processor
 
 			// in this case, the object isn't the child of its parent in emf
 			// containment hierarchy and has to be changed
@@ -89,6 +89,13 @@ public class DiffTreeBuilder {
 
 				}
 			}
+			tree.put(obj, temp);
+
+			// get the root element of the resource
+			if (obj == resource.getContents().get(0)) {
+				newResource = temp;
+			}
+
 		}
 
 		// finally: iterate over all changes in the changes' list and set the
@@ -140,19 +147,19 @@ public class DiffTreeBuilder {
 
 		if (parent.getObject() instanceof EObject) {
 			EObject eObj = (EObject) parent.getObject();
-			if (eObj.eContents().size() > 0) {
+			if (eObj.eContents().isEmpty()) {
+				return;
+			}
 
-				EList<EObject> childrenList = eObj.eContents();
-				// a child from the deleted parent
-				for (EObject obj : childrenList) {
-					// make a new diffTreeItem, because the deleted item is not
-					// contained yet in the tree
-					DiffTreeItem diffItem = new DiffTreeItem(obj);
-					diffItem.setDiffKind(DifferenceKind.DELETE);
-					parent.addChild(diffItem);
-					diffItem.setParent(parent);
-				}
-
+			EList<EObject> childrenList = eObj.eContents();
+			// a child from the deleted parent
+			for (EObject obj : childrenList) {
+				// make a new diffTreeItem, because the deleted item is not
+				// contained yet in the tree
+				DiffTreeItem diffItem = new DiffTreeItem(obj);
+				diffItem.setDiffKind(DifferenceKind.DELETE);
+				parent.addChild(diffItem);
+				diffItem.setParent(parent);
 			}
 		}
 	}

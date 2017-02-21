@@ -65,6 +65,12 @@ public class ComparisonManager {
 	private String resourceDiagramPath;
 
 	/**
+	 * Timeout in milliseconds for the waiting time while loading the
+	 * CDOCommitHistory.
+	 */
+	private static final long loadingTimeOut = 8000;
+
+	/**
 	 * Constructor, sets the file on which the CommitManager should work.
 	 * 
 	 * @param file
@@ -163,6 +169,8 @@ public class ComparisonManager {
 		// get all commits from main branch
 		CDOCommitInfoManager commitManager = session.getCommitInfoManager();
 		CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
+
+		mainHistory.waitWhileLoading(loadingTimeOut);
 
 		for (int i = 0; i < mainHistory.size(); i++) {
 			CDOCommitInfo commitInfo = mainHistory.getElement(i);
