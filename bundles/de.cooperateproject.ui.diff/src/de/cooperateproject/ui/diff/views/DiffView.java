@@ -11,6 +11,7 @@ import de.cooperateproject.ui.diff.content.DiffTreeItem;
 import de.cooperateproject.ui.diff.content.SummaryItem;
 import de.cooperateproject.ui.diff.content.SummaryViewBuilder;
 import de.cooperateproject.ui.diff.internal.ComparisonManager;
+import de.cooperateproject.ui.diff.internal.CommitCDOViewManager;
 import de.cooperateproject.ui.diff.internal.CommitViewerComparator;
 import de.cooperateproject.ui.diff.labeling.CommitLabelProvider;
 import de.cooperateproject.ui.diff.labeling.DiffViewLabelProvider;
@@ -32,6 +33,8 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -49,7 +52,8 @@ import org.eclipse.swt.layout.FormLayout;
  */
 public class DiffView extends ViewPart {
 	public static final String ID = "de.cooperateproject.ui.diff.views.DiffView";
-	private ComparisonManager commitManager;
+	private ComparisonManager comparisonManager;
+	private CommitCDOViewManager cdoViewManager;
 	private TableViewer commitViewer;
 	private TableViewer summaryViewer;
 	private TreeViewer diffViewer;
@@ -61,6 +65,7 @@ public class DiffView extends ViewPart {
 	private TabItem diffViewTab;
 	private Composite commitHistoryComposite;
 	private Composite diffViewComposite;
+	private IFile selectedFile;
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
@@ -68,7 +73,18 @@ public class DiffView extends ViewPart {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		// commitManager = new CommitManager();
+		parent.addDisposeListener(new DisposeListener() {
+			@Override
+			/**
+			 * If the DiffView is going to be closed, close all CDOViews that
+			 * may be open.
+			 */
+			public void widgetDisposed(DisposeEvent e) {
+				if (cdoViewManager != null) {
+					cdoViewManager.closeAllViews();
+				}
+			}
+		});
 		setUpTabs(parent);
 		setUpCommitHistoryTabContent(parent);
 		setUpDiffViewTabContent(parent);
@@ -87,8 +103,13 @@ public class DiffView extends ViewPart {
 	 *            the selected .cooperate file
 	 */
 	public void setSelectedFile(IFile file) {
-		commitManager = new ComparisonManager(file);
-		commitViewer.setInput(commitManager.getAllCommitInfos());
+		// If a new file is selected, close all CDOViews that may still be open.
+		if (cdoViewManager != null) {
+			cdoViewManager.closeAllViews();
+		}
+		selectedFile = file;
+		comparisonManager = new ComparisonManager(file);
+		commitViewer.setInput(comparisonManager.getAllCommitInfos());
 		for (TableColumn c : commitViewer.getTable().getColumns()) {
 			c.pack();
 		}
@@ -112,10 +133,15 @@ public class DiffView extends ViewPart {
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
 
 				if (obj instanceof CDOCommitInfo) {
+					cdoViewManager = new CommitCDOViewManager((CDOCommitInfo) obj, selectedFile);
 					showDiffViewOfCommit((CDOCommitInfo) obj);
 				}
 			}
 		};
+	}
+
+	@Override
+	public void dispose() {
 	}
 
 	private void makeActionDiffViewer() {
@@ -220,7 +246,8 @@ public class DiffView extends ViewPart {
 	 */
 	private void showDiffViewOfCommit(CDOCommitInfo obj) {
 		SummaryViewBuilder svb = new SummaryViewBuilder();
-		List<SummaryItem> summaryList = svb.buildSummaryView(commitManager.getComparison(obj));
+		List<SummaryItem> summaryList = svb.buildSummaryView(comparisonManager.getComparison(obj,
+				cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
 		summaryViewer.setInput(summaryList);
 
 		for (TableColumn c : summaryViewer.getTable().getColumns()) {
@@ -228,7 +255,8 @@ public class DiffView extends ViewPart {
 		}
 		tabFolder.setSelection(diffViewTab);
 
-		DiffTreeBuilder dtb = new DiffTreeBuilder(commitManager.getResource(obj), summaryList);
+		DiffTreeBuilder dtb = new DiffTreeBuilder(comparisonManager.getResource(obj, cdoViewManager.getCurrentView()),
+				summaryList);
 		diffViewer.setInput(dtb.buildTree());
 		diffViewer.expandAll();
 		diffViewer.getControl().setFocus();
@@ -410,7 +438,7 @@ public class DiffView extends ViewPart {
 				instance.set(Calendar.MONTH, selectDateToFilter.getMonth());
 				instance.set(Calendar.YEAR, selectDateToFilter.getYear());
 
-				commitViewer.setInput(commitManager.getAllCommitInfos(instance.getTimeInMillis()));
+				commitViewer.setInput(comparisonManager.getAllCommitInfos(instance.getTimeInMillis()));
 			}
 		});
 
