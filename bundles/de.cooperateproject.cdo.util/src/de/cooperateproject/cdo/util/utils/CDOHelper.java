@@ -1,13 +1,11 @@
 package de.cooperateproject.cdo.util.utils;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.revision.CDORevision;
@@ -32,21 +30,19 @@ import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionSettings;
+import de.cooperateproject.util.connection.ConnectionUtils;
 
-public class CDOHelper {
+public final class CDOHelper {
+
+    private static final Logger LOGGER = Logger.getLogger(CDOHelper.class);
 
     private CDOHelper() {
         // intentionally left blank
     }
 
-    public static boolean connectionInfoIsValid(String host, int port, String repository, int timeout) {
-        Socket socket = new Socket();
-        try {
-            socket.connect(new InetSocketAddress(InetAddress.getByName(host), port), timeout);
-        } catch (Exception e) {
+    public static boolean cdoConnectionInfoIsValid(String host, int port, String repository, int timeout) {
+        if (!ConnectionUtils.checkSocket(host, port, timeout)) {
             return false;
-        } finally {
-            IOUtil.closeSilent(socket);
         }
 
         IManagedContainer container = ContainerUtil.createPluginContainer();
@@ -63,6 +59,7 @@ public class CDOHelper {
                     sessionConfiguration.setRepositoryName(repository);
                     session = sessionConfiguration.openNet4jSession();
                 } catch (Exception e) {
+                    LOGGER.trace("Could not establish connection to CDO server.", e);
                     return false;
                 } finally {
                     if (session != null) {
@@ -77,7 +74,7 @@ public class CDOHelper {
             try {
                 container.deactivate();
             } catch (Exception e) {
-                return false;
+                LOGGER.trace("Error while trying to deactivate IManagedContainer.", e);
             }
         }
 
@@ -141,7 +138,7 @@ public class CDOHelper {
     }
 
     public static java.util.Optional<CDOCheckout> findCheckoutByCheckoutURI(URI checkoutURI) {
-        Validate.isTrue(checkoutURI.scheme().equals("cdo.checkout"), "The URI has to be a cdo checkout URI.");
+        Validate.isTrue("cdo.checkout".equals(checkoutURI.scheme()), "The URI has to be a cdo checkout URI.");
 
         CDOCheckout checkout = CDOExplorerUtil.getCheckoutManager().getCheckout(checkoutURI.authority());
         if (checkout == null) {
