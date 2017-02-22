@@ -69,7 +69,6 @@ public final class ConnectionUtils {
         } finally {
             try {
                 if (connection != null) {
-                    connection.stop();
                     connection.close();
                 }
             } catch (JMSException e) {

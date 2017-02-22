@@ -68,6 +68,11 @@
 			<url>https://dl.bintray.com/cooperate-project/CDO/updatesite/4.5.1/</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>cooperate-externals</id>
+			<url>https://cooperate-project.github.io/Externals/updatesite/latest</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 
 	<build>
