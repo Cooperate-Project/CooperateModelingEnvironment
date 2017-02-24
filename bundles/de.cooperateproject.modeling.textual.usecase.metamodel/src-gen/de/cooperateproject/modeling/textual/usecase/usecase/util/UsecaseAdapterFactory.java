@@ -91,6 +91,10 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
                 return createUseCaseDiagramAdapter();
             }
             @Override
+            public Adapter caseElement(de.cooperateproject.modeling.textual.usecase.usecase.Element object) {
+                return createElementAdapter();
+            }
+            @Override
             public Adapter caseNamedElement(NamedElement object) {
                 return createNamedElementAdapter();
             }
@@ -193,6 +197,20 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.usecase.usecase.Element <em>Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Element
+     * @generated
+     */
+    public Adapter createElementAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.usecase.usecase.NamedElement <em>Named Element</em>}'.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;

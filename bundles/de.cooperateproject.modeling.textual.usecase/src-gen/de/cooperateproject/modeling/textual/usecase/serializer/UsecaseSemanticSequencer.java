@@ -101,7 +101,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Association returns Association
 	 *
 	 * Constraint:
-	 *     (actor=[Actor|FQN] usecase=[UseCase|FQN] (leftCardinality=Cardinality rightCardinality=Cardinality)?)
+	 *     (actor=[Actor|FQN] usecase=[UseCase|FQN] (actorCardinality=Cardinality useCaseCardinality=Cardinality)?)
 	 */
 	protected void sequence_Association(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

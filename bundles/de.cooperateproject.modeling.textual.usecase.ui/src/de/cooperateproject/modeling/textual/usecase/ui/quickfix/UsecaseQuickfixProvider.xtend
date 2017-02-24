@@ -126,15 +126,15 @@ class UsecaseQuickfixProvider extends DefaultQuickfixProvider {
 		
 		val umlAssociation = UMLFactory.eINSTANCE.createAssociation
 		val actorEnd = umlAssociation.createOwnedEnd(null, umlActor)
-		if (element.leftCardinality != null) {
-			actorEnd.lower = element.leftCardinality.lowerBound 
-			actorEnd.upper = element.leftCardinality.upperBound
+		if (element.actorCardinality != null) {
+			actorEnd.lower = element.actorCardinality.lowerBound 
+			actorEnd.upper = element.actorCardinality.upperBound
 		}
 		
 		val useCaseEnd = umlAssociation.createOwnedEnd(null, umlUseCase)
-		if (element.rightCardinality != null) {
-			useCaseEnd.lower = element.rightCardinality.lowerBound
-			useCaseEnd.upper = element.rightCardinality.upperBound
+		if (element.useCaseCardinality != null) {
+			useCaseEnd.lower = element.useCaseCardinality.lowerBound
+			useCaseEnd.upper = element.useCaseCardinality.upperBound
 		}
 		
 		element.referencedElement = umlAssociation

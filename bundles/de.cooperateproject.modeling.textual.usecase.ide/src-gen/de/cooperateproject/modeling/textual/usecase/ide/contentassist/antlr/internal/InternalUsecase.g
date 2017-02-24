@@ -1911,9 +1911,9 @@ rule__Association__Group_3__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAssociationAccess().getLeftCardinalityAssignment_3_1()); }
-	(rule__Association__LeftCardinalityAssignment_3_1)
-	{ after(grammarAccess.getAssociationAccess().getLeftCardinalityAssignment_3_1()); }
+	{ before(grammarAccess.getAssociationAccess().getActorCardinalityAssignment_3_1()); }
+	(rule__Association__ActorCardinalityAssignment_3_1)
+	{ after(grammarAccess.getAssociationAccess().getActorCardinalityAssignment_3_1()); }
 )
 ;
 finally {
@@ -1965,9 +1965,9 @@ rule__Association__Group_3__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAssociationAccess().getRightCardinalityAssignment_3_3()); }
-	(rule__Association__RightCardinalityAssignment_3_3)
-	{ after(grammarAccess.getAssociationAccess().getRightCardinalityAssignment_3_3()); }
+	{ before(grammarAccess.getAssociationAccess().getUseCaseCardinalityAssignment_3_3()); }
+	(rule__Association__UseCaseCardinalityAssignment_3_3)
+	{ after(grammarAccess.getAssociationAccess().getUseCaseCardinalityAssignment_3_3()); }
 )
 ;
 finally {
@@ -3094,30 +3094,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Association__LeftCardinalityAssignment_3_1
+rule__Association__ActorCardinalityAssignment_3_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getAssociationAccess().getLeftCardinalityCardinalityParserRuleCall_3_1_0()); }
+		{ before(grammarAccess.getAssociationAccess().getActorCardinalityCardinalityParserRuleCall_3_1_0()); }
 		ruleCardinality
-		{ after(grammarAccess.getAssociationAccess().getLeftCardinalityCardinalityParserRuleCall_3_1_0()); }
+		{ after(grammarAccess.getAssociationAccess().getActorCardinalityCardinalityParserRuleCall_3_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Association__RightCardinalityAssignment_3_3
+rule__Association__UseCaseCardinalityAssignment_3_3
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getAssociationAccess().getRightCardinalityCardinalityParserRuleCall_3_3_0()); }
+		{ before(grammarAccess.getAssociationAccess().getUseCaseCardinalityCardinalityParserRuleCall_3_3_0()); }
 		ruleCardinality
-		{ after(grammarAccess.getAssociationAccess().getRightCardinalityCardinalityParserRuleCall_3_3_0()); }
+		{ after(grammarAccess.getAssociationAccess().getUseCaseCardinalityCardinalityParserRuleCall_3_3_0()); }
 	)
 ;
 finally {

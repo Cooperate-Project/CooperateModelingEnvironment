@@ -387,16 +387,7 @@ query uml::PrimitiveType::convert() : cls::PrimitiveType {
 }
 
 query uml::NamedElement::getVisibility() : cls::Visibility {
-	// we have to ensure that the visibility is set before using it
-	// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=437449
-	var visibilityKind := 
-		if self.oclAsType(ecore::EObject).eIsSet(uml::NamedElement.oclAsType(ecore::EClass).eStructuralFeatures->select(name = "visibility")->first())
-			then
-				self.visibility
-			else
-				null
-		endif;
-		
+	var visibilityKind := self.visibility();
 	switch {
 		case(visibilityKind = uml::VisibilityKind::public) {return cls::Visibility::PUBLIC}
 		case(visibilityKind = uml::VisibilityKind::private) {return cls::Visibility::PRIVATE}

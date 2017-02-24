@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Named Element</b></em>'.
@@ -18,10 +16,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getNamedElement()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface NamedElement extends CDOObject {
+public interface NamedElement extends Element {
 	/**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->

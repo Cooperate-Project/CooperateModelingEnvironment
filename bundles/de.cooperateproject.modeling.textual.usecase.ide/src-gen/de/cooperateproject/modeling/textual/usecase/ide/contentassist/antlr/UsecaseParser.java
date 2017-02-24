@@ -89,8 +89,8 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExtensionPointAccess().getAliasAssignment_1_1_2(), "rule__ExtensionPoint__AliasAssignment_1_1_2");
 					put(grammarAccess.getAssociationAccess().getActorAssignment_0(), "rule__Association__ActorAssignment_0");
 					put(grammarAccess.getAssociationAccess().getUsecaseAssignment_2(), "rule__Association__UsecaseAssignment_2");
-					put(grammarAccess.getAssociationAccess().getLeftCardinalityAssignment_3_1(), "rule__Association__LeftCardinalityAssignment_3_1");
-					put(grammarAccess.getAssociationAccess().getRightCardinalityAssignment_3_3(), "rule__Association__RightCardinalityAssignment_3_3");
+					put(grammarAccess.getAssociationAccess().getActorCardinalityAssignment_3_1(), "rule__Association__ActorCardinalityAssignment_3_1");
+					put(grammarAccess.getAssociationAccess().getUseCaseCardinalityAssignment_3_3(), "rule__Association__UseCaseCardinalityAssignment_3_3");
 					put(grammarAccess.getGeneralizationAccess().getSpecificAssignment_0(), "rule__Generalization__SpecificAssignment_0");
 					put(grammarAccess.getGeneralizationAccess().getGeneralAssignment_2(), "rule__Generalization__GeneralAssignment_2");
 					put(grammarAccess.getIncludeAccess().getIncludingCaseAssignment_0(), "rule__Include__IncludingCaseAssignment_0");

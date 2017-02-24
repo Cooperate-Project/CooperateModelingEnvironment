@@ -10,6 +10,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
 import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality;
 import de.cooperateproject.modeling.textual.usecase.usecase.Comment;
 import de.cooperateproject.modeling.textual.usecase.usecase.Commentable;
+import de.cooperateproject.modeling.textual.usecase.usecase.Element;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -51,6 +52,13 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	private EClass useCaseDiagramEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass elementEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -272,6 +280,15 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      */
     public EAttribute getUseCaseDiagram_Title() {
         return (EAttribute)useCaseDiagramEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getElement() {
+        return elementEClass;
     }
 
     /**
@@ -537,23 +554,23 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getAssociation_LeftCardinality() {
+    public EReference getAssociation_ActorCardinality() {
         return (EReference)associationEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getAssociation_RightCardinality() {
+    public EReference getAssociation_UseCaseCardinality() {
         return (EReference)associationEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -774,6 +791,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         createEReference(useCaseDiagramEClass, USE_CASE_DIAGRAM__ROOT_PACKAGE);
         createEAttribute(useCaseDiagramEClass, USE_CASE_DIAGRAM__TITLE);
 
+        elementEClass = createEClass(ELEMENT);
+
         namedElementEClass = createEClass(NAMED_ELEMENT);
         createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
@@ -813,8 +832,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         associationEClass = createEClass(ASSOCIATION);
         createEReference(associationEClass, ASSOCIATION__ACTOR);
         createEReference(associationEClass, ASSOCIATION__USECASE);
-        createEReference(associationEClass, ASSOCIATION__LEFT_CARDINALITY);
-        createEReference(associationEClass, ASSOCIATION__RIGHT_CARDINALITY);
+        createEReference(associationEClass, ASSOCIATION__ACTOR_CARDINALITY);
+        createEReference(associationEClass, ASSOCIATION__USE_CASE_CARDINALITY);
 
         generalizationEClass = createEClass(GENERALIZATION);
         createEReference(generalizationEClass, GENERALIZATION__SPECIFIC);
@@ -883,6 +902,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         umlReferencingElementEClass_UMLType.getEBounds().add(g1);
 
         // Add supertypes to classes
+        namedElementEClass.getESuperTypes().add(this.getElement());
         aliasedElementEClass.getESuperTypes().add(this.getNamedElement());
         g1 = createEGenericType(this.getCommentable());
         behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
@@ -890,6 +910,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         EGenericType g2 = createEGenericType(behavioredClassifierEClass_T);
         g1.getETypeArguments().add(g2);
         behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
+        commentableEClass.getESuperTypes().add(this.getElement());
         g1 = createEGenericType(this.getNamedElement());
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getUMLReferencingElement());
@@ -920,6 +941,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getExtensionPoint());
         g1.getETypeArguments().add(g2);
         extensionPointEClass.getEGenericSuperTypes().add(g1);
+        relationshipEClass.getESuperTypes().add(this.getElement());
         g1 = createEGenericType(this.getRelationship());
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getUMLReferencingElement());
@@ -950,11 +972,15 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getComment());
         g1.getETypeArguments().add(g2);
         commentEClass.getEGenericSuperTypes().add(g1);
+        cardinalityEClass.getESuperTypes().add(this.getElement());
+        umlReferencingElementEClass.getESuperTypes().add(this.getElement());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(useCaseDiagramEClass, UseCaseDiagram.class, "UseCaseDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getUseCaseDiagram_RootPackage(), this.getRootPackage(), this.getRootPackage_Diagram(), "rootPackage", null, 0, 1, UseCaseDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getUseCaseDiagram_Title(), ecorePackage.getEString(), "title", null, 1, 1, UseCaseDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -995,8 +1021,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getAssociation_Actor(), this.getActor(), null, "actor", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getAssociation_Usecase(), this.getUseCase(), null, "usecase", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getAssociation_LeftCardinality(), this.getCardinality(), null, "leftCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getAssociation_RightCardinality(), this.getCardinality(), null, "rightCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAssociation_ActorCardinality(), this.getCardinality(), null, "actorCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAssociation_UseCaseCardinality(), this.getCardinality(), null, "useCaseCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(this.getBehavioredClassifier());
@@ -1028,7 +1054,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
         initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
-        initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(visibilityEEnum, Visibility.class, "Visibility");

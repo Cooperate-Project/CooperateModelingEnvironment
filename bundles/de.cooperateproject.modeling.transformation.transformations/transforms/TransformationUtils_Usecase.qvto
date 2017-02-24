@@ -1,0 +1,32 @@
+library TransformationUtils_Usecase;
+
+import TransformationUtils;
+
+property PAPYRUS_NOTATION_SHAPE_SUBJECT_REGULAR : String = "Classifier_SubjectShape";
+property PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR : String = "Classifier_UseCaseCompartment";
+property PAPYRUS_NOTATION_SHAPE_USECASE_NESTED : String = "UseCase_Shape_CCN";
+property PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED : String = "UseCase_ExtensionPointCompartment_CCN";
+property PAPYRUS_NOTATION_SHAPE_ACTOR_REGULAR : String = "Actor_Shape";
+property PAPYRUS_NOTATION_SHAPE_CONSTRAINT_REGULAR : String = "Constraint_Shape";
+
+property PAPYRUS_NOTATION_NODE_CLASSIFIER_NAME_REGULAR : String = "Classifier_NameLabel";
+property PAPYRUS_NOTATION_NODE_CLASSIFIER_FLOATINGNAME_REGULAR : String = "Classifier_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTOR_NAME_REGULAR : String = "Actor_NameLabel";
+property PAPYRUS_NOTATION_NODE_ACTOR_FLOATINGNAME_REGULAR : String = "Actor_FloatingNameLabel";
+property PAPYRUS_NOTATION_NODE_ACTOR_STEREOTYPE_REGULAR : String = "Actor_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ACTOR_QUALIFIEDNAME_REGULAR : String = "Actor_QualifiedNameLabel";
+property PAPYRUS_NOTATION_NODE_USECASE_NAME_REGULAR : String = "UseCase_NameLabel_CCN";
+property PAPYRUS_NOTATION_NODE_USECASE_FLOATINGNAME_REGULAR : String = "UseCase_FloatingNameLabel_CCN";
+property PAPYRUS_NOTATION_NODE_CONSTRAINT_NAME_REGULAR : String = "Constraint_NameLabel";
+property PAPYRUS_NOTATION_NODE_CONSTRAINT_BODY_REGULAR : String = "Constraint_BodyLabel";
+property PAPYRUS_NOTATION_NODE_EXTENSIONPOINTLABEL_REGULAR : String = "ExtensionPoint_ExtensionPointLabel";
+
+property PAPYRUS_NOTATION_EDGE_EXTEND : String = "Extend_Edge";
+property PAPYRUS_NOTATION_NODE_EXTEND_STEREOTYPE : String = "Extend_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_EXTEND_KEYWORD : String = "Extend_KeywordLabel";
+
+property PAPYRUS_NOTATION_EDGE_INCLUDE : String = "Include_Edge";
+property PAPYRUS_NOTATION_EDGE_INCLUDE_STEREOTYPE : String = "Include_StereotypeLabel";
+property PAPYRUS_NOTATION_EDGE_INCLUDE_KEYWORD : String = "Include_KeywordLabel";
+
+property PAPYRUS_NOTATION_EDGE_CONSTRAINT : String = "Constraint_ConstrainedElementEdge";

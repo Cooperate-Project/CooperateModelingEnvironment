@@ -44,158 +44,159 @@ import de.cooperateproject.modeling.transformation.transformations.tests.util.Mo
 @SuppressWarnings("restriction")
 public class TraceRecordTransformationTestBase extends PlainTransformationTestBase {
 
-	private static class TraceRecordComparator implements Comparator<TraceRecord> {
+    private static class TraceRecordComparator implements Comparator<TraceRecord> {
 
-		@Override
-		public int compare(TraceRecord o1, TraceRecord o2) {
-			int mappingOperationName = o1.getMappingOperation().getName().compareTo(o2.getMappingOperation().getName());
-			if (mappingOperationName != 0) {
-				return mappingOperationName;
-			}
+        @Override
+        public int compare(TraceRecord o1, TraceRecord o2) {
+            int mappingOperationName = o1.getMappingOperation().getName().compareTo(o2.getMappingOperation().getName());
+            if (mappingOperationName != 0) {
+                return mappingOperationName;
+            }
 
-			String selfType1 = o1.getContext().getContext().getType();
-			String selfType2 = o2.getContext().getContext().getType();
-			int selfType = selfType1.compareTo(selfType2);
-			if (selfType != 0) {
-				return selfType;
-			}
+            String selfType1 = o1.getContext().getContext().getType();
+            String selfType2 = o2.getContext().getContext().getType();
+            int selfType = selfType1.compareTo(selfType2);
+            if (selfType != 0) {
+                return selfType;
+            }
 
-			String resultType1 = o1.getResult().getResult().get(0).getType();
-			String resultType2 = o2.getResult().getResult().get(0).getType();
-			int resultType = resultType1.compareTo(resultType2);
-			if (resultType != 0) {
-				return resultType;
-			}
+            String resultType1 = o1.getResult().getResult().get(0).getType();
+            String resultType2 = o2.getResult().getResult().get(0).getType();
+            int resultType = resultType1.compareTo(resultType2);
+            if (resultType != 0) {
+                return resultType;
+            }
 
-			Object self1 = o1.getContext().getContext().getValue().getModelElement();
-			Object self2 = o2.getContext().getContext().getValue().getModelElement();
-			int self = (self2 == null ? 0 : self2.hashCode()) - (self1 == null ? 0 : self1.hashCode());
-			if (self != 0) {
-				return self;
-			}
+            Object self1 = o1.getContext().getContext().getValue().getModelElement();
+            Object self2 = o2.getContext().getContext().getValue().getModelElement();
+            int self = (self2 == null ? 0 : self2.hashCode()) - (self1 == null ? 0 : self1.hashCode());
+            if (self != 0) {
+                return self;
+            }
 
-			EObject result1 = o1.getResult().getResult().get(0).getValue().getModelElement();
-			EObject result2 = o2.getResult().getResult().get(0).getValue().getModelElement();
-			int result = (result2 == null ? 0 : result2.hashCode()) - (result1 == null ? 0 : result1.hashCode());
-			if (result != 0) {
-				return result;
-			}
+            EObject result1 = o1.getResult().getResult().get(0).getValue().getModelElement();
+            EObject result2 = o2.getResult().getResult().get(0).getValue().getModelElement();
+            int result = (result2 == null ? 0 : result2.hashCode()) - (result1 == null ? 0 : result1.hashCode());
+            if (result != 0) {
+                return result;
+            }
 
-			// most probably equal
-			return 0;
-		}
+            // most probably equal
+            return 0;
+        }
 
-	}
+    }
 
-	private static final File DEBUG_SERIALIZATION_DIR = null;
-	
-	protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters, Trace traceModel) throws IOException {
-		super.runTransformation(transformationURI, transformationParameters, traceModel);
-		repairTransformationTrace(traceModel);
-	}
-	
-	protected static void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
-		Comparison comparisonResult = ModelComparator.compare(expectedModel.getContents().get(0),
-				actualModel.getContents().get(0));
-		ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
-		allContents.stream().filter(o -> o instanceof EValue).map(o -> (EValue) o)
-				.forEach(o -> replaceModelElementWithMatchingOne(o, comparisonResult));
-	}
+    private static final File DEBUG_SERIALIZATION_DIR = null;
 
-	private static void repairTransformationTrace(Trace trace) {
-		ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
-		allContents.stream().filter(EMappingResults.class::isInstance).map(EMappingResults.class::cast)
-				.forEach(TraceRecordTransformationTestBase::repairResultDirection);
-	}
-	
-	/**
-	 * Fixes the direction of result parameters in traces.
-	 * 
-	 * @param results
-	 *            The object to be fixed.
-	 * @see DomainIndependentTransformationBase#repairTraceObject
-	 */
-	private static void repairResultDirection(EMappingResults results) {
-		results.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
-	}
+    protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
+            Trace traceModel) throws IOException {
+        super.runTransformation(transformationURI, transformationParameters, traceModel);
+        repairTransformationTrace(traceModel);
+    }
 
-	protected void assertTraceEquals(Trace t2gTraceModel, ModelExtent actualTraceModel) throws Exception {
-		assertEquals(1, t2gTraceModel.getTraceContent().size());
-		EObject expectedTrace = t2gTraceModel.getTraceContent().get(0);
-		assertEquals(1, actualTraceModel.getContents().size());
-		EObject actualTrace = actualTraceModel.getContents().get(0);
+    protected static void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
+        Comparison comparisonResult = ModelComparator.compare(expectedModel.getContents().get(0),
+                actualModel.getContents().get(0));
+        ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
+        allContents.stream().filter(o -> o instanceof EValue).map(o -> (EValue) o)
+                .forEach(o -> replaceModelElementWithMatchingOne(o, comparisonResult));
+    }
 
-		sortTraceRecords(expectedTrace);
-		sortTraceRecords(actualTrace);
+    private static void repairTransformationTrace(Trace trace) {
+        ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
+        allContents.stream().filter(EMappingResults.class::isInstance).map(EMappingResults.class::cast)
+                .forEach(TraceRecordTransformationTestBase::repairResultDirection);
+    }
 
-		debugSerialization(expectedTrace, actualTraceModel.getContents());
+    /**
+     * Fixes the direction of result parameters in traces.
+     * 
+     * @param results
+     *            The object to be fixed.
+     * @see DomainIndependentTransformationBase#repairTraceObject
+     */
+    private static void repairResultDirection(EMappingResults results) {
+        results.getResult().forEach(p -> p.setKind(EDirectionKind.INOUT));
+    }
 
-		DefaultComparisonScope scope = new DefaultComparisonScope(expectedTrace, actualTrace, null);
-		DefaultDiffEngine de = new DefaultDiffEngine() {
+    protected void assertTraceEquals(Trace t2gTraceModel, ModelExtent actualTraceModel) throws Exception {
+        assertEquals(1, t2gTraceModel.getTraceContent().size());
+        EObject expectedTrace = t2gTraceModel.getTraceContent().get(0);
+        assertEquals(1, actualTraceModel.getContents().size());
+        EObject actualTrace = actualTraceModel.getContents().get(0);
 
-			@Override
-			protected FeatureFilter createFeatureFilter() {
-				return new FeatureFilter() {
-					private final Collection<EClass> ignoredEClasses = Sets.newHashSet(
-							TracePackage.eINSTANCE.getMappingOperationToTraceRecordMapEntry(),
-							TracePackage.eINSTANCE.getObjectToTraceRecordMapEntry());
+        sortTraceRecords(expectedTrace);
+        sortTraceRecords(actualTrace);
 
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
-						if (ignoredEClasses.contains(reference.getEContainingClass())) {
-							return true;
-						}
-						return super.isIgnoredReference(match, reference);
-					}
-				};
-			}
-		};
+        debugSerialization(expectedTrace, actualTraceModel.getContents());
 
-		Comparison comparison = EMFCompare.builder().setDiffEngine(de).build().compare(scope);
-		assertEquals(prettyPrint(comparison), 0, comparison.getDifferences().size());
-	}
+        DefaultComparisonScope scope = new DefaultComparisonScope(expectedTrace, actualTrace, null);
+        DefaultDiffEngine de = new DefaultDiffEngine() {
 
-	private void debugSerialization(EObject expectedTrace, Collection<EObject> actualTrace) throws IOException {
-		debugSerialization(Arrays.asList(expectedTrace), actualTrace);
-	}
+            @Override
+            protected FeatureFilter createFeatureFilter() {
+                return new FeatureFilter() {
+                    private final Collection<EClass> ignoredEClasses = Sets.newHashSet(
+                            TracePackage.eINSTANCE.getMappingOperationToTraceRecordMapEntry(),
+                            TracePackage.eINSTANCE.getObjectToTraceRecordMapEntry());
 
-	private void debugSerialization(Collection<EObject> expectedTrace, Collection<EObject> actualTrace)
-			throws IOException {
-		if (DEBUG_SERIALIZATION_DIR == null) {
-			return;
-		}
+                    @Override
+                    protected boolean isIgnoredReference(Match match, EReference reference) {
+                        if (ignoredEClasses.contains(reference.getEContainingClass())) {
+                            return true;
+                        }
+                        return super.isIgnoredReference(match, reference);
+                    }
+                };
+            }
+        };
 
-		URI expectedURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "expectedXMI.txt").getAbsolutePath());
-		URI actualURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "actualXMI.txt").getAbsolutePath());
+        Comparison comparison = EMFCompare.builder().setDiffEngine(de).build().compare(scope);
+        assertEquals(prettyPrint(comparison), 0, comparison.getDifferences().size());
+    }
 
-		Resource rExpected = createResource(getResourceSet(), expectedURI);
-		rExpected.getContents().clear();
-		rExpected.getContents().addAll(expectedTrace);
-		rExpected.save(Collections.emptyMap());
+    private void debugSerialization(EObject expectedTrace, Collection<EObject> actualTrace) throws IOException {
+        debugSerialization(Arrays.asList(expectedTrace), actualTrace);
+    }
 
-		Resource rActual = createResource(getResourceSet(), actualURI);
-		rActual.getContents().clear();
-		rActual.getContents().addAll(actualTrace);
-		rActual.save(Collections.emptyMap());
-	}
+    private void debugSerialization(Collection<EObject> expectedTrace, Collection<EObject> actualTrace)
+            throws IOException {
+        if (DEBUG_SERIALIZATION_DIR == null) {
+            return;
+        }
 
-	private static void replaceModelElementWithMatchingOne(EValue value, Comparison comparison) {
-		EObject originalModelElement = value.getModelElement();
-		Match valueMatch = comparison.getMatch(originalModelElement);
-		if (valueMatch == null) {
-			return;
-		}
-		EObject newModelElement = valueMatch.getLeft() == originalModelElement ? valueMatch.getRight()
-				: valueMatch.getLeft();
-		value.setModelElement(newModelElement);
-	}
+        URI expectedURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "expectedXMI.txt").getAbsolutePath());
+        URI actualURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "actualXMI.txt").getAbsolutePath());
 
-	private static void sortTraceRecords(EObject trace) {
-		if (!(trace instanceof org.eclipse.m2m.internal.qvt.oml.trace.Trace)) {
-			throw new IllegalArgumentException();
-		}
-		ECollections.sort(((org.eclipse.m2m.internal.qvt.oml.trace.Trace) trace).getTraceRecords(),
-				new TraceRecordComparator());
-	}
+        Resource rExpected = createResource(getResourceSet(), expectedURI);
+        rExpected.getContents().clear();
+        rExpected.getContents().addAll(expectedTrace);
+        rExpected.save(Collections.emptyMap());
+
+        Resource rActual = createResource(getResourceSet(), actualURI);
+        rActual.getContents().clear();
+        rActual.getContents().addAll(actualTrace);
+        rActual.save(Collections.emptyMap());
+    }
+
+    private static void replaceModelElementWithMatchingOne(EValue value, Comparison comparison) {
+        EObject originalModelElement = value.getModelElement();
+        Match valueMatch = comparison.getMatch(originalModelElement);
+        if (valueMatch == null) {
+            return;
+        }
+        EObject newModelElement = valueMatch.getLeft() == originalModelElement ? valueMatch.getRight()
+                : valueMatch.getLeft();
+        value.setModelElement(newModelElement);
+    }
+
+    private static void sortTraceRecords(EObject trace) {
+        if (!(trace instanceof org.eclipse.m2m.internal.qvt.oml.trace.Trace)) {
+            throw new IllegalArgumentException();
+        }
+        ECollections.sort(((org.eclipse.m2m.internal.qvt.oml.trace.Trace) trace).getTraceRecords(),
+                new TraceRecordComparator());
+    }
 
 }

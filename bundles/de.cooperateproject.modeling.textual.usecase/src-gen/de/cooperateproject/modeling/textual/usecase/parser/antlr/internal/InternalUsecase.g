@@ -798,17 +798,17 @@ ruleAssociation returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAssociationAccess().getLeftCardinalityCardinalityParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getAssociationAccess().getActorCardinalityCardinalityParserRuleCall_3_1_0());
 					}
-					lv_leftCardinality_4_0=ruleCardinality
+					lv_actorCardinality_4_0=ruleCardinality
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssociationRule());
 						}
 						set(
 							$current,
-							"leftCardinality",
-							lv_leftCardinality_4_0,
+							"actorCardinality",
+							lv_actorCardinality_4_0,
 							"de.cooperateproject.modeling.textual.usecase.Usecase.Cardinality");
 						afterParserOrEnumRuleCall();
 					}
@@ -821,17 +821,17 @@ ruleAssociation returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAssociationAccess().getRightCardinalityCardinalityParserRuleCall_3_3_0());
+						newCompositeNode(grammarAccess.getAssociationAccess().getUseCaseCardinalityCardinalityParserRuleCall_3_3_0());
 					}
-					lv_rightCardinality_6_0=ruleCardinality
+					lv_useCaseCardinality_6_0=ruleCardinality
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssociationRule());
 						}
 						set(
 							$current,
-							"rightCardinality",
-							lv_rightCardinality_6_0,
+							"useCaseCardinality",
+							lv_useCaseCardinality_6_0,
 							"de.cooperateproject.modeling.textual.usecase.Usecase.Cardinality");
 						afterParserOrEnumRuleCall();
 					}

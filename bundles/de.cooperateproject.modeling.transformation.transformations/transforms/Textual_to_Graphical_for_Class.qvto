@@ -367,9 +367,7 @@ mapping cls::PackageImport::packageImportToEdge() : notation::Connector
 	styles += result.toEObject().map fontStyle();
 }
 
-mapping notation::Connector::connectorToBendpoint() : notation::RelativeBendpoints
-{
-}
+
 
 
 // decoration nodes
@@ -485,30 +483,6 @@ mapping cls::PackageImport::stereotypeDecorationPackageImport() : notation::Deco
 
 // style stuff
 
-mapping ecore::EObject::locationConstraint() : notation::Location
-{
-}
-
-mapping ecore::EObject::titleStyle() : notation::TitleStyle
-{
-}
-
-mapping ecore::EObject::sortingStyle() : notation::SortingStyle
-{
-}
-
-mapping ecore::EObject::filteringStyle() : notation::FilteringStyle
-{
-}
-
-mapping ecore::EObject::notationBounds() : notation::Bounds
-{
-}
-
-mapping ecore::EObject::fontStyle() : notation::FontStyle
-{
-}
-
 mapping cls::ClassDiagram::stringValueStyle() : notation::StringValueStyle
 {
 	name := "diagram_compatibility_version";
@@ -564,10 +538,6 @@ query uml::MultiplicityElement::matches(cardinality : cls::Cardinality) : Boolea
 
 // helpers
 
-query OclAny::toEObject() : ecore::EObject {
-	return self.oclAsType(ecore::EObject);
-}
-
 query uml::Type::typeToView() : notation::View
 {
 	return if self.oclIsKindOf(uml::Association) then self.typeToEdge() else self.typeToShape() endif;
@@ -607,5 +577,5 @@ query cls::Element::isNested() : Boolean
 
 query cls::Element::getNestedName(type : String) : String
 {
-	return if self.isNested() then type + "_CN" else type endif;
+	return type.getNestedName(self.isNested());
 }

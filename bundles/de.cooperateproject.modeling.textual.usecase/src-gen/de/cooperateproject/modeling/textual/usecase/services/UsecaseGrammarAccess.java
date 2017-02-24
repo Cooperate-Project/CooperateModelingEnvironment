@@ -420,19 +420,19 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUsecaseUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cUsecaseUseCaseCrossReference_2_0.eContents().get(1);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cLeftCardinalityAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cLeftCardinalityCardinalityParserRuleCall_3_1_0 = (RuleCall)cLeftCardinalityAssignment_3_1.eContents().get(0);
+		private final Assignment cActorCardinalityAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cActorCardinalityCardinalityParserRuleCall_3_1_0 = (RuleCall)cActorCardinalityAssignment_3_1.eContents().get(0);
 		private final Keyword cVerticalLineKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
-		private final Assignment cRightCardinalityAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
-		private final RuleCall cRightCardinalityCardinalityParserRuleCall_3_3_0 = (RuleCall)cRightCardinalityAssignment_3_3.eContents().get(0);
+		private final Assignment cUseCaseCardinalityAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
+		private final RuleCall cUseCaseCardinalityCardinalityParserRuleCall_3_3_0 = (RuleCall)cUseCaseCardinalityAssignment_3_3.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		
 		//Association:
-		//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
+		//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality
 		//	']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality ']')?
+		//actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//actor=[Actor|FQN]
@@ -456,26 +456,26 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getUsecaseUseCaseFQNParserRuleCall_2_0_1() { return cUsecaseUseCaseFQNParserRuleCall_2_0_1; }
 		
-		//('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality ']')?
+		//('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality ']')?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_3_0() { return cLeftSquareBracketKeyword_3_0; }
 		
-		//leftCardinality=Cardinality
-		public Assignment getLeftCardinalityAssignment_3_1() { return cLeftCardinalityAssignment_3_1; }
+		//actorCardinality=Cardinality
+		public Assignment getActorCardinalityAssignment_3_1() { return cActorCardinalityAssignment_3_1; }
 		
 		//Cardinality
-		public RuleCall getLeftCardinalityCardinalityParserRuleCall_3_1_0() { return cLeftCardinalityCardinalityParserRuleCall_3_1_0; }
+		public RuleCall getActorCardinalityCardinalityParserRuleCall_3_1_0() { return cActorCardinalityCardinalityParserRuleCall_3_1_0; }
 		
 		//'|'
 		public Keyword getVerticalLineKeyword_3_2() { return cVerticalLineKeyword_3_2; }
 		
-		//rightCardinality=Cardinality
-		public Assignment getRightCardinalityAssignment_3_3() { return cRightCardinalityAssignment_3_3; }
+		//useCaseCardinality=Cardinality
+		public Assignment getUseCaseCardinalityAssignment_3_3() { return cUseCaseCardinalityAssignment_3_3; }
 		
 		//Cardinality
-		public RuleCall getRightCardinalityCardinalityParserRuleCall_3_3_0() { return cRightCardinalityCardinalityParserRuleCall_3_3_0; }
+		public RuleCall getUseCaseCardinalityCardinalityParserRuleCall_3_3_0() { return cUseCaseCardinalityCardinalityParserRuleCall_3_3_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_3_4() { return cRightSquareBracketKeyword_3_4; }
@@ -1002,7 +1002,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Association:
-	//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
+	//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality
 	//	']')?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;

@@ -43,9 +43,9 @@ constructor trace::TraceRecord::TraceRecord(mappingName : String, contextType : 
 {
 	mappingOperation := object trace::EMappingOperation {
 		name := mappingName;
-		package := TARGET_TRANSFORMATION_NAME;
-		module := TARGET_TRANSFORMATION_NAME;
-		runtimeMappingOperation := TARGET_TRANSFORMATION.getMapping(mappingName, contextType);
+		package := mappingName.getMappingModuleName();
+		module := mappingName.getMappingModuleName();
+		//runtimeMappingOperation := TARGET_TRANSFORMATION.getMapping(mappingName, contextType);
 	};
 	context := object trace::EMappingContext {
 		context := object trace::VarParameterValue {
@@ -175,4 +175,22 @@ constructor trace::EMappingResults::EMappingResults(typeName : String, resultObj
 		type := typeName;
 		value := new EValue(resultObject);
 	}
+}
+
+
+
+
+
+
+query String::getMappingModuleName() : String
+{
+	var transformationUtilsMappings := 
+		"locationConstraint".oclAsSet()
+		->including("titleStyle")
+		->including("sortingStyle")
+		->including("filteringStyle")
+		->including("notationBounds")
+		->including("fontStyle")
+		->including("connectorToBendpoint");
+	return if transformationUtilsMappings->includes(self) then "TransformationUtils" else TARGET_TRANSFORMATION_NAME endif;
 }
