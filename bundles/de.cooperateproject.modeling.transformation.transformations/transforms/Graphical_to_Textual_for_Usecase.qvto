@@ -161,14 +161,6 @@ when {self.hasCardinality()}
 
 
 
-query uml::MultiplicityElement::hasCardinality() : Boolean
-{
-	return 
-		self.oclAsType(ecore::EObject).eIsSet(uml::MultiplicityElement.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "lower"))
-		or
-		self.oclAsType(ecore::EObject).eIsSet(uml::MultiplicityElement.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "upper")) 
-}
-
 query uml::NamedElement::getVisibility() : usecase::Visibility
 {
 	var visibilityKind := self.visibility();

@@ -1,0 +1,238 @@
+import TraceUtils_Usecase;
+
+transformation Graphical_to_Textual_for_Usecase_Trace(in graphicalTrace : TRACE, out textualTrace : TRACE, in textualModel : TEXTUAL, in t2gTransformation : QVTO);
+
+modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
+modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TEXTUAL uses usecase('http://www.cooperateproject.de/modeling/language/usecase/Usecase');
+modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+
+main() {
+	var traces := graphicalTrace.rootObjects()[trace::Trace];
+	assert fatal (traces->size() = 1);
+	traces->initializeProperties();
+	traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+	TARGET_TRANSFORMATION_NAME := "Textual_to_Graphical_for_Usecase";
+	TARGET_TRANSFORMATION := t2gTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
+}
+
+mapping trace::Trace::trace() : trace::Trace
+{
+	traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+	result += self.map traceRecordDiagram();
+	result += self.map traceRecordSystem();
+	result += self.map traceRecordBehavioredClassifier();
+	result += self.map traceRecordActor();
+	result += self.map traceRecordUseCase();
+	result += self.map traceRecordExtensionPoint();
+	result += self.map traceRecordRelationship();
+	result += self.map traceRecordAssociation();
+	result += self.map traceRecordGeneralization();
+	result += self.map traceRecordExtend();
+	result += self.map traceRecordInclude();
+}
+
+mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
+{
+	var notationDiagram := self.getSelf().modelElement.oclAsType(notation::Diagram);
+	var useCaseDiagram := self.getResult().modelElement;
+	
+	result += new TraceRecord("diagramToDiagram", "UseCaseDiagram", useCaseDiagram, "Diagram", notationDiagram.toEObject());
+	result += new TraceRecord("stringValueStyle", "UseCaseDiagram", useCaseDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
+	result += new TraceRecord("diagramStyle", "UseCaseDiagram", useCaseDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
+	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "UseCaseDiagram", useCaseDiagram, "PapyrusViewStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusViewStyle)).eobject());
+	viewStyleRecord.parameters.parameters += object VarParameterValue {
+		name := "rootElement";
+		type := "Package";
+		value := new EValue(notationDiagram.element);
+	};
+	result += viewStyleRecord;
+}
+
+mapping trace::TraceRecord::traceRecordSystem() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToSystem"}
+{
+	var shape := self.getSelf().modelElement.oclAsType(notation::Shape);
+	var system := self.getResult().modelElement;
+	var systemFloatingNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_CLASSIFIER_FLOATINGNAME_REGULAR);
+	var usecaseCompartment := shape.children->any(type = PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR);
+	
+	result += new TraceRecord("systemToShape", "System", system, "Shape", shape.toEObject());
+	result += shape.map traceRecordExtended_notationBounds();
+	result += new TraceRecord("systemToNameLabel", "System", system, "DecorationNode", shape.children->any(type = PAPYRUS_NOTATION_NODE_CLASSIFIER_NAME_REGULAR).toEObject());
+	result += new TraceRecord("systemToFloatingNameLabel", "System", system, "DecorationNode", systemFloatingNameLabel.toEObject());
+	result += systemFloatingNameLabel.map traceRecordExtended_locationConstraint();
+	result += new TraceRecord("systemToCompartment", "System", system, "BasicCompartment", usecaseCompartment.toEObject());
+	result += usecaseCompartment.map traceRecordExtended_notationBounds();
+}
+
+mapping trace::TraceRecord::traceRecordBehavioredClassifier() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToBehavioredClassifier"}
+{
+	var shape := self.getSelf().modelElement;
+	var classifier := self.getResult().modelElement;
+	
+	result += new TraceRecord("behavioredClassifierToShape", "BehavioredClassifier", classifier, "Shape", shape);
+}
+
+mapping trace::TraceRecord::traceRecordActor() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToActor"}
+{
+	var shape := self.getSelf().modelElement.oclAsType(notation::Node);
+	var actor := self.getResult().modelElement;
+	var nameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_NAME_REGULAR);
+	var stereotypeLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_STEREOTYPE_REGULAR);
+	var qualifiedNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_QUALIFIEDNAME_REGULAR); 
+	var floatingNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_ACTOR_FLOATINGNAME_REGULAR);  
+	
+	result += new TraceRecord("actorToShape", "Actor", actor, "Shape", shape.toEObject());
+	result += shape.map traceRecordExtended_notationBounds();
+	result += nameLabel.map decorationNode("actorToNameLabel", "Actor", actor);
+	result += stereotypeLabel.map decorationNode("actorToStereotypeLabel", "Actor", actor);
+	result += qualifiedNameLabel.map decorationNode("actorToQualifiedNameLabel", "Actor", actor);
+	result += floatingNameLabel.map decorationNode("actorToFloatingNameLabel", "Actor", actor);
+}
+
+mapping trace::TraceRecord::traceRecordUseCase() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToUsecase"}
+{
+	var shape := self.getSelf().modelElement.oclAsType(notation::Node);
+	var usecase := self.getResult().modelElement;
+	var nameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_USECASE_NAME_REGULAR);
+	var floatingNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_USECASE_FLOATINGNAME_REGULAR);
+	var extensionPointCompartment := shape.children->any(type = PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED).oclAsType(notation::BasicCompartment);
+	
+	result += new TraceRecord("usecaseToShape", "UseCase", usecase, "Shape", shape.toEObject());
+	result += shape.map traceRecordExtended_notationBounds();
+	result += new TraceRecord("usecaseToNameLabel", "UseCase", usecase, "DecorationNode", nameLabel.toEObject());
+	result += floatingNameLabel.map decorationNode("usecaseToFloatingNameLabel", "UseCase", usecase);
+	
+	result += new TraceRecord("usecaseToExtensionPointCompartment", "UseCase", usecase, "BasicCompartment", extensionPointCompartment.toEObject());
+	result += extensionPointCompartment.map traceRecordExtended_basicCompartment();
+}
+
+mapping trace::TraceRecord::traceRecordExtensionPoint() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "nodeToExtensionPoint"}
+{
+	var shape := self.getSelf().modelElement.oclAsType(notation::Node);
+	var extensionPoint := self.getResult().modelElement;
+	
+	result += new TraceRecord("extensionPointToShape", "ExtensionPoint", extensionPoint, "Shape", shape.toEObject());
+	result += shape.map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordRelationship() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToRelationship"}
+{
+	var connector := self.getSelf().modelElement;
+	var relationship := self.getResult().modelElement;
+	
+	result += new TraceRecord("relationshipToEdge", "Relationship", relationship, "Connector", connector);
+}
+
+mapping trace::TraceRecord::traceRecordAssociation() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToAssociation"}
+{
+	var edge := self.getSelf().modelElement.oclAsType(notation::Edge);
+	var association := self.getResult().modelElement;
+	var nameLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_NAME);
+	var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_STEREOTYPE);
+	var targetRoleLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETROLE);
+	var sourceRoleLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE);
+	var sourceMultiLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY);
+	var targetMultiLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY);
+	
+	result += new TraceRecord("associationToEdge", "Association", association, "Connector", edge.toEObject());
+	result += edge.map edge();
+	result += nameLabel.map decorationNode("nameDecorationAssociation", "Association", association);
+	result += stereotypeLabel.map decorationNode("stereotypeDecorationAssocation", "Association", association);
+	result += targetRoleLabel.map decorationNode("targetRoleDecoration", "Association", association);
+	result += sourceRoleLabel.map decorationNode("sourceRoleDecoration", "Association", association);
+	result += sourceMultiLabel.map decorationNode("sourceMultiplicityDecoration", "Association", association);
+	result += targetMultiLabel.map decorationNode("targetMultiplicityDecoration", "Association", association);
+}
+
+mapping trace::TraceRecord::traceRecordGeneralization() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToGeneralization"}
+{
+	var edge := self.getSelf().modelElement.oclAsType(notation::Edge);
+	var generalization := self.getResult().modelElement;
+	var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_GENERALIZATION_STEREOTYPE);
+	
+	result += new TraceRecord("generalizationToEdge", "Generalization", generalization, "Connector", edge.toEObject());
+	result += edge.map edge();
+	result += stereotypeLabel.map decorationNode("generalizationToSteoretypeLabel", "Generalization", generalization);
+}
+
+mapping trace::TraceRecord::traceRecordExtend() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToExtend"}
+{
+	var edge := self.getSelf().modelElement.oclAsType(notation::Edge);
+	var extend := self.getResult().modelElement;
+	var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_EXTEND_STEREOTYPE);
+	var keywordLabel := edge.children->any(type = PAPYRUS_NOTATION_NODE_EXTEND_KEYWORD);
+	
+	result += new TraceRecord("extendToEdge", "Extend", extend, "Connector", edge.toEObject());
+	result += edge.map edge();
+	result += stereotypeLabel.map decorationNode("extendToStereotypeLabel", "Extend", extend);
+	result += keywordLabel.map decorationNode("extendToKeywordLabel", "Extend", extend);
+	result += edge.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_CONSTRAINT)->select(source = edge or target = edge).map extendConstraintEdgeToTraceRecord(extend.oclAsType(usecase::Extend));
+}
+
+mapping trace::TraceRecord::traceRecordInclude() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "edgeToInclude"}
+{
+	var edge := self.getSelf().modelElement.oclAsType(notation::Edge);
+	var include := self.getResult().modelElement;
+	var stereotypeLabel := edge.children->any(type = PAPYRUS_NOTATION_EDGE_INCLUDE_STEREOTYPE);
+	var keywordLabel := edge.children->any(type = PAPYRUS_NOTATION_EDGE_INCLUDE_KEYWORD);
+	
+	result += new TraceRecord("includeToEdge", "Include", include, "Connector", edge.toEObject());
+	result += edge.map edge();
+	result += stereotypeLabel.map decorationNode("includeToStereotypeLabel", "Include", include);
+	result += keywordLabel.map decorationNode("includeToKeywordLabel", "Include", include);
+}
+
+
+
+mapping notation::Edge::extendConstraintEdgeToTraceRecord(extend : usecase::Extend) : List(trace::TraceRecord)
+{
+	// constraint shape
+	var constraintShape := self.target->including(self.source)->any(element.oclIsKindOf(uml::Constraint)).oclAsType(notation::Shape);
+	var nameLabel := constraintShape.children->any(type = PAPYRUS_NOTATION_NODE_CONSTRAINT_NAME_REGULAR);
+	var bodyLabel := constraintShape.children->any(type = PAPYRUS_NOTATION_NODE_CONSTRAINT_BODY_REGULAR);
+	
+	result += new TraceRecord("extendToShape", "Extend", extend.toEObject(), "Shape", constraintShape.toEObject());
+	result += constraintShape.map traceRecordExtended_notationBounds();
+	result += new TraceRecord("extendToNameLabel", "Extend", extend.toEObject(), "DecorationNode", nameLabel.toEObject());
+	result += new TraceRecord("extendToBodyLabel", "Extend", extend.toEObject(), "DecorationNode", bodyLabel.toEObject());
+	
+	// constraint edge
+	result += new TraceRecord("extendToConstraintEdge", "Extend", extend.toEObject(), "Connector", self.toEObject());
+	result += self.map edge();
+}
+
+
+
+mapping notation::Edge::edge() : List(trace::TraceRecord)
+{
+	result += new TraceRecord("fontStyle", "EObject", self.eobject(), "FontStyle", self.styles->any(oclIsKindOf(notation::FontStyle)).eobject());
+	result += new TraceRecord("connectorToBendpoint", "Connector", self.eobject(), "RelativeBendpoints", self.bendpoints.eobject());
+}
+
+mapping notation::Node::decorationNode(mappingName : String, srcType : String, srcElement : ecore::EObject) : List(trace::TraceRecord)
+{
+	result += new TraceRecord(mappingName, srcType, srcElement, "DecorationNode", self.toEObject());
+	result += self.map traceRecordExtended_locationConstraint();
+}

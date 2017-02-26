@@ -48,6 +48,14 @@ mapping notation::Connector::connectorToBendpoint() : notation::RelativeBendpoin
 
 
 
+query uml::MultiplicityElement::hasCardinality() : Boolean
+{
+	return 
+		self.oclAsType(ecore::EObject).eIsSet(uml::MultiplicityElement.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "lower"))
+		or
+		self.oclAsType(ecore::EObject).eIsSet(uml::MultiplicityElement.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "upper")) 
+}
+
 query uml::NamedElement::visibility() : uml::VisibilityKind {
 	// we have to ensure that the visibility is set before using it
 	// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=437449
