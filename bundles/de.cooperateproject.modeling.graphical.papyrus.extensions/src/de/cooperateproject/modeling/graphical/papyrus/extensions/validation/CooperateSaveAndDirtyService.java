@@ -10,6 +10,9 @@ import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.ILock;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -18,6 +21,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.SaveAndDirtyService;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -29,6 +33,7 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
     private static final String PLUG_IN_ID = "de.cooperateproject.validation";
     private ServicesRegistry serviceRegistry;
     private CooperateValidationError validationError;
+    private static ILock lock = Job.getJobManager().newLock();
 
     public synchronized void setModelInconsistent(CooperateValidationError validationError) {
         this.validationError = validationError;
@@ -42,6 +47,43 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
     @Override
     public void doSave(IProgressMonitor monitor) {
+        Job job = new Job("Save") {
+            @Override
+            protected IStatus run(IProgressMonitor monitor) {
+                SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+                Display.getDefault().syncExec(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            lock.acquire();
+                            subMonitor.setTaskName("Saving diagram.");
+                            if (validate()) {
+                                internalDoSave(subMonitor.split(100));
+                            }
+                        } finally {
+                            lock.release();
+                        }
+                    }
+                });
+                return Status.OK_STATUS;
+            }
+        };
+        job.setUser(true);
+        job.schedule();
+        try {
+            job.join();
+        } catch (InterruptedException e) {
+            LOGGER.error("Error during save operation.", e);
+            return;
+        }
+    }
+
+    private void internalDoSave(IProgressMonitor monitor) {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+        super.doSave(subMonitor.split(100));
+    }
+
+    private boolean validate() {
         ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
         Command validateCommand = commandService.getCommand("org.eclipse.papyrus.validation.ValidateModelCommand");
         try {
@@ -64,20 +106,20 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
                     // Open view part of invalid element
                     openElementService.openElement(validationError.getInvalidObject());
                     validationError = null;
-                    return;
+                    return false;
                 }
             }
         } catch (ExecutionException | NotDefinedException | NotEnabledException | NotHandledException e) {
             LOGGER.error("Error while executing ValidateModelCommand on save of Model", e);
-            return; // Do not save when Exception occurs
+            return false; // Do not save when Exception occurs
         } catch (ServiceException e) {
             LOGGER.error("Cannot access required services to validate model on save", e);
-            return;
+            return false;
         } catch (PartInitException e) {
             LOGGER.error("Cannot open view part after validation", e);
-            return;
+            return false;
         }
-        super.doSave(monitor);
+        return true;
     }
 
     private void showErrorDialog(String reason) {

@@ -7,8 +7,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.ILock;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -63,6 +67,8 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private final PostProcessorHandler postProcessorHandler = new PostProcessorHandler();
     private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
     private IContextActivation contextActivation;
+    private static final Logger LOGGER = Logger.getLogger(CooperateCDOXtextEditor.class);
+    private static ILock lock = Job.getJobManager().newLock();
 
     @Inject
     private IResourceValidator resourceValidator;
@@ -99,7 +105,34 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
                 openErrorDialog("Save Error", "Can't save because of editor errors");
                 return;
             }
-            saveDocument(progressMonitor);
+            Job job = new Job("Save") {
+                @Override
+                protected IStatus run(IProgressMonitor monitor) {
+                    SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+                    Display.getDefault().syncExec(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            try {
+                                lock.acquire();
+                                subMonitor.setTaskName("Saving diagram.");
+                                saveDocument(subMonitor.split(100));
+                            } finally {
+                                lock.release();
+                            }
+                        }
+                    });
+                    return Status.OK_STATUS;
+                }
+            };
+            job.setUser(true);
+            job.schedule();
+            try {
+                job.join();
+            } catch (InterruptedException e) {
+                LOGGER.error("Error during save operation.", e);
+                return;
+            }
         } else if (status.matches(IStatus.CANCEL)) {
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
             return;
@@ -135,10 +168,11 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     }
 
     private void saveDocument(IProgressMonitor progressMonitor) {
+        SubMonitor subMonitor = SubMonitor.convert(progressMonitor, 100);
         if (getDocument() != null) {
             saveAllAssociated(getDocument());
         }
-        super.doSave(progressMonitor);
+        super.doSave(subMonitor.split(100));
         try {
             postProcessorHandler.executePostProcessors();
         } catch (Exception e) {
@@ -152,7 +186,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         try {
             validationJob.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.trace("Error during validation.", e);
         }
         return validationJob.getResult();
     }
