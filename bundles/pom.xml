@@ -22,6 +22,10 @@
 		<module>de.cooperateproject.modeling.textual.cls.metamodel</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
 		<module>de.cooperateproject.modeling.textual.common</module>
+		<module>de.cooperateproject.modeling.textual.usecase</module>
+		<module>de.cooperateproject.modeling.textual.usecase.ide</module>
+		<module>de.cooperateproject.modeling.textual.usecase.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.usecase.ui</module>
 		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
 		<module>de.cooperateproject.modeling.transformation.engine</module>

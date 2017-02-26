@@ -38,75 +38,77 @@ import de.cooperateproject.modeling.transformation.transformations.tests.Constan
 import de.cooperateproject.modeling.transformation.transformations.tests.util.Log4JLogger;
 
 public abstract class TransformationTestBase {
-	
-	private static final Logger LOGGER = Logger.getLogger(TransformationTestBase.class);
-	private ResourceSet resourceSet;
-	
-	@BeforeClass
-	public static void init() throws Exception {
-		BasicConfigurator.resetConfiguration();
-		BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
-		
-		if (!isPluginEnvironment()) {
-			EcorePlugin.getPlatformResourceMap().put(Activator.PLUGIN_ID, determinePluginUri(Activator.PLUGIN_ID, Activator.class));
-			EcorePlugin.getPlatformResourceMap().put(Constants.PLUGIN_ID, determinePluginUri(Constants.PLUGIN_ID, Constants.class));			
 
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-			OCL.initialize(null);
-			NotationPackage.eINSTANCE.eClass();
-			StylePackage.eINSTANCE.eClass();
-		}
-	}
-	
-	@Before
-	public void setup() throws Exception {
-		resourceSet = new ResourceSetImpl();
-	}
-	
-	protected ResourceSet getResourceSet() {
-		return resourceSet;
-	}
-	
-	@SuppressWarnings("restriction")
-	protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters, Trace traceModel) throws IOException {
-		TransformationExecutor executor = new TransformationExecutor(transformationURI);
-		ExecutionContextImpl ctx = new ExecutionContextImpl();
-		ctx.setLog(new Log4JLogger(LOGGER, Level.INFO));
-		ctx.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, traceModel);
-		ExecutionDiagnostic result = executor.execute(ctx, Iterables.toArray(transformationParameters, ModelExtent.class));
-		assertEquals(ExecutionDiagnostic.OK, result.getSeverity());
-	}
-	
+    private static final Logger LOGGER = Logger.getLogger(TransformationTestBase.class);
+    private ResourceSet resourceSet;
 
-	
-	protected static URI createTransformationURI(String filename) {
-		String pathName = String.format("/%s/transforms/%s", Activator.PLUGIN_ID, filename);
-		return createPlatformURI(pathName);
-	}
-	
-	protected static URI createResourceModelURI(String filename) {
-		String pathName = String.format("/%s/models/%s", Constants.PLUGIN_ID, filename);
-		return createPlatformURI(pathName);
-	}
-	
-	private static boolean isPluginEnvironment() {
-		return ResourcesPlugin.getPlugin() != null;
-	}
-	
-	private static URI createPlatformURI(String pathName) {
-		if (!isPluginEnvironment()) {
-			return URI.createPlatformResourceURI(pathName, true);			
-		} else {
-			return URI.createPlatformPluginURI(pathName, true);
-		}
-	}
-	
-	private static URI determinePluginUri(String pluginId, Class<?> classOfPlugin) throws URISyntaxException {
-		Path p = Paths.get(classOfPlugin.getProtectionDomain().getCodeSource().getLocation().toURI());
-		while (p.getParent() != null && !p.getFileName().toString().equals(pluginId)) {
-			p = p.getParent();
-		}
-		return URI.createFileURI(p.toAbsolutePath().toFile().toString() + "/");
-	}
-	
+    @BeforeClass
+    public static void init() throws Exception {
+        BasicConfigurator.resetConfiguration();
+        BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
+
+        if (!isPluginEnvironment()) {
+            EcorePlugin.getPlatformResourceMap().put(Activator.PLUGIN_ID,
+                    determinePluginUri(Activator.PLUGIN_ID, Activator.class));
+            EcorePlugin.getPlatformResourceMap().put(Constants.PLUGIN_ID,
+                    determinePluginUri(Constants.PLUGIN_ID, Constants.class));
+
+            Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+            OCL.initialize(null);
+            NotationPackage.eINSTANCE.eClass();
+            StylePackage.eINSTANCE.eClass();
+        }
+    }
+
+    @Before
+    public void setup() throws Exception {
+        resourceSet = new ResourceSetImpl();
+    }
+
+    protected ResourceSet getResourceSet() {
+        return resourceSet;
+    }
+
+    @SuppressWarnings("restriction")
+    protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
+            Trace traceModel) throws IOException {
+        TransformationExecutor executor = new TransformationExecutor(transformationURI);
+        ExecutionContextImpl ctx = new ExecutionContextImpl();
+        ctx.setLog(new Log4JLogger(LOGGER, Level.INFO));
+        ctx.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, traceModel);
+        ExecutionDiagnostic result = executor.execute(ctx,
+                Iterables.toArray(transformationParameters, ModelExtent.class));
+        assertEquals(result.getMessage(), ExecutionDiagnostic.OK, result.getSeverity());
+    }
+
+    protected static URI createTransformationURI(String filename) {
+        String pathName = String.format("/%s/transforms/%s", Activator.PLUGIN_ID, filename);
+        return createPlatformURI(pathName);
+    }
+
+    protected static URI createResourceModelURI(String filename) {
+        String pathName = String.format("/%s/models/%s", Constants.PLUGIN_ID, filename);
+        return createPlatformURI(pathName);
+    }
+
+    private static boolean isPluginEnvironment() {
+        return ResourcesPlugin.getPlugin() != null;
+    }
+
+    private static URI createPlatformURI(String pathName) {
+        if (!isPluginEnvironment()) {
+            return URI.createPlatformResourceURI(pathName, true);
+        } else {
+            return URI.createPlatformPluginURI(pathName, true);
+        }
+    }
+
+    private static URI determinePluginUri(String pluginId, Class<?> classOfPlugin) throws URISyntaxException {
+        Path p = Paths.get(classOfPlugin.getProtectionDomain().getCodeSource().getLocation().toURI());
+        while (p.getParent() != null && !p.getFileName().toString().equals(pluginId)) {
+            p = p.getParent();
+        }
+        return URI.createFileURI(p.toAbsolutePath().toFile().toString() + "/");
+    }
+
 }
