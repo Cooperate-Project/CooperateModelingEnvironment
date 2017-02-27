@@ -9,6 +9,11 @@ import org.eclipse.ui.PlatformUI;
 
 import de.cooperateproject.ui.focus.views.FocusView;
 
+/**
+ * Handler for muting all incoming focus requests.
+ * @author Jasmin
+ *
+ */
 public class MuteHandler extends AbstractHandler {
 
 	@Override

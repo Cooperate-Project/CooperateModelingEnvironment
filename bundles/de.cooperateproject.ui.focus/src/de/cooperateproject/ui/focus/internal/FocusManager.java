@@ -1,5 +1,6 @@
 package de.cooperateproject.ui.focus.internal;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -24,11 +25,19 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 
+/**
+ * Provides all focus relevant functionalities for the cooperation of both Xtext
+ * and Papyrus editor.
+ * 
+ * @author Jasmin
+ *
+ */
 public class FocusManager {
 
 	private static FocusManager instance;
 	private CooperateCDOXtextEditor xTextEditor;
 	private PapyrusMultiDiagramEditor papyrusEditor;
+	private static Logger logger = Logger.getLogger(FocusManager.class);
 
 	public static FocusManager getInstance() {
 		if (instance == null) {
@@ -37,6 +46,13 @@ public class FocusManager {
 		return instance;
 	}
 
+	/**
+	 * Sets the focus to the given element in the opened Xtext or Papyrus
+	 * editor.
+	 * 
+	 * @param element
+	 *            the element which should get the focus
+	 */
 	public void setFocusedElement(EObject element) {
 		// set focus in textual editor
 		if (xTextEditor != null) {
@@ -47,8 +63,8 @@ public class FocusManager {
 
 			ICompositeNode node = NodeModelUtils.findActualNodeFor(unit.getClsElement());
 			if (node == null) {
-				System.err.println(
-						"Focus View: Couldn't set the focus on requested element. Element couldn't be found in Xtext resource.");
+				logger.error(
+						"Couldn't set the focus on requested element. Element couldn't be found in Xtext resource.");
 				return;
 			}
 			ITextSelection selection = new TextSelection(xTextEditor.getDocument(), node.getOffset(), 0);
@@ -61,12 +77,17 @@ public class FocusManager {
 						.getService(OpenElementService.class);
 				openService.openSemanticElement(element);
 			} catch (PartInitException | ServiceException e) {
-				e.printStackTrace();
+				logger.error("Something went wrong while programmatically setting a focus in the Papyrus editor.", e);
 			}
 		}
 	}
 
 	@SuppressWarnings("rawtypes")
+	/**
+	 * Extracts the current element focus of the editor.
+	 * 
+	 * @return the focused element
+	 */
 	public EObject getFocusedElement() {
 
 		EObject focusedElement = null;
@@ -91,12 +112,18 @@ public class FocusManager {
 			Object selectedObject = null;
 			if (selection instanceof IStructuredSelection) {
 				selectedObject = ((IStructuredSelection) selection).getFirstElement();
+				focusedElement = getSelectedUmlObject(selectedObject);
 			}
-			focusedElement = getSelectedUmlObject(selectedObject);
 		}
 		return focusedElement;
 	}
 
+	/**
+	 * Sets the opened editor (Xtext or Papyrus).
+	 * 
+	 * @param pSite
+	 *            the opened workbenchpart
+	 */
 	public void setEditor(IWorkbenchPart pSite) {
 		if (pSite instanceof CooperateCDOXtextEditor) {
 			xTextEditor = (CooperateCDOXtextEditor) pSite;
@@ -116,9 +143,9 @@ public class FocusManager {
 
 		if (selection != null) {
 			if (selection instanceof IAdaptable) {
-				result = (NamedElement) ((IAdaptable) selection).getAdapter(NamedElement.class);
+				result = ((IAdaptable) selection).getAdapter(NamedElement.class);
 			} else {
-				result = (NamedElement) Platform.getAdapterManager().getAdapter(selection, NamedElement.class);
+				result = Platform.getAdapterManager().getAdapter(selection, NamedElement.class);
 			}
 		}
 		return result;

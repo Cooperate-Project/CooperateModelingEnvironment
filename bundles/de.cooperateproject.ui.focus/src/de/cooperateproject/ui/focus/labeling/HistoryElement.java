@@ -2,6 +2,11 @@ package de.cooperateproject.ui.focus.labeling;
 
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Represents a saved focus request in the history.
+ * @author Jasmin
+ *
+ */
 public class HistoryElement {
 
 	private EObject focusedElement;

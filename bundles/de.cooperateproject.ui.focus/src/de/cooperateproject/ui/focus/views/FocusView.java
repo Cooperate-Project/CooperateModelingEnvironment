@@ -30,6 +30,12 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 
+/**
+ * The view of the plugin.
+ * 
+ * @author Jasmin
+ *
+ */
 public class FocusView extends ViewPart {
 	public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
 	private TableViewer historyViewer; // lists all deictic gestures (element
@@ -54,10 +60,25 @@ public class FocusView extends ViewPart {
 		hookDoubleClickAction();
 	}
 
+	/**
+	 * Sets the diagram's title in the view.
+	 * 
+	 * @param title
+	 *            the title of the diagram
+	 */
 	public void setTitleText(String title) {
 		titleText.setText(title);
 	}
 
+	/**
+	 * Notifies the user that a focus request was received. Asks him, if he'd
+	 * like to set the focus or not.
+	 * 
+	 * @param focusedObject
+	 *            the object which was focused in the focus request
+	 * @param timeStamp
+	 *            the time at which the focus request was sent
+	 */
 	public void handleFocusRequest(EObject focusedObject, long timeStamp) {
 		if (focusedObject == null) {
 			return;
@@ -90,6 +111,11 @@ public class FocusView extends ViewPart {
 		muteButtonAction();
 	}
 
+	/**
+	 * Send an own focus request. Extracts the selected element by asking the
+	 * FocusManager and delegates the focus request to the subscriberManager in
+	 * order to send it.
+	 */
 	public void sendFocusRequest() {
 		EObject focusedElement = FocusManager.getInstance().getFocusedElement();
 		if (UMLelementToStringSwitch.isOfSupportedType(focusedElement)) {
@@ -265,8 +291,7 @@ public class FocusView extends ViewPart {
 
 		@Override
 		public int open() {
-			int ret = super.open();
-			return ret;
+			return super.open();
 		}
 
 		@Override

@@ -23,7 +23,11 @@ public class UMLelementToStringSwitch extends UMLSwitch<String> {
 	private static final Set<EClass> supportedTypes = new HashSet<EClass>(Arrays.asList(SET_VALUES));
 
 	public static boolean isOfSupportedType(EObject obj) {
-		return supportedTypes.contains(obj.eClass());
+		boolean ret = false;
+		if(obj != null){
+			ret = supportedTypes.contains(obj.eClass());
+		}
+		return ret;
 	}
 
 	@Override

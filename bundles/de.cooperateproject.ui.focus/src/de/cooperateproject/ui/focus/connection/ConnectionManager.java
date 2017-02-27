@@ -1,6 +1,7 @@
 package de.cooperateproject.ui.focus.connection;
 
 import org.apache.activemq.ActiveMQConnection;
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 
 import java.net.URISyntaxException;
@@ -8,12 +9,20 @@ import java.net.URISyntaxException;
 import javax.jms.JMSException;
 import javax.jms.TopicConnection;
 
+/**
+ * Establishes and manages the connection to the message broker.
+ * 
+ * @author Jasmin
+ *
+ */
 public class ConnectionManager {
 
 	private static ConnectionManager instance = null;
 	private IFile currentFile = null;
-	private final String address = "tcp://localhost:61616";
+	private static final String address = "tcp://localhost:61616";
 	private TopicConnection connection = null;
+
+	private static Logger logger = Logger.getLogger(ConnectionManager.class);
 
 	public static ConnectionManager getInstance() {
 		if (instance == null) {
@@ -22,6 +31,13 @@ public class ConnectionManager {
 		return instance;
 	}
 
+	/**
+	 * Starts a connection to the Apache ActiveMQ message broker and initializes
+	 * the SubscriberManager.
+	 * 
+	 * @param file
+	 *            the file which was selected by the user
+	 */
 	public void connect(IFile file) {
 
 		try {
@@ -38,11 +54,14 @@ public class ConnectionManager {
 				SubscriberManager.getInstance().subscribe();
 			}
 		} catch (JMSException | URISyntaxException e) {
-			e.printStackTrace();
+			logger.error("Couldn't connect to the messagebroker.", e);
 		}
 
 	}
 
+	/**
+	 * Disconnects from the message broker.
+	 */
 	public void disconnect() {
 		currentFile = null;
 		if (connection != null) {
@@ -51,7 +70,7 @@ public class ConnectionManager {
 				connection.close();
 				instance = null;
 			} catch (JMSException e) {
-				e.printStackTrace();
+				logger.error("Couldn't close the connection to the message broker.", e);
 			}
 		}
 	}

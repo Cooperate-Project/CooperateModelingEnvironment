@@ -9,6 +9,11 @@ import org.eclipse.ui.PlatformUI;
 
 import de.cooperateproject.ui.focus.views.FocusView;
 
+/**
+ * Handler for sending a focus request.
+ * @author Jasmin
+ *
+ */
 public class FocusHandler extends AbstractHandler {
 
 	@Override

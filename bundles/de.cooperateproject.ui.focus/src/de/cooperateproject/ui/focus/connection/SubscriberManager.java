@@ -10,6 +10,7 @@ import javax.jms.TopicPublisher;
 import javax.jms.TopicSession;
 import javax.jms.TopicSubscriber;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
@@ -21,6 +22,13 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.focus.views.FocusView;
 
+/**
+ * Subscribes and unsubscribes the topic of the connection when needed. Handles
+ * message recieving and sending upon the message broker.
+ * 
+ * @author Jasmin
+ *
+ */
 public class SubscriberManager implements javax.jms.MessageListener {
 
 	private static SubscriberManager instance = null;
@@ -30,8 +38,9 @@ public class SubscriberManager implements javax.jms.MessageListener {
 	private TopicPublisher publisher = null;
 	private TopicSession topicSession = null;
 	private boolean isInitialized = false;
-	CDOSession cdoSession;
-	CDOView cdoView;
+	private CDOSession cdoSession;
+	private CDOView cdoView;
+	private static Logger logger = Logger.getLogger(SubscriberManager.class);
 
 	public static SubscriberManager getInstance() {
 		if (instance == null) {
@@ -40,6 +49,14 @@ public class SubscriberManager implements javax.jms.MessageListener {
 		return instance;
 	}
 
+	/**
+	 * Creates the topicSession with the title of the selected file's.
+	 * 
+	 * @param connection
+	 *            the topicConnection on which the session should be created.
+	 * @param fileName
+	 *            the name of the file which the user selected
+	 */
 	public void initialize(TopicConnection connection, String fileName) {
 		try {
 			topicSession = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -52,11 +69,14 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			isInitialized = true;
 
 		} catch (JMSException e) {
-			e.printStackTrace();
+			logger.error("Something went wrong while initializing the topic or the publisher.", e);
 		}
 
 	}
 
+	/**
+	 * Subscribes to the topicSession.
+	 */
 	public void subscribe() {
 		if (!isInitialized) {
 			return;
@@ -69,20 +89,26 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			subscriber = topicSession.createSubscriber(topic, null, true);
 			subscriber.setMessageListener(this);
 		} catch (JMSException e) {
-			e.printStackTrace();
+			logger.error("Couldn't create a subscriber for the topicSession.", e);
 		}
 	}
 
+	/**
+	 * Unsubscribes from the topicSession.
+	 */
 	public void unsubscribe() {
 		try {
 			if (subscriber != null) {
 				subscriber.close();
 			}
 		} catch (JMSException e) {
-			e.printStackTrace();
+			logger.error("Couldn't close the subscriber.", e);
 		}
 	}
 
+	/**
+	 * Unsubscribes from the topicSession and closes it.
+	 */
 	public void disconnect() {
 		if (!isInitialized) {
 			return;
@@ -95,15 +121,26 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			topicSession.close();
 			instance = null;
 		} catch (JMSException e) {
-			e.printStackTrace();
+			logger.error("Couldn't close the topicSession.", e);
 		}
 
 	}
 
+	/**
+	 * Sets the view of the plugin.
+	 * 
+	 * @param pView
+	 */
 	public void setView(FocusView pView) {
 		view = pView;
 	}
 
+	/**
+	 * Sends a text message with the CDOID of the given EObject as content. This
+	 * represents a focus request.
+	 * 
+	 * @param obj
+	 */
 	public void sendFocusRequest(EObject obj) {
 		if (!isInitialized) {
 			return;
@@ -115,12 +152,16 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			TextMessage msg = topicSession.createTextMessage(builder.toString());
 			publisher.publish(msg);
 		} catch (JMSException e) {
-			e.printStackTrace();
+			logger.error("Couldn't send the text message.", e);
 		}
 
 	}
 
 	@Override
+	/**
+	 * Receives focus requests and gets the EObject from the received CDOID.
+	 * Tells the view/the user that a focus request has been received.
+	 */
 	public void onMessage(Message msg) {
 		try {
 			if (!(msg instanceof TextMessage)) {
@@ -139,7 +180,7 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			}
 
 		} catch (JMSException e) {
-			e.printStackTrace();
+			logger.error("Couldn't get the text from the received message.", e);
 		}
 	}
 
