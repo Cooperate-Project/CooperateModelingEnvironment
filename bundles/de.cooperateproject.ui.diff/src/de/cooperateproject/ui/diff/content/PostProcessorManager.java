@@ -26,8 +26,9 @@ public class PostProcessorManager {
 	private static final String classAttributeId = "class";
 
 	static HashMap<EObject, DiffTreeItem> postProcessDiffTree(HashMap<EObject, DiffTreeItem> tree) {
+		HashMap<EObject, DiffTreeItem> ret = tree;
 		if (tree.isEmpty()) {
-			return tree;
+			return ret;
 		}
 
 		Collection<EObject> keys = tree.keySet();
@@ -35,12 +36,19 @@ public class PostProcessorManager {
 		// which meta model it is.
 		EObject oneKey = keys.iterator().next();
 		String objectType = oneKey.getClass().getPackage().getName();
-		return findPostProcessor(objectType).postProcessDiffTreeBuilder(tree);
+		IPostProcessor postProcessor = findPostProcessor(objectType);
+		if (postProcessor != null) {
+			ret = postProcessor.postProcessDiffTreeBuilder(tree);
+		}
+
+		return ret;
+
 	}
 
 	static List<SummaryItem> postProcessSummaryList(List<SummaryItem> summaryList) {
+		List<SummaryItem> ret = summaryList;
 		if (summaryList.isEmpty()) {
-			return summaryList;
+			return ret;
 		}
 
 		SummaryItem summaryItem = summaryList.get(0);
@@ -54,7 +62,11 @@ public class PostProcessorManager {
 			concreteItem = summaryItem.getRight();
 		}
 		objectType = concreteItem.getClass().getPackage().getName();
-		return findPostProcessor(objectType).postProcessSummaryViewBuilder(summaryList);
+		IPostProcessor postProcessor = findPostProcessor(objectType);
+		if (postProcessor != null) {
+			ret = postProcessor.postProcessSummaryViewBuilder(summaryList);
+		}
+		return ret;
 	}
 
 	private static IPostProcessor findPostProcessor(String objectType) {
