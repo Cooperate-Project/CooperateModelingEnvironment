@@ -1,62 +1,30 @@
 package de.cooperateproject.ui.diff.labeling;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import de.cooperateproject.ui.diff.content.SummaryItem;
-import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.AssociationPropertiesLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.AttributeLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.CardinalityLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.ClassDiagramLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.ClassLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.CommentLinkLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.GeneralizationLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.ImplementationLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.IntegerLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.InterfaceLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.MethodLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.PackageImportLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.PackageLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.ParameterLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.PrimitiveTypeLabel;
-import de.cooperateproject.ui.diff.labeling.itemlabels.SummaryItemLabelHandler;
-import de.cooperateproject.ui.diff.labeling.itemlabels.VisibilityLabel;
 
 /**
- * Label Provider for a table viewer which lists all changes in a commit
+ * Label provider for a table viewer which lists all changes in a commit.
+ * Delegates the labeling to the meta-model-specific label handler.
  * 
  * @author Jasmin
  *
  */
 public class SummaryLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-	private Map<String, SummaryItemLabelHandler> itemHandling = new HashMap<String, SummaryItemLabelHandler>();
-
-	public SummaryLabelProvider() {
-		itemHandling.put("AttributeImpl", new AttributeLabel());
-		itemHandling.put("ClassImpl", new ClassLabel());
-		itemHandling.put("MethodImpl", new MethodLabel());
-		itemHandling.put("ParameterImpl", new ParameterLabel());
-		itemHandling.put("PackageImpl", new PackageLabel());
-		itemHandling.put("InterfaceImpl", new InterfaceLabel());
-		itemHandling.put("AssociationImpl", new AssociationLabel());
-		itemHandling.put("GeneralizationImpl", new GeneralizationLabel());
-		itemHandling.put("ImplementationImpl", new ImplementationLabel());
-		itemHandling.put("ClassDiagramImpl", new ClassDiagramLabel());
-		itemHandling.put("Visibility", new VisibilityLabel());
-		itemHandling.put("AssociationPropertiesImpl", new AssociationPropertiesLabel());
-		itemHandling.put("CardinalityImpl", new CardinalityLabel());
-		itemHandling.put("Integer", new IntegerLabel());
-		itemHandling.put("PrimitiveTypeImpl", new PrimitiveTypeLabel());
-		itemHandling.put("CommentLinkImpl", new CommentLinkLabel());
-		itemHandling.put("PackageImportImpl", new PackageImportLabel());
-	}
+	private static final String extensionPointId = "de.cooperateproject.ui.diff.labelHandlers";
+	private static final String metamodelAttributeId = "metamodel";
+	private static final String classAttributeId = "class";
 
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
@@ -67,77 +35,92 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	public String getColumnText(Object element, int columnIndex) {
 
 		String ret = "";
+		if (!(element instanceof SummaryItem)) {
+			return ret;
+		}
 
-		if (element instanceof SummaryItem) {
+		SummaryItem item = (SummaryItem) element;
+		LabelHandler generalLabelHandler = null;
+		LabelHandler parentLabelHandler = null;
 
-			SummaryItem item = ((SummaryItem) element);
+		if (item.getLeft() != null) {
+			generalLabelHandler = findLabelHandler(item.getLeft().getClass().getPackage().getName());
+		} else {
+			generalLabelHandler = findLabelHandler(item.getRight().getClass().getPackage().getName());
+		}
 
-			SummaryItemLabelHandler handlerClassLeft = null;
-			SummaryItemLabelHandler handlerClassRight = null;
-			SummaryItemLabelHandler handlerClassParent = null;
+		if (item.getCommonParent() != null) {
+			parentLabelHandler = findLabelHandler(item.getCommonParent().getClass().getPackage().getName());
+		}
 
-			if (item.getLeft() != null) {
-				handlerClassLeft = itemHandling.get(item.getLeft().getClass().getSimpleName());
+		if (item.getDifferenceKind() == DifferenceKind.MOVE) {
+			switch (columnIndex) {
+			case 0:
+				ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
+						+ generalLabelHandler.getClassText(item.getLeft());
+				break;
+			case 1:
+				ret = generalLabelHandler.getText(item.getLeft());
+				break;
+			case 2:
+				ret = generalLabelHandler.getText(item.getRight());
+				break;
+			case 3:
+				ret = parentLabelHandler.getText(item.getCommonParent());
+				break;
+			default:
 			}
-			if (item.getRight() != null) {
-				// important to differentiate because of MOVE
-				handlerClassRight = itemHandling.get(item.getRight().getClass().getSimpleName());
-			}
-			if (item.getCommonParent() != null) {
-				handlerClassParent = itemHandling.get(item.getCommonParent().getClass().getSimpleName());
-			}
+		} else {
+			switch (columnIndex) {
+			case 0:
+				String appendix = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " ";
+				if (item.getLeft() != null) {
+					ret = appendix + generalLabelHandler.getClassText(item.getLeft());
 
-			if (item.getDifferenceKind() == DifferenceKind.MOVE) {
-				switch (columnIndex) {
-				case 0:
-					if (handlerClassLeft != null) {
-						ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-								+ handlerClassLeft.getClassText();
-					}
-					break;
-				case 1:
-					if (handlerClassLeft != null)
-						ret = handlerClassLeft.getText(item.getLeft());
-					break;
-				case 2:
-					if (handlerClassRight != null)
-						ret = handlerClassRight.getText(item.getRight());
-					break;
-				case 3:
-					if (handlerClassParent != null)
-						ret = handlerClassParent.getText(item.getCommonParent());
-					break;
-				default:
+				} else if (item.getRight() != null) {
+					ret = appendix + generalLabelHandler.getClassText(item.getRight());
 				}
-			} else {
-				switch (columnIndex) {
-				case 0:
-					if (handlerClassLeft != null) {
-						ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-								+ handlerClassLeft.getClassText();
-					} else if (handlerClassRight != null) {
-						ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-								+ handlerClassRight.getClassText();
-					}
-					break;
-				case 1:
-					if (handlerClassParent != null)
-						ret = handlerClassParent.getText(item.getCommonParent());
-					break;
-				case 2:
-					if (handlerClassRight != null)
-						ret = handlerClassRight.getText(item.getRight());
-					break;
-				case 3:
-					if (handlerClassLeft != null)
-						ret = handlerClassLeft.getText(item.getLeft());
-					break;
-				default:
-				}
+				break;
+			case 1:
+				ret = parentLabelHandler.getText(item.getCommonParent());
+				break;
+			case 2:
+				ret = generalLabelHandler.getText(item.getRight());
+				break;
+			case 3:
+				ret = generalLabelHandler.getText(item.getLeft());
+				break;
+			default:
 			}
 		}
 
 		return ret;
+
+	}
+
+	private LabelHandler findLabelHandler(String objectType) {
+		LabelHandler labelHandler = null;
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IExtensionPoint ep = reg.getExtensionPoint(extensionPointId);
+		IExtension[] extensions = ep.getExtensions();
+
+		for (int i = 0; i < extensions.length; i++) {
+			IExtension ext = extensions[i];
+			IConfigurationElement[] ce = ext.getConfigurationElements();
+			for (int j = 0; j < ce.length; j++) {
+				if (!objectType.contains(ce[j].getAttribute(metamodelAttributeId))) {
+					continue;
+				}
+				try {
+					labelHandler = (LabelHandler) ce[j].createExecutableExtension(classAttributeId);
+
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+		return labelHandler;
 	}
 
 }
