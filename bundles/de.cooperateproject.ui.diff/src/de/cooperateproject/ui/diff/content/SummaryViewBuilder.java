@@ -12,9 +12,6 @@ import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
-import de.cooperateproject.ui.diff.internal.CommentLinkAdapt;
-
 /**
  * This class builds the content for the summary view table.
  * 
@@ -58,10 +55,6 @@ public class SummaryViewBuilder {
 			Object right = null;
 			EObject parent = diff.getMatch().getLeft();
 
-			if (value instanceof CommentLink) {
-				parent = CommentLinkAdapt.findParent((CommentLink) value);
-			}
-
 			// don't add a summary item that has no parent class
 			if (parent == null) {
 				continue;
@@ -80,8 +73,9 @@ public class SummaryViewBuilder {
 				}
 
 			}
-			sumList.add(new SummaryItem(left, right, parent, diff.getKind()));
+			sumList.add(new SummaryItem(left, right, parent, diff.getKind(), value));
 		}
+		PostProcessorManager.postProcessSummaryList(sumList);
 
 		return sumList;
 	}

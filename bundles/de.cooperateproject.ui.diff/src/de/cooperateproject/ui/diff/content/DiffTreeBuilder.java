@@ -6,15 +6,11 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
-import de.cooperateproject.ui.diff.internal.CommentLinkAdapt;
-
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * . Builds an own containment hierarchy of the diagram, also containing deleted
+ * Builds an own containment hierarchy of the diagram, also containing deleted
  * elements from the Diff.
  * 
  * @author Jasmin
@@ -73,22 +69,6 @@ public class DiffTreeBuilder {
 				tree.put(child, tempChild);
 			}
 
-			// TODO Move this to some kind of post-processor
-
-			// in this case, the object isn't the child of its parent in emf
-			// containment hierarchy and has to be changed
-			if (obj instanceof CommentLink) {
-				@SuppressWarnings("rawtypes")
-				NamedElement parent = CommentLinkAdapt.findParent((CommentLink) obj);
-				if (tree.get(parent) != null) {
-					if (tree.get(obj.eContainer()) != null) {
-						tree.get(obj.eContainer()).removeChild(tree.get(obj));
-					}
-					tree.get(obj).setParent(tree.get(parent));
-					tree.get(parent).addChild(tree.get(obj));
-
-				}
-			}
 			tree.put(obj, temp);
 
 			// get the root element of the resource
@@ -97,8 +77,17 @@ public class DiffTreeBuilder {
 			}
 
 		}
+		PostProcessorManager.postProcessDiffTree(tree);
 
-		// finally: iterate over all changes in the changes' list and set the
+		addChanges();
+		return newResource;
+	}
+
+	private void addChanges() {
+		if (tree.isEmpty()) {
+			return;
+		}
+		// iterate over all changes in the changes' list and set the
 		// information about changes for affected diffTreeItems,
 		// also deleted items will be re-added here.
 		for (SummaryItem item : changes) {
@@ -132,7 +121,6 @@ public class DiffTreeBuilder {
 				}
 			}
 		}
-		return newResource;
 	}
 
 	/**

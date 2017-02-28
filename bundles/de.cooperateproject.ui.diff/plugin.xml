@@ -44,5 +44,14 @@
    		 </command>
    		</menuContribution>
    	</extension>
+   	
+   	<extension-point id="de.cooperateproject.ui.diff.postProcessor" name="DiffView post processor" schema="schema/postProcessor.exsd"/>
+    <extension
+          point="de.cooperateproject.ui.diff.postProcessor">
+       <postProcessor
+             class="de.cooperateproject.ui.diff.metamodel.ClsPostProcessor"
+             metamodel="de.cooperateproject.modeling.textual.cls.cls">
+       </postProcessor>
+    </extension>
 
 </plugin>
