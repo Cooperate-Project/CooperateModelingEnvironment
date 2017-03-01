@@ -46,29 +46,7 @@
    	</extension>
    	
    	<extension-point id="de.cooperateproject.ui.diff.postProcessor" name="DiffView post processor" schema="schema/postProcessor.exsd"/>
-    <extension
-          point="de.cooperateproject.ui.diff.postProcessor">
-       <postProcessor
-             class="de.cooperateproject.ui.diff.metamodel.ClsPostProcessor"
-             metamodel="de.cooperateproject.modeling.textual.cls.cls">
-       </postProcessor>
-    </extension>
     
     <extension-point id="de.cooperateproject.ui.diff.labelHandlers" name="DiffView labels" schema="schema/labelHandlers.exsd"/>
-    <extension
-          point="de.cooperateproject.ui.diff.labelHandlers">
-       <labelHandler
-             class="de.cooperateproject.ui.diff.metamodel.ClsLabelHandler"
-             metamodel="de.cooperateproject.modeling.textual.cls.cls">
-       </labelHandler>
-       <labelHandler
-             class="de.cooperateproject.ui.diff.metamodel.Uml2LabelHandler"
-             metamodel="org.eclipse.uml2.uml">
-       </labelHandler>
-       <labelHandler
-             class="de.cooperateproject.ui.diff.metamodel.JavaLangLabelHandler"
-             metamodel="java.lang">
-       </labelHandler>
-    </extension>
 
 </plugin>

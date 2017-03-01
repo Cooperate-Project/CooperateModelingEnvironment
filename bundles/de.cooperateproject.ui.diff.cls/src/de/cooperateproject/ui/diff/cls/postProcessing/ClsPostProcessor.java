@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.metamodel;
+package de.cooperateproject.ui.diff.cls.postProcessing;
 
 import java.util.HashMap;
 import java.util.List;
