@@ -1,4 +1,7 @@
-package de.cooperateproject.ui.diff.metamodel;
+package de.cooperateproject.ui.diff.cls.labelHandling;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.PrimitiveType;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
@@ -12,9 +15,21 @@ import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
+import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 
 public class ClsClassTextSwitch extends ClsSwitch<String> {
+
+	public String doSwitch(Object object) {
+		String ret = "";
+		if (!(object instanceof EObject)) {
+			ret = handleNonEObject(object);
+		} else {
+			ret = doSwitch((EObject) object);
+		}
+		return ret;
+	}
+
 	@Override
 	public String caseClassDiagram(ClassDiagram object) {
 		return "classDiagram";
@@ -84,7 +99,18 @@ public class ClsClassTextSwitch extends ClsSwitch<String> {
 	public String caseCardinality(Cardinality object) {
 		return "cardinality";
 	}
-	
-	//TODO: [...] caseVisibility(Visibility object)
+
+	private String handleNonEObject(Object object) {
+		String ret = "";
+		if (object instanceof Visibility) {
+			ret = "visibility";
+		} else if (object instanceof Integer) {
+			ret = "cardinality";
+		} else if (object instanceof PrimitiveType) {
+			ret = "type";
+		}
+
+		return ret;
+	}
 
 }

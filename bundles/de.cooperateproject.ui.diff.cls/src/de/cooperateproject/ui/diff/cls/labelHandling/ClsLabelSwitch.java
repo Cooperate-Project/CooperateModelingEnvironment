@@ -1,6 +1,8 @@
-package de.cooperateproject.ui.diff.metamodel;
+package de.cooperateproject.ui.diff.cls.labelHandling;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.PrimitiveType;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
@@ -18,6 +20,17 @@ import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 
 public class ClsLabelSwitch extends ClsSwitch<String> {
+
+	public String doSwitch(Object object) {
+		String ret = "";
+		if (!(object instanceof EObject)) {
+			ret = handleNonEObject(object);
+		} else {
+			ret = doSwitch((EObject) object);
+		}
+		return ret;
+	}
+
 	@Override
 	public String caseClassDiagram(ClassDiagram object) {
 		return object.getTitle();
@@ -40,15 +53,7 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 			isAbstract = "abstract ";
 		}
 
-		// TODO: This should be in caseVisibility(Visibility object)!
-		Visibility visib = (Visibility) object.getVisibility();
-		String visibText = "";
-		switch (visib) {
-		case UNDEFINED:
-			break;
-		default:
-			visibText = visib.getLiteral().toLowerCase() + " ";
-		}
+		String visibText = handleNonEObject(object.getVisibility());
 
 		return visibText + isAbstract + "class " + object.getName();
 	}
@@ -60,15 +65,8 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 			alias = " as " + object.getAlias();
 		}
 
-		// TODO: This should be in caseVisibility(Visibility object)!
-		Visibility visib = (Visibility) object.getVisibility();
-		String visibText = "";
-		switch (visib) {
-		case UNDEFINED:
-			break;
-		default:
-			visibText = visib.getLiteral().toLowerCase() + " ";
-		}
+		String visibText = handleNonEObject(object.getVisibility());
+
 		return visibText + "interface" + " " + object.getName() + alias;
 	}
 
@@ -77,15 +75,7 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 		String type = "";
 		type = ": " + object.getType().getName();
 
-		// TODO: This should be in caseVisibility(Visibility object)!
-		Visibility visib = (Visibility) object.getVisibility();
-		String visibText = "";
-		switch (visib) {
-		case UNDEFINED:
-			break;
-		default:
-			visibText = visib.getLiteral().toLowerCase() + " ";
-		}
+		String visibText = handleNonEObject(object.getVisibility());
 
 		return visibText + object.getName() + type;
 	}
@@ -104,15 +94,7 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 			isAbstract = "abstract ";
 		}
 
-		// TODO: This should be in caseVisibility(Visibility object)!
-		Visibility visib = (Visibility) object.getVisibility();
-		String visibText = "";
-		switch (visib) {
-		case UNDEFINED:
-			break;
-		default:
-			visibText = visib.getLiteral().toLowerCase() + " ";
-		}
+		String visibText = handleNonEObject(object.getVisibility());
 
 		String paramText = "";
 		for (Parameter param : params) {
@@ -129,15 +111,8 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 	public String caseParameter(Parameter object) {
 		String type = ": " + object.getType().getName();
 
-		// TODO: This should be in caseVisibility(Visibility object)!
-		Visibility visib = (Visibility) object.getVisibility();
-		String visibText = "";
-		switch (visib) {
-		case UNDEFINED:
-			break;
-		default:
-			visibText = visib.getLiteral().toLowerCase() + " ";
-		}
+		String visibText = handleNonEObject(object.getVisibility());
+
 		return visibText + object.getName() + type;
 	}
 
@@ -190,8 +165,31 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 
 	@Override
 	public String caseCardinality(Cardinality object) {
-		JavaLangLabelHandler integerHandler = new JavaLangLabelHandler();
-		return integerHandler.getText(object.getLowerBound()) + ".." + integerHandler.getText(object.getUpperBound());
+		String integerTextLower = handleNonEObject(object.getLowerBound());
+		String integerTextUpper = handleNonEObject(object.getUpperBound());
+		return integerTextLower + ".." + integerTextUpper;
 	}
 
+	private String handleNonEObject(Object object) {
+		String ret = "";
+		if (object instanceof Visibility) {
+			switch ((Visibility) object) {
+			case UNDEFINED:
+				break;
+			default:
+				ret = ((Visibility) object).getLiteral().toLowerCase() + " ";
+			}
+		} else if (object instanceof Integer) {
+			if ((Integer) object == -1) {
+				ret = "*";
+			} else {
+				ret = ((Integer) object).toString();
+			}
+
+		} else if (object instanceof PrimitiveType) {
+			ret = ((PrimitiveType) object).getName();
+		}
+
+		return ret;
+	}
 }

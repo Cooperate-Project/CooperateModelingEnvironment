@@ -51,7 +51,7 @@ public class DiffViewLabelProvider extends LabelProvider {
 			IExtension ext = extensions[i];
 			IConfigurationElement[] ce = ext.getConfigurationElements();
 			for (int j = 0; j < ce.length; j++) {
-				if (!objectType.contains(ce[j].getAttribute(metamodelAttributeId))) {
+				if (!ce[j].getAttribute(metamodelAttributeId).contains(objectType)) {
 					continue;
 				}
 				try {

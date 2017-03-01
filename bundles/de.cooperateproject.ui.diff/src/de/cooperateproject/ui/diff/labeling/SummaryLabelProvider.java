@@ -25,6 +25,7 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	private static final String extensionPointId = "de.cooperateproject.ui.diff.labelHandlers";
 	private static final String metamodelAttributeId = "metamodel";
 	private static final String classAttributeId = "class";
+	private LabelHandler labelHandler = null;
 
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
@@ -40,33 +41,25 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		}
 
 		SummaryItem item = (SummaryItem) element;
-		LabelHandler generalLabelHandler = null;
-		LabelHandler parentLabelHandler = null;
 
-		if (item.getLeft() != null) {
-			generalLabelHandler = findLabelHandler(item.getLeft().getClass().getPackage().getName());
-		} else {
-			generalLabelHandler = findLabelHandler(item.getRight().getClass().getPackage().getName());
-		}
-
-		if (item.getCommonParent() != null) {
-			parentLabelHandler = findLabelHandler(item.getCommonParent().getClass().getPackage().getName());
+		if (labelHandler == null) {
+			labelHandler = findLabelHandler(item);
 		}
 
 		if (item.getDifferenceKind() == DifferenceKind.MOVE) {
 			switch (columnIndex) {
 			case 0:
 				ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-						+ generalLabelHandler.getClassText(item.getLeft());
+						+ labelHandler.getClassText(item.getLeft());
 				break;
 			case 1:
-				ret = generalLabelHandler.getText(item.getLeft());
+				ret = labelHandler.getText(item.getLeft());
 				break;
 			case 2:
-				ret = generalLabelHandler.getText(item.getRight());
+				ret = labelHandler.getText(item.getRight());
 				break;
 			case 3:
-				ret = parentLabelHandler.getText(item.getCommonParent());
+				ret = labelHandler.getText(item.getCommonParent());
 				break;
 			default:
 			}
@@ -75,20 +68,19 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			case 0:
 				String appendix = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " ";
 				if (item.getLeft() != null) {
-					ret = appendix + generalLabelHandler.getClassText(item.getLeft());
-
+					ret = appendix + labelHandler.getClassText(item.getLeft());
 				} else if (item.getRight() != null) {
-					ret = appendix + generalLabelHandler.getClassText(item.getRight());
+					ret = appendix + labelHandler.getClassText(item.getRight());
 				}
 				break;
 			case 1:
-				ret = parentLabelHandler.getText(item.getCommonParent());
+				ret = labelHandler.getText(item.getCommonParent());
 				break;
 			case 2:
-				ret = generalLabelHandler.getText(item.getRight());
+				ret = labelHandler.getText(item.getRight());
 				break;
 			case 3:
-				ret = generalLabelHandler.getText(item.getLeft());
+				ret = labelHandler.getText(item.getLeft());
 				break;
 			default:
 			}
@@ -98,19 +90,35 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 
 	}
 
-	private LabelHandler findLabelHandler(String objectType) {
-		LabelHandler labelHandler = null;
+	private LabelHandler findLabelHandler(SummaryItem item) {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IExtensionPoint ep = reg.getExtensionPoint(extensionPointId);
 		IExtension[] extensions = ep.getExtensions();
+
+		String left = "-1";
+		String right = "-1";
+		String parent = "-1";
+
+		if (item.getLeft() != null) {
+			left = item.getLeft().getClass().getPackage().getName();
+		}
+		if (item.getRight() != null) {
+			right = item.getRight().getClass().getPackage().getName();
+		}
+		if (item.getCommonParent() != null) {
+			parent = item.getCommonParent().getClass().getPackage().getName();
+		}
 
 		for (int i = 0; i < extensions.length; i++) {
 			IExtension ext = extensions[i];
 			IConfigurationElement[] ce = ext.getConfigurationElements();
 			for (int j = 0; j < ce.length; j++) {
-				if (!objectType.contains(ce[j].getAttribute(metamodelAttributeId))) {
+				if (!(ce[j].getAttribute(metamodelAttributeId).contains(left)
+						|| ce[j].getAttribute(metamodelAttributeId).contains(right)
+						|| ce[j].getAttribute(metamodelAttributeId).contains(parent))) {
 					continue;
 				}
+
 				try {
 					labelHandler = (LabelHandler) ce[j].createExecutableExtension(classAttributeId);
 

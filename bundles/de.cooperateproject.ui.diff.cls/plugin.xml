@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.cooperateproject.ui.diff.labelHandlers">
+      <labelHandler
+            class="de.cooperateproject.ui.diff.cls.labelHandling.ClsLabelHandler"
+            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
+      </labelHandler>
+   </extension>
+   <extension
+         point="de.cooperateproject.ui.diff.postProcessor">
+      <postProcessor
+            class="de.cooperateproject.ui.diff.cls.postProcessing.ClsPostProcessor"
+            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
+      </postProcessor>
+   </extension>
+
+</plugin>
