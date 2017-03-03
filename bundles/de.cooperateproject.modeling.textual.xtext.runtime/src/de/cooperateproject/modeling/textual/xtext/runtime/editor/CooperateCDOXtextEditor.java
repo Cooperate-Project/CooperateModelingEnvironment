@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.editor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -18,11 +19,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
+import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
@@ -74,7 +78,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private IResourceValidator resourceValidator;
 
     @Inject
-    private IAutomatedIssueResolutionProvider preSaveValidationIssueFixer;
+    private IAutomatedIssueResolutionProvider automatedIssueResolutionProvider;
 
     @Inject
     private IDerivedStateResourceHandlerFactory derivedStateResourceHandlerFactory;
@@ -144,28 +148,51 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     }
 
     private void performValidationIssueFixing() {
-        if (preSaveValidationIssueFixer == null) {
+        if (automatedIssueResolutionProvider == null) {
             return;
         }
 
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
-        Collection<Issue> detectedIssues = Collections.emptyList();
-        Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
 
-        IDerivedStateHandler derivedStateHandler = derivedStateResourceHandlerFactory
-                .create(cooperateXtextDocument.getResource());
+        TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+                .createEditingDomain(cooperateXtextDocument.getResource().getResourceSet());
         try {
-            derivedStateHandler.disableCalculation();
-            do {
-                issueResolutions.forEach(i -> i.resolve());
-                detectedIssues = resourceValidator.validate(cooperateXtextDocument.getResource(), CheckMode.ALL,
-                        CancelIndicator.NullImpl);
-                issueResolutions = preSaveValidationIssueFixer.get(cooperateXtextDocument.getResource(),
-                        detectedIssues);
-            } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
+            performIssueValidationFixingTransactional(domain, cooperateXtextDocument.getResource());
         } finally {
-            derivedStateHandler.enableCalculation();
+            domain.dispose();
         }
+
+    }
+
+    private void performIssueValidationFixingTransactional(TransactionalEditingDomain domain, Resource documentResource)
+            throws OperationCanceledError {
+
+        final Collection<Issue> detectedIssues = new ArrayList<>();
+        domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+            @Override
+            protected void doExecute() {
+                Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
+                IDerivedStateHandler derivedStateHandler = derivedStateResourceHandlerFactory.create(documentResource);
+                try {
+                    derivedStateHandler.disableCalculation();
+                    do {
+                        issueResolutions.forEach(i -> i.resolve());
+                        detectedIssues.clear();
+                        detectedIssues.addAll(
+                                resourceValidator.validate(documentResource, CheckMode.ALL, CancelIndicator.NullImpl));
+                        issueResolutions = automatedIssueResolutionProvider.get(documentResource, detectedIssues);
+                    } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
+                } finally {
+                    derivedStateHandler.enableCalculation();
+                }
+            }
+        });
+
+        if (detectedIssues.stream().anyMatch(automatedIssueResolutionProvider::hasResolution)) {
+            domain.getCommandStack().undo();
+        }
+
     }
 
     private void saveDocument(IProgressMonitor progressMonitor) {

@@ -46,6 +46,11 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
                 .collect(Collectors.toSet());
     }
 
+    @Override
+    public boolean hasResolution(Issue issue) {
+        return !findResolutionFactories(issue.getCode()).isEmpty();
+    }
+
     private Collection<IAutomatedIssueResolution> createResolutions(Resource r, Issue issue) {
         Collection<IAutomatedIssueResolutionFactory<EObject>> resolutionFactories = findResolutionFactories(
                 issue.getCode());

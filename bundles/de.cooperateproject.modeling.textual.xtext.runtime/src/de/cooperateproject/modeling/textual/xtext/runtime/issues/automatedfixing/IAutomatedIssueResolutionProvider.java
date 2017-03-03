@@ -20,4 +20,13 @@ public interface IAutomatedIssueResolutionProvider {
      */
     Collection<IAutomatedIssueResolution> get(Resource r, Collection<Issue> issues);
 
+    /**
+     * Indicates if the provider has resolutions for the given issue.
+     * 
+     * @param issue
+     *            The issue to be fixed.
+     * @return True, if a resolution is available. False, otherwise.
+     */
+    boolean hasResolution(Issue issue);
+
 }

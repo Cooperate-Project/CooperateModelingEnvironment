@@ -120,7 +120,7 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
                     .filter(org.eclipse.uml2.uml.Comment.class::isInstance)
                     .map(org.eclipse.uml2.uml.Comment.class::cast)
                     .filter(c -> c.getAnnotatedElements().contains(umlCommentedElement)
-                            && c.getBody().contentEquals(object.getComment()))
+                            && c.getBody().equals(object.getComment()))
                     .collect(Collectors.toSet());
 
             if (candidates.size() == 1) {
