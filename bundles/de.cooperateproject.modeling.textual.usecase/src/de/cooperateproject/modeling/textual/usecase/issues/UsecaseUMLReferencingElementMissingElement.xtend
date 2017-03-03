@@ -195,8 +195,9 @@ class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutio
 		if (!element.resolvePossible) return Void
 		val commentedElement = element.commentedElement as UMLReferencingElement<Element>
 		val umlCommentedElement = commentedElement.referencedElement
-		val umlComment = umlCommentedElement.createOwnedComment
+		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment
 		umlComment.body = element.comment
+		umlComment.annotatedElements += umlCommentedElement
 		element.referencedElement = umlComment
 	}
 
