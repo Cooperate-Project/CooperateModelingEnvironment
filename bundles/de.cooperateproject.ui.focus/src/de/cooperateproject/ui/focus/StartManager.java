@@ -1,7 +1,10 @@
 package de.cooperateproject.ui.focus;
 
+import java.awt.Toolkit;
+
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.ISelectionService;
@@ -116,12 +119,19 @@ public class StartManager implements IStartup, IPartListener {
 					SubscriberManager.getInstance().setView(focusView);
 					ConnectionManager.getInstance().connect(file);
 				} catch (PartInitException e) {
+					Toolkit.getDefaultToolkit().beep();
+					part.getSite().getShell().getDisplay().asyncExec(new Runnable() {
+						public void run() {
+							MessageDialog.openError(part.getSite().getShell(), "Failed to open view",
+									"Focus view for the diagram couldn't be initialized." );
+						}
+					});
 					logger.error("The view couldn't be opened.", e);
 				}
-
 			}
 
 		}
 
 	}
+
 }
