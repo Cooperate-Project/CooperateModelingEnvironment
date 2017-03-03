@@ -21,7 +21,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXte
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.automatedfixing.IAutomatedIssueResolutionProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
@@ -64,6 +64,8 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(IUMLPrimitiveTypeSelector.class), typeRef(DefaultUMLPrimitiveTypeSelector.class))
                 .addTypeToType(typeRef(IDerivedStateResourceHandlerFactory.class),
                         typeRef(DerivedStateResourceHandlerFactory.class))
+                .addTypeToType(typeRef(IAutomatedIssueResolutionProvider.class),
+                        typeRef(getAutomatedIssueResolutionProviderName()))
                 .contributeTo(getLanguage().getRuntimeGenModule());
         getProjectConfig().getRuntime().getManifest().getRequiredBundles()
                 .add("de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport");
@@ -76,8 +78,6 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(IResourceSetProvider.class), typeRef(XtextLiveScopeResourceSetProvider.class))
                 .addTypeToType(typeRef(IDerivedStateResourceHandlerFactory.class),
                         typeRef(DerivedStateResourceHandlerFactory.class))
-                .addTypeToType(typeRef(IAutomatedIssueResolutionProvider.class),
-                        typeRef(getAutomatedIssueResolutionProviderName()))
                 .contributeTo(getLanguage().getEclipsePluginGenModule());
     }
 
@@ -85,8 +85,8 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
         JavaFileAccess jva = fileAccessFactory.createJavaFile(typeRef(getAutomatedIssueResolutionProviderName()));
         AutomatedIssueResolutionProviderGenerator.create(jva, getAutomatedIssueResolutionProviderPackageName(),
                 getAutomatedIssueResolutionProviderSimpleName());
-        jva.writeTo(getProjectConfig().getEclipsePlugin().getSrc());
-        getProjectConfig().getEclipsePlugin().getManifest().getExportedPackages()
+        jva.writeTo(getProjectConfig().getRuntime().getSrc());
+        getProjectConfig().getRuntime().getManifest().getExportedPackages()
                 .add(getAutomatedIssueResolutionProviderPackageName());
     }
 
@@ -95,7 +95,7 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
     }
 
     private String getAutomatedIssueResolutionProviderPackageName() {
-        return naming.getEclipsePluginBasePackage(grammar) + ".editor";
+        return naming.getRuntimeBasePackage(grammar) + ".issues";
     }
 
     private String getAutomatedIssueResolutionProviderSimpleName() {

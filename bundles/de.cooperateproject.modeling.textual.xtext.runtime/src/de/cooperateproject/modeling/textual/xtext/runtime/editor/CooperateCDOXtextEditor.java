@@ -24,7 +24,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.ui.editor.quickfix.IssueResolution;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -33,8 +32,9 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
@@ -150,18 +150,19 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
         Collection<Issue> detectedIssues = Collections.emptyList();
-        Collection<IssueResolution> issueResolutions = Collections.emptyList();
+        Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
 
         IDerivedStateHandler derivedStateHandler = derivedStateResourceHandlerFactory
                 .create(cooperateXtextDocument.getResource());
         try {
             derivedStateHandler.disableCalculation();
             do {
+                issueResolutions.forEach(i -> i.resolve());
                 detectedIssues = resourceValidator.validate(cooperateXtextDocument.getResource(), CheckMode.ALL,
                         CancelIndicator.NullImpl);
-                issueResolutions = preSaveValidationIssueFixer.get(detectedIssues);
-                issueResolutions.forEach(i -> i.apply());
-            } while (!issueResolutions.isEmpty());
+                issueResolutions = preSaveValidationIssueFixer.get(cooperateXtextDocument.getResource(),
+                        detectedIssues);
+            } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
         } finally {
             derivedStateHandler.enableCalculation();
         }

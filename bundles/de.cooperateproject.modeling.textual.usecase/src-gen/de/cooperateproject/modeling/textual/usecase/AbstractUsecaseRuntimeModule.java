@@ -8,6 +8,7 @@ import com.google.inject.Provider;
 import com.google.inject.name.Names;
 import de.cooperateproject.modeling.textual.usecase.formatting.UsecaseFormatter;
 import de.cooperateproject.modeling.textual.usecase.generator.UsecaseGenerator;
+import de.cooperateproject.modeling.textual.usecase.issues.UsecaseAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.usecase.parser.antlr.UsecaseAntlrTokenFileProvider;
 import de.cooperateproject.modeling.textual.usecase.parser.antlr.UsecaseParser;
 import de.cooperateproject.modeling.textual.usecase.parser.antlr.internal.InternalUsecaseLexer;
@@ -18,6 +19,7 @@ import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAcces
 import de.cooperateproject.modeling.textual.usecase.validation.UsecaseValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider;
@@ -227,6 +229,11 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IDerivedStateResourceHandlerFactory> bindIDerivedStateResourceHandlerFactory() {
 		return DerivedStateResourceHandlerFactory.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+	public Class<? extends IAutomatedIssueResolutionProvider> bindIAutomatedIssueResolutionProvider() {
+		return UsecaseAutomatedIssueResolutionProvider.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment2

@@ -10,8 +10,10 @@ import org.eclipse.xtext.Constants;
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
 
+import de.cooperateproject.modeling.textual.cls.issues.ClsAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 
 /**
  * Manual modifications go to {de.cooperateproject.modeling.textual.cls.ClsRuntimeModule}
@@ -207,6 +209,12 @@ public abstract class AbstractClsRuntimeModule extends org.eclipse.xtext.service
     // contributed by de.cooperateproject.modeling.textual.xtext.generator.naming.CooperateNamingBindingsFragment
     public Class<? extends de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
         return de.cooperateproject.modeling.textual.xtext.runtime.scoping.DefaultUMLPrimitiveTypeSelector.class;
+    }
+
+    // contributed by
+    // de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
+    public Class<? extends IAutomatedIssueResolutionProvider> bindIAutomatedIssueResolutionProvider() {
+        return ClsAutomatedIssueResolutionProvider.class;
     }
 
 }

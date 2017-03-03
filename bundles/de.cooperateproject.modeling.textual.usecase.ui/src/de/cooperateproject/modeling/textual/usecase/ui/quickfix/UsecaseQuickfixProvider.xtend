@@ -3,26 +3,9 @@
  */
 package de.cooperateproject.modeling.textual.usecase.ui.quickfix
 
-import de.cooperateproject.modeling.textual.usecase.usecase.Actor
-import de.cooperateproject.modeling.textual.usecase.usecase.Association
-import de.cooperateproject.modeling.textual.usecase.usecase.Comment
-import de.cooperateproject.modeling.textual.usecase.usecase.Extend
-import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
-import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
-import de.cooperateproject.modeling.textual.usecase.usecase.Include
-import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
-import de.cooperateproject.modeling.textual.usecase.usecase.System
+import de.cooperateproject.modeling.textual.usecase.issues.UsecaseUMLReferencingElementMissingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
-import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
-import de.cooperateproject.modeling.textual.usecase.usecase.Visibility
-import de.cooperateproject.modeling.textual.usecase.validation.UsecaseValidator
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Element
-import org.eclipse.uml2.uml.NamedElement
-import org.eclipse.uml2.uml.OpaqueExpression
-import org.eclipse.uml2.uml.UMLFactory
-import org.eclipse.uml2.uml.UMLPackage
-import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
 import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
@@ -30,150 +13,13 @@ import org.eclipse.xtext.validation.Issue
 
 class UsecaseQuickfixProvider extends DefaultQuickfixProvider {
 
-	static val AUTOMATION_RELEVANCE = 99;
-
-	@Fix(UsecaseValidator.MISSING_UML_REFERENCE)
+	@Fix(UsecaseUMLReferencingElementMissingElement.MISSING_UML_REFERENCE)
 	def addMissingUMLElement(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue, 'Create UML element', 'Creates the missing UML element.', null, [ element, context |
-			element.fixMissingUMLElement
-		], AUTOMATION_RELEVANCE)
-	}
-	
-	private def dispatch fixMissingUMLElement(Actor element) {
-		val parent = element.eContainer
-		if (parent instanceof RootPackage) {
-			if (parent.referencedElement != null) {
-				val umlActor = UMLFactory.eINSTANCE.createActor
-				umlActor.name = element.name
-				umlActor.package = parent.referencedElement
-				umlActor.isAbstract = element.abstract
-				umlActor.setVisibility(element.visibility)
-				element.referencedElement = umlActor
+		acceptor.accept(issue, 'Create UML element', 'Creates the missing UML element.', null) [ element, context |
+			val resolution = new UsecaseUMLReferencingElementMissingElement(element as UMLReferencingElement<Element>);
+			if (resolution.resolvePossible) {
+				resolution.resolve
 			}
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(System element) {
-		val parent = element.eContainer
-		if (parent instanceof RootPackage) {
-			if (parent.referencedElement != null) {
-				val umlSystem = UMLFactory.eINSTANCE.createComponent
-				umlSystem.name = element.name
-				umlSystem.package = parent.referencedElement
-				element.referencedElement = umlSystem
-			}
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(UseCase element) {
-		val parent = element.eContainer
-		if (parent instanceof System) {
-			if (parent.referencedElement != null && element.system.referencedElement != null) {
-				val umlUseCase = UMLFactory.eINSTANCE.createUseCase
-				umlUseCase.name = element.name
-				umlUseCase.setVisibility(element.visibility)
-				parent.referencedElement.ownedUseCases.add(umlUseCase)
-				umlUseCase.subjects += element.system.referencedElement
-				umlUseCase.isAbstract = element.abstract
-				element.referencedElement = umlUseCase
-			}
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(ExtensionPoint element) {
-		val parent = element.useCase
-		if (parent.referencedElement != null) {
-			val extensionPoint = parent.referencedElement.createExtensionPoint(element.name)
-			element.referencedElement = extensionPoint			
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(Extend element) {
-		val extendingUseCase = element.extension
-		if (extendingUseCase != null && element.extendedCase.referencedElement != null && element.extensionLocation.referencedElement != null && extendingUseCase.referencedElement != null) {
-			val umlExtend = extendingUseCase.referencedElement.createExtend(null, element.extendedCase.referencedElement)
-			umlExtend.extensionLocations += element.extensionLocation.referencedElement
-			val umlCondition = umlExtend.createCondition(null, UMLPackage.eINSTANCE.constraint)
-			val umlExpression = umlCondition.createSpecification(null, null, UMLPackage.eINSTANCE.opaqueExpression) as OpaqueExpression
-			umlExpression.languages += "Natural language"
-			umlExpression.bodies += element.condition
-			element.referencedElement = umlExtend
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(Include element) {
-		val includingUseCase = element.includingCase
-		if (includingUseCase != null && includingUseCase.referencedElement != null && element.addition.referencedElement != null) {
-			val umlInclude = includingUseCase.referencedElement.createInclude(null, element.addition.referencedElement)
-			element.referencedElement = umlInclude
-		}		
-	}
-	
-	private def dispatch fixMissingUMLElement(Generalization element) {
-		val specificElement = element.specific
-		if (specificElement != null && specificElement.referencedElement != null && element.general != null && element.general.referencedElement != null) {
-			val umlGeneralization = specificElement.referencedElement.createGeneralization(element.general.referencedElement)
-			element.referencedElement = umlGeneralization
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(Association element) {
-		val umlActor = element.actor?.referencedElement
-		val umlUseCase = element.usecase?.referencedElement
-		if (umlActor == null || umlUseCase == null) {
-			return Void
-		}
-		
-		val umlAssociation = UMLFactory.eINSTANCE.createAssociation
-		val actorEnd = umlAssociation.createOwnedEnd(null, umlActor)
-		if (element.actorCardinality != null) {
-			actorEnd.lower = element.actorCardinality.lowerBound 
-			actorEnd.upper = element.actorCardinality.upperBound
-		}
-		
-		val useCaseEnd = umlAssociation.createOwnedEnd(null, umlUseCase)
-		if (element.useCaseCardinality != null) {
-			useCaseEnd.lower = element.useCaseCardinality.lowerBound
-			useCaseEnd.upper = element.useCaseCardinality.upperBound
-		}
-		
-		element.referencedElement = umlAssociation
-	}
-	
-	private def dispatch fixMissingUMLElement(Comment element) {
-		val commentedElement = element.commentedElement
-		if (commentedElement instanceof UMLReferencingElement<?>) {
-			val umlCommentedElement = commentedElement.referencedElement
-			if (umlCommentedElement instanceof Element) {
-				val umlComment = umlCommentedElement.createOwnedComment
-				umlComment.body = element.comment
-				element.referencedElement = umlComment
-			}
-		}
-	}
-	
-	private def dispatch fixMissingUMLElement(EObject element) {
-		// intentionally does nothing, we just want to fix the dispatch
-		//TODO issue a warning
-		return Void
-	}
-	
-	private static def setVisibility(NamedElement element, Visibility visibility) {
-		val convertedVisibility = visibility.convert
-		if (convertedVisibility == null) {
-			element.eUnset(UMLPackage.eINSTANCE.namedElement_Visibility)
-		} else {
-			element.visibility = convertedVisibility	
-		}
-	}
-	
-	private static def convert(Visibility visibility) {
-		switch (visibility) {
-			case PACKAGE: VisibilityKind.PACKAGE_LITERAL
-			case PRIVATE: VisibilityKind.PRIVATE_LITERAL
-			case PROTECTED: VisibilityKind.PROTECTED_LITERAL
-			case PUBLIC: VisibilityKind.PUBLIC_LITERAL
-			case UNDEFINED: null
-		}
+		]
 	}
 }

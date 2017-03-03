@@ -6,9 +6,6 @@ package de.cooperateproject.modeling.textual.cls.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
-import de.cooperateproject.modeling.textual.cls.ui.editor.ClsAutomatedIssueResolutionProvider;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.automatedfixing.IAutomatedIssueResolutionProvider;
-
 /**
  * Manual modifications go to {de.cooperateproject.modeling.textual.cls.ui.ClsUiModule}
  */
@@ -271,12 +268,6 @@ public abstract class AbstractClsUiModule extends org.eclipse.xtext.ui.DefaultUi
     // de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment
     public Class<? extends org.eclipse.xtext.ui.resource.IResourceSetProvider> bindIResourceSetProvider() {
         return org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider.class;
-    }
-
-    // contributed by
-    // de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
-    public Class<? extends IAutomatedIssueResolutionProvider> bindIAutomatedIssueResolutionProvider() {
-        return ClsAutomatedIssueResolutionProvider.class;
     }
 
 }

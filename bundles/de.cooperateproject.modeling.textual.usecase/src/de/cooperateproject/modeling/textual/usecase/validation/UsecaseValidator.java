@@ -3,8 +3,10 @@ package de.cooperateproject.modeling.textual.usecase.validation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.xtext.validation.Check;
 
+import de.cooperateproject.modeling.textual.usecase.issues.UsecaseUMLReferencingElementMissingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Comment;
 import de.cooperateproject.modeling.textual.usecase.usecase.NamedElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
@@ -13,14 +15,14 @@ import de.cooperateproject.modeling.textual.usecase.usecase.util.UsecaseSwitch;
 
 public class UsecaseValidator extends AbstractUsecaseValidator {
 
-    public static final String MISSING_UML_REFERENCE = "missingUMLReference";
     private static final Switch<EStructuralFeature> MISSING_REFERENCE_FEATURE_SWITCH = new UMLReferencingElementFeatureSwitch();
 
     @Check
-    private void checkGreetingStartsWithCapital(UMLReferencingElement referencingElement) {
-        if (referencingElement.getReferencedElement() == null) {
+    private void checkGreetingStartsWithCapital(UMLReferencingElement<Element> referencingElement) {
+        if (UsecaseUMLReferencingElementMissingElement.hasIssue(referencingElement)) {
             info("The element is not available in UML. It will be created when saving.",
-                    MISSING_REFERENCE_FEATURE_SWITCH.doSwitch(referencingElement), MISSING_UML_REFERENCE);
+                    MISSING_REFERENCE_FEATURE_SWITCH.doSwitch(referencingElement),
+                    UsecaseUMLReferencingElementMissingElement.MISSING_UML_REFERENCE);
         }
     }
 

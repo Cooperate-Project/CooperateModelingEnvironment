@@ -12,7 +12,6 @@ import de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.inte
 import de.cooperateproject.modeling.textual.usecase.ui.cdoxtext.UsecaseDistanceFunction;
 import de.cooperateproject.modeling.textual.usecase.ui.cdoxtext.UsecaseMatchEngineFactory;
 import de.cooperateproject.modeling.textual.usecase.ui.contentassist.UsecaseProposalProvider;
-import de.cooperateproject.modeling.textual.usecase.ui.editor.UsecaseAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseDescriptionLabelProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseLabelProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.outline.UsecaseOutlineTreeProvider;
@@ -21,7 +20,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXte
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.automatedfixing.IAutomatedIssueResolutionProvider;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
@@ -335,11 +333,6 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IDerivedStateResourceHandlerFactory> bindIDerivedStateResourceHandlerFactory() {
 		return DerivedStateResourceHandlerFactory.class;
-	}
-	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
-	public Class<? extends IAutomatedIssueResolutionProvider> bindIAutomatedIssueResolutionProvider() {
-		return UsecaseAutomatedIssueResolutionProvider.class;
 	}
 	
 	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2

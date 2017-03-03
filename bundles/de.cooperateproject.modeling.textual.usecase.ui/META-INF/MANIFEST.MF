@@ -23,6 +23,5 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.ui.contentassist,
  de.cooperateproject.modeling.textual.usecase.ui.internal,
- de.cooperateproject.modeling.textual.usecase.ui.quickfix,
- de.cooperateproject.modeling.textual.usecase.ui.editor
+ de.cooperateproject.modeling.textual.usecase.ui.quickfix
 Bundle-Activator: de.cooperateproject.modeling.textual.usecase.ui.internal.UsecaseActivator
