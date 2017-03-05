@@ -1,6 +1,7 @@
 package de.cooperateproject.ui.focus;
 
 import java.awt.Toolkit;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -26,12 +27,16 @@ import de.cooperateproject.ui.focus.views.FocusView;
  * @author Jasmin
  *
  */
+
 public class StartManager implements IStartup, IPartListener {
 
 	private static final String papyrusEditorID = "org.eclipse.papyrus.infra.core.papyrusEditor";
 	private static final String xTextEditorID = "de.cooperateproject.modeling.textual.cls.Cls";
 	private static final String projectExplorer = "org.eclipse.ui.navigator.ProjectExplorer";
 	private static Logger logger = Logger.getLogger(StartManager.class);
+	private FocusManager focusMgr;
+	private SubscriberManager subscriberMgr;
+	private ConnectionManager connectionMgr;
 
 	private FocusView focusView;
 
@@ -82,12 +87,19 @@ public class StartManager implements IStartup, IPartListener {
 	@Override
 	public void partClosed(IWorkbenchPart part) {
 
-		if (part.getSite().getId().contentEquals(papyrusEditorID) || part.getSite().getId().contentEquals(xTextEditorID)
-				|| part == focusView && focusView != null) {
-			ConnectionManager.getInstance().disconnect();
-			FocusManager.getInstance().setInvalid();
+		if (focusView == null) {
+			return;
+		}
+
+		if (((part.getSite().getId().contentEquals(papyrusEditorID)
+				|| part.getSite().getId().contentEquals(xTextEditorID))
+				&& focusView.getTitleText().contains(part.getTitle().split(Pattern.quote("."))[0]))
+				|| part == focusView) {
+
+			connectionMgr.disconnect();
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			page.hideView(focusView);
+			focusView = null;
 		}
 	}
 
@@ -114,16 +126,16 @@ public class StartManager implements IStartup, IPartListener {
 
 				try {
 					focusView = (FocusView) page.showView(FocusView.ID);
-					FocusManager.getInstance().setEditor(part);
 					focusView.setTitleText(file.getName());
-					SubscriberManager.getInstance().setView(focusView);
-					ConnectionManager.getInstance().connect(file);
+
+					buildInstances(part, file);
+
 				} catch (PartInitException e) {
 					Toolkit.getDefaultToolkit().beep();
 					part.getSite().getShell().getDisplay().asyncExec(new Runnable() {
 						public void run() {
 							MessageDialog.openError(part.getSite().getShell(), "Failed to open view",
-									"Focus view for the diagram couldn't be initialized." );
+									"Focus view for the diagram couldn't be initialized.");
 						}
 					});
 					logger.error("The view couldn't be opened.", e);
@@ -132,6 +144,21 @@ public class StartManager implements IStartup, IPartListener {
 
 		}
 
+	}
+
+	private void buildInstances(IWorkbenchPart part, IFile file) {
+		focusMgr = new FocusManager();
+		focusMgr.setEditor(part);
+
+		connectionMgr = new ConnectionManager();
+		subscriberMgr = new SubscriberManager(connectionMgr, focusView);
+		subscriberMgr.setView(focusView);
+		connectionMgr.setSubscriberManager(subscriberMgr);
+
+		focusView.setFocusManager(focusMgr);
+		focusView.setSubscriberManager(subscriberMgr);
+
+		connectionMgr.connect(file);
 	}
 
 }

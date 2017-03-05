@@ -34,17 +34,9 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXte
  */
 public class FocusManager {
 
-	private static FocusManager instance;
 	private CooperateCDOXtextEditor xTextEditor;
 	private PapyrusMultiDiagramEditor papyrusEditor;
 	private static Logger logger = Logger.getLogger(FocusManager.class);
-
-	public static FocusManager getInstance() {
-		if (instance == null) {
-			instance = new FocusManager();
-		}
-		return instance;
-	}
 
 	/**
 	 * Sets the focus to the given element in the opened Xtext or Papyrus
@@ -131,10 +123,6 @@ public class FocusManager {
 		} else if (pSite instanceof PapyrusMultiDiagramEditor) {
 			papyrusEditor = (PapyrusMultiDiagramEditor) pSite;
 		}
-	}
-
-	public void setInvalid() {
-		instance = null;
 	}
 
 	private NamedElement getSelectedUmlObject(Object selection) {

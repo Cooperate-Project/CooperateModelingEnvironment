@@ -31,8 +31,8 @@ import de.cooperateproject.ui.focus.views.FocusView;
  */
 public class SubscriberManager implements javax.jms.MessageListener {
 
-	private static SubscriberManager instance = null;
-	private FocusView view = null;
+	private ConnectionManager connectionMgr;
+	private FocusView view;
 	private Topic topic = null;
 	private TopicSubscriber subscriber = null;
 	private TopicPublisher publisher = null;
@@ -42,11 +42,9 @@ public class SubscriberManager implements javax.jms.MessageListener {
 	private CDOView cdoView;
 	private static Logger logger = Logger.getLogger(SubscriberManager.class);
 
-	public static SubscriberManager getInstance() {
-		if (instance == null) {
-			instance = new SubscriberManager();
-		}
-		return instance;
+	public SubscriberManager(ConnectionManager connectionMgr, FocusView view) {
+		this.connectionMgr = connectionMgr;
+		this.view = view;
 	}
 
 	/**
@@ -63,8 +61,7 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			topic = topicSession.createTopic(fileName);
 			publisher = topicSession.createPublisher(topic);
 
-			cdoSession = CDOConnectionManager.getInstance()
-					.acquireSession(ConnectionManager.getInstance().getFile().getProject());
+			cdoSession = CDOConnectionManager.getInstance().acquireSession(connectionMgr.getFile().getProject());
 			cdoView = cdoSession.openView();
 			isInitialized = true;
 
@@ -119,7 +116,6 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			CDOConnectionManager.getInstance().releaseSession(cdoSession);
 			unsubscribe();
 			topicSession.close();
-			instance = null;
 		} catch (JMSException e) {
 			logger.error("Couldn't close the topicSession.", e);
 		}
@@ -175,8 +171,7 @@ public class SubscriberManager implements javax.jms.MessageListener {
 			CDOID id = CDOIDUtil.read(text);
 			CDOObject focusedObject = cdoView.getObject(id);
 			if (focusedObject != null) {
-				SubscriberManager.getInstance().view.handleFocusRequest(CDOUtil.getEObject(focusedObject),
-						message.getJMSTimestamp());
+				view.handleFocusRequest(CDOUtil.getEObject(focusedObject), message.getJMSTimestamp());
 			}
 
 		} catch (JMSException e) {

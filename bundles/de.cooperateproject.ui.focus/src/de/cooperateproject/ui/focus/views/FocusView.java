@@ -18,6 +18,7 @@ import de.cooperateproject.ui.focus.labeling.UMLelementToStringSwitch;
 import java.awt.Toolkit;
 import java.util.LinkedList;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.*;
@@ -46,6 +47,9 @@ public class FocusView extends ViewPart {
 	private Text titleText;
 	private Button muteButton;
 	private Composite parent;
+	private SubscriberManager subscriberMgr = null;
+	private FocusManager focusMgr = null;
+	private static Logger logger = Logger.getLogger(FocusView.class);
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
@@ -69,6 +73,10 @@ public class FocusView extends ViewPart {
 	public void setTitleText(String title) {
 		titleText.setText(title);
 	}
+	
+	public String getTitleText(){
+		return titleText.getText();
+	}
 
 	/**
 	 * Notifies the user that a focus request was received. Asks him, if he'd
@@ -81,6 +89,10 @@ public class FocusView extends ViewPart {
 	 */
 	public void handleFocusRequest(EObject focusedObject, long timeStamp) {
 		if (focusedObject == null) {
+			return;
+		}
+		if (focusMgr == null) {
+			logger.error("Incoming focus request couldn't be processed because FocusManager was null.");
 			return;
 		}
 		historyFocusEntries.add(new HistoryElement(focusedObject, timeStamp));
@@ -117,9 +129,13 @@ public class FocusView extends ViewPart {
 	 * order to send it.
 	 */
 	public void sendFocusRequest() {
-		EObject focusedElement = FocusManager.getInstance().getFocusedElement();
+		if (focusMgr == null) {
+			logger.error("Focus request wasn't sent because the FocusManager was null.");
+			return;
+		}
+		EObject focusedElement = focusMgr.getFocusedElement();
 		if (UMLelementToStringSwitch.isOfSupportedType(focusedElement)) {
-			SubscriberManager.getInstance().sendFocusRequest(FocusManager.getInstance().getFocusedElement());
+			subscriberMgr.sendFocusRequest(focusMgr.getFocusedElement());
 		} else {
 			Toolkit.getDefaultToolkit().beep();
 			final String message = "Unsupported object type: focus on this object couldn't be sent.";
@@ -129,12 +145,20 @@ public class FocusView extends ViewPart {
 		}
 	}
 
+	public void setSubscriberManager(SubscriberManager subscriberMgr) {
+		this.subscriberMgr = subscriberMgr;
+	}
+
+	public void setFocusManager(FocusManager focusMgr) {
+		this.focusMgr = focusMgr;
+	}
+
 	private void muteButtonAction() {
 		if (muteButton.getSelection()) { // selected means muted
-			SubscriberManager.getInstance().unsubscribe();
+			subscriberMgr.unsubscribe();
 			muteButton.setText("unmute");
 		} else {
-			SubscriberManager.getInstance().subscribe();
+			subscriberMgr.subscribe();
 			muteButton.setText("mute");
 		}
 	}
@@ -151,8 +175,7 @@ public class FocusView extends ViewPart {
 			public void run() {
 				IStructuredSelection selection = (IStructuredSelection) historyViewer.getSelection();
 				if (selection.getFirstElement() instanceof HistoryElement)
-					FocusManager.getInstance()
-							.setFocusedElement(((HistoryElement) selection.getFirstElement()).getFocusedElement());
+					focusMgr.setFocusedElement(((HistoryElement) selection.getFirstElement()).getFocusedElement());
 			}
 		};
 	}
@@ -286,7 +309,7 @@ public class FocusView extends ViewPart {
 		@Override
 		protected void okPressed() {
 			super.okPressed();
-			FocusManager.getInstance().setFocusedElement(focusedElement);
+			focusMgr.setFocusedElement(focusedElement);
 		}
 
 		@Override

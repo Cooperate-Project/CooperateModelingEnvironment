@@ -17,19 +17,12 @@ import javax.jms.TopicConnection;
  */
 public class ConnectionManager {
 
-	private static ConnectionManager instance = null;
+	private SubscriberManager subscriberMgr;
 	private IFile currentFile = null;
 	private static final String address = "tcp://localhost:61616";
 	private TopicConnection connection = null;
 
 	private static Logger logger = Logger.getLogger(ConnectionManager.class);
-
-	public static ConnectionManager getInstance() {
-		if (instance == null) {
-			instance = new ConnectionManager();
-		}
-		return instance;
-	}
 
 	/**
 	 * Starts a connection to the Apache ActiveMQ message broker and initializes
@@ -45,13 +38,13 @@ public class ConnectionManager {
 				currentFile = file;
 				connection = ActiveMQConnection.makeConnection(address);
 				connection.start();
-				SubscriberManager.getInstance().initialize(connection, file.getName());
-				SubscriberManager.getInstance().subscribe();
+				subscriberMgr.initialize(connection, file.getName());
+				subscriberMgr.subscribe();
 			} else if (currentFile != file) {
 				currentFile = file;
-				SubscriberManager.getInstance().unsubscribe();
-				SubscriberManager.getInstance().initialize(connection, file.getName());
-				SubscriberManager.getInstance().subscribe();
+				subscriberMgr.unsubscribe();
+				subscriberMgr.initialize(connection, file.getName());
+				subscriberMgr.subscribe();
 			}
 		} catch (JMSException | URISyntaxException e) {
 			logger.error("Couldn't connect to the messagebroker.", e);
@@ -66,9 +59,8 @@ public class ConnectionManager {
 		currentFile = null;
 		if (connection != null) {
 			try {
-				SubscriberManager.getInstance().disconnect();
+				subscriberMgr.disconnect();
 				connection.close();
-				instance = null;
 			} catch (JMSException e) {
 				logger.error("Couldn't close the connection to the message broker.", e);
 			}
@@ -79,4 +71,7 @@ public class ConnectionManager {
 		return currentFile;
 	}
 
+	public void setSubscriberManager(SubscriberManager subscriberMgr) {
+		this.subscriberMgr = subscriberMgr;
+	}
 }
