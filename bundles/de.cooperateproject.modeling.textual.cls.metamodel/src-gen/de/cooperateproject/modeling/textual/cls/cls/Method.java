@@ -24,48 +24,48 @@ import org.eclipse.uml2.uml.Operation;
  * @generated
  */
 public interface Method extends Member<Operation> {
-	/**
-	 * Returns the value of the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Abstract</em>' attribute.
-	 * @see #setAbstract(boolean)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMethod_Abstract()
-	 * @model unique="false"
-	 * @generated
-	 */
-	boolean isAbstract();
+    /**
+     * Returns the value of the '<em><b>Abstract</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Abstract</em>' attribute.
+     * @see #setAbstract(boolean)
+     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMethod_Abstract()
+     * @model unique="false"
+     * @generated
+     */
+    boolean isAbstract();
 
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Method#isAbstract <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Abstract</em>' attribute.
-	 * @see #isAbstract()
-	 * @generated
-	 */
-	void setAbstract(boolean value);
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Method#isAbstract <em>Abstract</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Abstract</em>' attribute.
+     * @see #isAbstract()
+     * @generated
+     */
+    void setAbstract(boolean value);
 
-	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Parameter}.
-	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner <em>Owner</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMethod_Parameters()
-	 * @see de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner
-	 * @model opposite="owner" containment="true"
-	 * @generated
-	 */
-	EList<Parameter> getParameters();
+    /**
+     * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Parameter}.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner <em>Owner</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Parameters</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMethod_Parameters()
+     * @see de.cooperateproject.modeling.textual.cls.cls.Parameter#getOwner
+     * @model opposite="owner" containment="true"
+     * @generated
+     */
+    EList<Parameter> getParameters();
 
 } // Method

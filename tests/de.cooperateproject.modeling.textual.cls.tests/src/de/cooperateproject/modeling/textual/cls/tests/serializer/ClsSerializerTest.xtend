@@ -1,21 +1,27 @@
 package de.cooperateproject.modeling.textual.cls.tests.serializer
 
 import com.google.inject.Inject
-import org.eclipse.xtext.serializer.ISerializer
-import org.eclipse.xtext.junit4.InjectWith
+import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
+import de.cooperateproject.modeling.textual.cls.cls.Package
+import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
 import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider
-import org.junit.Test
-import org.eclipse.xtext.resource.SaveOptions
-import org.apache.commons.io.FileUtils
 import java.io.File
-
+import org.apache.commons.io.FileUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.uml2.uml.Association
+import org.eclipse.uml2.uml.Classifier
+import org.eclipse.uml2.uml.Model
+import org.eclipse.uml2.uml.UMLFactory
+import org.eclipse.uml2.uml.UMLPackage
+import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.resource.SaveOptions
+import org.eclipse.xtext.serializer.ISerializer
+import org.junit.Test
 
 import static org.junit.Assert.*
-import org.eclipse.emf.common.util.URI
-import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
-import de.cooperateproject.modeling.textual.cls.cls.ClsFactory
-import org.eclipse.uml2.uml.UMLFactory
-import org.eclipse.emf.ecore.EObject
+import org.junit.Ignore
 
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class ClsSerializerTest extends AbstractClsTest {
@@ -25,38 +31,82 @@ class ClsSerializerTest extends AbstractClsTest {
 	
 	@Test
 	def void testMinimalModel() {
+		"minimal.cls".executeTest[package, umlRoot |
+			val c1 = ClsFactory.eINSTANCE.createClass
+			val umlClass = umlRoot.createOwnedClass("Q", false);
+			
+			c1.name = umlClass.name
+			c1.referencedElement = umlClass
+			
+			val c2 = ClsFactory.eINSTANCE.createClass
+			val umlClass2 = umlRoot.createOwnedClass("Other Q", false);
+			val expression = umlClass2.createNameExpression("QQ", null)
+			
+			c2.name = umlClass2.name
+			c2.referencedElement = umlClass2
+			c2.alias = expression.name
+			
+			package.classifiers.add(c1)
+			package.classifiers.add(c2)
+		]
+	}
+	
+	@Test
+	def void testAssociation() {
+		"association.cls".executeTest[package, umlRoot |
+			val c1 = ClsFactory.eINSTANCE.createClass
+			c1.name = "First"
+			package.classifiers += c1
+			c1.referencedElement = umlRoot.createOwnedType(c1.name, UMLPackage.Literals.CLASS) as Classifier;
+			
+			val c2 = ClsFactory.eINSTANCE.createClass
+			c2.name = "Second"
+			package.classifiers += c2
+			c2.referencedElement = umlRoot.createOwnedType(c2.name, UMLPackage.Literals.CLASS) as Classifier;
+			
+			val a1 = ClsFactory.eINSTANCE.createXtextAssociation
+			a1.name = "foo"
+			package.connectors += a1			
+			a1.referencedElement = umlRoot.createPackagedElement(a1.name, UMLPackage.Literals.ASSOCIATION) as Association
+			
+			val m1 = ClsFactory.eINSTANCE.createAssociationMemberEnd
+			m1.type = c1
+			a1.memberEnds += m1
+			m1.referencedElement = a1.referencedElement.createNavigableOwnedEnd(null, m1.type.referencedElement)
+			
+			val m2 = ClsFactory.eINSTANCE.createAssociationMemberEnd
+			m2.type = c2
+			a1.memberEnds += m2
+			m2.referencedElement = a1.referencedElement.createOwnedEnd(null, m2.type.referencedElement)
+		]
+	}
+	
+	@FunctionalInterface
+	private interface ModelBuilder {
+		def void create(Package rootPackage, Model umlRoot)
+	}
+	
+	private def executeTest(String referenceModelName, ModelBuilder modelBuilder) {
+		val umlResource = rs.createResource(URI.createURI("foo.uml"))
+		val clsResource = rs.createResource(URI.createURI("foo.cls"))
+		
 		val diagram = ClsFactory.eINSTANCE.createClassDiagram
+		diagram.title = "SomeName"		
+
 		val model = UMLFactory.eINSTANCE.createModel
 		model.name = "RootElement"
 		
-		val umlResource = rs.createResource(URI.createURI("foo.uml"))
-		umlResource.contents += model
-		val clsResource = rs.createResource(URI.createURI("foo.cls"))
-		clsResource.contents += diagram
-
 		val package = ClsFactory.eINSTANCE.createPackage
+		package.name = model.name
 		package.referencedElement = model
-		
-		diagram.title = "SomeName"		
 		diagram.rootPackage = package
 		
-		val c1 = ClsFactory.eINSTANCE.createClass
-		val umlClass = model.createOwnedClass("Q", false);
+		modelBuilder.create(package, model)
 		
-		c1.referencedElement = umlClass
+		umlResource.contents += model
+		clsResource.contents += diagram
 		
-		val c2 = ClsFactory.eINSTANCE.createClass
-		val umlClass2 = model.createOwnedClass("Other Q", false);
-		val expression = umlClass2.createNameExpression("QQ", null)
-		
-		c2.referencedElement = umlClass2
-		c2.aliasExpression = expression
-		
-		package.classifiers.add(c1)
-		package.classifiers.add(c2)
-		
-		
-		"minimal.cls".test(diagram)
+		referenceModelName.test(EcoreUtil.getRootContainer(package))
 	}
 	
 	private def test(String modelName, EObject diagram) {
@@ -83,4 +133,5 @@ class ClsSerializerTest extends AbstractClsTest {
 	private static def readText(String path) {
 		return FileUtils.readFileToString(new File(path));
 	}
+	
 }

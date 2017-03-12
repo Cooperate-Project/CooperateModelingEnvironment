@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textualCommons" nsURI="http://www.cooperateproject.de/modeling/textual/commons"
+    nsPrefix="txtCmn">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AliasedElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLReferencingElement" abstract="true">
+    <eTypeParameters name="UMLType">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
+      <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
+    <eLiterals name="UNDEFINED"/>
+    <eLiterals name="PUBLIC" value="1"/>
+    <eLiterals name="PRIVATE" value="2"/>
+    <eLiterals name="PROTECTED" value="3"/>
+    <eLiterals name="PACKAGE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageBase" abstract="true">
+    <eTypeParameters name="PackageType">
+      <eBounds eClassifier="#//PackageBase">
+        <eTypeArguments/>
+      </eBounds>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" transient="true"
+        eOpposite="#//PackageBase/packages">
+      <eGenericType eTypeParameter="#//PackageBase/PackageType"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
+        containment="true" eOpposite="#//PackageBase/owningPackage">
+      <eGenericType eTypeParameter="#//PackageBase/PackageType"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packageImports" upperBound="-1"
+        eType="#//PackageImport" containment="true" eOpposite="#//PackageImport/importingPackage"/>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//NamedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Commentable" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comments" upperBound="-1"
+        eType="#//Comment" containment="true" eOpposite="#//Comment/commentedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" lowerBound="1"
+        eType="#//Commentable" eOpposite="#//Commentable/comments"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cardinality">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
+      interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedPackage" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importingPackage" lowerBound="1"
+        eOpposite="#//PackageBase/packageImports">
+      <eGenericType eClassifier="#//PackageBase">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+</ecore:EPackage>

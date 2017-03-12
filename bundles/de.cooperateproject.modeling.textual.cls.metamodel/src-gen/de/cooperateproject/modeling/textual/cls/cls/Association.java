@@ -2,7 +2,11 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import org.eclipse.uml2.uml.Type;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,108 +17,30 @@ import org.eclipse.uml2.uml.Type;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getProperties <em>Properties</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getAggregationKind <em>Aggregation Kind</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Association#getMemberEnds <em>Member Ends</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface Association extends NamedElement<org.eclipse.uml2.uml.Association>, TypedConnector, Commentable {
-	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation <em>Association</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Properties</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' containment reference.
-	 * @see #setProperties(AssociationProperties)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Properties()
-	 * @see de.cooperateproject.modeling.textual.cls.cls.AssociationProperties#getAssociation
-	 * @model opposite="association" containment="true"
-	 * @generated
-	 */
-	AssociationProperties getProperties();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getProperties <em>Properties</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Properties</em>' containment reference.
-	 * @see #getProperties()
-	 * @generated
-	 */
-	void setProperties(AssociationProperties value);
-
-	/**
-	 * Returns the value of the '<em><b>Aggregation Kind</b></em>' attribute.
-	 * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Aggregation Kind</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aggregation Kind</em>' attribute.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.AggregationKind
-	 * @see #setAggregationKind(AggregationKind)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_AggregationKind()
-	 * @model required="true"
-	 * @generated
-	 */
-	AggregationKind getAggregationKind();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getAggregationKind <em>Aggregation Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Aggregation Kind</em>' attribute.
-	 * @see de.cooperateproject.modeling.textual.cls.cls.AggregationKind
-	 * @see #getAggregationKind()
-	 * @generated
-	 */
-	void setAggregationKind(AggregationKind value);
-
-	/**
-	 * Returns the value of the '<em><b>Bidirectional</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bidirectional</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bidirectional</em>' attribute.
-	 * @see #setBidirectional(boolean)
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_Bidirectional()
-	 * @model default="false" required="true"
-	 * @generated
-	 */
-	boolean isBidirectional();
-
-	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Association#isBidirectional <em>Bidirectional</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bidirectional</em>' attribute.
-	 * @see #isBidirectional()
-	 * @generated
-	 */
-	void setBidirectional(boolean value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getReferencedElement();'"
-	 * @generated
-	 */
-	@Override
-	Type getCommentedElement();
+public interface Association extends Connector, Commentable, NamedElement, UMLReferencingElement<org.eclipse.uml2.uml.Association> {
+    /**
+     * Returns the value of the '<em><b>Member Ends</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd}.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd#getAssociation <em>Association</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Member Ends</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Member Ends</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociation_MemberEnds()
+     * @see de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd#getAssociation
+     * @model opposite="association" containment="true"
+     * @generated
+     */
+    EList<AssociationMemberEnd> getMemberEnds();
 
 } // Association

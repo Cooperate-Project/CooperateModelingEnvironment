@@ -35,9 +35,9 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.scoping.ClsCooperateSimpleScopeProvider;
+import de.cooperateproject.modeling.textual.cls.scoping.ClsImportedNamespaceAwareLocalScopeProvider;
 import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 @RunWith(XtextRunner.class)
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider.class)
@@ -46,7 +46,7 @@ public class ClsCooperateSimpleScopeProviderTest {
     private static String TEST_FOLDER = "testmodels/scoping/";
 
     @Inject
-    private ClsCooperateSimpleScopeProvider subject;
+    private ClsImportedNamespaceAwareLocalScopeProvider subject;
 
     private ResourceSet rs;
 
@@ -71,12 +71,11 @@ public class ClsCooperateSimpleScopeProviderTest {
         ClassDiagram cd = loadClassDiagram(rs, "simple.cls");
 
         IScope scope = subject.getScope(cd.getRootPackage().getClassifiers().get(0).getMembers().get(0),
-                ClsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
+                TextualCommonsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
 
         List<ImportNormalizer> normalizers = getNormalizers(scope);
 
-        Set<String> expectedPrefixes = Sets.newHashSet("RootElement", "RootElement.Class1", "RootElement.Class1.someOP",
-                "RootElement.someOP");
+        Set<String> expectedPrefixes = Sets.newHashSet("RootElement.Class1.someOp");
         Set<String> actualPrefixes = normalizers.stream().map(n -> n.getImportedNamespacePrefix().toString())
                 .collect(Collectors.toSet());
 

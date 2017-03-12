@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.cls.ui.labeling
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
@@ -13,22 +14,20 @@ import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Method
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
-import de.cooperateproject.modeling.textual.cls.cls.NamedElement
 import de.cooperateproject.modeling.textual.cls.cls.Package
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
-import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jface.viewers.DecorationOverlayIcon
 import org.eclipse.jface.viewers.IDecoration
 import org.eclipse.swt.graphics.Image
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.uml2.uml.PrimitiveType
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
 /**
  * Provides labels for EObjects.
@@ -111,42 +110,34 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def text(Association ele) {
-		if (ele.getComment() != null) {
-			return ele.referencedElement.name + " - Comment"
+		if (ele.memberEnds.size == 2) {
+			val left = ele.memberEnds.get(0).name
+			val right = ele.memberEnds.get(1).name
+			return left + " " + ele.name + " " + right
 		}
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		return leftChild.name + " " + ele.referencedElement.name + " " + rightChild.name
+		return ele.name
 	}
 
 	def image(Association ele) {
-		if (ele.getComment() != null) {
-			return UMLImage.COMMENT.image
-		} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
-			return UMLImage.ASSOCIATION_COMPOSITE.image
-		} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
-			return UMLImage.ASSOCIATION_SHARED.image
-		} else {
-			return UMLImage.ASSOCIATION.image
+		if (ele.memberEnds.size == 2) {
+			if (ele.memberEnds.get(0).aggregationKind == AggregationKind.COMPOSITION) {
+				return UMLImage.ASSOCIATION_COMPOSITE.image
+			} else if (ele.memberEnds.get(0).aggregationKind == AggregationKind.AGGREGATION) {
+				return UMLImage.ASSOCIATION_SHARED.image
+			}
 		}
-	}
-	
-	def text(MultiAssociation ele) {
-		return ele.referencedElement.name
-	}
-
-	def image(MultiAssociation ele) {
 		return UMLImage.ASSOCIATION.image
 	}
+
 	
-	def text(MemberEnd ele) {
+	def text(AssociationMemberEnd ele) {
 		if (ele.name != null) {
 			return ele.name
 		}
-		return ele.referencedElement.name
+		return ele.type.name
 	}
 	
-	def image(MemberEnd ele) {
+	def image(AssociationMemberEnd ele) {
 		UMLImage.PROPERTY.image
 	}
 
@@ -171,7 +162,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	def text(CommentLink ele) {
-		val leftChild = ele.left;
+		val leftChild = ele.commentedElement;
 		return leftChild.doGetText + " - Comment"
 	}
 	

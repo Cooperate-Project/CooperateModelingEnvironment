@@ -4,12 +4,13 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Element;
 
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
-import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.transformation.transformations.impl.postprocessors.ContentIteratingPostProcessor.PostProcessingSwitch;
 
 public class ClsPostProcessingSwitch extends ClsSwitch<Boolean> implements PostProcessingSwitch {
@@ -27,7 +28,7 @@ public class ClsPostProcessingSwitch extends ClsSwitch<Boolean> implements PostP
 
     @Override
     public Boolean casePackage(Package object) {
-        if (object.getNearestPackage() == null) {
+        if (object.getOwningPackage() == null) {
             return true;
         }
         return null;
@@ -39,8 +40,7 @@ public class ClsPostProcessingSwitch extends ClsSwitch<Boolean> implements PostP
     }
 
     @Override
-    public <T extends NamedElement> Boolean caseNamedElement(
-            de.cooperateproject.modeling.textual.cls.cls.NamedElement<T> object) {
+    public <UMLType extends Element> Boolean caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
         return processObject(object);
     }
 
