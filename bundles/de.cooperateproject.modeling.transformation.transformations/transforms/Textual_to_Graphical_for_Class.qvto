@@ -260,13 +260,13 @@ disjuncts cls::Association::connectorToEdge, cls::Generalization::generalization
 mapping cls::Association::connectorToEdge() : notation::Connector
 when { self.oclIsKindOf(cls::Association) and self.memberEnds->size() <= 2 }
 {
-	var sourceMemberEnd = self.memberEnds->at(0);
-	var targetMemberEnd = self.memberEnds->at(1);
+	var sourceMemberEnd = self.memberEnds->at(1);
+	var targetMemberEnd = self.memberEnds->at(2);
 	
 	type := PAPYRUS_NOTATION_EDGE_ASSOCIATION;
 	
-	source := sourceMemberEnd.referencedElement.oclAsType(uml::Type).typeToView();
-	target := targetMemberEnd.referencedElement.oclAsType(uml::Type).typeToView();
+	source := sourceMemberEnd.type.typeToView();
+	target := targetMemberEnd.type.typeToView();
 	
 	element := self.referencedElement.toEObject();
 
@@ -349,10 +349,10 @@ mapping textualCommons::Comment::commentToEdge() : notation::Connector
 	type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
 	
 	var commentShape := self.resolveoneIn(textualCommons::Comment::commentToShape);
-	var realCommentedElement := if self.commentedElement.oclIsKindOf(cls::CommentLink) then self.commentedElement.oclAsType(cls::CommentLink).commentedElement else self endif;
+	var realCommentedElement := if self.commentedElement.oclIsKindOf(cls::CommentLink) then self.commentedElement.oclAsType(cls::CommentLink).commentedElement else self.commentedElement.oclAsType(textualCommons::PackageableElement) endif;
 
 	source := commentShape;
-	target := if self.commentedElement.oclIsKindOf(cls::CommentLink) then self.commentedElement.oclAsType(cls::CommentLink).commentedElement.typeToView() else self.oclAsType(cls::Association).typeToView() endif;
+	target := realCommentedElement.typeToView();
 	element := null;
 	
 	bendpoints := result.map connectorToBendpoint();
@@ -419,14 +419,14 @@ mapping cls::Package::nameDecorationPackage() : notation::DecorationNode
 }
 
 mapping cls::AssociationMemberEnd::targetRoleDecoration() : notation::DecorationNode
-when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETROLE;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationMemberEnd::sourceRoleDecoration() : notation::DecorationNode
-when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE;
 	layoutConstraint := result.toEObject().map locationConstraint();
@@ -457,21 +457,21 @@ mapping cls::AssociationMemberEnd::targetRoleDecorationMemberEnd() : notation::D
 }
 
 mapping cls::AssociationMemberEnd::sourceMultiplicityDecoration() : notation::DecorationNode
-when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationMemberEnd::targetMultiplicityDecoration() : notation::DecorationNode
-when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 mapping cls::AssociationMemberEnd::targetMultiplicityDecorationMemberEnd() : notation::DecorationNode
-when {self.cardinality != null}
+//when {self.cardinality != null}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_MULTIPLICITY;
 	layoutConstraint := result.toEObject().map locationConstraint();
@@ -526,7 +526,7 @@ query uml::Property::matches(memberEnd : cls::AssociationMemberEnd) : Boolean
 	return
 		memberEnd.referencedElement = self or
 		(
-			self.type = memberEnd.type.oclAsType(uml::Type) and
+			self.type = memberEnd.type.referencedElement and
 			(
 				memberEnd.cardinality = null or
 				self.matches(memberEnd.cardinality)
