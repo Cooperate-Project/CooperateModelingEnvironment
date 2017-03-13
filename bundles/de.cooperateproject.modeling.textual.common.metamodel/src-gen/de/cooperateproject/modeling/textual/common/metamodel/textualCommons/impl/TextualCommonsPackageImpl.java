@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
@@ -184,6 +185,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 	 */
 	public EClass getElement() {
 		return elementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getElement__GetNearestPackage() {
+		return elementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -422,6 +432,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
 		// Create classes and their features
 		elementEClass = createEClass(ELEMENT);
+		createEOperation(elementEClass, ELEMENT___GET_NEAREST_PACKAGE);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -500,6 +511,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 		// Add supertypes to classes
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		aliasedElementEClass.getESuperTypes().add(this.getNamedElement());
+		umlReferencingElementEClass.getESuperTypes().add(this.getElement());
 		g1 = createEGenericType(this.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getPackage());
 		g1.getETypeArguments().add(g2);
@@ -516,7 +528,13 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 		packageImportEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = initEOperation(getElement__GetNearestPackage(), null, "getNearestPackage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(this.getPackageBase());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

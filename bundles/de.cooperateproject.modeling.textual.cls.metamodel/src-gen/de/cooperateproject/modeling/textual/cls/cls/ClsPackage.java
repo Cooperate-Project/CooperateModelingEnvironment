@@ -216,13 +216,22 @@ public interface ClsPackage extends EPackage {
     int PACKAGE_FEATURE_COUNT = TextualCommonsPackage.PACKAGEABLE_ELEMENT_FEATURE_COUNT + 7;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Package</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PACKAGE_OPERATION_COUNT = TextualCommonsPackage.PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+    int PACKAGE_OPERATION_COUNT = TextualCommonsPackage.PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl <em>Classifier</em>}' class.
@@ -253,22 +262,13 @@ public interface ClsPackage extends EPackage {
     int CLASSIFIER__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CLASSIFIER__COMMENTS = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -277,7 +277,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER__VISIBILITY = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
+    int CLASSIFIER__VISIBILITY = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -286,7 +286,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER__MEMBERS = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 3;
+    int CLASSIFIER__MEMBERS = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -295,7 +295,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER__OWNING_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 4;
+    int CLASSIFIER__OWNING_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Classifier</em>' class.
@@ -304,7 +304,16 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 5;
+    int CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 4;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Classifier</em>' class.
@@ -342,15 +351,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int CLASS__ALIAS = CLASSIFIER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CLASS__COMMENTS = CLASSIFIER__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -407,6 +407,15 @@ public interface ClsPackage extends EPackage {
     int CLASS_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
+
+    /**
      * The number of operations of the '<em>Class</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -442,15 +451,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int INTERFACE__ALIAS = CLASSIFIER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int INTERFACE__COMMENTS = CLASSIFIER__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -496,6 +496,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int INTERFACE_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Interface</em>' class.
@@ -578,6 +587,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Property</em>' class.
@@ -671,6 +689,15 @@ public interface ClsPackage extends EPackage {
     int MEMBER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEMBER___GET_NEAREST_PACKAGE = PROPERTY___GET_NEAREST_PACKAGE;
+
+    /**
      * The number of operations of the '<em>Member</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -760,6 +787,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ATTRIBUTE_FEATURE_COUNT = MEMBER_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATTRIBUTE___GET_NEAREST_PACKAGE = MEMBER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Attribute</em>' class.
@@ -871,6 +907,15 @@ public interface ClsPackage extends EPackage {
     int METHOD_FEATURE_COUNT = MEMBER_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int METHOD___GET_NEAREST_PACKAGE = MEMBER___GET_NEAREST_PACKAGE;
+
+    /**
      * The number of operations of the '<em>Method</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -960,6 +1005,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PARAMETER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER___GET_NEAREST_PACKAGE = PROPERTY___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Parameter</em>' class.
@@ -1118,13 +1172,22 @@ public interface ClsPackage extends EPackage {
     int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Generalization</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
+    int GENERALIZATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl <em>Implementation</em>}' class.
@@ -1182,13 +1245,22 @@ public interface ClsPackage extends EPackage {
     int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLEMENTATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Implementation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
+    int IMPLEMENTATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl <em>Comment Link</em>}' class.
@@ -1310,13 +1382,22 @@ public interface ClsPackage extends EPackage {
     int ASSOCIATION_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 4;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION___GET_NEAREST_PACKAGE = CONNECTOR_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Association</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ASSOCIATION_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
+    int ASSOCIATION_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationMemberEndImpl <em>Association Member End</em>}' class.
@@ -1399,6 +1480,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ASSOCIATION_MEMBER_END_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSOCIATION_MEMBER_END___GET_NEAREST_PACKAGE = TextualCommonsPackage.NAMED_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Association Member End</em>' class.
@@ -1526,6 +1616,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int XTEXT_ASSOCIATION_FEATURE_COUNT = ASSOCIATION_FEATURE_COUNT + 6;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION___GET_NEAREST_PACKAGE = ASSOCIATION___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Xtext Association</em>' class.

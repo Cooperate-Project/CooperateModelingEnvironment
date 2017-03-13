@@ -4,8 +4,6 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
 
@@ -309,11 +307,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
             switch (derivedFeatureID) {
                 case ClsPackage.PROPERTY__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
@@ -330,11 +323,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.PROPERTY__NAME;

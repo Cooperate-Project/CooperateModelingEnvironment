@@ -4,9 +4,6 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -36,7 +33,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getMembers <em>Members</em>}</li>
@@ -108,16 +104,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public EList<Comment> getComments() {
-        return (EList<Comment>)eDynamicGet(ClsPackage.CLASSIFIER__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public Visibility getVisibility() {
         return (Visibility)eDynamicGet(ClsPackage.CLASSIFIER__VISIBILITY, ClsPackage.Literals.CLASSIFIER__VISIBILITY, true, true);
     }
@@ -178,8 +164,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__COMMENTS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
             case ClsPackage.CLASSIFIER__MEMBERS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getMembers()).basicAdd(otherEnd, msgs);
             case ClsPackage.CLASSIFIER__OWNING_PACKAGE:
@@ -198,8 +182,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__COMMENTS:
-                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
             case ClsPackage.CLASSIFIER__MEMBERS:
                 return ((InternalEList<?>)getMembers()).basicRemove(otherEnd, msgs);
             case ClsPackage.CLASSIFIER__OWNING_PACKAGE:
@@ -230,8 +212,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__COMMENTS:
-                return getComments();
             case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
@@ -254,10 +234,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__COMMENTS:
-                getComments().clear();
-                getComments().addAll((Collection<? extends Comment>)newValue);
-                return;
             case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
                 setReferencedElement((Classifier)newValue);
                 return;
@@ -283,9 +259,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__COMMENTS:
-                getComments().clear();
-                return;
             case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
                 setReferencedElement((Classifier)null);
                 return;
@@ -310,8 +283,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__COMMENTS:
-                return !getComments().isEmpty();
             case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
             case ClsPackage.CLASSIFIER__VISIBILITY:
@@ -336,12 +307,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
                 default: return -1;
             }
         }
-        if (baseClass == Commentable.class) {
-            switch (derivedFeatureID) {
-                case ClsPackage.CLASSIFIER__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
@@ -360,12 +325,6 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == PackageableElement.class) {
             switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == Commentable.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return ClsPackage.CLASSIFIER__COMMENTS;
                 default: return -1;
             }
         }

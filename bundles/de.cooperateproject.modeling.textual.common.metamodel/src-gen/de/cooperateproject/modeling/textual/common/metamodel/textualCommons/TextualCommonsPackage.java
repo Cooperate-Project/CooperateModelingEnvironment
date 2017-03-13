@@ -5,6 +5,7 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -58,10 +59,10 @@ public interface TextualCommonsPackage extends EPackage {
 	TextualCommonsPackage eINSTANCE = de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}' class.
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl <em>Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
+	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl
 	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getElement()
 	 * @generated
 	 */
@@ -77,13 +78,22 @@ public interface TextualCommonsPackage extends EPackage {
 	int ELEMENT_FEATURE_COUNT = 0;
 
 	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT___GET_NEAREST_PACKAGE = 0;
+
+	/**
 	 * The number of operations of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_OPERATION_COUNT = 0;
+	int ELEMENT_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -112,6 +122,15 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT___GET_NEAREST_PACKAGE = ELEMENT___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -160,6 +179,15 @@ public interface TextualCommonsPackage extends EPackage {
 	int ALIASED_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALIASED_ELEMENT___GET_NEAREST_PACKAGE = NAMED_ELEMENT___GET_NEAREST_PACKAGE;
+
+	/**
 	 * The number of operations of the '<em>Aliased Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,7 +213,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = 0;
+	int UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>UML Referencing Element</em>' class.
@@ -194,7 +222,16 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_REFERENCING_ELEMENT_FEATURE_COUNT = 1;
+	int UML_REFERENCING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE = ELEMENT___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The number of operations of the '<em>UML Referencing Element</em>' class.
@@ -203,7 +240,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_REFERENCING_ELEMENT_OPERATION_COUNT = 0;
+	int UML_REFERENCING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl <em>Package Base</em>}' class.
@@ -268,6 +305,15 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_BASE_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_BASE___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The number of operations of the '<em>Package Base</em>' class.
@@ -360,6 +406,15 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMMENT_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The number of operations of the '<em>Comment</em>' class.
@@ -491,6 +546,15 @@ public interface TextualCommonsPackage extends EPackage {
 	int PACKAGE_IMPORT_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_IMPORT___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+	/**
 	 * The number of operations of the '<em>Package Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -519,6 +583,16 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getElement();
+
+	/**
+	 * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element#getNearestPackage() <em>Get Nearest Package</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Nearest Package</em>' operation.
+	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element#getNearestPackage()
+	 * @generated
+	 */
+	EOperation getElement__GetNearestPackage();
 
 	/**
 	 * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement <em>Named Element</em>}'.
@@ -787,14 +861,22 @@ public interface TextualCommonsPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}' class.
+		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl <em>Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element
+		 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl
 		 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getElement()
 		 * @generated
 		 */
 		EClass ELEMENT = eINSTANCE.getElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Nearest Package</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ELEMENT___GET_NEAREST_PACKAGE = eINSTANCE.getElement__GetNearestPackage();
 
 		/**
 		 * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl <em>Named Element</em>}' class.

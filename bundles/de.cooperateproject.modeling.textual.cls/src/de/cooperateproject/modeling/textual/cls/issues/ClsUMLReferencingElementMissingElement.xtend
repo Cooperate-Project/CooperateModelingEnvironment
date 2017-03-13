@@ -169,11 +169,14 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 	
 	private def dispatch fixMissingUMLElement(Comment element) {
 		if (!element.resolvePossible) return Void
-		var commentedElement = element.commentedElement
+		val commentedElement = element.commentedElement
+		var Element umlCommentedElement = null
 		if (commentedElement instanceof CommentLink) {
-			commentedElement = (commentedElement as CommentLink).commentedElement
+			umlCommentedElement = (commentedElement as CommentLink).commentedElement.referencedElement
+		} else if (commentedElement instanceof UMLReferencingElement) {
+			umlCommentedElement = commentedElement.referencedElement
+			
 		}
-		val umlCommentedElement = (commentedElement as UMLReferencingElement<Element>).referencedElement
 		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()
 		umlComment.body = element.body
 		umlComment.annotatedElements.add(umlCommentedElement)

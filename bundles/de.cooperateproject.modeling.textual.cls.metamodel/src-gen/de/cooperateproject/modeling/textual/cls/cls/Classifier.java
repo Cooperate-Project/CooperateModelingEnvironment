@@ -3,7 +3,6 @@
 package de.cooperateproject.modeling.textual.cls.cls;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
@@ -29,7 +28,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends AliasedElement, PackageableElement, Commentable, UMLReferencingElement<org.eclipse.uml2.uml.Classifier> {
+public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends AliasedElement, PackageableElement, UMLReferencingElement<org.eclipse.uml2.uml.Classifier> {
     /**
      * Returns the value of the '<em><b>Visibility</b></em>' attribute.
      * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.

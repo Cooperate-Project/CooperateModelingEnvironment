@@ -2,7 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
@@ -290,11 +289,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Element.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == NamedElement.class) {
 			switch (derivedFeatureID) {
 				case TextualCommonsPackage.PACKAGE_BASE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
@@ -311,11 +305,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Element.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == NamedElement.class) {
 			switch (baseFeatureID) {
 				case TextualCommonsPackage.NAMED_ELEMENT__NAME: return TextualCommonsPackage.PACKAGE_BASE__NAME;

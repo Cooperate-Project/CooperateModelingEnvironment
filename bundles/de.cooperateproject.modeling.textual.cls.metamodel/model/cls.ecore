@@ -61,7 +61,6 @@
         eType="#//Package" eOpposite="#//Package/classifiers"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//PackageableElement"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </eGenericSuperTypes>

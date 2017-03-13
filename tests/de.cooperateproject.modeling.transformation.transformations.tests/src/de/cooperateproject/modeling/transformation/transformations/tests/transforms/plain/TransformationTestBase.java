@@ -33,6 +33,7 @@ import org.junit.BeforeClass;
 
 import com.google.common.collect.Iterables;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
 import de.cooperateproject.modeling.transformation.transformations.tests.util.Log4JLogger;
@@ -57,6 +58,7 @@ public abstract class TransformationTestBase {
             OCL.initialize(null);
             NotationPackage.eINSTANCE.eClass();
             StylePackage.eINSTANCE.eClass();
+            TextualCommonsPackage.eINSTANCE.eClass();
         }
     }
 

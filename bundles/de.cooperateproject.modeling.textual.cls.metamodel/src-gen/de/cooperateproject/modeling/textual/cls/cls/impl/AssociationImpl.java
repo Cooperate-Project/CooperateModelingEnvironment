@@ -10,9 +10,11 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comm
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,6 +22,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -174,6 +177,19 @@ public abstract class AssociationImpl extends CDOObjectImpl implements Associati
     @SuppressWarnings("unchecked")
     public EList<AssociationMemberEnd> getMemberEnds() {
         return (EList<AssociationMemberEnd>)eDynamicGet(ClsPackage.ASSOCIATION__MEMBER_ENDS, ClsPackage.Literals.ASSOCIATION__MEMBER_ENDS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PackageBase<?> getNearestPackage() {
+        EObject parent = this;
+        while (parent != null && !(parent instanceof PackageBase)) {
+            parent = parent.eContainer();
+        }
+        return (PackageBase<?>)parent;
     }
 
     /**
@@ -395,6 +411,51 @@ public abstract class AssociationImpl extends CDOObjectImpl implements Associati
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == Element.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ClsPackage.ASSOCIATION___GET_NEAREST_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case ClsPackage.ASSOCIATION___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //AssociationImpl

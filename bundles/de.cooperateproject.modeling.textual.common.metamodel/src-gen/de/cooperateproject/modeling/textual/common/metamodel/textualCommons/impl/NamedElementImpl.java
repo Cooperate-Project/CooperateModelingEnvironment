@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +19,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class NamedElementImpl extends CDOObjectImpl implements NamedElement {
+public abstract class NamedElementImpl extends ElementImpl implements NamedElement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,16 +47,6 @@ public abstract class NamedElementImpl extends CDOObjectImpl implements NamedEle
 	@Override
 	protected EClass eStaticClass() {
 		return TextualCommonsPackage.Literals.NAMED_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

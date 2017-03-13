@@ -90,6 +90,7 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
 			case TextualCommonsPackage.UML_REFERENCING_ELEMENT: {
 				UMLReferencingElement<?> umlReferencingElement = (UMLReferencingElement<?>)theEObject;
 				T result = caseUMLReferencingElement(umlReferencingElement);
+				if (result == null) result = caseElement(umlReferencingElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,6 +113,7 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
 				Comment comment = (Comment)theEObject;
 				T result = caseComment(comment);
 				if (result == null) result = caseUMLReferencingElement(comment);
+				if (result == null) result = caseElement(comment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -131,6 +133,7 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
 				PackageImport packageImport = (PackageImport)theEObject;
 				T result = casePackageImport(packageImport);
 				if (result == null) result = caseUMLReferencingElement(packageImport);
+				if (result == null) result = caseElement(packageImport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

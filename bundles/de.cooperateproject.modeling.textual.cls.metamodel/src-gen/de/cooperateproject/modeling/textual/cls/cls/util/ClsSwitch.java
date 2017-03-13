@@ -113,7 +113,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 T1 result = caseClassifier(classifier);
                 if (result == null) result = caseAliasedElement(classifier);
                 if (result == null) result = casePackageableElement(classifier);
-                if (result == null) result = caseCommentable(classifier);
                 if (result == null) result = caseUMLReferencingElement(classifier);
                 if (result == null) result = caseNamedElement(classifier);
                 if (result == null) result = caseElement(classifier);
@@ -126,7 +125,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseClassifier(class_);
                 if (result == null) result = caseAliasedElement(class_);
                 if (result == null) result = casePackageableElement(class_);
-                if (result == null) result = caseCommentable(class_);
                 if (result == null) result = caseUMLReferencingElement(class_);
                 if (result == null) result = caseNamedElement(class_);
                 if (result == null) result = caseElement(class_);
@@ -139,7 +137,6 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseClassifier(interface_);
                 if (result == null) result = caseAliasedElement(interface_);
                 if (result == null) result = casePackageableElement(interface_);
-                if (result == null) result = caseCommentable(interface_);
                 if (result == null) result = caseUMLReferencingElement(interface_);
                 if (result == null) result = caseNamedElement(interface_);
                 if (result == null) result = caseElement(interface_);
@@ -218,6 +215,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseTypedConnector(generalization);
                 if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseConnector(generalization);
+                if (result == null) result = caseElement(generalization);
                 if (result == null) result = casePackageableElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -228,6 +226,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseTypedConnector(implementation);
                 if (result == null) result = caseUMLReferencingElement(implementation);
                 if (result == null) result = caseConnector(implementation);
+                if (result == null) result = caseElement(implementation);
                 if (result == null) result = casePackageableElement(implementation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

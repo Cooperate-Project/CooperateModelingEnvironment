@@ -5,11 +5,16 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**
@@ -70,6 +75,19 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      */
     public void setReferencedElement(InterfaceRealization newReferencedElement) {
         eDynamicSet(ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PackageBase<?> getNearestPackage() {
+        EObject parent = this;
+        while (parent != null && !(parent instanceof PackageBase)) {
+            parent = parent.eContainer();
+        }
+        return (PackageBase<?>)parent;
     }
 
     /**
@@ -138,6 +156,11 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
@@ -154,6 +177,11 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT;
@@ -161,6 +189,41 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ClsPackage.IMPLEMENTATION___GET_NEAREST_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case ClsPackage.IMPLEMENTATION___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //ImplementationImpl

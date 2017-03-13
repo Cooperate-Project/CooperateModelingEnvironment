@@ -2,6 +2,7 @@ package de.cooperateproject.modeling.transformation.transformations.tests.transf
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Function;
@@ -44,6 +45,12 @@ public abstract class DirectionalTransformationTestBase extends PlainTransformat
         assertEquals(1, transformationResult.getContents().size());
         EObject actual = transformationResult.getContents().get(0);
         EcoreUtil.resolveAll(getResourceSet());
+
+        Resource r = getResourceSet().createResource(URI.createFileURI("asdflihjsdaf.xmi"));
+        r.getContents().add(actual);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        r.save(baos, Collections.emptyMap());
+        System.out.println(baos.toString());
 
         assertModelEquals(expected, actual, diffProcessor);
     }

@@ -4,11 +4,7 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -24,7 +20,7 @@ import org.eclipse.uml2.uml.Element;
  *
  * @generated
  */
-public abstract class UMLReferencingElementImpl<UMLType extends Element> extends CDOObjectImpl implements UMLReferencingElement<UMLType> {
+public abstract class UMLReferencingElementImpl<UMLType extends Element> extends ElementImpl implements UMLReferencingElement<UMLType> {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42,16 +38,6 @@ public abstract class UMLReferencingElementImpl<UMLType extends Element> extends
 	@Override
 	protected EClass eStaticClass() {
 		return TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**

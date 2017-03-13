@@ -169,12 +169,12 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createPackageableElementAdapter();
             }
             @Override
-            public <UMLType extends Element> Adapter caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
-                return createUMLReferencingElementAdapter();
-            }
-            @Override
             public Adapter caseElement(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element object) {
                 return createElementAdapter();
+            }
+            @Override
+            public <UMLType extends Element> Adapter caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
+                return createUMLReferencingElementAdapter();
             }
             @Override
             public Adapter caseNamedElement(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement object) {
