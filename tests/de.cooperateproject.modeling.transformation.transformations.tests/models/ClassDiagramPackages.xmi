@@ -2,79 +2,76 @@
 <cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
   <rootPackage>
     <referencedElement xsi:type="uml:Model" href="ClassDiagramPackages.uml#_SnrXgH9OEeasAogjkkM7gQ"/>
-    <packages>
+    <packages name="Car" xsi:type="cls:Package">
       <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_ihbecH9OEeaePt6Hzoa1yQ"/>
-      <classifiers xsi:type="cls:Class">
+      <classifiers xsi:type="cls:Class" name="Car">
         <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
       </classifiers>
-      <classifiers xsi:type="cls:Class">
+      <classifiers xsi:type="cls:Class" name="Chassis">
         <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_3KYQQH_OEeaePt6Hzoa1yQ"/>
       </classifiers>
-      <connectors xsi:type="cls:Association" aggregationKind="COMPOSITION" bidirectional="true">
+      <connectors xsi:type="cls:XtextAssociation" name="has">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_7PhI0H9OEeaePt6Hzoa1yQ"/>
-        <left xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
-        <right xsi:type="uml:Class" href="ClassDiagramPackages.uml#_t2ZyoH9OEeaePt6Hzoa1yQ"/>
-        <properties>
-          <cardinalityLeft lowerBound="1" upperBound="1"/>
-          <cardinalityRight upperBound="-1"/>
-          <propertyLeft href="ClassDiagramPackages.uml#_7PukMH9OEeaePt6Hzoa1yQ"/>
-          <propertyRight href="ClassDiagramPackages.uml#_7PsvAH9OEeaePt6Hzoa1yQ"/>
-        </properties>
+        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0" navigable="true" aggregationKind="COMPOSITION">
+			<cardinality lowerBound="1" upperBound="1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PukMH9OEeaePt6Hzoa1yQ"/>
+		</memberEnds>
+        <memberEnds name="optionalpart" type="//@rootPackage/@packages.0/@packages.0/@classifiers.0" navigable="true">
+			<cardinality upperBound="-1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PsvAH9OEeaePt6Hzoa1yQ"/>
+		</memberEnds>
       </connectors>
-      <connectors xsi:type="cls:Association" bidirectional="true">
+      <connectors xsi:type="cls:XtextAssociation" name="belongsTo">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_fuLkMH_REeaePt6Hzoa1yQ"/>
-        <left xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
-        <right xsi:type="uml:Class" href="ClassDiagramPackages.uml#_3KYQQH_OEeaePt6Hzoa1yQ"/>
-        <properties>
-          <cardinalityLeft lowerBound="1" upperBound="1"/>
-          <cardinalityRight lowerBound="1" upperBound="1"/>
-          <propertyLeft href="ClassDiagramPackages.uml#_fuMyUX_REeaePt6Hzoa1yQ"/>
-          <propertyRight href="ClassDiagramPackages.uml#_fuMyUH_REeaePt6Hzoa1yQ"/>
-        </properties>
+        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0" navigable="true">
+			<cardinality lowerBound="1" upperBound="1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_fuMyUX_REeaePt6Hzoa1yQ"/>
+		</memberEnds>
+        <memberEnds name="class1" type="//@rootPackage/@packages.0/@classifiers.1" navigable="true">
+			<cardinality lowerBound="1" upperBound="1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_fuMyUH_REeaePt6Hzoa1yQ"/>
+		</memberEnds>
       </connectors>
-      <packages>
+      <packages xsi:type="cls:Package" name="Accessory">
         <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_o3uSIH9OEeaePt6Hzoa1yQ"/>
-        <classifiers xsi:type="cls:Class">
+        <classifiers xsi:type="cls:Class" name="Stereo">
           <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_t2ZyoH9OEeaePt6Hzoa1yQ"/>
         </classifiers>
-        <classifiers xsi:type="cls:Interface">
+        <classifiers xsi:type="cls:Interface" name="OptionalPart">
           <referencedElement xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
         </classifiers>
-        <connectors xsi:type="cls:Implementation">
-          <left xsi:type="uml:Class" href="ClassDiagramPackages.uml#_t2ZyoH9OEeaePt6Hzoa1yQ"/>
-          <right xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
-        </connectors>
+        <connectors xsi:type="cls:Implementation" left="//@rootPackage/@packages.0/@packages.0/@classifiers.0" right="//@rootPackage/@packages.0/@packages.0/@classifiers.1"/>
       </packages>
     </packages>
-    <packages>
+    <packages xsi:type="cls:Package" name="People">
       <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_nYq6MH9OEeaePt6Hzoa1yQ"/>
       <packageImports>
-        <referencedElement href="ClassDiagramPackages.uml#_IMO24H9PEeaePt6Hzoa1yQ"/>
+        <referencedElement xsi:type="uml:PackageImport" href="ClassDiagramPackages.uml#_IMO24H9PEeaePt6Hzoa1yQ"/>
       </packageImports>
-      <classifiers xsi:type="cls:Class">
+      <classifiers xsi:type="cls:Class" name="Person">
         <referencedElement xsi:type="uml:Class" href="ClassDiagramPackages.uml#_r3cyoH9OEeaePt6Hzoa1yQ"/>
       </classifiers>
-      <connectors xsi:type="cls:Association">
+      <connectors xsi:type="cls:XtextAssociation" name="owns">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_AVC4MH9PEeaePt6Hzoa1yQ"/>
-        <left xsi:type="uml:Class" href="ClassDiagramPackages.uml#_r3cyoH9OEeaePt6Hzoa1yQ"/>
-        <right xsi:type="uml:Class" href="ClassDiagramPackages.uml#_tOCyIH9OEeaePt6Hzoa1yQ"/>
-        <properties>
-          <cardinalityLeft lowerBound="1" upperBound="1"/>
-          <cardinalityRight upperBound="-1"/>
-          <propertyLeft href="ClassDiagramPackages.uml#_AVEtYH9PEeaePt6Hzoa1yQ"/>
-          <propertyRight href="ClassDiagramPackages.uml#_AVEGUn9PEeaePt6Hzoa1yQ"/>
-        </properties>
+        <memberEnds name="person" type="//@rootPackage/@packages.1/@classifiers.0">
+			<cardinality lowerBound="1" upperBound="1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEtYH9PEeaePt6Hzoa1yQ"/>
+		</memberEnds>
+        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0">
+			<cardinality upperBound="-1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEGUn9PEeaePt6Hzoa1yQ"/>
+		</memberEnds>
       </connectors>
-      <connectors xsi:type="cls:Association">
+      <connectors xsi:type="cls:XtextAssociation" name="wantsToUse">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_I-A5IH9PEeaePt6Hzoa1yQ"/>
-        <left xsi:type="uml:Class" href="ClassDiagramPackages.uml#_r3cyoH9OEeaePt6Hzoa1yQ"/>
-        <right xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
-        <properties>
-          <cardinalityLeft lowerBound="1" upperBound="1"/>
-          <cardinalityRight upperBound="-1"/>
-          <propertyLeft href="ClassDiagramPackages.uml#_I-DVYH9PEeaePt6Hzoa1yQ"/>
-          <propertyRight href="ClassDiagramPackages.uml#_I-CuUX9PEeaePt6Hzoa1yQ"/>
-        </properties>
+        <memberEnds name="person" type="//@rootPackage/@packages.1/@classifiers.0">
+			<cardinality lowerBound="1" upperBound="1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-DVYH9PEeaePt6Hzoa1yQ"/>
+		</memberEnds>
+        <memberEnds name="optionalpart" type="//@rootPackage/@packages.0/@packages.0/@classifiers.1">
+			<cardinality upperBound="-1"/>
+			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-CuUX9PEeaePt6Hzoa1yQ"/>
+		</memberEnds>
       </connectors>
     </packages>
   </rootPackage>
