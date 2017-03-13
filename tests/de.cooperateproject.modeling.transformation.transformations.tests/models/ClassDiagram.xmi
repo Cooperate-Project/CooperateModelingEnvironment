@@ -45,60 +45,49 @@
   </classifiers>
   <connectors xsi:type="cls:XtextAssociation" name="akwardAssociation">
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
-    <memberEnds name="wheel">
+    <memberEnds name="wheel" type="//@rootPackage/@classifiers.1">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
       <cardinality lowerBound="1" upperBound="1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.1"/>
     </memberEnds>
-    <memberEnds name="car">
+    <memberEnds name="car" type="//@rootPackage/@classifiers.0">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
       <cardinality lowerBound="1" upperBound="1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.0"/>
     </memberEnds>
-    <memberEnds name="ConvertibleCar" navigable="true">
+    <memberEnds name="ConvertibleCar" navigable="true" type="//@rootPackage/@classifiers.2">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
       <cardinality upperBound="1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.2"/>
     </memberEnds>
   </connectors>
   <connectors xsi:type="cls:XtextAssociation" name="has">
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
-    <memberEnds name="car" aggregationKind="COMPOSITION">
+    <memberEnds name="car" aggregationKind="COMPOSITION" type="//@rootPackage/@classifiers.0">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
       <cardinality lowerBound="1" upperBound="1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.0"/>
     </memberEnds>
-    <memberEnds name="wheel">
+    <memberEnds name="wheel" type="//@rootPackage/@classifiers.1">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
       <cardinality lowerBound="1" upperBound="-1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.1"/>
     </memberEnds>
     <comments
           body="Obvious, isn't it?">
           <referencedElement xsi:type="uml:Comment" href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
     </comments>
   </connectors>
-  <connectors xsi:type="cls:Generalization">
+  <connectors xsi:type="cls:Generalization" left="//@rootPackage/@classifiers.2" right="//@rootPackage/@classifiers.0">
   	<referencedElement xsi:type="uml:Generalization" href="ClassDiagram.uml#_4i2AMEKSEeaXCq-9LXQNWQ"/>
-    <left xsi:type="cls:Class" href="//@rootPackage/@classifiers.2"/>
-    <right xsi:type="cls:Class" href="//@rootPackage/@classifiers.0"/>
   </connectors>
-  <connectors xsi:type="cls:Implementation">
+  <connectors xsi:type="cls:Implementation" left="//@rootPackage/@classifiers.0" right="//@rootPackage/@classifiers.3">
   	<referencedElement xsi:type="uml:InterfaceRealization" href="ClassDiagram.uml#_YCfg4HjsEea7c9xs28iX1A"/>
-    <left xsi:type="cls:Class" href="//@rootPackage/@classifiers.0"/>
-    <right xsi:type="cls:Interface" href="//@rootPackage/@classifiers.3"/>
   </connectors>
   <connectors xsi:type="cls:XtextAssociation" name="matches">
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_cPAzgHnPEea_kLaSOi1rnw"/>
-    <memberEnds name="wheel" navigable="true">
+    <memberEnds name="wheel" navigable="true"  type="//@rootPackage/@classifiers.1">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IXnPEea_kLaSOi1rnw"/>
       <cardinality lowerBound="0" upperBound="-1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.1"/>
     </memberEnds>
-    <memberEnds name="screw" navigable="true">
+    <memberEnds name="screw" navigable="true"  type="//@rootPackage/@classifiers.4">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IHnPEea_kLaSOi1rnw"/>
       <cardinality lowerBound="0" upperBound="-1"/>
-      <type xsi:type="cls:Class" href="//@rootPackage/@classifiers.4"/>
     </memberEnds>
   </connectors>
     <connectors

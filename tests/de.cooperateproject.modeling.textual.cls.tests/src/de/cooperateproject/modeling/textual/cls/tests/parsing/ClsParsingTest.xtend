@@ -41,7 +41,7 @@ import org.apache.commons.io.IOUtils
 import java.util.Collections
 
 @InjectWith(ClsTestInjectorProvider.DefaultProvider)
-class ClsAParsingTest extends AbstractClsTest {
+class ClsParsingTest extends AbstractClsTest {
 	
 	//@Inject extension ParseHelper<ClassDiagram>
 	@Inject ValidationTestHelper validationTestHelper
