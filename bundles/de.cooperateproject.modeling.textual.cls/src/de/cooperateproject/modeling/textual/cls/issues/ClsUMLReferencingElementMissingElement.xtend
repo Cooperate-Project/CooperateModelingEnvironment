@@ -111,7 +111,10 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 	
 	private def dispatch fixMissingUMLElement(Class element) {
 		if (!element.resolvePossible) return Void
-		fixMissingUMLElement(element, UMLPackage.Literals.CLASS)
+		val result = fixMissingUMLElement(element, UMLPackage.Literals.CLASS)
+		if (result instanceof org.eclipse.uml2.uml.Class) {
+			result.isAbstract = element.abstract
+		}
 	}
 	
 	private def dispatch fixMissingUMLElement(Interface element) {
@@ -171,11 +174,11 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		if (!element.resolvePossible) return Void
 		val commentedElement = element.commentedElement
 		var Element umlCommentedElement = null
+		
 		if (commentedElement instanceof CommentLink) {
 			umlCommentedElement = (commentedElement as CommentLink).commentedElement.referencedElement
 		} else if (commentedElement instanceof UMLReferencingElement) {
-			umlCommentedElement = commentedElement.referencedElement
-			
+			umlCommentedElement = commentedElement.referencedElement	
 		}
 		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()
 		umlComment.body = element.body
@@ -188,6 +191,7 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		val umlClassifier = element.owner.referencedElement as StructuredClassifier
 		val umlAttribute = umlClassifier.createOwnedAttribute(element.name, element.type)
 		umlAttribute.visibility = element.visibility
+		umlAttribute.isStatic = element.static
 		element.referencedElement = umlAttribute
 	}
 	
@@ -198,6 +202,8 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		val parameterTypes = new BasicEList(element.parameters.map[type].map[type | type as Type])
 		val umlOperation = umlClassifier.createOwnedOperation(element.name, parameterNames, parameterTypes, element.type)
 		umlOperation.visibility = element.visibility
+		umlOperation.isStatic = element.static
+		umlOperation.isAbstract = element.abstract
 		element.referencedElement = umlOperation
 	}
 	
@@ -233,10 +239,8 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		val umlClassifier = umlParent.createPackagedElement(element.name, umlType) as org.eclipse.uml2.uml.Classifier
 		umlClassifier.visibility = element.visibility
 		element.referencedElement = umlClassifier
+		return umlClassifier
 	}
-	
-
-	
 	
 }
 				

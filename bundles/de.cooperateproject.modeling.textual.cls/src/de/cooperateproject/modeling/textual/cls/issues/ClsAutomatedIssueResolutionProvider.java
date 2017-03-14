@@ -28,6 +28,8 @@ public class ClsAutomatedIssueResolutionProvider extends AutomatedIssueResolutio
                 e -> new ClsUMLReferencingElementMissingElement((UMLReferencingElement<Element>) e));
         map.put(ClsAssociationMemberEndRoleName.ISSUE_CODE,
                 e -> new ClsAssociationMemberEndRoleName((AssociationMemberEnd) e));
+        map.put(ClsCardinalityCheck.ISSUE_CODE, e -> new ClsCardinalityCheck((AssociationMemberEnd) e));
+        map.put(ClsPropertyQualifier.ISSUE_CODE, e -> new ClsPropertyQualifier((UMLReferencingElement<Element>) e));
         return map;
     }
 

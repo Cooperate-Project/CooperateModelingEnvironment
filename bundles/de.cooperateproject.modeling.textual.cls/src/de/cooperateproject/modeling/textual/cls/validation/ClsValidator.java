@@ -10,13 +10,21 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.xtext.validation.Check;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
+import de.cooperateproject.modeling.textual.cls.cls.Attribute;
+import de.cooperateproject.modeling.textual.cls.cls.Class;
+import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleName;
+import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
+import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyQualifier;
 import de.cooperateproject.modeling.textual.cls.issues.ClsUMLReferencingElementMissingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+/**
+ * Cls-validator for the editor.
+ */
 public class ClsValidator extends AbstractClsValidator {
 
     private static final Switch<EStructuralFeature> MISSING_REFERENCE_FEATURE_SWITCH = new UMLReferencingElementFeatureSwitch();
@@ -33,8 +41,41 @@ public class ClsValidator extends AbstractClsValidator {
     @Check
     private void checkAssociationRoleNames(AssociationMemberEnd memberEnd) {
         if (ClsAssociationMemberEndRoleName.hasIssues(memberEnd)) {
-            info("The used role name is different to the previously used one. The previously used one will be updated when saving.",
+            info("The used role name is different to the previously used one. "
+                    + "The previously used one will be updated when saving.",
                     TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsAssociationMemberEndRoleName.ISSUE_CODE);
+        }
+    }
+
+    @Check
+    private void checkCorrectPropertyQualifier(Class property) {
+        if (ClsPropertyQualifier.hasIssues(property)) {
+            info("Wrong abstract Qualifier. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyQualifier.ISSUE_CODE);
+        }
+    }
+
+    @Check
+    private void checkCorrectPropertyQualifier(Method property) {
+        if (ClsPropertyQualifier.hasIssues(property)) {
+            info("Wrong abstract Qualifier. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyQualifier.ISSUE_CODE);
+        }
+    }
+
+    @Check
+    private void checkCorrectPropertyQualifier(Attribute property) {
+        if (ClsPropertyQualifier.hasIssues(property)) {
+            info("Wrong abstract Qualifier. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyQualifier.ISSUE_CODE);
+        }
+    }
+
+    @Check
+    private void checkCardinality(AssociationMemberEnd memberEnd) {
+        if (ClsCardinalityCheck.hasIssues(memberEnd)) {
+            info("Wrong cardinality. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsCardinalityCheck.ISSUE_CODE);
         }
     }
 
