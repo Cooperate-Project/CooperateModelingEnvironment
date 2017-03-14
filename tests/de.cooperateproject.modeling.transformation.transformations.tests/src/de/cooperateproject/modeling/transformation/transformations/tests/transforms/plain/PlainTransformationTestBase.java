@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -111,7 +112,8 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
 
     protected static String prettyPrint(Comparison comparison) throws UnsupportedEncodingException {
         String customPrettyPrint = comparison.getDifferences().stream()
-                .map(PlainTransformationTestBase::prettyPrintCustom).collect(Collectors.joining(String.format("%n")));
+                .map(PlainTransformationTestBase::prettyPrintCustom).filter(Objects::nonNull)
+                .collect(Collectors.joining(String.format("%n")));
         ByteArrayOutputStream baos = null;
         PrintStream ps = null;
         try {
@@ -134,15 +136,18 @@ public abstract class PlainTransformationTestBase extends TransformationTestBase
                 EObject expected = object.getMatch().getLeft();
                 EReference reference = object.getReference();
 
-                EObject parent = actual;
-                String referenceName = String.format("%s::%s", reference.getEContainingClass().getName(),
-                        object.getReference().getName());
-                Object actualValue = actual.eGet(reference);
-                Object expectedValue = expected.eGet(reference);
+                if (actual != null && expected != null) {
+                    EObject parent = actual;
+                    String referenceName = String.format("%s::%s", reference.getEContainingClass().getName(),
+                            object.getReference().getName());
+                    Object actualValue = actual.eGet(reference);
+                    Object expectedValue = expected.eGet(reference);
 
-                return String.format(
-                        "ReferenceChange%n\tParent: %s%n\tReference: %s%n\tExpected Value: %s%n\tActual Value: %s",
-                        parent, referenceName, expectedValue, actualValue);
+                    return String.format(
+                            "ReferenceChange%n\tParent: %s%n\tReference: %s%n\tExpected Value: %s%n\tActual Value: %s",
+                            parent, referenceName, expectedValue, actualValue);
+                }
+                return defaultCase(object);
             }
 
         };

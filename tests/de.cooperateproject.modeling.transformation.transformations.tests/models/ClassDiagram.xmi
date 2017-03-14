@@ -59,19 +59,19 @@
     </memberEnds>
   </connectors>
   <connectors xsi:type="cls:XtextAssociation" name="has">
-    <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
-    <memberEnds name="car" aggregationKind="COMPOSITION" type="//@rootPackage/@classifiers.0">
-      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
-      <cardinality lowerBound="1" upperBound="1"/>
-    </memberEnds>
-    <memberEnds name="wheel" type="//@rootPackage/@classifiers.1">
-      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
-      <cardinality lowerBound="1" upperBound="-1"/>
-    </memberEnds>
     <comments
           body="Obvious, isn't it?">
           <referencedElement xsi:type="uml:Comment" href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
     </comments>
+    <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
+    <memberEnds name="car" type="//@rootPackage/@classifiers.0">
+      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
+      <cardinality lowerBound="1" upperBound="1"/>
+    </memberEnds>
+    <memberEnds name="wheel" type="//@rootPackage/@classifiers.1" aggregationKind="COMPOSITION" navigable="true">
+      <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
+      <cardinality lowerBound="1" upperBound="-1"/>
+    </memberEnds>
   </connectors>
   <connectors xsi:type="cls:Generalization" left="//@rootPackage/@classifiers.2" right="//@rootPackage/@classifiers.0">
   	<referencedElement xsi:type="uml:Generalization" href="ClassDiagram.uml#_4i2AMEKSEeaXCq-9LXQNWQ"/>

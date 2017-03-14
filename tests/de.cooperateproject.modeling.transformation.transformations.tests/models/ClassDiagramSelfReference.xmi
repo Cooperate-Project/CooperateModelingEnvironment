@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="ASCII"?>
 <cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
-  <rootPackage>
+  <rootPackage name="RootElement">
     <referencedElement xsi:type="uml:Model" href="ClassDiagramSelfReference.uml#_cE-dkLAQEeaCyqV64VKpeQ"/>
       <classifiers xsi:type="cls:Class" name="Class1">
         <referencedElement xsi:type="uml:Class" href="ClassDiagramSelfReference.uml#_cgmCkLAQEeaCyqV64VKpeQ"/>
       </classifiers>
-     <connectors xsi:type="cls:XtextAssociation">
+     <connectors xsi:type="cls:XtextAssociation" name="test">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramSelfReference.uml#_dmukMLAQEeaCyqV64VKpeQ"/>
-        <memberEnds name="class1" type="//@rootPackage/@classifiers.0" navigable="true">
+        <memberEnds name="class1" type="//@rootPackage/@classifiers.0">
 			<cardinality lowerBound="1" upperBound="1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramSelfReference.uml#_dmxngLAQEeaCyqV64VKpeQ"/>
 		</memberEnds>
-        <memberEnds name="class1" type="//@rootPackage/@classifiers.0">
+        <memberEnds name="class1" type="//@rootPackage/@classifiers.0" navigable="true">
 			<cardinality lowerBound="1" upperBound="1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramSelfReference.uml#_dmxAcLAQEeaCyqV64VKpeQ"/>
 		</memberEnds>

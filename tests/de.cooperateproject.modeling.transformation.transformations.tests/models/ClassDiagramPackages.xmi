@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
-  <rootPackage>
+  <rootPackage name="RootElement">
     <referencedElement xsi:type="uml:Model" href="ClassDiagramPackages.uml#_SnrXgH9OEeasAogjkkM7gQ"/>
     <packages name="Car" xsi:type="cls:Package">
       <referencedElement xsi:type="uml:Package" href="ClassDiagramPackages.uml#_ihbecH9OEeaePt6Hzoa1yQ"/>
@@ -12,11 +12,11 @@
       </classifiers>
       <connectors xsi:type="cls:XtextAssociation" name="has">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_7PhI0H9OEeaePt6Hzoa1yQ"/>
-        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0" navigable="true" aggregationKind="COMPOSITION">
+        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0" navigable="true">
 			<cardinality lowerBound="1" upperBound="1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PukMH9OEeaePt6Hzoa1yQ"/>
 		</memberEnds>
-        <memberEnds name="optionalpart" type="//@rootPackage/@packages.0/@packages.0/@classifiers.0" navigable="true">
+        <memberEnds name="optionalpart" type="//@rootPackage/@packages.0/@packages.0/@classifiers.0" navigable="true" aggregationKind="COMPOSITION">
 			<cardinality upperBound="-1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PsvAH9OEeaePt6Hzoa1yQ"/>
 		</memberEnds>
@@ -40,7 +40,9 @@
         <classifiers xsi:type="cls:Interface" name="OptionalPart">
           <referencedElement xsi:type="uml:Interface" href="ClassDiagramPackages.uml#_2dUlIH9OEeaePt6Hzoa1yQ"/>
         </classifiers>
-        <connectors xsi:type="cls:Implementation" left="//@rootPackage/@packages.0/@packages.0/@classifiers.0" right="//@rootPackage/@packages.0/@packages.0/@classifiers.1"/>
+        <connectors xsi:type="cls:Implementation" left="//@rootPackage/@packages.0/@packages.0/@classifiers.0" right="//@rootPackage/@packages.0/@packages.0/@classifiers.1">
+        	<referencedElement xsi:type="uml:InterfaceRealization" href="ClassDiagramPackages.uml#_6X9OsH9OEeaePt6Hzoa1yQ"/>
+        </connectors>
       </packages>
     </packages>
     <packages xsi:type="cls:Package" name="People">
@@ -57,7 +59,7 @@
 			<cardinality lowerBound="1" upperBound="1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEtYH9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
-        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0">
+        <memberEnds name="car" type="//@rootPackage/@packages.0/@classifiers.0"  navigable="true">
 			<cardinality upperBound="-1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEGUn9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
@@ -68,7 +70,7 @@
 			<cardinality lowerBound="1" upperBound="1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-DVYH9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
-        <memberEnds name="optionalpart" type="//@rootPackage/@packages.0/@packages.0/@classifiers.1">
+        <memberEnds name="optionalpart" type="//@rootPackage/@packages.0/@packages.0/@classifiers.1" navigable="true">
 			<cardinality upperBound="-1"/>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-CuUX9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
