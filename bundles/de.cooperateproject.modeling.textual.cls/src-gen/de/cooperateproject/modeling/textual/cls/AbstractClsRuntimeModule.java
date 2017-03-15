@@ -28,11 +28,13 @@ import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNa
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import java.util.Properties;
+import net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.formatting2.IFormatter2;
+import org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
 import org.eclipse.xtext.parser.ITokenToStringConverter;
@@ -202,6 +204,11 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
 	public void configureIgnoreCaseLinking(Binder binder) {
 		binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public Class<? extends TextRegionAccessBuilder> bindTextRegionAccessBuilder() {
+		return CDOTextRegionAccessBuilder.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
