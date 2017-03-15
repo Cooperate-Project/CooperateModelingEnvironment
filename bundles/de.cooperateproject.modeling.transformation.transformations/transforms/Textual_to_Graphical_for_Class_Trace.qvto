@@ -8,6 +8,7 @@ modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype TEXTUAL uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 
 main() {
 	var traces := textualTrace.rootObjects()[trace::Trace];
@@ -42,6 +43,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordEdgeCommentLink();
 	result += self.map traceRecordEdgeMemberEnd();
 	result += self.map traceRecordEdgePackageImport();
+	result += self.map traceRecordShapeComment();
 	
 }
 
@@ -132,14 +134,11 @@ when {self.mappingOperation.name = "multiAssociationToShape"}
 	var diamondShape := self.getResult().modelElement;
 	var multiAssociation := self.getSelf().modelElement;
 	
-	result += createEdgeTraceRecord("associationNodeToMultiAssociation", "Node", diamondShape, "MultiAssociation", multiAssociation);
+	result += createEdgeTraceRecord("associationNodeToMultiAssociation", "Node", diamondShape, "XtextAssociation", multiAssociation);
 }
 
 mapping trace::TraceRecord::traceRecordEdgeParent() : List(trace::TraceRecord)
-when {
-	self.mappingOperation.name = "connectorToConnector" or
-	(self.mappingOperation.name = "commentableToEdge" and not self.getSelf().modelElement.oclIsKindOf(cls::Association))
-}
+when {self.mappingOperation.name = "connectorToConnector"}
 {
 	var connector := self.getSelf().modelElement;
 	var edge := self.getResult().modelElement;
@@ -172,39 +171,41 @@ when {self.mappingOperation.name = "connectorToEdge"}
 {
 	var connector := self.getSelf().modelElement.oclAsType(cls::Association);
 	var edge := self.getResult().modelElement;
-	var umlAssociation := edge.oclAsType(notation::Edge).element.oclAsType(uml::Association);
-	var aggregatingIndex := if umlAssociation.memberEnd->at(2).aggregation != uml::AggregationKind::none then 2 else 1 endif;
-	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
-	var leftElement := umlAssociation.memberEnd->at(regularIndex);
-	var rightElement := umlAssociation.memberEnd->at(aggregatingIndex);
-
-	result += createEdgeTraceRecord("edgeToRegularAssociation", "Edge", edge, "Association", connector.eobject());
 	
-	// association properties
-	var associationProperties := new TraceRecord("edgeToAssociationProperties", "Edge", edge.eobject(), "AssociationProperties", connector.properties.eobject());
-	associationProperties.parameters.parameters += new trace::VarParameterValue("firstIndex", regularIndex);
-	result += associationProperties;	
-	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", leftElement.eobject(), "Cardinality", connector.properties.cardinalityLeft.eobject());
-	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", rightElement.eobject(), "Cardinality", connector.properties.cardinalityRight.eobject());
+	var umlAssociation := edge.oclAsType(notation::Edge).element.oclAsType(uml::Association);
+	var leftElement := connector.memberEnds->at(1);
+	var rightElement := connector.memberEnds->at(2);
+
+	result += createEdgeTraceRecord("edgeToRegularAssociation", "Edge", edge, "XtextAssociation", connector.eobject());
+	
+	result += new TraceRecord("propertyToMemberEnd", "Property", leftElement.referencedElement.eobject(), "AssociationMemberEnd", leftElement.eobject());
+	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", leftElement.referencedElement.eobject(), "Cardinality", leftElement.cardinality.eobject());
+	
+	result += new TraceRecord("propertyToMemberEnd", "Property", rightElement.referencedElement.eobject(), "AssociationMemberEnd", rightElement.eobject());
+	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", rightElement.referencedElement.eobject(), "Cardinality", rightElement.cardinality.eobject());
 }
 
 mapping trace::TraceRecord::traceRecordEdgeCommentLink() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "commentableToEdge" and self.getSelf().modelElement.oclIsKindOf(cls::CommentLink)}
+when {self.mappingOperation.name = "commentToEdge" and self.getSelf().modelElement.oclAsType(textualCommons::Comment).commentedElement.oclIsKindOf(cls::CommentLink)}
 {
-	var connector := self.getSelf().modelElement.oclAsType(cls::CommentLink);
+	var comment := self.getSelf().modelElement.oclAsType(textualCommons::Comment);
 	var edge := self.getResult().modelElement;
+	var connector := comment.commentedElement;
+	
+	assert(connector.oclIsKindOf(cls::CommentLink)) with log("Only comment links are supported.");
 	
 	result += createEdgeTraceRecord("edgeToCommentLink", "Edge", edge, "CommentLink", connector.eobject());
+	result += createEdgeTraceRecord("edgeToConnector", "Edge", edge, "Connector", connector.eobject());
 }
 
 mapping trace::TraceRecord::traceRecordEdgeMemberEnd() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "connectorEndToEdge"}
 {
-	var memberEnd := self.getSelf().modelElement.oclAsType(cls::MemberEnd);
+	var memberEnd := self.getSelf().modelElement.oclAsType(cls::AssociationMemberEnd);
 	var edge := self.getResult().modelElement.oclAsType(notation::Connector);
 	var umlProperty := edge.styles->selectByKind(notation::EObjectValueStyle)->any(true).eObjectValue;
 	
-	result += new TraceRecord("edgeToMemberEnd", "Edge", edge.eobject(), "MemberEnd", memberEnd.eobject());
+	result += new TraceRecord("propertyToMemberEnd", "Property", umlProperty, "AssociationMemberEnd", memberEnd.eobject());
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", umlProperty, "Cardinality", memberEnd.cardinality.eobject());
 }
 
@@ -217,6 +218,14 @@ when {self.mappingOperation.name = "packageImportToEdge"}
 	result += new TraceRecord("edgeToPackageImport", "Edge", edge, "PackageImport", packageImport);
 }
 
+mapping trace::TraceRecord::traceRecordShapeComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToShape"}
+{
+	var comment := self.getSelf().modelElement;
+	var shape := self.getResult().modelElement;
+
+	result += new TraceRecord("commentViewToComment", "View", shape, "Comment", comment);
+}
 
 // =============================================
 //                     Helpers                  
