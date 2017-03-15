@@ -1,5 +1,8 @@
 package de.cooperateproject.ui.focus.connection;
 
+import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
+import de.cooperateproject.ui.properties.ProjectPropertiesStore;
+
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
@@ -19,8 +22,8 @@ public class ConnectionManager {
 
 	private SubscriberManager subscriberMgr;
 	private IFile currentFile = null;
-	private static final String address = "tcp://localhost:61616";
 	private TopicConnection connection = null;
+	private final static String port = ":61616";
 
 	private static Logger logger = Logger.getLogger(ConnectionManager.class);
 
@@ -32,6 +35,11 @@ public class ConnectionManager {
 	 *            the file which was selected by the user
 	 */
 	public void connect(IFile file) {
+
+		ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(file.getProject());
+		propertiesStore.initFromStore();
+		ProjectPropertiesDTO properties = propertiesStore.getPreferences();
+		String address = "tcp://" + properties.getCdoHost() + port;
 
 		try {
 			if (currentFile == null) {
