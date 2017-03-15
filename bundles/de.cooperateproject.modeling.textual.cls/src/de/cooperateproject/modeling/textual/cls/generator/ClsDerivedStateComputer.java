@@ -65,7 +65,7 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
             return;
         }
 
-        if (resource.getContents().isEmpty() || resource.getContents().get(0) != resource) {
+        if (resource.getContents().isEmpty() || resource.getContents().get(0).eResource() != resource) {
             // prohibits the derived state calculator from calculating stuff before the contained elements belong to the
             // resource
             return;
