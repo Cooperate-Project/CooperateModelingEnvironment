@@ -61,6 +61,7 @@ public class FocusManager {
 			}
 			ITextSelection selection = new TextSelection(xTextEditor.getDocument(), node.getOffset(), 0);
 			xTextEditor.getSelectionProvider().setSelection(selection);
+			((IWorkbenchPart) xTextEditor).setFocus();
 		}
 		// set focus in graphical editor
 		else if (papyrusEditor != null) {
@@ -68,6 +69,7 @@ public class FocusManager {
 				OpenElementService openService = papyrusEditor.getServicesRegistry()
 						.getService(OpenElementService.class);
 				openService.openSemanticElement(element);
+				((IWorkbenchPart) papyrusEditor).setFocus();
 			} catch (PartInitException | ServiceException e) {
 				logger.error("Something went wrong while programmatically setting a focus in the Papyrus editor.", e);
 			}
