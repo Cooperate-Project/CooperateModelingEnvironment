@@ -257,6 +257,8 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
             if (matchingElements.size() == 1) {
                 object.setReferencedElement((UMLType) matchingElements.get(0));
                 return true;
+            } else {
+                object.setReferencedElement(null);
             }
 
             return super.caseUMLReferencingElement(object);
