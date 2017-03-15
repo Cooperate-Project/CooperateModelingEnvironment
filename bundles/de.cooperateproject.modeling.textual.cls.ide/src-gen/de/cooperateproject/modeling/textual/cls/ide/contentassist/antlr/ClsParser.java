@@ -115,12 +115,12 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParameterAccess().getFinalAssignment_2(), "rule__Parameter__FinalAssignment_2");
 					put(grammarAccess.getParameterAccess().getNameAssignment_3(), "rule__Parameter__NameAssignment_3");
 					put(grammarAccess.getParameterAccess().getTypeAssignment_5(), "rule__Parameter__TypeAssignment_5");
-					put(grammarAccess.getGeneralizationAccess().getLeftAssignment_0(), "rule__Generalization__LeftAssignment_0");
-					put(grammarAccess.getGeneralizationAccess().getRightAssignment_2(), "rule__Generalization__RightAssignment_2");
-					put(grammarAccess.getImplementationAccess().getLeftAssignment_0(), "rule__Implementation__LeftAssignment_0");
-					put(grammarAccess.getImplementationAccess().getRightAssignment_2(), "rule__Implementation__RightAssignment_2");
-					put(grammarAccess.getCommentLinkAccess().getCommentedElementAssignment_0(), "rule__CommentLink__CommentedElementAssignment_0");
-					put(grammarAccess.getCommentLinkAccess().getCommentsAssignment_1(), "rule__CommentLink__CommentsAssignment_1");
+					put(grammarAccess.getGeneralizationAccess().getLeftAssignment_2(), "rule__Generalization__LeftAssignment_2");
+					put(grammarAccess.getGeneralizationAccess().getRightAssignment_4(), "rule__Generalization__RightAssignment_4");
+					put(grammarAccess.getImplementationAccess().getLeftAssignment_2(), "rule__Implementation__LeftAssignment_2");
+					put(grammarAccess.getImplementationAccess().getRightAssignment_4(), "rule__Implementation__RightAssignment_4");
+					put(grammarAccess.getCommentLinkAccess().getCommentsAssignment_0(), "rule__CommentLink__CommentsAssignment_0");
+					put(grammarAccess.getCommentLinkAccess().getCommentedElementAssignment_1(), "rule__CommentLink__CommentedElementAssignment_1");
 					put(grammarAccess.getXtextAssociationAccess().getTwoSideBidirectionalityAssignment_0(), "rule__XtextAssociation__TwoSideBidirectionalityAssignment_0");
 					put(grammarAccess.getXtextAssociationAccess().getTwoSideAggregationKindAssignment_1(), "rule__XtextAssociation__TwoSideAggregationKindAssignment_1");
 					put(grammarAccess.getXtextAssociationAccess().getNameAssignment_2(), "rule__XtextAssociation__NameAssignment_2");

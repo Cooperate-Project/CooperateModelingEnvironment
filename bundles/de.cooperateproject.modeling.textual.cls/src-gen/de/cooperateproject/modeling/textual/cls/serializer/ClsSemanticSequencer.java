@@ -165,7 +165,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     CommentLink returns CommentLink
 	 *
 	 * Constraint:
-	 *     (commentedElement=[Classifier|FQN] comments+=Comment)
+	 *     (comments+=Comment commentedElement=[Classifier|FQN])
 	 */
 	protected void sequence_CommentLink(ISerializationContext context, CommentLink semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -206,8 +206,8 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftClassifierFQNParserRuleCall_0_0_1(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getGeneralizationAccess().getRightClassifierFQNParserRuleCall_2_0_1(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftClassifierFQNParserRuleCall_2_0_1(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getGeneralizationAccess().getRightClassifierFQNParserRuleCall_4_0_1(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -228,8 +228,8 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getImplementationAccess().getLeftClassifierFQNParserRuleCall_0_0_1(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getImplementationAccess().getRightClassifierFQNParserRuleCall_2_0_1(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getImplementationAccess().getLeftClassifierFQNParserRuleCall_2_0_1(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getImplementationAccess().getRightClassifierFQNParserRuleCall_4_0_1(), semanticObject.getRight());
 		feeder.finish();
 	}
 	

@@ -114,15 +114,15 @@ Connector:
 
 
 Generalization: 
-	left = [Classifier|FQN] 'isa' right = [Classifier|FQN]
+	'isa' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
 ;
 
 Implementation:
-	left = [Classifier|FQN] 'impl' right = [Classifier|FQN]
+	'impl' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
 ;
 
 CommentLink: 
-	commentedElement = [Classifier|FQN] comments+=Comment
+	comments+=Comment commentedElement = [Classifier|FQN]
 ;
 
 XtextAssociation:
