@@ -29,7 +29,10 @@ public class ClsAutomatedIssueResolutionProvider extends AutomatedIssueResolutio
         map.put(ClsAssociationMemberEndRoleName.ISSUE_CODE,
                 e -> new ClsAssociationMemberEndRoleName((AssociationMemberEnd) e));
         map.put(ClsCardinalityCheck.ISSUE_CODE, e -> new ClsCardinalityCheck((AssociationMemberEnd) e));
-        map.put(ClsPropertyQualifier.ISSUE_CODE, e -> new ClsPropertyQualifier((UMLReferencingElement<Element>) e));
+        map.put(ClsPropertyAbstractQualifier.ISSUE_CODE,
+                e -> new ClsPropertyAbstractQualifier((UMLReferencingElement<Element>) e));
+        map.put(ClsPropertyStaticQualifier.ISSUE_CODE,
+                e -> new ClsPropertyStaticQualifier((UMLReferencingElement<Element>) e));
         return map;
     }
 

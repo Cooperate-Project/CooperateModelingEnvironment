@@ -16,7 +16,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleName;
 import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
-import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyQualifier;
+import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifier;
+import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifier;
 import de.cooperateproject.modeling.textual.cls.issues.ClsUMLReferencingElementMissingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
@@ -49,25 +50,30 @@ public class ClsValidator extends AbstractClsValidator {
 
     @Check
     private void checkCorrectPropertyQualifier(Class property) {
-        if (ClsPropertyQualifier.hasIssues(property)) {
+        if (ClsPropertyAbstractQualifier.hasIssues(property)) {
             info("Wrong abstract Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyQualifier.ISSUE_CODE);
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyAbstractQualifier.ISSUE_CODE);
         }
     }
 
     @Check
     private void checkCorrectPropertyQualifier(Method property) {
-        if (ClsPropertyQualifier.hasIssues(property)) {
+        if (ClsPropertyAbstractQualifier.hasIssues(property)) {
             info("Wrong abstract Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyQualifier.ISSUE_CODE);
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyAbstractQualifier.ISSUE_CODE);
+        }
+
+        if (ClsPropertyStaticQualifier.hasIssues(property)) {
+            info("Wrong static Qualifier. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyStaticQualifier.ISSUE_CODE);
         }
     }
 
     @Check
     private void checkCorrectPropertyQualifier(Attribute property) {
-        if (ClsPropertyQualifier.hasIssues(property)) {
-            info("Wrong abstract Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyQualifier.ISSUE_CODE);
+        if (ClsPropertyStaticQualifier.hasIssues(property)) {
+            info("Wrong static Qualifier. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyStaticQualifier.ISSUE_CODE);
         }
     }
 

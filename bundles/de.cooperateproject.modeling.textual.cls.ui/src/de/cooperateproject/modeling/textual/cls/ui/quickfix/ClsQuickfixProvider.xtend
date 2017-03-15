@@ -11,6 +11,14 @@ import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
 import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
+import de.cooperateproject.modeling.textual.cls.cls.Method
+import org.eclipse.emf.ecore.EObject
+import de.cooperateproject.modeling.textual.cls.cls.Attribute
+import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifier
+import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifier
+import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
+import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
 
 class ClsQuickfixProvider extends DefaultQuickfixProvider {
 
@@ -24,6 +32,92 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 				resolution.resolve
 			}
 		]
+	}
+	
+	/**
+	 * Quickfix for wrong static qualifier in the Cls-model.
+	 */
+	@Fix(ClsPropertyStaticQualifier.ISSUE_CODE)
+	def wrongStaticQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Static Qualifier', 'Change the static qualifier into the right one', null) [ element, context |
+			element.fixWrongStaticQualifier
+		]
+	}
+
+	/**
+	 * Quickfix for wrong abstract qualifier in the Cls-model.
+	 */
+	@Fix(ClsPropertyAbstractQualifier.ISSUE_CODE)
+	def wrongAbstractQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Abstract Qualifier', 'Change the abstract qualifier into the right one', null) [ element, context |
+			element.fixWrongAbstractQualifier
+		]
+	}
+	
+	/**
+	 * Quickfix for wrong cardinalities in the Cls-model.
+	 */
+	@Fix(ClsCardinalityCheck.ISSUE_CODE)
+	def wrongCardinality(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Cardinality', 'Change the cardinality into the right one', null) [ element, context |
+			if (element instanceof AssociationMemberEnd) {
+				element.fixWrongCardinality(issue, context)
+			}
+		]
+	}
+	
+	private def void fixWrongCardinality(AssociationMemberEnd property, Issue issue, IModificationContext context) {
+		val umlElement = property.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		
+		//TODO: java.lang.IllegalStateException: Cannot replace an obj that has no associated node
+		val card = property.cardinality
+		val umlLower = umlElement.lower
+		val umlUpper = umlElement.upper
+		card.lowerBound = umlLower
+		card.upperBound = umlUpper
+	}
+	
+	private static dispatch def void fixWrongStaticQualifier(Method property) {
+		val umlElement = property.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		property.static = umlElement.isStatic
+	}
+	
+	private static dispatch def void fixWrongStaticQualifier(Attribute property) {
+		val umlElement = property.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		property.static = umlElement.isStatic
+	}
+	
+	private static dispatch def void fixWrongStaticQualifier(EObject property) {
+		LOGGER.warn("Object does not have static qualifier.")
+	}
+
+	private static dispatch def void fixWrongAbstractQualifier(EObject property) {
+		LOGGER.warn("Object does not have abstract qualifier.")
+	}
+
+	private static dispatch def void fixWrongAbstractQualifier(de.cooperateproject.modeling.textual.cls.cls.Class property) {
+		val umlElement = property?.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		property.abstract = umlElement.abstract
+	}
+	
+	private static dispatch def void fixWrongAbstractQualifier(Method property) {
+		val umlElement = property?.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		property.abstract = umlElement.abstract
 	}
 	
 	
@@ -132,27 +226,6 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 //		]
 //	}
 //
-//	/**
-//	 * Quickfix for wrong static qualifier in the Cls-model.
-//	 */
-//	@Fix(ClsValidatorConstants::WRONG_PROPERTY_STATIC_QUALIFIER)
-//	def wrongStaticQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Change Static Qualifier', 'Change the static qualifier into the right one', null) [ element, context |
-//			if (element instanceof Property) {
-//				element.fixWrongStaticQualifier(issue, context)
-//			}
-//		]
-//	}
-//
-//	/**
-//	 * Quickfix for wrong abstract qualifier in the Cls-model.
-//	 */
-//	@Fix(ClsValidatorConstants::WRONG_ABSTRACT_QUALIFIER)
-//	def wrongAbstractQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Change Abstract Qualifier', 'Change the abstract qualifier into the right one', null) [ element, context |
-//			element.fixWrongAbstractQualifier(issue, context)
-//		]
-//	}
 //
 //	/**
 //	 * Quickfix for wrong abstract qualifier in the Cls-model.
@@ -387,42 +460,6 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 //		property.type = umlElement?.getType
 //	}
 //
-//	private static def fixWrongStaticQualifier(Property<? extends NamedElement> property, Issue issue,
-//		IModificationContext context) {
-//		val umlElement = property.referencedElement
-//		if (umlElement == null) {
-//			return
-//		}
-//		if (umlElement instanceof Operation) {
-//			property.static = umlElement.isStatic
-//		} else if (umlElement instanceof org.eclipse.uml2.uml.Property) {
-//			property.static = umlElement.isStatic
-//		}
-//	}
-//
-//	private static def fixWrongAbstractQualifier(EObject property, Issue issue, IModificationContext context) {
-//		if (property instanceof Method) {
-//			fixWrongAbstractQualifier(property)
-//		} else if (property instanceof de.cooperateproject.modeling.textual.cls.cls.Class) {
-//			fixWrongAbstractQualifier(property)
-//		}
-//	}
-//
-//	private static dispatch def fixWrongAbstractQualifier(de.cooperateproject.modeling.textual.cls.cls.Class property) {
-//		val umlElement = property?.referencedElement
-//		if (umlElement == null) {
-//			return
-//		}
-//		property.abstract = umlElement.abstract
-//	}
-//	
-//	private static dispatch def fixWrongAbstractQualifier(Method property) {
-//		val umlElement = property?.referencedElement
-//		if (umlElement == null) {
-//			return
-//		}
-//		property.abstract = umlElement.abstract
-//	}
 //
 //	private static def adjustModelType(Property<? extends NamedElement> property, Issue issue,
 //		IModificationContext context) {

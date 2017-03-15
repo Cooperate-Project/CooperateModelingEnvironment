@@ -161,9 +161,17 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
         public Boolean caseImplementation(Implementation object) {
             if (object.getLeft() != null && object.getLeft().getReferencedElement() != null && object.getRight() != null
                     && object.getRight().getReferencedElement() != null) {
-                InterfaceRealization umlInterfaceRealization = ((Class) object.getLeft().getReferencedElement())
-                        .getInterfaceRealization(null, (Interface) object.getRight().getReferencedElement());
-                object.setReferencedElement(umlInterfaceRealization);
+                org.eclipse.uml2.uml.Classifier left = object.getLeft().getReferencedElement();
+                org.eclipse.uml2.uml.Classifier right = object.getRight().getReferencedElement();
+                if (left instanceof Class && right instanceof Interface) {
+                    InterfaceRealization umlInterfaceRealization = ((Class) left).getInterfaceRealization(null,
+                            (Interface) right);
+                    object.setReferencedElement(umlInterfaceRealization);
+                }
+
+                // InterfaceRealization umlInterfaceRealization = ((Class) object.getLeft().getReferencedElement())
+                // .getInterfaceRealization(null, (Interface) object.getRight().getReferencedElement());
+                // object.setReferencedElement(umlInterfaceRealization);
             }
             return true;
         }
