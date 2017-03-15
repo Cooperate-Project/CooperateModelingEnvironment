@@ -71,8 +71,12 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
             return;
         }
 
+        installDerivedState(resource.getContents().get(0));
+    }
+
+    public void installDerivedState(EObject rootObject) {
         List<EObject> allContent = new ArrayList<>();
-        resource.getAllContents().forEachRemaining(allContent::add);
+        rootObject.eAllContents().forEachRemaining(allContent::add);
         allContent.sort(ClsDerivedStateComputer::prioritize);
         for (EObject object : allContent) {
             calculator.doSwitch(object);
@@ -211,9 +215,9 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
             if (types.size() == 2) {
                 AssociationMemberEnd firstMemberEnd = object.getMemberEnds().get(0);
                 firstMemberEnd.setAggregationKind(object.getTwoSideAggregationKind());
-                firstMemberEnd.setNavigable(true);
+                firstMemberEnd.setNavigable(object.isTwoSideBidirectionality());
                 AssociationMemberEnd secondMemberEnd = object.getMemberEnds().get(1);
-                secondMemberEnd.setNavigable(object.isTwoSideBidirectionality());
+                secondMemberEnd.setNavigable(true);
             }
 
             caseUMLReferencingElement(object);

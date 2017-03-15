@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.usecase;
 import com.google.inject.Binder;
 import com.google.inject.Provider;
 import com.google.inject.name.Names;
+import de.cooperateproject.modeling.textual.usecase.cdoxtext.UsecaseStateCalculator;
 import de.cooperateproject.modeling.textual.usecase.formatting.UsecaseFormatter;
 import de.cooperateproject.modeling.textual.usecase.generator.UsecaseGenerator;
 import de.cooperateproject.modeling.textual.usecase.issues.UsecaseAutomatedIssueResolutionProvider;
@@ -17,8 +18,6 @@ import de.cooperateproject.modeling.textual.usecase.serializer.UsecaseSemanticSe
 import de.cooperateproject.modeling.textual.usecase.serializer.UsecaseSyntacticSequencer;
 import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAccess;
 import de.cooperateproject.modeling.textual.usecase.validation.UsecaseValidator;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
@@ -29,11 +28,14 @@ import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IAlternativeNa
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveTypeSelector;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import java.util.Properties;
+import net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder;
+import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.formatting.IFormatter;
+import org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder;
 import org.eclipse.xtext.generator.IGenerator2;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IParser;
@@ -206,6 +208,16 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 		binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
 	}
 	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public Class<? extends TextRegionAccessBuilder> bindTextRegionAccessBuilder() {
+		return CDOTextRegionAccessBuilder.class;
+	}
+	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
+		return UsecaseStateCalculator.class;
+	}
+	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
 		return CooperateResourceSet.class;
@@ -224,11 +236,6 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
 		return DefaultUMLPrimitiveTypeSelector.class;
-	}
-	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
-	public Class<? extends IDerivedStateResourceHandlerFactory> bindIDerivedStateResourceHandlerFactory() {
-		return DerivedStateResourceHandlerFactory.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2

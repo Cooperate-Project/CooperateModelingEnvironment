@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.cls;
 import com.google.inject.Binder;
 import com.google.inject.Provider;
 import com.google.inject.name.Names;
+import de.cooperateproject.modeling.textual.cls.cdoxtext.ClsStateCalculator;
 import de.cooperateproject.modeling.textual.cls.formatting2.ClsFormatter;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.cls.parser.antlr.ClsAntlrTokenFileProvider;
@@ -16,8 +17,6 @@ import de.cooperateproject.modeling.textual.cls.serializer.ClsSemanticSequencer;
 import de.cooperateproject.modeling.textual.cls.serializer.ClsSyntacticSequencer;
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
 import de.cooperateproject.modeling.textual.cls.validation.ClsValidator;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
@@ -29,6 +28,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLPrimitiveT
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import java.util.Properties;
 import net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder;
+import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
@@ -211,6 +211,11 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 		return CDOTextRegionAccessBuilder.class;
 	}
 	
+	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
+	public Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
+		return ClsStateCalculator.class;
+	}
+	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
 		return CooperateResourceSet.class;
@@ -229,11 +234,6 @@ public abstract class AbstractClsRuntimeModule extends DefaultRuntimeModule {
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
 	public Class<? extends IUMLPrimitiveTypeSelector> bindIUMLPrimitiveTypeSelector() {
 		return DefaultUMLPrimitiveTypeSelector.class;
-	}
-	
-	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2
-	public Class<? extends IDerivedStateResourceHandlerFactory> bindIDerivedStateResourceHandlerFactory() {
-		return DerivedStateResourceHandlerFactory.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2

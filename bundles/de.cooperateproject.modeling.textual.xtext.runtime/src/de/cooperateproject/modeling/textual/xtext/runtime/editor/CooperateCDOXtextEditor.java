@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
+import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -79,9 +80,6 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
     @Inject
     private IAutomatedIssueResolutionProvider automatedIssueResolutionProvider;
-
-    @Inject
-    private IDerivedStateResourceHandlerFactory derivedStateResourceHandlerFactory;
 
     @Override
     protected void handleCursorPositionChanged() {
@@ -173,19 +171,18 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
             @Override
             protected void doExecute() {
                 Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
-                IDerivedStateHandler derivedStateHandler = derivedStateResourceHandlerFactory.create(documentResource);
-                try {
-                    derivedStateHandler.disableCalculation();
-                    do {
-                        issueResolutions.forEach(i -> i.resolve());
-                        detectedIssues.clear();
-                        detectedIssues.addAll(
-                                resourceValidator.validate(documentResource, CheckMode.ALL, CancelIndicator.NullImpl));
-                        issueResolutions = automatedIssueResolutionProvider.get(documentResource, detectedIssues);
-                    } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
-                } finally {
-                    derivedStateHandler.enableCalculation();
-                }
+                do {
+                    issueResolutions.forEach(i -> i.resolve());
+                    if (documentResource instanceof DerivedStateAwareResource) {
+                        DerivedStateAwareResource typedResource = ((DerivedStateAwareResource) documentResource);
+                        typedResource.discardDerivedState();
+                        typedResource.installDerivedState(false);
+                    }
+                    detectedIssues.clear();
+                    detectedIssues.addAll(
+                            resourceValidator.validate(documentResource, CheckMode.ALL, CancelIndicator.NullImpl));
+                    issueResolutions = automatedIssueResolutionProvider.get(documentResource, detectedIssues);
+                } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
             }
         });
 
