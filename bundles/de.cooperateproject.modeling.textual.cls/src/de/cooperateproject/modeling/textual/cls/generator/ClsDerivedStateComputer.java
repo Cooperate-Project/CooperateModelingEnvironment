@@ -214,10 +214,10 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
             }
             if (types.size() == 2) {
                 AssociationMemberEnd firstMemberEnd = object.getMemberEnds().get(0);
-                firstMemberEnd.setAggregationKind(object.getTwoSideAggregationKind());
                 firstMemberEnd.setNavigable(object.isTwoSideBidirectionality());
                 AssociationMemberEnd secondMemberEnd = object.getMemberEnds().get(1);
                 secondMemberEnd.setNavigable(true);
+                secondMemberEnd.setAggregationKind(object.getTwoSideAggregationKind());
             }
 
             caseUMLReferencingElement(object);
