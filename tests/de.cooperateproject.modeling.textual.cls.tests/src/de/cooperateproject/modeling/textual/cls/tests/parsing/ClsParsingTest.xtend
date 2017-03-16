@@ -485,7 +485,7 @@ class ClsParsingTest extends AbstractClsTest {
 			rootPackage RootElement
 			class Alice
 			class Bob
-			Bob isa Alice
+			isa (Bob, Alice)
 			@end-cls
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -510,7 +510,7 @@ class ClsParsingTest extends AbstractClsTest {
 			rootPackage RootElement
 			class Bob
 			interface IBob
-			Bob impl IBob
+			impl (Bob, IBob)
 			@end-cls
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -615,7 +615,7 @@ class ClsParsingTest extends AbstractClsTest {
 			@start-cls "SomeName"
 			rootPackage RootElement
 			class Alice
-			Alice note "this is a note"
+			note "this is a note" Alice
 			@end-cls
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
