@@ -7,6 +7,9 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import de.cooperateproject.modeling.textual.cls.ui.inFile.ClsLocationInFileProvider
 import org.eclipse.xtext.resource.ILocationInFileProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor
+import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer
+import org.eclipse.xtext.ui.editor.model.edit.DefaultTextEditComposer
+import org.eclipse.xtext.resource.SaveOptions
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -20,6 +23,17 @@ class ClsUiModule extends AbstractClsUiModule {
 
 	def Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return ClsLocationInFileProvider;
+	}
+	
+	def Class<? extends ITextEditComposer> bindITextEditComposer() {
+		return ClsTextEditComposer
+	}
+	
+	public static class ClsTextEditComposer extends DefaultTextEditComposer {
+	
+   	 override SaveOptions getSaveOptions() {
+        return SaveOptions.newBuilder.noValidation.options
+    }
 	}
 	
 }

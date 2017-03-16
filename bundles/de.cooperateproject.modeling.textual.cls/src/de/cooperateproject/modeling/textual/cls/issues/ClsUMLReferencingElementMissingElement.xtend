@@ -239,6 +239,9 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		val umlParent = element.owningPackage.referencedElement
 		val umlClassifier = umlParent.createPackagedElement(element.name, umlType) as org.eclipse.uml2.uml.Classifier
 		umlClassifier.visibility = element.visibility
+		if (element.alias != null) {
+			umlClassifier.createNameExpression(element.alias, null)
+		}
 		element.referencedElement = umlClassifier
 		return umlClassifier
 	}

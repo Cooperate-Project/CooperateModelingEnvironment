@@ -12,6 +12,7 @@ import org.eclipse.xtext.validation.Check;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Class;
+import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleName;
@@ -19,6 +20,7 @@ import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifier;
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifier;
 import de.cooperateproject.modeling.textual.cls.issues.ClsUMLReferencingElementMissingElement;
+import de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheck;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -85,8 +87,38 @@ public class ClsValidator extends AbstractClsValidator {
         }
     }
 
+    @Check
+    private void checkCorrectClassifierType(Class classifier) {
+        Element element = classifier.getReferencedElement();
+        if (element != null && !(element instanceof org.eclipse.uml2.uml.Class)) {
+            error(classifier.getName() + " should be an interface but it's not!",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsValidatorConstants.NOT_A_CLASS);
+        }
+    }
+
+    @Check
+    private void checkCorrectVisibility(Class classifier) {
+        if (ClsVisibilityCheck.hasIssues(classifier)) {
+            info("Wrong visibility. The old one will be overwritten.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsVisibilityCheck.ISSUE_CODE);
+        }
+    }
+
+    @Check
+    private void checkCorrectClassifierType(Interface classifier) {
+        Element element = classifier.getReferencedElement();
+        if (element != null && !(element instanceof org.eclipse.uml2.uml.Interface)) {
+            error(classifier.getName() + " should be a class but it's not!",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsValidatorConstants.NOT_AN_INTERFACE);
+        }
+    }
+
     private void info(String message, EStructuralFeature feature, String code) {
         info(message, feature, code, new String[0]);
+    }
+
+    private void error(String message, EStructuralFeature feature, String code) {
+        error(message, feature, code, new String[0]);
     }
 
     private static class UMLReferencingElementFeatureSwitch extends ClsSwitch<EStructuralFeature> {
