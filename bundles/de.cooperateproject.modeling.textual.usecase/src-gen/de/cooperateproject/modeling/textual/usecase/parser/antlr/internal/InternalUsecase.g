@@ -798,17 +798,17 @@ ruleAssociation returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAssociationAccess().getLeftCardinalityCardinalityParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getAssociationAccess().getActorCardinalityCardinalityParserRuleCall_3_1_0());
 					}
-					lv_leftCardinality_4_0=ruleCardinality
+					lv_actorCardinality_4_0=ruleCardinality
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssociationRule());
 						}
 						set(
 							$current,
-							"leftCardinality",
-							lv_leftCardinality_4_0,
+							"actorCardinality",
+							lv_actorCardinality_4_0,
 							"de.cooperateproject.modeling.textual.usecase.Usecase.Cardinality");
 						afterParserOrEnumRuleCall();
 					}
@@ -821,17 +821,17 @@ ruleAssociation returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAssociationAccess().getRightCardinalityCardinalityParserRuleCall_3_3_0());
+						newCompositeNode(grammarAccess.getAssociationAccess().getUseCaseCardinalityCardinalityParserRuleCall_3_3_0());
 					}
-					lv_rightCardinality_6_0=ruleCardinality
+					lv_useCaseCardinality_6_0=ruleCardinality
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAssociationRule());
 						}
 						set(
 							$current,
-							"rightCardinality",
-							lv_rightCardinality_6_0,
+							"useCaseCardinality",
+							lv_useCaseCardinality_6_0,
 							"de.cooperateproject.modeling.textual.usecase.Usecase.Cardinality");
 						afterParserOrEnumRuleCall();
 					}
@@ -869,7 +869,7 @@ ruleGeneralization returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getGeneralizationAccess().getClientBehavioredClassifierCrossReference_0_0());
+					newCompositeNode(grammarAccess.getGeneralizationAccess().getSpecificBehavioredClassifierCrossReference_0_0());
 				}
 				ruleFQN
 				{
@@ -889,7 +889,7 @@ ruleGeneralization returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getGeneralizationAccess().getSupplierBehavioredClassifierCrossReference_2_0());
+					newCompositeNode(grammarAccess.getGeneralizationAccess().getGeneralBehavioredClassifierCrossReference_2_0());
 				}
 				ruleFQN
 				{
@@ -924,7 +924,7 @@ ruleInclude returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getIncludeAccess().getClientUseCaseCrossReference_0_0());
+					newCompositeNode(grammarAccess.getIncludeAccess().getIncludingCaseUseCaseCrossReference_0_0());
 				}
 				ruleFQN
 				{
@@ -944,7 +944,7 @@ ruleInclude returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getIncludeAccess().getSupplierUseCaseCrossReference_2_0());
+					newCompositeNode(grammarAccess.getIncludeAccess().getAdditionUseCaseCrossReference_2_0());
 				}
 				ruleFQN
 				{
@@ -979,7 +979,7 @@ ruleExtend returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getExtendAccess().getClientUseCaseCrossReference_0_0());
+					newCompositeNode(grammarAccess.getExtendAccess().getExtensionUseCaseCrossReference_0_0());
 				}
 				ruleFQN
 				{
@@ -999,7 +999,7 @@ ruleExtend returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getExtendAccess().getSupplierUseCaseCrossReference_2_0());
+					newCompositeNode(grammarAccess.getExtendAccess().getExtendedCaseUseCaseCrossReference_2_0());
 				}
 				ruleFQN
 				{
@@ -1020,7 +1020,7 @@ ruleExtend returns [EObject current=null]
 				}
 				otherlv_4=RULE_ID
 				{
-					newLeafNode(otherlv_4, grammarAccess.getExtendAccess().getExtensionPointExtensionPointCrossReference_4_0());
+					newLeafNode(otherlv_4, grammarAccess.getExtendAccess().getExtensionLocationExtensionPointCrossReference_4_0());
 				}
 			)
 		)

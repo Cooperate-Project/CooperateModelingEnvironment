@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<usecase:UseCaseDiagram xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:usecase="http://www.cooperateproject.de/modeling/language/usecase/Usecase"
+	xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+	title="UseCase Diagram">
+	<rootPackage name="RootElement">
+		<referencedElement xsi:type="uml:Model"
+			href="UseCaseDiagram.uml#_V4gdIPpzEeaBXuZho-Bj0w" />
+		<actors name="Cashier">
+			<referencedElement xsi:type="uml:Actor"
+				href="UseCaseDiagram.uml#_ZRjckPpzEeaBXuZho-Bj0w" />
+		</actors>
+		<actors name="Manager">
+			<referencedElement xsi:type="uml:Actor"
+				href="UseCaseDiagram.uml#_aNDbgPpzEeaBXuZho-Bj0w" />
+		</actors>
+		<actors name="Customer">
+			<referencedElement xsi:type="uml:Actor"
+				href="UseCaseDiagram.uml#_c9wBgPpzEeaBXuZho-Bj0w" />
+		</actors>
+		<systems name="Shop">
+			<referencedElement xsi:type="uml:Component"
+				href="UseCaseDiagram.uml#_YGzgsPpzEeaBXuZho-Bj0w" />
+			<usecases name="loggedAction" abstract="true">
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagram.uml#_z6NWMPpzEeaBXuZho-Bj0w" />
+			</usecases>
+			<usecases name="sell">
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagram.uml#_bx_ZAPpzEeaBXuZho-Bj0w" />
+			</usecases>
+			<usecases name="pay">
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagram.uml#_dnuLkPpzEeaBXuZho-Bj0w" />
+				<extensionPoints name="paymentMethod">
+					<referencedElement xsi:type="uml:ExtensionPoint"
+						href="UseCaseDiagram.uml#_nZCUoPpzEeaBXuZho-Bj0w" />
+				</extensionPoints>
+			</usecases>
+			<usecases name="Pay by Card" alias="payByCard">
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagram.uml#_fdXekPpzEeaBXuZho-Bj0w" />
+			</usecases>
+			<usecases name="Pay by Cash" alias="payByCash">
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagram.uml#_iSQBAPpzEeaBXuZho-Bj0w" />
+			</usecases>
+		</systems>
+		<relationships xsi:type="usecase:Generalization"
+			specific="//@rootPackage/@actors.1" general="//@rootPackage/@actors.0">
+			<referencedElement xsi:type="uml:Generalization"
+				href="UseCaseDiagram.uml#_bCJ3gPpzEeaBXuZho-Bj0w" />
+		</relationships>
+		<relationships xsi:type="usecase:Association" actor="//@rootPackage/@actors.0"
+			usecase="//@rootPackage/@systems.0/@usecases.1">
+			<referencedElement xsi:type="uml:Association"
+				href="UseCaseDiagram.uml#_wkafEPpzEeaBXuZho-Bj0w" />
+		</relationships>
+		<relationships xsi:type="usecase:Generalization"
+			specific="//@rootPackage/@systems.0/@usecases.1" general="//@rootPackage/@systems.0/@usecases.0">
+			<referencedElement xsi:type="uml:Generalization"
+				href="UseCaseDiagram.uml#_18hMMPpzEeaBXuZho-Bj0w" />
+		</relationships>
+		<relationships xsi:type="usecase:Include"
+			addition="//@rootPackage/@systems.0/@usecases.2" includingCase="//@rootPackage/@systems.0/@usecases.1">
+			<referencedElement xsi:type="uml:Include"
+				href="UseCaseDiagram.uml#_e0zpwPpzEeaBXuZho-Bj0w" />
+		</relationships>
+		<relationships xsi:type="usecase:Association" actor="//@rootPackage/@actors.2"
+			usecase="//@rootPackage/@systems.0/@usecases.2">
+			<referencedElement xsi:type="uml:Association"
+				href="UseCaseDiagram.uml#_xPwiIPpzEeaBXuZho-Bj0w" />
+		</relationships>
+		<relationships xsi:type="usecase:Extend"
+			extension="//@rootPackage/@systems.0/@usecases.3" extendedCase="//@rootPackage/@systems.0/@usecases.2"
+			extensionLocation="//@rootPackage/@systems.0/@usecases.2/@extensionPoints.0"
+			condition="Customer wants to pay by card">
+			<referencedElement xsi:type="uml:Extend"
+				href="UseCaseDiagram.uml#_qddu8PpzEeaBXuZho-Bj0w" />
+		</relationships>
+		<relationships xsi:type="usecase:Extend"
+			extension="//@rootPackage/@systems.0/@usecases.4" extendedCase="//@rootPackage/@systems.0/@usecases.2"
+			extensionLocation="//@rootPackage/@systems.0/@usecases.2/@extensionPoints.0"
+			condition="Customer wants to pay by cash">
+			<referencedElement xsi:type="uml:Extend"
+				href="UseCaseDiagram.uml#_q_jIUPpzEeaBXuZho-Bj0w" />
+		</relationships>
+	</rootPackage>
+</usecase:UseCaseDiagram>

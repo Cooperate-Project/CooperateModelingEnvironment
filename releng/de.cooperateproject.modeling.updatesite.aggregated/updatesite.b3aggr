@@ -30,6 +30,7 @@
       <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.1.1/" mirrorArtifacts="false">
         <features name="de.cooperateproject.cdoxtext.feature.feature.group" categories="//@customCategories[identifier='externals']"/>
       </repositories>
+      <repositories location="https://cooperate-project.github.io/Externals/updatesite/latest" mirrorArtifacts="false" categoryPrefix="External Dependencies -"/>
     </contributions>
   </validationSets>
   <configurations/>

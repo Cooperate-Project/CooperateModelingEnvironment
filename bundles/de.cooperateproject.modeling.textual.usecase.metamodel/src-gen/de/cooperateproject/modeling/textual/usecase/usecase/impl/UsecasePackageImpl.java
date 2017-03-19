@@ -10,6 +10,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
 import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality;
 import de.cooperateproject.modeling.textual.usecase.usecase.Comment;
 import de.cooperateproject.modeling.textual.usecase.usecase.Commentable;
+import de.cooperateproject.modeling.textual.usecase.usecase.Element;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -51,6 +52,13 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	private EClass useCaseDiagramEClass = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass elementEClass = null;
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -272,6 +280,15 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      */
     public EAttribute getUseCaseDiagram_Title() {
         return (EAttribute)useCaseDiagramEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getElement() {
+        return elementEClass;
     }
 
     /**
@@ -537,23 +554,23 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getAssociation_LeftCardinality() {
+    public EReference getAssociation_ActorCardinality() {
         return (EReference)associationEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getAssociation_RightCardinality() {
+    public EReference getAssociation_UseCaseCardinality() {
         return (EReference)associationEClass.getEStructuralFeatures().get(3);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -564,23 +581,23 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getGeneralization_Client() {
+    public EReference getGeneralization_Specific() {
         return (EReference)generalizationEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getGeneralization_Supplier() {
+    public EReference getGeneralization_General() {
         return (EReference)generalizationEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -591,23 +608,23 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getInclude_Client() {
+    public EReference getInclude_Addition() {
         return (EReference)includeEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getInclude_Supplier() {
+    public EReference getInclude_IncludingCase() {
         return (EReference)includeEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -618,32 +635,32 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getExtend_Client() {
+    public EReference getExtend_Extension() {
         return (EReference)extendEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getExtend_Supplier() {
+    public EReference getExtend_ExtendedCase() {
         return (EReference)extendEClass.getEStructuralFeatures().get(1);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getExtend_ExtensionPoint() {
+    public EReference getExtend_ExtensionLocation() {
         return (EReference)extendEClass.getEStructuralFeatures().get(2);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -774,6 +791,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         createEReference(useCaseDiagramEClass, USE_CASE_DIAGRAM__ROOT_PACKAGE);
         createEAttribute(useCaseDiagramEClass, USE_CASE_DIAGRAM__TITLE);
 
+        elementEClass = createEClass(ELEMENT);
+
         namedElementEClass = createEClass(NAMED_ELEMENT);
         createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
 
@@ -813,21 +832,21 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         associationEClass = createEClass(ASSOCIATION);
         createEReference(associationEClass, ASSOCIATION__ACTOR);
         createEReference(associationEClass, ASSOCIATION__USECASE);
-        createEReference(associationEClass, ASSOCIATION__LEFT_CARDINALITY);
-        createEReference(associationEClass, ASSOCIATION__RIGHT_CARDINALITY);
+        createEReference(associationEClass, ASSOCIATION__ACTOR_CARDINALITY);
+        createEReference(associationEClass, ASSOCIATION__USE_CASE_CARDINALITY);
 
         generalizationEClass = createEClass(GENERALIZATION);
-        createEReference(generalizationEClass, GENERALIZATION__CLIENT);
-        createEReference(generalizationEClass, GENERALIZATION__SUPPLIER);
+        createEReference(generalizationEClass, GENERALIZATION__SPECIFIC);
+        createEReference(generalizationEClass, GENERALIZATION__GENERAL);
 
         includeEClass = createEClass(INCLUDE);
-        createEReference(includeEClass, INCLUDE__CLIENT);
-        createEReference(includeEClass, INCLUDE__SUPPLIER);
+        createEReference(includeEClass, INCLUDE__ADDITION);
+        createEReference(includeEClass, INCLUDE__INCLUDING_CASE);
 
         extendEClass = createEClass(EXTEND);
-        createEReference(extendEClass, EXTEND__CLIENT);
-        createEReference(extendEClass, EXTEND__SUPPLIER);
-        createEReference(extendEClass, EXTEND__EXTENSION_POINT);
+        createEReference(extendEClass, EXTEND__EXTENSION);
+        createEReference(extendEClass, EXTEND__EXTENDED_CASE);
+        createEReference(extendEClass, EXTEND__EXTENSION_LOCATION);
         createEAttribute(extendEClass, EXTEND__CONDITION);
 
         commentEClass = createEClass(COMMENT);
@@ -873,26 +892,34 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
         // Create type parameters
+        ETypeParameter behavioredClassifierEClass_T = addETypeParameter(behavioredClassifierEClass, "T");
         ETypeParameter umlReferencingElementEClass_UMLType = addETypeParameter(umlReferencingElementEClass, "UMLType");
 
         // Set bounds for type parameters
-        EGenericType g1 = createEGenericType(theUMLPackage.getElement());
+        EGenericType g1 = createEGenericType(theUMLPackage.getBehavioredClassifier());
+        behavioredClassifierEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getElement());
         umlReferencingElementEClass_UMLType.getEBounds().add(g1);
 
         // Add supertypes to classes
+        namedElementEClass.getESuperTypes().add(this.getElement());
         aliasedElementEClass.getESuperTypes().add(this.getNamedElement());
-        behavioredClassifierEClass.getESuperTypes().add(this.getCommentable());
+        g1 = createEGenericType(this.getCommentable());
+        behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getUMLReferencingElement());
+        EGenericType g2 = createEGenericType(behavioredClassifierEClass_T);
+        g1.getETypeArguments().add(g2);
+        behavioredClassifierEClass.getEGenericSuperTypes().add(g1);
+        commentableEClass.getESuperTypes().add(this.getElement());
         g1 = createEGenericType(this.getNamedElement());
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getUMLReferencingElement());
-        EGenericType g2 = createEGenericType(theUMLPackage.getPackage());
+        g2 = createEGenericType(theUMLPackage.getPackage());
         g1.getETypeArguments().add(g2);
         rootPackageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getAliasedElement());
         actorEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
-        actorEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getActor());
         g1.getETypeArguments().add(g2);
         actorEClass.getEGenericSuperTypes().add(g1);
@@ -905,8 +932,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g1 = createEGenericType(this.getAliasedElement());
         useCaseEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
-        useCaseEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getUseCase());
         g1.getETypeArguments().add(g2);
         useCaseEClass.getEGenericSuperTypes().add(g1);
@@ -916,6 +941,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getExtensionPoint());
         g1.getETypeArguments().add(g2);
         extensionPointEClass.getEGenericSuperTypes().add(g1);
+        relationshipEClass.getESuperTypes().add(this.getElement());
         g1 = createEGenericType(this.getRelationship());
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getUMLReferencingElement());
@@ -946,19 +972,23 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getComment());
         g1.getETypeArguments().add(g2);
         commentEClass.getEGenericSuperTypes().add(g1);
+        cardinalityEClass.getESuperTypes().add(this.getElement());
+        umlReferencingElementEClass.getESuperTypes().add(this.getElement());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(useCaseDiagramEClass, UseCaseDiagram.class, "UseCaseDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getUseCaseDiagram_RootPackage(), this.getRootPackage(), this.getRootPackage_Diagram(), "rootPackage", null, 0, 1, UseCaseDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getUseCaseDiagram_Title(), ecorePackage.getEString(), "title", null, 1, 1, UseCaseDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
         initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(aliasedElementEClass, AliasedElement.class, "AliasedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(aliasedElementEClass, AliasedElement.class, "AliasedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAliasedElement_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, AliasedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(behavioredClassifierEClass, BehavioredClassifier.class, "BehavioredClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(behavioredClassifierEClass, BehavioredClassifier.class, "BehavioredClassifier", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(commentableEClass, Commentable.class, "Commentable", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -986,26 +1016,32 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEClass(extensionPointEClass, ExtensionPoint.class, "ExtensionPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getExtensionPoint_UseCase(), this.getUseCase(), this.getUseCase_ExtensionPoints(), "useCase", null, 1, 1, ExtensionPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(relationshipEClass, Relationship.class, "Relationship", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getAssociation_Actor(), this.getActor(), null, "actor", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getAssociation_Usecase(), this.getUseCase(), null, "usecase", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getAssociation_LeftCardinality(), this.getCardinality(), null, "leftCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getAssociation_RightCardinality(), this.getCardinality(), null, "rightCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAssociation_ActorCardinality(), this.getCardinality(), null, "actorCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAssociation_UseCaseCardinality(), this.getCardinality(), null, "useCaseCardinality", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getGeneralization_Client(), this.getBehavioredClassifier(), null, "client", null, 0, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getGeneralization_Supplier(), this.getBehavioredClassifier(), null, "supplier", null, 0, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getBehavioredClassifier());
+        g2 = createEGenericType(theUMLPackage.getBehavioredClassifier());
+        g1.getETypeArguments().add(g2);
+        initEReference(getGeneralization_Specific(), g1, null, "specific", null, 1, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getBehavioredClassifier());
+        g2 = createEGenericType(theUMLPackage.getBehavioredClassifier());
+        g1.getETypeArguments().add(g2);
+        initEReference(getGeneralization_General(), g1, null, "general", null, 1, 1, Generalization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(includeEClass, Include.class, "Include", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInclude_Client(), this.getUseCase(), null, "client", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getInclude_Supplier(), this.getUseCase(), null, "supplier", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInclude_Addition(), this.getUseCase(), null, "addition", null, 1, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInclude_IncludingCase(), this.getUseCase(), null, "includingCase", null, 1, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(extendEClass, Extend.class, "Extend", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getExtend_Client(), this.getUseCase(), null, "client", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getExtend_Supplier(), this.getUseCase(), null, "supplier", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getExtend_ExtensionPoint(), this.getExtensionPoint(), null, "extensionPoint", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getExtend_Extension(), this.getUseCase(), null, "extension", null, 1, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getExtend_ExtendedCase(), this.getUseCase(), null, "extendedCase", null, 1, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getExtend_ExtensionLocation(), this.getExtensionPoint(), null, "extensionLocation", null, 1, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getExtend_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

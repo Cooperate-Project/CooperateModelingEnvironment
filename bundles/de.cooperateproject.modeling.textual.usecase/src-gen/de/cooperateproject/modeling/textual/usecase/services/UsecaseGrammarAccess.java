@@ -420,19 +420,19 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUsecaseUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cUsecaseUseCaseCrossReference_2_0.eContents().get(1);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cLeftCardinalityAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cLeftCardinalityCardinalityParserRuleCall_3_1_0 = (RuleCall)cLeftCardinalityAssignment_3_1.eContents().get(0);
+		private final Assignment cActorCardinalityAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cActorCardinalityCardinalityParserRuleCall_3_1_0 = (RuleCall)cActorCardinalityAssignment_3_1.eContents().get(0);
 		private final Keyword cVerticalLineKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
-		private final Assignment cRightCardinalityAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
-		private final RuleCall cRightCardinalityCardinalityParserRuleCall_3_3_0 = (RuleCall)cRightCardinalityAssignment_3_3.eContents().get(0);
+		private final Assignment cUseCaseCardinalityAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
+		private final RuleCall cUseCaseCardinalityCardinalityParserRuleCall_3_3_0 = (RuleCall)cUseCaseCardinalityAssignment_3_3.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		
 		//Association:
-		//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
+		//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality
 		//	']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality ']')?
+		//actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//actor=[Actor|FQN]
@@ -456,26 +456,26 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getUsecaseUseCaseFQNParserRuleCall_2_0_1() { return cUsecaseUseCaseFQNParserRuleCall_2_0_1; }
 		
-		//('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality ']')?
+		//('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality ']')?
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_3_0() { return cLeftSquareBracketKeyword_3_0; }
 		
-		//leftCardinality=Cardinality
-		public Assignment getLeftCardinalityAssignment_3_1() { return cLeftCardinalityAssignment_3_1; }
+		//actorCardinality=Cardinality
+		public Assignment getActorCardinalityAssignment_3_1() { return cActorCardinalityAssignment_3_1; }
 		
 		//Cardinality
-		public RuleCall getLeftCardinalityCardinalityParserRuleCall_3_1_0() { return cLeftCardinalityCardinalityParserRuleCall_3_1_0; }
+		public RuleCall getActorCardinalityCardinalityParserRuleCall_3_1_0() { return cActorCardinalityCardinalityParserRuleCall_3_1_0; }
 		
 		//'|'
 		public Keyword getVerticalLineKeyword_3_2() { return cVerticalLineKeyword_3_2; }
 		
-		//rightCardinality=Cardinality
-		public Assignment getRightCardinalityAssignment_3_3() { return cRightCardinalityAssignment_3_3; }
+		//useCaseCardinality=Cardinality
+		public Assignment getUseCaseCardinalityAssignment_3_3() { return cUseCaseCardinalityAssignment_3_3; }
 		
 		//Cardinality
-		public RuleCall getRightCardinalityCardinalityParserRuleCall_3_3_0() { return cRightCardinalityCardinalityParserRuleCall_3_3_0; }
+		public RuleCall getUseCaseCardinalityCardinalityParserRuleCall_3_3_0() { return cUseCaseCardinalityCardinalityParserRuleCall_3_3_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_3_4() { return cRightSquareBracketKeyword_3_4; }
@@ -483,95 +483,95 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	public class GeneralizationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Generalization");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cClientAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cClientBehavioredClassifierCrossReference_0_0 = (CrossReference)cClientAssignment_0.eContents().get(0);
-		private final RuleCall cClientBehavioredClassifierFQNParserRuleCall_0_0_1 = (RuleCall)cClientBehavioredClassifierCrossReference_0_0.eContents().get(1);
+		private final Assignment cSpecificAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cSpecificBehavioredClassifierCrossReference_0_0 = (CrossReference)cSpecificAssignment_0.eContents().get(0);
+		private final RuleCall cSpecificBehavioredClassifierFQNParserRuleCall_0_0_1 = (RuleCall)cSpecificBehavioredClassifierCrossReference_0_0.eContents().get(1);
 		private final Keyword cIsAKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSupplierAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cSupplierBehavioredClassifierCrossReference_2_0 = (CrossReference)cSupplierAssignment_2.eContents().get(0);
-		private final RuleCall cSupplierBehavioredClassifierFQNParserRuleCall_2_0_1 = (RuleCall)cSupplierBehavioredClassifierCrossReference_2_0.eContents().get(1);
+		private final Assignment cGeneralAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cGeneralBehavioredClassifierCrossReference_2_0 = (CrossReference)cGeneralAssignment_2.eContents().get(0);
+		private final RuleCall cGeneralBehavioredClassifierFQNParserRuleCall_2_0_1 = (RuleCall)cGeneralBehavioredClassifierCrossReference_2_0.eContents().get(1);
 		
 		//Generalization:
-		//	client=[BehavioredClassifier|FQN] 'isA' supplier=[BehavioredClassifier|FQN];
+		//	specific=[BehavioredClassifier|FQN] 'isA' general=[BehavioredClassifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//client=[BehavioredClassifier|FQN] 'isA' supplier=[BehavioredClassifier|FQN]
+		//specific=[BehavioredClassifier|FQN] 'isA' general=[BehavioredClassifier|FQN]
 		public Group getGroup() { return cGroup; }
 		
-		//client=[BehavioredClassifier|FQN]
-		public Assignment getClientAssignment_0() { return cClientAssignment_0; }
+		//specific=[BehavioredClassifier|FQN]
+		public Assignment getSpecificAssignment_0() { return cSpecificAssignment_0; }
 		
 		//[BehavioredClassifier|FQN]
-		public CrossReference getClientBehavioredClassifierCrossReference_0_0() { return cClientBehavioredClassifierCrossReference_0_0; }
+		public CrossReference getSpecificBehavioredClassifierCrossReference_0_0() { return cSpecificBehavioredClassifierCrossReference_0_0; }
 		
 		//FQN
-		public RuleCall getClientBehavioredClassifierFQNParserRuleCall_0_0_1() { return cClientBehavioredClassifierFQNParserRuleCall_0_0_1; }
+		public RuleCall getSpecificBehavioredClassifierFQNParserRuleCall_0_0_1() { return cSpecificBehavioredClassifierFQNParserRuleCall_0_0_1; }
 		
 		//'isA'
 		public Keyword getIsAKeyword_1() { return cIsAKeyword_1; }
 		
-		//supplier=[BehavioredClassifier|FQN]
-		public Assignment getSupplierAssignment_2() { return cSupplierAssignment_2; }
+		//general=[BehavioredClassifier|FQN]
+		public Assignment getGeneralAssignment_2() { return cGeneralAssignment_2; }
 		
 		//[BehavioredClassifier|FQN]
-		public CrossReference getSupplierBehavioredClassifierCrossReference_2_0() { return cSupplierBehavioredClassifierCrossReference_2_0; }
+		public CrossReference getGeneralBehavioredClassifierCrossReference_2_0() { return cGeneralBehavioredClassifierCrossReference_2_0; }
 		
 		//FQN
-		public RuleCall getSupplierBehavioredClassifierFQNParserRuleCall_2_0_1() { return cSupplierBehavioredClassifierFQNParserRuleCall_2_0_1; }
+		public RuleCall getGeneralBehavioredClassifierFQNParserRuleCall_2_0_1() { return cGeneralBehavioredClassifierFQNParserRuleCall_2_0_1; }
 	}
 	public class IncludeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Include");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cClientAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cClientUseCaseCrossReference_0_0 = (CrossReference)cClientAssignment_0.eContents().get(0);
-		private final RuleCall cClientUseCaseFQNParserRuleCall_0_0_1 = (RuleCall)cClientUseCaseCrossReference_0_0.eContents().get(1);
+		private final Assignment cIncludingCaseAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cIncludingCaseUseCaseCrossReference_0_0 = (CrossReference)cIncludingCaseAssignment_0.eContents().get(0);
+		private final RuleCall cIncludingCaseUseCaseFQNParserRuleCall_0_0_1 = (RuleCall)cIncludingCaseUseCaseCrossReference_0_0.eContents().get(1);
 		private final Keyword cIncKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSupplierAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cSupplierUseCaseCrossReference_2_0 = (CrossReference)cSupplierAssignment_2.eContents().get(0);
-		private final RuleCall cSupplierUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cSupplierUseCaseCrossReference_2_0.eContents().get(1);
+		private final Assignment cAdditionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cAdditionUseCaseCrossReference_2_0 = (CrossReference)cAdditionAssignment_2.eContents().get(0);
+		private final RuleCall cAdditionUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cAdditionUseCaseCrossReference_2_0.eContents().get(1);
 		
 		//Include:
-		//	client=[UseCase|FQN] 'inc' supplier=[UseCase|FQN];
+		//	includingCase=[UseCase|FQN] 'inc' addition=[UseCase|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//client=[UseCase|FQN] 'inc' supplier=[UseCase|FQN]
+		//includingCase=[UseCase|FQN] 'inc' addition=[UseCase|FQN]
 		public Group getGroup() { return cGroup; }
 		
-		//client=[UseCase|FQN]
-		public Assignment getClientAssignment_0() { return cClientAssignment_0; }
+		//includingCase=[UseCase|FQN]
+		public Assignment getIncludingCaseAssignment_0() { return cIncludingCaseAssignment_0; }
 		
 		//[UseCase|FQN]
-		public CrossReference getClientUseCaseCrossReference_0_0() { return cClientUseCaseCrossReference_0_0; }
+		public CrossReference getIncludingCaseUseCaseCrossReference_0_0() { return cIncludingCaseUseCaseCrossReference_0_0; }
 		
 		//FQN
-		public RuleCall getClientUseCaseFQNParserRuleCall_0_0_1() { return cClientUseCaseFQNParserRuleCall_0_0_1; }
+		public RuleCall getIncludingCaseUseCaseFQNParserRuleCall_0_0_1() { return cIncludingCaseUseCaseFQNParserRuleCall_0_0_1; }
 		
 		//'inc'
 		public Keyword getIncKeyword_1() { return cIncKeyword_1; }
 		
-		//supplier=[UseCase|FQN]
-		public Assignment getSupplierAssignment_2() { return cSupplierAssignment_2; }
+		//addition=[UseCase|FQN]
+		public Assignment getAdditionAssignment_2() { return cAdditionAssignment_2; }
 		
 		//[UseCase|FQN]
-		public CrossReference getSupplierUseCaseCrossReference_2_0() { return cSupplierUseCaseCrossReference_2_0; }
+		public CrossReference getAdditionUseCaseCrossReference_2_0() { return cAdditionUseCaseCrossReference_2_0; }
 		
 		//FQN
-		public RuleCall getSupplierUseCaseFQNParserRuleCall_2_0_1() { return cSupplierUseCaseFQNParserRuleCall_2_0_1; }
+		public RuleCall getAdditionUseCaseFQNParserRuleCall_2_0_1() { return cAdditionUseCaseFQNParserRuleCall_2_0_1; }
 	}
 	public class ExtendElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Extend");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cClientAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cClientUseCaseCrossReference_0_0 = (CrossReference)cClientAssignment_0.eContents().get(0);
-		private final RuleCall cClientUseCaseFQNParserRuleCall_0_0_1 = (RuleCall)cClientUseCaseCrossReference_0_0.eContents().get(1);
+		private final Assignment cExtensionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cExtensionUseCaseCrossReference_0_0 = (CrossReference)cExtensionAssignment_0.eContents().get(0);
+		private final RuleCall cExtensionUseCaseFQNParserRuleCall_0_0_1 = (RuleCall)cExtensionUseCaseCrossReference_0_0.eContents().get(1);
 		private final Keyword cExtKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cSupplierAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cSupplierUseCaseCrossReference_2_0 = (CrossReference)cSupplierAssignment_2.eContents().get(0);
-		private final RuleCall cSupplierUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cSupplierUseCaseCrossReference_2_0.eContents().get(1);
+		private final Assignment cExtendedCaseAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cExtendedCaseUseCaseCrossReference_2_0 = (CrossReference)cExtendedCaseAssignment_2.eContents().get(0);
+		private final RuleCall cExtendedCaseUseCaseFQNParserRuleCall_2_0_1 = (RuleCall)cExtendedCaseUseCaseCrossReference_2_0.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cExtensionPointAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cExtensionPointExtensionPointCrossReference_4_0 = (CrossReference)cExtensionPointAssignment_4.eContents().get(0);
-		private final RuleCall cExtensionPointExtensionPointIDTerminalRuleCall_4_0_1 = (RuleCall)cExtensionPointExtensionPointCrossReference_4_0.eContents().get(1);
+		private final Assignment cExtensionLocationAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cExtensionLocationExtensionPointCrossReference_4_0 = (CrossReference)cExtensionLocationAssignment_4.eContents().get(0);
+		private final RuleCall cExtensionLocationExtensionPointIDTerminalRuleCall_4_0_1 = (RuleCall)cExtensionLocationExtensionPointCrossReference_4_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cVerticalLineKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
@@ -579,44 +579,46 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Extend:
-		//	client=[UseCase|FQN] 'ext' supplier=[UseCase|FQN] '[' extensionPoint=[ExtensionPoint] ('|' condition=STRING)? ']';
+		//	extension=[UseCase|FQN] 'ext' extendedCase=[UseCase|FQN] '[' extensionLocation=[ExtensionPoint] ('|'
+		//	condition=STRING)? ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//client=[UseCase|FQN] 'ext' supplier=[UseCase|FQN] '[' extensionPoint=[ExtensionPoint] ('|' condition=STRING)? ']'
+		//extension=[UseCase|FQN] 'ext' extendedCase=[UseCase|FQN] '[' extensionLocation=[ExtensionPoint] ('|' condition=STRING)?
+		//']'
 		public Group getGroup() { return cGroup; }
 		
-		//client=[UseCase|FQN]
-		public Assignment getClientAssignment_0() { return cClientAssignment_0; }
+		//extension=[UseCase|FQN]
+		public Assignment getExtensionAssignment_0() { return cExtensionAssignment_0; }
 		
 		//[UseCase|FQN]
-		public CrossReference getClientUseCaseCrossReference_0_0() { return cClientUseCaseCrossReference_0_0; }
+		public CrossReference getExtensionUseCaseCrossReference_0_0() { return cExtensionUseCaseCrossReference_0_0; }
 		
 		//FQN
-		public RuleCall getClientUseCaseFQNParserRuleCall_0_0_1() { return cClientUseCaseFQNParserRuleCall_0_0_1; }
+		public RuleCall getExtensionUseCaseFQNParserRuleCall_0_0_1() { return cExtensionUseCaseFQNParserRuleCall_0_0_1; }
 		
 		//'ext'
 		public Keyword getExtKeyword_1() { return cExtKeyword_1; }
 		
-		//supplier=[UseCase|FQN]
-		public Assignment getSupplierAssignment_2() { return cSupplierAssignment_2; }
+		//extendedCase=[UseCase|FQN]
+		public Assignment getExtendedCaseAssignment_2() { return cExtendedCaseAssignment_2; }
 		
 		//[UseCase|FQN]
-		public CrossReference getSupplierUseCaseCrossReference_2_0() { return cSupplierUseCaseCrossReference_2_0; }
+		public CrossReference getExtendedCaseUseCaseCrossReference_2_0() { return cExtendedCaseUseCaseCrossReference_2_0; }
 		
 		//FQN
-		public RuleCall getSupplierUseCaseFQNParserRuleCall_2_0_1() { return cSupplierUseCaseFQNParserRuleCall_2_0_1; }
+		public RuleCall getExtendedCaseUseCaseFQNParserRuleCall_2_0_1() { return cExtendedCaseUseCaseFQNParserRuleCall_2_0_1; }
 		
 		//'['
 		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
 		
-		//extensionPoint=[ExtensionPoint]
-		public Assignment getExtensionPointAssignment_4() { return cExtensionPointAssignment_4; }
+		//extensionLocation=[ExtensionPoint]
+		public Assignment getExtensionLocationAssignment_4() { return cExtensionLocationAssignment_4; }
 		
 		//[ExtensionPoint]
-		public CrossReference getExtensionPointExtensionPointCrossReference_4_0() { return cExtensionPointExtensionPointCrossReference_4_0; }
+		public CrossReference getExtensionLocationExtensionPointCrossReference_4_0() { return cExtensionLocationExtensionPointCrossReference_4_0; }
 		
 		//ID
-		public RuleCall getExtensionPointExtensionPointIDTerminalRuleCall_4_0_1() { return cExtensionPointExtensionPointIDTerminalRuleCall_4_0_1; }
+		public RuleCall getExtensionLocationExtensionPointIDTerminalRuleCall_4_0_1() { return cExtensionLocationExtensionPointIDTerminalRuleCall_4_0_1; }
 		
 		//('|' condition=STRING)?
 		public Group getGroup_5() { return cGroup_5; }
@@ -1000,7 +1002,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Association:
-	//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' leftCardinality=Cardinality '|' rightCardinality=Cardinality
+	//	actor=[Actor|FQN] 'iac' usecase=[UseCase|FQN] ('[' actorCardinality=Cardinality '|' useCaseCardinality=Cardinality
 	//	']')?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
@@ -1011,7 +1013,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Generalization:
-	//	client=[BehavioredClassifier|FQN] 'isA' supplier=[BehavioredClassifier|FQN];
+	//	specific=[BehavioredClassifier|FQN] 'isA' general=[BehavioredClassifier|FQN];
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}
@@ -1021,7 +1023,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Include:
-	//	client=[UseCase|FQN] 'inc' supplier=[UseCase|FQN];
+	//	includingCase=[UseCase|FQN] 'inc' addition=[UseCase|FQN];
 	public IncludeElements getIncludeAccess() {
 		return pInclude;
 	}
@@ -1031,7 +1033,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Extend:
-	//	client=[UseCase|FQN] 'ext' supplier=[UseCase|FQN] '[' extensionPoint=[ExtensionPoint] ('|' condition=STRING)? ']';
+	//	extension=[UseCase|FQN] 'ext' extendedCase=[UseCase|FQN] '[' extensionLocation=[ExtensionPoint] ('|'
+	//	condition=STRING)? ']';
 	public ExtendElements getExtendAccess() {
 		return pExtend;
 	}

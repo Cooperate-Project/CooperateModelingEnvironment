@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Cardinality</b></em>'.
@@ -19,10 +17,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getCardinality()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface Cardinality extends CDOObject {
+public interface Cardinality extends Element {
 	/**
      * Returns the value of the '<em><b>Lower Bound</b></em>' attribute.
      * <!-- begin-user-doc -->

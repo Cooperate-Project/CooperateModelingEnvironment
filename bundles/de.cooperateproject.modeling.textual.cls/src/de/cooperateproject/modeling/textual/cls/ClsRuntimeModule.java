@@ -30,50 +30,53 @@ import de.cooperateproject.util.eclipse.ExtensionPointHelper;
  */
 public class ClsRuntimeModule extends de.cooperateproject.modeling.textual.cls.AbstractClsRuntimeModule {
 
-	private static final String FORMATTER_EXTENSION_ID = "de.cooperateproject.modeling.textual.cls.formatter";
-	private static final String FORMATTER_EXTENSION_ATTRIBUTE = "class";
-	private static final String FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY = "priority";
+    private static final String FORMATTER_EXTENSION_ID = "de.cooperateproject.modeling.textual.cls.formatter";
+    private static final String FORMATTER_EXTENSION_ATTRIBUTE = "class";
+    private static final String FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY = "priority";
 
-	@Override
-	public void configureIScopeProviderDelegate(Binder binder) {
-		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class)
-				.annotatedWith(com.google.inject.name.Names
-						.named(org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
-				.to(ClsCooperateSimpleScopeProvider.class);
-	}
+    @Override
+    public void configureIScopeProviderDelegate(Binder binder) {
+        binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class)
+                .annotatedWith(com.google.inject.name.Names
+                        .named(org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
+                .to(ClsCooperateSimpleScopeProvider.class);
+    }
 
-	@Override
-	public Class<? extends IValueConverterService> bindIValueConverterService() {
-		return ClsValueConverter.class;
-	}
+    @Override
+    public Class<? extends IValueConverterService> bindIValueConverterService() {
+        return ClsValueConverter.class;
+    }
 
-	@Override
-	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return ClsQualifiedNameProvider.class;
-	}
+    @Override
+    public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+        return ClsQualifiedNameProvider.class;
+    }
 
-	@Override
-	public Class<? extends ILinkingService> bindILinkingService() {
-		return ClsLinkingService.class;
-	}
+    @Override
+    public Class<? extends ILinkingService> bindILinkingService() {
+        return ClsLinkingService.class;
+    }
 
-	@Override
-	@SuppressWarnings("restriction")
-	public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
-		Collection<Pair<IFormatter2, Map<String, String>>> formatters = ExtensionPointHelper
-				.getExtensions(FORMATTER_EXTENSION_ID, FORMATTER_EXTENSION_ATTRIBUTE, IFormatter2.class, FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY);
-		Optional<Pair<IFormatter2, Integer>> selectedFormatter = formatters.stream()
-				.filter(f -> NumberUtils.isNumber(f.getRight().get(FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY)))
-				.map(f -> Pair.of(f.getLeft(), Integer.parseInt(f.getRight().get(FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY))))
-				.max((f1, f2) -> f1.getRight() - f2.getRight());
-		if (!selectedFormatter.isPresent()) {
-			return ClsFormatter.class;
-		}
-		Class<? extends IFormatter2> formatterclass = selectedFormatter.get().getLeft().getClass();
-		return formatterclass;
-	}
+    @Override
+    @SuppressWarnings("restriction")
+    public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
+        Collection<Pair<IFormatter2, Map<String, String>>> formatters = ExtensionPointHelper.getExtensions(
+                FORMATTER_EXTENSION_ID, FORMATTER_EXTENSION_ATTRIBUTE, IFormatter2.class,
+                FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY);
+        Optional<Pair<IFormatter2, Integer>> selectedFormatter = formatters.stream()
+                .filter(f -> NumberUtils.isNumber(f.getRight().get(FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY)))
+                .map(f -> Pair.of(f.getLeft(),
+                        Integer.parseInt(f.getRight().get(FORMATTER_EXTENSION_ATTRIBUTE_PRIORITY))))
+                .max((f1, f2) -> f1.getRight() - f2.getRight());
+        if (!selectedFormatter.isPresent()) {
+            return ClsFormatter.class;
+        }
+        Class<? extends IFormatter2> formatterclass = selectedFormatter.get().getLeft().getClass();
+        return formatterclass;
+    }
 
-	public Class<? extends IResourceValidator> bindIResourceValidator() {
-		return de.cooperateproject.modeling.textual.cls.validation.ClsResourceValidator.class;
-	}
+    public Class<? extends IResourceValidator> bindIResourceValidator() {
+        return de.cooperateproject.modeling.textual.cls.validation.ClsResourceValidator.class;
+    }
+
 }

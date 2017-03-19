@@ -13,9 +13,11 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.apache.log4j,
  de.cooperateproject.util;bundle-version="0.1.5",
  de.cooperateproject.modeling.textual.common,
- de.cooperateproject.ui.preferences;bundle-version="1.0.0"
+ de.cooperateproject.ui.preferences;bundle-version="1.0.0",
+ org.eclipse.emf.transaction
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
+ de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping
 Bundle-ActivationPolicy: lazy

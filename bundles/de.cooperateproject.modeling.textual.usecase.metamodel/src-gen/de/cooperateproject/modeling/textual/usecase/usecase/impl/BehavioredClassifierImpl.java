@@ -16,7 +16,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class BehavioredClassifierImpl extends CDOObjectImpl implements BehavioredClassifier {
+public abstract class BehavioredClassifierImpl extends CDOObjectImpl implements BehavioredClassifier {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

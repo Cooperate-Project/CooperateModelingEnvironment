@@ -407,4 +407,11 @@
 			type="text">
 		</fileTypes>
 	</extension>
+	<extension
+	      point="org.eclipse.emf.compare.rcp.matchEngine">
+	   <engineFactory
+	         class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:de.cooperateproject.modeling.textual.usecase.ui.cdoxtext.UsecaseMatchEngineFactory"
+	         ranking="20">
+	   </engineFactory>
+	</extension>	
 </plugin>

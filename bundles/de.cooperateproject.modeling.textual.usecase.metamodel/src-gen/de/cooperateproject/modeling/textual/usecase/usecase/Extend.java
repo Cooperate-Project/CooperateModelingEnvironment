@@ -12,9 +12,9 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getClient <em>Client</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getSupplier <em>Supplier</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionPoint <em>Extension Point</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtension <em>Extension</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtendedCase <em>Extended Case</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionLocation <em>Extension Location</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -24,84 +24,84 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  */
 public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Extend> {
 	/**
-     * Returns the value of the '<em><b>Client</b></em>' reference.
+     * Returns the value of the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Client</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Client</em>' reference.
-     * @see #setClient(UseCase)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Client()
-     * @model
+     * <p>
+     * If the meaning of the '<em>Extension</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Extension</em>' reference.
+     * @see #setExtension(UseCase)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Extension()
+     * @model required="true"
      * @generated
      */
-	UseCase getClient();
+    UseCase getExtension();
 
-	/**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getClient <em>Client</em>}' reference.
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtension <em>Extension</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Client</em>' reference.
-     * @see #getClient()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Extension</em>' reference.
+     * @see #getExtension()
      * @generated
      */
-	void setClient(UseCase value);
+    void setExtension(UseCase value);
 
-	/**
-     * Returns the value of the '<em><b>Supplier</b></em>' reference.
+    /**
+     * Returns the value of the '<em><b>Extended Case</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Supplier</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Supplier</em>' reference.
-     * @see #setSupplier(UseCase)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Supplier()
-     * @model
+     * <p>
+     * If the meaning of the '<em>Extended Case</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Extended Case</em>' reference.
+     * @see #setExtendedCase(UseCase)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_ExtendedCase()
+     * @model required="true"
      * @generated
      */
-	UseCase getSupplier();
+    UseCase getExtendedCase();
 
-	/**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getSupplier <em>Supplier</em>}' reference.
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtendedCase <em>Extended Case</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Supplier</em>' reference.
-     * @see #getSupplier()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Extended Case</em>' reference.
+     * @see #getExtendedCase()
      * @generated
      */
-	void setSupplier(UseCase value);
+    void setExtendedCase(UseCase value);
 
-	/**
-     * Returns the value of the '<em><b>Extension Point</b></em>' reference.
+    /**
+     * Returns the value of the '<em><b>Extension Location</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Extension Point</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Extension Point</em>' reference.
-     * @see #setExtensionPoint(ExtensionPoint)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_ExtensionPoint()
-     * @model
+     * <p>
+     * If the meaning of the '<em>Extension Location</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Extension Location</em>' reference.
+     * @see #setExtensionLocation(ExtensionPoint)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_ExtensionLocation()
+     * @model required="true"
      * @generated
      */
-	ExtensionPoint getExtensionPoint();
+    ExtensionPoint getExtensionLocation();
 
-	/**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionPoint <em>Extension Point</em>}' reference.
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getExtensionLocation <em>Extension Location</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Extension Point</em>' reference.
-     * @see #getExtensionPoint()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Extension Location</em>' reference.
+     * @see #getExtensionLocation()
      * @generated
      */
-	void setExtensionPoint(ExtensionPoint value);
+    void setExtensionLocation(ExtensionPoint value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Condition</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <p>

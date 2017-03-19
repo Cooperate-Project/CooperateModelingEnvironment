@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,13 +26,13 @@ import org.eclipse.emf.ecore.InternalEObject;
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getActor <em>Actor</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getUsecase <em>Usecase</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getLeftCardinality <em>Left Cardinality</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getRightCardinality <em>Right Cardinality</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getActorCardinality <em>Actor Cardinality</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getUseCaseCardinality <em>Use Case Cardinality</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationImpl extends RelationshipImpl implements Association {
+public class AssociationImpl extends CDOObjectImpl implements Association {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +53,16 @@ public class AssociationImpl extends RelationshipImpl implements Association {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -134,61 +145,61 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Cardinality getLeftCardinality() {
-        return (Cardinality)eDynamicGet(UsecasePackage.ASSOCIATION__LEFT_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__LEFT_CARDINALITY, true, true);
+    public Cardinality getActorCardinality() {
+        return (Cardinality)eDynamicGet(UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__ACTOR_CARDINALITY, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetLeftCardinality(Cardinality newLeftCardinality, NotificationChain msgs) {
-        msgs = eDynamicInverseAdd((InternalEObject)newLeftCardinality, UsecasePackage.ASSOCIATION__LEFT_CARDINALITY, msgs);
+    public NotificationChain basicSetActorCardinality(Cardinality newActorCardinality, NotificationChain msgs) {
+        msgs = eDynamicInverseAdd((InternalEObject)newActorCardinality, UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY, msgs);
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setLeftCardinality(Cardinality newLeftCardinality) {
-        eDynamicSet(UsecasePackage.ASSOCIATION__LEFT_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__LEFT_CARDINALITY, newLeftCardinality);
+    public void setActorCardinality(Cardinality newActorCardinality) {
+        eDynamicSet(UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__ACTOR_CARDINALITY, newActorCardinality);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Cardinality getRightCardinality() {
-        return (Cardinality)eDynamicGet(UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__RIGHT_CARDINALITY, true, true);
+    public Cardinality getUseCaseCardinality() {
+        return (Cardinality)eDynamicGet(UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__USE_CASE_CARDINALITY, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetRightCardinality(Cardinality newRightCardinality, NotificationChain msgs) {
-        msgs = eDynamicInverseAdd((InternalEObject)newRightCardinality, UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY, msgs);
+    public NotificationChain basicSetUseCaseCardinality(Cardinality newUseCaseCardinality, NotificationChain msgs) {
+        msgs = eDynamicInverseAdd((InternalEObject)newUseCaseCardinality, UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY, msgs);
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setRightCardinality(Cardinality newRightCardinality) {
-        eDynamicSet(UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__RIGHT_CARDINALITY, newRightCardinality);
+    public void setUseCaseCardinality(Cardinality newUseCaseCardinality) {
+        eDynamicSet(UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY, UsecasePackage.Literals.ASSOCIATION__USE_CASE_CARDINALITY, newUseCaseCardinality);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -196,10 +207,10 @@ public class AssociationImpl extends RelationshipImpl implements Association {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case UsecasePackage.ASSOCIATION__LEFT_CARDINALITY:
-                return basicSetLeftCardinality(null, msgs);
-            case UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY:
-                return basicSetRightCardinality(null, msgs);
+            case UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY:
+                return basicSetActorCardinality(null, msgs);
+            case UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY:
+                return basicSetUseCaseCardinality(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -221,10 +232,10 @@ public class AssociationImpl extends RelationshipImpl implements Association {
             case UsecasePackage.ASSOCIATION__USECASE:
                 if (resolve) return getUsecase();
                 return basicGetUsecase();
-            case UsecasePackage.ASSOCIATION__LEFT_CARDINALITY:
-                return getLeftCardinality();
-            case UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY:
-                return getRightCardinality();
+            case UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY:
+                return getActorCardinality();
+            case UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY:
+                return getUseCaseCardinality();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -246,11 +257,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
             case UsecasePackage.ASSOCIATION__USECASE:
                 setUsecase((UseCase)newValue);
                 return;
-            case UsecasePackage.ASSOCIATION__LEFT_CARDINALITY:
-                setLeftCardinality((Cardinality)newValue);
+            case UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY:
+                setActorCardinality((Cardinality)newValue);
                 return;
-            case UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY:
-                setRightCardinality((Cardinality)newValue);
+            case UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY:
+                setUseCaseCardinality((Cardinality)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -273,11 +284,11 @@ public class AssociationImpl extends RelationshipImpl implements Association {
             case UsecasePackage.ASSOCIATION__USECASE:
                 setUsecase((UseCase)null);
                 return;
-            case UsecasePackage.ASSOCIATION__LEFT_CARDINALITY:
-                setLeftCardinality((Cardinality)null);
+            case UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY:
+                setActorCardinality((Cardinality)null);
                 return;
-            case UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY:
-                setRightCardinality((Cardinality)null);
+            case UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY:
+                setUseCaseCardinality((Cardinality)null);
                 return;
         }
         super.eUnset(featureID);
@@ -297,10 +308,10 @@ public class AssociationImpl extends RelationshipImpl implements Association {
                 return basicGetActor() != null;
             case UsecasePackage.ASSOCIATION__USECASE:
                 return basicGetUsecase() != null;
-            case UsecasePackage.ASSOCIATION__LEFT_CARDINALITY:
-                return getLeftCardinality() != null;
-            case UsecasePackage.ASSOCIATION__RIGHT_CARDINALITY:
-                return getRightCardinality() != null;
+            case UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY:
+                return getActorCardinality() != null;
+            case UsecasePackage.ASSOCIATION__USE_CASE_CARDINALITY:
+                return getUseCaseCardinality() != null;
         }
         return super.eIsSet(featureID);
     }

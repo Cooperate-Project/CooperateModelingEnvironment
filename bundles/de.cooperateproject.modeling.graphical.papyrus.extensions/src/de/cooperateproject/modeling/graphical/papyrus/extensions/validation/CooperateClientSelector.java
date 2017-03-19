@@ -5,7 +5,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.uml2.uml.Element;
 
@@ -19,15 +19,23 @@ public class CooperateClientSelector implements IClientSelector {
     public boolean selects(Object object) {
         if (object instanceof Element) {
             Element model = (Element) object;
-            Resource res = model.eResource();
-            Path path = new Path(res.getURI().toPlatformString(true));
-            IProject project = ResourcesPlugin.getWorkspace().getRoot().getFile(path).getProject();
+            URI uri = model.eResource().getURI();
+            IProject project;
+            if (!uri.isPlatform()) {
+                // The project name is by convention in the first segment of the uri
+                String projectName = uri.segment(0);
+                project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+            } else {
+                Path path = new Path(uri.toPlatformString(true));
+                project = ResourcesPlugin.getWorkspace().getRoot().getFile(path).getProject();
+            }
+
             try {
                 if (NatureUtils.hasCooperateNature(project)) {
                     return true;
                 }
             } catch (CoreException e) {
-                LOGGER.error("Fehler beim Überprüfen der Nature", e);
+                LOGGER.error("Error while checking for Cooperate Nature", e);
             }
         }
         return false;

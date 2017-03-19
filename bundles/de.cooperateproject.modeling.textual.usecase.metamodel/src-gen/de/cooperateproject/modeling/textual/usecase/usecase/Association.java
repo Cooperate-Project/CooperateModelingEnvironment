@@ -14,8 +14,8 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getActor <em>Actor</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getUsecase <em>Usecase</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getLeftCardinality <em>Left Cardinality</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getRightCardinality <em>Right Cardinality</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getActorCardinality <em>Actor Cardinality</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getUseCaseCardinality <em>Use Case Cardinality</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation()
@@ -76,55 +76,55 @@ public interface Association extends Relationship, UMLReferencingElement<org.ecl
 	void setUsecase(UseCase value);
 
 	/**
-     * Returns the value of the '<em><b>Left Cardinality</b></em>' containment reference.
+     * Returns the value of the '<em><b>Actor Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Left Cardinality</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Left Cardinality</em>' containment reference.
-     * @see #setLeftCardinality(Cardinality)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_LeftCardinality()
+     * <p>
+     * If the meaning of the '<em>Actor Cardinality</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Actor Cardinality</em>' containment reference.
+     * @see #setActorCardinality(Cardinality)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_ActorCardinality()
      * @model containment="true"
      * @generated
      */
-	Cardinality getLeftCardinality();
+    Cardinality getActorCardinality();
 
-	/**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getLeftCardinality <em>Left Cardinality</em>}' containment reference.
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getActorCardinality <em>Actor Cardinality</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Left Cardinality</em>' containment reference.
-     * @see #getLeftCardinality()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Actor Cardinality</em>' containment reference.
+     * @see #getActorCardinality()
      * @generated
      */
-	void setLeftCardinality(Cardinality value);
+    void setActorCardinality(Cardinality value);
 
-	/**
-     * Returns the value of the '<em><b>Right Cardinality</b></em>' containment reference.
+    /**
+     * Returns the value of the '<em><b>Use Case Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Right Cardinality</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Right Cardinality</em>' containment reference.
-     * @see #setRightCardinality(Cardinality)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_RightCardinality()
+     * <p>
+     * If the meaning of the '<em>Use Case Cardinality</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Use Case Cardinality</em>' containment reference.
+     * @see #setUseCaseCardinality(Cardinality)
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_UseCaseCardinality()
      * @model containment="true"
      * @generated
      */
-	Cardinality getRightCardinality();
+    Cardinality getUseCaseCardinality();
 
-	/**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getRightCardinality <em>Right Cardinality</em>}' containment reference.
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getUseCaseCardinality <em>Use Case Cardinality</em>}' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Right Cardinality</em>' containment reference.
-     * @see #getRightCardinality()
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Use Case Cardinality</em>' containment reference.
+     * @see #getUseCaseCardinality()
      * @generated
      */
-	void setRightCardinality(Cardinality value);
+    void setUseCaseCardinality(Cardinality value);
 
 } // Association

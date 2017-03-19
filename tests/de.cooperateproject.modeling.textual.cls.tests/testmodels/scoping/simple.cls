@@ -1,4 +1,4 @@
-@start-cls
+@start-cls "SomeName"
 
 rootPackage RootElement
 

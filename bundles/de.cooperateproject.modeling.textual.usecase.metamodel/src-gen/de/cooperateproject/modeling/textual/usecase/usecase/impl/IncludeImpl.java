@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,13 +19,13 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getReferencedElement <em>Referenced Element</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getClient <em>Client</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getSupplier <em>Supplier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getAddition <em>Addition</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.IncludeImpl#getIncludingCase <em>Including Case</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IncludeImpl extends RelationshipImpl implements Include {
+public class IncludeImpl extends CDOObjectImpl implements Include {
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,6 +46,16 @@ public class IncludeImpl extends RelationshipImpl implements Include {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -73,59 +84,59 @@ public class IncludeImpl extends RelationshipImpl implements Include {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase getClient() {
-        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__CLIENT, UsecasePackage.Literals.INCLUDE__CLIENT, true, true);
+    public UseCase getAddition() {
+        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__ADDITION, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase basicGetClient() {
-        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__CLIENT, UsecasePackage.Literals.INCLUDE__CLIENT, false, true);
+    public UseCase basicGetAddition() {
+        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__ADDITION, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setClient(UseCase newClient) {
-        eDynamicSet(UsecasePackage.INCLUDE__CLIENT, UsecasePackage.Literals.INCLUDE__CLIENT, newClient);
+    public void setAddition(UseCase newAddition) {
+        eDynamicSet(UsecasePackage.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__ADDITION, newAddition);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase getSupplier() {
-        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__SUPPLIER, UsecasePackage.Literals.INCLUDE__SUPPLIER, true, true);
+    public UseCase getIncludingCase() {
+        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__INCLUDING_CASE, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase basicGetSupplier() {
-        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__SUPPLIER, UsecasePackage.Literals.INCLUDE__SUPPLIER, false, true);
+    public UseCase basicGetIncludingCase() {
+        return (UseCase)eDynamicGet(UsecasePackage.INCLUDE__INCLUDING_CASE, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setSupplier(UseCase newSupplier) {
-        eDynamicSet(UsecasePackage.INCLUDE__SUPPLIER, UsecasePackage.Literals.INCLUDE__SUPPLIER, newSupplier);
+    public void setIncludingCase(UseCase newIncludingCase) {
+        eDynamicSet(UsecasePackage.INCLUDE__INCLUDING_CASE, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE, newIncludingCase);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -136,12 +147,12 @@ public class IncludeImpl extends RelationshipImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
-            case UsecasePackage.INCLUDE__CLIENT:
-                if (resolve) return getClient();
-                return basicGetClient();
-            case UsecasePackage.INCLUDE__SUPPLIER:
-                if (resolve) return getSupplier();
-                return basicGetSupplier();
+            case UsecasePackage.INCLUDE__ADDITION:
+                if (resolve) return getAddition();
+                return basicGetAddition();
+            case UsecasePackage.INCLUDE__INCLUDING_CASE:
+                if (resolve) return getIncludingCase();
+                return basicGetIncludingCase();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -157,11 +168,11 @@ public class IncludeImpl extends RelationshipImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)newValue);
                 return;
-            case UsecasePackage.INCLUDE__CLIENT:
-                setClient((UseCase)newValue);
+            case UsecasePackage.INCLUDE__ADDITION:
+                setAddition((UseCase)newValue);
                 return;
-            case UsecasePackage.INCLUDE__SUPPLIER:
-                setSupplier((UseCase)newValue);
+            case UsecasePackage.INCLUDE__INCLUDING_CASE:
+                setIncludingCase((UseCase)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -178,11 +189,11 @@ public class IncludeImpl extends RelationshipImpl implements Include {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)null);
                 return;
-            case UsecasePackage.INCLUDE__CLIENT:
-                setClient((UseCase)null);
+            case UsecasePackage.INCLUDE__ADDITION:
+                setAddition((UseCase)null);
                 return;
-            case UsecasePackage.INCLUDE__SUPPLIER:
-                setSupplier((UseCase)null);
+            case UsecasePackage.INCLUDE__INCLUDING_CASE:
+                setIncludingCase((UseCase)null);
                 return;
         }
         super.eUnset(featureID);
@@ -198,10 +209,10 @@ public class IncludeImpl extends RelationshipImpl implements Include {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
-            case UsecasePackage.INCLUDE__CLIENT:
-                return basicGetClient() != null;
-            case UsecasePackage.INCLUDE__SUPPLIER:
-                return basicGetSupplier() != null;
+            case UsecasePackage.INCLUDE__ADDITION:
+                return basicGetAddition() != null;
+            case UsecasePackage.INCLUDE__INCLUDING_CASE:
+                return basicGetIncludingCase() != null;
         }
         return super.eIsSet(featureID);
     }

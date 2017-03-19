@@ -217,7 +217,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_CLASS_PROPERTIES_REGULAR).eobject();
 	result += new TraceRecord("classifierToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
 	result += new TraceRecord("classToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
-	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedClassifier_interfaceToAttributesCompartment() : List(trace::TraceRecord)
@@ -227,7 +227,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR).eobject();
 	result += new TraceRecord("classifierToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
 	result += new TraceRecord("interfaceToAttributesCompartment", "Classifier", classifier, "BasicCompartment", compartment);
-	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedClassifier_classifierToOperationsCompartment() : List(trace::TraceRecord)
@@ -243,7 +243,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_CLASS_OPERATIONS_REGULAR).eobject();
 	result += new TraceRecord("classifierToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
 	result += new TraceRecord("classToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
-	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedClassifier_interfaceToOperationsCompartment() : List(trace::TraceRecord)
@@ -253,7 +253,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR).eobject();
 	result += new TraceRecord("classifierToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
 	result += new TraceRecord("interfaceToOperationsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
-	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedClassifier_classifierToSignalsCompartment() : List(trace::TraceRecord)
@@ -269,7 +269,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Class)}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_CLASS_NESTED_REGULAR).eobject();
 	result += new TraceRecord("classifierToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
 	result += new TraceRecord("classToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
-	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedClassifier_interfaceToSignalsCompartment() : List(trace::TraceRecord)
@@ -279,7 +279,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
 	var compartment := self.getSelfNode().getChild(PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_NESTED_REGULAR).eobject();
 	result += new TraceRecord("classifierToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
 	result += new TraceRecord("interfaceToSignalsCompartment", "Classifier", classifier, "BasicCompartment", compartment);
-	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtendedClassifier_basicCompartment();
+	result += compartment.oclAsType(notation::BasicCompartment).map traceRecordExtended_basicCompartment();
 }
 
 mapping trace::TraceRecord::traceRecordExtendedConnector() : List(trace::TraceRecord)
@@ -402,27 +402,6 @@ mapping ecore::EObject::traceRecordExtendedCommentLinkToEdge_Shape(connector : c
 }
 
 
-mapping notation::BasicCompartment::traceRecordExtendedClassifier_basicCompartment() : List(trace::TraceRecord)
-{
-	result += new TraceRecord("titleStyle", "EObject", self.eobject(), "TitleStyle", self.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
-	result += new TraceRecord("sortingStyle", "EObject", self.eobject(), "SortingStyle", self.styles->selectByKind(notation::SortingStyle)->any(true).eobject());
-	result += new TraceRecord("filteringStyle", "EObject", self.eobject(), "FilteringStyle", self.styles->selectByKind(notation::FilteringStyle)->any(true).eobject());
-	result += self.map traceRecordExtended_notationBounds();
-}
-
-mapping notation::Node::traceRecordExtended_locationConstraint() : trace::TraceRecord
-{
-	init {
-		result := new TraceRecord("locationConstraint", "EObject", self.eobject(), "Location", self.layoutConstraint.eobject());
-	}
-}
-
-mapping notation::Node::traceRecordExtended_notationBounds() : trace::TraceRecord
-{
-	init {
-		result := new TraceRecord("notationBounds", "EObject", self.eobject(), "Bounds", self.layoutConstraint.eobject());
-	}
-}
 
 mapping trace::TraceRecord::traceRecordExtendedMultiAssociation() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "associationNodeToMultiAssociation"}

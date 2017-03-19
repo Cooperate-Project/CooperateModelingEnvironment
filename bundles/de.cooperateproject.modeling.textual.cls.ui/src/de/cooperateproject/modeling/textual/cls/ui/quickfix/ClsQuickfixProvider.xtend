@@ -61,8 +61,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			element.fixMissingClassifier(issue, context)
 		]
 	}
-	
-	
+
 	/**
 	 * Quickfix for missing Association in the UML-diagram.
 	 */
@@ -73,7 +72,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			element.fixMissingClassifier(issue, context)
 		]
 	}
-	
+
 	/**
 	 * Quickfix for missing Generalization in the UML-diagram.
 	 */
@@ -84,18 +83,18 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			context.relinkState
 		]
 	}
-	
+
 	/**
 	 * Quickfix for missing Generalization in the UML-diagram.
 	 */
 	@Fix(ClsValidatorConstants::NO_REALIZATION_REFERENCE)
 	def createMissingUMLRealizationn(Issue issue, IssueResolutionAcceptor acceptor) {
-		acceptor.accept(issue, 'Create InterfaceRealization', 'Create the InterfaceRealization into the UML Diagram', null) [ element, context |
+		acceptor.accept(issue, 'Create InterfaceRealization', 'Create the InterfaceRealization into the UML Diagram',
+			null) [ element, context |
 			element.fixCreateRealization()
 			context.relinkState
 		]
 	}
-	
 
 	/**
 	 * Quickfix for missing Interface in the UML-diagram.
@@ -107,7 +106,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			element.fixMissingClassifier(issue, context)
 		]
 	}
-	
+
 	/**
 	 * Quickfix for missing Package in the UML-diagram.
 	 */
@@ -118,18 +117,19 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			element.fixMissingClassifier(issue, context)
 		]
 	}
-	
+
 	/**
 	 * Quickfix for missing PackageImport in the UML-diagram.
 	 */
 	@Fix(ClsValidatorConstants::NO_IMPORT_REFERENCE)
 	def createMissingUMLImport(Issue issue, IssueResolutionAcceptor acceptor) {
 		val packageName = issue.data.get(0)
-		acceptor.accept(issue, 'Create PackageImport ' + packageName, 'Create the PackageImport into the UML Diagram', null) [ element, context |
+		acceptor.accept(issue, 'Create PackageImport ' + packageName, 'Create the PackageImport into the UML Diagram',
+			null) [ element, context |
 			element.fixMissingClassifier(issue, context)
 		]
 	}
-	
+
 	/**
 	 * Quickfix for missing Property in the UML-diagram.
 	 */
@@ -139,7 +139,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			element.fixMissingMember(issue, context)
 		]
 	}
-	
+
 	/**
 	 * Quickfix for wrong Property type in the Cls-model.
 	 */
@@ -151,20 +151,67 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		]
 	}
-	
+
+	/**
+	 * Quickfix for wrong static qualifier in the Cls-model.
+	 */
+	@Fix(ClsValidatorConstants::WRONG_PROPERTY_STATIC_QUALIFIER)
+	def wrongStaticQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Static Qualifier', 'Change the static qualifier into the right one', null) [ element, context |
+			if (element instanceof Property) {
+				element.fixWrongStaticQualifier(issue, context)
+			}
+		]
+	}
+
+	/**
+	 * Quickfix for wrong abstract qualifier in the Cls-model.
+	 */
+	@Fix(ClsValidatorConstants::WRONG_ABSTRACT_QUALIFIER)
+	def wrongAbstractQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Abstract Qualifier', 'Change the abstract qualifier into the right one', null) [ element, context |
+			element.fixWrongAbstractQualifier(issue, context)
+		]
+	}
+
+	/**
+	 * Quickfix for wrong abstract qualifier in the Cls-model.
+	 */
+	@Fix(ClsValidatorConstants::WRONG_ABSTRACT_QUALIFIER)
+	def adjustAbstractQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		val newQualifier = issue.data.get(0)
+		acceptor.accept(issue, 'Adjust Abstract Qualifier', 'Change the qualifier in the model', null) [ element, context |
+			element.adjustAbstractQualifier(issue, context)
+		]
+	}
+
+	/**
+	 * Quickfix for wrong abstract qualifier in the Cls-model.
+	 */
+	@Fix(ClsValidatorConstants::WRONG_PROPERTY_STATIC_QUALIFIER)
+	def adjustStaticQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		val newQualifier = issue.data.get(0)
+		acceptor.accept(issue, 'Adjust Static Qualifier', 'Change the qualifier in the model', null) [ element, context |
+			if (element instanceof Property) {
+				element.adjustStaticQualifier(issue, context)
+			}
+		]
+	}
+
 	/**
 	 * Quickfix for wrong Property type in the Cls-model.
 	 */
 	@Fix(ClsValidatorConstants::WRONG_PROPERTY_TYPE)
 	def adjustModelPropertyType(Issue issue, IssueResolutionAcceptor acceptor) {
 		val newType = issue.data.get(0)
-		acceptor.accept(issue, "Adjust Type in model to '" + newType + "'", 'Change the property type in the model', null) [ element, context |
+		acceptor.accept(issue, "Adjust Type in model to '" + newType + "'", 'Change the property type in the model',
+			null) [ element, context |
 			if (element instanceof Property) {
 				element.adjustModelType(issue, context)
 			}
 		]
 	}
-	
+
 	/**
 	 * Quickfix for Alias.
 	 */
@@ -177,17 +224,18 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		]
 	}
-	
+
 	@Fix(ClsValidatorConstants::WRONG_ALIAS_NAME)
 	def changeAliasExpression(Issue issue, IssueResolutionAcceptor acceptor) {
 		val alias = issue.data.get(0)
-		acceptor.accept(issue, "Change alias to '" + alias + "' in model", 'Create the nameExpression in the model', null) [ element, context |
+		acceptor.accept(issue, "Change alias to '" + alias + "' in model", 'Create the nameExpression in the model',
+			null) [ element, context |
 			if (element instanceof Classifier) {
 				element.fixChangeNameExpression(issue, context)
 			}
 		]
 	}
-	
+
 	/**
 	 * Quickfix for missing Operation in the UML-diagram.
 	 */
@@ -199,7 +247,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		]
 	}
-	
+
 	@Fix(ClsValidatorConstants::NO_COMMENT_REFERENCE)
 	def createMissingUMLComment(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Create Comment', 'Create the Comment into the UML Diagram', null) [ element, context |
@@ -208,7 +256,7 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			}
 		]
 	}
-	
+
 	def void fixMissingComment(Commentable commentable, Issue issue, IModificationContext context) {
 		var commentBody = context.xtextDocument.get(issue.offset, issue.length)
 		commentBody = valueConverter.convertCommentBody.toValue(commentBody, NodeModelUtils.getNode(commentable))
@@ -220,12 +268,12 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		umlComment.save
 		commentable.comment = umlComment
 	}
-	
+
 	private def fixMissingClassifier(EObject element, Issue issue, IModificationContext context) {
 		var name = context.xtextDocument.get(issue.offset, issue.length)
 		if (name.matches("\\\".*\\\"")) {
- 			name = valueConverter.STRING.toValue(name, NodeModelUtils.getNode(element))
- 		}
+			name = valueConverter.STRING.toValue(name, NodeModelUtils.getNode(element))
+		}
 		val brokenElement = element as Element;
 		val parentPackage = brokenElement.nearestPackage
 		val umlPackage = parentPackage?.referencedElement
@@ -235,42 +283,46 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		}
 		brokenElement.fixCreate(umlPackage, name, issue)
 	}
-	
-	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Class brokenClassifier, Package parentPackage, String name, Issue issue) {
+
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Class brokenClassifier,
+		Package parentPackage, String name, Issue issue) {
 		val umlClass = parentPackage.createOwnedClass(name, brokenClassifier.abstract);
 		parentPackage.save
 		brokenClassifier.referencedElement = umlClass;
 	}
-	
-	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Package brokenClassifier, Package parentPackage, String name, Issue issue) {
+
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Package brokenClassifier,
+		Package parentPackage, String name, Issue issue) {
 		val umlPackage = parentPackage.createNestedPackage(name)
 		parentPackage.save
 		brokenClassifier.referencedElement = umlPackage;
 	}
-	
-	private static def dispatch void fixCreate(PackageImport brokenClassifier, Package parentPackage, String name, Issue issue) {
-		//TODO: What about FQN?
+
+	private static def dispatch void fixCreate(PackageImport brokenClassifier, Package parentPackage, String name,
+		Issue issue) {
+		// TODO: What about FQN?
 		val model = parentPackage.model
-		//UMLUtil.findNamedElements
-		
+		// UMLUtil.findNamedElements
 		val importedPackage = model.getNestedPackage(name)
 		val umlImport = parentPackage.createPackageImport(importedPackage)
 		parentPackage.save
 		brokenClassifier.referencedElement = umlImport;
 	}
-	
-	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Interface brokenClassifier, Package parentPackage, String name, Issue issue) {
+
+	private static def dispatch void fixCreate(de.cooperateproject.modeling.textual.cls.cls.Interface brokenClassifier,
+		Package parentPackage, String name, Issue issue) {
 		val umlInterface = parentPackage.createOwnedInterface(name);
 		parentPackage.save
 		brokenClassifier.referencedElement = umlInterface;
 	}
-	
-	private static def dispatch void fixCreate(Association brokenClassifier, Package parentPackage, String name, Issue issue) {
+
+	private static def dispatch void fixCreate(Association brokenClassifier, Package parentPackage, String name,
+		Issue issue) {
 
 		val leftType = brokenClassifier.left
 		val rightType = brokenClassifier.right
 		val props = brokenClassifier.properties
-		
+
 		var leftCardinality = Pair.of(0, -1)
 		var rightCardinality = Pair.of(0, -1)
 		if (props != null) {
@@ -281,10 +333,10 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 				rightCardinality = props.cardinalityRight.convert
 			}
 		}
-		
-		val leftPropertyName = if (Strings.isNullOrEmpty(issue.data.get(1))) null else issue.data.get(1)
-		val rightPropertyName = if (Strings.isNullOrEmpty(issue.data.get(2))) null else issue.data.get(2)
-			
+
+		val leftPropertyName = if(Strings.isNullOrEmpty(issue.data.get(1))) null else issue.data.get(1)
+		val rightPropertyName = if(Strings.isNullOrEmpty(issue.data.get(2))) null else issue.data.get(2)
+
 		val umlAssociation = leftType.createAssociation(
 			true,
 			brokenClassifier.aggregationKind.UMLAggregationKind,
@@ -299,23 +351,23 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 			leftCardinality.value
 		)
 		umlAssociation.name = name
-		
-		//TODO: Check where we want to put our Associations
-		//parentPackage.packagedElements.add(umlAssociation);
-		//val nodeRoot = brokenClassifier.eContainer as Package
-		
+
+		// TODO: Check where we want to put our Associations
+		// parentPackage.packagedElements.add(umlAssociation);
+		// val nodeRoot = brokenClassifier.eContainer as Package
 		umlAssociation.package = parentPackage
-		
-		//val nearestPackage = umlAssociation.package
-		
+
+		// val nearestPackage = umlAssociation.package
 		parentPackage.save
 		brokenClassifier.referencedElement = umlAssociation;
 		if (props != null) {
-			props.propertyLeft = if (leftPropertyName == null) null else umlAssociation.getMemberEnd(leftPropertyName, leftType)
-			props.propertyRight = if (rightPropertyName == null) null else umlAssociation.getMemberEnd(rightPropertyName, rightType)
+			props.propertyLeft = if(leftPropertyName == null) null else umlAssociation.getMemberEnd(leftPropertyName,
+				leftType)
+			props.propertyRight = if(rightPropertyName == null) null else umlAssociation.getMemberEnd(rightPropertyName,
+				rightType)
 		}
 	}
-	
+
 	private static def convert(Cardinality cardinality) {
 		var leftLower = cardinality.lowerBound
 		var leftUpper = cardinality.upperBound
@@ -327,50 +379,122 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		}
 		return Pair.of(leftLower, leftUpper)
 	}
-	
+
 	private static def void fixCreateGeneralization(EObject element) {
 		val generalization = element as Generalization
 		val left = generalization.left as Class
 		val right = generalization.right as Class
 		val umlGeneralization = left.createGeneralization(right)
 		left.save
-		//TODO: This is currently derived automatically
-		//generalization.referencedElement = umlGeneralization;
+	// TODO: This is currently derived automatically
+	// generalization.referencedElement = umlGeneralization;
 	}
-	
+
 	private static def void fixCreateRealization(EObject element) {
 		val implementation = element as Implementation
 		val left = implementation.left as Class
 		val right = implementation.right as Interface
 		left.createInterfaceRealization(null, right)
 		left.save
-		//implementation.eResource.modified = true
-		//TODO: This is currently derived automatically
-		//generalization.referencedElement = umlGeneralization;
+	// implementation.eResource.modified = true
+	// TODO: This is currently derived automatically
+	// generalization.referencedElement = umlGeneralization;
 	}
-	
-	private static def fixWrongType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
+
+	private static def fixWrongType(Property<? extends NamedElement> property, Issue issue,
+		IModificationContext context) {
 		val umlElement = property.referencedElement
 		property.type = umlElement?.getType
 	}
+
+	private static def fixWrongStaticQualifier(Property<? extends NamedElement> property, Issue issue,
+		IModificationContext context) {
+		val umlElement = property.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		if (umlElement instanceof Operation) {
+			property.static = umlElement.isStatic
+		} else if (umlElement instanceof org.eclipse.uml2.uml.Property) {
+			property.static = umlElement.isStatic
+		}
+	}
+
+	private static def fixWrongAbstractQualifier(EObject property, Issue issue, IModificationContext context) {
+		if (property instanceof Method) {
+			fixWrongAbstractQualifier(property)
+		} else if (property instanceof de.cooperateproject.modeling.textual.cls.cls.Class) {
+			fixWrongAbstractQualifier(property)
+		}
+	}
+
+	private static dispatch def fixWrongAbstractQualifier(de.cooperateproject.modeling.textual.cls.cls.Class property) {
+		val umlElement = property?.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		property.abstract = umlElement.abstract
+	}
 	
-	private static def adjustModelType(Property<? extends NamedElement> property, Issue issue, IModificationContext context) {
+	private static dispatch def fixWrongAbstractQualifier(Method property) {
+		val umlElement = property?.referencedElement
+		if (umlElement == null) {
+			return
+		}
+		property.abstract = umlElement.abstract
+	}
+
+	private static def adjustModelType(Property<? extends NamedElement> property, Issue issue,
+		IModificationContext context) {
 		val umlElement = property.referencedElement
 		umlElement.type = property.type
 		umlElement.save
-		relinkState(context)	
-		
+		relinkState(context)
 	}
 	
+	private static def adjustAbstractQualifier(EObject property, Issue issue, IModificationContext context) {
+		if (property instanceof Method) {
+			changeAbstractQualifier(property, context)
+		} else if (property instanceof de.cooperateproject.modeling.textual.cls.cls.Class) {
+			changeAbstractQualifier(property, context)
+		}
+	}
+
+	private static dispatch def changeAbstractQualifier(Method property, IModificationContext context) {
+		val umlElement = property.referencedElement
+		umlElement.isAbstract = property.abstract
+		umlElement.save
+		relinkState(context)
+	}
+
+	private static dispatch def changeAbstractQualifier(de.cooperateproject.modeling.textual.cls.cls.Class property, IModificationContext context) {
+		val umlElement = property.referencedElement
+		umlElement.isAbstract = property.abstract
+		umlElement.save
+		relinkState(context)
+	}
+
+	private static def adjustStaticQualifier(Property<? extends NamedElement> property, Issue issue,
+		IModificationContext context) {
+		val umlElement = property.referencedElement
+		if (umlElement instanceof Operation) {
+			umlElement.isStatic = property.static
+		} else if (umlElement instanceof org.eclipse.uml2.uml.Property) {
+			umlElement.isStatic = property.static
+		}
+		umlElement.save
+		relinkState(context)
+	}
+
 	private static def fixCreateNameExpression(Classifier classifier, Issue issue, IModificationContext context) {
 		val nameString = issue.data.get(0)
 		val umlElement = classifier.referencedElement
 		val expression = umlElement.createNameExpression(nameString, null)
 		umlElement.save
 		classifier.aliasExpression = expression
-		
+
 	}
-	
+
 	private static def fixChangeNameExpression(Classifier classifier, Issue issue, IModificationContext context) {
 		val nameString = issue.data.get(0)
 		val umlElement = classifier.referencedElement
@@ -378,34 +502,32 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		expression.name = nameString
 		umlElement.save
 		classifier.aliasExpression = expression
-		
+
 	}
-	
-	
+
 	private static def dispatch Type getType(Operation umlOperation) {
 		return umlOperation.type
 	}
-	
+
 	private static def dispatch Type getType(org.eclipse.uml2.uml.Property umlAttribute) {
 		return umlAttribute.type
 	}
-	
+
 	private static def dispatch Type getType(Parameter umlParameter) {
 		return umlParameter.type
 	}
-	
+
 	private static def dispatch setType(Operation umlOperation, Type type) {
 		umlOperation.type = type
 	}
-	
+
 	private static def dispatch setType(org.eclipse.uml2.uml.Property umlAttribute, Type type) {
 		umlAttribute.type = type
 	}
-	
+
 	private static def dispatch setType(Parameter umlParameter, Type type) {
 		umlParameter.type = type
 	}
-	
 
 	private def fixMissingMember(EObject element, Issue issue, IModificationContext context) {
 		val name = context.xtextDocument.get(issue.offset, issue.length)
@@ -417,77 +539,88 @@ class ClsQuickfixProvider extends DefaultQuickfixProvider {
 		}
 		brokenMember.fixCreate(umlClassifier, name, issue)
 	}
-		
-	private static def dispatch void fixCreate(Attribute brokenAttribute, Class umlClassifier, String name, Issue issue) {
+
+	private static def dispatch void fixCreate(Attribute brokenAttribute, Class umlClassifier, String name,
+		Issue issue) {
 		val umlType = brokenAttribute.type
 		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
+		umlAttribute.isStatic = brokenAttribute.isStatic
 		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
 	}
-	
-	private static def dispatch void fixCreate(Attribute brokenAttribute, Interface umlClassifier, String name, Issue issue) {
+
+	private static def dispatch void fixCreate(Attribute brokenAttribute, Interface umlClassifier, String name,
+		Issue issue) {
 		val umlType = brokenAttribute.type
 		val umlAttribute = umlClassifier.createOwnedAttribute(name, umlType)
+		umlAttribute.isStatic = brokenAttribute.isStatic
 		umlClassifier.save
 		brokenAttribute.referencedElement = umlAttribute
 	}
-	
-	
+
 	private static def dispatch void fixCreate(Method brokenMethod, Class umlClassifier, String name, Issue issue) {
-		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
+		brokenMethod.fixCreate [ paramNames, paramTypes, returnType |
 			val umlOperation = umlClassifier.createOwnedOperation(name, paramNames, paramTypes, returnType)
+			umlOperation.isStatic = brokenMethod.isStatic
+			umlOperation.isAbstract = brokenMethod.isAbstract
 			umlClassifier.save
 			brokenMethod.referencedElement = umlOperation
 		]
 	}
-	
+
 	private static def dispatch void fixCreate(Method brokenMethod, Interface umlClassifier, String name, Issue issue) {
-		brokenMethod.fixCreate[paramNames, paramTypes, returnType | 
+		brokenMethod.fixCreate [ paramNames, paramTypes, returnType |
 			val umlOperation = umlClassifier.createOwnedOperation(name, paramNames, paramTypes, returnType)
+			umlOperation.isStatic = brokenMethod.isStatic
+			umlOperation.isAbstract = brokenMethod.isAbstract
 			umlClassifier.save
 			brokenMethod.referencedElement = umlOperation
 		]
 	}
-	
+
 	private interface MethodCreateFixer {
 		def void fix(EList<String> parameterNames, EList<Type> parameterTypes, Type returnType)
 	}
-	
+
 	private static def void fixCreate(Method brokenMethod, MethodCreateFixer fixer) {
-		val parameterNames = brokenMethod.parameters.map[p | NodeModelUtils.findNodesForFeature(p, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).map[n | NodeModelUtils.getTokenText(n)].findFirst[true]]
-		val parameterTypes = brokenMethod.parameters.map[p | p.type]
+		val parameterNames = brokenMethod.parameters.map [p |
+			NodeModelUtils.findNodesForFeature(p, ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).map [n |
+				NodeModelUtils.getTokenText(n)
+			].findFirst[true]
+		]
+		val parameterTypes = brokenMethod.parameters.map[p|p.type]
 		val returnType = brokenMethod.type
-		
+
 		if (parameterNames.size != parameterTypes.size) {
 			return
 		}
-		
+
 		fixer.fix(parameterNames.encapsulate, parameterTypes.encapsulate, returnType)
 	}
-	
+
 	private static def <T> EList<T> encapsulate(Collection<T> elements) {
 		return new BasicEList<T>(elements)
 	}
-	
+
 	private static def getUMLAggregationKind(de.cooperateproject.modeling.textual.cls.cls.AggregationKind kind) {
 		switch kind {
-			case AGGREGATION :  AggregationKind.SHARED_LITERAL
-			case COMPOSITION : AggregationKind.COMPOSITE_LITERAL
-			case NONE : AggregationKind.NONE_LITERAL
+			case AGGREGATION: AggregationKind.SHARED_LITERAL
+			case COMPOSITION: AggregationKind.COMPOSITE_LITERAL
+			case NONE: AggregationKind.NONE_LITERAL
 		}
-		
+
 	}
-	
-	private static def save (EObject o) {
+
+	private static def save(EObject o) {
 		o.eResource.save(Collections.emptyMap)
 	}
 
 	private static def relinkState(IModificationContext context) {
 		context.xtextDocument.modify(new IUnitOfWork.Void<XtextResource>() {
-				
-				override process(XtextResource state) throws Exception {
-					state.relink
-				}
-			})
+
+			override process(XtextResource state) throws Exception {
+				state.relink
+			}
+		})
 	}
 }

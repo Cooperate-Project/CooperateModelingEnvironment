@@ -15,10 +15,10 @@ import com.google.common.collect.Maps;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.connection.CDOConnectionSettings;
-import de.cooperateproject.cdo.util.utils.CDOHelper;
 import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
+import de.cooperateproject.ui.util.ConnectionValidator;
 
 public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 
@@ -29,7 +29,7 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
     @Override
     protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
         LOGGER.debug(String.format("%s started with kind %d.", CooperateProjectBuilder.class.getSimpleName(), kind));
-        boolean treatAsNew = (kind == CLEAN_BUILD || kind == FULL_BUILD);
+        boolean treatAsNew = kind == CLEAN_BUILD || kind == FULL_BUILD;
         Collection<IProject> processedProjects = Lists.newArrayList();
         for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
             if (project.isOpen() && NatureUtils.hasCooperateNature(project)) {
@@ -50,8 +50,8 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
         propertiesStore.initFromStore();
         ProjectPropertiesDTO currentProperties = propertiesStore.getPreferences();
 
-        if (CDOHelper.connectionInfoIsValid(currentProperties.getCdoHost(), currentProperties.getCdoPort(),
-                currentProperties.getCdoRepo(), 100000)) {
+        if (ConnectionValidator.connectionInfoIsValid(currentProperties.getCdoHost(), currentProperties.getCdoPort(),
+                currentProperties.getCdoRepo(), currentProperties.getMsgPort(), 1000)) {
             if (treatAsNew || !currentProperties.equals(oldProperties.get(project))) {
                 BackgroundTasksAdapter.getManager().deregisterProject(project);
                 CDOConnectionManager.getInstance().unregister(project);

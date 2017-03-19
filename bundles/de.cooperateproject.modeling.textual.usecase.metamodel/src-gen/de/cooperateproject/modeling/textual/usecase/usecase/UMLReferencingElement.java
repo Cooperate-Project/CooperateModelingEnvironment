@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
-import org.eclipse.emf.cdo.CDOObject;
-
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -20,10 +18,9 @@ import org.eclipse.uml2.uml.Element;
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUMLReferencingElement()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface UMLReferencingElement<UMLType extends Element> extends CDOObject {
+public interface UMLReferencingElement<UMLType extends Element> extends de.cooperateproject.modeling.textual.usecase.usecase.Element {
 	/**
      * Returns the value of the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->

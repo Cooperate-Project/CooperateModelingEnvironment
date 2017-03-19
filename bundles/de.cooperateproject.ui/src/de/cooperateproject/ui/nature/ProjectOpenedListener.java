@@ -18,67 +18,78 @@ import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 
 public class ProjectOpenedListener implements IResourceChangeListener {
 
-	private static final Logger LOGGER = Logger.getLogger(ProjectOpenedListener.class);
+    private static final Logger LOGGER = Logger.getLogger(ProjectOpenedListener.class);
 
-	@Override
-	public void resourceChanged(IResourceChangeEvent event) {
-		if (event == null || event.getDelta() == null) {
-			return;
-		}
-		try {
-			event.getDelta().accept(new IResourceDeltaVisitor() {
-				public boolean visit(final IResourceDelta delta) throws CoreException {
-					if (isRelevantForClean(delta)) {
-						IProject project = (IProject) delta.getResource();
-						Job rebuild = new Job("rebuild") {
-							@Override
-							protected IStatus run(IProgressMonitor monitor) {
-								try {
-									project.build(IncrementalProjectBuilder.CLEAN_BUILD, null);
-								} catch (CoreException e) {
-									LOGGER.error("Exception during rebuild after opening or closing of a project", e);
-									return Status.CANCEL_STATUS;
-								}
-								return Status.OK_STATUS;
-							}
-						};
-						rebuild.schedule();
-					}
+    @Override
+    public void resourceChanged(IResourceChangeEvent event) {
+        if (handleNullOrClosing(event)) {
+            return;
+        }
+        try {
+            event.getDelta().accept(new IResourceDeltaVisitor() {
+                public boolean visit(final IResourceDelta delta) throws CoreException {
+                    if (isRelevantForClean(delta)) {
+                        IProject project = (IProject) delta.getResource();
+                        Job rebuild = new Job("rebuild") {
+                            @Override
+                            protected IStatus run(IProgressMonitor monitor) {
+                                try {
+                                    project.build(IncrementalProjectBuilder.CLEAN_BUILD, null);
+                                } catch (CoreException e) {
+                                    LOGGER.error("Exception during rebuild after opening of a project", e);
+                                    return Status.CANCEL_STATUS;
+                                }
+                                return Status.OK_STATUS;
+                            }
+                        };
+                        rebuild.schedule();
+                    }
 
-					if (isRelevantForDelete(delta)) {
-						IProject project = (IProject) delta.getResource();
-						BackgroundTasksAdapter.getManager().deregisterProject(project);
-					}
-					return true;
-				}
-			});
-		} catch (CoreException e) {
-			LOGGER.error("Exception during rebuild after opening or closing of a project", e);
-		}
-	}
+                    if (isRelevantForDelete(delta)) {
+                        BackgroundTasksAdapter.getManager().deregisterProject((IProject) delta.getResource());
+                    }
 
-	private static boolean isRelevantForClean(IResourceDelta delta) {
-		if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
-			return false;
-		}
-		
-		if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
-			return true;
-		}
-		
-		return false;
-	}
-	
-	private static boolean isRelevantForDelete(IResourceDelta delta) {
-		if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
-			return false;
-		}
-		
-		if (delta.getKind() == IResourceDelta.REMOVED) {
-			return true;
-		}
-		
-		return false;
-	}
-	
+                    return true;
+                }
+            });
+        } catch (CoreException e) {
+            LOGGER.error("Exception during rebuild after opening or closing of a project", e);
+        }
+    }
+
+    private static boolean isRelevantForClean(IResourceDelta delta) {
+        if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
+            return false;
+        }
+
+        if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private static boolean isRelevantForDelete(IResourceDelta delta) {
+        if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
+            return false;
+        }
+
+        if (delta.getKind() == IResourceDelta.REMOVED) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean handleNullOrClosing(IResourceChangeEvent event) {
+        if (event == null) {
+            return true;
+        } else if (event.getDelta() == null) {
+            if (event.getType() == IResourceChangeEvent.PRE_CLOSE) {
+                BackgroundTasksAdapter.getManager().deregisterProject((IProject) event.getResource());
+            }
+            return true;
+        }
+        return false;
+    }
 }

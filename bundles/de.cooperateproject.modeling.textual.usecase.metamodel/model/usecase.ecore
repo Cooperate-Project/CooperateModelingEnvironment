@@ -1,146 +1,411 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="usecase" nsURI="http://www.cooperateproject.de/modeling/language/usecase/Usecase"
+<ecore:EPackage
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    name="usecase"
+    nsURI="http://www.cooperateproject.de/modeling/language/usecase/Usecase"
     nsPrefix="usecase">
-  <eClassifiers xsi:type="ecore:EClass" name="UseCaseDiagram">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rootPackage" eType="#//RootPackage"
-        containment="true" eOpposite="#//RootPackage/diagram"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="UseCaseDiagram">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="rootPackage"
+        eType="#//RootPackage"
+        containment="true"
+        eOpposite="#//RootPackage/diagram"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="title"
+        lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Element"
+      abstract="true"
+      interface="true"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="NamedElement"
+      abstract="true"
+      eSuperTypes="#//Element">
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="name"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AliasedElement" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="AliasedElement"
+      abstract="true"
+      eSuperTypes="#//NamedElement">
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="alias"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BehavioredClassifier" eSuperTypes="#//Commentable"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Commentable" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RootPackage">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
-        eType="#//Actor" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="systems" upperBound="-1"
-        eType="#//System" containment="true" eOpposite="#//System/package"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relationships" upperBound="-1"
-        eType="#//Relationship" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" lowerBound="1"
-        eType="#//UseCaseDiagram" eOpposite="#//UseCaseDiagram/rootPackage"/>
-    <eGenericSuperTypes eClassifier="#//NamedElement"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Actor">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
-        eType="#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ActorType"/>
-    <eGenericSuperTypes eClassifier="#//AliasedElement"/>
-    <eGenericSuperTypes eClassifier="#//BehavioredClassifier"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="System">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usecases" upperBound="-1"
-        eType="#//UseCase" containment="true" eOpposite="#//UseCase/system"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" lowerBound="1"
-        eType="#//RootPackage" eOpposite="#//RootPackage/systems"/>
-    <eGenericSuperTypes eClassifier="#//NamedElement"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UseCase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPoints" upperBound="-1"
-        eType="#//ExtensionPoint" containment="true" eOpposite="#//ExtensionPoint/useCase"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="system" lowerBound="1"
-        eType="#//System" eOpposite="#//System/usecases"/>
-    <eGenericSuperTypes eClassifier="#//AliasedElement"/>
-    <eGenericSuperTypes eClassifier="#//BehavioredClassifier"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtensionPoint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" lowerBound="1"
-        eType="#//UseCase" eOpposite="#//UseCase/extensionPoints"/>
-    <eGenericSuperTypes eClassifier="#//AliasedElement"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Relationship"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Association">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usecase" eType="#//UseCase"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="leftCardinality" eType="#//Cardinality"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightCardinality" eType="#//Cardinality"
-        containment="true"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Generalization">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="client" eType="#//BehavioredClassifier"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier" eType="#//BehavioredClassifier"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Include">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="client" eType="#//UseCase"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier" eType="#//UseCase"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Extend">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="client" eType="#//UseCase"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier" eType="#//UseCase"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPoint" eType="#//ExtensionPoint"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Comment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" eType="#//Commentable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eGenericSuperTypes eClassifier="#//Relationship"/>
-    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Cardinality">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
-    <eLiterals name="UNDEFINED" literal="UNDEFINED"/>
-    <eLiterals name="PUBLIC" value="1" literal="+"/>
-    <eLiterals name="PRIVATE" value="2" literal="-"/>
-    <eLiterals name="PROTECTED" value="3" literal="#"/>
-    <eLiterals name="PACKAGE" value="4" literal="~"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UMLReferencingElement" abstract="true">
-    <eTypeParameters name="UMLType">
-      <eBounds eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="BehavioredClassifier"
+      abstract="true"
+      interface="true">
+    <eTypeParameters
+        name="T">
+      <eBounds
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
-      <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
+    <eGenericSuperTypes
+        eClassifier="#//Commentable"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eTypeParameter="#//BehavioredClassifier/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Commentable"
+      abstract="true"
+      interface="true"
+      eSuperTypes="#//Element"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="RootPackage">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="actors"
+        upperBound="-1"
+        eType="#//Actor"
+        containment="true"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="systems"
+        upperBound="-1"
+        eType="#//System"
+        containment="true"
+        eOpposite="#//System/package"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="relationships"
+        upperBound="-1"
+        eType="#//Relationship"
+        containment="true"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="diagram"
+        lowerBound="1"
+        eType="#//UseCaseDiagram"
+        eOpposite="#//UseCaseDiagram/rootPackage"/>
+    <eGenericSuperTypes
+        eClassifier="#//NamedElement"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Actor">
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="visibility"
+        lowerBound="1"
+        eType="#//Visibility"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="abstract"
+        lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="type"
+        lowerBound="1"
+        eType="#//ActorType"/>
+    <eGenericSuperTypes
+        eClassifier="#//AliasedElement"/>
+    <eGenericSuperTypes
+        eClassifier="#//BehavioredClassifier">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="System">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="usecases"
+        upperBound="-1"
+        eType="#//UseCase"
+        containment="true"
+        eOpposite="#//UseCase/system"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="package"
+        lowerBound="1"
+        eType="#//RootPackage"
+        eOpposite="#//RootPackage/systems"/>
+    <eGenericSuperTypes
+        eClassifier="#//NamedElement"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="UseCase">
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="visibility"
+        eType="#//Visibility"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="abstract"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="extensionPoints"
+        upperBound="-1"
+        eType="#//ExtensionPoint"
+        containment="true"
+        eOpposite="#//ExtensionPoint/useCase"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="system"
+        lowerBound="1"
+        eType="#//System"
+        eOpposite="#//System/usecases"/>
+    <eGenericSuperTypes
+        eClassifier="#//AliasedElement"/>
+    <eGenericSuperTypes
+        eClassifier="#//BehavioredClassifier">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="ExtensionPoint">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="useCase"
+        lowerBound="1"
+        eType="#//UseCase"
+        eOpposite="#//UseCase/extensionPoints"/>
+    <eGenericSuperTypes
+        eClassifier="#//AliasedElement"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Relationship"
+      abstract="true"
+      interface="true"
+      eSuperTypes="#//Element"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Association">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="actor"
+        eType="#//Actor"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="usecase"
+        eType="#//UseCase"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="actorCardinality"
+        eType="#//Cardinality"
+        containment="true"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="useCaseCardinality"
+        eType="#//Cardinality"
+        containment="true"/>
+    <eGenericSuperTypes
+        eClassifier="#//Relationship"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Generalization">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="specific"
+        lowerBound="1">
+      <eGenericType
+          eClassifier="#//BehavioredClassifier">
+        <eTypeArguments
+            eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="general"
+        lowerBound="1">
+      <eGenericType
+          eClassifier="#//BehavioredClassifier">
+        <eTypeArguments
+            eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eGenericSuperTypes
+        eClassifier="#//Relationship"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Include">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="addition"
+        lowerBound="1"
+        eType="#//UseCase"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="includingCase"
+        lowerBound="1"
+        eType="#//UseCase"/>
+    <eGenericSuperTypes
+        eClassifier="#//Relationship"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Extend">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="extension"
+        lowerBound="1"
+        eType="#//UseCase"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="extendedCase"
+        lowerBound="1"
+        eType="#//UseCase"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="extensionLocation"
+        lowerBound="1"
+        eType="#//ExtensionPoint"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="condition"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eGenericSuperTypes
+        eClassifier="#//Relationship"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Comment">
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="commentedElement"
+        eType="#//Commentable"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="comment"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eGenericSuperTypes
+        eClassifier="#//Relationship"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="Cardinality"
+      eSuperTypes="#//Element">
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="lowerBound"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures
+        xsi:type="ecore:EAttribute"
+        name="upperBound"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EEnum"
+      name="Visibility">
+    <eLiterals
+        name="UNDEFINED"
+        literal="UNDEFINED"/>
+    <eLiterals
+        name="PUBLIC"
+        value="1"
+        literal="+"/>
+    <eLiterals
+        name="PRIVATE"
+        value="2"
+        literal="-"/>
+    <eLiterals
+        name="PROTECTED"
+        value="3"
+        literal="#"/>
+    <eLiterals
+        name="PACKAGE"
+        value="4"
+        literal="~"/>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="ecore:EClass"
+      name="UMLReferencingElement"
+      abstract="true"
+      eSuperTypes="#//Element">
+    <eTypeParameters
+        name="UMLType">
+      <eBounds
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+    </eTypeParameters>
+    <eStructuralFeatures
+        xsi:type="ecore:EReference"
+        name="referencedElement">
+      <eGenericType
+          eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ActorType">
-    <eLiterals name="UNDEFINED"/>
-    <eLiterals name="HUMAN" value="1"/>
-    <eLiterals name="MACHINE" value="2" literal=""/>
+  <eClassifiers
+      xsi:type="ecore:EEnum"
+      name="ActorType">
+    <eLiterals
+        name="UNDEFINED"/>
+    <eLiterals
+        name="HUMAN"
+        value="1"/>
+    <eLiterals
+        name="MACHINE"
+        value="2"
+        literal=""/>
   </eClassifiers>
 </ecore:EPackage>

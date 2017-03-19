@@ -23,17 +23,19 @@ import de.cooperateproject.ui.wizards.projectnew.CDOCredentialsValidator;
 import de.cooperateproject.ui.wizards.projectnew.NonEmptyStringValidator;
 
 public class ProjectPropertiesComposite extends Composite {
-    private DataBindingContext m_bindingContext;
+    private DataBindingContext mBindingContext;
     private Text txtCDOHostname;
     private Text txtCDOPort;
     private Text txtCDORepository;
     private Text txtCDOUsername;
     private Text txtCDOPassword;
+    private Text txtMsgPort;
     private Label lblPort;
 
     private final ProjectPropertiesDTO preferencesDTO;
     private final IChangeListener validatorStatusListener;
     private AggregateValidationStatus aggregatedStatus;
+    private static final int UPDATE_DELAY = 1000;
 
     /**
      * Create the composite.
@@ -51,10 +53,10 @@ public class ProjectPropertiesComposite extends Composite {
 
         Group grpCdo = new Group(this, SWT.NONE);
         grpCdo.setLayout(new GridLayout(2, false));
-        GridData gd_grpCdo = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-        gd_grpCdo.minimumHeight = 150;
-        gd_grpCdo.heightHint = 156;
-        grpCdo.setLayoutData(gd_grpCdo);
+        GridData gdGrpCdo = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+        gdGrpCdo.minimumHeight = 150;
+        gdGrpCdo.heightHint = 156;
+        grpCdo.setLayoutData(gdGrpCdo);
         grpCdo.setText("CDO");
 
         Label lblHostname = new Label(grpCdo, SWT.NONE);
@@ -87,7 +89,13 @@ public class ProjectPropertiesComposite extends Composite {
         txtCDOPassword = new Text(grpCdo, SWT.BORDER | SWT.PASSWORD);
         txtCDOPassword.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
-        m_bindingContext = createDataBindings();
+        Label lblMsgPort = new Label(grpCdo, SWT.NONE);
+        lblMsgPort.setText("Message Server Port");
+
+        txtMsgPort = new Text(grpCdo, SWT.BORDER);
+        txtMsgPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+        mBindingContext = createDataBindings();
     }
 
     @Override
@@ -99,8 +107,8 @@ public class ProjectPropertiesComposite extends Composite {
         DataBindingContext bindingContext = new DataBindingContext();
         // atomic host
         IObservableValue<String> observeTextTxtCDOHostnameObserveWidget = WidgetProperties.text(SWT.Modify)
-                .observe(txtCDOHostname);
-        IObservableValue<String> atomicValidatedHostname = new WritableValue<String>(null, String.class);
+                .observeDelayed(UPDATE_DELAY, txtCDOHostname);
+        IObservableValue<String> atomicValidatedHostname = new WritableValue<>(null, String.class);
         UpdateValueStrategy strategyAtomicStringToModel = new UpdateValueStrategy();
         strategyAtomicStringToModel.setAfterGetValidator(new NonEmptyStringValidator());
         UpdateValueStrategy strategyAtomicStringToTarget = new UpdateValueStrategy();
@@ -108,28 +116,40 @@ public class ProjectPropertiesComposite extends Composite {
                 strategyAtomicStringToModel, strategyAtomicStringToTarget);
         // atomic port
         IObservableValue<String> observeTextTxtCDOPortObserveWidget = WidgetProperties.text(SWT.Modify)
-                .observe(txtCDOPort);
-        IObservableValue<Integer> atomicValidatedPort = new WritableValue<Integer>(null, Integer.class);
+                .observeDelayed(UPDATE_DELAY, txtCDOPort);
+        IObservableValue<Integer> atomicValidatedPort = new WritableValue<>(null, Integer.class);
         UpdateValueStrategy strategy = new UpdateValueStrategy();
         strategy.setConverter(new StringToNumberConverter());
         strategy.setAfterGetValidator(new StringToNumberConverter());
-        UpdateValueStrategy strategy_1 = new UpdateValueStrategy();
-        strategy_1.setConverter(new NumberToStringConverter());
-        strategy_1.setAfterGetValidator(new NumberToStringConverter());
-        bindingContext.bindValue(observeTextTxtCDOPortObserveWidget, atomicValidatedPort, strategy, strategy_1);
+        UpdateValueStrategy strategy1 = new UpdateValueStrategy();
+        strategy1.setConverter(new NumberToStringConverter());
+        strategy1.setAfterGetValidator(new NumberToStringConverter());
+        bindingContext.bindValue(observeTextTxtCDOPortObserveWidget, atomicValidatedPort, strategy, strategy1);
         // atomic repo
         IObservableValue<String> observeTextTxtCDORepositoryObserveWidget = WidgetProperties.text(SWT.Modify)
-                .observe(txtCDORepository);
-        IObservableValue<String> atomicValidatedRepository = new WritableValue<String>(null, String.class);
+                .observeDelayed(UPDATE_DELAY, txtCDORepository);
+        IObservableValue<String> atomicValidatedRepository = new WritableValue<>(null, String.class);
         bindingContext.bindValue(observeTextTxtCDORepositoryObserveWidget, atomicValidatedRepository,
                 strategyAtomicStringToModel, strategyAtomicStringToTarget);
+        // atomic message port
+        IObservableValue<String> observeTextTxtMsgPortObserveWidget = WidgetProperties.text(SWT.Modify)
+                .observeDelayed(UPDATE_DELAY, txtMsgPort);
+        IObservableValue<Integer> atomicValidatedMsgPort = new WritableValue<>(null, Integer.class);
+        UpdateValueStrategy msgStrategy = new UpdateValueStrategy();
+        msgStrategy.setConverter(new StringToNumberConverter());
+        msgStrategy.setAfterGetValidator(new StringToNumberConverter());
+        UpdateValueStrategy msgStrategy1 = new UpdateValueStrategy();
+        msgStrategy1.setConverter(new NumberToStringConverter());
+        msgStrategy1.setAfterGetValidator(new NumberToStringConverter());
+        bindingContext.bindValue(observeTextTxtMsgPortObserveWidget, atomicValidatedMsgPort, msgStrategy, msgStrategy1);
         // connection validation
         MultiValidator connectionValidator = new CDOCredentialsValidator(atomicValidatedHostname, atomicValidatedPort,
-                atomicValidatedRepository);
+                atomicValidatedRepository, atomicValidatedMsgPort);
         bindingContext.addValidationStatusProvider(connectionValidator);
         IObservableValue<String> validatedHostname = connectionValidator.observeValidatedValue(atomicValidatedHostname);
         IObservableValue<Integer> validatedPort = connectionValidator.observeValidatedValue(atomicValidatedPort);
         IObservableValue<String> validatedRepo = connectionValidator.observeValidatedValue(atomicValidatedRepository);
+        IObservableValue<Integer> validatedMsgPort = connectionValidator.observeValidatedValue(atomicValidatedMsgPort);
         // model bindings
         IObservableValue<String> cdoHostPreferencesDTOObserveValue = BeanProperties.value("cdoHost")
                 .observe(preferencesDTO);
@@ -140,6 +160,9 @@ public class ProjectPropertiesComposite extends Composite {
         IObservableValue<String> cdoRepoPreferencesDTOObserveValue = BeanProperties.value("cdoRepo")
                 .observe(preferencesDTO);
         bindingContext.bindValue(validatedRepo, cdoRepoPreferencesDTOObserveValue);
+        IObservableValue<Integer> msgPortPreferencesDTOObserveValue = BeanProperties.value("msgPort")
+                .observe(preferencesDTO);
+        bindingContext.bindValue(validatedMsgPort, msgPortPreferencesDTOObserveValue);
         // validation status notifier
         aggregatedStatus = new AggregateValidationStatus(bindingContext, AggregateValidationStatus.MAX_SEVERITY);
         aggregatedStatus.addChangeListener(validatorStatusListener);
@@ -148,11 +171,11 @@ public class ProjectPropertiesComposite extends Composite {
     }
 
     public final void updateModels() {
-        m_bindingContext.updateModels();
+        mBindingContext.updateModels();
     }
 
     public final void updateTargets() {
-        m_bindingContext.updateTargets();
+        mBindingContext.updateTargets();
     }
 
     @Override

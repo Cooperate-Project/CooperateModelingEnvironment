@@ -22,4 +22,8 @@
          id="de.cooperateproject.modeling.textual.class.feature"
          version="0.0.0"/>
 
+   <includes
+         id="de.cooperateproject.modeling.textual.usecase.feature"
+         version="0.0.0"/>
+
 </feature>
