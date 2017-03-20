@@ -38,4 +38,9 @@ public class TextualToGraphicalClassTraceTest extends DirectedTraceTransformatio
         testTraceTransformation("ClassDiagramSelfReference");
     }
 
+    @Test
+    public void testClassNote() throws Exception {
+        testTraceTransformation("ClassDiagramClassNote");
+    }
+
 }

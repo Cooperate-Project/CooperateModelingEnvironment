@@ -11,7 +11,7 @@ modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/te
 
 main() {
 	var diagrams := textual.rootObjects()[cls::ClassDiagram];
-	assert fatal (diagrams->size() = 1);
+	assert fatal (diagrams->size() = 1) with log ("Expected one diagram but got other number.", diagrams->size());
 	diagrams->map diagramToDiagram();
 }
 

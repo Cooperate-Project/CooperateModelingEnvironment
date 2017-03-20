@@ -35,8 +35,8 @@ import com.google.common.collect.Iterables;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
+import de.cooperateproject.modeling.transformation.transformations.impl.Log4JLogger;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
-import de.cooperateproject.modeling.transformation.transformations.tests.util.Log4JLogger;
 
 public abstract class TransformationTestBase {
 

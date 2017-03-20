@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Az2OcA11EeeHpu4pMbT6JQ" type="PapyrusUMLClassDiagram" name="Christmas Class Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_DOj9YA11EeeHpu4pMbT6JQ" type="Class_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_DOtuYA11EeeHpu4pMbT6JQ" type="Class_NameLabel"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_DOtuYQ11EeeHpu4pMbT6JQ" type="Class_FloatingNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_DOuVcA11EeeHpu4pMbT6JQ" y="5"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DOx_0A11EeeHpu4pMbT6JQ" type="Class_AttributeCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_DOx_0Q11EeeHpu4pMbT6JQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DOx_0g11EeeHpu4pMbT6JQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DOx_0w11EeeHpu4pMbT6JQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DOx_1A11EeeHpu4pMbT6JQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DOx_1Q11EeeHpu4pMbT6JQ" type="Class_OperationCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_DOx_1g11EeeHpu4pMbT6JQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DOx_1w11EeeHpu4pMbT6JQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DOx_2A11EeeHpu4pMbT6JQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DOx_2Q11EeeHpu4pMbT6JQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DOym4A11EeeHpu4pMbT6JQ" type="Class_NestedClassifierCompartment">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_DOym4Q11EeeHpu4pMbT6JQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_DOym4g11EeeHpu4pMbT6JQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_DOym4w11EeeHpu4pMbT6JQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DOym5A11EeeHpu4pMbT6JQ"/>
+    </children>
+    <element xmi:type="uml:Class" href="ClassDiagramClassNote.uml#_DOYXMA11EeeHpu4pMbT6JQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DOj9YQ11EeeHpu4pMbT6JQ" x="234" y="131"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_EATjYA11EeeHpu4pMbT6JQ" type="Comment_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_EAUKcA11EeeHpu4pMbT6JQ" type="Comment_BodyLabel"/>
+    <element xmi:type="uml:Comment" href="ClassDiagramClassNote.uml#_EALAgA11EeeHpu4pMbT6JQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_EATjYQ11EeeHpu4pMbT6JQ" x="457" y="140"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_Az2OcQ11EeeHpu4pMbT6JQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Az2Ocg11EeeHpu4pMbT6JQ"/>
+  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Az2Ocw11EeeHpu4pMbT6JQ">
+    <owner xmi:type="uml:Model" href="ClassDiagramClassNote.uml#_AvM_AA11EeeHpu4pMbT6JQ"/>
+  </styles>
+  <element xmi:type="uml:Model" href="ClassDiagramClassNote.uml#_AvM_AA11EeeHpu4pMbT6JQ"/>
+  <edges xmi:type="notation:Connector" xmi:id="_GHjjwA11EeeHpu4pMbT6JQ" type="Comment_AnnotatedElementEdge" source="_EATjYA11EeeHpu4pMbT6JQ" target="_DOj9YA11EeeHpu4pMbT6JQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_GHkK0A11EeeHpu4pMbT6JQ"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_GHkK0Q11EeeHpu4pMbT6JQ" points="[588, 214, -643984, -643984]$[334, 174, -643984, -643984]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_GIZ4UA11EeeHpu4pMbT6JQ" id="(0.0,0.6166666666666667)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_GIZ4UQ11EeeHpu4pMbT6JQ" id="(1.0,0.43)"/>
+  </edges>
+</notation:Diagram>

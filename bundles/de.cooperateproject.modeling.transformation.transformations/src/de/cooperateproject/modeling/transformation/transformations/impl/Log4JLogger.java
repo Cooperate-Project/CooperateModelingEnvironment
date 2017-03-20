@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.transformation.transformations.tests.util;
+package de.cooperateproject.modeling.transformation.transformations.impl;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
