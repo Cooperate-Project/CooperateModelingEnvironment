@@ -27,7 +27,6 @@ Require-Bundle: org.eclipse.xtext;resolution:=optional,
  org.apache.commons.lang3,
  org.eclipse.ui;bundle-version="3.108.0",
  de.cooperateproject.util;bundle-version="0.1.6",
- net.winklerweb.cdoxtext.runtime;visibility:=reexport,
  org.eclipse.xtext.ecore;bundle-version="2.10.0",
  de.cooperateproject.modeling.textual.common.metamodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
