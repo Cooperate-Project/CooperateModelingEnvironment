@@ -38,7 +38,7 @@ class ClsFormatter extends AbstractClsFormatter {
 	def dispatch void format(Package pkg, extension IFormattableDocument document) {		
 		interior(			
 			pkg.regionFor.keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine],
-			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 2],
+			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
 		pkg.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
@@ -46,17 +46,17 @@ class ClsFormatter extends AbstractClsFormatter {
 		for (PackageImport packageImports : pkg.getPackageImports()) {
 			format(packageImports, document);
 		}
-		pkg.packageImports.last?.append[newLines = 2; priority = 1]
+		pkg.packageImports.last?.append[newLines = 2; priority = 3]
 
 		for (Classifier<?> classifiers : pkg.getClassifiers()) {
 			format(classifiers, document);
 		}
-		pkg.classifiers.last?.append[newLines = 2; priority = 1]
+		pkg.classifiers.last?.append[newLines = 2; priority = 3]
 		
 		for (Connector connectors : pkg.getConnectors()) {
 			format(connectors, document);
 		}
-		pkg.connectors.last?.append[newLines = 2; priority = 1]
+		pkg.connectors.last?.append[newLines = 2; priority = 3]
 		
 		for (Package packages : pkg.getPackages()) {
 			format(packages, document);
@@ -79,9 +79,9 @@ class ClsFormatter extends AbstractClsFormatter {
 		}
 
 		if (clz.members.isEmpty) {
-			clz.append[newLine]
+			clz.append[newLine; priority = 2]
 		} else {
-			clz.append[newLines = 2]
+			clz.append[newLines = 2; priority = 2]
 		}
 	}
 
@@ -97,9 +97,9 @@ class ClsFormatter extends AbstractClsFormatter {
 		}
 
 		if (interfaze.members.isEmpty) {
-			interfaze.append[newLine]
+			interfaze.append[newLine; priority = 2]
 		} else {
-			interfaze.append[newLines = 2]
+			interfaze.append[newLines = 2; priority = 2]
 		}
 		
 	}
@@ -122,14 +122,16 @@ class ClsFormatter extends AbstractClsFormatter {
 	}
 
 	def dispatch void format(Generalization generalization, extension IFormattableDocument document) {
-		format(generalization.getLeft(), document);
-		format(generalization.getRight(), document);
+		generalization.regionFor.keyword(generalizationAccess.leftParenthesisKeyword_1).append[noSpace]
+		generalization.regionFor.keyword(generalizationAccess.rightParenthesisKeyword_5).prepend[noSpace]
+		generalization.regionFor.keyword(generalizationAccess.commaKeyword_3).prepend[noSpace]
 		generalization.append[newLine]
 	}
 
 	def dispatch void format(Implementation implementation, extension IFormattableDocument document) {
-		format(implementation.getLeft(), document);
-		format(implementation.getRight(), document);
+		implementation.regionFor.keyword(implementationAccess.leftParenthesisKeyword_1).append[noSpace]
+		implementation.regionFor.keyword(implementationAccess.rightParenthesisKeyword_5).prepend[noSpace]
+		implementation.regionFor.keyword(implementationAccess.commaKeyword_3).prepend[noSpace]
 		implementation.append[newLine]
 	}
 	
