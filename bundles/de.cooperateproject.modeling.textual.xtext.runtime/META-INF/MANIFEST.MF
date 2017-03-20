@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtext
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime;singleton:=true
-Bundle-Version: 0.1.6
+Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.xtext.xbase.lib;bundle-version="2.9.1",
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  net.winklerweb.cdoxtext.runtime;bundle-version="0.1.2";visibility:=reexport,
  org.apache.commons.lang3;bundle-version="3.1.0",
  org.apache.log4j,
- de.cooperateproject.util;bundle-version="0.1.6",
+ de.cooperateproject.util;bundle-version="0.1.7",
  de.cooperateproject.modeling.textual.common,
  de.cooperateproject.ui.preferences;bundle-version="1.0.0",
  org.eclipse.emf.transaction,

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.cooperateproject.modeling.textual.usecase.ui
-Bundle-Version: 0.1.6
+Bundle-Version: 0.1.7.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.usecase,
