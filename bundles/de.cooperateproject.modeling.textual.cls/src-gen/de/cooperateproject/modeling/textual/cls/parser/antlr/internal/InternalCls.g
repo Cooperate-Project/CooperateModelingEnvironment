@@ -1517,15 +1517,18 @@ ruleXtextAssociation returns [EObject current=null]
 		(
 			(
 				{
+					newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_4_0());
+				}
+				lv_memberEndTypes_4_0=ruleXtextAssociationMemberEndReferencedType
+				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getXtextAssociationRule());
+						$current = createModelElementForParent(grammarAccess.getXtextAssociationRule());
 					}
-				}
-				{
-					newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierCrossReference_4_0());
-				}
-				ruleFQN
-				{
+					add(
+						$current,
+						"memberEndTypes",
+						lv_memberEndTypes_4_0,
+						"de.cooperateproject.modeling.textual.cls.Cls.XtextAssociationMemberEndReferencedType");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1538,15 +1541,18 @@ ruleXtextAssociation returns [EObject current=null]
 			(
 				(
 					{
+						newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_5_1_0());
+					}
+					lv_memberEndTypes_6_0=ruleXtextAssociationMemberEndReferencedType
+					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getXtextAssociationRule());
+							$current = createModelElementForParent(grammarAccess.getXtextAssociationRule());
 						}
-					}
-					{
-						newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierCrossReference_5_1_0());
-					}
-					ruleFQN
-					{
+						add(
+							$current,
+							"memberEndTypes",
+							lv_memberEndTypes_6_0,
+							"de.cooperateproject.modeling.textual.cls.Cls.XtextAssociationMemberEndReferencedType");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1689,6 +1695,39 @@ ruleXtextAssociation returns [EObject current=null]
 				}
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleXtextAssociationMemberEndReferencedType
+entryRuleXtextAssociationMemberEndReferencedType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getXtextAssociationMemberEndReferencedTypeRule()); }
+	iv_ruleXtextAssociationMemberEndReferencedType=ruleXtextAssociationMemberEndReferencedType
+	{ $current=$iv_ruleXtextAssociationMemberEndReferencedType.current; }
+	EOF;
+
+// Rule XtextAssociationMemberEndReferencedType
+ruleXtextAssociationMemberEndReferencedType returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getXtextAssociationMemberEndReferencedTypeRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeClassifierCrossReference_0());
+			}
+			ruleFQN
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

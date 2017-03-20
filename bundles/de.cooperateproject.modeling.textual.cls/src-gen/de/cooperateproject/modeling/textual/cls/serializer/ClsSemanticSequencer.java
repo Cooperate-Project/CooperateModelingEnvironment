@@ -13,6 +13,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
@@ -82,6 +83,9 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case ClsPackage.XTEXT_ASSOCIATION:
 				sequence_XtextAssociation(context, (XtextAssociation) semanticObject); 
+				return; 
+			case ClsPackage.XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE:
+				sequence_XtextAssociationMemberEndReferencedType(context, (XtextAssociationMemberEndReferencedType) semanticObject); 
 				return; 
 			}
 		else if (epackage == TextualCommonsPackage.eINSTANCE)
@@ -324,6 +328,24 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     XtextAssociationMemberEndReferencedType returns XtextAssociationMemberEndReferencedType
+	 *
+	 * Constraint:
+	 *     type=[Classifier|FQN]
+	 */
+	protected void sequence_XtextAssociationMemberEndReferencedType(ISerializationContext context, XtextAssociationMemberEndReferencedType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ClsPackage.Literals.XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ClsPackage.Literals.XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeClassifierFQNParserRuleCall_0_1(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Connector returns XtextAssociation
 	 *     XtextAssociation returns XtextAssociation
 	 *
@@ -332,8 +354,8 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         twoSideBidirectionality?='bi'? 
 	 *         twoSideAggregationKind=AggregationKind 
 	 *         name=ID 
-	 *         memberEndTypes+=[Classifier|FQN] 
-	 *         memberEndTypes+=[Classifier|FQN]* 
+	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType 
+	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType* 
 	 *         (memberEndNames+=ID memberEndNames+=ID*)? 
 	 *         (memberEndCardinalities+=Cardinality memberEndCardinalities+=Cardinality*)? 
 	 *         comments+=Comment?

@@ -20,7 +20,7 @@ class ClsAssociationMemberEndRoleName extends AutomatedIssueResolutionBase<Assoc
 	}
 	
 	override resolvePossible() {
-		problematicElement.hasReferencedElement
+		problematicElement.hasReferencedElement && problematicElement.association.hasReferencedElement
 	}
 	
 	override resolve() {

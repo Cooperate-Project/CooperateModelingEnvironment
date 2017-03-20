@@ -1555,7 +1555,7 @@ public interface ClsPackage extends EPackage {
     int XTEXT_ASSOCIATION__MEMBER_ENDS = ASSOCIATION__MEMBER_ENDS;
 
     /**
-     * The feature id for the '<em><b>Member End Types</b></em>' reference list.
+     * The feature id for the '<em><b>Member End Types</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1627,13 +1627,59 @@ public interface ClsPackage extends EPackage {
     int XTEXT_ASSOCIATION___GET_NEAREST_PACKAGE = ASSOCIATION___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Collect Member End Types</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION___COLLECT_MEMBER_END_TYPES = ASSOCIATION_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Xtext Association</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int XTEXT_ASSOCIATION_OPERATION_COUNT = ASSOCIATION_OPERATION_COUNT + 0;
+    int XTEXT_ASSOCIATION_OPERATION_COUNT = ASSOCIATION_OPERATION_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.XtextAssociationMemberEndReferencedTypeImpl <em>Xtext Association Member End Referenced Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.XtextAssociationMemberEndReferencedTypeImpl
+     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getXtextAssociationMemberEndReferencedType()
+     * @generated
+     */
+    int XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE = 18;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE__TYPE = 0;
+
+    /**
+     * The number of structural features of the '<em>Xtext Association Member End Referenced Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Xtext Association Member End Referenced Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}' enum.
@@ -1643,7 +1689,7 @@ public interface ClsPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAggregationKind()
      * @generated
      */
-    int AGGREGATION_KIND = 18;
+    int AGGREGATION_KIND = 19;
 
 
     /**
@@ -2143,10 +2189,10 @@ public interface ClsPackage extends EPackage {
     EClass getXtextAssociation();
 
     /**
-     * Returns the meta object for the reference list '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#getMemberEndTypes <em>Member End Types</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#getMemberEndTypes <em>Member End Types</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Member End Types</em>'.
+     * @return the meta object for the containment reference list '<em>Member End Types</em>'.
      * @see de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#getMemberEndTypes()
      * @see #getXtextAssociation()
      * @generated
@@ -2207,6 +2253,37 @@ public interface ClsPackage extends EPackage {
      * @generated
      */
     EAttribute getXtextAssociation_TwoSideAggregationKind();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#collectMemberEndTypes() <em>Collect Member End Types</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Collect Member End Types</em>' operation.
+     * @see de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#collectMemberEndTypes()
+     * @generated
+     */
+    EOperation getXtextAssociation__CollectMemberEndTypes();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType <em>Xtext Association Member End Referenced Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Xtext Association Member End Referenced Type</em>'.
+     * @see de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
+     * @generated
+     */
+    EClass getXtextAssociationMemberEndReferencedType();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Type</em>'.
+     * @see de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType#getType()
+     * @see #getXtextAssociationMemberEndReferencedType()
+     * @generated
+     */
+    EReference getXtextAssociationMemberEndReferencedType_Type();
 
     /**
      * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}'.
@@ -2654,7 +2731,7 @@ public interface ClsPackage extends EPackage {
         EClass XTEXT_ASSOCIATION = eINSTANCE.getXtextAssociation();
 
         /**
-         * The meta object literal for the '<em><b>Member End Types</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Member End Types</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -2700,6 +2777,32 @@ public interface ClsPackage extends EPackage {
          * @generated
          */
         EAttribute XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND = eINSTANCE.getXtextAssociation_TwoSideAggregationKind();
+
+        /**
+         * The meta object literal for the '<em><b>Collect Member End Types</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation XTEXT_ASSOCIATION___COLLECT_MEMBER_END_TYPES = eINSTANCE.getXtextAssociation__CollectMemberEndTypes();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.XtextAssociationMemberEndReferencedTypeImpl <em>Xtext Association Member End Referenced Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.cls.cls.impl.XtextAssociationMemberEndReferencedTypeImpl
+         * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getXtextAssociationMemberEndReferencedType()
+         * @generated
+         */
+        EClass XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE = eINSTANCE.getXtextAssociationMemberEndReferencedType();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE__TYPE = eINSTANCE.getXtextAssociationMemberEndReferencedType_Type();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.AggregationKind <em>Aggregation Kind</em>}' enum.

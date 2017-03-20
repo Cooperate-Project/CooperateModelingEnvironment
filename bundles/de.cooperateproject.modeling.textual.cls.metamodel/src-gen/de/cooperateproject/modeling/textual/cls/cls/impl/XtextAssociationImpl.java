@@ -2,23 +2,23 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,8 +84,8 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Classifier<?>> getMemberEndTypes() {
-        return (EList<Classifier<?>>)eDynamicGet(ClsPackage.XTEXT_ASSOCIATION__MEMBER_END_TYPES, ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES, true, true);
+    public EList<XtextAssociationMemberEndReferencedType> getMemberEndTypes() {
+        return (EList<XtextAssociationMemberEndReferencedType>)eDynamicGet(ClsPackage.XTEXT_ASSOCIATION__MEMBER_END_TYPES, ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES, true, true);
     }
 
     /**
@@ -159,9 +159,20 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
      * <!-- end-user-doc -->
      * @generated
      */
+    public EList<Classifier<?>> collectMemberEndTypes() {
+        return new BasicEList<Classifier<?>>(getMemberEndTypes().stream() .map(XtextAssociationMemberEndReferencedType::getType).collect(Collectors.toList()));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case ClsPackage.XTEXT_ASSOCIATION__MEMBER_END_TYPES:
+                return ((InternalEList<?>)getMemberEndTypes()).basicRemove(otherEnd, msgs);
             case ClsPackage.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES:
                 return ((InternalEList<?>)getMemberEndCardinalities()).basicRemove(otherEnd, msgs);
         }
@@ -203,7 +214,7 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
         switch (featureID) {
             case ClsPackage.XTEXT_ASSOCIATION__MEMBER_END_TYPES:
                 getMemberEndTypes().clear();
-                getMemberEndTypes().addAll((Collection<? extends Classifier<?>>)newValue);
+                getMemberEndTypes().addAll((Collection<? extends XtextAssociationMemberEndReferencedType>)newValue);
                 return;
             case ClsPackage.XTEXT_ASSOCIATION__MEMBER_END_NAMES:
                 getMemberEndNames().clear();
@@ -281,4 +292,18 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
         return super.eIsSet(featureID);
     }
 
-} //XtextAssociationImpl
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case ClsPackage.XTEXT_ASSOCIATION___COLLECT_MEMBER_END_TYPES:
+                return collectMemberEndTypes();
+        }
+        return super.eInvoke(operationID, arguments);
+    }
+
+} // XtextAssociationImpl

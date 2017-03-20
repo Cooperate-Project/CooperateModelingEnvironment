@@ -29,20 +29,20 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface XtextAssociation extends Association {
     /**
-     * Returns the value of the '<em><b>Member End Types</b></em>' reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}&lt;?>.
+     * Returns the value of the '<em><b>Member End Types</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Member End Types</em>' reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Member End Types</em>' reference list.
+     * @return the value of the '<em>Member End Types</em>' containment reference list.
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getXtextAssociation_MemberEndTypes()
-     * @model transient="true"
+     * @model containment="true" transient="true"
      * @generated
      */
-    EList<Classifier<?>> getMemberEndTypes();
+    EList<XtextAssociationMemberEndReferencedType> getMemberEndTypes();
 
     /**
      * Returns the value of the '<em><b>Member End Names</b></em>' attribute list.
@@ -146,5 +146,14 @@ public interface XtextAssociation extends Association {
      * @generated
      */
     void setTwoSideAggregationKind(AggregationKind value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model unique="false"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new BasicEList<Classifier<?>>(getMemberEndTypes().stream() .map(XtextAssociationMemberEndReferencedType::getType).collect(Collectors.toList()));'"
+     * @generated
+     */
+    EList<Classifier<?>> collectMemberEndTypes();
 
 } // XtextAssociation

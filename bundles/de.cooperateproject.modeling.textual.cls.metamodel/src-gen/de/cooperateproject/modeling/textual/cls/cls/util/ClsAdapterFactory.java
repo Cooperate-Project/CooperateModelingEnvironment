@@ -19,6 +19,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
@@ -163,6 +164,10 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseXtextAssociation(XtextAssociation object) {
                 return createXtextAssociationAdapter();
+            }
+            @Override
+            public Adapter caseXtextAssociationMemberEndReferencedType(XtextAssociationMemberEndReferencedType object) {
+                return createXtextAssociationMemberEndReferencedTypeAdapter();
             }
             @Override
             public Adapter casePackageableElement(PackageableElement object) {
@@ -461,6 +466,20 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createXtextAssociationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType <em>Xtext Association Member End Referenced Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
+     * @generated
+     */
+    public Adapter createXtextAssociationMemberEndReferencedTypeAdapter() {
         return null;
     }
 

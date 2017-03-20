@@ -127,11 +127,16 @@ CommentLink:
 
 XtextAssociation:
 	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-	name=ID '(' memberEndTypes+=[Classifier|FQN] (',' memberEndTypes+=[Classifier|FQN])* ')'
+	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
 	('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')?
 	('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')?
 	comments+=Comment?
 ;
+
+XtextAssociationMemberEndReferencedType: 
+	type=[Classifier|FQN]
+;
+
 
 Comment returns commons::Comment:
 	'note' body = CommentBody

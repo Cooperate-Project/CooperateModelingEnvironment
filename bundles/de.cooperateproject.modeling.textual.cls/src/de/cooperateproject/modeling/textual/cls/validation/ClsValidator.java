@@ -3,6 +3,12 @@
  */
 package de.cooperateproject.modeling.textual.cls.validation;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.Switch;
@@ -12,8 +18,11 @@ import org.eclipse.xtext.validation.Check;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.Class;
+import de.cooperateproject.modeling.textual.cls.cls.Classifier;
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleName;
 import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
@@ -111,6 +120,46 @@ public class ClsValidator extends AbstractClsValidator {
             error(classifier.getName() + " should be a class but it's not!",
                     TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsValidatorConstants.NOT_AN_INTERFACE);
         }
+    }
+
+    @Check
+    private void checkUnambiguousMemberEnds(XtextAssociation asc) {
+        List<Classifier<?>> memberEndTypes = asc.collectMemberEndTypes();
+
+        Set<Classifier<?>> duplicatedTypes = new HashSet<>();
+
+        Set<Classifier<?>> seenTypes = new HashSet<>();
+        for (Classifier<?> type : memberEndTypes) {
+            if (seenTypes.contains(type)) {
+                duplicatedTypes.add(type);
+            }
+            seenTypes.add(type);
+        }
+
+        for (Classifier<?> type : duplicatedTypes) {
+            List<Integer> duplicatedIndices = new ArrayList<>();
+            for (int i = 0; i < memberEndTypes.size(); ++i) {
+                if (memberEndTypes.get(i) == type) {
+                    duplicatedIndices.add(i);
+                }
+            }
+            int maxIndex = duplicatedIndices.stream().max(Integer::compare).get();
+            if (asc.getMemberEndNames().size() <= maxIndex) {
+                error("Not enough role names given to distinguish the involved association participants unambiguously!",
+                        ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
+                        ClsValidatorConstants.NOT_ENOUGH_ROLE_NAMES);
+            } else {
+                Set<String> roleNames = duplicatedIndices.stream().map(i -> asc.getMemberEndNames().get(i))
+                        .collect(Collectors.toSet());
+                if (roleNames.size() != duplicatedIndices.size()) {
+                    error("Role names for the same type have to be unambiguous!",
+                            ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
+                            ClsValidatorConstants.NOT_ENOUGH_ROLE_NAMES);
+                }
+            }
+
+        }
+
     }
 
     private void info(String message, EStructuralFeature feature, String code) {

@@ -22,6 +22,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -171,6 +172,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * @generated
      */
     private EClass xtextAssociationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass xtextAssociationMemberEndReferencedTypeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -725,6 +733,33 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EOperation getXtextAssociation__CollectMemberEndTypes() {
+        return xtextAssociationEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getXtextAssociationMemberEndReferencedType() {
+        return xtextAssociationMemberEndReferencedTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getXtextAssociationMemberEndReferencedType_Type() {
+        return (EReference)xtextAssociationMemberEndReferencedTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getAggregationKind() {
         return aggregationKindEEnum;
     }
@@ -827,6 +862,10 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__MEMBER_END_NAVIGABILITIES);
         createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY);
         createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND);
+        createEOperation(xtextAssociationEClass, XTEXT_ASSOCIATION___COLLECT_MEMBER_END_TYPES);
+
+        xtextAssociationMemberEndReferencedTypeEClass = createEClass(XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE);
+        createEReference(xtextAssociationMemberEndReferencedTypeEClass, XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE__TYPE);
 
         // Create enums
         aggregationKindEEnum = createEEnum(AGGREGATION_KIND);
@@ -1057,15 +1096,24 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEAttribute(getAssociationMemberEnd_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(xtextAssociationEClass, XtextAssociation.class, "XtextAssociation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        g1 = createEGenericType(this.getClassifier());
-        g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEReference(getXtextAssociation_MemberEndTypes(), g1, null, "memberEndTypes", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getXtextAssociation_MemberEndTypes(), this.getXtextAssociationMemberEndReferencedType(), null, "memberEndTypes", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXtextAssociation_MemberEndNames(), ecorePackage.getEString(), "memberEndNames", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getXtextAssociation_MemberEndCardinalities(), theTextualCommonsPackage.getCardinality(), null, "memberEndCardinalities", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXtextAssociation_MemberEndNavigabilities(), ecorePackage.getEBoolean(), "memberEndNavigabilities", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXtextAssociation_TwoSideBidirectionality(), ecorePackage.getEBoolean(), "twoSideBidirectionality", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXtextAssociation_TwoSideAggregationKind(), this.getAggregationKind(), "twoSideAggregationKind", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        op = initEOperation(getXtextAssociation__CollectMemberEndTypes(), null, "collectMemberEndTypes", 0, -1, !IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(xtextAssociationMemberEndReferencedTypeEClass, XtextAssociationMemberEndReferencedType.class, "XtextAssociationMemberEndReferencedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEReference(getXtextAssociationMemberEndReferencedType_Type(), g1, null, "type", null, 1, 1, XtextAssociationMemberEndReferencedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(aggregationKindEEnum, AggregationKind.class, "AggregationKind");

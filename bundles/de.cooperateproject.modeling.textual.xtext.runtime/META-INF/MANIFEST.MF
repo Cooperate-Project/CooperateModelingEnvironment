@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  de.cooperateproject.util;bundle-version="0.1.5",
  de.cooperateproject.modeling.textual.common,
  de.cooperateproject.ui.preferences;bundle-version="1.0.0",
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction,
+ de.cooperateproject.modeling.textual.common.metamodel
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
  de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,

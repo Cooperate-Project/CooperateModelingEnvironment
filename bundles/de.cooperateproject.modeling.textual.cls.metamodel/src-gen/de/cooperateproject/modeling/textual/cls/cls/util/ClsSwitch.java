@@ -20,6 +20,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
@@ -271,6 +272,12 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseUMLReferencingElement(xtextAssociation);
                 if (result == null) result = casePackageableElement(xtextAssociation);
                 if (result == null) result = caseElement(xtextAssociation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ClsPackage.XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE: {
+                XtextAssociationMemberEndReferencedType xtextAssociationMemberEndReferencedType = (XtextAssociationMemberEndReferencedType)theEObject;
+                T1 result = caseXtextAssociationMemberEndReferencedType(xtextAssociationMemberEndReferencedType);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -545,6 +552,21 @@ public class ClsSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseXtextAssociation(XtextAssociation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Xtext Association Member End Referenced Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Xtext Association Member End Referenced Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseXtextAssociationMemberEndReferencedType(XtextAssociationMemberEndReferencedType object) {
         return null;
     }
 

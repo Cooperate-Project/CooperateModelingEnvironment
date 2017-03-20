@@ -474,6 +474,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleXtextAssociationMemberEndReferencedType
+entryRuleXtextAssociationMemberEndReferencedType
+:
+{ before(grammarAccess.getXtextAssociationMemberEndReferencedTypeRule()); }
+	 ruleXtextAssociationMemberEndReferencedType
+{ after(grammarAccess.getXtextAssociationMemberEndReferencedTypeRule()); } 
+	 EOF 
+;
+
+// Rule XtextAssociationMemberEndReferencedType
+ruleXtextAssociationMemberEndReferencedType 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeAssignment()); }
+		(rule__XtextAssociationMemberEndReferencedType__TypeAssignment)
+		{ after(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeAssignment()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleComment
 entryRuleComment
 :
@@ -4901,13 +4926,9 @@ rule__XtextAssociation__MemberEndTypesAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierCrossReference_4_0()); }
-		(
-			{ before(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierFQNParserRuleCall_4_0_1()); }
-			ruleFQN
-			{ after(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierFQNParserRuleCall_4_0_1()); }
-		)
-		{ after(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierCrossReference_4_0()); }
+		{ before(grammarAccess.getXtextAssociationAccess().getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_4_0()); }
+		ruleXtextAssociationMemberEndReferencedType
+		{ after(grammarAccess.getXtextAssociationAccess().getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_4_0()); }
 	)
 ;
 finally {
@@ -4920,13 +4941,9 @@ rule__XtextAssociation__MemberEndTypesAssignment_5_1
 	}
 :
 	(
-		{ before(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierCrossReference_5_1_0()); }
-		(
-			{ before(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierFQNParserRuleCall_5_1_0_1()); }
-			ruleFQN
-			{ after(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierFQNParserRuleCall_5_1_0_1()); }
-		)
-		{ after(grammarAccess.getXtextAssociationAccess().getMemberEndTypesClassifierCrossReference_5_1_0()); }
+		{ before(grammarAccess.getXtextAssociationAccess().getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_5_1_0()); }
+		ruleXtextAssociationMemberEndReferencedType
+		{ after(grammarAccess.getXtextAssociationAccess().getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_5_1_0()); }
 	)
 ;
 finally {
@@ -5002,6 +5019,25 @@ rule__XtextAssociation__CommentsAssignment_9
 		{ before(grammarAccess.getXtextAssociationAccess().getCommentsCommentParserRuleCall_9_0()); }
 		ruleComment
 		{ after(grammarAccess.getXtextAssociationAccess().getCommentsCommentParserRuleCall_9_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__XtextAssociationMemberEndReferencedType__TypeAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeClassifierCrossReference_0()); }
+		(
+			{ before(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeClassifierFQNParserRuleCall_0_1()); }
+			ruleFQN
+			{ after(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeClassifierFQNParserRuleCall_0_1()); }
+		)
+		{ after(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeClassifierCrossReference_0()); }
 	)
 ;
 finally {

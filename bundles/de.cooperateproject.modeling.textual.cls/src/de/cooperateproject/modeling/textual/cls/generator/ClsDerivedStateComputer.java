@@ -40,6 +40,7 @@ import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
@@ -179,8 +180,14 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
         @Override
         public Boolean caseXtextAssociation(XtextAssociation object) {
             if (object.getMemberEndTypes().isEmpty()) {
+                object.getMemberEndNames().clear();
+                object.getMemberEndCardinalities().clear();
+                object.getMemberEndNavigabilities().clear();
                 for (AssociationMemberEnd memberEnd : object.getMemberEnds()) {
-                    object.getMemberEndTypes().add(memberEnd.getType());
+                    XtextAssociationMemberEndReferencedType typeReference = ClsFactory.eINSTANCE
+                            .createXtextAssociationMemberEndReferencedType();
+                    typeReference.setType(memberEnd.getType());
+                    object.getMemberEndTypes().add(typeReference);
                     if (memberEnd.getCardinality() != null) {
                         object.getMemberEndCardinalities().add(memberEnd.getCardinality());
                     }
@@ -191,7 +198,7 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
                 }
             }
 
-            List<Classifier<?>> types = object.getMemberEndTypes();
+            List<Classifier<?>> types = object.collectMemberEndTypes();
             List<String> names = object.getMemberEndNames();
             List<Cardinality> cardinalities = object.getMemberEndCardinalities();
             EList<Boolean> navigabilities = object.getMemberEndNavigabilities();
@@ -244,7 +251,7 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
                     .filter(umlMemberEnd -> umlMemberEnd.getType() == object.getType().getReferencedElement())
                     .collect(Collectors.toList());
 
-            if (candidates.size() > 1 && StringUtils.isNotBlank(object.getName())) {
+            if (StringUtils.isNotBlank(object.getName())) {
                 candidates = candidates.stream().filter(umlMemberEnd -> object.getName().equals(umlMemberEnd.getName()))
                         .collect(Collectors.toList());
             }

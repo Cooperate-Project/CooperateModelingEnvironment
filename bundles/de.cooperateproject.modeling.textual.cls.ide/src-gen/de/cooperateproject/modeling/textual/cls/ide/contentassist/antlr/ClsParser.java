@@ -131,6 +131,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXtextAssociationAccess().getMemberEndCardinalitiesAssignment_8_2(), "rule__XtextAssociation__MemberEndCardinalitiesAssignment_8_2");
 					put(grammarAccess.getXtextAssociationAccess().getMemberEndCardinalitiesAssignment_8_3_1(), "rule__XtextAssociation__MemberEndCardinalitiesAssignment_8_3_1");
 					put(grammarAccess.getXtextAssociationAccess().getCommentsAssignment_9(), "rule__XtextAssociation__CommentsAssignment_9");
+					put(grammarAccess.getXtextAssociationMemberEndReferencedTypeAccess().getTypeAssignment(), "rule__XtextAssociationMemberEndReferencedType__TypeAssignment");
 					put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 					put(grammarAccess.getCardinalityAccess().getLowerBoundAssignment_0(), "rule__Cardinality__LowerBoundAssignment_0");
 					put(grammarAccess.getCardinalityAccess().getUpperBoundAssignment_1_1(), "rule__Cardinality__UpperBoundAssignment_1_1");

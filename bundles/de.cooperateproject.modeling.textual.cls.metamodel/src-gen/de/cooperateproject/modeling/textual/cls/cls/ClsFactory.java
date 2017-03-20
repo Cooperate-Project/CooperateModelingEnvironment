@@ -130,6 +130,15 @@ public interface ClsFactory extends EFactory {
     XtextAssociation createXtextAssociation();
 
     /**
+     * Returns a new object of class '<em>Xtext Association Member End Referenced Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Xtext Association Member End Referenced Type</em>'.
+     * @generated
+     */
+    XtextAssociationMemberEndReferencedType createXtextAssociationMemberEndReferencedType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

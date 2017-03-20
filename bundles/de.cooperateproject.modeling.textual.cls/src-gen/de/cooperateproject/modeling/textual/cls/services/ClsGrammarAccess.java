@@ -884,13 +884,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cMemberEndTypesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cMemberEndTypesClassifierCrossReference_4_0 = (CrossReference)cMemberEndTypesAssignment_4.eContents().get(0);
-		private final RuleCall cMemberEndTypesClassifierFQNParserRuleCall_4_0_1 = (RuleCall)cMemberEndTypesClassifierCrossReference_4_0.eContents().get(1);
+		private final RuleCall cMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_4_0 = (RuleCall)cMemberEndTypesAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cMemberEndTypesAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final CrossReference cMemberEndTypesClassifierCrossReference_5_1_0 = (CrossReference)cMemberEndTypesAssignment_5_1.eContents().get(0);
-		private final RuleCall cMemberEndTypesClassifierFQNParserRuleCall_5_1_0_1 = (RuleCall)cMemberEndTypesClassifierCrossReference_5_1_0.eContents().get(1);
+		private final RuleCall cMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_5_1_0 = (RuleCall)cMemberEndTypesAssignment_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cRoleKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
@@ -917,15 +915,17 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//XtextAssociation:
 		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-		//	name=ID '(' memberEndTypes+=[Classifier|FQN] (',' memberEndTypes+=[Classifier|FQN])* ')' ('role' '['
-		//	memberEndNames+=ID (',' memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':'
-		//	memberEndCardinalities+=Cardinality)* ']')?
+		//	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (','
+		//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=ID (','
+		//	memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)*
+		//	']')?
 		//	comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '(' memberEndTypes+=[Classifier|FQN] (','
-		//memberEndTypes+=[Classifier|FQN])* ')' ('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')? ('card' '['
-		//memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')? comments+=Comment?
+		//twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
+		//memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)*
+		//')' ('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality
+		//(':' memberEndCardinalities+=Cardinality)* ']')? comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//twoSideBidirectionality?='bi'?
@@ -949,29 +949,23 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 		
-		//memberEndTypes+=[Classifier|FQN]
+		//memberEndTypes+=XtextAssociationMemberEndReferencedType
 		public Assignment getMemberEndTypesAssignment_4() { return cMemberEndTypesAssignment_4; }
 		
-		//[Classifier|FQN]
-		public CrossReference getMemberEndTypesClassifierCrossReference_4_0() { return cMemberEndTypesClassifierCrossReference_4_0; }
+		//XtextAssociationMemberEndReferencedType
+		public RuleCall getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_4_0() { return cMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_4_0; }
 		
-		//FQN
-		public RuleCall getMemberEndTypesClassifierFQNParserRuleCall_4_0_1() { return cMemberEndTypesClassifierFQNParserRuleCall_4_0_1; }
-		
-		//(',' memberEndTypes+=[Classifier|FQN])*
+		//(',' memberEndTypes+=XtextAssociationMemberEndReferencedType)*
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//','
 		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
 		
-		//memberEndTypes+=[Classifier|FQN]
+		//memberEndTypes+=XtextAssociationMemberEndReferencedType
 		public Assignment getMemberEndTypesAssignment_5_1() { return cMemberEndTypesAssignment_5_1; }
 		
-		//[Classifier|FQN]
-		public CrossReference getMemberEndTypesClassifierCrossReference_5_1_0() { return cMemberEndTypesClassifierCrossReference_5_1_0; }
-		
-		//FQN
-		public RuleCall getMemberEndTypesClassifierFQNParserRuleCall_5_1_0_1() { return cMemberEndTypesClassifierFQNParserRuleCall_5_1_0_1; }
+		//XtextAssociationMemberEndReferencedType
+		public RuleCall getMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_5_1_0() { return cMemberEndTypesXtextAssociationMemberEndReferencedTypeParserRuleCall_5_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
@@ -1041,6 +1035,25 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Comment
 		public RuleCall getCommentsCommentParserRuleCall_9_0() { return cCommentsCommentParserRuleCall_9_0; }
+	}
+	public class XtextAssociationMemberEndReferencedTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.XtextAssociationMemberEndReferencedType");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cTypeClassifierCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeClassifierFQNParserRuleCall_0_1 = (RuleCall)cTypeClassifierCrossReference_0.eContents().get(1);
+		
+		//XtextAssociationMemberEndReferencedType:
+		//	type=[Classifier|FQN];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//type=[Classifier|FQN]
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+		
+		//[Classifier|FQN]
+		public CrossReference getTypeClassifierCrossReference_0() { return cTypeClassifierCrossReference_0; }
+		
+		//FQN
+		public RuleCall getTypeClassifierFQNParserRuleCall_0_1() { return cTypeClassifierFQNParserRuleCall_0_1; }
 	}
 	public class CommentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Comment");
@@ -1260,6 +1273,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	private final ImplementationElements pImplementation;
 	private final CommentLinkElements pCommentLink;
 	private final XtextAssociationElements pXtextAssociation;
+	private final XtextAssociationMemberEndReferencedTypeElements pXtextAssociationMemberEndReferencedType;
 	private final CommentElements pComment;
 	private final CardinalityElements pCardinality;
 	private final CommentBodyElements pCommentBody;
@@ -1294,6 +1308,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pImplementation = new ImplementationElements();
 		this.pCommentLink = new CommentLinkElements();
 		this.pXtextAssociation = new XtextAssociationElements();
+		this.pXtextAssociationMemberEndReferencedType = new XtextAssociationMemberEndReferencedTypeElements();
 		this.pComment = new CommentElements();
 		this.pCardinality = new CardinalityElements();
 		this.pCommentBody = new CommentBodyElements();
@@ -1534,9 +1549,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//XtextAssociation:
 	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-	//	name=ID '(' memberEndTypes+=[Classifier|FQN] (',' memberEndTypes+=[Classifier|FQN])* ')' ('role' '['
-	//	memberEndNames+=ID (',' memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':'
-	//	memberEndCardinalities+=Cardinality)* ']')?
+	//	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (','
+	//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=ID (','
+	//	memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)*
+	//	']')?
 	//	comments+=Comment?;
 	public XtextAssociationElements getXtextAssociationAccess() {
 		return pXtextAssociation;
@@ -1544,6 +1560,16 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getXtextAssociationRule() {
 		return getXtextAssociationAccess().getRule();
+	}
+	
+	//XtextAssociationMemberEndReferencedType:
+	//	type=[Classifier|FQN];
+	public XtextAssociationMemberEndReferencedTypeElements getXtextAssociationMemberEndReferencedTypeAccess() {
+		return pXtextAssociationMemberEndReferencedType;
+	}
+	
+	public ParserRule getXtextAssociationMemberEndReferencedTypeRule() {
+		return getXtextAssociationMemberEndReferencedTypeAccess().getRule();
 	}
 	
 	//Comment commons::Comment:
