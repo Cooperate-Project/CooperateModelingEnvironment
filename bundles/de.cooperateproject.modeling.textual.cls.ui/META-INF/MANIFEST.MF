@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.cooperateproject.modeling.textual.cls.ui
 Bundle-Vendor: My Company
-Bundle-Version: 0.1.5
+Bundle-Version: 0.1.6.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.cls,
@@ -26,7 +26,7 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  org.eclipse.jdt.ui;bundle-version="3.11.2",
  org.eclipse.uml2.uml.resources;bundle-version="5.1.0",
  org.eclipse.uml2.uml.edit;bundle-version="5.1.1",
- de.cooperateproject.modeling.common;bundle-version="0.1.5",
+ de.cooperateproject.modeling.common;bundle-version="0.1.6",
  de.cooperateproject.ui.preferences;bundle-version="1.0.0",
  de.cooperateproject.modeling.textual.common.metamodel
 Import-Package: org.apache.log4j
