@@ -21,6 +21,15 @@
 		<module>tests</module>
 		<module>releng</module>
 	</modules>
+	
+	<profiles>
+		<profile>
+			<id>products</id>
+			<modules>
+				<module>products</module>
+			</modules>
+		</profile>
+	</profiles>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,6 +80,11 @@
 		<repository>
 			<id>cooperate-externals</id>
 			<url>https://cooperate-project.github.io/Externals/updatesite/latest</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>emf-compare</id>
+			<url>http://download.eclipse.org/modeling/emf/compare/updates/releases/3.2/</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
