@@ -232,6 +232,13 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		umlProperty.upper = cardinality.value
 		umlProperty.aggregation = element.aggregationKind.convert
 		element.referencedElement = umlProperty
+		
+		// workaround for label display in Papyrus
+		if (element.association.memberEnds.size == 2 && element.association.memberEnds.indexOf(element) == 1) {
+			if (umlAssociation.memberEnds.indexOf(umlProperty) != 0) {
+				umlAssociation.memberEnds.move(1, 0);
+			}
+		}
 	}
 
 	private def fixMissingUMLElement(Classifier element, EClass umlType) {
