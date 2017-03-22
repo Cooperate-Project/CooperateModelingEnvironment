@@ -28,6 +28,11 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
+import java.util.Collection
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
 /**
  * Provides labels for EObjects.
@@ -111,30 +116,29 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 
 	def text(Association ele) {
 		if (ele.memberEnds.size == 2) {
-			val left = ele.memberEnds.get(0).name
-			val right = ele.memberEnds.get(1).name
+			val left = ele.memberEnds.get(0).text
+			val right = ele.memberEnds.get(1).text
 			return left + " " + ele.name + " " + right
 		}
 		return ele.name
 	}
 
 	def image(Association ele) {
+		var img = UMLImage.ASSOCIATION.image
 		if (ele.memberEnds.size == 2) {
-			if (ele.memberEnds.get(0).aggregationKind == AggregationKind.COMPOSITION) {
-				return UMLImage.ASSOCIATION_COMPOSITE.image
-			} else if (ele.memberEnds.get(0).aggregationKind == AggregationKind.AGGREGATION) {
-				return UMLImage.ASSOCIATION_SHARED.image
+			val aggregationKind = ele.memberEnds.get(0).aggregationKind
+			img = switch aggregationKind {
+				case COMPOSITION: UMLImage.ASSOCIATION_COMPOSITE.image
+				case AGGREGATION: UMLImage.ASSOCIATION_SHARED.image
+				default: img
 			}
 		}
-		return UMLImage.ASSOCIATION.image
+		return img
 	}
 
 	
 	def text(AssociationMemberEnd ele) {
-		if (ele.name != null) {
-			return ele.name
-		}
-		return ele.type.name
+		return ele.name ?: ele.type.name
 	}
 	
 	def image(AssociationMemberEnd ele) {
@@ -161,12 +165,17 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		return UMLImage.INTERFACE_REALIZATION.image
 	}
 	
-	def text(CommentLink ele) {
-		val leftChild = ele.commentedElement;
-		return leftChild.doGetText + " - Comment"
+	def text(Comment ele) {
+		var String commentedElementText
+		if (ele.commentedElement instanceof CommentLink) {
+			commentedElementText = (ele.commentedElement as CommentLink).commentedElement.text
+		} else if (ele.commentedElement instanceof Association) {
+			commentedElementText = (ele.commentedElement as Association).text
+		}
+		return commentedElementText + " : " + ele.body
 	}
 	
-	def image(CommentLink ele) {
+	def image(Comment ele) {
 		return UMLImage.COMMENT.image
 	}
 	
@@ -178,6 +187,33 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		return qualifiedNameProvider.getFullyQualifiedName(type).toString;
 	}
 	
+	def text(XtextAssociationMemberEndReferencedType typeReference) {
+		val association = typeReference.eContainer as XtextAssociation
+		val index = association.memberEndTypes.indexOf(typeReference)
+		val name = association.memberEndNames.tryGet(index)
+		val typeName = association.memberEndTypes.tryGet(index)?.type?.text
+		val cardinality = association.memberEndCardinalities.tryGet(index)
+		var txt = String.format("%s : %s", name ?: "unnamed", typeName)
+		if (cardinality != null) {
+			txt += String.format(" [%s]", cardinality.text)	
+		}
+		return txt
+	}
+	
+	def image(XtextAssociationMemberEndReferencedType typeReference) {
+		return UMLImage.PROPERTY
+	}
+	
+	def text(Cardinality cardinality) {
+		var lowerString = cardinality.lowerBound.convert
+		var upperString = cardinality.upperBound.convert
+
+		if (cardinality.lowerBound >= 0 && (cardinality.upperBound > cardinality.lowerBound || cardinality.upperBound < 0)) {
+			return lowerString +  ".." + upperString
+		}
+		return lowerString
+	}
+	
 	private def decorate(Image img, Visibility visibility) {
 		if (visibility == null || visibility == Visibility.UNDEFINED) {
 			return img
@@ -185,6 +221,20 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		val visibilityImage = visibilityMap.get(visibility)
 		val imgDescriptor = new DecorationOverlayIcon(img, convertToImageDescriptor(visibilityImage), IDecoration.BOTTOM_RIGHT)
 		imgDescriptor.createImage
+	}
+	
+	private static def convert(int value) {
+		if (value < 0) {
+			return "*"
+		}
+		return value.toString
+	}
+	
+	private static def <T> T tryGet(Collection<T> collection, int i) {
+		if (collection.size > i) {
+			return collection.get(i)
+		}
+		return null
 	}
 
 }	

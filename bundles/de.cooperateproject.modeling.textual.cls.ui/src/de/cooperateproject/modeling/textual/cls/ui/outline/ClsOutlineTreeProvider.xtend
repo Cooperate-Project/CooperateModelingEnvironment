@@ -23,6 +23,8 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 
 /**
  * Customization of the default outline structure.
@@ -39,13 +41,16 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	dispatch def createChildren(IOutlineNode parentNode, Package pkg) {
-		
 		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image, getStyledString("Packages", pkg.packages.size), false)
 		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image, getStyledString("Classifiers", pkg.classifiers.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image, getStyledString("Connectors", pkg.connectors.size), false)
 		val comments = Iterables.concat(pkg.connectors.filter(CommentLink), pkg.connectors.filter(Association).filter[!comments.isEmpty].map[comments])
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, getStyledString("Comments", comments.size), false, [!comments.empty])
+	}
+	
+	dispatch def createChildren(IOutlineNode parentNode, XtextAssociation asc) {
+		asc.memberEndTypes.forEach[t | createEObjectNode(parentNode, t)];
 	}
 	
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
@@ -56,37 +61,23 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	private def dispatch createCommentNode(IOutlineNode parentNode, CommentLink connector) {
-		connector.comments.forEach[c | createCommentNode2(parentNode, c)]
-		
+	def dispatch createConnectorNode(EStructuralFeatureNode node, Connector connector) {
+		createEObjectNode(node, connector)
+		return
 	}
 	
-	private def dispatch createCommentNode(IOutlineNode parentNode, Association connector) {
-		connector.comments.forEach[c | createCommentNode2(parentNode, c)]
+	def dispatch createConnectorNode(EStructuralFeatureNode node, CommentLink connector) {
+		return
 	}
 	
-	private def dispatch createCommentNode(IOutlineNode parentNode, Connector connector) {
-		// do nothing
-	}
-	
-	private def createCommentNode2(IOutlineNode parentNode, Comment comment) {
-		if (comment != null) {
-			createEObjectNode(parentNode, comment, imageDispatcher.invoke(comment), textDispatcher.invoke(comment), true)			
+	def createCommentNode(EStructuralFeatureNode node, Connector connector) {
+		if (connector instanceof Commentable) {
+			if (!connector.comments.isEmpty) {
+				connector.comments.forEach[c | createEObjectNode(node, c)]
+			}
 		}
+		return
 	}
-	
-	private def dispatch createConnectorNode(IOutlineNode parentNode, Association connector) {
-		createEObjectNode(parentNode, connector)
-	}
-	
-	private def dispatch createConnectorNode(IOutlineNode parentNode, Connector connector) {
-		createEObjectNode(parentNode, connector)
-	}
-	
-	private def dispatch createConnectorNode(IOutlineNode parentNode, CommentLink connector) {
-		// do nothing
-	}
-	
 	
 	private def getStyledString(String name, int counter) {
 		var styledLabel = new StyledString()
