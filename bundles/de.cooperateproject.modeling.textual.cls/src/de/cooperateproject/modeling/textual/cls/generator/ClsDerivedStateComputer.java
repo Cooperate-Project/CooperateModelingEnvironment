@@ -196,6 +196,11 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
                     }
                     object.getMemberEndNavigabilities().add(memberEnd.isNavigable());
                 }
+                if (object.getMemberEnds().size() == 2) {
+                    object.setTwoSideBidirectionality(
+                            object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
+                    object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
+                }
             }
 
             List<Classifier<?>> types = object.collectMemberEndTypes();
