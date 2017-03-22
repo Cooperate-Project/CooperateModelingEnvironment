@@ -6,9 +6,7 @@ Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.tools;bundle-version="2.0.0",
- org.eclipse.emf.ecore
-Import-Package: de.cooperateproject.ui.nature,
- org.apache.log4j,
- org.eclipse.papyrus.infra.services.openelement.service,
- org.eclipse.papyrus.infra.services.validation,
- org.eclipse.papyrus.infra.services.validation.commands
+ org.eclipse.emf.ecore,
+ org.apache.log4j;bundle-version="1.2.15",
+ de.cooperateproject.ui,
+ org.eclipse.papyrus.infra.services.openelement
