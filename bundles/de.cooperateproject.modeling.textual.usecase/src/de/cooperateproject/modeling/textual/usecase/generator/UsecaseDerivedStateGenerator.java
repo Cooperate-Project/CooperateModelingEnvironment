@@ -56,17 +56,17 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
             return;
         }
 
-        StreamSupport.stream(Spliterators.spliteratorUnknownSize(resource.getAllContents(), Spliterator.ORDERED), false)
-                .sorted(new ContentSorter()).forEach(calculator::doSwitch);
+        if (resource.getContents().isEmpty()) {
+            return;
+        }
 
-        //
-        // for (TreeIterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
-        // EObject o = iter.next();
-        // if (!calculator.doSwitch(o)) {
-        // iter.prune();
-        // }
-        // }
-        // return;
+        EObject rootObject = resource.getContents().get(0);
+        installDerivedState(rootObject);
+    }
+
+    public void installDerivedState(EObject object) {
+        StreamSupport.stream(Spliterators.spliteratorUnknownSize(object.eAllContents(), Spliterator.ORDERED), false)
+                .sorted(new ContentSorter()).forEach(calculator::doSwitch);
     }
 
     @Override

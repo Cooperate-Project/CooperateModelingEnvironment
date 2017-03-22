@@ -45,6 +45,12 @@ public abstract class DirectionalTransformationTestBase extends PlainTransformat
         EObject actual = transformationResult.getContents().get(0);
         EcoreUtil.resolveAll(getResourceSet());
 
+        // Resource r = getResourceSet().createResource(URI.createFileURI("asdflihjsdaf.xmi"));
+        // r.getContents().add(actual);
+        // ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        // r.save(baos, Collections.emptyMap());
+        // System.out.println(baos.toString());
+
         assertModelEquals(expected, actual, diffProcessor);
     }
 

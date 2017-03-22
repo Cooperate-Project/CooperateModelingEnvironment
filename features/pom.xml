@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.5-SNAPSHOT</version>
+		<version>0.1.7-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>features</artifactId>
@@ -14,6 +14,7 @@
 	<name>Feature Modules</name>
 	
 	<modules>
+		<module>de.cooperateproject.modeling.externals</module>
 		<module>de.cooperateproject.modeling.graphical.feature</module>
 		<module>de.cooperateproject.modeling.textual.feature</module>
 		<module>de.cooperateproject.modeling.textual.class.feature</module>

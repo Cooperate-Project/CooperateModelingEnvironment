@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.5-SNAPSHOT</version>
+		<version>0.1.7-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>bundles</artifactId>
@@ -22,6 +22,7 @@
 		<module>de.cooperateproject.modeling.textual.cls.metamodel</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
 		<module>de.cooperateproject.modeling.textual.common</module>
+		<module>de.cooperateproject.modeling.textual.common.metamodel</module>
 		<module>de.cooperateproject.modeling.textual.usecase</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ide</module>
 		<module>de.cooperateproject.modeling.textual.usecase.metamodel</module>

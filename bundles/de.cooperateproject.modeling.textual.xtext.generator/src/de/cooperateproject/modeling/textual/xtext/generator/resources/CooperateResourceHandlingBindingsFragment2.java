@@ -19,8 +19,6 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.DerivedStateResourceHandlerFactory;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.IDerivedStateResourceHandlerFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.resources.CooperateResourceSet;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.ConventionalUMLUriFinder;
@@ -62,8 +60,6 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(IGlobalScopeProvider.class), typeRef(CooperateGlobalScopeProvider.class))
                 .addTypeToType(typeRef(IUMLUriFinder.class), typeRef(ConventionalUMLUriFinder.class))
                 .addTypeToType(typeRef(IUMLPrimitiveTypeSelector.class), typeRef(DefaultUMLPrimitiveTypeSelector.class))
-                .addTypeToType(typeRef(IDerivedStateResourceHandlerFactory.class),
-                        typeRef(DerivedStateResourceHandlerFactory.class))
                 .addTypeToType(typeRef(IAutomatedIssueResolutionProvider.class),
                         typeRef(getAutomatedIssueResolutionProviderName()))
                 .contributeTo(getLanguage().getRuntimeGenModule());
@@ -76,8 +72,6 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
                 .addTypeToType(typeRef(XtextDocument.class), typeRef(CooperateXtextDocument.class))
                 .addTypeToType(typeRef(XtextDocumentProvider.class), typeRef(CooperateCDOXtextDocumentProvider.class))
                 .addTypeToType(typeRef(IResourceSetProvider.class), typeRef(XtextLiveScopeResourceSetProvider.class))
-                .addTypeToType(typeRef(IDerivedStateResourceHandlerFactory.class),
-                        typeRef(DerivedStateResourceHandlerFactory.class))
                 .contributeTo(getLanguage().getEclipsePluginGenModule());
     }
 

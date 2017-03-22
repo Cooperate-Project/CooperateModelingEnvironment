@@ -3,19 +3,16 @@
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
-import de.cooperateproject.modeling.textual.cls.cls.Visibility;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.emf.common.util.EList;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +22,7 @@ import org.eclipse.uml2.uml.Type;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#isFinal <em>Final</em>}</li>
@@ -33,148 +31,305 @@ import org.eclipse.uml2.uml.Type;
  *
  * @generated
  */
-public abstract class PropertyImpl<T extends NamedElement> extends NamedElementImpl<T> implements Property<T> {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PropertyImpl() {
-		super();
-	}
+public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencingElementImpl<T> implements Property<T> {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return ClsPackage.Literals.PROPERTY;
-	}
+    /**
+     * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getVisibility()
+     * @generated
+     * @ordered
+     */
+    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Visibility getVisibility() {
-		return (Visibility)eGet(ClsPackage.Literals.PROPERTY__VISIBILITY, true);
-	}
+    /**
+     * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isStatic()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean STATIC_EDEFAULT = false;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setVisibility(Visibility newVisibility) {
-		eSet(ClsPackage.Literals.PROPERTY__VISIBILITY, newVisibility);
-	}
+    /**
+     * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isFinal()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean FINAL_EDEFAULT = false;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isStatic() {
-		return (Boolean)eGet(ClsPackage.Literals.PROPERTY__STATIC, true);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertyImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setStatic(boolean newStatic) {
-		eSet(ClsPackage.Literals.PROPERTY__STATIC, newStatic);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return ClsPackage.Literals.PROPERTY;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isFinal() {
-		return (Boolean)eGet(ClsPackage.Literals.PROPERTY__FINAL, true);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
+     * @generated
+     */
+    @Override
+    public void setReferencedElement(T newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setFinal(boolean newFinal) {
-		eSet(ClsPackage.Literals.PROPERTY__FINAL, newFinal);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(ClsPackage.PROPERTY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getType() {
-		return (Type)eGet(ClsPackage.Literals.PROPERTY__TYPE, true);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(ClsPackage.PROPERTY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setType(Type newType) {
-		eSet(ClsPackage.Literals.PROPERTY__TYPE, newType);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Visibility getVisibility() {
+        return (Visibility)eDynamicGet(ClsPackage.PROPERTY__VISIBILITY, ClsPackage.Literals.PROPERTY__VISIBILITY, true, true);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public de.cooperateproject.modeling.textual.cls.cls.Package getNearestPackage() {
-		EObject focus = this.eContainer();
-		while (focus != null && !(focus instanceof de.cooperateproject.modeling.textual.cls.cls.Package)) {
-			focus = focus.eContainer();
-		}
-		return (de.cooperateproject.modeling.textual.cls.cls.Package)focus;
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setVisibility(Visibility newVisibility) {
+        eDynamicSet(ClsPackage.PROPERTY__VISIBILITY, ClsPackage.Literals.PROPERTY__VISIBILITY, newVisibility);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == Element.class) {
-			switch (baseOperationID) {
-				case ClsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ClsPackage.PROPERTY___GET_NEAREST_PACKAGE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isStatic() {
+        return (Boolean)eDynamicGet(ClsPackage.PROPERTY__STATIC, ClsPackage.Literals.PROPERTY__STATIC, true, true);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ClsPackage.PROPERTY___GET_NEAREST_PACKAGE:
-				return getNearestPackage();
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setStatic(boolean newStatic) {
+        eDynamicSet(ClsPackage.PROPERTY__STATIC, ClsPackage.Literals.PROPERTY__STATIC, newStatic);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isFinal() {
+        return (Boolean)eDynamicGet(ClsPackage.PROPERTY__FINAL, ClsPackage.Literals.PROPERTY__FINAL, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setFinal(boolean newFinal) {
+        eDynamicSet(ClsPackage.PROPERTY__FINAL, ClsPackage.Literals.PROPERTY__FINAL, newFinal);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier getType() {
+        return (Classifier)eDynamicGet(ClsPackage.PROPERTY__TYPE, ClsPackage.Literals.PROPERTY__TYPE, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier basicGetType() {
+        return (Classifier)eDynamicGet(ClsPackage.PROPERTY__TYPE, ClsPackage.Literals.PROPERTY__TYPE, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setType(Classifier newType) {
+        eDynamicSet(ClsPackage.PROPERTY__TYPE, ClsPackage.Literals.PROPERTY__TYPE, newType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case ClsPackage.PROPERTY__NAME:
+                return getName();
+            case ClsPackage.PROPERTY__VISIBILITY:
+                return getVisibility();
+            case ClsPackage.PROPERTY__STATIC:
+                return isStatic();
+            case ClsPackage.PROPERTY__FINAL:
+                return isFinal();
+            case ClsPackage.PROPERTY__TYPE:
+                if (resolve) return getType();
+                return basicGetType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case ClsPackage.PROPERTY__NAME:
+                setName((String)newValue);
+                return;
+            case ClsPackage.PROPERTY__VISIBILITY:
+                setVisibility((Visibility)newValue);
+                return;
+            case ClsPackage.PROPERTY__STATIC:
+                setStatic((Boolean)newValue);
+                return;
+            case ClsPackage.PROPERTY__FINAL:
+                setFinal((Boolean)newValue);
+                return;
+            case ClsPackage.PROPERTY__TYPE:
+                setType((Classifier)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case ClsPackage.PROPERTY__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case ClsPackage.PROPERTY__VISIBILITY:
+                setVisibility(VISIBILITY_EDEFAULT);
+                return;
+            case ClsPackage.PROPERTY__STATIC:
+                setStatic(STATIC_EDEFAULT);
+                return;
+            case ClsPackage.PROPERTY__FINAL:
+                setFinal(FINAL_EDEFAULT);
+                return;
+            case ClsPackage.PROPERTY__TYPE:
+                setType((Classifier)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case ClsPackage.PROPERTY__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case ClsPackage.PROPERTY__VISIBILITY:
+                return getVisibility() != VISIBILITY_EDEFAULT;
+            case ClsPackage.PROPERTY__STATIC:
+                return isStatic() != STATIC_EDEFAULT;
+            case ClsPackage.PROPERTY__FINAL:
+                return isFinal() != FINAL_EDEFAULT;
+            case ClsPackage.PROPERTY__TYPE:
+                return basicGetType() != null;
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
+            switch (derivedFeatureID) {
+                case ClsPackage.PROPERTY__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.PROPERTY__NAME;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //PropertyImpl

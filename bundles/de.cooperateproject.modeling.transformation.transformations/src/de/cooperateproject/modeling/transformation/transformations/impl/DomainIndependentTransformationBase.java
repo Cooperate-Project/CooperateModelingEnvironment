@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -35,6 +37,7 @@ import de.cooperateproject.modeling.transformation.transformations.Activator;
 
 public abstract class DomainIndependentTransformationBase {
 
+    private static final Logger LOGGER = Logger.getLogger(DomainIndependentTransformationBase.class);
     private final Map<URI, QVTOResource> specialMappings = Maps.newHashMap();
     private final Map<URI, TransformationExecutor> transformationExecutors = Maps.newHashMap();
     private final ResourceSet rs;
@@ -83,6 +86,7 @@ public abstract class DomainIndependentTransformationBase {
             context.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, transformationTrace.get());
         }
         context.setConfigProperty("keepModeling", true);
+        context.setLog(new Log4JLogger(LOGGER, Level.DEBUG));
 
         TransformationExecutor executor = getOrCreateTransformationExecutor(transformationURI);
         ExecutionDiagnostic result = executor.execute(context, transformationParameters.toArray(new ModelExtent[0]));

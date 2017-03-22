@@ -7,6 +7,9 @@ grammar de.cooperateproject.modeling.textual.cls.Cls with org.eclipse.xtext.comm
  */
 //import "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 import "platform:/resource/de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore"
+import "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore" as commons
+//import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
+//import "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel" as uml
 import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
@@ -21,7 +24,7 @@ ClassDiagram:
 ;
 
 RootPackage returns Package:
-	'rootPackage' referencedElement=[uml::Package|FQN]
+	'rootPackage' name=FQN
 	packageImports+=PackageImport*
 	classifiers+=Classifier*
 	connectors+=Connector*
@@ -29,7 +32,7 @@ RootPackage returns Package:
 ;
 
 Package:
-	'package' referencedElement=[uml::Package|FQN] '{'
+	'package' name=FQN '{'
 	packageImports+=PackageImport*
 	classifiers+=Classifier*
 	connectors+=Connector*
@@ -37,8 +40,9 @@ Package:
 	'}'
 ;
 
-PackageImport:
-	"import" referencedElement=[uml::PackageImport|FQN]
+
+PackageImport returns commons::PackageImport:
+	"import" importedPackage=FQN
 ;
 
 NameString returns ecore::EString:
@@ -58,17 +62,15 @@ Classifier:
 ;
 
 Class:
-	visibility=Visibility? (abstract ?= 'abstract')? 'class' (
-		(referencedElement = [uml::Class|NameString] 'as' aliasExpression = [uml::StringExpression|ID])
-		|referencedElement = [uml::Class|ID])
+	visibility=Visibility? (abstract ?= 'abstract')? 'class'
+	((name=STRING 'as' alias = ID)|name = ID)
 	('{' (members += Member)* '}')?
 ;
 
 Interface:
-	visibility=Visibility? 'interface' (
-		(referencedElement = [uml::Interface|NameString] 'as' aliasExpression = [uml::StringExpression|ID])
-		|referencedElement = [uml::Interface|ID]
-		) ('{' (members += Member)* '}')?
+	visibility=Visibility? 'interface'
+	((name=STRING 'as' alias = ID)|name = ID)
+	('{' (members += Member)* '}')?
 ;
 
 Member: 
@@ -81,7 +83,7 @@ Attribute:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	referencedElement = [uml::Property|ID] ':' type = [uml::Type|FQN]
+	name = ID ':' type=[uml::Classifier|FQN]
 ;
 	
 Method: 
@@ -89,59 +91,58 @@ Method:
 	(abstract ?= 'abstract')? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	referencedElement = [uml::Operation|ID] '(' 
+	name = ID '(' 
 	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
-	(':' type = [uml::Type|FQN])?
+	(':' type = [uml::Classifier|FQN])?
 ;
 
 Parameter:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
 	(final ?= 'final')? 
-	referencedElement = [uml::Parameter|ID] ':' type = [uml::Type|FQN]
+	name = ID ':' type = [uml::Classifier|FQN]
 ;
 
 
 
 Connector: 
 	Generalization 
-	| Association
+	| XtextAssociation
 	| Implementation
 	| CommentLink
-	| MultiAssociation
 ;
 
 
 Generalization: 
-	left = [uml::Classifier|FQN] 'isa' right = [uml::Classifier|FQN]
+	'isa' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
 ;
 
 Implementation:
-	left = [uml::Classifier|FQN] 'impl' right = [uml::Classifier|FQN]
+	'impl' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
 ;
 
 CommentLink: 
-	left = [uml::Classifier|FQN] 'note' comment = [uml::Comment|CommentBody]
+	comments+=Comment commentedElement = [Classifier|FQN]
 ;
 
-Association:
-	(bidirectional?='bi')? aggregationKind=AggregationKind  left = [uml::Classifier|FQN] (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|NameString]) right = [uml::Classifier|FQN]
-	(properties = AssociationProperties)? ('note' comment = [uml::Comment|CommentBody])?
+XtextAssociation:
+	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
+	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
+	('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')?
+	('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')?
+	comments+=Comment?
 ;
 
-MultiAssociation:
-	'asc' (referencedElement = [uml::Association|ID] | referencedElement = [uml::Association|NameString]) '{' (connectorEnds+=MemberEnd ';')+ '}'
+XtextAssociationMemberEndReferencedType: 
+	type=[Classifier|FQN]
 ;
 
-MemberEnd:
-	type = [uml::Classifier|FQN] (referencedElement=[uml::Property])? (cardinality=Cardinality)? (navigable?='<')?
+
+Comment returns commons::Comment:
+	'note' body = CommentBody
 ;
 
-AssociationProperties: 
-	'[' cardinalityLeft = Cardinality (',' propertyLeft = [uml::Property])? ('|' cardinalityRight = Cardinality (',' propertyRight = [uml::Property])?)? ']'
-;
-
-Cardinality: 
+Cardinality returns commons::Cardinality: 
 	lowerBound=CardinalityBound ('..' upperBound=CardinalityBound)?
 ;
 
@@ -153,7 +154,7 @@ CardinalityBound returns ecore::EInt:
 	('*') | INT
 ;
 
-enum Visibility:
+enum Visibility returns commons::Visibility:
 	PUBLIC = '+' 
 	| PUBLIC = 'public'
 	| PRIVATE = '-' 
@@ -161,18 +162,6 @@ enum Visibility:
 	| PROTECTED = '#' 
 	| PROTECTED = 'protected'
 	| PACKAGE = '~'
-;
-
-enum PrimitiveType:
-	STRING = 'string'
-	| INT = 'int'
-	| DOUBLE = 'double'
-	| BOOLEAN = 'boolean'
-	| CHAR = 'char'
-	| BYTE = 'byte'
-	| SHORT = 'short'
-	| LONG = 'long'
-	| FLOAT = 'float'
 ;
 
 enum AggregationKind:

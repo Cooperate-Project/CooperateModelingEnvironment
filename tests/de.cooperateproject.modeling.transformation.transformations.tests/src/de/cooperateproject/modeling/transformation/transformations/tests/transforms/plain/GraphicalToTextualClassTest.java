@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 public class GraphicalToTextualClassTest extends DirectionalTransformationTestBase {
 
@@ -59,6 +60,16 @@ public class GraphicalToTextualClassTest extends DirectionalTransformationTestBa
     }
 
     @Test
+    public void testClassNote() throws Exception {
+        testRegular("ClassDiagramClassNote");
+    }
+
+    @Test
+    public void testClassNoteIncremental() throws Exception {
+        testIncremental("ClassDiagramClassNote");
+    }
+
+    @Test
     public void testDeleteClass() throws Exception {
         URI sourceModelURI = createResourceModelURI("ClassDiagramSingleClass.notation");
         URI umlModelURI = createResourceModelURI("ClassDiagramSingleClass.uml");
@@ -76,7 +87,7 @@ public class GraphicalToTextualClassTest extends DirectionalTransformationTestBa
         EcoreUtil.remove(umlClass);
         ClassDiagram textualDiagram = (ClassDiagram) transformationResult.getContents().get(0);
         textualDiagram.getRootPackage().getClassifiers().get(0)
-                .eUnset(ClsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+                .eUnset(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
 
         // second transformation (incremental)
         transformationResult = runTransformation(TRANSFORMATION_URI, sourceModelURI, umlModelURI, transformationResult,

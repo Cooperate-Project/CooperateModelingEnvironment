@@ -12,6 +12,8 @@ import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.accessibility.ACC;
+import org.eclipse.swt.accessibility.Accessible;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.layout.GridData;
@@ -53,6 +55,11 @@ public class ModelAndDiagramSelectionComposite extends Composite {
         textModel = new Text(this, SWT.BORDER);
         textModel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
 
+        Accessible accLblEnterOrSelect = lblEnterOrSelect.getAccessible();
+        Accessible accTextModel = textModel.getAccessible();
+        accLblEnterOrSelect.addRelation(ACC.RELATION_LABEL_FOR, accTextModel);
+        accTextModel.addRelation(ACC.RELATION_LABELLED_BY, accLblEnterOrSelect);
+
         treeViewer = new TreeViewer(this, SWT.BORDER);
         Tree tree = treeViewer.getTree();
         tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
@@ -66,6 +73,12 @@ public class ModelAndDiagramSelectionComposite extends Composite {
 
         textDiagramName = new Text(this, SWT.BORDER);
         textDiagramName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+        Accessible accLblDiagramName = lblDiagramName.getAccessible();
+        Accessible accTextDiagramName = textDiagramName.getAccessible();
+        accLblDiagramName.addRelation(ACC.RELATION_LABEL_FOR, accTextDiagramName);
+        accTextDiagramName.addRelation(ACC.RELATION_LABELLED_BY, accLblDiagramName);
+
         m_bindingContext = initDataBindings();
         initCustomDataBindings();
         initCustomListeners();

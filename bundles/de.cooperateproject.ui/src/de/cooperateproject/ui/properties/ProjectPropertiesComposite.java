@@ -10,6 +10,8 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.databinding.validation.MultiValidator;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.accessibility.ACC;
+import org.eclipse.swt.accessibility.Accessible;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -30,7 +32,6 @@ public class ProjectPropertiesComposite extends Composite {
     private Text txtCDOUsername;
     private Text txtCDOPassword;
     private Text txtMsgPort;
-    private Label lblPort;
 
     private final ProjectPropertiesDTO preferencesDTO;
     private final IChangeListener validatorStatusListener;
@@ -60,40 +61,58 @@ public class ProjectPropertiesComposite extends Composite {
         grpCdo.setText("CDO");
 
         Label lblHostname = new Label(grpCdo, SWT.NONE);
-        lblHostname.setText("Hostname");
-
+        lblHostname.setText("Hostname:");
         txtCDOHostname = new Text(grpCdo, SWT.BORDER);
         txtCDOHostname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        Accessible accLblHostname = lblHostname.getAccessible();
+        Accessible accTxtHostname = txtCDOHostname.getAccessible();
+        accLblHostname.addRelation(ACC.RELATION_LABEL_FOR, accTxtHostname);
+        accTxtHostname.addRelation(ACC.RELATION_LABELLED_BY, accLblHostname);
 
-        lblPort = new Label(grpCdo, SWT.NONE);
-        lblPort.setText("Port");
-
+        Label lblPort = new Label(grpCdo, SWT.NONE);
+        lblPort.setText("Port:");
         txtCDOPort = new Text(grpCdo, SWT.BORDER);
         txtCDOPort.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 1, 1));
+        Accessible accLblPort = lblPort.getAccessible();
+        Accessible accTxtPort = txtCDOPort.getAccessible();
+        accLblPort.addRelation(ACC.RELATION_LABEL_FOR, accTxtPort);
+        accTxtPort.addRelation(ACC.RELATION_LABELLED_BY, accLblPort);
 
         Label lblRepository = new Label(grpCdo, SWT.NONE);
-        lblRepository.setText("Repository");
-
+        lblRepository.setText("Repository:");
         txtCDORepository = new Text(grpCdo, SWT.BORDER);
         txtCDORepository.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        Accessible accLblRepository = lblRepository.getAccessible();
+        Accessible accTxtRepository = txtCDORepository.getAccessible();
+        accLblRepository.addRelation(ACC.RELATION_LABEL_FOR, accTxtRepository);
+        accTxtRepository.addRelation(ACC.RELATION_LABELLED_BY, accLblRepository);
 
         Label lblUsername = new Label(grpCdo, SWT.NONE);
-        lblUsername.setText("Username");
-
+        lblUsername.setText("Username:");
         txtCDOUsername = new Text(grpCdo, SWT.BORDER);
         txtCDOUsername.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        Accessible accLblUsername = lblUsername.getAccessible();
+        Accessible accTxtUsername = txtCDOUsername.getAccessible();
+        accLblUsername.addRelation(ACC.RELATION_LABEL_FOR, accTxtUsername);
+        accTxtUsername.addRelation(ACC.RELATION_LABELLED_BY, accLblUsername);
 
         Label lblPassword = new Label(grpCdo, SWT.NONE);
-        lblPassword.setText("Password");
-
+        lblPassword.setText("Password:");
         txtCDOPassword = new Text(grpCdo, SWT.BORDER | SWT.PASSWORD);
         txtCDOPassword.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        Accessible accLblPassword = lblPassword.getAccessible();
+        Accessible accTxtPassword = txtCDOPassword.getAccessible();
+        accLblPassword.addRelation(ACC.RELATION_LABEL_FOR, accTxtPassword);
+        accTxtPassword.addRelation(ACC.RELATION_LABELLED_BY, accLblPassword);
 
         Label lblMsgPort = new Label(grpCdo, SWT.NONE);
-        lblMsgPort.setText("Message Server Port");
-
+        lblMsgPort.setText("Message Server Port:");
         txtMsgPort = new Text(grpCdo, SWT.BORDER);
         txtMsgPort.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        Accessible accLblMsgPort = lblMsgPort.getAccessible();
+        Accessible accTxtMsgPort = txtMsgPort.getAccessible();
+        accLblMsgPort.addRelation(ACC.RELATION_LABEL_FOR, accTxtMsgPort);
+        accTxtMsgPort.addRelation(ACC.RELATION_LABELLED_BY, accLblMsgPort);
 
         mBindingContext = createDataBindings();
     }

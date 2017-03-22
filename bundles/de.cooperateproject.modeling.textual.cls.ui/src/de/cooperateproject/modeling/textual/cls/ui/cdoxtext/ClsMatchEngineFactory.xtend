@@ -6,12 +6,8 @@ package de.cooperateproject.modeling.textual.cls.ui.cdoxtext
 import com.google.common.base.Function
 import com.google.inject.Inject
 import com.google.inject.Provider
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.Generalization
-import de.cooperateproject.modeling.textual.cls.cls.Implementation
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import org.eclipse.emf.cdo.util.CDOUtil
 import org.eclipse.emf.compare.match.DefaultComparisonFactory
 import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory
@@ -22,6 +18,7 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
 import org.eclipse.emf.compare.scope.IComparisonScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.StringExpression
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
@@ -53,12 +50,9 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 			override apply(EObject input) {				
 				switch input {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
-					Generalization: "Generalization" + idComputation.apply(input.referencedElement)
-					Implementation: "InterfaceRealization" + idComputation.apply(input.referencedElement)
-					CommentLink: "CommentLink" + idComputation.apply(input.comment)
 					StringExpression: "StringExp" + input.name
-					AssociationProperties: "AssociationProperties" + apply(input.eContainer)
 					Cardinality: "Cardinality" + input.eContainmentFeature.name + apply(input.eContainer)
+					CommentLink: CommentLink.simpleName + apply(input.comments.findFirst[true])
 					default: null
 				}
 			}

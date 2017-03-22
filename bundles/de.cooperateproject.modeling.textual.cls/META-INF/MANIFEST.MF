@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.cooperateproject.modeling.textual.cls
 Bundle-Vendor: My Company
-Bundle-Version: 0.1.5.qualifier
+Bundle-Version: 0.1.7.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;resolution:=optional,
@@ -21,23 +21,23 @@ Require-Bundle: org.eclipse.xtext;resolution:=optional,
  org.eclipse.xtext.generator;bundle-version="2.9.1";resolution:=optional,
  org.eclipse.xtext.common.types;resolution:=optional,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.5";visibility:=reexport,
- de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.1.5";visibility:=reexport,
- de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.1.5";resolution:=optional,
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.7";visibility:=reexport,
+ de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.1.7";visibility:=reexport,
+ de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.1.7";resolution:=optional,
  org.apache.commons.lang3,
  org.eclipse.ui;bundle-version="3.108.0",
- de.cooperateproject.util;bundle-version="0.1.5",
- net.winklerweb.cdoxtext.runtime;visibility:=reexport
+ de.cooperateproject.util;bundle-version="0.1.7",
+ org.eclipse.xtext.ecore;bundle-version="2.10.0",
+ de.cooperateproject.modeling.textual.common.metamodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls,
- de.cooperateproject.modeling.textual.cls.formatting,
  de.cooperateproject.modeling.textual.cls.formatting2,
- de.cooperateproject.modeling.textual.cls.generator,
  de.cooperateproject.modeling.textual.cls.parser.antlr,
  de.cooperateproject.modeling.textual.cls.parser.antlr.internal,
  de.cooperateproject.modeling.textual.cls.scoping,
  de.cooperateproject.modeling.textual.cls.serializer,
  de.cooperateproject.modeling.textual.cls.services,
- de.cooperateproject.modeling.textual.cls.validation
+ de.cooperateproject.modeling.textual.cls.validation,
+ de.cooperateproject.modeling.textual.cls.issues
 Import-Package: org.apache.log4j
 Bundle-Activator: de.cooperateproject.modeling.textual.cls.Activator

@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.textual.commons.feature"
       label="%featureName"
-      version="0.1.5.qualifier"
+      version="0.1.7.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -49,6 +49,13 @@
 
    <plugin
          id="de.cooperateproject.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.textual.common.metamodel"
          download-size="0"
          install-size="0"
          version="0.0.0"

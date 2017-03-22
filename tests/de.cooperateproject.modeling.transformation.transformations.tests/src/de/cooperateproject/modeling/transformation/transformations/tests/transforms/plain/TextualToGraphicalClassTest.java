@@ -49,6 +49,11 @@ public class TextualToGraphicalClassTest extends DirectionalTransformationTestBa
     }
 
     @Test
+    public void testClassNote() throws Exception {
+        testRegular("ClassDiagramClassNote");
+    }
+
+    @Test
     public void testPackagesIncremental() throws Exception {
         testIncremental("ClassDiagramPackages");
     }
@@ -61,6 +66,11 @@ public class TextualToGraphicalClassTest extends DirectionalTransformationTestBa
     @Test
     public void testSelfReferenceIncremental() throws Exception {
         testIncremental("ClassDiagramSelfReference");
+    }
+
+    @Test
+    public void testClassNoteIncremental() throws Exception {
+        testIncremental("ClassDiagramClassNote");
     }
 
     @Override

@@ -7,10 +7,11 @@ modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 
 main() {
 	var diagrams := textual.rootObjects()[cls::ClassDiagram];
-	assert fatal (diagrams->size() = 1);
+	assert fatal (diagrams->size() = 1) with log ("Expected one diagram but got other number.", diagrams->size());
 	diagrams->map diagramToDiagram();
 }
 
@@ -24,14 +25,14 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
 	var allConnectors := self.getAllTransitiveConnectors();
 	var allPackages := self.getAllTransitivePackages();
 	
-	children += self.rootPackage.packages->map packageToShape();
+	children += self.rootPackage.packages.oclAsType(cls::Package)->map packageToShape();
 	children += self.rootPackage.classifiers->map classifierToShape();
-	children += allConnectors->selectByKind(cls::MultiAssociation)->map multiAssociationToShape(); // all nested in root
-	children += self.rootPackage.connectors->select(isCommented())->selectByKind(cls::Commentable)->map commentLinkToShape();
+	children += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2)->map multiAssociationToShape(); // all nested in root
+	children += self.rootPackage.connectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
 	
 	edges += allConnectors->select(not oclIsKindOf(cls::CommentLink))->map connectorToConnector();
-	edges += allConnectors->selectByKind(cls::MultiAssociation).connectorEnds->map connectorEndToEdge();
-	edges += allConnectors->select(isCommented())->selectByKind(cls::Commentable)->map commentableToEdge();
+	edges += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2).memberEnds->map connectorEndToEdge();
+	edges += allConnectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToEdge();
 	edges += allPackages->collect(packageImports)->map packageImportToEdge();
 	
 	styles += self.map stringValueStyle();
@@ -56,9 +57,9 @@ mapping cls::Package::packageToCompartment() : notation::BasicCompartment
 	styles += result.toEObject().map titleStyle();
 	layoutConstraint := result.toEObject().map notationBounds();
 	
-	children += self.packages->map packageToShape();
+	children += self.packages.oclAsType(cls::Package)->map packageToShape();
 	children += self.classifiers->map classifierToShape();
-	children += self.connectors->select(isCommented())->selectByKind(cls::Commentable)->map commentLinkToShape();
+	children += self.connectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
 }
 
 
@@ -92,15 +93,15 @@ when {self.oclIsKindOf(cls::Class)}
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR);
 }
 
-mapping cls::Commentable::commentLinkToShape() : notation::Shape
+mapping textualCommons::Comment::commentToShape() : notation::Shape
 {
 	type := self.getNestedName(PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR);
-	element := self.comment.toEObject();
+	element := self.referencedElement.toEObject();
 	children += self.map commentLabelBodyHintDecoration();
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
-mapping cls::MultiAssociation::multiAssociationToShape() : notation::Shape
+mapping cls::Association::multiAssociationToShape() : notation::Shape
 {
 	type := PAPYRUS_NOTATION_SHAPE_NARY_REGULAR;
 	element := self.referencedElement.toEObject();
@@ -257,20 +258,24 @@ disjuncts cls::Association::connectorToEdge, cls::Generalization::generalization
 }
 
 mapping cls::Association::connectorToEdge() : notation::Connector
-when { self.oclIsKindOf(cls::Association) }
+when { self.oclIsKindOf(cls::Association) and self.memberEnds->size() <= 2 }
 {
+	var sourceMemberEnd = self.memberEnds->at(1);
+	var targetMemberEnd = self.memberEnds->at(2);
+	
 	type := PAPYRUS_NOTATION_EDGE_ASSOCIATION;
 	
-	source := self.left.typeToView();
-	target := self.right.typeToView();
+	source := sourceMemberEnd.type.typeToView();
+	target := targetMemberEnd.type.typeToView();
+	
 	element := self.referencedElement.toEObject();
 
 	children += self.map stereotypeDecorationAssocation();
 	children += self.map nameDecorationAssociation();
-	children += self.properties.map targetRoleDecoration();
-	children += self.properties.map sourceRoleDecoration();
-	children += self.properties.map sourceMultiplicityDecoration();
-	children += self.properties.map targetMultiplicityDecoration();
+	children += targetMemberEnd.map targetRoleDecoration();
+	children += sourceMemberEnd.map sourceRoleDecoration();
+	children += sourceMemberEnd.map sourceMultiplicityDecoration();
+	children += targetMemberEnd.map targetMultiplicityDecoration();
 	
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
@@ -286,7 +291,8 @@ when { self.oclIsKindOf(cls::Generalization) }
 	
 	source := specialClassifier.typeToView();
 	target := generalClassifier.typeToView();
-	element := specialClassifier.generalization->any(specific = specialClassifier).toEObject();
+
+	element := specialClassifier.referencedElement.oclAsType(uml::Classifier).generalization->any(specific = specialClassifier.referencedElement).toEObject();
 	
 	children += self.map stereotypeDecorationGeneralization();
 	
@@ -299,13 +305,13 @@ when { self.oclIsKindOf(cls::Implementation) }
 {
 	type := PAPYRUS_NOTATION_EDGE_IMPLEMENTATION;
 	
-	var implementingClassifier := self.left.oclAsType(uml::BehavioredClassifier);
+	var implementingClassifier := self.left;
 	var implementedInterface := self.right;
 	
 	source := implementingClassifier.typeToView();
 	target := implementedInterface.typeToView();
 	
-	element := implementingClassifier.interfaceRealization->any(contract = implementedInterface).toEObject();
+	element := implementingClassifier.referencedElement.oclAsType(uml::BehavioredClassifier).interfaceRealization->any(contract = implementedInterface.referencedElement).toEObject();
 	
 	children += self.map stereotypeDecorationImplementation();
 	children += self.map nameDecorationImplementation();
@@ -314,14 +320,15 @@ when { self.oclIsKindOf(cls::Implementation) }
 	styles += result.toEObject().map fontStyle();
 }
 
-mapping cls::MemberEnd::connectorEndToEdge() : notation::Connector
+mapping cls::AssociationMemberEnd::connectorEndToEdge() : notation::Connector
 {
 	type := PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH;
 	
 	var umlAssociation := self.association.referencedElement;
 	element := umlAssociation.toEObject();
 
-	var associationDiamondShape := resolveoneIn(cls::MultiAssociation::multiAssociationToShape, s : notation::Shape | s.element = umlAssociation.toEObject());
+	
+	var associationDiamondShape := self.association.resolveoneIn(cls::Association::multiAssociationToShape);
 	assert error (associationDiamondShape != null) with log('Could not find the association diamond for a n-ary association.', umlAssociation);
 	source := associationDiamondShape;
 	
@@ -337,28 +344,29 @@ mapping cls::MemberEnd::connectorEndToEdge() : notation::Connector
 	styles += self.map semanticBranchStyle();
 }
 
-mapping cls::Commentable::commentableToEdge() : notation::Connector
+mapping textualCommons::Comment::commentToEdge() : notation::Connector
 {
 	type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
 	
-	var commentShape := self.resolveoneIn(cls::Commentable::commentLinkToShape);
-	var classifier := self.getCommentedElement().oclAsType(uml::Classifier);
-	
+	var commentShape := self.resolveoneIn(textualCommons::Comment::commentToShape);
+	var realCommentedElement := if self.commentedElement.oclIsKindOf(cls::CommentLink) then self.commentedElement.oclAsType(cls::CommentLink).commentedElement else self.commentedElement.oclAsType(textualCommons::PackageableElement) endif;
+
 	source := commentShape;
-	target := classifier.typeToView();
+	target := realCommentedElement.typeToView();
 	element := null;
 	
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
 }
 
-mapping cls::PackageImport::packageImportToEdge() : notation::Connector
+mapping textualCommons::PackageImport::packageImportToEdge() : notation::Connector
 {
-	var umlPackageImport := self.referencedElement;
+	var umlPackageImport := self.referencedElement.oclAsType(uml::PackageImport);
 
 	type := PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT;
 	element := umlPackageImport.toEObject();
-	source := umlPackageImport.importingNamespace.oclAsType(uml::Package).packageToShape();
+	
+	source := self.importingPackage.resolveoneIn(cls::Package::packageToShape);
 	target := umlPackageImport.importedPackage.packageToShape();
 	
 	children += self.map stereotypeDecorationPackageImport();
@@ -388,7 +396,7 @@ mapping cls::PackageImport::packageImportToEdge() : notation::Connector
 8521 Floating Label (Association Diamond)
 */
 
-mapping cls::Commentable::commentLabelBodyHintDecoration() : notation::DecorationNode
+mapping textualCommons::Comment::commentLabelBodyHintDecoration() : notation::DecorationNode
 {
 	type := self.getNestedName(PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR);
 }
@@ -410,15 +418,15 @@ mapping cls::Package::nameDecorationPackage() : notation::DecorationNode
 	type := self.getNestedName(PAPYRUS_NOTATION_NODE_PACKAGE_NAME_REGULAR);
 }
 
-mapping cls::AssociationProperties::targetRoleDecoration() : notation::DecorationNode
-when {self.propertyRight != null}
+mapping cls::AssociationMemberEnd::targetRoleDecoration() : notation::DecorationNode
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETROLE;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::AssociationProperties::sourceRoleDecoration() : notation::DecorationNode
-when {self.propertyLeft != null}
+mapping cls::AssociationMemberEnd::sourceRoleDecoration() : notation::DecorationNode
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE;
 	layoutConstraint := result.toEObject().map locationConstraint();
@@ -442,40 +450,40 @@ mapping cls::Implementation::nameDecorationImplementation() : notation::Decorati
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::MemberEnd::targetRoleDecorationMemberEnd() : notation::DecorationNode
+mapping cls::AssociationMemberEnd::targetRoleDecorationMemberEnd() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_ROLENAME;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::AssociationProperties::sourceMultiplicityDecoration() : notation::DecorationNode
-when {self.cardinalityLeft != null}
+mapping cls::AssociationMemberEnd::sourceMultiplicityDecoration() : notation::DecorationNode
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::AssociationProperties::targetMultiplicityDecoration() : notation::DecorationNode
-when {self.cardinalityRight != null}
+mapping cls::AssociationMemberEnd::targetMultiplicityDecoration() : notation::DecorationNode
+//when {self.referencedElement.oclAsType(uml::Type).name.length() > 0}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::MemberEnd::targetMultiplicityDecorationMemberEnd() : notation::DecorationNode
-when {self.cardinality != null}
+mapping cls::AssociationMemberEnd::targetMultiplicityDecorationMemberEnd() : notation::DecorationNode
+//when {self.cardinality != null}
 {
 	type := PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_MULTIPLICITY;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::MultiAssociation::multiAssociationToFloatingLabelDecorationNode(): notation::DecorationNode
+mapping cls::Association::multiAssociationToFloatingLabelDecorationNode(): notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_NARY_NAME;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
-mapping cls::PackageImport::stereotypeDecorationPackageImport() : notation::DecorationNode
+mapping textualCommons::PackageImport::stereotypeDecorationPackageImport() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_PACKAGEIMPORT_STEREOTYPE;
 	layoutConstraint := result.toEObject().map locationConstraint();
@@ -498,13 +506,13 @@ mapping cls::ClassDiagram::papyrusViewStyle(rootElement : uml::Package) : style:
 	owner := rootElement.toEObject();
 }
 
-mapping cls::MemberEnd::semanticBranchStyle() : notation::EObjectValueStyle
+mapping cls::AssociationMemberEnd::semanticBranchStyle() : notation::EObjectValueStyle
 {
 	name := "Semantic_Branch_Style";
 	eObjectValue := self.determineProperty().toEObject();
 }
 
-query cls::MemberEnd::determineProperty() : uml::Property
+query cls::AssociationMemberEnd::determineProperty() : uml::Property
 {
 	var umlAssociation := self.association.referencedElement.oclAsType(uml::Association);
 	var referencedProperty := self.referencedElement;
@@ -513,12 +521,12 @@ query cls::MemberEnd::determineProperty() : uml::Property
 	return if candidates->size() = 1 then candidates->any(true) else referencedProperty.oclAsType(uml::Property) endif;
 }
 
-query uml::Property::matches(memberEnd : cls::MemberEnd) : Boolean
+query uml::Property::matches(memberEnd : cls::AssociationMemberEnd) : Boolean
 {
 	return
 		memberEnd.referencedElement = self or
 		(
-			self.type = memberEnd.type and
+			self.type = memberEnd.type.referencedElement and
 			(
 				memberEnd.cardinality = null or
 				self.matches(memberEnd.cardinality)
@@ -526,7 +534,7 @@ query uml::Property::matches(memberEnd : cls::MemberEnd) : Boolean
 		);
 }
 
-query uml::MultiplicityElement::matches(cardinality : cls::Cardinality) : Boolean
+query uml::MultiplicityElement::matches(cardinality : textualCommons::Cardinality) : Boolean
 {
 	return
 		self.lower = cardinality.lowerBound and
@@ -537,6 +545,21 @@ query uml::MultiplicityElement::matches(cardinality : cls::Cardinality) : Boolea
 }
 
 // helpers
+
+query textualCommons::PackageableElement::typeToView() : notation::View
+{
+	return if self.oclIsKindOf(cls::Association) then self.typeToEdge() else self.typeToShape() endif;
+}
+
+query textualCommons::PackageableElement::typeToEdge() : notation::View
+{
+	return self.resolveoneIn(cls::Connector::connectorToConnector);
+}
+
+query textualCommons::PackageableElement::typeToShape() : notation::View
+{
+	return self.resolveoneIn(cls::Classifier::classifierToShape);
+}
 
 query uml::Type::typeToView() : notation::View
 {
@@ -560,22 +583,22 @@ query uml::Package::packageToShape() : notation::Shape
 
 query cls::Connector::isCommentable() : Boolean
 {
-	return self.oclIsKindOf(cls::Commentable);
+	return self.oclIsKindOf(textualCommons::Commentable);
 }
 
 query cls::Connector::isCommented() : Boolean
 {
-	return self.isCommentable() and self.oclAsType(cls::Commentable).comment != null;
+	return self.isCommentable() and not self.oclAsType(textualCommons::Commentable).comments->isEmpty();
 }
 
-query cls::Element::isNested() : Boolean
+query textualCommons::Element::isNested() : Boolean
 {
 	var owningPackage := if self.getNearestPackage() = self then self.getNearestPackage().owningPackage else self.getNearestPackage() endif;
 	var owningPackage2 := owningPackage.owningPackage;
 	return owningPackage != null and owningPackage2 != null;
 }
 
-query cls::Element::getNestedName(type : String) : String
+query textualCommons::Element::getNestedName(type : String) : String
 {
 	return type.getNestedName(self.isNested());
 }

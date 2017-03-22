@@ -13,6 +13,7 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
+import org.junit.Ignore
 
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class FormatterTest extends AbstractClsTest {

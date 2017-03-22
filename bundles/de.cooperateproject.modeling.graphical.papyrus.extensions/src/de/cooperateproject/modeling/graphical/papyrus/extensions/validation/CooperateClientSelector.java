@@ -21,13 +21,15 @@ public class CooperateClientSelector implements IClientSelector {
             Element model = (Element) object;
             URI uri = model.eResource().getURI();
             IProject project;
-            if (!uri.isPlatform()) {
+            if (uri.scheme().startsWith("cdo")) {
                 // The project name is by convention in the first segment of the uri
                 String projectName = uri.segment(0);
                 project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-            } else {
+            } else if (uri.isPlatform()) {
                 Path path = new Path(uri.toPlatformString(true));
                 project = ResourcesPlugin.getWorkspace().getRoot().getFile(path).getProject();
+            } else {
+                return false;
             }
 
             try {

@@ -22,5 +22,7 @@ public class ClsValidatorConstants {
     public static final String NOT_A_CLASS = "not_a_class";
     public static final String WRONG_LEFT_CARDINALITY = "wrong_left_cardinality";
     public static final String WRONG_RIGHT_CARDINALITY = "wrong_right_cardinality";
+    public static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
+    public static final String ROLE_NAMES_AMBIGOUS = "role_names_ambigous";
 
 }
