@@ -189,7 +189,7 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
                     typeReference.setType(memberEnd.getType());
                     object.getMemberEndTypes().add(typeReference);
                     if (memberEnd.getCardinality() != null) {
-                        object.getMemberEndCardinalities().add(memberEnd.getCardinality());
+                        object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
                     }
                     if (memberEnd.getName() != null) {
                         object.getMemberEndNames().add(memberEnd.getName());
@@ -223,7 +223,12 @@ public class ClsDerivedStateComputer implements IDerivedStateComputer {
                 }
                 memberEnd.setType(types.get(i));
                 if (cardinalities.size() > i) {
-                    memberEnd.setCardinality(EcoreUtil.copy(cardinalities.get(i)));
+                    if (memberEnd.getCardinality() != null) {
+                        memberEnd.getCardinality().setLowerBound(cardinalities.get(i).getLowerBound());
+                        memberEnd.getCardinality().setUpperBound(cardinalities.get(i).getUpperBound());
+                    } else {
+                        memberEnd.setCardinality(EcoreUtil.copy(cardinalities.get(i)));
+                    }
                 }
                 if (names.size() > i) {
                     memberEnd.setName(names.get(i));
