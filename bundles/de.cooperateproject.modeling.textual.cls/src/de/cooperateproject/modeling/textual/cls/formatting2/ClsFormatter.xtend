@@ -148,6 +148,8 @@ class ClsFormatter extends AbstractClsFormatter {
 		association.regionFor.keyword(xtextAssociationAccess.colonKeyword_8_3_0).prepend[space = " "].append[space = " "]
 		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_8_4).prepend[noSpace]
 		association.append[newLine]
+		
+		association.memberEndCardinalities.forEach[format]
 	}
 
 	def dispatch void format(CommentLink commentlink, extension IFormattableDocument document) {
