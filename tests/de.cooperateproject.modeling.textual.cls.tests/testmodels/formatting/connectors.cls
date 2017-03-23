@@ -1,4 +1,4 @@
-@start-cls "SomeName"
+@start-clsd "SomeName"
 
 rootPackage RootElement
 
@@ -13,4 +13,4 @@ isa (A, B)
 asc asc3 (A, B, C) role [a, b] card [1 : 1 : 1]
 note "A comment." A
 
-@end-cls
+@end-clsd

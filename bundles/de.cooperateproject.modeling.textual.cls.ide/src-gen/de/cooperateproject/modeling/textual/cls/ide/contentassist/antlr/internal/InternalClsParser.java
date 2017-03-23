@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalClsParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'asc'", "'agg'", "'com'", "'@start-cls'", "'@end-cls'", "'rootPackage'", "'package'", "'{'", "'}'", "'import'", "'.'", "'class'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'role'", "'['", "']'", "'card'", "'note'", "'..'", "'abstract'", "'static'", "'final'", "'bi'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'asc'", "'agg'", "'com'", "'@start-clsd'", "'@end-clsd'", "'rootPackage'", "'package'", "'{'", "'}'", "'import'", "'.'", "'class'", "'as'", "'interface'", "':'", "'('", "')'", "','", "'isa'", "'impl'", "'role'", "'['", "']'", "'card'", "'note'", "'..'", "'abstract'", "'static'", "'final'", "'bi'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -2847,21 +2847,21 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__1__Impl"
-    // InternalCls.g:889:1: rule__ClassDiagram__Group__1__Impl : ( '@start-cls' ) ;
+    // InternalCls.g:889:1: rule__ClassDiagram__Group__1__Impl : ( '@start-clsd' ) ;
     public final void rule__ClassDiagram__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:893:1: ( ( '@start-cls' ) )
-            // InternalCls.g:894:1: ( '@start-cls' )
+            // InternalCls.g:893:1: ( ( '@start-clsd' ) )
+            // InternalCls.g:894:1: ( '@start-clsd' )
             {
-            // InternalCls.g:894:1: ( '@start-cls' )
-            // InternalCls.g:895:2: '@start-cls'
+            // InternalCls.g:894:1: ( '@start-clsd' )
+            // InternalCls.g:895:2: '@start-clsd'
             {
-             before(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); 
+             before(grammarAccess.getClassDiagramAccess().getStartClsdKeyword_1()); 
             match(input,22,FOLLOW_2); 
-             after(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); 
+             after(grammarAccess.getClassDiagramAccess().getStartClsdKeyword_1()); 
 
             }
 
@@ -3087,21 +3087,21 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassDiagram__Group__4__Impl"
-    // InternalCls.g:969:1: rule__ClassDiagram__Group__4__Impl : ( '@end-cls' ) ;
+    // InternalCls.g:969:1: rule__ClassDiagram__Group__4__Impl : ( '@end-clsd' ) ;
     public final void rule__ClassDiagram__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalCls.g:973:1: ( ( '@end-cls' ) )
-            // InternalCls.g:974:1: ( '@end-cls' )
+            // InternalCls.g:973:1: ( ( '@end-clsd' ) )
+            // InternalCls.g:974:1: ( '@end-clsd' )
             {
-            // InternalCls.g:974:1: ( '@end-cls' )
-            // InternalCls.g:975:2: '@end-cls'
+            // InternalCls.g:974:1: ( '@end-clsd' )
+            // InternalCls.g:975:2: '@end-clsd'
             {
-             before(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); 
+             before(grammarAccess.getClassDiagramAccess().getEndClsdKeyword_4()); 
             match(input,23,FOLLOW_2); 
-             after(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); 
+             after(grammarAccess.getClassDiagramAccess().getEndClsdKeyword_4()); 
 
             }
 

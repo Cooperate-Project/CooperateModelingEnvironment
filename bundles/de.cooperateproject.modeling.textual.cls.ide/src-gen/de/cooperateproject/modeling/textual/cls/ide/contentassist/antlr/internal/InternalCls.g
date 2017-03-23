@@ -892,9 +892,9 @@ rule__ClassDiagram__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); }
-	'@start-cls'
-	{ after(grammarAccess.getClassDiagramAccess().getStartClsKeyword_1()); }
+	{ before(grammarAccess.getClassDiagramAccess().getStartClsdKeyword_1()); }
+	'@start-clsd'
+	{ after(grammarAccess.getClassDiagramAccess().getStartClsdKeyword_1()); }
 )
 ;
 finally {
@@ -972,9 +972,9 @@ rule__ClassDiagram__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); }
-	'@end-cls'
-	{ after(grammarAccess.getClassDiagramAccess().getEndClsKeyword_4()); }
+	{ before(grammarAccess.getClassDiagramAccess().getEndClsdKeyword_4()); }
+	'@end-clsd'
+	{ after(grammarAccess.getClassDiagramAccess().getEndClsdKeyword_4()); }
 )
 ;
 finally {

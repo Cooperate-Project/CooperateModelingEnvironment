@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
@@ -18,6 +19,10 @@ import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
 import de.cooperateproject.modeling.textual.cls.tests.util.ClsTestInjectorProvider
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
+import java.util.Collections
+import org.apache.commons.io.IOUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.NamedElement
@@ -25,7 +30,6 @@ import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.VisibilityKind
 import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.util.ParseHelper
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper
 import org.junit.Ignore
 import org.junit.Test
@@ -34,11 +38,6 @@ import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertNotNull
 import static org.junit.Assert.assertNull
 import static org.junit.Assert.assertTrue
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.emf.common.util.URI
-import org.apache.commons.io.IOUtils
-import java.util.Collections
 
 @InjectWith(ClsTestInjectorProvider.DefaultProvider)
 class ClsParsingTest extends AbstractClsTest {
@@ -54,9 +53,9 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void diagramTitleWithoutSpaceTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -64,9 +63,9 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void diagramTitleWithSpaceTest() {
 		val model = '''
-			@start-cls "Some Name"
+			@start-clsd "Some Name"
 			rootPackage RootElement
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -74,10 +73,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classDefTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -129,10 +128,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void interfaceDefTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			interface IAlice {}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -147,11 +146,11 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void correctAliasUseTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class "Alias Alice" as AA {
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -168,10 +167,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test(expected=AssertionError)
 	def void wrongAliasUseWithoutAliasTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class "Alias Alice"
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -179,10 +178,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test(expected=AssertionError)
 	def void wrongAliasUseIDWithAliasTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice as AA
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -190,11 +189,11 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void abstractClassWithoutMembersTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			abstract class AbstractAlice {
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -211,13 +210,13 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithAttributesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				name : string
 				static age : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -242,14 +241,14 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithMethodesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				static getName() : string
 				setName(name : string)
 				abstract calculateAge(date : int) : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -286,7 +285,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void visibiliesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				+name : string
@@ -295,7 +294,7 @@ class ClsParsingTest extends AbstractClsTest {
 				#setName(name : string)
 				~ abstract calculateAge(date : int) : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -334,7 +333,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithStaticAndFinalAttributesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				name : string
@@ -344,7 +343,7 @@ class ClsParsingTest extends AbstractClsTest {
 				setName(name : string)
 				abstract calculateAge(date : int) : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -396,7 +395,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void datatypeTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class AliceAllTypes {
 				stringMember : string
@@ -409,7 +408,7 @@ class ClsParsingTest extends AbstractClsTest {
 				longMember : long
 				floatMember : float
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -455,13 +454,13 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classTypeTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob {
 				alice : Alice
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -481,12 +480,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classGeneralizationTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob
 			isa (Bob, Alice)
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -506,12 +505,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classImplementationTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Bob
 			interface IBob
 			impl (Bob, IBob)
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -532,12 +531,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void simpleClassAssociationTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob
 			asc association (Alice, Bob)
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -612,11 +611,11 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithNoteTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			note "this is a note" Alice
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -634,12 +633,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void ClassAsscociationWithNoteTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob
 			asc association (Alice, Bob) note "this is another note"
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -659,7 +658,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test @Ignore
 	def void CardinalityTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class AliceAsc 
 			class BobAsc
@@ -668,7 +667,7 @@ class ClsParsingTest extends AbstractClsTest {
 			asc AliceAsc card2 BobAsc [*|24..42]
 			asc AliceAsc card3 BobAsc [24..42|*]
 			asc AliceAsc card4 BobAsc [*|*]
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model =>
@@ -786,13 +785,13 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test @Ignore
 	def void bidirectionTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class AliceBi
 			class BobBi
 			bi asc AliceBi bidirection BobBi
 			bi asc AliceBi bidirectionCard BobBi [24|42]
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model =>
@@ -862,14 +861,14 @@ class ClsParsingTest extends AbstractClsTest {
 		val aggregationName = "agrKind1"
 		val compositionName = "agrKind2"
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class «leftClassName»
 			class «rightClassName»
 			asc «associationName» («leftClassName», «rightClassName»)
 			agg «aggregationName» («leftClassName», «rightClassName»)
 			com «compositionName» («leftClassName», «rightClassName»)
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model =>

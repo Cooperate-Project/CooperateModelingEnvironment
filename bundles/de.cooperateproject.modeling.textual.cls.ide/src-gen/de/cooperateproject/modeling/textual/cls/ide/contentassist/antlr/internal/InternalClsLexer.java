@@ -303,10 +303,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:22:7: ( '@start-cls' )
-            // InternalCls.g:22:9: '@start-cls'
+            // InternalCls.g:22:7: ( '@start-clsd' )
+            // InternalCls.g:22:9: '@start-clsd'
             {
-            match("@start-cls"); 
+            match("@start-clsd"); 
 
 
             }
@@ -324,10 +324,10 @@ public class InternalClsLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalCls.g:23:7: ( '@end-cls' )
-            // InternalCls.g:23:9: '@end-cls'
+            // InternalCls.g:23:7: ( '@end-clsd' )
+            // InternalCls.g:23:9: '@end-clsd'
             {
-            match("@end-cls"); 
+            match("@end-clsd"); 
 
 
             }

@@ -1,4 +1,4 @@
-@start-cls "Test"
+@start-clsd "Test"
 
 rootPackage rootElement
 
@@ -29,4 +29,4 @@ package package1 {
 
 }
 
-@end-cls
+@end-clsd

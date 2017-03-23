@@ -21,7 +21,6 @@ import org.eclipse.xtext.serializer.ISerializer
 import org.junit.Test
 
 import static org.junit.Assert.*
-import org.junit.Ignore
 
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class ClsSerializerTest extends AbstractClsTest {
