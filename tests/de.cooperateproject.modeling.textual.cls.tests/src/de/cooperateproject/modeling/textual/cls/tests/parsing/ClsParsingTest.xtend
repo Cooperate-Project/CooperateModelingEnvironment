@@ -29,8 +29,8 @@ import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.uml2.uml.Property
 import org.eclipse.uml2.uml.VisibilityKind
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.validation.ValidationTestHelper
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Ignore
 import org.junit.Test
 

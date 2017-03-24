@@ -6,7 +6,7 @@ import org.junit.After
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil
 import org.junit.runner.RunWith
-import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.testing.XtextRunner
 
 @RunWith(XtextRunner)
 public abstract class AbstractClsTest {
