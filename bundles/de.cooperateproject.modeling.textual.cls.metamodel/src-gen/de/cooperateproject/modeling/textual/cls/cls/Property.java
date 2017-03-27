@@ -20,7 +20,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#isStatic <em>Static</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#isFinal <em>Final</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -83,32 +82,6 @@ public interface Property<T extends NamedElement> extends UMLReferencingElement<
      * @generated
      */
     void setStatic(boolean value);
-
-    /**
-     * Returns the value of the '<em><b>Final</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Final</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Final</em>' attribute.
-     * @see #setFinal(boolean)
-     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getProperty_Final()
-     * @model unique="false"
-     * @generated
-     */
-    boolean isFinal();
-
-    /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Property#isFinal <em>Final</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Final</em>' attribute.
-     * @see #isFinal()
-     * @generated
-     */
-    void setFinal(boolean value);
 
     /**
      * Returns the value of the '<em><b>Type</b></em>' reference.

@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.NamedElement;
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#isStatic <em>Static</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#isFinal <em>Final</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -61,16 +60,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * @ordered
      */
     protected static final boolean STATIC_EDEFAULT = false;
-
-    /**
-     * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isFinal()
-     * @generated
-     * @ordered
-     */
-    protected static final boolean FINAL_EDEFAULT = false;
 
     /**
      * <!-- begin-user-doc -->
@@ -161,24 +150,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isFinal() {
-        return (Boolean)eDynamicGet(ClsPackage.PROPERTY__FINAL, ClsPackage.Literals.PROPERTY__FINAL, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setFinal(boolean newFinal) {
-        eDynamicSet(ClsPackage.PROPERTY__FINAL, ClsPackage.Literals.PROPERTY__FINAL, newFinal);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public Classifier getType() {
         return (Classifier)eDynamicGet(ClsPackage.PROPERTY__TYPE, ClsPackage.Literals.PROPERTY__TYPE, true, true);
     }
@@ -215,8 +186,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 return getVisibility();
             case ClsPackage.PROPERTY__STATIC:
                 return isStatic();
-            case ClsPackage.PROPERTY__FINAL:
-                return isFinal();
             case ClsPackage.PROPERTY__TYPE:
                 if (resolve) return getType();
                 return basicGetType();
@@ -240,9 +209,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 return;
             case ClsPackage.PROPERTY__STATIC:
                 setStatic((Boolean)newValue);
-                return;
-            case ClsPackage.PROPERTY__FINAL:
-                setFinal((Boolean)newValue);
                 return;
             case ClsPackage.PROPERTY__TYPE:
                 setType((Classifier)newValue);
@@ -268,9 +234,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
             case ClsPackage.PROPERTY__STATIC:
                 setStatic(STATIC_EDEFAULT);
                 return;
-            case ClsPackage.PROPERTY__FINAL:
-                setFinal(FINAL_EDEFAULT);
-                return;
             case ClsPackage.PROPERTY__TYPE:
                 setType((Classifier)null);
                 return;
@@ -292,8 +255,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 return getVisibility() != VISIBILITY_EDEFAULT;
             case ClsPackage.PROPERTY__STATIC:
                 return isStatic() != STATIC_EDEFAULT;
-            case ClsPackage.PROPERTY__FINAL:
-                return isFinal() != FINAL_EDEFAULT;
             case ClsPackage.PROPERTY__TYPE:
                 return basicGetType() != null;
         }
