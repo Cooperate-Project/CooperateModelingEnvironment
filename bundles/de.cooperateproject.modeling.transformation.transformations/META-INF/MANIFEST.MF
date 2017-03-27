@@ -18,7 +18,8 @@ Require-Bundle: org.eclipse.core.runtime,
  de.cooperateproject.modeling.common,
  de.cooperateproject.util;bundle-version="0.1.3",
  de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.1.7",
- org.apache.log4j
+ org.apache.log4j,
+ de.cooperateproject.modeling.graphical.common
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.transformation.transformations.registry

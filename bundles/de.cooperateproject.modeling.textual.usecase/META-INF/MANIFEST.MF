@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext,
  de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.1.7";visibility:=reexport,
  de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.1.7";resolution:=optional,
  de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport,
- net.winklerweb.cdoxtext.generator;resolution:=optional
+ net.winklerweb.cdoxtext.generator;resolution:=optional,
+ de.cooperateproject.modeling.textual.common.metamodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
  de.cooperateproject.modeling.textual.usecase.formatting,

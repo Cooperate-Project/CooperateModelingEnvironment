@@ -18,6 +18,8 @@ import org.eclipse.xtext.resource.IResourceDescription
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService
+import de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientValueService
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -35,6 +37,15 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule {
 
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return DefaultDeclarativeQualifiedNameProvider;
+	}
+	
+	
+	override bindITransientValueService() {
+		UseCaseTransientValueService
+	}
+	
+	def configureITransientValueService(Binder binder) {
+		binder.bind(ITransientValueService).to(UseCaseTransientValueService)
 	}
 
 	// derived state
