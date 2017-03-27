@@ -88,6 +88,11 @@
 			<url>http://download.eclipse.org/modeling/emf/compare/updates/releases/3.2/</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>xtext</id>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.11.0</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 
 	<build>

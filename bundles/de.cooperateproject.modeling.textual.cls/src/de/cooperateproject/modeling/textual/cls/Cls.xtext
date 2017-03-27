@@ -5,12 +5,9 @@ grammar de.cooperateproject.modeling.textual.cls.Cls with org.eclipse.xtext.comm
  * for the Xtext editor. Therefore, we use the platform URI to reference the model directly.
  * You can change this anytime if you would like to. 
  */
-//import "http://www.cooperateproject.de/modeling/textual/cls/Cls"
 import "platform:/resource/de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore"
 import "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore" as commons
-//import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
-//import "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel" as uml
-import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
+import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore" as uml
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 // ------------------------------------------------------------------------------------------
