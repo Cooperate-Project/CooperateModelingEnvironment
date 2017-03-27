@@ -174,7 +174,6 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 	name := operation.name;
 	visibility := operation.getVisibility();
 	_static := operation.isStatic;
-	final := operation.isLeaf;
 	_abstract := operation.isAbstract;
 	type := operation.type.oclAsType(uml::Classifier);
 	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
@@ -193,7 +192,6 @@ mapping notation::Node::nodeToProperty() : cls::Attribute {
 	name := prop.name;
 	visibility := prop.getVisibility();
 	_static := prop.isStatic;
-	final := prop.isLeaf;
 	type := prop.type.oclAsType(uml::Classifier);
 }
 
