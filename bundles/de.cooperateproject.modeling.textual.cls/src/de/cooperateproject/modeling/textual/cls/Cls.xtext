@@ -79,7 +79,6 @@ Attribute:
 	{Attribute} 
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
-	(final ?= 'final')? 
 	name = ID ':' type=[uml::Classifier|FQN]
 ;
 	
@@ -87,7 +86,6 @@ Method:
 	(visibility = Visibility)? 
 	(abstract ?= 'abstract')? 
 	(static ?= 'static')? 
-	(final ?= 'final')? 
 	name = ID '(' 
 	(parameters += Parameter (',' parameters += Parameter)*)* ')' 
 	(':' type = [uml::Classifier|FQN])?
@@ -96,7 +94,6 @@ Method:
 Parameter:
 	(visibility = Visibility)? 
 	(static ?= 'static')? 
-	(final ?= 'final')? 
 	name = ID ':' type = [uml::Classifier|FQN]
 ;
 

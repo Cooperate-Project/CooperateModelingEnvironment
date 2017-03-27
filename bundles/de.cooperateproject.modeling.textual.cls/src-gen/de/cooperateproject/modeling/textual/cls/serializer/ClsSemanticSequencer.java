@@ -110,7 +110,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? final?='final'? name=ID type=[Classifier|FQN])
+	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -261,7 +261,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         visibility=Visibility? 
 	 *         abstract?='abstract'? 
 	 *         static?='static'? 
-	 *         final?='final'? 
 	 *         name=ID 
 	 *         (parameters+=Parameter parameters+=Parameter*)* 
 	 *         type=[Classifier|FQN]?
@@ -307,7 +306,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? static?='static'? final?='final'? name=ID type=[Classifier|FQN])
+	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
