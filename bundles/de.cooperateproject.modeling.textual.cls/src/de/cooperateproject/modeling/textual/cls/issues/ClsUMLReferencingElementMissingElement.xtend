@@ -38,7 +38,7 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 	}
 
 	static def hasIssue(UMLReferencingElement<Element> object) {
-		return object.referencedElement == null
+		return object.referencedElement === null
 	}
 
 	override resolve() {
