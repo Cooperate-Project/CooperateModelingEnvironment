@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,59 +25,59 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * @generated
  */
 public interface Association extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Association> {
-	/**
+    /**
      * Returns the value of the '<em><b>Actor</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Actor</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Actor</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Actor</em>' reference.
      * @see #setActor(Actor)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_Actor()
      * @model
      * @generated
      */
-	Actor getActor();
+    Actor getActor();
 
-	/**
+    /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getActor <em>Actor</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Actor</em>' reference.
      * @see #getActor()
      * @generated
      */
-	void setActor(Actor value);
+    void setActor(Actor value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Usecase</b></em>' reference.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Usecase</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Usecase</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Usecase</em>' reference.
      * @see #setUsecase(UseCase)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_Usecase()
      * @model
      * @generated
      */
-	UseCase getUsecase();
+    UseCase getUsecase();
 
-	/**
+    /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getUsecase <em>Usecase</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Usecase</em>' reference.
      * @see #getUsecase()
      * @generated
      */
-	void setUsecase(UseCase value);
+    void setUsecase(UseCase value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Actor Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>

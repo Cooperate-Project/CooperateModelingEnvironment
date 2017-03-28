@@ -13,129 +13,120 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface UsecaseFactory extends EFactory {
-	/**
+    /**
      * The singleton instance of the factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	UsecaseFactory eINSTANCE = de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecaseFactoryImpl.init();
+    UsecaseFactory eINSTANCE = de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecaseFactoryImpl.init();
 
-	/**
+    /**
      * Returns a new object of class '<em>Use Case Diagram</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Use Case Diagram</em>'.
      * @generated
      */
-	UseCaseDiagram createUseCaseDiagram();
+    UseCaseDiagram createUseCaseDiagram();
 
-	/**
+    /**
      * Returns a new object of class '<em>Root Package</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Root Package</em>'.
      * @generated
      */
-	RootPackage createRootPackage();
+    RootPackage createRootPackage();
 
-	/**
+    /**
      * Returns a new object of class '<em>Actor</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Actor</em>'.
      * @generated
      */
-	Actor createActor();
+    Actor createActor();
 
-	/**
+    /**
      * Returns a new object of class '<em>System</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>System</em>'.
      * @generated
      */
-	System createSystem();
+    System createSystem();
 
-	/**
+    /**
      * Returns a new object of class '<em>Use Case</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Use Case</em>'.
      * @generated
      */
-	UseCase createUseCase();
+    UseCase createUseCase();
 
-	/**
+    /**
      * Returns a new object of class '<em>Extension Point</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Extension Point</em>'.
      * @generated
      */
-	ExtensionPoint createExtensionPoint();
+    ExtensionPoint createExtensionPoint();
 
-	/**
+    /**
      * Returns a new object of class '<em>Association</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Association</em>'.
      * @generated
      */
-	Association createAssociation();
+    Association createAssociation();
 
-	/**
+    /**
      * Returns a new object of class '<em>Generalization</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Generalization</em>'.
      * @generated
      */
-	Generalization createGeneralization();
+    Generalization createGeneralization();
 
-	/**
+    /**
      * Returns a new object of class '<em>Include</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Include</em>'.
      * @generated
      */
-	Include createInclude();
+    Include createInclude();
 
-	/**
+    /**
      * Returns a new object of class '<em>Extend</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return a new object of class '<em>Extend</em>'.
      * @generated
      */
-	Extend createExtend();
+    Extend createExtend();
 
-	/**
-     * Returns a new object of class '<em>Comment</em>'.
+    /**
+     * Returns a new object of class '<em>Comment Link</em>'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Comment</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Comment Link</em>'.
      * @generated
      */
-	Comment createComment();
+    CommentLink createCommentLink();
 
-	/**
-     * Returns a new object of class '<em>Cardinality</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Cardinality</em>'.
-     * @generated
-     */
-	Cardinality createCardinality();
-
-	/**
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the package supported by this factory.
      * @generated
      */
-	UsecasePackage getUsecasePackage();
+    UsecasePackage getUsecasePackage();
 
 } //UsecaseFactory

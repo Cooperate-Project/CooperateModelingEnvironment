@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor
+import de.cooperateproject.modeling.textual.usecase.usecase.AliasedElement
 import de.cooperateproject.modeling.textual.usecase.usecase.Association
 import de.cooperateproject.modeling.textual.usecase.usecase.Comment
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend
@@ -11,17 +12,19 @@ import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
 import de.cooperateproject.modeling.textual.usecase.usecase.System
 import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.uml2.uml.Element
+import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.OpaqueExpression
+import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.usecase.issues.UsecaseIssueResolutionUtilities.*
-import org.eclipse.uml2.uml.AggregationKind
-import org.eclipse.emf.ecore.EClass
-import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 
 class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -99,17 +102,16 @@ class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutio
 			element.commentedElement instanceof UMLReferencingElement<?> &&
 			(element.commentedElement as UMLReferencingElement<?>).referencedElement instanceof Element
 	}
-	
-	
-	
+		
 	private def dispatch fixMissingUMLElement(Actor element) {
 		if (!element.resolvePossible) return Void
-		val parent = element.eContainer as UMLReferencingElement<org.eclipse.uml2.uml.Package>
+		val parent = element.eContainer as UMLReferencingElement<Package>
 		val umlActor = UMLFactory.eINSTANCE.createActor
 		umlActor.name = element.name
 		umlActor.package = parent.referencedElement
 		umlActor.isAbstract = element.abstract
 		umlActor.setVisibility(element.visibility)
+		umlActor.handleAliasOfMissingUMLElement(element);
 		element.referencedElement = umlActor		
 	}
 	
@@ -131,6 +133,7 @@ class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutio
 		parent.referencedElement.ownedUseCases.add(umlUseCase)
 		umlUseCase.subjects += element.system.referencedElement
 		umlUseCase.isAbstract = element.abstract
+		umlUseCase.handleAliasOfMissingUMLElement(element);
 		element.referencedElement = umlUseCase
 	}
 	
@@ -138,6 +141,7 @@ class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutio
 		if (!element.resolvePossible) return Void
 		val parent = element.useCase
 		val extensionPoint = parent.referencedElement.createExtensionPoint(element.name)
+		extensionPoint.handleAliasOfMissingUMLElement(element);
 		element.referencedElement = extensionPoint
 	}
 	
@@ -200,10 +204,6 @@ class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutio
 		umlComment.annotatedElements += umlCommentedElement
 		element.referencedElement = umlComment
 	}
-
-	
-	
-	
 	
 	private static def hasValidRootPackageParent(EObject element) {
 		return element.hasValidParent(UsecasePackage.Literals.ROOT_PACKAGE)
@@ -222,6 +222,12 @@ class UsecaseUMLReferencingElementMissingElement extends AutomatedIssueResolutio
 	private static def hasReferencedElement(UMLReferencingElement<?> element) {
 		return element.referencedElement != null
 	}
+	
+	private def void handleAliasOfMissingUMLElement(NamedElement classifier, AliasedElement element) {
+		if (element.alias !== null) {
+			classifier.createNameExpression(element.alias, null);
+		}
+	} 
 	
 	
 }

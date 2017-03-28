@@ -28,7 +28,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * @generated
  */
 public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram {
-	/**
+    /**
      * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -40,62 +40,62 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected UseCaseDiagramImpl() {
+    protected UseCaseDiagramImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return UsecasePackage.Literals.USE_CASE_DIAGRAM;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected int eStaticFeatureCount() {
+    @Override
+    protected int eStaticFeatureCount() {
         return 0;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public RootPackage getRootPackage() {
+    public RootPackage getRootPackage() {
         return (RootPackage)eDynamicGet(UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetRootPackage(RootPackage newRootPackage, NotificationChain msgs) {
+    public NotificationChain basicSetRootPackage(RootPackage newRootPackage, NotificationChain msgs) {
         msgs = eDynamicInverseAdd((InternalEObject)newRootPackage, UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, msgs);
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setRootPackage(RootPackage newRootPackage) {
+    public void setRootPackage(RootPackage newRootPackage) {
         eDynamicSet(UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE, newRootPackage);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -115,11 +115,11 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
                 RootPackage rootPackage = getRootPackage();
@@ -130,13 +130,13 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
                 return basicSetRootPackage(null, msgs);
@@ -144,13 +144,13 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
                 return getRootPackage();
@@ -160,13 +160,13 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
                 setRootPackage((RootPackage)newValue);
@@ -178,13 +178,13 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
                 setRootPackage((RootPackage)null);
@@ -196,13 +196,13 @@ public class UseCaseDiagramImpl extends CDOObjectImpl implements UseCaseDiagram 
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE:
                 return getRootPackage() != null;

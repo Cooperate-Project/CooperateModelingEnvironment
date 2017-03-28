@@ -2,13 +2,16 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl;
+
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,64 +28,54 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class IncludeImpl extends CDOObjectImpl implements Include {
-	/**
+public class IncludeImpl extends ElementImpl implements Include {
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected IncludeImpl() {
+    protected IncludeImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	protected EClass eStaticClass() {
-        return UsecasePackage.Literals.INCLUDE;
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    protected int eStaticFeatureCount() {
-        return 0;
+    protected EClass eStaticClass() {
+        return UsecasePackage.Literals.INCLUDE;
     }
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Include getReferencedElement() {
-        return (org.eclipse.uml2.uml.Include)eDynamicGet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    public org.eclipse.uml2.uml.Include getReferencedElement() {
+        return (org.eclipse.uml2.uml.Include)eDynamicGet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Include basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.Include)eDynamicGet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public org.eclipse.uml2.uml.Include basicGetReferencedElement() {
+        return (org.eclipse.uml2.uml.Include)eDynamicGet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setReferencedElement(org.eclipse.uml2.uml.Include newReferencedElement) {
-        eDynamicSet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public void setReferencedElement(org.eclipse.uml2.uml.Include newReferencedElement) {
+        eDynamicSet(UsecasePackage.INCLUDE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -138,11 +131,11 @@ public class IncludeImpl extends CDOObjectImpl implements Include {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
@@ -157,13 +150,13 @@ public class IncludeImpl extends CDOObjectImpl implements Include {
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)newValue);
@@ -178,13 +171,13 @@ public class IncludeImpl extends CDOObjectImpl implements Include {
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Include)null);
@@ -199,13 +192,13 @@ public class IncludeImpl extends CDOObjectImpl implements Include {
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
@@ -217,32 +210,32 @@ public class IncludeImpl extends CDOObjectImpl implements Include {
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.INCLUDE__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.INCLUDE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
-                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.INCLUDE__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.INCLUDE__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }

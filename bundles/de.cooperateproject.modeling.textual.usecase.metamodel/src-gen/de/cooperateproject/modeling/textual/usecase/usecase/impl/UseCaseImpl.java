@@ -2,13 +2,18 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
+
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
-import de.cooperateproject.modeling.textual.usecase.usecase.Commentable;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
-import de.cooperateproject.modeling.textual.usecase.usecase.Visibility;
 
 import java.util.Collection;
 
@@ -29,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#isAbstract <em>Abstract</em>}</li>
@@ -39,155 +45,167 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class UseCaseImpl extends AliasedElementImpl implements UseCase {
-	/**
+    /**
      * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getVisibility()
      * @generated
      * @ordered
      */
-	protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
+    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
 
-	/**
+    /**
      * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #isAbstract()
      * @generated
      * @ordered
      */
-	protected static final boolean ABSTRACT_EDEFAULT = false;
+    protected static final boolean ABSTRACT_EDEFAULT = false;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected UseCaseImpl() {
+    protected UseCaseImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return UsecasePackage.Literals.USE_CASE;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.UseCase getReferencedElement() {
-        return (org.eclipse.uml2.uml.UseCase)eDynamicGet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(UsecasePackage.USE_CASE__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.UseCase basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.UseCase)eDynamicGet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public org.eclipse.uml2.uml.UseCase getReferencedElement() {
+        return (org.eclipse.uml2.uml.UseCase)eDynamicGet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setReferencedElement(org.eclipse.uml2.uml.UseCase newReferencedElement) {
-        eDynamicSet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public org.eclipse.uml2.uml.UseCase basicGetReferencedElement() {
+        return (org.eclipse.uml2.uml.UseCase)eDynamicGet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Visibility getVisibility() {
+    public void setReferencedElement(org.eclipse.uml2.uml.UseCase newReferencedElement) {
+        eDynamicSet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Visibility getVisibility() {
         return (Visibility)eDynamicGet(UsecasePackage.USE_CASE__VISIBILITY, UsecasePackage.Literals.USE_CASE__VISIBILITY, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setVisibility(Visibility newVisibility) {
+    public void setVisibility(Visibility newVisibility) {
         eDynamicSet(UsecasePackage.USE_CASE__VISIBILITY, UsecasePackage.Literals.USE_CASE__VISIBILITY, newVisibility);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public boolean isAbstract() {
+    public boolean isAbstract() {
         return (Boolean)eDynamicGet(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setAbstract(boolean newAbstract) {
+    public void setAbstract(boolean newAbstract) {
         eDynamicSet(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT, newAbstract);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	public EList<ExtensionPoint> getExtensionPoints() {
+    @SuppressWarnings("unchecked")
+    public EList<ExtensionPoint> getExtensionPoints() {
         return (EList<ExtensionPoint>)eDynamicGet(UsecasePackage.USE_CASE__EXTENSION_POINTS, UsecasePackage.Literals.USE_CASE__EXTENSION_POINTS, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public de.cooperateproject.modeling.textual.usecase.usecase.System getSystem() {
+    public de.cooperateproject.modeling.textual.usecase.usecase.System getSystem() {
         return (de.cooperateproject.modeling.textual.usecase.usecase.System)eDynamicGet(UsecasePackage.USE_CASE__SYSTEM, UsecasePackage.Literals.USE_CASE__SYSTEM, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetSystem(de.cooperateproject.modeling.textual.usecase.usecase.System newSystem, NotificationChain msgs) {
+    public NotificationChain basicSetSystem(de.cooperateproject.modeling.textual.usecase.usecase.System newSystem, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newSystem, UsecasePackage.USE_CASE__SYSTEM, msgs);
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setSystem(de.cooperateproject.modeling.textual.usecase.usecase.System newSystem) {
+    public void setSystem(de.cooperateproject.modeling.textual.usecase.usecase.System newSystem) {
         eDynamicSet(UsecasePackage.USE_CASE__SYSTEM, UsecasePackage.Literals.USE_CASE__SYSTEM, newSystem);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case UsecasePackage.USE_CASE__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
             case UsecasePackage.USE_CASE__EXTENSION_POINTS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getExtensionPoints()).basicAdd(otherEnd, msgs);
             case UsecasePackage.USE_CASE__SYSTEM:
@@ -198,14 +216,16 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case UsecasePackage.USE_CASE__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
             case UsecasePackage.USE_CASE__EXTENSION_POINTS:
                 return ((InternalEList<?>)getExtensionPoints()).basicRemove(otherEnd, msgs);
             case UsecasePackage.USE_CASE__SYSTEM:
@@ -214,13 +234,13 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case UsecasePackage.USE_CASE__SYSTEM:
                 return eInternalContainer().eInverseRemove(this, UsecasePackage.SYSTEM__USECASES, de.cooperateproject.modeling.textual.usecase.usecase.System.class, msgs);
@@ -228,14 +248,16 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case UsecasePackage.USE_CASE__COMMENTS:
+                return getComments();
             case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
@@ -251,15 +273,19 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case UsecasePackage.USE_CASE__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
+                return;
             case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.UseCase)newValue);
                 return;
@@ -280,14 +306,17 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
+            case UsecasePackage.USE_CASE__COMMENTS:
+                getComments().clear();
+                return;
             case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.UseCase)null);
                 return;
@@ -307,14 +336,16 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case UsecasePackage.USE_CASE__COMMENTS:
+                return !getComments().isEmpty();
             case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
             case UsecasePackage.USE_CASE__VISIBILITY:
@@ -329,21 +360,22 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
         if (baseClass == Commentable.class) {
             switch (derivedFeatureID) {
+                case UsecasePackage.USE_CASE__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
                 default: return -1;
             }
         }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.USE_CASE__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.USE_CASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
@@ -355,21 +387,22 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == Commentable.class) {
             switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return UsecasePackage.USE_CASE__COMMENTS;
                 default: return -1;
             }
         }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
-                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.USE_CASE__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.USE_CASE__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }

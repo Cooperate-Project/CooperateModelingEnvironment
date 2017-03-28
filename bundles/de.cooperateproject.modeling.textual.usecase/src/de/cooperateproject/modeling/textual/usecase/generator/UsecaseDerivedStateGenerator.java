@@ -235,6 +235,9 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
         @Override
         public <UMLType extends Element> Boolean caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
             QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
+            if (qn == null) {
+                return super.caseUMLReferencingElement(object);
+            }
 
             EGenericType requiredType = object.eClass()
                     .getFeatureType(UsecasePackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
@@ -247,8 +250,9 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
             if (matchingElements.size() == 1) {
                 object.setReferencedElement((UMLType) matchingElements.get(0));
                 return true;
+            } else {
+                object.setReferencedElement(null);
             }
-
             return super.caseUMLReferencingElement(object);
         }
 

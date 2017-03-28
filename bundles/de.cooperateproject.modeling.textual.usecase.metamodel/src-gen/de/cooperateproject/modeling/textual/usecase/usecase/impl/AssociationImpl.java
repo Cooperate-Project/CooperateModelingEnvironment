@@ -2,10 +2,14 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl;
+
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality;
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
@@ -13,7 +17,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,118 +35,108 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class AssociationImpl extends CDOObjectImpl implements Association {
-	/**
+public class AssociationImpl extends ElementImpl implements Association {
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected AssociationImpl() {
+    protected AssociationImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	protected EClass eStaticClass() {
-        return UsecasePackage.Literals.ASSOCIATION;
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    protected int eStaticFeatureCount() {
-        return 0;
+    protected EClass eStaticClass() {
+        return UsecasePackage.Literals.ASSOCIATION;
     }
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Association getReferencedElement() {
-        return (org.eclipse.uml2.uml.Association)eDynamicGet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    public org.eclipse.uml2.uml.Association getReferencedElement() {
+        return (org.eclipse.uml2.uml.Association)eDynamicGet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Association basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.Association)eDynamicGet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public org.eclipse.uml2.uml.Association basicGetReferencedElement() {
+        return (org.eclipse.uml2.uml.Association)eDynamicGet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setReferencedElement(org.eclipse.uml2.uml.Association newReferencedElement) {
-        eDynamicSet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public void setReferencedElement(org.eclipse.uml2.uml.Association newReferencedElement) {
+        eDynamicSet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Actor getActor() {
+    public Actor getActor() {
         return (Actor)eDynamicGet(UsecasePackage.ASSOCIATION__ACTOR, UsecasePackage.Literals.ASSOCIATION__ACTOR, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Actor basicGetActor() {
+    public Actor basicGetActor() {
         return (Actor)eDynamicGet(UsecasePackage.ASSOCIATION__ACTOR, UsecasePackage.Literals.ASSOCIATION__ACTOR, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setActor(Actor newActor) {
+    public void setActor(Actor newActor) {
         eDynamicSet(UsecasePackage.ASSOCIATION__ACTOR, UsecasePackage.Literals.ASSOCIATION__ACTOR, newActor);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase getUsecase() {
+    public UseCase getUsecase() {
         return (UseCase)eDynamicGet(UsecasePackage.ASSOCIATION__USECASE, UsecasePackage.Literals.ASSOCIATION__USECASE, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCase basicGetUsecase() {
+    public UseCase basicGetUsecase() {
         return (UseCase)eDynamicGet(UsecasePackage.ASSOCIATION__USECASE, UsecasePackage.Literals.ASSOCIATION__USECASE, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setUsecase(UseCase newUsecase) {
+    public void setUsecase(UseCase newUsecase) {
         eDynamicSet(UsecasePackage.ASSOCIATION__USECASE, UsecasePackage.Literals.ASSOCIATION__USECASE, newUsecase);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -201,11 +194,11 @@ public class AssociationImpl extends CDOObjectImpl implements Association {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.ASSOCIATION__ACTOR_CARDINALITY:
                 return basicSetActorCardinality(null, msgs);
@@ -215,13 +208,13 @@ public class AssociationImpl extends CDOObjectImpl implements Association {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
@@ -240,13 +233,13 @@ public class AssociationImpl extends CDOObjectImpl implements Association {
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Association)newValue);
@@ -267,13 +260,13 @@ public class AssociationImpl extends CDOObjectImpl implements Association {
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Association)null);
@@ -294,13 +287,13 @@ public class AssociationImpl extends CDOObjectImpl implements Association {
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
@@ -316,32 +309,32 @@ public class AssociationImpl extends CDOObjectImpl implements Association {
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
-                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }

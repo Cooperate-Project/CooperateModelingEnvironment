@@ -2,8 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
+
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
@@ -36,98 +40,98 @@ import org.eclipse.uml2.uml.Classifier;
  * @generated
  */
 public class SystemImpl extends NamedElementImpl implements de.cooperateproject.modeling.textual.usecase.usecase.System {
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected SystemImpl() {
+    protected SystemImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return UsecasePackage.Literals.SYSTEM;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Classifier getReferencedElement() {
-        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    public Classifier getReferencedElement() {
+        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public Classifier basicGetReferencedElement() {
-        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public Classifier basicGetReferencedElement() {
+        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setReferencedElement(Classifier newReferencedElement) {
-        eDynamicSet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public void setReferencedElement(Classifier newReferencedElement) {
+        eDynamicSet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	public EList<UseCase> getUsecases() {
+    @SuppressWarnings("unchecked")
+    public EList<UseCase> getUsecases() {
         return (EList<UseCase>)eDynamicGet(UsecasePackage.SYSTEM__USECASES, UsecasePackage.Literals.SYSTEM__USECASES, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public RootPackage getPackage() {
+    public RootPackage getPackage() {
         return (RootPackage)eDynamicGet(UsecasePackage.SYSTEM__PACKAGE, UsecasePackage.Literals.SYSTEM__PACKAGE, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetPackage(RootPackage newPackage, NotificationChain msgs) {
+    public NotificationChain basicSetPackage(RootPackage newPackage, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newPackage, UsecasePackage.SYSTEM__PACKAGE, msgs);
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setPackage(RootPackage newPackage) {
+    public void setPackage(RootPackage newPackage) {
         eDynamicSet(UsecasePackage.SYSTEM__PACKAGE, UsecasePackage.Literals.SYSTEM__PACKAGE, newPackage);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__USECASES:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsecases()).basicAdd(otherEnd, msgs);
@@ -139,13 +143,13 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__USECASES:
                 return ((InternalEList<?>)getUsecases()).basicRemove(otherEnd, msgs);
@@ -155,13 +159,13 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case UsecasePackage.SYSTEM__PACKAGE:
                 return eInternalContainer().eInverseRemove(this, UsecasePackage.ROOT_PACKAGE__SYSTEMS, RootPackage.class, msgs);
@@ -169,13 +173,13 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
@@ -188,14 +192,14 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 setReferencedElement((Classifier)newValue);
@@ -211,13 +215,13 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 setReferencedElement((Classifier)null);
@@ -232,13 +236,13 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
@@ -250,32 +254,32 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.SYSTEM__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.SYSTEM__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
-                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.SYSTEM__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.SYSTEM__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
