@@ -28,6 +28,7 @@ import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRo
 import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifier;
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifier;
+import de.cooperateproject.modeling.textual.cls.issues.ClsRootPackageMissing;
 import de.cooperateproject.modeling.textual.cls.issues.ClsUMLReferencingElementMissingElement;
 import de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheck;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
@@ -40,6 +41,14 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 public class ClsValidator extends AbstractClsValidator {
 
     private static final Switch<EStructuralFeature> MISSING_REFERENCE_FEATURE_SWITCH = new UMLReferencingElementFeatureSwitch();
+
+    @Check
+    private void checkRootPackageMissing(de.cooperateproject.modeling.textual.cls.cls.Package pkg) {
+        if (ClsRootPackageMissing.hasIssue(pkg)) {
+            info("The root package is not available. It will be created during save.",
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsRootPackageMissing.ISSUE_CODE);
+        }
+    }
 
     @Check
     private void checkUMLMissingReferencedElement(UMLReferencingElement<Element> referencingElement) {

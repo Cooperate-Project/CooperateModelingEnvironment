@@ -14,6 +14,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import org.apache.commons.lang3.StringUtils
@@ -38,6 +39,11 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 	}
 
 	static def hasIssue(UMLReferencingElement<Element> object) {
+		if (object instanceof PackageBase) {
+			if (object.owningPackage === null) {
+				return false
+			}
+		}
 		return object.referencedElement === null
 	}
 
@@ -50,6 +56,9 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 	}
 
 	private def dispatch resolvePossible(Package element) {
+		if (element.owningPackage === null) {
+			return false
+		}
 		return element.owningPackage.hasReferencedElement
 	}
 

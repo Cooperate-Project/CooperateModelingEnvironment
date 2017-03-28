@@ -10,20 +10,21 @@ import com.google.common.collect.Multimap;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
+import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionProviderBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory;
 
 public class ClsAutomatedIssueResolutionProvider extends AutomatedIssueResolutionProviderBase {
 
-    private static final Multimap<String, IAutomatedIssueResolutionFactory<EObject>> RESOLUTIONS = initResolutions();
+    private final Multimap<String, IAutomatedIssueResolutionFactory<EObject>> resolutions = initResolutions();
 
     @Override
     protected Collection<IAutomatedIssueResolutionFactory<EObject>> findResolutionFactories(String issueCode) {
-        return RESOLUTIONS.get(issueCode);
+        return resolutions.get(issueCode);
     }
 
-    private static Multimap<String, IAutomatedIssueResolutionFactory<EObject>> initResolutions() {
+    private Multimap<String, IAutomatedIssueResolutionFactory<EObject>> initResolutions() {
         Multimap<String, IAutomatedIssueResolutionFactory<EObject>> map = HashMultimap.create();
         map.put(ClsUMLReferencingElementMissingElement.MISSING_UML_REFERENCE,
                 e -> new ClsUMLReferencingElementMissingElement((UMLReferencingElement<Element>) e));
@@ -35,7 +36,9 @@ public class ClsAutomatedIssueResolutionProvider extends AutomatedIssueResolutio
         map.put(ClsPropertyStaticQualifier.ISSUE_CODE,
                 e -> new ClsPropertyStaticQualifier((UMLReferencingElement<Element>) e));
         map.put(ClsVisibilityCheck.ISSUE_CODE, e -> new ClsVisibilityCheck((Classifier) e));
+        map.put(ClsRootPackageMissing.ISSUE_CODE, e -> new ClsRootPackageMissing((Package) e));
+
+        // TODO injection of members...
         return map;
     }
-
 }
