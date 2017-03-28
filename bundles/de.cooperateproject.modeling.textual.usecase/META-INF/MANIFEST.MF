@@ -16,10 +16,11 @@ Require-Bundle: org.eclipse.xtext,
  de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.1.7";resolution:=optional,
  de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport,
  net.winklerweb.cdoxtext.generator;resolution:=optional,
- de.cooperateproject.modeling.textual.common.metamodel
+ de.cooperateproject.modeling.textual.common.metamodel,
+ net.winklerweb.cdoxtext.runtime;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
- de.cooperateproject.modeling.textual.usecase.formatting,
+ de.cooperateproject.modeling.textual.usecase.formatting2,
  de.cooperateproject.modeling.textual.usecase.generator,
  de.cooperateproject.modeling.textual.usecase.issues,
  de.cooperateproject.modeling.textual.usecase.parser.antlr,
