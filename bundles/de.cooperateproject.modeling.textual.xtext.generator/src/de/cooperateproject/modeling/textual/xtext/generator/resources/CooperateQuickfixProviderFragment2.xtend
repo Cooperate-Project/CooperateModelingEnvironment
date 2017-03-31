@@ -5,6 +5,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQui
 import org.apache.commons.lang3.StringUtils
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.Grammar
+import org.eclipse.xtext.GrammarUtil
 import org.eclipse.xtext.xtext.generator.XtextGeneratorNaming
 import org.eclipse.xtext.xtext.generator.model.FileAccessFactory
 import org.eclipse.xtext.xtext.generator.ui.quickfix.QuickfixProviderFragment2
@@ -37,7 +38,7 @@ class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
 			class «grammar.quickfixProviderClass.simpleName» extends «grammar.quickfixProviderSuperClass» {
 			
 				new() {
-					super(#[«grammar.packages.toInstanceString»])
+					super(#[«GrammarUtil.allEPackagesToValidate(grammar).toInstanceString»])
 				}
 
 			}
@@ -54,7 +55,7 @@ class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
 			public class «grammar.quickfixProviderClass.simpleName» extends «grammar.quickfixProviderSuperClass» {
 			
 				public «grammar.quickfixProviderClass.simpleName»() {
-					super(Arrays.asList(«grammar.packages.toInstanceString»));
+					super(Arrays.asList(«GrammarUtil.allEPackagesToValidate(grammar).toInstanceString»));
 				}
 			
 			}
@@ -62,12 +63,11 @@ class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
 	}
 	
 	private def toInstanceString(Iterable<EPackage> packages) {
-		StringUtils.join(packages.map[toInstanceString], ',')
+		StringUtils.join(packages.map[toInstanceString], ", ")
 	}
 	
 	private def toInstanceString(EPackage pkg) '''
-		«pkg.getGeneratedEPackageName(grammar, naming)».eINSTANCE
-	'''
+	«pkg.getGeneratedEPackageName(grammar, naming)».eINSTANCE'''
 	
 	
 }

@@ -65,15 +65,4 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule {
         return ClsValueConverter;
     }
     
-    def Class<? extends ICooperateAutomatedValidator> bindICooperateAutomatedValidator() {
-    	return CooperateAutomatedValidator
-    }
-	
-	def Class<? extends IAutomatedIssueResolutionFactoryRegistry> bindIAutomatedIssueResolutionFactoryRegistry() {
-		return AutomatedIssueResolutionFactoryRegistry
-	}
-	
-	def Class<? extends IIssueCodeRegistry> bindIIssueCodeRegistry() {
-		return IssueCodeRegistry
-	}
 }

@@ -5,6 +5,7 @@ import org.eclipse.xtext.xtext.generator.XtextGeneratorNaming
 import org.eclipse.xtext.xtext.generator.model.JavaFileAccess
 
 import static extension de.cooperateproject.modeling.textual.xtext.generator.resources.GrammarPackageHandlingUtilities.*
+import org.eclipse.xtext.GrammarUtil
 
 class AutomatedIssueResolutionFactoryBaseGenerator {
 	
@@ -34,7 +35,7 @@ class AutomatedIssueResolutionFactoryBaseGenerator {
 		
 		    @Override
 		    public EPackage getSupportedEPackage() {
-		        return «grammar.packages.findFirst[true].getGeneratedEPackageName(grammar, naming) ».eINSTANCE;
+		        return «GrammarUtil.allEPackagesToValidate(grammar).findFirst[true].getGeneratedEPackageName(grammar, naming) ».eINSTANCE;
 		    }
 		}
 		'''	
