@@ -105,6 +105,8 @@ Workflow {
 			fragment = scoping.ImportNamespacesScopingFragment2 auto-inject {}
 			fragment = exporting.QualifiedNamesFragment2 auto-inject {}
 
+			quickFixProvider = resources.CooperateQuickfixProviderFragment2 auto-inject {}
+
 			generator = {
 				generateStub = false
 			}

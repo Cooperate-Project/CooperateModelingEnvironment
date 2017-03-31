@@ -12,12 +12,18 @@ import de.cooperateproject.modeling.textual.cls.services.ClsTransientValueServic
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.validator.CooperateAutomatedValidator
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
+import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionFactoryRegistry
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.IssueCodeRegistry
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -58,5 +64,16 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule {
 	override bindIValueConverterService() {
         return ClsValueConverter;
     }
+    
+    def Class<? extends ICooperateAutomatedValidator> bindICooperateAutomatedValidator() {
+    	return CooperateAutomatedValidator
+    }
 	
+	def Class<? extends IAutomatedIssueResolutionFactoryRegistry> bindIAutomatedIssueResolutionFactoryRegistry() {
+		return AutomatedIssueResolutionFactoryRegistry
+	}
+	
+	def Class<? extends IIssueCodeRegistry> bindIIssueCodeRegistry() {
+		return IssueCodeRegistry
+	}
 }

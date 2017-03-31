@@ -7,6 +7,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext.generator;bundle-version="2.9.1",
  de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.7",
  org.eclipse.xtext,
- org.eclipse.xtext.ui
+ org.eclipse.xtext.ui,
+ de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.1.7",
+ org.apache.commons.lang3;bundle-version="3.1.0"
 Export-Package: de.cooperateproject.modeling.textual.xtext.generator.naming,
  de.cooperateproject.modeling.textual.xtext.generator.resources
