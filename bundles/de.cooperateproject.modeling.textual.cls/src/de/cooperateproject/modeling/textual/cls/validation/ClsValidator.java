@@ -23,7 +23,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleName;
 import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifier;
@@ -33,6 +32,7 @@ import de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheck;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
 
 /**
  * Cls-validator for the editor.
@@ -170,7 +170,7 @@ public class ClsValidator extends AbstractClsValidator {
         error(message, feature, code, new String[0]);
     }
 
-    private static class UMLReferencingElementFeatureSwitch extends ClsSwitch<EStructuralFeature> {
+    private static class UMLReferencingElementFeatureSwitch extends TextualCommonsSwitch<EStructuralFeature> {
 
         @Override
         public EStructuralFeature caseNamedElement(NamedElement object) {

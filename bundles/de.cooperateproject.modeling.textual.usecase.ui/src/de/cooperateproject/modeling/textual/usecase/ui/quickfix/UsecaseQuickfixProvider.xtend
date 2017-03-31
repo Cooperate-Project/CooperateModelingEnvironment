@@ -4,12 +4,12 @@
 package de.cooperateproject.modeling.textual.usecase.ui.quickfix
 
 import de.cooperateproject.modeling.textual.usecase.issues.UsecaseUMLReferencingElementMissingElement
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
 import org.eclipse.uml2.uml.Element
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
 import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 
 class UsecaseQuickfixProvider extends DefaultQuickfixProvider {
 

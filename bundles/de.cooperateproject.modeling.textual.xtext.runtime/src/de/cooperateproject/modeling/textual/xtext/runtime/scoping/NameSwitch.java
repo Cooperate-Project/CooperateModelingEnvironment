@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.scoping;
+package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
 import java.util.List;
 

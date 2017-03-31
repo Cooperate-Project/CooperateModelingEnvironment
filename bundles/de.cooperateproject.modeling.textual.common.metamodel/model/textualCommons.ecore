@@ -50,6 +50,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packageImports" upperBound="-1"
         eType="#//PackageImport" containment="true" eOpposite="#//PackageImport/importingPackage"/>
+    <eGenericSuperTypes eClassifier="#//PackageableElement"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     </eGenericSuperTypes>

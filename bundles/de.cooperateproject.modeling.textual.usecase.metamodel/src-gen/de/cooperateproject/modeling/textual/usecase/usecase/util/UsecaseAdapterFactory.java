@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.usecase.usecase.CommentLink;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -133,10 +132,6 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseExtend(Extend object) {
                 return createExtendAdapter();
-            }
-            @Override
-            public Adapter caseCommentLink(CommentLink object) {
-                return createCommentLinkAdapter();
             }
             @Override
             public Adapter caseCommentable(Commentable object) {
@@ -343,20 +338,6 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createExtendAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.usecase.usecase.CommentLink <em>Comment Link</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.CommentLink
-     * @generated
-     */
-    public Adapter createCommentLinkAdapter() {
         return null;
     }
 

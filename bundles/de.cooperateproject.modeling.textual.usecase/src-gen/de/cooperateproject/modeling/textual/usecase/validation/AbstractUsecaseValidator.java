@@ -13,7 +13,8 @@ public abstract class AbstractUsecaseValidator extends AbstractDeclarativeValida
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/language/usecase/Usecase"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/usecase/Usecase"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/commons"));
 		return result;
 	}
 	

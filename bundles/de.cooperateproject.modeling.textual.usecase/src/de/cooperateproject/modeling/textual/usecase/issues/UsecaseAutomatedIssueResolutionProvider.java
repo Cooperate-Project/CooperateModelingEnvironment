@@ -11,7 +11,7 @@ import org.eclipse.uml2.uml.Element;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionProviderBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory;
 

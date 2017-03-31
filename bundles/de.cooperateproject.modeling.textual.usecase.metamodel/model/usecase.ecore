@@ -51,6 +51,7 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseCase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
@@ -129,12 +130,5 @@
     <eLiterals name="UNDEFINED"/>
     <eLiterals name="HUMAN" value="1"/>
     <eLiterals name="MACHINE" value="2" literal=""/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CommentLink" eSuperTypes="#//Relationship ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement">
-      <eGenericType eClassifier="#//BehavioredClassifier">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

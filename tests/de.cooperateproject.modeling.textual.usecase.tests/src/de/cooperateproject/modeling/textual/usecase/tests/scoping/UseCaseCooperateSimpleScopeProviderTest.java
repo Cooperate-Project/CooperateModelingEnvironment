@@ -33,11 +33,11 @@ import org.junit.runner.RunWith;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.usecase.UsecaseStandaloneSetup;
 import de.cooperateproject.modeling.textual.usecase.scoping.UseCaseImportedNamespaceAwareLocalScopeProvider;
 import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UseCaseCustomizedInjectorProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
-import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 @RunWith(XtextRunner.class)
 @InjectWith(UseCaseCustomizedInjectorProvider.DefaultProvider.class)
@@ -71,7 +71,7 @@ public class UseCaseCooperateSimpleScopeProviderTest {
         UseCaseDiagram ud = loadUseCaseDiagram(rs, "simple.uc");
 
         IScope scope = subject.getScope(ud.getRootPackage().getSystems().get(0).getUsecases().get(0),
-                UsecasePackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
+                TextualCommonsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
 
         List<ImportNormalizer> normalizers = getNormalizers(scope);
 

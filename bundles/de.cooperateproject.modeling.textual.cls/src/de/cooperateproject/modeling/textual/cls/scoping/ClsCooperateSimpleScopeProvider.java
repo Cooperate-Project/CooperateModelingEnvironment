@@ -22,6 +22,7 @@ import com.google.common.collect.Lists;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateSimpleLocalScopeProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.NameSwitch;
 
 public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopeProvider {
 

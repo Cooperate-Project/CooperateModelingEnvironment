@@ -72,7 +72,6 @@ public class CommentImpl extends UMLReferencingElementImpl<Comment> implements d
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	public Commentable getCommentedElement() {
 		return (Commentable)eDynamicGet(TextualCommonsPackage.COMMENT__COMMENTED_ELEMENT, TextualCommonsPackage.Literals.COMMENT__COMMENTED_ELEMENT, true, true);
 	}
@@ -119,7 +118,6 @@ public class CommentImpl extends UMLReferencingElementImpl<Comment> implements d
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -180,7 +178,6 @@ public class CommentImpl extends UMLReferencingElementImpl<Comment> implements d
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

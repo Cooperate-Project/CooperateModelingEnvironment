@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Comment</b></em>'.
@@ -25,7 +26,7 @@ public interface Comment extends UMLReferencingElement<org.eclipse.uml2.uml.Comm
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable#getComments <em>Comments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Commented Element</em>' reference isn't clear,
+	 * If the meaning of the '<em>Commented Element</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

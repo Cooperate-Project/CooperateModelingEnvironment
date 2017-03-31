@@ -23,7 +23,7 @@ class UsecaseFormatter extends AbstractFormatter2 {
 	def dispatch void format(UseCaseDiagram usecasediagram, extension IFormattableDocument document) {
 		usecasediagram.regionFor.feature(UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE).append[newLines = 2]
 		format(usecasediagram.getRootPackage(), document);
-		usecasediagram.regionFor.keyword(useCaseDiagramAccess.endUcKeyword_3).prepend[newLines = 2]
+		usecasediagram.regionFor.keyword(useCaseDiagramAccess.endUcdKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
@@ -49,8 +49,8 @@ class UsecaseFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(de.cooperateproject.modeling.textual.usecase.usecase.System system, extension IFormattableDocument document) {
 		interior(
-			system.regionFor.keyword(systemAccess.leftCurlyBracketKeyword_2).append[newLine],
-			system.regionFor.keyword(systemAccess.rightCurlyBracketKeyword_4),
+			system.regionFor.keyword(systemAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			system.regionFor.keyword(systemAccess.rightCurlyBracketKeyword_2_1_3),
 			[indent]
 		)
 		for (UseCase usecases : system.getUsecases()) {
@@ -65,8 +65,8 @@ class UsecaseFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(UseCase usecase, extension IFormattableDocument document) {
 		interior(
-			usecase.regionFor.keyword(useCaseAccess.leftCurlyBracketKeyword_4_0).append[newLine],
-			usecase.regionFor.keyword(useCaseAccess.rightCurlyBracketKeyword_4_2),
+			usecase.regionFor.keyword(useCaseAccess.leftCurlyBracketKeyword_4_1_0).append[newLine],
+			usecase.regionFor.keyword(useCaseAccess.rightCurlyBracketKeyword_4_1_3),
 			[indent]
 		) 
 		for (ExtensionPoint extensionPoint : usecase.getExtensionPoints()) {

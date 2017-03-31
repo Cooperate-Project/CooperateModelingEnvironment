@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.ActorType;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.usecase.usecase.CommentLink;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -79,7 +78,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
             case UsecasePackage.GENERALIZATION: return (EObject)createGeneralization();
             case UsecasePackage.INCLUDE: return (EObject)createInclude();
             case UsecasePackage.EXTEND: return (EObject)createExtend();
-            case UsecasePackage.COMMENT_LINK: return (EObject)createCommentLink();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -213,16 +211,6 @@ public class UsecaseFactoryImpl extends EFactoryImpl implements UsecaseFactory {
     public Extend createExtend() {
         ExtendImpl extend = new ExtendImpl();
         return extend;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public CommentLink createCommentLink() {
-        CommentLinkImpl commentLink = new CommentLinkImpl();
-        return commentLink;
     }
 
     /**

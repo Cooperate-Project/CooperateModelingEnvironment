@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -26,7 +27,7 @@ import org.eclipse.uml2.uml.Classifier;
  * @model
  * @generated
  */
-public interface System extends NamedElement, UMLReferencingElement<Classifier> {
+public interface System extends NamedElement, UMLReferencingElement<Classifier>, Commentable {
     /**
      * Returns the value of the '<em><b>Usecases</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase}.

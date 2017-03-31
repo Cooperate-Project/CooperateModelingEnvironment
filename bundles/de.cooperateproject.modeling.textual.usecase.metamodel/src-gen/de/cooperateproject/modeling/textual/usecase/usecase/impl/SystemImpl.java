@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -33,6 +35,7 @@ import org.eclipse.uml2.uml.Classifier;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getUsecases <em>Usecases</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getPackage <em>Package</em>}</li>
  * </ul>
@@ -92,6 +95,16 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
      * @generated
      */
     @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(UsecasePackage.SYSTEM__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
     public EList<UseCase> getUsecases() {
         return (EList<UseCase>)eDynamicGet(UsecasePackage.SYSTEM__USECASES, UsecasePackage.Literals.SYSTEM__USECASES, true, true);
     }
@@ -133,6 +146,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case UsecasePackage.SYSTEM__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
             case UsecasePackage.SYSTEM__USECASES:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsecases()).basicAdd(otherEnd, msgs);
             case UsecasePackage.SYSTEM__PACKAGE:
@@ -151,6 +166,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case UsecasePackage.SYSTEM__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
             case UsecasePackage.SYSTEM__USECASES:
                 return ((InternalEList<?>)getUsecases()).basicRemove(otherEnd, msgs);
             case UsecasePackage.SYSTEM__PACKAGE:
@@ -184,6 +201,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
+            case UsecasePackage.SYSTEM__COMMENTS:
+                return getComments();
             case UsecasePackage.SYSTEM__USECASES:
                 return getUsecases();
             case UsecasePackage.SYSTEM__PACKAGE:
@@ -203,6 +222,10 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         switch (featureID) {
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 setReferencedElement((Classifier)newValue);
+                return;
+            case UsecasePackage.SYSTEM__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
             case UsecasePackage.SYSTEM__USECASES:
                 getUsecases().clear();
@@ -226,6 +249,9 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 setReferencedElement((Classifier)null);
                 return;
+            case UsecasePackage.SYSTEM__COMMENTS:
+                getComments().clear();
+                return;
             case UsecasePackage.SYSTEM__USECASES:
                 getUsecases().clear();
                 return;
@@ -246,6 +272,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         switch (featureID) {
             case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
+            case UsecasePackage.SYSTEM__COMMENTS:
+                return !getComments().isEmpty();
             case UsecasePackage.SYSTEM__USECASES:
                 return !getUsecases().isEmpty();
             case UsecasePackage.SYSTEM__PACKAGE:
@@ -267,6 +295,12 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
                 default: return -1;
             }
         }
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.SYSTEM__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -280,6 +314,12 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.SYSTEM__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return UsecasePackage.SYSTEM__COMMENTS;
                 default: return -1;
             }
         }

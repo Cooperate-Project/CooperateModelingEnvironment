@@ -8,7 +8,6 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.ActorType;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
-import de.cooperateproject.modeling.textual.usecase.usecase.CommentLink;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -122,13 +121,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * @generated
      */
     private EClass extendEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass commentLinkEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -566,24 +558,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCommentLink() {
-        return commentLinkEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCommentLink_CommentedElement() {
-        return (EReference)commentLinkEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EEnum getActorType() {
         return actorTypeEEnum;
     }
@@ -668,9 +642,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         createEReference(extendEClass, EXTEND__EXTENSION_LOCATION);
         createEAttribute(extendEClass, EXTEND__CONDITION);
 
-        commentLinkEClass = createEClass(COMMENT_LINK);
-        createEReference(commentLinkEClass, COMMENT_LINK__COMMENTED_ELEMENT);
-
         // Create enums
         actorTypeEEnum = createEEnum(ACTOR_TYPE);
     }
@@ -734,6 +705,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getClassifier());
         g1.getETypeArguments().add(g2);
         systemEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        systemEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
         useCaseEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getBehavioredClassifier());
@@ -771,8 +744,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g2 = createEGenericType(theUMLPackage.getExtend());
         g1.getETypeArguments().add(g2);
         extendEClass.getEGenericSuperTypes().add(g1);
-        commentLinkEClass.getESuperTypes().add(this.getRelationship());
-        commentLinkEClass.getESuperTypes().add(theTextualCommonsPackage.getCommentable());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(useCaseDiagramEClass, UseCaseDiagram.class, "UseCaseDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -832,12 +803,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEReference(getExtend_ExtendedCase(), this.getUseCase(), null, "extendedCase", null, 1, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getExtend_ExtensionLocation(), this.getExtensionPoint(), null, "extensionLocation", null, 1, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getExtend_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Extend.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        g1 = createEGenericType(this.getBehavioredClassifier());
-        g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEReference(getCommentLink_CommentedElement(), g1, null, "commentedElement", null, 0, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(actorTypeEEnum, ActorType.class, "ActorType");

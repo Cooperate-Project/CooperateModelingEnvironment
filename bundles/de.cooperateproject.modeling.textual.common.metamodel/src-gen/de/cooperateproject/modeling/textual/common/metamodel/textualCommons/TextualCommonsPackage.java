@@ -243,6 +243,34 @@ public interface TextualCommonsPackage extends EPackage {
 	int UML_REFERENCING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
+	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getPackageableElement()
+	 * @generated
+	 */
+	int PACKAGEABLE_ELEMENT = 8;
+
+	/**
+	 * The number of structural features of the '<em>Packageable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Packageable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl <em>Package Base</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -259,7 +287,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+	int PACKAGE_BASE__REFERENCED_ELEMENT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -268,7 +296,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE__NAME = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+	int PACKAGE_BASE__NAME = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -277,7 +305,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE__OWNING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGE_BASE__OWNING_PACKAGE = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' containment reference list.
@@ -286,7 +314,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE__PACKAGES = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+	int PACKAGE_BASE__PACKAGES = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Package Imports</b></em>' containment reference list.
@@ -295,7 +323,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE__PACKAGE_IMPORTS = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+	int PACKAGE_BASE__PACKAGE_IMPORTS = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Package Base</em>' class.
@@ -304,7 +332,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+	int PACKAGE_BASE_FEATURE_COUNT = PACKAGEABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -313,7 +341,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+	int PACKAGE_BASE___GET_NEAREST_PACKAGE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Package Base</em>' class.
@@ -322,7 +350,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE_OPERATION_COUNT = UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+	int PACKAGE_BASE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl <em>Commentable</em>}' class.
@@ -470,34 +498,6 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getPackageableElement()
-	 * @generated
-	 */
-	int PACKAGEABLE_ELEMENT = 8;
-
-	/**
-	 * The number of structural features of the '<em>Packageable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Packageable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl <em>Package Import</em>}' class.

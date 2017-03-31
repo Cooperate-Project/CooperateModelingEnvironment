@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.scoping;
+package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.AliasedScope;
 
-public class ClsImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
+public class CooperateImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
 
     protected IScope getLocalElementsScope(IScope parent, final EObject context, final EReference reference) {
         IScope newParentScope = new AliasedScope(parent, isIgnoreCase(reference));

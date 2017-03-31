@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package Base</b></em>'.
@@ -23,8 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface PackageBase<PackageType extends PackageBase<?>> extends UMLReferencingElement<org.eclipse.uml2.uml.Package>, NamedElement {
-
+public interface PackageBase<PackageType extends PackageBase<?>> extends PackageableElement, UMLReferencingElement<org.eclipse.uml2.uml.Package>, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackages <em>Packages</em>}'.
@@ -87,4 +85,5 @@ public interface PackageBase<PackageType extends PackageBase<?>> extends UMLRefe
 	 * @generated
 	 */
 	EList<PackageImport> getPackageImports();
+
 } // PackageBase

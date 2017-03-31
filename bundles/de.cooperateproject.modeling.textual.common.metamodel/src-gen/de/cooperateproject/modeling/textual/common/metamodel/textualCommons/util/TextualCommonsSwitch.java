@@ -97,6 +97,7 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
 			case TextualCommonsPackage.PACKAGE_BASE: {
 				PackageBase<?> packageBase = (PackageBase<?>)theEObject;
 				T result = casePackageBase(packageBase);
+				if (result == null) result = casePackageableElement(packageBase);
 				if (result == null) result = caseUMLReferencingElement(packageBase);
 				if (result == null) result = caseNamedElement(packageBase);
 				if (result == null) result = caseElement(packageBase);

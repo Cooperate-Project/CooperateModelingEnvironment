@@ -18,7 +18,8 @@ Require-Bundle: de.cooperateproject.modeling.textual.usecase,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.compare.rcp,
  org.eclipse.emf.compare,
- org.eclipse.emf.compare.rcp.ui
+ org.eclipse.emf.compare.rcp.ui,
+ de.cooperateproject.modeling.textual.common;bundle-version="0.1.7"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.ui.contentassist,

@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
 import org.eclipse.emf.cdo.CDOObject;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,7 +30,7 @@ public interface Commentable extends CDOObject {
 	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment#getCommentedElement <em>Commented Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Comments</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

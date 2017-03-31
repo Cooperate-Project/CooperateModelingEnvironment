@@ -380,13 +380,22 @@ public interface UsecasePackage extends EPackage {
     int SYSTEM__REFERENCED_ELEMENT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM__COMMENTS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The feature id for the '<em><b>Usecases</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SYSTEM__USECASES = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+    int SYSTEM__USECASES = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -395,7 +404,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM__PACKAGE = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+    int SYSTEM__PACKAGE = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>System</em>' class.
@@ -404,7 +413,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+    int SYSTEM_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -936,61 +945,6 @@ public interface UsecasePackage extends EPackage {
     int EXTEND_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.CommentLinkImpl <em>Comment Link</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.CommentLinkImpl
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getCommentLink()
-     * @generated
-     */
-    int COMMENT_LINK = 12;
-
-    /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK__COMMENTS = RELATIONSHIP_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Commented Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK__COMMENTED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Comment Link</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 2;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
-
-    /**
-     * The number of operations of the '<em>Comment Link</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
-
-    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -998,7 +952,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getActorType()
      * @generated
      */
-    int ACTOR_TYPE = 13;
+    int ACTOR_TYPE = 12;
 
 
     /**
@@ -1430,27 +1384,6 @@ public interface UsecasePackage extends EPackage {
     EAttribute getExtend_Condition();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.CommentLink <em>Comment Link</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Comment Link</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.CommentLink
-     * @generated
-     */
-    EClass getCommentLink();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.CommentLink#getCommentedElement <em>Commented Element</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Commented Element</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.CommentLink#getCommentedElement()
-     * @see #getCommentLink()
-     * @generated
-     */
-    EReference getCommentLink_CommentedElement();
-
-    /**
      * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1826,24 +1759,6 @@ public interface UsecasePackage extends EPackage {
          * @generated
          */
         EAttribute EXTEND__CONDITION = eINSTANCE.getExtend_Condition();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.CommentLinkImpl <em>Comment Link</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.CommentLinkImpl
-         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getCommentLink()
-         * @generated
-         */
-        EClass COMMENT_LINK = eINSTANCE.getCommentLink();
-
-        /**
-         * The meta object literal for the '<em><b>Commented Element</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference COMMENT_LINK__COMMENTED_ELEMENT = eINSTANCE.getCommentLink_CommentedElement();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.ActorType <em>Actor Type</em>}' enum.

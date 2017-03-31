@@ -1,13 +1,13 @@
-package de.cooperateproject.modeling.textual.cls.scoping;
+package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.QualifiedName;
 
-import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
 
-public class QualifiedNameGenerator extends ClsSwitch<String> {
+public class QualifiedNameGenerator extends TextualCommonsSwitch<String> {
 
     private static final QualifiedNameGenerator QUALIFIED_NAME_GENERATOR = new QualifiedNameGenerator();
 

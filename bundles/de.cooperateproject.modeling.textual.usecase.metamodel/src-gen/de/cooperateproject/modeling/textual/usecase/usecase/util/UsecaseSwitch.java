@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
-import de.cooperateproject.modeling.textual.usecase.usecase.CommentLink;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -125,6 +124,7 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 T1 result = caseSystem(system);
                 if (result == null) result = caseNamedElement(system);
                 if (result == null) result = caseUMLReferencingElement(system);
+                if (result == null) result = caseCommentable(system);
                 if (result == null) result = caseElement(system);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -191,15 +191,6 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseRelationship(extend);
                 if (result == null) result = caseUMLReferencingElement(extend);
                 if (result == null) result = caseElement(extend);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case UsecasePackage.COMMENT_LINK: {
-                CommentLink commentLink = (CommentLink)theEObject;
-                T1 result = caseCommentLink(commentLink);
-                if (result == null) result = caseRelationship(commentLink);
-                if (result == null) result = caseCommentable(commentLink);
-                if (result == null) result = caseElement(commentLink);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -384,21 +375,6 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseExtend(Extend object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Comment Link</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Comment Link</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseCommentLink(CommentLink object) {
         return null;
     }
 

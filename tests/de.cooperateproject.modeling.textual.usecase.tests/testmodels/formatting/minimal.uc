@@ -1,13 +1,13 @@
-@start-uc "diagram11"
+@start-ucd "diagram11"
 
 rootElement RootElement
 
 actor User1
 
-system System1 {
-	usecase UseCase1
+sys System1 {
+	uc UseCase1
 }
 
-User1 iac System1.UseCase1
+iac (User1, System1.UseCase1)
 
-@end-uc
+@end-ucd

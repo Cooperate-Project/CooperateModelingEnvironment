@@ -16,7 +16,6 @@ import org.eclipse.emf.cdo.CDOObject;
  * @generated
  */
 public interface Element extends CDOObject {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

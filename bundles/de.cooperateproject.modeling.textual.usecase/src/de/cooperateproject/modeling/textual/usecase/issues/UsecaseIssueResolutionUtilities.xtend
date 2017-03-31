@@ -1,10 +1,10 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.usecase.usecase.Visibility
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.uml2.uml.VisibilityKind
-import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality
 
 class UsecaseIssueResolutionUtilities {
 	

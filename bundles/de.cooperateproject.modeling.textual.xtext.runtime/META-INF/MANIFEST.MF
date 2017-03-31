@@ -12,14 +12,17 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.apache.commons.lang3;bundle-version="3.1.0",
  org.apache.log4j,
  de.cooperateproject.util;bundle-version="0.1.7",
- de.cooperateproject.modeling.textual.common,
  de.cooperateproject.ui.preferences;bundle-version="1.0.0",
  org.eclipse.emf.transaction,
- de.cooperateproject.modeling.textual.common.metamodel
-Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
+ de.cooperateproject.modeling.textual.common.metamodel,
+ de.cooperateproject.modeling.textual.common
+Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
+ de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
+ de.cooperateproject.modeling.textual.xtext.runtime.generator,
  de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
- de.cooperateproject.modeling.textual.xtext.runtime.scoping
+ de.cooperateproject.modeling.textual.xtext.runtime.scoping,
+ de.cooperateproject.modeling.textual.xtext.runtime.services
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator
