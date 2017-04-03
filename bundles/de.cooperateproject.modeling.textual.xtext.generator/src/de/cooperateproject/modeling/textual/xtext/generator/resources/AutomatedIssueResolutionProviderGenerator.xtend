@@ -20,6 +20,7 @@ class AutomatedIssueResolutionProviderGenerator {
 	def create(JavaFileAccess jva, String simpleClassName) {
 		jva.content = '''
 		import java.util.Collection;
+		import java.util.HashSet;
 		
 		import com.google.inject.Inject;
 		
