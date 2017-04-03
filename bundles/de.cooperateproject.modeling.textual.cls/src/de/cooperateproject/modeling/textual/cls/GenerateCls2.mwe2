@@ -114,8 +114,8 @@ Workflow {
 			serializer = {
 				generateStub = false
 			}
-			validator = {
-				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+			
+			validator = resources.CooperateValidatorFragment2 auto-inject {
 				generateXtendStub = false
 			}
 			
