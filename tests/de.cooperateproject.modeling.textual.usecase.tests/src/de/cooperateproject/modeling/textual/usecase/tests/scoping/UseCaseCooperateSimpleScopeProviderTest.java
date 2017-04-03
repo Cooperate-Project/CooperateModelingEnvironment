@@ -17,54 +17,31 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportScope;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.usecase.UsecaseStandaloneSetup;
 import de.cooperateproject.modeling.textual.usecase.scoping.UseCaseImportedNamespaceAwareLocalScopeProvider;
+import de.cooperateproject.modeling.textual.usecase.tests.AbstractUseCaseTest;
 import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UseCaseCustomizedInjectorProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 @RunWith(XtextRunner.class)
 @InjectWith(UseCaseCustomizedInjectorProvider.DefaultProvider.class)
-public class UseCaseCooperateSimpleScopeProviderTest {
+public class UseCaseCooperateSimpleScopeProviderTest extends AbstractUseCaseTest {
 
     private static String TEST_FOLDER = "testmodels/scoping/";
 
     @Inject
     private UseCaseImportedNamespaceAwareLocalScopeProvider subject;
-
-    private ResourceSet rs;
-
-    @BeforeClass
-    public static void init() {
-        UsecaseStandaloneSetup.doSetup();
-    }
-
-    @Before
-    public void setup() {
-        rs = createResourceSet();
-    }
-
-    @After
-    public void tearDown() {
-        rs.getResources().forEach(Resource::unload);
-        rs.getResources().clear();
-    }
 
     @Test
     public void testNestedNormalizing() throws Exception {
@@ -97,12 +74,6 @@ public class UseCaseCooperateSimpleScopeProviderTest {
 
         assertThat((List<?>) normalizers, everyItem(is(instanceOf(ImportNormalizer.class))));
         return (List<ImportNormalizer>) normalizers;
-    }
-
-    private static ResourceSet createResourceSet() {
-        ResourceSet rs = new ResourceSetImpl();
-        UMLResourcesUtil.init(rs);
-        return rs;
     }
 
     private static UseCaseDiagram loadUseCaseDiagram(ResourceSet rs, String name) throws IOException {
