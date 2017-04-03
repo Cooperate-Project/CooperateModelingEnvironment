@@ -22,7 +22,7 @@ class ClsRootPackageMissingResolution extends AutomatedIssueResolutionBase<de.co
 	override resolve() {
 		val fqn = qualifiedNameProvider.getFullyQualifiedName(problematicElement)
 		val umlRootPackage = findUMLRootPackage(typeQueryProvider, problematicElement)
-		val segments = fqn.segments.subList(1, -1)
+		val segments = fqn.segments.subList(1, fqn.segments.size)
 		val newPackage = umlRootPackage.createPackage(segments)
 		problematicElement.referencedElement = newPackage
 	}

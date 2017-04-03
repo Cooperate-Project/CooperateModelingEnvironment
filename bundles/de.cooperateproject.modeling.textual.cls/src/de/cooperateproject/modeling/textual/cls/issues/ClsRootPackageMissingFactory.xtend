@@ -1,11 +1,13 @@
 package de.cooperateproject.modeling.textual.cls.issues
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Package
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
+
+import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
 
 class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBase<Package> {
 	
@@ -28,7 +30,7 @@ class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBas
 				val umlRootPackage = ClsRootPackageMissingResolution.findUMLRootPackage(typeQueryProvider, element)
 				if (umlRootPackage !== null && fqn.firstSegment == umlRootPackage.name) {
 					var currentPackage = umlRootPackage
-					for (segment : fqn.segments.subList(1, -1)) {
+					for (segment : fqn.segments.subList(1, fqn.segments.size)) {
 						val candidates = currentPackage.nestedPackages.filter[name == segment]
 						if (candidates.size > 1) {
 							return false
@@ -83,11 +85,14 @@ class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBas
 	}
 	
 	override protected getIssueDescriptionInternal(Package element) {
-		return "The root package does not exist yet."
+		if (element.preconditionHoldsFor) {
+			return "The root package does not exist yet."
+		}
+		return "The root package does not exist."
 	}
 	
 	override protected getIssueFeatureInternal(Package element) {
-		return ClsPackage.Literals.CLASS_DIAGRAM__ROOT_PACKAGE
+		return TextualCommonsPackage.eINSTANCE.namedElement_Name
 	}
 	
 	override protected getResolutionNameInternal(Package element) {
@@ -95,7 +100,7 @@ class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBas
 	}
 	
 	override protected hasIssueInternal(Package element) {
-		return element.owningPackage === null && preconditionHoldsFor(element);
+		return element.owningPackage === null && !element.hasReferencedElement
 	}
 	
 }

@@ -45,6 +45,11 @@ public class GraphicalToTextualClassTraceTest extends TraceRecordTransformationT
         test("ClassDiagramClassNote");
     }
 
+    @Test
+    public void testClassChangedRoot() throws Exception {
+        test("ClassDiagramChangedRoot");
+    }
+
     private void test(String modelName) throws Exception {
         // test parameters
         URI textualModelURI = createResourceModelURI(modelName + ".xmi");

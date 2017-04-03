@@ -70,6 +70,16 @@ public class GraphicalToTextualClassTest extends DirectionalTransformationTestBa
     }
 
     @Test
+    public void testClassChangedRoot() throws Exception {
+        testRegular("ClassDiagramChangedRoot");
+    }
+
+    @Test
+    public void testClassChangedRootIncremental() throws Exception {
+        testIncremental("ClassDiagramChangedRoot");
+    }
+
+    @Test
     public void testDeleteClass() throws Exception {
         URI sourceModelURI = createResourceModelURI("ClassDiagramSingleClass.notation");
         URI umlModelURI = createResourceModelURI("ClassDiagramSingleClass.uml");
