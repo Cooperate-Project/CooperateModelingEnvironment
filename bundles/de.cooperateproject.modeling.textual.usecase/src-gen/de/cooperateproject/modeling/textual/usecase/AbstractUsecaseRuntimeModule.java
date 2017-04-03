@@ -7,7 +7,7 @@ import com.google.inject.Binder;
 import com.google.inject.Provider;
 import com.google.inject.name.Names;
 import de.cooperateproject.modeling.textual.usecase.cdoxtext.UsecaseStateCalculator;
-import de.cooperateproject.modeling.textual.usecase.formatting.UsecaseFormatter;
+import de.cooperateproject.modeling.textual.usecase.formatting2.UsecaseFormatter;
 import de.cooperateproject.modeling.textual.usecase.generator.UsecaseGenerator;
 import de.cooperateproject.modeling.textual.usecase.issues.UsecaseAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.usecase.parser.antlr.UsecaseAntlrTokenFileProvider;
@@ -40,7 +40,7 @@ import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverterService;
-import org.eclipse.xtext.formatting.IFormatter;
+import org.eclipse.xtext.formatting2.IFormatter2;
 import org.eclipse.xtext.formatting2.regionaccess.TextRegionAccessBuilder;
 import org.eclipse.xtext.generator.IGenerator2;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -194,9 +194,14 @@ public abstract class AbstractUsecaseRuntimeModule extends DefaultRuntimeModule 
 		return Ecore2XtextTerminalConverters.class;
 	}
 	
-	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
-	public Class<? extends IFormatter> bindIFormatter() {
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public Class<? extends IFormatter2> bindIFormatter2() {
 		return UsecaseFormatter.class;
+	}
+	
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public void configureFormatterPreferences(Binder binder) {
+		binder.bind(org.eclipse.xtext.preferences.IPreferenceValuesProvider.class).annotatedWith(org.eclipse.xtext.formatting2.FormatterPreferences.class).to(org.eclipse.xtext.formatting2.FormatterPreferenceValuesProvider.class);
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2

@@ -11,4 +11,3 @@ Require-Bundle: de.cooperateproject.modeling.textual.usecase,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.internal,
  de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr
-

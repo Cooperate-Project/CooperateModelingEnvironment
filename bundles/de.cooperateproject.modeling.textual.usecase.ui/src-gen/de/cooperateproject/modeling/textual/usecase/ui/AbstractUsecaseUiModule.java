@@ -70,6 +70,8 @@ import org.eclipse.xtext.ui.editor.contentassist.IProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AntlrProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.DelegatingContentAssistContextFactory;
+import org.eclipse.xtext.ui.editor.formatting.IContentFormatterFactory;
+import org.eclipse.xtext.ui.editor.formatting2.ContentFormatterFactory;
 import org.eclipse.xtext.ui.editor.model.IResourceForEditorInputFactory;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
@@ -283,6 +285,11 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ui.compare.CompareFragment2
 	public Class<? extends IViewerCreator> bindIViewerCreator() {
 		return DefaultViewerCreator.class;
+	}
+	
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public Class<? extends IContentFormatterFactory> bindIContentFormatterFactory() {
+		return ContentFormatterFactory.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2

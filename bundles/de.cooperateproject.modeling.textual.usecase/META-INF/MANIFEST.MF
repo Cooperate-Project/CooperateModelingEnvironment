@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.cooperateproject.modeling.textual.usecase
 Bundle-Version: 0.1.7.qualifier
-Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase;singleton:=true
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase,
@@ -17,10 +17,11 @@ Require-Bundle: org.eclipse.xtext,
  de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport,
  net.winklerweb.cdoxtext.generator;resolution:=optional,
  de.cooperateproject.modeling.textual.common.metamodel,
- net.winklerweb.cdoxtext.runtime;visibility:=reexport
+ net.winklerweb.cdoxtext.runtime;visibility:=reexport,
+ org.eclipse.uml2.codegen.ecore;bundle-version="2.1.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
- de.cooperateproject.modeling.textual.usecase.formatting,
+ de.cooperateproject.modeling.textual.usecase.formatting2,
  de.cooperateproject.modeling.textual.usecase.generator,
  de.cooperateproject.modeling.textual.usecase.issues,
  de.cooperateproject.modeling.textual.usecase.parser.antlr,
