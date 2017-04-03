@@ -34,6 +34,9 @@ class ClsVisibilityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<C
 	}
 	
 	override protected hasIssueInternal(Classifier<org.eclipse.uml2.uml.Classifier> element) {
+		if (!element.hasReferencedElement) {
+			return false
+		}
 		val umlVisibilityIsSet = element.referencedElement.eIsSet(UMLPackage.Literals.NAMED_ELEMENT__VISIBILITY)
 		val clsClassVisibility = ClsIssueResolutionUtilities.convert(element.visibility)
 		if (!umlVisibilityIsSet && clsClassVisibility === null) {

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject
 
 class ClsPropertyAbstractQualifierFactory extends ClsAutomatedIssueResolutionFactoryBase<UMLReferencingElement<Element>> {
 
-	public static val String ISSUE_CODE = "missingUMLReference";
+	public static val ISSUE_CODE = "mismatchingAbstractQualifier";
 
 	new() {
 		super(ISSUE_CODE, [isResolvable], UMLReferencingElement as Class<?> as Class<UMLReferencingElement<Element>>)
@@ -44,7 +44,7 @@ class ClsPropertyAbstractQualifierFactory extends ClsAutomatedIssueResolutionFac
 	}
 
 	override protected hasIssueInternal(UMLReferencingElement<Element> element) {
-		if (element.referencedElement === null) {
+		if (!element.hasReferencedElement) {
 			return false
 		}
 		return element.hasIssueTyped
