@@ -38,6 +38,7 @@
 		<bintray.deploy.repository>CooperateModelingEnvironment</bintray.deploy.repository>
 		<sonar.jacoco.version>0.7.7.201606060606</sonar.jacoco.version>
 		<sonar.jacoco.reportPath>../../releng/de.cooperateproject.modeling.dev/target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.itReportPath>../../releng/de.cooperateproject.modeling.dev/target/jacoco-it.exec</sonar.jacoco.itReportPath>
 	</properties>
 
 	<repositories>
@@ -199,7 +200,6 @@
 				<version>${sonar.jacoco.version}</version>
 				<configuration>
 					<append>true</append>
-					<destFile>${sonar.jacoco.reportPath}</destFile>
 					<excludes>
 						<exclude>**org.eclipse*</exclude>
 					</excludes>
@@ -210,6 +210,19 @@
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+						<configuration>
+							<destFile>${sonar.jacoco.reportPath}</destFile>
+						</configuration>
+					</execution>
+					<execution>
+						<id>prepare-agent-integration</id>
+						<goals>
+							<goal>prepare-agent-integration</goal>
+						</goals>
+						<configuration>
+							<destFile>${sonar.jacoco.itReportPath}</destFile>
+							<propertyName>argLineIt</propertyName>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

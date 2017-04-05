@@ -60,7 +60,7 @@
 								</injection>
 							</injections>
 							<vmArgs>
-								<vmArg>${argLine}</vmArg>
+								<vmArg>${argLineIt}</vmArg>
 								<vmArg>-Xmx768m</vmArg>
 								<vmArg>-XX:MaxPermSize=256m</vmArg>
 							</vmArgs>
