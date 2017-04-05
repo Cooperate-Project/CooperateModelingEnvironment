@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.cooperateproject.modeling</groupId>
+		<artifactId>integration-tests</artifactId>
+		<version>0.1.7-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>de.cooperateproject.ui.preferences.uitests</artifactId>
+	<packaging>rcpttTest</packaging>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>rcptt-releases</id>
+			<name>RCPTT Maven repository</name>
+			<url>https://repo.eclipse.org/content/repositories/rcptt-releases/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<properties>
+		<rcptt-maven-version>2.1.0</rcptt-maven-version>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.rcptt</groupId>
+					<artifactId>rcptt-maven-plugin</artifactId>
+					<version>${rcptt-maven-version}</version>
+					<extensions>true</extensions>
+					<executions>
+						<execution>
+							<id>default-resources</id>
+							<phase>none</phase>
+						</execution>
+						<execution>
+							<id>default-execute</id>
+							<phase>none</phase>
+						</execution>
+						<execution>
+							<id>default-package</id>
+							<phase>none</phase>
+						</execution>
+					</executions>
+					<configuration>
+						<aut>
+							<explicit>${project.basedir}/../../products/de.cooperateproject.modeling.product/target/products/de.cooperateproject.modeling.product-[classifier].zip</explicit>
+							<injections>
+								<!-- features are optional - when omitted, all features from given site will be installed -->
+								<injection>
+									<site>https://dl.bintray.com/cooperate-project/RCPTTUtilities/updatesite/1.0.0/</site>
+									<features>
+										<feature>de.cooperateproject.rcptt.ecl.cdoserver.feature.feature.group</feature>
+									</features>
+								</injection>
+							</injections>
+							<vmArgs>
+								<vmArg>-Xmx768m</vmArg>
+								<vmArg>-XX:MaxPermSize=256m</vmArg>
+							</vmArgs>
+						</aut>
+						<runner>
+							<version>${rcptt-maven-version}</version>
+							<vmArgs>
+								<vmArg>-Xmx768m</vmArg>
+								<vmArg>-XX:MaxPermSize=256m</vmArg>
+							</vmArgs>
+						</runner>
+						<testOptions>
+							<execTimeout>1800</execTimeout>
+							<testExecTimeout>300</testExecTimeout>
+						</testOptions>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.rcptt</groupId>
+				<artifactId>rcptt-maven-plugin</artifactId>
+				<version>${rcptt-maven-version}</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>prepare</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>execute</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>execute</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>finalize</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
