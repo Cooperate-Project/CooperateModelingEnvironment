@@ -3,7 +3,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>integration-tests</artifactId>
@@ -24,10 +23,11 @@
 	<properties>
 		<rcptt-maven-version>2.1.0</rcptt-maven-version>
 	</properties>
-
+	
 	<build>
 		<pluginManagement>
 			<plugins>
+			
 				<plugin>
 					<groupId>org.eclipse.rcptt</groupId>
 					<artifactId>rcptt-maven-plugin</artifactId>
@@ -60,6 +60,7 @@
 								</injection>
 							</injections>
 							<vmArgs>
+								<vmArg>${argLine}</vmArg>
 								<vmArg>-Xmx768m</vmArg>
 								<vmArg>-XX:MaxPermSize=256m</vmArg>
 							</vmArgs>
