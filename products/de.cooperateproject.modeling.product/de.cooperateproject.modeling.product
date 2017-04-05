@@ -15,8 +15,8 @@
    </plugins>
 
    <features>
-      <feature id="org.eclipse.e4.rcp" version="1.5.2.v20161122-1740"/>
-      <feature id="org.eclipse.platform" version="4.6.2.v20161124-1529"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.equinox.p2.user.ui"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
@@ -33,7 +33,7 @@
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="de.cooperateproject.ui.feature" version="0.1.7.qualifier"/>
       <feature id="org.eclipse.papyrus.uml.ui.feature"/>
-      <feature id="de.cooperateproject.modeling.textual.commons.feature"/>
+      <feature id="de.cooperateproject.modeling.textual.commons.feature" version="0.1.7.qualifier"/>
       <feature id="org.eclipse.papyrus.infra.gmfdiag.css.feature"/>
       <feature id="org.eclipse.papyrus.uml.tools.feature"/>
       <feature id="org.eclipse.gmf.runtime.notation.source"/>
@@ -56,7 +56,7 @@
       <feature id="org.eclipse.uml2.examples.source"/>
       <feature id="org.eclipse.m2m.qvt.oml.runtime.source"/>
       <feature id="org.eclipse.emf.mapping.source"/>
-      <feature id="de.cooperateproject.modeling.textual.feature"/>
+      <feature id="de.cooperateproject.modeling.textual.feature" version="0.1.7.qualifier"/>
       <feature id="org.eclipse.emf.codegen.ecore.ui.source"/>
       <feature id="org.eclipse.uml2.common.edit.source"/>
       <feature id="org.eclipse.xtext.runtime.source"/>
@@ -103,13 +103,13 @@
       <feature id="org.eclipse.papyrus.uml.search.feature"/>
       <feature id="org.eclipse.emf"/>
       <feature id="org.eclipse.m2m.qvt.oml.editor"/>
-      <feature id="de.cooperateproject.modeling.textual.class.feature"/>
+      <feature id="de.cooperateproject.modeling.textual.class.feature" version="0.1.7.qualifier"/>
       <feature id="org.eclipse.uml2.uml"/>
       <feature id="org.eclipse.uml2.common.source"/>
-      <feature id="de.cooperateproject.modeling.transformation.feature"/>
+      <feature id="de.cooperateproject.modeling.transformation.feature" version="0.1.7.qualifier"/>
       <feature id="de.cooperateproject.cdo.patched.client.feature"/>
-      <feature id="de.cooperateproject.modeling.graphical.feature"/>
-      <feature id="de.cooperateproject.modeling.textual.metamodels.feature"/>
+      <feature id="de.cooperateproject.modeling.graphical.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.textual.metamodels.feature" version="0.1.7.qualifier"/>
       <feature id="org.eclipse.emf.edit"/>
       <feature id="org.eclipse.xtext.runtime"/>
       <feature id="org.eclipse.papyrus.views.references.feature"/>
@@ -135,7 +135,7 @@
       <feature id="org.eclipse.papyrus.uml.properties.feature"/>
       <feature id="org.eclipse.xtext.docs"/>
       <feature id="org.eclipse.emf.doc"/>
-      <feature id="de.cooperateproject.modeling.textual.usecase.feature"/>
+      <feature id="de.cooperateproject.modeling.textual.usecase.feature" version="0.1.7.qualifier"/>
       <feature id="org.eclipse.uml2.examples"/>
       <feature id="org.eclipse.papyrus.doc.feature"/>
       <feature id="org.eclipse.papyrus.uml.assistants.feature"/>
@@ -165,20 +165,20 @@
       <feature id="org.eclipse.papyrus.infra.core.feature"/>
       <feature id="de.cooperateproject.cdo.patch"/>
       <feature id="org.eclipse.emf.databinding"/>
-      <feature id="org.eclipse.emf.transaction" version="1.10.0.201606071900"/>
-      <feature id="org.eclipse.ocl.all" version="5.2.0.v20160523-1914"/>
+      <feature id="org.eclipse.emf.transaction"/>
+      <feature id="org.eclipse.ocl.all"/>
       <feature id="org.eclipse.ocl.uml"/>
       <feature id="org.eclipse.ocl"/>
-      <feature id="org.eclipse.pde" version="3.12.2.v20161124-1400"/>
+      <feature id="org.eclipse.pde"/>
       <feature id="org.eclipse.jdt"/>
-      <feature id="org.eclipse.net4j" version="4.5.0.v20160607-1254"/>
-      <feature id="org.eclipse.net4j.util" version="4.5.0.v20160607-1254"/>
+      <feature id="org.eclipse.net4j"/>
+      <feature id="org.eclipse.net4j.util"/>
       <feature id="org.eclipse.net4j.util.ui"/>
-      <feature id="org.eclipse.emf.workspace" version="1.10.0.201606071900"/>
-      <feature id="org.eclipse.gef" version="3.11.0.201606061308"/>
+      <feature id="org.eclipse.emf.workspace"/>
+      <feature id="org.eclipse.gef"/>
       <feature id="org.eclipse.draw2d"/>
-      <feature id="org.eclipse.gmf" version="1.10.0.201606071959"/>
-      <feature id="org.eclipse.gmf.runtime.sdk" version="1.10.0.201606071959"/>
+      <feature id="org.eclipse.gmf"/>
+      <feature id="org.eclipse.gmf.runtime.sdk"/>
       <feature id="org.eclipse.emf.query.ocl.source"/>
       <feature id="org.eclipse.emf.query"/>
       <feature id="org.eclipse.emf.query.source"/>
@@ -205,7 +205,7 @@
       <feature id="org.eclipse.gef.sdk"/>
       <feature id="org.eclipse.emf.transaction.doc"/>
       <feature id="org.eclipse.emf.transaction.sdk"/>
-      <feature id="org.eclipse.emf.cdo.dawn.sdk" version="2.1.100.v20160505-0538"/>
+      <feature id="org.eclipse.emf.cdo.dawn.sdk"/>
       <feature id="org.eclipse.emf.cdo.dawn.codegen.emf.source"/>
       <feature id="org.eclipse.emf.cdo.dawn.ecore.editor.dawn"/>
       <feature id="org.eclipse.emf.cdo.dawn.codegen.source"/>
@@ -218,36 +218,36 @@
       <feature id="org.eclipse.emf.cdo.dawn.source"/>
       <feature id="org.eclipse.emf.cdo.dawn.sdk.source"/>
       <feature id="org.eclipse.emf.cdo.dawn.examples"/>
-      <feature id="org.eclipse.emf.compare.diagram.gmf" version="3.2.1.201608311750"/>
-      <feature id="org.eclipse.emf.compare.ide.ui" version="3.2.1.201608311750"/>
-      <feature id="de.cooperateproject.cdo.server.patch" version="4.5.1"/>
-      <feature id="org.eclipse.emf.cdo.server" version="4.5.0.v20160607-1254"/>
-      <feature id="org.eclipse.emf.cdo.server.db" version="4.4.0.v20160607-1254"/>
-      <feature id="org.eclipse.net4j.db" version="4.5.0.v20160607-1254"/>
-      <feature id="org.eclipse.net4j.db.h2" version="4.2.300.v20160301-1326"/>
-      <feature id="org.eclipse.emf.cdo.compare" version="4.4.0.v20160301-1326"/>
-      <feature id="org.eclipse.xpand" version="2.2.0.v201605260315"/>
+      <feature id="org.eclipse.emf.compare.diagram.gmf"/>
+      <feature id="org.eclipse.emf.compare.ide.ui"/>
+      <feature id="de.cooperateproject.cdo.server.patch"/>
+      <feature id="org.eclipse.emf.cdo.server"/>
+      <feature id="org.eclipse.emf.cdo.server.db"/>
+      <feature id="org.eclipse.net4j.db"/>
+      <feature id="org.eclipse.net4j.db.h2"/>
+      <feature id="org.eclipse.emf.cdo.compare"/>
+      <feature id="org.eclipse.xpand"/>
       <feature id="org.eclipse.xtend.typesystem.emf"/>
       <feature id="org.eclipse.xtend.dependencies"/>
       <feature id="org.eclipse.xtend"/>
-      <feature id="org.eclipse.emf.mwe.core.feature" version="1.3.20.v201605261103"/>
-      <feature id="org.eclipse.xtend.ui" version="2.2.0.v201605260315"/>
-      <feature id="org.eclipse.emf.mwe.ui.feature" version="1.3.20.v201605261103"/>
-      <feature id="org.eclipse.ocl.ui" version="2.1.0.v20160521-2033"/>
-      <feature id="org.eclipse.emf.mwe2.runtime.sdk" version="2.9.0.v201605261103"/>
-      <feature id="org.eclipse.gmf.tooling" version="3.3.1.201509291144"/>
-      <feature id="org.eclipse.net4j.ui" version="4.2.300.v20160301-1326"/>
-      <feature id="org.eclipse.xwt.feature" version="1.2.0.v20160502-1019"/>
-      <feature id="org.eclipse.graphiti.feature" version="0.13.2.v20161129-0820"/>
-      <feature id="org.eclipse.wst.xml_core.feature" version="3.8.0.v201608061842"/>
-      <feature id="org.eclipse.gmf.tooling.runtime" version="3.3.1.201509291144"/>
-      <feature id="org.eclipse.wst.common_core.feature" version="3.7.1.v201508262220"/>
-      <feature id="org.eclipse.xsd" version="2.12.0.v20160526-0356"/>
-      <feature id="org.eclipse.xwt.workbench.feature" version="1.2.0.v20160502-1019"/>
-      <feature id="org.eclipse.ocl.examples.unified" version="4.1.2.v20161111-1812"/>
-      <feature id="org.eclipse.ocl.unified.core" version="1.1.2.v20161111-1812"/>
-      <feature id="org.eclipse.wst.common.fproj" version="3.7.0.v201505072140"/>
-      <feature id="org.eclipse.emf.compare.rcp.ui" version="3.2.1.201608311750"/>
+      <feature id="org.eclipse.emf.mwe.core.feature"/>
+      <feature id="org.eclipse.xtend.ui"/>
+      <feature id="org.eclipse.emf.mwe.ui.feature"/>
+      <feature id="org.eclipse.ocl.ui"/>
+      <feature id="org.eclipse.emf.mwe2.runtime.sdk"/>
+      <feature id="org.eclipse.gmf.tooling"/>
+      <feature id="org.eclipse.net4j.ui"/>
+      <feature id="org.eclipse.xwt.feature"/>
+      <feature id="org.eclipse.graphiti.feature"/>
+      <feature id="org.eclipse.wst.xml_core.feature"/>
+      <feature id="org.eclipse.gmf.tooling.runtime"/>
+      <feature id="org.eclipse.wst.common_core.feature"/>
+      <feature id="org.eclipse.xsd"/>
+      <feature id="org.eclipse.xwt.workbench.feature"/>
+      <feature id="org.eclipse.ocl.examples.unified"/>
+      <feature id="org.eclipse.ocl.unified.core"/>
+      <feature id="org.eclipse.wst.common.fproj"/>
+      <feature id="org.eclipse.emf.compare.rcp.ui"/>
       <feature id="de.cooperateproject.modeling.externals.feature" version="0.1.7.qualifier"/>
    </features>
 

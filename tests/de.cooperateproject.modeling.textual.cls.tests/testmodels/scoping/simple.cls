@@ -1,4 +1,4 @@
-@start-cls "SomeName"
+@start-clsd "SomeName"
 
 rootPackage RootElement
 
@@ -6,4 +6,4 @@ class Class1 {
 	# abstract someOp()
 }
 
-@end-cls
+@end-clsd

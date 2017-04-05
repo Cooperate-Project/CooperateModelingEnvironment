@@ -1,4 +1,4 @@
-@start-cls "SomeName"
+@start-clsd "SomeName"
 
 rootPackage RootElement
 
@@ -7,4 +7,4 @@ class Second
 
 asc foo (First, Second)
 
-@end-cls
+@end-clsd

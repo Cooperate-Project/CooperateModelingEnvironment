@@ -1,5 +1,5 @@
-@start-cls "SomeName"
+@start-clsd "SomeName"
 
 rootPackage RootElement
 
-@end-cls
+@end-clsd

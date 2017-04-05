@@ -7,29 +7,33 @@ import de.cooperateproject.modeling.common.types.DiagramTypes;
 
 public enum NotationDiagramTypes {
 
-	CLASS(DiagramTypes.CLASS, "PapyrusUMLClassDiagram"),
-	USECASE(DiagramTypes.USECASE, "UseCase"),
-	ACTIVITY(DiagramTypes.ACTIVITY, "PapyrusUMLActivityDiagram"),
-	SEQUENCE(DiagramTypes.SEQUENCE, "PapyrusUMLSequenceDiagram"),
-	STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram");
-	
-	private final DiagramTypes diagramType;
-	private final String notationDiagramType;
+    CLASS(DiagramTypes.CLASS, "PapyrusUMLClassDiagram"),
+    USECASE(DiagramTypes.USECASE, "UseCase"),
+    ACTIVITY(DiagramTypes.ACTIVITY, "PapyrusUMLActivityDiagram"),
+    SEQUENCE(DiagramTypes.SEQUENCE, "PapyrusUMLSequenceDiagram"),
+    STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram");
 
-	private NotationDiagramTypes(DiagramTypes diagramType, String notationDiagramType) {
-		this.diagramType = diagramType;
-		this.notationDiagramType = notationDiagramType;
-	}
+    private final DiagramTypes diagramType;
+    private final String notationDiagramType;
 
-	public DiagramTypes getDiagramType() {
-		return diagramType;
-	}
+    private NotationDiagramTypes(DiagramTypes diagramType, String notationDiagramType) {
+        this.diagramType = diagramType;
+        this.notationDiagramType = notationDiagramType;
+    }
 
-	public String getNotationDiagramType() {
-		return notationDiagramType;
-	}
-	
-	public static Optional<NotationDiagramTypes> getByDiagramType(DiagramTypes diagramType) {
-		return Arrays.stream(values()).filter(x -> x.getDiagramType() == diagramType).findFirst();
-	}
+    public DiagramTypes getDiagramType() {
+        return diagramType;
+    }
+
+    public String getNotationDiagramType() {
+        return notationDiagramType;
+    }
+
+    public static Optional<NotationDiagramTypes> getByDiagramType(DiagramTypes diagramType) {
+        return Arrays.stream(values()).filter(x -> x.getDiagramType() == diagramType).findFirst();
+    }
+
+    public static Optional<NotationDiagramTypes> getByNotationDiagramType(String notationDiagramType) {
+        return Arrays.stream(values()).filter(x -> x.getNotationDiagramType().equals(notationDiagramType)).findFirst();
+    }
 }

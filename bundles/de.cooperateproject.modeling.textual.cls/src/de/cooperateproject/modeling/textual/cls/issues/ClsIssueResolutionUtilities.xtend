@@ -12,7 +12,7 @@ import org.eclipse.uml2.uml.VisibilityKind
 class ClsIssueResolutionUtilities {
 	
 	public static def hasReferencedElement(UMLReferencingElement<?> element) {
-		return element != null && element.referencedElement != null
+		return element !== null && element.referencedElement !== null
 	}
 	
 	public static def hasReferencedElementOfType(UMLReferencingElement<?> element, Class<?> type) {
@@ -29,7 +29,7 @@ class ClsIssueResolutionUtilities {
 	
 	public static def setVisibility(NamedElement element, Visibility visibility) {
 		val convertedVisibility = visibility.convert
-		if (convertedVisibility == null) {
+		if (convertedVisibility === null) {
 			element.eUnset(UMLPackage.eINSTANCE.namedElement_Visibility)
 		} else {
 			element.visibility = convertedVisibility	

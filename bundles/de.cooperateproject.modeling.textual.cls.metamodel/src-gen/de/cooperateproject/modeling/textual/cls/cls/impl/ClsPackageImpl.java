@@ -427,17 +427,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getProperty_Final() {
-        return (EAttribute)propertyEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getProperty_Type() {
-        return (EReference)propertyEClass.getEStructuralFeatures().get(3);
+        return (EReference)propertyEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -816,7 +807,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         propertyEClass = createEClass(PROPERTY);
         createEAttribute(propertyEClass, PROPERTY__VISIBILITY);
         createEAttribute(propertyEClass, PROPERTY__STATIC);
-        createEAttribute(propertyEClass, PROPERTY__FINAL);
         createEReference(propertyEClass, PROPERTY__TYPE);
 
         memberEClass = createEClass(MEMBER);
@@ -1037,7 +1027,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProperty_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getProperty_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(memberEClass, Member.class, "Member", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

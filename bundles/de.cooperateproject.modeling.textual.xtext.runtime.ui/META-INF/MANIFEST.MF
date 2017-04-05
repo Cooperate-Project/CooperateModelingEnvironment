@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Xtext UI Utilities
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime.ui
+Bundle-Version: 0.1.7.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.xtext.ui;bundle-version="2.11.0",
+ org.apache.log4j,
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.7"
+Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.ui.issues

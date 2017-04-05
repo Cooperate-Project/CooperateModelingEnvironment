@@ -52,16 +52,15 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
     }
 
     private Collection<IAutomatedIssueResolution> createResolutions(Resource r, Issue issue) {
-        Collection<IAutomatedIssueResolutionFactory<EObject>> resolutionFactories = findResolutionFactories(
-                issue.getCode());
+        Collection<IAutomatedIssueResolutionFactory> resolutionFactories = findResolutionFactories(issue.getCode());
         EObject element = r.getEObject(issue.getUriToProblem().fragment());
         return resolutionFactories.stream().map(f -> createInstance(f, element)).filter(Optional::isPresent)
                 .map(Optional::get).collect(Collectors.toSet());
     }
 
-    protected abstract Collection<IAutomatedIssueResolutionFactory<EObject>> findResolutionFactories(String issueCode);
+    protected abstract Collection<IAutomatedIssueResolutionFactory> findResolutionFactories(String issueCode);
 
-    private static Optional<IAutomatedIssueResolution> createInstance(IAutomatedIssueResolutionFactory<EObject> factory,
+    private static Optional<IAutomatedIssueResolution> createInstance(IAutomatedIssueResolutionFactory factory,
             EObject element) {
         try {
             IAutomatedIssueResolution resolver = factory.create(element);

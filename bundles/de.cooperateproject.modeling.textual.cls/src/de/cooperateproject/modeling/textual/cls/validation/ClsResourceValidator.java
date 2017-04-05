@@ -14,39 +14,53 @@ import org.eclipse.xtext.validation.Issue;
 import org.eclipse.xtext.validation.ResourceValidatorImpl;
 
 import com.google.common.collect.Sets;
+import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
+
+/**
+ * Used to group similar issues.
+ * 
+ * @deprecated The class is not used anymore because of a changed grammar and editor mechanics.
+ */
+@Deprecated
 public class ClsResourceValidator extends ResourceValidatorImpl {
 
-	private static final Set<String> ISSUE_CODE_BLACKLIST = Sets.newHashSet("org.eclipse.emf.ecore.4");
+    private static final Set<String> ISSUE_CODE_BLACKLIST = Sets.newHashSet("org.eclipse.emf.ecore.4");
 
-	@Override
-	public List<Issue> validate(Resource resource, CheckMode mode, CancelIndicator mon) throws OperationCanceledError {
-		List<Issue> issues = super.validate(resource, mode, mon);
+    @Inject
+    private IIssueCodeRegistry issueCodeRegistry;
 
-		Map<IssueCoordinate, List<Issue>> issueCluster = issues.stream()
-				.collect(Collectors.groupingBy(IssueCoordinate::create));
-		Set<Issue> customIssues = issues.stream().filter(issue -> ClsValidatorIssueId.isContained(issue.getCode()))
-				.collect(Collectors.toSet());
+    @Override
+    public List<Issue> validate(Resource resource, CheckMode mode, CancelIndicator mon) throws OperationCanceledError {
+        List<Issue> issues = super.validate(resource, mode, mon);
 
-		return issueCluster.entrySet().stream().flatMap(g -> filterIssueGroup(g.getKey(), g.getValue(), customIssues).stream())
-				.collect(Collectors.toList());
-	}
+        Map<IssueCoordinate, List<Issue>> issueCluster = issues.stream()
+                .collect(Collectors.groupingBy(IssueCoordinate::create));
+        Set<Issue> customIssues = issues.stream().filter(issue -> issueCodeRegistry.hasIssueCode(issue.getCode()))
+                .collect(Collectors.toSet());
 
-	private static Collection<Issue> filterIssueGroup(IssueCoordinate issueCoordinate, Collection<Issue> issues, Collection<Issue> mandatoryIssues) {
-		if (IssueCoordinate.UNKNOWN_ISSUE_COORDINATE.equals(issueCoordinate)) {
-			return issues;
-		}
-		
-		Collection<Issue> filteredIssues = issues.stream().filter(i -> mandatoryIssues.contains(i))
-				.collect(Collectors.toList());
-		if (filteredIssues.isEmpty()) {
-			filteredIssues = issues.stream().filter(i -> !ISSUE_CODE_BLACKLIST.contains(i.getCode()))
-					.collect(Collectors.toList());
-			if (filteredIssues.isEmpty()) {
-				filteredIssues = issues;
-			}
-		}
-		return filteredIssues;
-	}
+        return issueCluster.entrySet().stream()
+                .flatMap(g -> filterIssueGroup(g.getKey(), g.getValue(), customIssues).stream())
+                .collect(Collectors.toList());
+    }
+
+    private static Collection<Issue> filterIssueGroup(IssueCoordinate issueCoordinate, Collection<Issue> issues,
+            Collection<Issue> mandatoryIssues) {
+        if (IssueCoordinate.UNKNOWN_ISSUE_COORDINATE.equals(issueCoordinate)) {
+            return issues;
+        }
+
+        Collection<Issue> filteredIssues = issues.stream().filter(i -> mandatoryIssues.contains(i))
+                .collect(Collectors.toList());
+        if (filteredIssues.isEmpty()) {
+            filteredIssues = issues.stream().filter(i -> !ISSUE_CODE_BLACKLIST.contains(i.getCode()))
+                    .collect(Collectors.toList());
+            if (filteredIssues.isEmpty()) {
+                filteredIssues = issues;
+            }
+        }
+        return filteredIssues;
+    }
 
 }

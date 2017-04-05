@@ -73,6 +73,16 @@ public class TextualToGraphicalClassTest extends DirectionalTransformationTestBa
         testIncremental("ClassDiagramClassNote");
     }
 
+    @Test
+    public void testChangedRoot() throws Exception {
+        testIncremental("ClassDiagramChangedRoot");
+    }
+
+    @Test
+    public void testChangedRootIncremental() throws Exception {
+        testIncremental("ClassDiagramChangedRoot");
+    }
+
     @Override
     protected void testRegular(String modelName) throws Exception {
         super.testRegular(modelName, TextualToGraphicalClassTest::postProcessDifferences);

@@ -17,54 +17,31 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
-import org.eclipse.xtext.junit4.InjectWith;
-import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportScope;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.cls.ClsStandaloneSetup;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.scoping.ClsImportedNamespaceAwareLocalScopeProvider;
+import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest;
 import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 @RunWith(XtextRunner.class)
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider.class)
-public class ClsCooperateSimpleScopeProviderTest {
+public class ClsCooperateSimpleScopeProviderTest extends AbstractClsTest {
 
     private static String TEST_FOLDER = "testmodels/scoping/";
 
     @Inject
     private ClsImportedNamespaceAwareLocalScopeProvider subject;
-
-    private ResourceSet rs;
-
-    @BeforeClass
-    public static void init() {
-        ClsStandaloneSetup.doSetup();
-    }
-
-    @Before
-    public void setup() {
-        rs = createResourceSet();
-    }
-
-    @After
-    public void tearDown() {
-        rs.getResources().forEach(Resource::unload);
-        rs.getResources().clear();
-    }
 
     @Test
     public void testNestedNormalizing() throws Exception {
@@ -97,12 +74,6 @@ public class ClsCooperateSimpleScopeProviderTest {
 
         assertThat((List<?>) normalizers, everyItem(is(instanceOf(ImportNormalizer.class))));
         return (List<ImportNormalizer>) normalizers;
-    }
-
-    private static ResourceSet createResourceSet() {
-        ResourceSet rs = new ResourceSetImpl();
-        UMLResourcesUtil.init(rs);
-        return rs;
     }
 
     private static ClassDiagram loadClassDiagram(ResourceSet rs, String name) throws IOException {

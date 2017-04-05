@@ -1,4 +1,4 @@
-@start-cls "SomeName"
+@start-clsd "SomeName"
 
 rootPackage RootElement
 
@@ -10,4 +10,4 @@ abstract class AbstractClass {
 class "AnotherConcreteClass" as ShortName
 interface SomeInterface
 
-@end-cls
+@end-clsd

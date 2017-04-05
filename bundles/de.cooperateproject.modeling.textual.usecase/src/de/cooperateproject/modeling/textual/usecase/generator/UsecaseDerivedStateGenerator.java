@@ -56,7 +56,9 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
             return;
         }
 
-        if (resource.getContents().isEmpty()) {
+        if (resource.getContents().isEmpty() || resource.getContents().get(0).eResource() != resource) {
+            // prohibits the derived state calculator from calculating stuff before the contained elements belong to the
+            // resource
             return;
         }
 
@@ -199,6 +201,10 @@ public class UsecaseDerivedStateGenerator implements IDerivedStateComputer {
 
         @Override
         public Boolean caseAssociation(Association object) {
+            if (object.getActor() == null || object.getUsecase() == null) {
+                return false;
+            }
+
             Actor actor = object.getActor().getReferencedElement();
             UseCase usecase = object.getUsecase().getReferencedElement();
 

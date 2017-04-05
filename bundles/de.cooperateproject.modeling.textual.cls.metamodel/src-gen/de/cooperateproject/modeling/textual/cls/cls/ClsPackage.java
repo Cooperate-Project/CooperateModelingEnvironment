@@ -562,22 +562,13 @@ public interface ClsPackage extends EPackage {
     int PROPERTY__STATIC = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
-     * The feature id for the '<em><b>Final</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROPERTY__FINAL = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTY__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int PROPERTY__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Property</em>' class.
@@ -586,7 +577,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
+    int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -651,15 +642,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int MEMBER__STATIC = PROPERTY__STATIC;
-
-    /**
-     * The feature id for the '<em><b>Final</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MEMBER__FINAL = PROPERTY__FINAL;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' reference.
@@ -753,15 +735,6 @@ public interface ClsPackage extends EPackage {
     int ATTRIBUTE__STATIC = MEMBER__STATIC;
 
     /**
-     * The feature id for the '<em><b>Final</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ATTRIBUTE__FINAL = MEMBER__FINAL;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -851,15 +824,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int METHOD__STATIC = MEMBER__STATIC;
-
-    /**
-     * The feature id for the '<em><b>Final</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int METHOD__FINAL = MEMBER__FINAL;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' reference.
@@ -969,15 +933,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PARAMETER__STATIC = PROPERTY__STATIC;
-
-    /**
-     * The feature id for the '<em><b>Final</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PARAMETER__FINAL = PROPERTY__FINAL;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1893,17 +1848,6 @@ public interface ClsPackage extends EPackage {
     EAttribute getProperty_Static();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Property#isFinal <em>Final</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Final</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Property#isFinal()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Final();
-
-    /**
      * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2481,14 +2425,6 @@ public interface ClsPackage extends EPackage {
          * @generated
          */
         EAttribute PROPERTY__STATIC = eINSTANCE.getProperty_Static();
-
-        /**
-         * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__FINAL = eINSTANCE.getProperty_Final();
 
         /**
          * The meta object literal for the '<em><b>Type</b></em>' reference feature.

@@ -14,30 +14,29 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
+import de.cooperateproject.modeling.textual.xtext.runtime.scoping.AliasedScope;
 
 public class UseCaseImportedNamespaceAwareLocalScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
-	
-	protected IScope getLocalElementsScope(IScope parent, final EObject context,
-			final EReference reference) {
-		IScope newParentScope = new UseCaseAliasedScope(parent, isIgnoreCase(reference));
-		return super.getLocalElementsScope(newParentScope, context, reference);
-	}
 
-	@Override
-	protected List<ImportNormalizer> getImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
-		List<ImportNormalizer> originalResolvers = super.getImportedNamespaceResolvers(context, ignoreCase);
-		if (context instanceof RootPackage) {
-			RootPackage pkg = (RootPackage)context;
-			String rootPackageName = pkg.getName();
-			if (!Strings.isNullOrEmpty(rootPackageName)) {
-				List<ImportNormalizer> implicitNamespaceResolvers = pkg.getSystems().stream()
-						.map(s -> s.getName()).filter(n -> !Strings.isNullOrEmpty(n))
-						.map(n -> String.format("%s.%s.*", rootPackageName, n))
-						.map(n -> createImportedNamespaceResolver(n, ignoreCase)).collect(Collectors.toList());
-				return Lists.newArrayList(Iterables.concat(originalResolvers, implicitNamespaceResolvers));
-			}
-		}
-		return originalResolvers;
-	}
+    protected IScope getLocalElementsScope(IScope parent, final EObject context, final EReference reference) {
+        IScope newParentScope = new AliasedScope(parent, isIgnoreCase(reference));
+        return super.getLocalElementsScope(newParentScope, context, reference);
+    }
+
+    @Override
+    protected List<ImportNormalizer> getImportedNamespaceResolvers(final EObject context, final boolean ignoreCase) {
+        List<ImportNormalizer> originalResolvers = super.getImportedNamespaceResolvers(context, ignoreCase);
+        if (context instanceof RootPackage) {
+            RootPackage pkg = (RootPackage) context;
+            String rootPackageName = pkg.getName();
+            if (!Strings.isNullOrEmpty(rootPackageName)) {
+                List<ImportNormalizer> implicitNamespaceResolvers = pkg.getSystems().stream().map(s -> s.getName())
+                        .filter(n -> !Strings.isNullOrEmpty(n)).map(n -> String.format("%s.%s.*", rootPackageName, n))
+                        .map(n -> createImportedNamespaceResolver(n, ignoreCase)).collect(Collectors.toList());
+                return Lists.newArrayList(Iterables.concat(originalResolvers, implicitNamespaceResolvers));
+            }
+        }
+        return originalResolvers;
+    }
 
 }
