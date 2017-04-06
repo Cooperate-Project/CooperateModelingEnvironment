@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtext Utilities
+Bundle-Name: Xtext Runtime Utilities
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime;singleton:=true
 Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.apache.log4j,
  de.cooperateproject.util;bundle-version="0.1.7",
  de.cooperateproject.modeling.textual.common,
- de.cooperateproject.ui.preferences;bundle-version="1.0.0",
+ de.cooperateproject.ui.preferences;bundle-version="0.1.7",
  org.eclipse.emf.transaction,
  de.cooperateproject.modeling.textual.common.metamodel
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,

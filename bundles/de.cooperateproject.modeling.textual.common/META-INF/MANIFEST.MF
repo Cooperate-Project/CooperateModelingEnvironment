@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Common
+Bundle-Name: Textual Modeling Commons
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.common
 Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
