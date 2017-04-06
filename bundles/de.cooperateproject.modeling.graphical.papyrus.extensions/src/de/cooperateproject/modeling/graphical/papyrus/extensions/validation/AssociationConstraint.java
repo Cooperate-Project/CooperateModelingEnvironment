@@ -1,14 +1,13 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.uml2.uml.Association;
 
-public class AssociationConstraint extends AbstractModelConstraint {
+public class AssociationConstraint extends CooperateConstraint {
 
     @Override
-    public IStatus validate(IValidationContext ctx) {
+    public IStatus validateCooperateModel(IValidationContext ctx) {
         assert (ctx.getTarget() instanceof Association);
         Association association = (Association) ctx.getTarget();
         if (null != association.getName()) {

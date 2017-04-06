@@ -16,7 +16,7 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAliasedElement()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface AliasedElement extends NamedElement {

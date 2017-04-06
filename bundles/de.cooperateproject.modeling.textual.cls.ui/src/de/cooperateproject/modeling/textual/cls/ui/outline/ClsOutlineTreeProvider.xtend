@@ -4,15 +4,16 @@
 package de.cooperateproject.modeling.textual.cls.ui.outline
 
 import com.google.common.base.Predicate
+import com.google.common.collect.Iterables
 import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.Commentable
 import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import java.util.Collection
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
@@ -22,6 +23,8 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 
 /**
  * Customization of the default outline structure.
@@ -38,11 +41,16 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	dispatch def createChildren(IOutlineNode parentNode, Package pkg) {
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__PACKAGES, UMLImage.PACKAGE.image, getStyledString("Packages", pkg.packages.size), false)
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__PACKAGE_IMPORTS, UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
+		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image, getStyledString("Packages", pkg.packages.size), false)
+		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image, getStyledString("Classifiers", pkg.classifiers.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image, getStyledString("Connectors", pkg.connectors.size), false)
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, getStyledString("Comments", pkg.connectors.filter(Commentable).filter[comment != null].size), false, [!pkg.connectors.filter(Commentable).filter[comment != null].empty])
+		val comments = Iterables.concat(pkg.connectors.filter(CommentLink), pkg.connectors.filter(Association).filter[!comments.isEmpty].map[comments])
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, getStyledString("Comments", comments.size), false, [!comments.empty])
+	}
+	
+	dispatch def createChildren(IOutlineNode parentNode, XtextAssociation asc) {
+		asc.memberEndTypes.forEach[t | createEObjectNode(parentNode, t)];
 	}
 	
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
@@ -53,46 +61,23 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	protected def dispatch createNode(IOutlineNode node, AssociationProperties ap) {
-		// do nothing
+	def dispatch createConnectorNode(EStructuralFeatureNode node, Connector connector) {
+		createEObjectNode(node, connector)
+		return
 	}
 	
-	private def dispatch createCommentNode(IOutlineNode parentNode, CommentLink connector) {
-		createCommentNode2(parentNode, connector)
+	def dispatch createConnectorNode(EStructuralFeatureNode node, CommentLink connector) {
+		return
 	}
 	
-	private def dispatch createCommentNode(IOutlineNode parentNode, Association connector) {
-		createCommentNode2(parentNode, connector)
-	}
-	
-	private def dispatch createCommentNode(IOutlineNode parentNode, Connector connector) {
-		// do nothing
-	}
-	
-	private def createCommentNode2(IOutlineNode parentNode, Commentable connector) {
-		if (connector.comment != null) {
-			createEObjectNode(parentNode, connector, imageDispatcher.invoke(connector), textDispatcher.invoke(connector), true)
+	def createCommentNode(EStructuralFeatureNode node, Connector connector) {
+		if (connector instanceof Commentable) {
+			if (!connector.comments.isEmpty) {
+				connector.comments.forEach[c | createEObjectNode(node, c)]
+			}
 		}
+		return
 	}
-	
-	private def dispatch createConnectorNode(IOutlineNode parentNode, Association connector) {
-		if (connector.comment == null) {
-			createEObjectNode(parentNode, connector)
-		} else {
-			val connectorClone = EcoreUtil.copy(connector)
-			connectorClone.comment = null
-			createEObjectNode(parentNode, connector, imageDispatcher.invoke(connectorClone), textDispatcher.invoke(connectorClone), false);
-		}
-	}
-	
-	private def dispatch createConnectorNode(IOutlineNode parentNode, Connector connector) {
-		createEObjectNode(parentNode, connector)
-	}
-	
-	private def dispatch createConnectorNode(IOutlineNode parentNode, CommentLink connector) {
-		// do nothing
-	}
-	
 	
 	private def getStyledString(String name, int counter) {
 		var styledLabel = new StyledString()

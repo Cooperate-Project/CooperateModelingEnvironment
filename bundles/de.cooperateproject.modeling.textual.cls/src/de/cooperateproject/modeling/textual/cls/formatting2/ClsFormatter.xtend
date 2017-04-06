@@ -4,28 +4,26 @@
 package de.cooperateproject.modeling.textual.cls.formatting2;
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.Member
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Method
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
 import de.cooperateproject.modeling.textual.cls.cls.Package
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
+import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess.CommentLinkElements
 
 class ClsFormatter extends AbstractClsFormatter {
 	
@@ -34,31 +32,31 @@ class ClsFormatter extends AbstractClsFormatter {
 	def dispatch void format(ClassDiagram classdiagram, extension IFormattableDocument document) {
 		classdiagram.regionFor.feature(ClsPackage.Literals.CLASS_DIAGRAM__TITLE).append[newLines = 2]
 		format(classdiagram.getRootPackage(), document);
-		classdiagram.regionFor.keyword(classDiagramAccess.endClsKeyword_4).prepend[newLines = 2]
+		classdiagram.regionFor.keyword(classDiagramAccess.endClsdKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(Package pkg, extension IFormattableDocument document) {		
 		interior(			
 			pkg.regionFor.keyword(packageAccess.leftCurlyBracketKeyword_2).append[newLine],
-			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 2],
+			pkg.regionFor.keyword(packageAccess.rightCurlyBracketKeyword_7).append[newLines = 2].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
-		pkg.regionFor.assignment(rootPackageAccess.referencedElementAssignment_1).append[newLines = 2]
+		pkg.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
 			
 		for (PackageImport packageImports : pkg.getPackageImports()) {
 			format(packageImports, document);
 		}
-		pkg.packageImports.last?.append[newLines = 2; priority = 1]
+		pkg.packageImports.last?.append[newLines = 2; priority = 3]
 
 		for (Classifier<?> classifiers : pkg.getClassifiers()) {
 			format(classifiers, document);
 		}
-		pkg.classifiers.last?.append[newLines = 2; priority = 1]
+		pkg.classifiers.last?.append[newLines = 2; priority = 3]
 		
 		for (Connector connectors : pkg.getConnectors()) {
 			format(connectors, document);
 		}
-		pkg.connectors.last?.append[newLines = 2; priority = 1]
+		pkg.connectors.last?.append[newLines = 2; priority = 3]
 		
 		for (Package packages : pkg.getPackages()) {
 			format(packages, document);
@@ -81,9 +79,9 @@ class ClsFormatter extends AbstractClsFormatter {
 		}
 
 		if (clz.members.isEmpty) {
-			clz.append[newLine]
+			clz.append[newLine; priority = 2]
 		} else {
-			clz.append[newLines = 2]
+			clz.append[newLines = 2; priority = 2]
 		}
 	}
 
@@ -99,9 +97,9 @@ class ClsFormatter extends AbstractClsFormatter {
 		}
 
 		if (interfaze.members.isEmpty) {
-			interfaze.append[newLine]
+			interfaze.append[newLine; priority = 2]
 		} else {
-			interfaze.append[newLines = 2]
+			interfaze.append[newLines = 2; priority = 2]
 		}
 		
 	}
@@ -124,55 +122,38 @@ class ClsFormatter extends AbstractClsFormatter {
 	}
 
 	def dispatch void format(Generalization generalization, extension IFormattableDocument document) {
-		format(generalization.getLeft(), document);
-		format(generalization.getRight(), document);
+		generalization.regionFor.keyword(generalizationAccess.leftParenthesisKeyword_1).append[noSpace]
+		generalization.regionFor.keyword(generalizationAccess.rightParenthesisKeyword_5).prepend[noSpace]
+		generalization.regionFor.keyword(generalizationAccess.commaKeyword_3).prepend[noSpace]
 		generalization.append[newLine]
 	}
 
 	def dispatch void format(Implementation implementation, extension IFormattableDocument document) {
-		format(implementation.getLeft(), document);
-		format(implementation.getRight(), document);
+		implementation.regionFor.keyword(implementationAccess.leftParenthesisKeyword_1).append[noSpace]
+		implementation.regionFor.keyword(implementationAccess.rightParenthesisKeyword_5).prepend[noSpace]
+		implementation.regionFor.keyword(implementationAccess.commaKeyword_3).prepend[noSpace]
 		implementation.append[newLine]
+	}
+	
+	def dispatch void format(XtextAssociation association, extension IFormattableDocument document) {
+		association.regionFor.keyword(xtextAssociationAccess.leftParenthesisKeyword_3).append[noSpace]
+		association.regionFor.keyword(xtextAssociationAccess.commaKeyword_5_0).prepend[noSpace].append[space = " "]
+		association.regionFor.keyword(xtextAssociationAccess.rightParenthesisKeyword_6).prepend[noSpace]
+
+		association.regionFor.keyword(xtextAssociationAccess.leftSquareBracketKeyword_7_1).append[noSpace]
+		association.regionFor.keyword(xtextAssociationAccess.commaKeyword_7_3_0).prepend[noSpace].append[space = " "]
+		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_7_4).prepend[noSpace]
+		
+		association.regionFor.keyword(xtextAssociationAccess.leftSquareBracketKeyword_8_1).append[noSpace]
+		association.regionFor.keyword(xtextAssociationAccess.colonKeyword_8_3_0).prepend[space = " "].append[space = " "]
+		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_8_4).prepend[noSpace]
+		association.append[newLine]
+		
+		association.memberEndCardinalities.forEach[format]
 	}
 
 	def dispatch void format(CommentLink commentlink, extension IFormattableDocument document) {
-		format(commentlink.getLeft(), document);
 		commentlink.append[newLine]
-	}
-
-	def dispatch void format(Association association, extension IFormattableDocument document) {
-		format(association.getLeft(), document);
-		format(association.getRight(), document);
-		format(association.getProperties(), document);
-		association.append[newLine]
-	}
-
-	def dispatch void format(MultiAssociation multiassociation, extension IFormattableDocument document) {
-		interior(
-			multiassociation.regionFor.keyword(multiAssociationAccess.leftCurlyBracketKeyword_2).append[newLine],
-			multiassociation.regionFor.keyword(multiAssociationAccess.rightCurlyBracketKeyword_4).prepend[newLine],
-			[indent]
-		)
-		multiassociation.regionFor.keyword(multiAssociationAccess.semicolonKeyword_3_1).prepend[noSpace].append[newLine]
-		for (MemberEnd connectorEnds : multiassociation.getConnectorEnds()) {
-			format(connectorEnds, document);
-			connectorEnds.prepend[newLine]
-		}
-		multiassociation.append[newLines = 2]
-	}
-
-	def dispatch void format(MemberEnd memberend, extension IFormattableDocument document) {
-		format(memberend.getType(), document);
-		format(memberend.getCardinality(), document);
-	}
-
-	def dispatch void format(AssociationProperties associationproperties, extension IFormattableDocument document) {
-		associationproperties.regionFor.keyword(associationPropertiesAccess.leftSquareBracketKeyword_0).append[noSpace]
-		associationproperties.regionFor.keyword(associationPropertiesAccess.rightSquareBracketKeyword_4).prepend[noSpace]
-		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_2_0).append[space = " "].prepend[noSpace]
-		associationproperties.regionFor.keyword(associationPropertiesAccess.commaKeyword_3_2_0).append[space = " "].prepend[noSpace]
-		format(associationproperties.getCardinalityLeft(), document);
-		format(associationproperties.getCardinalityRight(), document);
 	}
 	
 	def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {

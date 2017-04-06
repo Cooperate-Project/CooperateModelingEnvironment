@@ -24,8 +24,14 @@
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
+      name="Element"
+      abstract="true"
+      interface="true"/>
+  <eClassifiers
+      xsi:type="ecore:EClass"
       name="NamedElement"
-      abstract="true">
+      abstract="true"
+      eSuperTypes="#//Element">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="name"
@@ -34,6 +40,7 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="AliasedElement"
+      abstract="true"
       eSuperTypes="#//NamedElement">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
@@ -43,12 +50,27 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="BehavioredClassifier"
-      eSuperTypes="#//Commentable"/>
+      abstract="true"
+      interface="true">
+    <eTypeParameters
+        name="T">
+      <eBounds
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+    </eTypeParameters>
+    <eGenericSuperTypes
+        eClassifier="#//Commentable"/>
+    <eGenericSuperTypes
+        eClassifier="#//UMLReferencingElement">
+      <eTypeArguments
+          eTypeParameter="#//BehavioredClassifier/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
       name="Commentable"
       abstract="true"
-      interface="true"/>
+      interface="true"
+      eSuperTypes="#//Element"/>
   <eClassifiers
       xsi:type="ecore:EClass"
       name="RootPackage">
@@ -82,7 +104,7 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -106,11 +128,9 @@
     <eGenericSuperTypes
         eClassifier="#//AliasedElement"/>
     <eGenericSuperTypes
-        eClassifier="#//BehavioredClassifier"/>
-    <eGenericSuperTypes
-        eClassifier="#//UMLReferencingElement">
+        eClassifier="#//BehavioredClassifier">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -134,7 +154,7 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -164,11 +184,9 @@
     <eGenericSuperTypes
         eClassifier="#//AliasedElement"/>
     <eGenericSuperTypes
-        eClassifier="#//BehavioredClassifier"/>
-    <eGenericSuperTypes
-        eClassifier="#//UMLReferencingElement">
+        eClassifier="#//BehavioredClassifier">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -185,12 +203,15 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
-      name="Relationship"/>
+      name="Relationship"
+      abstract="true"
+      interface="true"
+      eSuperTypes="#//Element"/>
   <eClassifiers
       xsi:type="ecore:EClass"
       name="Association">
@@ -204,12 +225,12 @@
         eType="#//UseCase"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
-        name="leftCardinality"
+        name="actorCardinality"
         eType="#//Cardinality"
         containment="true"/>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
-        name="rightCardinality"
+        name="useCaseCardinality"
         eType="#//Cardinality"
         containment="true"/>
     <eGenericSuperTypes
@@ -217,7 +238,7 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -226,19 +247,29 @@
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="specific"
-        lowerBound="1"
-        eType="#//BehavioredClassifier"/>
+        lowerBound="1">
+      <eGenericType
+          eClassifier="#//BehavioredClassifier">
+        <eTypeArguments
+            eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+      </eGenericType>
+    </eStructuralFeatures>
     <eStructuralFeatures
         xsi:type="ecore:EReference"
         name="general"
-        lowerBound="1"
-        eType="#//BehavioredClassifier"/>
+        lowerBound="1">
+      <eGenericType
+          eClassifier="#//BehavioredClassifier">
+        <eTypeArguments
+            eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+      </eGenericType>
+    </eStructuralFeatures>
     <eGenericSuperTypes
         eClassifier="#//Relationship"/>
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -259,7 +290,7 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -289,7 +320,7 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
@@ -308,12 +339,13 @@
     <eGenericSuperTypes
         eClassifier="#//UMLReferencingElement">
       <eTypeArguments
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers
       xsi:type="ecore:EClass"
-      name="Cardinality">
+      name="Cardinality"
+      eSuperTypes="#//Element">
     <eStructuralFeatures
         xsi:type="ecore:EAttribute"
         name="lowerBound"
@@ -349,11 +381,12 @@
   <eClassifiers
       xsi:type="ecore:EClass"
       name="UMLReferencingElement"
-      abstract="true">
+      abstract="true"
+      eSuperTypes="#//Element">
     <eTypeParameters
         name="UMLType">
       <eBounds
-          eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+          eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     </eTypeParameters>
     <eStructuralFeatures
         xsi:type="ecore:EReference"

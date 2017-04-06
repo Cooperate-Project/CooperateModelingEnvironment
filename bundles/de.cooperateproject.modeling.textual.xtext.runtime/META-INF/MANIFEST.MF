@@ -1,22 +1,27 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Xtext
+Bundle-Name: Xtext Runtime Utilities
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime;singleton:=true
-Bundle-Version: 0.1.5.qualifier
+Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.xtext.xbase.lib;bundle-version="2.9.1",
  org.eclipse.emf.cdo;bundle-version="4.4.1",
  org.eclipse.uml2.uml;bundle-version="5.1.2",
- net.winklerweb.cdoxtext.runtime;bundle-version="0.1.0";visibility:=reexport,
+ net.winklerweb.cdoxtext.runtime;bundle-version="0.1.3";visibility:=reexport,
  org.apache.commons.lang3;bundle-version="3.1.0",
  org.apache.log4j,
- de.cooperateproject.util;bundle-version="0.1.5",
+ de.cooperateproject.util;bundle-version="0.1.7",
  de.cooperateproject.modeling.textual.common,
- de.cooperateproject.ui.preferences;bundle-version="1.0.0"
+ de.cooperateproject.ui.preferences;bundle-version="0.1.7",
+ org.eclipse.emf.transaction,
+ de.cooperateproject.modeling.textual.common.metamodel
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
+ de.cooperateproject.modeling.textual.xtext.runtime.issues,
+ de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
- de.cooperateproject.modeling.textual.xtext.runtime.scoping
+ de.cooperateproject.modeling.textual.xtext.runtime.scoping,
+ de.cooperateproject.modeling.textual.xtext.runtime.validator
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator

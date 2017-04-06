@@ -1,10 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: de.cooperateproject.modeling.language.usecase.metamodel;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.metamodel;singleton:=true
+Bundle-Version: 0.1.7.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.usecase,

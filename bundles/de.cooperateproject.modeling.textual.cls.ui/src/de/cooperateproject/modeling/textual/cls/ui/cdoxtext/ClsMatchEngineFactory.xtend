@@ -6,12 +6,10 @@ package de.cooperateproject.modeling.textual.cls.ui.cdoxtext
 import com.google.common.base.Function
 import com.google.inject.Inject
 import com.google.inject.Provider
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.Generalization
-import de.cooperateproject.modeling.textual.cls.cls.Implementation
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import java.util.List
 import org.eclipse.emf.cdo.util.CDOUtil
 import org.eclipse.emf.compare.match.DefaultComparisonFactory
 import org.eclipse.emf.compare.match.DefaultEqualityHelperFactory
@@ -40,12 +38,6 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 			override apply(EObject input) {
 				val cdoObject = CDOUtil.getCDOObject(input)
 				cdoObject.cdoID.toString
-				//val adapter = EcoreUtil.getExistingAdapter(input, typeof(CDOLegacyAdapter))
-				//println((adapter as CDOLegacyAdapter).cdoID)
-				//(adapter as CDOLegacyAdapter).cdoID.toString
-				//val cdoid = CDOIDUtil.getCDOID(input)
-				//return cdoid.toString
-				
 			}
 		}
 		
@@ -53,12 +45,9 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 			override apply(EObject input) {				
 				switch input {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
-					Generalization: "Generalization" + idComputation.apply(input.referencedElement)
-					Implementation: "InterfaceRealization" + idComputation.apply(input.referencedElement)
-					CommentLink: "CommentLink" + idComputation.apply(input.comment)
 					StringExpression: "StringExp" + input.name
-					AssociationProperties: "AssociationProperties" + apply(input.eContainer)
-					Cardinality: "Cardinality" + input.eContainmentFeature.name + apply(input.eContainer)
+					Cardinality: Cardinality.simpleName + input.calculateContainmentIdPart([apply])
+					CommentLink: CommentLink.simpleName + apply(input.comments.findFirst[true])
 					default: null
 				}
 			}
@@ -68,4 +57,14 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 		val matcher = new IdentifierEObjectMatcher(proxMatcher, idFunction)
 		return new DefaultMatchEngine(matcher, new DefaultComparisonFactory(new DefaultEqualityHelperFactory()))
 	}	
+		
+	private static def calculateContainmentIdPart(EObject o, Function<EObject, String> idCalculator) {
+		val container = o.eContainer
+		val containerFeature = o.eContainmentFeature
+		var featureIndex = 0
+		if (containerFeature.many) {
+			featureIndex = (container.eGet(containerFeature) as List<EObject>).indexOf(o)
+		}
+		return String.format("%s%s%d", idCalculator.apply(container), containerFeature.name, featureIndex)
+	}
 }

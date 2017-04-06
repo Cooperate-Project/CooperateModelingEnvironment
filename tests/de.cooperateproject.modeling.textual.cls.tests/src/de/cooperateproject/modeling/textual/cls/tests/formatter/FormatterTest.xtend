@@ -6,13 +6,14 @@ import java.io.File
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
 import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.junit4.InjectWith
+import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.resource.SaveOptions
 import org.eclipse.xtext.serializer.ISerializer
 import org.junit.Test
 
 import static org.junit.Assert.*
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
+
 
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class FormatterTest extends AbstractClsTest {

@@ -31,24 +31,6 @@ public interface UsecaseFactory extends EFactory {
 	UseCaseDiagram createUseCaseDiagram();
 
 	/**
-     * Returns a new object of class '<em>Aliased Element</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Aliased Element</em>'.
-     * @generated
-     */
-	AliasedElement createAliasedElement();
-
-	/**
-     * Returns a new object of class '<em>Behaviored Classifier</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Behaviored Classifier</em>'.
-     * @generated
-     */
-	BehavioredClassifier createBehavioredClassifier();
-
-	/**
      * Returns a new object of class '<em>Root Package</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,15 +74,6 @@ public interface UsecaseFactory extends EFactory {
      * @generated
      */
 	ExtensionPoint createExtensionPoint();
-
-	/**
-     * Returns a new object of class '<em>Relationship</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Relationship</em>'.
-     * @generated
-     */
-	Relationship createRelationship();
 
 	/**
      * Returns a new object of class '<em>Association</em>'.

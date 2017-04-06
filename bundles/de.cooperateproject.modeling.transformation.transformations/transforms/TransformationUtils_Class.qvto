@@ -1,5 +1,7 @@
 library TransformationUtils_Class;
 
+import TransformationUtils;
+
 /*
  * The most important type IDs used in the Papyrus notation file.
  */
@@ -75,7 +77,6 @@ property PAPYRUS_NOTATION_COMPARTMENT_CLASS_NESTED_INPACKAGE : String = "Class_N
 
 // Edges and related elements
 
-property PAPYRUS_NOTATION_EDGE_ASSOCIATION : String = "Association_Edge";
 property PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT : String = "PackageImport_Edge";
 property PAPYRUS_NOTATION_EDGE_COMMENTLINK : String = "Comment_AnnotatedElementEdge";
 
@@ -83,19 +84,9 @@ property PAPYRUS_NOTATION_EDGE_IMPLEMENTATION : String = "InterfaceRealization_E
 property PAPYRUS_NOTATION_NODE_INTERFACEREALIZATION_STEREOTYPE : String = "InterfaceRealization_StereotypeLabel";
 property PAPYRUS_NOTATION_NODE_INTERFACEREALIZATION_NAME : String = "InterfaceRealization_NameLabel";
 
-property PAPYRUS_NOTATION_EDGE_GENERALIZATION : String = "Generalization_Edge";
-property PAPYRUS_NOTATION_NODE_GENERALIZATION_STEREOTYPE : String = "Generalization_StereotypeLabel";
-
 property PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH : String = "Association_BranchEdge";
 property PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_ROLENAME : String = "Association_BranchRoleLabel";
 property PAPYRUS_NOTATION_NODE_ASSOCIATIONBRANCH_MULTIPLICITY : String = "Association_BranchMultiplicityLabel";
 property PAPYRUS_NOTATION_NODE_NARY_NAME : String = "Association_FloatingNameLabel";
-
-property PAPYRUS_NOTATION_NODE_ASSOCIATION_STEREOTYPE : String = "Association_StereotypeLabel";
-property PAPYRUS_NOTATION_NODE_ASSOCIATION_NAME : String = "Association_NameLabel";
-property PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETROLE : String = "Association_TargetRoleLabel";
-property PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE : String = "Association_SourceRoleLabel";
-property PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY : String = "Association_SourceMultiplicityLabel";
-property PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY : String = "Association_TargetMultiplicityLabel";
 
 property PAPYRUS_NOTATION_NODE_PACKAGEIMPORT_STEREOTYPE : String = "PackageImport_StereotypeLabel";	

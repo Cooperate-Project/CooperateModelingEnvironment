@@ -5991,31 +5991,31 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group_3__1__Impl"
-    // InternalUsecase.g:1908:1: rule__Association__Group_3__1__Impl : ( ( rule__Association__LeftCardinalityAssignment_3_1 ) ) ;
+    // InternalUsecase.g:1908:1: rule__Association__Group_3__1__Impl : ( ( rule__Association__ActorCardinalityAssignment_3_1 ) ) ;
     public final void rule__Association__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUsecase.g:1912:1: ( ( ( rule__Association__LeftCardinalityAssignment_3_1 ) ) )
-            // InternalUsecase.g:1913:1: ( ( rule__Association__LeftCardinalityAssignment_3_1 ) )
+            // InternalUsecase.g:1912:1: ( ( ( rule__Association__ActorCardinalityAssignment_3_1 ) ) )
+            // InternalUsecase.g:1913:1: ( ( rule__Association__ActorCardinalityAssignment_3_1 ) )
             {
-            // InternalUsecase.g:1913:1: ( ( rule__Association__LeftCardinalityAssignment_3_1 ) )
-            // InternalUsecase.g:1914:2: ( rule__Association__LeftCardinalityAssignment_3_1 )
+            // InternalUsecase.g:1913:1: ( ( rule__Association__ActorCardinalityAssignment_3_1 ) )
+            // InternalUsecase.g:1914:2: ( rule__Association__ActorCardinalityAssignment_3_1 )
             {
-             before(grammarAccess.getAssociationAccess().getLeftCardinalityAssignment_3_1()); 
-            // InternalUsecase.g:1915:2: ( rule__Association__LeftCardinalityAssignment_3_1 )
-            // InternalUsecase.g:1915:3: rule__Association__LeftCardinalityAssignment_3_1
+             before(grammarAccess.getAssociationAccess().getActorCardinalityAssignment_3_1()); 
+            // InternalUsecase.g:1915:2: ( rule__Association__ActorCardinalityAssignment_3_1 )
+            // InternalUsecase.g:1915:3: rule__Association__ActorCardinalityAssignment_3_1
             {
             pushFollow(FOLLOW_2);
-            rule__Association__LeftCardinalityAssignment_3_1();
+            rule__Association__ActorCardinalityAssignment_3_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getAssociationAccess().getLeftCardinalityAssignment_3_1()); 
+             after(grammarAccess.getAssociationAccess().getActorCardinalityAssignment_3_1()); 
 
             }
 
@@ -6151,31 +6151,31 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group_3__3__Impl"
-    // InternalUsecase.g:1962:1: rule__Association__Group_3__3__Impl : ( ( rule__Association__RightCardinalityAssignment_3_3 ) ) ;
+    // InternalUsecase.g:1962:1: rule__Association__Group_3__3__Impl : ( ( rule__Association__UseCaseCardinalityAssignment_3_3 ) ) ;
     public final void rule__Association__Group_3__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUsecase.g:1966:1: ( ( ( rule__Association__RightCardinalityAssignment_3_3 ) ) )
-            // InternalUsecase.g:1967:1: ( ( rule__Association__RightCardinalityAssignment_3_3 ) )
+            // InternalUsecase.g:1966:1: ( ( ( rule__Association__UseCaseCardinalityAssignment_3_3 ) ) )
+            // InternalUsecase.g:1967:1: ( ( rule__Association__UseCaseCardinalityAssignment_3_3 ) )
             {
-            // InternalUsecase.g:1967:1: ( ( rule__Association__RightCardinalityAssignment_3_3 ) )
-            // InternalUsecase.g:1968:2: ( rule__Association__RightCardinalityAssignment_3_3 )
+            // InternalUsecase.g:1967:1: ( ( rule__Association__UseCaseCardinalityAssignment_3_3 ) )
+            // InternalUsecase.g:1968:2: ( rule__Association__UseCaseCardinalityAssignment_3_3 )
             {
-             before(grammarAccess.getAssociationAccess().getRightCardinalityAssignment_3_3()); 
-            // InternalUsecase.g:1969:2: ( rule__Association__RightCardinalityAssignment_3_3 )
-            // InternalUsecase.g:1969:3: rule__Association__RightCardinalityAssignment_3_3
+             before(grammarAccess.getAssociationAccess().getUseCaseCardinalityAssignment_3_3()); 
+            // InternalUsecase.g:1969:2: ( rule__Association__UseCaseCardinalityAssignment_3_3 )
+            // InternalUsecase.g:1969:3: rule__Association__UseCaseCardinalityAssignment_3_3
             {
             pushFollow(FOLLOW_2);
-            rule__Association__RightCardinalityAssignment_3_3();
+            rule__Association__UseCaseCardinalityAssignment_3_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getAssociationAccess().getRightCardinalityAssignment_3_3()); 
+             after(grammarAccess.getAssociationAccess().getUseCaseCardinalityAssignment_3_3()); 
 
             }
 
@@ -9371,9 +9371,9 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Association__UsecaseAssignment_2"
 
 
-    // $ANTLR start "rule__Association__LeftCardinalityAssignment_3_1"
-    // InternalUsecase.g:3097:1: rule__Association__LeftCardinalityAssignment_3_1 : ( ruleCardinality ) ;
-    public final void rule__Association__LeftCardinalityAssignment_3_1() throws RecognitionException {
+    // $ANTLR start "rule__Association__ActorCardinalityAssignment_3_1"
+    // InternalUsecase.g:3097:1: rule__Association__ActorCardinalityAssignment_3_1 : ( ruleCardinality ) ;
+    public final void rule__Association__ActorCardinalityAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9384,13 +9384,13 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
             // InternalUsecase.g:3102:2: ( ruleCardinality )
             // InternalUsecase.g:3103:3: ruleCardinality
             {
-             before(grammarAccess.getAssociationAccess().getLeftCardinalityCardinalityParserRuleCall_3_1_0()); 
+             before(grammarAccess.getAssociationAccess().getActorCardinalityCardinalityParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
             ruleCardinality();
 
             state._fsp--;
 
-             after(grammarAccess.getAssociationAccess().getLeftCardinalityCardinalityParserRuleCall_3_1_0()); 
+             after(grammarAccess.getAssociationAccess().getActorCardinalityCardinalityParserRuleCall_3_1_0()); 
 
             }
 
@@ -9409,12 +9409,12 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Association__LeftCardinalityAssignment_3_1"
+    // $ANTLR end "rule__Association__ActorCardinalityAssignment_3_1"
 
 
-    // $ANTLR start "rule__Association__RightCardinalityAssignment_3_3"
-    // InternalUsecase.g:3112:1: rule__Association__RightCardinalityAssignment_3_3 : ( ruleCardinality ) ;
-    public final void rule__Association__RightCardinalityAssignment_3_3() throws RecognitionException {
+    // $ANTLR start "rule__Association__UseCaseCardinalityAssignment_3_3"
+    // InternalUsecase.g:3112:1: rule__Association__UseCaseCardinalityAssignment_3_3 : ( ruleCardinality ) ;
+    public final void rule__Association__UseCaseCardinalityAssignment_3_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9425,13 +9425,13 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
             // InternalUsecase.g:3117:2: ( ruleCardinality )
             // InternalUsecase.g:3118:3: ruleCardinality
             {
-             before(grammarAccess.getAssociationAccess().getRightCardinalityCardinalityParserRuleCall_3_3_0()); 
+             before(grammarAccess.getAssociationAccess().getUseCaseCardinalityCardinalityParserRuleCall_3_3_0()); 
             pushFollow(FOLLOW_2);
             ruleCardinality();
 
             state._fsp--;
 
-             after(grammarAccess.getAssociationAccess().getRightCardinalityCardinalityParserRuleCall_3_3_0()); 
+             after(grammarAccess.getAssociationAccess().getUseCaseCardinalityCardinalityParserRuleCall_3_3_0()); 
 
             }
 
@@ -9450,7 +9450,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Association__RightCardinalityAssignment_3_3"
+    // $ANTLR end "rule__Association__UseCaseCardinalityAssignment_3_3"
 
 
     // $ANTLR start "rule__Generalization__SpecificAssignment_0"

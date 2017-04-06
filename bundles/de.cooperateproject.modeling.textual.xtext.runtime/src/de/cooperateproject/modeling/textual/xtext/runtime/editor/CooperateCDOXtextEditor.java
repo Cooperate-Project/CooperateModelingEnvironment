@@ -1,28 +1,45 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.editor;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.ILock;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
+import org.eclipse.xtext.resource.DerivedStateAwareResource;
+import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.xtext.validation.Issue;
 
 import com.google.common.collect.Sets;
+import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
@@ -55,13 +72,23 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private final PostProcessorHandler postProcessorHandler = new PostProcessorHandler();
     private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
     private IContextActivation contextActivation;
+    private static final Logger LOGGER = Logger.getLogger(CooperateCDOXtextEditor.class);
+    private static ILock lock = Job.getJobManager().newLock();
+
+    @Inject
+    private IResourceValidator resourceValidator;
+
+    @Inject
+    private IAutomatedIssueResolutionProvider automatedIssueResolutionProvider;
 
     @Override
     protected void handleCursorPositionChanged() {
         super.handleCursorPositionChanged();
         IXtextDocument document = getDocument();
         CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
-
+        if (cooperateXtextDocument.getResource() == null) {
+            return;
+        }
         ErrorIndicatorSettings signalType = PreferenceHandler.INSTANCE.getErrorIndicatorSetting();
         EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
 
@@ -71,6 +98,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
         IXtextDocument document = getDocument();
+        performPreSaveActions();
         CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
         IStatus status = scheduleValidation(cooperateXtextDocument);
         if (status.isOK()) {
@@ -79,18 +107,97 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
                 openErrorDialog("Save Error", "Can't save because of editor errors");
                 return;
             }
-            saveDocument(progressMonitor);
+            Job job = new Job("Save") {
+                @Override
+                protected IStatus run(IProgressMonitor monitor) {
+                    SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+                    Display.getDefault().syncExec(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            try {
+                                lock.acquire();
+                                subMonitor.setTaskName("Saving diagram.");
+                                saveDocument(subMonitor.split(100));
+                            } finally {
+                                lock.release();
+                            }
+                        }
+                    });
+                    return Status.OK_STATUS;
+                }
+            };
+            job.setUser(true);
+            job.schedule();
+            try {
+                job.join();
+            } catch (InterruptedException e) {
+                LOGGER.error("Error during save operation.", e);
+                return;
+            }
         } else if (status.matches(IStatus.CANCEL)) {
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
             return;
         }
     }
 
+    private void performPreSaveActions() {
+        performValidationIssueFixing();
+    }
+
+    private void performValidationIssueFixing() {
+        if (automatedIssueResolutionProvider == null) {
+            return;
+        }
+
+        CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+
+        TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+                .createEditingDomain(cooperateXtextDocument.getResource().getResourceSet());
+        try {
+            performIssueValidationFixingTransactional(domain, cooperateXtextDocument.getResource());
+        } finally {
+            domain.dispose();
+        }
+
+    }
+
+    private void performIssueValidationFixingTransactional(TransactionalEditingDomain domain, Resource documentResource)
+            throws OperationCanceledError {
+
+        final Collection<Issue> detectedIssues = new ArrayList<>();
+        domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+            @Override
+            protected void doExecute() {
+                Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
+                do {
+                    issueResolutions.forEach(i -> i.resolve());
+                    if (documentResource instanceof DerivedStateAwareResource) {
+                        DerivedStateAwareResource typedResource = ((DerivedStateAwareResource) documentResource);
+                        typedResource.discardDerivedState();
+                        typedResource.installDerivedState(false);
+                    }
+                    detectedIssues.clear();
+                    detectedIssues.addAll(
+                            resourceValidator.validate(documentResource, CheckMode.ALL, CancelIndicator.NullImpl));
+                    issueResolutions = automatedIssueResolutionProvider.get(documentResource, detectedIssues);
+                } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
+            }
+        });
+
+        if (detectedIssues.stream().anyMatch(automatedIssueResolutionProvider::hasResolution)) {
+            domain.getCommandStack().undo();
+        }
+
+    }
+
     private void saveDocument(IProgressMonitor progressMonitor) {
+        SubMonitor subMonitor = SubMonitor.convert(progressMonitor, 100);
         if (getDocument() != null) {
             saveAllAssociated(getDocument());
         }
-        super.doSave(progressMonitor);
+        super.doSave(subMonitor.split(100));
         try {
             postProcessorHandler.executePostProcessors();
         } catch (Exception e) {
@@ -104,7 +211,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         try {
             validationJob.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.trace("Error during validation.", e);
         }
         return validationJob.getResult();
     }

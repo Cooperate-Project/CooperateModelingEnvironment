@@ -1,72 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.modeling.textual.cls.metamodel/src-gen"
-    modelPluginID="de.cooperateproject.modeling.textual.cls.metamodel" modelName="cls"
+    modelPluginID="de.cooperateproject.modeling.textual.cls.metamodel" modelName="Cls"
     rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
-    reflectiveDelegation="true" importerID="org.eclipse.emf.importer.cdo" featureDelegation="Reflective"
-    complianceLevel="8.0" copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Dynamic" complianceLevel="8.0"
+    copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <foreignModel>cls.ecore</foreignModel>
   <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
   <genPackages prefix="Cls" basePackage="de.cooperateproject.modeling.textual.cls"
       disposableProviderFactory="true" ecorePackage="cls.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//Visibility">
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PRIVATE"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PROTECTED"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PUBLIC"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//Visibility/PACKAGE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//PrimitiveType">
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/INT"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/DOUBLE"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/BOOLEAN"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/CHAR"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/BYTE"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/SHORT"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/LONG"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/FLOAT"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//PrimitiveType/STRING"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//ReadingDirection">
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//ReadingDirection/LEFT"/>
-      <genEnumLiterals ecoreEnumLiteral="cls.ecore#//ReadingDirection/RIGHT"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="cls.ecore#//AggregationKind">
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//AggregationKind/NONE"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//AggregationKind/AGGREGATION"/>
       <genEnumLiterals ecoreEnumLiteral="cls.ecore#//AggregationKind/COMPOSITION"/>
     </genEnums>
     <genClasses ecoreClass="cls.ecore#//ClassDiagram">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/packageImports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/classifiers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/connectors"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//ClassDiagram/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//ClassDiagram/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//ClassDiagram/rootPackage"/>
+      <genOperations ecoreOperation="cls.ecore#//ClassDiagram/getAllTransitiveConnectors"/>
+      <genOperations ecoreOperation="cls.ecore#//ClassDiagram/getAllTransitivePackages"/>
+      <genOperations ecoreOperation="cls.ecore#//ClassDiagram/getAllTransitiveClassifiers"/>
     </genClasses>
-    <genClasses ecoreClass="cls.ecore#//PackageImport">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//PackageImport/package"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="cls.ecore#//TypeReference"/>
-    <genClasses ecoreClass="cls.ecore#//DataTypeReference">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//DataTypeReference/type"/>
-    </genClasses>
-    <genClasses ecoreClass="cls.ecore#//ClassifierReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//ClassifierReference/type"/>
-    </genClasses>
-    <genClasses ecoreClass="cls.ecore#//UMLTypeReference">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//UMLTypeReference/type"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="cls.ecore#//UMLReferencingElement">
-      <genTypeParameters ecoreTypeParameter="cls.ecore#//UMLReferencingElement/T"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//UMLReferencingElement/referencedElement"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="cls.ecore#//NamedElement">
-      <genTypeParameters ecoreTypeParameter="cls.ecore#//NamedElement/T"/>
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//NamedElement/name"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="cls.ecore#//NamedElementLongName">
-      <genTypeParameters ecoreTypeParameter="cls.ecore#//NamedElementLongName/T"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//NamedElementLongName/longName"/>
+    <genClasses ecoreClass="cls.ecore#//Package">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Package/classifiers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Package/connectors"/>
     </genClasses>
     <genClasses image="false" ecoreClass="cls.ecore#//Classifier">
       <genTypeParameters ecoreTypeParameter="cls.ecore#//Classifier/T"/>
@@ -82,48 +41,48 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Property/visibility"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Property/static"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Property/final"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Property/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//Property/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="cls.ecore#//Member">
       <genTypeParameters ecoreTypeParameter="cls.ecore#//Member/T"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cls.ecore#//Member/owner"/>
     </genClasses>
     <genClasses ecoreClass="cls.ecore#//Attribute"/>
     <genClasses ecoreClass="cls.ecore#//Method">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Method/abstract"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Method/parameters"/>
     </genClasses>
-    <genClasses ecoreClass="cls.ecore#//Parameter"/>
+    <genClasses ecoreClass="cls.ecore#//Parameter">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cls.ecore#//Parameter/owner"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="cls.ecore#//Connector"/>
     <genClasses image="false" ecoreClass="cls.ecore#//TypedConnector">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//TypedConnector/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//TypedConnector/right"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//TypedConnector/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//TypedConnector/right"/>
     </genClasses>
     <genClasses ecoreClass="cls.ecore#//Association">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Association/properties"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Association/aggregationKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Association/bidirectional"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="cls.ecore#//AssociationEnd"/>
-    <genClasses image="false" ecoreClass="cls.ecore#//ClassifierAssociationEnd"/>
     <genClasses ecoreClass="cls.ecore#//Generalization"/>
     <genClasses ecoreClass="cls.ecore#//Implementation"/>
-    <genClasses ecoreClass="cls.ecore#//CommentLink">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//CommentLink/left"/>
-      <genOperations ecoreOperation="cls.ecore#//CommentLink/hasComment">
-        <genParameters ecoreParameter="cls.ecore#//CommentLink/hasComment/diagnostics"/>
-        <genParameters ecoreParameter="cls.ecore#//CommentLink/hasComment/context"/>
-      </genOperations>
-    </genClasses>
+    <genClasses ecoreClass="cls.ecore#//CommentLink"/>
     <genClasses ecoreClass="cls.ecore#//AssociationProperties">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/cardinalityLeft"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/cardinalityRight"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//AssociationProperties/readingDirection"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/propertyLeft"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/propertyRight"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cls.ecore#//AssociationProperties/association"/>
     </genClasses>
-    <genClasses ecoreClass="cls.ecore#//Cardinality">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Cardinality/lowerBound"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//Cardinality/upperBound"/>
+    <genClasses ecoreClass="cls.ecore#//MultiAssociation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//MultiAssociation/connectorEnds"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="cls.ecore#//Commentable">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//Commentable/comment"/>
+    <genClasses ecoreClass="cls.ecore#//MemberEnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cls.ecore#//MemberEnd/cardinality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cls.ecore#//MemberEnd/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cls.ecore#//MemberEnd/navigable"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference cls.ecore#//MemberEnd/association"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

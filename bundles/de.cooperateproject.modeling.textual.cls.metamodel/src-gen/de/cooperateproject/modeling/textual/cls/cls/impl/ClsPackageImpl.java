@@ -4,37 +4,26 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
-import de.cooperateproject.modeling.textual.cls.cls.Commentable;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.Element;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElement;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementAliased;
-import de.cooperateproject.modeling.textual.cls.cls.NamedElementOptional;
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
-import de.cooperateproject.modeling.textual.cls.cls.PackageableElement;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
-import de.cooperateproject.modeling.textual.cls.cls.PrimitiveType;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
-import de.cooperateproject.modeling.textual.cls.cls.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.cls.cls.Visibility;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 
-import de.cooperateproject.modeling.textual.cls.cls.util.ClsValidator;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -44,9 +33,10 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.uml2.types.TypesPackage;
 
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -57,1634 +47,1071 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classDiagramEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass classDiagramEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass packageEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass packageEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass packageableElementEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass classifierEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass packageImportEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass classEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass umlReferencingElementEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass interfaceEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass namedElementOptionalEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass propertyEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass namedElementEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass memberEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass namedElementAliasedEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass attributeEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classifierEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass methodEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass parameterEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass interfaceEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass connectorEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass propertyEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass typedConnectorEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass memberEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass generalizationEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass attributeEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass implementationEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass methodEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass commentLinkEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass parameterEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass associationEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass connectorEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass associationMemberEndEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass typedConnectorEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass xtextAssociationEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass associationEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass xtextAssociationMemberEndReferencedTypeEClass = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass generalizationEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum aggregationKindEEnum = null;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass implementationEClass = null;
+    /**
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
+    private ClsPackageImpl() {
+        super(eNS_URI, ClsFactory.eINSTANCE);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass commentLinkEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private static boolean isInited = false;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass associationPropertiesEClass = null;
+    /**
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link ClsPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
+    public static ClsPackage init() {
+        if (isInited) return (ClsPackage)EPackage.Registry.INSTANCE.getEPackage(ClsPackage.eNS_URI);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cardinalityEClass = null;
+        // Obtain or create and register package
+        ClsPackageImpl theClsPackage = (ClsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ClsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ClsPackageImpl());
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass commentableEClass = null;
+        isInited = true;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass multiAssociationEClass = null;
+        // Initialize simple dependencies
+        TextualCommonsPackage.eINSTANCE.eClass();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass memberEndEClass = null;
+        // Create package meta-data objects
+        theClsPackage.createPackageContents();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass elementEClass = null;
+        // Initialize created meta-data
+        theClsPackage.initializePackageContents();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum visibilityEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum primitiveTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum aggregationKindEEnum = null;
-
-	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
-	private ClsPackageImpl() {
-		super(eNS_URI, ClsFactory.eINSTANCE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static boolean isInited = false;
-
-	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link ClsPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #eNS_URI
-	 * @see #createPackageContents()
-	 * @see #initializePackageContents()
-	 * @generated
-	 */
-	public static ClsPackage init() {
-		if (isInited) return (ClsPackage)EPackage.Registry.INSTANCE.getEPackage(ClsPackage.eNS_URI);
-
-		// Obtain or create and register package
-		ClsPackageImpl theClsPackage = (ClsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ClsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ClsPackageImpl());
-
-		isInited = true;
-
-		// Initialize simple dependencies
-		UMLPackage.eINSTANCE.eClass();
-
-		// Create package meta-data objects
-		theClsPackage.createPackageContents();
-
-		// Initialize created meta-data
-		theClsPackage.initializePackageContents();
-
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theClsPackage, 
-			 new EValidator.Descriptor() {
-				 @Override
-				public EValidator getEValidator() {
-					 return ClsValidator.INSTANCE;
-				 }
-			 });
-
-		// Mark meta-data to indicate it can't be changed
-		theClsPackage.freeze();
+        // Mark meta-data to indicate it can't be changed
+        theClsPackage.freeze();
 
   
-		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ClsPackage.eNS_URI, theClsPackage);
-		return theClsPackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getClassDiagram() {
-		return classDiagramEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getClassDiagram_Title() {
-		return (EAttribute)classDiagramEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getClassDiagram_RootPackage() {
-		return (EReference)classDiagramEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getClassDiagram__GetAllTransitiveConnectors() {
-		return classDiagramEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getClassDiagram__GetAllTransitivePackages() {
-		return classDiagramEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getClassDiagram__GetAllTransitiveClassifiers() {
-		return classDiagramEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getPackage() {
-		return packageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackage_PackageImports() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackage_Classifiers() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackage_Connectors() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackage_OwningPackage() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackage_Packages() {
-		return (EReference)packageEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getPackageableElement() {
-		return packageableElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getPackageImport() {
-		return packageImportEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackageImport_ReferencedElement() {
-		return (EReference)packageImportEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getPackageImport_ImportingNamespace() {
-		return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getUMLReferencingElement() {
-		return umlReferencingElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getUMLReferencingElement_ReferencedElement() {
-		return (EReference)umlReferencingElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getNamedElementOptional() {
-		return namedElementOptionalEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getNamedElementOptional_Name() {
-		return (EAttribute)namedElementOptionalEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getNamedElement() {
-		return namedElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getNamedElement__HasReferencedElement__DiagnosticChain_Map() {
-		return namedElementEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getNamedElementAliased() {
-		return namedElementAliasedEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getNamedElementAliased_AliasExpression() {
-		return (EReference)namedElementAliasedEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getNamedElementAliased_Alias() {
-		return (EAttribute)namedElementAliasedEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getClassifier() {
-		return classifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getClassifier_Visibility() {
-		return (EAttribute)classifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getClassifier_Members() {
-		return (EReference)classifierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getClass_() {
-		return classEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getClass_Abstract() {
-		return (EAttribute)classEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getInterface() {
-		return interfaceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getProperty() {
-		return propertyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getProperty_Visibility() {
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getProperty_Static() {
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getProperty_Final() {
-		return (EAttribute)propertyEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getProperty_Type() {
-		return (EReference)propertyEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMember() {
-		return memberEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMember_Owner() {
-		return (EReference)memberEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAttribute() {
-		return attributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMethod() {
-		return methodEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getMethod_Abstract() {
-		return (EAttribute)methodEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMethod_Parameters() {
-		return (EReference)methodEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getParameter() {
-		return parameterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getParameter_Owner() {
-		return (EReference)parameterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getConnector() {
-		return connectorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getTypedConnector() {
-		return typedConnectorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypedConnector_Left() {
-		return (EReference)typedConnectorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getTypedConnector_Right() {
-		return (EReference)typedConnectorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAssociation() {
-		return associationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssociation_Properties() {
-		return (EReference)associationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAssociation_AggregationKind() {
-		return (EAttribute)associationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getAssociation_Bidirectional() {
-		return (EAttribute)associationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getAssociation__GetCommentedElement() {
-		return associationEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getGeneralization() {
-		return generalizationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getGeneralization_ReferencedElement() {
-		return (EReference)generalizationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getImplementation() {
-		return implementationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getImplementation_ReferencedElement() {
-		return (EReference)implementationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getCommentLink() {
-		return commentLinkEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getCommentLink_Left() {
-		return (EReference)commentLinkEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getCommentLink__HasComment__DiagnosticChain_Map() {
-		return commentLinkEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getCommentLink__GetCommentedElement() {
-		return commentLinkEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getAssociationProperties() {
-		return associationPropertiesEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssociationProperties_CardinalityLeft() {
-		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssociationProperties_CardinalityRight() {
-		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssociationProperties_PropertyLeft() {
-		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssociationProperties_PropertyRight() {
-		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAssociationProperties_Association() {
-		return (EReference)associationPropertiesEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getCardinality() {
-		return cardinalityEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCardinality_LowerBound() {
-		return (EAttribute)cardinalityEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getCardinality_UpperBound() {
-		return (EAttribute)cardinalityEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getCommentable() {
-		return commentableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getCommentable_Comment() {
-		return (EReference)commentableEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getCommentable__GetCommentedElement() {
-		return commentableEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMultiAssociation() {
-		return multiAssociationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMultiAssociation_ConnectorEnds() {
-		return (EReference)multiAssociationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getMemberEnd() {
-		return memberEndEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMemberEnd_Cardinality() {
-		return (EReference)memberEndEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMemberEnd_Type() {
-		return (EReference)memberEndEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getMemberEnd_Navigable() {
-		return (EAttribute)memberEndEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getMemberEnd_Association() {
-		return (EReference)memberEndEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EClass getElement() {
-		return elementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EOperation getElement__GetNearestPackage() {
-		return elementEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EEnum getVisibility() {
-		return visibilityEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EEnum getPrimitiveType() {
-		return primitiveTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EEnum getAggregationKind() {
-		return aggregationKindEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ClsFactory getClsFactory() {
-		return (ClsFactory)getEFactoryInstance();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private boolean isCreated = false;
-
-	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void createPackageContents() {
-		if (isCreated) return;
-		isCreated = true;
-
-		// Create classes and their features
-		classDiagramEClass = createEClass(CLASS_DIAGRAM);
-		createEAttribute(classDiagramEClass, CLASS_DIAGRAM__TITLE);
-		createEReference(classDiagramEClass, CLASS_DIAGRAM__ROOT_PACKAGE);
-		createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CONNECTORS);
-		createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES);
-		createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CLASSIFIERS);
-
-		packageEClass = createEClass(PACKAGE);
-		createEReference(packageEClass, PACKAGE__PACKAGE_IMPORTS);
-		createEReference(packageEClass, PACKAGE__CLASSIFIERS);
-		createEReference(packageEClass, PACKAGE__CONNECTORS);
-		createEReference(packageEClass, PACKAGE__OWNING_PACKAGE);
-		createEReference(packageEClass, PACKAGE__PACKAGES);
-
-		packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
-
-		packageImportEClass = createEClass(PACKAGE_IMPORT);
-		createEReference(packageImportEClass, PACKAGE_IMPORT__REFERENCED_ELEMENT);
-		createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTING_NAMESPACE);
-
-		umlReferencingElementEClass = createEClass(UML_REFERENCING_ELEMENT);
-		createEReference(umlReferencingElementEClass, UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
-
-		namedElementOptionalEClass = createEClass(NAMED_ELEMENT_OPTIONAL);
-		createEAttribute(namedElementOptionalEClass, NAMED_ELEMENT_OPTIONAL__NAME);
-
-		namedElementEClass = createEClass(NAMED_ELEMENT);
-		createEOperation(namedElementEClass, NAMED_ELEMENT___HAS_REFERENCED_ELEMENT__DIAGNOSTICCHAIN_MAP);
-
-		namedElementAliasedEClass = createEClass(NAMED_ELEMENT_ALIASED);
-		createEReference(namedElementAliasedEClass, NAMED_ELEMENT_ALIASED__ALIAS_EXPRESSION);
-		createEAttribute(namedElementAliasedEClass, NAMED_ELEMENT_ALIASED__ALIAS);
-
-		classifierEClass = createEClass(CLASSIFIER);
-		createEAttribute(classifierEClass, CLASSIFIER__VISIBILITY);
-		createEReference(classifierEClass, CLASSIFIER__MEMBERS);
-
-		classEClass = createEClass(CLASS);
-		createEAttribute(classEClass, CLASS__ABSTRACT);
-
-		interfaceEClass = createEClass(INTERFACE);
-
-		propertyEClass = createEClass(PROPERTY);
-		createEAttribute(propertyEClass, PROPERTY__VISIBILITY);
-		createEAttribute(propertyEClass, PROPERTY__STATIC);
-		createEAttribute(propertyEClass, PROPERTY__FINAL);
-		createEReference(propertyEClass, PROPERTY__TYPE);
-
-		memberEClass = createEClass(MEMBER);
-		createEReference(memberEClass, MEMBER__OWNER);
-
-		attributeEClass = createEClass(ATTRIBUTE);
-
-		methodEClass = createEClass(METHOD);
-		createEAttribute(methodEClass, METHOD__ABSTRACT);
-		createEReference(methodEClass, METHOD__PARAMETERS);
-
-		parameterEClass = createEClass(PARAMETER);
-		createEReference(parameterEClass, PARAMETER__OWNER);
-
-		connectorEClass = createEClass(CONNECTOR);
-
-		typedConnectorEClass = createEClass(TYPED_CONNECTOR);
-		createEReference(typedConnectorEClass, TYPED_CONNECTOR__LEFT);
-		createEReference(typedConnectorEClass, TYPED_CONNECTOR__RIGHT);
-
-		associationEClass = createEClass(ASSOCIATION);
-		createEReference(associationEClass, ASSOCIATION__PROPERTIES);
-		createEAttribute(associationEClass, ASSOCIATION__AGGREGATION_KIND);
-		createEAttribute(associationEClass, ASSOCIATION__BIDIRECTIONAL);
-		createEOperation(associationEClass, ASSOCIATION___GET_COMMENTED_ELEMENT);
-
-		generalizationEClass = createEClass(GENERALIZATION);
-		createEReference(generalizationEClass, GENERALIZATION__REFERENCED_ELEMENT);
-
-		implementationEClass = createEClass(IMPLEMENTATION);
-		createEReference(implementationEClass, IMPLEMENTATION__REFERENCED_ELEMENT);
-
-		commentLinkEClass = createEClass(COMMENT_LINK);
-		createEReference(commentLinkEClass, COMMENT_LINK__LEFT);
-		createEOperation(commentLinkEClass, COMMENT_LINK___HAS_COMMENT__DIAGNOSTICCHAIN_MAP);
-		createEOperation(commentLinkEClass, COMMENT_LINK___GET_COMMENTED_ELEMENT);
-
-		associationPropertiesEClass = createEClass(ASSOCIATION_PROPERTIES);
-		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__CARDINALITY_LEFT);
-		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__CARDINALITY_RIGHT);
-		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__PROPERTY_LEFT);
-		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__PROPERTY_RIGHT);
-		createEReference(associationPropertiesEClass, ASSOCIATION_PROPERTIES__ASSOCIATION);
-
-		cardinalityEClass = createEClass(CARDINALITY);
-		createEAttribute(cardinalityEClass, CARDINALITY__LOWER_BOUND);
-		createEAttribute(cardinalityEClass, CARDINALITY__UPPER_BOUND);
-
-		commentableEClass = createEClass(COMMENTABLE);
-		createEReference(commentableEClass, COMMENTABLE__COMMENT);
-		createEOperation(commentableEClass, COMMENTABLE___GET_COMMENTED_ELEMENT);
-
-		multiAssociationEClass = createEClass(MULTI_ASSOCIATION);
-		createEReference(multiAssociationEClass, MULTI_ASSOCIATION__CONNECTOR_ENDS);
-
-		memberEndEClass = createEClass(MEMBER_END);
-		createEReference(memberEndEClass, MEMBER_END__CARDINALITY);
-		createEReference(memberEndEClass, MEMBER_END__TYPE);
-		createEAttribute(memberEndEClass, MEMBER_END__NAVIGABLE);
-		createEReference(memberEndEClass, MEMBER_END__ASSOCIATION);
-
-		elementEClass = createEClass(ELEMENT);
-		createEOperation(elementEClass, ELEMENT___GET_NEAREST_PACKAGE);
-
-		// Create enums
-		visibilityEEnum = createEEnum(VISIBILITY);
-		primitiveTypeEEnum = createEEnum(PRIMITIVE_TYPE);
-		aggregationKindEEnum = createEEnum(AGGREGATION_KIND);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private boolean isInitialized = false;
-
-	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void initializePackageContents() {
-		if (isInitialized) return;
-		isInitialized = true;
-
-		// Initialize package
-		setName(eNAME);
-		setNsPrefix(eNS_PREFIX);
-		setNsURI(eNS_URI);
-
-		// Obtain other dependent packages
-		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-
-		// Create type parameters
-		ETypeParameter umlReferencingElementEClass_T = addETypeParameter(umlReferencingElementEClass, "T");
-		ETypeParameter namedElementOptionalEClass_T = addETypeParameter(namedElementOptionalEClass, "T");
-		ETypeParameter namedElementEClass_T = addETypeParameter(namedElementEClass, "T");
-		ETypeParameter namedElementAliasedEClass_T = addETypeParameter(namedElementAliasedEClass, "T");
-		ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
-		ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
-		ETypeParameter memberEClass_T = addETypeParameter(memberEClass, "T");
-
-		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(theUMLPackage.getNamedElement());
-		umlReferencingElementEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(theUMLPackage.getNamedElement());
-		namedElementOptionalEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(theUMLPackage.getNamedElement());
-		namedElementEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(theUMLPackage.getNamedElement());
-		namedElementAliasedEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(theUMLPackage.getClassifier());
-		classifierEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(theUMLPackage.getNamedElement());
-		propertyEClass_T.getEBounds().add(g1);
-		g1 = createEGenericType(theUMLPackage.getNamedElement());
-		memberEClass_T.getEBounds().add(g1);
-
-		// Add supertypes to classes
-		g1 = createEGenericType(this.getNamedElement());
-		EGenericType g2 = createEGenericType(theUMLPackage.getPackage());
-		g1.getETypeArguments().add(g2);
-		packageEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getPackageableElement());
-		packageEClass.getEGenericSuperTypes().add(g1);
-		packageableElementEClass.getESuperTypes().add(this.getElement());
-		packageImportEClass.getESuperTypes().add(this.getPackageableElement());
-		g1 = createEGenericType(this.getUMLReferencingElement());
-		g2 = createEGenericType(namedElementOptionalEClass_T);
-		g1.getETypeArguments().add(g2);
-		namedElementOptionalEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElementOptional());
-		g2 = createEGenericType(namedElementEClass_T);
-		g1.getETypeArguments().add(g2);
-		namedElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElement());
-		g2 = createEGenericType(namedElementAliasedEClass_T);
-		g1.getETypeArguments().add(g2);
-		namedElementAliasedEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElementAliased());
-		g2 = createEGenericType(classifierEClass_T);
-		g1.getETypeArguments().add(g2);
-		classifierEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getPackageableElement());
-		classifierEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getClassifier());
-		g2 = createEGenericType(theUMLPackage.getClass_());
-		g1.getETypeArguments().add(g2);
-		classEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getClassifier());
-		g2 = createEGenericType(theUMLPackage.getInterface());
-		g1.getETypeArguments().add(g2);
-		interfaceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElement());
-		g2 = createEGenericType(propertyEClass_T);
-		g1.getETypeArguments().add(g2);
-		propertyEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getElement());
-		propertyEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getProperty());
-		g2 = createEGenericType(memberEClass_T);
-		g1.getETypeArguments().add(g2);
-		memberEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getMember());
-		g2 = createEGenericType(theUMLPackage.getProperty());
-		g1.getETypeArguments().add(g2);
-		attributeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getMember());
-		g2 = createEGenericType(theUMLPackage.getOperation());
-		g1.getETypeArguments().add(g2);
-		methodEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getProperty());
-		g2 = createEGenericType(theUMLPackage.getParameter());
-		g1.getETypeArguments().add(g2);
-		parameterEClass.getEGenericSuperTypes().add(g1);
-		connectorEClass.getESuperTypes().add(this.getPackageableElement());
-		typedConnectorEClass.getESuperTypes().add(this.getConnector());
-		g1 = createEGenericType(this.getNamedElement());
-		g2 = createEGenericType(theUMLPackage.getAssociation());
-		g1.getETypeArguments().add(g2);
-		associationEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getTypedConnector());
-		associationEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getCommentable());
-		associationEClass.getEGenericSuperTypes().add(g1);
-		generalizationEClass.getESuperTypes().add(this.getTypedConnector());
-		implementationEClass.getESuperTypes().add(this.getTypedConnector());
-		commentLinkEClass.getESuperTypes().add(this.getConnector());
-		commentLinkEClass.getESuperTypes().add(this.getCommentable());
-		associationPropertiesEClass.getESuperTypes().add(this.getElement());
-		cardinalityEClass.getESuperTypes().add(this.getElement());
-		commentableEClass.getESuperTypes().add(this.getElement());
-		g1 = createEGenericType(this.getConnector());
-		multiAssociationEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElement());
-		g2 = createEGenericType(theUMLPackage.getAssociation());
-		g1.getETypeArguments().add(g2);
-		multiAssociationEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getNamedElementOptional());
-		g2 = createEGenericType(theUMLPackage.getProperty());
-		g1.getETypeArguments().add(g2);
-		memberEndEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getElement());
-		memberEndEClass.getEGenericSuperTypes().add(g1);
-
-		// Initialize classes, features, and operations; add parameters
-		initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClassDiagram_Title(), ecorePackage.getEString(), "title", null, 1, 1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClassDiagram_RootPackage(), this.getPackage(), null, "rootPackage", null, 1, 1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getClassDiagram__GetAllTransitiveConnectors(), this.getConnector(), "getAllTransitiveConnectors", 0, -1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getClassDiagram__GetAllTransitivePackages(), this.getPackage(), "getAllTransitivePackages", 0, -1, IS_UNIQUE, IS_ORDERED);
-
-		EOperation op = initEOperation(getClassDiagram__GetAllTransitiveClassifiers(), null, "getAllTransitiveClassifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(this.getClassifier());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(theUMLPackage.getClassifier());
-		g2.setEUpperBound(g3);
-		initEOperation(op, g1);
-
-		initEClass(packageEClass, de.cooperateproject.modeling.textual.cls.cls.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackage_PackageImports(), this.getPackageImport(), this.getPackageImport_ImportingNamespace(), "packageImports", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(this.getClassifier());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g3 = createEGenericType(theUMLPackage.getClassifier());
-		g2.setEUpperBound(g3);
-		initEReference(getPackage_Classifiers(), g1, null, "classifiers", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPackage_Connectors(), this.getConnector(), null, "connectors", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPackage_OwningPackage(), this.getPackage(), this.getPackage_Packages(), "owningPackage", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Package.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPackage_Packages(), this.getPackage(), this.getPackage_OwningPackage(), "packages", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(packageImportEClass, PackageImport.class, "PackageImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackageImport_ReferencedElement(), theUMLPackage.getPackageImport(), null, "referencedElement", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPackageImport_ImportingNamespace(), this.getPackage(), this.getPackage_PackageImports(), "importingNamespace", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(umlReferencingElementEClass_T);
-		initEReference(getUMLReferencingElement_ReferencedElement(), g1, null, "referencedElement", null, 0, 1, UMLReferencingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(namedElementOptionalEClass, NamedElementOptional.class, "NamedElementOptional", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNamedElementOptional_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElementOptional.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getNamedElement__HasReferencedElement__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasReferencedElement", 0, 1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED);
-
-		initEClass(namedElementAliasedEClass, NamedElementAliased.class, "NamedElementAliased", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamedElementAliased_AliasExpression(), theUMLPackage.getStringExpression(), null, "aliasExpression", null, 0, 1, NamedElementAliased.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getNamedElementAliased_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, NamedElementAliased.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClassifier_Visibility(), this.getVisibility(), "visibility", null, 0, 1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		g1 = createEGenericType(this.getMember());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEReference(getClassifier_Members(), g1, this.getMember_Owner(), "members", null, 0, -1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(classEClass, de.cooperateproject.modeling.textual.cls.cls.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClass_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProperty_Visibility(), this.getVisibility(), "visibility", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProperty_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProperty_Type(), theUMLPackage.getType(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(memberEClass, Member.class, "Member", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(this.getClassifier());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEReference(getMember_Owner(), g1, this.getClassifier_Members(), "owner", null, 1, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMethod_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_Parameters(), this.getParameter(), this.getParameter_Owner(), "parameters", null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParameter_Owner(), this.getMethod(), this.getMethod_Parameters(), "owner", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(connectorEClass, Connector.class, "Connector", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(typedConnectorEClass, TypedConnector.class, "TypedConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedConnector_Left(), theUMLPackage.getClassifier(), null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypedConnector_Right(), theUMLPackage.getClassifier(), null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociation_Properties(), this.getAssociationProperties(), this.getAssociationProperties_Association(), "properties", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_Bidirectional(), ecorePackage.getEBoolean(), "bidirectional", "false", 1, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getAssociation__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGeneralization_ReferencedElement(), theUMLPackage.getGeneralization(), null, "referencedElement", null, 1, 1, Generalization.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(implementationEClass, Implementation.class, "Implementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImplementation_ReferencedElement(), theUMLPackage.getInterfaceRealization(), null, "referencedElement", null, 1, 1, Implementation.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-
-		initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCommentLink_Left(), theUMLPackage.getClassifier(), null, "left", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getCommentLink__HasComment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "hasComment", 0, 1, !IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getCommentLink__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(associationPropertiesEClass, AssociationProperties.class, "AssociationProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociationProperties_CardinalityLeft(), this.getCardinality(), null, "cardinalityLeft", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssociationProperties_CardinalityRight(), this.getCardinality(), null, "cardinalityRight", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssociationProperties_PropertyLeft(), theUMLPackage.getProperty(), null, "propertyLeft", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssociationProperties_PropertyRight(), theUMLPackage.getProperty(), null, "propertyRight", null, 0, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssociationProperties_Association(), this.getAssociation(), this.getAssociation_Properties(), "association", null, 1, 1, AssociationProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(cardinalityEClass, Cardinality.class, "Cardinality", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCardinality_LowerBound(), ecorePackage.getEInt(), "lowerBound", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCardinality_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(commentableEClass, Commentable.class, "Commentable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCommentable_Comment(), theUMLPackage.getComment(), null, "comment", null, 0, 1, Commentable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getCommentable__GetCommentedElement(), theUMLPackage.getType(), "getCommentedElement", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(multiAssociationEClass, MultiAssociation.class, "MultiAssociation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiAssociation_ConnectorEnds(), this.getMemberEnd(), this.getMemberEnd_Association(), "connectorEnds", null, 3, -1, MultiAssociation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(memberEndEClass, MemberEnd.class, "MemberEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMemberEnd_Cardinality(), this.getCardinality(), null, "cardinality", null, 0, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMemberEnd_Type(), theUMLPackage.getClassifier(), null, "type", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMemberEnd_Navigable(), ecorePackage.getEBoolean(), "navigable", null, 1, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMemberEnd_Association(), this.getMultiAssociation(), this.getMultiAssociation_ConnectorEnds(), "association", null, 0, 1, MemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEOperation(getElement__GetNearestPackage(), this.getPackage(), "getNearestPackage", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(visibilityEEnum, Visibility.class, "Visibility");
-		addEEnumLiteral(visibilityEEnum, Visibility.UNDEFINED);
-		addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
-		addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
-		addEEnumLiteral(visibilityEEnum, Visibility.PROTECTED);
-		addEEnumLiteral(visibilityEEnum, Visibility.PACKAGE);
-
-		initEEnum(primitiveTypeEEnum, PrimitiveType.class, "PrimitiveType");
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.INT);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.DOUBLE);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.BOOLEAN);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.CHAR);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.BYTE);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.SHORT);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.LONG);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.FLOAT);
-		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.STRING);
-
-		initEEnum(aggregationKindEEnum, AggregationKind.class, "AggregationKind");
-		addEEnumLiteral(aggregationKindEEnum, AggregationKind.NONE);
-		addEEnumLiteral(aggregationKindEEnum, AggregationKind.AGGREGATION);
-		addEEnumLiteral(aggregationKindEEnum, AggregationKind.COMPOSITION);
-
-		// Create resource
-		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (namedElementEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "hasReferencedElement"
-		   });	
-		addAnnotation
-		  (commentLinkEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "hasComment"
-		   });
-	}
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(ClsPackage.eNS_URI, theClsPackage);
+        return theClsPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getClassDiagram() {
+        return classDiagramEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassDiagram_Title() {
+        return (EAttribute)classDiagramEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getClassDiagram_RootPackage() {
+        return (EReference)classDiagramEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getClassDiagram__GetAllTransitiveConnectors() {
+        return classDiagramEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getClassDiagram__GetAllTransitivePackages() {
+        return classDiagramEClass.getEOperations().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getClassDiagram__GetAllTransitiveClassifiers() {
+        return classDiagramEClass.getEOperations().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getPackage() {
+        return packageEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPackage_Classifiers() {
+        return (EReference)packageEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPackage_Connectors() {
+        return (EReference)packageEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getClassifier() {
+        return classifierEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClassifier_Visibility() {
+        return (EAttribute)classifierEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getClassifier_Members() {
+        return (EReference)classifierEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getClassifier_OwningPackage() {
+        return (EReference)classifierEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getClass_() {
+        return classEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClass_Abstract() {
+        return (EAttribute)classEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInterface() {
+        return interfaceEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getProperty() {
+        return propertyEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getProperty_Visibility() {
+        return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getProperty_Static() {
+        return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getProperty_Type() {
+        return (EReference)propertyEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMember() {
+        return memberEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMember_Owner() {
+        return (EReference)memberEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAttribute() {
+        return attributeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMethod() {
+        return methodEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMethod_Abstract() {
+        return (EAttribute)methodEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMethod_Parameters() {
+        return (EReference)methodEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getParameter() {
+        return parameterEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getParameter_Owner() {
+        return (EReference)parameterEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getConnector() {
+        return connectorEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getConnector_OwningPackage() {
+        return (EReference)connectorEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getTypedConnector() {
+        return typedConnectorEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTypedConnector_Left() {
+        return (EReference)typedConnectorEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTypedConnector_Right() {
+        return (EReference)typedConnectorEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getGeneralization() {
+        return generalizationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getImplementation() {
+        return implementationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCommentLink() {
+        return commentLinkEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCommentLink_CommentedElement() {
+        return (EReference)commentLinkEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAssociation() {
+        return associationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAssociation_MemberEnds() {
+        return (EReference)associationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAssociationMemberEnd() {
+        return associationMemberEndEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAssociationMemberEnd_Cardinality() {
+        return (EReference)associationMemberEndEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAssociationMemberEnd_Type() {
+        return (EReference)associationMemberEndEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAssociationMemberEnd_Navigable() {
+        return (EAttribute)associationMemberEndEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAssociationMemberEnd_Association() {
+        return (EReference)associationMemberEndEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAssociationMemberEnd_AggregationKind() {
+        return (EAttribute)associationMemberEndEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getXtextAssociation() {
+        return xtextAssociationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getXtextAssociation_MemberEndTypes() {
+        return (EReference)xtextAssociationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXtextAssociation_MemberEndNames() {
+        return (EAttribute)xtextAssociationEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getXtextAssociation_MemberEndCardinalities() {
+        return (EReference)xtextAssociationEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXtextAssociation_MemberEndNavigabilities() {
+        return (EAttribute)xtextAssociationEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXtextAssociation_TwoSideBidirectionality() {
+        return (EAttribute)xtextAssociationEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getXtextAssociation_TwoSideAggregationKind() {
+        return (EAttribute)xtextAssociationEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getXtextAssociation__CollectMemberEndTypes() {
+        return xtextAssociationEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getXtextAssociationMemberEndReferencedType() {
+        return xtextAssociationMemberEndReferencedTypeEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getXtextAssociationMemberEndReferencedType_Type() {
+        return (EReference)xtextAssociationMemberEndReferencedTypeEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getAggregationKind() {
+        return aggregationKindEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ClsFactory getClsFactory() {
+        return (ClsFactory)getEFactoryInstance();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isCreated = false;
+
+    /**
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void createPackageContents() {
+        if (isCreated) return;
+        isCreated = true;
+
+        // Create classes and their features
+        classDiagramEClass = createEClass(CLASS_DIAGRAM);
+        createEAttribute(classDiagramEClass, CLASS_DIAGRAM__TITLE);
+        createEReference(classDiagramEClass, CLASS_DIAGRAM__ROOT_PACKAGE);
+        createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CONNECTORS);
+        createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_PACKAGES);
+        createEOperation(classDiagramEClass, CLASS_DIAGRAM___GET_ALL_TRANSITIVE_CLASSIFIERS);
+
+        packageEClass = createEClass(PACKAGE);
+        createEReference(packageEClass, PACKAGE__CLASSIFIERS);
+        createEReference(packageEClass, PACKAGE__CONNECTORS);
+
+        classifierEClass = createEClass(CLASSIFIER);
+        createEAttribute(classifierEClass, CLASSIFIER__VISIBILITY);
+        createEReference(classifierEClass, CLASSIFIER__MEMBERS);
+        createEReference(classifierEClass, CLASSIFIER__OWNING_PACKAGE);
+
+        classEClass = createEClass(CLASS);
+        createEAttribute(classEClass, CLASS__ABSTRACT);
+
+        interfaceEClass = createEClass(INTERFACE);
+
+        propertyEClass = createEClass(PROPERTY);
+        createEAttribute(propertyEClass, PROPERTY__VISIBILITY);
+        createEAttribute(propertyEClass, PROPERTY__STATIC);
+        createEReference(propertyEClass, PROPERTY__TYPE);
+
+        memberEClass = createEClass(MEMBER);
+        createEReference(memberEClass, MEMBER__OWNER);
+
+        attributeEClass = createEClass(ATTRIBUTE);
+
+        methodEClass = createEClass(METHOD);
+        createEAttribute(methodEClass, METHOD__ABSTRACT);
+        createEReference(methodEClass, METHOD__PARAMETERS);
+
+        parameterEClass = createEClass(PARAMETER);
+        createEReference(parameterEClass, PARAMETER__OWNER);
+
+        connectorEClass = createEClass(CONNECTOR);
+        createEReference(connectorEClass, CONNECTOR__OWNING_PACKAGE);
+
+        typedConnectorEClass = createEClass(TYPED_CONNECTOR);
+        createEReference(typedConnectorEClass, TYPED_CONNECTOR__LEFT);
+        createEReference(typedConnectorEClass, TYPED_CONNECTOR__RIGHT);
+
+        generalizationEClass = createEClass(GENERALIZATION);
+
+        implementationEClass = createEClass(IMPLEMENTATION);
+
+        commentLinkEClass = createEClass(COMMENT_LINK);
+        createEReference(commentLinkEClass, COMMENT_LINK__COMMENTED_ELEMENT);
+
+        associationEClass = createEClass(ASSOCIATION);
+        createEReference(associationEClass, ASSOCIATION__MEMBER_ENDS);
+
+        associationMemberEndEClass = createEClass(ASSOCIATION_MEMBER_END);
+        createEReference(associationMemberEndEClass, ASSOCIATION_MEMBER_END__CARDINALITY);
+        createEReference(associationMemberEndEClass, ASSOCIATION_MEMBER_END__TYPE);
+        createEAttribute(associationMemberEndEClass, ASSOCIATION_MEMBER_END__NAVIGABLE);
+        createEReference(associationMemberEndEClass, ASSOCIATION_MEMBER_END__ASSOCIATION);
+        createEAttribute(associationMemberEndEClass, ASSOCIATION_MEMBER_END__AGGREGATION_KIND);
+
+        xtextAssociationEClass = createEClass(XTEXT_ASSOCIATION);
+        createEReference(xtextAssociationEClass, XTEXT_ASSOCIATION__MEMBER_END_TYPES);
+        createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__MEMBER_END_NAMES);
+        createEReference(xtextAssociationEClass, XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES);
+        createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__MEMBER_END_NAVIGABILITIES);
+        createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY);
+        createEAttribute(xtextAssociationEClass, XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND);
+        createEOperation(xtextAssociationEClass, XTEXT_ASSOCIATION___COLLECT_MEMBER_END_TYPES);
+
+        xtextAssociationMemberEndReferencedTypeEClass = createEClass(XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE);
+        createEReference(xtextAssociationMemberEndReferencedTypeEClass, XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE__TYPE);
+
+        // Create enums
+        aggregationKindEEnum = createEEnum(AGGREGATION_KIND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isInitialized = false;
+
+    /**
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void initializePackageContents() {
+        if (isInitialized) return;
+        isInitialized = true;
+
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
+
+        // Obtain other dependent packages
+        UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+        TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
+        TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+
+        // Create type parameters
+        ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
+        ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
+        ETypeParameter memberEClass_T = addETypeParameter(memberEClass, "T");
+
+        // Set bounds for type parameters
+        EGenericType g1 = createEGenericType(theUMLPackage.getClassifier());
+        classifierEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getNamedElement());
+        propertyEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getNamedElement());
+        memberEClass_T.getEBounds().add(g1);
+
+        // Add supertypes to classes
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
+        packageEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
+        EGenericType g2 = createEGenericType(this.getPackage());
+        g1.getETypeArguments().add(g2);
+        packageEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
+        classifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
+        classifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getClassifier());
+        g1.getETypeArguments().add(g2);
+        classifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType(theUMLPackage.getClass_());
+        g1.getETypeArguments().add(g2);
+        classEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType(theUMLPackage.getInterface());
+        g1.getETypeArguments().add(g2);
+        interfaceEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(propertyEClass_T);
+        g1.getETypeArguments().add(g2);
+        propertyEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getElement());
+        propertyEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+        propertyEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getProperty());
+        g2 = createEGenericType(memberEClass_T);
+        g1.getETypeArguments().add(g2);
+        memberEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getMember());
+        g2 = createEGenericType(theUMLPackage.getProperty());
+        g1.getETypeArguments().add(g2);
+        attributeEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getMember());
+        g2 = createEGenericType(theUMLPackage.getOperation());
+        g1.getETypeArguments().add(g2);
+        methodEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getProperty());
+        g2 = createEGenericType(theUMLPackage.getParameter());
+        g1.getETypeArguments().add(g2);
+        parameterEClass.getEGenericSuperTypes().add(g1);
+        connectorEClass.getESuperTypes().add(theTextualCommonsPackage.getPackageableElement());
+        typedConnectorEClass.getESuperTypes().add(this.getConnector());
+        g1 = createEGenericType(this.getTypedConnector());
+        generalizationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getGeneralization());
+        g1.getETypeArguments().add(g2);
+        generalizationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getTypedConnector());
+        implementationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getInterfaceRealization());
+        g1.getETypeArguments().add(g2);
+        implementationEClass.getEGenericSuperTypes().add(g1);
+        commentLinkEClass.getESuperTypes().add(this.getConnector());
+        commentLinkEClass.getESuperTypes().add(theTextualCommonsPackage.getCommentable());
+        g1 = createEGenericType(this.getConnector());
+        associationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        associationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+        associationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getAssociation());
+        g1.getETypeArguments().add(g2);
+        associationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+        associationMemberEndEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getProperty());
+        g1.getETypeArguments().add(g2);
+        associationMemberEndEClass.getEGenericSuperTypes().add(g1);
+        xtextAssociationEClass.getESuperTypes().add(this.getAssociation());
+
+        // Initialize classes, features, and operations; add parameters
+        initEClass(classDiagramEClass, ClassDiagram.class, "ClassDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getClassDiagram_Title(), ecorePackage.getEString(), "title", null, 1, 1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassDiagram_RootPackage(), this.getPackage(), null, "rootPackage", null, 1, 1, ClassDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEOperation(getClassDiagram__GetAllTransitiveConnectors(), this.getConnector(), "getAllTransitiveConnectors", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+        initEOperation(getClassDiagram__GetAllTransitivePackages(), this.getPackage(), "getAllTransitivePackages", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+        EOperation op = initEOperation(getClassDiagram__GetAllTransitiveClassifiers(), null, "getAllTransitiveClassifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        EGenericType g3 = createEGenericType(theUMLPackage.getClassifier());
+        g2.setEUpperBound(g3);
+        initEOperation(op, g1);
+
+        initEClass(packageEClass, de.cooperateproject.modeling.textual.cls.cls.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(theUMLPackage.getClassifier());
+        g2.setEUpperBound(g3);
+        initEReference(getPackage_Classifiers(), g1, this.getClassifier_OwningPackage(), "classifiers", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPackage_Connectors(), this.getConnector(), this.getConnector_OwningPackage(), "connectors", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getClassifier_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getMember());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(theUMLPackage.getNamedElement());
+        g2.setEUpperBound(g3);
+        initEReference(getClassifier_Members(), g1, this.getMember_Owner(), "members", null, 0, -1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifier_OwningPackage(), this.getPackage(), this.getPackage_Classifiers(), "owningPackage", null, 1, 1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(classEClass, de.cooperateproject.modeling.textual.cls.cls.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getClass_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, de.cooperateproject.modeling.textual.cls.cls.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getProperty_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(memberEClass, Member.class, "Member", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEReference(getMember_Owner(), g1, this.getClassifier_Members(), "owner", null, 1, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getMethod_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMethod_Parameters(), this.getParameter(), this.getParameter_Owner(), "parameters", null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getParameter_Owner(), this.getMethod(), this.getMethod_Parameters(), "owner", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(connectorEClass, Connector.class, "Connector", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getConnector_OwningPackage(), this.getPackage(), this.getPackage_Connectors(), "owningPackage", null, 1, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(typedConnectorEClass, TypedConnector.class, "TypedConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(theUMLPackage.getClassifier());
+        g2.setEUpperBound(g3);
+        initEReference(getTypedConnector_Left(), g1, null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(theUMLPackage.getClassifier());
+        g2.setEUpperBound(g3);
+        initEReference(getTypedConnector_Right(), g1, null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(implementationEClass, Implementation.class, "Implementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEReference(getCommentLink_CommentedElement(), g1, null, "commentedElement", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(associationEClass, Association.class, "Association", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAssociation_MemberEnds(), this.getAssociationMemberEnd(), this.getAssociationMemberEnd_Association(), "memberEnds", null, 0, -1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(associationMemberEndEClass, AssociationMemberEnd.class, "AssociationMemberEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAssociationMemberEnd_Cardinality(), theTextualCommonsPackage.getCardinality(), null, "cardinality", null, 0, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEReference(getAssociationMemberEnd_Type(), g1, null, "type", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAssociationMemberEnd_Navigable(), theTypesPackage.getBoolean(), "navigable", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAssociationMemberEnd_Association(), this.getAssociation(), this.getAssociation_MemberEnds(), "association", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAssociationMemberEnd_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(xtextAssociationEClass, XtextAssociation.class, "XtextAssociation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getXtextAssociation_MemberEndTypes(), this.getXtextAssociationMemberEndReferencedType(), null, "memberEndTypes", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXtextAssociation_MemberEndNames(), ecorePackage.getEString(), "memberEndNames", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getXtextAssociation_MemberEndCardinalities(), theTextualCommonsPackage.getCardinality(), null, "memberEndCardinalities", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXtextAssociation_MemberEndNavigabilities(), ecorePackage.getEBoolean(), "memberEndNavigabilities", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXtextAssociation_TwoSideBidirectionality(), ecorePackage.getEBoolean(), "twoSideBidirectionality", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXtextAssociation_TwoSideAggregationKind(), this.getAggregationKind(), "twoSideAggregationKind", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        op = initEOperation(getXtextAssociation__CollectMemberEndTypes(), null, "collectMemberEndTypes", 0, -1, !IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(xtextAssociationMemberEndReferencedTypeEClass, XtextAssociationMemberEndReferencedType.class, "XtextAssociationMemberEndReferencedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        g1 = createEGenericType(this.getClassifier());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEReference(getXtextAssociationMemberEndReferencedType_Type(), g1, null, "type", null, 1, 1, XtextAssociationMemberEndReferencedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        // Initialize enums and add enum literals
+        initEEnum(aggregationKindEEnum, AggregationKind.class, "AggregationKind");
+        addEEnumLiteral(aggregationKindEEnum, AggregationKind.NONE);
+        addEEnumLiteral(aggregationKindEEnum, AggregationKind.AGGREGATION);
+        addEEnumLiteral(aggregationKindEEnum, AggregationKind.COMPOSITION);
+
+        // Create resource
+        createResource(eNS_URI);
+    }
 
 } //ClsPackageImpl

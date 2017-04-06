@@ -1,0 +1,79 @@
+library TransformationUtils;
+
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+
+
+property PAPYRUS_NOTATION_EDGE_GENERALIZATION : String = "Generalization_Edge";
+property PAPYRUS_NOTATION_NODE_GENERALIZATION_STEREOTYPE : String = "Generalization_StereotypeLabel";
+
+property PAPYRUS_NOTATION_EDGE_ASSOCIATION : String = "Association_Edge";
+property PAPYRUS_NOTATION_NODE_ASSOCIATION_STEREOTYPE : String = "Association_StereotypeLabel";
+property PAPYRUS_NOTATION_NODE_ASSOCIATION_NAME : String = "Association_NameLabel";
+property PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETROLE : String = "Association_TargetRoleLabel";
+property PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEROLE : String = "Association_SourceRoleLabel";
+property PAPYRUS_NOTATION_NODE_ASSOCIATION_SOURCEMULTIPLICITY : String = "Association_SourceMultiplicityLabel";
+property PAPYRUS_NOTATION_NODE_ASSOCIATION_TARGETMULTIPLICITY : String = "Association_TargetMultiplicityLabel";
+
+
+
+mapping ecore::EObject::locationConstraint() : notation::Location
+{
+}
+
+mapping ecore::EObject::titleStyle() : notation::TitleStyle
+{
+}
+
+mapping ecore::EObject::sortingStyle() : notation::SortingStyle
+{
+}
+
+mapping ecore::EObject::filteringStyle() : notation::FilteringStyle
+{
+}
+
+mapping ecore::EObject::notationBounds() : notation::Bounds
+{
+}
+
+mapping ecore::EObject::fontStyle() : notation::FontStyle
+{
+}
+
+mapping notation::Connector::connectorToBendpoint() : notation::RelativeBendpoints
+{
+}
+
+
+
+query uml::MultiplicityElement::hasCardinality() : Boolean
+{
+	return 
+		self.oclAsType(ecore::EObject).eIsSet(uml::MultiplicityElement.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "lower"))
+		or
+		self.oclAsType(ecore::EObject).eIsSet(uml::MultiplicityElement.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "upper")) 
+}
+
+query uml::NamedElement::visibility() : uml::VisibilityKind {
+	// we have to ensure that the visibility is set before using it
+	// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=437449
+	return
+		if self.oclAsType(ecore::EObject).eIsSet(uml::NamedElement.oclAsType(ecore::EClass).eStructuralFeatures->select(name = "visibility")->first())
+			then
+				self.visibility
+			else
+				null
+		endif;
+}
+
+
+query OclAny::toEObject() : ecore::EObject {
+	return self.oclAsType(ecore::EObject);
+}
+
+query String::getNestedName(isNested : Boolean) : String
+{
+	return if isNested then self + "_CN" else self endif;
+}

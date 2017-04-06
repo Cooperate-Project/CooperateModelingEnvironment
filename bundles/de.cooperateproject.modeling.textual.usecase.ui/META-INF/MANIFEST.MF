@@ -1,8 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.cooperateproject.modeling.textual.usecase.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: Textual Use Case Diagrams UI
+Bundle-Version: 0.1.7.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.usecase,
@@ -16,7 +15,11 @@ Require-Bundle: de.cooperateproject.modeling.textual.usecase,
  org.eclipse.compare,
  org.eclipse.xtext.builder,
  org.eclipse.xtend.lib;resolution:=optional,
- org.eclipse.xtext.xbase.lib
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.emf.compare.rcp,
+ org.eclipse.emf.compare,
+ org.eclipse.emf.compare.rcp.ui,
+ de.cooperateproject.modeling.textual.xtext.runtime.ui
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.ui.contentassist,

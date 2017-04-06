@@ -3,11 +3,18 @@
  */
 package de.cooperateproject.modeling.textual.usecase.ui
 
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.ui.editor.XtextEditor
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class UsecaseUiModule extends AbstractUsecaseUiModule {
+
+	override Class<? extends XtextEditor> bindXtextEditor() {
+		return CooperateCDOXtextEditor;
+	}
+
 }

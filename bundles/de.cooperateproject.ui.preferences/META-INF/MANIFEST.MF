@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Preferences
+Bundle-Name: Cooperate UI Preferences
 Bundle-SymbolicName: de.cooperateproject.ui.preferences;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.1.7.qualifier
 Bundle-Activator: de.cooperateproject.ui.preferences.PreferenceActivator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui;bundle-version="3.108.0"

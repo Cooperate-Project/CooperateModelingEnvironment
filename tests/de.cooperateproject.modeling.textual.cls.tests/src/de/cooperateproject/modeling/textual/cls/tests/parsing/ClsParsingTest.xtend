@@ -3,50 +3,59 @@
  */
 package de.cooperateproject.modeling.textual.cls.tests.parsing
 
-import static org.junit.Assert.assertEquals
-import static org.junit.Assert.assertTrue
-import static org.junit.Assert.assertNotNull
-import static org.junit.Assert.assertNull
-
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.Class
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.util.ParseHelper
-
-import org.junit.Test
-import de.cooperateproject.modeling.textual.cls.tests.util.ClsTestInjectorProvider
-import de.cooperateproject.modeling.textual.cls.cls.Interface
+import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
-import de.cooperateproject.modeling.textual.cls.cls.Visibility
-import org.eclipse.uml2.uml.PrimitiveType
-import org.eclipse.uml2.uml.VisibilityKind
-import org.eclipse.uml2.uml.Property
-import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
+import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
-import de.cooperateproject.modeling.textual.cls.cls.Association
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality
-import de.cooperateproject.modeling.textual.cls.cls.Classifier
+import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.Member
-import org.eclipse.uml2.uml.AggregationKind
-import org.eclipse.xtext.junit4.validation.ValidationTestHelper
+import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
+import de.cooperateproject.modeling.textual.cls.tests.util.ClsTestInjectorProvider
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
+import java.util.Collections
+import org.apache.commons.io.IOUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.uml2.uml.AggregationKind
+import org.eclipse.uml2.uml.Class
+import org.eclipse.uml2.uml.NamedElement
+import org.eclipse.uml2.uml.PrimitiveType
+import org.eclipse.uml2.uml.Property
+import org.eclipse.uml2.uml.VisibilityKind
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Ignore
+import org.junit.Test
+
+import static org.junit.Assert.assertEquals
+import static org.junit.Assert.assertNotNull
+import static org.junit.Assert.assertNull
+import static org.junit.Assert.assertTrue
 
 @InjectWith(ClsTestInjectorProvider.DefaultProvider)
 class ClsParsingTest extends AbstractClsTest {
 	
-	@Inject extension ParseHelper<ClassDiagram>
+	//@Inject extension ParseHelper<ClassDiagram>
 	@Inject ValidationTestHelper validationTestHelper
+	
+	override setup() {
+		super.setup()
+		rs.packageRegistry.put(ClsPackage.eNS_URI, ClsPackage.eINSTANCE)
+	}
 	
 	@Test
 	def void diagramTitleWithoutSpaceTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -54,9 +63,9 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void diagramTitleWithSpaceTest() {
 		val model = '''
-			@start-cls "Some Name"
+			@start-clsd "Some Name"
 			rootPackage RootElement
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -64,18 +73,18 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classDefTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
 			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
-			assertTrue(clsClass instanceof Class)
+			assertTrue(clsClass instanceof de.cooperateproject.modeling.textual.cls.cls.Class)
 
 			val refClass = clsClass.referencedElement
-			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
+			assertTrue(refClass instanceof Class)
 			assertEquals("Alice", refClass.name)
 		]
 	}
@@ -86,10 +95,10 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param expectedClassifier the expected class name.
 	 * @return the expected cls class.
 	 */
-	private def Class findAndCheckClass(Iterable<Classifier> classifiers, String expectedClassifier) {
+	private def de.cooperateproject.modeling.textual.cls.cls.Class findAndCheckClass(Iterable<Classifier> classifiers, String expectedClassifier) {
 		val clsClass = findAndCheckClassifier(classifiers, expectedClassifier)
-		assertTrue(clsClass instanceof Class)
-		return clsClass as Class
+		assertTrue(clsClass instanceof de.cooperateproject.modeling.textual.cls.cls.Class)
+		return clsClass as de.cooperateproject.modeling.textual.cls.cls.Class
 	}
 
 	/**
@@ -119,10 +128,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void interfaceDefTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			interface IAlice {}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -137,11 +146,11 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void correctAliasUseTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class "Alias Alice" as AA {
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -149,7 +158,7 @@ class ClsParsingTest extends AbstractClsTest {
 			assertEquals("AA", clsClass.alias)
 
 			val refClass = clsClass.referencedElement
-			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
+			assertTrue(refClass instanceof Class)
 			assertEquals("Alias Alice", refClass.name)
 			assertEquals("AA", refClass.nameExpression.name)
 		]
@@ -158,10 +167,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test(expected=AssertionError)
 	def void wrongAliasUseWithoutAliasTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class "Alias Alice"
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -169,10 +178,10 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test(expected=AssertionError)
 	def void wrongAliasUseIDWithAliasTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice as AA
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
@@ -180,34 +189,34 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void abstractClassWithoutMembersTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			abstract class AbstractAlice {
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
 			val clsClass = findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "AbstractAlice")
-			assertTrue((clsClass as Class).abstract)
+			assertTrue((clsClass as de.cooperateproject.modeling.textual.cls.cls.Class).abstract)
 
 			val refClass = clsClass.referencedElement
-			assertTrue(refClass instanceof org.eclipse.uml2.uml.Class)
+			assertTrue(refClass instanceof Class)
 			assertEquals("AbstractAlice", refClass.name)
-			assertTrue((refClass as org.eclipse.uml2.uml.Class).abstract)
+			assertTrue((refClass as Class).abstract)
 		]
 	}
 
 	@Test
 	def void classWithAttributesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				name : string
 				static age : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -232,14 +241,14 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithMethodesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				static getName() : string
 				setName(name : string)
 				abstract calculateAge(date : int) : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -276,7 +285,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void visibiliesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				+name : string
@@ -285,7 +294,7 @@ class ClsParsingTest extends AbstractClsTest {
 				#setName(name : string)
 				~ abstract calculateAge(date : int) : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -315,7 +324,7 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param visibility the visibility the member should have.
 	 * @param kind the visibility the referenced element of the member should have.
 	 */
-	private def void checkVisibility(Member member, Visibility visibility, VisibilityKind kind) {
+	private def void checkVisibility(Member<? extends NamedElement> member, Visibility visibility, VisibilityKind kind) {
 		assertNotNull(member)
 		assertEquals(visibility, member.visibility)
 		assertEquals(kind, member.referencedElement.visibility)
@@ -324,7 +333,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithStaticAndFinalAttributesTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice {
 				name : string
@@ -334,7 +343,7 @@ class ClsParsingTest extends AbstractClsTest {
 				setName(name : string)
 				abstract calculateAge(date : int) : int
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -386,7 +395,7 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void datatypeTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class AliceAllTypes {
 				stringMember : string
@@ -399,7 +408,7 @@ class ClsParsingTest extends AbstractClsTest {
 				longMember : long
 				floatMember : float
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -445,13 +454,13 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classTypeTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob {
 				alice : Alice
 			}
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -463,20 +472,20 @@ class ClsParsingTest extends AbstractClsTest {
 			val bobsMember = bobMembers.findFirst[x|x.name.equals("alice")] as Attribute
 
 			assertNotNull(bobsMember)
-			assertTrue(bobsMember.type instanceof org.eclipse.uml2.uml.Class)
-			assertEquals("Alice", (bobsMember.type as org.eclipse.uml2.uml.Class).name)
+			assertTrue(bobsMember.type instanceof Class)
+			assertEquals("Alice", (bobsMember.type as Class).name)
 		]
 	}
 
 	@Test
 	def void classGeneralizationTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob
-			Bob isa Alice
-			@end-cls
+			isa (Bob, Alice)
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -496,12 +505,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classImplementationTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Bob
 			interface IBob
-			Bob impl IBob
-			@end-cls
+			impl (Bob, IBob)
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -522,12 +531,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void simpleClassAssociationTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob
-			asc Alice association Bob
-			@end-cls
+			asc association (Alice, Bob)
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -541,7 +550,7 @@ class ClsParsingTest extends AbstractClsTest {
 			assertNotNull(association)
 
 			checkConnectorEnds(association, "Alice", "Bob")
-			checkUmlConnectorEnds(association.referencedElement, aliceClass.referencedElement, "Alice", "Bob")
+			checkUmlConnectorEnds(association.referencedElement, aliceClass, "Alice", "Bob")
 		]
 	}
 
@@ -553,13 +562,13 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param expectedRight the expected right class name. 
 	 */
 	private def void checkUmlConnectorEnds(org.eclipse.uml2.uml.Association association,
-		org.eclipse.uml2.uml.Class leftClassifier, String expectedLeft, String expectedRight) {
+		Classifier<? extends org.eclipse.uml2.uml.Classifier> leftClassifier, String expectedLeft, String expectedRight) {
 		var leftAscEnd = association.memberEnds.findFirst[x|x.type.name.equals(expectedLeft)]
 		assertNotNull(leftAscEnd)
 
-		var leftProperties = leftClassifier.members.filter(Property)
+		var leftProperties = leftClassifier.referencedElement.members.filter(Property)
 		var rightAscEnd = leftProperties.findFirst [ x |
-			x.association != null && x.type instanceof org.eclipse.uml2.uml.Class
+			x.association != null && x.type instanceof Class
 		]
 		assertEquals(expectedRight, rightAscEnd.type.name)
 	}
@@ -571,8 +580,8 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param expectedRight the expected right classifier name. 
 	 */
 	private def dispatch void checkConnectorEnds(Association association, String expectedLeft, String expectedRight) {
-		assertEquals(expectedLeft, association.left.name)
-		assertEquals(expectedRight, association.right.name)
+		assertEquals(expectedLeft, association.memberEnds.get(0).type.name)
+		assertEquals(expectedRight, association.memberEnds.get(1).type.name)
 	}
 
 	/**
@@ -602,11 +611,11 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void classWithNoteTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
-			Alice note "this is a note"
-			@end-cls
+			note "this is a note" Alice
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -615,8 +624,8 @@ class ClsParsingTest extends AbstractClsTest {
 
 			assertNotNull(comment)
 
-			assertEquals("Alice", comment.left.name)
-			assertEquals("this is a note", comment.comment.body)
+			assertEquals("Alice", comment.commentedElement.name)
+			assertEquals("this is a note", comment.comments.get(0).body)
 		]
 
 	}
@@ -624,12 +633,12 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test
 	def void ClassAsscociationWithNoteTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class Alice
 			class Bob
-			asc Alice association Bob note "this is another note"
-			@end-cls
+			asc association (Alice, Bob) note "this is another note"
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
@@ -640,16 +649,16 @@ class ClsParsingTest extends AbstractClsTest {
 			assertNotNull(association)
 
 			checkConnectorEnds(association, "Alice", "Bob")
-			checkUmlConnectorEnds(association.referencedElement, aliceClass.referencedElement, "Alice", "Bob")
+			checkUmlConnectorEnds(association.referencedElement, aliceClass, "Alice", "Bob")
 
-			assertEquals("this is another note", association.comment.body)
+			assertEquals("this is another note", association.comments.get(0).body)
 		]
 	}
 
 	@Test @Ignore
 	def void CardinalityTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class AliceAsc 
 			class BobAsc
@@ -658,7 +667,7 @@ class ClsParsingTest extends AbstractClsTest {
 			asc AliceAsc card2 BobAsc [*|24..42]
 			asc AliceAsc card3 BobAsc [24..42|*]
 			asc AliceAsc card4 BobAsc [*|*]
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model =>
@@ -682,37 +691,37 @@ class ClsParsingTest extends AbstractClsTest {
 				assertNotNull(asc4)
 
 				checkConnectorEnds(asc0, "AliceAsc", "BobAsc")
-				checkUmlConnectorEnds(asc0.referencedElement, aliceClass.referencedElement, "AliceAsc", "BobAsc")
+				checkUmlConnectorEnds(asc0.referencedElement, aliceClass, "AliceAsc", "BobAsc")
 				checkConnectorEnds(asc1, "AliceAsc", "BobAsc")
-				checkUmlConnectorEnds(asc1.referencedElement, aliceClass.referencedElement, "AliceAsc", "BobAsc")
+				checkUmlConnectorEnds(asc1.referencedElement, aliceClass, "AliceAsc", "BobAsc")
 				checkConnectorEnds(asc2, "AliceAsc", "BobAsc")
-				checkUmlConnectorEnds(asc2.referencedElement, aliceClass.referencedElement, "AliceAsc", "BobAsc")
+				checkUmlConnectorEnds(asc2.referencedElement, aliceClass, "AliceAsc", "BobAsc")
 				checkConnectorEnds(asc3, "AliceAsc", "BobAsc")
-				checkUmlConnectorEnds(asc3.referencedElement, aliceClass.referencedElement, "AliceAsc", "BobAsc")
+				checkUmlConnectorEnds(asc3.referencedElement, aliceClass, "AliceAsc", "BobAsc")
 				checkConnectorEnds(asc4, "AliceAsc", "BobAsc")
-				checkUmlConnectorEnds(asc4.referencedElement, aliceClass.referencedElement, "AliceAsc", "BobAsc")
+				checkUmlConnectorEnds(asc4.referencedElement, aliceClass, "AliceAsc", "BobAsc")
 
 				// Check UML and cls cardinalities
 				val aliceClassMembers = aliceClass.referencedElement.members.filter(Property)
 				// card0 [*]
-				checkClsCardinality(asc0.properties.cardinalityLeft, asc0.properties.cardinalityRight, -1, 0, 0, 0)
+				checkClsCardinality(asc0.memberEnds.get(0).cardinality, asc0.memberEnds.get(1).cardinality, -1, 0, 0, 0)
 				checkUMLCardinality(aliceClassMembers, asc0.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 0, -1, 0, -1)
 
 				// card1 [42|1..*]
-				checkClsCardinality(asc1.properties.cardinalityLeft, asc1.properties.cardinalityRight, 42, 0, 1, -1)
+				checkClsCardinality(asc1.memberEnds.get(0).cardinality, asc1.memberEnds.get(1).cardinality, 42, 0, 1, -1)
 				checkUMLCardinality(aliceClassMembers, asc1.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 42, 42, 1, -1)
 				// card2 [*|24..42]
-				checkClsCardinality(asc2.properties.cardinalityLeft, asc2.properties.cardinalityRight, -1, 0, 24, 42)
+				checkClsCardinality(asc2.memberEnds.get(0).cardinality, asc2.memberEnds.get(1).cardinality, -1, 0, 24, 42)
 				checkUMLCardinality(aliceClassMembers, asc2.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 0, -1, 24, 42)
 				// card3 [24..42|*]
-				checkClsCardinality(asc3.properties.cardinalityLeft, asc3.properties.cardinalityRight, 24, 42, -1, 0)
+				checkClsCardinality(asc3.memberEnds.get(0).cardinality, asc3.memberEnds.get(1).cardinality, 24, 42, -1, 0)
 				checkUMLCardinality(aliceClassMembers, asc3.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 24, 42, 0, -1)
 				// card4 [*|*]
-				checkClsCardinality(asc4.properties.cardinalityLeft, asc4.properties.cardinalityRight, -1, 0, -1, 0)
+				checkClsCardinality(asc4.memberEnds.get(0).cardinality, asc4.memberEnds.get(1).cardinality, -1, 0, -1, 0)
 				checkUMLCardinality(aliceClassMembers, asc4.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 0, -1, 0, -1)
 
@@ -776,13 +785,13 @@ class ClsParsingTest extends AbstractClsTest {
 	@Test @Ignore
 	def void bidirectionTest() {
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class AliceBi
 			class BobBi
 			bi asc AliceBi bidirection BobBi
 			bi asc AliceBi bidirectionCard BobBi [24|42]
-			@end-cls
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model =>
@@ -799,20 +808,20 @@ class ClsParsingTest extends AbstractClsTest {
 				assertNotNull(associationCard)
 
 				checkConnectorEnds(association, "AliceBi", "BobBi")
-				assertTrue(association.isBidirectional)
-				checkUmlConnectorEnds(association.referencedElement, aliceClass.referencedElement, "AliceBi", "BobBi")
+				assertTrue(association.memberEnds.get(1).navigable)
+				checkUmlConnectorEnds(association.referencedElement, aliceClass, "AliceBi", "BobBi")
 
 				checkConnectorEnds(associationCard, "AliceBi", "BobBi")
-				assertTrue(associationCard.isBidirectional)
-				checkUmlConnectorEnds(associationCard.referencedElement, aliceClass.referencedElement, "AliceBi",
+				assertTrue(associationCard.memberEnds.get(1).navigable)
+				checkUmlConnectorEnds(associationCard.referencedElement, aliceClass, "AliceBi",
 					"BobBi")
 
 				// check if association is bidirectional in uml
 				bidirectionalCardinalityTest(aliceClass.referencedElement.members.filter(Property),
 					bobClass.referencedElement.members.filter(Property), "AliceBi", "BobBi", association, 0, -1, 0, -1)
 
-				checkClsCardinality(associationCard.properties.cardinalityLeft,
-					associationCard.properties.cardinalityRight, 24, 0, 42, 0)
+				checkClsCardinality(associationCard.memberEnds.get(0).cardinality,
+					associationCard.memberEnds.get(1).cardinality, 24, 0, 42, 0)
 
 				bidirectionalCardinalityTest(aliceClass.referencedElement.members.filter(Property),
 					bobClass.referencedElement.members.filter(Property), "AliceBi", "BobBi", associationCard, 24, 24,
@@ -852,14 +861,14 @@ class ClsParsingTest extends AbstractClsTest {
 		val aggregationName = "agrKind1"
 		val compositionName = "agrKind2"
 		val model = '''
-			@start-cls "SomeName"
+			@start-clsd "SomeName"
 			rootPackage RootElement
 			class «leftClassName»
 			class «rightClassName»
-			asc «leftClassName» «associationName» «rightClassName»
-			agg «leftClassName» «aggregationName» «rightClassName»
-			com «leftClassName» «compositionName» «rightClassName»
-			@end-cls
+			asc «associationName» («leftClassName», «rightClassName»)
+			agg «aggregationName» («leftClassName», «rightClassName»)
+			com «compositionName» («leftClassName», «rightClassName»)
+			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model =>
@@ -881,11 +890,11 @@ class ClsParsingTest extends AbstractClsTest {
 				checkConnectorEnds(aggregation, leftClassName, rightClassName)
 				checkConnectorEnds(composition, leftClassName, rightClassName)
 
-				checkUmlConnectorEnds(association.referencedElement, aliceClass.referencedElement, leftClassName,
+				checkUmlConnectorEnds(association.referencedElement, aliceClass, leftClassName,
 					rightClassName)
-				checkUmlConnectorEnds(aggregation.referencedElement, aliceClass.referencedElement, leftClassName,
+				checkUmlConnectorEnds(aggregation.referencedElement, aliceClass, leftClassName,
 					rightClassName)
-				checkUmlConnectorEnds(composition.referencedElement, aliceClass.referencedElement, leftClassName,
+				checkUmlConnectorEnds(composition.referencedElement, aliceClass, leftClassName,
 					rightClassName)
 
 				checkAggregationKind(association.referencedElement, AggregationKind.NONE_LITERAL)
@@ -903,6 +912,13 @@ class ClsParsingTest extends AbstractClsTest {
 	private def void checkAggregationKind(org.eclipse.uml2.uml.Association association, AggregationKind kind) {
 		var properties = association.members.filter(Property)
 		assertNotNull(properties.findFirst[x|x.aggregation == kind])
+	}
+	
+	private static def parse(CharSequence text, ResourceSet rs) {
+		val r = rs.createResource(URI.createFileURI("somefile.cls"))
+		val is = IOUtils.toInputStream(text);
+		r.load(is, Collections.emptyMap());
+		return r.contents.get(0) as ClassDiagram
 	}
 
 }

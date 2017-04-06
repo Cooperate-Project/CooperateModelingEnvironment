@@ -1,13 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.cooperateproject.modeling.textual.cls.tests
-Bundle-Vendor: My Company
-Bundle-Version: 0.1.5.qualifier
+Bundle-Name: Textual Class Diagrams Tests
+Bundle-Version: 0.1.7.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.cls,
  org.junit;bundle-version="4.7.0",
- org.eclipse.xtext.junit4,
  org.eclipse.xtext.xbase.junit,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.compare;bundle-version="3.2.0",
@@ -16,10 +14,11 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  org.eclipse.ui.workbench;resolution:=optional,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
  org.apache.commons.io;bundle-version="2.2.0",
- org.eclipse.uml2.uml.resources;bundle-version="5.2.0"
+ org.eclipse.uml2.uml.resources;bundle-version="5.2.0",
+ org.eclipse.xtext.testing;bundle-version="2.11.0",
+ org.eclipse.xtext.xbase.testing;bundle-version="2.11.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: de.cooperateproject.modeling.textual.cls.tests,
- de.cooperateproject.modeling.textual.cls
+Export-Package: de.cooperateproject.modeling.textual.cls.tests;x-internal=true
 Import-Package: org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",

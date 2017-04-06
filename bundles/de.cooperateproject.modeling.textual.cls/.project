@@ -38,4 +38,15 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
 	</natures>
+	<filteredResources>
+		<filter>
+			<id>1489336824363</id>
+			<name></name>
+			<type>6</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-Cls.xtext</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>

@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface UseCase extends AliasedElement, BehavioredClassifier, UMLReferencingElement<org.eclipse.uml2.uml.UseCase> {
+public interface UseCase extends AliasedElement, BehavioredClassifier<org.eclipse.uml2.uml.UseCase> {
 	/**
      * Returns the value of the '<em><b>Visibility</b></em>' attribute.
      * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.usecase.usecase.Visibility}.

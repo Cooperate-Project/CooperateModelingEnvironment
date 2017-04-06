@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_V4gdIPpzEeaBXuZho-Bj0w" name="RootElement">
+  <packageImport xmi:id="_V7SrYPpzEeaBXuZho-Bj0w">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Component" xmi:id="_YGzgsPpzEeaBXuZho-Bj0w" name="Shop" useCase="_bx_ZAPpzEeaBXuZho-Bj0w _dnuLkPpzEeaBXuZho-Bj0w _fdXekPpzEeaBXuZho-Bj0w _iSQBAPpzEeaBXuZho-Bj0w _z6NWMPpzEeaBXuZho-Bj0w">
+    <ownedUseCase xmi:id="_bx_ZAPpzEeaBXuZho-Bj0w" name="sell" subject="_YGzgsPpzEeaBXuZho-Bj0w">
+      <generalization xmi:id="_18hMMPpzEeaBXuZho-Bj0w" general="_z6NWMPpzEeaBXuZho-Bj0w"/>
+      <include xmi:id="_e0zpwPpzEeaBXuZho-Bj0w" addition="_dnuLkPpzEeaBXuZho-Bj0w"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_dnuLkPpzEeaBXuZho-Bj0w" name="pay" subject="_YGzgsPpzEeaBXuZho-Bj0w">
+      <extensionPoint xmi:id="_nZCUoPpzEeaBXuZho-Bj0w" name="paymentMethod"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_fdXekPpzEeaBXuZho-Bj0w" name="Pay by Card" subject="_YGzgsPpzEeaBXuZho-Bj0w">
+      <nameExpression xmi:id="_BbFioPqzEeaBXuZho-Bj0w" name="payByCard"/>
+      <extend xmi:id="_qddu8PpzEeaBXuZho-Bj0w" extendedCase="_dnuLkPpzEeaBXuZho-Bj0w" extensionLocation="_nZCUoPpzEeaBXuZho-Bj0w">
+        <condition xmi:id="_mgwW4Pp1EeaBXuZho-Bj0w" constrainedElement="_qddu8PpzEeaBXuZho-Bj0w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_vfelYPp1EeaBXuZho-Bj0w">
+            <language>Natural language</language>
+            <body>Customer wants to pay by card</body>
+          </specification>
+        </condition>
+      </extend>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_iSQBAPpzEeaBXuZho-Bj0w" name="Pay by Cash" subject="_YGzgsPpzEeaBXuZho-Bj0w">
+      <nameExpression xmi:id="_DVWP4PqzEeaBXuZho-Bj0w" name="payByCash"/>
+      <extend xmi:id="_q_jIUPpzEeaBXuZho-Bj0w" extendedCase="_dnuLkPpzEeaBXuZho-Bj0w" extensionLocation="_nZCUoPpzEeaBXuZho-Bj0w">
+        <condition xmi:id="_1ww9QPp1EeaBXuZho-Bj0w" constrainedElement="_q_jIUPpzEeaBXuZho-Bj0w">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_7c4ykPp1EeaBXuZho-Bj0w">
+            <language>Natural language</language>
+            <body>Customer wants to pay by cash</body>
+          </specification>
+        </condition>
+      </extend>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_z6NWMPpzEeaBXuZho-Bj0w" name="loggedAction" isAbstract="true" subject="_YGzgsPpzEeaBXuZho-Bj0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_ZRjckPpzEeaBXuZho-Bj0w" name="Cashier"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_aNDbgPpzEeaBXuZho-Bj0w" name="Manager">
+    <generalization xmi:id="_bCJ3gPpzEeaBXuZho-Bj0w" general="_ZRjckPpzEeaBXuZho-Bj0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_c9wBgPpzEeaBXuZho-Bj0w" name="Customer"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_wkafEPpzEeaBXuZho-Bj0w" memberEnd="_wkglsPpzEeaBXuZho-Bj0w _wkhz0PpzEeaBXuZho-Bj0w">
+    <eAnnotations xmi:id="_wkewgPpzEeaBXuZho-Bj0w" source="org.eclipse.papyrus">
+      <details xmi:id="_wkewgfpzEeaBXuZho-Bj0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_wkglsPpzEeaBXuZho-Bj0w" name="sell" type="_bx_ZAPpzEeaBXuZho-Bj0w" association="_wkafEPpzEeaBXuZho-Bj0w"/>
+    <ownedEnd xmi:id="_wkhz0PpzEeaBXuZho-Bj0w" name="cashier" type="_ZRjckPpzEeaBXuZho-Bj0w" association="_wkafEPpzEeaBXuZho-Bj0w"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_xPwiIPpzEeaBXuZho-Bj0w" memberEnd="_xPxwQvpzEeaBXuZho-Bj0w _xPyXUPpzEeaBXuZho-Bj0w">
+    <eAnnotations xmi:id="_xPxwQPpzEeaBXuZho-Bj0w" source="org.eclipse.papyrus">
+      <details xmi:id="_xPxwQfpzEeaBXuZho-Bj0w" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_xPxwQvpzEeaBXuZho-Bj0w" name="pay" type="_dnuLkPpzEeaBXuZho-Bj0w" association="_xPwiIPpzEeaBXuZho-Bj0w"/>
+    <ownedEnd xmi:id="_xPyXUPpzEeaBXuZho-Bj0w" name="customer" type="_c9wBgPpzEeaBXuZho-Bj0w" association="_xPwiIPpzEeaBXuZho-Bj0w"/>
+  </packagedElement>
+</uml:Model>

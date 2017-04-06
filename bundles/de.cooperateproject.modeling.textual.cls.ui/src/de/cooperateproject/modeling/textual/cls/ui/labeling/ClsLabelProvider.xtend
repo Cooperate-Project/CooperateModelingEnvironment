@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.cls.ui.labeling
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import de.cooperateproject.modeling.textual.cls.cls.Association
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
@@ -13,22 +14,25 @@ import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
-import de.cooperateproject.modeling.textual.cls.cls.MemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Method
-import de.cooperateproject.modeling.textual.cls.cls.MultiAssociation
-import de.cooperateproject.modeling.textual.cls.cls.NamedElement
 import de.cooperateproject.modeling.textual.cls.cls.Package
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
-import de.cooperateproject.modeling.textual.cls.cls.Visibility
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jface.viewers.DecorationOverlayIcon
 import org.eclipse.jface.viewers.IDecoration
 import org.eclipse.swt.graphics.Image
-import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.uml2.uml.PrimitiveType
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
+import java.util.Collection
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
 /**
  * Provides labels for EObjects.
@@ -111,42 +115,33 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	def text(Association ele) {
-		if (ele.getComment() != null) {
-			return ele.referencedElement.name + " - Comment"
+		if (ele.memberEnds.size == 2) {
+			val left = ele.memberEnds.get(0).text
+			val right = ele.memberEnds.get(1).text
+			return left + " " + ele.name + " " + right
 		}
-		val leftChild = ele.left;
-		val rightChild = ele.right;
-		return leftChild.name + " " + ele.referencedElement.name + " " + rightChild.name
+		return ele.name
 	}
 
 	def image(Association ele) {
-		if (ele.getComment() != null) {
-			return UMLImage.COMMENT.image
-		} else if (ele.aggregationKind == AggregationKind.COMPOSITION) {
-			return UMLImage.ASSOCIATION_COMPOSITE.image
-		} else if (ele.aggregationKind == AggregationKind.AGGREGATION) {
-			return UMLImage.ASSOCIATION_SHARED.image
-		} else {
-			return UMLImage.ASSOCIATION.image
+		var img = UMLImage.ASSOCIATION.image
+		if (ele.memberEnds.size == 2) {
+			val aggregationKind = ele.memberEnds.get(0).aggregationKind
+			img = switch aggregationKind {
+				case COMPOSITION: UMLImage.ASSOCIATION_COMPOSITE.image
+				case AGGREGATION: UMLImage.ASSOCIATION_SHARED.image
+				default: img
+			}
 		}
-	}
-	
-	def text(MultiAssociation ele) {
-		return ele.referencedElement.name
+		return img
 	}
 
-	def image(MultiAssociation ele) {
-		return UMLImage.ASSOCIATION.image
+	
+	def text(AssociationMemberEnd ele) {
+		return ele.name ?: ele.type.name
 	}
 	
-	def text(MemberEnd ele) {
-		if (ele.name != null) {
-			return ele.name
-		}
-		return ele.referencedElement.name
-	}
-	
-	def image(MemberEnd ele) {
+	def image(AssociationMemberEnd ele) {
 		UMLImage.PROPERTY.image
 	}
 
@@ -170,12 +165,17 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		return UMLImage.INTERFACE_REALIZATION.image
 	}
 	
-	def text(CommentLink ele) {
-		val leftChild = ele.left;
-		return leftChild.doGetText + " - Comment"
+	def text(Comment ele) {
+		var String commentedElementText
+		if (ele.commentedElement instanceof CommentLink) {
+			commentedElementText = (ele.commentedElement as CommentLink).commentedElement.text
+		} else if (ele.commentedElement instanceof Association) {
+			commentedElementText = (ele.commentedElement as Association).text
+		}
+		return commentedElementText + " : " + ele.body
 	}
 	
-	def image(CommentLink ele) {
+	def image(Comment ele) {
 		return UMLImage.COMMENT.image
 	}
 	
@@ -187,6 +187,33 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		return qualifiedNameProvider.getFullyQualifiedName(type).toString;
 	}
 	
+	def text(XtextAssociationMemberEndReferencedType typeReference) {
+		val association = typeReference.eContainer as XtextAssociation
+		val index = association.memberEndTypes.indexOf(typeReference)
+		val name = association.memberEndNames.tryGet(index)
+		val typeName = association.memberEndTypes.tryGet(index)?.type?.text
+		val cardinality = association.memberEndCardinalities.tryGet(index)
+		var txt = String.format("%s : %s", name ?: "unnamed", typeName)
+		if (cardinality != null) {
+			txt += String.format(" [%s]", cardinality.text)	
+		}
+		return txt
+	}
+	
+	def image(XtextAssociationMemberEndReferencedType typeReference) {
+		return UMLImage.PROPERTY
+	}
+	
+	def text(Cardinality cardinality) {
+		var lowerString = cardinality.lowerBound.convert
+		var upperString = cardinality.upperBound.convert
+
+		if (cardinality.lowerBound >= 0 && (cardinality.upperBound > cardinality.lowerBound || cardinality.upperBound < 0)) {
+			return lowerString +  ".." + upperString
+		}
+		return lowerString
+	}
+	
 	private def decorate(Image img, Visibility visibility) {
 		if (visibility == null || visibility == Visibility.UNDEFINED) {
 			return img
@@ -194,6 +221,20 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		val visibilityImage = visibilityMap.get(visibility)
 		val imgDescriptor = new DecorationOverlayIcon(img, convertToImageDescriptor(visibilityImage), IDecoration.BOTTOM_RIGHT)
 		imgDescriptor.createImage
+	}
+	
+	private static def convert(int value) {
+		if (value < 0) {
+			return "*"
+		}
+		return value.toString
+	}
+	
+	private static def <T> T tryGet(Collection<T> collection, int i) {
+		if (collection.size > i) {
+			return collection.get(i)
+		}
+		return null
 	}
 
 }	

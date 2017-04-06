@@ -10,13 +10,54 @@ var basename = "de.cooperateproject.modeling.textual.usecase"
 
 Workflow {
 
-//	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
-//		projectMapping = {
-//			projectName = "${basename}.metamodel"
-//			path = "${basename}.metamodel"
-//		}
-//
-//	}
+	bean = org.eclipse.emf.mwe.utils.StandaloneSetup {
+	    platformUri = "${rootPath}"
+	    scanClassPath = true
+
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel"
+			to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+			to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
+			to = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"
+			to = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
+			to = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+			to = "platform:/resource/org.eclipse.uml2.codegen.ecore/model/GenModel.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
+			to = "platform:/resource/org.eclipse.uml2.uml/model/UML.ecore"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel"
+			to = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
+		}
+		uriMap = {
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
+			to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
+		}
+
+		registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
+		registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
+	}
     
 	component = XtextGenerator {
 		configuration = {
@@ -46,12 +87,16 @@ Workflow {
 			name = "${basename}.Usecase"
 			fileExtensions = "uc"
 			
+			//referencedResource = "platform:/resource/${basename}.metamodel/model/usecase.genmodel"
 			referencedResource = "platform:/resource/${basename}.metamodel/model/usecase.genmodel"
+			referencedResource = "platform:/resource/${basename}.metamodel/model/usecase.ecore"
+			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
+			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 
 			fragment = org.eclipse.xtext.generator.adapter.FragmentAdapter {
-				fragment = org.eclipse.xtext.generator.ecore2xtext.FormatterFragment {}
+				fragment = org.eclipse.xtext.generator.formatting2.Formatter2Fragment {}
 			}
 			
 			fragment = scoping.ImportNamespacesScopingFragment2 auto-inject {}
@@ -60,13 +105,16 @@ Workflow {
 			serializer = {
 				generateStub = false
 			}
-			validator = {
-				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+			
+			validator = resources.CooperateValidatorFragment2 auto-inject {
+				generateXtendStub = false
 			}
 			
+			quickFixProvider = resources.CooperateQuickfixProviderFragment2 auto-inject {}			
 			fragment = AddCDOXtextBindingsFragment2 auto-inject {}
 			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
 			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
+			fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
 		}
 	}
 }

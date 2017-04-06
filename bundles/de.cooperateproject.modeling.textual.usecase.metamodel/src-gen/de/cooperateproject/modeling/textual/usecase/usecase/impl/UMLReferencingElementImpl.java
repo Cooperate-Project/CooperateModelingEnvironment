@@ -6,7 +6,6 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElemen
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 import org.eclipse.uml2.uml.Element;

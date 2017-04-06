@@ -108,19 +108,29 @@
             name="Cooperate">
       </category>
       <wizard
-            id="de.cooperateproject.ui.newCooperateProjectWizard"
-            name="Cooperate Project"
-            icon="icons/16/cooperate_16.png"
             category="de.cooperateproject.ui.wizards.cooperateWizards"
             class="de.cooperateproject.ui.wizards.projectnew.NewCooperateProjectWizard"
+            finalPerspective="de.cooperateproject.ui.perspective"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.newCooperateProjectWizard"
+            name="Cooperate Project"
             project="true">
       </wizard>
       <wizard
-            id="de.cooperateproject.ui.wizards.newClassDiagram"
-            name="Class Diagram"
-            icon="icons/16/cooperate_16.png"
             category="de.cooperateproject.ui.wizards.cooperateWizards"
-            class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard">
+            class="de.cooperateproject.ui.wizards.modelnew.NewClassDiagramWizard"
+            finalPerspective="de.cooperateproject.ui.perspective"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.wizards.newClassDiagram"
+            name="Class Diagram">
+      </wizard>
+      <wizard
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.modelnew.NewUsecaseDiagramWizard"
+            finalPerspective="de.cooperateproject.ui.perspective"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.wizards.newUsecaseDiagram"
+            name="Usecase Diagram">
       </wizard>
    </extension>
    <extension
@@ -143,5 +153,59 @@
             </objectClass>
          </enablement>
       </decorator>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.cooperateproject.ui.perspective.CooperatePerspective"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.perspective"
+            name="Cooperate">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:common.new.menu?after=new">
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               icon="icons/16/cooperate_16.png"
+               label="Cooperate Project"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="newWizardId"
+                  value="de.cooperateproject.ui.newCooperateProjectWizard">
+            </parameter>
+         </command>
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               icon="icons/16/cooperate_16.png"
+               label="Class Diagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="newWizardId"
+                  value="de.cooperateproject.ui.wizards.newClassDiagram">
+            </parameter>
+         </command>
+      </menuContribution>
    </extension>
 </plugin>

@@ -10,8 +10,8 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  *
  *
  * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getBehavioredClassifier()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
-public interface BehavioredClassifier extends Commentable {
+public interface BehavioredClassifier<T extends org.eclipse.uml2.uml.BehavioredClassifier> extends Commentable, UMLReferencingElement<T> {
 } // BehavioredClassifier

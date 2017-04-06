@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -35,6 +37,7 @@ import de.cooperateproject.modeling.transformation.transformations.Activator;
 
 public abstract class DomainIndependentTransformationBase {
 
+    private static final Logger LOGGER = Logger.getLogger(DomainIndependentTransformationBase.class);
     private final Map<URI, QVTOResource> specialMappings = Maps.newHashMap();
     private final Map<URI, TransformationExecutor> transformationExecutors = Maps.newHashMap();
     private final ResourceSet rs;
@@ -67,14 +70,15 @@ public abstract class DomainIndependentTransformationBase {
             saveTransformationResources(transformationURI, transformationResources);
             saveTraceModel(traceURI, transformationTrace);
         }
-        
+
         return transformationResult;
     }
 
-    protected abstract void postProcessTransformationParametersBeforeSave(Collection<ModelExtent> transformationParameters,
-			Optional<Trace> transformationTrace);
+    protected abstract void postProcessTransformationParametersBeforeSave(
+            Collection<ModelExtent> transformationParameters, Optional<Trace> transformationTrace);
 
-	private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
+    @SuppressWarnings("restriction")
+    private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,
             Optional<Trace> transformationTrace) {
 
         ExecutionContextImpl context = new ExecutionContextImpl();
@@ -82,6 +86,7 @@ public abstract class DomainIndependentTransformationBase {
             context.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, transformationTrace.get());
         }
         context.setConfigProperty("keepModeling", true);
+        context.setLog(new Log4JLogger(LOGGER, Level.DEBUG));
 
         TransformationExecutor executor = getOrCreateTransformationExecutor(transformationURI);
         ExecutionDiagnostic result = executor.execute(context, transformationParameters.toArray(new ModelExtent[0]));
@@ -109,6 +114,7 @@ public abstract class DomainIndependentTransformationBase {
         save(resourcesToSave);
     }
 
+    @SuppressWarnings("restriction")
     private List<Integer> determineParameterIndicesToSave(URI transformationURI) throws IOException {
         QVTOResource resource = getQVTOResource(transformationURI);
         OperationalTransformation transformation = resource.getFirstTransformation();
@@ -164,6 +170,7 @@ public abstract class DomainIndependentTransformationBase {
         traceResource.save(Collections.emptyMap());
     }
 
+    @SuppressWarnings("restriction")
     private static void repairTraceObject(EObject obj) {
         // QVTo removes resources of EObjects that are stored in a trace with
         // direction OUT as of commit 8578144 (see bug 478006). This breaks CDO

@@ -104,6 +104,34 @@ public interface UsecasePackage extends EPackage {
 	int USE_CASE_DIAGRAM_OPERATION_COUNT = 0;
 
 	/**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Element <em>Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Element
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getElement()
+     * @generated
+     */
+    int ELEMENT = 1;
+
+    /**
+     * The number of structural features of the '<em>Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ELEMENT_FEATURE_COUNT = 0;
+
+    /**
+     * The number of operations of the '<em>Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ELEMENT_OPERATION_COUNT = 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.NamedElementImpl <em>Named Element</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,7 +139,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getNamedElement()
      * @generated
      */
-	int NAMED_ELEMENT = 1;
+	int NAMED_ELEMENT = 2;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -120,7 +148,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int NAMED_ELEMENT__NAME = 0;
+	int NAMED_ELEMENT__NAME = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
      * The number of structural features of the '<em>Named Element</em>' class.
@@ -129,7 +157,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
      * The number of operations of the '<em>Named Element</em>' class.
@@ -138,7 +166,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+	int NAMED_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AliasedElementImpl <em>Aliased Element</em>}' class.
@@ -148,7 +176,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getAliasedElement()
      * @generated
      */
-	int ALIASED_ELEMENT = 2;
+	int ALIASED_ELEMENT = 3;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -194,7 +222,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getCommentable()
      * @generated
      */
-	int COMMENTABLE = 4;
+	int COMMENTABLE = 5;
 
 	/**
      * The number of structural features of the '<em>Commentable</em>' class.
@@ -203,7 +231,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int COMMENTABLE_FEATURE_COUNT = 0;
+	int COMMENTABLE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
      * The number of operations of the '<em>Commentable</em>' class.
@@ -212,26 +240,35 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int COMMENTABLE_OPERATION_COUNT = 0;
+	int COMMENTABLE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl <em>Behaviored Classifier</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier <em>Behaviored Classifier</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getBehavioredClassifier()
      * @generated
      */
-	int BEHAVIORED_CLASSIFIER = 3;
+	int BEHAVIORED_CLASSIFIER = 4;
 
 	/**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT = COMMENTABLE_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Behaviored Classifier</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BEHAVIORED_CLASSIFIER_FEATURE_COUNT = COMMENTABLE_FEATURE_COUNT + 0;
+	int BEHAVIORED_CLASSIFIER_FEATURE_COUNT = COMMENTABLE_FEATURE_COUNT + 1;
 
 	/**
      * The number of operations of the '<em>Behaviored Classifier</em>' class.
@@ -250,7 +287,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getRootPackage()
      * @generated
      */
-	int ROOT_PACKAGE = 5;
+	int ROOT_PACKAGE = 6;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -332,7 +369,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getActor()
      * @generated
      */
-	int ACTOR = 6;
+	int ACTOR = 7;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -414,7 +451,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getSystem()
      * @generated
      */
-	int SYSTEM = 7;
+	int SYSTEM = 8;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -478,7 +515,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getUseCase()
      * @generated
      */
-	int USE_CASE = 8;
+	int USE_CASE = 9;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -569,7 +606,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getExtensionPoint()
      * @generated
      */
-	int EXTENSION_POINT = 9;
+	int EXTENSION_POINT = 10;
 
 	/**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -626,14 +663,14 @@ public interface UsecasePackage extends EPackage {
 	int EXTENSION_POINT_OPERATION_COUNT = ALIASED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl <em>Relationship</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Relationship <em>Relationship</em>}' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Relationship
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getRelationship()
      * @generated
      */
-	int RELATIONSHIP = 10;
+	int RELATIONSHIP = 11;
 
 	/**
      * The number of structural features of the '<em>Relationship</em>' class.
@@ -642,7 +679,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int RELATIONSHIP_FEATURE_COUNT = 0;
+	int RELATIONSHIP_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
      * The number of operations of the '<em>Relationship</em>' class.
@@ -651,7 +688,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int RELATIONSHIP_OPERATION_COUNT = 0;
+	int RELATIONSHIP_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl <em>Association</em>}' class.
@@ -661,7 +698,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getAssociation()
      * @generated
      */
-	int ASSOCIATION = 11;
+	int ASSOCIATION = 12;
 
 	/**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -691,24 +728,24 @@ public interface UsecasePackage extends EPackage {
 	int ASSOCIATION__USECASE = RELATIONSHIP_FEATURE_COUNT + 2;
 
 	/**
-     * The feature id for the '<em><b>Left Cardinality</b></em>' containment reference.
+     * The feature id for the '<em><b>Actor Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int ASSOCIATION__LEFT_CARDINALITY = RELATIONSHIP_FEATURE_COUNT + 3;
+    int ASSOCIATION__ACTOR_CARDINALITY = RELATIONSHIP_FEATURE_COUNT + 3;
 
-	/**
-     * The feature id for the '<em><b>Right Cardinality</b></em>' containment reference.
+    /**
+     * The feature id for the '<em><b>Use Case Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int ASSOCIATION__RIGHT_CARDINALITY = RELATIONSHIP_FEATURE_COUNT + 4;
+    int ASSOCIATION__USE_CASE_CARDINALITY = RELATIONSHIP_FEATURE_COUNT + 4;
 
-	/**
+    /**
      * The number of structural features of the '<em>Association</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -734,7 +771,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getGeneralization()
      * @generated
      */
-	int GENERALIZATION = 12;
+	int GENERALIZATION = 13;
 
 	/**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -789,7 +826,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getInclude()
      * @generated
      */
-	int INCLUDE = 13;
+	int INCLUDE = 14;
 
 	/**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -844,7 +881,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getExtend()
      * @generated
      */
-	int EXTEND = 14;
+	int EXTEND = 15;
 
 	/**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -917,7 +954,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getComment()
      * @generated
      */
-	int COMMENT = 15;
+	int COMMENT = 16;
 
 	/**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -972,7 +1009,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getCardinality()
      * @generated
      */
-	int CARDINALITY = 16;
+	int CARDINALITY = 17;
 
 	/**
      * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
@@ -981,7 +1018,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY__LOWER_BOUND = 0;
+	int CARDINALITY__LOWER_BOUND = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
      * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -990,7 +1027,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY__UPPER_BOUND = 1;
+	int CARDINALITY__UPPER_BOUND = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
      * The number of structural features of the '<em>Cardinality</em>' class.
@@ -999,7 +1036,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY_FEATURE_COUNT = 2;
+	int CARDINALITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
      * The number of operations of the '<em>Cardinality</em>' class.
@@ -1008,7 +1045,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY_OPERATION_COUNT = 0;
+	int CARDINALITY_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UMLReferencingElementImpl <em>UML Referencing Element</em>}' class.
@@ -1018,7 +1055,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getUMLReferencingElement()
      * @generated
      */
-	int UML_REFERENCING_ELEMENT = 17;
+	int UML_REFERENCING_ELEMENT = 18;
 
 	/**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1027,7 +1064,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = 0;
+	int UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
      * The number of structural features of the '<em>UML Referencing Element</em>' class.
@@ -1036,7 +1073,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int UML_REFERENCING_ELEMENT_FEATURE_COUNT = 1;
+	int UML_REFERENCING_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
      * The number of operations of the '<em>UML Referencing Element</em>' class.
@@ -1045,7 +1082,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-	int UML_REFERENCING_ELEMENT_OPERATION_COUNT = 0;
+	int UML_REFERENCING_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Visibility <em>Visibility</em>}' enum.
@@ -1055,7 +1092,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getVisibility()
      * @generated
      */
-	int VISIBILITY = 18;
+	int VISIBILITY = 19;
 
 
 	/**
@@ -1066,7 +1103,7 @@ public interface UsecasePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getActorType()
      * @generated
      */
-    int ACTOR_TYPE = 19;
+    int ACTOR_TYPE = 20;
 
 
     /**
@@ -1100,6 +1137,16 @@ public interface UsecasePackage extends EPackage {
      * @generated
      */
     EAttribute getUseCaseDiagram_Title();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.Element <em>Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Element</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Element
+     * @generated
+     */
+    EClass getElement();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.NamedElement <em>Named Element</em>}'.
@@ -1410,28 +1457,28 @@ public interface UsecasePackage extends EPackage {
 	EReference getAssociation_Usecase();
 
 	/**
-     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getLeftCardinality <em>Left Cardinality</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getActorCardinality <em>Actor Cardinality</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Left Cardinality</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Association#getLeftCardinality()
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Actor Cardinality</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Association#getActorCardinality()
      * @see #getAssociation()
      * @generated
      */
-	EReference getAssociation_LeftCardinality();
+    EReference getAssociation_ActorCardinality();
 
-	/**
-     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getRightCardinality <em>Right Cardinality</em>}'.
+    /**
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.usecase.usecase.Association#getUseCaseCardinality <em>Use Case Cardinality</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Right Cardinality</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Association#getRightCardinality()
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Use Case Cardinality</em>'.
+     * @see de.cooperateproject.modeling.textual.usecase.usecase.Association#getUseCaseCardinality()
      * @see #getAssociation()
      * @generated
      */
-	EReference getAssociation_RightCardinality();
+    EReference getAssociation_UseCaseCardinality();
 
-	/**
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.usecase.usecase.Generalization <em>Generalization</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1704,6 +1751,16 @@ public interface UsecasePackage extends EPackage {
         EAttribute USE_CASE_DIAGRAM__TITLE = eINSTANCE.getUseCaseDiagram_Title();
 
         /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Element <em>Element</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.Element
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getElement()
+         * @generated
+         */
+        EClass ELEMENT = eINSTANCE.getElement();
+
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.NamedElementImpl <em>Named Element</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1740,10 +1797,10 @@ public interface UsecasePackage extends EPackage {
 		EAttribute ALIASED_ELEMENT__ALIAS = eINSTANCE.getAliasedElement_Alias();
 
 		/**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl <em>Behaviored Classifier</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier <em>Behaviored Classifier</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.BehavioredClassifierImpl
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier
          * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getBehavioredClassifier()
          * @generated
          */
@@ -1922,10 +1979,10 @@ public interface UsecasePackage extends EPackage {
 		EReference EXTENSION_POINT__USE_CASE = eINSTANCE.getExtensionPoint_UseCase();
 
 		/**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl <em>Relationship</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Relationship <em>Relationship</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.RelationshipImpl
+         * @see de.cooperateproject.modeling.textual.usecase.usecase.Relationship
          * @see de.cooperateproject.modeling.textual.usecase.usecase.impl.UsecasePackageImpl#getRelationship()
          * @generated
          */
@@ -1958,22 +2015,22 @@ public interface UsecasePackage extends EPackage {
 		EReference ASSOCIATION__USECASE = eINSTANCE.getAssociation_Usecase();
 
 		/**
-         * The meta object literal for the '<em><b>Left Cardinality</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Actor Cardinality</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference ASSOCIATION__LEFT_CARDINALITY = eINSTANCE.getAssociation_LeftCardinality();
+        EReference ASSOCIATION__ACTOR_CARDINALITY = eINSTANCE.getAssociation_ActorCardinality();
 
-		/**
-         * The meta object literal for the '<em><b>Right Cardinality</b></em>' containment reference feature.
+        /**
+         * The meta object literal for the '<em><b>Use Case Cardinality</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference ASSOCIATION__RIGHT_CARDINALITY = eINSTANCE.getAssociation_RightCardinality();
+        EReference ASSOCIATION__USE_CASE_CARDINALITY = eINSTANCE.getAssociation_UseCaseCardinality();
 
-		/**
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl <em>Generalization</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

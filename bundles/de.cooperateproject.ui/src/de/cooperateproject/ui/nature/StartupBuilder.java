@@ -7,6 +7,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IStartup;
 
+import de.cooperateproject.ui.perspective.CooperatePerspective;
+
 public class StartupBuilder implements IStartup {
 
     private static final Logger LOGGER = Logger.getLogger(StartupBuilder.class);
@@ -24,6 +26,7 @@ public class StartupBuilder implements IStartup {
 
         }
         ResourcesPlugin.getWorkspace().addResourceChangeListener(new ProjectOpenedListener());
+        CooperatePerspective.addPerspectiveActivatedListener();
     }
 
 }
