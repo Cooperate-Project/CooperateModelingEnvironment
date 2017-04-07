@@ -1,11 +1,12 @@
 package de.cooperateproject.modeling.textual.usecase.generator;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -21,16 +22,17 @@ import de.cooperateproject.modeling.textual.usecase.usecase.Include;
 import de.cooperateproject.modeling.textual.usecase.usecase.util.UsecaseSwitch;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
 
-public class UsecaseDerivedStateElementProcessor extends UsecaseSwitch<Void> implements IDerivedStateElementProcessor {
+public class UsecaseDerivedStateElementProcessor extends UsecaseSwitch<Optional<Void>>
+        implements IDerivedStateElementProcessor {
 
     @Override
-    public Void caseExtend(Extend object) {
+    public Optional<Void> caseExtend(Extend object) {
         UseCase umlExtendedCase = object.getExtendedCase().getReferencedElement();
         UseCase umlExtension = object.getExtension().getReferencedElement();
         org.eclipse.uml2.uml.ExtensionPoint umlExtensionPoint = object.getExtensionLocation().getReferencedElement();
 
         if (umlExtendedCase == null || umlExtension == null || umlExtensionPoint == null) {
-            return super.caseExtend(object);
+            return Optional.empty();
         }
 
         Set<org.eclipse.uml2.uml.Extend> candidates = umlExtension.getExtends().stream().filter(
@@ -38,14 +40,14 @@ public class UsecaseDerivedStateElementProcessor extends UsecaseSwitch<Void> imp
                 .collect(Collectors.toSet());
         if (candidates.size() == 1) {
             object.setReferencedElement(candidates.iterator().next());
-            return null;
+            return Optional.empty();
         }
 
-        return super.caseExtend(object);
+        return Optional.empty();
     }
 
     @Override
-    public Void caseGeneralization(Generalization object) {
+    public Optional<Void> caseGeneralization(Generalization object) {
 
         @SuppressWarnings({ "rawtypes", "unchecked" })
         UMLReferencingElement<Classifier> specific = (UMLReferencingElement) object.getSpecific();
@@ -56,58 +58,58 @@ public class UsecaseDerivedStateElementProcessor extends UsecaseSwitch<Void> imp
         Classifier umlGeneral = general.getReferencedElement();
 
         if (umlSpecific == null || umlGeneral == null) {
-            return super.caseGeneralization(object);
+            return Optional.empty();
         }
 
         org.eclipse.uml2.uml.Generalization umlGeneralization = umlSpecific.getGeneralization(umlGeneral);
         if (umlGeneralization != null) {
             object.setReferencedElement(umlGeneralization);
-            return null;
+            return Optional.empty();
         }
 
-        return super.caseGeneralization(object);
+        return Optional.empty();
     }
 
     @Override
-    public Void caseInclude(Include object) {
+    public Optional<Void> caseInclude(Include object) {
         UseCase umlIncludingCase = object.getIncludingCase().getReferencedElement();
         UseCase umlAddition = object.getAddition().getReferencedElement();
 
         if (umlIncludingCase == null || umlAddition == null) {
-            return super.caseInclude(object);
+            return Optional.empty();
         }
 
         Set<org.eclipse.uml2.uml.Include> candidates = umlIncludingCase.getIncludes().stream()
                 .filter(i -> umlAddition == i.getAddition()).collect(Collectors.toSet());
         if (candidates.size() == 1) {
             object.setReferencedElement(candidates.iterator().next());
-            return null;
+            return Optional.empty();
         }
 
-        return super.caseInclude(object);
+        return Optional.empty();
     }
 
     @Override
-    public Void caseAssociation(Association object) {
+    public Optional<Void> caseAssociation(Association object) {
         if (object.getActor() == null || object.getUsecase() == null) {
-            return null;
+            return Optional.empty();
         }
 
         Actor actor = object.getActor().getReferencedElement();
         UseCase usecase = object.getUsecase().getReferencedElement();
 
         if (actor == null || usecase == null) {
-            return null;
+            return Optional.empty();
         }
 
         Set<org.eclipse.uml2.uml.Association> matchingAssociations = actor.getAssociations().stream()
                 .filter(a -> isAssociationBetween(a, actor, usecase)).collect(Collectors.toSet());
         if (matchingAssociations.size() == 1) {
             object.setReferencedElement(matchingAssociations.iterator().next());
-            return null;
+            return Optional.empty();
         }
 
-        return super.caseAssociation(object);
+        return Optional.empty();
     }
 
     private boolean isAssociationBetween(org.eclipse.uml2.uml.Association a, Classifier c1, Classifier c2) {
@@ -121,12 +123,15 @@ public class UsecaseDerivedStateElementProcessor extends UsecaseSwitch<Void> imp
     }
 
     @Override
-    public boolean isCompatibleWith(EPackage ePackage) {
-        return isSwitchFor(ePackage);
+    public boolean isDirectlyCompatibleWith(EClass eClass) {
+        return isSwitchFor(eClass.getEPackage());
     }
 
     @Override
-    public void processElement(EObject object) {
-        doSwitch(object);
+    public boolean processElementUsingType(EClass clazz, EObject object) {
+        if (!clazz.isInstance(object)) {
+            throw new IllegalArgumentException("The object is not a valid instance of the provided class");
+        }
+        return (doSwitch(clazz, object) != null);
     }
 }

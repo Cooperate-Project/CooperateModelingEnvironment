@@ -11,6 +11,7 @@ import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.resource.IDerivedStateComputer;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
@@ -23,7 +24,8 @@ public abstract class AbstractDerivedStateGenerator implements IDerivedStateComp
     private IGlobalScopeTypeQueryProvider globalScopeProvider;
 
     @Inject
-    private IComposedDerivedStateElementProcessor derivedStateElementProcessor;
+    @Named("MainProcessor")
+    private IDerivedStateElementProcessor derivedStateElementProcessor;
 
     @Override
     public void installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {

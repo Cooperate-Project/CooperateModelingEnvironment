@@ -4,13 +4,11 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Member;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -33,7 +31,8 @@ import org.eclipse.uml2.uml.NamedElement;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getMembers <em>Members</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ClassifierImpl#getOwningPackage <em>Owning Package</em>}</li>
@@ -41,7 +40,25 @@ import org.eclipse.uml2.uml.NamedElement;
  *
  * @generated
  */
-public abstract class ClassifierImpl<T extends Classifier> extends AliasedElementImpl implements de.cooperateproject.modeling.textual.cls.cls.Classifier<T> {
+public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencingElementImpl<Classifier> implements de.cooperateproject.modeling.textual.cls.cls.Classifier<T> {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+    /**
+     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
+    protected static final String ALIAS_EDEFAULT = null;
     /**
      * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -74,29 +91,48 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public Classifier getReferencedElement() {
-        return (Classifier)eDynamicGet(ClsPackage.CLASSIFIER__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Classifier basicGetReferencedElement() {
-        return (Classifier)eDynamicGet(ClsPackage.CLASSIFIER__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @Override
     public void setReferencedElement(Classifier newReferencedElement) {
-        eDynamicSet(ClsPackage.CLASSIFIER__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+        super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(ClsPackage.CLASSIFIER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(ClsPackage.CLASSIFIER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getAlias() {
+        return (String)eDynamicGet(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAlias(String newAlias) {
+        eDynamicSet(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
     }
 
     /**
@@ -212,9 +248,10 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case ClsPackage.CLASSIFIER__NAME:
+                return getName();
+            case ClsPackage.CLASSIFIER__ALIAS:
+                return getAlias();
             case ClsPackage.CLASSIFIER__VISIBILITY:
                 return getVisibility();
             case ClsPackage.CLASSIFIER__MEMBERS:
@@ -234,8 +271,11 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
-                setReferencedElement((Classifier)newValue);
+            case ClsPackage.CLASSIFIER__NAME:
+                setName((String)newValue);
+                return;
+            case ClsPackage.CLASSIFIER__ALIAS:
+                setAlias((String)newValue);
                 return;
             case ClsPackage.CLASSIFIER__VISIBILITY:
                 setVisibility((Visibility)newValue);
@@ -259,8 +299,11 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
-                setReferencedElement((Classifier)null);
+            case ClsPackage.CLASSIFIER__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case ClsPackage.CLASSIFIER__ALIAS:
+                setAlias(ALIAS_EDEFAULT);
                 return;
             case ClsPackage.CLASSIFIER__VISIBILITY:
                 setVisibility(VISIBILITY_EDEFAULT);
@@ -283,8 +326,10 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case ClsPackage.CLASSIFIER__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case ClsPackage.CLASSIFIER__ALIAS:
+                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case ClsPackage.CLASSIFIER__VISIBILITY:
                 return getVisibility() != VISIBILITY_EDEFAULT;
             case ClsPackage.CLASSIFIER__MEMBERS:
@@ -302,14 +347,20 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == PackageableElement.class) {
+        if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
             switch (derivedFeatureID) {
+                case ClsPackage.CLASSIFIER__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == AliasedElement.class) {
             switch (derivedFeatureID) {
-                case ClsPackage.CLASSIFIER__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case ClsPackage.CLASSIFIER__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == PackageableElement.class) {
+            switch (derivedFeatureID) {
                 default: return -1;
             }
         }
@@ -323,14 +374,20 @@ public abstract class ClassifierImpl<T extends Classifier> extends AliasedElemen
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == PackageableElement.class) {
+        if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
             switch (baseFeatureID) {
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.CLASSIFIER__NAME;
                 default: return -1;
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ClsPackage.CLASSIFIER__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return ClsPackage.CLASSIFIER__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == PackageableElement.class) {
+            switch (baseFeatureID) {
                 default: return -1;
             }
         }

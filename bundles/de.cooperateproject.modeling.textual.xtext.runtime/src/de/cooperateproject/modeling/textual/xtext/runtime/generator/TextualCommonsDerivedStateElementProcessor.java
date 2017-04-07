@@ -2,23 +2,21 @@ package de.cooperateproject.modeling.textual.xtext.runtime.generator;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.Spliterator;
-import java.util.Spliterators;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
 
 import com.google.common.base.Predicates;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
@@ -28,7 +26,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
-public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSwitch<Void>
+public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSwitch<Optional<Void>>
         implements IDerivedStateElementProcessor {
 
     @Inject
@@ -37,64 +35,62 @@ public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSw
     @Inject
     private IGlobalScopeTypeQueryProvider globalScopeProvider;
 
-    /*
-     * @Override
-     * public Boolean caseComment(Comment object) {
-     * UMLReferencingElement<? extends org.eclipse.uml2.uml.Classifier> realElement = commentableFinder
-     * .doSwitch(object.getCommentedElement());
-     * if (realElement != null) {
-     * Element umlCommentedElement = realElement.getReferencedElement();
-     * 
-     * IScope candidates = globalScopeProvider.queryScope(object.eResource(), true,
-     * UMLPackage.Literals.COMMENT,
-     * c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
-     * .contains(umlCommentedElement)
-     * && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
-     * .equals(object.getBody()));
-     * Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(
-     * candidates.getAllElements(), e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
-     * if (Iterables.size(typedCandidates) == 1) {
-     * object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
-     * }
-     * }
-     * return true;
-     * }
-     */
-
     @Override
-    public Void caseComment(Comment object) {
-        if (!(object.getCommentedElement() instanceof UMLReferencingElement<?>)) {
-            return super.caseComment(object);
+    public Optional<Void> caseComment(Comment object) {
+        UMLReferencingElement<? extends org.eclipse.uml2.uml.Classifier> realElement = commentableFinder
+                .doSwitch(object.getCommentedElement());
+        if (realElement != null) {
+            Element umlCommentedElement = realElement.getReferencedElement();
+
+            IScope candidates = globalScopeProvider.queryScope(object.eResource(), true, UMLPackage.Literals.COMMENT,
+                    c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
+                            .contains(umlCommentedElement)
+                            && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
+                                    .equals(object.getBody()));
+            Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(candidates.getAllElements(),
+                    e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
+            if (Iterables.size(typedCandidates) == 1) {
+                object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
+            }
         }
-
-        @SuppressWarnings("unchecked")
-        UMLReferencingElement<Element> commentedElement = (UMLReferencingElement<Element>) object.getCommentedElement();
-        Element umlCommentedElement = commentedElement.getReferencedElement();
-        if (umlCommentedElement == null) {
-            return null;
-        }
-
-        EObject rootElement = EcoreUtil.getRootContainer(umlCommentedElement);
-        Set<org.eclipse.uml2.uml.Comment> candidates = StreamSupport
-                .stream(Spliterators.spliteratorUnknownSize(rootElement.eAllContents(), Spliterator.ORDERED), false)
-                .filter(org.eclipse.uml2.uml.Comment.class::isInstance).map(org.eclipse.uml2.uml.Comment.class::cast)
-                .filter(c -> c.getAnnotatedElements().contains(umlCommentedElement)
-                        && c.getBody().equals(object.getBody()))
-                .collect(Collectors.toSet());
-
-        if (candidates.size() == 1) {
-            object.setReferencedElement(candidates.iterator().next());
-            return null;
-        }
-
-        return super.caseComment(object);
+        return Optional.empty();
     }
 
+    /*
+     * @Override
+     * public Optional<Void> caseComment(Comment object) {
+     * if (!(object.getCommentedElement() instanceof UMLReferencingElement<?>)) {
+     * return Optional.empty();
+     * }
+     * 
+     * @SuppressWarnings("unchecked")
+     * UMLReferencingElement<Element> commentedElement = (UMLReferencingElement<Element>) object.getCommentedElement();
+     * Element umlCommentedElement = commentedElement.getReferencedElement();
+     * if (umlCommentedElement == null) {
+     * return Optional.empty();
+     * }
+     * 
+     * EObject rootElement = EcoreUtil.getRootContainer(umlCommentedElement);
+     * Set<org.eclipse.uml2.uml.Comment> candidates = StreamSupport
+     * .stream(Spliterators.spliteratorUnknownSize(rootElement.eAllContents(), Spliterator.ORDERED), false)
+     * .filter(org.eclipse.uml2.uml.Comment.class::isInstance).map(org.eclipse.uml2.uml.Comment.class::cast)
+     * .filter(c -> c.getAnnotatedElements().contains(umlCommentedElement)
+     * && c.getBody().equals(object.getBody()))
+     * .collect(Collectors.toSet());
+     * 
+     * if (candidates.size() == 1) {
+     * object.setReferencedElement(candidates.iterator().next());
+     * return Optional.empty();
+     * }
+     * 
+     * return Optional.empty();
+     * }
+     */
     @Override
-    public <UMLType extends Element> Void caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
+    public <UMLType extends Element> Optional<Void> caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
         QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
         if (qn == null) {
-            return super.caseUMLReferencingElement(object);
+            return Optional.empty();
         }
 
         EGenericType requiredType = object.eClass()
@@ -107,20 +103,23 @@ public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSw
                 .map(IEObjectDescription::getEObjectOrProxy).distinct().collect(Collectors.toList());
         if (matchingElements.size() == 1) {
             object.setReferencedElement((UMLType) matchingElements.get(0));
-            return super.caseUMLReferencingElement(object);
+            return Optional.empty();
         } else {
             object.setReferencedElement(null);
         }
-        return super.caseUMLReferencingElement(object);
+        return Optional.empty();
     }
 
     @Override
-    public boolean isCompatibleWith(EPackage ePackage) {
-        return isSwitchFor(ePackage);
+    public boolean isDirectlyCompatibleWith(EClass eClass) {
+        return isSwitchFor(eClass.getEPackage());
     }
 
     @Override
-    public void processElement(EObject object) {
-        doSwitch(object);
+    public boolean processElementUsingType(EClass clazz, EObject object) {
+        if (!clazz.isInstance(object)) {
+            throw new IllegalArgumentException("The object is not a valid instance of the provided class");
+        }
+        return (doSwitch(clazz, object) != null);
     }
 }

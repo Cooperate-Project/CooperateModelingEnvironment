@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends AliasedElement, PackageableElement, UMLReferencingElement<org.eclipse.uml2.uml.Classifier> {
+public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends UMLReferencingElement<org.eclipse.uml2.uml.Classifier>, AliasedElement, PackageableElement {
     /**
      * Returns the value of the '<em><b>Visibility</b></em>' attribute.
      * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.

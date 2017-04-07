@@ -2,19 +2,17 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
+import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
+import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**
@@ -25,12 +23,14 @@ import org.eclipse.uml2.uml.InterfaceRealization;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl#getOwningPackage <em>Owning Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImplementationImpl extends TypedConnectorImpl implements Implementation {
+public class ImplementationImpl extends UMLReferencingElementImpl<InterfaceRealization> implements Implementation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -53,28 +53,12 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public InterfaceRealization getReferencedElement() {
-        return (InterfaceRealization)eDynamicGet(ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public InterfaceRealization basicGetReferencedElement() {
-        return (InterfaceRealization)eDynamicGet(ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @Override
     public void setReferencedElement(InterfaceRealization newReferencedElement) {
-        eDynamicSet(ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+        super.setReferencedElement(newReferencedElement);
     }
 
     /**
@@ -82,12 +66,127 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      * <!-- end-user-doc -->
      * @generated
      */
-    public PackageBase<?> getNearestPackage() {
-        EObject parent = this;
-        while (parent != null && !(parent instanceof PackageBase)) {
-            parent = parent.eContainer();
+    public de.cooperateproject.modeling.textual.cls.cls.Package getOwningPackage() {
+        return (de.cooperateproject.modeling.textual.cls.cls.Package)eDynamicGet(ClsPackage.IMPLEMENTATION__OWNING_PACKAGE, ClsPackage.Literals.CONNECTOR__OWNING_PACKAGE, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOwningPackage(de.cooperateproject.modeling.textual.cls.cls.Package newOwningPackage, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newOwningPackage, ClsPackage.IMPLEMENTATION__OWNING_PACKAGE, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOwningPackage(de.cooperateproject.modeling.textual.cls.cls.Package newOwningPackage) {
+        eDynamicSet(ClsPackage.IMPLEMENTATION__OWNING_PACKAGE, ClsPackage.Literals.CONNECTOR__OWNING_PACKAGE, newOwningPackage);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public Classifier<? extends org.eclipse.uml2.uml.Classifier> getLeft() {
+        return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.IMPLEMENTATION__LEFT, ClsPackage.Literals.TYPED_CONNECTOR__LEFT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier<? extends org.eclipse.uml2.uml.Classifier> basicGetLeft() {
+        return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.IMPLEMENTATION__LEFT, ClsPackage.Literals.TYPED_CONNECTOR__LEFT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLeft(Classifier<? extends org.eclipse.uml2.uml.Classifier> newLeft) {
+        eDynamicSet(ClsPackage.IMPLEMENTATION__LEFT, ClsPackage.Literals.TYPED_CONNECTOR__LEFT, newLeft);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public Classifier<? extends org.eclipse.uml2.uml.Classifier> getRight() {
+        return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.IMPLEMENTATION__RIGHT, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier<? extends org.eclipse.uml2.uml.Classifier> basicGetRight() {
+        return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.IMPLEMENTATION__RIGHT, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRight(Classifier<? extends org.eclipse.uml2.uml.Classifier> newRight) {
+        eDynamicSet(ClsPackage.IMPLEMENTATION__RIGHT, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT, newRight);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)otherEnd, msgs);
         }
-        return (PackageBase<?>)parent;
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                return basicSetOwningPackage(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+        switch (eContainerFeatureID()) {
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                return eInternalContainer().eInverseRemove(this, ClsPackage.PACKAGE__CONNECTORS, de.cooperateproject.modeling.textual.cls.cls.Package.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
     /**
@@ -98,9 +197,14 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                return getOwningPackage();
+            case ClsPackage.IMPLEMENTATION__LEFT:
+                if (resolve) return getLeft();
+                return basicGetLeft();
+            case ClsPackage.IMPLEMENTATION__RIGHT:
+                if (resolve) return getRight();
+                return basicGetRight();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -110,11 +214,18 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT:
-                setReferencedElement((InterfaceRealization)newValue);
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                setOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)newValue);
+                return;
+            case ClsPackage.IMPLEMENTATION__LEFT:
+                setLeft((Classifier<? extends org.eclipse.uml2.uml.Classifier>)newValue);
+                return;
+            case ClsPackage.IMPLEMENTATION__RIGHT:
+                setRight((Classifier<? extends org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -128,8 +239,14 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT:
-                setReferencedElement((InterfaceRealization)null);
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                setOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)null);
+                return;
+            case ClsPackage.IMPLEMENTATION__LEFT:
+                setLeft((Classifier<? extends org.eclipse.uml2.uml.Classifier>)null);
+                return;
+            case ClsPackage.IMPLEMENTATION__RIGHT:
+                setRight((Classifier<? extends org.eclipse.uml2.uml.Classifier>)null);
                 return;
         }
         super.eUnset(featureID);
@@ -143,8 +260,12 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE:
+                return getOwningPackage() != null;
+            case ClsPackage.IMPLEMENTATION__LEFT:
+                return basicGetLeft() != null;
+            case ClsPackage.IMPLEMENTATION__RIGHT:
+                return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -156,14 +277,21 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
+        if (baseClass == PackageableElement.class) {
             switch (derivedFeatureID) {
                 default: return -1;
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == Connector.class) {
             switch (derivedFeatureID) {
-                case ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case ClsPackage.IMPLEMENTATION__OWNING_PACKAGE: return ClsPackage.CONNECTOR__OWNING_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == TypedConnector.class) {
+            switch (derivedFeatureID) {
+                case ClsPackage.IMPLEMENTATION__LEFT: return ClsPackage.TYPED_CONNECTOR__LEFT;
+                case ClsPackage.IMPLEMENTATION__RIGHT: return ClsPackage.TYPED_CONNECTOR__RIGHT;
                 default: return -1;
             }
         }
@@ -177,53 +305,25 @@ public class ImplementationImpl extends TypedConnectorImpl implements Implementa
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
+        if (baseClass == PackageableElement.class) {
             switch (baseFeatureID) {
                 default: return -1;
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == Connector.class) {
             switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ClsPackage.IMPLEMENTATION__REFERENCED_ELEMENT;
+                case ClsPackage.CONNECTOR__OWNING_PACKAGE: return ClsPackage.IMPLEMENTATION__OWNING_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == TypedConnector.class) {
+            switch (baseFeatureID) {
+                case ClsPackage.TYPED_CONNECTOR__LEFT: return ClsPackage.IMPLEMENTATION__LEFT;
+                case ClsPackage.TYPED_CONNECTOR__RIGHT: return ClsPackage.IMPLEMENTATION__RIGHT;
                 default: return -1;
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseOperationID) {
-                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ClsPackage.IMPLEMENTATION___GET_NEAREST_PACKAGE;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case ClsPackage.IMPLEMENTATION___GET_NEAREST_PACKAGE:
-                return getNearestPackage();
-        }
-        return super.eInvoke(operationID, arguments);
     }
 
 } //ImplementationImpl

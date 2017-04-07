@@ -1,18 +1,22 @@
 package de.cooperateproject.modeling.textual.cls.generator;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Property;
+
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
@@ -23,23 +27,29 @@ import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
 
-public class ClsDerivedStateElementProcessor extends ClsSwitch<Void> implements IDerivedStateElementProcessor {
+public class ClsDerivedStateElementProcessor extends ClsSwitch<Optional<Void>>
+        implements IDerivedStateElementProcessor {
+
+    @Inject
+    @Named("MainProcessor")
+    protected IDerivedStateElementProcessor mainProcessor;
 
     @Override
-    public Void caseGeneralization(Generalization object) {
+    public Optional<Void> caseGeneralization(Generalization object) {
         if (object.getLeft() != null && object.getLeft().getReferencedElement() != null && object.getRight() != null
                 && object.getRight().getReferencedElement() != null) {
             org.eclipse.uml2.uml.Generalization umlGeneralization = object.getLeft().getReferencedElement()
                     .getGeneralization(object.getRight().getReferencedElement());
             object.setReferencedElement(umlGeneralization);
         }
-        return super.caseGeneralization(object);
+        return Optional.empty();
     }
 
     @Override
-    public Void caseImplementation(Implementation object) {
+    public Optional<Void> caseImplementation(Implementation object) {
         if (object.getLeft() != null && object.getLeft().getReferencedElement() != null && object.getRight() != null
                 && object.getRight().getReferencedElement() != null) {
             org.eclipse.uml2.uml.Classifier left = object.getLeft().getReferencedElement();
@@ -54,11 +64,11 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Void> implements 
             // .getInterfaceRealization(null, (Interface) object.getRight().getReferencedElement());
             // object.setReferencedElement(umlInterfaceRealization);
         }
-        return super.caseImplementation(object);
+        return Optional.empty();
     }
 
     @Override
-    public Void caseXtextAssociation(XtextAssociation object) {
+    public Optional<Void> caseXtextAssociation(XtextAssociation object) {
         if (object.getMemberEndTypes().isEmpty()) {
             object.getMemberEndNames().clear();
             object.getMemberEndCardinalities().clear();
@@ -125,13 +135,13 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Void> implements 
             secondMemberEnd.setAggregationKind(object.getTwoSideAggregationKind());
         }
 
-        caseUMLReferencingElement(object);
-        object.getMemberEnds().forEach(this::caseAssociationMemberEnd);
-        return super.caseXtextAssociation(object);
+        mainProcessor.processElementUsingType(TextualCommonsPackage.eINSTANCE.getUMLReferencingElement(), object);
+        object.getMemberEnds().forEach(mainProcessor::processElement);
+        return Optional.empty();
     }
 
     @Override
-    public Void caseAssociationMemberEnd(AssociationMemberEnd object) {
+    public Optional<Void> caseAssociationMemberEnd(AssociationMemberEnd object) {
         Association umlAssociation = object.getAssociation().getReferencedElement();
         if (umlAssociation == null) {
             return null;
@@ -151,17 +161,20 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Void> implements 
             return null;
         }
 
-        return super.caseAssociationMemberEnd(object);
+        return Optional.empty();
     }
 
     @Override
-    public boolean isCompatibleWith(EPackage ePackage) {
-        return this.isSwitchFor(ePackage);
+    public boolean isDirectlyCompatibleWith(EClass eClass) {
+        return isSwitchFor(eClass.getEPackage());
     }
 
     @Override
-    public void processElement(EObject object) {
-        doSwitch(object);
+    public boolean processElementUsingType(EClass clazz, EObject object) {
+        if (!clazz.isInstance(object)) {
+            throw new IllegalArgumentException("The object is not a valid instance of the provided class");
+        }
+        return (doSwitch(clazz, object) != null);
     }
 
 }

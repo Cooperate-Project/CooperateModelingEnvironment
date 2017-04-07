@@ -65,8 +65,8 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule implements CommonDerived
         return ClsValueConverter;
     }
     
-    def configureUseCaseDerivedStateElementProcessor(Binder binder) {
-		val mb = Multibinder.newSetBinder(binder, IDerivedStateElementProcessor);
+    def configureClsDerivedStateElementProcessor(Binder binder) {
+		val mb = Multibinder.newSetBinder(binder, IDerivedStateElementProcessor, Names.named("processor"));
 		mb.addBinding().to(ClsDerivedStateElementProcessor);
 	}
     

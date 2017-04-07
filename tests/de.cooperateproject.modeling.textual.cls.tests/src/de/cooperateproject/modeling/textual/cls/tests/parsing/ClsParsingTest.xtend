@@ -613,8 +613,8 @@ class ClsParsingTest extends AbstractClsTest {
 		val model = '''
 			@start-clsd "SomeName"
 			rootPackage RootElement
-			class Alice
-			note "this is a note" Alice
+			class Alice 
+			note "this is a note"
 			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)

@@ -80,7 +80,7 @@
 		</repository>
 		<repository>
 			<id>cooperate-externals</id>
-			<url>https://cooperate-project.github.io/Externals/updatesite/latest</url>
+			<url>https://dl.bintray.com/cooperate-project/Externals/updatesite/latest</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>

@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface AssociationMemberEnd extends NamedElement, UMLReferencingElement<Property> {
+public interface AssociationMemberEnd extends UMLReferencingElement<Property>, NamedElement {
     /**
      * Returns the value of the '<em><b>Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->

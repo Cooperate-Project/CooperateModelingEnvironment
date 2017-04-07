@@ -26,3 +26,4 @@ Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
  de.cooperateproject.modeling.textual.xtext.runtime.services
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator
+Import-Package: com.google.inject.multibindings

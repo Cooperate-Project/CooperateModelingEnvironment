@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Association extends Connector, Commentable, NamedElement, UMLReferencingElement<org.eclipse.uml2.uml.Association> {
+public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.Association>, Connector, Commentable, NamedElement {
     /**
      * Returns the value of the '<em><b>Member Ends</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd}.
