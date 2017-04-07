@@ -283,7 +283,7 @@ when {self.getResult().modelElement.oclIsKindOf(cls::Interface)}
 }
 
 mapping trace::TraceRecord::traceRecordExtendedConnector() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "edgeToConnector" and not self.getResult().modelElement.oclIsKindOf(cls::CommentLink)}
+when {self.mappingOperation.name = "edgeToConnector"}
 {
 	var connector := self.getResult().modelElement;
 	var edge := self.getSelf().modelElement;
