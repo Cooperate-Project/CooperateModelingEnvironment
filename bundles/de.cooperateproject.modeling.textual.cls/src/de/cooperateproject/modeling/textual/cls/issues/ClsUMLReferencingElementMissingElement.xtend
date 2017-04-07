@@ -5,7 +5,6 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
@@ -76,8 +75,6 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		val commentElement = element.commentedElement
 		if (commentElement instanceof UMLReferencingElement) {
 			return commentElement.hasReferencedElement
-		} else if (commentElement instanceof CommentLink) {
-			return commentElement.commentedElement.hasReferencedElement
 		}
 		return false
 	}
@@ -175,9 +172,7 @@ class ClsUMLReferencingElementMissingElement extends AutomatedIssueResolutionBas
 		val commentedElement = element.commentedElement
 		var Element umlCommentedElement = null
 
-		if (commentedElement instanceof CommentLink) {
-			umlCommentedElement = commentedElement.commentedElement.referencedElement
-		} else if (commentedElement instanceof UMLReferencingElement) {
+		if (commentedElement instanceof UMLReferencingElement) {
 			umlCommentedElement = commentedElement.referencedElement
 		}
 		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()

@@ -611,34 +611,75 @@ ruleClass returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_7='{'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_4_0());
-			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_4_0_0());
 					}
-					lv_members_8_0=ruleMember
+					lv_comments_7_0=ruleComment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getClassRule());
 						}
 						add(
 							$current,
-							"members",
-							lv_members_8_0,
-							"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							"comments",
+							lv_comments_7_0,
+							"de.cooperateproject.modeling.textual.cls.Cls.Comment");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)*
-			otherlv_9='}'
-			{
-				newLeafNode(otherlv_9, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_4_2());
-			}
-		)?
+			)?
+			    |
+			(
+				otherlv_8='{'
+				{
+					newLeafNode(otherlv_8, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_4_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_4_1_1_0());
+						}
+						lv_comments_9_0=ruleComment
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassRule());
+							}
+							add(
+								$current,
+								"comments",
+								lv_comments_9_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_4_1_2_0());
+						}
+						lv_members_10_0=ruleMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassRule());
+							}
+							add(
+								$current,
+								"members",
+								lv_members_10_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)*
+				otherlv_11='}'
+				{
+					newLeafNode(otherlv_11, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_4_1_3());
+				}
+			)
+		)
 	)
 ;
 
@@ -745,34 +786,75 @@ ruleInterface returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_6='{'
-			{
-				newLeafNode(otherlv_6, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_3_0());
-			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInterfaceAccess().getMembersMemberParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getInterfaceAccess().getCommentsCommentParserRuleCall_3_0_0());
 					}
-					lv_members_7_0=ruleMember
+					lv_comments_6_0=ruleComment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInterfaceRule());
 						}
 						add(
 							$current,
-							"members",
-							lv_members_7_0,
-							"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							"comments",
+							lv_comments_6_0,
+							"de.cooperateproject.modeling.textual.cls.Cls.Comment");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)*
-			otherlv_8='}'
-			{
-				newLeafNode(otherlv_8, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_3_2());
-			}
-		)?
+			)?
+			    |
+			(
+				otherlv_7='{'
+				{
+					newLeafNode(otherlv_7, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_3_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getInterfaceAccess().getCommentsCommentParserRuleCall_3_1_1_0());
+						}
+						lv_comments_8_0=ruleComment
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getInterfaceRule());
+							}
+							add(
+								$current,
+								"comments",
+								lv_comments_8_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getInterfaceAccess().getMembersMemberParserRuleCall_3_1_2_0());
+						}
+						lv_members_9_0=ruleMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getInterfaceRule());
+							}
+							add(
+								$current,
+								"members",
+								lv_members_9_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)*
+				otherlv_10='}'
+				{
+					newLeafNode(otherlv_10, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_3_1_3());
+				}
+			)
+		)
 	)
 ;
 
@@ -1201,15 +1283,6 @@ ruleConnector returns [EObject current=null]
 			$current = $this_Implementation_2.current;
 			afterParserOrEnumRuleCall();
 		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getConnectorAccess().getCommentLinkParserRuleCall_3());
-		}
-		this_CommentLink_3=ruleCommentLink
-		{
-			$current = $this_CommentLink_3.current;
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -1344,60 +1417,6 @@ ruleImplementation returns [EObject current=null]
 		{
 			newLeafNode(otherlv_5, grammarAccess.getImplementationAccess().getRightParenthesisKeyword_5());
 		}
-	)
-;
-
-// Entry rule entryRuleCommentLink
-entryRuleCommentLink returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getCommentLinkRule()); }
-	iv_ruleCommentLink=ruleCommentLink
-	{ $current=$iv_ruleCommentLink.current; }
-	EOF;
-
-// Rule CommentLink
-ruleCommentLink returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentsCommentParserRuleCall_0_0());
-				}
-				lv_comments_0_0=ruleComment
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCommentLinkRule());
-					}
-					add(
-						$current,
-						"comments",
-						lv_comments_0_0,
-						"de.cooperateproject.modeling.textual.cls.Cls.Comment");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getCommentLinkRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentedElementClassifierCrossReference_1_0());
-				}
-				ruleFQN
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
 	)
 ;
 

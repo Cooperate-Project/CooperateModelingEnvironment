@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -37,55 +38,31 @@ public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSw
 
     @Override
     public Optional<Void> caseComment(Comment object) {
-        UMLReferencingElement<? extends org.eclipse.uml2.uml.Classifier> realElement = commentableFinder
-                .doSwitch(object.getCommentedElement());
-        if (realElement != null) {
-            Element umlCommentedElement = realElement.getReferencedElement();
 
-            IScope candidates = globalScopeProvider.queryScope(object.eResource(), true, UMLPackage.Literals.COMMENT,
-                    c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
-                            .contains(umlCommentedElement)
-                            && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
-                                    .equals(object.getBody()));
-            Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(candidates.getAllElements(),
-                    e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
-            if (Iterables.size(typedCandidates) == 1) {
-                object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
+        if (TextualCommonsPackage.eINSTANCE.getUMLReferencingElement().isInstance(object.getCommentedElement())) {
+            @SuppressWarnings("unchecked")
+            UMLReferencingElement<? extends org.eclipse.uml2.uml.Classifier> realElement = (UMLReferencingElement<? extends Classifier>) object
+                    .getCommentedElement();
+
+            if (realElement != null) {
+                Element umlCommentedElement = realElement.getReferencedElement();
+
+                IScope candidates = globalScopeProvider.queryScope(object.eResource(), true,
+                        UMLPackage.Literals.COMMENT,
+                        c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
+                                .contains(umlCommentedElement)
+                                && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
+                                        .equals(object.getBody()));
+                Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(
+                        candidates.getAllElements(), e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
+                if (Iterables.size(typedCandidates) == 1) {
+                    object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
+                }
             }
         }
         return Optional.empty();
     }
 
-    /*
-     * @Override
-     * public Optional<Void> caseComment(Comment object) {
-     * if (!(object.getCommentedElement() instanceof UMLReferencingElement<?>)) {
-     * return Optional.empty();
-     * }
-     * 
-     * @SuppressWarnings("unchecked")
-     * UMLReferencingElement<Element> commentedElement = (UMLReferencingElement<Element>) object.getCommentedElement();
-     * Element umlCommentedElement = commentedElement.getReferencedElement();
-     * if (umlCommentedElement == null) {
-     * return Optional.empty();
-     * }
-     * 
-     * EObject rootElement = EcoreUtil.getRootContainer(umlCommentedElement);
-     * Set<org.eclipse.uml2.uml.Comment> candidates = StreamSupport
-     * .stream(Spliterators.spliteratorUnknownSize(rootElement.eAllContents(), Spliterator.ORDERED), false)
-     * .filter(org.eclipse.uml2.uml.Comment.class::isInstance).map(org.eclipse.uml2.uml.Comment.class::cast)
-     * .filter(c -> c.getAnnotatedElements().contains(umlCommentedElement)
-     * && c.getBody().equals(object.getBody()))
-     * .collect(Collectors.toSet());
-     * 
-     * if (candidates.size() == 1) {
-     * object.setReferencedElement(candidates.iterator().next());
-     * return Optional.empty();
-     * }
-     * 
-     * return Optional.empty();
-     * }
-     */
     @Override
     public <UMLType extends Element> Optional<Void> caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
         QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);

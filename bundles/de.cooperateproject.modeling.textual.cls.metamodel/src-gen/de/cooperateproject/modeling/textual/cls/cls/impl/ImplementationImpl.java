@@ -6,13 +6,17 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
-
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**

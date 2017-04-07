@@ -2,17 +2,18 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls.impl;
 
-import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -23,6 +24,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.eclipse.uml2.uml.Association;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public abstract class AssociationImpl extends UMLReferencingElementImpl<org.eclipse.uml2.uml.Association> implements Association {
+public abstract class AssociationImpl extends UMLReferencingElementImpl<Association> implements de.cooperateproject.modeling.textual.cls.cls.Association {
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -73,6 +76,17 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<org.ecli
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
+     * @generated
+     */
+    @Override
+    public void setReferencedElement(Association newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     public de.cooperateproject.modeling.textual.cls.cls.Package getOwningPackage() {
@@ -96,17 +110,6 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<org.ecli
      */
     public void setOwningPackage(de.cooperateproject.modeling.textual.cls.cls.Package newOwningPackage) {
         eDynamicSet(ClsPackage.ASSOCIATION__OWNING_PACKAGE, ClsPackage.Literals.CONNECTOR__OWNING_PACKAGE, newOwningPackage);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * This is specialized for the more specific type known in this context.
-     * @generated
-     */
-    @Override
-    public void setReferencedElement(org.eclipse.uml2.uml.Association newReferencedElement) {
-        super.setReferencedElement(newReferencedElement);
     }
 
     /**

@@ -5,14 +5,18 @@ package de.cooperateproject.modeling.textual.cls.cls.impl;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
-import de.cooperateproject.modeling.textual.cls.cls.Generalization;
-
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.uml2.uml.Generalization;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +33,7 @@ import org.eclipse.emf.ecore.InternalEObject;
  *
  * @generated
  */
-public class GeneralizationImpl extends UMLReferencingElementImpl<org.eclipse.uml2.uml.Generalization> implements Generalization {
+public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization> implements de.cooperateproject.modeling.textual.cls.cls.Generalization {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -56,7 +60,7 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<org.eclipse.um
      * @generated
      */
     @Override
-    public void setReferencedElement(org.eclipse.uml2.uml.Generalization newReferencedElement) {
+    public void setReferencedElement(Generalization newReferencedElement) {
         super.setReferencedElement(newReferencedElement);
     }
 

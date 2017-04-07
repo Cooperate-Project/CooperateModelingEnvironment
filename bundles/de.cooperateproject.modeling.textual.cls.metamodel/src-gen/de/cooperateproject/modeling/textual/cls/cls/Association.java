@@ -4,8 +4,8 @@ package de.cooperateproject.modeling.textual.cls.cls;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
-
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -31,7 +31,7 @@ public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd#getAssociation <em>Association</em>}'.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Member Ends</em>' reference list isn't clear,
+     * If the meaning of the '<em>Member Ends</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->

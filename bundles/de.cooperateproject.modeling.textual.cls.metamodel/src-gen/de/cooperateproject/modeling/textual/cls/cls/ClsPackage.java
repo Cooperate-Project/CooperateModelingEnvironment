@@ -271,13 +271,22 @@ public interface ClsPackage extends EPackage {
     int CLASSIFIER__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
      * The feature id for the '<em><b>Visibility</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CLASSIFIER__VISIBILITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int CLASSIFIER__VISIBILITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -286,7 +295,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER__MEMBERS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int CLASSIFIER__MEMBERS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
@@ -295,7 +304,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER__OWNING_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int CLASSIFIER__OWNING_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Classifier</em>' class.
@@ -304,7 +313,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
+    int CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -360,6 +369,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int CLASS__ALIAS = CLASSIFIER__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASS__COMMENTS = CLASSIFIER__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -460,6 +478,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int INTERFACE__ALIAS = CLASSIFIER__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INTERFACE__COMMENTS = CLASSIFIER__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -1218,61 +1245,6 @@ public interface ClsPackage extends EPackage {
     int IMPLEMENTATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl <em>Comment Link</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl
-     * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
-     * @generated
-     */
-    int COMMENT_LINK = 14;
-
-    /**
-     * The feature id for the '<em><b>Owning Package</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK__OWNING_PACKAGE = CONNECTOR__OWNING_PACKAGE;
-
-    /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK__COMMENTS = CONNECTOR_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Commented Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK__COMMENTED_ELEMENT = CONNECTOR_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Comment Link</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 2;
-
-    /**
-     * The number of operations of the '<em>Comment Link</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMMENT_LINK_OPERATION_COUNT = CONNECTOR_OPERATION_COUNT + 0;
-
-    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1280,7 +1252,7 @@ public interface ClsPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociation()
      * @generated
      */
-    int ASSOCIATION = 15;
+    int ASSOCIATION = 14;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1362,7 +1334,7 @@ public interface ClsPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAssociationMemberEnd()
      * @generated
      */
-    int ASSOCIATION_MEMBER_END = 16;
+    int ASSOCIATION_MEMBER_END = 15;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1462,7 +1434,7 @@ public interface ClsPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getXtextAssociation()
      * @generated
      */
-    int XTEXT_ASSOCIATION = 17;
+    int XTEXT_ASSOCIATION = 16;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1607,7 +1579,7 @@ public interface ClsPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getXtextAssociationMemberEndReferencedType()
      * @generated
      */
-    int XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE = 18;
+    int XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE = 17;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1644,7 +1616,7 @@ public interface ClsPackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getAggregationKind()
      * @generated
      */
-    int AGGREGATION_KIND = 19;
+    int AGGREGATION_KIND = 18;
 
 
     /**
@@ -2014,27 +1986,6 @@ public interface ClsPackage extends EPackage {
      * @generated
      */
     EClass getImplementation();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink <em>Comment Link</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Comment Link</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink
-     * @generated
-     */
-    EClass getCommentLink();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink#getCommentedElement <em>Commented Element</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Commented Element</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink#getCommentedElement()
-     * @see #getCommentLink()
-     * @generated
-     */
-    EReference getCommentLink_CommentedElement();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Association <em>Association</em>}'.
@@ -2569,24 +2520,6 @@ public interface ClsPackage extends EPackage {
          * @generated
          */
         EClass IMPLEMENTATION = eINSTANCE.getImplementation();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl <em>Comment Link</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.cls.cls.impl.CommentLinkImpl
-         * @see de.cooperateproject.modeling.textual.cls.cls.impl.ClsPackageImpl#getCommentLink()
-         * @generated
-         */
-        EClass COMMENT_LINK = eINSTANCE.getCommentLink();
-
-        /**
-         * The meta object literal for the '<em><b>Commented Element</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference COMMENT_LINK__COMMENTED_ELEMENT = eINSTANCE.getCommentLink_CommentedElement();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.
