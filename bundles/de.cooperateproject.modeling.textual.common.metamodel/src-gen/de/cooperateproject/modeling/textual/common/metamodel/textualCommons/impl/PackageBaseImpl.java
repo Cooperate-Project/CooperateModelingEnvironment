@@ -2,15 +2,11 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,12 +14,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +35,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extends CDOObjectImpl implements PackageBase<PackageType> {
+public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extends ElementImpl implements PackageBase<PackageType> {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,16 +63,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@Override
 	protected EClass eStaticClass() {
 		return TextualCommonsPackage.Literals.PACKAGE_BASE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
 	}
 
 	/**
@@ -174,19 +157,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@SuppressWarnings("unchecked")
 	public EList<PackageImport> getPackageImports() {
 		return (EList<PackageImport>)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, true, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PackageBase<?> getNearestPackage() {
-		EObject parent = this;
-		while (parent != null && !(parent instanceof PackageBase)) {
-			parent = parent.eContainer();
-		}
-		return (PackageBase<?>)parent;
 	}
 
 	/**
@@ -351,11 +321,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Element.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == UMLReferencingElement.class) {
 			switch (derivedFeatureID) {
 				case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
@@ -378,11 +343,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Element.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == UMLReferencingElement.class) {
 			switch (baseFeatureID) {
 				case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
@@ -396,46 +356,6 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == Element.class) {
-			switch (baseOperationID) {
-				case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return TextualCommonsPackage.PACKAGE_BASE___GET_NEAREST_PACKAGE;
-				default: return -1;
-			}
-		}
-		if (baseClass == UMLReferencingElement.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == NamedElement.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case TextualCommonsPackage.PACKAGE_BASE___GET_NEAREST_PACKAGE:
-				return getNearestPackage();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //PackageBaseImpl

@@ -73,7 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
-      interface="true"/>
+      interface="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedPackage" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -259,7 +259,16 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = 0;
+	int PACKAGEABLE_ELEMENT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Nearest Package</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGEABLE_ELEMENT___GET_NEAREST_PACKAGE = ELEMENT___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The number of operations of the '<em>Packageable Element</em>' class.
@@ -268,7 +277,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = 0;
+	int PACKAGEABLE_ELEMENT_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl <em>Package Base</em>}' class.
@@ -341,7 +350,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE___GET_NEAREST_PACKAGE = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
+	int PACKAGE_BASE___GET_NEAREST_PACKAGE = PACKAGEABLE_ELEMENT___GET_NEAREST_PACKAGE;
 
 	/**
 	 * The number of operations of the '<em>Package Base</em>' class.
@@ -350,7 +359,7 @@ public interface TextualCommonsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_BASE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 1;
+	int PACKAGE_BASE_OPERATION_COUNT = PACKAGEABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl <em>Commentable</em>}' class.

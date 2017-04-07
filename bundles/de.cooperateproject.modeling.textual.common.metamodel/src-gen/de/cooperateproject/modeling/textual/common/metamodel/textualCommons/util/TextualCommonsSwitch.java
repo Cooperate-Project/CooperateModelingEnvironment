@@ -127,6 +127,7 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
 			case TextualCommonsPackage.PACKAGEABLE_ELEMENT: {
 				PackageableElement packageableElement = (PackageableElement)theEObject;
 				T result = casePackageableElement(packageableElement);
+				if (result == null) result = caseElement(packageableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

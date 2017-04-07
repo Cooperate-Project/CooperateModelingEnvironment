@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.uml2.uml.Element;
 
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
@@ -43,15 +42,6 @@ public class ClsPostProcessingSwitch extends ClsSwitch<Boolean> implements PostP
     @Override
     public <UMLType extends Element> Boolean caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
         return processObject(object);
-    }
-
-    @Override
-    public Boolean caseCommentLink(CommentLink object) {
-        if (object.getComments().stream().allMatch(elementDeleter::testRegisterChangeIfNecessary)) {
-            elementDeleter.registerChangeIfNecessary(object);
-            return false;
-        }
-        return true;
     }
 
     @Override
