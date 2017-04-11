@@ -4,13 +4,11 @@
 package de.cooperateproject.modeling.textual.cls.ui.labeling
 
 import com.google.inject.Inject
-import de.cooperateproject.modeling.textual.cls.cls.AggregationKind
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
@@ -18,9 +16,14 @@ import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.Property
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
+import java.util.Collection
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jface.viewers.DecorationOverlayIcon
 import org.eclipse.jface.viewers.IDecoration
@@ -28,11 +31,6 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
-import java.util.Collection
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
 /**
  * Provides labels for EObjects.
@@ -167,11 +165,11 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	
 	def text(Comment ele) {
 		var String commentedElementText
-		if (ele.commentedElement instanceof CommentLink) {
-			commentedElementText = (ele.commentedElement as CommentLink).commentedElement.text
-		} else if (ele.commentedElement instanceof Association) {
+		if (ele.commentedElement instanceof Association) {
 			commentedElementText = (ele.commentedElement as Association).text
-		}
+		} else if (ele.commentedElement instanceof NamedElement) {
+			commentedElementText = (ele.commentedElement as NamedElement).text
+		} 
 		return commentedElementText + " : " + ele.body
 	}
 	
