@@ -21,7 +21,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface ExtensionPoint extends AliasedElement, UMLReferencingElement<org.eclipse.uml2.uml.ExtensionPoint> {
+public interface ExtensionPoint extends UMLReferencingElement<org.eclipse.uml2.uml.ExtensionPoint>, AliasedElement {
     /**
      * Returns the value of the '<em><b>Use Case</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getExtensionPoints <em>Extension Points</em>}'.

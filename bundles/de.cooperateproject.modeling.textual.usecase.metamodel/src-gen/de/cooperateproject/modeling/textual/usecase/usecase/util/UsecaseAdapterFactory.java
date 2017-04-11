@@ -134,16 +134,16 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
                 return createExtendAdapter();
             }
             @Override
-            public Adapter caseCommentable(Commentable object) {
-                return createCommentableAdapter();
-            }
-            @Override
             public Adapter caseElement(Element object) {
                 return createElementAdapter();
             }
             @Override
             public <UMLType extends org.eclipse.uml2.uml.Element> Adapter caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
                 return createUMLReferencingElementAdapter();
+            }
+            @Override
+            public Adapter caseCommentable(Commentable object) {
+                return createCommentableAdapter();
             }
             @Override
             public Adapter caseNamedElement(NamedElement object) {
@@ -342,20 +342,6 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable <em>Commentable</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
-     * @generated
-     */
-    public Adapter createCommentableAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -380,6 +366,20 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createUMLReferencingElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable <em>Commentable</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
+     * @generated
+     */
+    public Adapter createCommentableAdapter() {
         return null;
     }
 

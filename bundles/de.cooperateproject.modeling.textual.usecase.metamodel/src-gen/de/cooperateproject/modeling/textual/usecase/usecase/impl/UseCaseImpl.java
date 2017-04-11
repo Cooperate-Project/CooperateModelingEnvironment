@@ -2,17 +2,16 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
-import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
-import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import java.util.Collection;
@@ -26,6 +25,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.uml2.uml.UseCase;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Use Case</b></em>'.
@@ -35,7 +36,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getComments <em>Comments</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl#getExtensionPoints <em>Extension Points</em>}</li>
@@ -44,7 +46,27 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class UseCaseImpl extends AliasedElementImpl implements UseCase {
+public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements de.cooperateproject.modeling.textual.usecase.usecase.UseCase {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
+    protected static final String ALIAS_EDEFAULT = null;
+
     /**
      * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -87,6 +109,17 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
+     * @generated
+     */
+    @Override
+    public void setReferencedElement(UseCase newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -99,8 +132,8 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
      * <!-- end-user-doc -->
      * @generated
      */
-    public org.eclipse.uml2.uml.UseCase getReferencedElement() {
-        return (org.eclipse.uml2.uml.UseCase)eDynamicGet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    public String getName() {
+        return (String)eDynamicGet(UsecasePackage.USE_CASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
     }
 
     /**
@@ -108,8 +141,8 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
      * <!-- end-user-doc -->
      * @generated
      */
-    public org.eclipse.uml2.uml.UseCase basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.UseCase)eDynamicGet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public void setName(String newName) {
+        eDynamicSet(UsecasePackage.USE_CASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
     /**
@@ -117,8 +150,17 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReferencedElement(org.eclipse.uml2.uml.UseCase newReferencedElement) {
-        eDynamicSet(UsecasePackage.USE_CASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public String getAlias() {
+        return (String)eDynamicGet(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAlias(String newAlias) {
+        eDynamicSet(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
     }
 
     /**
@@ -258,9 +300,10 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         switch (featureID) {
             case UsecasePackage.USE_CASE__COMMENTS:
                 return getComments();
-            case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case UsecasePackage.USE_CASE__NAME:
+                return getName();
+            case UsecasePackage.USE_CASE__ALIAS:
+                return getAlias();
             case UsecasePackage.USE_CASE__VISIBILITY:
                 return getVisibility();
             case UsecasePackage.USE_CASE__ABSTRACT:
@@ -286,8 +329,11 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
                 getComments().clear();
                 getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
-            case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.UseCase)newValue);
+            case UsecasePackage.USE_CASE__NAME:
+                setName((String)newValue);
+                return;
+            case UsecasePackage.USE_CASE__ALIAS:
+                setAlias((String)newValue);
                 return;
             case UsecasePackage.USE_CASE__VISIBILITY:
                 setVisibility((Visibility)newValue);
@@ -317,8 +363,11 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
             case UsecasePackage.USE_CASE__COMMENTS:
                 getComments().clear();
                 return;
-            case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.UseCase)null);
+            case UsecasePackage.USE_CASE__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case UsecasePackage.USE_CASE__ALIAS:
+                setAlias(ALIAS_EDEFAULT);
                 return;
             case UsecasePackage.USE_CASE__VISIBILITY:
                 setVisibility(VISIBILITY_EDEFAULT);
@@ -346,8 +395,10 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
         switch (featureID) {
             case UsecasePackage.USE_CASE__COMMENTS:
                 return !getComments().isEmpty();
-            case UsecasePackage.USE_CASE__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case UsecasePackage.USE_CASE__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case UsecasePackage.USE_CASE__ALIAS:
+                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case UsecasePackage.USE_CASE__VISIBILITY:
                 return getVisibility() != VISIBILITY_EDEFAULT;
             case UsecasePackage.USE_CASE__ABSTRACT:
@@ -373,14 +424,15 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
                 default: return -1;
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.USE_CASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.USE_CASE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
             }
         }
-        if (baseClass == BehavioredClassifier.class) {
+        if (baseClass == AliasedElement.class) {
             switch (derivedFeatureID) {
+                case UsecasePackage.USE_CASE__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
                 default: return -1;
             }
         }
@@ -400,14 +452,15 @@ public class UseCaseImpl extends AliasedElementImpl implements UseCase {
                 default: return -1;
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.USE_CASE__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return UsecasePackage.USE_CASE__NAME;
                 default: return -1;
             }
         }
-        if (baseClass == BehavioredClassifier.class) {
+        if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
+                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return UsecasePackage.USE_CASE__ALIAS;
                 default: return -1;
             }
         }

@@ -116,22 +116,22 @@ public interface UsecasePackage extends EPackage {
     int BEHAVIORED_CLASSIFIER = 1;
 
     /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BEHAVIORED_CLASSIFIER__COMMENTS = TextualCommonsPackage.COMMENTABLE__COMMENTS;
-
-    /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 0;
+    int BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIORED_CLASSIFIER__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Behaviored Classifier</em>' class.
@@ -140,7 +140,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BEHAVIORED_CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 1;
+    int BEHAVIORED_CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -149,7 +149,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE = TextualCommonsPackage.COMMENTABLE_OPERATION_COUNT + 0;
+    int BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Behaviored Classifier</em>' class.
@@ -158,7 +158,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BEHAVIORED_CLASSIFIER_OPERATION_COUNT = TextualCommonsPackage.COMMENTABLE_OPERATION_COUNT + 1;
+    int BEHAVIORED_CLASSIFIER_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl <em>Root Package</em>}' class.
@@ -171,22 +171,22 @@ public interface UsecasePackage extends EPackage {
     int ROOT_PACKAGE = 2;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ROOT_PACKAGE__NAME = TextualCommonsPackage.NAMED_ELEMENT__NAME;
-
-    /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+    int ROOT_PACKAGE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -195,7 +195,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__ACTORS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+    int ROOT_PACKAGE__ACTORS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Systems</b></em>' containment reference list.
@@ -204,7 +204,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__SYSTEMS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+    int ROOT_PACKAGE__SYSTEMS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Relationships</b></em>' containment reference list.
@@ -213,7 +213,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__RELATIONSHIPS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+    int ROOT_PACKAGE__RELATIONSHIPS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Diagram</b></em>' container reference.
@@ -222,7 +222,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__DIAGRAM = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+    int ROOT_PACKAGE__DIAGRAM = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Root Package</em>' class.
@@ -231,7 +231,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+    int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -240,7 +240,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.NAMED_ELEMENT___GET_NEAREST_PACKAGE;
+    int ROOT_PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Root Package</em>' class.
@@ -249,7 +249,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+    int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ActorImpl <em>Actor</em>}' class.
@@ -262,22 +262,13 @@ public interface UsecasePackage extends EPackage {
     int ACTOR = 3;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTOR__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTOR__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+    int ACTOR__REFERENCED_ELEMENT = BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -286,16 +277,25 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR__COMMENTS = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+    int ACTOR__COMMENTS = BEHAVIORED_CLASSIFIER__COMMENTS;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTOR__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int ACTOR__NAME = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR__ALIAS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -304,7 +304,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR__VISIBILITY = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
+    int ACTOR__VISIBILITY = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -313,7 +313,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR__ABSTRACT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 3;
+    int ACTOR__ABSTRACT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -322,7 +322,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR__TYPE = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 4;
+    int ACTOR__TYPE = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Actor</em>' class.
@@ -331,7 +331,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 5;
+    int ACTOR_FEATURE_COUNT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -340,7 +340,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
+    int ACTOR___GET_NEAREST_PACKAGE = BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Actor</em>' class.
@@ -349,7 +349,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
+    int ACTOR_OPERATION_COUNT = BEHAVIORED_CLASSIFIER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl <em>System</em>}' class.
@@ -362,22 +362,22 @@ public interface UsecasePackage extends EPackage {
     int SYSTEM = 4;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SYSTEM__NAME = TextualCommonsPackage.NAMED_ELEMENT__NAME;
-
-    /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SYSTEM__REFERENCED_ELEMENT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+    int SYSTEM__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -386,7 +386,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM__COMMENTS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+    int SYSTEM__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Usecases</b></em>' containment reference list.
@@ -395,7 +395,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM__USECASES = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+    int SYSTEM__USECASES = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -404,7 +404,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM__PACKAGE = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+    int SYSTEM__PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>System</em>' class.
@@ -413,7 +413,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+    int SYSTEM_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -422,7 +422,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM___GET_NEAREST_PACKAGE = TextualCommonsPackage.NAMED_ELEMENT___GET_NEAREST_PACKAGE;
+    int SYSTEM___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>System</em>' class.
@@ -431,7 +431,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SYSTEM_OPERATION_COUNT = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+    int SYSTEM_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.UseCaseImpl <em>Use Case</em>}' class.
@@ -444,22 +444,13 @@ public interface UsecasePackage extends EPackage {
     int USE_CASE = 5;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int USE_CASE__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int USE_CASE__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+    int USE_CASE__REFERENCED_ELEMENT = BEHAVIORED_CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -468,16 +459,25 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE__COMMENTS = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+    int USE_CASE__COMMENTS = BEHAVIORED_CLASSIFIER__COMMENTS;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int USE_CASE__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int USE_CASE__NAME = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int USE_CASE__ALIAS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -486,7 +486,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE__VISIBILITY = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
+    int USE_CASE__VISIBILITY = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -495,7 +495,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE__ABSTRACT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 3;
+    int USE_CASE__ABSTRACT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Extension Points</b></em>' containment reference list.
@@ -504,7 +504,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE__EXTENSION_POINTS = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 4;
+    int USE_CASE__EXTENSION_POINTS = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>System</b></em>' container reference.
@@ -513,7 +513,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE__SYSTEM = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 5;
+    int USE_CASE__SYSTEM = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Use Case</em>' class.
@@ -522,7 +522,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 6;
+    int USE_CASE_FEATURE_COUNT = BEHAVIORED_CLASSIFIER_FEATURE_COUNT + 6;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -531,7 +531,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
+    int USE_CASE___GET_NEAREST_PACKAGE = BEHAVIORED_CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Use Case</em>' class.
@@ -540,7 +540,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int USE_CASE_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
+    int USE_CASE_OPERATION_COUNT = BEHAVIORED_CLASSIFIER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtensionPointImpl <em>Extension Point</em>}' class.
@@ -553,13 +553,22 @@ public interface UsecasePackage extends EPackage {
     int EXTENSION_POINT = 6;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXTENSION_POINT__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXTENSION_POINT__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
+    int EXTENSION_POINT__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -568,16 +577,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTENSION_POINT__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXTENSION_POINT__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+    int EXTENSION_POINT__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Use Case</b></em>' container reference.
@@ -586,7 +586,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTENSION_POINT__USE_CASE = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int EXTENSION_POINT__USE_CASE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Extension Point</em>' class.
@@ -595,7 +595,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTENSION_POINT_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
+    int EXTENSION_POINT_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -604,7 +604,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTENSION_POINT___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
+    int EXTENSION_POINT___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Extension Point</em>' class.
@@ -613,7 +613,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXTENSION_POINT_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
+    int EXTENSION_POINT_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Relationship <em>Relationship</em>}' class.
@@ -669,7 +669,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__REFERENCED_ELEMENT = RELATIONSHIP_FEATURE_COUNT + 0;
+    int ASSOCIATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Actor</b></em>' reference.
@@ -678,7 +678,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__ACTOR = RELATIONSHIP_FEATURE_COUNT + 1;
+    int ASSOCIATION__ACTOR = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Usecase</b></em>' reference.
@@ -687,7 +687,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__USECASE = RELATIONSHIP_FEATURE_COUNT + 2;
+    int ASSOCIATION__USECASE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Actor Cardinality</b></em>' containment reference.
@@ -696,7 +696,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__ACTOR_CARDINALITY = RELATIONSHIP_FEATURE_COUNT + 3;
+    int ASSOCIATION__ACTOR_CARDINALITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Use Case Cardinality</b></em>' containment reference.
@@ -705,7 +705,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION__USE_CASE_CARDINALITY = RELATIONSHIP_FEATURE_COUNT + 4;
+    int ASSOCIATION__USE_CASE_CARDINALITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Association</em>' class.
@@ -714,7 +714,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION_FEATURE_COUNT = RELATIONSHIP_FEATURE_COUNT + 5;
+    int ASSOCIATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -723,7 +723,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION___GET_NEAREST_PACKAGE = RELATIONSHIP___GET_NEAREST_PACKAGE;
+    int ASSOCIATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Association</em>' class.
@@ -732,7 +732,7 @@ public interface UsecasePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSOCIATION_OPERATION_COUNT = RELATIONSHIP_OPERATION_COUNT + 0;
+    int ASSOCIATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.GeneralizationImpl <em>Generalization</em>}' class.

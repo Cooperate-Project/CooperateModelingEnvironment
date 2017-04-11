@@ -4,10 +4,10 @@ package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Classifier;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getUsecases <em>Usecases</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.SystemImpl#getPackage <em>Package</em>}</li>
@@ -42,7 +42,17 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @generated
  */
-public class SystemImpl extends NamedElementImpl implements de.cooperateproject.modeling.textual.usecase.usecase.System {
+public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements de.cooperateproject.modeling.textual.usecase.usecase.System {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -65,28 +75,30 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public Classifier getReferencedElement() {
-        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Classifier basicGetReferencedElement() {
-        return (Classifier)eDynamicGet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @Override
     public void setReferencedElement(Classifier newReferencedElement) {
-        eDynamicSet(UsecasePackage.SYSTEM__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+        super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(UsecasePackage.SYSTEM__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(UsecasePackage.SYSTEM__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
     /**
@@ -198,9 +210,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case UsecasePackage.SYSTEM__NAME:
+                return getName();
             case UsecasePackage.SYSTEM__COMMENTS:
                 return getComments();
             case UsecasePackage.SYSTEM__USECASES:
@@ -220,8 +231,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-                setReferencedElement((Classifier)newValue);
+            case UsecasePackage.SYSTEM__NAME:
+                setName((String)newValue);
                 return;
             case UsecasePackage.SYSTEM__COMMENTS:
                 getComments().clear();
@@ -246,8 +257,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-                setReferencedElement((Classifier)null);
+            case UsecasePackage.SYSTEM__NAME:
+                setName(NAME_EDEFAULT);
                 return;
             case UsecasePackage.SYSTEM__COMMENTS:
                 getComments().clear();
@@ -270,8 +281,8 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case UsecasePackage.SYSTEM__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case UsecasePackage.SYSTEM__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case UsecasePackage.SYSTEM__COMMENTS:
                 return !getComments().isEmpty();
             case UsecasePackage.SYSTEM__USECASES:
@@ -289,9 +300,9 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.SYSTEM__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.SYSTEM__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
             }
         }
@@ -311,9 +322,9 @@ public class SystemImpl extends NamedElementImpl implements de.cooperateproject.
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.SYSTEM__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return UsecasePackage.SYSTEM__NAME;
                 default: return -1;
             }
         }

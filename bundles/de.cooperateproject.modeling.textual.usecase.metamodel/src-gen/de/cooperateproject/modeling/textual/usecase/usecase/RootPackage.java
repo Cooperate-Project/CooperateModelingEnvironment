@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RootPackage extends NamedElement, UMLReferencingElement<org.eclipse.uml2.uml.Package> {
+public interface RootPackage extends UMLReferencingElement<org.eclipse.uml2.uml.Package>, NamedElement {
     /**
      * Returns the value of the '<em><b>Actors</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.Actor}.

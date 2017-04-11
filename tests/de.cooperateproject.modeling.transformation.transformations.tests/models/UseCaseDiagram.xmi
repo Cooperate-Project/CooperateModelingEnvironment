@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <usecase:UseCaseDiagram xmi:version="2.0"
 	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:usecase="http://www.cooperateproject.de/modeling/language/usecase/Usecase"
+	xmlns:usecase="http://www.cooperateproject.de/modeling/textual/usecase/Usecase"
 	xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
 	title="UseCase Diagram">
 	<rootPackage name="RootElement">

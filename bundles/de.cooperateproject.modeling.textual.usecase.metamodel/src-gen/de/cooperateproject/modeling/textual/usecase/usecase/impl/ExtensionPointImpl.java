@@ -2,12 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
-import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
@@ -15,6 +15,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.uml2.uml.ExtensionPoint;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,13 +26,34 @@ import org.eclipse.emf.ecore.InternalEObject;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtensionPointImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtensionPointImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtensionPointImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.ExtensionPointImpl#getUseCase <em>Use Case</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionPoint {
+public class ExtensionPointImpl extends UMLReferencingElementImpl<ExtensionPoint> implements de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
+    protected static final String ALIAS_EDEFAULT = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -53,10 +76,12 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public org.eclipse.uml2.uml.ExtensionPoint getReferencedElement() {
-        return (org.eclipse.uml2.uml.ExtensionPoint)eDynamicGet(UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    @Override
+    public void setReferencedElement(ExtensionPoint newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
     }
 
     /**
@@ -64,8 +89,8 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
      * <!-- end-user-doc -->
      * @generated
      */
-    public org.eclipse.uml2.uml.ExtensionPoint basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.ExtensionPoint)eDynamicGet(UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public String getName() {
+        return (String)eDynamicGet(UsecasePackage.EXTENSION_POINT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
     }
 
     /**
@@ -73,8 +98,26 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReferencedElement(org.eclipse.uml2.uml.ExtensionPoint newReferencedElement) {
-        eDynamicSet(UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public void setName(String newName) {
+        eDynamicSet(UsecasePackage.EXTENSION_POINT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getAlias() {
+        return (String)eDynamicGet(UsecasePackage.EXTENSION_POINT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAlias(String newAlias) {
+        eDynamicSet(UsecasePackage.EXTENSION_POINT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
     }
 
     /**
@@ -157,9 +200,10 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case UsecasePackage.EXTENSION_POINT__NAME:
+                return getName();
+            case UsecasePackage.EXTENSION_POINT__ALIAS:
+                return getAlias();
             case UsecasePackage.EXTENSION_POINT__USE_CASE:
                 return getUseCase();
         }
@@ -174,8 +218,11 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.ExtensionPoint)newValue);
+            case UsecasePackage.EXTENSION_POINT__NAME:
+                setName((String)newValue);
+                return;
+            case UsecasePackage.EXTENSION_POINT__ALIAS:
+                setAlias((String)newValue);
                 return;
             case UsecasePackage.EXTENSION_POINT__USE_CASE:
                 setUseCase((UseCase)newValue);
@@ -192,8 +239,11 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.ExtensionPoint)null);
+            case UsecasePackage.EXTENSION_POINT__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case UsecasePackage.EXTENSION_POINT__ALIAS:
+                setAlias(ALIAS_EDEFAULT);
                 return;
             case UsecasePackage.EXTENSION_POINT__USE_CASE:
                 setUseCase((UseCase)null);
@@ -210,8 +260,10 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case UsecasePackage.EXTENSION_POINT__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case UsecasePackage.EXTENSION_POINT__ALIAS:
+                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case UsecasePackage.EXTENSION_POINT__USE_CASE:
                 return getUseCase() != null;
         }
@@ -225,9 +277,15 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.EXTENSION_POINT__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.EXTENSION_POINT__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
                 default: return -1;
             }
         }
@@ -241,9 +299,15 @@ public class ExtensionPointImpl extends AliasedElementImpl implements ExtensionP
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.EXTENSION_POINT__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return UsecasePackage.EXTENSION_POINT__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return UsecasePackage.EXTENSION_POINT__ALIAS;
                 default: return -1;
             }
         }

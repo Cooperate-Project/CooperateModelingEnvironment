@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.QualifiedName;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.DynamicTextualCommonsSwitch;
 
-public class QualifiedNameGenerator extends TextualCommonsSwitch<String> {
+public class QualifiedNameGenerator extends DynamicTextualCommonsSwitch<String> {
 
     private static final QualifiedNameGenerator QUALIFIED_NAME_GENERATOR = new QualifiedNameGenerator();
 

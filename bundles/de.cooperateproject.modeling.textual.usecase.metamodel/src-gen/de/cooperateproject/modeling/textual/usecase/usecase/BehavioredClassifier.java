@@ -15,5 +15,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface BehavioredClassifier<T extends org.eclipse.uml2.uml.BehavioredClassifier> extends Commentable, UMLReferencingElement<T> {
+public interface BehavioredClassifier<T extends org.eclipse.uml2.uml.BehavioredClassifier> extends UMLReferencingElement<T>, Commentable {
 } // BehavioredClassifier

@@ -23,7 +23,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visi
  * @model
  * @generated
  */
-public interface Actor extends AliasedElement, BehavioredClassifier<org.eclipse.uml2.uml.Actor> {
+public interface Actor extends BehavioredClassifier<org.eclipse.uml2.uml.Actor>, AliasedElement {
     /**
      * Returns the value of the '<em><b>Visibility</b></em>' attribute.
      * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.

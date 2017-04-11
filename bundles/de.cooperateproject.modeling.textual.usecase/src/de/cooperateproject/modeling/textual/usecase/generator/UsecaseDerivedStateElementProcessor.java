@@ -35,9 +35,8 @@ public class UsecaseDerivedStateElementProcessor extends UsecaseSwitch<Optional<
             return Optional.empty();
         }
 
-        Set<org.eclipse.uml2.uml.Extend> candidates = umlExtension.getExtends().stream().filter(
-                e -> e.getExtendedCase() == umlExtendedCase && e.getExtensionLocations().contains(umlExtensionPoint))
-                .collect(Collectors.toSet());
+        Set<org.eclipse.uml2.uml.Extend> candidates = umlExtension.getExtends().stream()
+                .filter(e -> e.getExtensionLocations().contains(umlExtensionPoint)).collect(Collectors.toSet());
         if (candidates.size() == 1) {
             object.setReferencedElement(candidates.iterator().next());
             return Optional.empty();

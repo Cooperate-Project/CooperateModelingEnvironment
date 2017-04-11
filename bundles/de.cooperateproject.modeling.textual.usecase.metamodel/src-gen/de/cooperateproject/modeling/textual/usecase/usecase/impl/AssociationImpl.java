@@ -3,13 +3,10 @@
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
-import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
@@ -17,6 +14,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.uml2.uml.Association;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,6 @@ import org.eclipse.emf.ecore.InternalEObject;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getActor <em>Actor</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getUsecase <em>Usecase</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.AssociationImpl#getActorCardinality <em>Actor Cardinality</em>}</li>
@@ -35,7 +33,7 @@ import org.eclipse.emf.ecore.InternalEObject;
  *
  * @generated
  */
-public class AssociationImpl extends ElementImpl implements Association {
+public class AssociationImpl extends UMLReferencingElementImpl<Association> implements de.cooperateproject.modeling.textual.usecase.usecase.Association {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -58,28 +56,12 @@ public class AssociationImpl extends ElementImpl implements Association {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public org.eclipse.uml2.uml.Association getReferencedElement() {
-        return (org.eclipse.uml2.uml.Association)eDynamicGet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public org.eclipse.uml2.uml.Association basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.Association)eDynamicGet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setReferencedElement(org.eclipse.uml2.uml.Association newReferencedElement) {
-        eDynamicSet(UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    @Override
+    public void setReferencedElement(Association newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
     }
 
     /**
@@ -216,9 +198,6 @@ public class AssociationImpl extends ElementImpl implements Association {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
             case UsecasePackage.ASSOCIATION__ACTOR:
                 if (resolve) return getActor();
                 return basicGetActor();
@@ -241,9 +220,6 @@ public class AssociationImpl extends ElementImpl implements Association {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.Association)newValue);
-                return;
             case UsecasePackage.ASSOCIATION__ACTOR:
                 setActor((Actor)newValue);
                 return;
@@ -268,9 +244,6 @@ public class AssociationImpl extends ElementImpl implements Association {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.Association)null);
-                return;
             case UsecasePackage.ASSOCIATION__ACTOR:
                 setActor((Actor)null);
                 return;
@@ -295,8 +268,6 @@ public class AssociationImpl extends ElementImpl implements Association {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
             case UsecasePackage.ASSOCIATION__ACTOR:
                 return basicGetActor() != null;
             case UsecasePackage.ASSOCIATION__USECASE:
@@ -307,38 +278,6 @@ public class AssociationImpl extends ElementImpl implements Association {
                 return getUseCaseCardinality() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
-            switch (derivedFeatureID) {
-                case UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ASSOCIATION__REFERENCED_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //AssociationImpl
