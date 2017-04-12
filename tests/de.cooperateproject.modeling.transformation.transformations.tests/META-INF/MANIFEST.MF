@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tests
+Bundle-Name: Transformations Tests
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.transformations.tests
 Bundle-Version: 0.1.7.qualifier
 Fragment-Host: de.cooperateproject.modeling.transformation.transformations;bundle-version="0.1.7"

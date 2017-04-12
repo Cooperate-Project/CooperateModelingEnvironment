@@ -73,5 +73,5 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule implements CommonDerived
     override Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
 		TextualStateCalculator;
 	}
-	
+
 }

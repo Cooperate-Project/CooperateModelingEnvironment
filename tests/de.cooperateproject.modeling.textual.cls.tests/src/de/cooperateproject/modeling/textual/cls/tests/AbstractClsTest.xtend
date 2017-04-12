@@ -20,7 +20,7 @@ public abstract class AbstractClsTest {
 
 	@After
 	def void tearDown() {
-		if (rs != null) {
+		if (rs !== null) {
 			rs.resources.forEach[r|r.unload]
 		}
 		rs = null

@@ -25,7 +25,7 @@ mapping notation::Diagram::diagramToRootPackage() : cls::Package {
 
 	referencedElement := self.element.oclAsType(uml::Package);
 	
-	name := self.element.oclAsType(uml::Package).name;	
+	name := self.element.oclAsType(uml::Package).getFullyQualifiedName();	
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier(self.edges);
 	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
 	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
@@ -405,4 +405,9 @@ query uml::AggregationKind::convert() : cls::AggregationKind {
 	};
 	assert error (false) with log('Could not convert UML aggregation kind.', self);
 	return null;
+}
+
+query uml::NamedElement::getFullyQualifiedName() : String
+{
+	return self.getQualifiedName().replaceAll(self.separator(), ".")
 }

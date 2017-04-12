@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CDO UI Integration
+Bundle-Name: Cooperate UI
 Bundle-SymbolicName: de.cooperateproject.ui;singleton:=true
 Bundle-Version: 0.1.7.qualifier
 Bundle-Activator: de.cooperateproject.ui.Activator

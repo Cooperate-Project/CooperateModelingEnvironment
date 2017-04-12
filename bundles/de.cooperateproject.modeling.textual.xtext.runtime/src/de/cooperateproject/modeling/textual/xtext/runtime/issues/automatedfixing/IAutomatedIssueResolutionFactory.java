@@ -1,9 +1,10 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
-@FunctionalInterface
-public interface IAutomatedIssueResolutionFactory<T extends EObject> {
+public interface IAutomatedIssueResolutionFactory {
 
     public static class CreationException extends Exception {
 
@@ -15,6 +16,20 @@ public interface IAutomatedIssueResolutionFactory<T extends EObject> {
 
     }
 
-    public IAutomatedIssueResolution create(T element) throws CreationException;
+    public IAutomatedIssueResolution create(EObject element) throws CreationException;
+
+    public boolean hasIssue(EObject element);
+
+    public boolean resolvePossible(EObject element);
+
+    public EPackage getSupportedEPackage();
+
+    public String getIssueID();
+
+    public String getResolutionName(EObject element);
+
+    public String getIssueDescription(EObject element);
+
+    public EStructuralFeature getIssueFeature(EObject element);
 
 }

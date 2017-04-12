@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Engine
+Bundle-Name: Transformation Engine
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.engine
 Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

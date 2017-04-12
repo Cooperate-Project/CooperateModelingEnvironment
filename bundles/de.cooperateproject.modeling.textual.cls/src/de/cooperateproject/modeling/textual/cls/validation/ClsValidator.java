@@ -9,107 +9,43 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.xtext.validation.Check;
 
-import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
-import de.cooperateproject.modeling.textual.cls.cls.Attribute;
-import de.cooperateproject.modeling.textual.cls.cls.Class;
+import com.google.inject.Inject;
+
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
-import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-import de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleName;
-import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheck;
-import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifier;
-import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifier;
-import de.cooperateproject.modeling.textual.cls.issues.ClsUMLReferencingElementMissingElement;
-import de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheck;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
 /**
  * Cls-validator for the editor.
  */
 public class ClsValidator extends AbstractClsValidator {
 
-    private static final Switch<EStructuralFeature> MISSING_REFERENCE_FEATURE_SWITCH = new UMLReferencingElementFeatureSwitch();
+    private static final String NOT_AN_INTERFACE = "not_an_interface";
+    private static final String NOT_A_CLASS = "not_a_class";
+    private static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
+    private static final String ROLE_NAMES_AMBIGOUS = "role_names_ambigous";
+
+    @Inject
+    @SuppressWarnings("unused")
+    private ICooperateAutomatedValidator automatedValidator;
+
+    @Inject
+    private IIssueCodeRegistry issueCodeRegistry;
 
     @Check
-    private void checkUMLMissingReferencedElement(UMLReferencingElement<Element> referencingElement) {
-        if (ClsUMLReferencingElementMissingElement.hasIssue(referencingElement)) {
-            info("The element is not available in UML. It will be created when saving.",
-                    MISSING_REFERENCE_FEATURE_SWITCH.doSwitch(referencingElement),
-                    ClsUMLReferencingElementMissingElement.MISSING_UML_REFERENCE);
-        }
-    }
-
-    @Check
-    private void checkAssociationRoleNames(AssociationMemberEnd memberEnd) {
-        if (ClsAssociationMemberEndRoleName.hasIssues(memberEnd)) {
-            info("The used role name is different to the previously used one. "
-                    + "The previously used one will be updated when saving.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsAssociationMemberEndRoleName.ISSUE_CODE);
-        }
-    }
-
-    @Check
-    private void checkCorrectPropertyQualifier(Class property) {
-        if (ClsPropertyAbstractQualifier.hasIssues(property)) {
-            info("Wrong abstract Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyAbstractQualifier.ISSUE_CODE);
-        }
-    }
-
-    @Check
-    private void checkCorrectPropertyQualifier(Method property) {
-        if (ClsPropertyAbstractQualifier.hasIssues(property)) {
-            info("Wrong abstract Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyAbstractQualifier.ISSUE_CODE);
-        }
-
-        if (ClsPropertyStaticQualifier.hasIssues(property)) {
-            info("Wrong static Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyStaticQualifier.ISSUE_CODE);
-        }
-    }
-
-    @Check
-    private void checkCorrectPropertyQualifier(Attribute property) {
-        if (ClsPropertyStaticQualifier.hasIssues(property)) {
-            info("Wrong static Qualifier. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsPropertyStaticQualifier.ISSUE_CODE);
-        }
-    }
-
-    @Check
-    private void checkCardinality(AssociationMemberEnd memberEnd) {
-        if (ClsCardinalityCheck.hasIssues(memberEnd)) {
-            info("Wrong cardinality. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsCardinalityCheck.ISSUE_CODE);
-        }
-    }
-
-    @Check
-    private void checkCorrectClassifierType(Class classifier) {
+    private void checkCorrectClassifierType(de.cooperateproject.modeling.textual.cls.cls.Class classifier) {
         Element element = classifier.getReferencedElement();
         if (element != null && !(element instanceof org.eclipse.uml2.uml.Class)) {
             error(classifier.getName() + " should be an interface but it's not!",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsValidatorConstants.NOT_A_CLASS);
-        }
-    }
-
-    @Check
-    private void checkCorrectVisibility(Class classifier) {
-        if (ClsVisibilityCheck.hasIssues(classifier)) {
-            info("Wrong visibility. The old one will be overwritten.",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsVisibilityCheck.ISSUE_CODE);
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NOT_A_CLASS);
         }
     }
 
@@ -118,7 +54,7 @@ public class ClsValidator extends AbstractClsValidator {
         Element element = classifier.getReferencedElement();
         if (element != null && !(element instanceof org.eclipse.uml2.uml.Interface)) {
             error(classifier.getName() + " should be a class but it's not!",
-                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, ClsValidatorConstants.NOT_AN_INTERFACE);
+                    TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NOT_AN_INTERFACE);
         }
     }
 
@@ -146,15 +82,13 @@ public class ClsValidator extends AbstractClsValidator {
             int maxIndex = duplicatedIndices.stream().max(Integer::compare).get();
             if (asc.getMemberEndNames().size() <= maxIndex) {
                 error("Not enough role names given to distinguish the involved association participants unambiguously!",
-                        ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
-                        ClsValidatorConstants.NOT_ENOUGH_ROLE_NAMES);
+                        ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES, NOT_ENOUGH_ROLE_NAMES);
             } else {
                 Set<String> roleNames = duplicatedIndices.stream().map(i -> asc.getMemberEndNames().get(i))
                         .collect(Collectors.toSet());
                 if (roleNames.size() != duplicatedIndices.size()) {
                     error("Role names for the same type have to be unambiguous!",
-                            ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
-                            ClsValidatorConstants.NOT_ENOUGH_ROLE_NAMES);
+                            ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES, NOT_ENOUGH_ROLE_NAMES);
                 }
             }
 
@@ -162,26 +96,11 @@ public class ClsValidator extends AbstractClsValidator {
 
     }
 
-    private void info(String message, EStructuralFeature feature, String code) {
-        info(message, feature, code, new String[0]);
-    }
-
     private void error(String message, EStructuralFeature feature, String code) {
+        if (!issueCodeRegistry.hasIssueCode(code)) {
+            issueCodeRegistry.registerIssueCode(code);
+        }
         error(message, feature, code, new String[0]);
-    }
-
-    private static class UMLReferencingElementFeatureSwitch extends TextualCommonsSwitch<EStructuralFeature> {
-
-        @Override
-        public EStructuralFeature caseNamedElement(NamedElement object) {
-            return TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME;
-        }
-
-        @Override
-        public EStructuralFeature defaultCase(EObject object) {
-            return TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-        }
-
     }
 
 }

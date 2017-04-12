@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
-import de.cooperateproject.modeling.textual.common.convetions.FileExtensions;
-import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
+import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
+import de.cooperateproject.modeling.textual.common.conventions.ModelNamingConventions;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.LauncherFactory;
 import de.cooperateproject.ui.launchermodel.Launcher.util.LauncherResourceImpl;

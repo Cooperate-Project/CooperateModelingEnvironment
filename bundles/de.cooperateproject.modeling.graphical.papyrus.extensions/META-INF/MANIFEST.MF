@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Extensions
+Bundle-Name: Papyrus Extensions
 Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions;singleton:=true
 Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
