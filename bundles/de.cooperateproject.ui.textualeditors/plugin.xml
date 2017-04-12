@@ -7,26 +7,4 @@
             class="de.cooperateproject.ui.textualeditors.editorlauncher.TextualCDOEditorLauncherFactory">
       </provider>
    </extension>
-   <extension
-         point="de.cooperateproject.ui.focus.manager.factory">
-      <factory
-            factory="de.cooperateproject.ui.textualeditors.editorlauncher.FocusManagerTextualFactory">
-      </factory>
-   </extension>
-   <extension
-         point="org.eclipse.ui.bindings">
-      <key
-            commandId="de.cooperateproject.ui.focus.command.sendFocus"
-            contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="CTRL+ALT+F">
-      </key>
-      <key
-            commandId="de.cooperateproject.ui.focus.command.mute"
-            contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="CTRL+ALT+M">
-      </key>
-   </extension>
-
 </plugin>

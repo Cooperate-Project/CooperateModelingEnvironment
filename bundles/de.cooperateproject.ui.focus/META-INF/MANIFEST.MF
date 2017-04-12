@@ -4,14 +4,15 @@ Bundle-Name: Cooperate Focus Transfer
 Bundle-SymbolicName: de.cooperateproject.ui.focus;singleton:=true
 Bundle-Version: 0.1.7.qualifier
 Bundle-Activator: de.cooperateproject.ui.focus.Activator
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui.workbench.texteditor,
+Require-Bundle: de.cooperateproject.cdo.util,
+ de.cooperateproject.modeling.common,
  de.cooperateproject.util;bundle-version="0.1.5",
+ de.cooperateproject.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.workbench.texteditor,
  org.eclipse.ui.workbench,
- de.cooperateproject.cdo.util,
  org.apache.log4j;bundle-version="1.2.15",
  org.apache.activemq.all;bundle-version="5.14.3",
- de.cooperateproject.ui;bundle-version="0.1.7",
  org.eclipse.core.resources,
  org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.emf.edit,
@@ -19,8 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.databinding,
  org.eclipse.jface.databinding,
  org.eclipse.core.databinding.property;bundle-version="1.6.0",
- org.eclipse.uml2.uml;bundle-version="5.2.3",
- de.cooperateproject.modeling.common
+ org.eclipse.uml2.uml;bundle-version="5.2.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.ui.focus.filter,

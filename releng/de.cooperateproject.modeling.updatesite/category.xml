@@ -24,5 +24,8 @@
    <feature url="features/de.cooperateproject.modeling.textual.usecase.feature_0.1.7.qualifier.jar" id="de.cooperateproject.modeling.textual.usecase.feature" version="0.1.7.qualifier">
       <category name="modeling"/>
    </feature>
+   <feature url="features/de.cooperateproject.ui.focus.feature_0.1.7.qualifier.jar" id="de.cooperateproject.ui.focus.feature" version="0.1.7.qualifier">
+      <category name="modeling"/>
+   </feature>
    <category-def name="modeling" label="Cooperate Modeling Environment"/>
 </site>

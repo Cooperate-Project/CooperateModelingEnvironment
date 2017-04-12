@@ -14,7 +14,6 @@
 	<name>Bundle Modules</name>
 
 	<modules>
-		<module>de.cooperateproject.modeling.graphical.integration</module>
 		<module>de.cooperateproject.cdo.util</module>
 		<module>de.cooperateproject.modeling.common</module>
 		<module>de.cooperateproject.modeling.graphical.common</module>
@@ -35,6 +34,9 @@
 		<module>de.cooperateproject.modeling.transformation.transformations</module>
 		<module>de.cooperateproject.ui</module>
 		<module>de.cooperateproject.ui.focus</module>
+		<module>de.cooperateproject.ui.focus.papyrus</module>
+		<module>de.cooperateproject.ui.focus.textual</module>
+		<module>de.cooperateproject.ui.focus.textual.cls</module>
 		<module>de.cooperateproject.ui.launchermodel</module>
 		<module>de.cooperateproject.ui.papyrus</module>
 		<module>de.cooperateproject.ui.textualeditors</module>

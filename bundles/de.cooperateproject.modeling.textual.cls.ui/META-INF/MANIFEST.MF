@@ -27,8 +27,7 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  de.cooperateproject.modeling.common;bundle-version="0.1.7",
  de.cooperateproject.ui.preferences;bundle-version="0.1.7",
  de.cooperateproject.modeling.textual.common.metamodel,
- de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.1.7",
- de.cooperateproject.ui.focus;bundle-version="0.1.7"
+ de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.1.7"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls.ui.internal,
