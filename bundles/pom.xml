@@ -34,6 +34,7 @@
 		<module>de.cooperateproject.modeling.transformation.engine</module>
 		<module>de.cooperateproject.modeling.transformation.transformations</module>
 		<module>de.cooperateproject.ui</module>
+		<module>de.cooperateproject.ui.focus</module>
 		<module>de.cooperateproject.ui.launchermodel</module>
 		<module>de.cooperateproject.ui.papyrus</module>
 		<module>de.cooperateproject.ui.textualeditors</module>
