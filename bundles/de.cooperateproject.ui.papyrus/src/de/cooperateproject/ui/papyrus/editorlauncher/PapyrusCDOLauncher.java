@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -44,7 +45,7 @@ import de.cooperateproject.ui.util.EditorFinderUtil;
 
 public class PapyrusCDOLauncher extends EditorLauncher {
 
-    private static final String EDITOR_ID_GRAPHICAL = "org.eclipse.papyrus.infra.core.papyrusEditor";
+    private static final String EDITOR_ID_GRAPHICAL = PapyrusMultiDiagramEditor.EDITOR_ID;
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
     private static final Logger LOGGER = Logger.getLogger(PapyrusCDOLauncher.class);
 
@@ -158,7 +159,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
         segments[segments.length - 1] = launcherName;
         URI uriToLaunch = URI.createHierarchicalURI(originalUri.scheme(), originalUri.authority(), originalUri.device(),
                 segments, originalUri.query(), originalUri.fragment());
-        return new URIEditorInput(uriToLaunch);
+        return new CooperateURIEditorInput(uriToLaunch, getLauncherFile());
     }
 
     private Resource createPlainResource(EObject rootElement) {

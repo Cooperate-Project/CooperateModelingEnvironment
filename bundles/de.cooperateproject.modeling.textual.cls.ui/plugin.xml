@@ -420,5 +420,17 @@
          class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.cls.ui.cdoxtext.ClsMatchEngineFactory"
          ranking="20">
    </engineFactory>
-   </extension>	
+   </extension>
+ <extension
+       point="de.cooperateproject.ui.focus.filter.elementfilter">
+    <class
+          class="de.cooperateproject.modeling.textual.cls.ui.focustransfer.ClsElementFilter">
+    </class>
+ </extension>
+ <extension
+       point="de.cooperateproject.ui.focus.filter.elementfilter">
+    <class
+          class="de.cooperateproject.modeling.textual.cls.ui.ElementFilterWithSubject1">
+    </class>
+ </extension>	
 </plugin>

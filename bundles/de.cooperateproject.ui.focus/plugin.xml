@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="de.cooperateproject.ui.focus.manager.factory" name="FocusManagerFactory" schema="schema/de.cooperateproject.ui.focus.manager.factory.exsd"/>
+   <extension-point id="de.cooperateproject.ui.focus.filter.elementfilter" name="ElementFilter" schema="schema/de.cooperateproject.ui.focus.filter.elementfilter.exsd"/>
 
    <extension
          point="org.eclipse.ui.views">
@@ -9,67 +11,34 @@
             id="de.cooperateproject.ui.focus">
       </category>
       <view
-            name="Focus View"
-            icon="icons/sample.gif"
+            allowMultiple="false"
             category="de.cooperateproject.ui.focus"
-            class="de.cooperateproject.ui.focus.views.FocusView"
-            id="de.cooperateproject.ui.focus.views.FocusView">
+            class="de.cooperateproject.ui.focus.internal.views.FocusView"
+            icon="icons/sample.gif"
+            id="de.cooperateproject.ui.focus.views.FocusView"
+            name="Focus View">
       </view>
-   </extension>
-   
-    <extension point="org.eclipse.ui.startup">
-     <startup class="de.cooperateproject.ui.focus.StartManager"/>
    </extension>
    
    <extension point="org.eclipse.ui.commands">
    		<command name="Mute"
    		description="Mutes incoming focus requests/unsubscribes the topic."
    		id="de.cooperateproject.ui.focus.command.mute"/>
-	</extension>
-	
-	  <extension point="org.eclipse.ui.commands">
-   		<command name="Send focus"
-   		description="Sends a focus request."
-   		id="de.cooperateproject.ui.focus.command.sendFocus"/>
+     <command
+           description="Sends a focus request."
+           id="de.cooperateproject.ui.focus.command.sendFocus"
+           name="Send focus">
+     </command>
+	</extension>  
+   
+
+	<extension point="org.eclipse.ui.handlers">
+   		<handler class="de.cooperateproject.ui.focus.internal.handlers.FocusHandler"
+   		commandId="de.cooperateproject.ui.focus.command.sendFocus"/>
+     <handler
+           class="de.cooperateproject.ui.focus.internal.handlers.MuteHandler"
+           commandId="de.cooperateproject.ui.focus.command.mute">
+     </handler>
 	</extension>
 
-   <extension point="org.eclipse.ui.bindings">
-           <key commandId="de.cooperateproject.ui.focus.command.mute"
-               sequence="CTRL+ALT+M"
-               contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-   </extension>
-   
-   <extension point="org.eclipse.ui.bindings">
-           <key commandId="de.cooperateproject.ui.focus.command.mute"
-               sequence="CTRL+ALT+M"
-               contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
-               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-   </extension>
-   
-   <extension point="org.eclipse.ui.bindings">
-           <key commandId="de.cooperateproject.ui.focus.command.sendFocus"
-               sequence="CTRL+ALT+F"
-               contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-   </extension>
-   
-   <extension point="org.eclipse.ui.bindings">
-           <key commandId="de.cooperateproject.ui.focus.command.sendFocus"
-               sequence="CTRL+ALT+F"
-               contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
-               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-   </extension>
-   
-	<extension point="org.eclipse.ui.handlers">
-   		<handler class="de.cooperateproject.ui.focus.handlers.MuteHandler"
-   		commandId="de.cooperateproject.ui.focus.command.mute"/>
-	</extension>
-	
-	<extension point="org.eclipse.ui.handlers">
-   		<handler class="de.cooperateproject.ui.focus.handlers.FocusHandler"
-   		commandId="de.cooperateproject.ui.focus.command.sendFocus"/>
-	</extension>
-       
-       
 </plugin>

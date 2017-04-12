@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.focus.labeling;
+package de.cooperateproject.ui.focus.internal.history;
 
 import org.eclipse.emf.ecore.EObject;
 

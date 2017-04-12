@@ -14,4 +14,25 @@
             scheme="cdo.checkout">
       </sashModelProvider>
    </extension>
+   <extension
+         point="de.cooperateproject.ui.focus.manager.factory">
+      <factory
+            factory="de.cooperateproject.ui.papyrus.editorlauncher.FocusManagerGraphicalFactory">
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="de.cooperateproject.ui.focus.command.sendFocus"
+            contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+F">
+      </key>
+      <key
+            commandId="de.cooperateproject.ui.focus.command.mute"
+            contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+ALT+M">
+      </key>
+   </extension>
 </plugin>

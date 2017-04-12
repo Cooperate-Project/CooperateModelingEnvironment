@@ -8,14 +8,24 @@ import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 public class CooperateURIEditorInput extends URIEditorInput implements ILauncherFileEditorInput {
 
-	private final IFile launcherFile;
-	
-	public CooperateURIEditorInput(URI uri, IFile launcherFile) {
-		super(uri);
-		this.launcherFile = launcherFile;
-	}
+    private final IFile launcherFile;
 
-	@Override
-	public IFile getAssociatedLauncherFile() {
-		return launcherFile;
-	}}
+    public CooperateURIEditorInput(URI uri, IFile launcherFile) {
+        super(uri);
+        this.launcherFile = launcherFile;
+    }
+
+    @Override
+    public IFile getAssociatedLauncherFile() {
+        return launcherFile;
+    }
+
+    @Override
+    public Object getAdapter(Class adapter) {
+        if (adapter == ILauncherFileEditorInput.class) {
+            return this;
+        }
+        return super.getAdapter(adapter);
+    }
+
+}

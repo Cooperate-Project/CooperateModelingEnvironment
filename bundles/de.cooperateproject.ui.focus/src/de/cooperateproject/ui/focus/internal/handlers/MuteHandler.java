@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.focus.handlers;
+package de.cooperateproject.ui.focus.internal.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -7,14 +7,14 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import de.cooperateproject.ui.focus.views.FocusView;
+import de.cooperateproject.ui.focus.internal.views.FocusView;
 
 /**
- * Handler for sending a focus request.
+ * Handler for muting all incoming focus requests.
  * @author Jasmin
  *
  */
-public class FocusHandler extends AbstractHandler {
+public class MuteHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -25,7 +25,8 @@ public class FocusHandler extends AbstractHandler {
 		focusView = (FocusView) page.findView(FocusView.ID);
 
 		if (focusView != null) {
-			focusView.sendFocusRequest();
+			focusView.hitMuteButton();
+
 		}
 		return null;
 	}
