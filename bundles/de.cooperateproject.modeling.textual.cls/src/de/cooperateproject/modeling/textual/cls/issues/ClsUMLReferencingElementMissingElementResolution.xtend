@@ -5,7 +5,6 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
@@ -15,6 +14,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.uml2.uml.Element
@@ -26,7 +26,6 @@ import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 
 class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -86,9 +85,7 @@ class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		val commentedElement = element.commentedElement
 		var Element umlCommentedElement = null
 
-		if (commentedElement instanceof CommentLink) {
-			umlCommentedElement = commentedElement.commentedElement.referencedElement
-		} else if (commentedElement instanceof UMLReferencingElement) {
+		if (commentedElement instanceof UMLReferencingElement) {
 			umlCommentedElement = commentedElement.referencedElement
 		}
 		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()

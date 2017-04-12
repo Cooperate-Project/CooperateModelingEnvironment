@@ -4,9 +4,9 @@
 package de.cooperateproject.modeling.textual.usecase.ide
 
 import com.google.inject.Guice
-import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule
-import de.cooperateproject.modeling.textual.usecase.UsecaseStandaloneSetup
 import org.eclipse.xtext.util.Modules2
+import de.cooperateproject.modeling.textual.usecase.UsecaseStandaloneSetup
+import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule
 
 /**
  * Initialization support for running Xtext languages as language servers.

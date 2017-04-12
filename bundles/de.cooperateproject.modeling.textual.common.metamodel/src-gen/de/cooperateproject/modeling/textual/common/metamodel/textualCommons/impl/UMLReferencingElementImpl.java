@@ -4,7 +4,9 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.uml2.uml.Element;
 
 /**

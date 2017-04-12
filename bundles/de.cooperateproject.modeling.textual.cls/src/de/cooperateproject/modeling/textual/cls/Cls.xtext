@@ -60,14 +60,15 @@ Classifier:
 
 Class:
 	visibility=Visibility? (abstract ?= 'abstract')? 'class'
-	((name=STRING 'as' alias = ID)|name = ID)
-	('{' (members += Member)* '}')?
+	((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? |
+		(('{' (comments+=Comment)? (members += Member)* '}')))
+	
 ;
 
 Interface:
 	visibility=Visibility? 'interface'
-	((name=STRING 'as' alias = ID)|name = ID)
-	('{' (members += Member)* '}')?
+	((name=STRING 'as' alias = ID)|name = ID)( (comments+=Comment)? |
+		(('{' (comments+=Comment)? (members += Member)* '}')))
 ;
 
 Member: 
@@ -103,7 +104,6 @@ Connector:
 	Generalization 
 	| XtextAssociation
 	| Implementation
-	| CommentLink
 ;
 
 
@@ -115,9 +115,6 @@ Implementation:
 	'impl' '(' left = [Classifier|FQN] ',' right = [Classifier|FQN] ')'
 ;
 
-CommentLink: 
-	comments+=Comment commentedElement = [Classifier|FQN]
-;
 
 XtextAssociation:
 	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind

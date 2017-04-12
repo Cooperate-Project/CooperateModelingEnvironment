@@ -3,15 +3,11 @@
   <rootPackage name="RootElement">
     <referencedElement xsi:type="uml:Model" href="ClassDiagramClassNote.uml#_AvM_AA11EeeHpu4pMbT6JQ"/>
       <classifiers xsi:type="cls:Class" name="Toy">
-        <referencedElement xsi:type="uml:Class" href="ClassDiagramClassNote.uml#_DOYXMA11EeeHpu4pMbT6JQ"/>
-      </classifiers>
-    <connectors
-        xsi:type="cls:CommentLink"
-        commentedElement="//@rootPackage/@classifiers.0">
       <comments
           body="Children often do like them more than clothes.">
           <referencedElement xsi:type="uml:Comment" href="ClassDiagramClassNote.uml#_EALAgA11EeeHpu4pMbT6JQ"/>
           </comments>
-    </connectors> 
+        <referencedElement xsi:type="uml:Class" href="ClassDiagramClassNote.uml#_DOYXMA11EeeHpu4pMbT6JQ"/>
+      </classifiers> 
   </rootPackage>
 </cls:ClassDiagram>

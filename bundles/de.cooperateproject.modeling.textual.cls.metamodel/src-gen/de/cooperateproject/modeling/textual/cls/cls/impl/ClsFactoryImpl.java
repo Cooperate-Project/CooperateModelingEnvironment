@@ -8,15 +8,14 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -79,7 +78,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
             case ClsPackage.PARAMETER: return (EObject)createParameter();
             case ClsPackage.GENERALIZATION: return (EObject)createGeneralization();
             case ClsPackage.IMPLEMENTATION: return (EObject)createImplementation();
-            case ClsPackage.COMMENT_LINK: return (EObject)createCommentLink();
             case ClsPackage.ASSOCIATION_MEMBER_END: return (EObject)createAssociationMemberEnd();
             case ClsPackage.XTEXT_ASSOCIATION: return (EObject)createXtextAssociation();
             case ClsPackage.XTEXT_ASSOCIATION_MEMBER_END_REFERENCED_TYPE: return (EObject)createXtextAssociationMemberEndReferencedType();
@@ -206,16 +204,6 @@ public class ClsFactoryImpl extends EFactoryImpl implements ClsFactory {
     public Implementation createImplementation() {
         ImplementationImpl implementation = new ImplementationImpl();
         return implementation;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public CommentLink createCommentLink() {
-        CommentLinkImpl commentLink = new CommentLinkImpl();
-        return commentLink;
     }
 
     /**

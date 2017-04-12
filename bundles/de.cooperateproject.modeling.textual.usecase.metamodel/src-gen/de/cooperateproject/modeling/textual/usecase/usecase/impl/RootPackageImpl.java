@@ -2,10 +2,14 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
@@ -28,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getActors <em>Actors</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getSystems <em>Systems</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.impl.RootPackageImpl#getRelationships <em>Relationships</em>}</li>
@@ -37,119 +41,131 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class RootPackageImpl extends NamedElementImpl implements RootPackage {
-	/**
+public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.uml.Package> implements RootPackage {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected RootPackageImpl() {
+    protected RootPackageImpl() {
         super();
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	protected EClass eStaticClass() {
+    @Override
+    protected EClass eStaticClass() {
         return UsecasePackage.Literals.ROOT_PACKAGE;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-	public org.eclipse.uml2.uml.Package getReferencedElement() {
-        return (org.eclipse.uml2.uml.Package)eDynamicGet(UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    @Override
+    public void setReferencedElement(org.eclipse.uml2.uml.Package newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Package basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.Package)eDynamicGet(UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public String getName() {
+        return (String)eDynamicGet(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setReferencedElement(org.eclipse.uml2.uml.Package newReferencedElement) {
-        eDynamicSet(UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public void setName(String newName) {
+        eDynamicSet(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	public EList<Actor> getActors() {
+    @SuppressWarnings("unchecked")
+    public EList<Actor> getActors() {
         return (EList<Actor>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__ACTORS, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	public EList<de.cooperateproject.modeling.textual.usecase.usecase.System> getSystems() {
+    @SuppressWarnings("unchecked")
+    public EList<de.cooperateproject.modeling.textual.usecase.usecase.System> getSystems() {
         return (EList<de.cooperateproject.modeling.textual.usecase.usecase.System>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__SYSTEMS, UsecasePackage.Literals.ROOT_PACKAGE__SYSTEMS, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	public EList<Relationship> getRelationships() {
+    @SuppressWarnings("unchecked")
+    public EList<Relationship> getRelationships() {
         return (EList<Relationship>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__RELATIONSHIPS, UsecasePackage.Literals.ROOT_PACKAGE__RELATIONSHIPS, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public UseCaseDiagram getDiagram() {
+    public UseCaseDiagram getDiagram() {
         return (UseCaseDiagram)eDynamicGet(UsecasePackage.ROOT_PACKAGE__DIAGRAM, UsecasePackage.Literals.ROOT_PACKAGE__DIAGRAM, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public NotificationChain basicSetDiagram(UseCaseDiagram newDiagram, NotificationChain msgs) {
+    public NotificationChain basicSetDiagram(UseCaseDiagram newDiagram, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newDiagram, UsecasePackage.ROOT_PACKAGE__DIAGRAM, msgs);
         return msgs;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setDiagram(UseCaseDiagram newDiagram) {
+    public void setDiagram(UseCaseDiagram newDiagram) {
         eDynamicSet(UsecasePackage.ROOT_PACKAGE__DIAGRAM, UsecasePackage.Literals.ROOT_PACKAGE__DIAGRAM, newDiagram);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.ROOT_PACKAGE__SYSTEMS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getSystems()).basicAdd(otherEnd, msgs);
@@ -161,13 +177,13 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 return ((InternalEList<?>)getActors()).basicRemove(otherEnd, msgs);
@@ -181,13 +197,13 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
             case UsecasePackage.ROOT_PACKAGE__DIAGRAM:
                 return eInternalContainer().eInverseRemove(this, UsecasePackage.USE_CASE_DIAGRAM__ROOT_PACKAGE, UseCaseDiagram.class, msgs);
@@ -195,17 +211,16 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case UsecasePackage.ROOT_PACKAGE__NAME:
+                return getName();
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 return getActors();
             case UsecasePackage.ROOT_PACKAGE__SYSTEMS:
@@ -218,17 +233,17 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.Package)newValue);
+            case UsecasePackage.ROOT_PACKAGE__NAME:
+                setName((String)newValue);
                 return;
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 getActors().clear();
@@ -249,16 +264,16 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.Package)null);
+            case UsecasePackage.ROOT_PACKAGE__NAME:
+                setName(NAME_EDEFAULT);
                 return;
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 getActors().clear();
@@ -276,16 +291,16 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case UsecasePackage.ROOT_PACKAGE__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 return !getActors().isEmpty();
             case UsecasePackage.ROOT_PACKAGE__SYSTEMS:
@@ -298,32 +313,32 @@ public class RootPackageImpl extends NamedElementImpl implements RootPackage {
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.ROOT_PACKAGE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
             }
         }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
-                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.ROOT_PACKAGE__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return UsecasePackage.ROOT_PACKAGE__NAME;
                 default: return -1;
             }
         }

@@ -1,17 +1,18 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
-import org.eclipse.uml2.uml.Element
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor
-import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
-import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
-import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
-import de.cooperateproject.modeling.textual.usecase.usecase.Extend
-import de.cooperateproject.modeling.textual.usecase.usecase.Include
-import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
 import de.cooperateproject.modeling.textual.usecase.usecase.Association
-import de.cooperateproject.modeling.textual.usecase.usecase.Comment
+import de.cooperateproject.modeling.textual.usecase.usecase.Extend
+import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
+import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
+import de.cooperateproject.modeling.textual.usecase.usecase.Include
+import de.cooperateproject.modeling.textual.usecase.usecase.System
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
+import org.eclipse.uml2.uml.Element
 
 import static extension de.cooperateproject.modeling.textual.usecase.issues.UsecaseIssueResolutionUtilities.*
 
@@ -25,7 +26,7 @@ class UsecaseUMLReferencingElementMissingElementChecker implements IResolvableCh
 		return element.hasValidRootPackageParent
 	}
 	
-	private def dispatch resolvePossible(de.cooperateproject.modeling.textual.usecase.usecase.System element) {
+	private def dispatch resolvePossible(System element) {
 		return element.hasValidRootPackageParent;	
 	}
 	

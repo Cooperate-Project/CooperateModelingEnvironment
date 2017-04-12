@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,61 +23,61 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * @model
  * @generated
  */
-public interface Actor extends AliasedElement, BehavioredClassifier<org.eclipse.uml2.uml.Actor> {
-	/**
+public interface Actor extends BehavioredClassifier<org.eclipse.uml2.uml.Actor>, AliasedElement {
+    /**
      * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-     * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.usecase.usecase.Visibility}.
+     * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Visibility
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
      * @see #setVisibility(Visibility)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getActor_Visibility()
      * @model required="true"
      * @generated
      */
-	Visibility getVisibility();
+    Visibility getVisibility();
 
-	/**
+    /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#getVisibility <em>Visibility</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Visibility
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
      * @see #getVisibility()
      * @generated
      */
-	void setVisibility(Visibility value);
+    void setVisibility(Visibility value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Abstract</b></em>' attribute.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Abstract</em>' attribute.
      * @see #setAbstract(boolean)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getActor_Abstract()
      * @model required="true"
      * @generated
      */
-	boolean isAbstract();
+    boolean isAbstract();
 
-	/**
+    /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#isAbstract <em>Abstract</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Abstract</em>' attribute.
      * @see #isAbstract()
      * @generated
      */
-	void setAbstract(boolean value);
+    void setAbstract(boolean value);
 
     /**
      * Returns the value of the '<em><b>Type</b></em>' attribute.

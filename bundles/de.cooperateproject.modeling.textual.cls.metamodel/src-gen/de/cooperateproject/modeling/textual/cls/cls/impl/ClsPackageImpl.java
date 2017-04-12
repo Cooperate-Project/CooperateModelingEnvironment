@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -21,8 +20,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -144,13 +143,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * @generated
      */
     private EClass implementationEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass commentLinkEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -571,24 +563,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCommentLink() {
-        return commentLinkEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCommentLink_CommentedElement() {
-        return (EReference)commentLinkEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getAssociation() {
         return associationEClass;
     }
@@ -832,9 +806,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
         implementationEClass = createEClass(IMPLEMENTATION);
 
-        commentLinkEClass = createEClass(COMMENT_LINK);
-        createEReference(commentLinkEClass, COMMENT_LINK__COMMENTED_ELEMENT);
-
         associationEClass = createEClass(ASSOCIATION);
         createEReference(associationEClass, ASSOCIATION__MEMBER_ENDS);
 
@@ -903,19 +874,21 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         memberEClass_T.getEBounds().add(g1);
 
         // Add supertypes to classes
-        g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
-        packageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
         EGenericType g2 = createEGenericType(this.getPackage());
         g1.getETypeArguments().add(g2);
         packageEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
+        packageEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getClassifier());
+        g1.getETypeArguments().add(g2);
+        classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
         classifierEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
-        g1.getETypeArguments().add(g2);
+        g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(theUMLPackage.getClass_());
@@ -951,20 +924,22 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         parameterEClass.getEGenericSuperTypes().add(g1);
         connectorEClass.getESuperTypes().add(theTextualCommonsPackage.getPackageableElement());
         typedConnectorEClass.getESuperTypes().add(this.getConnector());
-        g1 = createEGenericType(this.getTypedConnector());
-        generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getGeneralization());
         g1.getETypeArguments().add(g2);
         generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getTypedConnector());
-        implementationEClass.getEGenericSuperTypes().add(g1);
+        generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getInterfaceRealization());
         g1.getETypeArguments().add(g2);
         implementationEClass.getEGenericSuperTypes().add(g1);
-        commentLinkEClass.getESuperTypes().add(this.getConnector());
-        commentLinkEClass.getESuperTypes().add(theTextualCommonsPackage.getCommentable());
+        g1 = createEGenericType(this.getTypedConnector());
+        implementationEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getAssociation());
+        g1.getETypeArguments().add(g2);
+        associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getConnector());
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
@@ -972,14 +947,10 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getAssociation());
-        g1.getETypeArguments().add(g2);
-        associationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
-        associationMemberEndEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getProperty());
         g1.getETypeArguments().add(g2);
+        associationMemberEndEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         associationMemberEndEClass.getEGenericSuperTypes().add(g1);
         xtextAssociationEClass.getESuperTypes().add(this.getAssociation());
 
@@ -1064,12 +1035,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(implementationEClass, Implementation.class, "Implementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(commentLinkEClass, CommentLink.class, "CommentLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        g1 = createEGenericType(this.getClassifier());
-        g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEReference(getCommentLink_CommentedElement(), g1, null, "commentedElement", null, 1, 1, CommentLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(associationEClass, Association.class, "Association", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getAssociation_MemberEnds(), this.getAssociationMemberEnd(), this.getAssociationMemberEnd_Association(), "memberEnds", null, 0, -1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

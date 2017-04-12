@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.cls.ui.cdoxtext
 import com.google.common.base.Function
 import com.google.inject.Inject
 import com.google.inject.Provider
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import java.util.List
@@ -47,7 +46,6 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					StringExpression: "StringExp" + input.name
 					Cardinality: Cardinality.simpleName + input.calculateContainmentIdPart([apply])
-					CommentLink: CommentLink.simpleName + apply(input.comments.findFirst[true])
 					default: null
 				}
 			}

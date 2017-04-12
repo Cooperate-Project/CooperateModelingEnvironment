@@ -2,7 +2,7 @@
 
 rootPackage RootElement
 
-class A
+class A note "A comment."
 class B
 interface C
 
@@ -11,6 +11,5 @@ bi asc asc2 (A, B) card [1 : 1] note "B comment."
 impl (A, C)
 isa (A, B)
 asc asc3 (A, B, C) role [a, b] card [1 : 1 : 1]
-note "A comment." A
 
 @end-clsd

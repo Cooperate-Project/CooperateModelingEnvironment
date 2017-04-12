@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * @generated
  */
 public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Extend> {
-	/**
+    /**
      * Returns the value of the '<em><b>Extension</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -104,27 +105,27 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
     /**
      * Returns the value of the '<em><b>Condition</b></em>' attribute.
      * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Condition</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Condition</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
      * @return the value of the '<em>Condition</em>' attribute.
      * @see #setCondition(String)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Condition()
      * @model
      * @generated
      */
-	String getCondition();
+    String getCondition();
 
-	/**
+    /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Extend#getCondition <em>Condition</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @param value the new value of the '<em>Condition</em>' attribute.
      * @see #getCondition()
      * @generated
      */
-	void setCondition(String value);
+    void setCondition(String value);
 
 } // Extend

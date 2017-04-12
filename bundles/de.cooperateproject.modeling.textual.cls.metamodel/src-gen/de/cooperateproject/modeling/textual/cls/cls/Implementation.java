@@ -16,5 +16,5 @@ import org.eclipse.uml2.uml.InterfaceRealization;
  * @model
  * @generated
  */
-public interface Implementation extends TypedConnector, UMLReferencingElement<InterfaceRealization> {
+public interface Implementation extends UMLReferencingElement<InterfaceRealization>, TypedConnector {
 } // Implementation

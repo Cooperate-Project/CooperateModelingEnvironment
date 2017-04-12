@@ -6,12 +6,16 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -22,6 +26,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getOwningPackage <em>Owning Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl#getPackages <em>Packages</em>}</li>
@@ -30,7 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extends UMLReferencingElementImpl<org.eclipse.uml2.uml.Package> implements PackageBase<PackageType> {
+public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extends ElementImpl implements PackageBase<PackageType> {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,12 +68,28 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
-	@Override
+	public org.eclipse.uml2.uml.Package getReferencedElement() {
+		return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.eclipse.uml2.uml.Package basicGetReferencedElement() {
+		return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void setReferencedElement(org.eclipse.uml2.uml.Package newReferencedElement) {
-		super.setReferencedElement(newReferencedElement);
+		eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
 	}
 
 	/**
@@ -199,6 +220,9 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+				if (resolve) return getReferencedElement();
+				return basicGetReferencedElement();
 			case TextualCommonsPackage.PACKAGE_BASE__NAME:
 				return getName();
 			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
@@ -220,6 +244,9 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+				setReferencedElement((org.eclipse.uml2.uml.Package)newValue);
+				return;
 			case TextualCommonsPackage.PACKAGE_BASE__NAME:
 				setName((String)newValue);
 				return;
@@ -246,6 +273,9 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+				setReferencedElement((org.eclipse.uml2.uml.Package)null);
+				return;
 			case TextualCommonsPackage.PACKAGE_BASE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -270,6 +300,8 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+				return basicGetReferencedElement() != null;
 			case TextualCommonsPackage.PACKAGE_BASE__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
@@ -289,6 +321,12 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == UMLReferencingElement.class) {
+			switch (derivedFeatureID) {
+				case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+				default: return -1;
+			}
+		}
 		if (baseClass == NamedElement.class) {
 			switch (derivedFeatureID) {
 				case TextualCommonsPackage.PACKAGE_BASE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
@@ -305,6 +343,12 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == UMLReferencingElement.class) {
+			switch (baseFeatureID) {
+				case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
+				default: return -1;
+			}
+		}
 		if (baseClass == NamedElement.class) {
 			switch (baseFeatureID) {
 				case TextualCommonsPackage.NAMED_ELEMENT__NAME: return TextualCommonsPackage.PACKAGE_BASE__NAME;

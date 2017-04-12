@@ -14,5 +14,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Generalization extends TypedConnector, UMLReferencingElement<org.eclipse.uml2.uml.Generalization> {
+public interface Generalization extends UMLReferencingElement<org.eclipse.uml2.uml.Generalization>, TypedConnector {
 } // Generalization

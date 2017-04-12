@@ -1,8 +1,8 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.usecase.usecase.NamedElement
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
-import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import org.eclipse.uml2.uml.Element
 
 class UsecaseUMLReferencingElementMissingElementFactory extends UsecaseAutomatedIssueResolutionFactoryBase<UMLReferencingElement<Element>> {
@@ -35,11 +35,11 @@ class UsecaseUMLReferencingElementMissingElementFactory extends UsecaseAutomated
     }
     
     protected def dispatch relevantFeature(NamedElement element) {
-    	UsecasePackage.Literals.NAMED_ELEMENT__NAME
+    	TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME
     }
     
     protected def dispatch relevantFeature(Element element) {
-    	UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT
+    	TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT
     }
 	
 }

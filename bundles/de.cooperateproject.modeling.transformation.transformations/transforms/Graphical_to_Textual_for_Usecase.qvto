@@ -4,8 +4,10 @@ transformation Graphical_to_Textual_for_Usecase(in graphical : NOTATION, inout t
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype TXT uses usecase('http://www.cooperateproject.de/modeling/language/usecase/Usecase');
+modeltype TXT uses usecase('http://www.cooperateproject.de/modeling/textual/usecase/Usecase');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+
 
 
 main() {
@@ -151,7 +153,7 @@ when {self.element != null and self.element.oclIsKindOf(uml::Include)}
 }
 
 
-mapping uml::MultiplicityElement::multiplicityElementToCardinality() : usecase::Cardinality
+mapping uml::MultiplicityElement::multiplicityElementToCardinality() : Cardinality
 when {self.hasCardinality()}
 {
 	lowerBound := self.lower;
@@ -161,16 +163,16 @@ when {self.hasCardinality()}
 
 
 
-query uml::NamedElement::getVisibility() : usecase::Visibility
+query uml::NamedElement::getVisibility() : Visibility
 {
 	var visibilityKind := self.visibility();
 		switch {
-		case(visibilityKind = uml::VisibilityKind::public) {return usecase::Visibility::PUBLIC}
-		case(visibilityKind = uml::VisibilityKind::private) {return usecase::Visibility::PRIVATE}
-		case(visibilityKind = uml::VisibilityKind::protected) {return usecase::Visibility::PROTECTED}
-		case(visibilityKind = uml::VisibilityKind::package) {return usecase::Visibility::PACKAGE}
+		case(visibilityKind = uml::VisibilityKind::public) {return Visibility::PUBLIC}
+		case(visibilityKind = uml::VisibilityKind::private) {return Visibility::PRIVATE}
+		case(visibilityKind = uml::VisibilityKind::protected) {return Visibility::PROTECTED}
+		case(visibilityKind = uml::VisibilityKind::package) {return Visibility::PACKAGE}
 	};
-	return usecase::Visibility::UNDEFINED
+	return Visibility::UNDEFINED
 }
 
 query ecore::EObject::toElement() : uml::Element {

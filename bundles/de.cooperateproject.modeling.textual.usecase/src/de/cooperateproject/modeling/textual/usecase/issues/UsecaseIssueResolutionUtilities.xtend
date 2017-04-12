@@ -1,14 +1,14 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.usecase.usecase.Visibility
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.uml2.uml.VisibilityKind
-import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EClass
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 
 class UsecaseIssueResolutionUtilities {
 	

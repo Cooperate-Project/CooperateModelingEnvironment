@@ -9,7 +9,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Interface
@@ -18,6 +17,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
 import de.cooperateproject.modeling.textual.cls.tests.util.ClsTestInjectorProvider
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
 import java.util.Collections
 import org.apache.commons.io.IOUtils
@@ -613,19 +613,39 @@ class ClsParsingTest extends AbstractClsTest {
 		val model = '''
 			@start-clsd "SomeName"
 			rootPackage RootElement
-			class Alice
-			note "this is a note" Alice
+			class Alice note "this is a note"
 			@end-clsd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 		model => [
 			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
-			val comment = allTransitiveConnectors.findFirst[x|x instanceof CommentLink] as CommentLink
-
+			val comment = model.eAllContents.filter(Comment).findFirst[true];
 			assertNotNull(comment)
+			assertTrue(comment.commentedElement instanceof de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement);
+			assertEquals("Alice", (comment.commentedElement as de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement).name)
+			assertEquals("this is a note", comment.body)
+		]
 
-			assertEquals("Alice", comment.commentedElement.name)
-			assertEquals("this is a note", comment.comments.get(0).body)
+	}
+	
+		@Test
+	def void complexClassWithNoteTest() {
+		val model = '''
+			@start-clsd "SomeName"
+			rootPackage RootElement
+			class Alice {
+				note "this is a note"
+			}
+			@end-clsd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+		model => [
+			findAndCheckClass(allTransitiveClassifiers.filter(Classifier), "Alice")
+			val comment = model.eAllContents.filter(Comment).findFirst[true];
+			assertNotNull(comment)
+			assertTrue(comment.commentedElement instanceof de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement);
+			assertEquals("Alice", (comment.commentedElement as de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement).name)
+			assertEquals("this is a note", comment.body)
 		]
 
 	}

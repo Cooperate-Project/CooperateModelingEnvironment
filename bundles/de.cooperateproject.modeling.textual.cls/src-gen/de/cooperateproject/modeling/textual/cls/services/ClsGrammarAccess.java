@@ -39,13 +39,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndClsdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//// ------------------------------------------------------------------------------------------
+		//
 		//// ---------------------------------Root-----------------------------------------------------
+		//
 		//// ------------------------------------------------------------------------------------------
-		//ClassDiagram:
-		//	{ClassDiagram}
-		//	'@start-clsd' title=STRING
-		//	rootPackage=RootPackage
-		//	'@end-clsd';
+		// ClassDiagram:
+		//	{ClassDiagram} '@start-clsd' title=STRING rootPackage=RootPackage '@end-clsd';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{ClassDiagram} '@start-clsd' title=STRING rootPackage=RootPackage '@end-clsd'
@@ -88,10 +87,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackagesPackageParserRuleCall_5_0 = (RuleCall)cPackagesAssignment_5.eContents().get(0);
 		
 		//RootPackage Package:
-		//	'rootPackage' name=FQN
-		//	packageImports+=PackageImport*
-		//	classifiers+=Classifier*
-		//	connectors+=Connector*
+		//	'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
 		//	packages+=Package*;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -149,12 +145,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Package:
-		//	'package' name=FQN '{'
-		//	packageImports+=PackageImport*
-		//	classifiers+=Classifier*
-		//	connectors+=Connector*
-		//	packages+=Package*
-		//	'}';
+		//	'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+		//	packages+=Package* '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*
@@ -268,9 +260,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInterfaceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//// ------------------------------------------------------------------------------------------
+		//
 		//// ---------------------------------Class Diagram--------------------------------------------
+		//
 		//// ------------------------------------------------------------------------------------------
-		//Classifier:
+		// Classifier:
 		//	Class | Interface;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -300,18 +294,24 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAliasIDTerminalRuleCall_3_0_2_0 = (RuleCall)cAliasAssignment_3_0_2.eContents().get(0);
 		private final Assignment cNameAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_3_1_0 = (RuleCall)cNameAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cMembersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cMembersMemberParserRuleCall_4_1_0 = (RuleCall)cMembersAssignment_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Assignment cCommentsAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final RuleCall cCommentsCommentParserRuleCall_4_0_0 = (RuleCall)cCommentsAssignment_4_0.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cAlternatives_4.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cCommentsAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cCommentsCommentParserRuleCall_4_1_1_0 = (RuleCall)cCommentsAssignment_4_1_1.eContents().get(0);
+		private final Assignment cMembersAssignment_4_1_2 = (Assignment)cGroup_4_1.eContents().get(2);
+		private final RuleCall cMembersMemberParserRuleCall_4_1_2_0 = (RuleCall)cMembersAssignment_4_1_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_1_3 = (Keyword)cGroup_4_1.eContents().get(3);
 		
 		//Class:
-		//	visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) ('{' members+=Member*
-		//	'}')?;
+		//	visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
+		//	comments+=Comment? members+=Member* '}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) ('{' members+=Member* '}')?
+		//visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
+		//comments+=Comment? members+=Member* '}')
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -356,20 +356,35 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_3_1_0() { return cNameIDTerminalRuleCall_3_1_0; }
 		
-		//('{' members+=Member* '}')?
-		public Group getGroup_4() { return cGroup_4; }
+		//comments+=Comment? | '{' comments+=Comment? members+=Member* '}'
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_4_0() { return cCommentsAssignment_4_0; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_4_0_0() { return cCommentsCommentParserRuleCall_4_0_0; }
+		
+		//'{' comments+=Comment? members+=Member* '}'
+		public Group getGroup_4_1() { return cGroup_4_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
+		public Keyword getLeftCurlyBracketKeyword_4_1_0() { return cLeftCurlyBracketKeyword_4_1_0; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_4_1_1() { return cCommentsAssignment_4_1_1; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_4_1_1_0() { return cCommentsCommentParserRuleCall_4_1_1_0; }
 		
 		//members+=Member*
-		public Assignment getMembersAssignment_4_1() { return cMembersAssignment_4_1; }
+		public Assignment getMembersAssignment_4_1_2() { return cMembersAssignment_4_1_2; }
 		
 		//Member
-		public RuleCall getMembersMemberParserRuleCall_4_1_0() { return cMembersMemberParserRuleCall_4_1_0; }
+		public RuleCall getMembersMemberParserRuleCall_4_1_2_0() { return cMembersMemberParserRuleCall_4_1_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
+		public Keyword getRightCurlyBracketKeyword_4_1_3() { return cRightCurlyBracketKeyword_4_1_3; }
 	}
 	public class InterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Interface");
@@ -386,17 +401,24 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAliasIDTerminalRuleCall_2_0_2_0 = (RuleCall)cAliasAssignment_2_0_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cLeftCurlyBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cMembersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMembersMemberParserRuleCall_3_1_0 = (RuleCall)cMembersAssignment_3_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cCommentsAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cCommentsCommentParserRuleCall_3_0_0 = (RuleCall)cCommentsAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cCommentsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cCommentsCommentParserRuleCall_3_1_1_0 = (RuleCall)cCommentsAssignment_3_1_1.eContents().get(0);
+		private final Assignment cMembersAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final RuleCall cMembersMemberParserRuleCall_3_1_2_0 = (RuleCall)cMembersAssignment_3_1_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_1_3 = (Keyword)cGroup_3_1.eContents().get(3);
 		
 		//Interface:
-		//	visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) ('{' members+=Member* '}')?;
+		//	visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+		//	members+=Member* '}');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) ('{' members+=Member* '}')?
+		//visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+		//members+=Member* '}')
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -435,20 +457,35 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_2_1_0() { return cNameIDTerminalRuleCall_2_1_0; }
 		
-		//('{' members+=Member* '}')?
-		public Group getGroup_3() { return cGroup_3; }
+		//comments+=Comment? | '{' comments+=Comment? members+=Member* '}'
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_3_0() { return cCommentsAssignment_3_0; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_3_0_0() { return cCommentsCommentParserRuleCall_3_0_0; }
+		
+		//'{' comments+=Comment? members+=Member* '}'
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3_0() { return cLeftCurlyBracketKeyword_3_0; }
+		public Keyword getLeftCurlyBracketKeyword_3_1_0() { return cLeftCurlyBracketKeyword_3_1_0; }
+		
+		//comments+=Comment?
+		public Assignment getCommentsAssignment_3_1_1() { return cCommentsAssignment_3_1_1; }
+		
+		//Comment
+		public RuleCall getCommentsCommentParserRuleCall_3_1_1_0() { return cCommentsCommentParserRuleCall_3_1_1_0; }
 		
 		//members+=Member*
-		public Assignment getMembersAssignment_3_1() { return cMembersAssignment_3_1; }
+		public Assignment getMembersAssignment_3_1_2() { return cMembersAssignment_3_1_2; }
 		
 		//Member
-		public RuleCall getMembersMemberParserRuleCall_3_1_0() { return cMembersMemberParserRuleCall_3_1_0; }
+		public RuleCall getMembersMemberParserRuleCall_3_1_2_0() { return cMembersMemberParserRuleCall_3_1_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_3_2() { return cRightCurlyBracketKeyword_3_2; }
+		public Keyword getRightCurlyBracketKeyword_3_1_3() { return cRightCurlyBracketKeyword_3_1_3; }
 	}
 	public class MemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Member");
@@ -457,8 +494,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMethodParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Member:
-		//	Attribute
-		//	| Method;
+		//	Attribute | Method;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Attribute | Method
@@ -486,9 +522,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeClassifierFQNParserRuleCall_5_0_1 = (RuleCall)cTypeClassifierCrossReference_5_0.eContents().get(1);
 		
 		//Attribute:
-		//	{Attribute} visibility=Visibility?
-		//	static?='static'?
-		//	name=ID ':' type=[uml::Classifier|FQN];
+		//	{Attribute} visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Attribute} visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN]
@@ -554,10 +588,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeClassifierFQNParserRuleCall_7_1_0_1 = (RuleCall)cTypeClassifierCrossReference_7_1_0.eContents().get(1);
 		
 		//Method:
-		//	visibility=Visibility?
-		//	abstract?='abstract'?
-		//	static?='static'?
-		//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
+		//	visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
+		//	parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
@@ -645,9 +677,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeClassifierFQNParserRuleCall_4_0_1 = (RuleCall)cTypeClassifierCrossReference_4_0.eContents().get(1);
 		
 		//Parameter:
-		//	visibility=Visibility?
-		//	static?='static'?
-		//	name=ID ':' type=[uml::Classifier|FQN];
+		//	visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN]
@@ -689,16 +719,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cGeneralizationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cXtextAssociationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cImplementationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cCommentLinkParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Connector:
-		//	Generalization
-		//	| XtextAssociation
-		//	| Implementation
-		//	| CommentLink;
+		//	Generalization | XtextAssociation | Implementation;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Generalization | XtextAssociation | Implementation | CommentLink
+		//Generalization | XtextAssociation | Implementation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Generalization
@@ -709,9 +735,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Implementation
 		public RuleCall getImplementationParserRuleCall_2() { return cImplementationParserRuleCall_2; }
-		
-		//CommentLink
-		public RuleCall getCommentLinkParserRuleCall_3() { return cCommentLinkParserRuleCall_3; }
 	}
 	public class GeneralizationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Generalization");
@@ -815,37 +838,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
-	public class CommentLinkElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.CommentLink");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cCommentsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cCommentsCommentParserRuleCall_0_0 = (RuleCall)cCommentsAssignment_0.eContents().get(0);
-		private final Assignment cCommentedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cCommentedElementClassifierCrossReference_1_0 = (CrossReference)cCommentedElementAssignment_1.eContents().get(0);
-		private final RuleCall cCommentedElementClassifierFQNParserRuleCall_1_0_1 = (RuleCall)cCommentedElementClassifierCrossReference_1_0.eContents().get(1);
-		
-		//CommentLink:
-		//	comments+=Comment commentedElement=[Classifier|FQN];
-		@Override public ParserRule getRule() { return rule; }
-		
-		//comments+=Comment commentedElement=[Classifier|FQN]
-		public Group getGroup() { return cGroup; }
-		
-		//comments+=Comment
-		public Assignment getCommentsAssignment_0() { return cCommentsAssignment_0; }
-		
-		//Comment
-		public RuleCall getCommentsCommentParserRuleCall_0_0() { return cCommentsCommentParserRuleCall_0_0; }
-		
-		//commentedElement=[Classifier|FQN]
-		public Assignment getCommentedElementAssignment_1() { return cCommentedElementAssignment_1; }
-		
-		//[Classifier|FQN]
-		public CrossReference getCommentedElementClassifierCrossReference_1_0() { return cCommentedElementClassifierCrossReference_1_0; }
-		
-		//FQN
-		public RuleCall getCommentedElementClassifierFQNParserRuleCall_1_0_1() { return cCommentedElementClassifierFQNParserRuleCall_1_0_1; }
-	}
 	public class XtextAssociationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.XtextAssociation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -887,12 +879,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommentsCommentParserRuleCall_9_0 = (RuleCall)cCommentsAssignment_9.eContents().get(0);
 		
 		//XtextAssociation:
-		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-		//	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (','
+		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
+		//	memberEndTypes+=XtextAssociationMemberEndReferencedType (','
 		//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=ID (','
 		//	memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)*
-		//	']')?
-		//	comments+=Comment?;
+		//	']')? comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
@@ -1136,13 +1127,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPACKAGETildeKeyword_6_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum Visibility returns commons::Visibility:
-		//	PUBLIC='+'
-		//	| PUBLIC='public'
-		//	| PRIVATE='-'
-		//	| PRIVATE='private'
-		//	| PROTECTED='#'
-		//	| PROTECTED='protected'
-		//	| PACKAGE='~';
+		//	PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~';
 		public EnumRule getRule() { return rule; }
 		
 		//PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~'
@@ -1201,9 +1186,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCOMPOSITIONComKeyword_2_0 = (Keyword)cCOMPOSITIONEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum AggregationKind:
-		//	NONE='asc'
-		//	| AGGREGATION='agg'
-		//	| COMPOSITION='com';
+		//	NONE='asc' | AGGREGATION='agg' | COMPOSITION='com';
 		public EnumRule getRule() { return rule; }
 		
 		//NONE='asc' | AGGREGATION='agg' | COMPOSITION='com'
@@ -1244,7 +1227,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	private final ConnectorElements pConnector;
 	private final GeneralizationElements pGeneralization;
 	private final ImplementationElements pImplementation;
-	private final CommentLinkElements pCommentLink;
 	private final XtextAssociationElements pXtextAssociation;
 	private final XtextAssociationMemberEndReferencedTypeElements pXtextAssociationMemberEndReferencedType;
 	private final CommentElements pComment;
@@ -1279,7 +1261,6 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pConnector = new ConnectorElements();
 		this.pGeneralization = new GeneralizationElements();
 		this.pImplementation = new ImplementationElements();
-		this.pCommentLink = new CommentLinkElements();
 		this.pXtextAssociation = new XtextAssociationElements();
 		this.pXtextAssociationMemberEndReferencedType = new XtextAssociationMemberEndReferencedTypeElements();
 		this.pComment = new CommentElements();
@@ -1318,13 +1299,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//// ------------------------------------------------------------------------------------------
+	//
 	//// ---------------------------------Root-----------------------------------------------------
+	//
 	//// ------------------------------------------------------------------------------------------
-	//ClassDiagram:
-	//	{ClassDiagram}
-	//	'@start-clsd' title=STRING
-	//	rootPackage=RootPackage
-	//	'@end-clsd';
+	// ClassDiagram:
+	//	{ClassDiagram} '@start-clsd' title=STRING rootPackage=RootPackage '@end-clsd';
 	public ClassDiagramElements getClassDiagramAccess() {
 		return pClassDiagram;
 	}
@@ -1334,10 +1314,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage Package:
-	//	'rootPackage' name=FQN
-	//	packageImports+=PackageImport*
-	//	classifiers+=Classifier*
-	//	connectors+=Connector*
+	//	'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
 	//	packages+=Package*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
@@ -1348,12 +1325,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Package:
-	//	'package' name=FQN '{'
-	//	packageImports+=PackageImport*
-	//	classifiers+=Classifier*
-	//	connectors+=Connector*
-	//	packages+=Package*
-	//	'}';
+	//	'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+	//	packages+=Package* '}';
 	public PackageElements getPackageAccess() {
 		return pPackage;
 	}
@@ -1393,9 +1366,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//// ------------------------------------------------------------------------------------------
+	//
 	//// ---------------------------------Class Diagram--------------------------------------------
+	//
 	//// ------------------------------------------------------------------------------------------
-	//Classifier:
+	// Classifier:
 	//	Class | Interface;
 	public ClassifierElements getClassifierAccess() {
 		return pClassifier;
@@ -1406,8 +1381,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Class:
-	//	visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) ('{' members+=Member*
-	//	'}')?;
+	//	visibility=Visibility? abstract?='abstract'? 'class' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{'
+	//	comments+=Comment? members+=Member* '}');
 	public ClassElements getClassAccess() {
 		return pClass;
 	}
@@ -1417,7 +1392,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Interface:
-	//	visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) ('{' members+=Member* '}')?;
+	//	visibility=Visibility? 'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment?
+	//	members+=Member* '}');
 	public InterfaceElements getInterfaceAccess() {
 		return pInterface;
 	}
@@ -1427,8 +1403,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Member:
-	//	Attribute
-	//	| Method;
+	//	Attribute | Method;
 	public MemberElements getMemberAccess() {
 		return pMember;
 	}
@@ -1438,9 +1413,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Attribute:
-	//	{Attribute} visibility=Visibility?
-	//	static?='static'?
-	//	name=ID ':' type=[uml::Classifier|FQN];
+	//	{Attribute} visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
@@ -1450,10 +1423,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Method:
-	//	visibility=Visibility?
-	//	abstract?='abstract'?
-	//	static?='static'?
-	//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
+	//	visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
+	//	parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
 	public MethodElements getMethodAccess() {
 		return pMethod;
 	}
@@ -1463,9 +1434,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Parameter:
-	//	visibility=Visibility?
-	//	static?='static'?
-	//	name=ID ':' type=[uml::Classifier|FQN];
+	//	visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -1475,10 +1444,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Connector:
-	//	Generalization
-	//	| XtextAssociation
-	//	| Implementation
-	//	| CommentLink;
+	//	Generalization | XtextAssociation | Implementation;
 	public ConnectorElements getConnectorAccess() {
 		return pConnector;
 	}
@@ -1507,23 +1473,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getImplementationAccess().getRule();
 	}
 	
-	//CommentLink:
-	//	comments+=Comment commentedElement=[Classifier|FQN];
-	public CommentLinkElements getCommentLinkAccess() {
-		return pCommentLink;
-	}
-	
-	public ParserRule getCommentLinkRule() {
-		return getCommentLinkAccess().getRule();
-	}
-	
 	//XtextAssociation:
-	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
-	//	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (','
+	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
+	//	memberEndTypes+=XtextAssociationMemberEndReferencedType (','
 	//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=ID (','
 	//	memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)*
-	//	']')?
-	//	comments+=Comment?;
+	//	']')? comments+=Comment?;
 	public XtextAssociationElements getXtextAssociationAccess() {
 		return pXtextAssociation;
 	}
@@ -1583,13 +1538,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum Visibility returns commons::Visibility:
-	//	PUBLIC='+'
-	//	| PUBLIC='public'
-	//	| PRIVATE='-'
-	//	| PRIVATE='private'
-	//	| PROTECTED='#'
-	//	| PROTECTED='protected'
-	//	| PACKAGE='~';
+	//	PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~';
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
 	}
@@ -1599,9 +1548,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum AggregationKind:
-	//	NONE='asc'
-	//	| AGGREGATION='agg'
-	//	| COMPOSITION='com';
+	//	NONE='asc' | AGGREGATION='agg' | COMPOSITION='com';
 	public AggregationKindElements getAggregationKindAccess() {
 		return eAggregationKind;
 	}

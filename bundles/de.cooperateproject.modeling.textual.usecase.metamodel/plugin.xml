@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated usecase -->
       <package
-            uri="http://www.cooperateproject.de/modeling/language/usecase/Usecase"
+            uri="http://www.cooperateproject.de/modeling/textual/usecase/Usecase"
             class="de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage"
             genModel="model/usecase.genmodel"/>
    </extension>

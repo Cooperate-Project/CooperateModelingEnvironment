@@ -4,11 +4,12 @@
 package de.cooperateproject.modeling.textual.usecase.serializer;
 
 import com.google.inject.Inject;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAccess;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.usecase.usecase.Cardinality;
-import de.cooperateproject.modeling.textual.usecase.usecase.Comment;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
@@ -40,19 +41,22 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 		ParserRule rule = context.getParserRule();
 		Action action = context.getAssignedAction();
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
-		if (epackage == UsecasePackage.eINSTANCE)
+		if (epackage == TextualCommonsPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
+			case TextualCommonsPackage.CARDINALITY:
+				sequence_Cardinality(context, (Cardinality) semanticObject); 
+				return; 
+			case TextualCommonsPackage.COMMENT:
+				sequence_Comment(context, (Comment) semanticObject); 
+				return; 
+			}
+		else if (epackage == UsecasePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case UsecasePackage.ACTOR:
 				sequence_Actor(context, (Actor) semanticObject); 
 				return; 
 			case UsecasePackage.ASSOCIATION:
 				sequence_Association(context, (Association) semanticObject); 
-				return; 
-			case UsecasePackage.CARDINALITY:
-				sequence_Cardinality(context, (Cardinality) semanticObject); 
-				return; 
-			case UsecasePackage.COMMENT:
-				sequence_Comment(context, (Comment) semanticObject); 
 				return; 
 			case UsecasePackage.EXTEND:
 				sequence_Extend(context, (Extend) semanticObject); 
@@ -88,7 +92,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Actor returns Actor
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (name=STRING alias=ID)) type=ActorType?)
+	 *     (visibility=Visibility? abstract?='abstract'? type=ActorType? (name=ID | (name=STRING alias=ID)) comments+=Comment?)
 	 */
 	protected void sequence_Actor(ISerializationContext context, Actor semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -101,7 +105,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     Association returns Association
 	 *
 	 * Constraint:
-	 *     (actor=[Actor|FQN] usecase=[UseCase|FQN] (actorCardinality=Cardinality useCaseCardinality=Cardinality)?)
+	 *     (actor=[Actor|FQN] usecase=[UseCase|FQN] (actorCardinality=Cardinality useCaseCardinality=Cardinality?)?)
 	 */
 	protected void sequence_Association(ISerializationContext context, Association semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -122,22 +126,18 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
-	 *     Relationship returns Comment
 	 *     Comment returns Comment
 	 *
 	 * Constraint:
-	 *     (commentedElement=[Commentable|FQN] comment=STRING)
+	 *     body=CommentBody
 	 */
 	protected void sequence_Comment(ISerializationContext context, Comment semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.COMMENT__COMMENTED_ELEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.COMMENT__COMMENTED_ELEMENT));
-			if (transientValues.isValueTransient((EObject) semanticObject, UsecasePackage.Literals.COMMENT__COMMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.COMMENT__COMMENT));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.COMMENT__BODY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.COMMENT__BODY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getCommentAccess().getCommentedElementCommentableFQNParserRuleCall_0_0_1(), semanticObject.eGet(UsecasePackage.Literals.COMMENT__COMMENTED_ELEMENT, false));
-		feeder.accept(grammarAccess.getCommentAccess().getCommentSTRINGTerminalRuleCall_2_0(), semanticObject.getComment());
+		feeder.accept(grammarAccess.getCommentAccess().getBodyCommentBodyParserRuleCall_2_0(), semanticObject.getBody());
 		feeder.finish();
 	}
 	
@@ -183,8 +183,8 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.GENERALIZATION__GENERAL));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getSpecificBehavioredClassifierFQNParserRuleCall_0_0_1(), semanticObject.eGet(UsecasePackage.Literals.GENERALIZATION__SPECIFIC, false));
-		feeder.accept(grammarAccess.getGeneralizationAccess().getGeneralBehavioredClassifierFQNParserRuleCall_2_0_1(), semanticObject.eGet(UsecasePackage.Literals.GENERALIZATION__GENERAL, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getSpecificBehavioredClassifierFQNParserRuleCall_2_0_1(), semanticObject.eGet(UsecasePackage.Literals.GENERALIZATION__SPECIFIC, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getGeneralBehavioredClassifierFQNParserRuleCall_4_0_1(), semanticObject.eGet(UsecasePackage.Literals.GENERALIZATION__GENERAL, false));
 		feeder.finish();
 	}
 	
@@ -205,8 +205,8 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.INCLUDE__ADDITION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getIncludeAccess().getIncludingCaseUseCaseFQNParserRuleCall_0_0_1(), semanticObject.eGet(UsecasePackage.Literals.INCLUDE__INCLUDING_CASE, false));
-		feeder.accept(grammarAccess.getIncludeAccess().getAdditionUseCaseFQNParserRuleCall_2_0_1(), semanticObject.eGet(UsecasePackage.Literals.INCLUDE__ADDITION, false));
+		feeder.accept(grammarAccess.getIncludeAccess().getIncludingCaseUseCaseFQNParserRuleCall_2_0_1(), semanticObject.eGet(UsecasePackage.Literals.INCLUDE__INCLUDING_CASE, false));
+		feeder.accept(grammarAccess.getIncludeAccess().getAdditionUseCaseFQNParserRuleCall_4_0_1(), semanticObject.eGet(UsecasePackage.Literals.INCLUDE__ADDITION, false));
 		feeder.finish();
 	}
 	
@@ -228,7 +228,7 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     System returns System
 	 *
 	 * Constraint:
-	 *     (name=FQN usecases+=UseCase*)
+	 *     (name=FQN (comments+=Comment | (comments+=Comment? usecases+=UseCase*))?)
 	 */
 	protected void sequence_System(ISerializationContext context, de.cooperateproject.modeling.textual.usecase.usecase.System semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -250,8 +250,8 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, UsecasePackage.Literals.USE_CASE_DIAGRAM__ROOT_PACKAGE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getTitleSTRINGTerminalRuleCall_1_0(), semanticObject.getTitle());
-		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getRootPackageRootPackageParserRuleCall_2_0(), semanticObject.getRootPackage());
+		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
+		feeder.accept(grammarAccess.getUseCaseDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0(), semanticObject.getRootPackage());
 		feeder.finish();
 	}
 	
@@ -261,7 +261,12 @@ public class UsecaseSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     UseCase returns UseCase
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? (name=ID | (name=STRING alias=ID)) extensionPoints+=ExtensionPoint*)
+	 *     (
+	 *         visibility=Visibility? 
+	 *         abstract?='abstract'? 
+	 *         (name=ID | (name=STRING alias=ID)) 
+	 *         (comments+=Comment | (comments+=Comment? extensionPoints+=ExtensionPoint*))?
+	 *     )
 	 */
 	protected void sequence_UseCase(ISerializationContext context, UseCase semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

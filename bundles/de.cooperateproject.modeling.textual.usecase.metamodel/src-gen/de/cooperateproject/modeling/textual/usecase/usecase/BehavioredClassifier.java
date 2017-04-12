@@ -2,6 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,5 +15,5 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface BehavioredClassifier<T extends org.eclipse.uml2.uml.BehavioredClassifier> extends Commentable, UMLReferencingElement<T> {
+public interface BehavioredClassifier<T extends org.eclipse.uml2.uml.BehavioredClassifier> extends UMLReferencingElement<T>, Commentable {
 } // BehavioredClassifier

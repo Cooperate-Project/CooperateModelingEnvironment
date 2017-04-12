@@ -4,7 +4,8 @@ transformation Textual_to_Graphical_for_Usecase(in textual : TXT, inout graphica
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype TXT uses usecase('http://www.cooperateproject.de/modeling/language/usecase/Usecase');
+modeltype TXT uses usecase('http://www.cooperateproject.de/modeling/textual/usecase/Usecase');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
 

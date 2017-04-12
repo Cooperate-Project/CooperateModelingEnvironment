@@ -4,13 +4,14 @@ import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.apache.commons.lang3.StringUtils
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Element
@@ -19,7 +20,6 @@ import org.eclipse.uml2.uml.OperationOwner
 import org.eclipse.uml2.uml.StructuredClassifier
 
 import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 
 class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -27,7 +27,7 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 		element.resolvePossible
 	}
 
-	private def dispatch resolvePossible(de.cooperateproject.modeling.textual.cls.cls.Package element) {
+	private def dispatch resolvePossible(Package element) {
 		if (element.owningPackage === null) {
 			return false
 		}
@@ -57,9 +57,7 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 		val commentElement = element.commentedElement
 		if (commentElement instanceof UMLReferencingElement) {
 			return commentElement.hasReferencedElement
-		} else if (commentElement instanceof CommentLink) {
-			return commentElement.commentedElement.hasReferencedElement
-		}
+		} 
 		return false
 	}
 

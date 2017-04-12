@@ -8,23 +8,20 @@ import com.google.common.collect.Iterables
 import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Package
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import java.util.Collection
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.jface.viewers.StyledString
 import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 
 /**
  * Customization of the default outline structure.
@@ -45,7 +42,7 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image, getStyledString("Classifiers", pkg.classifiers.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image, getStyledString("Connectors", pkg.connectors.size), false)
-		val comments = Iterables.concat(pkg.connectors.filter(CommentLink), pkg.connectors.filter(Association).filter[!comments.isEmpty].map[comments])
+		val comments = Iterables.concat(pkg.classifiers.filter(Commentable).filter[!comments.isEmpty].map[comments], pkg.connectors.filter(Association).filter[!comments.isEmpty].map[comments])
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, getStyledString("Comments", comments.size), false, [!comments.empty])
 	}
 	
@@ -63,10 +60,6 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def dispatch createConnectorNode(EStructuralFeatureNode node, Connector connector) {
 		createEObjectNode(node, connector)
-		return
-	}
-	
-	def dispatch createConnectorNode(EStructuralFeatureNode node, CommentLink connector) {
 		return
 	}
 	

@@ -4,6 +4,7 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

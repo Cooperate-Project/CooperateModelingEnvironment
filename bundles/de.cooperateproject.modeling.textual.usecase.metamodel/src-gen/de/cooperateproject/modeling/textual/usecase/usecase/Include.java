@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ package de.cooperateproject.modeling.textual.usecase.usecase;
  * @generated
  */
 public interface Include extends Relationship, UMLReferencingElement<org.eclipse.uml2.uml.Include> {
-	/**
+    /**
      * Returns the value of the '<em><b>Addition</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>

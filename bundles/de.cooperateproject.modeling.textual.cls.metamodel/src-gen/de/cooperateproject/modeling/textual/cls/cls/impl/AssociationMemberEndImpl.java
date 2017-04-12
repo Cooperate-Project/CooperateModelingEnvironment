@@ -9,10 +9,10 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.Property;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationMemberEndImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationMemberEndImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationMemberEndImpl#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationMemberEndImpl#getType <em>Type</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationMemberEndImpl#isNavigable <em>Navigable</em>}</li>
@@ -39,7 +39,17 @@ import org.eclipse.uml2.uml.Property;
  *
  * @generated
  */
-public class AssociationMemberEndImpl extends NamedElementImpl implements AssociationMemberEnd {
+public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property> implements AssociationMemberEnd {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
     /**
      * The default value of the '{@link #isNavigable() <em>Navigable</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -82,28 +92,30 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public Property getReferencedElement() {
-        return (Property)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Property basicGetReferencedElement() {
-        return (Property)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @Override
     public void setReferencedElement(Property newReferencedElement) {
-        eDynamicSet(ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+        super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(ClsPackage.ASSOCIATION_MEMBER_END__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
     /**
@@ -279,9 +291,8 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case ClsPackage.ASSOCIATION_MEMBER_END__NAME:
+                return getName();
             case ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY:
                 return getCardinality();
             case ClsPackage.ASSOCIATION_MEMBER_END__TYPE:
@@ -305,8 +316,8 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT:
-                setReferencedElement((Property)newValue);
+            case ClsPackage.ASSOCIATION_MEMBER_END__NAME:
+                setName((String)newValue);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY:
                 setCardinality((Cardinality)newValue);
@@ -335,8 +346,8 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT:
-                setReferencedElement((Property)null);
+            case ClsPackage.ASSOCIATION_MEMBER_END__NAME:
+                setName(NAME_EDEFAULT);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY:
                 setCardinality((Cardinality)null);
@@ -365,8 +376,8 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case ClsPackage.ASSOCIATION_MEMBER_END__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY:
                 return getCardinality() != null;
             case ClsPackage.ASSOCIATION_MEMBER_END__TYPE:
@@ -388,9 +399,9 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
-                case ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case ClsPackage.ASSOCIATION_MEMBER_END__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
             }
         }
@@ -404,9 +415,9 @@ public class AssociationMemberEndImpl extends NamedElementImpl implements Associ
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ClsPackage.ASSOCIATION_MEMBER_END__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.ASSOCIATION_MEMBER_END__NAME;
                 default: return -1;
             }
         }

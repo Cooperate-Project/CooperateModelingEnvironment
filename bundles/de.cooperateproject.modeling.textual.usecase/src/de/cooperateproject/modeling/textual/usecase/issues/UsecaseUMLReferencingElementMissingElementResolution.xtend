@@ -1,15 +1,15 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor
 import de.cooperateproject.modeling.textual.usecase.usecase.Association
-import de.cooperateproject.modeling.textual.usecase.usecase.Comment
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
 import de.cooperateproject.modeling.textual.usecase.usecase.Include
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
 import de.cooperateproject.modeling.textual.usecase.usecase.System
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
@@ -126,7 +126,7 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		val commentedElement = element.commentedElement as UMLReferencingElement<Element>
 		val umlCommentedElement = commentedElement.referencedElement
 		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment
-		umlComment.body = element.comment
+		umlComment.body = element.body
 		umlComment.annotatedElements += umlCommentedElement
 		element.referencedElement = umlComment
 	}

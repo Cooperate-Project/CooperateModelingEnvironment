@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?p2f version='1.0.0'?>
+<p2f version='1.0.0'>
+  <ius size='71'>
+    <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecoretools.explorer.contextual.feature.group' name='Amalgam Contextual Explorer categories for Ecore models' version='3.2.1.201703011420'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.b3.aggregator.editor.feature.feature.group' name='b3 Aggregator Editor (Incubation)' version='0.3.0.v20140928-0617'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/emft/b3/updates-4.4'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.cdo.dawn.sdk.feature.group' name='CDO Dawn SDK' version='2.1.100.v20160505-0538'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+        <repository location='http://download.eclipse.org/modeling/emf/cdo/updates/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.cdo.epp.feature.group' name='CDO Model Repository EPP' version='4.5.0.v20160607-1511'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+        <repository location='http://download.eclipse.org/modeling/emf/cdo/updates/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.e4.core.tools.feature.feature.group' name='Eclipse e4 Tools' version='4.5.100.v20170131-1452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/eclipse/updates/4.6'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.jdt.feature.group' name='Eclipse Java Development Tools' version='3.12.3.v20170301-0400'>
+      <repositories size='5'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/eclipse/updates/4.6'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='epp.package.modeling' name='Eclipse Modeling Tools' version='4.6.3.20170314-1500'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.pde.feature.group' name='Eclipse Plug-in Development Environment' version='3.12.3.v20170301-0400'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/eclipse/updates/4.6'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.sdk.feature.group' name='Eclipse Project SDK' version='4.6.3.v20170301-0400'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/eclipse/updates/4.6'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecoretools.design.feature.group' name='Ecore Diagram Editor' version='3.2.1.201703011420'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecp.sdk.feature.feature.group' name='ECP SDK 3.x' version='1.12.0.20170227-1527'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.sdk.feature.group' name='EMF - Eclipse Modeling Framework SDK' version='2.12.0.v20160526-0356'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecore.xcore.feature.group' name='EMF - Eclipse Modeling Framework Xcore Runtime' version='1.2.2.v20150202-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecore.xcore.sdk.feature.group' name='EMF - Eclipse Modeling Framework Xcore SDK' version='1.2.2.v20150202-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.ecore.xcore.ui.feature.group' name='EMF - Eclipse Modeling Framework Xcore UI' version='1.2.1.v20150202-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.gwt.ecore.edit.feature.group' name='EMF Ecore Edit for GWT' version='2.8.0.v20150123-0452'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.gwt.edit.feature.group' name='EMF Edit for GWT' version='2.8.0.v20150123-0452'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.gwt.edit.ui.feature.group' name='EMF Edit UI for GWT' version='2.7.0.v20150123-0452'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.examples.feature.group' name='EMF Examples' version='2.10.1.v20150123-0452'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.gwt.ecore.feature.group' name='EMF GWT - Eclipse Modeling Framework Core Runtime for GWT' version='2.9.0.v20150123-0452'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.gwt.common.feature.group' name='EMF GWT Common' version='2.9.0.v20150123-0452'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.query.sdk.feature.group' name='EMF Model Query SDK' version='1.10.0.201606071631'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.transaction.sdk.feature.group' name='EMF Model Transaction SDK' version='1.10.0.201606071900'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.oda.feature.group' name='EMF ODA Driver' version='1.3.0.v20150123-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.oda.sdk.feature.group' name='EMF ODA Driver SDK' version='1.3.1.v20150123-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.oda.ecore.feature.group' name='EMF ODA Ecore' version='1.3.0.v20150123-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.oda.ecore.ui.feature.group' name='EMF ODA Ecore UI' version='1.2.1.v20150123-0452'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.teneo.hibernate.sdk.feature.group' name='EMF Teneo Hibernate SDK' version='2.1.0.v201702222200'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/emf/teneo/updates/2.1.0/interim/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.validation.sdk.feature.group' name='EMF Validation Framework SDK' version='1.10.0.201606071713'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.emfstore.sdk.feature.feature.group' name='EMFStore SDK' version='1.8.1.v20161125-1451'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.amalgam.discovery.feature.group' name='Extra Modeling Components Installer' version='1.7.0.201605311215'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.gef.sdk.feature.group' name='GEF (MVC) SDK' version='3.11.0.201606061308'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.egit.feature.group' name='Git integration for Eclipse' version='4.6.1.201703071140-r'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.gmf.runtime.sdk.feature.group' name='Graphical Modeling Framework (GMF) Runtime SDK' version='1.10.0.201606071959'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='com.google.gson' name='Gson: Google Json Library for Java' version='2.7.0.v20161205-1708'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='com.google.gson.source' name='Gson: Google Json Library for Java Source' version='2.7.0.v20161205-1708'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='de.cooperateproject.externals.guice.feature.group' name='Guice Bundle Feature' version='1.0.0.201704051252'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.hamcrest' name='Hamcrest Library of Matchers' version='1.1.0.v20090501071000'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/'/>
+        <repository location='http://download.eclipse.org/eclipse/updates/4.6'/>
+      </repositories>
+    </iu>
+    <iu id='de.tub.tfs.henshin.editor.feature.feature.group' name='Henshin multi view editor' version='1.0.0'>
+      <repositories size='1'>
+        <repository location='http://de-tu-berlin-tfs.github.io/Henshin-Editor/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.henshin.sdk.feature.group' name='Henshin SDK (Incubation)' version='1.4.0.201611301251'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/emft/henshin/updates/release/'/>
+      </repositories>
+    </iu>
+    <iu id='de.tub.tfs.henshin.tgg.feature.feature.group' name='Henshin TGG Environment' version='1.0.0'>
+      <repositories size='1'>
+        <repository location='http://de-tu-berlin-tfs.github.io/Henshin-Editor/'/>
+      </repositories>
+    </iu>
+    <iu id='org.liquibase.osgi' name='Liquibase with OSGI Support' version='3.4.2'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.lsp4j.sdk.feature.group' name='LSP4J SDK' version='0.1.1.v20170124-1237'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.mariadb.jdbc' name='MariaDB JDBC Client' version='1.4.2.0'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.compare.source.feature.group' name='Model comparison (EMF Compare) - Core - SDK' version='3.2.1.201608311750'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.compare.egit.feature.group' name='Model comparison (EMF Compare) - EGit support' version='1.1.1.201608311750'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.compare.ide.ui.source.feature.group' name='Model comparison (EMF Compare) - SDK' version='3.2.1.201608311750'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.compare.diagram.sirius.source.feature.group' name='Model comparison (EMF Compare) - Sirius support (Experimental)- SDK' version='3.2.1.201608311750'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='de.tub.tfs.muvitor.feature.feature.group' name='Muvitor' version='1.0.0'>
+      <repositories size='1'>
+        <repository location='http://de-tu-berlin-tfs.github.io/Henshin-Editor/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.ide_feature.feature.group' name='Mylyn Context Connector: Eclipse IDE' version='3.21.0.v20160912-1820'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.java_feature.feature.group' name='Mylyn Context Connector: Java Development' version='3.21.0.v20160701-1337'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.pde_feature.feature.group' name='Mylyn Context Connector: Plug-in Development' version='3.21.0.v20160701-1337'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn_feature.feature.group' name='Mylyn Task List' version='3.21.0.v20160914-0252'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.context_feature.feature.group' name='Mylyn Task-Focused Interface' version='3.21.0.v20160815-2336'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.bugzilla_feature.feature.group' name='Mylyn Tasks Connector: Bugzilla' version='3.21.0.v20160909-1813'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.wikitext_feature.feature.group' name='Mylyn WikiText' version='2.10.1.v20161129-1925'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.ocl.all.sdk.feature.group' name='OCL Classic SDK: Ecore/UML Parsers,Evaluator,Edit' version='5.2.0.v20160523-1914'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.apache.activemq.all' name='org.apache.activemq.all' version='5.14.3'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.xmlunit.xmlunit-core' name='org.xmlunit:xmlunit-core' version='2.1.1'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.xmlunit.xmlunit-matchers' name='org.xmlunit:xmlunit-matchers' version='2.1.1'>
+      <repositories size='2'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+        <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.papyrus.extra.cdo.feature.source.feature.group' name='Papyrus CDO Integration (Incubation) Developer Resources' version='1.2.0.201703081153'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.papyrus.sdk.feature.feature.group' name='Papyrus UML' version='2.0.3.201703080851'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon'/>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.papyrus.sdk.feature.source.feature.group' name='Papyrus UML Developer Resources' version='2.0.3.201703080851'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon'/>
+      </repositories>
+    </iu>
+    <iu id='de.cooperateproject.cdo.patched.client.feature.feature.group' name='Patched CDO Client Bundles' version='4.5.1'>
+      <repositories size='1'>
+        <repository location='https://dl.bintray.com/cooperate-project/CDO/updatesite/4.5.1/'/>
+      </repositories>
+    </iu>
+    <iu id='de.cooperateproject.cdo.patched.server.feature.feature.group' name='Patched CDO Server Bundles' version='4.5.1'>
+      <repositories size='1'>
+        <repository location='https://dl.bintray.com/cooperate-project/CDO/updatesite/4.5.1/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.m2m.qvt.oml.sdk.feature.group' name='QVT Operational SDK' version='3.6.0.v20160606-1156'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.sonarlint.eclipse.feature.feature.group' name='SonarLint for Eclipse' version='2.6.0.201702201416'>
+      <repositories size='1'>
+        <repository location='http://eclipse.sonarlint.org/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.xsd.sdk.feature.group' name='XSD - XML Schema Definition SDK' version='2.12.0.v20160526-0356'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/neon'/>
+        <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.xtend.sdk.feature.group' name='Xtend IDE' version='2.11.0.v20170201-0242'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.xtext.sdk.feature.group' name='Xtext Complete SDK' version='2.11.0.v20170201-0242'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+  </ius>
+</p2f>

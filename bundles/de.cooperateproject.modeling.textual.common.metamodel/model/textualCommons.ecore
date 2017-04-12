@@ -50,6 +50,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="packageImports" upperBound="-1"
         eType="#//PackageImport" containment="true" eOpposite="#//PackageImport/importingPackage"/>
+    <eGenericSuperTypes eClassifier="#//PackageableElement"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     </eGenericSuperTypes>
@@ -72,7 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
-      interface="true"/>
+      interface="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedPackage" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

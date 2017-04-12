@@ -40,7 +40,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordEdgeGeneralization();
 	result += self.map traceRecordEdgeImplementation();
 	result += self.map traceRecordEdgeRegularAssociation();
-	result += self.map traceRecordEdgeCommentLink();
+	//result += self.map traceRecordEdgeCommentLink();
 	result += self.map traceRecordEdgeMemberEnd();
 	result += self.map traceRecordEdgePackageImport();
 	result += self.map traceRecordShapeComment();
@@ -89,8 +89,8 @@ when {self.getSelf().modelElement.oclIsKindOf(cls::Class)}
 	var classifierShape := self.getResult().modelElement;
 	var classifier := self.getSelf().modelElement;
 	
-	result += new TraceRecord("nodeToClass", "Node", classifierShape, "Class", classifier);
-	result += new TraceRecord("nodeToClassifier", "Node", classifierShape, "Classifier", classifier);
+	result += createEdgeTraceRecord("nodeToClass", "Node", classifierShape, "Class", classifier);
+	result += createEdgeTraceRecord("nodeToClassifier", "Node", classifierShape, "Classifier", classifier);
 }
 
 mapping trace::TraceRecord::traceRecordShapeClassifier_Interface() : List(trace::TraceRecord)
@@ -99,8 +99,8 @@ when {self.getSelf().modelElement.oclIsKindOf(cls::Interface)}
 	var classifierShape := self.getResult().modelElement;
 	var classifier := self.getSelf().modelElement;
 
-	result += new TraceRecord("nodeToInterface", "Node", classifierShape, "Interface", classifier);
-	result += new TraceRecord("nodeToClassifier", "Node", classifierShape, "Classifier", classifier);
+	result += createEdgeTraceRecord("nodeToInterface", "Node", classifierShape, "Interface", classifier);
+	result += createEdgeTraceRecord("nodeToClassifier", "Node", classifierShape, "Classifier", classifier);
 }
 
 mapping trace::TraceRecord::traceRecordShapeAttribute() : List(trace::TraceRecord)
@@ -185,17 +185,15 @@ when {self.mappingOperation.name = "connectorToEdge"}
 	result += new TraceRecord("multiplicityElementToCardinality", "MultiplicityElement", rightElement.referencedElement.eobject(), "Cardinality", rightElement.cardinality.eobject());
 }
 
-mapping trace::TraceRecord::traceRecordEdgeCommentLink() : List(trace::TraceRecord)
-when {self.mappingOperation.name = "commentToEdge" and self.getSelf().modelElement.oclAsType(textualCommons::Comment).commentedElement.oclIsKindOf(cls::CommentLink)}
+mapping trace::TraceRecord::traceRecordEdgeComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToEdge"}
 {
 	var comment := self.getSelf().modelElement.oclAsType(textualCommons::Comment);
 	var edge := self.getResult().modelElement;
 	var connector := comment.commentedElement;
 	
-	assert(connector.oclIsKindOf(cls::CommentLink)) with log("Only comment links are supported.");
-	
-	result += createEdgeTraceRecord("edgeToCommentLink", "Edge", edge, "CommentLink", connector.eobject());
-	result += createEdgeTraceRecord("edgeToConnector", "Edge", edge, "Connector", connector.eobject());
+	//result += createEdgeTraceRecord("edgeToCommentLink", "Edge", edge, "CommentLink", connector.eobject());
+	//result += createEdgeTraceRecord("edgeToConnector", "Edge", edge, "Connector", connector.eobject());
 }
 
 mapping trace::TraceRecord::traceRecordEdgeMemberEnd() : List(trace::TraceRecord)

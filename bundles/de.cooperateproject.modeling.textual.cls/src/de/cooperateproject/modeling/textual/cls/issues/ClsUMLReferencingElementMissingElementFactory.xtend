@@ -7,46 +7,48 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import org.eclipse.uml2.uml.Element
 
 class ClsUMLReferencingElementMissingElementFactory extends ClsAutomatedIssueResolutionFactoryBase<UMLReferencingElement<Element>> {
-	
-    static val ISSUE_CODE = "missingUMLReference";
-    static val RESOLVABLE_CHECKER = new ClsUMLReferencingElementMissingElementResolvableChecker()
 
-    @SuppressWarnings("unchecked")
-    new() {
-        super(ISSUE_CODE, RESOLVABLE_CHECKER, UMLReferencingElement as Class<?> as Class<UMLReferencingElement<Element>>);
-    }
+	static val ISSUE_CODE = "missingUMLReference";
+	static val RESOLVABLE_CHECKER = new ClsUMLReferencingElementMissingElementResolvableChecker()
 
-    override hasIssueInternal(UMLReferencingElement<Element> element) {
-        if (element instanceof PackageBase) {
-            if (element.owningPackage === null) {
-                return false;
-            }
-        }
-        return element.referencedElement === null;
-    }
+	@SuppressWarnings("unchecked")
+	new() {
+		super(ISSUE_CODE, RESOLVABLE_CHECKER,
+			UMLReferencingElement as Class<?> as Class<UMLReferencingElement<Element>>);
+	}
 
-    override createInternal(UMLReferencingElement<Element> element) {
-        new ClsUMLReferencingElementMissingElementResolution(element, resolvableChecker);
-    }
+	override hasIssueInternal(UMLReferencingElement<Element> element) {
+		if (element instanceof PackageBase) {
+			if (element.owningPackage === null) {
+				return false;
+			}
+		}
+		return element.referencedElement === null;
+	}
 
-    override getResolutionNameInternal(UMLReferencingElement<Element> element) {
-        "Create UML element";
-    }
+	override createInternal(UMLReferencingElement<Element> element) {
+		new ClsUMLReferencingElementMissingElementResolution(element, resolvableChecker);
+	}
 
-    override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) {
-        "The UML element does not exist yet.";
-    }
+	override getResolutionNameInternal(UMLReferencingElement<Element> element) {
+		"Create UML element";
+	}
 
-    override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
-        eObject.relevantFeature
-    }
-    
-    protected def dispatch relevantFeature(NamedElement element) {
-    	TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME
-    }
-    
-    protected def dispatch relevantFeature(Element element) {
-    	TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT
-    }
-	
+	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) {
+		"The UML element does not exist yet.";
+	}
+
+	override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
+		eObject.relevantFeature
+	}
+
+	protected def dispatch relevantFeature(NamedElement element) {
+		TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME
+	}
+
+	protected def dispatch relevantFeature(
+		de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element element) {
+		TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT
+	}
+
 }

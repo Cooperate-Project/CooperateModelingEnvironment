@@ -512,6 +512,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 		namedElementEClass.getESuperTypes().add(this.getElement());
 		aliasedElementEClass.getESuperTypes().add(this.getNamedElement());
 		umlReferencingElementEClass.getESuperTypes().add(this.getElement());
+		g1 = createEGenericType(this.getPackageableElement());
+		packageBaseEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getPackage());
 		g1.getETypeArguments().add(g2);
@@ -522,6 +524,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 		g2 = createEGenericType(theUMLPackage.getComment());
 		g1.getETypeArguments().add(g2);
 		commentEClass.getEGenericSuperTypes().add(g1);
+		packageableElementEClass.getESuperTypes().add(this.getElement());
 		g1 = createEGenericType(this.getUMLReferencingElement());
 		g2 = createEGenericType(theUMLPackage.getPackageImport());
 		g1.getETypeArguments().add(g2);
