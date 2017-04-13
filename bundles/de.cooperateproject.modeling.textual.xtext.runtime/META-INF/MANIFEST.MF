@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  de.cooperateproject.ui.preferences;bundle-version="0.1.7",
  org.eclipse.emf.transaction,
  de.cooperateproject.modeling.textual.common.metamodel,
- de.cooperateproject.modeling.textual.common
+ de.cooperateproject.modeling.textual.common,
+ com.google.inject.multibindings;bundle-version="3.0.0";visibility:=reexport
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
  de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
@@ -28,4 +29,3 @@ Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
  de.cooperateproject.modeling.textual.xtext.runtime.validator
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator
-Import-Package: com.google.inject.multibindings
