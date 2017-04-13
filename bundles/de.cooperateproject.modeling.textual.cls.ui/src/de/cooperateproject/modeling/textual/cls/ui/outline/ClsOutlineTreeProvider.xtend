@@ -42,7 +42,7 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image, getStyledString("Classifiers", pkg.classifiers.size), false)
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image, getStyledString("Connectors", pkg.connectors.size), false)
-		val comments = Iterables.concat(pkg.classifiers.filter(Commentable).filter[!comments.isEmpty].map[comments], pkg.connectors.filter(Association).filter[!comments.isEmpty].map[comments])
+		val comments = Iterables.concat(pkg.classifiers, pkg.connectors).filter(Commentable).filter[!comments.isEmpty].map[comments]
 		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, getStyledString("Comments", comments.size), false, [!comments.empty])
 	}
 	

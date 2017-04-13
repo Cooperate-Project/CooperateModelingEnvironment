@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Modeling Commons
-Bundle-SymbolicName: de.cooperateproject.modeling.textual.common
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.common;singleton:=true
 Bundle-Version: 0.1.7.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
@@ -12,13 +12,19 @@ Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.emf.ecore;bundle-version="2.11.2",
  de.cooperateproject.modeling.common,
  org.eclipse.core.runtime;bundle-version="3.12.0",
- de.cooperateproject.modeling.textual.common.metamodel,
+ de.cooperateproject.modeling.textual.common.metamodel;visibility:=reexport,
  org.eclipse.xtext,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
- org.eclipse.xtend.lib.macro
+ org.eclipse.xtend.lib.macro,
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.7"
 Export-Package: de.cooperateproject.modeling.textual.common,
  de.cooperateproject.modeling.textual.common.conventions,
+ de.cooperateproject.modeling.textual.common.generator,
+ de.cooperateproject.modeling.textual.common.issues,
+ de.cooperateproject.modeling.textual.common.naming,
+ de.cooperateproject.modeling.textual.common.scoping,
+ de.cooperateproject.modeling.textual.common.services,
  de.cooperateproject.modeling.textual.common.validation
 

@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.common.conventions;
+package de.cooperateproject.modeling.common.conventions;
 
 import java.util.Optional;
 import java.util.regex.Matcher;

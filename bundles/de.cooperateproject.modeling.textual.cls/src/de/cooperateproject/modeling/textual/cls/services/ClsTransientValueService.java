@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.xtext.runtime.services.BasicCooperateTransientValueService;
+import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService;
 
 public class ClsTransientValueService extends BasicCooperateTransientValueService {
 

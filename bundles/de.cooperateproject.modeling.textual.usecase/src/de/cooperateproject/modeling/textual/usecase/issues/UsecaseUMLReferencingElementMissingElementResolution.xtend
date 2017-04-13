@@ -20,7 +20,7 @@ import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
-import static extension de.cooperateproject.modeling.textual.usecase.issues.UsecaseIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -119,16 +119,6 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 			actorCardinality.value
 		)
 		element.referencedElement = umlAssociation
-	}
-	
-	private def dispatch fixMissingUMLElement(Comment element) {
-		if(!resolvePossible) return Void
-		val commentedElement = element.commentedElement as UMLReferencingElement<Element>
-		val umlCommentedElement = commentedElement.referencedElement
-		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment
-		umlComment.body = element.body
-		umlComment.annotatedElements += umlCommentedElement
-		element.referencedElement = umlComment
 	}
 	
 }

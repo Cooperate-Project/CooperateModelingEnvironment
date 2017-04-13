@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.util.NotationSwitch;
 
+import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
 import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
-import de.cooperateproject.modeling.textual.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.transformation.transformations.impl.GraphicsToTextTransformation;
 import de.cooperateproject.modeling.transformation.transformations.impl.PostProcessor;
 import de.cooperateproject.modeling.transformation.transformations.impl.TextToGraphicsTransformation;

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 
-import de.cooperateproject.modeling.textual.common.conventions.ModelNamingConventions;
+import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 
 public class ConventionalUMLUriFinder implements IUMLUriFinder {
 

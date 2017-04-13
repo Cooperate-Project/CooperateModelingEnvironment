@@ -7,7 +7,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBase<Package> {
 	

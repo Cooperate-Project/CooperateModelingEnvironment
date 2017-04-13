@@ -32,7 +32,7 @@ import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest;
 import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateImportedNamespaceAwareLocalScopeProvider;
+import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider;
 
 @RunWith(XtextRunner.class)
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider.class)

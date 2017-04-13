@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.services;
+package de.cooperateproject.modeling.textual.common.services;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -11,11 +11,11 @@ import de.cooperateproject.modeling.textual.cls.generator.ClsDerivedStateElement
 import de.cooperateproject.modeling.textual.cls.services.ClsLazyLinker
 import de.cooperateproject.modeling.textual.cls.services.ClsTransientValueService
 import de.cooperateproject.modeling.textual.cls.services.ClsValueConverter
+import de.cooperateproject.modeling.textual.common.generator.CommonDerivedStateModuleExtension
+import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.cdotext.TextualStateCalculator
-import de.cooperateproject.modeling.textual.xtext.runtime.generator.CommonDerivedStateModuleExtension
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator
 import org.eclipse.xtext.resource.DerivedStateAwareResource

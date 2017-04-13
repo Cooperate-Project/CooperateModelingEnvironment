@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.OperationOwner
 import org.eclipse.uml2.uml.StructuredClassifier
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -54,11 +54,7 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 	}
 
 	private def dispatch resolvePossible(Comment element) {
-		val commentElement = element.commentedElement
-		if (commentElement instanceof UMLReferencingElement) {
-			return commentElement.hasReferencedElement
-		} 
-		return false
+		return element.commentedElement.hasReferencedElement
 	}
 
 	private def dispatch resolvePossible(Attribute element) {

@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
+package de.cooperateproject.modeling.textual.common.naming;
 
 import java.util.List;
 

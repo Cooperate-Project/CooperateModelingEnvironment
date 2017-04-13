@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor
 import de.cooperateproject.modeling.textual.usecase.usecase.Association
@@ -14,6 +13,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Element
 
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 import static extension de.cooperateproject.modeling.textual.usecase.issues.UsecaseIssueResolutionUtilities.*
 
 class UsecaseUMLReferencingElementMissingElementChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
@@ -72,10 +72,7 @@ class UsecaseUMLReferencingElementMissingElementChecker implements IResolvableCh
 			element.usecase.hasReferencedElement
 	}
 	
-	private def dispatch resolvePossible(Comment element) {
-		return
-			element.commentedElement instanceof UMLReferencingElement<?> &&
-			(element.commentedElement as UMLReferencingElement<?>).referencedElement instanceof Element
+	private def dispatch resolvePossible(UMLReferencingElement element) {
+	    return false;
 	}
-	
 }

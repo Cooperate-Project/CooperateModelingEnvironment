@@ -1035,6 +1035,15 @@ public interface ClsPackage extends EPackage {
     int CONNECTOR_FEATURE_COUNT = TextualCommonsPackage.PACKAGEABLE_ELEMENT_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR___GET_NEAREST_PACKAGE = TextualCommonsPackage.PACKAGEABLE_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
      * The number of operations of the '<em>Connector</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1088,6 +1097,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPED_CONNECTOR___GET_NEAREST_PACKAGE = CONNECTOR___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Typed Connector</em>' class.

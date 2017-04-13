@@ -24,110 +24,110 @@ import org.eclipse.uml2.uml.Element;
  */
 public abstract class UMLReferencingElementImpl<UMLType extends Element> extends ElementImpl implements UMLReferencingElement<UMLType> {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UMLReferencingElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT;
-	}
+        return TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public UMLType getReferencedElement() {
-		return (UMLType)eDynamicGet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-	}
+        return (UMLType)eDynamicGet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UMLType basicGetReferencedElement() {
-		return (UMLType)eDynamicGet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-	}
+        return (UMLType)eDynamicGet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferencedElement(UMLType newReferencedElement) {
-		eDynamicSet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-	}
+        eDynamicSet(TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
-				if (resolve) return getReferencedElement();
-				return basicGetReferencedElement();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
-				setReferencedElement((UMLType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
+                setReferencedElement((UMLType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
-				setReferencedElement((UMLType)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
+                setReferencedElement((UMLType)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
-				return basicGetReferencedElement() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT:
+                return basicGetReferencedElement() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //UMLReferencingElementImpl

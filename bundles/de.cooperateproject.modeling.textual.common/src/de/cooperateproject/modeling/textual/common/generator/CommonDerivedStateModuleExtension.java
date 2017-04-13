@@ -1,9 +1,11 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.generator;
+package de.cooperateproject.modeling.textual.common.generator;
 
 import com.google.inject.Binder;
 import com.google.inject.binder.LinkedBindingBuilder;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.name.Names;
+
+import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
 
 @SuppressWarnings("all")
 public interface CommonDerivedStateModuleExtension {

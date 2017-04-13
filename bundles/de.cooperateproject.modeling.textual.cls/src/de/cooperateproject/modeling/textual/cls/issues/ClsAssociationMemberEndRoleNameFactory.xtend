@@ -2,7 +2,8 @@ package de.cooperateproject.modeling.textual.cls.issues
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsAssociationMemberEndRoleNameFactory extends ClsAutomatedIssueResolutionFactoryBase<AssociationMemberEnd> {
 	

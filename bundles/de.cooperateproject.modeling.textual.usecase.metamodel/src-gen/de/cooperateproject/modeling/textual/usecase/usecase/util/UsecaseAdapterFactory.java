@@ -142,7 +142,7 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
                 return createUMLReferencingElementAdapter();
             }
             @Override
-            public Adapter caseCommentable(Commentable object) {
+            public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
                 return createCommentableAdapter();
             }
             @Override
