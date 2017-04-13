@@ -26,6 +26,10 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 	override isResolvable(UMLReferencingElement<Element> element) {
 		element.resolvePossible
 	}
+	
+	private def dispatch resolvePossible(UMLReferencingElement element) {
+	    return false;
+	}
 
 	private def dispatch resolvePossible(Package element) {
 		if (element.owningPackage === null) {
@@ -51,10 +55,6 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 		return element.owningPackage.hasReferencedElement &&
 			element.left.hasReferencedElementOfType(Class) &&
 			element.right.hasReferencedElementOfType(Interface)
-	}
-
-	private def dispatch resolvePossible(Comment element) {
-		return element.commentedElement.hasReferencedElement
 	}
 
 	private def dispatch resolvePossible(Attribute element) {

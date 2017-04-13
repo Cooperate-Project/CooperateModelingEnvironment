@@ -6,9 +6,9 @@ import org.eclipse.emf.ecore.EPackage;
 
 public interface IAutomatedIssueResolutionFactoryRegistry {
 
-    Collection<IAutomatedIssueResolutionFactory> findFactories(EPackage ePackage, String issueId);
+    Collection<IAutomatedIssueResolutionFactory> findFactories(Collection<EPackage> ePackages, String issueId);
 
-    Collection<IAutomatedIssueResolutionFactory> findFactories(EPackage ePackage);
+    Collection<IAutomatedIssueResolutionFactory> findFactories(Collection<EPackage> ePackages);
 
     Collection<EPackage> coveredPackages();
 

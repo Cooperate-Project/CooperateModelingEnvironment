@@ -2,6 +2,7 @@ package de.cooperateproject.modeling.textual.xtext.runtime.validator;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,8 @@ public class CooperateAutomatedValidator extends AbstractInjectableValidator imp
     protected boolean internalValidate(EClass eClass, EObject eObject, DiagnosticChain diagnostics,
             Map<Object, Object> context) {
         boolean newDiagnostics = false;
-        Collection<IAutomatedIssueResolutionFactory> applicableFactories = registry.findFactories(eClass.getEPackage());
+        Collection<IAutomatedIssueResolutionFactory> applicableFactories = registry
+                .findFactories(Collections.singletonList(eClass.getEPackage()));
         for (IAutomatedIssueResolutionFactory factory : applicableFactories) {
             if (factory.hasIssue(eObject)) {
                 int severity = factory.resolvePossible(eObject) ? Diagnostic.INFO : Diagnostic.ERROR;

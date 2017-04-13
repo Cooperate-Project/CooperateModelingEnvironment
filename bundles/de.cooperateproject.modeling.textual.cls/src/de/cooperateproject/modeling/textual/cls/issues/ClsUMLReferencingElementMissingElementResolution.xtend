@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Interface
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
@@ -79,19 +78,6 @@ class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		val umlInterfaceRealization = (element.left.referencedElement as org.eclipse.uml2.uml.Class).
 			createInterfaceRealization(null, element.right.referencedElement as org.eclipse.uml2.uml.Interface)
 		element.referencedElement = umlInterfaceRealization
-	}
-
-	private def dispatch fixMissingUMLElement(Comment element) {
-		if(!resolvePossible) return Void
-		val commentedElement = element.commentedElement
-		var Element umlCommentedElement = null
-    
-        umlCommentedElement = commentedElement.referencedElement
-
-		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()
-		umlComment.body = element.body
-		umlComment.annotatedElements.add(umlCommentedElement)
-		element.referencedElement = umlComment
 	}
 
 	private def dispatch fixMissingUMLElement(Attribute element) {

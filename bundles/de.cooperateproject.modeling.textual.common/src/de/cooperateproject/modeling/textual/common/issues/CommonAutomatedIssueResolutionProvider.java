@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.textual.common.issues;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import com.google.inject.Inject;
@@ -16,7 +17,7 @@ public class CommonAutomatedIssueResolutionProvider extends AutomatedIssueResolu
 
     @Override
     protected Collection<IAutomatedIssueResolutionFactory> findResolutionFactories(String issueCode) {
-        return registry.findFactories(TextualCommonsPackage.eINSTANCE, issueCode);
+        return registry.findFactories(Arrays.asList(TextualCommonsPackage.eINSTANCE), issueCode);
     }
 
 }
