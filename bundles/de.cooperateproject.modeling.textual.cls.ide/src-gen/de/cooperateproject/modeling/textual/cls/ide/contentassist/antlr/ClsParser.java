@@ -39,6 +39,7 @@ public class ClsParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMemberAccess().getAlternatives(), "rule__Member__Alternatives");
 					put(grammarAccess.getConnectorAccess().getAlternatives(), "rule__Connector__Alternatives");
 					put(grammarAccess.getCardinalityBoundAccess().getAlternatives(), "rule__CardinalityBound__Alternatives");
+					put(grammarAccess.getRoleNameAccess().getAlternatives(), "rule__RoleName__Alternatives");
 					put(grammarAccess.getVisibilityAccess().getAlternatives(), "rule__Visibility__Alternatives");
 					put(grammarAccess.getAggregationKindAccess().getAlternatives(), "rule__AggregationKind__Alternatives");
 					put(grammarAccess.getClassDiagramAccess().getGroup(), "rule__ClassDiagram__Group__0");

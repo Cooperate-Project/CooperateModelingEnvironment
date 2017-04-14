@@ -6,22 +6,13 @@ import java.util.Spliterators;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.resource.IDerivedStateComputer;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
-
 public abstract class AbstractDerivedStateGenerator implements IDerivedStateComputer {
-
-    @Inject
-    private IQualifiedNameProvider qualifiedNameProvider;
-
-    @Inject
-    private IGlobalScopeTypeQueryProvider globalScopeProvider;
 
     @Inject
     @Named("MainProcessor")

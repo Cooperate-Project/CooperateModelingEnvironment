@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.textual.cls.generator;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -81,10 +82,11 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Optional<Void>>
                 if (memberEnd.getCardinality() != null) {
                     object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
                 }
-                if (memberEnd.getName() != null) {
-                    object.getMemberEndNames().add(memberEnd.getName());
-                }
+                object.getMemberEndNames().add(memberEnd.getName());
                 object.getMemberEndNavigabilities().add(memberEnd.isNavigable());
+            }
+            if (object.getMemberEndNames().stream().allMatch(Objects::isNull)) {
+                object.getMemberEndNames().clear();
             }
             if (object.getMemberEnds().size() == 2) {
                 object.setTwoSideBidirectionality(

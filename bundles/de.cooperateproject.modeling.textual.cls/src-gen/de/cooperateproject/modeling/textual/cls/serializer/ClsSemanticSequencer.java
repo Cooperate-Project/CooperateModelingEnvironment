@@ -338,7 +338,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         name=ID 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType* 
-	 *         (memberEndNames+=ID memberEndNames+=ID*)? 
+	 *         (memberEndNames+=RoleName memberEndNames+=RoleName*)? 
 	 *         (memberEndCardinalities+=Cardinality memberEndCardinalities+=Cardinality*)? 
 	 *         comments+=Comment?
 	 *     )

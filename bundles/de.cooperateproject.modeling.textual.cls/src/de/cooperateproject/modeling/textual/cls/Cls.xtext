@@ -119,7 +119,7 @@ Implementation:
 XtextAssociation:
 	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
 	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')'
-	('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')?
+	('role' '[' memberEndNames+=RoleName (',' memberEndNames+=RoleName)* ']')?
 	('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')?
 	comments+=Comment?
 ;
@@ -160,3 +160,11 @@ enum AggregationKind:
 	| AGGREGATION = 'agg'
 	| COMPOSITION = 'com'
 ;
+
+RoleName returns ecore::EString:
+    ID | UNDERSCORE
+;
+
+@Override
+terminal ID         : '^'?('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal UNDERSCORE : '_';

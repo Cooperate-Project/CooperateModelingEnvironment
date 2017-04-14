@@ -39,12 +39,13 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndClsdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//// ------------------------------------------------------------------------------------------
-		//
 		//// ---------------------------------Root-----------------------------------------------------
-		//
 		//// ------------------------------------------------------------------------------------------
-		// ClassDiagram:
-		//	{ClassDiagram} '@start-clsd' title=STRING rootPackage=RootPackage '@end-clsd';
+		//ClassDiagram:
+		//	{ClassDiagram}
+		//	'@start-clsd' title=STRING
+		//	rootPackage=RootPackage
+		//	'@end-clsd';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{ClassDiagram} '@start-clsd' title=STRING rootPackage=RootPackage '@end-clsd'
@@ -87,7 +88,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPackagesPackageParserRuleCall_5_0 = (RuleCall)cPackagesAssignment_5.eContents().get(0);
 		
 		//RootPackage Package:
-		//	'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+		//	'rootPackage' name=FQN
+		//	packageImports+=PackageImport*
+		//	classifiers+=Classifier*
+		//	connectors+=Connector*
 		//	packages+=Package*;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -145,8 +149,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Package:
-		//	'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
-		//	packages+=Package* '}';
+		//	'package' name=FQN '{'
+		//	packageImports+=PackageImport*
+		//	classifiers+=Classifier*
+		//	connectors+=Connector*
+		//	packages+=Package*
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector* packages+=Package*
@@ -260,11 +268,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInterfaceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//// ------------------------------------------------------------------------------------------
-		//
 		//// ---------------------------------Class Diagram--------------------------------------------
-		//
 		//// ------------------------------------------------------------------------------------------
-		// Classifier:
+		//Classifier:
 		//	Class | Interface;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -494,7 +500,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMethodParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Member:
-		//	Attribute | Method;
+		//	Attribute
+		//	| Method;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Attribute | Method
@@ -522,7 +529,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeClassifierFQNParserRuleCall_5_0_1 = (RuleCall)cTypeClassifierCrossReference_5_0.eContents().get(1);
 		
 		//Attribute:
-		//	{Attribute} visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
+		//	{Attribute} visibility=Visibility?
+		//	static?='static'?
+		//	name=ID ':' type=[uml::Classifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Attribute} visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN]
@@ -588,8 +597,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeClassifierFQNParserRuleCall_7_1_0_1 = (RuleCall)cTypeClassifierCrossReference_7_1_0.eContents().get(1);
 		
 		//Method:
-		//	visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
-		//	parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
+		//	visibility=Visibility?
+		//	abstract?='abstract'?
+		//	static?='static'?
+		//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
@@ -677,7 +688,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypeClassifierFQNParserRuleCall_4_0_1 = (RuleCall)cTypeClassifierCrossReference_4_0.eContents().get(1);
 		
 		//Parameter:
-		//	visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
+		//	visibility=Visibility?
+		//	static?='static'?
+		//	name=ID ':' type=[uml::Classifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN]
@@ -721,7 +734,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImplementationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Connector:
-		//	Generalization | XtextAssociation | Implementation;
+		//	Generalization
+		//	| XtextAssociation
+		//	| Implementation;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Generalization | XtextAssociation | Implementation
@@ -859,11 +874,11 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRoleKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
 		private final Assignment cMemberEndNamesAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final RuleCall cMemberEndNamesIDTerminalRuleCall_7_2_0 = (RuleCall)cMemberEndNamesAssignment_7_2.eContents().get(0);
+		private final RuleCall cMemberEndNamesRoleNameParserRuleCall_7_2_0 = (RuleCall)cMemberEndNamesAssignment_7_2.eContents().get(0);
 		private final Group cGroup_7_3 = (Group)cGroup_7.eContents().get(3);
 		private final Keyword cCommaKeyword_7_3_0 = (Keyword)cGroup_7_3.eContents().get(0);
 		private final Assignment cMemberEndNamesAssignment_7_3_1 = (Assignment)cGroup_7_3.eContents().get(1);
-		private final RuleCall cMemberEndNamesIDTerminalRuleCall_7_3_1_0 = (RuleCall)cMemberEndNamesAssignment_7_3_1.eContents().get(0);
+		private final RuleCall cMemberEndNamesRoleNameParserRuleCall_7_3_1_0 = (RuleCall)cMemberEndNamesAssignment_7_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_7_4 = (Keyword)cGroup_7.eContents().get(4);
 		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
 		private final Keyword cCardKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
@@ -879,17 +894,18 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCommentsCommentParserRuleCall_9_0 = (RuleCall)cCommentsAssignment_9.eContents().get(0);
 		
 		//XtextAssociation:
-		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
-		//	memberEndTypes+=XtextAssociationMemberEndReferencedType (','
-		//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=ID (','
-		//	memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)*
-		//	']')? comments+=Comment?;
+		//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
+		//	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (','
+		//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=RoleName (','
+		//	memberEndNames+=RoleName)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':'
+		//	memberEndCardinalities+=Cardinality)* ']')?
+		//	comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
 		//memberEndTypes+=XtextAssociationMemberEndReferencedType (',' memberEndTypes+=XtextAssociationMemberEndReferencedType)*
-		//')' ('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality
-		//(':' memberEndCardinalities+=Cardinality)* ']')? comments+=Comment?
+		//')' ('role' '[' memberEndNames+=RoleName (',' memberEndNames+=RoleName)* ']')? ('card' '['
+		//memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)* ']')? comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//twoSideBidirectionality?='bi'?
@@ -934,7 +950,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 		
-		//('role' '[' memberEndNames+=ID (',' memberEndNames+=ID)* ']')?
+		//('role' '[' memberEndNames+=RoleName (',' memberEndNames+=RoleName)* ']')?
 		public Group getGroup_7() { return cGroup_7; }
 		
 		//'role'
@@ -943,23 +959,23 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_7_1() { return cLeftSquareBracketKeyword_7_1; }
 		
-		//memberEndNames+=ID
+		//memberEndNames+=RoleName
 		public Assignment getMemberEndNamesAssignment_7_2() { return cMemberEndNamesAssignment_7_2; }
 		
-		//ID
-		public RuleCall getMemberEndNamesIDTerminalRuleCall_7_2_0() { return cMemberEndNamesIDTerminalRuleCall_7_2_0; }
+		//RoleName
+		public RuleCall getMemberEndNamesRoleNameParserRuleCall_7_2_0() { return cMemberEndNamesRoleNameParserRuleCall_7_2_0; }
 		
-		//(',' memberEndNames+=ID)*
+		//(',' memberEndNames+=RoleName)*
 		public Group getGroup_7_3() { return cGroup_7_3; }
 		
 		//','
 		public Keyword getCommaKeyword_7_3_0() { return cCommaKeyword_7_3_0; }
 		
-		//memberEndNames+=ID
+		//memberEndNames+=RoleName
 		public Assignment getMemberEndNamesAssignment_7_3_1() { return cMemberEndNamesAssignment_7_3_1; }
 		
-		//ID
-		public RuleCall getMemberEndNamesIDTerminalRuleCall_7_3_1_0() { return cMemberEndNamesIDTerminalRuleCall_7_3_1_0; }
+		//RoleName
+		public RuleCall getMemberEndNamesRoleNameParserRuleCall_7_3_1_0() { return cMemberEndNamesRoleNameParserRuleCall_7_3_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_7_4() { return cRightSquareBracketKeyword_7_4; }
@@ -1107,6 +1123,25 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
 	}
+	public class RoleNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.RoleName");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cUNDERSCORETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//RoleName:
+		//	ID | UNDERSCORE;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ID | UNDERSCORE
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		
+		//UNDERSCORE
+		public RuleCall getUNDERSCORETerminalRuleCall_1() { return cUNDERSCORETerminalRuleCall_1; }
+	}
 	
 	public class VisibilityElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Visibility");
@@ -1127,7 +1162,13 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPACKAGETildeKeyword_6_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum Visibility returns commons::Visibility:
-		//	PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~';
+		//	PUBLIC='+'
+		//	| PUBLIC='public'
+		//	| PRIVATE='-'
+		//	| PRIVATE='private'
+		//	| PROTECTED='#'
+		//	| PROTECTED='protected'
+		//	| PACKAGE='~';
 		public EnumRule getRule() { return rule; }
 		
 		//PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~'
@@ -1186,7 +1227,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCOMPOSITIONComKeyword_2_0 = (Keyword)cCOMPOSITIONEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum AggregationKind:
-		//	NONE='asc' | AGGREGATION='agg' | COMPOSITION='com';
+		//	NONE='asc'
+		//	| AGGREGATION='agg'
+		//	| COMPOSITION='com';
 		public EnumRule getRule() { return rule; }
 		
 		//NONE='asc' | AGGREGATION='agg' | COMPOSITION='com'
@@ -1235,6 +1278,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	private final CardinalityBoundElements pCardinalityBound;
 	private final VisibilityElements eVisibility;
 	private final AggregationKindElements eAggregationKind;
+	private final RoleNameElements pRoleName;
+	private final TerminalRule tID;
+	private final TerminalRule tUNDERSCORE;
 	
 	private final Grammar grammar;
 	
@@ -1269,6 +1315,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCardinalityBound = new CardinalityBoundElements();
 		this.eVisibility = new VisibilityElements();
 		this.eAggregationKind = new AggregationKindElements();
+		this.pRoleName = new RoleNameElements();
+		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.ID");
+		this.tUNDERSCORE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.UNDERSCORE");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1299,12 +1348,13 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//// ------------------------------------------------------------------------------------------
-	//
 	//// ---------------------------------Root-----------------------------------------------------
-	//
 	//// ------------------------------------------------------------------------------------------
-	// ClassDiagram:
-	//	{ClassDiagram} '@start-clsd' title=STRING rootPackage=RootPackage '@end-clsd';
+	//ClassDiagram:
+	//	{ClassDiagram}
+	//	'@start-clsd' title=STRING
+	//	rootPackage=RootPackage
+	//	'@end-clsd';
 	public ClassDiagramElements getClassDiagramAccess() {
 		return pClassDiagram;
 	}
@@ -1314,7 +1364,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//RootPackage Package:
-	//	'rootPackage' name=FQN packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
+	//	'rootPackage' name=FQN
+	//	packageImports+=PackageImport*
+	//	classifiers+=Classifier*
+	//	connectors+=Connector*
 	//	packages+=Package*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
@@ -1325,8 +1378,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Package:
-	//	'package' name=FQN '{' packageImports+=PackageImport* classifiers+=Classifier* connectors+=Connector*
-	//	packages+=Package* '}';
+	//	'package' name=FQN '{'
+	//	packageImports+=PackageImport*
+	//	classifiers+=Classifier*
+	//	connectors+=Connector*
+	//	packages+=Package*
+	//	'}';
 	public PackageElements getPackageAccess() {
 		return pPackage;
 	}
@@ -1366,11 +1423,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//// ------------------------------------------------------------------------------------------
-	//
 	//// ---------------------------------Class Diagram--------------------------------------------
-	//
 	//// ------------------------------------------------------------------------------------------
-	// Classifier:
+	//Classifier:
 	//	Class | Interface;
 	public ClassifierElements getClassifierAccess() {
 		return pClassifier;
@@ -1403,7 +1458,8 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Member:
-	//	Attribute | Method;
+	//	Attribute
+	//	| Method;
 	public MemberElements getMemberAccess() {
 		return pMember;
 	}
@@ -1413,7 +1469,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Attribute:
-	//	{Attribute} visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
+	//	{Attribute} visibility=Visibility?
+	//	static?='static'?
+	//	name=ID ':' type=[uml::Classifier|FQN];
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
@@ -1423,8 +1481,10 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Method:
-	//	visibility=Visibility? abstract?='abstract'? static?='static'? name=ID '(' (parameters+=Parameter (','
-	//	parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
+	//	visibility=Visibility?
+	//	abstract?='abstract'?
+	//	static?='static'?
+	//	name=ID '(' (parameters+=Parameter (',' parameters+=Parameter)*)* ')' (':' type=[uml::Classifier|FQN])?;
 	public MethodElements getMethodAccess() {
 		return pMethod;
 	}
@@ -1434,7 +1494,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Parameter:
-	//	visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
+	//	visibility=Visibility?
+	//	static?='static'?
+	//	name=ID ':' type=[uml::Classifier|FQN];
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -1444,7 +1506,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Connector:
-	//	Generalization | XtextAssociation | Implementation;
+	//	Generalization
+	//	| XtextAssociation
+	//	| Implementation;
 	public ConnectorElements getConnectorAccess() {
 		return pConnector;
 	}
@@ -1474,11 +1538,12 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//XtextAssociation:
-	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind name=ID '('
-	//	memberEndTypes+=XtextAssociationMemberEndReferencedType (','
-	//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=ID (','
-	//	memberEndNames+=ID)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':' memberEndCardinalities+=Cardinality)*
-	//	']')? comments+=Comment?;
+	//	twoSideBidirectionality?='bi'? twoSideAggregationKind=AggregationKind
+	//	name=ID '(' memberEndTypes+=XtextAssociationMemberEndReferencedType (','
+	//	memberEndTypes+=XtextAssociationMemberEndReferencedType)* ')' ('role' '[' memberEndNames+=RoleName (','
+	//	memberEndNames+=RoleName)* ']')? ('card' '[' memberEndCardinalities+=Cardinality (':'
+	//	memberEndCardinalities+=Cardinality)* ']')?
+	//	comments+=Comment?;
 	public XtextAssociationElements getXtextAssociationAccess() {
 		return pXtextAssociation;
 	}
@@ -1538,7 +1603,13 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum Visibility returns commons::Visibility:
-	//	PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~';
+	//	PUBLIC='+'
+	//	| PUBLIC='public'
+	//	| PRIVATE='-'
+	//	| PRIVATE='private'
+	//	| PROTECTED='#'
+	//	| PROTECTED='protected'
+	//	| PACKAGE='~';
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
 	}
@@ -1548,7 +1619,9 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//enum AggregationKind:
-	//	NONE='asc' | AGGREGATION='agg' | COMPOSITION='com';
+	//	NONE='asc'
+	//	| AGGREGATION='agg'
+	//	| COMPOSITION='com';
 	public AggregationKindElements getAggregationKindAccess() {
 		return eAggregationKind;
 	}
@@ -1557,10 +1630,26 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		return getAggregationKindAccess().getRule();
 	}
 	
-	//terminal ID:
-	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+	//RoleName:
+	//	ID | UNDERSCORE;
+	public RoleNameElements getRoleNameAccess() {
+		return pRoleName;
+	}
+	
+	public ParserRule getRoleNameRule() {
+		return getRoleNameAccess().getRule();
+	}
+	
+	//@ Override terminal ID:
+	//	'^'? ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
+		return tID;
+	}
+	
+	//terminal UNDERSCORE:
+	//	'_';
+	public TerminalRule getUNDERSCORERule() {
+		return tUNDERSCORE;
 	}
 	
 	//terminal INT returns ecore::EInt:

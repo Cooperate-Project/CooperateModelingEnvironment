@@ -585,7 +585,7 @@ ruleClass returns [EObject current=null]
 								$current,
 								"alias",
 								lv_alias_5_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"de.cooperateproject.modeling.textual.cls.Cls.ID");
 						}
 					)
 				)
@@ -605,7 +605,7 @@ ruleClass returns [EObject current=null]
 							$current,
 							"name",
 							lv_name_6_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"de.cooperateproject.modeling.textual.cls.Cls.ID");
 					}
 				)
 			)
@@ -760,7 +760,7 @@ ruleInterface returns [EObject current=null]
 								$current,
 								"alias",
 								lv_alias_4_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"de.cooperateproject.modeling.textual.cls.Cls.ID");
 						}
 					)
 				)
@@ -780,7 +780,7 @@ ruleInterface returns [EObject current=null]
 							$current,
 							"name",
 							lv_name_5_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"de.cooperateproject.modeling.textual.cls.Cls.ID");
 					}
 				)
 			)
@@ -964,7 +964,7 @@ ruleAttribute returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_3_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1068,7 +1068,7 @@ ruleMethod returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_3_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1214,7 +1214,7 @@ ruleParameter returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1483,7 +1483,7 @@ ruleXtextAssociation returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1550,19 +1550,20 @@ ruleXtextAssociation returns [EObject current=null]
 			}
 			(
 				(
-					lv_memberEndNames_10_0=RULE_ID
 					{
-						newLeafNode(lv_memberEndNames_10_0, grammarAccess.getXtextAssociationAccess().getMemberEndNamesIDTerminalRuleCall_7_2_0());
+						newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndNamesRoleNameParserRuleCall_7_2_0());
 					}
+					lv_memberEndNames_10_0=ruleRoleName
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getXtextAssociationRule());
+							$current = createModelElementForParent(grammarAccess.getXtextAssociationRule());
 						}
-						addWithLastConsumed(
+						add(
 							$current,
 							"memberEndNames",
 							lv_memberEndNames_10_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"de.cooperateproject.modeling.textual.cls.Cls.RoleName");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -1573,19 +1574,20 @@ ruleXtextAssociation returns [EObject current=null]
 				}
 				(
 					(
-						lv_memberEndNames_12_0=RULE_ID
 						{
-							newLeafNode(lv_memberEndNames_12_0, grammarAccess.getXtextAssociationAccess().getMemberEndNamesIDTerminalRuleCall_7_3_1_0());
+							newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndNamesRoleNameParserRuleCall_7_3_1_0());
 						}
+						lv_memberEndNames_12_0=ruleRoleName
 						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getXtextAssociationRule());
+								$current = createModelElementForParent(grammarAccess.getXtextAssociationRule());
 							}
-							addWithLastConsumed(
+							add(
 								$current,
 								"memberEndNames",
 								lv_memberEndNames_12_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"de.cooperateproject.modeling.textual.cls.Cls.RoleName");
+							afterParserOrEnumRuleCall();
 						}
 					)
 				)
@@ -1869,6 +1871,40 @@ ruleCardinalityBound returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 	)
 ;
 
+// Entry rule entryRuleRoleName
+entryRuleRoleName returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getRoleNameRule()); }
+	iv_ruleRoleName=ruleRoleName
+	{ $current=$iv_ruleRoleName.current.getText(); }
+	EOF;
+
+// Rule RoleName
+ruleRoleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		this_ID_0=RULE_ID
+		{
+			$current.merge(this_ID_0);
+		}
+		{
+			newLeafNode(this_ID_0, grammarAccess.getRoleNameAccess().getIDTerminalRuleCall_0());
+		}
+		    |
+		this_UNDERSCORE_1=RULE_UNDERSCORE
+		{
+			$current.merge(this_UNDERSCORE_1);
+		}
+		{
+			newLeafNode(this_UNDERSCORE_1, grammarAccess.getRoleNameAccess().getUNDERSCORETerminalRuleCall_1());
+		}
+	)
+;
+
 // Rule Visibility
 ruleVisibility returns [Enumerator current=null]
 @init {
@@ -1971,7 +2007,9 @@ ruleAggregationKind returns [Enumerator current=null]
 	)
 ;
 
-RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_ID : '^'? ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_UNDERSCORE : '_';
 
 RULE_INT : ('0'..'9')+;
 
