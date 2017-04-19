@@ -1,5 +1,9 @@
 package de.cooperateproject.modeling.textual.cls.ui.outline;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.apache.log4j.Logger;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -10,11 +14,16 @@ import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter.IFilter;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
 
-import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage;
-
 public class FlatOutlineViewContribution extends AbstractFilterOutlineContribution {
 
     public static final String PREFERENCE_KEY = "ui.outline.toggleOperations";
+
+    private static final String ACTION_NAME = "Outline Hierarchy";
+    private static final String ACTION_TOOLTIP = "Hierarchy/Flat";
+    private static final String ACTION_DESCRIPTION = "Toggles beetween hierarchy and flat view";
+    private static final String ACTION_IMAGE_URL = "platform:/plugin/org.eclipse.team.ui/icons/full/elcl16/hierarchicalLayout.gif";
+
+    private static final Logger LOGGER = Logger.getLogger(FlatOutlineViewContribution.class);
 
     private TreeViewer treeViewer;
     private IFilter filter;
@@ -46,10 +55,10 @@ public class FlatOutlineViewContribution extends AbstractFilterOutlineContributi
 
     @Override
     protected void configureAction(Action action) {
-        action.setText("Toggle");
-        action.setToolTipText("Toggle");
-        action.setDescription("Toggle");
-        action.setImageDescriptor(ImageDescriptor.createFromImage(UMLImage.ASSOCIATION.getImage()));
+        action.setText(ACTION_NAME);
+        action.setToolTipText(ACTION_TOOLTIP);
+        action.setDescription(ACTION_DESCRIPTION);
+        action.setImageDescriptor(getImageDescriptor());
     }
 
     @Override
@@ -76,10 +85,17 @@ public class FlatOutlineViewContribution extends AbstractFilterOutlineContributi
 
     @Override
     protected boolean apply(IOutlineNode node) {
-        if (node instanceof EStructuralFeatureNode) {
-            return false;
+        return !(node instanceof EStructuralFeatureNode);
+    }
+
+    private ImageDescriptor getImageDescriptor() {
+        URL url = null;
+        try {
+            url = new URL(ACTION_IMAGE_URL);
+        } catch (MalformedURLException e) {
+            LOGGER.error(e.getMessage());
         }
-        return true;
+        return ImageDescriptor.createFromURL(url);
     }
 
 }
