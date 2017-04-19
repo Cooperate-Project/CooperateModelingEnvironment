@@ -86,7 +86,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	def text(Property ele) {
 		val typeRef = ele.type
 		var type = ""
-		if (typeRef != null) {
+		if (typeRef !== null) {
 			type = ": " + typeRef.doGetText
 		}
 		ele.name + type
@@ -164,13 +164,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	def text(Comment ele) {
-		var String commentedElementText
-		if (ele.commentedElement instanceof Association) {
-			commentedElementText = (ele.commentedElement as Association).text
-		} else if (ele.commentedElement instanceof NamedElement) {
-			commentedElementText = (ele.commentedElement as NamedElement).text
-		} 
-		return commentedElementText + " : " + ele.body
+		return "note" + " : " + ele.body
 	}
 	
 	def image(Comment ele) {
@@ -192,7 +186,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		val typeName = association.memberEndTypes.tryGet(index)?.type?.text
 		val cardinality = association.memberEndCardinalities.tryGet(index)
 		var txt = String.format("%s : %s", name ?: "unnamed", typeName)
-		if (cardinality != null) {
+		if (cardinality !== null) {
 			txt += String.format(" [%s]", cardinality.text)	
 		}
 		return txt
@@ -213,7 +207,7 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	private def decorate(Image img, Visibility visibility) {
-		if (visibility == null || visibility == Visibility.UNDEFINED) {
+		if (visibility === null || visibility == Visibility.UNDEFINED) {
 			return img
 		}
 		val visibilityImage = visibilityMap.get(visibility)

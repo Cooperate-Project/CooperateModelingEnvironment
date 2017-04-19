@@ -4,15 +4,12 @@
 package de.cooperateproject.modeling.textual.cls.ui.outline
 
 import com.google.common.base.Predicate
-import com.google.common.collect.Iterables
-import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import java.util.Collection
 import org.eclipse.emf.ecore.EObject
@@ -31,67 +28,57 @@ import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
 class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	dispatch def createChildren(IOutlineNode parentNode, ClassDiagram root) {
-		if (root.rootPackage == null) {
+		if (root.rootPackage === null) {
 			return
 		}
 		createNode(parentNode, root.rootPackage)
 	}
-	
+
 	dispatch def createChildren(IOutlineNode parentNode, Package pkg) {
-		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image, getStyledString("Packages", pkg.packages.size), false)
-		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image, getStyledString("Classifiers", pkg.classifiers.size), false)
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image, getStyledString("Connectors", pkg.connectors.size), false)
-		val comments = Iterables.concat(pkg.classifiers.filter(Commentable).filter[!comments.isEmpty].map[comments], pkg.connectors.filter(Association).filter[!comments.isEmpty].map[comments])
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, getStyledString("Comments", comments.size), false, [!comments.empty])
+		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image,
+			getStyledString("Packages", pkg.packages.size), false)
+		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS,
+			UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image,
+			getStyledString("Classifiers", pkg.classifiers.size), false)
+		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image,
+			getStyledString("Connectors", pkg.connectors.size), false)
 	}
-	
+
 	dispatch def createChildren(IOutlineNode parentNode, XtextAssociation asc) {
-		asc.memberEndTypes.forEach[t | createEObjectNode(parentNode, t)];
+		asc.memberEndTypes.forEach[t|createEObjectNode(parentNode, t)];
 	}
-	
+
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
-		if ((parentNode.text as StyledString).toString.contains("Comments")) {
-			createCommentNode(parentNode, c)
-		} else {
-			createConnectorNode(parentNode, c)
-		}
+		createConnectorNode(parentNode, c)
 	}
-	
-	def dispatch createConnectorNode(EStructuralFeatureNode node, Connector connector) {
+
+	def createConnectorNode(EStructuralFeatureNode node, Connector connector) {
 		createEObjectNode(node, connector)
 		return
 	}
-	
-	def createCommentNode(EStructuralFeatureNode node, Connector connector) {
-		if (connector instanceof Commentable) {
-			if (!connector.comments.isEmpty) {
-				connector.comments.forEach[c | createEObjectNode(node, c)]
-			}
-		}
-		return
-	}
-	
+
 	private def getStyledString(String name, int counter) {
 		var styledLabel = new StyledString()
 		styledLabel.append(name)
 		styledLabel.append(new StyledString(" : " + counter, StyledString::DECORATIONS_STYLER))
 		return styledLabel
 	}
-	
-	
-	private def <T extends EObject> ceateFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img, StyledString text, boolean isLeaf) {
+
+	private def <T extends EObject> ceateFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
+		StyledString text, boolean isLeaf) {
 		val result = parent.eGet(ref);
 		if (result instanceof Collection<?>) {
 			ceateFeatureNode(parentNode, parent, ref, img, text, isLeaf, [!result.empty])
-		} else if (result != null) {
+		} else if (result !== null) {
 			ceateFeatureNode(parentNode, parent, ref, img, text, isLeaf, [true])
 		}
 	}
-	
-	private def <T extends EObject> ceateFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img, StyledString text, boolean isLeaf, Predicate<T> pred) {
+
+	private def <T extends EObject> ceateFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
+		StyledString text, boolean isLeaf, Predicate<T> pred) {
 		if (pred.apply(parent)) {
-			createEStructuralFeatureNode(parentNode, parent, ref, img, text, false)		
+			createEStructuralFeatureNode(parentNode, parent, ref, img, text, false)
 		}
 	}
 
