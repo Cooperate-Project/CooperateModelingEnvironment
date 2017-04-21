@@ -1,6 +1,6 @@
 package de.cooperateproject.modeling.textual.usecase.issues
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor
 import de.cooperateproject.modeling.textual.usecase.usecase.Association
@@ -15,6 +15,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.AggregationKind
 import org.eclipse.uml2.uml.Element
+import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.OpaqueExpression
 import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.UMLFactory
@@ -40,6 +41,8 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		umlActor.package = parent.referencedElement
 		umlActor.isAbstract = element.abstract
 		umlActor.setVisibility(element.visibility)
+		umlActor.handleAliasedElement(element);
+		
 		element.referencedElement = umlActor		
 	}
 	
@@ -61,6 +64,9 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		parent.referencedElement.ownedUseCases.add(umlUseCase)
 		umlUseCase.subjects += element.system.referencedElement
 		umlUseCase.isAbstract = element.abstract
+		
+		umlUseCase.handleAliasedElement(element);
+        
 		element.referencedElement = umlUseCase
 	}
 	
@@ -68,6 +74,7 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		if(!resolvePossible) return Void
 		val parent = element.useCase
 		val extensionPoint = parent.referencedElement.createExtensionPoint(element.name)
+		extensionPoint.handleAliasedElement(element);
 		element.referencedElement = extensionPoint
 	}
 	
@@ -119,6 +126,12 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 			actorCardinality.value
 		)
 		element.referencedElement = umlAssociation
+	}
+	
+	protected def handleAliasedElement(NamedElement umlElement, AliasedElement element) {
+	    if (!element.alias.isNullOrEmpty) {
+	        umlElement.createNameExpression(element.alias, null);
+	    }
 	}
 	
 }
