@@ -17,7 +17,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStat
 public class ComposedDerivedStateElementProcessor implements IDerivedStateElementProcessor {
 
     @Inject
-    @Named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_MAIN_PROCESSOR)
+    @Named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR)
     protected Set<IDerivedStateElementProcessor> processors = Collections.emptySet();
     protected Map<EClass, IDerivedStateElementProcessor> delegates = new HashMap<>();
 
