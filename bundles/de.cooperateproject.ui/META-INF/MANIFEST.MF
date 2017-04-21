@@ -47,6 +47,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Export-Package: de.cooperateproject.ui.editors.launcher,
  de.cooperateproject.ui.editors.launcher.extensions,
- de.cooperateproject.ui.util,
- de.cooperateproject.ui.nature
+ de.cooperateproject.ui.nature,
+ de.cooperateproject.ui.properties,
+ de.cooperateproject.ui.util
 

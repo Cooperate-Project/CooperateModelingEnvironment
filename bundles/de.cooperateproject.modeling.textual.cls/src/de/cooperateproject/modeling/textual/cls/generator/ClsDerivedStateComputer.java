@@ -22,7 +22,6 @@ public class ClsDerivedStateComputer extends AbstractDerivedStateGenerator {
 
     @Override
     protected Comparator<EObject> getContentComparator() {
-        // TODO Auto-generated method stub
         return new ClsContentSorter();
     }
 }

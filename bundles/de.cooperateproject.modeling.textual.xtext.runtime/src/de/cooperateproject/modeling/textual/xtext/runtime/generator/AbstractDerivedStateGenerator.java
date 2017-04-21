@@ -15,7 +15,7 @@ import com.google.inject.name.Named;
 public abstract class AbstractDerivedStateGenerator implements IDerivedStateComputer {
 
     @Inject
-    @Named("MainProcessor")
+    @Named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_MAIN_PROCESSOR)
     private IDerivedStateElementProcessor derivedStateElementProcessor;
 
     @Override

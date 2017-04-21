@@ -72,7 +72,8 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Commo
 	}
 	
 	def configureUseCaseDerivedStateElementProcessor(Binder binder) {
-		val mb = Multibinder.newSetBinder(binder, IDerivedStateElementProcessor, Names.named("processor"));
+		val mb = Multibinder.newSetBinder(binder, IDerivedStateElementProcessor, 
+		    Names.named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR));
 		mb.addBinding().to(UsecaseDerivedStateElementProcessor);
 	}
 	

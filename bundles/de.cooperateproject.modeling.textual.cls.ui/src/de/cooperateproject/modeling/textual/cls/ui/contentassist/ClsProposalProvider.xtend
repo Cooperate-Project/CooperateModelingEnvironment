@@ -4,6 +4,7 @@
 package de.cooperateproject.modeling.textual.cls.ui.contentassist
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
 import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import org.eclipse.emf.ecore.EObject
@@ -12,6 +13,8 @@ import org.eclipse.xtext.Assignment
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+import org.eclipse.uml2.uml.Classifier
+import org.eclipse.swt.graphics.Image
 
 /**
  * This class provides content assist in our editor. It offeres suggestions for code completion.
@@ -22,20 +25,57 @@ class ClsProposalProvider extends AbstractClsProposalProvider {
 	override completeImplementation_Right(EObject model, Assignment assignment, ContentAssistContext context,
 		ICompletionProposalAcceptor acceptor) {
 
-		var interfaces = filterInterfaces(model)
-		createProposals(interfaces, acceptor, context)
+		createProposalForInterface(model, acceptor, context)
 	}
 
-	private def void createProposals(Iterable<Interface> interfaces, ICompletionProposalAcceptor acceptor,
-		ContentAssistContext context) {
-			
-		for (i : interfaces) {
-			acceptor.accept(createCompletionProposal(i.name, i.name, UMLImage.INTERFACE.image, context))
+	override completeImplementation_Left(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+
+		createProposalForClass(model, acceptor, context)
+	}
+
+	override completeGeneralization_Right(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+
+		if (model instanceof Generalization) {
+			val left = model.left
+			if (left instanceof de.cooperateproject.modeling.textual.cls.cls.Class) {
+				createProposalForClass(model, acceptor, context)
+			} else if (left instanceof de.cooperateproject.modeling.textual.cls.cls.Interface) {
+				createProposalForInterface(model, acceptor, context)
+			}
 		}
 	}
 
-	private def Iterable<Interface> filterInterfaces(EObject model) {
-		var scope = scope.getScope(model, TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement);
-		return scope.allElements.map[x|x.EObjectOrProxy].filter(Interface)
+	private def void createProposalForInterface(EObject model, ICompletionProposalAcceptor acceptor,
+		ContentAssistContext context) {
+
+		createProposalForClassifier(model, acceptor, context, Interface, UMLImage.INTERFACE.image)
 	}
+
+	private def void createProposalForClass(EObject model, ICompletionProposalAcceptor acceptor,
+		ContentAssistContext context) {
+
+		createProposalForClassifier(model, acceptor, context, org.eclipse.uml2.uml.Class, UMLImage.CLASS.image)
+	}
+
+	private def void createProposalForClassifier(EObject model, ICompletionProposalAcceptor acceptor,
+		ContentAssistContext context, Class<? extends Classifier> classifier, Image image) {
+		var classifiers = filterClassifier(model, classifier)
+		createProposals(classifiers, acceptor, context, image)
+	}
+
+	private def Iterable<? extends Classifier> filterClassifier(EObject model, Class<? extends Classifier> classifier) {
+		var scope = scope.getScope(model, TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement);
+		return scope.allElements.map[x|x.EObjectOrProxy].filter(classifier)
+	}
+
+	private def void createProposals(Iterable<? extends Classifier> classifiers, ICompletionProposalAcceptor acceptor,
+		ContentAssistContext context, Image image) {
+
+		for (classifier : classifiers) {
+			acceptor.accept(createCompletionProposal(classifier.name, classifier.name, image, context))
+		}
+	}
+
 }

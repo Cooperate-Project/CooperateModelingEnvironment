@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.StringExpression;
 import org.eclipse.xtext.validation.Check;
 
 import com.google.inject.Inject;
@@ -30,6 +31,7 @@ public class ClsValidator extends AbstractClsValidator {
 
     private static final String NOT_AN_INTERFACE = "not_an_interface";
     private static final String NOT_A_CLASS = "not_a_class";
+    private static final String ALIAS_TAKEN = "alias_taken";
     private static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
     private static final String ROLE_NAMES_AMBIGOUS = "role_names_ambigous";
 
@@ -47,6 +49,38 @@ public class ClsValidator extends AbstractClsValidator {
             error(classifier.getName() + " should be an interface but it's not!",
                     TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NOT_A_CLASS);
         }
+    }
+
+    @Check
+    private void checkUniqueAlias(
+            de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier> classifier) {
+        Element classifierPackageRef = classifier.getNearestPackage().getReferencedElement();
+        for (Element element : classifierPackageRef.getOwnedElements()) {
+            if (hasSameAlias(classifier.getReferencedElement(), element)) {
+                error("\"" + classifier.getAlias() + "\"" + " Alias is taken!",
+                        TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, ALIAS_TAKEN);
+            }
+        }
+    }
+
+    private boolean hasSameAlias(Element firstElement, Element secondElement) {
+        if (!(firstElement instanceof org.eclipse.uml2.uml.Classifier)
+                || !(secondElement instanceof org.eclipse.uml2.uml.Classifier)) {
+            return false;
+        }
+        return hasSameAlias((org.eclipse.uml2.uml.Classifier) firstElement,
+                (org.eclipse.uml2.uml.Classifier) secondElement);
+    }
+
+    private boolean hasSameAlias(org.eclipse.uml2.uml.Classifier firstClassifier,
+            org.eclipse.uml2.uml.Classifier secondClassifier) {
+        boolean isNotSameElement = secondClassifier != firstClassifier;
+        if (isNotSameElement) {
+            StringExpression firstAlias = firstClassifier.getNameExpression();
+            StringExpression secondAlias = secondClassifier.getNameExpression();
+            return (firstAlias != null && secondAlias != null && firstAlias.getName().equals(secondAlias.getName()));
+        }
+        return false;
     }
 
     @Check

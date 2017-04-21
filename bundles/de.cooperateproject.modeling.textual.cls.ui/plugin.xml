@@ -420,5 +420,5 @@
          class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.cls.ui.cdoxtext.ClsMatchEngineFactory"
          ranking="20">
    </engineFactory>
-   </extension>	
+   </extension>
 </plugin>
