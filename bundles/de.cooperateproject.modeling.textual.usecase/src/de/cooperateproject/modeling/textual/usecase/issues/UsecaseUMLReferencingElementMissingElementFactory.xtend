@@ -31,7 +31,7 @@ class UsecaseUMLReferencingElementMissingElementFactory extends UsecaseAutomated
 	}
 	
     override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
-        eObject.relevantFeature
+        new IssueLocator(eObject.relevantFeature, eObject)
     }
     
     protected def dispatch relevantFeature(NamedElement element) {

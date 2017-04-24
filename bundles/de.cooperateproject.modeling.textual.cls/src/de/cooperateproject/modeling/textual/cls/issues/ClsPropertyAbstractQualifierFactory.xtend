@@ -28,7 +28,7 @@ class ClsPropertyAbstractQualifierFactory extends ClsAutomatedIssueResolutionFac
 	}
 
 	override protected getIssueFeatureInternal(UMLReferencingElement<Element> element) {
-		return element.getIssueFeatureTyped
+	    new IssueLocator(element.getIssueFeatureTyped, element)
 	}
 
 	private def dispatch getIssueFeatureTyped(de.cooperateproject.modeling.textual.cls.cls.Class clz) {

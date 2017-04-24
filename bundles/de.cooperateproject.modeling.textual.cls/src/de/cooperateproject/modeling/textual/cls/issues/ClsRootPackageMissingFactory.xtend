@@ -92,7 +92,7 @@ class ClsRootPackageMissingFactory extends ClsAutomatedIssueResolutionFactoryBas
 	}
 	
 	override protected getIssueFeatureInternal(Package element) {
-		return TextualCommonsPackage.eINSTANCE.namedElement_Name
+	    new IssueLocator(TextualCommonsPackage.eINSTANCE.namedElement_Name, element)
 	}
 	
 	override protected getResolutionNameInternal(Package element) {

@@ -20,7 +20,7 @@ public class ClsTransientValueService extends BasicCooperateTransientValueServic
                         ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES,
                         ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND,
                         ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY).stream(),
-                super.createTransientFeaturesSet().stream()).collect(Collectors.toSet());
+                super.createNonTransientFeatureSet().stream()).collect(Collectors.toSet());
 
     }
 

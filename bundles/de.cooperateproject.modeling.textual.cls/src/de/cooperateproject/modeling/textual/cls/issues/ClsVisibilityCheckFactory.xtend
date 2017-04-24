@@ -26,7 +26,7 @@ class ClsVisibilityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<C
 	}
 	
 	override protected getIssueFeatureInternal(Classifier<org.eclipse.uml2.uml.Classifier> element) {
-		ClsPackage.Literals.CLASSIFIER__VISIBILITY
+	    new IssueLocator(ClsPackage.Literals.CLASSIFIER__VISIBILITY, element)
 	}
 	
 	override protected getResolutionNameInternal(Classifier<org.eclipse.uml2.uml.Classifier> element) {

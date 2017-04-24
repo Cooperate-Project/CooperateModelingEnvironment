@@ -28,7 +28,7 @@ class ClsPropertyStaticQualifierFactory extends ClsAutomatedIssueResolutionFacto
 	}
 	
 	override protected getIssueFeatureInternal(Member<? extends Element> element) {
-		return ClsPackage.Literals.PROPERTY__STATIC
+	    new IssueLocator(ClsPackage.Literals.PROPERTY__STATIC, element)
 	}
 	
 	override protected getResolutionNameInternal(Member<? extends Element> element) {

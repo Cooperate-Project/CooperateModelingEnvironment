@@ -39,7 +39,7 @@ class ClsUMLReferencingElementMissingElementFactory extends ClsAutomatedIssueRes
 	}
 
 	override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
-		eObject.relevantFeature
+	    new IssueLocator(eObject.relevantFeature, eObject)
 	}
 
 	protected def dispatch relevantFeature(NamedElement element) {

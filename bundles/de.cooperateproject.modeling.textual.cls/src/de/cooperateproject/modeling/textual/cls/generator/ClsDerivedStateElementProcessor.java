@@ -3,9 +3,7 @@ package de.cooperateproject.modeling.textual.cls.generator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -70,30 +68,7 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Optional<Void>>
 
     @Override
     public Optional<Void> caseXtextAssociation(XtextAssociation object) {
-        if (object.getMemberEndTypes().isEmpty()) {
-            object.getMemberEndNames().clear();
-            object.getMemberEndCardinalities().clear();
-            object.getMemberEndNavigabilities().clear();
-            for (AssociationMemberEnd memberEnd : object.getMemberEnds()) {
-                XtextAssociationMemberEndReferencedType typeReference = ClsFactory.eINSTANCE
-                        .createXtextAssociationMemberEndReferencedType();
-                typeReference.setType(memberEnd.getType());
-                object.getMemberEndTypes().add(typeReference);
-                if (memberEnd.getCardinality() != null) {
-                    object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
-                }
-                object.getMemberEndNames().add(memberEnd.getName());
-                object.getMemberEndNavigabilities().add(memberEnd.isNavigable());
-            }
-            if (object.getMemberEndNames().stream().allMatch(Objects::isNull)) {
-                object.getMemberEndNames().clear();
-            }
-            if (object.getMemberEnds().size() == 2) {
-                object.setTwoSideBidirectionality(
-                        object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
-                object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
-            }
-        }
+        initTransientMemberEnds(object);
 
         List<Classifier<?>> types = object.collectMemberEndTypes();
         List<String> names = object.getMemberEndNames();
@@ -142,28 +117,53 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Optional<Void>>
         return Optional.empty();
     }
 
+    private void initTransientMemberEnds(XtextAssociation object) {
+        if (object.getMemberEndTypes().isEmpty()) {
+            object.getMemberEndNames().clear();
+            object.getMemberEndCardinalities().clear();
+            object.getMemberEndNavigabilities().clear();
+            for (AssociationMemberEnd memberEnd : object.getMemberEnds()) {
+                XtextAssociationMemberEndReferencedType typeReference = ClsFactory.eINSTANCE
+                        .createXtextAssociationMemberEndReferencedType();
+                typeReference.setType(memberEnd.getType());
+                object.getMemberEndTypes().add(typeReference);
+                if (memberEnd.getCardinality() != null) {
+                    object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
+                }
+                object.getMemberEndNames().add(memberEnd.getName());
+                object.getMemberEndNavigabilities().add(memberEnd.isNavigable());
+            }
+            if (object.getMemberEndNames().stream().allMatch(Objects::isNull)) {
+                object.getMemberEndNames().clear();
+            }
+            if (object.getMemberEnds().size() == 2) {
+                object.setTwoSideBidirectionality(
+                        object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
+                object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
+            }
+        }
+    }
+
     @Override
     public Optional<Void> caseAssociationMemberEnd(AssociationMemberEnd object) {
-        Association umlAssociation = object.getAssociation().getReferencedElement();
-        if (umlAssociation == null) {
-            return null;
+        Optional<Property> umlMemberEnd = getUmlMemberEnd(object);
+        if (!umlMemberEnd.isPresent()) {
+            return Optional.empty();
         }
-
-        List<Property> candidates = umlAssociation.getMemberEnds().stream()
-                .filter(umlMemberEnd -> umlMemberEnd.getType() == object.getType().getReferencedElement())
-                .collect(Collectors.toList());
-
-        if (StringUtils.isNotBlank(object.getName())) {
-            candidates = candidates.stream().filter(umlMemberEnd -> object.getName().equals(umlMemberEnd.getName()))
-                    .collect(Collectors.toList());
-        }
-
-        if (candidates.size() == 1) {
-            object.setReferencedElement(candidates.get(0));
-            return null;
-        }
-
+        object.setReferencedElement(umlMemberEnd.get());
         return Optional.empty();
+    }
+
+    private static Optional<Property> getUmlMemberEnd(AssociationMemberEnd object) {
+        int index = object.getAssociation().getMemberEnds().indexOf(object);
+        if (object.getAssociation().getMemberEnds().size() == 2) {
+            index = Math.abs(index - 1);
+        }
+        Association umlAssociation = object.getAssociation().getReferencedElement();
+        if (umlAssociation == null || umlAssociation.getMemberEnds().size() <= index) {
+            return Optional.empty();
+        }
+        return Optional.of(umlAssociation.getMemberEnds().get(index));
     }
 
     @Override

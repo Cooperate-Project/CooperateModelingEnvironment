@@ -80,7 +80,7 @@ class ClsCardinalityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<
     }
 
     override getIssueFeatureInternal(AssociationMemberEnd eObject) {
-        return ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES;
+        return new IssueLocator(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES, eObject.association.memberEnds.indexOf(eObject), eObject.association, eObject)
     }
 	
 }
