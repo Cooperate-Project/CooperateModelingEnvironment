@@ -85,8 +85,8 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>xtext</id>
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.11.0</url>
+			<id>xtext-2.11.0</id>
+			<url>https://dl.bintray.com/cooperate-project/Xtext/</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
