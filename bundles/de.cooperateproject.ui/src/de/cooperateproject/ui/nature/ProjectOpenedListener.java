@@ -34,7 +34,7 @@ public class ProjectOpenedListener implements IResourceChangeListener {
                             @Override
                             protected IStatus run(IProgressMonitor monitor) {
                                 try {
-                                    project.build(IncrementalProjectBuilder.CLEAN_BUILD, null);
+                                    project.build(IncrementalProjectBuilder.FULL_BUILD, null);
                                 } catch (CoreException e) {
                                     LOGGER.error("Exception during rebuild after opening of a project", e);
                                     return Status.CANCEL_STATUS;
@@ -62,7 +62,7 @@ public class ProjectOpenedListener implements IResourceChangeListener {
             return false;
         }
 
-        if (delta.getKind() == IResourceDelta.CHANGED && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
+        if ((delta.getFlags() & IResourceDelta.OPEN) != 0) {
             return true;
         }
 
