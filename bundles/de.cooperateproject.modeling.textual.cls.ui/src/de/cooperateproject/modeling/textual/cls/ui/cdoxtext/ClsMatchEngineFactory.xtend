@@ -19,6 +19,7 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
 import org.eclipse.emf.compare.scope.IComparisonScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.StringExpression
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
@@ -46,6 +47,7 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					StringExpression: "StringExp" + input.name
 					Cardinality: Cardinality.simpleName + input.calculateContainmentIdPart([apply])
+					XtextAssociationMemberEndReferencedType: XtextAssociationMemberEndReferencedType.simpleName + input.calculateContainmentIdPart([apply])
 					default: null
 				}
 			}
