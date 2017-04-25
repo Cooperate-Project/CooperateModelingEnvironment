@@ -19,14 +19,22 @@ public class TextualStateCalculator implements ICDOResourceStateCalculator {
 
     @Override
     public void calculateState(Resource r) {
-        if (!r.getContents().isEmpty()) {
-            calculateState(r.getContents().get(0));
-        }
+        r.getContents().forEach(this::calculateState);
     }
 
     @Override
     public void calculateState(EObject object) {
         ((AbstractDerivedStateGenerator) derivedStateComputer).installDerivedState(object);
+    }
+
+    @Override
+    public void simulateReloadingResource(Resource r) {
+        r.getContents().forEach(this::simulateReloadingResource);
+    }
+
+    @Override
+    public void simulateReloadingResource(EObject object) {
+        ((AbstractDerivedStateGenerator) derivedStateComputer).simulateReloadingResource(object);
     }
 
 }

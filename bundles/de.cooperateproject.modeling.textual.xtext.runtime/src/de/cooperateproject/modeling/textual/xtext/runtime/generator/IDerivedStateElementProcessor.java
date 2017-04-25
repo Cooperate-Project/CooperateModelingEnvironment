@@ -46,4 +46,10 @@ public interface IDerivedStateElementProcessor {
     }
 
     boolean processElementUsingType(EClass clazz, EObject object);
+
+    default boolean simulateReload(EObject object) {
+        return this.simulateReloadUsingType(object.eClass(), object);
+    }
+
+    boolean simulateReloadUsingType(EClass clazz, EObject object);
 }

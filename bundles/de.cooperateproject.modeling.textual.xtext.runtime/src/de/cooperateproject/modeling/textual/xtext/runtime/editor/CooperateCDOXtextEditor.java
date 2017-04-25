@@ -43,6 +43,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
+import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator;
 
 public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
@@ -80,6 +81,9 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
     @Inject
     private IAutomatedIssueResolutionProvider automatedIssueResolutionProvider;
+
+    @Inject
+    private ICDOResourceStateCalculator resourceStateCalculator;
 
     @Override
     protected void handleCursorPositionChanged() {
@@ -174,9 +178,8 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
                 do {
                     issueResolutions.forEach(i -> i.resolve());
                     if (documentResource instanceof DerivedStateAwareResource) {
-                        DerivedStateAwareResource typedResource = ((DerivedStateAwareResource) documentResource);
-                        typedResource.discardDerivedState();
-                        typedResource.installDerivedState(false);
+                        resourceStateCalculator.simulateReloadingResource(documentResource);
+                        resourceStateCalculator.calculateState(documentResource);
                     }
                     detectedIssues.clear();
                     detectedIssues.addAll(

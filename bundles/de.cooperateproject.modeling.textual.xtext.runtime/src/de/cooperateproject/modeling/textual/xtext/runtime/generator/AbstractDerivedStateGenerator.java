@@ -3,6 +3,7 @@ package de.cooperateproject.modeling.textual.xtext.runtime.generator;
 import java.util.Comparator;
 import java.util.Spliterator;
 import java.util.Spliterators;
+import java.util.function.Consumer;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,13 +36,22 @@ public abstract class AbstractDerivedStateGenerator implements IDerivedStateComp
     }
 
     public void installDerivedState(EObject object) {
-        StreamSupport.stream(Spliterators.spliteratorUnknownSize(object.eAllContents(), Spliterator.ORDERED), false)
-                .sorted(getContentComparator()).forEach(derivedStateElementProcessor::processElement);
+        executeForAllContents(object, derivedStateElementProcessor::processElement);
     }
 
     @Override
     public void discardDerivedState(DerivedStateAwareResource resource) {
+        // intentionally left blank
     }
 
     abstract protected Comparator<EObject> getContentComparator();
+
+    public void simulateReloadingResource(EObject object) {
+        executeForAllContents(object, derivedStateElementProcessor::simulateReload);
+    }
+
+    private void executeForAllContents(EObject object, Consumer<EObject> function) {
+        StreamSupport.stream(Spliterators.spliteratorUnknownSize(object.eAllContents(), Spliterator.ORDERED), false)
+                .sorted(getContentComparator()).forEach(function::accept);
+    }
 }
