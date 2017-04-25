@@ -8,4 +8,4 @@ Export-Package: de.cooperateproject.modeling.common.conventions,
  de.cooperateproject.modeling.common.types
 Require-Bundle: org.apache.commons.lang3,
  org.eclipse.emf.common,
- org.eclipse.emf.emfstore.common
+ org.apache.commons.io
