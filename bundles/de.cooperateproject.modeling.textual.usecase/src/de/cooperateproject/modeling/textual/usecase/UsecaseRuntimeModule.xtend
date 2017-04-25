@@ -26,6 +26,7 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
+import de.cooperateproject.modeling.textual.usecase.services.UsecaseValueConverter
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -78,8 +79,11 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Commo
 	}
 	
 	def Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
-		TextualStateCalculator;
+		TextualStateCalculator
 	}
 	
+	 override bindIValueConverterService() {
+        return UsecaseValueConverter
+    }
 
 }
