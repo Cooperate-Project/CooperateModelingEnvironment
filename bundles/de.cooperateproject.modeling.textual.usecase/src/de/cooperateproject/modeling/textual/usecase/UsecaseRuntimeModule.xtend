@@ -77,7 +77,7 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Commo
 		mb.addBinding().to(UsecaseDerivedStateElementProcessor);
 	}
 	
-	override Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
+	def Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
 		TextualStateCalculator;
 	}
 	

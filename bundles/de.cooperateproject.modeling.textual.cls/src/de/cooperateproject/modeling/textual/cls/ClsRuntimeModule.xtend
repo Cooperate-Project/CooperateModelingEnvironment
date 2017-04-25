@@ -71,7 +71,7 @@ class ClsRuntimeModule extends AbstractClsRuntimeModule implements CommonDerived
 		mb.addBinding().to(ClsDerivedStateElementProcessor);
 	}
     
-    override Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
+    def Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
 		TextualStateCalculator;
 	}
 
