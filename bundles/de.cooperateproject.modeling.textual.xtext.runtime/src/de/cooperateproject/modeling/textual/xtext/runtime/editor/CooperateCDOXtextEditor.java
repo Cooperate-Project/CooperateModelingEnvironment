@@ -101,14 +101,17 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
-        IXtextDocument document = getDocument();
+        CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+        if (containsSyntaxErrors(cooperateXtextDocument)) {
+            openErrorDialog("Save Error", "Can't save because of syntax errors.");
+            return;
+        }
         performPreSaveActions();
-        CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
         IStatus status = scheduleValidation(cooperateXtextDocument);
         if (status.isOK()) {
             List<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
             if (!errors.isEmpty()) {
-                openErrorDialog("Save Error", "Can't save because of editor errors");
+                openErrorDialog("Save Error", "Can't save because of semantic errors.");
                 return;
             }
             Job job = new Job("Save") {
@@ -143,6 +146,15 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
             return;
         }
+    }
+
+    private boolean containsSyntaxErrors(CooperateXtextDocument document) {
+        List<Issue> detectedIssues = resourceValidator.validate(document.getResource(), CheckMode.ALL,
+                CancelIndicator.NullImpl);
+        Collection<String> syntaxErrorCodes = Sets.newHashSet(
+                org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC,
+                org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC_WITH_RANGE);
+        return detectedIssues.stream().anyMatch(i -> syntaxErrorCodes.contains(i.getCode()));
     }
 
     private void performPreSaveActions() {
