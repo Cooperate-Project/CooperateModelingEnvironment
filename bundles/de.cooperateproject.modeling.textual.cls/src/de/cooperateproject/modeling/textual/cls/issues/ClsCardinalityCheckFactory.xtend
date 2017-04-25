@@ -4,7 +4,7 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsCardinalityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<AssociationMemberEnd> {
 	

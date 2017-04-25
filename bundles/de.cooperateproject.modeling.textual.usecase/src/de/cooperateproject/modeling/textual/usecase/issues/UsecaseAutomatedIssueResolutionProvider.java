@@ -3,27 +3,33 @@
  */
 package de.cooperateproject.modeling.textual.usecase.issues;
 
-
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.emf.ecore.EPackage;
+
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionProviderBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry;
 
 public class UsecaseAutomatedIssueResolutionProvider extends AutomatedIssueResolutionProviderBase {
 
+    private static final Collection<EPackage> REQUIRED_PACKAGES = Arrays.asList(UsecasePackage.eINSTANCE,
+            TextualCommonsPackage.eINSTANCE);
+
     @Inject
     private IAutomatedIssueResolutionFactoryRegistry registry;
 
     @Override
     protected Collection<IAutomatedIssueResolutionFactory> findResolutionFactories(String issueCode) {
-    	Collection<IAutomatedIssueResolutionFactory> foundFactories = new HashSet<>();
-    	foundFactories.addAll(registry.findFactories(de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage.eINSTANCE, issueCode));
+        Collection<IAutomatedIssueResolutionFactory> foundFactories = new HashSet<>();
+        foundFactories.addAll(registry.findFactories(REQUIRED_PACKAGES, issueCode));
         return foundFactories;
     }
 
 }
-

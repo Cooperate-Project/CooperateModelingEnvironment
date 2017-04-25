@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.NamedElement;
  *
  * @generated
  */
-public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencingElementImpl<Classifier> implements de.cooperateproject.modeling.textual.cls.cls.Classifier<T> {
+public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencingElementImpl<T> implements de.cooperateproject.modeling.textual.cls.cls.Classifier<T> {
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -103,7 +103,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * @generated
      */
     @Override
-    public void setReferencedElement(Classifier newReferencedElement) {
+    public void setReferencedElement(T newReferencedElement) {
         super.setReferencedElement(newReferencedElement);
     }
 

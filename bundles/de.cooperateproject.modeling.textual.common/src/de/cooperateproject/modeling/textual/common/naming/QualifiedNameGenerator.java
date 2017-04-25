@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
+package de.cooperateproject.modeling.textual.common.naming;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.ecore.EObject;

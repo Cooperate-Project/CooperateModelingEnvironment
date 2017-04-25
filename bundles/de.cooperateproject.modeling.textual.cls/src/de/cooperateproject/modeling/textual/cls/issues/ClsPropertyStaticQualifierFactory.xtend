@@ -5,7 +5,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Member
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.Feature
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsPropertyStaticQualifierFactory extends ClsAutomatedIssueResolutionFactoryBase<Member<? extends Element>> {
 	

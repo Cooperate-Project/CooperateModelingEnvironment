@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
+package de.cooperateproject.modeling.textual.common.scoping;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

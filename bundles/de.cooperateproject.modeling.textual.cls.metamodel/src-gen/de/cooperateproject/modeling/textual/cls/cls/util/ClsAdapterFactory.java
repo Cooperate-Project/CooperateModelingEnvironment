@@ -165,12 +165,12 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createXtextAssociationMemberEndReferencedTypeAdapter();
             }
             @Override
-            public Adapter casePackageableElement(PackageableElement object) {
-                return createPackageableElementAdapter();
-            }
-            @Override
             public Adapter caseElement(Element object) {
                 return createElementAdapter();
+            }
+            @Override
+            public Adapter casePackageableElement(PackageableElement object) {
+                return createPackageableElementAdapter();
             }
             @Override
             public <UMLType extends org.eclipse.uml2.uml.Element> Adapter caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
@@ -189,7 +189,7 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createAliasedElementAdapter();
             }
             @Override
-            public Adapter caseCommentable(Commentable object) {
+            public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
                 return createCommentableAdapter();
             }
             @Override

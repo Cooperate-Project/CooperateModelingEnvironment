@@ -881,7 +881,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
         packageEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getClassifier());
+        g2 = createEGenericType(classifierEClass_T);
         g1.getETypeArguments().add(g2);
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
@@ -889,6 +889,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(theTextualCommonsPackage.getPackageableElement());
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        g2 = createEGenericType(classifierEClass_T);
+        g1.getETypeArguments().add(g2);
         classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(theUMLPackage.getClass_());
@@ -943,6 +945,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(this.getConnector());
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
+        g2 = createEGenericType(theUMLPackage.getAssociation());
+        g1.getETypeArguments().add(g2);
         associationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         associationEClass.getEGenericSuperTypes().add(g1);

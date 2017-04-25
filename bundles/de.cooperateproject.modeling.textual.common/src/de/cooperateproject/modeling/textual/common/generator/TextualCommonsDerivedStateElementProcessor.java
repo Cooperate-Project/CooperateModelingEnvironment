@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.generator;
+package de.cooperateproject.modeling.textual.common.generator;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -25,6 +24,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comm
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
+import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSwitch<Optional<Void>>
@@ -39,28 +39,23 @@ public class TextualCommonsDerivedStateElementProcessor extends TextualCommonsSw
     @Override
     public Optional<Void> caseComment(Comment object) {
 
-        if (TextualCommonsPackage.eINSTANCE.getUMLReferencingElement().isInstance(object.getCommentedElement())) {
-            @SuppressWarnings("unchecked")
-            UMLReferencingElement<? extends org.eclipse.uml2.uml.Classifier> realElement = (UMLReferencingElement<? extends Classifier>) object
-                    .getCommentedElement();
+        UMLReferencingElement<?> realElement = object.getCommentedElement();
+        if (realElement != null) {
+            Element umlCommentedElement = realElement.getReferencedElement();
 
-            if (realElement != null) {
-                Element umlCommentedElement = realElement.getReferencedElement();
-
-                IScope candidates = globalScopeProvider.queryScope(object.eResource(), true,
-                        UMLPackage.Literals.COMMENT,
-                        c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
-                                .contains(umlCommentedElement)
-                                && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
-                                        .equals(object.getBody()));
-                Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(
-                        candidates.getAllElements(), e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
-                if (Iterables.size(typedCandidates) == 1) {
-                    object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
-                }
+            IScope candidates = globalScopeProvider.queryScope(object.eResource(), true, UMLPackage.Literals.COMMENT,
+                    c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
+                            .contains(umlCommentedElement)
+                            && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
+                                    .equals(object.getBody()));
+            Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(candidates.getAllElements(),
+                    e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
+            if (Iterables.size(typedCandidates) == 1) {
+                object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
             }
         }
         return Optional.empty();
+
     }
 
     @Override

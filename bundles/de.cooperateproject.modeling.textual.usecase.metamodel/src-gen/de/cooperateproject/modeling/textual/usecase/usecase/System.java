@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Classifier;
  * @model
  * @generated
  */
-public interface System extends UMLReferencingElement<Classifier>, NamedElement, Commentable {
+public interface System extends UMLReferencingElement<Classifier>, NamedElement, Commentable<Classifier> {
     /**
      * Returns the value of the '<em><b>Usecases</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase}.

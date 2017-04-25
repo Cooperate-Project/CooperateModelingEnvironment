@@ -3,9 +3,9 @@ package de.cooperateproject.modeling.textual.cls.issues
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-import org.eclipse.uml2.uml.Element
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.uml2.uml.Element
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsPropertyAbstractQualifierFactory extends ClsAutomatedIssueResolutionFactoryBase<UMLReferencingElement<Element>> {
 

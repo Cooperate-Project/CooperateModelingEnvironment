@@ -33,7 +33,7 @@ public class ClsDerivedStateElementProcessor extends ClsSwitch<Optional<Void>>
         implements IDerivedStateElementProcessor {
 
     @Inject
-    @Named("MainProcessor")
+    @Named(DERIVED_STATE_PROCESSOR_MAIN_PROCESSOR)
     protected IDerivedStateElementProcessor mainProcessor;
 
     @Override

@@ -16,8 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,133 +31,123 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class CommentableImpl extends CDOObjectImpl implements Commentable {
+public abstract class CommentableImpl<CommentableUMLType extends Element> extends UMLReferencingElementImpl<CommentableUMLType> implements Commentable<CommentableUMLType> {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CommentableImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TextualCommonsPackage.Literals.COMMENTABLE;
-	}
+        return TextualCommonsPackage.Literals.COMMENTABLE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public EList<Comment> getComments() {
-		return (EList<Comment>)eDynamicGet(TextualCommonsPackage.COMMENTABLE__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
-	}
+        return (EList<Comment>)eDynamicGet(TextualCommonsPackage.COMMENTABLE__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextualCommonsPackage.COMMENTABLE__COMMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.COMMENTABLE__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextualCommonsPackage.COMMENTABLE__COMMENTS:
-				return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.COMMENTABLE__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextualCommonsPackage.COMMENTABLE__COMMENTS:
-				return getComments();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.COMMENTABLE__COMMENTS:
+                return getComments();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextualCommonsPackage.COMMENTABLE__COMMENTS:
-				getComments().clear();
-				getComments().addAll((Collection<? extends Comment>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.COMMENTABLE__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextualCommonsPackage.COMMENTABLE__COMMENTS:
-				getComments().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.COMMENTABLE__COMMENTS:
+                getComments().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextualCommonsPackage.COMMENTABLE__COMMENTS:
-				return !getComments().isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.COMMENTABLE__COMMENTS:
+                return !getComments().isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //CommentableImpl

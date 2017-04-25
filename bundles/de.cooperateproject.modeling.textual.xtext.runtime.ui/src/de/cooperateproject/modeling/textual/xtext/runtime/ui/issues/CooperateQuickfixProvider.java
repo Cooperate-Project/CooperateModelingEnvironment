@@ -52,14 +52,12 @@ public abstract class CooperateQuickfixProvider extends DefaultQuickfixProvider 
     }
 
     private Collection<IAutomatedIssueResolutionFactory> findFactories(String issueId) {
-        return ePackages.stream().map(p -> registry.findFactories(p, issueId)).flatMap(Collection::stream)
-                .collect(Collectors.toSet());
+        return registry.findFactories(ePackages, issueId);
     }
 
     @Override
     public List<IssueResolution> getResolutions(Issue issue) {
         List<IssueResolution> resolutions = new ArrayList<>(super.getResolutions(issue));
-
         Optional<EObject> element = getEObjectToBeFixedFromIssue(issue);
         if (element.isPresent()) {
             Collection<IAutomatedIssueResolutionFactory> issueResolutionFactories = findFactories(issue.getCode());

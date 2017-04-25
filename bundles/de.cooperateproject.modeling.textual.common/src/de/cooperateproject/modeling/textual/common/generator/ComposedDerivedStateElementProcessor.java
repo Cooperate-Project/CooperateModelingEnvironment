@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.xtext.runtime.generator;
+package de.cooperateproject.modeling.textual.common.generator;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,10 +12,12 @@ import org.eclipse.emf.ecore.EObject;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
+
 public class ComposedDerivedStateElementProcessor implements IDerivedStateElementProcessor {
 
     @Inject
-    @Named("processor")
+    @Named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR)
     protected Set<IDerivedStateElementProcessor> processors = Collections.emptySet();
     protected Map<EClass, IDerivedStateElementProcessor> delegates = new HashMap<>();
 
