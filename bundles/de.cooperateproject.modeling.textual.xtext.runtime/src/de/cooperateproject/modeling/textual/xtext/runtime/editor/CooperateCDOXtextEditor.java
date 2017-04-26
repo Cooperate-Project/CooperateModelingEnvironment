@@ -109,8 +109,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         performPreSaveActions();
         IStatus status = scheduleValidation(cooperateXtextDocument);
         if (status.isOK()) {
-            List<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
-            if (!errors.isEmpty()) {
+            if (!getAllIssues(cooperateXtextDocument).isEmpty()) {
                 openErrorDialog("Save Error", "Can't save because of semantic errors.");
                 return;
             }
@@ -149,12 +148,17 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     }
 
     private boolean containsSyntaxErrors(CooperateXtextDocument document) {
-        List<Issue> detectedIssues = resourceValidator.validate(document.getResource(), CheckMode.ALL,
-                CancelIndicator.NullImpl);
+        List<Issue> detectedIssues = getAllIssues(document);
         Collection<String> syntaxErrorCodes = Sets.newHashSet(
                 org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC,
                 org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC_WITH_RANGE);
         return detectedIssues.stream().anyMatch(i -> syntaxErrorCodes.contains(i.getCode()));
+    }
+
+    private List<Issue> getAllIssues(CooperateXtextDocument document) throws OperationCanceledError {
+        List<Issue> detectedIssues = resourceValidator.validate(document.getResource(), CheckMode.ALL,
+                CancelIndicator.NullImpl);
+        return detectedIssues;
     }
 
     private void performPreSaveActions() {
