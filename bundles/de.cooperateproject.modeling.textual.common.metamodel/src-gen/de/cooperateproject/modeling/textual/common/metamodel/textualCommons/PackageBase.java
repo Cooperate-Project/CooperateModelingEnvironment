@@ -24,66 +24,66 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface PackageBase<PackageType extends PackageBase<?>> extends PackageableElement, UMLReferencingElement<org.eclipse.uml2.uml.Package>, NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackages <em>Packages</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackages <em>Packages</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Package</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owning Package</em>' container reference.
-	 * @see #setOwningPackage(PackageBase)
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_OwningPackage()
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackages
-	 * @model opposite="packages"
-	 * @generated
-	 */
+     * @return the value of the '<em>Owning Package</em>' container reference.
+     * @see #setOwningPackage(PackageBase)
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_OwningPackage()
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackages
+     * @model opposite="packages"
+     * @generated
+     */
 	PackageType getOwningPackage();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage <em>Owning Package</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage <em>Owning Package</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Package</em>' container reference.
-	 * @see #getOwningPackage()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Owning Package</em>' container reference.
+     * @see #getOwningPackage()
+     * @generated
+     */
 	void setOwningPackage(PackageType value);
 
 	/**
-	 * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
-	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage <em>Owning Package</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Packages</b></em>' containment reference list.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage <em>Owning Package</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Packages</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Packages</em>' containment reference list.
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_Packages()
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage
-	 * @model opposite="owningPackage" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Packages</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_Packages()
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage
+     * @model opposite="owningPackage" containment="true"
+     * @generated
+     */
 	EList<PackageType> getPackages();
 
 	/**
-	 * Returns the value of the '<em><b>Package Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport}.
-	 * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage <em>Importing Package</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Package Imports</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport}.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage <em>Importing Package</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Package Imports</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package Imports</em>' containment reference list.
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_PackageImports()
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage
-	 * @model opposite="importingPackage" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Package Imports</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_PackageImports()
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage
+     * @model opposite="importingPackage" containment="true"
+     * @generated
+     */
 	EList<PackageImport> getPackageImports();
 
 } // PackageBase

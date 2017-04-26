@@ -29,10 +29,10 @@ import org.eclipse.uml2.uml.UMLFactory;
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.cdo.util.utils.CDOHelper;
+import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
 import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
-import de.cooperateproject.modeling.textual.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.Activator;
 

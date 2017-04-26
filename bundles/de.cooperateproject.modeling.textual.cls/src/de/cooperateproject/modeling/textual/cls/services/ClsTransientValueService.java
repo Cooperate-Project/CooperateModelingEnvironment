@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.xtext.runtime.services.BasicCooperateTransientValueService;
+import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService;
 
 public class ClsTransientValueService extends BasicCooperateTransientValueService {
 
@@ -20,7 +20,7 @@ public class ClsTransientValueService extends BasicCooperateTransientValueServic
                         ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES,
                         ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND,
                         ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY).stream(),
-                super.createTransientFeaturesSet().stream()).collect(Collectors.toSet());
+                super.createNonTransientFeatureSet().stream()).collect(Collectors.toSet());
 
     }
 

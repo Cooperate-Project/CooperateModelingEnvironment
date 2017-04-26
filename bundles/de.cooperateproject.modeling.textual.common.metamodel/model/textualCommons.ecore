@@ -57,12 +57,22 @@
     <eGenericSuperTypes eClassifier="#//NamedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Commentable" abstract="true">
+    <eTypeParameters name="CommentableUMLType">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+    </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="comments" upperBound="-1"
         eType="#//Comment" containment="true" eOpposite="#//Comment/commentedElement"/>
+    <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
+      <eTypeArguments eTypeParameter="#//Commentable/CommentableUMLType"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" lowerBound="1"
-        eType="#//Commentable" eOpposite="#//Commentable/comments"/>
+        eOpposite="#//Commentable/comments">
+      <eGenericType eClassifier="#//Commentable">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>

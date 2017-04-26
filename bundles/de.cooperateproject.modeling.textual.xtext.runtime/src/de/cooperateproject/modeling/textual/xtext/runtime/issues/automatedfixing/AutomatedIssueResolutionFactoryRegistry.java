@@ -47,9 +47,10 @@ public class AutomatedIssueResolutionFactoryRegistry implements IAutomatedIssueR
      * IAutomatedIssueResolutionFactoryRegistry#findFactories(org.eclipse.emf.ecore.EPackage, java.lang.String)
      */
     @Override
-    public Collection<IAutomatedIssueResolutionFactory> findFactories(EPackage ePackage, String issueId) {
-        Map<String, Collection<IAutomatedIssueResolutionFactory>> packetFactories = findPacketFactories(ePackage);
-        return packetFactories.getOrDefault(issueId, Collections.emptyList());
+    public Collection<IAutomatedIssueResolutionFactory> findFactories(Collection<EPackage> ePackages, String issueId) {
+        return ePackages.stream().map(this::findPacketFactories)
+                .map(m -> m.getOrDefault(issueId, Collections.emptyList())).flatMap(Collection::stream)
+                .collect(Collectors.toSet());
     }
 
     /*
@@ -59,9 +60,9 @@ public class AutomatedIssueResolutionFactoryRegistry implements IAutomatedIssueR
      * IAutomatedIssueResolutionFactoryRegistry#findFactories(org.eclipse.emf.ecore.EPackage)
      */
     @Override
-    public Collection<IAutomatedIssueResolutionFactory> findFactories(EPackage ePackage) {
-        Map<String, Collection<IAutomatedIssueResolutionFactory>> packetFactories = findPacketFactories(ePackage);
-        return packetFactories.values().stream().flatMap(Collection::stream).collect(Collectors.toSet());
+    public Collection<IAutomatedIssueResolutionFactory> findFactories(Collection<EPackage> ePackages) {
+        return ePackages.stream().map(this::findPacketFactories).map(Map::values).flatMap(Collection::stream)
+                .flatMap(Collection::stream).collect(Collectors.toSet());
     }
 
     private Map<String, Collection<IAutomatedIssueResolutionFactory>> findPacketFactories(EPackage ePackage) {

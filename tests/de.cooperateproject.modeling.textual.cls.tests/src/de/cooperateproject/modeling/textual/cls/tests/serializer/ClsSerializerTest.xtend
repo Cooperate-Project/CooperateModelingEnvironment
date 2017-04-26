@@ -11,13 +11,12 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.uml2.uml.Association
-import org.eclipse.uml2.uml.Classifier
 import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
-import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.resource.SaveOptions
 import org.eclipse.xtext.serializer.ISerializer
+import org.eclipse.xtext.testing.InjectWith
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -56,12 +55,12 @@ class ClsSerializerTest extends AbstractClsTest {
 			val c1 = ClsFactory.eINSTANCE.createClass
 			c1.name = "First"
 			package.classifiers += c1
-			c1.referencedElement = umlRoot.createOwnedType(c1.name, UMLPackage.Literals.CLASS) as Classifier;
+			c1.referencedElement = umlRoot.createOwnedType(c1.name, UMLPackage.Literals.CLASS) as org.eclipse.uml2.uml.Class;
 			
 			val c2 = ClsFactory.eINSTANCE.createClass
 			c2.name = "Second"
 			package.classifiers += c2
-			c2.referencedElement = umlRoot.createOwnedType(c2.name, UMLPackage.Literals.CLASS) as Classifier;
+			c2.referencedElement = umlRoot.createOwnedType(c2.name, UMLPackage.Literals.CLASS) as org.eclipse.uml2.uml.Class;
 			
 			val a1 = ClsFactory.eINSTANCE.createXtextAssociation
 			a1.name = "foo"

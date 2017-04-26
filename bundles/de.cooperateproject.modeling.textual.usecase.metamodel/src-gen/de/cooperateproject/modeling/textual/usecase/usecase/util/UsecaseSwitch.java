@@ -92,8 +92,8 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
             case UsecasePackage.BEHAVIORED_CLASSIFIER: {
                 BehavioredClassifier<?> behavioredClassifier = (BehavioredClassifier<?>)theEObject;
                 T1 result = caseBehavioredClassifier(behavioredClassifier);
-                if (result == null) result = caseUMLReferencingElement(behavioredClassifier);
                 if (result == null) result = caseCommentable(behavioredClassifier);
+                if (result == null) result = caseUMLReferencingElement(behavioredClassifier);
                 if (result == null) result = caseElement(behavioredClassifier);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -112,9 +112,9 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 T1 result = caseActor(actor);
                 if (result == null) result = caseBehavioredClassifier(actor);
                 if (result == null) result = caseAliasedElement(actor);
-                if (result == null) result = caseUMLReferencingElement(actor);
                 if (result == null) result = caseCommentable(actor);
                 if (result == null) result = caseNamedElement(actor);
+                if (result == null) result = caseUMLReferencingElement(actor);
                 if (result == null) result = caseElement(actor);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -122,9 +122,9 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
             case UsecasePackage.SYSTEM: {
                 de.cooperateproject.modeling.textual.usecase.usecase.System system = (de.cooperateproject.modeling.textual.usecase.usecase.System)theEObject;
                 T1 result = caseSystem(system);
-                if (result == null) result = caseUMLReferencingElement(system);
                 if (result == null) result = caseNamedElement(system);
                 if (result == null) result = caseCommentable(system);
+                if (result == null) result = caseUMLReferencingElement(system);
                 if (result == null) result = caseElement(system);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -134,9 +134,9 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 T1 result = caseUseCase(useCase);
                 if (result == null) result = caseBehavioredClassifier(useCase);
                 if (result == null) result = caseAliasedElement(useCase);
-                if (result == null) result = caseUMLReferencingElement(useCase);
                 if (result == null) result = caseCommentable(useCase);
                 if (result == null) result = caseNamedElement(useCase);
+                if (result == null) result = caseUMLReferencingElement(useCase);
                 if (result == null) result = caseElement(useCase);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -419,7 +419,7 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T1 caseCommentable(Commentable object) {
+    public <CommentableUMLType extends org.eclipse.uml2.uml.Element> T1 caseCommentable(Commentable<CommentableUMLType> object) {
         return null;
     }
 

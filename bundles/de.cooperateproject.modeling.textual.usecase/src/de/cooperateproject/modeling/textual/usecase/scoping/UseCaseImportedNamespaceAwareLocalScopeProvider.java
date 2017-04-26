@@ -10,8 +10,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
+import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateImportedNamespaceAwareLocalScopeProvider;
 
 public class UseCaseImportedNamespaceAwareLocalScopeProvider extends CooperateImportedNamespaceAwareLocalScopeProvider {
 

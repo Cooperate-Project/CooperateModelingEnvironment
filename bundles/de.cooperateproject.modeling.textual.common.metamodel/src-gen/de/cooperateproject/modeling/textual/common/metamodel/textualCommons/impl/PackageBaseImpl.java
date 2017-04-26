@@ -37,325 +37,325 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extends ElementImpl implements PackageBase<PackageType> {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PackageBaseImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TextualCommonsPackage.Literals.PACKAGE_BASE;
-	}
+        return TextualCommonsPackage.Literals.PACKAGE_BASE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public org.eclipse.uml2.uml.Package getReferencedElement() {
-		return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-	}
+        return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public org.eclipse.uml2.uml.Package basicGetReferencedElement() {
-		return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-	}
+        return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setReferencedElement(org.eclipse.uml2.uml.Package newReferencedElement) {
-		eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-	}
+        eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-		return (String)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
-	}
+        return (String)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setName(String newName) {
-		eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
-	}
+        eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public PackageType getOwningPackage() {
-		return (PackageType)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_BASE__OWNING_PACKAGE, true, true);
-	}
+        return (PackageType)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_BASE__OWNING_PACKAGE, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetOwningPackage(PackageType newOwningPackage, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningPackage, TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newOwningPackage, TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOwningPackage(PackageType newOwningPackage) {
-		eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_BASE__OWNING_PACKAGE, newOwningPackage);
-	}
+        eDynamicSet(TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_BASE__OWNING_PACKAGE, newOwningPackage);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public EList<PackageType> getPackages() {
-		return (EList<PackageType>)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__PACKAGES, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, true, true);
-	}
+        return (EList<PackageType>)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__PACKAGES, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	public EList<PackageImport> getPackageImports() {
-		return (EList<PackageImport>)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, true, true);
-	}
+        return (EList<PackageImport>)eDynamicGet(TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS, true, true);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningPackage((PackageType)otherEnd, msgs);
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPackages()).basicAdd(otherEnd, msgs);
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPackageImports()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOwningPackage((PackageType)otherEnd, msgs);
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getPackages()).basicAdd(otherEnd, msgs);
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getPackageImports()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				return basicSetOwningPackage(null, msgs);
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
-				return ((InternalEList<?>)getPackages()).basicRemove(otherEnd, msgs);
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
-				return ((InternalEList<?>)getPackageImports()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                return basicSetOwningPackage(null, msgs);
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
+                return ((InternalEList<?>)getPackages()).basicRemove(otherEnd, msgs);
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
+                return ((InternalEList<?>)getPackageImports()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				return eInternalContainer().eInverseRemove(this, TextualCommonsPackage.PACKAGE_BASE__PACKAGES, PackageBase.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                return eInternalContainer().eInverseRemove(this, TextualCommonsPackage.PACKAGE_BASE__PACKAGES, PackageBase.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
-				if (resolve) return getReferencedElement();
-				return basicGetReferencedElement();
-			case TextualCommonsPackage.PACKAGE_BASE__NAME:
-				return getName();
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				return getOwningPackage();
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
-				return getPackages();
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
-				return getPackageImports();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
+            case TextualCommonsPackage.PACKAGE_BASE__NAME:
+                return getName();
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                return getOwningPackage();
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
+                return getPackages();
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
+                return getPackageImports();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
-				setReferencedElement((org.eclipse.uml2.uml.Package)newValue);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__NAME:
-				setName((String)newValue);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				setOwningPackage((PackageType)newValue);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
-				getPackages().clear();
-				getPackages().addAll((Collection<? extends PackageType>)newValue);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
-				getPackageImports().clear();
-				getPackageImports().addAll((Collection<? extends PackageImport>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+                setReferencedElement((org.eclipse.uml2.uml.Package)newValue);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__NAME:
+                setName((String)newValue);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                setOwningPackage((PackageType)newValue);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
+                getPackages().clear();
+                getPackages().addAll((Collection<? extends PackageType>)newValue);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
+                getPackageImports().clear();
+                getPackageImports().addAll((Collection<? extends PackageImport>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
-				setReferencedElement((org.eclipse.uml2.uml.Package)null);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				setOwningPackage((PackageType)null);
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
-				getPackages().clear();
-				return;
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
-				getPackageImports().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+                setReferencedElement((org.eclipse.uml2.uml.Package)null);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                setOwningPackage((PackageType)null);
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
+                getPackages().clear();
+                return;
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
+                getPackageImports().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
-				return basicGetReferencedElement() != null;
-			case TextualCommonsPackage.PACKAGE_BASE__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
-				return getOwningPackage() != null;
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
-				return !getPackages().isEmpty();
-			case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
-				return !getPackageImports().isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
+                return basicGetReferencedElement() != null;
+            case TextualCommonsPackage.PACKAGE_BASE__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
+                return getOwningPackage() != null;
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:
+                return !getPackages().isEmpty();
+            case TextualCommonsPackage.PACKAGE_BASE__PACKAGE_IMPORTS:
+                return !getPackageImports().isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
-			switch (derivedFeatureID) {
-				case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == NamedElement.class) {
-			switch (derivedFeatureID) {
-				case TextualCommonsPackage.PACKAGE_BASE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (derivedFeatureID) {
+                case TextualCommonsPackage.PACKAGE_BASE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == UMLReferencingElement.class) {
-			switch (baseFeatureID) {
-				case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == NamedElement.class) {
-			switch (baseFeatureID) {
-				case TextualCommonsPackage.NAMED_ELEMENT__NAME: return TextualCommonsPackage.PACKAGE_BASE__NAME;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return TextualCommonsPackage.PACKAGE_BASE__NAME;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //PackageBaseImpl

@@ -27,14 +27,14 @@
       <repositories location="https://dl.bintray.com/cooperate-project/CooperateLicense/updatesite/1.0.0/" mirrorArtifacts="false">
         <features name="de.cooperateproject.license.feature.group"/>
       </repositories>
-      <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.1.3/" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.1.4/" mirrorArtifacts="false">
         <features name="de.cooperateproject.cdoxtext.feature.feature.group"/>
       </repositories>
       <repositories location="https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/" mirrorArtifacts="false">
         <bundles name="org.apache.activemq.all"/>
         <features name="de.cooperateproject.externals.guice.feature.group"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.11.0" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/Xtext/" mirrorArtifacts="false">
         <features name="org.eclipse.xtext.sdk.feature.group"/>
       </repositories>
     </contributions>

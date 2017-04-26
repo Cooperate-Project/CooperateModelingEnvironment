@@ -26,9 +26,9 @@ mapping notation::Diagram::diagramToRootPackage() : cls::Package {
 	referencedElement := self.element.oclAsType(uml::Package);
 	
 	name := self.element.oclAsType(uml::Package).getFullyQualifiedName();	
-	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier(self.edges);
+	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
-	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.edges);
+	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += self.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_REGULAR)->map nodeToPackage();
 }
@@ -41,9 +41,9 @@ mapping notation::Node::nodeToPackage() : cls::Package
 	
 	referencedElement := umlPackage;
 	name := umlPackage.name;
-	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier(self.diagram.edges);
+	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
-	connectors += relevantEdges->select(not isCommentLinkForAssociation())->map edgeToConnector(self.diagram.edges);
+	connectors += relevantEdges->select(not isCommentLinkForAssociation())->map edgeToConnector();
 	packageImports += relevantEdges->select(type = PAPYRUS_NOTATION_EDGE_PACKAGEIMPORT)->map edgeToPackageImport();
 	packages += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_PACKAGE_INPACKAGE)->map nodeToPackage();
 }
@@ -130,12 +130,12 @@ mapping notation::Edge::edgeToPackageImport() : textualCommons::PackageImport
 	referencedElement := self.element.oclAsType(uml::PackageImport);
 }
 
-mapping notation::Node::nodeToClassifier(allEdges : OrderedSet(Edge)) : cls::Classifier
+mapping notation::Node::nodeToClassifier() : cls::Classifier
 	disjuncts notation::Node::nodeToClass, notation::Node::nodeToInterface
 {
 }
 
-mapping notation::Node::nodeToClass(allEdges : OrderedSet(Edge)) : cls::Class
+mapping notation::Node::nodeToClass() : cls::Class
 	when {
 		self.element.oclIsKindOf(uml::Class)
 	}
@@ -151,13 +151,13 @@ mapping notation::Node::nodeToClass(allEdges : OrderedSet(Edge)) : cls::Class
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 	
-	var relevantComments := self.findViewCommentViews(allEdges);
+	var relevantComments := self.findViewCommentViews();
 	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
 	
 	comments := relevantComments.map commentViewToComment();
 }
 
-mapping notation::Node::nodeToInterface(allEdges : OrderedSet(Edge)) : cls::Interface
+mapping notation::Node::nodeToInterface() : cls::Interface
 	when {
 		self.element.oclIsKindOf(uml::Interface)
 	}
@@ -172,7 +172,7 @@ mapping notation::Node::nodeToInterface(allEdges : OrderedSet(Edge)) : cls::Inte
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 	
-	var relevantComments := self.findViewCommentViews(allEdges);
+	var relevantComments := self.findViewCommentViews();
 	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
 	
 	comments := relevantComments.map commentViewToComment();
@@ -205,7 +205,7 @@ mapping notation::Node::nodeToProperty() : cls::Attribute {
 	type := prop.type.oclAsType(uml::Classifier);
 }
 
-mapping notation::Edge::edgeToConnector(allEdges : OrderedSet(Edge)) : cls::Connector
+mapping notation::Edge::edgeToConnector() : cls::Connector
 disjuncts
 	notation::Edge::edgeToGeneralization,
 	notation::Edge::edgeToImplementation,
@@ -231,7 +231,7 @@ mapping notation::View::commentViewToComment() : textualCommons::Comment
 	body := umlComment.body;
 }
 
-mapping notation::Edge::edgeToGeneralization(allEdges : OrderedSet(Edge)) : cls::Generalization
+mapping notation::Edge::edgeToGeneralization() : cls::Generalization
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::Generalization)
@@ -245,7 +245,7 @@ mapping notation::Edge::edgeToGeneralization(allEdges : OrderedSet(Edge)) : cls:
 	right := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = generalization.general);
 }
 
-mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls::Implementation
+mapping notation::Edge::edgeToImplementation() : cls::Implementation
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::InterfaceRealization)
@@ -259,7 +259,7 @@ mapping notation::Edge::edgeToImplementation(allEdges : OrderedSet(Edge)) : cls:
 	right := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = realization.contract);
 }
 
-mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : cls::XtextAssociation
+mapping notation::Edge::edgeToRegularAssociation() : cls::XtextAssociation
 	when {
 		self.element != null and
 		self.element.oclIsKindOf(uml::Association) and
@@ -286,7 +286,7 @@ mapping notation::Edge::edgeToRegularAssociation(allEdges : OrderedSet(Edge)) : 
 	memberEnds := association.memberEnd->at(regularIndex).map propertyToMemberEnd();
 	memberEnds += association.memberEnd->at(aggregatingIndex).map propertyToMemberEnd();
 	
-	var relevantComments := self.findViewCommentViews(allEdges);
+	var relevantComments := self.findViewCommentViews();
 	assert warning (relevantComments->size() < 2) with log ('There can be no more than one comments for an association.');
 	
 	comments := relevantComments.map commentViewToComment();
@@ -377,7 +377,20 @@ query notation::Edge::isCommentLinkForAssociation() : Boolean {
 	return self.isCommentLink() and (self.source.element.oclAsSet()->union(self.target.element.oclAsSet())->exists(oclIsKindOf(uml::Association)));
 }
 
-query notation::View::findViewCommentViews(allEdges : OrderedSet(notation::Edge)) : OrderedSet(notation::View) {
+/*
+ * Attention: This is dangerous for the incremental execution mode
+ * 
+ * Theoretically, the incremental execution mode decides on executing a mapping by
+ * looking at its context. If a mapping calls this query, a possible change in the
+ * set of edges is not reflected in the mapping context. Therefore, the comment
+ * would not be added.
+ *
+ * Practically, the incremental execution mode executes every mapping but uses the
+ * context to decide if the result should be taken from the former execution trace
+ * or should be recreated.
+ */
+query notation::View::findViewCommentViews() : OrderedSet(notation::View) {
+    var allEdges := self.diagram.edges;
 	return
 		allEdges->select(source = self and target.element.oclIsKindOf(uml::Comment))->collect(target)
 		->union(

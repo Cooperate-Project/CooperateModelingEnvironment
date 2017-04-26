@@ -18,22 +18,23 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
     private static class DummyFactoryRegistry implements IAutomatedIssueResolutionFactoryRegistry {
 
         @Override
-        public Collection<IAutomatedIssueResolutionFactory> findFactories(EPackage ePackage, String issueId) {
-            return Collections.emptyList();
-        }
-
-        @Override
-        public Collection<IAutomatedIssueResolutionFactory> findFactories(EPackage ePackage) {
-            return Collections.emptyList();
-        }
-
-        @Override
         public Collection<EPackage> coveredPackages() {
             return Arrays.asList(UsecasePackage.eINSTANCE);
         }
 
         @Override
         public Collection<String> getAvailableIssueCodes() {
+            return Collections.emptyList();
+        }
+
+        @Override
+        public Collection<IAutomatedIssueResolutionFactory> findFactories(Collection<EPackage> ePackages,
+                String issueId) {
+            return Collections.emptyList();
+        }
+
+        @Override
+        public Collection<IAutomatedIssueResolutionFactory> findFactories(Collection<EPackage> ePackages) {
             return Collections.emptyList();
         }
 

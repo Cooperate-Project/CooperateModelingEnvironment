@@ -4,7 +4,7 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsCardinalityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<AssociationMemberEnd> {
 	
@@ -80,7 +80,7 @@ class ClsCardinalityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<
     }
 
     override getIssueFeatureInternal(AssociationMemberEnd eObject) {
-        return ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES;
+        return new IssueLocator(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES, eObject.association.memberEnds.indexOf(eObject), eObject.association, eObject)
     }
 	
 }

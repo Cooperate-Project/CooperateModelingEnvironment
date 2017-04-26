@@ -1,9 +1,10 @@
 package de.cooperateproject.modeling.textual.cls.issues
 
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import org.eclipse.uml2.uml.UMLPackage
+
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsVisibilityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<Classifier<org.eclipse.uml2.uml.Classifier>> {
 	
@@ -26,7 +27,7 @@ class ClsVisibilityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<C
 	}
 	
 	override protected getIssueFeatureInternal(Classifier<org.eclipse.uml2.uml.Classifier> element) {
-		ClsPackage.Literals.CLASSIFIER__VISIBILITY
+	    new IssueLocator(ClsPackage.Literals.CLASSIFIER__VISIBILITY, element)
 	}
 	
 	override protected getResolutionNameInternal(Classifier<org.eclipse.uml2.uml.Classifier> element) {
@@ -38,7 +39,7 @@ class ClsVisibilityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<C
 			return false
 		}
 		val umlVisibilityIsSet = element.referencedElement.eIsSet(UMLPackage.Literals.NAMED_ELEMENT__VISIBILITY)
-		val clsClassVisibility = ClsIssueResolutionUtilities.convert(element.visibility)
+		val clsClassVisibility = element.visibility.convert
 		if (!umlVisibilityIsSet && clsClassVisibility === null) {
 			return false
 		}

@@ -5,7 +5,6 @@ import java.util.function.Function;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.inject.Inject;
 
@@ -78,11 +77,11 @@ public abstract class AutomatedIssueResolutionFactoryBase<T extends EObject>
     protected abstract String getIssueDescriptionInternal(T element);
 
     @Override
-    public EStructuralFeature getIssueFeature(EObject element) {
+    public IssueLocator getIssueFeature(EObject element) {
         return delegateTyped(element, this::getIssueFeatureInternal);
     }
 
-    protected abstract EStructuralFeature getIssueFeatureInternal(T element);
+    protected abstract IssueLocator getIssueFeatureInternal(T element);
 
     private <R> R delegateTyped(EObject element, Function<T, R> delegate) {
         Optional<T> typedElement = getCompatibleElement(element);

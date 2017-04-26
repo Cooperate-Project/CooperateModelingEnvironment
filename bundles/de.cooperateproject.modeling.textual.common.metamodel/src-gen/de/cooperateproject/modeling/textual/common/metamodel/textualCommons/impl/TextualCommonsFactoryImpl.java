@@ -21,148 +21,148 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class TextualCommonsFactoryImpl extends EFactoryImpl implements TextualCommonsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static TextualCommonsFactory init() {
-		try {
-			TextualCommonsFactory theTextualCommonsFactory = (TextualCommonsFactory)EPackage.Registry.INSTANCE.getEFactory(TextualCommonsPackage.eNS_URI);
-			if (theTextualCommonsFactory != null) {
-				return theTextualCommonsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new TextualCommonsFactoryImpl();
-	}
+        try {
+            TextualCommonsFactory theTextualCommonsFactory = (TextualCommonsFactory)EPackage.Registry.INSTANCE.getEFactory(TextualCommonsPackage.eNS_URI);
+            if (theTextualCommonsFactory != null) {
+                return theTextualCommonsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new TextualCommonsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TextualCommonsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case TextualCommonsPackage.COMMENT: return (EObject)createComment();
-			case TextualCommonsPackage.CARDINALITY: return (EObject)createCardinality();
-			case TextualCommonsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case TextualCommonsPackage.COMMENT: return (EObject)createComment();
+            case TextualCommonsPackage.CARDINALITY: return (EObject)createCardinality();
+            case TextualCommonsPackage.PACKAGE_IMPORT: return (EObject)createPackageImport();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case TextualCommonsPackage.VISIBILITY:
-				return createVisibilityFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case TextualCommonsPackage.VISIBILITY:
+                return createVisibilityFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case TextualCommonsPackage.VISIBILITY:
-				return convertVisibilityToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case TextualCommonsPackage.VISIBILITY:
+                return convertVisibilityToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Comment createComment() {
-		CommentImpl comment = new CommentImpl();
-		return comment;
-	}
+        CommentImpl comment = new CommentImpl();
+        return comment;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Cardinality createCardinality() {
-		CardinalityImpl cardinality = new CardinalityImpl();
-		return cardinality;
-	}
+        CardinalityImpl cardinality = new CardinalityImpl();
+        return cardinality;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PackageImport createPackageImport() {
-		PackageImportImpl packageImport = new PackageImportImpl();
-		return packageImport;
-	}
+        PackageImportImpl packageImport = new PackageImportImpl();
+        return packageImport;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Visibility createVisibilityFromString(EDataType eDataType, String initialValue) {
-		Visibility result = Visibility.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        Visibility result = Visibility.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertVisibilityToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TextualCommonsPackage getTextualCommonsPackage() {
-		return (TextualCommonsPackage)getEPackage();
-	}
+        return (TextualCommonsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static TextualCommonsPackage getPackage() {
-		return TextualCommonsPackage.eINSTANCE;
-	}
+        return TextualCommonsPackage.eINSTANCE;
+    }
 
 } //TextualCommonsFactoryImpl

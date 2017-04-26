@@ -19,6 +19,8 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
+import com.google.common.collect.Iterables
 
 /**
  * Customization of the default outline structure.
@@ -35,14 +37,19 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	dispatch def createChildren(IOutlineNode parentNode, Package pkg) {
-		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image,
+		createFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGES, UMLImage.PACKAGE.image,
 			getStyledString("Packages", pkg.packages.size), false)
-		ceateFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS,
+		createFeatureNode(parentNode, pkg, TextualCommonsPackage.Literals.PACKAGE_BASE__PACKAGE_IMPORTS,
 			UMLImage.PACKAGE_IMPORT.image, getStyledString("Imports", pkg.packageImports.size), false)
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image,
+		createFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CLASSIFIERS, UMLImage.CLASS.image,
 			getStyledString("Classifiers", pkg.classifiers.size), false)
-		ceateFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image,
+		createFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image,
 			getStyledString("Connectors", pkg.connectors.size), false)
+			
+		val comments = Iterables.concat(pkg.classifiers, pkg.connectors).filter(Commentable).filter[!comments.isEmpty].map[comments]
+		createFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, 
+		    getStyledString("Comments", comments.size), false, [!comments.empty]
+		)
 	}
 
 	dispatch def createChildren(IOutlineNode parentNode, XtextAssociation asc) {
@@ -65,17 +72,17 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return styledLabel
 	}
 
-	private def <T extends EObject> ceateFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
+	private def <T extends EObject> createFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
 		StyledString text, boolean isLeaf) {
 		val result = parent.eGet(ref);
 		if (result instanceof Collection<?>) {
-			ceateFeatureNode(parentNode, parent, ref, img, text, isLeaf, [!result.empty])
+			createFeatureNode(parentNode, parent, ref, img, text, isLeaf, [!result.empty])
 		} else if (result !== null) {
-			ceateFeatureNode(parentNode, parent, ref, img, text, isLeaf, [true])
+			createFeatureNode(parentNode, parent, ref, img, text, isLeaf, [true])
 		}
 	}
 
-	private def <T extends EObject> ceateFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
+	private def <T extends EObject> createFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
 		StyledString text, boolean isLeaf, Predicate<T> pred) {
 		if (pred.apply(parent)) {
 			createEStructuralFeatureNode(parentNode, parent, ref, img, text, false)

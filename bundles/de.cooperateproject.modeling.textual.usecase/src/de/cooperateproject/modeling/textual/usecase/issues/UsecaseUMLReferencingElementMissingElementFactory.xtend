@@ -31,14 +31,14 @@ class UsecaseUMLReferencingElementMissingElementFactory extends UsecaseAutomated
 	}
 	
     override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
-        eObject.relevantFeature
+        new IssueLocator(eObject.relevantFeature, eObject)
     }
     
     protected def dispatch relevantFeature(NamedElement element) {
     	TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME
     }
     
-    protected def dispatch relevantFeature(Element element) {
+    protected def dispatch relevantFeature(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element element) {
     	TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT
     }
 	

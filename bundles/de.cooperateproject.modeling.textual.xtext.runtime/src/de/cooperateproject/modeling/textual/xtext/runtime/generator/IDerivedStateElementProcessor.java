@@ -10,6 +10,9 @@ import org.eclipse.emf.ecore.EObject;
 import com.google.common.collect.Sets;
 
 public interface IDerivedStateElementProcessor {
+    public static final String DERIVED_STATE_PROCESSOR_MAIN_PROCESSOR = "de.cooperateproject.modeling.stateprocessor.MainProcessor";
+    public static final String DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR = "de.cooperateproject.modeling.stateprocessor.ContributingProcessor";
+
     /**
      * Checks if the passed object can be handled by the processor. The return value captures the actual type
      * which is compatible with the processor (the type itself, or one of its super types). If the processor
@@ -43,4 +46,10 @@ public interface IDerivedStateElementProcessor {
     }
 
     boolean processElementUsingType(EClass clazz, EObject object);
+
+    default boolean simulateReload(EObject object) {
+        return this.simulateReloadUsingType(object.eClass(), object);
+    }
+
+    boolean simulateReloadUsingType(EClass clazz, EObject object);
 }
