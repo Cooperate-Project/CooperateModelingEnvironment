@@ -35,6 +35,9 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 	override getMatchEngine() {
 		val idComputation = new Function<EObject, String>() {
 			override apply(EObject input) {
+				if (input === null) {
+					return null;
+				}
 				val cdoObject = CDOUtil.getCDOObject(input)
 				cdoObject.cdoID.toString
 			}
