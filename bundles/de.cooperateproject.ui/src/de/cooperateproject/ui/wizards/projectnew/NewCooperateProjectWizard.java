@@ -29,7 +29,7 @@ public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard imp
     @Override
     public void addPages() {
         super.addPages();
-        cdoPage = new CDOConfigurationWizardPage();
+        cdoPage = new CDOConfigurationWizardPage(ProjectPropertiesStore.getDefaults());
         addPage(cdoPage);
     }
 

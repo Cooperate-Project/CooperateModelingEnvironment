@@ -6,7 +6,6 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.cooperateproject.ui.properties.ProjectPropertiesComposite;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
-import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 import de.cooperateproject.ui.util.WizardPageValidationProcessor;
 
 public class CDOConfigurationWizardPage extends WizardPage {
@@ -15,11 +14,11 @@ public class CDOConfigurationWizardPage extends WizardPage {
     private WizardPageValidationProcessor validatorHandler;
     ProjectPropertiesComposite propertiesComposite;
 
-    public CDOConfigurationWizardPage() {
+    public CDOConfigurationWizardPage(ProjectPropertiesDTO projectProperties) {
         super("CDO Connection Properties");
         setTitle("CDO Connection");
         setDescription("Configure your CDO Connection");
-        projectProperties = ProjectPropertiesStore.getDefaults();
+        this.projectProperties = projectProperties;
     }
 
     @Override

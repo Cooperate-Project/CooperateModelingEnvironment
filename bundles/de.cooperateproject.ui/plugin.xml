@@ -206,6 +206,39 @@
                   value="de.cooperateproject.ui.wizards.newClassDiagram">
             </parameter>
          </command>
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               icon="icons/16/cooperate_16.png"
+               label="Usecase Diagram"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="newWizardId"
+                  value="de.cooperateproject.ui.wizards.newUsecaseDiagram">
+            </parameter>
+         </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="de.cooperateproject.ui.cooperateImportWizards"
+            name="Cooperate">
+      </category>
+      <wizard
+            category="de.cooperateproject.ui.cooperateImportWizards"
+            class="de.cooperateproject.ui.wizards.projectimport.ImportCooperateProjectWizard"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.importCooperateProjectWizard"
+            name="Import Cooperate Project">
+      </wizard>
    </extension>
 </plugin>
