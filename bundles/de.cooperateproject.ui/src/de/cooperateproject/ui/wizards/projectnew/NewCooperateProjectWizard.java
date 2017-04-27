@@ -4,10 +4,7 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRunnable;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
@@ -69,27 +66,19 @@ public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard imp
         boolean superResult = super.performFinish();
         IProject project = getNewProject();
 
-        IWorkspaceRunnable addCooperateProperties = new IWorkspaceRunnable() {
-            @Override
-            public void run(IProgressMonitor monitor) throws CoreException {
-                try {
-                    NatureUtils.addNatureToProject(project, CooperateProjectNature.NATURE_ID);
-                    ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(project);
-                    propertiesStore.setPreferences(cdoPage.getProjectProperties());
-                    propertiesStore.saveToStore();
-                } catch (CoreException e) {
-                    LOGGER.error("Exception when initializing new Cooperate project", e);
-                } catch (IOException e) {
-                    LOGGER.error("Exception when storing project properties", e);
-                }
-            }
-        };
-
         try {
-            ResourcesPlugin.getWorkspace().run(addCooperateProperties, null);
+            NatureUtils.addNatureToProject(project, CooperateProjectNature.NATURE_ID);
+            ProjectPropertiesStore propertiesStore = new ProjectPropertiesStore(project);
+            propertiesStore.setPreferences(cdoPage.getProjectProperties());
+            propertiesStore.saveToStore();
+            project.close(null);
+            project.open(null);
         } catch (CoreException e) {
-            LOGGER.error("Exception when adding Cooperate project properties", e);
+            LOGGER.error("Exception when initializing new Cooperate project", e);
+        } catch (IOException e) {
+            LOGGER.error("Exception when storing project properties", e);
         }
+
         return superResult;
     }
 
