@@ -33,7 +33,7 @@ public class CooperateClientSelector implements IClientSelector {
             }
 
             try {
-                if (NatureUtils.hasCooperateNature(project)) {
+                if (project.exists() && NatureUtils.hasCooperateNature(project)) {
                     return true;
                 }
             } catch (CoreException e) {
