@@ -356,7 +356,7 @@ mapping textualCommons::Comment::commentToEdge() : notation::Connector
 
 	source := commentShape;
 	target := realCommentedElement.typeToView();
-	element := null;
+	result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
 	
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
