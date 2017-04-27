@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Class Diagrams UI Tests
-Bundle-Version: 0.1.7.qualifier
+Bundle-Version: 0.1.7
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls.ui.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.cls.ui,

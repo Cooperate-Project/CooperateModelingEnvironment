@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Use Case Diagrams UI
-Bundle-Version: 0.1.7.qualifier
+Bundle-Version: 0.1.7
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: de.cooperateproject.modeling.textual.usecase,
