@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.textual.feature"
       label="%featureName"
-      version="0.1.7"
+      version="0.1.8.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 

@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Use Case Diagrams IDE
-Bundle-Version: 0.1.7
+Bundle-Version: 0.1.8.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
  org.antlr.runtime,
- de.cooperateproject.modeling.textual.usecase;bundle-version="0.1.7",
- de.cooperateproject.modeling.textual.common;bundle-version="0.1.7"
+ de.cooperateproject.modeling.textual.usecase;bundle-version="0.1.8",
+ de.cooperateproject.modeling.textual.common;bundle-version="0.1.8"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr.internal,
  de.cooperateproject.modeling.textual.usecase.ide.contentassist.antlr
