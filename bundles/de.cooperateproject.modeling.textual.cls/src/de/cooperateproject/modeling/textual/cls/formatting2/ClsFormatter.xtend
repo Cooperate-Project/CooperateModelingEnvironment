@@ -72,6 +72,10 @@ class ClsFormatter extends AbstractClsFormatter {
 			[indent]
 		)
 		
+		if (!clz.comments.empty) {
+		    clz.comments.forEach[comment | comment.append[newLine]]
+		}
+		
 		for (Member members : clz.getMembers()) {
 			format(members, document);
 		}
