@@ -20,7 +20,6 @@ public class CooperatePerspective implements IPerspectiveFactory {
     }
 
     private void defineActions(IPageLayout layout) {
-        // add more?
         layout.addNewWizardShortcut("de.cooperateproject.ui.newCooperateProjectWizard");
         layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newClassDiagram");
     }
@@ -42,9 +41,9 @@ public class CooperatePerspective implements IPerspectiveFactory {
 
         IFolderLayout bottomleft = layout.createFolder("bottomleft", IPageLayout.LEFT, (float) 0.5, bottom);
         bottomleft.addView(IPageLayout.ID_PROP_SHEET);
-        // Exchange with addView once Branches FocusTransfer and AccessibleDiff are merged to master
-        leftbottom.addPlaceholder("de.cooperateproject.ui.focus.FocusView");
-        leftbottom.addPlaceholder("de.cooperateproject.ui.diff.views.DiffView");
+        bottomleft.addView("de.cooperateproject.ui.focus.views.FocusView");
+        // Exchange with addView once Branch AccessibleDiff is merged to master
+        bottomleft.addPlaceholder("de.cooperateproject.ui.diff.views.DiffView");
 
         IFolderLayout bottomright = layout.createFolder("bottomright", IPageLayout.RIGHT, (float) 0.5, bottom);
         bottomright.addView(IPageLayout.ID_PROBLEM_VIEW);
