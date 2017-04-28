@@ -57,6 +57,8 @@ public class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramE
         if (selection instanceof IStructuredSelection) {
             selectedObject = ((IStructuredSelection) selection).getFirstElement();
             return Optional.ofNullable(getSelectedUmlObject(selectedObject));
+        } else {
+
         }
         return Optional.empty();
     }

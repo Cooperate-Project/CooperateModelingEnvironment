@@ -11,4 +11,6 @@ Require-Bundle: org.eclipse.xtext.ui,
  de.cooperateproject.util,
  org.eclipse.emf.cdo.ui,
  de.cooperateproject.modeling.common,
- de.cooperateproject.modeling.textual.common
+ de.cooperateproject.modeling.textual.common,
+ de.cooperateproject.modeling.textual.cls;bundle-version="0.1.8"
+

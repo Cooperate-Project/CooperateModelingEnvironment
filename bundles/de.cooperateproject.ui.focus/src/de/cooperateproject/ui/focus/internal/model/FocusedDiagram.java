@@ -21,7 +21,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.ui.focus.filter.IElementFilter;
 import de.cooperateproject.ui.focus.internal.history.HistoryElement;
 import de.cooperateproject.ui.focus.internal.history.IHistoryChangedListener;
 import de.cooperateproject.ui.focus.internal.messaging.MessageHandler;
@@ -102,26 +101,14 @@ public class FocusedDiagram implements IFocusedDiagram {
         }
 
         Element focusedElement = element.get();
-        Optional<IElementFilter> elementFilter = InternalElementFilterRegistry.getInstance()
-                .getElementFilterBy(currentDiagramType.get());
-        if (elementFilter.isPresent() && elementFilter.get().isSupported(focusedElement)) {
-            try {
-                CDOObject cdoObject = CDOUtil.getCDOObject(focusedElement);
-                messageHandler.sendFocus(cdoObject);
-            } catch (Exception e) {
-                LOGGER.error("Could not send focus request.", e);
-            }
-            return;
+
+        try {
+            CDOObject cdoObject = CDOUtil.getCDOObject(focusedElement);
+            messageHandler.sendFocus(cdoObject);
+        } catch (Exception e) {
+            LOGGER.error("Could not send focus request.", e);
         }
 
-        Display.getDefault().syncExec(() -> showFocusNotSentDialog(focusedElement));
-    }
-
-    private void showFocusNotSentDialog(Element focusedElement) {
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        Toolkit.getDefaultToolkit().beep();
-        MessageDialog.openInformation(shell, "Focus not sent",
-                "The focus could not be sent because the type of the chosen object is not supported.");
     }
 
     @Override

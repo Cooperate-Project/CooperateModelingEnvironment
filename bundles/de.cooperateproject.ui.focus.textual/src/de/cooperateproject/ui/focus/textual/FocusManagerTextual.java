@@ -22,6 +22,7 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
@@ -52,25 +53,32 @@ public class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
         getEditorPart().setFocus();
     }
 
-    @Override
-    @SuppressWarnings("rawtypes")
     /**
      * Extracts the current element focus of the editor.
      * 
      * @return the focused element
      */
+    @Override
     public Optional<Element> getFocusedElement() {
         FocusIUnitOfWork unit = new FocusIUnitOfWork();
         unit.setOffset(((TextSelection) getEditorPart().getSelectionProvider().getSelection()).getOffset());
         getEditorPart().getDocument().modify(unit);
 
         EObject focusedElement = unit.getFocusedElement();
-        if (focusedElement instanceof UMLReferencingElement) {
-            // get the referenced element corresponding to the UML model
-            // from the cooperate-internal element
+        return getFocusableElement(focusedElement);
+    }
+
+    private Optional<Element> getFocusableElement(EObject focusedElement) {
+
+        if (focusedElement == null) {
+            return Optional.empty();
+        } else if (focusedElement instanceof ClassDiagram) {
+            return Optional.ofNullable(((ClassDiagram) focusedElement).getRootPackage().getReferencedElement());
+        } else if (focusedElement instanceof UMLReferencingElement) {
             return Optional.ofNullable(((UMLReferencingElement) focusedElement).getReferencedElement());
+        } else {
+            return getFocusableElement(focusedElement.eContainer());
         }
-        return Optional.empty();
     }
 
     private class FocusIUnitOfWork extends IUnitOfWork.Void<XtextResource> {
