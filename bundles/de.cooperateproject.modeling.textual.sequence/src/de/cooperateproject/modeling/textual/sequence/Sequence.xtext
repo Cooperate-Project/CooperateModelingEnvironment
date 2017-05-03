@@ -1,0 +1,77 @@
+grammar de.cooperateproject.modeling.textual.sequence.Sequence with org.eclipse.xtext.common.Terminals
+
+import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore" as uml
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate sequence "http://www.cooperateproject.de/modeling/textual/sequence/Sequence"
+
+
+SequenceDiagram:
+    {SequenceDiagram}
+    '@start-seqd' title=STRING
+    rootPackage=RootPackage
+    '@end-seqd'
+;
+
+RootPackage:
+    'rootElement' name = FQN
+    actors += Actor* 
+    interactionFragments += InteractionFragment*
+    cls += [uml::Classifier]*
+;
+
+Actor:
+    'act' (
+        (name = ID) ':' type=[uml::Classifier|FQN])
+        | (name = STRING ':' type=[uml::Classifier|FQN] 'as' alias = ID)
+        | (':' type=[uml::Classifier|FQN] 'as' alias = ID)
+    ('role['actorType=ActorType']')? //comments+=Comment? 
+;
+
+
+InteractionFragment: 
+    Message | OccurenceSpecification
+;
+
+Message:
+    FoundMessage |
+    LostMessage |
+    (type=MessageType name=STRING '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')')
+;
+
+FoundMessage:
+    'found' type=MessageType name=STRING '(' '_' ',' right = [Actor|FQN]')'
+;
+
+LostMessage:
+    'lost' type=MessageType name=STRING '(' left = [Actor|FQN] ',' '_'')'
+;
+
+OccurenceSpecification:
+    DestructionOccurenceSpecification
+;
+
+DestructionOccurenceSpecification: 
+    'dest' name=ID
+;
+
+FQN:
+    ID ('.' ID)*
+;
+
+Comment:
+    'note''['body = CommentBody']'
+;
+
+CommentBody returns ecore::EString:
+    STRING
+;
+
+enum MessageType:
+    SYNC = "sync"
+    | ASYNC = "async"
+;
+
+enum ActorType:
+    HUMAN = 'human'
+    | MACHINE = 'machine'
+;

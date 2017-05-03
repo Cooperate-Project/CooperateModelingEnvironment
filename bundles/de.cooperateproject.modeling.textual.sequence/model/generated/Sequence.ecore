@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sequence" nsURI="http://www.cooperateproject.de/modeling/textual/sequence/Sequence"
+    nsPrefix="sequence">
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceDiagram">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootPackage" eType="#//RootPackage"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RootPackage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
+        eType="#//Actor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interactionFragments" upperBound="-1"
+        eType="#//InteractionFragment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cls" unique="false" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actorType" eType="#//ActorType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionFragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Message" eSuperTypes="#//InteractionFragment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FoundMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LostMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification" eSuperTypes="#//InteractionFragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DestructionOccurenceSpecification" eSuperTypes="#//OccurenceSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MessageType">
+    <eLiterals name="SYNC" literal="sync"/>
+    <eLiterals name="ASYNC" value="1" literal="async"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ActorType">
+    <eLiterals name="HUMAN" literal="human"/>
+    <eLiterals name="MACHINE" value="1" literal="machine"/>
+  </eClassifiers>
+</ecore:EPackage>
