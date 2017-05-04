@@ -71,10 +71,24 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
       case SequencePackage.ACTOR: return createActor();
       case SequencePackage.INTERACTION_FRAGMENT: return createInteractionFragment();
       case SequencePackage.MESSAGE: return createMessage();
+      case SequencePackage.TIME_CONSTRAINT: return createTimeConstraint();
+      case SequencePackage.INNER_TIME_CONSTRAINT: return createInnerTimeConstraint();
+      case SequencePackage.STANDARD_MESSAGE: return createStandardMessage();
+      case SequencePackage.RESPONSE_MESSAGE: return createResponseMessage();
       case SequencePackage.FOUND_MESSAGE: return createFoundMessage();
       case SequencePackage.LOST_MESSAGE: return createLostMessage();
+      case SequencePackage.CREATE_MESSAGE: return createCreateMessage();
+      case SequencePackage.DESTRUCTION_MESSAGE: return createDestructionMessage();
       case SequencePackage.OCCURENCE_SPECIFICATION: return createOccurenceSpecification();
       case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION: return createDestructionOccurenceSpecification();
+      case SequencePackage.COMBINED_FRAGMENT: return createCombinedFragment();
+      case SequencePackage.ALTERNATIVE: return createAlternative();
+      case SequencePackage.OPTION: return createOption();
+      case SequencePackage.PARALLEL: return createParallel();
+      case SequencePackage.CRITICAL: return createCritical();
+      case SequencePackage.LOOP: return createLoop();
+      case SequencePackage.PARALLEL_FRAGMENT: return createParallelFragment();
+      case SequencePackage.CONDITIONED_FRAGMENT: return createConditionedFragment();
       case SequencePackage.COMMENT: return createComment();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -95,6 +109,8 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
         return createMessageTypeFromString(eDataType, initialValue);
       case SequencePackage.ACTOR_TYPE:
         return createActorTypeFromString(eDataType, initialValue);
+      case SequencePackage.TIME_CONSTRAINT_TYPE:
+        return createTimeConstraintTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -114,6 +130,8 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
         return convertMessageTypeToString(eDataType, instanceValue);
       case SequencePackage.ACTOR_TYPE:
         return convertActorTypeToString(eDataType, instanceValue);
+      case SequencePackage.TIME_CONSTRAINT_TYPE:
+        return convertTimeConstraintTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -179,6 +197,50 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public TimeConstraint createTimeConstraint()
+  {
+    TimeConstraintImpl timeConstraint = new TimeConstraintImpl();
+    return timeConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InnerTimeConstraint createInnerTimeConstraint()
+  {
+    InnerTimeConstraintImpl innerTimeConstraint = new InnerTimeConstraintImpl();
+    return innerTimeConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StandardMessage createStandardMessage()
+  {
+    StandardMessageImpl standardMessage = new StandardMessageImpl();
+    return standardMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ResponseMessage createResponseMessage()
+  {
+    ResponseMessageImpl responseMessage = new ResponseMessageImpl();
+    return responseMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FoundMessage createFoundMessage()
   {
     FoundMessageImpl foundMessage = new FoundMessageImpl();
@@ -201,6 +263,28 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public CreateMessage createCreateMessage()
+  {
+    CreateMessageImpl createMessage = new CreateMessageImpl();
+    return createMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DestructionMessage createDestructionMessage()
+  {
+    DestructionMessageImpl destructionMessage = new DestructionMessageImpl();
+    return destructionMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public OccurenceSpecification createOccurenceSpecification()
   {
     OccurenceSpecificationImpl occurenceSpecification = new OccurenceSpecificationImpl();
@@ -216,6 +300,94 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
   {
     DestructionOccurenceSpecificationImpl destructionOccurenceSpecification = new DestructionOccurenceSpecificationImpl();
     return destructionOccurenceSpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CombinedFragment createCombinedFragment()
+  {
+    CombinedFragmentImpl combinedFragment = new CombinedFragmentImpl();
+    return combinedFragment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Alternative createAlternative()
+  {
+    AlternativeImpl alternative = new AlternativeImpl();
+    return alternative;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Option createOption()
+  {
+    OptionImpl option = new OptionImpl();
+    return option;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Parallel createParallel()
+  {
+    ParallelImpl parallel = new ParallelImpl();
+    return parallel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Critical createCritical()
+  {
+    CriticalImpl critical = new CriticalImpl();
+    return critical;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Loop createLoop()
+  {
+    LoopImpl loop = new LoopImpl();
+    return loop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ParallelFragment createParallelFragment()
+  {
+    ParallelFragmentImpl parallelFragment = new ParallelFragmentImpl();
+    return parallelFragment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ConditionedFragment createConditionedFragment()
+  {
+    ConditionedFragmentImpl conditionedFragment = new ConditionedFragmentImpl();
+    return conditionedFragment;
   }
 
   /**
@@ -269,6 +441,28 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
    * @generated
    */
   public String convertActorTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TimeConstraintType createTimeConstraintTypeFromString(EDataType eDataType, String initialValue)
+  {
+    TimeConstraintType result = TimeConstraintType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertTimeConstraintTypeToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

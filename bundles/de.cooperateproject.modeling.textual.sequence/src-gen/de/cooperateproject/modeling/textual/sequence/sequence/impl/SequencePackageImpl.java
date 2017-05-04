@@ -5,18 +5,33 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorType;
+import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
+import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.Comment;
+import de.cooperateproject.modeling.textual.sequence.sequence.ConditionedFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage;
+import de.cooperateproject.modeling.textual.sequence.sequence.Critical;
+import de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage;
+import de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint;
 import de.cooperateproject.modeling.textual.sequence.sequence.InteractionFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.Loop;
 import de.cooperateproject.modeling.textual.sequence.sequence.LostMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.Message;
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
+import de.cooperateproject.modeling.textual.sequence.sequence.Option;
+import de.cooperateproject.modeling.textual.sequence.sequence.Parallel;
+import de.cooperateproject.modeling.textual.sequence.sequence.ParallelFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceFactory;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
+import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
+import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -77,6 +92,34 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass timeConstraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass innerTimeConstraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass standardMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass responseMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass foundMessageEClass = null;
 
   /**
@@ -91,6 +134,20 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass createMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass destructionMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass occurenceSpecificationEClass = null;
 
   /**
@@ -99,6 +156,62 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * @generated
    */
   private EClass destructionOccurenceSpecificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass combinedFragmentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass alternativeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass optionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass parallelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass criticalEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loopEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass parallelFragmentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass conditionedFragmentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,6 +233,13 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * @generated
    */
   private EEnum actorTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum timeConstraintTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -262,16 +382,6 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRootPackage_Cls()
-  {
-    return (EReference)rootPackageEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getActor()
   {
     return actorEClass;
@@ -282,7 +392,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getActor_Name()
+  public EAttribute getActor_Deferred()
   {
     return (EAttribute)actorEClass.getEStructuralFeatures().get(0);
   }
@@ -292,9 +402,19 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getActor_Name()
+  {
+    return (EAttribute)actorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getActor_Type()
   {
-    return (EReference)actorEClass.getEStructuralFeatures().get(1);
+    return (EReference)actorEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -304,7 +424,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    */
   public EAttribute getActor_Alias()
   {
-    return (EAttribute)actorEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)actorEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -314,7 +434,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    */
   public EAttribute getActor_ActorType()
   {
-    return (EAttribute)actorEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)actorEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -342,7 +462,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMessage_Type()
+  public EAttribute getMessage_Order()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
   }
@@ -352,9 +472,19 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getMessage_TimeConstraint()
+  {
+    return (EReference)messageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getMessage_Name()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -362,9 +492,9 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMessage_Left()
+  public EClass getTimeConstraint()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(2);
+    return timeConstraintEClass;
   }
 
   /**
@@ -372,9 +502,109 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMessage_Right()
+  public EReference getTimeConstraint_Constraints()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(3);
+    return (EReference)timeConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInnerTimeConstraint()
+  {
+    return innerTimeConstraintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getInnerTimeConstraint_Type()
+  {
+    return (EAttribute)innerTimeConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getInnerTimeConstraint_Value()
+  {
+    return (EAttribute)innerTimeConstraintEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStandardMessage()
+  {
+    return standardMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStandardMessage_Type()
+  {
+    return (EAttribute)standardMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStandardMessage_Left()
+  {
+    return (EReference)standardMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStandardMessage_Right()
+  {
+    return (EReference)standardMessageEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getResponseMessage()
+  {
+    return responseMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getResponseMessage_Left()
+  {
+    return (EReference)responseMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getResponseMessage_Right()
+  {
+    return (EReference)responseMessageEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -392,9 +622,109 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFoundMessage_Type()
+  {
+    return (EAttribute)foundMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFoundMessage_Right()
+  {
+    return (EReference)foundMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getLostMessage()
   {
     return lostMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLostMessage_Type()
+  {
+    return (EAttribute)lostMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLostMessage_Left()
+  {
+    return (EReference)lostMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCreateMessage()
+  {
+    return createMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCreateMessage_Left()
+  {
+    return (EReference)createMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCreateMessage_Right()
+  {
+    return (EReference)createMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDestructionMessage()
+  {
+    return destructionMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDestructionMessage_Left()
+  {
+    return (EReference)destructionMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDestructionMessage_Right()
+  {
+    return (EReference)destructionMessageEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -425,6 +755,176 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
   public EAttribute getDestructionOccurenceSpecification_Name()
   {
     return (EAttribute)destructionOccurenceSpecificationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCombinedFragment()
+  {
+    return combinedFragmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAlternative()
+  {
+    return alternativeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAlternative_Alternatives()
+  {
+    return (EReference)alternativeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOption()
+  {
+    return optionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOption_Option()
+  {
+    return (EReference)optionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getParallel()
+  {
+    return parallelEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getParallel_Parallels()
+  {
+    return (EReference)parallelEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCritical()
+  {
+    return criticalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCritical_Fragments()
+  {
+    return (EReference)criticalEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLoop()
+  {
+    return loopEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLoop_Condition()
+  {
+    return (EAttribute)loopEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLoop_Fragments()
+  {
+    return (EReference)loopEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getParallelFragment()
+  {
+    return parallelFragmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getParallelFragment_Fragments()
+  {
+    return (EReference)parallelFragmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConditionedFragment()
+  {
+    return conditionedFragmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConditionedFragment_Condition()
+  {
+    return (EAttribute)conditionedFragmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConditionedFragment_Fragments()
+  {
+    return (EReference)conditionedFragmentEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -472,6 +972,16 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getTimeConstraintType()
+  {
+    return timeConstraintTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SequenceFactory getSequenceFactory()
   {
     return (SequenceFactory)getEFactoryInstance();
@@ -505,9 +1015,9 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     createEAttribute(rootPackageEClass, ROOT_PACKAGE__NAME);
     createEReference(rootPackageEClass, ROOT_PACKAGE__ACTORS);
     createEReference(rootPackageEClass, ROOT_PACKAGE__INTERACTION_FRAGMENTS);
-    createEReference(rootPackageEClass, ROOT_PACKAGE__CLS);
 
     actorEClass = createEClass(ACTOR);
+    createEAttribute(actorEClass, ACTOR__DEFERRED);
     createEAttribute(actorEClass, ACTOR__NAME);
     createEReference(actorEClass, ACTOR__TYPE);
     createEAttribute(actorEClass, ACTOR__ALIAS);
@@ -516,19 +1026,71 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     interactionFragmentEClass = createEClass(INTERACTION_FRAGMENT);
 
     messageEClass = createEClass(MESSAGE);
-    createEAttribute(messageEClass, MESSAGE__TYPE);
+    createEAttribute(messageEClass, MESSAGE__ORDER);
+    createEReference(messageEClass, MESSAGE__TIME_CONSTRAINT);
     createEAttribute(messageEClass, MESSAGE__NAME);
-    createEReference(messageEClass, MESSAGE__LEFT);
-    createEReference(messageEClass, MESSAGE__RIGHT);
+
+    timeConstraintEClass = createEClass(TIME_CONSTRAINT);
+    createEReference(timeConstraintEClass, TIME_CONSTRAINT__CONSTRAINTS);
+
+    innerTimeConstraintEClass = createEClass(INNER_TIME_CONSTRAINT);
+    createEAttribute(innerTimeConstraintEClass, INNER_TIME_CONSTRAINT__TYPE);
+    createEAttribute(innerTimeConstraintEClass, INNER_TIME_CONSTRAINT__VALUE);
+
+    standardMessageEClass = createEClass(STANDARD_MESSAGE);
+    createEAttribute(standardMessageEClass, STANDARD_MESSAGE__TYPE);
+    createEReference(standardMessageEClass, STANDARD_MESSAGE__LEFT);
+    createEReference(standardMessageEClass, STANDARD_MESSAGE__RIGHT);
+
+    responseMessageEClass = createEClass(RESPONSE_MESSAGE);
+    createEReference(responseMessageEClass, RESPONSE_MESSAGE__LEFT);
+    createEReference(responseMessageEClass, RESPONSE_MESSAGE__RIGHT);
 
     foundMessageEClass = createEClass(FOUND_MESSAGE);
+    createEAttribute(foundMessageEClass, FOUND_MESSAGE__TYPE);
+    createEReference(foundMessageEClass, FOUND_MESSAGE__RIGHT);
 
     lostMessageEClass = createEClass(LOST_MESSAGE);
+    createEAttribute(lostMessageEClass, LOST_MESSAGE__TYPE);
+    createEReference(lostMessageEClass, LOST_MESSAGE__LEFT);
+
+    createMessageEClass = createEClass(CREATE_MESSAGE);
+    createEReference(createMessageEClass, CREATE_MESSAGE__LEFT);
+    createEReference(createMessageEClass, CREATE_MESSAGE__RIGHT);
+
+    destructionMessageEClass = createEClass(DESTRUCTION_MESSAGE);
+    createEReference(destructionMessageEClass, DESTRUCTION_MESSAGE__LEFT);
+    createEReference(destructionMessageEClass, DESTRUCTION_MESSAGE__RIGHT);
 
     occurenceSpecificationEClass = createEClass(OCCURENCE_SPECIFICATION);
 
     destructionOccurenceSpecificationEClass = createEClass(DESTRUCTION_OCCURENCE_SPECIFICATION);
     createEAttribute(destructionOccurenceSpecificationEClass, DESTRUCTION_OCCURENCE_SPECIFICATION__NAME);
+
+    combinedFragmentEClass = createEClass(COMBINED_FRAGMENT);
+
+    alternativeEClass = createEClass(ALTERNATIVE);
+    createEReference(alternativeEClass, ALTERNATIVE__ALTERNATIVES);
+
+    optionEClass = createEClass(OPTION);
+    createEReference(optionEClass, OPTION__OPTION);
+
+    parallelEClass = createEClass(PARALLEL);
+    createEReference(parallelEClass, PARALLEL__PARALLELS);
+
+    criticalEClass = createEClass(CRITICAL);
+    createEReference(criticalEClass, CRITICAL__FRAGMENTS);
+
+    loopEClass = createEClass(LOOP);
+    createEAttribute(loopEClass, LOOP__CONDITION);
+    createEReference(loopEClass, LOOP__FRAGMENTS);
+
+    parallelFragmentEClass = createEClass(PARALLEL_FRAGMENT);
+    createEReference(parallelFragmentEClass, PARALLEL_FRAGMENT__FRAGMENTS);
+
+    conditionedFragmentEClass = createEClass(CONDITIONED_FRAGMENT);
+    createEAttribute(conditionedFragmentEClass, CONDITIONED_FRAGMENT__CONDITION);
+    createEReference(conditionedFragmentEClass, CONDITIONED_FRAGMENT__FRAGMENTS);
 
     commentEClass = createEClass(COMMENT);
     createEAttribute(commentEClass, COMMENT__BODY);
@@ -536,6 +1098,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     // Create enums
     messageTypeEEnum = createEEnum(MESSAGE_TYPE);
     actorTypeEEnum = createEEnum(ACTOR_TYPE);
+    timeConstraintTypeEEnum = createEEnum(TIME_CONSTRAINT_TYPE);
   }
 
   /**
@@ -572,10 +1135,20 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
     // Add supertypes to classes
     messageEClass.getESuperTypes().add(this.getInteractionFragment());
+    standardMessageEClass.getESuperTypes().add(this.getMessage());
+    responseMessageEClass.getESuperTypes().add(this.getMessage());
     foundMessageEClass.getESuperTypes().add(this.getMessage());
     lostMessageEClass.getESuperTypes().add(this.getMessage());
+    createMessageEClass.getESuperTypes().add(this.getMessage());
+    destructionMessageEClass.getESuperTypes().add(this.getMessage());
     occurenceSpecificationEClass.getESuperTypes().add(this.getInteractionFragment());
     destructionOccurenceSpecificationEClass.getESuperTypes().add(this.getOccurenceSpecification());
+    combinedFragmentEClass.getESuperTypes().add(this.getInteractionFragment());
+    alternativeEClass.getESuperTypes().add(this.getCombinedFragment());
+    optionEClass.getESuperTypes().add(this.getCombinedFragment());
+    parallelEClass.getESuperTypes().add(this.getCombinedFragment());
+    criticalEClass.getESuperTypes().add(this.getCombinedFragment());
+    loopEClass.getESuperTypes().add(this.getCombinedFragment());
 
     // Initialize classes and features; add operations and parameters
     initEClass(sequenceDiagramEClass, SequenceDiagram.class, "SequenceDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -586,9 +1159,9 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     initEAttribute(getRootPackage_Name(), theEcorePackage.getEString(), "name", null, 0, 1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRootPackage_Actors(), this.getActor(), null, "actors", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRootPackage_InteractionFragments(), this.getInteractionFragment(), null, "interactionFragments", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRootPackage_Cls(), theUMLPackage.getClassifier(), null, "cls", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getActor_Deferred(), theEcorePackage.getEBoolean(), "deferred", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getActor_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getActor_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getActor_Alias(), theEcorePackage.getEString(), "alias", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -597,19 +1170,71 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     initEClass(interactionFragmentEClass, InteractionFragment.class, "InteractionFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getMessage_Type(), this.getMessageType(), "type", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMessage_Order(), theEcorePackage.getEString(), "order", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMessage_TimeConstraint(), this.getTimeConstraint(), null, "timeConstraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMessage_Left(), this.getActor(), null, "left", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMessage_Right(), this.getActor(), null, "right", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(timeConstraintEClass, TimeConstraint.class, "TimeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTimeConstraint_Constraints(), this.getInnerTimeConstraint(), null, "constraints", null, 0, -1, TimeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(innerTimeConstraintEClass, InnerTimeConstraint.class, "InnerTimeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInnerTimeConstraint_Type(), this.getTimeConstraintType(), "type", null, 0, 1, InnerTimeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInnerTimeConstraint_Value(), theEcorePackage.getEString(), "value", null, 0, 1, InnerTimeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(standardMessageEClass, StandardMessage.class, "StandardMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStandardMessage_Type(), this.getMessageType(), "type", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStandardMessage_Left(), this.getActor(), null, "left", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStandardMessage_Right(), this.getActor(), null, "right", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(responseMessageEClass, ResponseMessage.class, "ResponseMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getResponseMessage_Left(), this.getActor(), null, "left", null, 0, 1, ResponseMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getResponseMessage_Right(), this.getActor(), null, "right", null, 0, 1, ResponseMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(foundMessageEClass, FoundMessage.class, "FoundMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFoundMessage_Type(), this.getMessageType(), "type", null, 0, 1, FoundMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFoundMessage_Right(), this.getActor(), null, "right", null, 0, 1, FoundMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(lostMessageEClass, LostMessage.class, "LostMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLostMessage_Type(), this.getMessageType(), "type", null, 0, 1, LostMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLostMessage_Left(), this.getActor(), null, "left", null, 0, 1, LostMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(createMessageEClass, CreateMessage.class, "CreateMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCreateMessage_Left(), this.getActor(), null, "left", null, 0, 1, CreateMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCreateMessage_Right(), this.getActor(), null, "right", null, 0, 1, CreateMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(destructionMessageEClass, DestructionMessage.class, "DestructionMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDestructionMessage_Left(), this.getActor(), null, "left", null, 0, 1, DestructionMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDestructionMessage_Right(), this.getActor(), null, "right", null, 0, 1, DestructionMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(occurenceSpecificationEClass, OccurenceSpecification.class, "OccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(destructionOccurenceSpecificationEClass, DestructionOccurenceSpecification.class, "DestructionOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDestructionOccurenceSpecification_Name(), theEcorePackage.getEString(), "name", null, 0, 1, DestructionOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(combinedFragmentEClass, CombinedFragment.class, "CombinedFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(alternativeEClass, Alternative.class, "Alternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAlternative_Alternatives(), this.getConditionedFragment(), null, "alternatives", null, 0, -1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(optionEClass, Option.class, "Option", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOption_Option(), this.getConditionedFragment(), null, "option", null, 0, -1, Option.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(parallelEClass, Parallel.class, "Parallel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParallel_Parallels(), this.getParallelFragment(), null, "parallels", null, 0, -1, Parallel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(criticalEClass, Critical.class, "Critical", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCritical_Fragments(), this.getInteractionFragment(), null, "fragments", null, 0, -1, Critical.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLoop_Condition(), theEcorePackage.getEString(), "condition", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoop_Fragments(), this.getInteractionFragment(), null, "fragments", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(parallelFragmentEClass, ParallelFragment.class, "ParallelFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParallelFragment_Fragments(), this.getInteractionFragment(), null, "fragments", null, 0, -1, ParallelFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(conditionedFragmentEClass, ConditionedFragment.class, "ConditionedFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getConditionedFragment_Condition(), theEcorePackage.getEString(), "condition", null, 0, 1, ConditionedFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditionedFragment_Fragments(), this.getInteractionFragment(), null, "fragments", null, 0, -1, ConditionedFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getComment_Body(), theEcorePackage.getEString(), "body", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -622,6 +1247,12 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     initEEnum(actorTypeEEnum, ActorType.class, "ActorType");
     addEEnumLiteral(actorTypeEEnum, ActorType.HUMAN);
     addEEnumLiteral(actorTypeEEnum, ActorType.MACHINE);
+
+    initEEnum(timeConstraintTypeEEnum, TimeConstraintType.class, "TimeConstraintType");
+    addEEnumLiteral(timeConstraintTypeEEnum, TimeConstraintType.DURATION);
+    addEEnumLiteral(timeConstraintTypeEEnum, TimeConstraintType.TIME);
+    addEEnumLiteral(timeConstraintTypeEEnum, TimeConstraintType.MAXIMUM);
+    addEEnumLiteral(timeConstraintTypeEEnum, TimeConstraintType.DIFFERENCE);
 
     // Create resource
     createResource(eNS_URI);

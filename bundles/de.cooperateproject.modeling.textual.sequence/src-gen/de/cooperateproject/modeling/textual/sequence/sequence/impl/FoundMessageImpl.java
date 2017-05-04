@@ -3,20 +3,64 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
+import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage;
+import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Found Message</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl#getRight <em>Right</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class FoundMessageImpl extends MessageImpl implements FoundMessage
 {
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final MessageType TYPE_EDEFAULT = MessageType.SYNC;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected MessageType type = TYPE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRight()
+   * @generated
+   * @ordered
+   */
+  protected Actor right;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -36,6 +80,166 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage
   protected EClass eStaticClass()
   {
     return SequencePackage.Literals.FOUND_MESSAGE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MessageType getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(MessageType newType)
+  {
+    MessageType oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.FOUND_MESSAGE__TYPE, oldType, type));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Actor getRight()
+  {
+    if (right != null && right.eIsProxy())
+    {
+      InternalEObject oldRight = (InternalEObject)right;
+      right = (Actor)eResolveProxy(oldRight);
+      if (right != oldRight)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.FOUND_MESSAGE__RIGHT, oldRight, right));
+      }
+    }
+    return right;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Actor basicGetRight()
+  {
+    return right;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRight(Actor newRight)
+  {
+    Actor oldRight = right;
+    right = newRight;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.FOUND_MESSAGE__RIGHT, oldRight, right));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType)
+  {
+    switch (featureID)
+    {
+      case SequencePackage.FOUND_MESSAGE__TYPE:
+        return getType();
+      case SequencePackage.FOUND_MESSAGE__RIGHT:
+        if (resolve) return getRight();
+        return basicGetRight();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue)
+  {
+    switch (featureID)
+    {
+      case SequencePackage.FOUND_MESSAGE__TYPE:
+        setType((MessageType)newValue);
+        return;
+      case SequencePackage.FOUND_MESSAGE__RIGHT:
+        setRight((Actor)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID)
+  {
+    switch (featureID)
+    {
+      case SequencePackage.FOUND_MESSAGE__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
+      case SequencePackage.FOUND_MESSAGE__RIGHT:
+        setRight((Actor)null);
+        return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID)
+  {
+    switch (featureID)
+    {
+      case SequencePackage.FOUND_MESSAGE__TYPE:
+        return type != TYPE_EDEFAULT;
+      case SequencePackage.FOUND_MESSAGE__RIGHT:
+        return right != null;
+    }
+    return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (type: ");
+    result.append(type);
+    result.append(')');
+    return result.toString();
   }
 
 } //FoundMessageImpl

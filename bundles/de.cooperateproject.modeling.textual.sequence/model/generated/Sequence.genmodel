@@ -14,6 +14,12 @@
       <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//ActorType/HUMAN"/>
       <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//ActorType/MACHINE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Sequence.ecore#//TimeConstraintType">
+      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/DURATION"/>
+      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/TIME"/>
+      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/MAXIMUM"/>
+      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/DIFFERENCE"/>
+    </genEnums>
     <genClasses ecoreClass="Sequence.ecore#//SequenceDiagram">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//SequenceDiagram/title"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//SequenceDiagram/rootPackage"/>
@@ -22,9 +28,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//RootPackage/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//RootPackage/actors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//RootPackage/interactionFragments"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//RootPackage/cls"/>
     </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//Actor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Actor/deferred"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Actor/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//Actor/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Actor/alias"/>
@@ -32,16 +38,69 @@
     </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//InteractionFragment"/>
     <genClasses ecoreClass="Sequence.ecore#//Message">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Message/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Message/order"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Message/timeConstraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Message/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//Message/left"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//Message/right"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//FoundMessage"/>
-    <genClasses ecoreClass="Sequence.ecore#//LostMessage"/>
+    <genClasses ecoreClass="Sequence.ecore#//TimeConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//TimeConstraint/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//InnerTimeConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//InnerTimeConstraint/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//InnerTimeConstraint/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//StandardMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//StandardMessage/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//StandardMessage/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//StandardMessage/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//ResponseMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//ResponseMessage/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//ResponseMessage/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//FoundMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//FoundMessage/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//FoundMessage/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//LostMessage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//LostMessage/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//LostMessage/left"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//CreateMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//CreateMessage/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//CreateMessage/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//DestructionMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DestructionMessage/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DestructionMessage/right"/>
+    </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//OccurenceSpecification"/>
     <genClasses ecoreClass="Sequence.ecore#//DestructionOccurenceSpecification">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//DestructionOccurenceSpecification/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//CombinedFragment"/>
+    <genClasses ecoreClass="Sequence.ecore#//Alternative">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Alternative/alternatives"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//Option">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Option/option"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//Parallel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Parallel/parallels"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//Critical">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Critical/fragments"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//Loop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Loop/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Loop/fragments"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//ParallelFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//ParallelFragment/fragments"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//ConditionedFragment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//ConditionedFragment/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//ConditionedFragment/fragments"/>
     </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//Comment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Comment/body"/>

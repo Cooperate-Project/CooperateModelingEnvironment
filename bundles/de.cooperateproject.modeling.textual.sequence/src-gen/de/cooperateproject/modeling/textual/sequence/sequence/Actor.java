@@ -16,6 +16,7 @@ import org.eclipse.uml2.uml.Classifier;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#isDeferred <em>Deferred</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getType <em>Type</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getAlias <em>Alias</em>}</li>
@@ -28,6 +29,32 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public interface Actor extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Deferred</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Deferred</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Deferred</em>' attribute.
+   * @see #setDeferred(boolean)
+   * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActor_Deferred()
+   * @model
+   * @generated
+   */
+  boolean isDeferred();
+
+  /**
+   * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#isDeferred <em>Deferred</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Deferred</em>' attribute.
+   * @see #isDeferred()
+   * @generated
+   */
+  void setDeferred(boolean value);
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

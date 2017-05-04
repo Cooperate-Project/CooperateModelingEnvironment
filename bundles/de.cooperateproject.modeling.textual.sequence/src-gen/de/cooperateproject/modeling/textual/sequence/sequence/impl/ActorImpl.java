@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.Classifier;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#isDeferred <em>Deferred</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getType <em>Type</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getAlias <em>Alias</em>}</li>
@@ -35,6 +36,26 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
 {
+  /**
+   * The default value of the '{@link #isDeferred() <em>Deferred</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDeferred()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean DEFERRED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isDeferred() <em>Deferred</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isDeferred()
+   * @generated
+   * @ordered
+   */
+  protected boolean deferred = DEFERRED_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -124,6 +145,29 @@ public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
   protected EClass eStaticClass()
   {
     return SequencePackage.Literals.ACTOR;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isDeferred()
+  {
+    return deferred;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDeferred(boolean newDeferred)
+  {
+    boolean oldDeferred = deferred;
+    deferred = newDeferred;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ACTOR__DEFERRED, oldDeferred, deferred));
   }
 
   /**
@@ -248,6 +292,8 @@ public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
   {
     switch (featureID)
     {
+      case SequencePackage.ACTOR__DEFERRED:
+        return isDeferred();
       case SequencePackage.ACTOR__NAME:
         return getName();
       case SequencePackage.ACTOR__TYPE:
@@ -271,6 +317,9 @@ public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
   {
     switch (featureID)
     {
+      case SequencePackage.ACTOR__DEFERRED:
+        setDeferred((Boolean)newValue);
+        return;
       case SequencePackage.ACTOR__NAME:
         setName((String)newValue);
         return;
@@ -297,6 +346,9 @@ public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
   {
     switch (featureID)
     {
+      case SequencePackage.ACTOR__DEFERRED:
+        setDeferred(DEFERRED_EDEFAULT);
+        return;
       case SequencePackage.ACTOR__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -323,6 +375,8 @@ public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
   {
     switch (featureID)
     {
+      case SequencePackage.ACTOR__DEFERRED:
+        return deferred != DEFERRED_EDEFAULT;
       case SequencePackage.ACTOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case SequencePackage.ACTOR__TYPE:
@@ -346,7 +400,9 @@ public class ActorImpl extends MinimalEObjectImpl.Container implements Actor
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (deferred: ");
+    result.append(deferred);
+    result.append(", name: ");
     result.append(name);
     result.append(", alias: ");
     result.append(alias);

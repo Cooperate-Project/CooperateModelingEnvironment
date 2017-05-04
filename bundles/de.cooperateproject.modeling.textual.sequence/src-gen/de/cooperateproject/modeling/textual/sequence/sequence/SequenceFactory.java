@@ -69,6 +69,42 @@ public interface SequenceFactory extends EFactory
   Message createMessage();
 
   /**
+   * Returns a new object of class '<em>Time Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Time Constraint</em>'.
+   * @generated
+   */
+  TimeConstraint createTimeConstraint();
+
+  /**
+   * Returns a new object of class '<em>Inner Time Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Inner Time Constraint</em>'.
+   * @generated
+   */
+  InnerTimeConstraint createInnerTimeConstraint();
+
+  /**
+   * Returns a new object of class '<em>Standard Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Standard Message</em>'.
+   * @generated
+   */
+  StandardMessage createStandardMessage();
+
+  /**
+   * Returns a new object of class '<em>Response Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Response Message</em>'.
+   * @generated
+   */
+  ResponseMessage createResponseMessage();
+
+  /**
    * Returns a new object of class '<em>Found Message</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -87,6 +123,24 @@ public interface SequenceFactory extends EFactory
   LostMessage createLostMessage();
 
   /**
+   * Returns a new object of class '<em>Create Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Create Message</em>'.
+   * @generated
+   */
+  CreateMessage createCreateMessage();
+
+  /**
+   * Returns a new object of class '<em>Destruction Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Destruction Message</em>'.
+   * @generated
+   */
+  DestructionMessage createDestructionMessage();
+
+  /**
    * Returns a new object of class '<em>Occurence Specification</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -103,6 +157,78 @@ public interface SequenceFactory extends EFactory
    * @generated
    */
   DestructionOccurenceSpecification createDestructionOccurenceSpecification();
+
+  /**
+   * Returns a new object of class '<em>Combined Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Combined Fragment</em>'.
+   * @generated
+   */
+  CombinedFragment createCombinedFragment();
+
+  /**
+   * Returns a new object of class '<em>Alternative</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Alternative</em>'.
+   * @generated
+   */
+  Alternative createAlternative();
+
+  /**
+   * Returns a new object of class '<em>Option</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Option</em>'.
+   * @generated
+   */
+  Option createOption();
+
+  /**
+   * Returns a new object of class '<em>Parallel</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parallel</em>'.
+   * @generated
+   */
+  Parallel createParallel();
+
+  /**
+   * Returns a new object of class '<em>Critical</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Critical</em>'.
+   * @generated
+   */
+  Critical createCritical();
+
+  /**
+   * Returns a new object of class '<em>Loop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loop</em>'.
+   * @generated
+   */
+  Loop createLoop();
+
+  /**
+   * Returns a new object of class '<em>Parallel Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parallel Fragment</em>'.
+   * @generated
+   */
+  ParallelFragment createParallelFragment();
+
+  /**
+   * Returns a new object of class '<em>Conditioned Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Conditioned Fragment</em>'.
+   * @generated
+   */
+  ConditionedFragment createConditionedFragment();
 
   /**
    * Returns a new object of class '<em>Comment</em>'.

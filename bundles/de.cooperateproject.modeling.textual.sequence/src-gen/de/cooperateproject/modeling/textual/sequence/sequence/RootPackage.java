@@ -7,8 +7,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.uml2.uml.Classifier;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Root Package</b></em>'.
@@ -21,7 +19,6 @@ import org.eclipse.uml2.uml.Classifier;
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.RootPackage#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.RootPackage#getActors <em>Actors</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.RootPackage#getInteractionFragments <em>Interaction Fragments</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.RootPackage#getCls <em>Cls</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getRootPackage()
@@ -87,21 +84,5 @@ public interface RootPackage extends EObject
    * @generated
    */
   EList<InteractionFragment> getInteractionFragments();
-
-  /**
-   * Returns the value of the '<em><b>Cls</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.uml2.uml.Classifier}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Cls</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Cls</em>' reference list.
-   * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getRootPackage_Cls()
-   * @model
-   * @generated
-   */
-  EList<Classifier> getCls();
 
 } // RootPackage

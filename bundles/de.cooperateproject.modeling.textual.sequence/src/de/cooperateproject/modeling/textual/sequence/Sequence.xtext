@@ -16,35 +16,63 @@ RootPackage:
     'rootElement' name = FQN
     actors += Actor* 
     interactionFragments += InteractionFragment*
-    cls += [uml::Classifier]*
 ;
 
 Actor:
-    'act' (
-        (name = ID) ':' type=[uml::Classifier|FQN])
-        | (name = STRING ':' type=[uml::Classifier|FQN] 'as' alias = ID)
+    'act' (deferred?='deferred')? 
+        ((name = ID ':' type=[uml::Classifier|FQN])
         | (':' type=[uml::Classifier|FQN] 'as' alias = ID)
+        | (name = STRING ':' type=[uml::Classifier|FQN] 'as' alias = ID))
     ('role['actorType=ActorType']')? //comments+=Comment? 
 ;
 
-
 InteractionFragment: 
-    Message | OccurenceSpecification
+    Message | OccurenceSpecification | CombinedFragment
 ;
 
 Message:
-    FoundMessage |
-    LostMessage |
-    (type=MessageType name=STRING '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')')
+    (StandardMessage    |
+        ResponseMessage | 
+        FoundMessage    |
+        LostMessage     |
+        CreateMessage   |
+        DestructionMessage) 
+    ('num['order = Order']')?
+    timeConstraint=TimeConstraint?
+;
+
+TimeConstraint:
+	'time[' constraints+=InnerTimeConstraint+ ']'
+;
+
+InnerTimeConstraint:
+    type=TimeConstraintType'='value = STRING
+;
+
+StandardMessage:
+    type=MessageType name=STRING '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+;
+
+ResponseMessage:
+   'resp' name=STRING '(' (left = [Actor|FQN]|'_') ',' (right = ([Actor|FQN])|'_') ')'   
 ;
 
 FoundMessage:
-    'found' type=MessageType name=STRING '(' '_' ',' right = [Actor|FQN]')'
+    'found'? type=MessageType name=STRING '(' '_' ',' right = [Actor|FQN]')'
 ;
 
 LostMessage:
-    'lost' type=MessageType name=STRING '(' left = [Actor|FQN] ',' '_'')'
+    'lost'? type=MessageType name=STRING '(' left = [Actor|FQN] ',' '_'')'
 ;
+
+CreateMessage:
+    'create' name=STRING? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+;
+
+DestructionMessage:
+    'dest' name=STRING? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+;
+
 
 OccurenceSpecification:
     DestructionOccurenceSpecification
@@ -54,6 +82,48 @@ DestructionOccurenceSpecification:
     'dest' name=ID
 ;
 
+CombinedFragment:
+    Alternative | Option | Parallel | Critical | Loop
+;
+
+Alternative:
+    'alt' '{'
+        alternatives += ConditionedFragment+
+    '}'
+;
+
+Option:
+    'opt' '{'
+        option += ConditionedFragment
+    '}'
+;
+
+Parallel:
+    'par' '{'
+        parallels += ParallelFragment+
+    '}'
+;
+
+Critical:
+    'critical' '{'
+        fragments += InteractionFragment+
+    '}'
+;
+
+Loop:
+    'loop''['condition=STRING']''{'
+        fragments += InteractionFragment+
+    '}'
+;
+
+ParallelFragment:
+    (('{' fragments += InteractionFragment* '}') | fragments += InteractionFragment)
+;
+
+ConditionedFragment:
+    '['condition=STRING']' (('{' fragments += InteractionFragment* '}') | fragments += InteractionFragment)  
+;
+
 FQN:
     ID ('.' ID)*
 ;
@@ -61,6 +131,10 @@ FQN:
 Comment:
     'note''['body = CommentBody']'
 ;
+
+Order:
+    INT ('.' INT)*
+; 
 
 CommentBody returns ecore::EString:
     STRING
@@ -75,3 +149,11 @@ enum ActorType:
     HUMAN = 'human'
     | MACHINE = 'machine'
 ;
+
+enum TimeConstraintType:
+    DURATION = 'd'
+    | TIME = 't'
+    | MAXIMUM = 'max'
+    | DIFFERENCE = 'diff'
+;
+

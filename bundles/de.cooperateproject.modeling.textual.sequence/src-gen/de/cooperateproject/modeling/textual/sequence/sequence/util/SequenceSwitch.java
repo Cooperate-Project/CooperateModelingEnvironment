@@ -109,6 +109,38 @@ public class SequenceSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SequencePackage.TIME_CONSTRAINT:
+      {
+        TimeConstraint timeConstraint = (TimeConstraint)theEObject;
+        T result = caseTimeConstraint(timeConstraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.INNER_TIME_CONSTRAINT:
+      {
+        InnerTimeConstraint innerTimeConstraint = (InnerTimeConstraint)theEObject;
+        T result = caseInnerTimeConstraint(innerTimeConstraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.STANDARD_MESSAGE:
+      {
+        StandardMessage standardMessage = (StandardMessage)theEObject;
+        T result = caseStandardMessage(standardMessage);
+        if (result == null) result = caseMessage(standardMessage);
+        if (result == null) result = caseInteractionFragment(standardMessage);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.RESPONSE_MESSAGE:
+      {
+        ResponseMessage responseMessage = (ResponseMessage)theEObject;
+        T result = caseResponseMessage(responseMessage);
+        if (result == null) result = caseMessage(responseMessage);
+        if (result == null) result = caseInteractionFragment(responseMessage);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SequencePackage.FOUND_MESSAGE:
       {
         FoundMessage foundMessage = (FoundMessage)theEObject;
@@ -127,6 +159,24 @@ public class SequenceSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SequencePackage.CREATE_MESSAGE:
+      {
+        CreateMessage createMessage = (CreateMessage)theEObject;
+        T result = caseCreateMessage(createMessage);
+        if (result == null) result = caseMessage(createMessage);
+        if (result == null) result = caseInteractionFragment(createMessage);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.DESTRUCTION_MESSAGE:
+      {
+        DestructionMessage destructionMessage = (DestructionMessage)theEObject;
+        T result = caseDestructionMessage(destructionMessage);
+        if (result == null) result = caseMessage(destructionMessage);
+        if (result == null) result = caseInteractionFragment(destructionMessage);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SequencePackage.OCCURENCE_SPECIFICATION:
       {
         OccurenceSpecification occurenceSpecification = (OccurenceSpecification)theEObject;
@@ -141,6 +191,73 @@ public class SequenceSwitch<T> extends Switch<T>
         T result = caseDestructionOccurenceSpecification(destructionOccurenceSpecification);
         if (result == null) result = caseOccurenceSpecification(destructionOccurenceSpecification);
         if (result == null) result = caseInteractionFragment(destructionOccurenceSpecification);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.COMBINED_FRAGMENT:
+      {
+        CombinedFragment combinedFragment = (CombinedFragment)theEObject;
+        T result = caseCombinedFragment(combinedFragment);
+        if (result == null) result = caseInteractionFragment(combinedFragment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.ALTERNATIVE:
+      {
+        Alternative alternative = (Alternative)theEObject;
+        T result = caseAlternative(alternative);
+        if (result == null) result = caseCombinedFragment(alternative);
+        if (result == null) result = caseInteractionFragment(alternative);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.OPTION:
+      {
+        Option option = (Option)theEObject;
+        T result = caseOption(option);
+        if (result == null) result = caseCombinedFragment(option);
+        if (result == null) result = caseInteractionFragment(option);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.PARALLEL:
+      {
+        Parallel parallel = (Parallel)theEObject;
+        T result = caseParallel(parallel);
+        if (result == null) result = caseCombinedFragment(parallel);
+        if (result == null) result = caseInteractionFragment(parallel);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.CRITICAL:
+      {
+        Critical critical = (Critical)theEObject;
+        T result = caseCritical(critical);
+        if (result == null) result = caseCombinedFragment(critical);
+        if (result == null) result = caseInteractionFragment(critical);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.LOOP:
+      {
+        Loop loop = (Loop)theEObject;
+        T result = caseLoop(loop);
+        if (result == null) result = caseCombinedFragment(loop);
+        if (result == null) result = caseInteractionFragment(loop);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.PARALLEL_FRAGMENT:
+      {
+        ParallelFragment parallelFragment = (ParallelFragment)theEObject;
+        T result = caseParallelFragment(parallelFragment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SequencePackage.CONDITIONED_FRAGMENT:
+      {
+        ConditionedFragment conditionedFragment = (ConditionedFragment)theEObject;
+        T result = caseConditionedFragment(conditionedFragment);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -236,6 +353,70 @@ public class SequenceSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Time Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Time Constraint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTimeConstraint(TimeConstraint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Inner Time Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Inner Time Constraint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInnerTimeConstraint(InnerTimeConstraint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Standard Message</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Standard Message</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStandardMessage(StandardMessage object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Response Message</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Response Message</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseResponseMessage(ResponseMessage object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Found Message</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -268,6 +449,38 @@ public class SequenceSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Create Message</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Create Message</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCreateMessage(CreateMessage object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Destruction Message</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Destruction Message</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDestructionMessage(DestructionMessage object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Occurence Specification</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -295,6 +508,134 @@ public class SequenceSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDestructionOccurenceSpecification(DestructionOccurenceSpecification object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Combined Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Combined Fragment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCombinedFragment(CombinedFragment object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Alternative</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Alternative</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAlternative(Alternative object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Option</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Option</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOption(Option object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Parallel</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Parallel</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParallel(Parallel object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Critical</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Critical</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCritical(Critical object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoop(Loop object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Parallel Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Parallel Fragment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParallelFragment(ParallelFragment object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Conditioned Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Conditioned Fragment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConditionedFragment(ConditionedFragment object)
   {
     return null;
   }

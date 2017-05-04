@@ -3,12 +3,12 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.Message;
-import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -23,10 +23,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getOrder <em>Order</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getTimeConstraint <em>Time Constraint</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
@@ -34,24 +33,34 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class MessageImpl extends InteractionFragmentImpl implements Message
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getOrder()
    * @generated
    * @ordered
    */
-  protected static final MessageType TYPE_EDEFAULT = MessageType.SYNC;
+  protected static final String ORDER_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getOrder()
    * @generated
    * @ordered
    */
-  protected MessageType type = TYPE_EDEFAULT;
+  protected String order = ORDER_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getTimeConstraint() <em>Time Constraint</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTimeConstraint()
+   * @generated
+   * @ordered
+   */
+  protected TimeConstraint timeConstraint;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -72,26 +81,6 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getLeft() <em>Left</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLeft()
-   * @generated
-   * @ordered
-   */
-  protected Actor left;
-
-  /**
-   * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRight()
-   * @generated
-   * @ordered
-   */
-  protected Actor right;
 
   /**
    * <!-- begin-user-doc -->
@@ -119,9 +108,9 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public MessageType getType()
+  public String getOrder()
   {
-    return type;
+    return order;
   }
 
   /**
@@ -129,12 +118,60 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(MessageType newType)
+  public void setOrder(String newOrder)
   {
-    MessageType oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
+    String oldOrder = order;
+    order = newOrder;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__ORDER, oldOrder, order));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TimeConstraint getTimeConstraint()
+  {
+    return timeConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTimeConstraint(TimeConstraint newTimeConstraint, NotificationChain msgs)
+  {
+    TimeConstraint oldTimeConstraint = timeConstraint;
+    timeConstraint = newTimeConstraint;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__TIME_CONSTRAINT, oldTimeConstraint, newTimeConstraint);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTimeConstraint(TimeConstraint newTimeConstraint)
+  {
+    if (newTimeConstraint != timeConstraint)
+    {
+      NotificationChain msgs = null;
+      if (timeConstraint != null)
+        msgs = ((InternalEObject)timeConstraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SequencePackage.MESSAGE__TIME_CONSTRAINT, null, msgs);
+      if (newTimeConstraint != null)
+        msgs = ((InternalEObject)newTimeConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SequencePackage.MESSAGE__TIME_CONSTRAINT, null, msgs);
+      msgs = basicSetTimeConstraint(newTimeConstraint, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__TIME_CONSTRAINT, newTimeConstraint, newTimeConstraint));
   }
 
   /**
@@ -165,85 +202,15 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public Actor getLeft()
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    if (left != null && left.eIsProxy())
+    switch (featureID)
     {
-      InternalEObject oldLeft = (InternalEObject)left;
-      left = (Actor)eResolveProxy(oldLeft);
-      if (left != oldLeft)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.MESSAGE__LEFT, oldLeft, left));
-      }
+      case SequencePackage.MESSAGE__TIME_CONSTRAINT:
+        return basicSetTimeConstraint(null, msgs);
     }
-    return left;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Actor basicGetLeft()
-  {
-    return left;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setLeft(Actor newLeft)
-  {
-    Actor oldLeft = left;
-    left = newLeft;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__LEFT, oldLeft, left));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Actor getRight()
-  {
-    if (right != null && right.eIsProxy())
-    {
-      InternalEObject oldRight = (InternalEObject)right;
-      right = (Actor)eResolveProxy(oldRight);
-      if (right != oldRight)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.MESSAGE__RIGHT, oldRight, right));
-      }
-    }
-    return right;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Actor basicGetRight()
-  {
-    return right;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setRight(Actor newRight)
-  {
-    Actor oldRight = right;
-    right = newRight;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__RIGHT, oldRight, right));
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -256,16 +223,12 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
   {
     switch (featureID)
     {
-      case SequencePackage.MESSAGE__TYPE:
-        return getType();
+      case SequencePackage.MESSAGE__ORDER:
+        return getOrder();
+      case SequencePackage.MESSAGE__TIME_CONSTRAINT:
+        return getTimeConstraint();
       case SequencePackage.MESSAGE__NAME:
         return getName();
-      case SequencePackage.MESSAGE__LEFT:
-        if (resolve) return getLeft();
-        return basicGetLeft();
-      case SequencePackage.MESSAGE__RIGHT:
-        if (resolve) return getRight();
-        return basicGetRight();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -280,17 +243,14 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
   {
     switch (featureID)
     {
-      case SequencePackage.MESSAGE__TYPE:
-        setType((MessageType)newValue);
+      case SequencePackage.MESSAGE__ORDER:
+        setOrder((String)newValue);
+        return;
+      case SequencePackage.MESSAGE__TIME_CONSTRAINT:
+        setTimeConstraint((TimeConstraint)newValue);
         return;
       case SequencePackage.MESSAGE__NAME:
         setName((String)newValue);
-        return;
-      case SequencePackage.MESSAGE__LEFT:
-        setLeft((Actor)newValue);
-        return;
-      case SequencePackage.MESSAGE__RIGHT:
-        setRight((Actor)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -306,17 +266,14 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
   {
     switch (featureID)
     {
-      case SequencePackage.MESSAGE__TYPE:
-        setType(TYPE_EDEFAULT);
+      case SequencePackage.MESSAGE__ORDER:
+        setOrder(ORDER_EDEFAULT);
+        return;
+      case SequencePackage.MESSAGE__TIME_CONSTRAINT:
+        setTimeConstraint((TimeConstraint)null);
         return;
       case SequencePackage.MESSAGE__NAME:
         setName(NAME_EDEFAULT);
-        return;
-      case SequencePackage.MESSAGE__LEFT:
-        setLeft((Actor)null);
-        return;
-      case SequencePackage.MESSAGE__RIGHT:
-        setRight((Actor)null);
         return;
     }
     super.eUnset(featureID);
@@ -332,14 +289,12 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
   {
     switch (featureID)
     {
-      case SequencePackage.MESSAGE__TYPE:
-        return type != TYPE_EDEFAULT;
+      case SequencePackage.MESSAGE__ORDER:
+        return ORDER_EDEFAULT == null ? order != null : !ORDER_EDEFAULT.equals(order);
+      case SequencePackage.MESSAGE__TIME_CONSTRAINT:
+        return timeConstraint != null;
       case SequencePackage.MESSAGE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case SequencePackage.MESSAGE__LEFT:
-        return left != null;
-      case SequencePackage.MESSAGE__RIGHT:
-        return right != null;
     }
     return super.eIsSet(featureID);
   }
@@ -355,8 +310,8 @@ public class MessageImpl extends InteractionFragmentImpl implements Message
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (type: ");
-    result.append(type);
+    result.append(" (order: ");
+    result.append(order);
     result.append(", name: ");
     result.append(name);
     result.append(')');

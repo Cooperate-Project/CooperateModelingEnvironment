@@ -30,4 +30,16 @@ public class SequenceStateCalculator implements ICDOResourceStateCalculator {
         return;
     }
 
+    @Override
+    public void simulateReloadingResource(Resource r) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void simulateReloadingResource(EObject object) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

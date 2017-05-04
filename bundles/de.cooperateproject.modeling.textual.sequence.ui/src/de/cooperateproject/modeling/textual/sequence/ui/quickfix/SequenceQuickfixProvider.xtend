@@ -13,7 +13,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQui
 class SequenceQuickfixProvider extends CooperateQuickfixProvider {
 
 	new() {
-		super(#[de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE, de.cooperateproject.modeling.textual.sequence.textualCommons.TextualCommonsPackage.eINSTANCE])
+		super(#[de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE])
 	}
 
 }

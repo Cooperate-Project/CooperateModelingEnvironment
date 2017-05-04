@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.sequence;
 import com.google.inject.Binder;
 import com.google.inject.Provider;
 import com.google.inject.name.Names;
-import de.cooperateproject.modeling.textual.sequence.cdoxtext.SequenceStateCalculator;
 import de.cooperateproject.modeling.textual.sequence.formatting2.SequenceFormatter;
 import de.cooperateproject.modeling.textual.sequence.issues.SequenceAutomatedIssueResolutionProvider;
 import de.cooperateproject.modeling.textual.sequence.parser.antlr.SequenceAntlrTokenFileProvider;
@@ -34,7 +33,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.validator.CooperateAut
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 import java.util.Properties;
 import net.winklerweb.cdoxtext.runtime.CDOTextRegionAccessBuilder;
-import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.common.services.Ecore2XtextTerminalConverters;
@@ -215,11 +213,6 @@ public abstract class AbstractSequenceRuntimeModule extends DefaultRuntimeModule
 	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
 	public Class<? extends TextRegionAccessBuilder> bindTextRegionAccessBuilder() {
 		return CDOTextRegionAccessBuilder.class;
-	}
-	
-	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
-	public Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
-		return SequenceStateCalculator.class;
 	}
 	
 	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateResourceHandlingBindingsFragment2

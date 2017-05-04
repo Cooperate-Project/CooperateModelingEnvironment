@@ -22,10 +22,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +35,6 @@ import org.eclipse.uml2.uml.Classifier;
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl#getActors <em>Actors</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl#getInteractionFragments <em>Interaction Fragments</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl#getCls <em>Cls</em>}</li>
  * </ul>
  *
  * @generated
@@ -84,16 +80,6 @@ public class RootPackageImpl extends MinimalEObjectImpl.Container implements Roo
    * @ordered
    */
   protected EList<InteractionFragment> interactionFragments;
-
-  /**
-   * The cached value of the '{@link #getCls() <em>Cls</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCls()
-   * @generated
-   * @ordered
-   */
-  protected EList<Classifier> cls;
 
   /**
    * <!-- begin-user-doc -->
@@ -172,20 +158,6 @@ public class RootPackageImpl extends MinimalEObjectImpl.Container implements Roo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Classifier> getCls()
-  {
-    if (cls == null)
-    {
-      cls = new EObjectResolvingEList<Classifier>(Classifier.class, this, SequencePackage.ROOT_PACKAGE__CLS);
-    }
-    return cls;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -215,8 +187,6 @@ public class RootPackageImpl extends MinimalEObjectImpl.Container implements Roo
         return getActors();
       case SequencePackage.ROOT_PACKAGE__INTERACTION_FRAGMENTS:
         return getInteractionFragments();
-      case SequencePackage.ROOT_PACKAGE__CLS:
-        return getCls();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -243,10 +213,6 @@ public class RootPackageImpl extends MinimalEObjectImpl.Container implements Roo
         getInteractionFragments().clear();
         getInteractionFragments().addAll((Collection<? extends InteractionFragment>)newValue);
         return;
-      case SequencePackage.ROOT_PACKAGE__CLS:
-        getCls().clear();
-        getCls().addAll((Collection<? extends Classifier>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -270,9 +236,6 @@ public class RootPackageImpl extends MinimalEObjectImpl.Container implements Roo
       case SequencePackage.ROOT_PACKAGE__INTERACTION_FRAGMENTS:
         getInteractionFragments().clear();
         return;
-      case SequencePackage.ROOT_PACKAGE__CLS:
-        getCls().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -293,8 +256,6 @@ public class RootPackageImpl extends MinimalEObjectImpl.Container implements Roo
         return actors != null && !actors.isEmpty();
       case SequencePackage.ROOT_PACKAGE__INTERACTION_FRAGMENTS:
         return interactionFragments != null && !interactionFragments.isEmpty();
-      case SequencePackage.ROOT_PACKAGE__CLS:
-        return cls != null && !cls.isEmpty();
     }
     return super.eIsSet(featureID);
   }

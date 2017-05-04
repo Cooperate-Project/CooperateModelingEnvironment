@@ -13,10 +13,9 @@
         eType="#//Actor" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interactionFragments" upperBound="-1"
         eType="#//InteractionFragment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cls" unique="false" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deferred" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -24,16 +23,78 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InteractionFragment"/>
   <eClassifiers xsi:type="ecore:EClass" name="Message" eSuperTypes="#//InteractionFragment">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeConstraint" eType="#//TimeConstraint"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//InnerTimeConstraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InnerTimeConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TimeConstraintType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StandardMessage" eSuperTypes="#//Message">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FoundMessage" eSuperTypes="#//Message"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LostMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ResponseMessage" eSuperTypes="#//Message">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FoundMessage" eSuperTypes="#//Message">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LostMessage" eSuperTypes="#//Message">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateMessage" eSuperTypes="#//Message">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DestructionMessage" eSuperTypes="#//Message">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification" eSuperTypes="#//InteractionFragment"/>
   <eClassifiers xsi:type="ecore:EClass" name="DestructionOccurenceSpecification" eSuperTypes="#//OccurenceSpecification">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CombinedFragment" eSuperTypes="#//InteractionFragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" upperBound="-1"
+        eType="#//ConditionedFragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Option" eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="option" upperBound="-1"
+        eType="#//ConditionedFragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parallel" eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parallels" upperBound="-1"
+        eType="#//ParallelFragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Critical" eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
+        eType="#//InteractionFragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
+        eType="#//InteractionFragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParallelFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
+        eType="#//InteractionFragment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionedFragment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
+        eType="#//InteractionFragment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comment">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -45,5 +106,11 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ActorType">
     <eLiterals name="HUMAN" literal="human"/>
     <eLiterals name="MACHINE" value="1" literal="machine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeConstraintType">
+    <eLiterals name="DURATION" literal="d"/>
+    <eLiterals name="TIME" value="1" literal="t"/>
+    <eLiterals name="MAXIMUM" value="2" literal="max"/>
+    <eLiterals name="DIFFERENCE" value="3" literal="diff"/>
   </eClassifiers>
 </ecore:EPackage>
