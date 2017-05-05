@@ -13,7 +13,8 @@ public abstract class AbstractSequenceValidator extends AbstractDeclarativeValid
 	@Override
 	protected List<EPackage> getEPackages() {
 		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE);
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/sequence/Sequence"));
+		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.cooperateproject.de/modeling/textual/commons"));
 		return result;
 	}
 	

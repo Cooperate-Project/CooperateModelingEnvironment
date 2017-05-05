@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.sequence;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ISetup;
@@ -30,9 +29,6 @@ public class SequenceStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-		if (!EPackage.Registry.INSTANCE.containsKey("http://www.cooperateproject.de/modeling/textual/sequence/Sequence")) {
-			EPackage.Registry.INSTANCE.put("http://www.cooperateproject.de/modeling/textual/sequence/Sequence", SequencePackage.eINSTANCE);
-		}
 		IResourceFactory resourceFactory = injector.getInstance(IResourceFactory.class);
 		IResourceServiceProvider serviceProvider = injector.getInstance(IResourceServiceProvider.class);
 		

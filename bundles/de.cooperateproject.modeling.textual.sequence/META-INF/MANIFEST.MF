@@ -20,17 +20,16 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib,
- org.eclipse.emf.common
+ org.eclipse.emf.common,
+ de.cooperateproject.modeling.textual.sequence.metamodel;bundle-version="0.1.8";visibility:=reexport,
+ org.eclipse.xtext.ecore;bundle-version="2.11.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.sequence.parser.antlr.internal,
- de.cooperateproject.modeling.textual.sequence.sequence.util,
- de.cooperateproject.modeling.textual.sequence.sequence,
  de.cooperateproject.modeling.textual.sequence.parser.antlr,
  de.cooperateproject.modeling.textual.sequence.validation,
  de.cooperateproject.modeling.textual.sequence.scoping,
  de.cooperateproject.modeling.textual.sequence.services,
  de.cooperateproject.modeling.textual.sequence.serializer,
- de.cooperateproject.modeling.textual.sequence.sequence.impl,
  de.cooperateproject.modeling.textual.sequence,
  de.cooperateproject.modeling.textual.sequence.issues
 Import-Package: org.apache.log4j

@@ -53,6 +53,22 @@ Workflow {
             from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
             to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
         }
+        uriMap = {
+            from = "platform:/plugin/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore"
+            to = "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore"
+        }
+        uriMap = {
+            from = "platform:/plugin/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel"
+            to = "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel"
+        }
+        uriMap = {
+            from = "platform:/plugin/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.ecore"
+            to = "platform:/resource/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.ecore"
+        }
+        uriMap = {
+            from = "platform:/plugin/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.genmodel"
+            to = "platform:/resource/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.genmodel"
+        }
 
         registerGeneratedEPackage = "org.eclipse.uml2.codegen.ecore.genmodel.GenModelPackage"
         registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
@@ -86,6 +102,10 @@ Workflow {
 			
             referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
             referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
+            referencedResource = "platform:/plugin/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore"
+            referencedResource = "platform:/plugin/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel"
+            referencedResource = "platform:/plugin/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.ecore"
+            referencedResource = "platform:/plugin/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.genmodel"
             
             
             fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}

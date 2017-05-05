@@ -23,6 +23,7 @@ public class SequenceAutomatedIssueResolutionProvider extends AutomatedIssueReso
     protected Collection<IAutomatedIssueResolutionFactory> findResolutionFactories(String issueCode) {
     	Collection<IAutomatedIssueResolutionFactory> foundFactories = new HashSet<>();
     	foundFactories.addAll(registry.findFactories(Collections.singletonList(de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE), issueCode));
+    	foundFactories.addAll(registry.findFactories(Collections.singletonList(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage.eINSTANCE), issueCode));
         return foundFactories;
     }
 

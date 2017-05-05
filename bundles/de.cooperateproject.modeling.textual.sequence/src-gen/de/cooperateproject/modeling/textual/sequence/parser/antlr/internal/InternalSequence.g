@@ -193,18 +193,18 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getInteractionFragmentsInteractionFragmentParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getRootPackageAccess().getBehaviorFragmentsBehaviorFragmentParserRuleCall_3_0());
 				}
-				lv_interactionFragments_3_0=ruleInteractionFragment
+				lv_behaviorFragments_3_0=ruleBehaviorFragment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
 					}
 					add(
 						$current,
-						"interactionFragments",
-						lv_interactionFragments_3_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
+						"behaviorFragments",
+						lv_behaviorFragments_3_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -266,26 +266,28 @@ ruleActor returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_3=':'
-				{
-					newLeafNode(otherlv_3, grammarAccess.getActorAccess().getColonKeyword_2_0_1());
-				}
 				(
+					otherlv_3=':'
+					{
+						newLeafNode(otherlv_3, grammarAccess.getActorAccess().getColonKeyword_2_0_1_0());
+					}
 					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getActorRule());
+						(
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getActorRule());
+								}
 							}
-						}
-						{
-							newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_0_2_0());
-						}
-						ruleFQN
-						{
-							afterParserOrEnumRuleCall();
-						}
+							{
+								newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_0_1_1_0());
+							}
+							ruleFQN
+							{
+								afterParserOrEnumRuleCall();
+							}
+						)
 					)
-				)
+				)?
 			)
 			    |
 			(
@@ -352,35 +354,37 @@ ruleActor returns [EObject current=null]
 						}
 					)
 				)
-				otherlv_10=':'
-				{
-					newLeafNode(otherlv_10, grammarAccess.getActorAccess().getColonKeyword_2_2_1());
-				}
 				(
+					otherlv_10=':'
+					{
+						newLeafNode(otherlv_10, grammarAccess.getActorAccess().getColonKeyword_2_2_1_0());
+					}
 					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getActorRule());
+						(
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getActorRule());
+								}
 							}
-						}
-						{
-							newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_2_2_0());
-						}
-						ruleFQN
-						{
-							afterParserOrEnumRuleCall();
-						}
+							{
+								newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_2_1_1_0());
+							}
+							ruleFQN
+							{
+								afterParserOrEnumRuleCall();
+							}
+						)
 					)
-				)
+				)?
 				otherlv_12='as'
 				{
-					newLeafNode(otherlv_12, grammarAccess.getActorAccess().getAsKeyword_2_2_3());
+					newLeafNode(otherlv_12, grammarAccess.getActorAccess().getAsKeyword_2_2_2());
 				}
 				(
 					(
 						lv_alias_13_0=RULE_ID
 						{
-							newLeafNode(lv_alias_13_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_2_2_4_0());
+							newLeafNode(lv_alias_13_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_2_2_3_0());
 						}
 						{
 							if ($current==null) {
@@ -428,15 +432,15 @@ ruleActor returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInteractionFragment
-entryRuleInteractionFragment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInteractionFragmentRule()); }
-	iv_ruleInteractionFragment=ruleInteractionFragment
-	{ $current=$iv_ruleInteractionFragment.current; }
+// Entry rule entryRuleBehaviorFragment
+entryRuleBehaviorFragment returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBehaviorFragmentRule()); }
+	iv_ruleBehaviorFragment=ruleBehaviorFragment
+	{ $current=$iv_ruleBehaviorFragment.current; }
 	EOF;
 
-// Rule InteractionFragment
-ruleInteractionFragment returns [EObject current=null]
+// Rule BehaviorFragment
+ruleBehaviorFragment returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -445,7 +449,7 @@ ruleInteractionFragment returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getInteractionFragmentAccess().getMessageParserRuleCall_0());
+			newCompositeNode(grammarAccess.getBehaviorFragmentAccess().getMessageParserRuleCall_0());
 		}
 		this_Message_0=ruleMessage
 		{
@@ -454,7 +458,7 @@ ruleInteractionFragment returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getInteractionFragmentAccess().getOccurenceSpecificationParserRuleCall_1());
+			newCompositeNode(grammarAccess.getBehaviorFragmentAccess().getOccurenceSpecificationParserRuleCall_1());
 		}
 		this_OccurenceSpecification_1=ruleOccurenceSpecification
 		{
@@ -463,13 +467,81 @@ ruleInteractionFragment returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getInteractionFragmentAccess().getCombinedFragmentParserRuleCall_2());
+			newCompositeNode(grammarAccess.getBehaviorFragmentAccess().getCombinedFragmentParserRuleCall_2());
 		}
 		this_CombinedFragment_2=ruleCombinedFragment
 		{
 			$current = $this_CombinedFragment_2.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleBehaviorFragments
+entryRuleBehaviorFragments returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBehaviorFragmentsRule()); }
+	iv_ruleBehaviorFragments=ruleBehaviorFragments
+	{ $current=$iv_ruleBehaviorFragments.current; }
+	EOF;
+
+// Rule BehaviorFragments
+ruleBehaviorFragments returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='{'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getBehaviorFragmentsAccess().getLeftCurlyBracketKeyword_0_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getBehaviorFragmentsAccess().getFragmentsBehaviorFragmentParserRuleCall_0_1_0());
+					}
+					lv_fragments_1_0=ruleBehaviorFragment
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsRule());
+						}
+						add(
+							$current,
+							"fragments",
+							lv_fragments_1_0,
+							"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)+
+			otherlv_2='}'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getBehaviorFragmentsAccess().getRightCurlyBracketKeyword_0_2());
+			}
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBehaviorFragmentsAccess().getFragmentsBehaviorFragmentParserRuleCall_1_0());
+				}
+				lv_fragments_3_0=ruleBehaviorFragment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsRule());
+					}
+					add(
+						$current,
+						"fragments",
+						lv_fragments_3_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -1414,9 +1486,9 @@ ruleAlternative returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAlternativeAccess().getAlternativesConditionedFragmentParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getAlternativeAccess().getAlternativesBehaviorFragmentsWithConditionParserRuleCall_2_0());
 				}
-				lv_alternatives_2_0=ruleConditionedFragment
+				lv_alternatives_2_0=ruleBehaviorFragmentsWithCondition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAlternativeRule());
@@ -1425,7 +1497,7 @@ ruleAlternative returns [EObject current=null]
 						$current,
 						"alternatives",
 						lv_alternatives_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.ConditionedFragment");
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragmentsWithCondition");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1464,18 +1536,18 @@ ruleOption returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getOptionAccess().getOptionConditionedFragmentParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getOptionAccess().getOptionalBehaviorFragmentsWithConditionParserRuleCall_2_0());
 				}
-				lv_option_2_0=ruleConditionedFragment
+				lv_optional_2_0=ruleBehaviorFragmentsWithCondition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getOptionRule());
 					}
 					add(
 						$current,
-						"option",
-						lv_option_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.ConditionedFragment");
+						"optional",
+						lv_optional_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragmentsWithCondition");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1514,9 +1586,9 @@ ruleParallel returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getParallelAccess().getParallelsParallelFragmentParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getParallelAccess().getParallelsBehaviorFragmentsParserRuleCall_2_0());
 				}
-				lv_parallels_2_0=ruleParallelFragment
+				lv_parallels_2_0=ruleBehaviorFragments
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getParallelRule());
@@ -1525,7 +1597,7 @@ ruleParallel returns [EObject current=null]
 						$current,
 						"parallels",
 						lv_parallels_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.ParallelFragment");
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragments");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1564,9 +1636,9 @@ ruleCritical returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCriticalAccess().getFragmentsInteractionFragmentParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getCriticalAccess().getFragmentsBehaviorFragmentParserRuleCall_2_0());
 				}
-				lv_fragments_2_0=ruleInteractionFragment
+				lv_fragments_2_0=ruleBehaviorFragment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCriticalRule());
@@ -1575,7 +1647,7 @@ ruleCritical returns [EObject current=null]
 						$current,
 						"fragments",
 						lv_fragments_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1640,9 +1712,9 @@ ruleLoop returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopAccess().getFragmentsInteractionFragmentParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getLoopAccess().getFragmentsBehaviorFragmentParserRuleCall_5_0());
 				}
-				lv_fragments_5_0=ruleInteractionFragment
+				lv_fragments_5_0=ruleBehaviorFragment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getLoopRule());
@@ -1651,7 +1723,7 @@ ruleLoop returns [EObject current=null]
 						$current,
 						"fragments",
 						lv_fragments_5_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
+						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1663,83 +1735,15 @@ ruleLoop returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleParallelFragment
-entryRuleParallelFragment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getParallelFragmentRule()); }
-	iv_ruleParallelFragment=ruleParallelFragment
-	{ $current=$iv_ruleParallelFragment.current; }
+// Entry rule entryRuleBehaviorFragmentsWithCondition
+entryRuleBehaviorFragmentsWithCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBehaviorFragmentsWithConditionRule()); }
+	iv_ruleBehaviorFragmentsWithCondition=ruleBehaviorFragmentsWithCondition
+	{ $current=$iv_ruleBehaviorFragmentsWithCondition.current; }
 	EOF;
 
-// Rule ParallelFragment
-ruleParallelFragment returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			otherlv_0='{'
-			{
-				newLeafNode(otherlv_0, grammarAccess.getParallelFragmentAccess().getLeftCurlyBracketKeyword_0_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getParallelFragmentAccess().getFragmentsInteractionFragmentParserRuleCall_0_1_0());
-					}
-					lv_fragments_1_0=ruleInteractionFragment
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getParallelFragmentRule());
-						}
-						add(
-							$current,
-							"fragments",
-							lv_fragments_1_0,
-							"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)*
-			otherlv_2='}'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getParallelFragmentAccess().getRightCurlyBracketKeyword_0_2());
-			}
-		)
-		    |
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getParallelFragmentAccess().getFragmentsInteractionFragmentParserRuleCall_1_0());
-				}
-				lv_fragments_3_0=ruleInteractionFragment
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getParallelFragmentRule());
-					}
-					add(
-						$current,
-						"fragments",
-						lv_fragments_3_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleConditionedFragment
-entryRuleConditionedFragment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getConditionedFragmentRule()); }
-	iv_ruleConditionedFragment=ruleConditionedFragment
-	{ $current=$iv_ruleConditionedFragment.current; }
-	EOF;
-
-// Rule ConditionedFragment
-ruleConditionedFragment returns [EObject current=null]
+// Rule BehaviorFragmentsWithCondition
+ruleBehaviorFragmentsWithCondition returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1749,17 +1753,17 @@ ruleConditionedFragment returns [EObject current=null]
 	(
 		otherlv_0='['
 		{
-			newLeafNode(otherlv_0, grammarAccess.getConditionedFragmentAccess().getLeftSquareBracketKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getBehaviorFragmentsWithConditionAccess().getLeftSquareBracketKeyword_0());
 		}
 		(
 			(
 				lv_condition_1_0=RULE_STRING
 				{
-					newLeafNode(lv_condition_1_0, grammarAccess.getConditionedFragmentAccess().getConditionSTRINGTerminalRuleCall_1_0());
+					newLeafNode(lv_condition_1_0, grammarAccess.getBehaviorFragmentsWithConditionAccess().getConditionSTRINGTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getConditionedFragmentRule());
+						$current = createModelElement(grammarAccess.getBehaviorFragmentsWithConditionRule());
 					}
 					setWithLastConsumed(
 						$current,
@@ -1771,54 +1775,54 @@ ruleConditionedFragment returns [EObject current=null]
 		)
 		otherlv_2=']'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getConditionedFragmentAccess().getRightSquareBracketKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getBehaviorFragmentsWithConditionAccess().getRightSquareBracketKeyword_2());
 		}
 		(
 			(
 				otherlv_3='{'
 				{
-					newLeafNode(otherlv_3, grammarAccess.getConditionedFragmentAccess().getLeftCurlyBracketKeyword_3_0_0());
+					newLeafNode(otherlv_3, grammarAccess.getBehaviorFragmentsWithConditionAccess().getLeftCurlyBracketKeyword_3_0_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getConditionedFragmentAccess().getFragmentsInteractionFragmentParserRuleCall_3_0_1_0());
+							newCompositeNode(grammarAccess.getBehaviorFragmentsWithConditionAccess().getFragmentsBehaviorFragmentParserRuleCall_3_0_1_0());
 						}
-						lv_fragments_4_0=ruleInteractionFragment
+						lv_fragments_4_0=ruleBehaviorFragment
 						{
 							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getConditionedFragmentRule());
+								$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsWithConditionRule());
 							}
 							add(
 								$current,
 								"fragments",
 								lv_fragments_4_0,
-								"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
+								"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
 							afterParserOrEnumRuleCall();
 						}
 					)
-				)*
+				)+
 				otherlv_5='}'
 				{
-					newLeafNode(otherlv_5, grammarAccess.getConditionedFragmentAccess().getRightCurlyBracketKeyword_3_0_2());
+					newLeafNode(otherlv_5, grammarAccess.getBehaviorFragmentsWithConditionAccess().getRightCurlyBracketKeyword_3_0_2());
 				}
 			)
 			    |
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionedFragmentAccess().getFragmentsInteractionFragmentParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getBehaviorFragmentsWithConditionAccess().getFragmentsBehaviorFragmentParserRuleCall_3_1_0());
 					}
-					lv_fragments_6_0=ruleInteractionFragment
+					lv_fragments_6_0=ruleBehaviorFragment
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionedFragmentRule());
+							$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsWithConditionRule());
 						}
 						add(
 							$current,
 							"fragments",
 							lv_fragments_6_0,
-							"de.cooperateproject.modeling.textual.sequence.Sequence.InteractionFragment");
+							"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
 						afterParserOrEnumRuleCall();
 					}
 				)
