@@ -132,6 +132,14 @@
             id="de.cooperateproject.ui.wizards.newUsecaseDiagram"
             name="Usecase Diagram">
       </wizard>
+      <wizard
+            category="de.cooperateproject.ui.wizards.cooperateWizards"
+            class="de.cooperateproject.ui.wizards.modelnew.NewSequenceDiagramWizard"
+            finalPerspective="de.cooperateproject.ui.perspective"
+            icon="icons/16/cooperate_16.png"
+            id="de.cooperateproject.ui.wizards.newSequenceDiagram"
+            name="Sequence Diagram">
+      </wizard>      
    </extension>
    <extension
          point="de.cooperateproject.cdo.util.resources">

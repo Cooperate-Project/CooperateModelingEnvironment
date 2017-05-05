@@ -1,0 +1,20 @@
+import TransformationUtils_Class;
+
+transformation PapyrusSequence2Text(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+
+main() {
+    var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLSequenceDiagram");
+    assert fatal (diagrams->size() = 1);
+
+    diagrams->map diagramToDiagram();
+}
+
+mapping notation::Diagram::diagramToDiagram() : sequence::SequenceDiagram {
+    title := self.name;
+}

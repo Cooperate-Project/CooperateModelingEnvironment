@@ -38,7 +38,9 @@ public class TransformationRegistryInitializer {
         registry.registerTransformation(
                 createN2T(NotationDiagramTypes.USECASE, FileExtensions.USECASE.getFileExtension()));
         registry.registerTransformation(createT2N(DiagramTypes.USECASE, FileExtensions.USECASE.getFileExtension()));
-
+        registry.registerTransformation(
+                createN2T(NotationDiagramTypes.SEQUENCE, FileExtensions.SEQUENCE.getFileExtension()));
+        registry.registerTransformation(createT2N(DiagramTypes.SEQUENCE, FileExtensions.SEQUENCE.getFileExtension()));
     }
 
     private static TransformationFactory createN2T(NotationDiagramTypes diagramType, String textualFileExtension,

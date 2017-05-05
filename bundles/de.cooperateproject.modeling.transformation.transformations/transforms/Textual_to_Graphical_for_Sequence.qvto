@@ -1,0 +1,22 @@
+import TransformationUtils_Class;
+
+transformation Textual_to_Graphical_for_Class(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+
+main() {
+    var diagrams := textual.rootObjects()[sequence::SequenceDiagram];
+    assert fatal (diagrams->size() = 1) with log ("Expected one diagram but got other number.", diagrams->size());
+    diagrams->map diagramToDiagram();
+}
+
+mapping sequence::SequenceDiagram::diagramToDiagram() : notation::Diagram {
+    type := "PapyrusUMLSequenceDiagram";
+    name := self.title;
+    measurementUnit := notation::MeasurementUnit::Pixel;
+}
