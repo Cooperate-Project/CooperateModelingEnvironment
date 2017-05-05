@@ -166,6 +166,7 @@ public abstract class CooperateQuickfixProvider extends DefaultQuickfixProvider 
             });
             return Optional.ofNullable(resultContainer[0]);
         } catch (Exception e) {
+            LOGGER.warn(e);
             return Optional.empty();
         }
     }

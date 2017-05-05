@@ -11,13 +11,17 @@ import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
+/**
+ * Filter and sorter for the cooperate cls outline that flattens the structure.
+ *
+ */
 public class OutlineFlattenFilterAndSorter extends OutlineFilterAndSorter {
     private IComparator comparator;
 
     @Override
     public IOutlineNode[] filterAndSort(Iterable<IOutlineNode> nodes) {
         final Iterable<IFilter> enabledFilters = getEnabledFilters();
-        Iterable<IOutlineNode> filteredNodes = null;
+        Iterable<IOutlineNode> filteredNodes;
         if (Iterables.isEmpty(enabledFilters)) {
             filteredNodes = nodes;
         } else {

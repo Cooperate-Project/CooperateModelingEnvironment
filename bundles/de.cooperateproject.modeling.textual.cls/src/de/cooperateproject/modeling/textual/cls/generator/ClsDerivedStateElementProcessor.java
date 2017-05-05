@@ -93,7 +93,7 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
                 memberEndToBeDeleted.stream().forEach(EcoreUtil::delete);
             }
             for (int i = 0; i < types.size(); ++i) {
-                AssociationMemberEnd memberEnd = null;
+                AssociationMemberEnd memberEnd;
                 if (object.getMemberEnds().size() > i) {
                     memberEnd = object.getMemberEnds().get(i);
                 } else {
