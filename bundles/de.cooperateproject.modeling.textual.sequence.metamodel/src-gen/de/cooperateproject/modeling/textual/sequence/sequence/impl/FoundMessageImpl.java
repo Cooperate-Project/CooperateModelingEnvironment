@@ -7,14 +7,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,26 +35,6 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
     protected static final MessageType TYPE_EDEFAULT = MessageType.SYNC;
 
     /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected MessageType type = TYPE_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getRight()
-     * @generated
-     * @ordered
-     */
-    protected Actor right;
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -86,7 +59,7 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
      * @generated
      */
     public MessageType getType() {
-        return type;
+        return (MessageType)eDynamicGet(SequencePackage.FOUND_MESSAGE__TYPE, SequencePackage.Literals.FOUND_MESSAGE__TYPE, true, true);
     }
 
     /**
@@ -95,10 +68,7 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
      * @generated
      */
     public void setType(MessageType newType) {
-        MessageType oldType = type;
-        type = newType == null ? TYPE_EDEFAULT : newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.FOUND_MESSAGE__TYPE, oldType, type));
+        eDynamicSet(SequencePackage.FOUND_MESSAGE__TYPE, SequencePackage.Literals.FOUND_MESSAGE__TYPE, newType);
     }
 
     /**
@@ -107,15 +77,7 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
      * @generated
      */
     public Actor getRight() {
-        if (right != null && ((EObject)right).eIsProxy()) {
-            InternalEObject oldRight = (InternalEObject)right;
-            right = (Actor)eResolveProxy(oldRight);
-            if (right != oldRight) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.FOUND_MESSAGE__RIGHT, oldRight, right));
-            }
-        }
-        return right;
+        return (Actor)eDynamicGet(SequencePackage.FOUND_MESSAGE__RIGHT, SequencePackage.Literals.FOUND_MESSAGE__RIGHT, true, true);
     }
 
     /**
@@ -124,7 +86,7 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
      * @generated
      */
     public Actor basicGetRight() {
-        return right;
+        return (Actor)eDynamicGet(SequencePackage.FOUND_MESSAGE__RIGHT, SequencePackage.Literals.FOUND_MESSAGE__RIGHT, false, true);
     }
 
     /**
@@ -133,10 +95,7 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
      * @generated
      */
     public void setRight(Actor newRight) {
-        Actor oldRight = right;
-        right = newRight;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.FOUND_MESSAGE__RIGHT, oldRight, right));
+        eDynamicSet(SequencePackage.FOUND_MESSAGE__RIGHT, SequencePackage.Literals.FOUND_MESSAGE__RIGHT, newRight);
     }
 
     /**
@@ -201,27 +160,11 @@ public class FoundMessageImpl extends MessageImpl implements FoundMessage {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.FOUND_MESSAGE__TYPE:
-                return type != TYPE_EDEFAULT;
+                return getType() != TYPE_EDEFAULT;
             case SequencePackage.FOUND_MESSAGE__RIGHT:
-                return right != null;
+                return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (type: ");
-        result.append(type);
-        result.append(')');
-        return result.toString();
     }
 
 } //FoundMessageImpl

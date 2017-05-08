@@ -1,6 +1,6 @@
-import TraceUtils_Class;
+import TraceUtils_Sequence;
 
-transformation Textual_to_Graphical_for_Class_Trace(in textualTrace : TRACE, out graphicalTrace : TRACE, in graphicalModel : GRAPHICAL, in g2tTransformation : QVTO);
+transformation Textual_to_Graphical_for_Sequence_Trace(in textualTrace : TRACE, out graphicalTrace : TRACE, in graphicalModel : GRAPHICAL, in g2tTransformation : QVTO);
 
 modeltype QVTO uses qvtoperational('http://www.eclipse.org/QVT/1.0.0/Operational');
 modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ecore');

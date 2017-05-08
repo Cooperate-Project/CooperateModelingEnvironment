@@ -1,4 +1,4 @@
-import TransformationUtils_Class;
+import TransformationUtils_Sequence;
 
 transformation PapyrusSequence2Text(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
 
@@ -17,4 +17,14 @@ main() {
 
 mapping notation::Diagram::diagramToDiagram() : sequence::SequenceDiagram {
     title := self.name;
+    rootPackage := self.map diagramToRootPackage();
+}
+
+mapping notation::Diagram::diagramToRootPackage() : sequence::RootPackage {
+    name := self.element.oclAsType(uml::Package).getQualifiedName();
+    referencedElement := self.element.toElement();
+}
+
+query ecore::EObject::toElement() : uml::Element {
+    return self.oclAsType(uml::Element);
 }

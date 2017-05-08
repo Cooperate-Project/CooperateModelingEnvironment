@@ -11,14 +11,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-import org.eclipse.emf.common.notify.Notification;
-
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 
 /**
@@ -37,16 +33,6 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
  */
 public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificationImpl implements DestructionOccurenceSpecification {
     /**
-     * The cached value of the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getReferencedElement()
-     * @generated
-     * @ordered
-     */
-    protected DestructionOccurrenceSpecification referencedElement;
-
-    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -55,16 +41,6 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @ordered
      */
     protected static final String NAME_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected String name = NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -91,15 +67,7 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @generated
      */
     public DestructionOccurrenceSpecification getReferencedElement() {
-        if (referencedElement != null && referencedElement.eIsProxy()) {
-            InternalEObject oldReferencedElement = (InternalEObject)referencedElement;
-            referencedElement = (DestructionOccurrenceSpecification)eResolveProxy(oldReferencedElement);
-            if (referencedElement != oldReferencedElement) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
-            }
-        }
-        return referencedElement;
+        return (DestructionOccurrenceSpecification)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
     /**
@@ -108,7 +76,7 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @generated
      */
     public DestructionOccurrenceSpecification basicGetReferencedElement() {
-        return referencedElement;
+        return (DestructionOccurrenceSpecification)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
     /**
@@ -117,10 +85,7 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @generated
      */
     public void setReferencedElement(DestructionOccurrenceSpecification newReferencedElement) {
-        DestructionOccurrenceSpecification oldReferencedElement = referencedElement;
-        referencedElement = newReferencedElement;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
+        eDynamicSet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
     /**
@@ -129,7 +94,7 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @generated
      */
     public String getName() {
-        return name;
+        return (String)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, true, true);
     }
 
     /**
@@ -138,10 +103,7 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @generated
      */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, oldName, name));
+        eDynamicSet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, newName);
     }
 
     /**
@@ -219,9 +181,9 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                return referencedElement != null;
+                return basicGetReferencedElement() != null;
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
         }
         return super.eIsSet(featureID);
     }
@@ -274,14 +236,33 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * @generated
      */
     @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //DestructionOccurenceSpecificationImpl

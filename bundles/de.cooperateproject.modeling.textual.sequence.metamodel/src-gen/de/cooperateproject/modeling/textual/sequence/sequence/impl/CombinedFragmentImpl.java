@@ -11,13 +11,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-import org.eclipse.emf.common.notify.Notification;
-
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,16 +30,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class CombinedFragmentImpl extends BehaviorFragmentImpl implements CombinedFragment {
-    /**
-     * The cached value of the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getReferencedElement()
-     * @generated
-     * @ordered
-     */
-    protected org.eclipse.uml2.uml.CombinedFragment referencedElement;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -68,15 +55,7 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      * @generated
      */
     public org.eclipse.uml2.uml.CombinedFragment getReferencedElement() {
-        if (referencedElement != null && referencedElement.eIsProxy()) {
-            InternalEObject oldReferencedElement = (InternalEObject)referencedElement;
-            referencedElement = (org.eclipse.uml2.uml.CombinedFragment)eResolveProxy(oldReferencedElement);
-            if (referencedElement != oldReferencedElement) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
-            }
-        }
-        return referencedElement;
+        return (org.eclipse.uml2.uml.CombinedFragment)eDynamicGet(SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
     /**
@@ -85,7 +64,7 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      * @generated
      */
     public org.eclipse.uml2.uml.CombinedFragment basicGetReferencedElement() {
-        return referencedElement;
+        return (org.eclipse.uml2.uml.CombinedFragment)eDynamicGet(SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
     /**
@@ -94,10 +73,7 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      * @generated
      */
     public void setReferencedElement(org.eclipse.uml2.uml.CombinedFragment newReferencedElement) {
-        org.eclipse.uml2.uml.CombinedFragment oldReferencedElement = referencedElement;
-        referencedElement = newReferencedElement;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
+        eDynamicSet(SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
     /**
@@ -167,7 +143,7 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT:
-                return referencedElement != null;
+                return basicGetReferencedElement() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -212,6 +188,41 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return SequencePackage.COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.COMBINED_FRAGMENT___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //CombinedFragmentImpl

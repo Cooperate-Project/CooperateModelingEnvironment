@@ -13,14 +13,13 @@ import de.cooperateproject.modeling.textual.sequence.sequence.Message;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,16 +39,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class MessageImpl extends BehaviorFragmentImpl implements Message {
     /**
-     * The cached value of the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getReferencedElement()
-     * @generated
-     * @ordered
-     */
-    protected org.eclipse.uml2.uml.Message referencedElement;
-
-    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -60,16 +49,6 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected String name = NAME_EDEFAULT;
-
-    /**
      * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -78,26 +57,6 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @ordered
      */
     protected static final String ORDER_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getOrder()
-     * @generated
-     * @ordered
-     */
-    protected String order = ORDER_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getTimeConstraint() <em>Time Constraint</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTimeConstraint()
-     * @generated
-     * @ordered
-     */
-    protected TimeConstraint timeConstraint;
 
     /**
      * <!-- begin-user-doc -->
@@ -124,15 +83,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public org.eclipse.uml2.uml.Message getReferencedElement() {
-        if (referencedElement != null && referencedElement.eIsProxy()) {
-            InternalEObject oldReferencedElement = (InternalEObject)referencedElement;
-            referencedElement = (org.eclipse.uml2.uml.Message)eResolveProxy(oldReferencedElement);
-            if (referencedElement != oldReferencedElement) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.MESSAGE__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
-            }
-        }
-        return referencedElement;
+        return (org.eclipse.uml2.uml.Message)eDynamicGet(SequencePackage.MESSAGE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
     /**
@@ -141,7 +92,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public org.eclipse.uml2.uml.Message basicGetReferencedElement() {
-        return referencedElement;
+        return (org.eclipse.uml2.uml.Message)eDynamicGet(SequencePackage.MESSAGE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
     /**
@@ -150,10 +101,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public void setReferencedElement(org.eclipse.uml2.uml.Message newReferencedElement) {
-        org.eclipse.uml2.uml.Message oldReferencedElement = referencedElement;
-        referencedElement = newReferencedElement;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__REFERENCED_ELEMENT, oldReferencedElement, referencedElement));
+        eDynamicSet(SequencePackage.MESSAGE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
     /**
@@ -162,7 +110,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public String getName() {
-        return name;
+        return (String)eDynamicGet(SequencePackage.MESSAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
     }
 
     /**
@@ -171,10 +119,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__NAME, oldName, name));
+        eDynamicSet(SequencePackage.MESSAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
     /**
@@ -183,7 +128,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public String getOrder() {
-        return order;
+        return (String)eDynamicGet(SequencePackage.MESSAGE__ORDER, SequencePackage.Literals.MESSAGE__ORDER, true, true);
     }
 
     /**
@@ -192,10 +137,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public void setOrder(String newOrder) {
-        String oldOrder = order;
-        order = newOrder;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__ORDER, oldOrder, order));
+        eDynamicSet(SequencePackage.MESSAGE__ORDER, SequencePackage.Literals.MESSAGE__ORDER, newOrder);
     }
 
     /**
@@ -204,7 +146,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public TimeConstraint getTimeConstraint() {
-        return timeConstraint;
+        return (TimeConstraint)eDynamicGet(SequencePackage.MESSAGE__TIME_CONSTRAINT, SequencePackage.Literals.MESSAGE__TIME_CONSTRAINT, true, true);
     }
 
     /**
@@ -213,12 +155,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public NotificationChain basicSetTimeConstraint(TimeConstraint newTimeConstraint, NotificationChain msgs) {
-        TimeConstraint oldTimeConstraint = timeConstraint;
-        timeConstraint = newTimeConstraint;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__TIME_CONSTRAINT, oldTimeConstraint, newTimeConstraint);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
+        msgs = eDynamicInverseAdd((InternalEObject)newTimeConstraint, SequencePackage.MESSAGE__TIME_CONSTRAINT, msgs);
         return msgs;
     }
 
@@ -228,17 +165,7 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     public void setTimeConstraint(TimeConstraint newTimeConstraint) {
-        if (newTimeConstraint != timeConstraint) {
-            NotificationChain msgs = null;
-            if (timeConstraint != null)
-                msgs = ((InternalEObject)timeConstraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SequencePackage.MESSAGE__TIME_CONSTRAINT, null, msgs);
-            if (newTimeConstraint != null)
-                msgs = ((InternalEObject)newTimeConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SequencePackage.MESSAGE__TIME_CONSTRAINT, null, msgs);
-            msgs = basicSetTimeConstraint(newTimeConstraint, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.MESSAGE__TIME_CONSTRAINT, newTimeConstraint, newTimeConstraint));
+        eDynamicSet(SequencePackage.MESSAGE__TIME_CONSTRAINT, SequencePackage.Literals.MESSAGE__TIME_CONSTRAINT, newTimeConstraint);
     }
 
     /**
@@ -346,13 +273,13 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.MESSAGE__REFERENCED_ELEMENT:
-                return referencedElement != null;
+                return basicGetReferencedElement() != null;
             case SequencePackage.MESSAGE__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case SequencePackage.MESSAGE__ORDER:
-                return ORDER_EDEFAULT == null ? order != null : !ORDER_EDEFAULT.equals(order);
+                return ORDER_EDEFAULT == null ? getOrder() != null : !ORDER_EDEFAULT.equals(getOrder());
             case SequencePackage.MESSAGE__TIME_CONSTRAINT:
-                return timeConstraint != null;
+                return getTimeConstraint() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -417,16 +344,38 @@ public class MessageImpl extends BehaviorFragmentImpl implements Message {
      * @generated
      */
     @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return SequencePackage.MESSAGE___GET_NEAREST_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(", order: ");
-        result.append(order);
-        result.append(')');
-        return result.toString();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.MESSAGE___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //MessageImpl

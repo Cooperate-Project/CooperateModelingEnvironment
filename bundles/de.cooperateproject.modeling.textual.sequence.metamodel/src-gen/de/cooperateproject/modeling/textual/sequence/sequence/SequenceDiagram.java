@@ -36,7 +36,7 @@ public interface SequenceDiagram extends UMLReferencingElement<Interaction> {
      * @return the value of the '<em>Title</em>' attribute.
      * @see #setTitle(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram_Title()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getTitle();
@@ -62,7 +62,7 @@ public interface SequenceDiagram extends UMLReferencingElement<Interaction> {
      * @return the value of the '<em>Root Package</em>' containment reference.
      * @see #setRootPackage(RootPackage)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram_RootPackage()
-     * @model containment="true"
+     * @model containment="true" required="true"
      * @generated
      */
     RootPackage getRootPackage();

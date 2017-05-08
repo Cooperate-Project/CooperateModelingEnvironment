@@ -6,13 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 import de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
@@ -41,16 +35,6 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
     protected static final TimeConstraintType TYPE_EDEFAULT = TimeConstraintType.DURATION;
 
     /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected TimeConstraintType type = TYPE_EDEFAULT;
-
-    /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -59,16 +43,6 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
      * @ordered
      */
     protected static final String VALUE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
-    protected String value = VALUE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -94,8 +68,18 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public TimeConstraintType getType() {
-        return type;
+        return (TimeConstraintType)eDynamicGet(SequencePackage.INNER_TIME_CONSTRAINT__TYPE, SequencePackage.Literals.INNER_TIME_CONSTRAINT__TYPE, true, true);
     }
 
     /**
@@ -104,10 +88,7 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
      * @generated
      */
     public void setType(TimeConstraintType newType) {
-        TimeConstraintType oldType = type;
-        type = newType == null ? TYPE_EDEFAULT : newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.INNER_TIME_CONSTRAINT__TYPE, oldType, type));
+        eDynamicSet(SequencePackage.INNER_TIME_CONSTRAINT__TYPE, SequencePackage.Literals.INNER_TIME_CONSTRAINT__TYPE, newType);
     }
 
     /**
@@ -116,7 +97,7 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
      * @generated
      */
     public String getValue() {
-        return value;
+        return (String)eDynamicGet(SequencePackage.INNER_TIME_CONSTRAINT__VALUE, SequencePackage.Literals.INNER_TIME_CONSTRAINT__VALUE, true, true);
     }
 
     /**
@@ -125,10 +106,7 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
      * @generated
      */
     public void setValue(String newValue) {
-        String oldValue = value;
-        value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.INNER_TIME_CONSTRAINT__VALUE, oldValue, value));
+        eDynamicSet(SequencePackage.INNER_TIME_CONSTRAINT__VALUE, SequencePackage.Literals.INNER_TIME_CONSTRAINT__VALUE, newValue);
     }
 
     /**
@@ -192,29 +170,11 @@ public class InnerTimeConstraintImpl extends CDOObjectImpl implements InnerTimeC
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.INNER_TIME_CONSTRAINT__TYPE:
-                return type != TYPE_EDEFAULT;
+                return getType() != TYPE_EDEFAULT;
             case SequencePackage.INNER_TIME_CONSTRAINT__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+                return VALUE_EDEFAULT == null ? getValue() != null : !VALUE_EDEFAULT.equals(getValue());
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (type: ");
-        result.append(type);
-        result.append(", value: ");
-        result.append(value);
-        result.append(')');
-        return result.toString();
     }
 
 } //InnerTimeConstraintImpl

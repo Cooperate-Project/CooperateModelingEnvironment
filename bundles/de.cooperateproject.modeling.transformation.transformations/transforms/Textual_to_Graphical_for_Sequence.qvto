@@ -1,6 +1,6 @@
-import TransformationUtils_Class;
+import TransformationUtils_Sequence;
 
-transformation Textual_to_Graphical_for_Class(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
+transformation Textual_to_Graphical_for_Sequence(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
@@ -16,7 +16,27 @@ main() {
 }
 
 mapping sequence::SequenceDiagram::diagramToDiagram() : notation::Diagram {
+    var rootPackage := self.rootPackage.referencedElement.oclAsType(uml::Package);
     type := "PapyrusUMLSequenceDiagram";
     name := self.title;
     measurementUnit := notation::MeasurementUnit::Pixel;
+    
+    styles += self.map stringValueStyle();
+    styles += self.map diagramStyle();
+    styles += self.map papyrusViewStyle(rootPackage);
+}
+
+mapping sequence::SequenceDiagram::stringValueStyle() : notation::StringValueStyle
+{
+    name := "diagram_compatibility_version";
+    stringValue := "1.2.0"; 
+}
+
+mapping sequence::SequenceDiagram::diagramStyle() : notation::DiagramStyle
+{   
+}
+
+mapping sequence::SequenceDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusViewStyle
+{
+    owner := rootElement.toEObject();
 }

@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -35,16 +33,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * @generated
  */
 public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFragments {
-    /**
-     * The cached value of the '{@link #getFragments() <em>Fragments</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFragments()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragment> fragments;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -69,11 +57,19 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragment> getFragments() {
-        if (fragments == null) {
-            fragments = new EObjectContainmentEList<BehaviorFragment>(BehaviorFragment.class, this, SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS);
-        }
-        return fragments;
+        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS, SequencePackage.Literals.BEHAVIOR_FRAGMENTS__FRAGMENTS, true, true);
     }
 
     /**
@@ -145,7 +141,7 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS:
-                return fragments != null && !fragments.isEmpty();
+                return !getFragments().isEmpty();
         }
         return super.eIsSet(featureID);
     }

@@ -106,6 +106,24 @@ public interface SequencePackage extends EPackage {
     int SEQUENCE_DIAGRAM_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEQUENCE_DIAGRAM___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Diagram</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEQUENCE_DIAGRAM_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl <em>Root Package</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -159,6 +177,24 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int ROOT_PACKAGE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Root Package</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl <em>Actor</em>}' class.
@@ -243,6 +279,24 @@ public interface SequencePackage extends EPackage {
     int ACTOR_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 6;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Actor</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentImpl <em>Behavior Fragment</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -260,6 +314,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int BEHAVIOR_FRAGMENT_FEATURE_COUNT = 0;
+
+    /**
+     * The number of operations of the '<em>Behavior Fragment</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIOR_FRAGMENT_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl <em>Message</em>}' class.
@@ -317,6 +380,24 @@ public interface SequencePackage extends EPackage {
     int MESSAGE_FEATURE_COUNT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 4;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE___GET_NEAREST_PACKAGE = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE_OPERATION_COUNT = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl <em>Time Constraint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -343,6 +424,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int TIME_CONSTRAINT_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Time Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_CONSTRAINT_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.InnerTimeConstraintImpl <em>Inner Time Constraint</em>}' class.
@@ -380,6 +470,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int INNER_TIME_CONSTRAINT_FEATURE_COUNT = 2;
+
+    /**
+     * The number of operations of the '<em>Inner Time Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INNER_TIME_CONSTRAINT_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl <em>Standard Message</em>}' class.
@@ -464,6 +563,24 @@ public interface SequencePackage extends EPackage {
     int STANDARD_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 3;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Standard Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ResponseMessageImpl <em>Response Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -535,6 +652,24 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int RESPONSE_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Response Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl <em>Found Message</em>}' class.
@@ -610,6 +745,24 @@ public interface SequencePackage extends EPackage {
     int FOUND_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOUND_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Found Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOUND_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.LostMessageImpl <em>Lost Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -681,6 +834,24 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int LOST_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOST_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Lost Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOST_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.
@@ -756,6 +927,24 @@ public interface SequencePackage extends EPackage {
     int CREATE_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CREATE_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Create Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CREATE_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionMessageImpl <em>Destruction Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -829,6 +1018,24 @@ public interface SequencePackage extends EPackage {
     int DESTRUCTION_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Destruction Message</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl <em>Occurence Specification</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -846,6 +1053,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int OCCURENCE_SPECIFICATION_FEATURE_COUNT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl <em>Destruction Occurence Specification</em>}' class.
@@ -885,6 +1101,24 @@ public interface SequencePackage extends EPackage {
     int DESTRUCTION_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Destruction Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CombinedFragmentImpl <em>Combined Fragment</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -911,6 +1145,24 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int COMBINED_FRAGMENT_FEATURE_COUNT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT___GET_NEAREST_PACKAGE = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Combined Fragment</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT_OPERATION_COUNT = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AlternativeImpl <em>Alternative</em>}' class.
@@ -950,6 +1202,24 @@ public interface SequencePackage extends EPackage {
     int ALTERNATIVE_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Alternative</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OptionImpl <em>Option</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -985,6 +1255,24 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int OPTION_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Option</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ParallelImpl <em>Parallel</em>}' class.
@@ -1024,6 +1312,24 @@ public interface SequencePackage extends EPackage {
     int PARALLEL_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Parallel</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CriticalImpl <em>Critical</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1059,6 +1365,24 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int CRITICAL_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Critical</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.LoopImpl <em>Loop</em>}' class.
@@ -1107,6 +1431,24 @@ public interface SequencePackage extends EPackage {
     int LOOP_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Loop</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsImpl <em>Behavior Fragments</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1133,6 +1475,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int BEHAVIOR_FRAGMENTS_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Behavior Fragments</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIOR_FRAGMENTS_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsWithConditionImpl <em>Behavior Fragments With Condition</em>}' class.
@@ -1170,6 +1521,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int BEHAVIOR_FRAGMENTS_WITH_CONDITION_FEATURE_COUNT = 2;
+
+    /**
+     * The number of operations of the '<em>Behavior Fragments With Condition</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BEHAVIOR_FRAGMENTS_WITH_CONDITION_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}' enum.

@@ -8,18 +8,12 @@ import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsW
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -50,26 +44,6 @@ public class BehaviorFragmentsWithConditionImpl extends CDOObjectImpl implements
     protected static final String CONDITION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCondition()
-     * @generated
-     * @ordered
-     */
-    protected String condition = CONDITION_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getFragments() <em>Fragments</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFragments()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragment> fragments;
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -93,8 +67,18 @@ public class BehaviorFragmentsWithConditionImpl extends CDOObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getCondition() {
-        return condition;
+        return (String)eDynamicGet(SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION, SequencePackage.Literals.BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION, true, true);
     }
 
     /**
@@ -103,10 +87,7 @@ public class BehaviorFragmentsWithConditionImpl extends CDOObjectImpl implements
      * @generated
      */
     public void setCondition(String newCondition) {
-        String oldCondition = condition;
-        condition = newCondition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION, oldCondition, condition));
+        eDynamicSet(SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION, SequencePackage.Literals.BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION, newCondition);
     }
 
     /**
@@ -114,11 +95,9 @@ public class BehaviorFragmentsWithConditionImpl extends CDOObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragment> getFragments() {
-        if (fragments == null) {
-            fragments = new EObjectContainmentEList<BehaviorFragment>(BehaviorFragment.class, this, SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS);
-        }
-        return fragments;
+        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS, SequencePackage.Literals.BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS, true, true);
     }
 
     /**
@@ -198,27 +177,11 @@ public class BehaviorFragmentsWithConditionImpl extends CDOObjectImpl implements
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION:
-                return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
+                return CONDITION_EDEFAULT == null ? getCondition() != null : !CONDITION_EDEFAULT.equals(getCondition());
             case SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS:
-                return fragments != null && !fragments.isEmpty();
+                return !getFragments().isEmpty();
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (condition: ");
-        result.append(condition);
-        result.append(')');
-        return result.toString();
     }
 
 } //BehaviorFragmentsWithConditionImpl

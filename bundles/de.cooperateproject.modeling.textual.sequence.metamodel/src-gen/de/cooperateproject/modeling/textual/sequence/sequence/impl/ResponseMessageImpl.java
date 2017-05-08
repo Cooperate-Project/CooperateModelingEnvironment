@@ -6,14 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,26 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class ResponseMessageImpl extends MessageImpl implements ResponseMessage {
-    /**
-     * The cached value of the '{@link #getLeft() <em>Left</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getLeft()
-     * @generated
-     * @ordered
-     */
-    protected Actor left;
-
-    /**
-     * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getRight()
-     * @generated
-     * @ordered
-     */
-    protected Actor right;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -75,15 +48,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      * @generated
      */
     public Actor getLeft() {
-        if (left != null && ((EObject)left).eIsProxy()) {
-            InternalEObject oldLeft = (InternalEObject)left;
-            left = (Actor)eResolveProxy(oldLeft);
-            if (left != oldLeft) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.RESPONSE_MESSAGE__LEFT, oldLeft, left));
-            }
-        }
-        return left;
+        return (Actor)eDynamicGet(SequencePackage.RESPONSE_MESSAGE__LEFT, SequencePackage.Literals.RESPONSE_MESSAGE__LEFT, true, true);
     }
 
     /**
@@ -92,7 +57,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      * @generated
      */
     public Actor basicGetLeft() {
-        return left;
+        return (Actor)eDynamicGet(SequencePackage.RESPONSE_MESSAGE__LEFT, SequencePackage.Literals.RESPONSE_MESSAGE__LEFT, false, true);
     }
 
     /**
@@ -101,10 +66,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      * @generated
      */
     public void setLeft(Actor newLeft) {
-        Actor oldLeft = left;
-        left = newLeft;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.RESPONSE_MESSAGE__LEFT, oldLeft, left));
+        eDynamicSet(SequencePackage.RESPONSE_MESSAGE__LEFT, SequencePackage.Literals.RESPONSE_MESSAGE__LEFT, newLeft);
     }
 
     /**
@@ -113,15 +75,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      * @generated
      */
     public Actor getRight() {
-        if (right != null && ((EObject)right).eIsProxy()) {
-            InternalEObject oldRight = (InternalEObject)right;
-            right = (Actor)eResolveProxy(oldRight);
-            if (right != oldRight) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.RESPONSE_MESSAGE__RIGHT, oldRight, right));
-            }
-        }
-        return right;
+        return (Actor)eDynamicGet(SequencePackage.RESPONSE_MESSAGE__RIGHT, SequencePackage.Literals.RESPONSE_MESSAGE__RIGHT, true, true);
     }
 
     /**
@@ -130,7 +84,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      * @generated
      */
     public Actor basicGetRight() {
-        return right;
+        return (Actor)eDynamicGet(SequencePackage.RESPONSE_MESSAGE__RIGHT, SequencePackage.Literals.RESPONSE_MESSAGE__RIGHT, false, true);
     }
 
     /**
@@ -139,10 +93,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      * @generated
      */
     public void setRight(Actor newRight) {
-        Actor oldRight = right;
-        right = newRight;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.RESPONSE_MESSAGE__RIGHT, oldRight, right));
+        eDynamicSet(SequencePackage.RESPONSE_MESSAGE__RIGHT, SequencePackage.Literals.RESPONSE_MESSAGE__RIGHT, newRight);
     }
 
     /**
@@ -208,9 +159,9 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.RESPONSE_MESSAGE__LEFT:
-                return left != null;
+                return basicGetLeft() != null;
             case SequencePackage.RESPONSE_MESSAGE__RIGHT:
-                return right != null;
+                return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
     }

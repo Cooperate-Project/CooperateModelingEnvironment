@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -33,16 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class CriticalImpl extends CombinedFragmentImpl implements Critical {
-    /**
-     * The cached value of the '{@link #getFragments() <em>Fragments</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFragments()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragment> fragments;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -67,11 +55,9 @@ public class CriticalImpl extends CombinedFragmentImpl implements Critical {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragment> getFragments() {
-        if (fragments == null) {
-            fragments = new EObjectContainmentEList<BehaviorFragment>(BehaviorFragment.class, this, SequencePackage.CRITICAL__FRAGMENTS);
-        }
-        return fragments;
+        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.CRITICAL__FRAGMENTS, SequencePackage.Literals.CRITICAL__FRAGMENTS, true, true);
     }
 
     /**
@@ -143,7 +129,7 @@ public class CriticalImpl extends CombinedFragmentImpl implements Critical {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.CRITICAL__FRAGMENTS:
-                return fragments != null && !fragments.isEmpty();
+                return !getFragments().isEmpty();
         }
         return super.eIsSet(featureID);
     }

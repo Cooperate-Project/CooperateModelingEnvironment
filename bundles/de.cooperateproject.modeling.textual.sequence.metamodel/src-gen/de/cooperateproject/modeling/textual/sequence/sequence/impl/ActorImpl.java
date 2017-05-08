@@ -16,18 +16,12 @@ import de.cooperateproject.modeling.textual.sequence.sequence.ActorType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.Classifier;
@@ -63,16 +57,6 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected String name = NAME_EDEFAULT;
-
-    /**
      * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -81,26 +65,6 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @ordered
      */
     protected static final String ALIAS_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getAlias() <em>Alias</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAlias()
-     * @generated
-     * @ordered
-     */
-    protected String alias = ALIAS_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getComments() <em>Comments</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getComments()
-     * @generated
-     * @ordered
-     */
-    protected EList<Comment> comments;
 
     /**
      * The default value of the '{@link #isDeferred() <em>Deferred</em>}' attribute.
@@ -113,26 +77,6 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
     protected static final boolean DEFERRED_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isDeferred() <em>Deferred</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isDeferred()
-     * @generated
-     * @ordered
-     */
-    protected boolean deferred = DEFERRED_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected Classifier type;
-
-    /**
      * The default value of the '{@link #getActorType() <em>Actor Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -141,16 +85,6 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @ordered
      */
     protected static final ActorType ACTOR_TYPE_EDEFAULT = ActorType.HUMAN;
-
-    /**
-     * The cached value of the '{@link #getActorType() <em>Actor Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getActorType()
-     * @generated
-     * @ordered
-     */
-    protected ActorType actorType = ACTOR_TYPE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -188,7 +122,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public String getName() {
-        return name;
+        return (String)eDynamicGet(SequencePackage.ACTOR__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
     }
 
     /**
@@ -197,10 +131,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ACTOR__NAME, oldName, name));
+        eDynamicSet(SequencePackage.ACTOR__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
     /**
@@ -209,7 +140,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public String getAlias() {
-        return alias;
+        return (String)eDynamicGet(SequencePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
 
     /**
@@ -218,10 +149,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public void setAlias(String newAlias) {
-        String oldAlias = alias;
-        alias = newAlias;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ACTOR__ALIAS, oldAlias, alias));
+        eDynamicSet(SequencePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
     }
 
     /**
@@ -229,11 +157,9 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
-        if (comments == null) {
-            comments = new EObjectContainmentWithInverseEList<Comment>(Comment.class, this, SequencePackage.ACTOR__COMMENTS, TextualCommonsPackage.COMMENT__COMMENTED_ELEMENT);
-        }
-        return comments;
+        return (EList<Comment>)eDynamicGet(SequencePackage.ACTOR__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
     /**
@@ -242,7 +168,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public boolean isDeferred() {
-        return deferred;
+        return (Boolean)eDynamicGet(SequencePackage.ACTOR__DEFERRED, SequencePackage.Literals.ACTOR__DEFERRED, true, true);
     }
 
     /**
@@ -251,10 +177,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public void setDeferred(boolean newDeferred) {
-        boolean oldDeferred = deferred;
-        deferred = newDeferred;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ACTOR__DEFERRED, oldDeferred, deferred));
+        eDynamicSet(SequencePackage.ACTOR__DEFERRED, SequencePackage.Literals.ACTOR__DEFERRED, newDeferred);
     }
 
     /**
@@ -263,15 +186,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public Classifier getType() {
-        if (type != null && type.eIsProxy()) {
-            InternalEObject oldType = (InternalEObject)type;
-            type = (Classifier)eResolveProxy(oldType);
-            if (type != oldType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.ACTOR__TYPE, oldType, type));
-            }
-        }
-        return type;
+        return (Classifier)eDynamicGet(SequencePackage.ACTOR__TYPE, SequencePackage.Literals.ACTOR__TYPE, true, true);
     }
 
     /**
@@ -280,7 +195,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public Classifier basicGetType() {
-        return type;
+        return (Classifier)eDynamicGet(SequencePackage.ACTOR__TYPE, SequencePackage.Literals.ACTOR__TYPE, false, true);
     }
 
     /**
@@ -289,10 +204,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public void setType(Classifier newType) {
-        Classifier oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ACTOR__TYPE, oldType, type));
+        eDynamicSet(SequencePackage.ACTOR__TYPE, SequencePackage.Literals.ACTOR__TYPE, newType);
     }
 
     /**
@@ -301,7 +213,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public ActorType getActorType() {
-        return actorType;
+        return (ActorType)eDynamicGet(SequencePackage.ACTOR__ACTOR_TYPE, SequencePackage.Literals.ACTOR__ACTOR_TYPE, true, true);
     }
 
     /**
@@ -310,10 +222,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * @generated
      */
     public void setActorType(ActorType newActorType) {
-        ActorType oldActorType = actorType;
-        actorType = newActorType == null ? ACTOR_TYPE_EDEFAULT : newActorType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ACTOR__ACTOR_TYPE, oldActorType, actorType));
+        eDynamicSet(SequencePackage.ACTOR__ACTOR_TYPE, SequencePackage.Literals.ACTOR__ACTOR_TYPE, newActorType);
     }
 
     /**
@@ -441,17 +350,17 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.ACTOR__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case SequencePackage.ACTOR__ALIAS:
-                return ALIAS_EDEFAULT == null ? alias != null : !ALIAS_EDEFAULT.equals(alias);
+                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case SequencePackage.ACTOR__COMMENTS:
-                return comments != null && !comments.isEmpty();
+                return !getComments().isEmpty();
             case SequencePackage.ACTOR__DEFERRED:
-                return deferred != DEFERRED_EDEFAULT;
+                return isDeferred() != DEFERRED_EDEFAULT;
             case SequencePackage.ACTOR__TYPE:
-                return type != null;
+                return basicGetType() != null;
             case SequencePackage.ACTOR__ACTOR_TYPE:
-                return actorType != ACTOR_TYPE_EDEFAULT;
+                return getActorType() != ACTOR_TYPE_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -510,28 +419,6 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(", alias: ");
-        result.append(alias);
-        result.append(", deferred: ");
-        result.append(deferred);
-        result.append(", actorType: ");
-        result.append(actorType);
-        result.append(')');
-        return result.toString();
     }
 
 } //ActorImpl

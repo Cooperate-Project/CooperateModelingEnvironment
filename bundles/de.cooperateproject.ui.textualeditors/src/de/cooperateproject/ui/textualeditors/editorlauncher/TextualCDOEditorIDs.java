@@ -6,7 +6,8 @@ import java.util.Optional;
 public enum TextualCDOEditorIDs {
 
     CLASS("cls", "de.cooperateproject.modeling.textual.cls.Cls"),
-    USECASE("uc", "de.cooperateproject.modeling.textual.usecase.Usecase");
+    USECASE("uc", "de.cooperateproject.modeling.textual.usecase.Usecase"),
+    SEQUENCE("seq", "de.cooperateproject.modeling.textual.sequence.Sequence");
 
     private final String extension;
     private final String id;

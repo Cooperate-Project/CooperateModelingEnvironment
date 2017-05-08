@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -33,16 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class AlternativeImpl extends CombinedFragmentImpl implements Alternative {
-    /**
-     * The cached value of the '{@link #getAlternatives() <em>Alternatives</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAlternatives()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragmentsWithCondition> alternatives;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -67,11 +55,9 @@ public class AlternativeImpl extends CombinedFragmentImpl implements Alternative
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragmentsWithCondition> getAlternatives() {
-        if (alternatives == null) {
-            alternatives = new EObjectContainmentEList<BehaviorFragmentsWithCondition>(BehaviorFragmentsWithCondition.class, this, SequencePackage.ALTERNATIVE__ALTERNATIVES);
-        }
-        return alternatives;
+        return (EList<BehaviorFragmentsWithCondition>)eDynamicGet(SequencePackage.ALTERNATIVE__ALTERNATIVES, SequencePackage.Literals.ALTERNATIVE__ALTERNATIVES, true, true);
     }
 
     /**
@@ -143,7 +129,7 @@ public class AlternativeImpl extends CombinedFragmentImpl implements Alternative
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.ALTERNATIVE__ALTERNATIVES:
-                return alternatives != null && !alternatives.isEmpty();
+                return !getAlternatives().isEmpty();
         }
         return super.eIsSet(featureID);
     }

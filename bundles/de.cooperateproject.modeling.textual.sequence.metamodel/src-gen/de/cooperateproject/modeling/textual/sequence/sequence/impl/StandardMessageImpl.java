@@ -7,14 +7,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,36 +36,6 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
     protected static final MessageType TYPE_EDEFAULT = MessageType.SYNC;
 
     /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected MessageType type = TYPE_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getLeft() <em>Left</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getLeft()
-     * @generated
-     * @ordered
-     */
-    protected Actor left;
-
-    /**
-     * The cached value of the '{@link #getRight() <em>Right</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getRight()
-     * @generated
-     * @ordered
-     */
-    protected Actor right;
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -97,7 +60,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public MessageType getType() {
-        return type;
+        return (MessageType)eDynamicGet(SequencePackage.STANDARD_MESSAGE__TYPE, SequencePackage.Literals.STANDARD_MESSAGE__TYPE, true, true);
     }
 
     /**
@@ -106,10 +69,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public void setType(MessageType newType) {
-        MessageType oldType = type;
-        type = newType == null ? TYPE_EDEFAULT : newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.STANDARD_MESSAGE__TYPE, oldType, type));
+        eDynamicSet(SequencePackage.STANDARD_MESSAGE__TYPE, SequencePackage.Literals.STANDARD_MESSAGE__TYPE, newType);
     }
 
     /**
@@ -118,15 +78,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public Actor getLeft() {
-        if (left != null && ((EObject)left).eIsProxy()) {
-            InternalEObject oldLeft = (InternalEObject)left;
-            left = (Actor)eResolveProxy(oldLeft);
-            if (left != oldLeft) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.STANDARD_MESSAGE__LEFT, oldLeft, left));
-            }
-        }
-        return left;
+        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__LEFT, SequencePackage.Literals.STANDARD_MESSAGE__LEFT, true, true);
     }
 
     /**
@@ -135,7 +87,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public Actor basicGetLeft() {
-        return left;
+        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__LEFT, SequencePackage.Literals.STANDARD_MESSAGE__LEFT, false, true);
     }
 
     /**
@@ -144,10 +96,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public void setLeft(Actor newLeft) {
-        Actor oldLeft = left;
-        left = newLeft;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.STANDARD_MESSAGE__LEFT, oldLeft, left));
+        eDynamicSet(SequencePackage.STANDARD_MESSAGE__LEFT, SequencePackage.Literals.STANDARD_MESSAGE__LEFT, newLeft);
     }
 
     /**
@@ -156,15 +105,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public Actor getRight() {
-        if (right != null && ((EObject)right).eIsProxy()) {
-            InternalEObject oldRight = (InternalEObject)right;
-            right = (Actor)eResolveProxy(oldRight);
-            if (right != oldRight) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SequencePackage.STANDARD_MESSAGE__RIGHT, oldRight, right));
-            }
-        }
-        return right;
+        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__RIGHT, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, true, true);
     }
 
     /**
@@ -173,7 +114,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public Actor basicGetRight() {
-        return right;
+        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__RIGHT, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, false, true);
     }
 
     /**
@@ -182,10 +123,7 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * @generated
      */
     public void setRight(Actor newRight) {
-        Actor oldRight = right;
-        right = newRight;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.STANDARD_MESSAGE__RIGHT, oldRight, right));
+        eDynamicSet(SequencePackage.STANDARD_MESSAGE__RIGHT, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, newRight);
     }
 
     /**
@@ -259,29 +197,13 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.STANDARD_MESSAGE__TYPE:
-                return type != TYPE_EDEFAULT;
+                return getType() != TYPE_EDEFAULT;
             case SequencePackage.STANDARD_MESSAGE__LEFT:
-                return left != null;
+                return basicGetLeft() != null;
             case SequencePackage.STANDARD_MESSAGE__RIGHT:
-                return right != null;
+                return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (type: ");
-        result.append(type);
-        result.append(')');
-        return result.toString();
     }
 
 } //StandardMessageImpl

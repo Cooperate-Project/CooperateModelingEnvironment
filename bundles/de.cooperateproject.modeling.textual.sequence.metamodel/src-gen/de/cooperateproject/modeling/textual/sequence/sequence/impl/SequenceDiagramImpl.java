@@ -8,15 +8,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.uml2.uml.Interaction;
 
 /**
@@ -43,26 +38,6 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * @ordered
      */
     protected static final String TITLE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTitle()
-     * @generated
-     * @ordered
-     */
-    protected String title = TITLE_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getRootPackage() <em>Root Package</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getRootPackage()
-     * @generated
-     * @ordered
-     */
-    protected RootPackage rootPackage;
 
     /**
      * <!-- begin-user-doc -->
@@ -100,7 +75,7 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * @generated
      */
     public String getTitle() {
-        return title;
+        return (String)eDynamicGet(SequencePackage.SEQUENCE_DIAGRAM__TITLE, SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE, true, true);
     }
 
     /**
@@ -109,10 +84,7 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * @generated
      */
     public void setTitle(String newTitle) {
-        String oldTitle = title;
-        title = newTitle;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.SEQUENCE_DIAGRAM__TITLE, oldTitle, title));
+        eDynamicSet(SequencePackage.SEQUENCE_DIAGRAM__TITLE, SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE, newTitle);
     }
 
     /**
@@ -121,7 +93,7 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * @generated
      */
     public RootPackage getRootPackage() {
-        return rootPackage;
+        return (RootPackage)eDynamicGet(SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, SequencePackage.Literals.SEQUENCE_DIAGRAM__ROOT_PACKAGE, true, true);
     }
 
     /**
@@ -130,12 +102,7 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * @generated
      */
     public NotificationChain basicSetRootPackage(RootPackage newRootPackage, NotificationChain msgs) {
-        RootPackage oldRootPackage = rootPackage;
-        rootPackage = newRootPackage;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, oldRootPackage, newRootPackage);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
+        msgs = eDynamicInverseAdd((InternalEObject)newRootPackage, SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, msgs);
         return msgs;
     }
 
@@ -145,17 +112,7 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * @generated
      */
     public void setRootPackage(RootPackage newRootPackage) {
-        if (newRootPackage != rootPackage) {
-            NotificationChain msgs = null;
-            if (rootPackage != null)
-                msgs = ((InternalEObject)rootPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, null, msgs);
-            if (newRootPackage != null)
-                msgs = ((InternalEObject)newRootPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, null, msgs);
-            msgs = basicSetRootPackage(newRootPackage, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, newRootPackage, newRootPackage));
+        eDynamicSet(SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE, SequencePackage.Literals.SEQUENCE_DIAGRAM__ROOT_PACKAGE, newRootPackage);
     }
 
     /**
@@ -233,27 +190,11 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.SEQUENCE_DIAGRAM__TITLE:
-                return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
+                return TITLE_EDEFAULT == null ? getTitle() != null : !TITLE_EDEFAULT.equals(getTitle());
             case SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE:
-                return rootPackage != null;
+                return getRootPackage() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (title: ");
-        result.append(title);
-        result.append(')');
-        return result.toString();
     }
 
 } //SequenceDiagramImpl

@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -33,15 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class OptionImpl extends CombinedFragmentImpl implements Option {
-    /**
-     * The cached value of the '{@link #getOptional() <em>Optional</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getOptional()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragmentsWithCondition> optional;
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -66,11 +55,9 @@ public class OptionImpl extends CombinedFragmentImpl implements Option {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragmentsWithCondition> getOptional() {
-        if (optional == null) {
-            optional = new EObjectContainmentEList<BehaviorFragmentsWithCondition>(BehaviorFragmentsWithCondition.class, this, SequencePackage.OPTION__OPTIONAL);
-        }
-        return optional;
+        return (EList<BehaviorFragmentsWithCondition>)eDynamicGet(SequencePackage.OPTION__OPTIONAL, SequencePackage.Literals.OPTION__OPTIONAL, true, true);
     }
 
     /**
@@ -142,7 +129,7 @@ public class OptionImpl extends CombinedFragmentImpl implements Option {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.OPTION__OPTIONAL:
-                return optional != null && !optional.isEmpty();
+                return !getOptional().isEmpty();
         }
         return super.eIsSet(featureID);
     }

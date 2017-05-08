@@ -14,18 +14,12 @@ import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -53,36 +47,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * @ordered
      */
     protected static final String NAME_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected String name = NAME_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getActors() <em>Actors</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getActors()
-     * @generated
-     * @ordered
-     */
-    protected EList<Actor> actors;
-
-    /**
-     * The cached value of the '{@link #getBehaviorFragments() <em>Behavior Fragments</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getBehaviorFragments()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragment> behaviorFragments;
 
     /**
      * <!-- begin-user-doc -->
@@ -120,7 +84,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * @generated
      */
     public String getName() {
-        return name;
+        return (String)eDynamicGet(SequencePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
     }
 
     /**
@@ -129,10 +93,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * @generated
      */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SequencePackage.ROOT_PACKAGE__NAME, oldName, name));
+        eDynamicSet(SequencePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
     }
 
     /**
@@ -140,11 +101,9 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<Actor> getActors() {
-        if (actors == null) {
-            actors = new EObjectContainmentEList<Actor>(Actor.class, this, SequencePackage.ROOT_PACKAGE__ACTORS);
-        }
-        return actors;
+        return (EList<Actor>)eDynamicGet(SequencePackage.ROOT_PACKAGE__ACTORS, SequencePackage.Literals.ROOT_PACKAGE__ACTORS, true, true);
     }
 
     /**
@@ -152,11 +111,9 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragment> getBehaviorFragments() {
-        if (behaviorFragments == null) {
-            behaviorFragments = new EObjectContainmentEList<BehaviorFragment>(BehaviorFragment.class, this, SequencePackage.ROOT_PACKAGE__BEHAVIOR_FRAGMENTS);
-        }
-        return behaviorFragments;
+        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.ROOT_PACKAGE__BEHAVIOR_FRAGMENTS, SequencePackage.Literals.ROOT_PACKAGE__BEHAVIOR_FRAGMENTS, true, true);
     }
 
     /**
@@ -247,11 +204,11 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.ROOT_PACKAGE__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case SequencePackage.ROOT_PACKAGE__ACTORS:
-                return actors != null && !actors.isEmpty();
+                return !getActors().isEmpty();
             case SequencePackage.ROOT_PACKAGE__BEHAVIOR_FRAGMENTS:
-                return behaviorFragments != null && !behaviorFragments.isEmpty();
+                return !getBehaviorFragments().isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -286,22 +243,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
     }
 
 } //RootPackageImpl

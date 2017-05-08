@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
@@ -35,16 +33,6 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * @generated
  */
 public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint {
-    /**
-     * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getConstraints()
-     * @generated
-     * @ordered
-     */
-    protected EList<InnerTimeConstraint> constraints;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -69,11 +57,19 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
     public EList<InnerTimeConstraint> getConstraints() {
-        if (constraints == null) {
-            constraints = new EObjectContainmentEList<InnerTimeConstraint>(InnerTimeConstraint.class, this, SequencePackage.TIME_CONSTRAINT__CONSTRAINTS);
-        }
-        return constraints;
+        return (EList<InnerTimeConstraint>)eDynamicGet(SequencePackage.TIME_CONSTRAINT__CONSTRAINTS, SequencePackage.Literals.TIME_CONSTRAINT__CONSTRAINTS, true, true);
     }
 
     /**
@@ -145,7 +141,7 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.TIME_CONSTRAINT__CONSTRAINTS:
-                return constraints != null && !constraints.isEmpty();
+                return !getConstraints().isEmpty();
         }
         return super.eIsSet(featureID);
     }

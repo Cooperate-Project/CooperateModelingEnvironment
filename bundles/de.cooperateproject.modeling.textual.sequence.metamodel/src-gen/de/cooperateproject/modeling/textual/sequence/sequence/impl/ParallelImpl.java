@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -33,16 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ParallelImpl extends CombinedFragmentImpl implements Parallel {
-    /**
-     * The cached value of the '{@link #getParallels() <em>Parallels</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getParallels()
-     * @generated
-     * @ordered
-     */
-    protected EList<BehaviorFragments> parallels;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -67,11 +55,9 @@ public class ParallelImpl extends CombinedFragmentImpl implements Parallel {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     public EList<BehaviorFragments> getParallels() {
-        if (parallels == null) {
-            parallels = new EObjectContainmentEList<BehaviorFragments>(BehaviorFragments.class, this, SequencePackage.PARALLEL__PARALLELS);
-        }
-        return parallels;
+        return (EList<BehaviorFragments>)eDynamicGet(SequencePackage.PARALLEL__PARALLELS, SequencePackage.Literals.PARALLEL__PARALLELS, true, true);
     }
 
     /**
@@ -143,7 +129,7 @@ public class ParallelImpl extends CombinedFragmentImpl implements Parallel {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.PARALLEL__PARALLELS:
-                return parallels != null && !parallels.isEmpty();
+                return !getParallels().isEmpty();
         }
         return super.eIsSet(featureID);
     }

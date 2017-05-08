@@ -37,4 +37,14 @@ public class BehaviorFragmentImpl extends CDOObjectImpl implements BehaviorFragm
         return SequencePackage.Literals.BEHAVIOR_FRAGMENT;
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
+    }
+
 } //BehaviorFragmentImpl
