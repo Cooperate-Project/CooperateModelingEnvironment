@@ -21,6 +21,7 @@
 		<module>de.cooperateproject.modeling.textual.class.feature</module>
 		<module>de.cooperateproject.modeling.textual.commons.feature</module>
 		<module>de.cooperateproject.modeling.textual.metamodels.feature</module>
+		<module>de.cooperateproject.modeling.textual.sequence.feature</module>
 		<module>de.cooperateproject.modeling.textual.usecase.feature</module>
 		<module>de.cooperateproject.modeling.transformation.feature</module>
 		<module>de.cooperateproject.ui.feature</module>
