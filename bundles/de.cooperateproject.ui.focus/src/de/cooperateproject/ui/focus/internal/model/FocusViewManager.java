@@ -6,11 +6,12 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.services.IDisposable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.focus.internal.history.HistoryElement;
 import de.cooperateproject.ui.focus.internal.utils.EditorMonitor;
@@ -19,7 +20,7 @@ import de.cooperateproject.ui.focus.manager.IFocusManager;
 
 public class FocusViewManager implements IDisposable {
 
-    private static final Logger LOGGER = Logger.getLogger(FocusViewManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FocusViewManager.class);
     private final Map<IEditorPart, IFocusedDiagram> focusedDiagrams = new HashMap<>();
     private final FocusViewModel focusViewModel = new FocusViewModel();
     private IEditorPart activeEditor;

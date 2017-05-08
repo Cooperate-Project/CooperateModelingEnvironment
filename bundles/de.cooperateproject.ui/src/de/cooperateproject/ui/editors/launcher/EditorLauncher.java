@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -13,6 +12,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncher;
@@ -22,7 +23,7 @@ import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
 public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
 
-    private static final Logger LOGGER = Logger.getLogger(EditorLauncher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditorLauncher.class);
 
     @Override
     public void open(IPath file) {

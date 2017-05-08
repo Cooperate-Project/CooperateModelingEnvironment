@@ -9,8 +9,9 @@ import javax.jms.Connection;
 import javax.jms.JMSException;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.log4j.Logger;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author persch
@@ -18,7 +19,7 @@ import org.eclipse.net4j.util.io.IOUtil;
  */
 public final class ConnectionUtils {
 
-    private static final Logger LOGGER = Logger.getLogger(ConnectionUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionUtils.class);
 
     private ConnectionUtils() {
         // intentionally left blank

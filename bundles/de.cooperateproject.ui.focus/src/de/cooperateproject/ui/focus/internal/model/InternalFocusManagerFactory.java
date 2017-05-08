@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ui.IWorkbenchPart;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.focus.manager.IFocusManager;
 import de.cooperateproject.ui.focus.manager.IFocusManagerFactory;
@@ -17,7 +18,7 @@ public enum InternalFocusManagerFactory implements IFocusManagerFactory {
 
     private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.focus.manager.factory";
     private static final String EXTENSION_POINT_ATTRIBUTE = "factory";
-    private static final Logger LOGGER = Logger.getLogger(InternalFocusManagerFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InternalFocusManagerFactory.class);
     private final Collection<IFocusManagerFactory> factories;
 
     public static IFocusManagerFactory getInstance() {
@@ -43,8 +44,7 @@ public enum InternalFocusManagerFactory implements IFocusManagerFactory {
         Set<IFocusManagerFactory> matchingFactories = factories.stream().filter(f -> f.canHandle(workbenchPart))
                 .collect(Collectors.toSet());
         if (matchingFactories.size() > 1) {
-            LOGGER.warn(String.format("There are multiple factories that can handle the workbench part %s.",
-                    workbenchPart));
+            LOGGER.warn("There are multiple factories that can handle the workbench part {}.", workbenchPart);
         }
         return matchingFactories;
     }

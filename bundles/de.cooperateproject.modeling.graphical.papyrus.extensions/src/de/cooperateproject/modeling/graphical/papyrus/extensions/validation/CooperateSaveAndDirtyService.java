@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -26,10 +25,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateSaveAndDirtyService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateSaveAndDirtyService.class);
     private static final String PLUG_IN_ID = "de.cooperateproject.validation";
     private ServicesRegistry serviceRegistry;
     private CooperateValidationError validationError;

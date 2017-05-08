@@ -11,7 +11,8 @@ import de.cooperateproject.modeling.textual.cls.ClsRuntimeModule;
 import de.cooperateproject.modeling.textual.cls.ui.ClsUiModule;
 import java.util.Collections;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
@@ -25,7 +26,7 @@ public class ClsActivator extends AbstractUIPlugin {
 
 	public static final String DE_COOPERATEPROJECT_MODELING_TEXTUAL_CLS_CLS = "de.cooperateproject.modeling.textual.cls.Cls";
 	
-	private static final Logger logger = Logger.getLogger(ClsActivator.class);
+	private static final Logger logger = LoggerFactory.getLogger(ClsActivator.class);
 	
 	private static ClsActivator INSTANCE;
 	

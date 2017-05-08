@@ -11,7 +11,8 @@ import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule;
 import de.cooperateproject.modeling.textual.usecase.ui.UsecaseUiModule;
 import java.util.Collections;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
@@ -25,7 +26,7 @@ public class UsecaseActivator extends AbstractUIPlugin {
 
 	public static final String DE_COOPERATEPROJECT_MODELING_TEXTUAL_USECASE_USECASE = "de.cooperateproject.modeling.textual.usecase.Usecase";
 	
-	private static final Logger logger = Logger.getLogger(UsecaseActivator.class);
+	private static final Logger logger = LoggerFactory.getLogger(UsecaseActivator.class);
 	
 	private static UsecaseActivator INSTANCE;
 	

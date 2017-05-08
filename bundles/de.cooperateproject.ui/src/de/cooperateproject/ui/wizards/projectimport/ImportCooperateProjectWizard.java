@@ -3,7 +3,6 @@ package de.cooperateproject.ui.wizards.projectimport;
 import java.io.IOException;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -12,6 +11,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.CooperateProjectNature;
 import de.cooperateproject.ui.nature.NatureUtils;
@@ -21,7 +22,7 @@ import de.cooperateproject.ui.wizards.projectnew.CDOConfigurationWizardPage;
 
 public class ImportCooperateProjectWizard extends Wizard implements IImportWizard {
 
-    private static final Logger LOGGER = Logger.getLogger(ImportCooperateProjectWizard.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ImportCooperateProjectWizard.class);
     private IStructuredSelection selection;
     private CDOConfigurationWizardPage cdoPage;
     private ImportWizardPage importPage;

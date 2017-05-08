@@ -1,6 +1,5 @@
 package de.cooperateproject.ui.nature;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -13,12 +12,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 
 public class ProjectOpenedListener implements IResourceChangeListener {
 
-    private static final Logger LOGGER = Logger.getLogger(ProjectOpenedListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectOpenedListener.class);
 
     @Override
     public void resourceChanged(IResourceChangeEvent event) {

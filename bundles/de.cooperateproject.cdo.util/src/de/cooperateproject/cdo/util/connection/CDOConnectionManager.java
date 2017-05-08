@@ -1,11 +1,12 @@
 package de.cooperateproject.cdo.util.connection;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.explorer.repositories.CDORepository;
 import org.eclipse.emf.cdo.session.CDOSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -15,7 +16,7 @@ import de.cooperateproject.cdo.util.utils.CDOHelper;
 public enum CDOConnectionManager {
 
     INSTANCE;
-    private static final Logger LOGGER = Logger.getLogger(CDOConnectionManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CDOConnectionManager.class);
     private final BiMap<CDORepository, IProject> repositories = HashBiMap.create();
     private final BiMap<CDORepository, CDOSession> sessions = HashBiMap.create();
 
@@ -50,7 +51,7 @@ public enum CDOConnectionManager {
 
     public CDOSession acquireSession(IProject project) {
         synchronized (sessions) {
-            LOGGER.trace(String.format("Acquirering session for %s", project.getName()));
+            LOGGER.trace("Acquirering session for {}", project.getName());
             CDORepository repository = getRepository(project);
             CDOSession session = repository.acquireSession();
             sessions.put(repository, session);
@@ -65,7 +66,7 @@ public enum CDOConnectionManager {
                 LOGGER.warn("Tried to release session for non existing repository.");
             } else {
                 repository.releaseSession();
-                LOGGER.trace(String.format("Released session for project %s.", repositories.get(repository).getName()));
+                LOGGER.trace("Released session for project {}.", repositories.get(repository).getName());
             }
         }
     }

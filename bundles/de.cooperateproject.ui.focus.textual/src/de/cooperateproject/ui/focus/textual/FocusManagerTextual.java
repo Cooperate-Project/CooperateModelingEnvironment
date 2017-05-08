@@ -2,7 +2,6 @@ package de.cooperateproject.ui.focus.textual;
 
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.internal.ui.CDOLobEditorInput;
@@ -20,6 +19,8 @@ import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
@@ -30,7 +31,7 @@ import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 public class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
 
-    private static final Logger LOGGER = Logger.getLogger(FocusManagerTextual.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FocusManagerTextual.class);
 
     public FocusManagerTextual(XtextEditor editorPart) {
         super(editorPart);

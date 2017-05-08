@@ -1,6 +1,5 @@
 package de.cooperateproject.ui.focus.internal.views;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -22,6 +21,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.focus.internal.history.HistoryElement;
 import de.cooperateproject.ui.focus.internal.model.FocusViewManager;
@@ -35,7 +36,7 @@ import de.cooperateproject.ui.focus.internal.utils.FocusViewLabelProvider;
  */
 public class FocusView extends ViewPart {
     public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
-    private static final Logger LOGGER = Logger.getLogger(FocusView.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FocusView.class);
 
     private final FocusViewManager focusViewManager = new FocusViewManager();
 

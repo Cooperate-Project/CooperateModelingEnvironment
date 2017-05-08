@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -33,6 +32,8 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
@@ -73,7 +74,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private final PostProcessorHandler postProcessorHandler = new PostProcessorHandler();
     private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
     private IContextActivation contextActivation;
-    private static final Logger LOGGER = Logger.getLogger(CooperateCDOXtextEditor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateCDOXtextEditor.class);
     private static ILock lock = Job.getJobManager().newLock();
 
     @Inject

@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -24,6 +23,8 @@ import org.eclipse.xtext.ui.editor.quickfix.IssueResolution;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.validation.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -37,7 +38,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAu
 
 public abstract class CooperateQuickfixProvider extends DefaultQuickfixProvider {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateQuickfixProvider.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateQuickfixProvider.class);
 
     @Inject
     private Provider<IssueModificationContext> provider;
@@ -166,7 +167,7 @@ public abstract class CooperateQuickfixProvider extends DefaultQuickfixProvider 
             });
             return Optional.ofNullable(resultContainer[0]);
         } catch (Exception e) {
-            LOGGER.warn(e);
+            LOGGER.warn("GetEObject frum URI failed.", e);
             return Optional.empty();
         }
     }
