@@ -38,9 +38,9 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.uml2.uml.resources,
  de.cooperateproject.modeling.graphical.common;bundle-version="0.1.8",
  de.cooperateproject.modeling.common,
- org.apache.activemq.all,
  org.eclipse.xtext,
- org.eclipse.ui.navigator
+ org.eclipse.ui.navigator,
+ org.apache.activemq.activemq-client;bundle-version="5.14.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
