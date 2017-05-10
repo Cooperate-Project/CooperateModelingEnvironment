@@ -6,8 +6,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Lifeline;
 
 /**
@@ -20,7 +18,7 @@ import org.eclipse.uml2.uml.Lifeline;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#isDeferred <em>Deferred</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getTypeMapping <em>Type Mapping</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getActorType <em>Actor Type</em>}</li>
  * </ul>
  *
@@ -56,30 +54,32 @@ public interface Actor extends UMLReferencingElement<Lifeline>, AliasedElement, 
     void setDeferred(boolean value);
 
     /**
-     * Returns the value of the '<em><b>Type</b></em>' reference.
+     * Returns the value of the '<em><b>Type Mapping</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor <em>Actor</em>}'.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Type</em>' reference isn't clear,
+     * If the meaning of the '<em>Type Mapping</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Type</em>' reference.
-     * @see #setType(Classifier)
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActor_Type()
-     * @model
+     * @return the value of the '<em>Type Mapping</em>' containment reference.
+     * @see #setTypeMapping(ActorClassifierMapping)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActor_TypeMapping()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor
+     * @model opposite="actor" containment="true"
      * @generated
      */
-    Classifier getType();
+    ActorClassifierMapping getTypeMapping();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getType <em>Type</em>}' reference.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getTypeMapping <em>Type Mapping</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type</em>' reference.
-     * @see #getType()
+     * @param value the new value of the '<em>Type Mapping</em>' containment reference.
+     * @see #getTypeMapping()
      * @generated
      */
-    void setType(Classifier value);
+    void setTypeMapping(ActorClassifierMapping value);
 
     /**
      * Returns the value of the '<em><b>Actor Type</b></em>' attribute.

@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
+import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
@@ -23,8 +24,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Lifeline;
 
 /**
@@ -39,7 +38,7 @@ import org.eclipse.uml2.uml.Lifeline;
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#isDeferred <em>Deferred</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getType <em>Type</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getTypeMapping <em>Type Mapping</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorImpl#getActorType <em>Actor Type</em>}</li>
  * </ul>
  *
@@ -185,8 +184,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getType() {
-        return (Classifier)eDynamicGet(SequencePackage.ACTOR__TYPE, SequencePackage.Literals.ACTOR__TYPE, true, true);
+    public ActorClassifierMapping getTypeMapping() {
+        return (ActorClassifierMapping)eDynamicGet(SequencePackage.ACTOR__TYPE_MAPPING, SequencePackage.Literals.ACTOR__TYPE_MAPPING, true, true);
     }
 
     /**
@@ -194,8 +193,9 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetType() {
-        return (Classifier)eDynamicGet(SequencePackage.ACTOR__TYPE, SequencePackage.Literals.ACTOR__TYPE, false, true);
+    public NotificationChain basicSetTypeMapping(ActorClassifierMapping newTypeMapping, NotificationChain msgs) {
+        msgs = eDynamicInverseAdd((InternalEObject)newTypeMapping, SequencePackage.ACTOR__TYPE_MAPPING, msgs);
+        return msgs;
     }
 
     /**
@@ -203,8 +203,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setType(Classifier newType) {
-        eDynamicSet(SequencePackage.ACTOR__TYPE, SequencePackage.Literals.ACTOR__TYPE, newType);
+    public void setTypeMapping(ActorClassifierMapping newTypeMapping) {
+        eDynamicSet(SequencePackage.ACTOR__TYPE_MAPPING, SequencePackage.Literals.ACTOR__TYPE_MAPPING, newTypeMapping);
     }
 
     /**
@@ -236,6 +236,11 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
         switch (featureID) {
             case SequencePackage.ACTOR__COMMENTS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+            case SequencePackage.ACTOR__TYPE_MAPPING:
+                ActorClassifierMapping typeMapping = getTypeMapping();
+                if (typeMapping != null)
+                    msgs = ((InternalEObject)typeMapping).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SequencePackage.ACTOR__TYPE_MAPPING, null, msgs);
+                return basicSetTypeMapping((ActorClassifierMapping)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -250,6 +255,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
         switch (featureID) {
             case SequencePackage.ACTOR__COMMENTS:
                 return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+            case SequencePackage.ACTOR__TYPE_MAPPING:
+                return basicSetTypeMapping(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -270,9 +277,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
                 return getComments();
             case SequencePackage.ACTOR__DEFERRED:
                 return isDeferred();
-            case SequencePackage.ACTOR__TYPE:
-                if (resolve) return getType();
-                return basicGetType();
+            case SequencePackage.ACTOR__TYPE_MAPPING:
+                return getTypeMapping();
             case SequencePackage.ACTOR__ACTOR_TYPE:
                 return getActorType();
         }
@@ -301,8 +307,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
             case SequencePackage.ACTOR__DEFERRED:
                 setDeferred((Boolean)newValue);
                 return;
-            case SequencePackage.ACTOR__TYPE:
-                setType((Classifier)newValue);
+            case SequencePackage.ACTOR__TYPE_MAPPING:
+                setTypeMapping((ActorClassifierMapping)newValue);
                 return;
             case SequencePackage.ACTOR__ACTOR_TYPE:
                 setActorType((ActorType)newValue);
@@ -331,8 +337,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
             case SequencePackage.ACTOR__DEFERRED:
                 setDeferred(DEFERRED_EDEFAULT);
                 return;
-            case SequencePackage.ACTOR__TYPE:
-                setType((Classifier)null);
+            case SequencePackage.ACTOR__TYPE_MAPPING:
+                setTypeMapping((ActorClassifierMapping)null);
                 return;
             case SequencePackage.ACTOR__ACTOR_TYPE:
                 setActorType(ACTOR_TYPE_EDEFAULT);
@@ -357,8 +363,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
                 return !getComments().isEmpty();
             case SequencePackage.ACTOR__DEFERRED:
                 return isDeferred() != DEFERRED_EDEFAULT;
-            case SequencePackage.ACTOR__TYPE:
-                return basicGetType() != null;
+            case SequencePackage.ACTOR__TYPE_MAPPING:
+                return getTypeMapping() != null;
             case SequencePackage.ACTOR__ACTOR_TYPE:
                 return getActorType() != ACTOR_TYPE_EDEFAULT;
         }

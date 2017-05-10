@@ -21,30 +21,41 @@ import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 import de.cooperateproject.modeling.textual.sequence.services.SequenceGrammarAccess;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
+import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
 
 class SequenceFormatter extends AbstractFormatter2 {
 	
 	@Inject extension SequenceGrammarAccess
 
 	def dispatch void format(SequenceDiagram sequencediagram, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+	    sequencediagram.regionFor.feature(SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE).append[newLines = 2]
 		format(sequencediagram.getRootPackage(), document);
+		sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+	    rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2] 
 		for (Actor actors : rootpackage.getActors()) {
-			format(actors, document);
+			format(actors, document)
+			actors.append[newLine]
 		}
+		rootpackage.actors.last?.append[newLines = 2; priority=2]
+		
 		for (BehaviorFragment behaviorFragments : rootpackage.getBehaviorFragments()) {
 			format(behaviorFragments, document);
+			behaviorFragments.append[newLine]
 		}
 	}
 
 	def dispatch void format(BehaviorFragments behaviorfragments, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+	    interior(
+            behaviorfragments.regionFor.keyword(behaviorFragmentsAccess.leftCurlyBracketKeyword_0_0).append[newLine],
+            behaviorfragments.regionFor.keyword(behaviorFragmentsAccess.rightCurlyBracketKeyword_0_2),
+            [indent]
+        )
 		for (BehaviorFragment fragments : behaviorfragments.getFragments()) {
 			format(fragments, document);
+			fragments.append[newLine]
 		}
 	}
 

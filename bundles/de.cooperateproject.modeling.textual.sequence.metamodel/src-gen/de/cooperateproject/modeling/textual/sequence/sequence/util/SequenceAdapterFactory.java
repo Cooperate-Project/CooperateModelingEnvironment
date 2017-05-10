@@ -167,6 +167,10 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createBehaviorFragmentsWithConditionAdapter();
             }
             @Override
+            public Adapter caseActorClassifierMapping(ActorClassifierMapping object) {
+                return createActorClassifierMappingAdapter();
+            }
+            @Override
             public Adapter caseElement(Element object) {
                 return createElementAdapter();
             }
@@ -525,6 +529,20 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createBehaviorFragmentsWithConditionAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping <em>Actor Classifier Mapping</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
+     * @generated
+     */
+    public Adapter createActorClassifierMappingAdapter() {
         return null;
     }
 

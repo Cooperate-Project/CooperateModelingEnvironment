@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.ecore.EObject;
@@ -51,7 +52,8 @@ public abstract class AbstractDerivedStateGenerator implements IDerivedStateComp
     }
 
     private void executeForAllContents(EObject object, Consumer<EObject> function) {
-        StreamSupport.stream(Spliterators.spliteratorUnknownSize(object.eAllContents(), Spliterator.ORDERED), false)
-                .sorted(getContentComparator()).forEach(function::accept);
+        Stream.concat(StreamSupport
+                .stream(Spliterators.spliteratorUnknownSize(object.eAllContents(), Spliterator.ORDERED), false),
+                Stream.of(object)).sorted(getContentComparator()).forEach(function::accept);
     }
 }

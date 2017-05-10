@@ -22,11 +22,16 @@ RootPackage:
 
 Actor:
     'act' (deferred?='deferred')? 
-        ((name = ID (':' type=[uml::Classifier|FQN])?)
-        | (':' type=[uml::Classifier|FQN] 'as' alias = ID)
-        | (name = STRING (':' type=[uml::Classifier|FQN])? 'as' alias = ID))
+        ((name = ID (typeMapping=ActorClassifierMapping)?)
+        | (typeMapping=ActorClassifierMapping 'as' alias = ID)
+        | (name = STRING (typeMapping=ActorClassifierMapping)? 'as' alias = ID))
     ('role['actorType=ActorType']')? //comments+=Comment? 
 ;
+
+ActorClassifierMapping:
+    ':' ((classifier= [uml::Classifier|FQN]))
+;
+
 
 BehaviorFragment: 
     Message | OccurenceSpecification | CombinedFragment

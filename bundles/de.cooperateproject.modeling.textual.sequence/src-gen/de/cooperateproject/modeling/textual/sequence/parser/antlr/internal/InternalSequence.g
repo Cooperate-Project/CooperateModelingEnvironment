@@ -267,59 +267,55 @@ ruleActor returns [EObject current=null]
 					)
 				)
 				(
-					otherlv_3=':'
-					{
-						newLeafNode(otherlv_3, grammarAccess.getActorAccess().getColonKeyword_2_0_1_0());
-					}
 					(
-						(
-							{
-								if ($current==null) {
-									$current = createModelElement(grammarAccess.getActorRule());
-								}
+						{
+							newCompositeNode(grammarAccess.getActorAccess().getTypeMappingActorClassifierMappingParserRuleCall_2_0_1_0());
+						}
+						lv_typeMapping_3_0=ruleActorClassifierMapping
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getActorRule());
 							}
-							{
-								newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_0_1_1_0());
-							}
-							ruleFQN
-							{
-								afterParserOrEnumRuleCall();
-							}
-						)
+							set(
+								$current,
+								"typeMapping",
+								lv_typeMapping_3_0,
+								"de.cooperateproject.modeling.textual.sequence.Sequence.ActorClassifierMapping");
+							afterParserOrEnumRuleCall();
+						}
 					)
 				)?
 			)
 			    |
 			(
-				otherlv_5=':'
-				{
-					newLeafNode(otherlv_5, grammarAccess.getActorAccess().getColonKeyword_2_1_0());
-				}
 				(
 					(
 						{
+							newCompositeNode(grammarAccess.getActorAccess().getTypeMappingActorClassifierMappingParserRuleCall_2_1_0_0());
+						}
+						lv_typeMapping_4_0=ruleActorClassifierMapping
+						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getActorRule());
+								$current = createModelElementForParent(grammarAccess.getActorRule());
 							}
-						}
-						{
-							newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_1_1_0());
-						}
-						ruleFQN
-						{
+							set(
+								$current,
+								"typeMapping",
+								lv_typeMapping_4_0,
+								"de.cooperateproject.modeling.textual.sequence.Sequence.ActorClassifierMapping");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
-				otherlv_7='as'
+				otherlv_5='as'
 				{
-					newLeafNode(otherlv_7, grammarAccess.getActorAccess().getAsKeyword_2_1_2());
+					newLeafNode(otherlv_5, grammarAccess.getActorAccess().getAsKeyword_2_1_1());
 				}
 				(
 					(
-						lv_alias_8_0=RULE_ID
+						lv_alias_6_0=RULE_ID
 						{
-							newLeafNode(lv_alias_8_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_2_1_3_0());
+							newLeafNode(lv_alias_6_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_2_1_2_0());
 						}
 						{
 							if ($current==null) {
@@ -328,7 +324,7 @@ ruleActor returns [EObject current=null]
 							setWithLastConsumed(
 								$current,
 								"alias",
-								lv_alias_8_0,
+								lv_alias_6_0,
 								"org.eclipse.xtext.common.Terminals.ID");
 						}
 					)
@@ -338,9 +334,9 @@ ruleActor returns [EObject current=null]
 			(
 				(
 					(
-						lv_name_9_0=RULE_STRING
+						lv_name_7_0=RULE_STRING
 						{
-							newLeafNode(lv_name_9_0, grammarAccess.getActorAccess().getNameSTRINGTerminalRuleCall_2_2_0_0());
+							newLeafNode(lv_name_7_0, grammarAccess.getActorAccess().getNameSTRINGTerminalRuleCall_2_2_0_0());
 						}
 						{
 							if ($current==null) {
@@ -349,42 +345,39 @@ ruleActor returns [EObject current=null]
 							setWithLastConsumed(
 								$current,
 								"name",
-								lv_name_9_0,
+								lv_name_7_0,
 								"org.eclipse.xtext.common.Terminals.STRING");
 						}
 					)
 				)
 				(
-					otherlv_10=':'
-					{
-						newLeafNode(otherlv_10, grammarAccess.getActorAccess().getColonKeyword_2_2_1_0());
-					}
 					(
-						(
-							{
-								if ($current==null) {
-									$current = createModelElement(grammarAccess.getActorRule());
-								}
+						{
+							newCompositeNode(grammarAccess.getActorAccess().getTypeMappingActorClassifierMappingParserRuleCall_2_2_1_0());
+						}
+						lv_typeMapping_8_0=ruleActorClassifierMapping
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getActorRule());
 							}
-							{
-								newCompositeNode(grammarAccess.getActorAccess().getTypeClassifierCrossReference_2_2_1_1_0());
-							}
-							ruleFQN
-							{
-								afterParserOrEnumRuleCall();
-							}
-						)
+							set(
+								$current,
+								"typeMapping",
+								lv_typeMapping_8_0,
+								"de.cooperateproject.modeling.textual.sequence.Sequence.ActorClassifierMapping");
+							afterParserOrEnumRuleCall();
+						}
 					)
 				)?
-				otherlv_12='as'
+				otherlv_9='as'
 				{
-					newLeafNode(otherlv_12, grammarAccess.getActorAccess().getAsKeyword_2_2_2());
+					newLeafNode(otherlv_9, grammarAccess.getActorAccess().getAsKeyword_2_2_2());
 				}
 				(
 					(
-						lv_alias_13_0=RULE_ID
+						lv_alias_10_0=RULE_ID
 						{
-							newLeafNode(lv_alias_13_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_2_2_3_0());
+							newLeafNode(lv_alias_10_0, grammarAccess.getActorAccess().getAliasIDTerminalRuleCall_2_2_3_0());
 						}
 						{
 							if ($current==null) {
@@ -393,7 +386,7 @@ ruleActor returns [EObject current=null]
 							setWithLastConsumed(
 								$current,
 								"alias",
-								lv_alias_13_0,
+								lv_alias_10_0,
 								"org.eclipse.xtext.common.Terminals.ID");
 						}
 					)
@@ -401,16 +394,16 @@ ruleActor returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_14='role['
+			otherlv_11='role['
 			{
-				newLeafNode(otherlv_14, grammarAccess.getActorAccess().getRoleKeyword_3_0());
+				newLeafNode(otherlv_11, grammarAccess.getActorAccess().getRoleKeyword_3_0());
 			}
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getActorAccess().getActorTypeActorTypeEnumRuleCall_3_1_0());
 					}
-					lv_actorType_15_0=ruleActorType
+					lv_actorType_12_0=ruleActorType
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getActorRule());
@@ -418,17 +411,56 @@ ruleActor returns [EObject current=null]
 						set(
 							$current,
 							"actorType",
-							lv_actorType_15_0,
+							lv_actorType_12_0,
 							"de.cooperateproject.modeling.textual.sequence.Sequence.ActorType");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_16=']'
+			otherlv_13=']'
 			{
-				newLeafNode(otherlv_16, grammarAccess.getActorAccess().getRightSquareBracketKeyword_3_2());
+				newLeafNode(otherlv_13, grammarAccess.getActorAccess().getRightSquareBracketKeyword_3_2());
 			}
 		)?
+	)
+;
+
+// Entry rule entryRuleActorClassifierMapping
+entryRuleActorClassifierMapping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getActorClassifierMappingRule()); }
+	iv_ruleActorClassifierMapping=ruleActorClassifierMapping
+	{ $current=$iv_ruleActorClassifierMapping.current; }
+	EOF;
+
+// Rule ActorClassifierMapping
+ruleActorClassifierMapping returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0=':'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getActorClassifierMappingAccess().getColonKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getActorClassifierMappingRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getActorClassifierMappingAccess().getClassifierClassifierCrossReference_1_0());
+				}
+				ruleFQN
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

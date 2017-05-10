@@ -81,6 +81,7 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.LOOP: return (EObject)createLoop();
             case SequencePackage.BEHAVIOR_FRAGMENTS: return (EObject)createBehaviorFragments();
             case SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION: return (EObject)createBehaviorFragmentsWithCondition();
+            case SequencePackage.ACTOR_CLASSIFIER_MAPPING: return (EObject)createActorClassifierMapping();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -352,6 +353,16 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
     public BehaviorFragmentsWithCondition createBehaviorFragmentsWithCondition() {
         BehaviorFragmentsWithConditionImpl behaviorFragmentsWithCondition = new BehaviorFragmentsWithConditionImpl();
         return behaviorFragmentsWithCondition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ActorClassifierMapping createActorClassifierMapping() {
+        ActorClassifierMappingImpl actorClassifierMapping = new ActorClassifierMappingImpl();
+        return actorClassifierMapping;
     }
 
     /**

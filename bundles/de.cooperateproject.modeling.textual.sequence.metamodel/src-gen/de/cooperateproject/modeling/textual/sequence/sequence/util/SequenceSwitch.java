@@ -283,6 +283,14 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SequencePackage.ACTOR_CLASSIFIER_MAPPING: {
+                ActorClassifierMapping actorClassifierMapping = (ActorClassifierMapping)theEObject;
+                T result = caseActorClassifierMapping(actorClassifierMapping);
+                if (result == null) result = caseUMLReferencingElement(actorClassifierMapping);
+                if (result == null) result = caseElement(actorClassifierMapping);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -629,6 +637,21 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseBehaviorFragmentsWithCondition(BehaviorFragmentsWithCondition object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Actor Classifier Mapping</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Actor Classifier Mapping</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseActorClassifierMapping(ActorClassifierMapping object) {
         return null;
     }
 

@@ -22,7 +22,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deferred" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeMapping" eType="#//ActorClassifierMapping"
+        containment="true" eOpposite="#//ActorClassifierMapping/actor"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actorType" eType="#//ActorType"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
@@ -133,5 +134,14 @@
     <eLiterals name="TIME" value="1" literal="t"/>
     <eLiterals name="MAXIMUM" value="2" literal="max"/>
     <eLiterals name="DIFFERENCE" value="3" literal="diff"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActorClassifierMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"
+        eOpposite="#//Actor/typeMapping"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifierName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    </eGenericSuperTypes>
   </eClassifiers>
 </ecore:EPackage>

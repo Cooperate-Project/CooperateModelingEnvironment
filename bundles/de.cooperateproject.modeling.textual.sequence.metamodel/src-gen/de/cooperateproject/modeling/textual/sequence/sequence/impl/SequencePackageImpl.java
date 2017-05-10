@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
+import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorType;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
 import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment;
@@ -44,6 +45,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -219,6 +221,13 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass actorClassifierMappingEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum messageTypeEEnum = null;
 
     /**
@@ -376,7 +385,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getActor_Type() {
+    public EReference getActor_TypeMapping() {
         return (EReference)actorEClass.getEStructuralFeatures().get(1);
     }
 
@@ -826,6 +835,42 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getActorClassifierMapping() {
+        return actorClassifierMappingEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getActorClassifierMapping_Classifier() {
+        return (EReference)actorClassifierMappingEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getActorClassifierMapping_Actor() {
+        return (EReference)actorClassifierMappingEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getActorClassifierMapping_ClassifierName() {
+        return (EAttribute)actorClassifierMappingEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getMessageType() {
         return messageTypeEEnum;
     }
@@ -886,7 +931,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         actorEClass = createEClass(ACTOR);
         createEAttribute(actorEClass, ACTOR__DEFERRED);
-        createEReference(actorEClass, ACTOR__TYPE);
+        createEReference(actorEClass, ACTOR__TYPE_MAPPING);
         createEAttribute(actorEClass, ACTOR__ACTOR_TYPE);
 
         behaviorFragmentEClass = createEClass(BEHAVIOR_FRAGMENT);
@@ -957,6 +1002,11 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEAttribute(behaviorFragmentsWithConditionEClass, BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION);
         createEReference(behaviorFragmentsWithConditionEClass, BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS);
 
+        actorClassifierMappingEClass = createEClass(ACTOR_CLASSIFIER_MAPPING);
+        createEReference(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__CLASSIFIER);
+        createEReference(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__ACTOR);
+        createEAttribute(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME);
+
         // Create enums
         messageTypeEEnum = createEEnum(MESSAGE_TYPE);
         actorTypeEEnum = createEEnum(ACTOR_TYPE);
@@ -990,6 +1040,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
         UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
         EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+        TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
         // Create type parameters
 
@@ -1048,6 +1099,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         parallelEClass.getESuperTypes().add(this.getCombinedFragment());
         criticalEClass.getESuperTypes().add(this.getCombinedFragment());
         loopEClass.getESuperTypes().add(this.getCombinedFragment());
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getProperty());
+        g1.getETypeArguments().add(g2);
+        actorClassifierMappingEClass.getEGenericSuperTypes().add(g1);
 
         // Initialize classes, features, and operations; add parameters
         initEClass(sequenceDiagramEClass, SequenceDiagram.class, "SequenceDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1060,7 +1115,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getActor_Deferred(), theEcorePackage.getEBoolean(), "deferred", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getActor_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getActor_TypeMapping(), this.getActorClassifierMapping(), this.getActorClassifierMapping_Actor(), "typeMapping", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActor_ActorType(), this.getActorType(), "actorType", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(behaviorFragmentEClass, BehaviorFragment.class, "BehaviorFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1130,6 +1185,11 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEClass(behaviorFragmentsWithConditionEClass, BehaviorFragmentsWithCondition.class, "BehaviorFragmentsWithCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getBehaviorFragmentsWithCondition_Condition(), theEcorePackage.getEString(), "condition", null, 0, 1, BehaviorFragmentsWithCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBehaviorFragmentsWithCondition_Fragments(), this.getBehaviorFragment(), null, "fragments", null, 0, -1, BehaviorFragmentsWithCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(actorClassifierMappingEClass, ActorClassifierMapping.class, "ActorClassifierMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getActorClassifierMapping_Classifier(), theUMLPackage.getClassifier(), null, "classifier", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getActorClassifierMapping_Actor(), this.getActor(), this.getActor_TypeMapping(), "actor", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActorClassifierMapping_ClassifierName(), theTypesPackage.getString(), "classifierName", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(messageTypeEEnum, MessageType.class, "MessageType");

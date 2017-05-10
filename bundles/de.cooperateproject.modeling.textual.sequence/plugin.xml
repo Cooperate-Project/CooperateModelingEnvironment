@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+    <extension
+             point="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories">
+          <factory
+                class="de.cooperateproject.modeling.textual.sequence.issues.SequenceUMLReferencingElementMissingElementFactory">
+          </factory>
+    </extension>
 </plugin>

@@ -230,6 +230,15 @@ public interface SequenceFactory extends EFactory {
     BehaviorFragmentsWithCondition createBehaviorFragmentsWithCondition();
 
     /**
+     * Returns a new object of class '<em>Actor Classifier Mapping</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Actor Classifier Mapping</em>'.
+     * @generated
+     */
+    ActorClassifierMapping createActorClassifierMapping();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -4,10 +4,14 @@
 package de.cooperateproject.modeling.textual.sequence.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class SequenceUiModule extends AbstractSequenceUiModule {
+     override bindXtextEditor() {
+        return CooperateCDOXtextEditor;
+    }
 }

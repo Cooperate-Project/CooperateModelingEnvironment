@@ -120,27 +120,19 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_2_0_0_0 = (RuleCall)cNameAssignment_2_0_0.eContents().get(0);
-		private final Group cGroup_2_0_1 = (Group)cGroup_2_0.eContents().get(1);
-		private final Keyword cColonKeyword_2_0_1_0 = (Keyword)cGroup_2_0_1.eContents().get(0);
-		private final Assignment cTypeAssignment_2_0_1_1 = (Assignment)cGroup_2_0_1.eContents().get(1);
-		private final CrossReference cTypeClassifierCrossReference_2_0_1_1_0 = (CrossReference)cTypeAssignment_2_0_1_1.eContents().get(0);
-		private final RuleCall cTypeClassifierFQNParserRuleCall_2_0_1_1_0_1 = (RuleCall)cTypeClassifierCrossReference_2_0_1_1_0.eContents().get(1);
+		private final Assignment cTypeMappingAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cTypeMappingActorClassifierMappingParserRuleCall_2_0_1_0 = (RuleCall)cTypeMappingAssignment_2_0_1.eContents().get(0);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cColonKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cTypeAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final CrossReference cTypeClassifierCrossReference_2_1_1_0 = (CrossReference)cTypeAssignment_2_1_1.eContents().get(0);
-		private final RuleCall cTypeClassifierFQNParserRuleCall_2_1_1_0_1 = (RuleCall)cTypeClassifierCrossReference_2_1_1_0.eContents().get(1);
-		private final Keyword cAsKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
-		private final Assignment cAliasAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
-		private final RuleCall cAliasIDTerminalRuleCall_2_1_3_0 = (RuleCall)cAliasAssignment_2_1_3.eContents().get(0);
+		private final Assignment cTypeMappingAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final RuleCall cTypeMappingActorClassifierMappingParserRuleCall_2_1_0_0 = (RuleCall)cTypeMappingAssignment_2_1_0.eContents().get(0);
+		private final Keyword cAsKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
+		private final Assignment cAliasAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
+		private final RuleCall cAliasIDTerminalRuleCall_2_1_2_0 = (RuleCall)cAliasAssignment_2_1_2.eContents().get(0);
 		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
 		private final Assignment cNameAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
 		private final RuleCall cNameSTRINGTerminalRuleCall_2_2_0_0 = (RuleCall)cNameAssignment_2_2_0.eContents().get(0);
-		private final Group cGroup_2_2_1 = (Group)cGroup_2_2.eContents().get(1);
-		private final Keyword cColonKeyword_2_2_1_0 = (Keyword)cGroup_2_2_1.eContents().get(0);
-		private final Assignment cTypeAssignment_2_2_1_1 = (Assignment)cGroup_2_2_1.eContents().get(1);
-		private final CrossReference cTypeClassifierCrossReference_2_2_1_1_0 = (CrossReference)cTypeAssignment_2_2_1_1.eContents().get(0);
-		private final RuleCall cTypeClassifierFQNParserRuleCall_2_2_1_1_0_1 = (RuleCall)cTypeClassifierCrossReference_2_2_1_1_0.eContents().get(1);
+		private final Assignment cTypeMappingAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cTypeMappingActorClassifierMappingParserRuleCall_2_2_1_0 = (RuleCall)cTypeMappingAssignment_2_2_1.eContents().get(0);
 		private final Keyword cAsKeyword_2_2_2 = (Keyword)cGroup_2_2.eContents().get(2);
 		private final Assignment cAliasAssignment_2_2_3 = (Assignment)cGroup_2_2.eContents().get(3);
 		private final RuleCall cAliasIDTerminalRuleCall_2_2_3_0 = (RuleCall)cAliasAssignment_2_2_3.eContents().get(0);
@@ -151,13 +143,13 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
 		//Actor:
-		//	'act' deferred?='deferred'? (name=ID (':' type=[uml::Classifier|FQN])? | ':' type=[uml::Classifier|FQN] 'as' alias=ID
-		//	| name=STRING (':' type=[uml::Classifier|FQN])? 'as' alias=ID) ('role[' actorType=ActorType ']')? //comments+=Comment? 
+		//	'act' deferred?='deferred'? (name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as'
+		//	alias=ID | name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')? //comments+=Comment? 
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'act' deferred?='deferred'? (name=ID (':' type=[uml::Classifier|FQN])? | ':' type=[uml::Classifier|FQN] 'as' alias=ID |
-		//name=STRING (':' type=[uml::Classifier|FQN])? 'as' alias=ID) ('role[' actorType=ActorType ']')?
+		//'act' deferred?='deferred'? (name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as'
+		//alias=ID | name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//'act'
@@ -169,11 +161,11 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//'deferred'
 		public Keyword getDeferredDeferredKeyword_1_0() { return cDeferredDeferredKeyword_1_0; }
 		
-		//name=ID (':' type=[uml::Classifier|FQN])? | ':' type=[uml::Classifier|FQN] 'as' alias=ID | name=STRING (':'
-		//type=[uml::Classifier|FQN])? 'as' alias=ID
+		//name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as' alias=ID | name=STRING
+		//typeMapping=ActorClassifierMapping? 'as' alias=ID
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//name=ID (':' type=[uml::Classifier|FQN])?
+		//name=ID typeMapping=ActorClassifierMapping?
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//name=ID
@@ -182,46 +174,31 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_2_0_0_0() { return cNameIDTerminalRuleCall_2_0_0_0; }
 		
-		//(':' type=[uml::Classifier|FQN])?
-		public Group getGroup_2_0_1() { return cGroup_2_0_1; }
+		//typeMapping=ActorClassifierMapping?
+		public Assignment getTypeMappingAssignment_2_0_1() { return cTypeMappingAssignment_2_0_1; }
 		
-		//':'
-		public Keyword getColonKeyword_2_0_1_0() { return cColonKeyword_2_0_1_0; }
+		//ActorClassifierMapping
+		public RuleCall getTypeMappingActorClassifierMappingParserRuleCall_2_0_1_0() { return cTypeMappingActorClassifierMappingParserRuleCall_2_0_1_0; }
 		
-		//type=[uml::Classifier|FQN]
-		public Assignment getTypeAssignment_2_0_1_1() { return cTypeAssignment_2_0_1_1; }
-		
-		//[uml::Classifier|FQN]
-		public CrossReference getTypeClassifierCrossReference_2_0_1_1_0() { return cTypeClassifierCrossReference_2_0_1_1_0; }
-		
-		//FQN
-		public RuleCall getTypeClassifierFQNParserRuleCall_2_0_1_1_0_1() { return cTypeClassifierFQNParserRuleCall_2_0_1_1_0_1; }
-		
-		//':' type=[uml::Classifier|FQN] 'as' alias=ID
+		//typeMapping=ActorClassifierMapping 'as' alias=ID
 		public Group getGroup_2_1() { return cGroup_2_1; }
 		
-		//':'
-		public Keyword getColonKeyword_2_1_0() { return cColonKeyword_2_1_0; }
+		//typeMapping=ActorClassifierMapping
+		public Assignment getTypeMappingAssignment_2_1_0() { return cTypeMappingAssignment_2_1_0; }
 		
-		//type=[uml::Classifier|FQN]
-		public Assignment getTypeAssignment_2_1_1() { return cTypeAssignment_2_1_1; }
-		
-		//[uml::Classifier|FQN]
-		public CrossReference getTypeClassifierCrossReference_2_1_1_0() { return cTypeClassifierCrossReference_2_1_1_0; }
-		
-		//FQN
-		public RuleCall getTypeClassifierFQNParserRuleCall_2_1_1_0_1() { return cTypeClassifierFQNParserRuleCall_2_1_1_0_1; }
+		//ActorClassifierMapping
+		public RuleCall getTypeMappingActorClassifierMappingParserRuleCall_2_1_0_0() { return cTypeMappingActorClassifierMappingParserRuleCall_2_1_0_0; }
 		
 		//'as'
-		public Keyword getAsKeyword_2_1_2() { return cAsKeyword_2_1_2; }
+		public Keyword getAsKeyword_2_1_1() { return cAsKeyword_2_1_1; }
 		
 		//alias=ID
-		public Assignment getAliasAssignment_2_1_3() { return cAliasAssignment_2_1_3; }
+		public Assignment getAliasAssignment_2_1_2() { return cAliasAssignment_2_1_2; }
 		
 		//ID
-		public RuleCall getAliasIDTerminalRuleCall_2_1_3_0() { return cAliasIDTerminalRuleCall_2_1_3_0; }
+		public RuleCall getAliasIDTerminalRuleCall_2_1_2_0() { return cAliasIDTerminalRuleCall_2_1_2_0; }
 		
-		//name=STRING (':' type=[uml::Classifier|FQN])? 'as' alias=ID
+		//name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID
 		public Group getGroup_2_2() { return cGroup_2_2; }
 		
 		//name=STRING
@@ -230,20 +207,11 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getNameSTRINGTerminalRuleCall_2_2_0_0() { return cNameSTRINGTerminalRuleCall_2_2_0_0; }
 		
-		//(':' type=[uml::Classifier|FQN])?
-		public Group getGroup_2_2_1() { return cGroup_2_2_1; }
+		//typeMapping=ActorClassifierMapping?
+		public Assignment getTypeMappingAssignment_2_2_1() { return cTypeMappingAssignment_2_2_1; }
 		
-		//':'
-		public Keyword getColonKeyword_2_2_1_0() { return cColonKeyword_2_2_1_0; }
-		
-		//type=[uml::Classifier|FQN]
-		public Assignment getTypeAssignment_2_2_1_1() { return cTypeAssignment_2_2_1_1; }
-		
-		//[uml::Classifier|FQN]
-		public CrossReference getTypeClassifierCrossReference_2_2_1_1_0() { return cTypeClassifierCrossReference_2_2_1_1_0; }
-		
-		//FQN
-		public RuleCall getTypeClassifierFQNParserRuleCall_2_2_1_1_0_1() { return cTypeClassifierFQNParserRuleCall_2_2_1_1_0_1; }
+		//ActorClassifierMapping
+		public RuleCall getTypeMappingActorClassifierMappingParserRuleCall_2_2_1_0() { return cTypeMappingActorClassifierMappingParserRuleCall_2_2_1_0; }
 		
 		//'as'
 		public Keyword getAsKeyword_2_2_2() { return cAsKeyword_2_2_2; }
@@ -268,6 +236,33 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_3_2() { return cRightSquareBracketKeyword_3_2; }
+	}
+	public class ActorClassifierMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.ActorClassifierMapping");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cClassifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cClassifierClassifierCrossReference_1_0 = (CrossReference)cClassifierAssignment_1.eContents().get(0);
+		private final RuleCall cClassifierClassifierFQNParserRuleCall_1_0_1 = (RuleCall)cClassifierClassifierCrossReference_1_0.eContents().get(1);
+		
+		//ActorClassifierMapping:
+		//	':' classifier=[uml::Classifier|FQN];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//':' classifier=[uml::Classifier|FQN]
+		public Group getGroup() { return cGroup; }
+		
+		//':'
+		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
+		
+		//classifier=[uml::Classifier|FQN]
+		public Assignment getClassifierAssignment_1() { return cClassifierAssignment_1; }
+		
+		//[uml::Classifier|FQN]
+		public CrossReference getClassifierClassifierCrossReference_1_0() { return cClassifierClassifierCrossReference_1_0; }
+		
+		//FQN
+		public RuleCall getClassifierClassifierFQNParserRuleCall_1_0_1() { return cClassifierClassifierFQNParserRuleCall_1_0_1; }
 	}
 	public class BehaviorFragmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
@@ -1333,6 +1328,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	private final SequenceDiagramElements pSequenceDiagram;
 	private final RootPackageElements pRootPackage;
 	private final ActorElements pActor;
+	private final ActorClassifierMappingElements pActorClassifierMapping;
 	private final BehaviorFragmentElements pBehaviorFragment;
 	private final BehaviorFragmentsElements pBehaviorFragments;
 	private final MessageElements pMessage;
@@ -1373,6 +1369,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSequenceDiagram = new SequenceDiagramElements();
 		this.pRootPackage = new RootPackageElements();
 		this.pActor = new ActorElements();
+		this.pActorClassifierMapping = new ActorClassifierMappingElements();
 		this.pBehaviorFragment = new BehaviorFragmentElements();
 		this.pBehaviorFragments = new BehaviorFragmentsElements();
 		this.pMessage = new MessageElements();
@@ -1455,8 +1452,8 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Actor:
-	//	'act' deferred?='deferred'? (name=ID (':' type=[uml::Classifier|FQN])? | ':' type=[uml::Classifier|FQN] 'as' alias=ID
-	//	| name=STRING (':' type=[uml::Classifier|FQN])? 'as' alias=ID) ('role[' actorType=ActorType ']')? //comments+=Comment? 
+	//	'act' deferred?='deferred'? (name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as'
+	//	alias=ID | name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')? //comments+=Comment? 
 	//;
 	public ActorElements getActorAccess() {
 		return pActor;
@@ -1464,6 +1461,16 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getActorRule() {
 		return getActorAccess().getRule();
+	}
+	
+	//ActorClassifierMapping:
+	//	':' classifier=[uml::Classifier|FQN];
+	public ActorClassifierMappingElements getActorClassifierMappingAccess() {
+		return pActorClassifierMapping;
+	}
+	
+	public ParserRule getActorClassifierMappingRule() {
+		return getActorClassifierMappingAccess().getRule();
 	}
 	
 	//BehaviorFragment:

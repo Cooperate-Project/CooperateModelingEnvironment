@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
+import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
 import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments;
 import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition;
@@ -54,6 +55,9 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			switch (semanticObject.eClass().getClassifierID()) {
 			case SequencePackage.ACTOR:
 				sequence_Actor(context, (Actor) semanticObject); 
+				return; 
+			case SequencePackage.ACTOR_CLASSIFIER_MAPPING:
+				sequence_ActorClassifierMapping(context, (ActorClassifierMapping) semanticObject); 
 				return; 
 			case SequencePackage.ALTERNATIVE:
 				sequence_Alternative(context, (Alternative) semanticObject); 
@@ -170,12 +174,34 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     ActorClassifierMapping returns ActorClassifierMapping
+	 *
+	 * Constraint:
+	 *     classifier=[Classifier|FQN]
+	 */
+	protected void sequence_ActorClassifierMapping(ISerializationContext context, ActorClassifierMapping semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.ACTOR_CLASSIFIER_MAPPING__CLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.ACTOR_CLASSIFIER_MAPPING__CLASSIFIER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getActorClassifierMappingAccess().getClassifierClassifierFQNParserRuleCall_1_0_1(), semanticObject.eGet(SequencePackage.Literals.ACTOR_CLASSIFIER_MAPPING__CLASSIFIER, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Actor returns Actor
 	 *
 	 * Constraint:
 	 *     (
 	 *         deferred?='deferred'? 
-	 *         ((name=ID type=[Classifier|FQN]?) | (type=[Classifier|FQN] alias=ID) | (name=STRING type=[Classifier|FQN]? alias=ID)) 
+	 *         (
+	 *             (name=ID typeMapping=ActorClassifierMapping?) | 
+	 *             (typeMapping=ActorClassifierMapping alias=ID) | 
+	 *             (name=STRING typeMapping=ActorClassifierMapping? alias=ID)
+	 *         ) 
 	 *         actorType=ActorType?
 	 *     )
 	 */

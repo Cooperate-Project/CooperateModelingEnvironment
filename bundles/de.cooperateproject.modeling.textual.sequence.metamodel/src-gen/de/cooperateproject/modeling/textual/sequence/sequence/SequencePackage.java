@@ -252,13 +252,13 @@ public interface SequencePackage extends EPackage {
     int ACTOR__DEFERRED = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
-     * The feature id for the '<em><b>Type</b></em>' reference.
+     * The feature id for the '<em><b>Type Mapping</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTOR__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int ACTOR__TYPE_MAPPING = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The feature id for the '<em><b>Actor Type</b></em>' attribute.
@@ -1532,6 +1532,79 @@ public interface SequencePackage extends EPackage {
     int BEHAVIOR_FRAGMENTS_WITH_CONDITION_OPERATION_COUNT = 0;
 
     /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl <em>Actor Classifier Mapping</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorClassifierMapping()
+     * @generated
+     */
+    int ACTOR_CLASSIFIER_MAPPING = 23;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Classifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING__CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Actor</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING__ACTOR = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Classifier Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Actor Classifier Mapping</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Actor Classifier Mapping</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1539,7 +1612,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getMessageType()
      * @generated
      */
-    int MESSAGE_TYPE = 23;
+    int MESSAGE_TYPE = 24;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorType <em>Actor Type</em>}' enum.
@@ -1549,7 +1622,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorType()
      * @generated
      */
-    int ACTOR_TYPE = 24;
+    int ACTOR_TYPE = 25;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType <em>Time Constraint Type</em>}' enum.
@@ -1559,7 +1632,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraintType()
      * @generated
      */
-    int TIME_CONSTRAINT_TYPE = 25;
+    int TIME_CONSTRAINT_TYPE = 26;
 
 
     /**
@@ -1648,15 +1721,15 @@ public interface SequencePackage extends EPackage {
     EAttribute getActor_Deferred();
 
     /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getType <em>Type</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getTypeMapping <em>Type Mapping</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Type</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Actor#getType()
+     * @return the meta object for the containment reference '<em>Type Mapping</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Actor#getTypeMapping()
      * @see #getActor()
      * @generated
      */
-    EReference getActor_Type();
+    EReference getActor_TypeMapping();
 
     /**
      * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.Actor#getActorType <em>Actor Type</em>}'.
@@ -2178,6 +2251,49 @@ public interface SequencePackage extends EPackage {
     EReference getBehaviorFragmentsWithCondition_Fragments();
 
     /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping <em>Actor Classifier Mapping</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Actor Classifier Mapping</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
+     * @generated
+     */
+    EClass getActorClassifierMapping();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifier <em>Classifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Classifier</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifier()
+     * @see #getActorClassifierMapping()
+     * @generated
+     */
+    EReference getActorClassifierMapping_Classifier();
+
+    /**
+     * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor <em>Actor</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Actor</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor()
+     * @see #getActorClassifierMapping()
+     * @generated
+     */
+    EReference getActorClassifierMapping_Actor();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifierName <em>Classifier Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Classifier Name</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifierName()
+     * @see #getActorClassifierMapping()
+     * @generated
+     */
+    EAttribute getActorClassifierMapping_ClassifierName();
+
+    /**
      * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2300,12 +2416,12 @@ public interface SequencePackage extends EPackage {
         EAttribute ACTOR__DEFERRED = eINSTANCE.getActor_Deferred();
 
         /**
-         * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Type Mapping</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference ACTOR__TYPE = eINSTANCE.getActor_Type();
+        EReference ACTOR__TYPE_MAPPING = eINSTANCE.getActor_TypeMapping();
 
         /**
          * The meta object literal for the '<em><b>Actor Type</b></em>' attribute feature.
@@ -2738,6 +2854,40 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EReference BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS = eINSTANCE.getBehaviorFragmentsWithCondition_Fragments();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl <em>Actor Classifier Mapping</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorClassifierMapping()
+         * @generated
+         */
+        EClass ACTOR_CLASSIFIER_MAPPING = eINSTANCE.getActorClassifierMapping();
+
+        /**
+         * The meta object literal for the '<em><b>Classifier</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ACTOR_CLASSIFIER_MAPPING__CLASSIFIER = eINSTANCE.getActorClassifierMapping_Classifier();
+
+        /**
+         * The meta object literal for the '<em><b>Actor</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ACTOR_CLASSIFIER_MAPPING__ACTOR = eINSTANCE.getActorClassifierMapping_Actor();
+
+        /**
+         * The meta object literal for the '<em><b>Classifier Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME = eINSTANCE.getActorClassifierMapping_ClassifierName();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}' enum.

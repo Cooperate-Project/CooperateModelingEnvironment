@@ -19,6 +19,7 @@ import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import de.cooperateproject.modeling.textual.sequence.naming.SequenceDiagramQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -43,6 +44,10 @@ class SequenceRuntimeModule extends AbstractSequenceRuntimeModule implements Com
     
     override bindIValueConverterService() {
         CooperateValueConverterBase
+    }
+    
+    override bindIQualifiedNameProvider() {
+        SequenceDiagramQualifiedNameProvider
     }
     
     def Class<? extends IGlobalScopeTypeQueryProvider> bindIGlobalScopeTypeQueryProvider() {
