@@ -30,21 +30,21 @@ class SequenceFormatter extends AbstractFormatter2 {
 	def dispatch void format(SequenceDiagram sequencediagram, extension IFormattableDocument document) {
 	    sequencediagram.regionFor.feature(SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE).append[newLines = 2]
 		format(sequencediagram.getRootPackage(), document);
-		sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_4).prepend[newLines = 2]
+		for (Actor actors : sequencediagram.getActors()) {
+            format(actors, document)
+            actors.append[newLine]
+        }
+        sequencediagram.actors.last?.append[newLines = 2; priority=2]
+        
+        for (BehaviorFragment behaviorFragments : sequencediagram.getBehaviorFragments()) {
+            format(behaviorFragments, document);
+            behaviorFragments.append[newLine]
+        }
+		sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_6).prepend[newLines = 2]
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
-	    rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2] 
-		for (Actor actors : rootpackage.getActors()) {
-			format(actors, document)
-			actors.append[newLine]
-		}
-		rootpackage.actors.last?.append[newLines = 2; priority=2]
-		
-		for (BehaviorFragment behaviorFragments : rootpackage.getBehaviorFragments()) {
-			format(behaviorFragments, document);
-			behaviorFragments.append[newLine]
-		}
+	    rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
 	}
 
 	def dispatch void format(BehaviorFragments behaviorfragments, extension IFormattableDocument document) {

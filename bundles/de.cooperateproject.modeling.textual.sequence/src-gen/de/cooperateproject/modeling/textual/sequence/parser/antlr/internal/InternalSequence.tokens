@@ -9,14 +9,14 @@
 '['=39
 ']'=18
 '_'=29
-'act'=14
+'act'=15
 'alt'=34
 'as'=16
 'async'=42
 'create'=32
 'critical'=37
 'd'=45
-'deferred'=15
+'def'=14
 'dest'=33
 'diff'=48
 'found'=30
@@ -28,7 +28,7 @@
 'num['=22
 'opt'=35
 'par'=36
-'resp'=28
+'reply'=28
 'role['=17
 'rootElement'=13
 'sync'=41

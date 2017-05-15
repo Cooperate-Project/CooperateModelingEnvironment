@@ -108,4 +108,26 @@ public class CooperateValueConverterBase extends DefaultTerminalConverters {
         };
     }
 
+    @ValueConverter(rule = "UnescapedString")
+    public IValueConverter<String> convertUnescapedString() {
+        return new AbstractNullSafeConverter<String>() {
+
+            @Override
+            protected String internalToString(String value) {
+                if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9]*")) {
+                    return value;
+                }
+                return String.format("\"%s\"", value);
+            }
+
+            @Override
+            protected String internalToValue(String string, INode node) throws ValueConverterException {
+                if (string.matches("\\\".*\\\"")) {
+                    return string.subSequence(1, string.length() - 1).toString();
+                }
+                return string;
+            }
+        };
+    }
+
 }

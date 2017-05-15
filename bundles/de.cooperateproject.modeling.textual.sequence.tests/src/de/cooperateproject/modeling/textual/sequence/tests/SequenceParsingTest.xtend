@@ -4,26 +4,203 @@
 package de.cooperateproject.modeling.textual.sequence.tests
 
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage
+import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification
+import de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage
+import de.cooperateproject.modeling.textual.sequence.sequence.LostMessage
+import de.cooperateproject.modeling.textual.sequence.sequence.MessageType
+import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
+import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
+import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage
+import de.cooperateproject.modeling.textual.sequence.tests.scoping.util.SequenceCustomizedInjectorProvider
+import java.util.Collections
+import org.apache.commons.io.IOUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper
-import org.junit.Assert
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
 
+import static org.hamcrest.Matchers.*
+import static org.junit.Assert.assertThat
+
 @RunWith(XtextRunner)
-@InjectWith(SequenceInjectorProvider)
-class SequenceParsingTest {
+@InjectWith(SequenceCustomizedInjectorProvider.DefaultProvider)
+class SequenceParsingTest extends AbstractSequenceTest{
 	@Inject
 	ParseHelper<SequenceDiagram> parseHelper
 	
+	@Inject ValidationTestHelper validationTestHelper
+	
+	override setup() {
+		super.setup()
+		rs.packageRegistry.put(SequencePackage.eNS_URI, SequencePackage.eINSTANCE)
+	}
+	
 	@Test
-	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
-		''')
-		Assert.assertNotNull(result)
-		Assert.assertTrue(result.eResource.errors.isEmpty)
+	def void emptyDiagram() {
+		val model = '''
+			@start-seqd "emptyDiagram"
+			rootElement RootElement
+			@end-seqd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	    model => [
+           assertThat(title, equalTo("emptyDiagram"))
+           assertThat(rootPackage, notNullValue)
+           assertThat(rootPackage.name, equalTo("RootElement"))
+       ]
+	}
+	
+	@Test
+	def void actorDefinition() {
+	    val model = '''
+	    @start-seqd "actorDefinition"
+	    rootElement RootElement
+	    act "foo:Bar" as fb
+	    act foo:Bar
+	    act :Bar as anonymousBar
+	    @end-seqd
+	    '''.parse(rs)
+	   validationTestHelper.assertNoIssues(model)
+	   model => [
+	       assertThat(title, equalTo("actorDefinition"))
+	       
+           assertThat(actors, hasSize(3))
+           assertThat(actors, hasItems(
+               allOf(
+                   hasProperty("name", equalTo("foo:Bar")),
+                   hasProperty("alias", equalTo("fb")))))
+           assertThat(actors, hasItems(
+               allOf(
+                   hasProperty("name", equalTo("foo")),
+                   hasProperty("typeMapping", hasProperty("classifier", hasProperty("name", equalTo("Bar")))),
+                   hasProperty("alias", emptyOrNullString))))
+           assertThat(actors, hasItems(
+               allOf(
+                   hasProperty("name", emptyOrNullString)),
+                   hasProperty("typeMapping", hasProperty("classifier", hasProperty("name", equalTo("Bar")))),
+                   hasProperty("alias", equalTo("anonymousBar"))))
+	       
+	   ]
+	}
+	
+	@Test
+	def void testMessages() {
+	    val model = '''
+        @start-seqd "testMessages"
+        rootElement RootElement
+        act actor1:Bar
+        act actor2:Bar
+        
+        sync "fragen()" (actor1, actor2) num[1]
+        reply "fragen():Antwort" (actor2, actor1) num[2]
+        found async "schicken()" (_, actor1) num[3]
+        lost async "goodbye()" (actor1, _) num[4]
+        @end-seqd
+        '''.parse(rs)
+       validationTestHelper.assertNoIssues(model)
+       model => [
+            
+            assertThat(actors, hasSize(2));
+            val actor1 = actors.findFirst[it.name == "actor1"]
+            val actor2 = actors.findFirst[it.name == "actor2"]
+            assertThat(actor1, notNullValue)
+            assertThat(actor2, notNullValue)
+            assertThat(behaviorFragments, hasSize(4))
+            assertThat(behaviorFragments, contains(
+                allOf(
+                    isA(StandardMessage as Class),
+                    hasProperty("name", equalTo("fragen()")),
+                    hasProperty("type", equalTo(MessageType.SYNC)),
+                    hasProperty("left", equalTo(actor1)),
+                    hasProperty("right", equalTo(actor2))
+                ),
+                allOf(
+                    isA(ResponseMessage as Class),
+                    hasProperty("name", equalTo("fragen():Antwort")),
+                    hasProperty("left", equalTo(actor2)),
+                    hasProperty("right", equalTo(actor1))
+                ),
+                allOf(
+                    isA(FoundMessage as Class),
+                    hasProperty("name", equalTo("schicken()")),
+                    hasProperty("type", equalTo(MessageType.ASYNC)),
+                    hasProperty("right", equalTo(actor1))
+                ),
+                allOf(
+                    isA(LostMessage as Class),
+                    hasProperty("name", equalTo("goodbye()")),
+                    hasProperty("type", equalTo(MessageType.ASYNC)),
+                    hasProperty("left", equalTo(actor1))
+                )
+            ))
+        ]        
+	}
+	
+	@Test
+    def void createAndDestuctActors() {
+        val model = '''
+        @start-seqd "createAndDestructActors"
+        rootElement RootElement
+        act actor1:Bar
+        def act actor2:Bar
+        
+        create "teleport" (actor1, actor2)
+        dest actor1
+        @end-seqd
+        '''.parse(rs)
+       validationTestHelper.assertNoIssues(model)
+       model => [
+           assertThat(actors, hasSize(2));
+           val actor1 = actors.findFirst[it.name == "actor1"]
+           val actor2 = actors.findFirst[it.name == "actor2"]
+           assertThat(actor1, notNullValue)
+           assertThat(actor2, notNullValue)
+           assertThat(behaviorFragments, hasSize(2))
+           assertThat(behaviorFragments, contains(
+               allOf(
+                   isA(CreateMessage as Class),
+                   hasProperty("name", equalTo("teleport")),
+                   hasProperty("left", equalTo(actor1)),
+                   hasProperty("right", equalTo(actor2))),
+               allOf(
+                   isA(DestructionOccurenceSpecification as Class),
+                   hasProperty("target", equalTo(actor1))
+              )
+           ))
+       ]
+    }
+    
+    @Test
+    def void timeAndDurationCoordination() {
+        val model = '''
+        act :Kunde as kunde
+        act :Mitarbeiter as mitarbeiter
+        
+        sync rufen (kunde, mitarbeiter) num[1] time[d=2min]
+        
+        sync rufen (kunde ,mitarbeiter) num[2] time[max=1sec]
+        
+        async rufen (kunde, mitarbeiter) time[diff=1sec]
+        
+        time[max=5min]  {
+            sync rufen  (kunde,mitarbeiter)
+            sync anschreien (kunde,mitarbeiter)
+        }'''.parse(rs)
+    }
+	
+		
+	
+	private static def parse(CharSequence text, ResourceSet rs) {
+		val r = rs.createResource(URI.createFileURI("testmodels/parsing/SeqParsingTest.seq"))
+		val is = IOUtils.toInputStream(text);
+		r.load(is, Collections.emptyMap());
+		return r.contents.get(0) as SequenceDiagram
 	}
 }
+

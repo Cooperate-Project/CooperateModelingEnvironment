@@ -4,6 +4,16 @@
 package de.cooperateproject.modeling.textual.sequence.ui.quickfix
 
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQuickfixProvider
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.xtext.validation.Issue
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import static org.eclipse.xtext.diagnostics.Diagnostic.LINKING_DIAGNOSTIC
+import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
+import org.eclipse.uml2.uml.UMLPackage
+import org.eclipse.uml2.uml.UMLFactory
+import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
+import org.eclipse.uml2.uml.Classifier
+import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
 
 /**
  * Custom quickfixes.
@@ -15,5 +25,37 @@ class SequenceQuickfixProvider extends CooperateQuickfixProvider {
 	new() {
 		super(#[de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE])
 	}
+	
+	@Fix(LINKING_DIAGNOSTIC)
+	def wrongStaticQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+        acceptor.accept(issue, 'Create Class', 'Create the appropriate UML element for the classifier', null) [ element, context |
+            if (element instanceof ActorClassifierMapping) {
+                element.createClassifier(issue, context, [UMLFactory.eINSTANCE.createClass])
+            }
+        ]
+        acceptor.accept(issue, 'Create Interface', 'Create the appropriate UML element for the classifier', null) [ element, context |
+            if (element instanceof ActorClassifierMapping) {
+                element.createClassifier(issue, context, [UMLFactory.eINSTANCE.createInterface])
+            }
+        ]
+        acceptor.accept(issue, 'Create Actor', 'Create the appropriate UML element for the classifier', null) [ element, context |
+            if (element instanceof ActorClassifierMapping) {
+                element.createClassifier(issue, context, [UMLFactory.eINSTANCE.createActor])
+            }
+        ]
+    }
+    
+    def createClassifier(ActorClassifierMapping element, Issue issue, IModificationContext context, ()=>Classifier factory) {
+        val referencedRoot = (element.actor?.eContainer as SequenceDiagram)?.rootPackage?.referencedElement
+        if (referencedRoot === null) {
+            return
+        }
+        val doc = context.getXtextDocument()
+        val umlClass = factory.apply => [
+            name = doc.get(issue.offset, issue.length)
+            package = referencedRoot
+        ]
+        element.classifier = umlClass
+    }
 
 }

@@ -27,6 +27,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
+import de.cooperateproject.modeling.textual.sequence.sequence.Timed;
 import de.cooperateproject.modeling.textual.sequence.services.SequenceGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -161,6 +162,9 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SequencePackage.TIME_CONSTRAINT:
 				sequence_TimeConstraint(context, (TimeConstraint) semanticObject); 
 				return; 
+			case SequencePackage.TIMED:
+				sequence_Timed(context, (Timed) semanticObject); 
+				return; 
 			}
 		else if (epackage == TextualCommonsPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
@@ -196,7 +200,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *
 	 * Constraint:
 	 *     (
-	 *         deferred?='deferred'? 
+	 *         deferred?='def'? 
 	 *         (
 	 *             (name=ID typeMapping=ActorClassifierMapping?) | 
 	 *             (typeMapping=ActorClassifierMapping alias=ID) | 
@@ -271,7 +275,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     CreateMessage returns CreateMessage
 	 *
 	 * Constraint:
-	 *     (name=STRING? left=[Actor|FQN] right=[Actor|FQN])
+	 *     (name=UnescapedString? left=[Actor|FQN] right=[Actor|FQN])
 	 */
 	protected void sequence_CreateMessage(ISerializationContext context, CreateMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -284,7 +288,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Message returns CreateMessage
 	 *
 	 * Constraint:
-	 *     (name=STRING? left=[Actor|FQN] right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
+	 *     (name=UnescapedString? left=[Actor|FQN] right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
 	 */
 	protected void sequence_CreateMessage_Message(ISerializationContext context, CreateMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -310,7 +314,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     DestructionMessage returns DestructionMessage
 	 *
 	 * Constraint:
-	 *     (name=STRING? left=[Actor|FQN] right=[Actor|FQN])
+	 *     (name=UnescapedString? left=[Actor|FQN] right=[Actor|FQN])
 	 */
 	protected void sequence_DestructionMessage(ISerializationContext context, DestructionMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -323,7 +327,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Message returns DestructionMessage
 	 *
 	 * Constraint:
-	 *     (name=STRING? left=[Actor|FQN] right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
+	 *     (name=UnescapedString? left=[Actor|FQN] right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
 	 */
 	protected void sequence_DestructionMessage_Message(ISerializationContext context, DestructionMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -337,15 +341,15 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     DestructionOccurenceSpecification returns DestructionOccurenceSpecification
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     target=[Actor|FQN]
 	 */
 	protected void sequence_DestructionOccurenceSpecification(ISerializationContext context, DestructionOccurenceSpecification semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getDestructionOccurenceSpecificationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDestructionOccurenceSpecificationAccess().getTargetActorFQNParserRuleCall_1_0_1(), semanticObject.eGet(SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, false));
 		feeder.finish();
 	}
 	
@@ -355,7 +359,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FoundMessage returns FoundMessage
 	 *
 	 * Constraint:
-	 *     (type=MessageType name=STRING right=[Actor|FQN])
+	 *     (type=MessageType name=UnescapedString right=[Actor|FQN])
 	 */
 	protected void sequence_FoundMessage(ISerializationContext context, FoundMessage semanticObject) {
 		if (errorAcceptor != null) {
@@ -368,7 +372,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getFoundMessageAccess().getTypeMessageTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getFoundMessageAccess().getNameSTRINGTerminalRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFoundMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getFoundMessageAccess().getRightActorFQNParserRuleCall_6_0_1(), semanticObject.eGet(SequencePackage.Literals.FOUND_MESSAGE__RIGHT, false));
 		feeder.finish();
 	}
@@ -380,7 +384,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Message returns FoundMessage
 	 *
 	 * Constraint:
-	 *     (type=MessageType name=STRING right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
+	 *     (type=MessageType name=UnescapedString right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
 	 */
 	protected void sequence_FoundMessage_Message(ISerializationContext context, FoundMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -427,7 +431,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     LostMessage returns LostMessage
 	 *
 	 * Constraint:
-	 *     (type=MessageType name=STRING left=[Actor|FQN])
+	 *     (type=MessageType name=UnescapedString left=[Actor|FQN])
 	 */
 	protected void sequence_LostMessage(ISerializationContext context, LostMessage semanticObject) {
 		if (errorAcceptor != null) {
@@ -440,7 +444,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getLostMessageAccess().getTypeMessageTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getLostMessageAccess().getNameSTRINGTerminalRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getLostMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getLostMessageAccess().getLeftActorFQNParserRuleCall_4_0_1(), semanticObject.eGet(SequencePackage.Literals.LOST_MESSAGE__LEFT, false));
 		feeder.finish();
 	}
@@ -452,7 +456,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Message returns LostMessage
 	 *
 	 * Constraint:
-	 *     (type=MessageType name=STRING left=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
+	 *     (type=MessageType name=UnescapedString left=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
 	 */
 	protected void sequence_LostMessage_Message(ISerializationContext context, LostMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -465,7 +469,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Message returns ResponseMessage
 	 *
 	 * Constraint:
-	 *     (name=STRING left=[Actor|FQN]? right=[Actor|FQN]? order=Order? timeConstraint=TimeConstraint?)
+	 *     (name=UnescapedString left=[Actor|FQN]? right=[Actor|FQN]? order=Order? timeConstraint=TimeConstraint?)
 	 */
 	protected void sequence_Message_ResponseMessage(ISerializationContext context, ResponseMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -480,7 +484,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * Constraint:
 	 *     (
 	 *         type=MessageType 
-	 *         name=STRING 
+	 *         name=UnescapedString 
 	 *         left=[Actor|FQN] 
 	 *         right=[Actor|FQN] 
 	 *         order=Order? 
@@ -525,7 +529,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     ResponseMessage returns ResponseMessage
 	 *
 	 * Constraint:
-	 *     (name=STRING left=[Actor|FQN]? right=[Actor|FQN]?)
+	 *     (name=UnescapedString left=[Actor|FQN]? right=[Actor|FQN]?)
 	 */
 	protected void sequence_ResponseMessage(ISerializationContext context, ResponseMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -537,10 +541,16 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     (name=FQN actors+=Actor* behaviorFragments+=BehaviorFragment*)
+	 *     name=FQN
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getRootPackageAccess().getNameFQNParserRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -549,19 +559,10 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     SequenceDiagram returns SequenceDiagram
 	 *
 	 * Constraint:
-	 *     (title=STRING rootPackage=RootPackage)
+	 *     (title=STRING rootPackage=RootPackage actors+=Actor* behaviorFragments+=BehaviorFragment*)
 	 */
 	protected void sequence_SequenceDiagram(ISerializationContext context, SequenceDiagram semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE));
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.SEQUENCE_DIAGRAM__ROOT_PACKAGE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.SEQUENCE_DIAGRAM__ROOT_PACKAGE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getSequenceDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
-		feeder.accept(grammarAccess.getSequenceDiagramAccess().getRootPackageRootPackageParserRuleCall_3_0(), semanticObject.getRootPackage());
-		feeder.finish();
+		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
@@ -570,7 +571,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     StandardMessage returns StandardMessage
 	 *
 	 * Constraint:
-	 *     (type=MessageType name=STRING left=[Actor|FQN] right=[Actor|FQN])
+	 *     (type=MessageType name=UnescapedString left=[Actor|FQN] right=[Actor|FQN])
 	 */
 	protected void sequence_StandardMessage(ISerializationContext context, StandardMessage semanticObject) {
 		if (errorAcceptor != null) {
@@ -585,7 +586,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getStandardMessageAccess().getTypeMessageTypeEnumRuleCall_0_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getStandardMessageAccess().getNameSTRINGTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getStandardMessageAccess().getNameUnescapedStringParserRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getStandardMessageAccess().getLeftActorFQNParserRuleCall_3_0_1(), semanticObject.eGet(SequencePackage.Literals.STANDARD_MESSAGE__LEFT, false));
 		feeder.accept(grammarAccess.getStandardMessageAccess().getRightActorFQNParserRuleCall_5_0_1(), semanticObject.eGet(SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, false));
 		feeder.finish();
@@ -600,6 +601,18 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     constraints+=InnerTimeConstraint+
 	 */
 	protected void sequence_TimeConstraint(ISerializationContext context, TimeConstraint semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Timed returns Timed
+	 *
+	 * Constraint:
+	 *     (constraint=TimeConstraint fragments+=BehaviorFragment+)
+	 */
+	protected void sequence_Timed(ISerializationContext context, Timed semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

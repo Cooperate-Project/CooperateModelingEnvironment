@@ -11,17 +11,17 @@ SequenceDiagram:
     {SequenceDiagram}
     '@start-seqd' title=STRING
     rootPackage=RootPackage
+    actors += Actor* 
+    behaviorFragments += BehaviorFragment*
     '@end-seqd'
 ;
 
 RootPackage:
     'rootElement' name = FQN
-    actors += Actor* 
-    behaviorFragments += BehaviorFragment*
 ;
 
 Actor:
-    'act' (deferred?='deferred')? 
+    (deferred?='def')? 'act'  
         ((name = ID (typeMapping=ActorClassifierMapping)?)
         | (typeMapping=ActorClassifierMapping 'as' alias = ID)
         | (name = STRING (typeMapping=ActorClassifierMapping)? 'as' alias = ID))
@@ -62,27 +62,27 @@ InnerTimeConstraint:
 ;
 
 StandardMessage:
-    type=MessageType name=STRING '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+    type=MessageType name=UnescapedString '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
 ;
 
 ResponseMessage:
-   'resp' name=STRING '(' (left = [Actor|FQN]|'_') ',' (right = ([Actor|FQN])|'_') ')'   
+   'reply' name=UnescapedString '(' (left = [Actor|FQN]|'_') ',' (right = ([Actor|FQN])|'_') ')'   
 ;
 
 FoundMessage:
-    'found'? type=MessageType name=STRING '(' '_' ',' right = [Actor|FQN]')'
+    'found' type=MessageType name=UnescapedString '(' '_' ',' right = [Actor|FQN]')'
 ;
 
 LostMessage:
-    'lost'? type=MessageType name=STRING '(' left = [Actor|FQN] ',' '_'')'
+    'lost' type=MessageType name=UnescapedString '(' left = [Actor|FQN] ',' '_'')'
 ;
 
 CreateMessage:
-    'create' name=STRING? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+    'create' name=UnescapedString? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
 ;
 
 DestructionMessage:
-    'dest' name=STRING? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+    'dest' name=UnescapedString? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
 ;
 
 
@@ -91,11 +91,11 @@ OccurenceSpecification:
 ;
 
 DestructionOccurenceSpecification: 
-    'dest' name=ID
+    'dest' target=[Actor|FQN]
 ;
 
 CombinedFragment:
-    Alternative | Option | Parallel | Critical | Loop
+    Alternative | Option | Parallel | Critical | Loop //| Timed
 ;
 
 Alternative:
@@ -128,6 +128,12 @@ Loop:
     '}'
 ;
 
+Timed:
+    constraint=TimeConstraint '{'
+        fragments += BehaviorFragment+
+    '}'
+;
+
 
 BehaviorFragmentsWithCondition:
     '['condition=STRING']' (('{' fragments += BehaviorFragment+ '}') | fragments += BehaviorFragment)  
@@ -147,6 +153,10 @@ Comment returns commons::Comment:
 
 CommentBody returns ecore::EString:
     STRING
+;
+
+UnescapedString returns ecore::EString:
+    ID | STRING
 ;
 
 enum MessageType:

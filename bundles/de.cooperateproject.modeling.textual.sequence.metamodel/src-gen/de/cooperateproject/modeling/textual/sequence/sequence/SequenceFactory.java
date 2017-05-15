@@ -239,6 +239,15 @@ public interface SequenceFactory extends EFactory {
     ActorClassifierMapping createActorClassifierMapping();
 
     /**
+     * Returns a new object of class '<em>Timed</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Timed</em>'.
+     * @generated
+     */
+    Timed createTimed();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

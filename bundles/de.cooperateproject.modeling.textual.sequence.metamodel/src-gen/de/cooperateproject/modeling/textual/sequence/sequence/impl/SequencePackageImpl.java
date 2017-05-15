@@ -35,6 +35,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType;
 
+import de.cooperateproject.modeling.textual.sequence.sequence.Timed;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -228,6 +229,13 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass timedEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum messageTypeEEnum = null;
 
     /**
@@ -340,26 +348,26 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getSequenceDiagram_Actors() {
+        return (EReference)sequenceDiagramEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSequenceDiagram_BehaviorFragments() {
+        return (EReference)sequenceDiagramEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getRootPackage() {
         return rootPackageEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getRootPackage_Actors() {
-        return (EReference)rootPackageEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getRootPackage_BehaviorFragments() {
-        return (EReference)rootPackageEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -673,8 +681,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDestructionOccurenceSpecification_Name() {
-        return (EAttribute)destructionOccurenceSpecificationEClass.getEStructuralFeatures().get(0);
+    public EReference getDestructionOccurenceSpecification_Target() {
+        return (EReference)destructionOccurenceSpecificationEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -871,6 +879,33 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getTimed() {
+        return timedEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTimed_Fragments() {
+        return (EReference)timedEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTimed_Constraint() {
+        return (EReference)timedEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getMessageType() {
         return messageTypeEEnum;
     }
@@ -924,10 +959,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         sequenceDiagramEClass = createEClass(SEQUENCE_DIAGRAM);
         createEAttribute(sequenceDiagramEClass, SEQUENCE_DIAGRAM__TITLE);
         createEReference(sequenceDiagramEClass, SEQUENCE_DIAGRAM__ROOT_PACKAGE);
+        createEReference(sequenceDiagramEClass, SEQUENCE_DIAGRAM__ACTORS);
+        createEReference(sequenceDiagramEClass, SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS);
 
         rootPackageEClass = createEClass(ROOT_PACKAGE);
-        createEReference(rootPackageEClass, ROOT_PACKAGE__ACTORS);
-        createEReference(rootPackageEClass, ROOT_PACKAGE__BEHAVIOR_FRAGMENTS);
 
         actorEClass = createEClass(ACTOR);
         createEAttribute(actorEClass, ACTOR__DEFERRED);
@@ -975,7 +1010,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         occurenceSpecificationEClass = createEClass(OCCURENCE_SPECIFICATION);
 
         destructionOccurenceSpecificationEClass = createEClass(DESTRUCTION_OCCURENCE_SPECIFICATION);
-        createEAttribute(destructionOccurenceSpecificationEClass, DESTRUCTION_OCCURENCE_SPECIFICATION__NAME);
+        createEReference(destructionOccurenceSpecificationEClass, DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET);
 
         combinedFragmentEClass = createEClass(COMBINED_FRAGMENT);
 
@@ -1006,6 +1041,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEReference(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__CLASSIFIER);
         createEReference(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__ACTOR);
         createEAttribute(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME);
+
+        timedEClass = createEClass(TIMED);
+        createEReference(timedEClass, TIMED__FRAGMENTS);
+        createEReference(timedEClass, TIMED__CONSTRAINT);
 
         // Create enums
         messageTypeEEnum = createEEnum(MESSAGE_TYPE);
@@ -1103,15 +1142,16 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g2 = createEGenericType(theUMLPackage.getProperty());
         g1.getETypeArguments().add(g2);
         actorClassifierMappingEClass.getEGenericSuperTypes().add(g1);
+        timedEClass.getESuperTypes().add(this.getCombinedFragment());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(sequenceDiagramEClass, SequenceDiagram.class, "SequenceDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getSequenceDiagram_Title(), theEcorePackage.getEString(), "title", null, 1, 1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSequenceDiagram_RootPackage(), this.getRootPackage(), null, "rootPackage", null, 1, 1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSequenceDiagram_Actors(), this.getActor(), null, "actors", null, 0, -1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSequenceDiagram_BehaviorFragments(), this.getBehaviorFragment(), null, "behaviorFragments", null, 0, -1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getRootPackage_Actors(), this.getActor(), null, "actors", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRootPackage_BehaviorFragments(), this.getBehaviorFragment(), null, "behaviorFragments", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getActor_Deferred(), theEcorePackage.getEBoolean(), "deferred", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1159,7 +1199,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEClass(occurenceSpecificationEClass, OccurenceSpecification.class, "OccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(destructionOccurenceSpecificationEClass, DestructionOccurenceSpecification.class, "DestructionOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getDestructionOccurenceSpecification_Name(), theEcorePackage.getEString(), "name", null, 0, 1, DestructionOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDestructionOccurenceSpecification_Target(), this.getActor(), null, "target", null, 0, 1, DestructionOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(combinedFragmentEClass, CombinedFragment.class, "CombinedFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1190,6 +1230,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEReference(getActorClassifierMapping_Classifier(), theUMLPackage.getClassifier(), null, "classifier", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getActorClassifierMapping_Actor(), this.getActor(), this.getActor_TypeMapping(), "actor", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActorClassifierMapping_ClassifierName(), theTypesPackage.getString(), "classifierName", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(timedEClass, Timed.class, "Timed", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getTimed_Fragments(), this.getBehaviorFragment(), null, "fragments", null, 0, -1, Timed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTimed_Constraint(), this.getTimeConstraint(), null, "constraint", null, 1, 1, Timed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(messageTypeEEnum, MessageType.class, "MessageType");

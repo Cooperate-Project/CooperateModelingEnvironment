@@ -11,6 +11,7 @@ import org.eclipse.uml2.uml.Interaction
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.Element
+import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage
 
 class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -34,12 +35,13 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
     
 	private def dispatch fixMissingUMLElement(Actor element) {
 		if(!resolvePossible) return Void
-		val parent = element.eContainer as UMLReferencingElement<Interaction>
+		val parent = element.eContainer as SequenceDiagram
+		
 		val umlLifeline = UMLFactory.eINSTANCE.createLifeline
 		umlLifeline.name = element.name
 		umlLifeline.interaction = parent.referencedElement
-		
 		umlLifeline.handleAliasedElement(element);
+				
 		element.referencedElement = umlLifeline		
 	}
 	
@@ -51,6 +53,7 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
 	    prop.name = element.actor.name
 	    prop.type = element.classifier
 	    containingInteraction.referencedElement.ownedAttributes += prop;
+	    element.referencedElement = prop
 	}
 	
 	protected def handleAliasedElement(NamedElement umlElement, AliasedElement element) {

@@ -39,6 +39,7 @@ public class SequenceParser extends AbstractContentAssistParser {
 					put(grammarAccess.getResponseMessageAccess().getAlternatives_5(), "rule__ResponseMessage__Alternatives_5");
 					put(grammarAccess.getCombinedFragmentAccess().getAlternatives(), "rule__CombinedFragment__Alternatives");
 					put(grammarAccess.getBehaviorFragmentsWithConditionAccess().getAlternatives_3(), "rule__BehaviorFragmentsWithCondition__Alternatives_3");
+					put(grammarAccess.getUnescapedStringAccess().getAlternatives(), "rule__UnescapedString__Alternatives");
 					put(grammarAccess.getMessageTypeAccess().getAlternatives(), "rule__MessageType__Alternatives");
 					put(grammarAccess.getActorTypeAccess().getAlternatives(), "rule__ActorType__Alternatives");
 					put(grammarAccess.getTimeConstraintTypeAccess().getAlternatives(), "rule__TimeConstraintType__Alternatives");
@@ -67,6 +68,7 @@ public class SequenceParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParallelAccess().getGroup(), "rule__Parallel__Group__0");
 					put(grammarAccess.getCriticalAccess().getGroup(), "rule__Critical__Group__0");
 					put(grammarAccess.getLoopAccess().getGroup(), "rule__Loop__Group__0");
+					put(grammarAccess.getTimedAccess().getGroup(), "rule__Timed__Group__0");
 					put(grammarAccess.getBehaviorFragmentsWithConditionAccess().getGroup(), "rule__BehaviorFragmentsWithCondition__Group__0");
 					put(grammarAccess.getBehaviorFragmentsWithConditionAccess().getGroup_3_0(), "rule__BehaviorFragmentsWithCondition__Group_3_0__0");
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
@@ -76,10 +78,10 @@ public class SequenceParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCommentAccess().getGroup(), "rule__Comment__Group__0");
 					put(grammarAccess.getSequenceDiagramAccess().getTitleAssignment_2(), "rule__SequenceDiagram__TitleAssignment_2");
 					put(grammarAccess.getSequenceDiagramAccess().getRootPackageAssignment_3(), "rule__SequenceDiagram__RootPackageAssignment_3");
+					put(grammarAccess.getSequenceDiagramAccess().getActorsAssignment_4(), "rule__SequenceDiagram__ActorsAssignment_4");
+					put(grammarAccess.getSequenceDiagramAccess().getBehaviorFragmentsAssignment_5(), "rule__SequenceDiagram__BehaviorFragmentsAssignment_5");
 					put(grammarAccess.getRootPackageAccess().getNameAssignment_1(), "rule__RootPackage__NameAssignment_1");
-					put(grammarAccess.getRootPackageAccess().getActorsAssignment_2(), "rule__RootPackage__ActorsAssignment_2");
-					put(grammarAccess.getRootPackageAccess().getBehaviorFragmentsAssignment_3(), "rule__RootPackage__BehaviorFragmentsAssignment_3");
-					put(grammarAccess.getActorAccess().getDeferredAssignment_1(), "rule__Actor__DeferredAssignment_1");
+					put(grammarAccess.getActorAccess().getDeferredAssignment_0(), "rule__Actor__DeferredAssignment_0");
 					put(grammarAccess.getActorAccess().getNameAssignment_2_0_0(), "rule__Actor__NameAssignment_2_0_0");
 					put(grammarAccess.getActorAccess().getTypeMappingAssignment_2_0_1(), "rule__Actor__TypeMappingAssignment_2_0_1");
 					put(grammarAccess.getActorAccess().getTypeMappingAssignment_2_1_0(), "rule__Actor__TypeMappingAssignment_2_1_0");
@@ -115,13 +117,15 @@ public class SequenceParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDestructionMessageAccess().getNameAssignment_1(), "rule__DestructionMessage__NameAssignment_1");
 					put(grammarAccess.getDestructionMessageAccess().getLeftAssignment_3(), "rule__DestructionMessage__LeftAssignment_3");
 					put(grammarAccess.getDestructionMessageAccess().getRightAssignment_5(), "rule__DestructionMessage__RightAssignment_5");
-					put(grammarAccess.getDestructionOccurenceSpecificationAccess().getNameAssignment_1(), "rule__DestructionOccurenceSpecification__NameAssignment_1");
+					put(grammarAccess.getDestructionOccurenceSpecificationAccess().getTargetAssignment_1(), "rule__DestructionOccurenceSpecification__TargetAssignment_1");
 					put(grammarAccess.getAlternativeAccess().getAlternativesAssignment_2(), "rule__Alternative__AlternativesAssignment_2");
 					put(grammarAccess.getOptionAccess().getOptionalAssignment_2(), "rule__Option__OptionalAssignment_2");
 					put(grammarAccess.getParallelAccess().getParallelsAssignment_2(), "rule__Parallel__ParallelsAssignment_2");
 					put(grammarAccess.getCriticalAccess().getFragmentsAssignment_2(), "rule__Critical__FragmentsAssignment_2");
 					put(grammarAccess.getLoopAccess().getConditionAssignment_2(), "rule__Loop__ConditionAssignment_2");
 					put(grammarAccess.getLoopAccess().getFragmentsAssignment_5(), "rule__Loop__FragmentsAssignment_5");
+					put(grammarAccess.getTimedAccess().getConstraintAssignment_0(), "rule__Timed__ConstraintAssignment_0");
+					put(grammarAccess.getTimedAccess().getFragmentsAssignment_2(), "rule__Timed__FragmentsAssignment_2");
 					put(grammarAccess.getBehaviorFragmentsWithConditionAccess().getConditionAssignment_1(), "rule__BehaviorFragmentsWithCondition__ConditionAssignment_1");
 					put(grammarAccess.getBehaviorFragmentsWithConditionAccess().getFragmentsAssignment_3_0_1(), "rule__BehaviorFragmentsWithCondition__FragmentsAssignment_3_0_1");
 					put(grammarAccess.getBehaviorFragmentsWithConditionAccess().getFragmentsAssignment_3_1(), "rule__BehaviorFragmentsWithCondition__FragmentsAssignment_3_1");

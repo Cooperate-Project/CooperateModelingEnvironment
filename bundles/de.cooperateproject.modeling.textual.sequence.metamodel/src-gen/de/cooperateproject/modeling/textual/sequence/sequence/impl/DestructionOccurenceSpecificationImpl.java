@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
@@ -26,22 +27,12 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl#getReferencedElement <em>Referenced Element</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificationImpl implements DestructionOccurenceSpecification {
-    /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected static final String NAME_EDEFAULT = null;
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -93,8 +84,8 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getName() {
-        return (String)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, true, true);
+    public Actor getTarget() {
+        return (Actor)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, true, true);
     }
 
     /**
@@ -102,8 +93,17 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setName(String newName) {
-        eDynamicSet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME, newName);
+    public Actor basicGetTarget() {
+        return (Actor)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTarget(Actor newTarget) {
+        eDynamicSet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, SequencePackage.Literals.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET, newTarget);
     }
 
     /**
@@ -130,8 +130,9 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
                 return basicGetReferencedElement();
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME:
-                return getName();
+            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
+                if (resolve) return getTarget();
+                return basicGetTarget();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -147,8 +148,8 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
                 setReferencedElement((DestructionOccurrenceSpecification)newValue);
                 return;
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME:
-                setName((String)newValue);
+            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
+                setTarget((Actor)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -165,8 +166,8 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
                 setReferencedElement((DestructionOccurrenceSpecification)null);
                 return;
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME:
-                setName(NAME_EDEFAULT);
+            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
+                setTarget((Actor)null);
                 return;
         }
         super.eUnset(featureID);
@@ -182,8 +183,8 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
         switch (featureID) {
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
+                return basicGetTarget() != null;
         }
         return super.eIsSet(featureID);
     }

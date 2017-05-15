@@ -16,7 +16,7 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDestructionOccurenceSpecification()
@@ -25,29 +25,29 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
  */
 public interface DestructionOccurenceSpecification extends OccurenceSpecification, UMLReferencingElement<DestructionOccurrenceSpecification> {
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * Returns the value of the '<em><b>Target</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Name</em>' attribute isn't clear,
+     * If the meaning of the '<em>Target</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDestructionOccurenceSpecification_Name()
+     * @return the value of the '<em>Target</em>' reference.
+     * @see #setTarget(Actor)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDestructionOccurenceSpecification_Target()
      * @model
      * @generated
      */
-    String getName();
+    Actor getTarget();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification#getName <em>Name</em>}' attribute.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification#getTarget <em>Target</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
+     * @param value the new value of the '<em>Target</em>' reference.
+     * @see #getTarget()
      * @generated
      */
-    void setName(String value);
+    void setTarget(Actor value);
 
 } // DestructionOccurenceSpecification

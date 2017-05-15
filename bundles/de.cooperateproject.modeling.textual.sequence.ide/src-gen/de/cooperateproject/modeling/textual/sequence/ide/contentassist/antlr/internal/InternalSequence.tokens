@@ -16,7 +16,7 @@
 'create'=39
 'critical'=44
 'd'=16
-'deferred'=48
+'def'=48
 'dest'=40
 'diff'=19
 'found'=37
@@ -28,7 +28,7 @@
 'num['=30
 'opt'=42
 'par'=43
-'resp'=36
+'reply'=36
 'role['=25
 'rootElement'=22
 'sync'=12

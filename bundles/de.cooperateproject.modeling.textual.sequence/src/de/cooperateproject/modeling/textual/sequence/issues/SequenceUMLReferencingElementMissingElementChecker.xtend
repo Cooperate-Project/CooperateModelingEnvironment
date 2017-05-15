@@ -21,7 +21,7 @@ class SequenceUMLReferencingElementMissingElementChecker implements IResolvableC
 	}
 	
 	private def dispatch resolvePossible(Actor element) {
-		return element.hasValidParent(SequencePackage.Literals.ROOT_PACKAGE)
+		return element.hasValidParent(SequencePackage.Literals.SEQUENCE_DIAGRAM)
 	}
 	
 	private def dispatch resolvePossible(ActorClassifierMapping element) {

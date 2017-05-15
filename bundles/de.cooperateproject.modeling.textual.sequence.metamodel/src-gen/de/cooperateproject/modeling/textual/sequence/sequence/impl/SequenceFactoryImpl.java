@@ -82,6 +82,7 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.BEHAVIOR_FRAGMENTS: return (EObject)createBehaviorFragments();
             case SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION: return (EObject)createBehaviorFragmentsWithCondition();
             case SequencePackage.ACTOR_CLASSIFIER_MAPPING: return (EObject)createActorClassifierMapping();
+            case SequencePackage.TIMED: return (EObject)createTimed();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -363,6 +364,16 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
     public ActorClassifierMapping createActorClassifierMapping() {
         ActorClassifierMappingImpl actorClassifierMapping = new ActorClassifierMappingImpl();
         return actorClassifierMapping;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Timed createTimed() {
+        TimedImpl timed = new TimedImpl();
+        return timed;
     }
 
     /**

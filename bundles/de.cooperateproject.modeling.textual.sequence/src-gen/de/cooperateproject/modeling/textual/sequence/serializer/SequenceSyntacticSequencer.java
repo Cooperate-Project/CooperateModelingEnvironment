@@ -11,8 +11,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
-import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
@@ -20,14 +18,10 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class SequenceSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SequenceGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_FoundMessage_FoundKeyword_0_q;
-	protected AbstractElementAlias match_LostMessage_LostKeyword_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SequenceGrammarAccess) access;
-		match_FoundMessage_FoundKeyword_0_q = new TokenAlias(false, true, grammarAccess.getFoundMessageAccess().getFoundKeyword_0());
-		match_LostMessage_LostKeyword_0_q = new TokenAlias(false, true, grammarAccess.getLostMessageAccess().getLostKeyword_0());
 	}
 	
 	@Override
@@ -42,34 +36,8 @@ public class SequenceSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_FoundMessage_FoundKeyword_0_q.equals(syntax))
-				emit_FoundMessage_FoundKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_LostMessage_LostKeyword_0_q.equals(syntax))
-				emit_LostMessage_LostKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else acceptNodes(getLastNavigableState(), syntaxNodes);
+			acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     'found'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) type=MessageType
-	 */
-	protected void emit_FoundMessage_FoundKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'lost'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) type=MessageType
-	 */
-	protected void emit_LostMessage_LostKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 }
