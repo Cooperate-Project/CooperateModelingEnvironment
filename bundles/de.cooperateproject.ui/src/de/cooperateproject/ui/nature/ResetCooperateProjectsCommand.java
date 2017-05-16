@@ -20,9 +20,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
  * @author persch
  *
  */
-public class ResetCooperateCommand extends AbstractHandler {
+public class ResetCooperateProjectsCommand extends AbstractHandler {
 
-    private static final Logger LOGGER = Logger.getLogger(ResetCooperateCommand.class);
+    private static final Logger LOGGER = Logger.getLogger(ResetCooperateProjectsCommand.class);
 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {

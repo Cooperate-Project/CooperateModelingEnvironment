@@ -31,7 +31,7 @@
             name="Convert to Cooperate Project">
       </command>
       <command
-            defaultHandler="de.cooperateproject.ui.nature.ResetCooperateCommand"
+            defaultHandler="de.cooperateproject.ui.nature.ResetCooperateProjectsCommand"
             id="de.cooperateproject.ui.ResetCooperateProjectsCommand"
             name="Reset Cooperate Projects">
       </command>
