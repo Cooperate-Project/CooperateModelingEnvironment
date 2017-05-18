@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.cls.formatting2;
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Class
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
@@ -18,12 +17,11 @@ import de.cooperateproject.modeling.textual.cls.cls.Member
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
-import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess.CommentLinkElements
 
 class ClsFormatter extends AbstractClsFormatter {
 	
@@ -69,10 +67,14 @@ class ClsFormatter extends AbstractClsFormatter {
 	
 	def dispatch void format(Class clz, extension IFormattableDocument document) {
 		interior(
-			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_4_0).append[newLine],
-			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_4_2),
+			clz.regionFor.keyword(classAccess.leftCurlyBracketKeyword_4_1_0).append[newLine],
+			clz.regionFor.keyword(classAccess.rightCurlyBracketKeyword_4_1_3),
 			[indent]
 		)
+		
+		if (!clz.comments.empty) {
+		    clz.comments.forEach[comment | comment.append[newLine]]
+		}
 		
 		for (Member members : clz.getMembers()) {
 			format(members, document);
@@ -87,8 +89,8 @@ class ClsFormatter extends AbstractClsFormatter {
 
 	def dispatch void format(Interface interfaze, extension IFormattableDocument document) {
 		interior(
-			interfaze.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_3_0).append[newLine],
-			interfaze.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_3_2),
+			interfaze.regionFor.keyword(interfaceAccess.leftCurlyBracketKeyword_3_1_0).append[newLine],
+			interfaze.regionFor.keyword(interfaceAccess.rightCurlyBracketKeyword_3_1_3),
 			[indent]
 		)
 		
@@ -150,10 +152,6 @@ class ClsFormatter extends AbstractClsFormatter {
 		association.append[newLine]
 		
 		association.memberEndCardinalities.forEach[format]
-	}
-
-	def dispatch void format(CommentLink commentlink, extension IFormattableDocument document) {
-		commentlink.append[newLine]
 	}
 	
 	def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {

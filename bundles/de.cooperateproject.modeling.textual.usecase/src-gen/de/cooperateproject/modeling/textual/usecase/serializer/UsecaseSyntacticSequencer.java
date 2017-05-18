@@ -21,12 +21,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class UsecaseSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected UsecaseGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_UseCase___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q;
+	protected AbstractElementAlias match_System___LeftCurlyBracketKeyword_2_1_0_RightCurlyBracketKeyword_2_1_3__q;
+	protected AbstractElementAlias match_UseCase___LeftCurlyBracketKeyword_4_1_0_RightCurlyBracketKeyword_4_1_3__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (UsecaseGrammarAccess) access;
-		match_UseCase___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getUseCaseAccess().getLeftCurlyBracketKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getUseCaseAccess().getRightCurlyBracketKeyword_4_2()));
+		match_System___LeftCurlyBracketKeyword_2_1_0_RightCurlyBracketKeyword_2_1_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getSystemAccess().getLeftCurlyBracketKeyword_2_1_0()), new TokenAlias(false, false, grammarAccess.getSystemAccess().getRightCurlyBracketKeyword_2_1_3()));
+		match_UseCase___LeftCurlyBracketKeyword_4_1_0_RightCurlyBracketKeyword_4_1_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getUseCaseAccess().getLeftCurlyBracketKeyword_4_1_0()), new TokenAlias(false, false, grammarAccess.getUseCaseAccess().getRightCurlyBracketKeyword_4_1_3()));
 	}
 	
 	@Override
@@ -41,8 +43,10 @@ public class UsecaseSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_UseCase___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q.equals(syntax))
-				emit_UseCase___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_System___LeftCurlyBracketKeyword_2_1_0_RightCurlyBracketKeyword_2_1_3__q.equals(syntax))
+				emit_System___LeftCurlyBracketKeyword_2_1_0_RightCurlyBracketKeyword_2_1_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_UseCase___LeftCurlyBracketKeyword_4_1_0_RightCurlyBracketKeyword_4_1_3__q.equals(syntax))
+				emit_UseCase___LeftCurlyBracketKeyword_4_1_0_RightCurlyBracketKeyword_4_1_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -52,10 +56,21 @@ public class UsecaseSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     name=FQN (ambiguity) (rule end)
+	 */
+	protected void emit_System___LeftCurlyBracketKeyword_2_1_0_RightCurlyBracketKeyword_2_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ('{' '}')?
+	 *
+	 * This ambiguous syntax occurs at:
 	 *     alias=ID (ambiguity) (rule end)
 	 *     name=ID (ambiguity) (rule end)
 	 */
-	protected void emit_UseCase___LeftCurlyBracketKeyword_4_0_RightCurlyBracketKeyword_4_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_UseCase___LeftCurlyBracketKeyword_4_1_0_RightCurlyBracketKeyword_4_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

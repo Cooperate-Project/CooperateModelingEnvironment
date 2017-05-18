@@ -1,83 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.modeling.textual.usecase.metamodel/src-gen"
-    modelPluginID="de.cooperateproject.modeling.language.usecase.metamodel" modelName="Usecase"
+    modelPluginID="de.cooperateproject.modeling.textual.usecase.metamodel" modelName="Usecase"
     rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
     importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic" complianceLevel="8.0"
-    copyrightFields="false" language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    copyrightFields="false" editPluginID="de.cooperateproject.modeling.textual.usecase.metamodel.edit"
+    testsPluginID="de.cooperateproject.modeling.textual.usecase.metamodel.tests" language=""
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <foreignModel>usecase.ecore</foreignModel>
   <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
   <genPackages prefix="Usecase" basePackage="de.cooperateproject.modeling.textual.usecase"
       disposableProviderFactory="true" ecorePackage="usecase.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="usecase.ecore#//Visibility">
-      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//Visibility/UNDEFINED"/>
-      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//Visibility/PUBLIC"/>
-      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//Visibility/PRIVATE"/>
-      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//Visibility/PROTECTED"/>
-      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//Visibility/PACKAGE"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="usecase.ecore#//ActorType">
+      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//ActorType/UNDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//ActorType/HUMAN"/>
+      <genEnumLiterals ecoreEnumLiteral="usecase.ecore#//ActorType/MACHINE"/>
     </genEnums>
     <genClasses ecoreClass="usecase.ecore#//UseCaseDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCaseDiagram/rootPackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCaseDiagram/title"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="usecase.ecore#//NamedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//NamedElement/name"/>
+    <genClasses ecoreClass="usecase.ecore#//BehavioredClassifier">
+      <genTypeParameters ecoreTypeParameter="usecase.ecore#//BehavioredClassifier/T"/>
     </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//AliasedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//AliasedElement/alias"/>
-    </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//BehavioredClassifier"/>
-    <genClasses image="false" ecoreClass="usecase.ecore#//Commentable"/>
     <genClasses ecoreClass="usecase.ecore#//RootPackage">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//RootPackage/actors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//RootPackage/systems"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//RootPackage/relationships"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//RootPackage/diagram"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Actor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Actor/visibility"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Actor/abstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Actor/type"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//System">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//System/usecases"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//System/package"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//UseCase">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/visibility"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//UseCase/abstract"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/extensionPoints"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//UseCase/system"/>
     </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//ExtensionPoint"/>
+    <genClasses ecoreClass="usecase.ecore#//ExtensionPoint">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference usecase.ecore#//ExtensionPoint/useCase"/>
+    </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Relationship"/>
     <genClasses ecoreClass="usecase.ecore#//Association">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Association/actor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Association/usecase"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Association/leftCardinality"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Association/rightCardinality"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Association/actorCardinality"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference usecase.ecore#//Association/useCaseCardinality"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Generalization">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Generalization/client"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Generalization/supplier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Generalization/specific"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Generalization/general"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Include">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Include/client"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Include/supplier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Include/addition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Include/includingCase"/>
     </genClasses>
     <genClasses ecoreClass="usecase.ecore#//Extend">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Extend/client"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Extend/supplier"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Extend/extensionPoint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Extend/extension"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Extend/extendedCase"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Extend/extensionLocation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Extend/condition"/>
-    </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//Comment">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//Comment/commentedElement"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Comment/comment"/>
-    </genClasses>
-    <genClasses ecoreClass="usecase.ecore#//Cardinality">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Cardinality/lowerBound"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute usecase.ecore#//Cardinality/upperBound"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="usecase.ecore#//UMLReferencingElement">
-      <genTypeParameters ecoreTypeParameter="usecase.ecore#//UMLReferencingElement/UMLType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference usecase.ecore#//UMLReferencingElement/referencedElement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

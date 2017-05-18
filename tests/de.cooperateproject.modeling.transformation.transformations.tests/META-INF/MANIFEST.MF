@@ -1,13 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tests
+Bundle-Name: Transformations Tests
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.transformations.tests
-Bundle-Version: 0.1.7.qualifier
-Fragment-Host: de.cooperateproject.modeling.transformation.transformations;bundle-version="0.1.7"
+Bundle-Version: 0.1.8.qualifier
+Fragment-Host: de.cooperateproject.modeling.transformation.transformations;bundle-version="0.1.8"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.4",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.9.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.emf.compare;bundle-version="3.2.0",
  org.apache.commons.io;bundle-version="2.2.0",

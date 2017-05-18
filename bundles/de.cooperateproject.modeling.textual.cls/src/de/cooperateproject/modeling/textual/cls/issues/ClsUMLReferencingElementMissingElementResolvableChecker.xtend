@@ -4,13 +4,14 @@ import de.cooperateproject.modeling.textual.cls.cls.Association
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd
 import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Classifier
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.cls.cls.Implementation
 import de.cooperateproject.modeling.textual.cls.cls.Method
+import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.Parameter
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.apache.commons.lang3.StringUtils
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Element
@@ -18,16 +19,19 @@ import org.eclipse.uml2.uml.Interface
 import org.eclipse.uml2.uml.OperationOwner
 import org.eclipse.uml2.uml.StructuredClassifier
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
 	override isResolvable(UMLReferencingElement<Element> element) {
 		element.resolvePossible
 	}
+	
+	private def dispatch resolvePossible(UMLReferencingElement element) {
+	    return false;
+	}
 
-	private def dispatch resolvePossible(de.cooperateproject.modeling.textual.cls.cls.Package element) {
+	private def dispatch resolvePossible(Package element) {
 		if (element.owningPackage === null) {
 			return false
 		}
@@ -39,7 +43,7 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 	}
 
 	private def dispatch resolvePossible(Association element) {
-		return element.owningPackage.hasReferencedElement
+		return element.owningPackage.hasReferencedElement && StringUtils.isNotBlank(element.name) && element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
 	}
 
 	private def dispatch resolvePossible(TypedConnector element) {
@@ -51,16 +55,6 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 		return element.owningPackage.hasReferencedElement &&
 			element.left.hasReferencedElementOfType(Class) &&
 			element.right.hasReferencedElementOfType(Interface)
-	}
-
-	private def dispatch resolvePossible(Comment element) {
-		val commentElement = element.commentedElement
-		if (commentElement instanceof UMLReferencingElement) {
-			return commentElement.hasReferencedElement
-		} else if (commentElement instanceof CommentLink) {
-			return commentElement.commentedElement.hasReferencedElement
-		}
-		return false
 	}
 
 	private def dispatch resolvePossible(Attribute element) {

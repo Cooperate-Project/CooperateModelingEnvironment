@@ -24,6 +24,7 @@ import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.connector.IConnector;
 import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IManagedContainer;
+import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.io.IOUtil;
 
 import com.google.common.base.Optional;
@@ -169,5 +170,14 @@ public final class CDOHelper {
 
     private static String createCheckoutLabel() {
         return String.format("tmp_cooperate_%d", System.currentTimeMillis());
+    }
+
+    public static CDOSession getSessionFromConnectionInfo(String cdoHost, Integer cdoPort, String cdoRepo) {
+        String cdoServerURI = "tcp://" + cdoHost + ":" + cdoPort;
+        IConnector connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, cdoServerURI);
+        CDONet4jSessionConfiguration sessionConfiguration = CDONet4jUtil.createNet4jSessionConfiguration();
+        sessionConfiguration.setConnector(connector);
+        sessionConfiguration.setRepositoryName(cdoRepo);
+        return sessionConfiguration.openNet4jSession();
     }
 }

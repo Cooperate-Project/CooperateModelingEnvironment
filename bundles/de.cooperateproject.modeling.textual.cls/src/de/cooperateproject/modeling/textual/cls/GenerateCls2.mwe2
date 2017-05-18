@@ -118,7 +118,12 @@ Workflow {
 			validator = resources.CooperateValidatorFragment2 auto-inject {
 				generateXtendStub = false
 			}
-			
+				
+            fragment = junit.Junit4Fragment2 {
+                generateStub = false
+                generateXtendStub = false
+            }
+            					
 			fragment = AddCDOXtextBindingsFragment2 auto-inject {}
 			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
 			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}

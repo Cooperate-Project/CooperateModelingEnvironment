@@ -11,8 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
@@ -24,59 +24,59 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  */
 public abstract class ElementImpl extends CDOObjectImpl implements Element {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TextualCommonsPackage.Literals.ELEMENT;
-	}
+        return TextualCommonsPackage.Literals.ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected int eStaticFeatureCount() {
-		return 0;
-	}
+        return 0;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PackageBase<?> getNearestPackage() {
-		EObject parent = this;
-		while (parent != null && !(parent instanceof PackageBase)) {
-			parent = parent.eContainer();
-		}
-		return (PackageBase<?>)parent;
-	}
+        EObject parent = this;
+        while (parent != null && !(parent instanceof PackageBase)) {
+            parent = parent.eContainer();
+        }
+        return (PackageBase<?>)parent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE:
-				return getNearestPackage();
-		}
-		return super.eInvoke(operationID, arguments);
-	}
+        switch (operationID) {
+            case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
+    }
 
 } //ElementImpl

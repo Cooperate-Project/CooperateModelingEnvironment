@@ -21,6 +21,7 @@ import com.google.common.collect.Lists;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.naming.NameSwitch;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateSimpleLocalScopeProvider;
 
 public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopeProvider {
@@ -116,36 +117,5 @@ public class ClsCooperateSimpleScopeProvider extends CooperateSimpleLocalScopePr
         }
         return creator.createNormalizers(context, reference);
     }
-
-    // private Map<EReference, EReferenceBasedNormalizerCreator> createNormalizerCreators() {
-    // Map<EReference, EReferenceBasedNormalizerCreator> result = Maps.newHashMap();
-    //
-    // result.put(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT,
-    // this::handleAssociationPropertiesProperty);
-    // result.put(ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT,
-    // this::handleAssociationPropertiesProperty);
-    //
-    // return result;
-    // }
-    //
-    // private Collection<ImportNormalizer> handleAssociationPropertiesProperty(EObject context, EReference ref) {
-    // Association association = ((AssociationProperties) context).getAssociation();
-    // EObject wantedUMLClassifier = null;
-    // if (ref == ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_LEFT) {
-    // wantedUMLClassifier = association.getRight();
-    // } else if (ref == ClsPackage.Literals.ASSOCIATION_PROPERTIES__PROPERTY_RIGHT) {
-    // wantedUMLClassifier = association.getLeft();
-    // }
-    //
-    // Collection<EObject> additionalContextObjects = Sets.newHashSet();
-    // EcoreUtil2.findCrossReferences(EcoreUtil.getRootContainer(context), Sets.newHashSet(wantedUMLClassifier),
-    // (referrer, referenced, reference,
-    // index) -> additionalContextObjects.add(ClsPackage.Literals.CLASSIFIER.isInstance(referrer)
-    // && reference == TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT
-    // ? referrer : null));
-    // additionalContextObjects.removeIf(o -> o == null);
-    // return additionalContextObjects.stream().map(this::getImportNormalizers).flatMap(o -> o.stream())
-    // .collect(Collectors.toSet());
-    // }
 
 }

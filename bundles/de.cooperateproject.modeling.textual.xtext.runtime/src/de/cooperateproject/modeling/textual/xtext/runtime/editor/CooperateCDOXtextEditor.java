@@ -43,6 +43,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
+import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator;
 
 public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
@@ -81,6 +82,9 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     @Inject
     private IAutomatedIssueResolutionProvider automatedIssueResolutionProvider;
 
+    @Inject
+    private ICDOResourceStateCalculator resourceStateCalculator;
+
     @Override
     protected void handleCursorPositionChanged() {
         super.handleCursorPositionChanged();
@@ -97,14 +101,16 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
-        IXtextDocument document = getDocument();
+        CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+        if (containsSyntaxErrors(cooperateXtextDocument)) {
+            openErrorDialog("Save Error", "Can't save because of syntax errors.");
+            return;
+        }
         performPreSaveActions();
-        CooperateXtextDocument cooperateXtextDocument = document.getAdapter(CooperateXtextDocument.class);
         IStatus status = scheduleValidation(cooperateXtextDocument);
         if (status.isOK()) {
-            List<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
-            if (!errors.isEmpty()) {
-                openErrorDialog("Save Error", "Can't save because of editor errors");
+            if (!getAllIssues(cooperateXtextDocument).isEmpty()) {
+                openErrorDialog("Save Error", "Can't save because of semantic errors.");
                 return;
             }
             Job job = new Job("Save") {
@@ -141,6 +147,20 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         }
     }
 
+    private boolean containsSyntaxErrors(CooperateXtextDocument document) {
+        List<Issue> detectedIssues = getAllIssues(document);
+        Collection<String> syntaxErrorCodes = Sets.newHashSet(
+                org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC,
+                org.eclipse.xtext.diagnostics.Diagnostic.SYNTAX_DIAGNOSTIC_WITH_RANGE);
+        return detectedIssues.stream().anyMatch(i -> syntaxErrorCodes.contains(i.getCode()));
+    }
+
+    private List<Issue> getAllIssues(CooperateXtextDocument document) throws OperationCanceledError {
+        List<Issue> detectedIssues = resourceValidator.validate(document.getResource(), CheckMode.ALL,
+                CancelIndicator.NullImpl);
+        return detectedIssues;
+    }
+
     private void performPreSaveActions() {
         performValidationIssueFixing();
     }
@@ -174,9 +194,8 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
                 do {
                     issueResolutions.forEach(i -> i.resolve());
                     if (documentResource instanceof DerivedStateAwareResource) {
-                        DerivedStateAwareResource typedResource = ((DerivedStateAwareResource) documentResource);
-                        typedResource.discardDerivedState();
-                        typedResource.installDerivedState(false);
+                        resourceStateCalculator.simulateReloadingResource(documentResource);
+                        resourceStateCalculator.calculateState(documentResource);
                     }
                     detectedIssues.clear();
                     detectedIssues.addAll(

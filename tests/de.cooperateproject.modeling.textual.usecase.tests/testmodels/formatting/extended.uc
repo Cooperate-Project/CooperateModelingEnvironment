@@ -1,27 +1,27 @@
-@start-uc "diagram11"
+@start-ucd "diagram11"
 
 rootElement RootElement
 
-# abstract actor "AbstractHumanUser" as hu [human]
-# abstract actor "AbstractMachineUser" as mu [machine]
+# abstract actor[human] "AbstractHumanUser" as hu
+# abstract actor[machine] "AbstractMachineUser" as mu
 + actor HumanUser1
 + actor MachineUser1
 
-system System1 {
-	usecase UseCase1 {
-		extensionpoint uc1extender
+sys System1 {
+	uc UseCase1 {
+		ep uc1extender
 	}
 
-	usecase UseCase2
-	usecase UseCase3
+	uc UseCase2
+	uc UseCase3
 }
 
-HumanUser1 isA RootElement.hu
-MachineUser1 isA RootElement.mu
-UseCase2 inc UseCase3
-UseCase2 ext UseCase1 [uc1extender|"Examplery extension condition"]
-HumanUser1 iac System1.UseCase1
-HumanUser1 iac System1.UseCase3
-MachineUser1 iac UseCase2
+isa (HumanUser1,RootElement.hu)
+isa (MachineUser1,RootElement.mu)
+inc (UseCase2,UseCase3)
+ext (UseCase2, UseCase1) ep[uc1extender] cond["Examplery extension condition"]
+iac (HumanUser1, System1.UseCase1)
+iac (HumanUser1, System1.UseCase3)
+iac (MachineUser1, UseCase2)
 
-@end-uc
+@end-ucd

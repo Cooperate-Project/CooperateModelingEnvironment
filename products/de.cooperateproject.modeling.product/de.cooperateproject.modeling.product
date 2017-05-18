@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Cooperate Modeling Environment" uid="de.cooperateproject.modeling.product" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="0.1.7.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Cooperate Modeling Environment" uid="de.cooperateproject.modeling.product" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="0.1.8.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -31,9 +31,9 @@
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="de.cooperateproject.ui.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.ui.feature" version="0.1.8.qualifier"/>
       <feature id="org.eclipse.papyrus.uml.ui.feature"/>
-      <feature id="de.cooperateproject.modeling.textual.commons.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.textual.commons.feature" version="0.1.8.qualifier"/>
       <feature id="org.eclipse.papyrus.infra.gmfdiag.css.feature"/>
       <feature id="org.eclipse.papyrus.uml.tools.feature"/>
       <feature id="org.eclipse.gmf.runtime.notation.source"/>
@@ -48,18 +48,15 @@
       <feature id="org.eclipse.papyrus.uml.modelexplorer.feature"/>
       <feature id="org.eclipse.uml2.uml.edit"/>
       <feature id="org.eclipse.papyrus.uml.feature"/>
-      <feature id="org.eclipse.xtext.xtext.ui.source"/>
       <feature id="org.eclipse.emf.converter"/>
       <feature id="org.eclipse.emf.edit.ui"/>
-      <feature id="org.eclipse.xtext.ui.source"/>
       <feature id="org.eclipse.papyrus.infra.emf.feature"/>
       <feature id="org.eclipse.uml2.examples.source"/>
       <feature id="org.eclipse.m2m.qvt.oml.runtime.source"/>
       <feature id="org.eclipse.emf.mapping.source"/>
-      <feature id="de.cooperateproject.modeling.textual.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.textual.feature" version="0.1.8.qualifier"/>
       <feature id="org.eclipse.emf.codegen.ecore.ui.source"/>
       <feature id="org.eclipse.uml2.common.edit.source"/>
-      <feature id="org.eclipse.xtext.runtime.source"/>
       <feature id="org.eclipse.uml2.codegen.ecore.ui.source"/>
       <feature id="org.eclipse.papyrus.views.modelexplorer.feature"/>
       <feature id="org.eclipse.m2m.qvt.oml.editor.jdt"/>
@@ -86,7 +83,6 @@
       <feature id="org.eclipse.emf.doc.source"/>
       <feature id="org.eclipse.papyrus.infra.widget.feature"/>
       <feature id="org.eclipse.emf.mapping.ecore.editor"/>
-      <feature id="org.eclipse.xtext.xbase.source"/>
       <feature id="org.eclipse.papyrus.infra.gmfdiag.feature"/>
       <feature id="org.eclipse.emf.ecore.edit"/>
       <feature id="org.eclipse.uml2.sdk"/>
@@ -103,13 +99,13 @@
       <feature id="org.eclipse.papyrus.uml.search.feature"/>
       <feature id="org.eclipse.emf"/>
       <feature id="org.eclipse.m2m.qvt.oml.editor"/>
-      <feature id="de.cooperateproject.modeling.textual.class.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.textual.class.feature" version="0.1.8.qualifier"/>
       <feature id="org.eclipse.uml2.uml"/>
       <feature id="org.eclipse.uml2.common.source"/>
-      <feature id="de.cooperateproject.modeling.transformation.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.transformation.feature" version="0.1.8.qualifier"/>
       <feature id="de.cooperateproject.cdo.patched.client.feature"/>
-      <feature id="de.cooperateproject.modeling.graphical.feature" version="0.1.7.qualifier"/>
-      <feature id="de.cooperateproject.modeling.textual.metamodels.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.graphical.feature" version="0.1.8.qualifier"/>
+      <feature id="de.cooperateproject.modeling.textual.metamodels.feature" version="0.1.8.qualifier"/>
       <feature id="org.eclipse.emf.edit"/>
       <feature id="org.eclipse.xtext.runtime"/>
       <feature id="org.eclipse.papyrus.views.references.feature"/>
@@ -124,44 +120,32 @@
       <feature id="org.eclipse.papyrus.emf.facet.feature"/>
       <feature id="org.eclipse.gmf.runtime.notation.sdk"/>
       <feature id="org.eclipse.papyrus.infra.viewpoints.feature"/>
-      <feature id="org.eclipse.xtext.xbase.lib.source"/>
       <feature id="org.eclipse.m2m.qvt.oml.runtime"/>
-      <feature id="org.eclipse.xtext.examples.source"/>
       <feature id="org.eclipse.emf.codegen.source"/>
       <feature id="org.eclipse.xtext.ui"/>
       <feature id="org.eclipse.emf.sdk"/>
       <feature id="org.eclipse.uml2"/>
       <feature id="org.eclipse.papyrus.infra.feature"/>
       <feature id="org.eclipse.papyrus.uml.properties.feature"/>
-      <feature id="org.eclipse.xtext.docs"/>
-      <feature id="org.eclipse.emf.doc"/>
-      <feature id="de.cooperateproject.modeling.textual.usecase.feature" version="0.1.7.qualifier"/>
-      <feature id="org.eclipse.uml2.examples"/>
+      <feature id="de.cooperateproject.modeling.textual.usecase.feature" version="0.1.8.qualifier"/>
       <feature id="org.eclipse.papyrus.doc.feature"/>
       <feature id="org.eclipse.papyrus.uml.assistants.feature"/>
       <feature id="org.eclipse.xtext.xtext.ui"/>
-      <feature id="org.eclipse.emf.edit.ui.source"/>
       <feature id="org.eclipse.emf.common.ui"/>
       <feature id="org.eclipse.papyrus.infra.ui.feature"/>
       <feature id="org.eclipse.emf.converter.source"/>
-      <feature id="org.eclipse.m2m.qvt.oml.debug.source"/>
       <feature id="org.eclipse.emf.mapping.ui"/>
       <feature id="org.eclipse.papyrus.views.search.feature"/>
       <feature id="org.eclipse.papyrus.uml.textedit.feature"/>
       <feature id="org.eclipse.xtext.sdk"/>
       <feature id="org.eclipse.papyrus.infra.discovery.feature"/>
-      <feature id="org.eclipse.emf.mapping.ui.source"/>
       <feature id="de.cooperateproject.cdoxtext.feature"/>
-      <feature id="org.eclipse.emf.ecore.edit.source"/>
       <feature id="org.eclipse.papyrus.customization.feature"/>
       <feature id="org.eclipse.papyrus.uml.decoratormodel.feature"/>
       <feature id="org.eclipse.papyrus.views.properties.feature"/>
-      <feature id="org.eclipse.m2m.qvt.oml.editor.source"/>
       <feature id="org.eclipse.emf.codegen.ecore.ui"/>
       <feature id="org.eclipse.gmf.runtime.notation"/>
       <feature id="org.eclipse.emf.ecore.editor"/>
-      <feature id="org.eclipse.emf.source"/>
-      <feature id="org.eclipse.m2m.qvt.oml.editor.jdt.source"/>
       <feature id="org.eclipse.papyrus.infra.core.feature"/>
       <feature id="de.cooperateproject.cdo.patch"/>
       <feature id="org.eclipse.emf.databinding"/>
@@ -179,45 +163,24 @@
       <feature id="org.eclipse.draw2d"/>
       <feature id="org.eclipse.gmf"/>
       <feature id="org.eclipse.gmf.runtime.sdk"/>
-      <feature id="org.eclipse.emf.query.ocl.source"/>
       <feature id="org.eclipse.emf.query"/>
-      <feature id="org.eclipse.emf.query.source"/>
-      <feature id="org.eclipse.emf.transaction.source"/>
-      <feature id="org.eclipse.emf.validation.doc"/>
       <feature id="org.eclipse.emf.validation.sdk"/>
-      <feature id="org.eclipse.gmf.runtime.thirdparty.source"/>
-      <feature id="org.eclipse.gef.source"/>
       <feature id="org.eclipse.draw2d.sdk"/>
       <feature id="org.eclipse.emf.validation.ocl"/>
-      <feature id="org.eclipse.emf.workspace.doc"/>
       <feature id="org.eclipse.gmf.examples.runtime.ui.pde"/>
       <feature id="org.eclipse.gmf.examples.runtime"/>
       <feature id="org.eclipse.emf.validation"/>
       <feature id="org.eclipse.gmf.runtime.thirdparty"/>
       <feature id="org.eclipse.emf.workspace.source"/>
       <feature id="org.eclipse.emf.query.sdk"/>
-      <feature id="org.eclipse.emf.query.doc"/>
-      <feature id="org.eclipse.emf.validation.ocl.source"/>
       <feature id="org.eclipse.emf.query.ocl"/>
-      <feature id="org.eclipse.draw2d.source"/>
-      <feature id="org.eclipse.gmf.source"/>
-      <feature id="org.eclipse.emf.validation.source"/>
       <feature id="org.eclipse.gef.sdk"/>
-      <feature id="org.eclipse.emf.transaction.doc"/>
       <feature id="org.eclipse.emf.transaction.sdk"/>
       <feature id="org.eclipse.emf.cdo.dawn.sdk"/>
-      <feature id="org.eclipse.emf.cdo.dawn.codegen.emf.source"/>
       <feature id="org.eclipse.emf.cdo.dawn.ecore.editor.dawn"/>
-      <feature id="org.eclipse.emf.cdo.dawn.codegen.source"/>
       <feature id="org.eclipse.emf.cdo.dawn.codegen.emf"/>
-      <feature id="org.eclipse.emf.cdo.dawn.examples.source"/>
       <feature id="org.eclipse.emf.cdo.dawn"/>
-      <feature id="org.eclipse.emf.cdo.dawn.codegen.gmf.source"/>
       <feature id="org.eclipse.emf.cdo.dawn.codegen"/>
-      <feature id="org.eclipse.emf.cdo.dawn.ecore.editor.dawn.source"/>
-      <feature id="org.eclipse.emf.cdo.dawn.source"/>
-      <feature id="org.eclipse.emf.cdo.dawn.sdk.source"/>
-      <feature id="org.eclipse.emf.cdo.dawn.examples"/>
       <feature id="org.eclipse.emf.compare.diagram.gmf"/>
       <feature id="org.eclipse.emf.compare.ide.ui"/>
       <feature id="de.cooperateproject.cdo.server.patch"/>
@@ -248,7 +211,7 @@
       <feature id="org.eclipse.ocl.unified.core"/>
       <feature id="org.eclipse.wst.common.fproj"/>
       <feature id="org.eclipse.emf.compare.rcp.ui"/>
-      <feature id="de.cooperateproject.modeling.externals.feature" version="0.1.7.qualifier"/>
+      <feature id="de.cooperateproject.modeling.externals.feature" version="0.1.8.qualifier"/>
    </features>
 
    <configurations>

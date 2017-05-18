@@ -29,10 +29,10 @@ import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.scoping.ClsImportedNamespaceAwareLocalScopeProvider;
 import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest;
 import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider;
 
 @RunWith(XtextRunner.class)
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider.class)
@@ -41,7 +41,7 @@ public class ClsCooperateSimpleScopeProviderTest extends AbstractClsTest {
     private static String TEST_FOLDER = "testmodels/scoping/";
 
     @Inject
-    private ClsImportedNamespaceAwareLocalScopeProvider subject;
+    private CooperateImportedNamespaceAwareLocalScopeProvider subject;
 
     @Test
     public void testNestedNormalizing() throws Exception {

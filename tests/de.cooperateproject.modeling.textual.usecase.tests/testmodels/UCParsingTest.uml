@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ePV7MBuvEeexd7bUm3S44A" name="RootElement" URI="" viewpoint="">
+  <ownedComment xmi:id="_9Dm5oBuvEeexd7bUm3S44A" annotatedElement="_4Om5kBuvEeexd7bUm3S44A">
+    <body>This is the first concrete usecase</body>
+  </ownedComment>
+  <ownedComment xmi:id="_wb7K8BuwEeexd7bUm3S44A" annotatedElement="_rnMQoBuwEeexd7bUm3S44A">
+    <body>This one should only be used in certain cases...</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Component" xmi:id="_xpwFcBuvEeexd7bUm3S44A" name="System1" useCase="_4Om5kBuvEeexd7bUm3S44A _HwR3sBuwEeexd7bUm3S44A _K5d2MBuwEeexd7bUm3S44A _dXbmUBuwEeexd7bUm3S44A _nwiIIBuwEeexd7bUm3S44A _rnMQoBuwEeexd7bUm3S44A">
+    <ownedUseCase xmi:id="_4Om5kBuvEeexd7bUm3S44A" name="Concrete and Aliased Usecase 1" subject="_xpwFcBuvEeexd7bUm3S44A">
+      <nameExpression xmi:id="_AdDt0B6GEeehVbqKgThCwA" name="AliasedUseCase1"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_HwR3sBuwEeexd7bUm3S44A" name="AbstractUseCase1" isAbstract="true" subject="_xpwFcBuvEeexd7bUm3S44A">
+      <extensionPoint xmi:id="_rEkrwBuwEeexd7bUm3S44A" name="The real functionality">
+        <nameExpression xmi:id="_BwzYMB6HEeehVbqKgThCwA" name="AliasedExtensionPoint1"/>
+      </extensionPoint>
+      <extensionPoint xmi:id="_oKOxMB6HEeehVbqKgThCwA" name="ExtensionPoint1"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_K5d2MBuwEeexd7bUm3S44A" name="ConcreteUseCase2" subject="_xpwFcBuvEeexd7bUm3S44A">
+      <generalization xmi:id="_MnFOkBuwEeexd7bUm3S44A" general="_HwR3sBuwEeexd7bUm3S44A"/>
+      <include xmi:id="_gA8mQBuwEeexd7bUm3S44A" addition="_dXbmUBuwEeexd7bUm3S44A"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_dXbmUBuwEeexd7bUm3S44A" name="IncludedUseCase1" subject="_xpwFcBuvEeexd7bUm3S44A"/>
+    <ownedUseCase xmi:id="_nwiIIBuwEeexd7bUm3S44A" name="Extension1ToAbstractUseCase1" subject="_xpwFcBuvEeexd7bUm3S44A">
+      <extend xmi:id="_rEjdoBuwEeexd7bUm3S44A" extendedCase="_HwR3sBuwEeexd7bUm3S44A" extensionLocation="_oKOxMB6HEeehVbqKgThCwA"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_rnMQoBuwEeexd7bUm3S44A" name="Extension2ToAbstractUseCase1" subject="_xpwFcBuvEeexd7bUm3S44A">
+      <extend xmi:id="_uDZ0YBuwEeexd7bUm3S44A" extendedCase="_HwR3sBuwEeexd7bUm3S44A" extensionLocation="_rEkrwBuwEeexd7bUm3S44A"/>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_3KfrYB6HEeehVbqKgThCwA" name="ConcreteUseCase1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_1BmLABuvEeexd7bUm3S44A" name="Employee of the month">
+    <nameExpression xmi:id="_YSw-sB6GEeehVbqKgThCwA" name="Bob"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_2Tf3wBuvEeexd7bUm3S44A" name="Alice"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_Bb1eIBuwEeexd7bUm3S44A" name="BobInABadMood">
+    <generalization xmi:id="_Fq44gBuwEeexd7bUm3S44A" general="_1BmLABuvEeexd7bUm3S44A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_SDCg8BuwEeexd7bUm3S44A" memberEnd="_SDHZcBuwEeexd7bUm3S44A _SDIAgBuwEeexd7bUm3S44A">
+    <eAnnotations xmi:id="_SDFkQBuwEeexd7bUm3S44A" source="org.eclipse.papyrus">
+      <details xmi:id="_SDGLUBuwEeexd7bUm3S44A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_SDHZcBuwEeexd7bUm3S44A" name="concreteusecase1" type="_4Om5kBuvEeexd7bUm3S44A" association="_SDCg8BuwEeexd7bUm3S44A"/>
+    <ownedEnd xmi:id="_SDIAgBuwEeexd7bUm3S44A" name="alice" type="_2Tf3wBuvEeexd7bUm3S44A" association="_SDCg8BuwEeexd7bUm3S44A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Snza4BuwEeexd7bUm3S44A" memberEnd="_Sn0B8RuwEeexd7bUm3S44A _Sn0B8huwEeexd7bUm3S44A">
+    <eAnnotations xmi:id="_Snza4RuwEeexd7bUm3S44A" source="org.eclipse.papyrus">
+      <details xmi:id="_Sn0B8BuwEeexd7bUm3S44A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_Sn0B8RuwEeexd7bUm3S44A" name="abstractusecase1" type="_HwR3sBuwEeexd7bUm3S44A" association="_Snza4BuwEeexd7bUm3S44A"/>
+    <ownedEnd xmi:id="_Sn0B8huwEeexd7bUm3S44A" name="alice" type="_2Tf3wBuvEeexd7bUm3S44A" association="_Snza4BuwEeexd7bUm3S44A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TF-koBuwEeexd7bUm3S44A" memberEnd="_TF_LsRuwEeexd7bUm3S44A _TF_ywBuwEeexd7bUm3S44A">
+    <eAnnotations xmi:id="_TF-koRuwEeexd7bUm3S44A" source="org.eclipse.papyrus">
+      <details xmi:id="_TF_LsBuwEeexd7bUm3S44A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_TF_LsRuwEeexd7bUm3S44A" name="abstractusecase1" type="_K5d2MBuwEeexd7bUm3S44A" association="_TF-koBuwEeexd7bUm3S44A"/>
+    <ownedEnd xmi:id="_TF_ywBuwEeexd7bUm3S44A" name="bobinabadmood" type="_Bb1eIBuwEeexd7bUm3S44A" association="_TF-koBuwEeexd7bUm3S44A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_UFtjUBuwEeexd7bUm3S44A" memberEnd="_UFuKYhuwEeexd7bUm3S44A _UFuKYxuwEeexd7bUm3S44A">
+    <eAnnotations xmi:id="_UFuKYBuwEeexd7bUm3S44A" source="org.eclipse.papyrus">
+      <details xmi:id="_UFuKYRuwEeexd7bUm3S44A" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_UFuKYhuwEeexd7bUm3S44A" name="abstractusecase1" type="_HwR3sBuwEeexd7bUm3S44A" association="_UFtjUBuwEeexd7bUm3S44A"/>
+    <ownedEnd xmi:id="_UFuKYxuwEeexd7bUm3S44A" name="bob" type="_1BmLABuvEeexd7bUm3S44A" association="_UFtjUBuwEeexd7bUm3S44A"/>
+  </packagedElement>
+</uml:Model>

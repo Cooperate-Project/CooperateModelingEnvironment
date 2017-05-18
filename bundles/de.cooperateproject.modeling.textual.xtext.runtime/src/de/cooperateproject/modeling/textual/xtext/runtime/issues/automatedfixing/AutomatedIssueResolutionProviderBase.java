@@ -1,14 +1,17 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.validation.Issue;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory.CreationException;
+import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
 public abstract class AutomatedIssueResolutionProviderBase implements IAutomatedIssueResolutionProvider {
 
@@ -52,9 +55,12 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
     }
 
     private Collection<IAutomatedIssueResolution> createResolutions(Resource r, Issue issue) {
+        Optional<EObject> element = findEObjectToFix(issue, r);
+        if (!element.isPresent()) {
+            return Collections.emptyList();
+        }
         Collection<IAutomatedIssueResolutionFactory> resolutionFactories = findResolutionFactories(issue.getCode());
-        EObject element = r.getEObject(issue.getUriToProblem().fragment());
-        return resolutionFactories.stream().map(f -> createInstance(f, element)).filter(Optional::isPresent)
+        return resolutionFactories.stream().map(f -> createInstance(f, element.get())).filter(Optional::isPresent)
                 .map(Optional::get).collect(Collectors.toSet());
     }
 
@@ -68,6 +74,20 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
         } catch (CreationException e) {
             return Optional.empty();
         }
+    }
+
+    private static Optional<EObject> findEObjectToFix(Issue issue, Resource r) {
+        if (issue.getData() != null && issue.getData().length > 1
+                && ICooperateAutomatedValidator.ISSUE_DATA_MARKER.equals(issue.getData()[0])) {
+            URI realEObjectUri = URI.createURI(issue.getData()[1]);
+            return findEObject(realEObjectUri, r);
+        }
+        return findEObject(issue.getUriToProblem(), r);
+
+    }
+
+    private static Optional<EObject> findEObject(URI uri, Resource r) {
+        return Optional.ofNullable(r.getEObject(uri.fragment()));
     }
 
 }

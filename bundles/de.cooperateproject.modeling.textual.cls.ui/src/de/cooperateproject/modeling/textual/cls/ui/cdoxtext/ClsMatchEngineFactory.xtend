@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.cls.ui.cdoxtext
 import com.google.common.base.Function
 import com.google.inject.Inject
 import com.google.inject.Provider
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import java.util.List
@@ -20,6 +19,7 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
 import org.eclipse.emf.compare.scope.IComparisonScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.StringExpression
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
@@ -36,6 +36,9 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 	override getMatchEngine() {
 		val idComputation = new Function<EObject, String>() {
 			override apply(EObject input) {
+				if (input === null) {
+					return null;
+				}
 				val cdoObject = CDOUtil.getCDOObject(input)
 				cdoObject.cdoID.toString
 			}
@@ -47,7 +50,7 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					StringExpression: "StringExp" + input.name
 					Cardinality: Cardinality.simpleName + input.calculateContainmentIdPart([apply])
-					CommentLink: CommentLink.simpleName + apply(input.comments.findFirst[true])
+					XtextAssociationMemberEndReferencedType: XtextAssociationMemberEndReferencedType.simpleName + input.calculateContainmentIdPart([apply])
 					default: null
 				}
 			}

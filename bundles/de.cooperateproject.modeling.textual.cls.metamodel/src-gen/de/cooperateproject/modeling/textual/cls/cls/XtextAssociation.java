@@ -33,7 +33,7 @@ public interface XtextAssociation extends Association {
      * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType}.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Member End Types</em>' reference list isn't clear,
+     * If the meaning of the '<em>Member End Types</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->

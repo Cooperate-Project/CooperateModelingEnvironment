@@ -7,7 +7,6 @@ import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Connector;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -18,10 +17,11 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -34,7 +34,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -150,10 +149,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createImplementationAdapter();
             }
             @Override
-            public Adapter caseCommentLink(CommentLink object) {
-                return createCommentLinkAdapter();
-            }
-            @Override
             public Adapter caseAssociation(Association object) {
                 return createAssociationAdapter();
             }
@@ -170,15 +165,15 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createXtextAssociationMemberEndReferencedTypeAdapter();
             }
             @Override
+            public Adapter caseElement(Element object) {
+                return createElementAdapter();
+            }
+            @Override
             public Adapter casePackageableElement(PackageableElement object) {
                 return createPackageableElementAdapter();
             }
             @Override
-            public Adapter caseElement(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element object) {
-                return createElementAdapter();
-            }
-            @Override
-            public <UMLType extends Element> Adapter caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
+            public <UMLType extends org.eclipse.uml2.uml.Element> Adapter caseUMLReferencingElement(UMLReferencingElement<UMLType> object) {
                 return createUMLReferencingElementAdapter();
             }
             @Override
@@ -194,7 +189,7 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createAliasedElementAdapter();
             }
             @Override
-            public Adapter caseCommentable(Commentable object) {
+            public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
                 return createCommentableAdapter();
             }
             @Override
@@ -414,20 +409,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.CommentLink <em>Comment Link</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.cls.cls.CommentLink
-     * @generated
-     */
-    public Adapter createCommentLinkAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.cls.cls.Association <em>Association</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -498,20 +479,6 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement <em>UML Referencing Element</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
-     * @generated
-     */
-    public Adapter createUMLReferencingElementAdapter() {
-        return null;
-    }
-
-    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -522,6 +489,20 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement <em>UML Referencing Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+     * @generated
+     */
+    public Adapter createUMLReferencingElementAdapter() {
         return null;
     }
 

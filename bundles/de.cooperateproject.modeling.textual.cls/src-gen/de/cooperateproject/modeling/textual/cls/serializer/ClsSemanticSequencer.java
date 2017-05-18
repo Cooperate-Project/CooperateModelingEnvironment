@@ -7,7 +7,6 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
@@ -52,9 +51,6 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case ClsPackage.CLASS_DIAGRAM:
 				sequence_ClassDiagram(context, (ClassDiagram) semanticObject); 
-				return; 
-			case ClsPackage.COMMENT_LINK:
-				sequence_CommentLink(context, (CommentLink) semanticObject); 
 				return; 
 			case ClsPackage.GENERALIZATION:
 				sequence_Generalization(context, (Generalization) semanticObject); 
@@ -156,22 +152,9 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Class returns Class
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? abstract?='abstract'? ((name=STRING alias=ID) | name=ID) members+=Member*)
+	 *     (visibility=Visibility? abstract?='abstract'? ((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? members+=Member*))?)
 	 */
 	protected void sequence_Class(ISerializationContext context, de.cooperateproject.modeling.textual.cls.cls.Class semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Connector returns CommentLink
-	 *     CommentLink returns CommentLink
-	 *
-	 * Constraint:
-	 *     (comments+=Comment commentedElement=[Classifier|FQN])
-	 */
-	protected void sequence_CommentLink(ISerializationContext context, CommentLink semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
@@ -244,7 +227,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (visibility=Visibility? ((name=STRING alias=ID) | name=ID) members+=Member*)
+	 *     (visibility=Visibility? ((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? members+=Member*))?)
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -355,7 +338,7 @@ public class ClsSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         name=ID 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType 
 	 *         memberEndTypes+=XtextAssociationMemberEndReferencedType* 
-	 *         (memberEndNames+=ID memberEndNames+=ID*)? 
+	 *         (memberEndNames+=RoleName memberEndNames+=RoleName*)? 
 	 *         (memberEndCardinalities+=Cardinality memberEndCardinalities+=Cardinality*)? 
 	 *         comments+=Comment?
 	 *     )

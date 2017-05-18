@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Package extends PackageableElement, PackageBase<Package> {
+public interface Package extends PackageBase<Package>, PackageableElement {
     /**
      * Returns the value of the '<em><b>Classifiers</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}&lt;? extends org.eclipse.uml2.uml.Classifier>.

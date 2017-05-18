@@ -2,14 +2,17 @@
  */
 package de.cooperateproject.modeling.textual.usecase.usecase.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl;
+
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
-import de.cooperateproject.modeling.textual.usecase.usecase.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,74 +31,64 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class ExtendImpl extends CDOObjectImpl implements Extend {
-	/**
+public class ExtendImpl extends ElementImpl implements Extend {
+    /**
      * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @see #getCondition()
      * @generated
      * @ordered
      */
-	protected static final String CONDITION_EDEFAULT = null;
+    protected static final String CONDITION_EDEFAULT = null;
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected ExtendImpl() {
+    protected ExtendImpl() {
         super();
     }
 
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	protected EClass eStaticClass() {
-        return UsecasePackage.Literals.EXTEND;
-    }
-
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    protected int eStaticFeatureCount() {
-        return 0;
+    protected EClass eStaticClass() {
+        return UsecasePackage.Literals.EXTEND;
     }
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Extend getReferencedElement() {
-        return (org.eclipse.uml2.uml.Extend)eDynamicGet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    public org.eclipse.uml2.uml.Extend getReferencedElement() {
+        return (org.eclipse.uml2.uml.Extend)eDynamicGet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public org.eclipse.uml2.uml.Extend basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.Extend)eDynamicGet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public org.eclipse.uml2.uml.Extend basicGetReferencedElement() {
+        return (org.eclipse.uml2.uml.Extend)eDynamicGet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setReferencedElement(org.eclipse.uml2.uml.Extend newReferencedElement) {
-        eDynamicSet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, UsecasePackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    public void setReferencedElement(org.eclipse.uml2.uml.Extend newReferencedElement) {
+        eDynamicSet(UsecasePackage.EXTEND__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -178,29 +171,29 @@ public class ExtendImpl extends CDOObjectImpl implements Extend {
 
     /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public String getCondition() {
+    public String getCondition() {
         return (String)eDynamicGet(UsecasePackage.EXTEND__CONDITION, UsecasePackage.Literals.EXTEND__CONDITION, true, true);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setCondition(String newCondition) {
+    public void setCondition(String newCondition) {
         eDynamicSet(UsecasePackage.EXTEND__CONDITION, UsecasePackage.Literals.EXTEND__CONDITION, newCondition);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 if (resolve) return getReferencedElement();
@@ -220,13 +213,13 @@ public class ExtendImpl extends CDOObjectImpl implements Extend {
         return super.eGet(featureID, resolve, coreType);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eSet(int featureID, Object newValue) {
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)newValue);
@@ -247,13 +240,13 @@ public class ExtendImpl extends CDOObjectImpl implements Extend {
         super.eSet(featureID, newValue);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public void eUnset(int featureID) {
+    @Override
+    public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 setReferencedElement((org.eclipse.uml2.uml.Extend)null);
@@ -274,13 +267,13 @@ public class ExtendImpl extends CDOObjectImpl implements Extend {
         super.eUnset(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean eIsSet(int featureID) {
+    @Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
                 return basicGetReferencedElement() != null;
@@ -296,32 +289,32 @@ public class ExtendImpl extends CDOObjectImpl implements Extend {
         return super.eIsSet(featureID);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
-                case UsecasePackage.EXTEND__REFERENCED_ELEMENT: return UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case UsecasePackage.EXTEND__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
-                case UsecasePackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.EXTEND__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return UsecasePackage.EXTEND__REFERENCED_ELEMENT;
                 default: return -1;
             }
         }

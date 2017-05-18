@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
 import org.eclipse.emf.cdo.CDOObject;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Cardinality</b></em>'.
@@ -25,55 +24,55 @@ import org.eclipse.emf.cdo.CDOObject;
  */
 public interface Cardinality extends CDOObject {
 	/**
-	 * Returns the value of the '<em><b>Lower Bound</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Lower Bound</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower Bound</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Lower Bound</em>' attribute.
-	 * @see #setLowerBound(int)
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality_LowerBound()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Lower Bound</em>' attribute.
+     * @see #setLowerBound(int)
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality_LowerBound()
+     * @model
+     * @generated
+     */
 	int getLowerBound();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getLowerBound <em>Lower Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getLowerBound <em>Lower Bound</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Lower Bound</em>' attribute.
-	 * @see #getLowerBound()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Lower Bound</em>' attribute.
+     * @see #getLowerBound()
+     * @generated
+     */
 	void setLowerBound(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Upper Bound</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Upper Bound</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Upper Bound</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Upper Bound</em>' attribute.
-	 * @see #setUpperBound(int)
-	 * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality_UpperBound()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Upper Bound</em>' attribute.
+     * @see #setUpperBound(int)
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality_UpperBound()
+     * @model
+     * @generated
+     */
 	int getUpperBound();
 
 	/**
-	 * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getUpperBound <em>Upper Bound</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getUpperBound <em>Upper Bound</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Upper Bound</em>' attribute.
-	 * @see #getUpperBound()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Upper Bound</em>' attribute.
+     * @see #getUpperBound()
+     * @generated
+     */
 	void setUpperBound(int value);
 
 } // Cardinality

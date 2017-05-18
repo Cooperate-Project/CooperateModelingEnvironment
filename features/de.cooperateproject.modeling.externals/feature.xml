@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="de.cooperateproject.modeling.externals.feature"
-      label="External Dependencies"
-      version="0.1.7.qualifier">
+      label="Cooperate Modeling Environment External Dependencies"
+      version="0.1.8.qualifier">
 
    <description>
       Dependencies of the Cooperate modeling environment to external libraries.
@@ -214,6 +214,13 @@
 
    <plugin
          id="com.google.inject"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.google.inject.multibindings.bundle"
          download-size="0"
          install-size="0"
          version="0.0.0"

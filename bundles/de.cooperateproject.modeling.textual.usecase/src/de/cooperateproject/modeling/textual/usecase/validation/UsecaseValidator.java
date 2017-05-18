@@ -3,35 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.usecase.validation;
 
+import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
-import com.google.inject.Inject;
 
 /**
- * This class contains custom validation rules. 
+ * This class contains custom validation rules.
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 public class UsecaseValidator extends AbstractUsecaseValidator {
-			
-	@Inject
-	@SuppressWarnings("unused")
-	private ICooperateAutomatedValidator automatedValidator;
-	
-	@Inject
-	@SuppressWarnings("unused")
-	private IIssueCodeRegistry issueCodeRegistry;
-	
-//	public static final INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					UsecasePackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
-	
+
+    @Inject
+    @SuppressWarnings("unused")
+    private ICooperateAutomatedValidator automatedValidator;
+
+    @Inject
+    @SuppressWarnings("unused")
+    private IIssueCodeRegistry issueCodeRegistry;
+
 }

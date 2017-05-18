@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.cooperateproject.modeling.textual.usecase
-Bundle-Version: 0.1.7.qualifier
+Bundle-Name: Textual Use Case Diagrams
+Bundle-Version: 0.1.8.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.usecase; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -12,13 +12,15 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.xtext.util,
  org.eclipse.xtend.lib,
- de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.1.7";visibility:=reexport,
- de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.1.7";resolution:=optional,
+ de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.1.8";visibility:=reexport,
+ de.cooperateproject.modeling.textual.xtext.generator;bundle-version="0.1.8";resolution:=optional,
  de.cooperateproject.modeling.textual.xtext.runtime;visibility:=reexport,
  net.winklerweb.cdoxtext.generator;resolution:=optional,
  de.cooperateproject.modeling.textual.common.metamodel,
  net.winklerweb.cdoxtext.runtime;visibility:=reexport,
- org.eclipse.uml2.codegen.ecore;bundle-version="2.1.2"
+ org.eclipse.uml2.codegen.ecore;bundle-version="2.1.2",
+ de.cooperateproject.modeling.textual.common,
+ com.google.inject.multibindings.bundle;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
  de.cooperateproject.modeling.textual.usecase.formatting2,

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="de.cooperateproject.ui.focus.manager.factory" name="FocusManagerFactory" schema="schema/de.cooperateproject.ui.focus.manager.factory.exsd"/>
+   <extension-point id="de.cooperateproject.ui.focus.filter.elementfilter" name="ElementFilter" schema="schema/de.cooperateproject.ui.focus.filter.elementfilter.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Focus transfer"
+            id="de.cooperateproject.ui.focus">
+      </category>
+      <view
+            allowMultiple="false"
+            category="de.cooperateproject.ui.focus"
+            class="de.cooperateproject.ui.focus.internal.views.FocusView"
+            icon="icons/sample.gif"
+            id="de.cooperateproject.ui.focus.views.FocusView"
+            name="Focus View">
+      </view>
+   </extension>
+   
+   <extension point="org.eclipse.ui.commands">
+   		<command name="Mute"
+   		description="Mutes incoming focus requests/unsubscribes the topic."
+   		id="de.cooperateproject.ui.focus.command.mute"/>
+     <command
+           description="Sends a focus request."
+           id="de.cooperateproject.ui.focus.command.sendFocus"
+           name="Send focus">
+     </command>
+	</extension>  
+   
+
+	<extension point="org.eclipse.ui.handlers">
+   		<handler class="de.cooperateproject.ui.focus.internal.handlers.FocusHandler"
+   		commandId="de.cooperateproject.ui.focus.command.sendFocus"/>
+     <handler
+           class="de.cooperateproject.ui.focus.internal.handlers.MuteHandler"
+           commandId="de.cooperateproject.ui.focus.command.mute">
+     </handler>
+	</extension>
+
+</plugin>

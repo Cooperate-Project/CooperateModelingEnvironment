@@ -12,22 +12,26 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 
+/**
+ * Helper for loading a diagram.
+ *
+ */
 public class LauncherModelHelper {
-	
-	public static String FILE_EXTENSION = "cooperate";
-	
-	public static Diagram loadDiagram(ResourceSet rs, IFile launcherFile) throws IOException {
-		Validate.notNull(rs);
-		Validate.notNull(launcherFile);
-		
-		URI fileUri = URI.createPlatformResourceURI(launcherFile.getFullPath().toString(), true);
-		Resource r = rs.createResource(fileUri, FILE_EXTENSION);
-		r.load(Collections.emptyMap());
-		EObject rootObject = r.getContents().get(0);
-		if (!(rootObject instanceof Diagram)) {
-			throw new IOException("The root element is not of type Diagram.");
-		}
-		return (Diagram) rootObject;
-	}
+
+    public static final String FILE_EXTENSION = "cooperate";
+
+    public static Diagram loadDiagram(ResourceSet rs, IFile launcherFile) throws IOException {
+        Validate.notNull(rs);
+        Validate.notNull(launcherFile);
+
+        URI fileUri = URI.createPlatformResourceURI(launcherFile.getFullPath().toString(), true);
+        Resource r = rs.createResource(fileUri, FILE_EXTENSION);
+        r.load(Collections.emptyMap());
+        EObject rootObject = r.getContents().get(0);
+        if (!(rootObject instanceof Diagram)) {
+            throw new IOException("The root element is not of type Diagram.");
+        }
+        return (Diagram) rootObject;
+    }
 
 }

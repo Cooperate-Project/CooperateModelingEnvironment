@@ -60,12 +60,13 @@ public abstract class DomainIndependentTransformationBase {
         for (URI parameterURI : parameterURIs) {
             transformationResources.add(createPair(createModelExtent(parameterURI), createResource(parameterURI)));
         }
-        final Collection<ModelExtent> transformationParameters = transformationResources.stream().map(r -> r.getFirst())
+        final List<ModelExtent> transformationParameters = transformationResources.stream().map(r -> r.getFirst())
                 .collect(Collectors.toList());
         final Optional<Trace> transformationTrace = createTrace(traceURI);
 
         IStatus transformationResult = transform(transformationURI, transformationParameters, transformationTrace);
-        postProcessTransformationParametersBeforeSave(transformationParameters, transformationTrace);
+        postProcessTransformationParametersBeforeSave(transformationParameters, transformationTrace,
+                determineParameterIndicesToSave(transformationURI));
         if (transformationResult.getSeverity() == IStatus.OK) {
             saveTransformationResources(transformationURI, transformationResources);
             saveTraceModel(traceURI, transformationTrace);
@@ -74,8 +75,8 @@ public abstract class DomainIndependentTransformationBase {
         return transformationResult;
     }
 
-    protected abstract void postProcessTransformationParametersBeforeSave(
-            Collection<ModelExtent> transformationParameters, Optional<Trace> transformationTrace);
+    protected abstract void postProcessTransformationParametersBeforeSave(List<ModelExtent> transformationParameters,
+            Optional<Trace> transformationTrace, List<Integer> writeableParameterIndices);
 
     @SuppressWarnings("restriction")
     private IStatus transform(URI transformationURI, Collection<ModelExtent> transformationParameters,

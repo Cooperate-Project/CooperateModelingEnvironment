@@ -29,10 +29,12 @@ mapping cls::ClassDiagram::diagramToDiagram() : notation::Diagram {
 	children += self.rootPackage.classifiers->map classifierToShape();
 	children += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2)->map multiAssociationToShape(); // all nested in root
 	children += self.rootPackage.connectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
+	children += self.rootPackage.classifiers->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
 	
-	edges += allConnectors->select(not oclIsKindOf(cls::CommentLink))->map connectorToConnector();
+	edges += allConnectors->map connectorToConnector();
 	edges += allConnectors->selectByKind(cls::Association)->select(memberEnds->size() > 2).memberEnds->map connectorEndToEdge();
 	edges += allConnectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToEdge();
+	edges += self.rootPackage.classifiers->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToEdge();
 	edges += allPackages->collect(packageImports)->map packageImportToEdge();
 	
 	styles += self.map stringValueStyle();
@@ -59,7 +61,8 @@ mapping cls::Package::packageToCompartment() : notation::BasicCompartment
 	
 	children += self.packages.oclAsType(cls::Package)->map packageToShape();
 	children += self.classifiers->map classifierToShape();
-	children += self.connectors->select(isCommented())->selectByKind(textualCommons::Commentable).comments->map commentToShape();
+	children += self.classifiers->select(isCommented())
+		->union(self.connectors->select(isCommented()))->selectByKind(textualCommons::Commentable).comments->map commentToShape();
 }
 
 
@@ -349,11 +352,11 @@ mapping textualCommons::Comment::commentToEdge() : notation::Connector
 	type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
 	
 	var commentShape := self.resolveoneIn(textualCommons::Comment::commentToShape);
-	var realCommentedElement := if self.commentedElement.oclIsKindOf(cls::CommentLink) then self.commentedElement.oclAsType(cls::CommentLink).commentedElement else self.commentedElement.oclAsType(textualCommons::PackageableElement) endif;
+	var realCommentedElement := self.commentedElement.oclAsType(textualCommons::PackageableElement);
 
 	source := commentShape;
 	target := realCommentedElement.typeToView();
-	element := null;
+	result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
 	
 	bendpoints := result.map connectorToBendpoint();
 	styles += result.toEObject().map fontStyle();
@@ -581,12 +584,12 @@ query uml::Package::packageToShape() : notation::Shape
 	return resolveoneIn(cls::Package::packageToShape, s : notation::Shape | s.element = self.toEObject());
 }
 
-query cls::Connector::isCommentable() : Boolean
+query textualCommons::Element::isCommentable() : Boolean
 {
 	return self.oclIsKindOf(textualCommons::Commentable);
 }
 
-query cls::Connector::isCommented() : Boolean
+query textualCommons::Element::isCommented() : Boolean
 {
 	return self.isCommentable() and not self.oclAsType(textualCommons::Commentable).comments->isEmpty();
 }

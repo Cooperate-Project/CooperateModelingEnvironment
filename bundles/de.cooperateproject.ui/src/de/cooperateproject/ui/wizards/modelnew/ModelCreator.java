@@ -29,10 +29,10 @@ import org.eclipse.uml2.uml.UMLFactory;
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
 import de.cooperateproject.cdo.util.utils.CDOHelper;
+import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
-import de.cooperateproject.modeling.textual.common.convetions.FileExtensions;
-import de.cooperateproject.modeling.textual.common.convetions.ModelNamingConventions;
+import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
 import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.Activator;
 
@@ -108,8 +108,7 @@ public class ModelCreator {
             ResourceSet rs = transaction.getResourceSet();
             rs.setResourceFactoryRegistry(CDOResourceHandler.createFactoryWrapper(rs.getResourceFactoryRegistry()));
             TransformationExecutor.getInstance().transformChanged(papyrusURI, rs);
-            TransformationExecutor.getInstance().transformChanged(textualResource.getURI(),
-                    rs);
+            TransformationExecutor.getInstance().transformChanged(textualResource.getURI(), rs);
         } catch (IOException e) {
             throw new ModelCreatorException("Initial transformation of models failed.", e);
         }

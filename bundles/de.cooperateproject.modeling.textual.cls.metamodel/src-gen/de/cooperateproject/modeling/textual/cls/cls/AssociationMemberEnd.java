@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface AssociationMemberEnd extends NamedElement, UMLReferencingElement<Property> {
+public interface AssociationMemberEnd extends UMLReferencingElement<Property>, NamedElement {
     /**
      * Returns the value of the '<em><b>Cardinality</b></em>' containment reference.
      * <!-- begin-user-doc -->
@@ -112,7 +112,7 @@ public interface AssociationMemberEnd extends NamedElement, UMLReferencingElemen
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Association#getMemberEnds <em>Member Ends</em>}'.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Association</em>' reference isn't clear,
+     * If the meaning of the '<em>Association</em>' container reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->

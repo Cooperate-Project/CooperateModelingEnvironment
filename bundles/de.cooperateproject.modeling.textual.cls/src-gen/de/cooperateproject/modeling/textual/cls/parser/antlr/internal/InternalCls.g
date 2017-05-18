@@ -585,7 +585,7 @@ ruleClass returns [EObject current=null]
 								$current,
 								"alias",
 								lv_alias_5_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"de.cooperateproject.modeling.textual.cls.Cls.ID");
 						}
 					)
 				)
@@ -605,40 +605,81 @@ ruleClass returns [EObject current=null]
 							$current,
 							"name",
 							lv_name_6_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"de.cooperateproject.modeling.textual.cls.Cls.ID");
 					}
 				)
 			)
 		)
 		(
-			otherlv_7='{'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_4_0());
-			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_4_0_0());
 					}
-					lv_members_8_0=ruleMember
+					lv_comments_7_0=ruleComment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getClassRule());
 						}
 						add(
 							$current,
-							"members",
-							lv_members_8_0,
-							"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							"comments",
+							lv_comments_7_0,
+							"de.cooperateproject.modeling.textual.cls.Cls.Comment");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)*
-			otherlv_9='}'
-			{
-				newLeafNode(otherlv_9, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_4_2());
-			}
-		)?
+			)?
+			    |
+			(
+				otherlv_8='{'
+				{
+					newLeafNode(otherlv_8, grammarAccess.getClassAccess().getLeftCurlyBracketKeyword_4_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassAccess().getCommentsCommentParserRuleCall_4_1_1_0());
+						}
+						lv_comments_9_0=ruleComment
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassRule());
+							}
+							add(
+								$current,
+								"comments",
+								lv_comments_9_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getClassAccess().getMembersMemberParserRuleCall_4_1_2_0());
+						}
+						lv_members_10_0=ruleMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getClassRule());
+							}
+							add(
+								$current,
+								"members",
+								lv_members_10_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)*
+				otherlv_11='}'
+				{
+					newLeafNode(otherlv_11, grammarAccess.getClassAccess().getRightCurlyBracketKeyword_4_1_3());
+				}
+			)
+		)
 	)
 ;
 
@@ -719,7 +760,7 @@ ruleInterface returns [EObject current=null]
 								$current,
 								"alias",
 								lv_alias_4_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"de.cooperateproject.modeling.textual.cls.Cls.ID");
 						}
 					)
 				)
@@ -739,40 +780,81 @@ ruleInterface returns [EObject current=null]
 							$current,
 							"name",
 							lv_name_5_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"de.cooperateproject.modeling.textual.cls.Cls.ID");
 					}
 				)
 			)
 		)
 		(
-			otherlv_6='{'
-			{
-				newLeafNode(otherlv_6, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_3_0());
-			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInterfaceAccess().getMembersMemberParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getInterfaceAccess().getCommentsCommentParserRuleCall_3_0_0());
 					}
-					lv_members_7_0=ruleMember
+					lv_comments_6_0=ruleComment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInterfaceRule());
 						}
 						add(
 							$current,
-							"members",
-							lv_members_7_0,
-							"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							"comments",
+							lv_comments_6_0,
+							"de.cooperateproject.modeling.textual.cls.Cls.Comment");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)*
-			otherlv_8='}'
-			{
-				newLeafNode(otherlv_8, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_3_2());
-			}
-		)?
+			)?
+			    |
+			(
+				otherlv_7='{'
+				{
+					newLeafNode(otherlv_7, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_3_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getInterfaceAccess().getCommentsCommentParserRuleCall_3_1_1_0());
+						}
+						lv_comments_8_0=ruleComment
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getInterfaceRule());
+							}
+							add(
+								$current,
+								"comments",
+								lv_comments_8_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Comment");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)?
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getInterfaceAccess().getMembersMemberParserRuleCall_3_1_2_0());
+						}
+						lv_members_9_0=ruleMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getInterfaceRule());
+							}
+							add(
+								$current,
+								"members",
+								lv_members_9_0,
+								"de.cooperateproject.modeling.textual.cls.Cls.Member");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)*
+				otherlv_10='}'
+				{
+					newLeafNode(otherlv_10, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_3_1_3());
+				}
+			)
+		)
 	)
 ;
 
@@ -882,7 +964,7 @@ ruleAttribute returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_3_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -986,7 +1068,7 @@ ruleMethod returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_3_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1132,7 +1214,7 @@ ruleParameter returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1199,15 +1281,6 @@ ruleConnector returns [EObject current=null]
 		this_Implementation_2=ruleImplementation
 		{
 			$current = $this_Implementation_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getConnectorAccess().getCommentLinkParserRuleCall_3());
-		}
-		this_CommentLink_3=ruleCommentLink
-		{
-			$current = $this_CommentLink_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1347,60 +1420,6 @@ ruleImplementation returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleCommentLink
-entryRuleCommentLink returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getCommentLinkRule()); }
-	iv_ruleCommentLink=ruleCommentLink
-	{ $current=$iv_ruleCommentLink.current; }
-	EOF;
-
-// Rule CommentLink
-ruleCommentLink returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentsCommentParserRuleCall_0_0());
-				}
-				lv_comments_0_0=ruleComment
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getCommentLinkRule());
-					}
-					add(
-						$current,
-						"comments",
-						lv_comments_0_0,
-						"de.cooperateproject.modeling.textual.cls.Cls.Comment");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getCommentLinkRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getCommentLinkAccess().getCommentedElementClassifierCrossReference_1_0());
-				}
-				ruleFQN
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-	)
-;
-
 // Entry rule entryRuleXtextAssociation
 entryRuleXtextAssociation returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getXtextAssociationRule()); }
@@ -1464,7 +1483,7 @@ ruleXtextAssociation returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
@@ -1531,19 +1550,20 @@ ruleXtextAssociation returns [EObject current=null]
 			}
 			(
 				(
-					lv_memberEndNames_10_0=RULE_ID
 					{
-						newLeafNode(lv_memberEndNames_10_0, grammarAccess.getXtextAssociationAccess().getMemberEndNamesIDTerminalRuleCall_7_2_0());
+						newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndNamesRoleNameParserRuleCall_7_2_0());
 					}
+					lv_memberEndNames_10_0=ruleRoleName
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getXtextAssociationRule());
+							$current = createModelElementForParent(grammarAccess.getXtextAssociationRule());
 						}
-						addWithLastConsumed(
+						add(
 							$current,
 							"memberEndNames",
 							lv_memberEndNames_10_0,
-							"org.eclipse.xtext.common.Terminals.ID");
+							"de.cooperateproject.modeling.textual.cls.Cls.RoleName");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -1554,19 +1574,20 @@ ruleXtextAssociation returns [EObject current=null]
 				}
 				(
 					(
-						lv_memberEndNames_12_0=RULE_ID
 						{
-							newLeafNode(lv_memberEndNames_12_0, grammarAccess.getXtextAssociationAccess().getMemberEndNamesIDTerminalRuleCall_7_3_1_0());
+							newCompositeNode(grammarAccess.getXtextAssociationAccess().getMemberEndNamesRoleNameParserRuleCall_7_3_1_0());
 						}
+						lv_memberEndNames_12_0=ruleRoleName
 						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getXtextAssociationRule());
+								$current = createModelElementForParent(grammarAccess.getXtextAssociationRule());
 							}
-							addWithLastConsumed(
+							add(
 								$current,
 								"memberEndNames",
 								lv_memberEndNames_12_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								"de.cooperateproject.modeling.textual.cls.Cls.RoleName");
+							afterParserOrEnumRuleCall();
 						}
 					)
 				)
@@ -1850,6 +1871,40 @@ ruleCardinalityBound returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 	)
 ;
 
+// Entry rule entryRuleRoleName
+entryRuleRoleName returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getRoleNameRule()); }
+	iv_ruleRoleName=ruleRoleName
+	{ $current=$iv_ruleRoleName.current.getText(); }
+	EOF;
+
+// Rule RoleName
+ruleRoleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		this_ID_0=RULE_ID
+		{
+			$current.merge(this_ID_0);
+		}
+		{
+			newLeafNode(this_ID_0, grammarAccess.getRoleNameAccess().getIDTerminalRuleCall_0());
+		}
+		    |
+		this_UNDERSCORE_1=RULE_UNDERSCORE
+		{
+			$current.merge(this_UNDERSCORE_1);
+		}
+		{
+			newLeafNode(this_UNDERSCORE_1, grammarAccess.getRoleNameAccess().getUNDERSCORETerminalRuleCall_1());
+		}
+	)
+;
+
 // Rule Visibility
 ruleVisibility returns [Enumerator current=null]
 @init {
@@ -1952,7 +2007,9 @@ ruleAggregationKind returns [Enumerator current=null]
 	)
 ;
 
-RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_ID : '^'? ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_UNDERSCORE : '_';
 
 RULE_INT : ('0'..'9')+;
 
