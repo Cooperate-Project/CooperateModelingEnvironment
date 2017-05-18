@@ -32,19 +32,38 @@
          <constraints
                categories="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.cooperateConstraints">
             <constraint
-                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.AssociationConstraint"
-                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.associationConstraint"
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.ClassDiagramAssociationConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.classAssociationConstraint"
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Live"
-                  name="Association Constraint"
+                  name="Class Diagram Association Constraint"
                   severity="WARNING"
                   statusCode="1">
                <message>
                   {0} has no proper name.
                </message>
                <description>
-                  An association needs a proper non null and non empty name.
+                  An association in a class diagram needs a proper non null and non empty name.
+               </description>
+               <target
+                     class="Association">
+               </target>
+            </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UseCaseDiagramAssociationConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.useCaseAssociationConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="Use Case Diagram Association Constraint"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  {0} must have an empty name.
+               </message>
+               <description>
+                  An association in a use case diagram must have an empty name.
                </description>
                <target
                      class="Association">
