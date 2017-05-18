@@ -33,5 +33,26 @@
             class="de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheckFactory">
       </factory>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator">
+      <calculator
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndCalculator">
+      </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.GeneralizationCalculator">
+      </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.ImplementationCalculator">
+      </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.XtextAssociationCalculator">
+      </calculator>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover">
+      <remover
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover">
+      </remover>
+   </extension>
 
 </plugin>

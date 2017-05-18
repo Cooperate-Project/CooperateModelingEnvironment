@@ -1,136 +1,60 @@
 package de.cooperateproject.modeling.textual.usecase.generator;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.uml2.uml.Actor;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UseCase;
 
-import com.google.common.collect.Sets;
+import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
 import de.cooperateproject.modeling.textual.usecase.usecase.util.UsecaseSwitch;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.DerivedStateElementProcessorBase;
 
-public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProcessorBase<Optional<Void>> {
+public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProcessorBase {
 
-    public UsecaseDerivedStateElementProcessor() {
-        super(new DerivedStateCalculator(), new DerivedStateRemover());
+    @Inject
+    public UsecaseDerivedStateElementProcessor(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
+        super(new DerivedStateCalculator(atomicStateProcessorRegistry),
+                new DerivedStateRemover(atomicStateProcessorRegistry));
     }
 
-    private static class DerivedStateCalculator extends UsecaseSwitch<Optional<Void>>
-            implements IInternalDerivedStateElementProcessor<Optional<Void>> {
+    private static class DerivedStateCalculator
+            extends UsecaseSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+            implements IInternalDerivedStateElementProcessor {
 
-        @Override
-        public Optional<Void> caseExtend(Extend object) {
-            UseCase umlExtendedCase = object.getExtendedCase().getReferencedElement();
-            UseCase umlExtension = object.getExtension().getReferencedElement();
-            org.eclipse.uml2.uml.ExtensionPoint umlExtensionPoint = object.getExtensionLocation()
-                    .getReferencedElement();
+        private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
 
-            if (umlExtendedCase == null || umlExtension == null || umlExtensionPoint == null) {
-                return Optional.empty();
-            }
-
-            Set<org.eclipse.uml2.uml.Extend> candidates = umlExtension.getExtends().stream()
-                    .filter(e -> e.getExtensionLocations().contains(umlExtensionPoint)).collect(Collectors.toSet());
-            if (candidates.size() == 1) {
-                object.setReferencedElement(candidates.iterator().next());
-                return Optional.empty();
-            }
-
-            return Optional.empty();
+        public DerivedStateCalculator(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
+            this.atomicStateProcessorRegistry = atomicStateProcessorRegistry;
         }
 
         @Override
-        public Optional<Void> caseGeneralization(Generalization object) {
-
-            @SuppressWarnings({ "rawtypes", "unchecked" })
-            UMLReferencingElement<Classifier> specific = (UMLReferencingElement) object.getSpecific();
-            @SuppressWarnings({ "rawtypes", "unchecked" })
-            UMLReferencingElement<Classifier> general = (UMLReferencingElement) object.getGeneral();
-
-            Classifier umlSpecific = specific.getReferencedElement();
-            Classifier umlGeneral = general.getReferencedElement();
-
-            if (umlSpecific == null || umlGeneral == null) {
-                return Optional.empty();
-            }
-
-            org.eclipse.uml2.uml.Generalization umlGeneralization = umlSpecific.getGeneralization(umlGeneral);
-            if (umlGeneralization != null) {
-                object.setReferencedElement(umlGeneralization);
-                return Optional.empty();
-            }
-
-            return Optional.empty();
+        public Iterable<IAtomicStateProcessor<? extends EObject>> caseExtend(Extend object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, Extend.class);
         }
 
         @Override
-        public Optional<Void> caseInclude(Include object) {
-            UseCase umlIncludingCase = object.getIncludingCase().getReferencedElement();
-            UseCase umlAddition = object.getAddition().getReferencedElement();
-
-            if (umlIncludingCase == null || umlAddition == null) {
-                return Optional.empty();
-            }
-
-            Set<org.eclipse.uml2.uml.Include> candidates = umlIncludingCase.getIncludes().stream()
-                    .filter(i -> umlAddition == i.getAddition()).collect(Collectors.toSet());
-            if (candidates.size() == 1) {
-                object.setReferencedElement(candidates.iterator().next());
-                return Optional.empty();
-            }
-
-            return Optional.empty();
+        public Iterable<IAtomicStateProcessor<? extends EObject>> caseGeneralization(Generalization object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, Generalization.class);
         }
 
         @Override
-        public Optional<Void> caseAssociation(Association object) {
-            if (object.getActor() == null || object.getUsecase() == null) {
-                return Optional.empty();
-            }
-
-            Actor actor = object.getActor().getReferencedElement();
-            UseCase usecase = object.getUsecase().getReferencedElement();
-
-            if (actor == null || usecase == null) {
-                return Optional.empty();
-            }
-
-            Set<org.eclipse.uml2.uml.Association> matchingAssociations = actor.getAssociations().stream()
-                    .filter(a -> isAssociationBetween(a, actor, usecase)).collect(Collectors.toSet());
-            if (matchingAssociations.size() == 1) {
-                object.setReferencedElement(matchingAssociations.iterator().next());
-                return Optional.empty();
-            }
-
-            return Optional.empty();
-        }
-
-        private boolean isAssociationBetween(org.eclipse.uml2.uml.Association a, Classifier c1, Classifier c2) {
-            if (a.getMemberEnds().size() == 2) {
-                HashSet<Classifier> candidates = Sets.newHashSet(c1, c2);
-                long matchingMemberEnds = a.getMemberEnds().stream().map(Property::getType).filter(candidates::contains)
-                        .count();
-                return matchingMemberEnds == 2;
-            }
-            return false;
+        public Iterable<IAtomicStateProcessor<? extends EObject>> caseInclude(Include object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, Include.class);
         }
 
         @Override
-        public Optional<Void> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor<? extends EObject>> caseAssociation(Association object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, Association.class);
+        }
+
+        @Override
+        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
 
@@ -141,11 +65,18 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
 
     }
 
-    private static class DerivedStateRemover extends UsecaseSwitch<Optional<Void>>
-            implements IInternalDerivedStateElementProcessor<Optional<Void>> {
+    private static class DerivedStateRemover extends UsecaseSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+            implements IInternalDerivedStateElementProcessor {
+
+        @SuppressWarnings("unused")
+        private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
+
+        public DerivedStateRemover(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
+            this.atomicStateProcessorRegistry = atomicStateProcessorRegistry;
+        }
 
         @Override
-        public Optional<Void> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
 

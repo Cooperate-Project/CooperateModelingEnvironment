@@ -7,5 +7,20 @@
             class="de.cooperateproject.modeling.textual.usecase.issues.UsecaseUMLReferencingElementMissingElementFactory">
       </factory>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator">
+      <calculator
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator">
+      </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.ExtendCalculator">
+      </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.GeneralizationCalculator">
+      </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.IncludeCalculator">
+      </calculator>
+   </extension>
 
 </plugin>

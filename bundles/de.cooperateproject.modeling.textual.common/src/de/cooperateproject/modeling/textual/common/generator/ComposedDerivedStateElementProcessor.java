@@ -14,6 +14,18 @@ import com.google.inject.name.Named;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
 
+/**
+ * Derived state element processor that is composed of multiple other processors.
+ * 
+ * The processor delegates all requests to the composed processors. It uses a polymorphic approach to find the matching
+ * processor. It can handle multiple inheritance but stops processing after it found a matching processor. If you prefer
+ * processing for one type over another, should have to introduce this precedence by reordering the base classes of the
+ * affected element.
+ * 
+ * You can inject delegate processors by a named binding using the
+ * {@link IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR} constant. Use the
+ * {@link CommonDerivedStateModuleExtension} to configure the Guice module to use this class.
+ */
 public class ComposedDerivedStateElementProcessor implements IDerivedStateElementProcessor {
 
     @FunctionalInterface
