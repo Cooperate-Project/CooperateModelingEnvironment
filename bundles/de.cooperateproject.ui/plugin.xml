@@ -30,6 +30,11 @@
             id="de.cooperateproject.ui.AddProjectNatureCommand"
             name="Convert to Cooperate Project">
       </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.nature.ResetCooperateProjectsCommand"
+            id="de.cooperateproject.ui.ResetCooperateProjectsCommand"
+            name="Reset Cooperate Projects">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -225,6 +230,28 @@
                   value="de.cooperateproject.ui.wizards.newUsecaseDiagram">
             </parameter>
          </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="de.cooperateproject.ui.Cooperate">
+            <command
+                  commandId="de.cooperateproject.ui.ResetCooperateProjectsCommand"
+                  icon="platform:/plugin/org.eclipse.jdt.doc.user/images/org.eclipse.debug.ui/elcl16/memoryreset_tsk.png"
+                  label="Reset Cooperate Projects"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+         </toolbar>
       </menuContribution>
    </extension>
    <extension
