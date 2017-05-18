@@ -11,15 +11,25 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
 /**
  * State calculation for Xtext associations.
  */
-public class XtextAssociationCalculator implements IAtomicStateProcessorExtension<XtextAssociation> {
+public class XtextAssociationCalculator extends AtomicStateProcessorExtensionBase<XtextAssociation> {
+
+    /**
+     * Constructs the calculator.
+     * 
+     * @param clazz
+     *            The class that this calculator can process.
+     */
+    public XtextAssociationCalculator(Class<XtextAssociation> clazz) {
+        super(XtextAssociation.class);
+    }
 
     @Override
-    public Boolean apply(XtextAssociation object) {
+    protected Boolean applyTyped(XtextAssociation object) {
         initTransientMemberEnds(object);
 
         List<Classifier<?>> types = object.collectMemberEndTypes();

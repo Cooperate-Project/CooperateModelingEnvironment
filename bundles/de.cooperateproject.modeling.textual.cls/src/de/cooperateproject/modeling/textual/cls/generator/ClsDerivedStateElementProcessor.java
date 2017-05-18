@@ -39,7 +39,7 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
                 new DerivedStateRemover(atomicStateProcessorRegistry));
     }
 
-    private static class DerivedStateCalculator extends ClsSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+    private static class DerivedStateCalculator extends ClsSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
         private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
@@ -49,35 +49,34 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseGeneralization(Generalization object) {
+        public Iterable<IAtomicStateProcessor> caseGeneralization(Generalization object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Generalization.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseImplementation(Implementation object) {
+        public Iterable<IAtomicStateProcessor> caseImplementation(Implementation object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Implementation.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseXtextAssociation(XtextAssociation object) {
-            IAtomicStateProcessor<AssociationMemberEnd> memberEndCalculator = getAssociationMemberEndCalculator();
-            IAtomicStateProcessor<XtextAssociation> allMemberEndProcessor = o -> o.getMemberEnds().stream()
+        public Iterable<IAtomicStateProcessor> caseXtextAssociation(XtextAssociation object) {
+            IAtomicStateProcessor memberEndCalculator = getAssociationMemberEndCalculator();
+            IAtomicStateProcessor allMemberEndProcessor = o -> ((XtextAssociation) o).getMemberEnds().stream()
                     .allMatch(memberEndCalculator::apply);
 
-            List<IAtomicStateProcessor<? extends EObject>> processors = Lists.newArrayList(getAtomicCalculators(
+            List<IAtomicStateProcessor> processors = Lists.newArrayList(getAtomicCalculators(
                     atomicStateProcessorRegistry, XtextAssociation.class, UMLReferencingElement.class));
-            processors.add((IAtomicStateProcessor<EObject>) (IAtomicStateProcessor<?>) allMemberEndProcessor);
+            processors.add(allMemberEndProcessor);
             return processors;
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseAssociationMemberEnd(
-                AssociationMemberEnd object) {
+        public Iterable<IAtomicStateProcessor> caseAssociationMemberEnd(AssociationMemberEnd object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, AssociationMemberEnd.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
 
@@ -86,20 +85,19 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
             return isSwitchFor(pkg);
         }
 
-        @SuppressWarnings("unchecked")
-        private IAtomicStateProcessor<AssociationMemberEnd> getAssociationMemberEndCalculator() {
-            Optional<IAtomicStateProcessor<? extends EObject>> memberEndCalculatorOpt = atomicStateProcessorRegistry
+        private IAtomicStateProcessor getAssociationMemberEndCalculator() {
+            Optional<IAtomicStateProcessor> memberEndCalculatorOpt = atomicStateProcessorRegistry
                     .getCalculator(AssociationMemberEnd.class);
             if (!memberEndCalculatorOpt.isPresent()) {
                 throw new IllegalStateException(String.format("The calculator for %s could not be found.",
                         AssociationMemberEnd.class.getSimpleName()));
             }
-            return (IAtomicStateProcessor<AssociationMemberEnd>) memberEndCalculatorOpt.get();
+            return memberEndCalculatorOpt.get();
         }
 
     }
 
-    private static class DerivedStateRemover extends ClsSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+    private static class DerivedStateRemover extends ClsSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
         private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
@@ -109,12 +107,12 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseXtextAssociation(XtextAssociation object) {
+        public Iterable<IAtomicStateProcessor> caseXtextAssociation(XtextAssociation object) {
             return getAtomicRemovers(atomicStateProcessorRegistry, XtextAssociation.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
 

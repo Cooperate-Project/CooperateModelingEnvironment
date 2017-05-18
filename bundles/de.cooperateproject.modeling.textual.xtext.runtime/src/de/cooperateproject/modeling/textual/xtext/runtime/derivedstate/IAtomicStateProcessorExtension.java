@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
  * @param <T>
  *            The type of the elements that can be processed.
  */
-public interface IAtomicStateProcessorExtension<T extends EObject> extends IAtomicStateProcessor<T> {
+public interface IAtomicStateProcessorExtension<T extends EObject> extends IAtomicStateProcessor {
 
     /**
      * @return The type of elements this processor can process.

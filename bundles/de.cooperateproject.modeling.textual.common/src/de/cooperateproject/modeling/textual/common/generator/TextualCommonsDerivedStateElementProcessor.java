@@ -34,8 +34,7 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
                 new DerivedStateRemover(atomicStateProcessorRegistry));
     }
 
-    private static class DerivedStateCalculation
-            extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+    private static class DerivedStateCalculation extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
         private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
@@ -45,12 +44,12 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseComment(Comment object) {
+        public Iterable<IAtomicStateProcessor> caseComment(Comment object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Comment.class);
         }
 
         @Override
-        public <T extends Element> Iterable<IAtomicStateProcessor<? extends EObject>> caseUMLReferencingElement(
+        public <T extends Element> Iterable<IAtomicStateProcessor> caseUMLReferencingElement(
                 UMLReferencingElement<T> object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, UMLReferencingElement.class);
         }
@@ -61,13 +60,12 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
     }
 
-    private static class DerivedStateRemover
-            extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+    private static class DerivedStateRemover extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
         @SuppressWarnings("unused")
@@ -83,7 +81,7 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
     }

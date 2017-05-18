@@ -34,7 +34,7 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
          *            The element to be processed.
          * @return A set of atomic processors that have to be executed for correctly processing the element.
          */
-        Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj);
+        Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj);
 
         /**
          * Indicates if the processor supports elements of a given package.
@@ -83,7 +83,7 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
         if (!clazz.isInstance(object)) {
             throw new IllegalArgumentException("The object is not a valid instance of the provided class");
         }
-        Iterable<IAtomicStateProcessor<? extends EObject>> functionsToApply = processor.apply(clazz, object);
+        Iterable<IAtomicStateProcessor> functionsToApply = processor.apply(clazz, object);
         if (functionsToApply != null && functionsToApply.iterator().hasNext()) {
             StreamSupport.stream(functionsToApply.spliterator(), false).map(IAtomicStateProcessor.class::cast)
                     .forEach(p -> p.apply(object));
@@ -92,20 +92,20 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
         return false;
     }
 
-    protected static Iterable<IAtomicStateProcessor<? extends EObject>> getAtomicCalculators(
+    protected static Iterable<IAtomicStateProcessor> getAtomicCalculators(
             IAtomicStateProcessorRegistry atomicStateProcessorRegistry, Class<?>... classes) {
         return getAtomicProcessors(atomicStateProcessorRegistry::getCalculator, classes);
     }
 
-    protected static Iterable<IAtomicStateProcessor<? extends EObject>> getAtomicRemovers(
+    protected static Iterable<IAtomicStateProcessor> getAtomicRemovers(
             IAtomicStateProcessorRegistry atomicStateProcessorRegistry, Class<?>... classes) {
         return getAtomicProcessors(atomicStateProcessorRegistry::getRemover, classes);
     }
 
-    private static Iterable<IAtomicStateProcessor<? extends EObject>> getAtomicProcessors(
-            Function<Class<?>, Optional<IAtomicStateProcessor<? extends EObject>>> fn, Class<?>... classes) {
-        List<IAtomicStateProcessor<? extends EObject>> foundProcessors = Arrays.stream(classes).map(fn::apply)
-                .filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
+    private static Iterable<IAtomicStateProcessor> getAtomicProcessors(
+            Function<Class<?>, Optional<IAtomicStateProcessor>> fn, Class<?>... classes) {
+        List<IAtomicStateProcessor> foundProcessors = Arrays.stream(classes).map(fn::apply).filter(Optional::isPresent)
+                .map(Optional::get).collect(Collectors.toList());
         if (foundProcessors.size() != classes.length) {
             IllegalStateException e = new IllegalStateException(
                     String.format("The requested classes %s where not completely available in the registry.",

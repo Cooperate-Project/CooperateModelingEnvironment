@@ -5,15 +5,25 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
 /**
  * State calculation for implementations.
  */
-public class ImplementationCalculator implements IAtomicStateProcessorExtension<Implementation> {
+public class ImplementationCalculator extends AtomicStateProcessorExtensionBase<Implementation> {
+
+    /**
+     * Constructs the calculator.
+     * 
+     * @param clazz
+     *            The class that this calculator can process.
+     */
+    public ImplementationCalculator(java.lang.Class<Implementation> clazz) {
+        super(Implementation.class);
+    }
 
     @Override
-    public Boolean apply(Implementation object) {
+    protected Boolean applyTyped(Implementation object) {
         if (object.getLeft() != null && object.getLeft().getReferencedElement() != null && object.getRight() != null
                 && object.getRight().getReferencedElement() != null) {
             org.eclipse.uml2.uml.Classifier left = object.getLeft().getReferencedElement();

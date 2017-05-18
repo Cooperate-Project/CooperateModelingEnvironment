@@ -11,6 +11,6 @@ import org.eclipse.emf.ecore.EObject;
  *            The type of the elements that can be processed.
  */
 @FunctionalInterface
-public interface IAtomicStateProcessor<T extends EObject> extends Function<T, Boolean> {
+public interface IAtomicStateProcessor extends Function<EObject, Boolean> {
 
 }

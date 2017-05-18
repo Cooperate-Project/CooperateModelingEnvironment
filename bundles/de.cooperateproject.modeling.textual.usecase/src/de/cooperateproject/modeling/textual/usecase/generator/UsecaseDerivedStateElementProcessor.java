@@ -23,8 +23,7 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
                 new DerivedStateRemover(atomicStateProcessorRegistry));
     }
 
-    private static class DerivedStateCalculator
-            extends UsecaseSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+    private static class DerivedStateCalculator extends UsecaseSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
         private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
@@ -34,27 +33,27 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseExtend(Extend object) {
+        public Iterable<IAtomicStateProcessor> caseExtend(Extend object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Extend.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseGeneralization(Generalization object) {
+        public Iterable<IAtomicStateProcessor> caseGeneralization(Generalization object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Generalization.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseInclude(Include object) {
+        public Iterable<IAtomicStateProcessor> caseInclude(Include object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Include.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> caseAssociation(Association object) {
+        public Iterable<IAtomicStateProcessor> caseAssociation(Association object) {
             return getAtomicCalculators(atomicStateProcessorRegistry, Association.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
 
@@ -65,7 +64,7 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
 
     }
 
-    private static class DerivedStateRemover extends UsecaseSwitch<Iterable<IAtomicStateProcessor<? extends EObject>>>
+    private static class DerivedStateRemover extends UsecaseSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
         @SuppressWarnings("unused")
@@ -76,7 +75,7 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor<? extends EObject>> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
 

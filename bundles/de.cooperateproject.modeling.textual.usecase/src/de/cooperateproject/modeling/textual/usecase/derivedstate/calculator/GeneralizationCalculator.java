@@ -4,12 +4,16 @@ import org.eclipse.uml2.uml.Classifier;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
-public class GeneralizationCalculator implements IAtomicStateProcessorExtension<Generalization> {
+public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<Generalization> {
+
+    public GeneralizationCalculator(Class<Generalization> clazz) {
+        super(Generalization.class);
+    }
 
     @Override
-    public Boolean apply(Generalization object) {
+    protected Boolean applyTyped(Generalization object) {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         UMLReferencingElement<Classifier> specific = (UMLReferencingElement) object.getSpecific();
         @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -29,11 +33,6 @@ public class GeneralizationCalculator implements IAtomicStateProcessorExtension<
         }
 
         return false;
-    }
-
-    @Override
-    public Class<Generalization> getSupportedType() {
-        return Generalization.class;
     }
 
 }

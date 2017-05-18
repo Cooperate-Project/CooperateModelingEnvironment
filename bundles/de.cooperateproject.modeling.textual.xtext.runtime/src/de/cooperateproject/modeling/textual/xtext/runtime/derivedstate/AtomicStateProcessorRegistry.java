@@ -26,8 +26,8 @@ public class AtomicStateProcessorRegistry implements IAtomicStateProcessorRegist
     private static final String EXTENSION_POINT_ID_REMOVER = "de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover";
     private static final String EXTENSION_POINT_ATTRIBUTE_NAME = "class";
 
-    private final Map<Class<? extends EObject>, IAtomicStateProcessor<EObject>> stateCalculators;
-    private final Map<Class<? extends EObject>, IAtomicStateProcessor<EObject>> stateRemovers;
+    private final Map<Class<? extends EObject>, IAtomicStateProcessor> stateCalculators;
+    private final Map<Class<? extends EObject>, IAtomicStateProcessor> stateRemovers;
 
     /**
      * Constructs the atomic state processor registry.
@@ -42,25 +42,24 @@ public class AtomicStateProcessorRegistry implements IAtomicStateProcessorRegist
     }
 
     @Override
-    public Optional<IAtomicStateProcessor<? extends EObject>> getCalculator(Class<?> clz) {
+    public Optional<IAtomicStateProcessor> getCalculator(Class<?> clz) {
         return Optional.ofNullable(stateCalculators.getOrDefault(clz, null));
     }
 
     @Override
-    public Optional<IAtomicStateProcessor<? extends EObject>> getRemover(Class<?> clz) {
+    public Optional<IAtomicStateProcessor> getRemover(Class<?> clz) {
         return Optional.ofNullable(stateRemovers.getOrDefault(clz, null));
     }
 
-    private static Map<Class<? extends EObject>, IAtomicStateProcessor<EObject>> initStateCalculators(
-            Injector injector) {
+    private static Map<Class<? extends EObject>, IAtomicStateProcessor> initStateCalculators(Injector injector) {
         return getProcessors(injector, EXTENSION_POINT_ID_CALCULATOR);
     }
 
-    private static Map<Class<? extends EObject>, IAtomicStateProcessor<EObject>> initStateRemovers(Injector injector) {
+    private static Map<Class<? extends EObject>, IAtomicStateProcessor> initStateRemovers(Injector injector) {
         return getProcessors(injector, EXTENSION_POINT_ID_REMOVER);
     }
 
-    private static Map<Class<? extends EObject>, IAtomicStateProcessor<EObject>> getProcessors(Injector injector,
+    private static Map<Class<? extends EObject>, IAtomicStateProcessor> getProcessors(Injector injector,
             String extensionPointId) {
         Collection<IAtomicStateProcessorExtension> extensions = ExtensionPointHelper.getExtensions(extensionPointId,
                 EXTENSION_POINT_ATTRIBUTE_NAME, IAtomicStateProcessorExtension.class);
@@ -68,8 +67,7 @@ public class AtomicStateProcessorRegistry implements IAtomicStateProcessorRegist
                 e -> getInjectedProcessor(injector, e)));
     }
 
-    private static IAtomicStateProcessor<EObject> getInjectedProcessor(Injector injector,
-            IAtomicStateProcessor<EObject> processor) {
+    private static IAtomicStateProcessor getInjectedProcessor(Injector injector, IAtomicStateProcessor processor) {
         injector.injectMembers(processor);
         return processor;
     }

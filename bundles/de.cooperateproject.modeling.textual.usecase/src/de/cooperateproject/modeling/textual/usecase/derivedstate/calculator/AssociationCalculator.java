@@ -12,12 +12,16 @@ import org.eclipse.uml2.uml.UseCase;
 import com.google.common.collect.Sets;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
-public class AssociationCalculator implements IAtomicStateProcessorExtension<Association> {
+public class AssociationCalculator extends AtomicStateProcessorExtensionBase<Association> {
+
+    public AssociationCalculator(Class<Association> clazz) {
+        super(Association.class);
+    }
 
     @Override
-    public Boolean apply(Association object) {
+    protected Boolean applyTyped(Association object) {
         if (object.getActor() == null || object.getUsecase() == null) {
             return false;
         }
@@ -47,11 +51,6 @@ public class AssociationCalculator implements IAtomicStateProcessorExtension<Ass
             return matchingMemberEnds == 2;
         }
         return false;
-    }
-
-    @Override
-    public Class<Association> getSupportedType() {
-        return Association.class;
     }
 
 }

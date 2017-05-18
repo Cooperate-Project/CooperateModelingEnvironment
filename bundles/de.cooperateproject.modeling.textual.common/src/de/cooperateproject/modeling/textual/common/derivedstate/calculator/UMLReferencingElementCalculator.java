@@ -18,13 +18,13 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 /**
  * State calculation for {@link UMLReferencingElement}.
  */
-public class UMLReferencingElementCalculator implements IAtomicStateProcessorExtension<UMLReferencingElement<Element>> {
+public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensionBase<UMLReferencingElement<Element>> {
 
     @Inject
     private IQualifiedNameProvider qualifiedNameProvider;
@@ -32,8 +32,19 @@ public class UMLReferencingElementCalculator implements IAtomicStateProcessorExt
     @Inject
     private IGlobalScopeTypeQueryProvider globalScopeProvider;
 
+    /**
+     * Constructs the calculator.
+     * 
+     * @param clazz
+     *            The class that this calculator can process.
+     */
+    @SuppressWarnings("unchecked")
+    public UMLReferencingElementCalculator(Class<UMLReferencingElement<Element>> clazz) {
+        super((Class<UMLReferencingElement<Element>>) (Class<?>) UMLReferencingElement.class);
+    }
+
     @Override
-    public Boolean apply(UMLReferencingElement<Element> object) {
+    protected Boolean applyTyped(UMLReferencingElement<Element> object) {
         QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
         if (qn == null) {
             return false;
@@ -53,12 +64,6 @@ public class UMLReferencingElementCalculator implements IAtomicStateProcessorExt
             object.setReferencedElement(null);
         }
         return true;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public Class<UMLReferencingElement<Element>> getSupportedType() {
-        return (Class<UMLReferencingElement<Element>>) (Class<?>) UMLReferencingElement.class;
     }
 
 }

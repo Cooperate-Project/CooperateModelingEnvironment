@@ -1,15 +1,25 @@
 package de.cooperateproject.modeling.textual.cls.derivedstate.calculator;
 
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
 /**
  * State calculator for generalizations.
  */
-public class GeneralizationCalculator implements IAtomicStateProcessorExtension<Generalization> {
+public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<Generalization> {
+
+    /**
+     * Constructs the calculator.
+     * 
+     * @param clazz
+     *            The class that this calculator can process.
+     */
+    public GeneralizationCalculator(Class<Generalization> clazz) {
+        super(Generalization.class);
+    }
 
     @Override
-    public Boolean apply(Generalization object) {
+    protected Boolean applyTyped(Generalization object) {
         if (object.getLeft() != null && object.getLeft().getReferencedElement() != null && object.getRight() != null
                 && object.getRight().getReferencedElement() != null) {
             org.eclipse.uml2.uml.Generalization umlGeneralization = object.getLeft().getReferencedElement()

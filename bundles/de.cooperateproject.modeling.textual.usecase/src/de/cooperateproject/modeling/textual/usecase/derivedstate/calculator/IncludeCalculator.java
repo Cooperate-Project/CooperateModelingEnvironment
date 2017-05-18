@@ -6,12 +6,16 @@ import java.util.stream.Collectors;
 import org.eclipse.uml2.uml.UseCase;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
-public class IncludeCalculator implements IAtomicStateProcessorExtension<Include> {
+public class IncludeCalculator extends AtomicStateProcessorExtensionBase<Include> {
+
+    public IncludeCalculator(Class<Include> clazz) {
+        super(Include.class);
+    }
 
     @Override
-    public Boolean apply(Include object) {
+    protected Boolean applyTyped(Include object) {
         UseCase umlIncludingCase = object.getIncludingCase().getReferencedElement();
         UseCase umlAddition = object.getAddition().getReferencedElement();
 
@@ -27,11 +31,6 @@ public class IncludeCalculator implements IAtomicStateProcessorExtension<Include
         }
 
         return false;
-    }
-
-    @Override
-    public Class<Include> getSupportedType() {
-        return Include.class;
     }
 
 }

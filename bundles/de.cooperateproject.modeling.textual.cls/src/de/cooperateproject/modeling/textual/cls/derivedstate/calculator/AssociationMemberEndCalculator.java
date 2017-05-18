@@ -6,15 +6,25 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
 /**
  * State calculator for member ends of associations.
  */
-public class AssociationMemberEndCalculator implements IAtomicStateProcessorExtension<AssociationMemberEnd> {
+public class AssociationMemberEndCalculator extends AtomicStateProcessorExtensionBase<AssociationMemberEnd> {
+
+    /**
+     * Constructs the calculator.
+     * 
+     * @param clazz
+     *            The class that this calculator can process.
+     */
+    public AssociationMemberEndCalculator(Class<AssociationMemberEnd> clazz) {
+        super(AssociationMemberEnd.class);
+    }
 
     @Override
-    public Boolean apply(AssociationMemberEnd object) {
+    protected Boolean applyTyped(AssociationMemberEnd object) {
         Optional<Property> umlMemberEnd = getUmlMemberEnd(object);
         if (!umlMemberEnd.isPresent()) {
             return false;
@@ -33,11 +43,6 @@ public class AssociationMemberEndCalculator implements IAtomicStateProcessorExte
             return Optional.empty();
         }
         return Optional.of(umlAssociation.getMemberEnds().get(index));
-    }
-
-    @Override
-    public Class<AssociationMemberEnd> getSupportedType() {
-        return AssociationMemberEnd.class;
     }
 
 }

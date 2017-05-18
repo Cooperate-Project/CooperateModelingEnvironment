@@ -6,12 +6,16 @@ import java.util.stream.Collectors;
 import org.eclipse.uml2.uml.UseCase;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
-public class ExtendCalculator implements IAtomicStateProcessorExtension<Extend> {
+public class ExtendCalculator extends AtomicStateProcessorExtensionBase<Extend> {
+
+    public ExtendCalculator(Class<Extend> clazz) {
+        super(Extend.class);
+    }
 
     @Override
-    public Boolean apply(Extend object) {
+    protected Boolean applyTyped(Extend object) {
         UseCase umlExtendedCase = object.getExtendedCase().getReferencedElement();
         UseCase umlExtension = object.getExtension().getReferencedElement();
         org.eclipse.uml2.uml.ExtensionPoint umlExtensionPoint = object.getExtensionLocation().getReferencedElement();
@@ -28,11 +32,6 @@ public class ExtendCalculator implements IAtomicStateProcessorExtension<Extend> 
         }
 
         return false;
-    }
-
-    @Override
-    public Class<Extend> getSupportedType() {
-        return Extend.class;
     }
 
 }

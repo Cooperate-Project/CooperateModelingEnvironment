@@ -9,19 +9,29 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 /**
  * State calculation for comments.
  */
-public class CommentCalculator implements IAtomicStateProcessorExtension<Comment> {
+public class CommentCalculator extends AtomicStateProcessorExtensionBase<Comment> {
 
     @Inject
     private IGlobalScopeTypeQueryProvider globalScopeProvider;
 
+    /**
+     * Constructs the calculator.
+     * 
+     * @param clazz
+     *            The class that this calculator can process.
+     */
+    public CommentCalculator(Class<Comment> clazz) {
+        super(Comment.class);
+    }
+
     @Override
-    public Boolean apply(Comment object) {
+    protected Boolean applyTyped(Comment object) {
         UMLReferencingElement<?> realElement = object.getCommentedElement();
         if (realElement != null) {
             Element umlCommentedElement = realElement.getReferencedElement();
@@ -39,11 +49,6 @@ public class CommentCalculator implements IAtomicStateProcessorExtension<Comment
             }
         }
         return false;
-    }
-
-    @Override
-    public Class<Comment> getSupportedType() {
-        return Comment.class;
     }
 
 }
