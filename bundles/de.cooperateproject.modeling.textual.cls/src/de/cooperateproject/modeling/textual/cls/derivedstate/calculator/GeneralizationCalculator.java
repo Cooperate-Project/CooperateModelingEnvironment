@@ -10,11 +10,8 @@ public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<
 
     /**
      * Constructs the calculator.
-     * 
-     * @param clazz
-     *            The class that this calculator can process.
      */
-    public GeneralizationCalculator(Class<Generalization> clazz) {
+    public GeneralizationCalculator() {
         super(Generalization.class);
     }
 

@@ -14,9 +14,15 @@ import com.google.common.collect.Sets;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
+/**
+ * State calculator for associations.
+ */
 public class AssociationCalculator extends AtomicStateProcessorExtensionBase<Association> {
 
-    public AssociationCalculator(Class<Association> clazz) {
+    /**
+     * Constructs the calculator.
+     */
+    public AssociationCalculator() {
         super(Association.class);
     }
 

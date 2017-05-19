@@ -34,12 +34,9 @@ public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensi
 
     /**
      * Constructs the calculator.
-     * 
-     * @param clazz
-     *            The class that this calculator can process.
      */
     @SuppressWarnings("unchecked")
-    public UMLReferencingElementCalculator(Class<UMLReferencingElement<Element>> clazz) {
+    public UMLReferencingElementCalculator() {
         super((Class<UMLReferencingElement<Element>>) (Class<?>) UMLReferencingElement.class);
     }
 

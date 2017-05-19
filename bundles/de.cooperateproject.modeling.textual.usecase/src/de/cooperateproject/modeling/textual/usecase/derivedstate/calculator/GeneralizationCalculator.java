@@ -6,9 +6,15 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
+/**
+ * State calculator for generalizations.
+ */
 public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<Generalization> {
 
-    public GeneralizationCalculator(Class<Generalization> clazz) {
+    /**
+     * Constructs the calculator.
+     */
+    public GeneralizationCalculator() {
         super(Generalization.class);
     }
 

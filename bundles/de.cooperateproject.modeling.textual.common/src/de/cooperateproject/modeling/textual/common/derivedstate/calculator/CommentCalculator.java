@@ -22,11 +22,8 @@ public class CommentCalculator extends AtomicStateProcessorExtensionBase<Comment
 
     /**
      * Constructs the calculator.
-     * 
-     * @param clazz
-     *            The class that this calculator can process.
      */
-    public CommentCalculator(Class<Comment> clazz) {
+    public CommentCalculator() {
         super(Comment.class);
     }
 

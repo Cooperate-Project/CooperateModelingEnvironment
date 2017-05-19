@@ -14,11 +14,8 @@ public class ImplementationCalculator extends AtomicStateProcessorExtensionBase<
 
     /**
      * Constructs the calculator.
-     * 
-     * @param clazz
-     *            The class that this calculator can process.
      */
-    public ImplementationCalculator(java.lang.Class<Implementation> clazz) {
+    public ImplementationCalculator() {
         super(Implementation.class);
     }
 

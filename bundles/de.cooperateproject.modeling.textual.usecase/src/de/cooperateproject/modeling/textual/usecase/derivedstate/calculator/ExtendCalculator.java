@@ -8,9 +8,15 @@ import org.eclipse.uml2.uml.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
+/**
+ * State calculator for extend relationships.
+ */
 public class ExtendCalculator extends AtomicStateProcessorExtensionBase<Extend> {
 
-    public ExtendCalculator(Class<Extend> clazz) {
+    /**
+     * Constructs the calculator.
+     */
+    public ExtendCalculator() {
         super(Extend.class);
     }
 

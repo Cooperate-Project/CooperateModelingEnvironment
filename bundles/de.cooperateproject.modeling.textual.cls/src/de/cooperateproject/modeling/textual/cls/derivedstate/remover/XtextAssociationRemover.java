@@ -10,11 +10,8 @@ public class XtextAssociationRemover extends AtomicStateProcessorExtensionBase<X
 
     /**
      * Constructs the state remover.
-     * 
-     * @param clazz
-     *            The class that this state remover can process.
      */
-    public XtextAssociationRemover(Class<XtextAssociation> clazz) {
+    public XtextAssociationRemover() {
         super(XtextAssociation.class);
     }
 

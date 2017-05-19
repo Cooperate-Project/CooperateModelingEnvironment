@@ -8,9 +8,15 @@ import org.eclipse.uml2.uml.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
 
+/**
+ * State calculator for include relationships.
+ */
 public class IncludeCalculator extends AtomicStateProcessorExtensionBase<Include> {
 
-    public IncludeCalculator(Class<Include> clazz) {
+    /**
+     * Constructs the calculator.
+     */
+    public IncludeCalculator() {
         super(Include.class);
     }
 

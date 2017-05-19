@@ -20,11 +20,8 @@ public class XtextAssociationCalculator extends AtomicStateProcessorExtensionBas
 
     /**
      * Constructs the calculator.
-     * 
-     * @param clazz
-     *            The class that this calculator can process.
      */
-    public XtextAssociationCalculator(Class<XtextAssociation> clazz) {
+    public XtextAssociationCalculator() {
         super(XtextAssociation.class);
     }
 

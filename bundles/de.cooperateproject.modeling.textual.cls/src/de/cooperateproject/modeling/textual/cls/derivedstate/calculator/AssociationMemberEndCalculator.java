@@ -15,11 +15,8 @@ public class AssociationMemberEndCalculator extends AtomicStateProcessorExtensio
 
     /**
      * Constructs the calculator.
-     * 
-     * @param clazz
-     *            The class that this calculator can process.
      */
-    public AssociationMemberEndCalculator(Class<AssociationMemberEnd> clazz) {
+    public AssociationMemberEndCalculator() {
         super(AssociationMemberEnd.class);
     }
 
