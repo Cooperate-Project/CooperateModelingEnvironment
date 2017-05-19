@@ -1,6 +1,7 @@
 package de.cooperateproject.modeling.textual.cls.tests.scoping.util;
 
-import java.io.IOException;
+import java.lang.reflect.Modifier;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,17 +11,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.common.reflect.ClassPath;
-import com.google.common.reflect.ClassPath.ClassInfo;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import de.cooperateproject.modeling.textual.cls.ClsRuntimeModule;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndCalculator;
+import de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover;
 import de.cooperateproject.modeling.textual.cls.tests.ClsInjectorProvider;
+import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
@@ -62,11 +69,10 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
 
     private static class DummyAtomicProcessorRegistry implements IAtomicStateProcessorRegistry {
 
-        private static final String[] CALCULATOR_PKG_NAMES = {
-                "de.cooperateproject.modeling.textual.cls.derivedstate.calculator",
-                "de.cooperateproject.modeling.textual.common.derivedstate.calculator" };
-        private static final String[] REMOVER_PKG_NAMES = {
-                "de.cooperateproject.modeling.textual.cls.derivedstate.remover" };
+        private static final Class<?> BASE_CLS = IAtomicStateProcessorExtension.class;
+        private static final Class<?>[] CALCULATOR_CLS = { AssociationMemberEndCalculator.class,
+                UMLReferencingElementCalculator.class };
+        private static final Class<?>[] REMOVER_CLS = { XtextAssociationRemover.class };
         private final Map<Class<?>, IAtomicStateProcessor> calculators;
         private final Map<Class<?>, IAtomicStateProcessor> removers;
 
@@ -82,30 +88,40 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
         }
 
         private static Map<Class<?>, IAtomicStateProcessor> getCalculators(Injector injector)
-                throws InstantiationException, IllegalAccessException, IOException {
-            return getProcessors(injector, CALCULATOR_PKG_NAMES);
+                throws InstantiationException, IllegalAccessException {
+            return getProcessors(injector, CALCULATOR_CLS);
         }
 
         private static Map<Class<?>, IAtomicStateProcessor> getRemovers(Injector injector)
-                throws InstantiationException, IllegalAccessException, IOException {
-            return getProcessors(injector, REMOVER_PKG_NAMES);
+                throws InstantiationException, IllegalAccessException {
+            return getProcessors(injector, REMOVER_CLS);
         }
 
-        private static Map<Class<?>, IAtomicStateProcessor> getProcessors(Injector injector, String... packageNames)
-                throws IOException, InstantiationException, IllegalAccessException {
-            ClassLoader cl = Thread.currentThread().getContextClassLoader();
-            Set<ClassInfo> processors = Sets.newHashSet();
-            for (String packageName : packageNames) {
-                processors.addAll(ClassPath.from(cl).getTopLevelClasses(packageName));
-            }
+        @SuppressWarnings("rawtypes")
+        private static Map<Class<?>, IAtomicStateProcessor> getProcessors(Injector injector,
+                Class<?>... relevantClasses) throws InstantiationException, IllegalAccessException {
+            Collection<Class<?>> packageProvidingClasses = Sets.newHashSet(relevantClasses);
+            packageProvidingClasses.add(BASE_CLS);
+            Collection<URL> urls = packageProvidingClasses.stream()
+                    .map(cls -> ClasspathHelper.forPackage(cls.getPackage().getName(), cls.getClassLoader()))
+                    .flatMap(Collection::stream).collect(Collectors.toSet());
+            String[] packageNames = packageProvidingClasses.stream().map(Class::getPackage).map(Package::getName)
+                    .collect(Collectors.toSet()).toArray(new String[0]);
+            Reflections reflections = new Reflections(
+                    new ConfigurationBuilder().setUrls(urls).setScanners(new SubTypesScanner(false))
+                            .filterInputsBy(new FilterBuilder().includePackage(packageNames)));
+            Set<Class<? extends IAtomicStateProcessorExtension>> subTypes = reflections
+                    .getSubTypesOf(IAtomicStateProcessorExtension.class).stream().filter(c -> !c.isInterface()
+                            && !Modifier.isAbstract(c.getModifiers()) && Modifier.isPublic(c.getModifiers()))
+                    .collect(Collectors.toSet());
+
             Map<Class<?>, IAtomicStateProcessor> processorInstances = Maps.newHashMap();
-            Set<Class<?>> processorClasses = processors.stream().map(ClassInfo::load)
-                    .filter(IAtomicStateProcessorExtension.class::isAssignableFrom).collect(Collectors.toSet());
-            for (Class<?> c : processorClasses) {
-                IAtomicStateProcessorExtension<?> instance = (IAtomicStateProcessorExtension<?>) c.newInstance();
+            for (Class<? extends IAtomicStateProcessorExtension> type : subTypes) {
+                IAtomicStateProcessorExtension<?> instance = type.newInstance();
                 injector.injectMembers(instance);
                 processorInstances.put(instance.getSupportedType(), instance);
             }
+
             return processorInstances;
         }
 
