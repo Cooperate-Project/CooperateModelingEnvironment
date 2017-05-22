@@ -11,6 +11,10 @@ class CommonUMLReferencingElementMissingElementResolution extends AutomatedIssue
 	new(UMLReferencingElement<Element> element, IResolvableChecker<UMLReferencingElement<Element>> resolvableChecker) {
 		super(element, resolvableChecker)
 	}
+	
+	static def getAcceptableTypes() {
+	    CommonUMLReferencingElementMissingElementResolution.methods.filter[name == "fixMissingUMLElement" && parameterCount == 1].map[parameters.get(0).type]
+	}
 
 	override resolve() {
 	    val e = getProblematicElement as UMLReferencingElement;

@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -591,17 +590,43 @@ public interface TextualCommonsPackage extends EPackage {
 	int PACKAGE_IMPORT_OPERATION_COUNT = UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility <em>Visibility</em>}' enum.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl <em>Visibility Having Element</em>}' class.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibility()
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibilityHavingElement()
      * @generated
      */
-	int VISIBILITY = 10;
+    int VISIBILITY_HAVING_ELEMENT = 10;
 
+    /**
+     * The feature id for the '<em><b>Visibility</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VISIBILITY_HAVING_ELEMENT__VISIBILITY = 0;
 
-	/**
+    /**
+     * The number of structural features of the '<em>Visibility Having Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VISIBILITY_HAVING_ELEMENT_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Visibility Having Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VISIBILITY_HAVING_ELEMENT_OPERATION_COUNT = 0;
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -855,16 +880,27 @@ public interface TextualCommonsPackage extends EPackage {
 	EReference getPackageImport_ImportingPackage();
 
 	/**
-     * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility <em>Visibility</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement <em>Visibility Having Element</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Visibility Having Element</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement
      * @generated
      */
-	EEnum getVisibility();
+    EClass getVisibilityHavingElement();
 
-	/**
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement#getVisibility <em>Visibility</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Visibility</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement#getVisibility()
+     * @see #getVisibilityHavingElement()
+     * @generated
+     */
+    EAttribute getVisibilityHavingElement_Visibility();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1100,14 +1136,22 @@ public interface TextualCommonsPackage extends EPackage {
 		EReference PACKAGE_IMPORT__IMPORTING_PACKAGE = eINSTANCE.getPackageImport_ImportingPackage();
 
 		/**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility <em>Visibility</em>}' enum.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl <em>Visibility Having Element</em>}' class.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibility()
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibilityHavingElement()
          * @generated
          */
-		EEnum VISIBILITY = eINSTANCE.getVisibility();
+        EClass VISIBILITY_HAVING_ELEMENT = eINSTANCE.getVisibilityHavingElement();
+
+        /**
+         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VISIBILITY_HAVING_ELEMENT__VISIBILITY = eINSTANCE.getVisibilityHavingElement_Visibility();
 
 	}
 

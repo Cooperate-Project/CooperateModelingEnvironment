@@ -2158,7 +2158,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:648:2: ( ( '+' ) )
                     // InternalUsecase.g:649:3: ( '+' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                     before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); 
                     // InternalUsecase.g:650:3: ( '+' )
                     // InternalUsecase.g:650:4: '+'
                     {
@@ -2166,7 +2166,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                     after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); 
 
                     }
 
@@ -2179,7 +2179,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:654:2: ( ( 'public' ) )
                     // InternalUsecase.g:655:3: ( 'public' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
+                     before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); 
                     // InternalUsecase.g:656:3: ( 'public' )
                     // InternalUsecase.g:656:4: 'public'
                     {
@@ -2187,7 +2187,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
+                     after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); 
 
                     }
 
@@ -2200,7 +2200,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:660:2: ( ( '-' ) )
                     // InternalUsecase.g:661:3: ( '-' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
+                     before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); 
                     // InternalUsecase.g:662:3: ( '-' )
                     // InternalUsecase.g:662:4: '-'
                     {
@@ -2208,7 +2208,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
+                     after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); 
 
                     }
 
@@ -2221,7 +2221,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:666:2: ( ( 'private' ) )
                     // InternalUsecase.g:667:3: ( 'private' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
+                     before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); 
                     // InternalUsecase.g:668:3: ( 'private' )
                     // InternalUsecase.g:668:4: 'private'
                     {
@@ -2229,7 +2229,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
+                     after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); 
 
                     }
 
@@ -2242,7 +2242,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:672:2: ( ( '#' ) )
                     // InternalUsecase.g:673:3: ( '#' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+                     before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); 
                     // InternalUsecase.g:674:3: ( '#' )
                     // InternalUsecase.g:674:4: '#'
                     {
@@ -2250,7 +2250,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+                     after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); 
 
                     }
 
@@ -2263,7 +2263,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:678:2: ( ( 'protected' ) )
                     // InternalUsecase.g:679:3: ( 'protected' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+                     before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); 
                     // InternalUsecase.g:680:3: ( 'protected' )
                     // InternalUsecase.g:680:4: 'protected'
                     {
@@ -2271,7 +2271,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+                     after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); 
 
                     }
 
@@ -2284,7 +2284,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
                     // InternalUsecase.g:684:2: ( ( '~' ) )
                     // InternalUsecase.g:685:3: ( '~' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
+                     before(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); 
                     // InternalUsecase.g:686:3: ( '~' )
                     // InternalUsecase.g:686:4: '~'
                     {
@@ -2292,7 +2292,7 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
+                     after(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); 
 
                     }
 

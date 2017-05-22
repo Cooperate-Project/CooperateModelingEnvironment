@@ -2713,7 +2713,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:834:2: ( ( '+' ) )
                     // InternalCls.g:835:3: ( '+' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                     before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); 
                     // InternalCls.g:836:3: ( '+' )
                     // InternalCls.g:836:4: '+'
                     {
@@ -2721,7 +2721,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                     after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); 
 
                     }
 
@@ -2734,7 +2734,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:840:2: ( ( 'public' ) )
                     // InternalCls.g:841:3: ( 'public' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
+                     before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); 
                     // InternalCls.g:842:3: ( 'public' )
                     // InternalCls.g:842:4: 'public'
                     {
@@ -2742,7 +2742,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
+                     after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); 
 
                     }
 
@@ -2755,7 +2755,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:846:2: ( ( '-' ) )
                     // InternalCls.g:847:3: ( '-' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
+                     before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); 
                     // InternalCls.g:848:3: ( '-' )
                     // InternalCls.g:848:4: '-'
                     {
@@ -2763,7 +2763,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
+                     after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); 
 
                     }
 
@@ -2776,7 +2776,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:852:2: ( ( 'private' ) )
                     // InternalCls.g:853:3: ( 'private' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
+                     before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); 
                     // InternalCls.g:854:3: ( 'private' )
                     // InternalCls.g:854:4: 'private'
                     {
@@ -2784,7 +2784,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
+                     after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); 
 
                     }
 
@@ -2797,7 +2797,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:858:2: ( ( '#' ) )
                     // InternalCls.g:859:3: ( '#' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+                     before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); 
                     // InternalCls.g:860:3: ( '#' )
                     // InternalCls.g:860:4: '#'
                     {
@@ -2805,7 +2805,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+                     after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); 
 
                     }
 
@@ -2818,7 +2818,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:864:2: ( ( 'protected' ) )
                     // InternalCls.g:865:3: ( 'protected' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+                     before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); 
                     // InternalCls.g:866:3: ( 'protected' )
                     // InternalCls.g:866:4: 'protected'
                     {
@@ -2826,7 +2826,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+                     after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); 
 
                     }
 
@@ -2839,7 +2839,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
                     // InternalCls.g:870:2: ( ( '~' ) )
                     // InternalCls.g:871:3: ( '~' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
+                     before(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); 
                     // InternalCls.g:872:3: ( '~' )
                     // InternalCls.g:872:4: '~'
                     {
@@ -2847,7 +2847,7 @@ public class InternalClsParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
+                     after(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); 
 
                     }
 

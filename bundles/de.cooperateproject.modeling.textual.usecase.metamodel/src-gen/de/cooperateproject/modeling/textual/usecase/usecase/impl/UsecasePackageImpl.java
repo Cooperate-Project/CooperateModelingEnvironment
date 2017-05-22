@@ -288,7 +288,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActor_Visibility() {
+    public EAttribute getActor_Abstract() {
         return (EAttribute)actorEClass.getEStructuralFeatures().get(0);
     }
 
@@ -297,17 +297,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getActor_Abstract() {
-        return (EAttribute)actorEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getActor_Type() {
-        return (EAttribute)actorEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)actorEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -351,7 +342,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getUseCase_Visibility() {
+    public EAttribute getUseCase_Abstract() {
         return (EAttribute)useCaseEClass.getEStructuralFeatures().get(0);
     }
 
@@ -360,17 +351,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getUseCase_Abstract() {
-        return (EAttribute)useCaseEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getUseCase_ExtensionPoints() {
-        return (EReference)useCaseEClass.getEStructuralFeatures().get(2);
+        return (EReference)useCaseEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -379,7 +361,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
      * @generated
      */
     public EReference getUseCase_System() {
-        return (EReference)useCaseEClass.getEStructuralFeatures().get(3);
+        return (EReference)useCaseEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -603,7 +585,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         createEReference(rootPackageEClass, ROOT_PACKAGE__DIAGRAM);
 
         actorEClass = createEClass(ACTOR);
-        createEAttribute(actorEClass, ACTOR__VISIBILITY);
         createEAttribute(actorEClass, ACTOR__ABSTRACT);
         createEAttribute(actorEClass, ACTOR__TYPE);
 
@@ -612,7 +593,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         createEReference(systemEClass, SYSTEM__PACKAGE);
 
         useCaseEClass = createEClass(USE_CASE);
-        createEAttribute(useCaseEClass, USE_CASE__VISIBILITY);
         createEAttribute(useCaseEClass, USE_CASE__ABSTRACT);
         createEReference(useCaseEClass, USE_CASE__EXTENSION_POINTS);
         createEReference(useCaseEClass, USE_CASE__SYSTEM);
@@ -701,6 +681,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         actorEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
         actorEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getVisibilityHavingElement());
+        actorEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getClassifier());
         g1.getETypeArguments().add(g2);
@@ -716,6 +698,8 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         g1.getETypeArguments().add(g2);
         useCaseEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
+        useCaseEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getVisibilityHavingElement());
         useCaseEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getExtensionPoint());
@@ -763,7 +747,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEReference(getRootPackage_Diagram(), this.getUseCaseDiagram(), this.getUseCaseDiagram_RootPackage(), "diagram", null, 1, 1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getActor_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 1, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActor_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 1, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActor_Type(), this.getActorType(), "type", null, 1, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -772,7 +755,6 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
         initEReference(getSystem_Package(), this.getRootPackage(), this.getRootPackage_Systems(), "package", null, 1, 1, de.cooperateproject.modeling.textual.usecase.usecase.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getUseCase_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getUseCase_Abstract(), ecorePackage.getEBoolean(), "abstract", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getUseCase_ExtensionPoints(), this.getExtensionPoint(), this.getExtensionPoint_UseCase(), "extensionPoints", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getUseCase_System(), this.getSystem(), this.getSystem_Usecases(), "system", null, 1, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

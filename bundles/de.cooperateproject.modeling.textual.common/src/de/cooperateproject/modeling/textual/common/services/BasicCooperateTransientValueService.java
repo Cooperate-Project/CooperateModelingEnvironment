@@ -43,7 +43,11 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
     public ValueTransient isValueTransient(EObject semanticObject, EStructuralFeature feature) {
         ValueTransient result = S2.isValueTransient(semanticObject, feature);
         if (result == ValueTransient.YES && NON_TRANSIENT_FEATURES.contains(feature)) {
-            return ValueTransient.PREFERABLY;
+            if (semanticObject.eIsSet(feature)) {
+                return ValueTransient.PREFERABLY;
+            } else {
+                return ValueTransient.YES;
+            }
         }
         return result;
     }

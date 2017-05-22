@@ -6,6 +6,9 @@
       <factory
             class="de.cooperateproject.modeling.textual.common.issues.CommonUMLReferencingElementMissingElementFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.common.issues.VisibilityHavingElementResolutionFactory">
+      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator">
@@ -15,11 +18,17 @@
       <calculator
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.CommentCalculator">
       </calculator>
+      <calculator
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.VisibilityHavingElementCalculator">
+      </calculator>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover">
       <remover
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator">
+      </remover>
+      <remover
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.VisibilityHavingElementRemover">
       </remover>
    </extension>
 

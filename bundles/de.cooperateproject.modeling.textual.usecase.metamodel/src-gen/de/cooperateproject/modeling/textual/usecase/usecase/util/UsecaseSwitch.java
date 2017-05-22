@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Elem
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
@@ -112,6 +113,7 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 T1 result = caseActor(actor);
                 if (result == null) result = caseBehavioredClassifier(actor);
                 if (result == null) result = caseAliasedElement(actor);
+                if (result == null) result = caseVisibilityHavingElement(actor);
                 if (result == null) result = caseCommentable(actor);
                 if (result == null) result = caseNamedElement(actor);
                 if (result == null) result = caseUMLReferencingElement(actor);
@@ -134,6 +136,7 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
                 T1 result = caseUseCase(useCase);
                 if (result == null) result = caseBehavioredClassifier(useCase);
                 if (result == null) result = caseAliasedElement(useCase);
+                if (result == null) result = caseVisibilityHavingElement(useCase);
                 if (result == null) result = caseCommentable(useCase);
                 if (result == null) result = caseNamedElement(useCase);
                 if (result == null) result = caseUMLReferencingElement(useCase);
@@ -450,6 +453,21 @@ public class UsecaseSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseAliasedElement(AliasedElement object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Visibility Having Element</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Visibility Having Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseVisibilityHavingElement(VisibilityHavingElement object) {
         return null;
     }
 

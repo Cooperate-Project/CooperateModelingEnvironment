@@ -145,14 +145,14 @@ CardinalityBound returns ecore::EInt:
 	('*') | INT
 ;
 
-enum Visibility returns commons::Visibility:
-	PUBLIC = '+' 
-	| PUBLIC = 'public'
-	| PRIVATE = '-' 
-	| PRIVATE = 'private'
-	| PROTECTED = '#' 
-	| PROTECTED = 'protected'
-	| PACKAGE = '~'
+enum Visibility returns uml::VisibilityKind:
+	public = '+' 
+	| public = 'public'
+	| private = '-' 
+	| private = 'private'
+	| protected = '#' 
+	| protected = 'protected'
+	| package = '~'
 ;
 
 enum AggregationKind:

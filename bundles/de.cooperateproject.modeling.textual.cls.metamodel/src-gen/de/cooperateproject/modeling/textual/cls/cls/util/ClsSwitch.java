@@ -27,6 +27,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -114,6 +115,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseAliasedElement(classifier);
                 if (result == null) result = casePackageableElement(classifier);
                 if (result == null) result = caseCommentable(classifier);
+                if (result == null) result = caseVisibilityHavingElement(classifier);
                 if (result == null) result = caseUMLReferencingElement(classifier);
                 if (result == null) result = caseNamedElement(classifier);
                 if (result == null) result = caseElement(classifier);
@@ -127,6 +129,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseAliasedElement(class_);
                 if (result == null) result = casePackageableElement(class_);
                 if (result == null) result = caseCommentable(class_);
+                if (result == null) result = caseVisibilityHavingElement(class_);
                 if (result == null) result = caseUMLReferencingElement(class_);
                 if (result == null) result = caseNamedElement(class_);
                 if (result == null) result = caseElement(class_);
@@ -140,6 +143,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseAliasedElement(interface_);
                 if (result == null) result = casePackageableElement(interface_);
                 if (result == null) result = caseCommentable(interface_);
+                if (result == null) result = caseVisibilityHavingElement(interface_);
                 if (result == null) result = caseUMLReferencingElement(interface_);
                 if (result == null) result = caseNamedElement(interface_);
                 if (result == null) result = caseElement(interface_);
@@ -151,6 +155,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 T1 result = caseProperty(property);
                 if (result == null) result = caseUMLReferencingElement(property);
                 if (result == null) result = caseNamedElement(property);
+                if (result == null) result = caseVisibilityHavingElement(property);
                 if (result == null) result = caseElement(property);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -161,6 +166,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseProperty(member);
                 if (result == null) result = caseUMLReferencingElement(member);
                 if (result == null) result = caseNamedElement(member);
+                if (result == null) result = caseVisibilityHavingElement(member);
                 if (result == null) result = caseElement(member);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -172,6 +178,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseProperty(attribute);
                 if (result == null) result = caseUMLReferencingElement(attribute);
                 if (result == null) result = caseNamedElement(attribute);
+                if (result == null) result = caseVisibilityHavingElement(attribute);
                 if (result == null) result = caseElement(attribute);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -183,6 +190,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseProperty(method);
                 if (result == null) result = caseUMLReferencingElement(method);
                 if (result == null) result = caseNamedElement(method);
+                if (result == null) result = caseVisibilityHavingElement(method);
                 if (result == null) result = caseElement(method);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -193,6 +201,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseProperty(parameter);
                 if (result == null) result = caseUMLReferencingElement(parameter);
                 if (result == null) result = caseNamedElement(parameter);
+                if (result == null) result = caseVisibilityHavingElement(parameter);
                 if (result == null) result = caseElement(parameter);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -652,6 +661,21 @@ public class ClsSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public <CommentableUMLType extends org.eclipse.uml2.uml.Element> T1 caseCommentable(Commentable<CommentableUMLType> object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Visibility Having Element</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Visibility Having Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 caseVisibilityHavingElement(VisibilityHavingElement object) {
         return null;
     }
 

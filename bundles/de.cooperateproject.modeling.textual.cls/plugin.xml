@@ -29,9 +29,6 @@
       <factory
             class="de.cooperateproject.modeling.textual.cls.issues.ClsRootPackageMissingFactory">
       </factory>
-      <factory
-            class="de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheckFactory">
-      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator">

@@ -1742,17 +1742,6 @@ public interface ClsPackage extends EPackage {
     EClass getClassifier();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Classifier#getVisibility()
-     * @see #getClassifier()
-     * @generated
-     */
-    EAttribute getClassifier_Visibility();
-
-    /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getMembers <em>Members</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1814,17 +1803,6 @@ public interface ClsPackage extends EPackage {
      * @generated
      */
     EClass getProperty();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Visibility();
 
     /**
      * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Property#isStatic <em>Static</em>}'.
@@ -2318,14 +2296,6 @@ public interface ClsPackage extends EPackage {
         EClass CLASSIFIER = eINSTANCE.getClassifier();
 
         /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CLASSIFIER__VISIBILITY = eINSTANCE.getClassifier_Visibility();
-
-        /**
          * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2378,14 +2348,6 @@ public interface ClsPackage extends EPackage {
          * @generated
          */
         EClass PROPERTY = eINSTANCE.getProperty();
-
-        /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__VISIBILITY = eINSTANCE.getProperty_Visibility();
 
         /**
          * The meta object literal for the '<em><b>Static</b></em>' attribute feature.

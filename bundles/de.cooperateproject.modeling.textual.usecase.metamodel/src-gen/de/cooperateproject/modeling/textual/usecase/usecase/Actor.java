@@ -3,7 +3,7 @@
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +14,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visi
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#getType <em>Type</em>}</li>
  * </ul>
@@ -23,36 +22,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visi
  * @model
  * @generated
  */
-public interface Actor extends BehavioredClassifier<org.eclipse.uml2.uml.Actor>, AliasedElement {
-    /**
-     * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-     * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #setVisibility(Visibility)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getActor_Visibility()
-     * @model required="true"
-     * @generated
-     */
-    Visibility getVisibility();
-
-    /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#getVisibility <em>Visibility</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #getVisibility()
-     * @generated
-     */
-    void setVisibility(Visibility value);
-
+public interface Actor extends BehavioredClassifier<org.eclipse.uml2.uml.Actor>, AliasedElement, VisibilityHavingElement {
     /**
      * Returns the value of the '<em><b>Abstract</b></em>' attribute.
      * <!-- begin-user-doc -->

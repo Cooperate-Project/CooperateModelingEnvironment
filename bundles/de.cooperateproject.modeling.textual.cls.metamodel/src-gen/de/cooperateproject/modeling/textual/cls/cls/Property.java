@@ -4,8 +4,7 @@ package de.cooperateproject.modeling.textual.cls.cls;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -18,7 +17,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#isStatic <em>Static</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}</li>
  * </ul>
@@ -27,36 +25,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Property<T extends NamedElement> extends UMLReferencingElement<T>, Element, de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement {
-    /**
-     * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-     * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #setVisibility(Visibility)
-     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getProperty_Visibility()
-     * @model unique="false"
-     * @generated
-     */
-    Visibility getVisibility();
-
-    /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility <em>Visibility</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #getVisibility()
-     * @generated
-     */
-    void setVisibility(Visibility value);
-
+public interface Property<T extends NamedElement> extends UMLReferencingElement<T>, Element, de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement, VisibilityHavingElement {
     /**
      * Returns the value of the '<em><b>Static</b></em>' attribute.
      * <!-- begin-user-doc -->

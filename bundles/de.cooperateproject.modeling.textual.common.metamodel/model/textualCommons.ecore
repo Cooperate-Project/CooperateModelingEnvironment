@@ -28,13 +28,6 @@
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
-    <eLiterals name="UNDEFINED"/>
-    <eLiterals name="PUBLIC" value="1"/>
-    <eLiterals name="PRIVATE" value="2"/>
-    <eLiterals name="PROTECTED" value="3"/>
-    <eLiterals name="PACKAGE" value="4"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageBase" abstract="true">
     <eTypeParameters name="PackageType">
       <eBounds eClassifier="#//PackageBase">
@@ -97,5 +90,9 @@
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
     </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VisibilityHavingElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//VisibilityKind"
+        transient="true" unsettable="true"/>
   </eClassifiers>
 </ecore:EPackage>

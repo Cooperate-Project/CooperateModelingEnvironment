@@ -338,17 +338,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getClassifier_Visibility() {
-        return (EAttribute)classifierEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getClassifier_Members() {
-        return (EReference)classifierEClass.getEStructuralFeatures().get(1);
+        return (EReference)classifierEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -357,7 +348,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * @generated
      */
     public EReference getClassifier_OwningPackage() {
-        return (EReference)classifierEClass.getEStructuralFeatures().get(2);
+        return (EReference)classifierEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -401,7 +392,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getProperty_Visibility() {
+    public EAttribute getProperty_Static() {
         return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
     }
 
@@ -410,17 +401,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getProperty_Static() {
-        return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getProperty_Type() {
-        return (EReference)propertyEClass.getEStructuralFeatures().get(2);
+        return (EReference)propertyEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -769,7 +751,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         createEReference(packageEClass, PACKAGE__CONNECTORS);
 
         classifierEClass = createEClass(CLASSIFIER);
-        createEAttribute(classifierEClass, CLASSIFIER__VISIBILITY);
         createEReference(classifierEClass, CLASSIFIER__MEMBERS);
         createEReference(classifierEClass, CLASSIFIER__OWNING_PACKAGE);
 
@@ -779,7 +760,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         interfaceEClass = createEClass(INTERFACE);
 
         propertyEClass = createEClass(PROPERTY);
-        createEAttribute(propertyEClass, PROPERTY__VISIBILITY);
         createEAttribute(propertyEClass, PROPERTY__STATIC);
         createEReference(propertyEClass, PROPERTY__TYPE);
 
@@ -892,6 +872,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g2 = createEGenericType(classifierEClass_T);
         g1.getETypeArguments().add(g2);
         classifierEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getVisibilityHavingElement());
+        classifierEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(theUMLPackage.getClass_());
         g1.getETypeArguments().add(g2);
@@ -907,6 +889,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(theTextualCommonsPackage.getElement());
         propertyEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+        propertyEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getVisibilityHavingElement());
         propertyEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getProperty());
         g2 = createEGenericType(memberEClass_T);
@@ -985,7 +969,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEReference(getPackage_Connectors(), this.getConnector(), this.getConnector_OwningPackage(), "connectors", null, 0, -1, de.cooperateproject.modeling.textual.cls.cls.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getClassifier_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getMember());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
@@ -1000,7 +983,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getProperty_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

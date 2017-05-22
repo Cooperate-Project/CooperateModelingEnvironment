@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.NamedElement;
 
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
@@ -12,9 +14,11 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
+import de.cooperateproject.modeling.textual.cls.cls.Property;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.DerivedStateElementProcessorBase;
@@ -76,6 +80,19 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
         }
 
         @Override
+        public <T extends Classifier> Iterable<IAtomicStateProcessor> caseClassifier(
+                de.cooperateproject.modeling.textual.cls.cls.Classifier<T> object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, UMLReferencingElement.class,
+                    VisibilityHavingElement.class);
+        }
+
+        @Override
+        public <T extends NamedElement> Iterable<IAtomicStateProcessor> caseProperty(Property<T> object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, UMLReferencingElement.class,
+                    VisibilityHavingElement.class);
+        }
+
+        @Override
         public Iterable<IAtomicStateProcessor> apply(EObject obj) {
             return doSwitch(obj);
         }
@@ -109,6 +126,19 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
         @Override
         public Iterable<IAtomicStateProcessor> caseXtextAssociation(XtextAssociation object) {
             return getAtomicRemovers(atomicStateProcessorRegistry, XtextAssociation.class, UMLReferencingElement.class);
+        }
+
+        @Override
+        public <T extends Classifier> Iterable<IAtomicStateProcessor> caseClassifier(
+                de.cooperateproject.modeling.textual.cls.cls.Classifier<T> object) {
+            return getAtomicRemovers(atomicStateProcessorRegistry, UMLReferencingElement.class,
+                    VisibilityHavingElement.class);
+        }
+
+        @Override
+        public <T extends NamedElement> Iterable<IAtomicStateProcessor> caseProperty(Property<T> object) {
+            return getAtomicRemovers(atomicStateProcessorRegistry, UMLReferencingElement.class,
+                    VisibilityHavingElement.class);
         }
 
         @Override
