@@ -8,18 +8,20 @@ import java.util.stream.Stream;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService;
 
 public class ClsTransientValueService extends BasicCooperateTransientValueService {
 
     protected Set<EStructuralFeature> createNonTransientFeatureSet() {
-        return Stream.concat(
-                Arrays.asList(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES,
-                        ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
-                        // ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAVIGABILITIES,
-                        ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES,
-                        ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND,
-                        ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY).stream(),
+        return Stream.concat(Arrays.asList(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_CARDINALITIES,
+                ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES,
+                // ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAVIGABILITIES,
+                ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES,
+                ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND,
+                ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY,
+                TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).stream(),
+
                 super.createNonTransientFeatureSet().stream()).collect(Collectors.toSet());
 
     }

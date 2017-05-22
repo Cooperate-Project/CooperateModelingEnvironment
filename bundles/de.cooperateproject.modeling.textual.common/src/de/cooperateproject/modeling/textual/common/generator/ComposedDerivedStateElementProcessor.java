@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -28,11 +29,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStat
  */
 public class ComposedDerivedStateElementProcessor implements IDerivedStateElementProcessor {
 
-    @FunctionalInterface
-    private interface TriFunction<P1, P2, P3, R> {
-        R apply(P1 p1, P2 p2, P3 p3);
-    }
-
     @Inject
     @Named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR)
     protected Set<IDerivedStateElementProcessor> processors = Collections.emptySet();
@@ -44,22 +40,23 @@ public class ComposedDerivedStateElementProcessor implements IDerivedStateElemen
     }
 
     @Override
-    public boolean processElementUsingType(EClass clazz, EObject object) {
-        return polymorphicProcess(clazz, object, (p, o, c) -> p.processElementUsingType(c, o));
+    public boolean processElement(EObject object) {
+        return polymorphicProcess(object, (p, o) -> p.processElement(o));
     }
 
     @Override
-    public boolean simulateReloadUsingType(EClass clazz, EObject object) {
-        return polymorphicProcess(clazz, object, (p, o, c) -> p.simulateReloadUsingType(c, o));
+    public boolean simulateReload(EObject object) {
+        return polymorphicProcess(object, (p, o) -> p.simulateReload(o));
     }
 
-    protected boolean polymorphicProcess(EClass clazz, EObject object,
-            TriFunction<IDerivedStateElementProcessor, EObject, EClass, Boolean> function) {
-        return findDelegate(clazz).map(proc -> {
-            if (!function.apply(proc, object, clazz)) {
+    protected boolean polymorphicProcess(EObject object,
+            BiFunction<IDerivedStateElementProcessor, EObject, Boolean> function) {
+        EClass objectClass = object.eClass();
+        return findDelegate(objectClass).map(proc -> {
+            if (!function.apply(proc, object)) {
                 return processors.stream().filter(p -> p != proc)
-                        .filter(p -> p.hasCapabilitiesForHandling(clazz).isPresent())
-                        .filter(p -> function.apply(p, object, clazz)).findAny().isPresent();
+                        .filter(p -> p.hasCapabilitiesForHandling(objectClass).isPresent())
+                        .anyMatch(p -> function.apply(p, object));
             }
             return true;
         }).orElse(false);

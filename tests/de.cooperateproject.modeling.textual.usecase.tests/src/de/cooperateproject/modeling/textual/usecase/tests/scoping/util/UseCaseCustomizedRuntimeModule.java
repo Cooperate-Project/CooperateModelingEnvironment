@@ -23,6 +23,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
+import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover;
 import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule;
 import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator;
 import de.cooperateproject.modeling.textual.usecase.tests.UsecaseInjectorProvider;
@@ -66,7 +67,7 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
         private static final Class<?> BASE_CLS = IAtomicStateProcessorExtension.class;
         private static final Class<?>[] CALCULATOR_CLS = { AssociationCalculator.class,
                 UMLReferencingElementCalculator.class };
-        private static final Class<?>[] REMOVER_CLS = {};
+        private static final Class<?>[] REMOVER_CLS = { UMLReferencingElementRemover.class };
         private final Map<Class<?>, IAtomicStateProcessor> calculators;
         private final Map<Class<?>, IAtomicStateProcessor> removers;
 

@@ -31,7 +31,7 @@ public interface NamedElement extends Element {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getNamedElement_Name()
-     * @model
+     * @model transient="true"
      * @generated
      */
 	String getName();

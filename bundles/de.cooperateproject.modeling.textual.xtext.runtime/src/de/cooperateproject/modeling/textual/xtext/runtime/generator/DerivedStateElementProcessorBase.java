@@ -27,14 +27,11 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
         /**
          * Applies the processor to the given element.
          * 
-         * @param clz
-         *            The {@link EClass} of the element to be processed. The class must match the given element and vice
-         *            versa.
          * @param obj
          *            The element to be processed.
          * @return A set of atomic processors that have to be executed for correctly processing the element.
          */
-        Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj);
+        Iterable<IAtomicStateProcessor> apply(EObject obj);
 
         /**
          * Indicates if the processor supports elements of a given package.
@@ -70,20 +67,17 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
     }
 
     @Override
-    public boolean processElementUsingType(EClass clazz, EObject object) {
-        return execute(clazz, object, calculator);
+    public boolean processElement(EObject object) {
+        return execute(object, calculator);
     }
 
     @Override
-    public boolean simulateReloadUsingType(EClass clazz, EObject object) {
-        return execute(clazz, object, remover);
+    public boolean simulateReload(EObject object) {
+        return execute(object, remover);
     }
 
-    private static boolean execute(EClass clazz, EObject object, IInternalDerivedStateElementProcessor processor) {
-        if (!clazz.isInstance(object)) {
-            throw new IllegalArgumentException("The object is not a valid instance of the provided class");
-        }
-        Iterable<IAtomicStateProcessor> functionsToApply = processor.apply(clazz, object);
+    private static boolean execute(EObject object, IInternalDerivedStateElementProcessor processor) {
+        Iterable<IAtomicStateProcessor> functionsToApply = processor.apply(object);
         if (functionsToApply != null && functionsToApply.iterator().hasNext()) {
             StreamSupport.stream(functionsToApply.spliterator(), false).map(IAtomicStateProcessor.class::cast)
                     .forEach(p -> p.apply(object));

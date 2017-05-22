@@ -16,5 +16,11 @@
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.CommentCalculator">
       </calculator>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover">
+      <remover
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator">
+      </remover>
+   </extension>
 
 </plugin>

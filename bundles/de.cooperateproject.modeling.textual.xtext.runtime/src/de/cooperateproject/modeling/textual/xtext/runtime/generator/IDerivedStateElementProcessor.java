@@ -67,21 +67,7 @@ public interface IDerivedStateElementProcessor {
      *            The element to be processed.
      * @return True if the processor can handle the class. False otherwise.
      */
-    default boolean processElement(EObject object) {
-        return this.processElementUsingType(object.eClass(), object);
-    }
-
-    /**
-     * Tries to process the element and returns true if processing was possible.
-     * 
-     * @param clazz
-     *            The class to be used to process the object. The class has to be compatible to the object and vice
-     *            versa.
-     * @param object
-     *            The element to be processed.
-     * @return True if the element could be processed. False otherwise.
-     */
-    boolean processElementUsingType(EClass clazz, EObject object);
+    boolean processElement(EObject object);
 
     /**
      * Simulates a reloading of a resource by removing states that are not recalculated automatically.
@@ -90,19 +76,6 @@ public interface IDerivedStateElementProcessor {
      *            The element to be processed.
      * @return True if the element could be processed. False otherwise.
      */
-    default boolean simulateReload(EObject object) {
-        return this.simulateReloadUsingType(object.eClass(), object);
-    }
+    boolean simulateReload(EObject object);
 
-    /**
-     * Simulates a reloading of a resource by removing states that are not recalculated automatically.
-     * 
-     * @param clazz
-     *            The class to be used to process the object. The class has to be compatible to the object and vice
-     *            versa.
-     * @param object
-     *            The element to be processed.
-     * @return True if the element could be processed. False otherwise.
-     */
-    boolean simulateReloadUsingType(EClass clazz, EObject object);
 }

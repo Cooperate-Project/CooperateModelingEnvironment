@@ -3,7 +3,6 @@ package de.cooperateproject.modeling.textual.cls.generator;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -72,12 +71,13 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
 
         @Override
         public Iterable<IAtomicStateProcessor> caseAssociationMemberEnd(AssociationMemberEnd object) {
-            return getAtomicCalculators(atomicStateProcessorRegistry, AssociationMemberEnd.class);
+            return getAtomicCalculators(atomicStateProcessorRegistry, UMLReferencingElement.class,
+                    AssociationMemberEnd.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
-            return doSwitch(clz, obj);
+        public Iterable<IAtomicStateProcessor> apply(EObject obj) {
+            return doSwitch(obj);
         }
 
         @Override
@@ -108,12 +108,12 @@ public class ClsDerivedStateElementProcessor extends DerivedStateElementProcesso
 
         @Override
         public Iterable<IAtomicStateProcessor> caseXtextAssociation(XtextAssociation object) {
-            return getAtomicRemovers(atomicStateProcessorRegistry, XtextAssociation.class);
+            return getAtomicRemovers(atomicStateProcessorRegistry, XtextAssociation.class, UMLReferencingElement.class);
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
-            return doSwitch(clz, obj);
+        public Iterable<IAtomicStateProcessor> apply(EObject obj) {
+            return doSwitch(obj);
         }
 
         @Override

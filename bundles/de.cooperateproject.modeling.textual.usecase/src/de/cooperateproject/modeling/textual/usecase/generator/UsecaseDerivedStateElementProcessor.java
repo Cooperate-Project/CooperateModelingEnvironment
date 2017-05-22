@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.textual.usecase.generator;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -53,8 +52,8 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
-            return doSwitch(clz, obj);
+        public Iterable<IAtomicStateProcessor> apply(EObject obj) {
+            return doSwitch(obj);
         }
 
         @Override
@@ -75,8 +74,8 @@ public class UsecaseDerivedStateElementProcessor extends DerivedStateElementProc
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
-            return doSwitch(clz, obj);
+        public Iterable<IAtomicStateProcessor> apply(EObject obj) {
+            return doSwitch(obj);
         }
 
         @Override

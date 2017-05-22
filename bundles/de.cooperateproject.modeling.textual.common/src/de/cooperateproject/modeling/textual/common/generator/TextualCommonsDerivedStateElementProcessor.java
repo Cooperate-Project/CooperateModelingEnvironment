@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.textual.common.generator;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.uml2.uml.Element;
@@ -60,19 +59,24 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
-            return doSwitch(clz, obj);
+        public Iterable<IAtomicStateProcessor> apply(EObject obj) {
+            return doSwitch(obj);
         }
     }
 
     private static class DerivedStateRemover extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor>>
             implements IInternalDerivedStateElementProcessor {
 
-        @SuppressWarnings("unused")
         private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
 
         public DerivedStateRemover(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
             this.atomicStateProcessorRegistry = atomicStateProcessorRegistry;
+        }
+
+        @Override
+        public <UMLType extends Element> Iterable<IAtomicStateProcessor> caseUMLReferencingElement(
+                UMLReferencingElement<UMLType> object) {
+            return getAtomicRemovers(atomicStateProcessorRegistry, UMLReferencingElement.class);
         }
 
         @Override
@@ -81,8 +85,8 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
         }
 
         @Override
-        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
-            return doSwitch(clz, obj);
+        public Iterable<IAtomicStateProcessor> apply(EObject obj) {
+            return doSwitch(obj);
         }
     }
 

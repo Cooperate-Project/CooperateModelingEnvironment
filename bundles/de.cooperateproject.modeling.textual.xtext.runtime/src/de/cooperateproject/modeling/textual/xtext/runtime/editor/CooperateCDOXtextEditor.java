@@ -74,6 +74,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
     private IContextActivation contextActivation;
     private static final Logger LOGGER = Logger.getLogger(CooperateCDOXtextEditor.class);
+    private static final int MAX_AUTOMATED_FIX_ATTEMPTS = 20;
     private static ILock lock = Job.getJobManager().newLock();
 
     @Inject
@@ -190,9 +191,13 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
 
             @Override
             protected void doExecute() {
+                int fixAttempts = 0;
                 Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
                 do {
-                    issueResolutions.forEach(i -> i.resolve());
+                    if (fixAttempts++ > MAX_AUTOMATED_FIX_ATTEMPTS) {
+                        break;
+                    }
+                    issueResolutions.forEach(IAutomatedIssueResolution::resolve);
                     if (documentResource instanceof DerivedStateAwareResource) {
                         resourceStateCalculator.simulateReloadingResource(documentResource);
                         resourceStateCalculator.calculateState(documentResource);

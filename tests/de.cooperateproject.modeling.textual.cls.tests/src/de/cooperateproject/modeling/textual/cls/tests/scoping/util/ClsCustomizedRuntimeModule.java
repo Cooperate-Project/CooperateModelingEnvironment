@@ -28,6 +28,7 @@ import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.Associat
 import de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover;
 import de.cooperateproject.modeling.textual.cls.tests.ClsInjectorProvider;
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
+import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
@@ -72,7 +73,8 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
         private static final Class<?> BASE_CLS = IAtomicStateProcessorExtension.class;
         private static final Class<?>[] CALCULATOR_CLS = { AssociationMemberEndCalculator.class,
                 UMLReferencingElementCalculator.class };
-        private static final Class<?>[] REMOVER_CLS = { XtextAssociationRemover.class };
+        private static final Class<?>[] REMOVER_CLS = { XtextAssociationRemover.class,
+                UMLReferencingElementRemover.class };
         private final Map<Class<?>, IAtomicStateProcessor> calculators;
         private final Map<Class<?>, IAtomicStateProcessor> removers;
 
