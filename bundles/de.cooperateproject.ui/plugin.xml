@@ -35,6 +35,11 @@
             id="de.cooperateproject.ui.ResetCooperateProjectsCommand"
             name="Reset Cooperate Projects">
       </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.nature.DeleteProjectFromRepositoryCommand"
+            id="de.cooperateproject.ui.DeleteProjectFromRepositoryCommand"
+            name="Delete Project from Repositoy">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -252,6 +257,35 @@
                </visibleWhen>
             </command>
          </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?endof=org.eclipse.ui.edit.delete">
+         <command
+               commandId="de.cooperateproject.ui.DeleteProjectFromRepositoryCommand"
+               icon="platform:/plugin/org.eclipse.ui/icons/full/obj16/delete_obj.png"
+               label="Delete from Repository"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <test
+                           property="org.eclipse.core.resources.projectNature"
+                           value="de.cooperateproject.ui.CooperateProjectNature">
+                     </test>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
