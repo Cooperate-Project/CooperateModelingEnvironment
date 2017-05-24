@@ -287,6 +287,29 @@
             </visibleWhen>
          </command>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:common.import.menu?after=new">
+         <command
+               commandId="org.eclipse.ui.file.import"
+               icon="icons/16/cooperate_16.png"
+               label="Cooperate Project"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="importWizardId"
+                  value="de.cooperateproject.ui.importCooperateProjectWizard">
+            </parameter>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.importWizards">
