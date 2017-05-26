@@ -14,16 +14,19 @@ import de.cooperateproject.ui.focus.internal.history.HistoryElement;
 import de.cooperateproject.ui.focus.internal.history.IHistoryChangedListener;
 import de.cooperateproject.ui.focus.internal.history.IHistoryProvider;
 
-public class FocusViewModel {
+class FocusViewModel {
 
-    private final WritableValue<String> diagramTitle = new WritableValue<>();
-    private final WritableValue<Boolean> muteStatus = new WritableValue<>();
-    private final WritableList<HistoryElement> historyElement = new WritableList<>(new ArrayList<>(),
-            HistoryElement.class);
-    private final IHistoryChangedListener historyChangedListener = this::historyChanged;
+    private final WritableValue<String> diagramTitle;
+    private final WritableValue<Boolean> muteStatus;
+    private final WritableList<HistoryElement> historyElement;
+    private final IHistoryChangedListener historyChangedListener;
     private IFocusedDiagram fd;
 
     public FocusViewModel() {
+        diagramTitle = new WritableValue<>();
+        muteStatus = new WritableValue<>();
+        historyElement = new WritableList<>(new ArrayList<>(), HistoryElement.class);
+        historyChangedListener = this::historyChanged;
         diagramTitle.addChangeListener(this::handleChange);
         muteStatus.addChangeListener(this::handleChange);
     }

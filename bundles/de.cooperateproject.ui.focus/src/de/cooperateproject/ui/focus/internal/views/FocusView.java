@@ -1,14 +1,11 @@
 package de.cooperateproject.ui.focus.internal.views;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
-import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
@@ -35,7 +32,6 @@ import de.cooperateproject.ui.focus.internal.utils.FocusViewLabelProvider;
  */
 public class FocusView extends ViewPart {
     public static final String ID = "de.cooperateproject.ui.focus.views.FocusView";
-    private static final Logger LOGGER = Logger.getLogger(FocusView.class);
 
     private final FocusViewManager focusViewManager = new FocusViewManager();
 
@@ -54,7 +50,6 @@ public class FocusView extends ViewPart {
         this.parent = parent;
         focusViewManager.init();
         setUpView();
-        // setUpDialogs();
         makeActions();
         hookDoubleClickAction();
     }
@@ -105,19 +100,15 @@ public class FocusView extends ViewPart {
             @Override
             public void run() {
                 IStructuredSelection selection = (IStructuredSelection) historyViewer.getSelection();
-                if (selection.getFirstElement() instanceof HistoryElement)
+                if (selection.getFirstElement() instanceof HistoryElement) {
                     focusViewManager.setFocus((HistoryElement) selection.getFirstElement());
+                }
             }
         };
     }
 
     private void hookDoubleClickAction() {
-        historyViewer.addDoubleClickListener(new IDoubleClickListener() {
-            @Override
-            public void doubleClick(DoubleClickEvent event) {
-                doubleClickActionHistoryViewer.run();
-            }
-        });
+        historyViewer.addDoubleClickListener(event -> doubleClickActionHistoryViewer.run());
     }
 
     /**
