@@ -36,11 +36,11 @@ class FocusViewModel {
             fd.deregisterChangeListener(historyChangedListener);
         }
         this.fd = focusedDiagram;
-        if (focusedDiagram != null) {
-            muteStatus.setValue(focusedDiagram.isMute());
-            diagramTitle.setValue(focusedDiagram.getDiagramTitle());
+        if (fd != null) {
+            muteStatus.setValue(fd.isMute());
+            diagramTitle.setValue(fd.getDiagramTitle());
             updateHistoryElements(fd.getHistoryElements());
-            focusedDiagram.registerChangeListener(historyChangedListener);
+            fd.registerChangeListener(historyChangedListener);
         } else {
             muteStatus.setValue(false);
             diagramTitle.setValue("");
