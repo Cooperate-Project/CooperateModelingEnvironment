@@ -1041,7 +1041,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEReference(getXtextAssociation_MemberEndCardinalities(), theTextualCommonsPackage.getCardinality(), null, "memberEndCardinalities", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXtextAssociation_MemberEndNavigabilities(), ecorePackage.getEBoolean(), "memberEndNavigabilities", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getXtextAssociation_TwoSideBidirectionality(), ecorePackage.getEBoolean(), "twoSideBidirectionality", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getXtextAssociation_TwoSideAggregationKind(), this.getAggregationKind(), "twoSideAggregationKind", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getXtextAssociation_TwoSideAggregationKind(), this.getAggregationKind(), "twoSideAggregationKind", null, 1, 1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         op = initEOperation(getXtextAssociation__CollectMemberEndTypes(), null, "collectMemberEndTypes", 0, -1, !IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getClassifier());

@@ -5,9 +5,12 @@ import org.eclipse.uml2.uml.Element;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
-public class UMLReferencingElementRemover extends AtomicStateProcessorExtensionBase<UMLReferencingElement<Element>> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CLEANING)
+public class UMLReferencingElementRemover extends AtomicDerivedStateProcessorBase<UMLReferencingElement<Element>> {
 
     @SuppressWarnings("unchecked")
     public UMLReferencingElementRemover() {
@@ -15,15 +18,18 @@ public class UMLReferencingElementRemover extends AtomicStateProcessorExtensionB
     }
 
     @Override
-    protected Boolean applyTyped(UMLReferencingElement<Element> object) {
+    protected void applyTyped(UMLReferencingElement<Element> object) {
         if (object instanceof NamedElement) {
             handle((NamedElement) object);
         }
-        return true;
     }
 
     private static void handle(NamedElement object) {
-        object.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+        if (object instanceof UMLReferencingElement) {
+            if (((UMLReferencingElement) object).getReferencedElement() != null) {
+                object.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+            }
+        }
     }
 
 }

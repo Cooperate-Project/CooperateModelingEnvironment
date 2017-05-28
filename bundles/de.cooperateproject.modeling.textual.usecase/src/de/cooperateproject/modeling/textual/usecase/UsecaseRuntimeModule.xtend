@@ -4,34 +4,30 @@
 package de.cooperateproject.modeling.textual.usecase
 
 import com.google.inject.Binder
-import com.google.inject.multibindings.Multibinder
 import com.google.inject.name.Names
-import de.cooperateproject.modeling.textual.common.generator.CommonDerivedStateModuleExtension
 import de.cooperateproject.modeling.textual.common.naming.CommonQualifiedNameProvider
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService
-import de.cooperateproject.modeling.textual.usecase.generator.UsecaseDerivedStateElementProcessor
-import de.cooperateproject.modeling.textual.usecase.generator.UsecaseDerivedStateGenerator
 import de.cooperateproject.modeling.textual.usecase.scoping.UseCaseImportedNamespaceAwareLocalScopeProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.cdotext.TextualStateCalculator
-import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor
+import de.cooperateproject.modeling.textual.usecase.services.UsecaseValueConverter
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateModuleMixin
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
-import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager
-import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.resource.IResourceDescription
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
-import de.cooperateproject.modeling.textual.usecase.services.UsecaseValueConverter
+import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.UseCaseDerivedStateElementComparator
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.InitializingStateAwareResource
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements CommonDerivedStateModuleExtension {
+class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements DerivedStateModuleMixin {
 
 	override void configureIScopeProviderDelegate(Binder binder) {
 		binder.bind(IScopeProvider).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(
@@ -55,13 +51,8 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Commo
 		binder.bind(ITransientValueService).to(BasicCooperateTransientValueService)
 	}
 
-	// derived state
-	def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
-		return UsecaseDerivedStateGenerator;
-	}
-
 	override Class<? extends XtextResource> bindXtextResource() {
-		return DerivedStateAwareResource;
+		return InitializingStateAwareResource;
 	}
 
 	def Class<? extends IResourceDescription.Manager> bindIResourceDescriptionManager() {
@@ -72,18 +63,12 @@ class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements Commo
 		return CooperateGlobalScopeProvider
 	}
 	
-	def configureUseCaseDerivedStateElementProcessor(Binder binder) {
-		val mb = Multibinder.newSetBinder(binder, IDerivedStateElementProcessor, 
-		    Names.named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_CONTRIBUTING_PROCESSOR));
-		mb.addBinding().to(UsecaseDerivedStateElementProcessor);
-	}
-	
-	def Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
-		TextualStateCalculator
-	}
-	
 	 override bindIValueConverterService() {
         return UsecaseValueConverter
+    }
+    
+    def Class<? extends IDerivedStateComputerSorter> bindIDerivedStateComputerSorter() {
+        return UseCaseDerivedStateElementComparator
     }
 
 }

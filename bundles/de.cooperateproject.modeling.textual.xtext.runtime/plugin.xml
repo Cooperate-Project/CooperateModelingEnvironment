@@ -2,8 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories" name="Automated Issue Resolution Factories" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.automatedissueresolutionfactories.exsd"/>
-   <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator" name="Derived State Calculator" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator.exsd"/>
-   <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover" name="Derived State Remover" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover.exsd"/>
+   <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor" name="Derived State Processor" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor.exsd"/>
    <extension
          point="org.eclipse.ui.contexts">
       <context

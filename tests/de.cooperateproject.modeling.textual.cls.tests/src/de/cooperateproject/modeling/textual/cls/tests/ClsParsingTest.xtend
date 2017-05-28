@@ -11,6 +11,7 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.Ignore
 
 @RunWith(XtextRunner)
 @InjectWith(ClsInjectorProvider)
@@ -18,6 +19,7 @@ class ClsParsingTest {
 	@Inject
 	ParseHelper<ClassDiagram> parseHelper
 	
+	@Ignore
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''

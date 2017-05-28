@@ -12,12 +12,15 @@ import org.eclipse.uml2.uml.UseCase;
 import com.google.common.collect.Sets;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State calculator for associations.
  */
-public class AssociationCalculator extends AtomicStateProcessorExtensionBase<Association> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class AssociationCalculator extends AtomicDerivedStateProcessorBase<Association> {
 
     /**
      * Constructs the calculator.
@@ -27,26 +30,24 @@ public class AssociationCalculator extends AtomicStateProcessorExtensionBase<Ass
     }
 
     @Override
-    protected Boolean applyTyped(Association object) {
+    protected void applyTyped(Association object) {
         if (object.getActor() == null || object.getUsecase() == null) {
-            return false;
+            return;
         }
 
         Actor actor = object.getActor().getReferencedElement();
         UseCase usecase = object.getUsecase().getReferencedElement();
 
         if (actor == null || usecase == null) {
-            return false;
+            return;
         }
 
         Set<org.eclipse.uml2.uml.Association> matchingAssociations = actor.getAssociations().stream()
                 .filter(a -> isAssociationBetween(a, actor, usecase)).collect(Collectors.toSet());
         if (matchingAssociations.size() == 1) {
             object.setReferencedElement(matchingAssociations.iterator().next());
-            return true;
+            return;
         }
-
-        return false;
     }
 
     private static boolean isAssociationBetween(org.eclipse.uml2.uml.Association a, Classifier c1, Classifier c2) {

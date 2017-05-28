@@ -57,7 +57,8 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
     }
 
     protected Set<EStructuralFeature> createNonTransientFeatureSet() {
-        return new HashSet<>();
+        return new HashSet<>(Arrays.asList(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
+                TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY));
     }
 
     protected Set<EStructuralFeature> createTransientFeaturesSet() {

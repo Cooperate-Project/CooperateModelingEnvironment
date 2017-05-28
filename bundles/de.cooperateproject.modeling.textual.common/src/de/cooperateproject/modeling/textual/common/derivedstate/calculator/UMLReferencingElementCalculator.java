@@ -16,16 +16,18 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 /**
  * State calculation for {@link UMLReferencingElement}.
  */
-public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensionBase<UMLReferencingElement<Element>> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class UMLReferencingElementCalculator extends AtomicDerivedStateProcessorBase<UMLReferencingElement<Element>> {
 
     @Inject
     private IQualifiedNameProvider qualifiedNameProvider;
@@ -42,27 +44,10 @@ public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensi
     }
 
     @Override
-    protected Boolean applyTyped(UMLReferencingElement<Element> object) {
-        if (object instanceof NamedElement) {
-            handle((NamedElement) object);
-        }
-        return handle(object);
-    }
-
-    private static void handle(NamedElement object) {
-        if (!object.eIsSet(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME)
-                && object instanceof UMLReferencingElement) {
-            UMLReferencingElement typedObject = (UMLReferencingElement) object;
-            if (typedObject.getReferencedElement() instanceof org.eclipse.uml2.uml.NamedElement) {
-                object.setName(((org.eclipse.uml2.uml.NamedElement) typedObject.getReferencedElement()).getName());
-            }
-        }
-    }
-
-    private boolean handle(UMLReferencingElement<Element> object) {
+    protected void applyTyped(UMLReferencingElement<Element> object) {
         QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
         if (qn == null) {
-            return false;
+            return;
         }
 
         EGenericType requiredType = object.eClass()
@@ -78,7 +63,6 @@ public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensi
         } else {
             object.setReferencedElement(null);
         }
-        return true;
     }
 
 }

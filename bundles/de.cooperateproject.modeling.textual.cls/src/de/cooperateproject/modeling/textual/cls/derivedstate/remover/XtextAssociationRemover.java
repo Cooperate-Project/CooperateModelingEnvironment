@@ -1,12 +1,21 @@
 package de.cooperateproject.modeling.textual.cls.derivedstate.remover;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
+
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State remover for Xtext associations.
  */
-public class XtextAssociationRemover extends AtomicStateProcessorExtensionBase<XtextAssociation> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CLEANING)
+public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<XtextAssociation> {
 
     /**
      * Constructs the state remover.
@@ -16,17 +25,16 @@ public class XtextAssociationRemover extends AtomicStateProcessorExtensionBase<X
     }
 
     @Override
-    protected Boolean applyTyped(XtextAssociation object) {
+    protected void applyTyped(XtextAssociation object) {
         object.getMemberEndCardinalities().clear();
         object.getMemberEndNames().clear();
         object.getMemberEndNavigabilities().clear();
         object.getMemberEndTypes().clear();
-        return true;
     }
 
     @Override
-    public Class<XtextAssociation> getSupportedType() {
-        return XtextAssociation.class;
+    public Collection<Class<? extends EObject>> getRequirements() {
+        return Arrays.asList(UMLReferencingElement.class);
     }
 
 }

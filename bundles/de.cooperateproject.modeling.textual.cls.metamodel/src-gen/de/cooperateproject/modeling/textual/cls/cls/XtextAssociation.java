@@ -129,9 +129,11 @@ public interface XtextAssociation extends Association {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Two Side Aggregation Kind</em>' attribute.
      * @see de.cooperateproject.modeling.textual.cls.cls.AggregationKind
+     * @see #isSetTwoSideAggregationKind()
+     * @see #unsetTwoSideAggregationKind()
      * @see #setTwoSideAggregationKind(AggregationKind)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getXtextAssociation_TwoSideAggregationKind()
-     * @model required="true" transient="true"
+     * @model unsettable="true" required="true" transient="true"
      * @generated
      */
     AggregationKind getTwoSideAggregationKind();
@@ -142,10 +144,35 @@ public interface XtextAssociation extends Association {
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Two Side Aggregation Kind</em>' attribute.
      * @see de.cooperateproject.modeling.textual.cls.cls.AggregationKind
+     * @see #isSetTwoSideAggregationKind()
+     * @see #unsetTwoSideAggregationKind()
      * @see #getTwoSideAggregationKind()
      * @generated
      */
     void setTwoSideAggregationKind(AggregationKind value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#getTwoSideAggregationKind <em>Two Side Aggregation Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetTwoSideAggregationKind()
+     * @see #getTwoSideAggregationKind()
+     * @see #setTwoSideAggregationKind(AggregationKind)
+     * @generated
+     */
+    void unsetTwoSideAggregationKind();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.XtextAssociation#getTwoSideAggregationKind <em>Two Side Aggregation Kind</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Two Side Aggregation Kind</em>' attribute is set.
+     * @see #unsetTwoSideAggregationKind()
+     * @see #getTwoSideAggregationKind()
+     * @see #setTwoSideAggregationKind(AggregationKind)
+     * @generated
+     */
+    boolean isSetTwoSideAggregationKind();
 
     /**
      * <!-- begin-user-doc -->

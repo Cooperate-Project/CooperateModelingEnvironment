@@ -31,25 +31,21 @@
       </factory>
    </extension>
    <extension
-         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator">
-      <calculator
-            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndCalculator">
-      </calculator>
-      <calculator
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.GeneralizationCalculator">
-      </calculator>
-      <calculator
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.ImplementationCalculator">
-      </calculator>
-      <calculator
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.XtextAssociationCalculator">
-      </calculator>
-   </extension>
-   <extension
-         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover">
-      <remover
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.XtextAssociationInitializer">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover">
-      </remover>
+      </class>
    </extension>
-
 </plugin>

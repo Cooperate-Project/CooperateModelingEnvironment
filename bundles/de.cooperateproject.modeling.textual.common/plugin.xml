@@ -11,25 +11,24 @@
       </factory>
    </extension>
    <extension
-         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.calculator">
-      <calculator
-            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator">
-      </calculator>
-      <calculator
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.CommentCalculator">
-      </calculator>
-      <calculator
-            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.VisibilityHavingElementCalculator">
-      </calculator>
-   </extension>
-   <extension
-         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.remover">
-      <remover
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.UMLReferencingElementInitializer">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator">
-      </remover>
-      <remover
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover">
+      </class>
+      <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.remover.VisibilityHavingElementRemover">
-      </remover>
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer">
+      </class>
    </extension>
-
 </plugin>

@@ -305,11 +305,11 @@ class ClsParsingTest extends AbstractClsTest {
 			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
 			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
 
-			checkVisibility(nameMember, Visibility.PUBLIC, VisibilityKind.PUBLIC_LITERAL)
-			checkVisibility(ageMember, Visibility.PRIVATE, VisibilityKind.PRIVATE_LITERAL)
-			checkVisibility(getNameMember, Visibility.PROTECTED, VisibilityKind.PROTECTED_LITERAL)
-			checkVisibility(setNameMember, Visibility.PROTECTED, VisibilityKind.PROTECTED_LITERAL)
-			checkVisibility(calculateAgeMember, Visibility.PACKAGE, VisibilityKind.PACKAGE_LITERAL)
+			checkVisibility(nameMember, VisibilityKind.PUBLIC_LITERAL)
+			checkVisibility(ageMember, VisibilityKind.PRIVATE_LITERAL)
+			checkVisibility(getNameMember, VisibilityKind.PROTECTED_LITERAL)
+			checkVisibility(setNameMember, VisibilityKind.PROTECTED_LITERAL)
+			checkVisibility(calculateAgeMember, VisibilityKind.PACKAGE_LITERAL)
 		]
 	}
 
@@ -319,9 +319,9 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param visibility the visibility the member should have.
 	 * @param kind the visibility the referenced element of the member should have.
 	 */
-	private def void checkVisibility(Member<? extends NamedElement> member, Visibility visibility, VisibilityKind kind) {
+	private def void checkVisibility(Member<? extends NamedElement> member, VisibilityKind visibility) {
 		assertEquals(visibility, member.visibility)
-		assertEquals(kind, member.referencedElement.visibility)
+		assertEquals(visibility, member.referencedElement.visibility)
 	}
 
 	@Test
