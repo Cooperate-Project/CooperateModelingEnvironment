@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='71'>
+  <ius size='73'>
     <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
       <repositories size='2'>
         <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
@@ -420,6 +420,17 @@
     <iu id='org.eclipse.xtext.sdk.feature.group' name='Xtext Complete SDK' version='2.11.0.v20170201-0242'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='org.easymock' name='EasyMock' version='2.4.0.v20090202-0900'>
+      <repositories size='4'>
+        <repository location='http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/'/>
+        <repository location='http://download.eclipse.org/releases/neon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.jgrapht.core' name='JGraphT - Core' version='1.0.1'>
+      <repositories size='1'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
       </repositories>
     </iu>
   </ius>
