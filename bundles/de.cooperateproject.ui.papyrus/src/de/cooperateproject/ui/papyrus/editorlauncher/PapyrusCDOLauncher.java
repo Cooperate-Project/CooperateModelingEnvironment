@@ -162,7 +162,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
         return new CooperateURIEditorInput(uriToLaunch, getLauncherFile());
     }
 
-    private Resource createPlainResource(EObject rootElement) {
+    private static Resource createPlainResource(EObject rootElement) {
         return rootElement.eResource();
     }
 
@@ -212,33 +212,22 @@ public class PapyrusCDOLauncher extends EditorLauncher {
             EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
             lifecycleManager.addEditorLifecycleEventsListener(editorCloseListener);
         } catch (ServiceException e) {
-            LOGGER.error("Could not add editor close listener.");
+            LOGGER.error("Could not add editor close listener.", e);
             // we should change the control flow based on this...
         }
     }
 
     @Override
     protected DisposedListener createDisposeListener(IEditorPart editorPart) {
-        return new DisposedListener(editorPart, this::editorClosed, this::editorDisposed);
+        return new DisposedListener(editorPart, this::editorClosed, PapyrusCDOLauncher::editorDisposed);
     }
-
-    // private void deregisterListener(IEditorPart editorPart) {
-    // try {
-    // ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
-    // EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
-    // lifecycleManager.removeEditorLifecycleEventsListener(editorCloseListener);
-    // } catch (ServiceException e) {
-    // LOGGER.error("Could not remove editor close listener.");
-    // // we should change the control flow based on this...
-    // }
-    // }
 
     private void handleEditorAboutToBeClosed(IEditorPart editorPart) {
         // TODO we cannot deregister the listener here because of a concurrent modification exception
         getCDOView().close();
     }
 
-    private boolean editorDisposed(IWorkbenchPartReference partRef) {
+    private static boolean editorDisposed(IWorkbenchPartReference partRef) {
         IWorkbenchPart part = partRef.getPart(false);
         if (part == null || !(part instanceof IEditorPart)) {
             return true;
