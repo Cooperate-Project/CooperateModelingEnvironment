@@ -157,7 +157,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     }
 
     private Job getDiagramSaveJob() {
-        Job job = new Job("Save") {
+        return new Job("Save") {
             @Override
             protected IStatus run(IProgressMonitor monitor) {
                 SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
@@ -173,7 +173,6 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
                 return Status.OK_STATUS;
             }
         };
-        return job;
     }
 
     private boolean containsSyntaxErrors(CooperateXtextDocument document) {
