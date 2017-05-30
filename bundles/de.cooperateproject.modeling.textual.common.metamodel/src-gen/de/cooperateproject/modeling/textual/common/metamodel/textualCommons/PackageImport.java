@@ -32,7 +32,7 @@ public interface PackageImport extends UMLReferencingElement<org.eclipse.uml2.um
      * @return the value of the '<em>Imported Package</em>' attribute.
      * @see #setImportedPackage(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageImport_ImportedPackage()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
 	String getImportedPackage();

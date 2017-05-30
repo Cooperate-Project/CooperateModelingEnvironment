@@ -48,5 +48,11 @@
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.remover.CardinalityRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.PackageImportRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.PackageImportInitializer">
+      </class>
    </extension>
 </plugin>

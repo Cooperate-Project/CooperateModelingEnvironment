@@ -73,7 +73,8 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
                 TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS,
                 TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY,
                 TextualCommonsPackage.Literals.COMMENT__BODY, TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND,
-                TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND));
+                TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND,
+                TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE));
     }
 
     protected Set<EStructuralFeature> createTransientFeaturesSet() {
