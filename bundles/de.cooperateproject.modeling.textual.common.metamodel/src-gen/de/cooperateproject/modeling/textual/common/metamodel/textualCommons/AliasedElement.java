@@ -31,7 +31,7 @@ public interface AliasedElement extends NamedElement {
      * @return the value of the '<em>Alias</em>' attribute.
      * @see #setAlias(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getAliasedElement_Alias()
-     * @model
+     * @model transient="true"
      * @generated
      */
 	String getAlias();

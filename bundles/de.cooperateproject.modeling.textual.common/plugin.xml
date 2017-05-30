@@ -30,5 +30,11 @@
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.AliasedElementInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.AliasedElementRemover">
+      </class>
    </extension>
 </plugin>
