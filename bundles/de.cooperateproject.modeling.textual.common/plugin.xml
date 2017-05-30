@@ -36,5 +36,11 @@
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.remover.AliasedElementRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.CommentInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.CommentRemover">
+      </class>
    </extension>
 </plugin>

@@ -60,7 +60,7 @@ public interface Comment extends UMLReferencingElement<org.eclipse.uml2.uml.Comm
      * @return the value of the '<em>Body</em>' attribute.
      * @see #setBody(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getComment_Body()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
 	String getBody();
