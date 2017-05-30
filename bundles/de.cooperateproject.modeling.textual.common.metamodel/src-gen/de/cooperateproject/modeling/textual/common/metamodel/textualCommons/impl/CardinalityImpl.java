@@ -5,9 +5,15 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.MultiplicityElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,6 +99,24 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetLowerBound() {
+        eDynamicUnset(TextualCommonsPackage.CARDINALITY__LOWER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetLowerBound() {
+        return eDynamicIsSet(TextualCommonsPackage.CARDINALITY__LOWER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -110,6 +134,42 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetUpperBound() {
+        eDynamicUnset(TextualCommonsPackage.CARDINALITY__UPPER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetUpperBound() {
+        return eDynamicIsSet(TextualCommonsPackage.CARDINALITY__UPPER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MultiplicityElement getReferencedElement() {
+        EObject container = eContainer();
+        if (container instanceof UMLReferencingElement) {
+            @SuppressWarnings("unchecked")
+            UMLReferencingElement<Element> umlReferencingElement = (UMLReferencingElement<Element>) container;
+            org.eclipse.uml2.uml.Element referencedElement = umlReferencingElement.getReferencedElement();
+            if (referencedElement instanceof MultiplicityElement) {
+                return (MultiplicityElement) referencedElement;
+            }
+        }
+        return null;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -152,10 +212,10 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	public void eUnset(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.CARDINALITY__LOWER_BOUND:
-                setLowerBound(LOWER_BOUND_EDEFAULT);
+                unsetLowerBound();
                 return;
             case TextualCommonsPackage.CARDINALITY__UPPER_BOUND:
-                setUpperBound(UPPER_BOUND_EDEFAULT);
+                unsetUpperBound();
                 return;
         }
         super.eUnset(featureID);
@@ -170,11 +230,25 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.CARDINALITY__LOWER_BOUND:
-                return getLowerBound() != LOWER_BOUND_EDEFAULT;
+                return isSetLowerBound();
             case TextualCommonsPackage.CARDINALITY__UPPER_BOUND:
-                return getUpperBound() != UPPER_BOUND_EDEFAULT;
+                return isSetUpperBound();
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case TextualCommonsPackage.CARDINALITY___GET_REFERENCED_ELEMENT:
+                return getReferencedElement();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //CardinalityImpl

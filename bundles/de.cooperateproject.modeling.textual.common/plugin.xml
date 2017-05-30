@@ -42,5 +42,11 @@
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.remover.CommentRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.CardinalityInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.CardinalityRemover">
+      </class>
    </extension>
 </plugin>
