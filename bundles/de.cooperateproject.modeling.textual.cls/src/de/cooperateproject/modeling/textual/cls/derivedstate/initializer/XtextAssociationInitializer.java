@@ -17,9 +17,17 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
+/**
+ * Initializing processor for XtextAssociation elements.
+ * 
+ * This processor handles the contained AssociationMemberEnds as well.
+ */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.INITIALIZATION)
 public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase<XtextAssociation> {
 
+    /**
+     * Constructs the processor.
+     */
     public XtextAssociationInitializer() {
         super(XtextAssociation.class);
     }
@@ -32,6 +40,7 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
         object.getMemberEndNames().clear();
         object.getMemberEndCardinalities().clear();
         object.getMemberEndNavigabilities().clear();
+        object.getMemberEndTypes().clear();
         for (AssociationMemberEnd memberEnd : object.getMemberEnds()) {
             XtextAssociationMemberEndReferencedType typeReference = ClsFactory.eINSTANCE
                     .createXtextAssociationMemberEndReferencedType();
@@ -53,10 +62,6 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
                     object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
             object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
         }
-
-        // if (object.getReferencedElement() != null) {
-        // object.setName(object.getReferencedElement().getName());
-        // }
     }
 
     @Override

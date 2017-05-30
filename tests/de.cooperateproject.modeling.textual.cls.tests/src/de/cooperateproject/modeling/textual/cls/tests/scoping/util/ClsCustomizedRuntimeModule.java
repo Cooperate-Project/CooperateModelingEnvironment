@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ import com.google.inject.Injector;
 
 import de.cooperateproject.modeling.textual.cls.ClsRuntimeModule;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
-import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndCalculator;
+import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndDummy;
 import de.cooperateproject.modeling.textual.cls.derivedstate.initializer.XtextAssociationInitializer;
 import de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover;
 import de.cooperateproject.modeling.textual.cls.tests.ClsInjectorProvider;
@@ -75,8 +76,8 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
     private static class DummyAtomicProcessorRegistry implements IAtomicDerivedStateProcessorRegistry {
 
         private static final Class<?>[] RELEVANT_CLASSES = { IAtomicDerivedStateProcessor.class,
-                AssociationMemberEndCalculator.class, UMLReferencingElementCalculator.class,
-                XtextAssociationRemover.class, UMLReferencingElementRemover.class, XtextAssociationInitializer.class,
+                AssociationMemberEndDummy.class, UMLReferencingElementCalculator.class, XtextAssociationRemover.class,
+                UMLReferencingElementRemover.class, XtextAssociationInitializer.class,
                 VisibilityHavingElementInitializer.class };
         @SuppressWarnings("rawtypes")
         private static final Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> PROCESSORS = getProcessors();
@@ -90,7 +91,8 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
         @SuppressWarnings("rawtypes")
         private static Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> getProcessors() {
 
-            Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> categories = new HashMap<>();
+            Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> categories = new EnumMap<>(
+                    DerivedStateProcessorApplicability.class);
             for (DerivedStateProcessorApplicability applicability : DerivedStateProcessorApplicability.values()) {
                 categories.put(applicability, new HashMap<>());
             }

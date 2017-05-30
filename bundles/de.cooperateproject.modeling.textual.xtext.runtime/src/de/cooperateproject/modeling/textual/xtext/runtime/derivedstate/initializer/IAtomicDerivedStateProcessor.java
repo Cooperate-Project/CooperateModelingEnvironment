@@ -18,7 +18,7 @@ public interface IAtomicDerivedStateProcessor<T extends EObject> {
      * @param t
      *            the input argument
      */
-    void accept(T t);
+    void accept(EObject t);
 
     /**
      * @return The type that this processor can process.
