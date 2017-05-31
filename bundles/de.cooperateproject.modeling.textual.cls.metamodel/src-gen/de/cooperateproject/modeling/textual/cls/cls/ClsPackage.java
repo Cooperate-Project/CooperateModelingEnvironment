@@ -580,22 +580,13 @@ public interface ClsPackage extends EPackage {
     int PROPERTY__VISIBILITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROPERTY__STATIC = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTY__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int PROPERTY__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Property</em>' class.
@@ -604,7 +595,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -662,15 +653,6 @@ public interface ClsPackage extends EPackage {
     int MEMBER__VISIBILITY = PROPERTY__VISIBILITY;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MEMBER__STATIC = PROPERTY__STATIC;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -689,13 +671,22 @@ public interface ClsPackage extends EPackage {
     int MEMBER__OWNER = PROPERTY_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEMBER__STATIC = PROPERTY_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Member</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MEMBER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+    int MEMBER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -753,15 +744,6 @@ public interface ClsPackage extends EPackage {
     int ATTRIBUTE__VISIBILITY = MEMBER__VISIBILITY;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ATTRIBUTE__STATIC = MEMBER__STATIC;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -778,6 +760,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ATTRIBUTE__OWNER = MEMBER__OWNER;
+
+    /**
+     * The feature id for the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATTRIBUTE__STATIC = MEMBER__STATIC;
 
     /**
      * The number of structural features of the '<em>Attribute</em>' class.
@@ -844,15 +835,6 @@ public interface ClsPackage extends EPackage {
     int METHOD__VISIBILITY = MEMBER__VISIBILITY;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int METHOD__STATIC = MEMBER__STATIC;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -869,6 +851,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int METHOD__OWNER = MEMBER__OWNER;
+
+    /**
+     * The feature id for the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int METHOD__STATIC = MEMBER__STATIC;
 
     /**
      * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -951,15 +942,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PARAMETER__VISIBILITY = PROPERTY__VISIBILITY;
-
-    /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PARAMETER__STATIC = PROPERTY__STATIC;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1805,17 +1787,6 @@ public interface ClsPackage extends EPackage {
     EClass getProperty();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Property#isStatic <em>Static</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Static</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Property#isStatic()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Static();
-
-    /**
      * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1846,6 +1817,17 @@ public interface ClsPackage extends EPackage {
      * @generated
      */
     EReference getMember_Owner();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Member#isStatic <em>Static</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Static</em>'.
+     * @see de.cooperateproject.modeling.textual.cls.cls.Member#isStatic()
+     * @see #getMember()
+     * @generated
+     */
+    EAttribute getMember_Static();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Attribute <em>Attribute</em>}'.
@@ -2350,14 +2332,6 @@ public interface ClsPackage extends EPackage {
         EClass PROPERTY = eINSTANCE.getProperty();
 
         /**
-         * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__STATIC = eINSTANCE.getProperty_Static();
-
-        /**
          * The meta object literal for the '<em><b>Type</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2382,6 +2356,14 @@ public interface ClsPackage extends EPackage {
          * @generated
          */
         EReference MEMBER__OWNER = eINSTANCE.getMember_Owner();
+
+        /**
+         * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MEMBER__STATIC = eINSTANCE.getMember_Static();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AttributeImpl <em>Attribute</em>}' class.

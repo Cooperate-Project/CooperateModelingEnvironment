@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
@@ -195,8 +195,8 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Member<? extends NamedElement>> getMembers() {
-        return (EList<Member<? extends NamedElement>>)eDynamicGet(ClsPackage.CLASSIFIER__MEMBERS, ClsPackage.Literals.CLASSIFIER__MEMBERS, true, true);
+    public EList<Member<? extends Feature>> getMembers() {
+        return (EList<Member<? extends Feature>>)eDynamicGet(ClsPackage.CLASSIFIER__MEMBERS, ClsPackage.Literals.CLASSIFIER__MEMBERS, true, true);
     }
 
     /**
@@ -328,7 +328,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
                 return;
             case ClsPackage.CLASSIFIER__MEMBERS:
                 getMembers().clear();
-                getMembers().addAll((Collection<? extends Member<? extends NamedElement>>)newValue);
+                getMembers().addAll((Collection<? extends Member<? extends Feature>>)newValue);
                 return;
             case ClsPackage.CLASSIFIER__OWNING_PACKAGE:
                 setOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)newValue);

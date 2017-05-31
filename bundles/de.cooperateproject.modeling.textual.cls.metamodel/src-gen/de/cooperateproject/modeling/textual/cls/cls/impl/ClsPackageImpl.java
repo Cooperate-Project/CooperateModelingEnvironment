@@ -392,17 +392,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getProperty_Static() {
-        return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getProperty_Type() {
-        return (EReference)propertyEClass.getEStructuralFeatures().get(1);
+        return (EReference)propertyEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -421,6 +412,15 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
      */
     public EReference getMember_Owner() {
         return (EReference)memberEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMember_Static() {
+        return (EAttribute)memberEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -760,11 +760,11 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         interfaceEClass = createEClass(INTERFACE);
 
         propertyEClass = createEClass(PROPERTY);
-        createEAttribute(propertyEClass, PROPERTY__STATIC);
         createEReference(propertyEClass, PROPERTY__TYPE);
 
         memberEClass = createEClass(MEMBER);
         createEReference(memberEClass, MEMBER__OWNER);
+        createEAttribute(memberEClass, MEMBER__STATIC);
 
         attributeEClass = createEClass(ATTRIBUTE);
 
@@ -850,7 +850,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         classifierEClass_T.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getNamedElement());
         propertyEClass_T.getEBounds().add(g1);
-        g1 = createEGenericType(theUMLPackage.getNamedElement());
+        g1 = createEGenericType(theUMLPackage.getFeature());
         memberEClass_T.getEBounds().add(g1);
 
         // Add supertypes to classes
@@ -972,7 +972,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(this.getMember());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        g3 = createEGenericType(theUMLPackage.getNamedElement());
+        g3 = createEGenericType(theUMLPackage.getFeature());
         g2.setEUpperBound(g3);
         initEReference(getClassifier_Members(), g1, this.getMember_Owner(), "members", null, 0, -1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getClassifier_OwningPackage(), this.getPackage(), this.getPackage_Classifiers(), "owningPackage", null, 1, 1, Classifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -983,7 +983,6 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(memberEClass, Member.class, "Member", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -991,6 +990,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEReference(getMember_Owner(), g1, this.getClassifier_Members(), "owner", null, 1, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMember_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Member.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -390,7 +391,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public <T extends NamedElement> T1 caseMember(Member<T> object) {
+    public <T extends Feature> T1 caseMember(Member<T> object) {
         return null;
     }
 

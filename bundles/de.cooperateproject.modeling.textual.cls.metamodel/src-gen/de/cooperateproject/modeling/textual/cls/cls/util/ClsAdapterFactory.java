@@ -35,6 +35,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -118,7 +119,7 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createPropertyAdapter();
             }
             @Override
-            public <T extends NamedElement> Adapter caseMember(Member<T> object) {
+            public <T extends Feature> Adapter caseMember(Member<T> object) {
                 return createMemberAdapter();
             }
             @Override

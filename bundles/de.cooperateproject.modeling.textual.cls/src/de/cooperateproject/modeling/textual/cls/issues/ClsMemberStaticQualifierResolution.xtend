@@ -4,12 +4,12 @@ import de.cooperateproject.modeling.textual.cls.cls.Attribute
 import de.cooperateproject.modeling.textual.cls.cls.Member
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
-import org.eclipse.uml2.uml.Element
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
+import org.eclipse.uml2.uml.Feature
 
-class ClsPropertyStaticQualifierResolution extends AutomatedIssueResolutionBase<Member<? extends Element>> {
+class ClsMemberStaticQualifierResolution extends AutomatedIssueResolutionBase<Member<? extends Feature>> {
 	
-	new(Member<? extends Element> problematicElement, IResolvableChecker<Member<? extends Element>> checker) {
+	new(Member<? extends Feature> problematicElement, IResolvableChecker<Member<? extends Feature>> checker) {
 		super(problematicElement, checker)
 	}
 	

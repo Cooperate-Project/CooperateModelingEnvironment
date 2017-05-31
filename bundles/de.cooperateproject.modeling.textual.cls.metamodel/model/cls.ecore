@@ -51,7 +51,7 @@
         containment="true" resolveProxies="false" eOpposite="#//Member/owner">
       <eGenericType eClassifier="#//Member">
         <eTypeArguments>
-          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
@@ -84,8 +84,6 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eTypeParameter="#//Property/T"/>
@@ -96,7 +94,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Member" abstract="true">
     <eTypeParameters name="T">
-      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" changeable="false"
         eOpposite="#//Classifier/members">
@@ -104,6 +102,8 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eGenericSuperTypes eClassifier="#//Property">
       <eTypeArguments eTypeParameter="#//Member/T"/>
     </eGenericSuperTypes>

@@ -9,7 +9,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.NamedElement;
 public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends UMLReferencingElement<T>, AliasedElement, PackageableElement, Commentable<T>, VisibilityHavingElement {
     /**
      * Returns the value of the '<em><b>Members</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}&lt;? extends org.eclipse.uml2.uml.NamedElement>.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}&lt;? extends org.eclipse.uml2.uml.Feature>.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Member#getOwner <em>Owner</em>}'.
      * <!-- begin-user-doc -->
      * <p>
@@ -45,7 +45,7 @@ public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends U
      * @model opposite="owner" containment="true"
      * @generated
      */
-    EList<Member<? extends NamedElement>> getMembers();
+    EList<Member<? extends Feature>> getMembers();
 
     /**
      * Returns the value of the '<em><b>Owning Package</b></em>' container reference.
