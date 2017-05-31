@@ -88,14 +88,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
       interface="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedPackage" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importingPackage" lowerBound="1"
         eOpposite="#//PackageBase/packageImports">
       <eGenericType eClassifier="#//PackageBase">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedPackage" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"
+        transient="true"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
     </eGenericSuperTypes>

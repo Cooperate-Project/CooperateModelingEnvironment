@@ -39,7 +39,7 @@ Package:
 
 
 PackageImport returns commons::PackageImport:
-	"import" importedPackage=FQN
+	"import" importedPackage=[uml::Package|FQN]
 ;
 
 NameString returns ecore::EString:

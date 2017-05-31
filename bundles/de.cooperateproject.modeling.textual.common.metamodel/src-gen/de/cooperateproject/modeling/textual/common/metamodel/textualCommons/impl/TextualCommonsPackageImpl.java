@@ -388,8 +388,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getPackageImport_ImportedPackage() {
-        return (EAttribute)packageImportEClass.getEStructuralFeatures().get(0);
+	public EReference getPackageImport_ImportedPackage() {
+        return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
     }
 
 	/**
@@ -398,7 +398,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
      * @generated
      */
 	public EReference getPackageImport_ImportingPackage() {
-        return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
+        return (EReference)packageImportEClass.getEStructuralFeatures().get(0);
     }
 
 	/**
@@ -479,8 +479,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
 
         packageImportEClass = createEClass(PACKAGE_IMPORT);
-        createEAttribute(packageImportEClass, PACKAGE_IMPORT__IMPORTED_PACKAGE);
         createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTING_PACKAGE);
+        createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTED_PACKAGE);
 
         visibilityHavingElementEClass = createEClass(VISIBILITY_HAVING_ELEMENT);
         createEAttribute(visibilityHavingElementEClass, VISIBILITY_HAVING_ELEMENT__VISIBILITY);
@@ -599,11 +599,11 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(packageImportEClass, PackageImport.class, "PackageImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getPackageImport_ImportedPackage(), ecorePackage.getEString(), "importedPackage", null, 1, 1, PackageImport.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getPackageBase());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEReference(getPackageImport_ImportingPackage(), g1, this.getPackageBase_PackageImports(), "importingPackage", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPackageImport_ImportedPackage(), theUMLPackage.getPackage(), null, "importedPackage", null, 1, 1, PackageImport.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(visibilityHavingElementEClass, VisibilityHavingElement.class, "VisibilityHavingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getVisibilityHavingElement_Visibility(), theUMLPackage.getVisibilityKind(), "visibility", null, 0, 1, VisibilityHavingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

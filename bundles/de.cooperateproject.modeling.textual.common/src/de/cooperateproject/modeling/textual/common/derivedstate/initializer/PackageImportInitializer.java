@@ -2,9 +2,6 @@ package de.cooperateproject.modeling.textual.common.derivedstate.initializer;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.INITIALIZATION;
 
-import org.apache.commons.lang3.StringUtils;
-import org.eclipse.uml2.uml.Package;
-
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -24,10 +21,8 @@ public class PackageImportInitializer extends AtomicDerivedStateProcessorBase<Pa
 
     @Override
     protected void applyTyped(PackageImport object) {
-        if (StringUtils.isEmpty(object.getImportedPackage()) && object.getReferencedElement() != null) {
-            Package importedPackage = object.getReferencedElement().getImportedPackage();
-            String importedPackageName = importedPackage.getQualifiedName().replace(importedPackage.separator(), ".");
-            object.setImportedPackage(importedPackageName);
+        if (object.getImportedPackage() == null && object.getReferencedElement() != null) {
+            object.setImportedPackage(object.getReferencedElement().getImportedPackage());
         }
     }
 

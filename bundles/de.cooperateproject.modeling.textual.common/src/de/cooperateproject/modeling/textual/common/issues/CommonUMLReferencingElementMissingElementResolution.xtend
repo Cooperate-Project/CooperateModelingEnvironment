@@ -5,6 +5,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Element
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
 
 class CommonUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 
@@ -13,26 +14,30 @@ class CommonUMLReferencingElementMissingElementResolution extends AutomatedIssue
 	}
 	
 	static def getAcceptableTypes() {
-	    CommonUMLReferencingElementMissingElementResolution.methods.filter[name == "fixMissingUMLElement" && parameterCount == 1].map[parameters.get(0).type]
+		CommonUMLReferencingElementMissingElementResolution.declaredMethods.filter [
+			name == "_fixMissingUMLElement" && parameterCount == 1
+		].map[parameters.get(0).type]
 	}
 
 	override resolve() {
-	    val e = getProblematicElement as UMLReferencingElement;
-	    if (e instanceof Comment) {
-	        e.fixMissingUMLElement
-	    }
+		problematicElement.fixMissingUMLElement
 	}
 
 	private def dispatch fixMissingUMLElement(Comment element) {
 		if(!resolvePossible) return Void
 		val commentedElement = element.commentedElement
-		var Element umlCommentedElement = null
-    
-        umlCommentedElement = commentedElement.referencedElement
-
+		val Element umlCommentedElement = commentedElement.referencedElement
 		val umlComment = umlCommentedElement.nearestPackage.createOwnedComment()
 		umlComment.body = element.body
 		umlComment.annotatedElements.add(umlCommentedElement)
 		element.referencedElement = umlComment
+	}
+	
+	private def dispatch fixMissingUMLElement(PackageImport element) {
+		if(!resolvePossible) return Void
+		val importingPackage = element.importingPackage.referencedElement
+		val importedPackage = element.importedPackage
+		val packageImport = importingPackage.createPackageImport(importedPackage)
+		element.referencedElement = packageImport
 	}
 }

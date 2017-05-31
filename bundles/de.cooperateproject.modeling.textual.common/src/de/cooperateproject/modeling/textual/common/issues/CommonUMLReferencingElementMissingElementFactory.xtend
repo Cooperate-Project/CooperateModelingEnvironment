@@ -1,7 +1,6 @@
 package de.cooperateproject.modeling.textual.common.issues
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import org.eclipse.uml2.uml.Element
@@ -34,9 +33,8 @@ class CommonUMLReferencingElementMissingElementFactory extends CommonAutomatedIs
 		"Create UML element";
 	}
 
-	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) {
-		"The UML element does not exist yet.";
-	}
+	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) 
+		'''The UML element («eObject.eClass.name») does not exist yet.'''
 
 	override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
 	    new IssueLocator(eObject.relevantFeature, eObject)

@@ -554,22 +554,22 @@ public interface TextualCommonsPackage extends EPackage {
 	int PACKAGE_IMPORT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
 	/**
-     * The feature id for the '<em><b>Imported Package</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PACKAGE_IMPORT__IMPORTED_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
      * The feature id for the '<em><b>Importing Package</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int PACKAGE_IMPORT__IMPORTING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGE_IMPORT__IMPORTING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Imported Package</b></em>' reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int PACKAGE_IMPORT__IMPORTED_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
      * The number of structural features of the '<em>Package Import</em>' class.
@@ -877,15 +877,15 @@ public interface TextualCommonsPackage extends EPackage {
 	EClass getPackageImport();
 
 	/**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Imported Package</em>'.
+     * @return the meta object for the reference '<em>Imported Package</em>'.
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage()
      * @see #getPackageImport()
      * @generated
      */
-	EAttribute getPackageImport_ImportedPackage();
+	EReference getPackageImport_ImportedPackage();
 
 	/**
      * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage <em>Importing Package</em>}'.
@@ -1147,12 +1147,12 @@ public interface TextualCommonsPackage extends EPackage {
 		EClass PACKAGE_IMPORT = eINSTANCE.getPackageImport();
 
 		/**
-         * The meta object literal for the '<em><b>Imported Package</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Imported Package</b></em>' reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
          */
-		EAttribute PACKAGE_IMPORT__IMPORTED_PACKAGE = eINSTANCE.getPackageImport_ImportedPackage();
+		EReference PACKAGE_IMPORT__IMPORTED_PACKAGE = eINSTANCE.getPackageImport_ImportedPackage();
 
 		/**
          * The meta object literal for the '<em><b>Importing Package</b></em>' container reference feature.

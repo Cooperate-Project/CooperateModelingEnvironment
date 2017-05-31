@@ -12,8 +12,8 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage <em>Importing Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageImport()
@@ -22,32 +22,32 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
  */
 public interface PackageImport extends UMLReferencingElement<org.eclipse.uml2.uml.PackageImport> {
 	/**
-     * Returns the value of the '<em><b>Imported Package</b></em>' attribute.
+     * Returns the value of the '<em><b>Imported Package</b></em>' reference.
      * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Imported Package</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Imported Package</em>' attribute.
-     * @see #setImportedPackage(String)
+     * @return the value of the '<em>Imported Package</em>' reference.
+     * @see #setImportedPackage(org.eclipse.uml2.uml.Package)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageImport_ImportedPackage()
      * @model required="true" transient="true"
      * @generated
      */
-	String getImportedPackage();
+	org.eclipse.uml2.uml.Package getImportedPackage();
 
 	/**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}' attribute.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}' reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Imported Package</em>' attribute.
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Imported Package</em>' reference.
      * @see #getImportedPackage()
      * @generated
      */
-	void setImportedPackage(String value);
+    void setImportedPackage(org.eclipse.uml2.uml.Package value);
 
-	/**
+    /**
      * Returns the value of the '<em><b>Importing Package</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackageImports <em>Package Imports</em>}'.
      * <!-- begin-user-doc -->
