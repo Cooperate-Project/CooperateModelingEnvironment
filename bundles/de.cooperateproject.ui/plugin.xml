@@ -325,4 +325,11 @@
             name="Import Cooperate Project">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="de.cooperateproject.ui.cooperate"
+            name="Cooperate">
+      </category>
+   </extension>
 </plugin>
