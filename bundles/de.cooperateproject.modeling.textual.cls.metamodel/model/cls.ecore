@@ -69,7 +69,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" transient="true"
+        unsettable="true"/>
     <eGenericSuperTypes eClassifier="#//Classifier">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     </eGenericSuperTypes>

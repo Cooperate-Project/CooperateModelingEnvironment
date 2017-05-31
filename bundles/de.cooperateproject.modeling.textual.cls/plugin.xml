@@ -50,6 +50,12 @@
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndDummy">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.ClassRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.ClassInitializer">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
