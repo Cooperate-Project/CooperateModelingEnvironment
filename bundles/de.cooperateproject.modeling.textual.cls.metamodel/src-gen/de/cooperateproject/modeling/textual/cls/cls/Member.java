@@ -48,9 +48,11 @@ public interface Member<T extends Feature> extends Property<T> {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Static</em>' attribute.
+     * @see #isSetStatic()
+     * @see #unsetStatic()
      * @see #setStatic(boolean)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMember_Static()
-     * @model unique="false"
+     * @model unique="false" unsettable="true" transient="true"
      * @generated
      */
     boolean isStatic();
@@ -60,9 +62,34 @@ public interface Member<T extends Feature> extends Property<T> {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Static</em>' attribute.
+     * @see #isSetStatic()
+     * @see #unsetStatic()
      * @see #isStatic()
      * @generated
      */
     void setStatic(boolean value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Member#isStatic <em>Static</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetStatic()
+     * @see #isStatic()
+     * @see #setStatic(boolean)
+     * @generated
+     */
+    void unsetStatic();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Member#isStatic <em>Static</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Static</em>' attribute is set.
+     * @see #unsetStatic()
+     * @see #isStatic()
+     * @see #setStatic(boolean)
+     * @generated
+     */
+    boolean isSetStatic();
 
 } // Member

@@ -24,7 +24,7 @@
             class="de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifierFactory">
       </factory>
       <factory
-            class="de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifierFactory">
+            class="de.cooperateproject.modeling.textual.cls.issues.ClsMemberStaticQualifierFactory">
       </factory>
       <factory
             class="de.cooperateproject.modeling.textual.cls.issues.ClsRootPackageMissingFactory">
@@ -55,6 +55,12 @@
       </class>
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.ClassInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.MemberInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.MemberRemover">
       </class>
    </extension>
    <extension

@@ -89,6 +89,24 @@ public abstract class MemberImpl<T extends Feature> extends PropertyImpl<T> impl
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetStatic() {
+        eDynamicUnset(ClsPackage.MEMBER__STATIC, ClsPackage.Literals.MEMBER__STATIC);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetStatic() {
+        return eDynamicIsSet(ClsPackage.MEMBER__STATIC, ClsPackage.Literals.MEMBER__STATIC);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -168,7 +186,7 @@ public abstract class MemberImpl<T extends Feature> extends PropertyImpl<T> impl
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.MEMBER__STATIC:
-                setStatic(STATIC_EDEFAULT);
+                unsetStatic();
                 return;
         }
         super.eUnset(featureID);
@@ -185,7 +203,7 @@ public abstract class MemberImpl<T extends Feature> extends PropertyImpl<T> impl
             case ClsPackage.MEMBER__OWNER:
                 return getOwner() != null;
             case ClsPackage.MEMBER__STATIC:
-                return isStatic() != STATIC_EDEFAULT;
+                return isSetStatic();
         }
         return super.eIsSet(featureID);
     }
