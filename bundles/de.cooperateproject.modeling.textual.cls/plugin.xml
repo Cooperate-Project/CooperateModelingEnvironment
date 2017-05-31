@@ -62,6 +62,12 @@
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.MemberRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.MethodInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.MethodRemover">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
