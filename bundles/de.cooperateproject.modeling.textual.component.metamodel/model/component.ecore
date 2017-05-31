@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="component" nsURI="http://www.cooperateproject.de/modeling/textual/component/Component"
+    nsPrefix="component">
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentDiagram">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootpackage" lowerBound="1"
+        eType="#//RootPackage" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementRelation" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="2"
+        upperBound="2" eType="#//Component"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PortRelation" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="port" lowerBound="2" upperBound="2"
+        eType="#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
+        eType="#//Interface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector">
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//PortRelation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement #//ElementRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Abstraction" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement #//ElementRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Manifestation" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement #//ElementRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Usage" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement #//ElementRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Substitution" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement #//ElementRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement #//ElementRelation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementContent" abstract="true" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" upperBound="-1"
+        eType="#//Interface" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" upperBound="-1"
+        eType="#//Component" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="port" upperBound="-1" eType="#//PortRelation"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementcontent" upperBound="-1"
+        eType="#//ElementContent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfacerelation" upperBound="-1"
+        eType="#//InterfaceRelation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" upperBound="-1"
+        eType="#//Interface" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interface">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
+        eType="#//Member" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//Member"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Member" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceRelation" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" eType="#//Interface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Provide" eSuperTypes="#//InterfaceRelation ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Require" eSuperTypes="#//InterfaceRelation ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RootPackage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relation" upperBound="-1"
+        eType="#//ElementRelation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementcontent" upperBound="-1"
+        eType="#//ElementContent" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>
