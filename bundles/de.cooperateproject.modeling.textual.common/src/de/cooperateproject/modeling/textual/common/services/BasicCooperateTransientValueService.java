@@ -1,9 +1,5 @@
 package de.cooperateproject.modeling.textual.common.services;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultTransientValueService;
@@ -12,7 +8,7 @@ import org.eclipse.xtext.serializer.sequencer.LegacyTransientValueService;
 
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 
 /**
  * Transient value service that includes special handling for transient structural features.
@@ -22,16 +18,15 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
  * transient even if they are transient in the model. On the other side, there might be features that are not transient
  * but most not be serialized because they hold internal state. The service can handle them as well.
  * 
- * This class can be extended by overriding
- * {@link BasicCooperateTransientValueService#createNonTransientFeatureSet()} and
- * {@link BasicCooperateTransientValueService#createTransientFeaturesSet()}.
+ * Whether a feature is considered transient or not can be defined by implementing an {@link ITransientStatusProvider}
+ * and using the according extension point.
  */
 @SuppressWarnings("restriction")
 public class BasicCooperateTransientValueService extends DefaultTransientValueService
         implements ITransientValueService {
 
-    private final Set<EStructuralFeature> transientFeatures = createTransientFeaturesSet();
-    private final Set<EStructuralFeature> nonTransientFeatures = createNonTransientFeatureSet();
+    @Inject
+    private ITransientStatusProvider transientStatusProvider;
 
     @Inject
     private LegacyTransientValueService legacyService;
@@ -54,7 +49,7 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
     @Override
     public ValueTransient isValueTransient(EObject semanticObject, EStructuralFeature feature) {
         ValueTransient result = legacyService.isValueTransient(semanticObject, feature);
-        if (result == ValueTransient.YES && nonTransientFeatures.contains(feature)) {
+        if (result == ValueTransient.YES && transientStatusProvider.isFeatureConsideredNonTransient(feature)) {
             if (semanticObject.eIsSet(feature)) {
                 return ValueTransient.PREFERABLY;
             } else {
@@ -65,19 +60,7 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
     }
 
     private boolean isTransient(EStructuralFeature feature) {
-        return transientFeatures.contains(feature);
+        return transientStatusProvider.isFeatureConsideredTransient(feature);
     }
 
-    protected Set<EStructuralFeature> createNonTransientFeatureSet() {
-        return new HashSet<>(Arrays.asList(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
-                TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS,
-                TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY,
-                TextualCommonsPackage.Literals.COMMENT__BODY, TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND,
-                TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND,
-                TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE));
-    }
-
-    protected Set<EStructuralFeature> createTransientFeaturesSet() {
-        return new HashSet<>(Arrays.asList(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT));
-    }
 }

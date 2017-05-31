@@ -55,4 +55,10 @@
             class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.PackageImportInitializer">
       </class>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider">
+      </class>
+   </extension>
 </plugin>

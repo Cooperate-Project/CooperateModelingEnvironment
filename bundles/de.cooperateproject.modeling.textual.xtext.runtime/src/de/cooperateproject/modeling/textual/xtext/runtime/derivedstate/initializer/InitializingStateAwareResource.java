@@ -1,14 +1,29 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
 
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
+
+/**
+ * State-aware resource that handles the state initialization as required by {@link IDerivedStateProcessor}.
+ * 
+ * Changes regarding the {@link DerivedStateAwareResource} are:
+ * <li>Call of {@link IDerivedStateProcessor#initState(org.eclipse.emf.ecore.resource.Resource)} at first loading of
+ * contents</li>
+ * <li>The resource fixes the handling of transient features regarding linking behavior.</li>
+ */
 public class InitializingStateAwareResource extends DerivedStateAwareResource {
 
     @Inject
     private IDerivedStateProcessor derivedStateProcessor;
+
+    @Inject
+    private ITransientStatusProvider transientStatusProvider;
 
     private volatile boolean firstTimeInitialization = false;
 
@@ -37,4 +52,14 @@ public class InitializingStateAwareResource extends DerivedStateAwareResource {
         return o.eResource() != null;
     }
 
+    @Override
+    protected boolean isPotentialLazyCrossReference(EStructuralFeature feature) {
+        return !feature.isDerived() && !isFeatureConsideredTransient(feature) && feature instanceof EReference
+                && ((EReference) feature).isResolveProxies();
+    }
+
+    private boolean isFeatureConsideredTransient(EStructuralFeature feature) {
+        return (feature.isTransient() && !transientStatusProvider.isFeatureConsideredNonTransient(feature))
+                || transientStatusProvider.isFeatureConsideredTransient(feature);
+    }
 }

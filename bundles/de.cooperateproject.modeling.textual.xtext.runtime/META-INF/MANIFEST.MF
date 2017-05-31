@@ -24,6 +24,7 @@ Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.
  de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping,
+ de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus,
  de.cooperateproject.modeling.textual.xtext.runtime.validator
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator

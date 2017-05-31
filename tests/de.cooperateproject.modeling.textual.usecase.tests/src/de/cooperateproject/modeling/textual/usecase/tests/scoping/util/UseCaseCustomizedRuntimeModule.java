@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,10 @@ import com.google.inject.Injector;
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
 import de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer;
 import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover;
+import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule;
 import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator;
+import de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientStatusProvider;
 import de.cooperateproject.modeling.textual.usecase.tests.UsecaseInjectorProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -37,6 +40,8 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.DelegatingTransientStatusProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 
 public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
 
@@ -82,7 +87,8 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
         @SuppressWarnings("rawtypes")
         private static Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> getProcessors() {
 
-            Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> categories = new HashMap<>();
+            Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> categories = new EnumMap<>(
+                    DerivedStateProcessorApplicability.class);
             for (DerivedStateProcessorApplicability applicability : DerivedStateProcessorApplicability.values()) {
                 categories.put(applicability, new HashMap<>());
             }
@@ -140,6 +146,12 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
 
     }
 
+    private static class StaticallyBoundTransientStatusProvider extends DelegatingTransientStatusProvider {
+        public StaticallyBoundTransientStatusProvider() {
+            super(Arrays.asList(new UseCaseTransientStatusProvider(), new TextualCommonsTransientStatusProvider()));
+        }
+    }
+
     @Override
     public ClassLoader bindClassLoaderToInstance() {
         return UsecaseInjectorProvider.class.getClassLoader();
@@ -158,6 +170,11 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
     @Override
     public Class<? extends IAtomicDerivedStateProcessorRegistry> bindIAtomicDerivedStateProcessorRegistry() {
         return DummyAtomicProcessorRegistry.class;
+    }
+
+    @Override
+    public Class<? extends ITransientStatusProvider> bindITransientStatusProvider() {
+        return StaticallyBoundTransientStatusProvider.class;
     }
 
 }

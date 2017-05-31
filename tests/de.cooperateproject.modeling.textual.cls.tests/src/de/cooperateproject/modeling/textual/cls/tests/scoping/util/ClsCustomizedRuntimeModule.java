@@ -29,11 +29,13 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndDummy;
 import de.cooperateproject.modeling.textual.cls.derivedstate.initializer.XtextAssociationInitializer;
 import de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover;
+import de.cooperateproject.modeling.textual.cls.services.ClsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.cls.tests.ClsInjectorProvider;
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
 import de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer;
 import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessor;
@@ -41,6 +43,8 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.DelegatingTransientStatusProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 
 /**
  * Runtime module for cls diagrams that injects test mocks.
@@ -150,6 +154,12 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
 
     }
 
+    private static class StaticallyBoundTransientStatusProvider extends DelegatingTransientStatusProvider {
+        public StaticallyBoundTransientStatusProvider() {
+            super(Arrays.asList(new ClsTransientStatusProvider(), new TextualCommonsTransientStatusProvider()));
+        }
+    }
+
     @Override
     public ClassLoader bindClassLoaderToInstance() {
         return ClsInjectorProvider.class.getClassLoader();
@@ -168,6 +178,11 @@ public class ClsCustomizedRuntimeModule extends ClsRuntimeModule {
     @Override
     public Class<? extends IAtomicDerivedStateProcessorRegistry> bindIAtomicDerivedStateProcessorRegistry() {
         return DummyAtomicProcessorRegistry.class;
+    }
+
+    @Override
+    public Class<? extends ITransientStatusProvider> bindITransientStatusProvider() {
+        return StaticallyBoundTransientStatusProvider.class;
     }
 
 }

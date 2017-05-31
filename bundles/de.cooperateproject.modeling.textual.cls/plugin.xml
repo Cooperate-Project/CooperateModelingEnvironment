@@ -51,4 +51,10 @@
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndDummy">
       </class>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.cls.services.ClsTransientStatusProvider">
+      </class>
+   </extension>
 </plugin>

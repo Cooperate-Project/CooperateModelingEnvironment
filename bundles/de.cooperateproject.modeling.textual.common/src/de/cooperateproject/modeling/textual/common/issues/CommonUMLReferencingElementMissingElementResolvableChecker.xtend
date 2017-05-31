@@ -7,6 +7,8 @@ import org.eclipse.uml2.uml.Element
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import org.eclipse.emf.ecore.EObject
 
 class CommonUMLReferencingElementMissingElementResolvableChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -19,6 +21,7 @@ class CommonUMLReferencingElementMissingElementResolvableChecker implements IRes
 	}
 	
 	private def dispatch isResolvableInternal(PackageImport pkgImport) {
-		pkgImport.importingPackage.hasReferencedElement && pkgImport.importedPackage !== null 
+		val importedPackage = pkgImport.eGet(TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE) as EObject
+		pkgImport.importingPackage.hasReferencedElement && importedPackage !== null && !importedPackage.eIsProxy
 	}
 }

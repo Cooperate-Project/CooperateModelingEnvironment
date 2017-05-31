@@ -22,5 +22,10 @@
             class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.IncludeCalculator">
       </class>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientStatusProvider"></class>
+   </extension>
 
 </plugin>
