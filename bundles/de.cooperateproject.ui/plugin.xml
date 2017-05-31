@@ -278,10 +278,15 @@
                   <iterate
                         ifEmpty="false"
                         operator="and">
-                     <test
-                           property="org.eclipse.core.resources.projectNature"
-                           value="de.cooperateproject.ui.CooperateProjectNature">
-                     </test>
+                     <and>
+                        <instanceof
+                              value="org.eclipse.core.resources.IProject">
+                        </instanceof>
+                        <test
+                              property="org.eclipse.core.resources.projectNature"
+                              value="de.cooperateproject.ui.CooperateProjectNature">
+                        </test>
+                     </and>
                   </iterate>
                </and>
             </visibleWhen>
