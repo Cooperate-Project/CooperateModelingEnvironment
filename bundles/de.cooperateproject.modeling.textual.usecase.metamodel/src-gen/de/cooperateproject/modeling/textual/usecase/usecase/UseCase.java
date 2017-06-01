@@ -34,9 +34,11 @@ public interface UseCase extends BehavioredClassifier<org.eclipse.uml2.uml.UseCa
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Abstract</em>' attribute.
+     * @see #isSetAbstract()
+     * @see #unsetAbstract()
      * @see #setAbstract(boolean)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUseCase_Abstract()
-     * @model
+     * @model unsettable="true" transient="true"
      * @generated
      */
     boolean isAbstract();
@@ -46,10 +48,35 @@ public interface UseCase extends BehavioredClassifier<org.eclipse.uml2.uml.UseCa
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Abstract</em>' attribute.
+     * @see #isSetAbstract()
+     * @see #unsetAbstract()
      * @see #isAbstract()
      * @generated
      */
     void setAbstract(boolean value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#isAbstract <em>Abstract</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetAbstract()
+     * @see #isAbstract()
+     * @see #setAbstract(boolean)
+     * @generated
+     */
+    void unsetAbstract();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#isAbstract <em>Abstract</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Abstract</em>' attribute is set.
+     * @see #unsetAbstract()
+     * @see #isAbstract()
+     * @see #setAbstract(boolean)
+     * @generated
+     */
+    boolean isSetAbstract();
 
     /**
      * Returns the value of the '<em><b>Extension Points</b></em>' containment reference list.

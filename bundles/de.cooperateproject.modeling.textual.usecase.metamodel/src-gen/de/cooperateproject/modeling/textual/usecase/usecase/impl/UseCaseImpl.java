@@ -222,6 +222,24 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAbstract() {
+        eDynamicUnset(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAbstract() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<ExtensionPoint> getExtensionPoints() {
         return (EList<ExtensionPoint>)eDynamicGet(UsecasePackage.USE_CASE__EXTENSION_POINTS, UsecasePackage.Literals.USE_CASE__EXTENSION_POINTS, true, true);
@@ -391,7 +409,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
                 unsetVisibility();
                 return;
             case UsecasePackage.USE_CASE__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
+                unsetAbstract();
                 return;
             case UsecasePackage.USE_CASE__EXTENSION_POINTS:
                 getExtensionPoints().clear();
@@ -420,7 +438,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
             case UsecasePackage.USE_CASE__VISIBILITY:
                 return isSetVisibility();
             case UsecasePackage.USE_CASE__ABSTRACT:
-                return isAbstract() != ABSTRACT_EDEFAULT;
+                return isSetAbstract();
             case UsecasePackage.USE_CASE__EXTENSION_POINTS:
                 return !getExtensionPoints().isEmpty();
             case UsecasePackage.USE_CASE__SYSTEM:

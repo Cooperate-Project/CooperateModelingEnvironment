@@ -57,7 +57,8 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseCase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPoints" upperBound="-1"
         eType="#//ExtensionPoint" containment="true" eOpposite="#//ExtensionPoint/useCase"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="system" lowerBound="1"

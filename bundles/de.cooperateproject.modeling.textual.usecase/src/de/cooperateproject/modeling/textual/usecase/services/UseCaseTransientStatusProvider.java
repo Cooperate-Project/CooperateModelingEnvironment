@@ -15,7 +15,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatu
 public class UseCaseTransientStatusProvider implements ITransientStatusProvider {
 
     private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>(
-            Arrays.asList(UsecasePackage.Literals.ACTOR__ABSTRACT));
+            Arrays.asList(UsecasePackage.Literals.ACTOR__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT));
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
 
     @Override
