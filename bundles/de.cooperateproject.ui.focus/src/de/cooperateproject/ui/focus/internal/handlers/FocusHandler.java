@@ -21,9 +21,7 @@ public class FocusHandler extends AbstractHandler {
     public Object execute(ExecutionEvent event) throws ExecutionException {
         IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
         IWorkbenchPage page = window.getActivePage();
-        FocusView focusView = null;
-
-        focusView = (FocusView) page.findView(FocusView.ID);
+        FocusView focusView = (FocusView) page.findView(FocusView.ID);
 
         if (focusView != null) {
             focusView.sendCurrentFocus();

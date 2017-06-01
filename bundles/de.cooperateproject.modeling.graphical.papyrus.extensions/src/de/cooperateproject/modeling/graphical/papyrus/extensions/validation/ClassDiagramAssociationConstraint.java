@@ -24,8 +24,7 @@ public class ClassDiagramAssociationConstraint extends CooperateConstraint {
                 return ctx.createSuccessStatus();
             }
         }
-        // return ctx.createFailureStatus(new Object[] { association });
-        return ctx.createSuccessStatus();
+        return ctx.createFailureStatus(new Object[] { association });
     }
 
 }

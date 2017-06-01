@@ -2,7 +2,7 @@ package de.cooperateproject.ui.focus.internal.messaging;
 
 import org.eclipse.emf.cdo.common.id.CDOID;
 
-public class FocusMessage implements IFocusMessage {
+class FocusMessage implements IFocusMessage {
 
     private CDOID cdoId;
     private long timestamp;
