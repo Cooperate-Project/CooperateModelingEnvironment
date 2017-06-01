@@ -92,12 +92,14 @@
     <eGenericSuperTypes eClassifier="#//Relationship"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" lowerBound="1"
+        transient="true">
       <eGenericType eClassifier="#//BehavioredClassifier">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="general" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" lowerBound="1"
+        transient="true">
       <eGenericType eClassifier="#//BehavioredClassifier">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
       </eGenericType>
