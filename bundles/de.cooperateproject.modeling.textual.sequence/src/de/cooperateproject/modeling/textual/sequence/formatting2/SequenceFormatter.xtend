@@ -6,110 +6,91 @@ package de.cooperateproject.modeling.textual.sequence.formatting2;
 import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition;
 import de.cooperateproject.modeling.textual.sequence.sequence.Critical;
-import de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint;
+import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.Loop;
 import de.cooperateproject.modeling.textual.sequence.sequence.Message;
 import de.cooperateproject.modeling.textual.sequence.sequence.Option;
+import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer;
 import de.cooperateproject.modeling.textual.sequence.sequence.Parallel;
-import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
-import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 import de.cooperateproject.modeling.textual.sequence.services.SequenceGrammarAccess;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
+import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage
 
 class SequenceFormatter extends AbstractFormatter2 {
 	
 	@Inject extension SequenceGrammarAccess
 
 	def dispatch void format(SequenceDiagram sequencediagram, extension IFormattableDocument document) {
-	    sequencediagram.regionFor.feature(SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE).append[newLines = 2]
-		format(sequencediagram.getRootPackage(), document);
-		for (Actor actors : sequencediagram.getActors()) {
+        sequencediagram.regionFor.feature(SequencePackage.Literals.SEQUENCE_DIAGRAM__TITLE).append[newLines = 2]
+        format(sequencediagram.getRootPackage(), document);
+        for (Actor actors : sequencediagram.getActors()) {
             format(actors, document)
             actors.append[newLine]
         }
         sequencediagram.actors.last?.append[newLines = 2; priority=2]
         
-        for (BehaviorFragment behaviorFragments : sequencediagram.getBehaviorFragments()) {
+        for (Fragment behaviorFragments : sequencediagram.fragments) {
             format(behaviorFragments, document);
             behaviorFragments.append[newLine]
         }
-		sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_6).prepend[newLines = 2]
+        sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_7).prepend[newLines = 2]
 	}
 
-	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
-	    rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
+    def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
+        rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2]
+    }
+    
+	def dispatch void format(Actor actor, extension IFormattableDocument document) {
+		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+		format(actor.getTypeMapping(), document);
 	}
 
-	def dispatch void format(BehaviorFragments behaviorfragments, extension IFormattableDocument document) {
-	    interior(
-            behaviorfragments.regionFor.keyword(behaviorFragmentsAccess.leftCurlyBracketKeyword_0_0).append[newLine],
-            behaviorfragments.regionFor.keyword(behaviorFragmentsAccess.rightCurlyBracketKeyword_0_2),
-            [indent]
-        )
-		for (BehaviorFragment fragments : behaviorfragments.getFragments()) {
-			format(fragments, document);
-			fragments.append[newLine]
-		}
+	def dispatch void format(OrderedFragmentContainer orderedfragmentcontainer, extension IFormattableDocument document) {
+	    
+        // TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+        format(orderedfragmentcontainer.getCondition(), document);
+        for (Fragment fragments : orderedfragmentcontainer.fragments) {
+            format(fragments, document);
+            fragments.append[newLine]
+        }
 	}
 
 	def dispatch void format(Message message, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		format(message.getTimeConstraint(), document);
+		format(message.getSendEvent(), document);
+		format(message.getArrivalEvent(), document);
 	}
 
-	def dispatch void format(TimeConstraint timeconstraint, extension IFormattableDocument document) {
+	def dispatch void format(Parallel parallel, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (InnerTimeConstraint constraints : timeconstraint.getConstraints()) {
-			format(constraints, document);
+		for (OrderedFragmentContainer regions : parallel.getRegions()) {
+			format(regions, document);
 		}
 	}
 
 	def dispatch void format(Alternative alternative, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BehaviorFragmentsWithCondition alternatives : alternative.getAlternatives()) {
-			format(alternatives, document);
-		}
-	}
-
-	def dispatch void format(Option option, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BehaviorFragmentsWithCondition optional : option.getOptional()) {
-			format(optional, document);
-		}
-	}
-
-	def dispatch void format(Parallel parallel, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BehaviorFragments parallels : parallel.getParallels()) {
-			format(parallels, document);
-		}
-	}
-
-	def dispatch void format(Critical critical, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BehaviorFragment fragments : critical.getFragments()) {
-			format(fragments, document);
+		for (OrderedFragmentContainer regions : alternative.getRegions()) {
+			format(regions, document);
 		}
 	}
 
 	def dispatch void format(Loop loop, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BehaviorFragment fragments : loop.getFragments()) {
-			format(fragments, document);
-		}
+		format(loop.getRegion(), document);
 	}
 
-	def dispatch void format(BehaviorFragmentsWithCondition behaviorfragmentswithcondition, extension IFormattableDocument document) {
+	def dispatch void format(Option option, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BehaviorFragment fragments : behaviorfragmentswithcondition.getFragments()) {
-			format(fragments, document);
-		}
+		format(option.getRegion(), document);
+	}
+
+	def dispatch void format(Critical critical, extension IFormattableDocument document) {
+		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+		format(critical.getRegion(), document);
 	}
 }

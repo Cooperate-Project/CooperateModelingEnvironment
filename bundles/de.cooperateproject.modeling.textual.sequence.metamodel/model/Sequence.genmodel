@@ -5,7 +5,8 @@
     modelName="Sequence" modelPluginClass="" updateClasspath="false" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject"
     rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl" rootImplementsInterface=""
     importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic" complianceLevel="8.0"
-    copyrightFields="false" runtimeVersion="2.12" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    suppressGenModelAnnotations="false" copyrightFields="false" runtimeVersion="2.12"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Sequence.ecore</foreignModel>
   <foreignModel>../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore</foreignModel>
@@ -20,36 +21,29 @@
       <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//ActorType/HUMAN"/>
       <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//ActorType/MACHINE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Sequence.ecore#//TimeConstraintType">
-      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/DURATION"/>
-      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/TIME"/>
-      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/MAXIMUM"/>
-      <genEnumLiterals ecoreEnumLiteral="Sequence.ecore#//TimeConstraintType/DIFFERENCE"/>
-    </genEnums>
     <genClasses ecoreClass="Sequence.ecore#//SequenceDiagram">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//SequenceDiagram/title"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//SequenceDiagram/rootPackage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//SequenceDiagram/actors"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//RootPackage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//RootPackage/actors"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//RootPackage/behaviorFragments"/>
-    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//RootPackage"/>
     <genClasses ecoreClass="Sequence.ecore#//Actor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Actor/deferred"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//Actor/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Actor/typeMapping"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Actor/actorType"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//BehaviorFragment"/>
+    <genClasses ecoreClass="Sequence.ecore#//ActorClassifierMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//ActorClassifierMapping/classifier"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Sequence.ecore#//ActorClassifierMapping/actor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//ActorClassifierMapping/classifierName"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//Fragment"/>
+    <genClasses image="false" ecoreClass="Sequence.ecore#//FragmentSequence">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//FragmentSequence/fragments"/>
+    </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//Message">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Message/order"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Message/timeConstraint"/>
-    </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//TimeConstraint">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//TimeConstraint/constraints"/>
-    </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//InnerTimeConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//InnerTimeConstraint/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//InnerTimeConstraint/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//Message/arrivalEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//Message/sendEvent"/>
     </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//StandardMessage">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//StandardMessage/type"/>
@@ -76,33 +70,57 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DestructionMessage/left"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DestructionMessage/right"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//OccurenceSpecification"/>
+    <genClasses ecoreClass="Sequence.ecore#//OccurenceSpecification">
+      <genTypeParameters ecoreTypeParameter="Sequence.ecore#//OccurenceSpecification/UMLOccurenceType"/>
+    </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//DestructionOccurenceSpecification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//DestructionOccurenceSpecification/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DestructionOccurenceSpecification/target"/>
     </genClasses>
     <genClasses ecoreClass="Sequence.ecore#//CombinedFragment"/>
-    <genClasses ecoreClass="Sequence.ecore#//Alternative">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Alternative/alternatives"/>
+    <genClasses image="false" ecoreClass="Sequence.ecore#//OrderedFragmentContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//OrderedFragmentContainer/condition"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//Option">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Option/optional"/>
+    <genClasses image="false" ecoreClass="Sequence.ecore#//SingleRegionContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//SingleRegionContainer/region"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//Parallel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Parallel/parallels"/>
+    <genClasses image="false" ecoreClass="Sequence.ecore#//MultipleRegionContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//MultipleRegionContainer/regions"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//Critical">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Critical/fragments"/>
+    <genClasses ecoreClass="Sequence.ecore#//Alternative"/>
+    <genClasses ecoreClass="Sequence.ecore#//Option"/>
+    <genClasses ecoreClass="Sequence.ecore#//Parallel"/>
+    <genClasses ecoreClass="Sequence.ecore#//Critical"/>
+    <genClasses ecoreClass="Sequence.ecore#//Loop"/>
+    <genClasses ecoreClass="Sequence.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Condition/condition"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//Loop">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//Loop/condition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//Loop/fragments"/>
+    <genClasses ecoreClass="Sequence.ecore#//TimeSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//TimeSpecification/observation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//TimeSpecification/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//TimeSpecification/event"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//BehaviorFragments">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//BehaviorFragments/fragments"/>
+    <genClasses ecoreClass="Sequence.ecore#//DurationSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//DurationSpecification/observation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//DurationSpecification/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DurationSpecification/startEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//DurationSpecification/finishEvent"/>
     </genClasses>
-    <genClasses ecoreClass="Sequence.ecore#//BehaviorFragmentsWithCondition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Sequence.ecore#//BehaviorFragmentsWithCondition/condition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Sequence.ecore#//BehaviorFragmentsWithCondition/fragments"/>
+    <genClasses image="false" ecoreClass="Sequence.ecore#//OccurenceReference">
+      <genTypeParameters ecoreTypeParameter="Sequence.ecore#//OccurenceReference/OccurenceType"/>
+      <genOperations ecoreOperation="Sequence.ecore#//OccurenceReference/getOccurenceSpecification">
+        <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="throw new RuntimeException(&quot;This method should be overridden&quot;);"/>
+        </genAnnotations>
+      </genOperations>
     </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//ExplicitArrivalOccurenceReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Sequence.ecore#//ExplicitArrivalOccurenceReference/occurence"/>
+      <genOperations ecoreOperation="Sequence.ecore#//ExplicitArrivalOccurenceReference/getOccurenceSpecification"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//ImplicitArrivalOccurenceSpecification">
+      <genOperations ecoreOperation="Sequence.ecore#//ImplicitArrivalOccurenceSpecification/getOccurenceSpecification"/>
+    </genClasses>
+    <genClasses ecoreClass="Sequence.ecore#//ExplicitArrivalOccurenceSpecification"/>
+    <genClasses ecoreClass="Sequence.ecore#//ImplicitSendOccurenceSpecification"/>
   </genPackages>
 </genmodel:GenModel>

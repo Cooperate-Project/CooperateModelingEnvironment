@@ -3,42 +3,34 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments;
+import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Behavior Fragments</b></em>'.
+ * An implementation of the model object '<em><b>Point In Time Selector</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsImpl#getFragments <em>Fragments</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl#getPointInTime <em>Point In Time</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFragments {
+public class PointInTimeSelectorImpl extends CDOObjectImpl implements PointInTimeSelector {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected BehaviorFragmentsImpl() {
+    protected PointInTimeSelectorImpl() {
         super();
     }
 
@@ -49,7 +41,7 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
      */
     @Override
     protected EClass eStaticClass() {
-        return SequencePackage.Literals.BEHAVIOR_FRAGMENTS;
+        return SequencePackage.Literals.POINT_IN_TIME_SELECTOR;
     }
 
     /**
@@ -67,9 +59,8 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public EList<BehaviorFragment> getFragments() {
-        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS, SequencePackage.Literals.BEHAVIOR_FRAGMENTS__FRAGMENTS, true, true);
+    public AliasedPointInTime<?> getPointInTime() {
+        return (AliasedPointInTime<?>)eDynamicGet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, true, true);
     }
 
     /**
@@ -77,13 +68,17 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS:
-                return ((InternalEList<?>)getFragments()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    public AliasedPointInTime<?> basicGetPointInTime() {
+        return (AliasedPointInTime<?>)eDynamicGet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPointInTime(AliasedPointInTime<?> newPointInTime) {
+        eDynamicSet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, newPointInTime);
     }
 
     /**
@@ -94,8 +89,9 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS:
-                return getFragments();
+            case SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME:
+                if (resolve) return getPointInTime();
+                return basicGetPointInTime();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -105,13 +101,11 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS:
-                getFragments().clear();
-                getFragments().addAll((Collection<? extends BehaviorFragment>)newValue);
+            case SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME:
+                setPointInTime((AliasedPointInTime<?>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -125,8 +119,8 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS:
-                getFragments().clear();
+            case SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME:
+                setPointInTime((AliasedPointInTime<?>)null);
                 return;
         }
         super.eUnset(featureID);
@@ -140,10 +134,10 @@ public class BehaviorFragmentsImpl extends CDOObjectImpl implements BehaviorFrag
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.BEHAVIOR_FRAGMENTS__FRAGMENTS:
-                return !getFragments().isEmpty();
+            case SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME:
+                return basicGetPointInTime() != null;
         }
         return super.eIsSet(featureID);
     }
 
-} //BehaviorFragmentsImpl
+} //PointInTimeSelectorImpl

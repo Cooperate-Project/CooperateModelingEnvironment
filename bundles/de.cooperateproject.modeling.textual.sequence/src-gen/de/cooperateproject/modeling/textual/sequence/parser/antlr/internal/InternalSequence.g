@@ -147,25 +147,62 @@ ruleSequenceDiagram returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSequenceDiagramAccess().getBehaviorFragmentsBehaviorFragmentParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getSequenceDiagramAccess().getFragmentsFragmentParserRuleCall_5_0());
 				}
-				lv_behaviorFragments_5_0=ruleBehaviorFragment
+				lv_fragments_5_0=ruleFragment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSequenceDiagramRule());
 					}
 					add(
 						$current,
-						"behaviorFragments",
-						lv_behaviorFragments_5_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+						"fragments",
+						lv_fragments_5_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_6='@end-seqd'
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getSequenceDiagramAccess().getFragmentsConstraintParserRuleCall_6_0_0());
+					}
+					lv_fragments_6_1=ruleConstraint
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSequenceDiagramRule());
+						}
+						add(
+							$current,
+							"fragments",
+							lv_fragments_6_1,
+							"de.cooperateproject.modeling.textual.sequence.Sequence.Constraint");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getSequenceDiagramAccess().getFragmentsObservationParserRuleCall_6_0_1());
+					}
+					lv_fragments_6_2=ruleObservation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSequenceDiagramRule());
+						}
+						add(
+							$current,
+							"fragments",
+							lv_fragments_6_2,
+							"de.cooperateproject.modeling.textual.sequence.Sequence.Observation");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_7='@end-seqd'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getSequenceDiagramAccess().getEndSeqdKeyword_6());
+			newLeafNode(otherlv_7, grammarAccess.getSequenceDiagramAccess().getEndSeqdKeyword_7());
 		}
 	)
 ;
@@ -422,6 +459,25 @@ ruleActor returns [EObject current=null]
 				newLeafNode(otherlv_13, grammarAccess.getActorAccess().getRightSquareBracketKeyword_3_2());
 			}
 		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getActorAccess().getCommentsInlineCommentParserRuleCall_4_0());
+				}
+				lv_comments_14_0=ruleInlineComment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getActorRule());
+					}
+					add(
+						$current,
+						"comments",
+						lv_comments_14_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.InlineComment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 
@@ -464,15 +520,15 @@ ruleActorClassifierMapping returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleBehaviorFragment
-entryRuleBehaviorFragment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getBehaviorFragmentRule()); }
-	iv_ruleBehaviorFragment=ruleBehaviorFragment
-	{ $current=$iv_ruleBehaviorFragment.current; }
+// Entry rule entryRuleFragment
+entryRuleFragment returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFragmentRule()); }
+	iv_ruleFragment=ruleFragment
+	{ $current=$iv_ruleFragment.current; }
 	EOF;
 
-// Rule BehaviorFragment
-ruleBehaviorFragment returns [EObject current=null]
+// Rule Fragment
+ruleFragment returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -481,7 +537,7 @@ ruleBehaviorFragment returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getBehaviorFragmentAccess().getMessageParserRuleCall_0());
+			newCompositeNode(grammarAccess.getFragmentAccess().getMessageParserRuleCall_0());
 		}
 		this_Message_0=ruleMessage
 		{
@@ -490,7 +546,7 @@ ruleBehaviorFragment returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getBehaviorFragmentAccess().getOccurenceSpecificationParserRuleCall_1());
+			newCompositeNode(grammarAccess.getFragmentAccess().getOccurenceSpecificationParserRuleCall_1());
 		}
 		this_OccurenceSpecification_1=ruleOccurenceSpecification
 		{
@@ -499,25 +555,106 @@ ruleBehaviorFragment returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getBehaviorFragmentAccess().getCombinedFragmentParserRuleCall_2());
+			newCompositeNode(grammarAccess.getFragmentAccess().getCombinedFragmentParserRuleCall_2());
 		}
 		this_CombinedFragment_2=ruleCombinedFragment
 		{
 			$current = $this_CombinedFragment_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFragmentAccess().getReferenceParserRuleCall_3());
+		}
+		this_Reference_3=ruleReference
+		{
+			$current = $this_Reference_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
-// Entry rule entryRuleBehaviorFragments
-entryRuleBehaviorFragments returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getBehaviorFragmentsRule()); }
-	iv_ruleBehaviorFragments=ruleBehaviorFragments
-	{ $current=$iv_ruleBehaviorFragments.current; }
+// Entry rule entryRuleOneFragment
+entryRuleOneFragment returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOneFragmentRule()); }
+	iv_ruleOneFragment=ruleOneFragment
+	{ $current=$iv_ruleOneFragment.current; }
 	EOF;
 
-// Rule BehaviorFragments
-ruleBehaviorFragments returns [EObject current=null]
+// Rule OneFragment
+ruleOneFragment returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getOneFragmentAccess().getFragmentsFragmentParserRuleCall_0());
+			}
+			lv_fragments_0_0=ruleFragment
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getOneFragmentRule());
+				}
+				add(
+					$current,
+					"fragments",
+					lv_fragments_0_0,
+					"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleOneOrMultipleFragments
+entryRuleOneOrMultipleFragments returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOneOrMultipleFragmentsRule()); }
+	iv_ruleOneOrMultipleFragments=ruleOneOrMultipleFragments
+	{ $current=$iv_ruleOneOrMultipleFragments.current; }
+	EOF;
+
+// Rule OneOrMultipleFragments
+ruleOneOrMultipleFragments returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getOneOrMultipleFragmentsAccess().getFragmentsFragmentParserRuleCall_0());
+			}
+			lv_fragments_0_0=ruleFragment
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getOneOrMultipleFragmentsRule());
+				}
+				add(
+					$current,
+					"fragments",
+					lv_fragments_0_0,
+					"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)+
+;
+
+// Entry rule entryRuleOrderedFragmentContainer
+entryRuleOrderedFragmentContainer returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrderedFragmentContainerRule()); }
+	iv_ruleOrderedFragmentContainer=ruleOrderedFragmentContainer
+	{ $current=$iv_ruleOrderedFragmentContainer.current; }
+	EOF;
+
+// Rule OrderedFragmentContainer
+ruleOrderedFragmentContainer returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -528,52 +665,230 @@ ruleBehaviorFragments returns [EObject current=null]
 		(
 			otherlv_0='{'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getBehaviorFragmentsAccess().getLeftCurlyBracketKeyword_0_0());
+				newLeafNode(otherlv_0, grammarAccess.getOrderedFragmentContainerAccess().getLeftCurlyBracketKeyword_0_0());
 			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getBehaviorFragmentsAccess().getFragmentsBehaviorFragmentParserRuleCall_0_1_0());
-					}
-					lv_fragments_1_0=ruleBehaviorFragment
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsRule());
-						}
-						add(
-							$current,
-							"fragments",
-							lv_fragments_1_0,
-							"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)+
+			{
+				newCompositeNode(grammarAccess.getOrderedFragmentContainerAccess().getOneOrMultipleFragmentsParserRuleCall_0_1());
+			}
+			this_OneOrMultipleFragments_1=ruleOneOrMultipleFragments
+			{
+				$current = $this_OneOrMultipleFragments_1.current;
+				afterParserOrEnumRuleCall();
+			}
 			otherlv_2='}'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getBehaviorFragmentsAccess().getRightCurlyBracketKeyword_0_2());
+				newLeafNode(otherlv_2, grammarAccess.getOrderedFragmentContainerAccess().getRightCurlyBracketKeyword_0_2());
 			}
 		)
 		    |
+		{
+			newCompositeNode(grammarAccess.getOrderedFragmentContainerAccess().getOneFragmentParserRuleCall_1());
+		}
+		this_OneFragment_3=ruleOneFragment
+		{
+			$current = $this_OneFragment_3.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleCondition
+entryRuleCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConditionRule()); }
+	iv_ruleCondition=ruleCondition
+	{ $current=$iv_ruleCondition.current; }
+	EOF;
+
+// Rule Condition
+ruleCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getConditionAccess().getLeftSquareBracketKeyword_0());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getBehaviorFragmentsAccess().getFragmentsBehaviorFragmentParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConditionAccess().getConditionUnescapedStringParserRuleCall_1_0());
 				}
-				lv_fragments_3_0=ruleBehaviorFragment
+				lv_condition_1_0=ruleUnescapedString
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsRule());
+						$current = createModelElementForParent(grammarAccess.getConditionRule());
 					}
-					add(
+					set(
 						$current,
-						"fragments",
-						lv_fragments_3_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+						"condition",
+						lv_condition_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.UnescapedString");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		otherlv_2=']'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getConditionAccess().getRightSquareBracketKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleOrderedFragmentContainerWithCondition
+entryRuleOrderedFragmentContainerWithCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionRule()); }
+	iv_ruleOrderedFragmentContainerWithCondition=ruleOrderedFragmentContainerWithCondition
+	{ $current=$iv_ruleOrderedFragmentContainerWithCondition.current; }
+	EOF;
+
+// Rule OrderedFragmentContainerWithCondition
+ruleOrderedFragmentContainerWithCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionAccess().getConditionConditionParserRuleCall_0_0());
+				}
+				lv_condition_0_0=ruleCondition
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerWithConditionRule());
+					}
+					set(
+						$current,
+						"condition",
+						lv_condition_0_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.Condition");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				otherlv_1='{'
+				{
+					newLeafNode(otherlv_1, grammarAccess.getOrderedFragmentContainerWithConditionAccess().getLeftCurlyBracketKeyword_1_0_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionAccess().getFragmentsFragmentParserRuleCall_1_0_1_0());
+						}
+						lv_fragments_2_0=ruleFragment
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerWithConditionRule());
+							}
+							add(
+								$current,
+								"fragments",
+								lv_fragments_2_0,
+								"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)+
+				otherlv_3='}'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getOrderedFragmentContainerWithConditionAccess().getRightCurlyBracketKeyword_1_0_2());
+				}
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionAccess().getFragmentsFragmentParserRuleCall_1_1_0());
+					}
+					lv_fragments_4_0=ruleFragment
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerWithConditionRule());
+						}
+						add(
+							$current,
+							"fragments",
+							lv_fragments_4_0,
+							"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleOrderedFragmentContainerWithConditionMandatoryBrackets
+entryRuleOrderedFragmentContainerWithConditionMandatoryBrackets returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsRule()); }
+	iv_ruleOrderedFragmentContainerWithConditionMandatoryBrackets=ruleOrderedFragmentContainerWithConditionMandatoryBrackets
+	{ $current=$iv_ruleOrderedFragmentContainerWithConditionMandatoryBrackets.current; }
+	EOF;
+
+// Rule OrderedFragmentContainerWithConditionMandatoryBrackets
+ruleOrderedFragmentContainerWithConditionMandatoryBrackets returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getConditionConditionParserRuleCall_0_0());
+				}
+				lv_condition_0_0=ruleCondition
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsRule());
+					}
+					set(
+						$current,
+						"condition",
+						lv_condition_0_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.Condition");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getLeftCurlyBracketKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getFragmentsFragmentParserRuleCall_2_0());
+				}
+				lv_fragments_2_0=ruleFragment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsRule());
+					}
+					add(
+						$current,
+						"fragments",
+						lv_fragments_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		otherlv_3='}'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getRightCurlyBracketKeyword_3());
+		}
 	)
 ;
 
@@ -649,156 +964,171 @@ ruleMessage returns [EObject current=null]
 			}
 		)
 		(
-			otherlv_6='num['
+			otherlv_6='as'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getMessageAccess().getNumKeyword_1_0());
+				newLeafNode(otherlv_6, grammarAccess.getMessageAccess().getAsKeyword_1_0());
 			}
 			(
 				(
+					lv_alias_7_0=RULE_ID
 					{
-						newCompositeNode(grammarAccess.getMessageAccess().getOrderOrderParserRuleCall_1_1_0());
+						newLeafNode(lv_alias_7_0, grammarAccess.getMessageAccess().getAliasIDTerminalRuleCall_1_1_0());
 					}
-					lv_order_7_0=ruleOrder
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMessageRule());
+							$current = createModelElement(grammarAccess.getMessageRule());
 						}
-						set(
+						setWithLastConsumed(
 							$current,
-							"order",
-							lv_order_7_0,
-							"de.cooperateproject.modeling.textual.sequence.Sequence.Order");
-						afterParserOrEnumRuleCall();
+							"alias",
+							lv_alias_7_0,
+							"org.eclipse.xtext.common.Terminals.ID");
 					}
 				)
 			)
-			otherlv_8=']'
-			{
-				newLeafNode(otherlv_8, grammarAccess.getMessageAccess().getRightSquareBracketKeyword_1_2());
-			}
 		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMessageAccess().getTimeConstraintTimeConstraintParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getMessageAccess().getSendEventImplicitSendOccurenceSpecificationParserRuleCall_2_0());
 				}
-				lv_timeConstraint_9_0=ruleTimeConstraint
+				lv_sendEvent_8_0=ruleImplicitSendOccurenceSpecification
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMessageRule());
 					}
 					set(
 						$current,
-						"timeConstraint",
-						lv_timeConstraint_9_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.TimeConstraint");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-	)
-;
-
-// Entry rule entryRuleTimeConstraint
-entryRuleTimeConstraint returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTimeConstraintRule()); }
-	iv_ruleTimeConstraint=ruleTimeConstraint
-	{ $current=$iv_ruleTimeConstraint.current; }
-	EOF;
-
-// Rule TimeConstraint
-ruleTimeConstraint returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='time['
-		{
-			newLeafNode(otherlv_0, grammarAccess.getTimeConstraintAccess().getTimeKeyword_0());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getTimeConstraintAccess().getConstraintsInnerTimeConstraintParserRuleCall_1_0());
-				}
-				lv_constraints_1_0=ruleInnerTimeConstraint
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getTimeConstraintRule());
-					}
-					add(
-						$current,
-						"constraints",
-						lv_constraints_1_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.InnerTimeConstraint");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)+
-		otherlv_2=']'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getTimeConstraintAccess().getRightSquareBracketKeyword_2());
-		}
-	)
-;
-
-// Entry rule entryRuleInnerTimeConstraint
-entryRuleInnerTimeConstraint returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInnerTimeConstraintRule()); }
-	iv_ruleInnerTimeConstraint=ruleInnerTimeConstraint
-	{ $current=$iv_ruleInnerTimeConstraint.current; }
-	EOF;
-
-// Rule InnerTimeConstraint
-ruleInnerTimeConstraint returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getInnerTimeConstraintAccess().getTypeTimeConstraintTypeEnumRuleCall_0_0());
-				}
-				lv_type_0_0=ruleTimeConstraintType
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInnerTimeConstraintRule());
-					}
-					set(
-						$current,
-						"type",
-						lv_type_0_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.TimeConstraintType");
+						"sendEvent",
+						lv_sendEvent_8_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.ImplicitSendOccurenceSpecification");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_1='='
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMessageAccess().getArrivalEventExplicitArrivalOccurenceReferenceParserRuleCall_3_0_0());
+					}
+					lv_arrivalEvent_9_0=ruleExplicitArrivalOccurenceReference
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMessageRule());
+						}
+						set(
+							$current,
+							"arrivalEvent",
+							lv_arrivalEvent_9_0,
+							"de.cooperateproject.modeling.textual.sequence.Sequence.ExplicitArrivalOccurenceReference");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMessageAccess().getArrivalEventImplicitArrivalOccurenceSpecificationParserRuleCall_3_1_0());
+					}
+					lv_arrivalEvent_10_0=ruleImplicitArrivalOccurenceSpecification
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMessageRule());
+						}
+						set(
+							$current,
+							"arrivalEvent",
+							lv_arrivalEvent_10_0,
+							"de.cooperateproject.modeling.textual.sequence.Sequence.ImplicitArrivalOccurenceSpecification");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleExplicitArrivalOccurenceReference
+entryRuleExplicitArrivalOccurenceReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExplicitArrivalOccurenceReferenceRule()); }
+	iv_ruleExplicitArrivalOccurenceReference=ruleExplicitArrivalOccurenceReference
+	{ $current=$iv_ruleExplicitArrivalOccurenceReference.current; }
+	EOF;
+
+// Rule ExplicitArrivalOccurenceReference
+ruleExplicitArrivalOccurenceReference returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='arrives'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getInnerTimeConstraintAccess().getEqualsSignKeyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getExplicitArrivalOccurenceReferenceAccess().getArrivesKeyword_0());
+		}
+		otherlv_1='['
+		{
+			newLeafNode(otherlv_1, grammarAccess.getExplicitArrivalOccurenceReferenceAccess().getLeftSquareBracketKeyword_1());
 		}
 		(
 			(
-				lv_value_2_0=RULE_STRING
 				{
-					newLeafNode(lv_value_2_0, grammarAccess.getInnerTimeConstraintAccess().getValueSTRINGTerminalRuleCall_2_0());
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExplicitArrivalOccurenceReferenceRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getExplicitArrivalOccurenceReferenceAccess().getOccurenceSpecificationExplicitArrivalOccurenceSpecificationCrossReference_2_0());
+				}
+			)
+		)
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getExplicitArrivalOccurenceReferenceAccess().getRightSquareBracketKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRuleExplicitArrivalOccurenceSpecification
+entryRuleExplicitArrivalOccurenceSpecification returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExplicitArrivalOccurenceSpecificationRule()); }
+	iv_ruleExplicitArrivalOccurenceSpecification=ruleExplicitArrivalOccurenceSpecification
+	{ $current=$iv_ruleExplicitArrivalOccurenceSpecification.current; }
+	EOF;
+
+// Rule ExplicitArrivalOccurenceSpecification
+ruleExplicitArrivalOccurenceSpecification returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='arrival'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getExplicitArrivalOccurenceSpecificationAccess().getArrivalKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getExplicitArrivalOccurenceSpecificationAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getInnerTimeConstraintRule());
+						$current = createModelElement(grammarAccess.getExplicitArrivalOccurenceSpecificationRule());
 					}
 					setWithLastConsumed(
 						$current,
-						"value",
-						lv_value_2_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
@@ -1121,21 +1451,46 @@ ruleLostMessage returns [EObject current=null]
 		}
 		(
 			(
+				otherlv_1='reply'
 				{
-					newCompositeNode(grammarAccess.getLostMessageAccess().getTypeMessageTypeEnumRuleCall_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getLostMessageAccess().getReplyKeyword_1_0_0());
 				}
-				lv_type_1_0=ruleMessageType
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLostMessageRule());
+				(
+					{
+						$current = forceCreateModelElement(
+							grammarAccess.getLostMessageAccess().getResponseMessageAction_1_0_1(),
+							$current);
 					}
-					set(
-						$current,
-						"type",
-						lv_type_1_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.MessageType");
-					afterParserOrEnumRuleCall();
-				}
+				)
+			)
+			    |
+			(
+				(
+					{
+						$current = forceCreateModelElement(
+							grammarAccess.getLostMessageAccess().getStandardMessageAction_1_1_0(),
+							$current);
+					}
+				)
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getLostMessageAccess().getTypeMessageTypeEnumRuleCall_1_1_1_0());
+						}
+						lv_type_4_0=ruleMessageType
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getLostMessageRule());
+							}
+							set(
+								$current,
+								"type",
+								lv_type_4_0,
+								"de.cooperateproject.modeling.textual.sequence.Sequence.MessageType");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
 			)
 		)
 		(
@@ -1143,7 +1498,7 @@ ruleLostMessage returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getLostMessageAccess().getNameUnescapedStringParserRuleCall_2_0());
 				}
-				lv_name_2_0=ruleUnescapedString
+				lv_name_5_0=ruleUnescapedString
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getLostMessageRule());
@@ -1151,15 +1506,15 @@ ruleLostMessage returns [EObject current=null]
 					set(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_5_0,
 						"de.cooperateproject.modeling.textual.sequence.Sequence.UnescapedString");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_3='('
+		otherlv_6='('
 		{
-			newLeafNode(otherlv_3, grammarAccess.getLostMessageAccess().getLeftParenthesisKeyword_3());
+			newLeafNode(otherlv_6, grammarAccess.getLostMessageAccess().getLeftParenthesisKeyword_3());
 		}
 		(
 			(
@@ -1177,17 +1532,17 @@ ruleLostMessage returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_5=','
+		otherlv_8=','
 		{
-			newLeafNode(otherlv_5, grammarAccess.getLostMessageAccess().getCommaKeyword_5());
+			newLeafNode(otherlv_8, grammarAccess.getLostMessageAccess().getCommaKeyword_5());
 		}
-		otherlv_6='_'
+		otherlv_9='_'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getLostMessageAccess().get_Keyword_6());
+			newLeafNode(otherlv_9, grammarAccess.getLostMessageAccess().get_Keyword_6());
 		}
-		otherlv_7=')'
+		otherlv_10=')'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getLostMessageAccess().getRightParenthesisKeyword_7());
+			newLeafNode(otherlv_10, grammarAccess.getLostMessageAccess().getRightParenthesisKeyword_7());
 		}
 	)
 ;
@@ -1379,14 +1734,25 @@ ruleOccurenceSpecification returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	{
-		newCompositeNode(grammarAccess.getOccurenceSpecificationAccess().getDestructionOccurenceSpecificationParserRuleCall());
-	}
-	this_DestructionOccurenceSpecification_0=ruleDestructionOccurenceSpecification
-	{
-		$current = $this_DestructionOccurenceSpecification_0.current;
-		afterParserOrEnumRuleCall();
-	}
+	(
+		{
+			newCompositeNode(grammarAccess.getOccurenceSpecificationAccess().getDestructionOccurenceSpecificationParserRuleCall_0());
+		}
+		this_DestructionOccurenceSpecification_0=ruleDestructionOccurenceSpecification
+		{
+			$current = $this_DestructionOccurenceSpecification_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getOccurenceSpecificationAccess().getExplicitArrivalOccurenceSpecificationParserRuleCall_1());
+		}
+		this_ExplicitArrivalOccurenceSpecification_1=ruleExplicitArrivalOccurenceSpecification
+		{
+			$current = $this_ExplicitArrivalOccurenceSpecification_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
 ;
 
 // Entry rule entryRuleDestructionOccurenceSpecification
@@ -1445,16 +1811,52 @@ ruleCombinedFragment returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getAlternativeParserRuleCall_0());
+			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getMultipleRegionContainerParserRuleCall_0());
 		}
-		this_Alternative_0=ruleAlternative
+		this_MultipleRegionContainer_0=ruleMultipleRegionContainer
 		{
-			$current = $this_Alternative_0.current;
+			$current = $this_MultipleRegionContainer_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getOptionParserRuleCall_1());
+			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getSingleRegionContainerParserRuleCall_1());
+		}
+		this_SingleRegionContainer_1=ruleSingleRegionContainer
+		{
+			$current = $this_SingleRegionContainer_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleSingleRegionContainer
+entryRuleSingleRegionContainer returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSingleRegionContainerRule()); }
+	iv_ruleSingleRegionContainer=ruleSingleRegionContainer
+	{ $current=$iv_ruleSingleRegionContainer.current; }
+	EOF;
+
+// Rule SingleRegionContainer
+ruleSingleRegionContainer returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getSingleRegionContainerAccess().getLoopParserRuleCall_0());
+		}
+		this_Loop_0=ruleLoop
+		{
+			$current = $this_Loop_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getSingleRegionContainerAccess().getOptionParserRuleCall_1());
 		}
 		this_Option_1=ruleOption
 		{
@@ -1463,43 +1865,25 @@ ruleCombinedFragment returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getParallelParserRuleCall_2());
+			newCompositeNode(grammarAccess.getSingleRegionContainerAccess().getCriticalParserRuleCall_2());
 		}
-		this_Parallel_2=ruleParallel
+		this_Critical_2=ruleCritical
 		{
-			$current = $this_Parallel_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getCriticalParserRuleCall_3());
-		}
-		this_Critical_3=ruleCritical
-		{
-			$current = $this_Critical_3.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getLoopParserRuleCall_4());
-		}
-		this_Loop_4=ruleLoop
-		{
-			$current = $this_Loop_4.current;
+			$current = $this_Critical_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
 ;
 
-// Entry rule entryRuleAlternative
-entryRuleAlternative returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getAlternativeRule()); }
-	iv_ruleAlternative=ruleAlternative
-	{ $current=$iv_ruleAlternative.current; }
+// Entry rule entryRuleMultipleRegionContainer
+entryRuleMultipleRegionContainer returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMultipleRegionContainerRule()); }
+	iv_ruleMultipleRegionContainer=ruleMultipleRegionContainer
+	{ $current=$iv_ruleMultipleRegionContainer.current; }
 	EOF;
 
-// Rule Alternative
-ruleAlternative returns [EObject current=null]
+// Rule MultipleRegionContainer
+ruleMultipleRegionContainer returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1507,86 +1891,22 @@ ruleAlternative returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='alt'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getAlternativeAccess().getAltKeyword_0());
+			newCompositeNode(grammarAccess.getMultipleRegionContainerAccess().getParallelParserRuleCall_0());
 		}
-		otherlv_1='{'
+		this_Parallel_0=ruleParallel
 		{
-			newLeafNode(otherlv_1, grammarAccess.getAlternativeAccess().getLeftCurlyBracketKeyword_1());
+			$current = $this_Parallel_0.current;
+			afterParserOrEnumRuleCall();
 		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAlternativeAccess().getAlternativesBehaviorFragmentsWithConditionParserRuleCall_2_0());
-				}
-				lv_alternatives_2_0=ruleBehaviorFragmentsWithCondition
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAlternativeRule());
-					}
-					add(
-						$current,
-						"alternatives",
-						lv_alternatives_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragmentsWithCondition");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)+
-		otherlv_3='}'
+		    |
 		{
-			newLeafNode(otherlv_3, grammarAccess.getAlternativeAccess().getRightCurlyBracketKeyword_3());
+			newCompositeNode(grammarAccess.getMultipleRegionContainerAccess().getAlternativeParserRuleCall_1());
 		}
-	)
-;
-
-// Entry rule entryRuleOption
-entryRuleOption returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOptionRule()); }
-	iv_ruleOption=ruleOption
-	{ $current=$iv_ruleOption.current; }
-	EOF;
-
-// Rule Option
-ruleOption returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='opt'
+		this_Alternative_1=ruleAlternative
 		{
-			newLeafNode(otherlv_0, grammarAccess.getOptionAccess().getOptKeyword_0());
-		}
-		otherlv_1='{'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getOptionAccess().getLeftCurlyBracketKeyword_1());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getOptionAccess().getOptionalBehaviorFragmentsWithConditionParserRuleCall_2_0());
-				}
-				lv_optional_2_0=ruleBehaviorFragmentsWithCondition
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getOptionRule());
-					}
-					add(
-						$current,
-						"optional",
-						lv_optional_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragmentsWithCondition");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_3='}'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getOptionAccess().getRightCurlyBracketKeyword_3());
+			$current = $this_Alternative_1.current;
+			afterParserOrEnumRuleCall();
 		}
 	)
 ;
@@ -1618,18 +1938,18 @@ ruleParallel returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getParallelAccess().getParallelsBehaviorFragmentsParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getParallelAccess().getRegionsOrderedFragmentContainerParserRuleCall_2_0());
 				}
-				lv_parallels_2_0=ruleBehaviorFragments
+				lv_regions_2_0=ruleOrderedFragmentContainer
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getParallelRule());
 					}
 					add(
 						$current,
-						"parallels",
-						lv_parallels_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragments");
+						"regions",
+						lv_regions_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainer");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1638,6 +1958,140 @@ ruleParallel returns [EObject current=null]
 		{
 			newLeafNode(otherlv_3, grammarAccess.getParallelAccess().getRightCurlyBracketKeyword_3());
 		}
+	)
+;
+
+// Entry rule entryRuleAlternative
+entryRuleAlternative returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAlternativeRule()); }
+	iv_ruleAlternative=ruleAlternative
+	{ $current=$iv_ruleAlternative.current; }
+	EOF;
+
+// Rule Alternative
+ruleAlternative returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='alt'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAlternativeAccess().getAltKeyword_0());
+		}
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getAlternativeAccess().getLeftCurlyBracketKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAlternativeAccess().getRegionsOrderedFragmentContainerWithConditionParserRuleCall_2_0());
+				}
+				lv_regions_2_0=ruleOrderedFragmentContainerWithCondition
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAlternativeRule());
+					}
+					add(
+						$current,
+						"regions",
+						lv_regions_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerWithCondition");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		otherlv_3='}'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getAlternativeAccess().getRightCurlyBracketKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRuleLoop
+entryRuleLoop returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoopRule()); }
+	iv_ruleLoop=ruleLoop
+	{ $current=$iv_ruleLoop.current; }
+	EOF;
+
+// Rule Loop
+ruleLoop returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='loop'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getLoopAccess().getLoopKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopAccess().getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0());
+				}
+				lv_region_1_0=ruleOrderedFragmentContainerWithConditionMandatoryBrackets
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopRule());
+					}
+					set(
+						$current,
+						"region",
+						lv_region_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerWithConditionMandatoryBrackets");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleOption
+entryRuleOption returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOptionRule()); }
+	iv_ruleOption=ruleOption
+	{ $current=$iv_ruleOption.current; }
+	EOF;
+
+// Rule Option
+ruleOption returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='opt'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getOptionAccess().getOptKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOptionAccess().getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0());
+				}
+				lv_region_1_0=ruleOrderedFragmentContainerWithConditionMandatoryBrackets
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOptionRule());
+					}
+					set(
+						$current,
+						"region",
+						lv_region_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerWithConditionMandatoryBrackets");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -1668,22 +2122,22 @@ ruleCritical returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCriticalAccess().getFragmentsBehaviorFragmentParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getCriticalAccess().getRegionOneOrMultipleFragmentsParserRuleCall_2_0());
 				}
-				lv_fragments_2_0=ruleBehaviorFragment
+				lv_region_2_0=ruleOneOrMultipleFragments
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCriticalRule());
 					}
-					add(
+					set(
 						$current,
-						"fragments",
-						lv_fragments_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+						"region",
+						lv_region_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OneOrMultipleFragments");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)+
+		)
 		otherlv_3='}'
 		{
 			newLeafNode(otherlv_3, grammarAccess.getCriticalAccess().getRightCurlyBracketKeyword_3());
@@ -1691,15 +2145,15 @@ ruleCritical returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleLoop
-entryRuleLoop returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLoopRule()); }
-	iv_ruleLoop=ruleLoop
-	{ $current=$iv_ruleLoop.current; }
+// Entry rule entryRuleReference
+entryRuleReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReferenceRule()); }
+	iv_ruleReference=ruleReference
+	{ $current=$iv_ruleReference.current; }
 	EOF;
 
-// Rule Loop
-ruleLoop returns [EObject current=null]
+// Rule Reference
+ruleReference returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1707,75 +2161,181 @@ ruleLoop returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='loop'
+		otherlv_0='ref'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getLoopAccess().getLoopKeyword_0());
-		}
-		otherlv_1='['
-		{
-			newLeafNode(otherlv_1, grammarAccess.getLoopAccess().getLeftSquareBracketKeyword_1());
-		}
-		(
-			(
-				lv_condition_2_0=RULE_STRING
-				{
-					newLeafNode(lv_condition_2_0, grammarAccess.getLoopAccess().getConditionSTRINGTerminalRuleCall_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getLoopRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"condition",
-						lv_condition_2_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
-				}
-			)
-		)
-		otherlv_3=']'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getLoopAccess().getRightSquareBracketKeyword_3());
-		}
-		otherlv_4='{'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_4());
+			newLeafNode(otherlv_0, grammarAccess.getReferenceAccess().getRefKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLoopAccess().getFragmentsBehaviorFragmentParserRuleCall_5_0());
-				}
-				lv_fragments_5_0=ruleBehaviorFragment
-				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLoopRule());
+						$current = createModelElement(grammarAccess.getReferenceRule());
 					}
-					add(
-						$current,
-						"fragments",
-						lv_fragments_5_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+				}
+				{
+					newCompositeNode(grammarAccess.getReferenceAccess().getReferenceInteractionCrossReference_1_0());
+				}
+				ruleFQN
+				{
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)+
-		otherlv_6='}'
+		)
+		(
+			otherlv_2='as'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getReferenceAccess().getAsKeyword_2_0());
+			}
+			(
+				(
+					lv_alias_3_0=RULE_ID
+					{
+						newLeafNode(lv_alias_3_0, grammarAccess.getReferenceAccess().getAliasIDTerminalRuleCall_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getReferenceRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"alias",
+							lv_alias_3_0,
+							"org.eclipse.xtext.common.Terminals.ID");
+					}
+				)
+			)
+		)?
+	)
+;
+
+// Entry rule entryRuleConstraint
+entryRuleConstraint returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConstraintRule()); }
+	iv_ruleConstraint=ruleConstraint
+	{ $current=$iv_ruleConstraint.current; }
+	EOF;
+
+// Rule Constraint
+ruleConstraint returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='cstr'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_6());
+			newLeafNode(otherlv_0, grammarAccess.getConstraintAccess().getCstrKeyword_0());
+		}
+		(
+			{
+				newCompositeNode(grammarAccess.getConstraintAccess().getTimeConstraintParserRuleCall_1_0());
+			}
+			this_TimeConstraint_1=ruleTimeConstraint
+			{
+				$current = $this_TimeConstraint_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getConstraintAccess().getDurationConstraintParserRuleCall_1_1());
+			}
+			this_DurationConstraint_2=ruleDurationConstraint
+			{
+				$current = $this_DurationConstraint_2.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleTimeConstraint
+entryRuleTimeConstraint returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTimeConstraintRule()); }
+	iv_ruleTimeConstraint=ruleTimeConstraint
+	{ $current=$iv_ruleTimeConstraint.current; }
+	EOF;
+
+// Rule TimeConstraint
+ruleTimeConstraint returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTimeConstraintAccess().getLeftParenthesisKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTimeConstraintAccess().getEventPointInTimeSelectorParserRuleCall_1_0());
+				}
+				lv_event_1_0=rulePointInTimeSelector
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTimeConstraintRule());
+					}
+					set(
+						$current,
+						"event",
+						lv_event_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.PointInTimeSelector");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getTimeConstraintAccess().getRightParenthesisKeyword_2());
+		}
+		otherlv_3='t'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getTimeConstraintAccess().getTKeyword_3());
+		}
+		otherlv_4='['
+		{
+			newLeafNode(otherlv_4, grammarAccess.getTimeConstraintAccess().getLeftSquareBracketKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTimeConstraintAccess().getTimeUnescapedStringParserRuleCall_5_0());
+				}
+				lv_time_5_0=ruleUnescapedString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTimeConstraintRule());
+					}
+					set(
+						$current,
+						"time",
+						lv_time_5_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.UnescapedString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=']'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getTimeConstraintAccess().getRightSquareBracketKeyword_6());
 		}
 	)
 ;
 
-// Entry rule entryRuleBehaviorFragmentsWithCondition
-entryRuleBehaviorFragmentsWithCondition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getBehaviorFragmentsWithConditionRule()); }
-	iv_ruleBehaviorFragmentsWithCondition=ruleBehaviorFragmentsWithCondition
-	{ $current=$iv_ruleBehaviorFragmentsWithCondition.current; }
+// Entry rule entryRuleDurationConstraint
+entryRuleDurationConstraint returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDurationConstraintRule()); }
+	iv_ruleDurationConstraint=ruleDurationConstraint
+	{ $current=$iv_ruleDurationConstraint.current; }
 	EOF;
 
-// Rule BehaviorFragmentsWithCondition
-ruleBehaviorFragmentsWithCondition returns [EObject current=null]
+// Rule DurationConstraint
+ruleDurationConstraint returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1783,83 +2343,471 @@ ruleBehaviorFragmentsWithCondition returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='['
+		otherlv_0='('
 		{
-			newLeafNode(otherlv_0, grammarAccess.getBehaviorFragmentsWithConditionAccess().getLeftSquareBracketKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getDurationConstraintAccess().getLeftParenthesisKeyword_0());
 		}
 		(
 			(
-				lv_condition_1_0=RULE_STRING
 				{
-					newLeafNode(lv_condition_1_0, grammarAccess.getBehaviorFragmentsWithConditionAccess().getConditionSTRINGTerminalRuleCall_1_0());
+					newCompositeNode(grammarAccess.getDurationConstraintAccess().getIntervalTimeIntervalSelectorParserRuleCall_1_0());
 				}
+				lv_interval_1_0=ruleTimeIntervalSelector
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getBehaviorFragmentsWithConditionRule());
+						$current = createModelElementForParent(grammarAccess.getDurationConstraintRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
-						"condition",
-						lv_condition_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"interval",
+						lv_interval_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.TimeIntervalSelector");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2=']'
+		otherlv_2=')'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getBehaviorFragmentsWithConditionAccess().getRightSquareBracketKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getDurationConstraintAccess().getRightParenthesisKeyword_2());
+		}
+		otherlv_3='d'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getDurationConstraintAccess().getDKeyword_3());
+		}
+		otherlv_4='['
+		{
+			newLeafNode(otherlv_4, grammarAccess.getDurationConstraintAccess().getLeftSquareBracketKeyword_4());
 		}
 		(
 			(
-				otherlv_3='{'
 				{
-					newLeafNode(otherlv_3, grammarAccess.getBehaviorFragmentsWithConditionAccess().getLeftCurlyBracketKeyword_3_0_0());
+					newCompositeNode(grammarAccess.getDurationConstraintAccess().getDurationUnescapedStringParserRuleCall_5_0());
 				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getBehaviorFragmentsWithConditionAccess().getFragmentsBehaviorFragmentParserRuleCall_3_0_1_0());
-						}
-						lv_fragments_4_0=ruleBehaviorFragment
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsWithConditionRule());
-							}
-							add(
-								$current,
-								"fragments",
-								lv_fragments_4_0,
-								"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)+
-				otherlv_5='}'
+				lv_duration_5_0=ruleUnescapedString
 				{
-					newLeafNode(otherlv_5, grammarAccess.getBehaviorFragmentsWithConditionAccess().getRightCurlyBracketKeyword_3_0_2());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDurationConstraintRule());
+					}
+					set(
+						$current,
+						"duration",
+						lv_duration_5_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.UnescapedString");
+					afterParserOrEnumRuleCall();
 				}
-			)
-			    |
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getBehaviorFragmentsWithConditionAccess().getFragmentsBehaviorFragmentParserRuleCall_3_1_0());
-					}
-					lv_fragments_6_0=ruleBehaviorFragment
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getBehaviorFragmentsWithConditionRule());
-						}
-						add(
-							$current,
-							"fragments",
-							lv_fragments_6_0,
-							"de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
-						afterParserOrEnumRuleCall();
-					}
-				)
 			)
 		)
+		otherlv_6=']'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getDurationConstraintAccess().getRightSquareBracketKeyword_6());
+		}
+	)
+;
+
+// Entry rule entryRuleObservation
+entryRuleObservation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getObservationRule()); }
+	iv_ruleObservation=ruleObservation
+	{ $current=$iv_ruleObservation.current; }
+	EOF;
+
+// Rule Observation
+ruleObservation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='obs'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getObservationAccess().getObsKeyword_0());
+		}
+		(
+			{
+				newCompositeNode(grammarAccess.getObservationAccess().getTimeObservationParserRuleCall_1_0());
+			}
+			this_TimeObservation_1=ruleTimeObservation
+			{
+				$current = $this_TimeObservation_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getObservationAccess().getDurationObservationParserRuleCall_1_1());
+			}
+			this_DurationObservation_2=ruleDurationObservation
+			{
+				$current = $this_DurationObservation_2.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleTimeObservation
+entryRuleTimeObservation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTimeObservationRule()); }
+	iv_ruleTimeObservation=ruleTimeObservation
+	{ $current=$iv_ruleTimeObservation.current; }
+	EOF;
+
+// Rule TimeObservation
+ruleTimeObservation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTimeObservationAccess().getLeftParenthesisKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTimeObservationAccess().getEventPointInTimeSelectorParserRuleCall_1_0());
+				}
+				lv_event_1_0=rulePointInTimeSelector
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTimeObservationRule());
+					}
+					set(
+						$current,
+						"event",
+						lv_event_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.PointInTimeSelector");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getTimeObservationAccess().getRightParenthesisKeyword_2());
+		}
+		otherlv_3='t'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getTimeObservationAccess().getTKeyword_3());
+		}
+		otherlv_4='['
+		{
+			newLeafNode(otherlv_4, grammarAccess.getTimeObservationAccess().getLeftSquareBracketKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTimeObservationAccess().getTimeUnescapedStringParserRuleCall_5_0());
+				}
+				lv_time_5_0=ruleUnescapedString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTimeObservationRule());
+					}
+					set(
+						$current,
+						"time",
+						lv_time_5_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.UnescapedString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=']'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getTimeObservationAccess().getRightSquareBracketKeyword_6());
+		}
+	)
+;
+
+// Entry rule entryRuleDurationObservation
+entryRuleDurationObservation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDurationObservationRule()); }
+	iv_ruleDurationObservation=ruleDurationObservation
+	{ $current=$iv_ruleDurationObservation.current; }
+	EOF;
+
+// Rule DurationObservation
+ruleDurationObservation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getDurationObservationAccess().getLeftParenthesisKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDurationObservationAccess().getIntervalTimeIntervalSelectorParserRuleCall_1_0());
+				}
+				lv_interval_1_0=ruleTimeIntervalSelector
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDurationObservationRule());
+					}
+					set(
+						$current,
+						"interval",
+						lv_interval_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.TimeIntervalSelector");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getDurationObservationAccess().getRightParenthesisKeyword_2());
+		}
+		otherlv_3='d'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getDurationObservationAccess().getDKeyword_3());
+		}
+		otherlv_4='['
+		{
+			newLeafNode(otherlv_4, grammarAccess.getDurationObservationAccess().getLeftSquareBracketKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDurationObservationAccess().getDurationUnescapedStringParserRuleCall_5_0());
+				}
+				lv_duration_5_0=ruleUnescapedString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDurationObservationRule());
+					}
+					set(
+						$current,
+						"duration",
+						lv_duration_5_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.UnescapedString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=']'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getDurationObservationAccess().getRightSquareBracketKeyword_6());
+		}
+	)
+;
+
+// Entry rule entryRulePointInTimeSelector
+entryRulePointInTimeSelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPointInTimeSelectorRule()); }
+	iv_rulePointInTimeSelector=rulePointInTimeSelector
+	{ $current=$iv_rulePointInTimeSelector.current; }
+	EOF;
+
+// Rule PointInTimeSelector
+rulePointInTimeSelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getPointInTimeSelectorRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeCrossReference_0());
+			}
+			ruleFQN
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleTimeIntervalSelector
+entryRuleTimeIntervalSelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTimeIntervalSelectorRule()); }
+	iv_ruleTimeIntervalSelector=ruleTimeIntervalSelector
+	{ $current=$iv_ruleTimeIntervalSelector.current; }
+	EOF;
+
+// Rule TimeIntervalSelector
+ruleTimeIntervalSelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getTimeIntervalSelectorAccess().getBiPointInTimeTimeIntervalSelectorParserRuleCall_0());
+		}
+		this_BiPointInTimeTimeIntervalSelector_0=ruleBiPointInTimeTimeIntervalSelector
+		{
+			$current = $this_BiPointInTimeTimeIntervalSelector_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getTimeIntervalSelectorAccess().getFragmentTimeIntervalSelectorParserRuleCall_1());
+		}
+		this_FragmentTimeIntervalSelector_1=ruleFragmentTimeIntervalSelector
+		{
+			$current = $this_FragmentTimeIntervalSelector_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleBiPointInTimeTimeIntervalSelector
+entryRuleBiPointInTimeTimeIntervalSelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBiPointInTimeTimeIntervalSelectorRule()); }
+	iv_ruleBiPointInTimeTimeIntervalSelector=ruleBiPointInTimeTimeIntervalSelector
+	{ $current=$iv_ruleBiPointInTimeTimeIntervalSelector.current; }
+	EOF;
+
+// Rule BiPointInTimeTimeIntervalSelector
+ruleBiPointInTimeTimeIntervalSelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBiPointInTimeTimeIntervalSelectorAccess().getStartPointInTimeSelectorParserRuleCall_0_0());
+				}
+				lv_start_0_0=rulePointInTimeSelector
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBiPointInTimeTimeIntervalSelectorRule());
+					}
+					set(
+						$current,
+						"start",
+						lv_start_0_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.PointInTimeSelector");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_1=','
+		{
+			newLeafNode(otherlv_1, grammarAccess.getBiPointInTimeTimeIntervalSelectorAccess().getCommaKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBiPointInTimeTimeIntervalSelectorAccess().getEndPointInTimeSelectorParserRuleCall_2_0());
+				}
+				lv_end_2_0=rulePointInTimeSelector
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBiPointInTimeTimeIntervalSelectorRule());
+					}
+					set(
+						$current,
+						"end",
+						lv_end_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.PointInTimeSelector");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleFragmentTimeIntervalSelector
+entryRuleFragmentTimeIntervalSelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFragmentTimeIntervalSelectorRule()); }
+	iv_ruleFragmentTimeIntervalSelector=ruleFragmentTimeIntervalSelector
+	{ $current=$iv_ruleFragmentTimeIntervalSelector.current; }
+	EOF;
+
+// Rule FragmentTimeIntervalSelector
+ruleFragmentTimeIntervalSelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFragmentTimeIntervalSelectorRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getFragmentTimeIntervalSelectorAccess().getNonInstantaneousFragmentNonInstantaneousFragmentCrossReference_0());
+			}
+			ruleFQN
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleImplicitSendOccurenceSpecification
+entryRuleImplicitSendOccurenceSpecification returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getImplicitSendOccurenceSpecificationRule()); }
+	iv_ruleImplicitSendOccurenceSpecification=ruleImplicitSendOccurenceSpecification
+	{ $current=$iv_ruleImplicitSendOccurenceSpecification.current; }
+	EOF;
+
+// Rule ImplicitSendOccurenceSpecification
+ruleImplicitSendOccurenceSpecification returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			$current = forceCreateModelElement(
+				grammarAccess.getImplicitSendOccurenceSpecificationAccess().getImplicitSendOccurenceSpecificationAction(),
+				$current);
+		}
+	)
+;
+
+// Entry rule entryRuleImplicitArrivalOccurenceSpecification
+entryRuleImplicitArrivalOccurenceSpecification returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getImplicitArrivalOccurenceSpecificationRule()); }
+	iv_ruleImplicitArrivalOccurenceSpecification=ruleImplicitArrivalOccurenceSpecification
+	{ $current=$iv_ruleImplicitArrivalOccurenceSpecification.current; }
+	EOF;
+
+// Rule ImplicitArrivalOccurenceSpecification
+ruleImplicitArrivalOccurenceSpecification returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			$current = forceCreateModelElement(
+				grammarAccess.getImplicitArrivalOccurenceSpecificationAccess().getImplicitArrivalOccurenceSpecificationAction(),
+				$current);
+		}
 	)
 ;
 
@@ -1903,15 +2851,15 @@ ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 	)
 ;
 
-// Entry rule entryRuleOrder
-entryRuleOrder returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getOrderRule()); }
-	iv_ruleOrder=ruleOrder
-	{ $current=$iv_ruleOrder.current.getText(); }
+// Entry rule entryRuleInlineComment
+entryRuleInlineComment returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getInlineCommentRule()); }
+	iv_ruleInlineComment=ruleInlineComment
+	{ $current=$iv_ruleInlineComment.current; }
 	EOF;
 
-// Rule Order
-ruleOrder returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+// Rule InlineComment
+ruleInlineComment returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1919,27 +2867,37 @@ ruleOrder returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 	leaveRule();
 }:
 	(
-		this_INT_0=RULE_INT
+		otherlv_0='note'
 		{
-			$current.merge(this_INT_0);
+			newLeafNode(otherlv_0, grammarAccess.getInlineCommentAccess().getNoteKeyword_0());
 		}
+		otherlv_1='['
 		{
-			newLeafNode(this_INT_0, grammarAccess.getOrderAccess().getINTTerminalRuleCall_0());
+			newLeafNode(otherlv_1, grammarAccess.getInlineCommentAccess().getLeftSquareBracketKeyword_1());
 		}
 		(
-			kw='.'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getOrderAccess().getFullStopKeyword_1_0());
-			}
-			this_INT_2=RULE_INT
-			{
-				$current.merge(this_INT_2);
-			}
-			{
-				newLeafNode(this_INT_2, grammarAccess.getOrderAccess().getINTTerminalRuleCall_1_1());
-			}
-		)*
+			(
+				{
+					newCompositeNode(grammarAccess.getInlineCommentAccess().getBodyCommentBodyParserRuleCall_2_0());
+				}
+				lv_body_2_0=ruleCommentBody
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInlineCommentRule());
+					}
+					set(
+						$current,
+						"body",
+						lv_body_2_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.CommentBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getInlineCommentAccess().getRightSquareBracketKeyword_3());
+		}
 	)
 ;
 
@@ -2050,49 +3008,6 @@ ruleActorType returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getActorTypeAccess().getMACHINEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getActorTypeAccess().getMACHINEEnumLiteralDeclaration_1());
-			}
-		)
-	)
-;
-
-// Rule TimeConstraintType
-ruleTimeConstraintType returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='d'
-			{
-				$current = grammarAccess.getTimeConstraintTypeAccess().getDURATIONEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getTimeConstraintTypeAccess().getDURATIONEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='t'
-			{
-				$current = grammarAccess.getTimeConstraintTypeAccess().getTIMEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getTimeConstraintTypeAccess().getTIMEEnumLiteralDeclaration_1());
-			}
-		)
-		    |
-		(
-			enumLiteral_2='max'
-			{
-				$current = grammarAccess.getTimeConstraintTypeAccess().getMAXIMUMEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getTimeConstraintTypeAccess().getMAXIMUMEnumLiteralDeclaration_2());
-			}
-		)
-		    |
-		(
-			enumLiteral_3='diff'
-			{
-				$current = grammarAccess.getTimeConstraintTypeAccess().getDIFFERENCEEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getTimeConstraintTypeAccess().getDIFFERENCEEnumLiteralDeclaration_3());
 			}
 		)
 	)

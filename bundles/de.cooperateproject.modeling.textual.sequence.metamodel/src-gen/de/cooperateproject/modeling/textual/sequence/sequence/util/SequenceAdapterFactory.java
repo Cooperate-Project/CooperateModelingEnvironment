@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence.util;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.*;
@@ -17,6 +16,10 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,20 +90,20 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createActorAdapter();
             }
             @Override
-            public Adapter caseBehaviorFragment(BehaviorFragment object) {
-                return createBehaviorFragmentAdapter();
+            public Adapter caseActorClassifierMapping(ActorClassifierMapping object) {
+                return createActorClassifierMappingAdapter();
+            }
+            @Override
+            public Adapter caseFragment(Fragment object) {
+                return createFragmentAdapter();
+            }
+            @Override
+            public Adapter caseFragmentSequence(FragmentSequence object) {
+                return createFragmentSequenceAdapter();
             }
             @Override
             public Adapter caseMessage(Message object) {
                 return createMessageAdapter();
-            }
-            @Override
-            public Adapter caseTimeConstraint(TimeConstraint object) {
-                return createTimeConstraintAdapter();
-            }
-            @Override
-            public Adapter caseInnerTimeConstraint(InnerTimeConstraint object) {
-                return createInnerTimeConstraintAdapter();
             }
             @Override
             public Adapter caseStandardMessage(StandardMessage object) {
@@ -111,14 +114,6 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createResponseMessageAdapter();
             }
             @Override
-            public Adapter caseFoundMessage(FoundMessage object) {
-                return createFoundMessageAdapter();
-            }
-            @Override
-            public Adapter caseLostMessage(LostMessage object) {
-                return createLostMessageAdapter();
-            }
-            @Override
             public Adapter caseCreateMessage(CreateMessage object) {
                 return createCreateMessageAdapter();
             }
@@ -127,7 +122,7 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createDestructionMessageAdapter();
             }
             @Override
-            public Adapter caseOccurenceSpecification(OccurenceSpecification object) {
+            public <UMLOccurenceType extends OccurrenceSpecification> Adapter caseOccurenceSpecification(OccurenceSpecification<UMLOccurenceType> object) {
                 return createOccurenceSpecificationAdapter();
             }
             @Override
@@ -139,12 +134,28 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createCombinedFragmentAdapter();
             }
             @Override
+            public Adapter caseOrderedFragmentContainer(OrderedFragmentContainer object) {
+                return createOrderedFragmentContainerAdapter();
+            }
+            @Override
+            public Adapter caseSingleRegionContainer(SingleRegionContainer object) {
+                return createSingleRegionContainerAdapter();
+            }
+            @Override
+            public Adapter caseMultipleRegionContainer(MultipleRegionContainer object) {
+                return createMultipleRegionContainerAdapter();
+            }
+            @Override
             public Adapter caseAlternative(Alternative object) {
                 return createAlternativeAdapter();
             }
             @Override
             public Adapter caseOption(Option object) {
                 return createOptionAdapter();
+            }
+            @Override
+            public Adapter caseCoRegion(CoRegion object) {
+                return createCoRegionAdapter();
             }
             @Override
             public Adapter caseParallel(Parallel object) {
@@ -159,20 +170,80 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createLoopAdapter();
             }
             @Override
-            public Adapter caseBehaviorFragments(BehaviorFragments object) {
-                return createBehaviorFragmentsAdapter();
+            public Adapter caseCondition(Condition object) {
+                return createConditionAdapter();
             }
             @Override
-            public Adapter caseBehaviorFragmentsWithCondition(BehaviorFragmentsWithCondition object) {
-                return createBehaviorFragmentsWithConditionAdapter();
+            public Adapter caseObservation(Observation object) {
+                return createObservationAdapter();
             }
             @Override
-            public Adapter caseActorClassifierMapping(ActorClassifierMapping object) {
-                return createActorClassifierMappingAdapter();
+            public Adapter caseTimeObservation(TimeObservation object) {
+                return createTimeObservationAdapter();
             }
             @Override
-            public Adapter caseTimed(Timed object) {
-                return createTimedAdapter();
+            public Adapter caseDurationObservation(DurationObservation object) {
+                return createDurationObservationAdapter();
+            }
+            @Override
+            public Adapter caseConstraint(Constraint object) {
+                return createConstraintAdapter();
+            }
+            @Override
+            public Adapter caseTimeConstraint(TimeConstraint object) {
+                return createTimeConstraintAdapter();
+            }
+            @Override
+            public Adapter caseDurationConstraint(DurationConstraint object) {
+                return createDurationConstraintAdapter();
+            }
+            @Override
+            public <OccurenceType extends OccurenceSpecification<?>> Adapter caseOccurenceReference(OccurenceReference<OccurenceType> object) {
+                return createOccurenceReferenceAdapter();
+            }
+            @Override
+            public Adapter caseExplicitArrivalOccurenceReference(ExplicitArrivalOccurenceReference object) {
+                return createExplicitArrivalOccurenceReferenceAdapter();
+            }
+            @Override
+            public Adapter caseImplicitArrivalOccurenceSpecification(ImplicitArrivalOccurenceSpecification object) {
+                return createImplicitArrivalOccurenceSpecificationAdapter();
+            }
+            @Override
+            public Adapter caseExplicitArrivalOccurenceSpecification(ExplicitArrivalOccurenceSpecification object) {
+                return createExplicitArrivalOccurenceSpecificationAdapter();
+            }
+            @Override
+            public Adapter caseImplicitSendOccurenceSpecification(ImplicitSendOccurenceSpecification object) {
+                return createImplicitSendOccurenceSpecificationAdapter();
+            }
+            @Override
+            public <UMLPointInTimeType extends NamedElement> Adapter caseAliasedPointInTime(AliasedPointInTime<UMLPointInTimeType> object) {
+                return createAliasedPointInTimeAdapter();
+            }
+            @Override
+            public Adapter casePointInTimeSelector(PointInTimeSelector object) {
+                return createPointInTimeSelectorAdapter();
+            }
+            @Override
+            public Adapter caseTimeIntervalSelector(TimeIntervalSelector object) {
+                return createTimeIntervalSelectorAdapter();
+            }
+            @Override
+            public Adapter caseBiPointInTimeTimeIntervalSelector(BiPointInTimeTimeIntervalSelector object) {
+                return createBiPointInTimeTimeIntervalSelectorAdapter();
+            }
+            @Override
+            public Adapter caseFragmentTimeIntervalSelector(FragmentTimeIntervalSelector object) {
+                return createFragmentTimeIntervalSelectorAdapter();
+            }
+            @Override
+            public Adapter caseReference(Reference object) {
+                return createReferenceAdapter();
+            }
+            @Override
+            public <UMLType extends InteractionFragment> Adapter caseNonInstantaneousFragment(NonInstantaneousFragment<UMLType> object) {
+                return createNonInstantaneousFragmentAdapter();
             }
             @Override
             public Adapter caseElement(Element object) {
@@ -183,7 +254,7 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createUMLReferencingElementAdapter();
             }
             @Override
-            public Adapter caseNamedElement(NamedElement object) {
+            public Adapter caseNamedElement(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement object) {
                 return createNamedElementAdapter();
             }
             @Override
@@ -257,16 +328,44 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment <em>Behavior Fragment</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping <em>Actor Classifier Mapping</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
      * @generated
      */
-    public Adapter createBehaviorFragmentAdapter() {
+    public Adapter createActorClassifierMappingAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Fragment <em>Fragment</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Fragment
+     * @generated
+     */
+    public Adapter createFragmentAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence <em>Fragment Sequence</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence
+     * @generated
+     */
+    public Adapter createFragmentSequenceAdapter() {
         return null;
     }
 
@@ -281,34 +380,6 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createMessageAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint <em>Time Constraint</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint
-     * @generated
-     */
-    public Adapter createTimeConstraintAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint <em>Inner Time Constraint</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint
-     * @generated
-     */
-    public Adapter createInnerTimeConstraintAdapter() {
         return null;
     }
 
@@ -337,34 +408,6 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createResponseMessageAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage <em>Found Message</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage
-     * @generated
-     */
-    public Adapter createFoundMessageAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.LostMessage <em>Lost Message</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.LostMessage
-     * @generated
-     */
-    public Adapter createLostMessageAdapter() {
         return null;
     }
 
@@ -439,6 +482,48 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer <em>Ordered Fragment Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
+     * @generated
+     */
+    public Adapter createOrderedFragmentContainerAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer <em>Single Region Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer
+     * @generated
+     */
+    public Adapter createSingleRegionContainerAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer <em>Multiple Region Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer
+     * @generated
+     */
+    public Adapter createMultipleRegionContainerAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Alternative <em>Alternative</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -463,6 +548,20 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createOptionAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CoRegion <em>Co Region</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.CoRegion
+     * @generated
+     */
+    public Adapter createCoRegionAdapter() {
         return null;
     }
 
@@ -509,58 +608,268 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments <em>Behavior Fragments</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Condition <em>Condition</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Condition
      * @generated
      */
-    public Adapter createBehaviorFragmentsAdapter() {
+    public Adapter createConditionAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition <em>Behavior Fragments With Condition</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Observation <em>Observation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Observation
      * @generated
      */
-    public Adapter createBehaviorFragmentsWithConditionAdapter() {
+    public Adapter createObservationAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping <em>Actor Classifier Mapping</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation <em>Time Observation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation
      * @generated
      */
-    public Adapter createActorClassifierMappingAdapter() {
+    public Adapter createTimeObservationAdapter() {
         return null;
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Timed <em>Timed</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation <em>Duration Observation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Timed
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation
      * @generated
      */
-    public Adapter createTimedAdapter() {
+    public Adapter createDurationObservationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Constraint <em>Constraint</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Constraint
+     * @generated
+     */
+    public Adapter createConstraintAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint <em>Time Constraint</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint
+     * @generated
+     */
+    public Adapter createTimeConstraintAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint <em>Duration Constraint</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint
+     * @generated
+     */
+    public Adapter createDurationConstraintAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference <em>Occurence Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference
+     * @generated
+     */
+    public Adapter createOccurenceReferenceAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference <em>Explicit Arrival Occurence Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference
+     * @generated
+     */
+    public Adapter createExplicitArrivalOccurenceReferenceAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification <em>Implicit Arrival Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification
+     * @generated
+     */
+    public Adapter createImplicitArrivalOccurenceSpecificationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification <em>Explicit Arrival Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification
+     * @generated
+     */
+    public Adapter createExplicitArrivalOccurenceSpecificationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification <em>Implicit Send Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification
+     * @generated
+     */
+    public Adapter createImplicitSendOccurenceSpecificationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime <em>Aliased Point In Time</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime
+     * @generated
+     */
+    public Adapter createAliasedPointInTimeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector <em>Point In Time Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector
+     * @generated
+     */
+    public Adapter createPointInTimeSelectorAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector <em>Time Interval Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector
+     * @generated
+     */
+    public Adapter createTimeIntervalSelectorAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector <em>Bi Point In Time Time Interval Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector
+     * @generated
+     */
+    public Adapter createBiPointInTimeTimeIntervalSelectorAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector <em>Fragment Time Interval Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector
+     * @generated
+     */
+    public Adapter createFragmentTimeIntervalSelectorAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Reference <em>Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Reference
+     * @generated
+     */
+    public Adapter createReferenceAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment <em>Non Instantaneous Fragment</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment
+     * @generated
+     */
+    public Adapter createNonInstantaneousFragmentAdapter() {
         return null;
     }
 

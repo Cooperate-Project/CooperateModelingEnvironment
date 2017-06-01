@@ -5,6 +5,10 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -50,13 +54,22 @@ public interface SequenceFactory extends EFactory {
     Actor createActor();
 
     /**
-     * Returns a new object of class '<em>Behavior Fragment</em>'.
+     * Returns a new object of class '<em>Actor Classifier Mapping</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Behavior Fragment</em>'.
+     * @return a new object of class '<em>Actor Classifier Mapping</em>'.
      * @generated
      */
-    BehaviorFragment createBehaviorFragment();
+    ActorClassifierMapping createActorClassifierMapping();
+
+    /**
+     * Returns a new object of class '<em>Fragment</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Fragment</em>'.
+     * @generated
+     */
+    Fragment createFragment();
 
     /**
      * Returns a new object of class '<em>Message</em>'.
@@ -66,24 +79,6 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     Message createMessage();
-
-    /**
-     * Returns a new object of class '<em>Time Constraint</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Time Constraint</em>'.
-     * @generated
-     */
-    TimeConstraint createTimeConstraint();
-
-    /**
-     * Returns a new object of class '<em>Inner Time Constraint</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Inner Time Constraint</em>'.
-     * @generated
-     */
-    InnerTimeConstraint createInnerTimeConstraint();
 
     /**
      * Returns a new object of class '<em>Standard Message</em>'.
@@ -102,24 +97,6 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     ResponseMessage createResponseMessage();
-
-    /**
-     * Returns a new object of class '<em>Found Message</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Found Message</em>'.
-     * @generated
-     */
-    FoundMessage createFoundMessage();
-
-    /**
-     * Returns a new object of class '<em>Lost Message</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Lost Message</em>'.
-     * @generated
-     */
-    LostMessage createLostMessage();
 
     /**
      * Returns a new object of class '<em>Create Message</em>'.
@@ -146,7 +123,7 @@ public interface SequenceFactory extends EFactory {
      * @return a new object of class '<em>Occurence Specification</em>'.
      * @generated
      */
-    OccurenceSpecification createOccurenceSpecification();
+    <UMLOccurenceType extends OccurrenceSpecification> OccurenceSpecification<UMLOccurenceType> createOccurenceSpecification();
 
     /**
      * Returns a new object of class '<em>Destruction Occurence Specification</em>'.
@@ -158,13 +135,13 @@ public interface SequenceFactory extends EFactory {
     DestructionOccurenceSpecification createDestructionOccurenceSpecification();
 
     /**
-     * Returns a new object of class '<em>Combined Fragment</em>'.
+     * Returns a new object of class '<em>Ordered Fragment Container</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Combined Fragment</em>'.
+     * @return a new object of class '<em>Ordered Fragment Container</em>'.
      * @generated
      */
-    CombinedFragment createCombinedFragment();
+    OrderedFragmentContainer createOrderedFragmentContainer();
 
     /**
      * Returns a new object of class '<em>Alternative</em>'.
@@ -183,6 +160,15 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     Option createOption();
+
+    /**
+     * Returns a new object of class '<em>Co Region</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Co Region</em>'.
+     * @generated
+     */
+    CoRegion createCoRegion();
 
     /**
      * Returns a new object of class '<em>Parallel</em>'.
@@ -212,40 +198,157 @@ public interface SequenceFactory extends EFactory {
     Loop createLoop();
 
     /**
-     * Returns a new object of class '<em>Behavior Fragments</em>'.
+     * Returns a new object of class '<em>Condition</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Behavior Fragments</em>'.
+     * @return a new object of class '<em>Condition</em>'.
      * @generated
      */
-    BehaviorFragments createBehaviorFragments();
+    Condition createCondition();
 
     /**
-     * Returns a new object of class '<em>Behavior Fragments With Condition</em>'.
+     * Returns a new object of class '<em>Time Observation</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Behavior Fragments With Condition</em>'.
+     * @return a new object of class '<em>Time Observation</em>'.
      * @generated
      */
-    BehaviorFragmentsWithCondition createBehaviorFragmentsWithCondition();
+    TimeObservation createTimeObservation();
 
     /**
-     * Returns a new object of class '<em>Actor Classifier Mapping</em>'.
+     * Returns a new object of class '<em>Duration Observation</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Actor Classifier Mapping</em>'.
+     * @return a new object of class '<em>Duration Observation</em>'.
      * @generated
      */
-    ActorClassifierMapping createActorClassifierMapping();
+    DurationObservation createDurationObservation();
 
     /**
-     * Returns a new object of class '<em>Timed</em>'.
+     * Returns a new object of class '<em>Constraint</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Timed</em>'.
+     * @return a new object of class '<em>Constraint</em>'.
      * @generated
      */
-    Timed createTimed();
+    Constraint createConstraint();
+
+    /**
+     * Returns a new object of class '<em>Time Constraint</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Time Constraint</em>'.
+     * @generated
+     */
+    TimeConstraint createTimeConstraint();
+
+    /**
+     * Returns a new object of class '<em>Duration Constraint</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Duration Constraint</em>'.
+     * @generated
+     */
+    DurationConstraint createDurationConstraint();
+
+    /**
+     * Returns a new object of class '<em>Explicit Arrival Occurence Reference</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Explicit Arrival Occurence Reference</em>'.
+     * @generated
+     */
+    ExplicitArrivalOccurenceReference createExplicitArrivalOccurenceReference();
+
+    /**
+     * Returns a new object of class '<em>Implicit Arrival Occurence Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Implicit Arrival Occurence Specification</em>'.
+     * @generated
+     */
+    ImplicitArrivalOccurenceSpecification createImplicitArrivalOccurenceSpecification();
+
+    /**
+     * Returns a new object of class '<em>Explicit Arrival Occurence Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Explicit Arrival Occurence Specification</em>'.
+     * @generated
+     */
+    ExplicitArrivalOccurenceSpecification createExplicitArrivalOccurenceSpecification();
+
+    /**
+     * Returns a new object of class '<em>Implicit Send Occurence Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Implicit Send Occurence Specification</em>'.
+     * @generated
+     */
+    ImplicitSendOccurenceSpecification createImplicitSendOccurenceSpecification();
+
+    /**
+     * Returns a new object of class '<em>Aliased Point In Time</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Aliased Point In Time</em>'.
+     * @generated
+     */
+    <UMLPointInTimeType extends NamedElement> AliasedPointInTime<UMLPointInTimeType> createAliasedPointInTime();
+
+    /**
+     * Returns a new object of class '<em>Point In Time Selector</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Point In Time Selector</em>'.
+     * @generated
+     */
+    PointInTimeSelector createPointInTimeSelector();
+
+    /**
+     * Returns a new object of class '<em>Time Interval Selector</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Time Interval Selector</em>'.
+     * @generated
+     */
+    TimeIntervalSelector createTimeIntervalSelector();
+
+    /**
+     * Returns a new object of class '<em>Bi Point In Time Time Interval Selector</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Bi Point In Time Time Interval Selector</em>'.
+     * @generated
+     */
+    BiPointInTimeTimeIntervalSelector createBiPointInTimeTimeIntervalSelector();
+
+    /**
+     * Returns a new object of class '<em>Fragment Time Interval Selector</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Fragment Time Interval Selector</em>'.
+     * @generated
+     */
+    FragmentTimeIntervalSelector createFragmentTimeIntervalSelector();
+
+    /**
+     * Returns a new object of class '<em>Reference</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Reference</em>'.
+     * @generated
+     */
+    Reference createReference();
+
+    /**
+     * Returns a new object of class '<em>Non Instantaneous Fragment</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Non Instantaneous Fragment</em>'.
+     * @generated
+     */
+    <UMLType extends InteractionFragment> NonInstantaneousFragment<UMLType> createNonInstantaneousFragment();
 
     /**
      * Returns the package supported by this factory.

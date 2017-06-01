@@ -3,19 +3,12 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 
 /**
@@ -26,13 +19,12 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificationImpl implements DestructionOccurenceSpecification {
+public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificationImpl<DestructionOccurrenceSpecification> implements DestructionOccurenceSpecification {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -55,28 +47,12 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public DestructionOccurrenceSpecification getReferencedElement() {
-        return (DestructionOccurrenceSpecification)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public DestructionOccurrenceSpecification basicGetReferencedElement() {
-        return (DestructionOccurrenceSpecification)eDynamicGet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @Override
     public void setReferencedElement(DestructionOccurrenceSpecification newReferencedElement) {
-        eDynamicSet(SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+        super.setReferencedElement(newReferencedElement);
     }
 
     /**
@@ -111,25 +87,9 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
      * <!-- end-user-doc -->
      * @generated
      */
-    public PackageBase<?> getNearestPackage() {
-        EObject parent = this;
-        while (parent != null && !(parent instanceof PackageBase)) {
-            parent = parent.eContainer();
-        }
-        return (PackageBase<?>)parent;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
                 if (resolve) return getTarget();
                 return basicGetTarget();
@@ -145,9 +105,6 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                setReferencedElement((DestructionOccurrenceSpecification)newValue);
-                return;
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
                 setTarget((Actor)newValue);
                 return;
@@ -163,9 +120,6 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                setReferencedElement((DestructionOccurrenceSpecification)null);
-                return;
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
                 setTarget((Actor)null);
                 return;
@@ -181,89 +135,10 @@ public class DestructionOccurenceSpecificationImpl extends OccurenceSpecificatio
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET:
                 return basicGetTarget() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (derivedFeatureID) {
-                case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseOperationID) {
-                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE:
-                return getNearestPackage();
-        }
-        return super.eInvoke(operationID, arguments);
     }
 
 } //DestructionOccurenceSpecificationImpl

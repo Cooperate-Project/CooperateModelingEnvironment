@@ -3,21 +3,14 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,12 +20,23 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl#getTime <em>Time</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl#getEvent <em>Event</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint {
+public class TimeConstraintImpl extends ConstraintImpl implements TimeConstraint {
+    /**
+     * The default value of the '{@link #getTime() <em>Time</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTime()
+     * @generated
+     * @ordered
+     */
+    protected static final String TIME_EDEFAULT = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -57,9 +61,8 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    protected int eStaticFeatureCount() {
-        return 0;
+    public String getTime() {
+        return (String)eDynamicGet(SequencePackage.TIME_CONSTRAINT__TIME, SequencePackage.Literals.TIME_CONSTRAINT__TIME, true, true);
     }
 
     /**
@@ -67,9 +70,36 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public EList<InnerTimeConstraint> getConstraints() {
-        return (EList<InnerTimeConstraint>)eDynamicGet(SequencePackage.TIME_CONSTRAINT__CONSTRAINTS, SequencePackage.Literals.TIME_CONSTRAINT__CONSTRAINTS, true, true);
+    public void setTime(String newTime) {
+        eDynamicSet(SequencePackage.TIME_CONSTRAINT__TIME, SequencePackage.Literals.TIME_CONSTRAINT__TIME, newTime);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PointInTimeSelector getEvent() {
+        return (PointInTimeSelector)eDynamicGet(SequencePackage.TIME_CONSTRAINT__EVENT, SequencePackage.Literals.TIME_CONSTRAINT__EVENT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetEvent(PointInTimeSelector newEvent, NotificationChain msgs) {
+        msgs = eDynamicInverseAdd((InternalEObject)newEvent, SequencePackage.TIME_CONSTRAINT__EVENT, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEvent(PointInTimeSelector newEvent) {
+        eDynamicSet(SequencePackage.TIME_CONSTRAINT__EVENT, SequencePackage.Literals.TIME_CONSTRAINT__EVENT, newEvent);
     }
 
     /**
@@ -80,8 +110,8 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case SequencePackage.TIME_CONSTRAINT__CONSTRAINTS:
-                return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+            case SequencePackage.TIME_CONSTRAINT__EVENT:
+                return basicSetEvent(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -94,8 +124,10 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.TIME_CONSTRAINT__CONSTRAINTS:
-                return getConstraints();
+            case SequencePackage.TIME_CONSTRAINT__TIME:
+                return getTime();
+            case SequencePackage.TIME_CONSTRAINT__EVENT:
+                return getEvent();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -105,13 +137,14 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.TIME_CONSTRAINT__CONSTRAINTS:
-                getConstraints().clear();
-                getConstraints().addAll((Collection<? extends InnerTimeConstraint>)newValue);
+            case SequencePackage.TIME_CONSTRAINT__TIME:
+                setTime((String)newValue);
+                return;
+            case SequencePackage.TIME_CONSTRAINT__EVENT:
+                setEvent((PointInTimeSelector)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -125,8 +158,11 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.TIME_CONSTRAINT__CONSTRAINTS:
-                getConstraints().clear();
+            case SequencePackage.TIME_CONSTRAINT__TIME:
+                setTime(TIME_EDEFAULT);
+                return;
+            case SequencePackage.TIME_CONSTRAINT__EVENT:
+                setEvent((PointInTimeSelector)null);
                 return;
         }
         super.eUnset(featureID);
@@ -140,8 +176,10 @@ public class TimeConstraintImpl extends CDOObjectImpl implements TimeConstraint 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.TIME_CONSTRAINT__CONSTRAINTS:
-                return !getConstraints().isEmpty();
+            case SequencePackage.TIME_CONSTRAINT__TIME:
+                return TIME_EDEFAULT == null ? getTime() != null : !TIME_EDEFAULT.equals(getTime());
+            case SequencePackage.TIME_CONSTRAINT__EVENT:
+                return getEvent() != null;
         }
         return super.eIsSet(featureID);
     }

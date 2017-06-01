@@ -12,7 +12,8 @@ SequenceDiagram:
     '@start-seqd' title=STRING
     rootPackage=RootPackage
     actors += Actor* 
-    behaviorFragments += BehaviorFragment*
+    fragments += Fragment*
+    fragments += (Constraint | Observation)*
     '@end-seqd'
 ;
 
@@ -25,7 +26,7 @@ Actor:
         ((name = ID (typeMapping=ActorClassifierMapping)?)
         | (typeMapping=ActorClassifierMapping 'as' alias = ID)
         | (name = STRING (typeMapping=ActorClassifierMapping)? 'as' alias = ID))
-    ('role['actorType=ActorType']')? //comments+=Comment? 
+    ('role['actorType=ActorType']')? comments+=InlineComment? 
 ;
 
 ActorClassifierMapping:
@@ -33,14 +34,35 @@ ActorClassifierMapping:
 ;
 
 
-BehaviorFragment: 
-    Message | OccurenceSpecification | CombinedFragment
+Fragment: 
+    Message | OccurenceSpecification | CombinedFragment | Reference
 ;
 
 
-BehaviorFragments:
-    (('{' fragments += BehaviorFragment+ '}') | fragments += BehaviorFragment)
+OneFragment returns OrderedFragmentContainer:
+    fragments += Fragment
 ;
+
+OneOrMultipleFragments returns OrderedFragmentContainer:
+    fragments += Fragment+
+;
+
+OrderedFragmentContainer:
+    (('{' OneOrMultipleFragments'}') | OneFragment)
+;
+
+Condition:
+    '['condition=UnescapedString']'
+;
+
+OrderedFragmentContainerWithCondition returns OrderedFragmentContainer:
+    condition=Condition (('{' fragments += Fragment+'}') | fragments += Fragment)
+;
+
+OrderedFragmentContainerWithConditionMandatoryBrackets returns OrderedFragmentContainer:
+    condition=Condition '{' fragments += Fragment+'}'
+;
+
 
 Message:
     (StandardMessage    |
@@ -48,18 +70,21 @@ Message:
         FoundMessage    |
         LostMessage     |
         CreateMessage   |
-        DestructionMessage) 
-    ('num['order = Order']')?
-    timeConstraint=TimeConstraint?
+        DestructionMessage)
+    ('as' alias = ID)?    
+    sendEvent=ImplicitSendOccurenceSpecification
+    (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
 ;
 
-TimeConstraint:
-	'time[' constraints+=InnerTimeConstraint+ ']'
+ExplicitArrivalOccurenceReference: 
+    'arrives''['occurenceSpecification=[ExplicitArrivalOccurenceSpecification]']'
 ;
 
-InnerTimeConstraint:
-    type=TimeConstraintType'='value = STRING
+
+ExplicitArrivalOccurenceSpecification: 
+    'arrival' name=ID
 ;
+
 
 StandardMessage:
     type=MessageType name=UnescapedString '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
@@ -69,12 +94,12 @@ ResponseMessage:
    'reply' name=UnescapedString '(' (left = [Actor|FQN]|'_') ',' (right = ([Actor|FQN])|'_') ')'   
 ;
 
-FoundMessage:
+FoundMessage returns StandardMessage:
     'found' type=MessageType name=UnescapedString '(' '_' ',' right = [Actor|FQN]')'
 ;
 
-LostMessage:
-    'lost' type=MessageType name=UnescapedString '(' left = [Actor|FQN] ',' '_'')'
+LostMessage returns Message:
+    'lost' (('reply' {ResponseMessage}) | ({StandardMessage} type=MessageType)) name=UnescapedString '(' left = [Actor|FQN] ',' '_'')'
 ;
 
 CreateMessage:
@@ -87,7 +112,7 @@ DestructionMessage:
 
 
 OccurenceSpecification:
-    DestructionOccurenceSpecification
+    DestructionOccurenceSpecification | ExplicitArrivalOccurenceSpecification
 ;
 
 DestructionOccurenceSpecification: 
@@ -95,57 +120,97 @@ DestructionOccurenceSpecification:
 ;
 
 CombinedFragment:
-    Alternative | Option | Parallel | Critical | Loop //| Timed
+    MultipleRegionContainer | SingleRegionContainer   
 ;
 
-Alternative:
-    'alt' '{'
-        alternatives += BehaviorFragmentsWithCondition+
-    '}'
+SingleRegionContainer:
+    Loop | Option | Critical
 ;
 
-Option:
-    'opt' '{'
-        optional += BehaviorFragmentsWithCondition
-    '}'
+
+MultipleRegionContainer:
+    Parallel | Alternative
 ;
 
 Parallel:
-    'par' '{'
-        parallels += BehaviorFragments+
-    '}'
+    'par' '{' regions += OrderedFragmentContainer+ '}'
 ;
-
-Critical:
-    'critical' '{'
-        fragments += BehaviorFragment+
-    '}'
+Alternative:
+    'alt' '{' regions += OrderedFragmentContainerWithCondition+ '}'
 ;
 
 Loop:
-    'loop''['condition=STRING']''{'
-        fragments += BehaviorFragment+
-    '}'
+    'loop' region = OrderedFragmentContainerWithConditionMandatoryBrackets
 ;
 
-Timed:
-    constraint=TimeConstraint '{'
-        fragments += BehaviorFragment+
-    '}'
+Option:
+    'opt' region=OrderedFragmentContainerWithConditionMandatoryBrackets
+;
+
+Critical:
+    'critical''{'region=OneOrMultipleFragments'}'
+;
+
+Reference:
+    'ref' reference=[uml::Interaction|FQN] ('as' alias = ID)? 
+;
+
+Constraint:
+    'cstr' (TimeConstraint | DurationConstraint)
+;
+
+TimeConstraint:
+    '('event=PointInTimeSelector')' 't''['time=UnescapedString']' 
+;
+
+DurationConstraint:
+    '('interval=TimeIntervalSelector')''d''['duration=UnescapedString']' 
+;
+
+Observation:
+    'obs' (TimeObservation | DurationObservation)
+;
+
+TimeObservation:
+    '('event=PointInTimeSelector')' 't''['time=UnescapedString']' 
+;
+
+DurationObservation:
+    '('interval=TimeIntervalSelector')''d''['duration=UnescapedString']' 
+;
+
+PointInTimeSelector:
+    pointInTime=[AliasedPointInTime|FQN]
+;
+
+TimeIntervalSelector: 
+    BiPointInTimeTimeIntervalSelector | FragmentTimeIntervalSelector
+;
+
+BiPointInTimeTimeIntervalSelector: 
+    start=PointInTimeSelector','end=PointInTimeSelector
+;
+
+FragmentTimeIntervalSelector: 
+    nonInstantaneousFragment=[NonInstantaneousFragment|FQN]
 ;
 
 
-BehaviorFragmentsWithCondition:
-    '['condition=STRING']' (('{' fragments += BehaviorFragment+ '}') | fragments += BehaviorFragment)  
+ImplicitSendOccurenceSpecification: 
+    {ImplicitSendOccurenceSpecification}
+;
+
+ImplicitArrivalOccurenceSpecification: 
+    {ImplicitArrivalOccurenceSpecification}
 ;
 
 FQN:
     ID ('.' ID)*
 ;
 
-Order:
-    INT ('.' INT)*
-; 
+InlineComment returns commons::Comment:
+    'note''['body = CommentBody']'
+;
 
 Comment returns commons::Comment:
     'note' body = CommentBody
@@ -168,11 +233,3 @@ enum ActorType:
     HUMAN = 'human'
     | MACHINE = 'machine'
 ;
-
-enum TimeConstraintType:
-    DURATION = 'd'
-    | TIME = 't'
-    | MAXIMUM = 'max'
-    | DIFFERENCE = 'diff'
-;
-

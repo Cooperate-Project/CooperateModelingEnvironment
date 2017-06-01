@@ -3,19 +3,72 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import java.lang.reflect.InvocationTargetException;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Occurence Specification</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl#getAlias <em>Alias</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl#getComments <em>Comments</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class OccurenceSpecificationImpl extends BehaviorFragmentImpl implements OccurenceSpecification {
+public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpecification> extends FragmentImpl implements OccurenceSpecification<UMLOccurenceType> {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
+    protected static final String ALIAS_EDEFAULT = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -33,6 +86,356 @@ public class OccurenceSpecificationImpl extends BehaviorFragmentImpl implements 
     @Override
     protected EClass eStaticClass() {
         return SequencePackage.Literals.OCCURENCE_SPECIFICATION;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public UMLOccurenceType getReferencedElement() {
+        return (UMLOccurenceType)eDynamicGet(SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UMLOccurenceType basicGetReferencedElement() {
+        return (UMLOccurenceType)eDynamicGet(SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setReferencedElement(UMLOccurenceType newReferencedElement) {
+        eDynamicSet(SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(SequencePackage.OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(SequencePackage.OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getAlias() {
+        return (String)eDynamicGet(SequencePackage.OCCURENCE_SPECIFICATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAlias(String newAlias) {
+        eDynamicSet(SequencePackage.OCCURENCE_SPECIFICATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PackageBase<?> getNearestPackage() {
+        EObject parent = this;
+        while (parent != null && !(parent instanceof PackageBase)) {
+            parent = parent.eContainer();
+        }
+        return (PackageBase<?>)parent;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
+            case SequencePackage.OCCURENCE_SPECIFICATION__NAME:
+                return getName();
+            case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS:
+                return getAlias();
+            case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:
+                return getComments();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
+                setReferencedElement((UMLOccurenceType)newValue);
+                return;
+            case SequencePackage.OCCURENCE_SPECIFICATION__NAME:
+                setName((String)newValue);
+                return;
+            case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS:
+                setAlias((String)newValue);
+                return;
+            case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
+                setReferencedElement((UMLOccurenceType)null);
+                return;
+            case SequencePackage.OCCURENCE_SPECIFICATION__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS:
+                setAlias(ALIAS_EDEFAULT);
+                return;
+            case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:
+                getComments().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
+                return basicGetReferencedElement() != null;
+            case SequencePackage.OCCURENCE_SPECIFICATION__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS:
+                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+            case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:
+                return !getComments().isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.OCCURENCE_SPECIFICATION__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedPointInTime.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return SequencePackage.OCCURENCE_SPECIFICATION__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return SequencePackage.OCCURENCE_SPECIFICATION__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedPointInTime.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Element.class) {
+            switch (baseOperationID) {
+                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return SequencePackage.OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedPointInTime.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE:
+                return getNearestPackage();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //OccurenceSpecificationImpl

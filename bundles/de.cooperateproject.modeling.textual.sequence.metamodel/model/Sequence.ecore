@@ -8,11 +8,10 @@
         eType="#//RootPackage" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
         eType="#//Actor" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="behaviorFragments" upperBound="-1"
-        eType="#//BehaviorFragment" containment="true"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//FragmentSequence"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootPackage">
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
@@ -33,24 +32,45 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorFragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActorClassifierMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"
+        eOpposite="#//Actor/typeMapping"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifierName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentSequence" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
+        eType="#//Fragment" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Message">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="timeConstraint" eType="#//TimeConstraint"
-        containment="true"/>
-    <eGenericSuperTypes eClassifier="#//BehaviorFragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivalEvent" lowerBound="1"
+        containment="true">
+      <eGenericType eClassifier="#//OccurenceReference">
+        <eTypeArguments eClassifier="#//OccurenceSpecification">
+          <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sendEvent" lowerBound="1"
+        containment="true">
+      <eGenericType eClassifier="#//OccurenceReference">
+        <eTypeArguments eClassifier="#//OccurenceSpecification">
+          <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eStructuralFeatures>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TimeConstraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//InnerTimeConstraint" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InnerTimeConstraint">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TimeConstraintType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eGenericSuperTypes eClassifier="#//Fragment"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StandardMessage" eSuperTypes="#//Message">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
@@ -61,14 +81,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FoundMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LostMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CreateMessage" eSuperTypes="#//Message">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
@@ -77,49 +89,156 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification" eSuperTypes="#//BehaviorFragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification">
+    <eTypeParameters name="UMLOccurenceType">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="#//Fragment"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//AliasedPointInTime">
+      <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+      <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DestructionOccurenceSpecification">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Actor"/>
-    <eGenericSuperTypes eClassifier="#//OccurenceSpecification"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+    <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestructionOccurrenceSpecification"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CombinedFragment">
-    <eGenericSuperTypes eClassifier="#//BehaviorFragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CombinedFragment" abstract="true">
+    <eGenericSuperTypes eClassifier="#//NonInstantaneousFragment">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+    </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+    </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//CombinedFragment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alternatives" upperBound="-1"
-        eType="#//BehaviorFragmentsWithCondition" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrderedFragmentContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Condition"
+        containment="true"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//FragmentSequence"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+    </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Option" eSuperTypes="#//CombinedFragment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="optional" upperBound="-1"
-        eType="#//BehaviorFragmentsWithCondition" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleRegionContainer" abstract="true"
+      eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="region" lowerBound="1"
+        eType="#//OrderedFragmentContainer" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parallel" eSuperTypes="#//CombinedFragment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parallels" upperBound="-1"
-        eType="#//BehaviorFragments" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultipleRegionContainer" abstract="true"
+      eSuperTypes="#//CombinedFragment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regions" upperBound="-1"
+        eType="#//OrderedFragmentContainer" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Critical" eSuperTypes="#//CombinedFragment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
-        eType="#//BehaviorFragment" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//MultipleRegionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Option" eSuperTypes="#//SingleRegionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CoRegion" eSuperTypes="#//MultipleRegionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parallel" eSuperTypes="#//MultipleRegionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Critical" eSuperTypes="#//SingleRegionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//SingleRegionContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionConstraint"/>
+    </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//CombinedFragment">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
-        eType="#//BehaviorFragment" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Observation" abstract="true" eSuperTypes="#//Fragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeObservation" eSuperTypes="#//Observation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="#//PointInTimeSelector"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorFragments">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
-        eType="#//BehaviorFragment" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationObservation" eSuperTypes="#//Observation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//TimeIntervalSelector"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BehaviorFragmentsWithCondition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
-        eType="#//BehaviorFragment" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//Fragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeConstraint" eSuperTypes="#//Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="#//PointInTimeSelector"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationConstraint" eSuperTypes="#//Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//TimeIntervalSelector"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OccurenceReference" abstract="true">
+    <eTypeParameters name="OccurenceType">
+      <eBounds eClassifier="#//OccurenceSpecification">
+        <eTypeArguments/>
+      </eBounds>
+    </eTypeParameters>
+    <eOperations name="getOccurenceSpecification">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="throw new RuntimeException(&quot;This method should have been overidden&quot;);"/>
+      </eAnnotations>
+      <eGenericType eTypeParameter="#//OccurenceReference/OccurenceType"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExplicitArrivalOccurenceReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="occurenceSpecification"
+        eType="#//ExplicitArrivalOccurenceSpecification"/>
+    <eGenericSuperTypes eClassifier="#//OccurenceReference">
+      <eTypeArguments eClassifier="#//OccurenceSpecification">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      </eTypeArguments>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicitArrivalOccurenceSpecification">
+    <eOperations name="getOccurenceSpecification">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//OccurenceSpecification">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      </eGenericType>
+    </eOperations>
+    <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//OccurenceReference">
+      <eTypeArguments eClassifier="#//OccurenceSpecification">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      </eTypeArguments>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExplicitArrivalOccurenceSpecification">
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
+    <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicitSendOccurenceSpecification">
+    <eOperations name="getOccurenceSpecification">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//OccurenceSpecification">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      </eGenericType>
+    </eOperations>
+    <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//OccurenceReference">
+      <eTypeArguments eClassifier="#//OccurenceSpecification">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      </eTypeArguments>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MessageType">
     <eLiterals name="SYNC" literal="sync"/>
@@ -129,25 +248,106 @@
     <eLiterals name="HUMAN" literal="human"/>
     <eLiterals name="MACHINE" value="1" literal="machine"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TimeConstraintType">
-    <eLiterals name="DURATION" literal="d"/>
-    <eLiterals name="TIME" value="1" literal="t"/>
-    <eLiterals name="MAXIMUM" value="2" literal="max"/>
-    <eLiterals name="DIFFERENCE" value="3" literal="diff"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActorClassifierMapping">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"
-        eOpposite="#//Actor/typeMapping"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifierName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AliasedPointInTime">
+    <eTypeParameters name="UMLPointInTimeType">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+      <eTypeArguments eTypeParameter="#//AliasedPointInTime/UMLPointInTimeType"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Timed" eSuperTypes="#//CombinedFragment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
-        eType="#//BehaviorFragment" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" lowerBound="1"
-        eType="#//TimeConstraint" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PointInTimeSelector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pointInTime">
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeIntervalSelector">
+    <eOperations name="getIntervalStart">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="throw new RuntimeException(&quot;This method should have been overidden&quot;);"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getIntervalEnd">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="throw new RuntimeException(&quot;This method should have been overidden&quot;);"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BiPointInTimeTimeIntervalSelector" eSuperTypes="#//TimeIntervalSelector">
+    <eOperations name="getIntervalStart">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getStart().getPointInTime();"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getIntervalEnd">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getEnd().getPointInTime();"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start" eType="#//PointInTimeSelector"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" eType="#//PointInTimeSelector"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentTimeIntervalSelector" eSuperTypes="#//TimeIntervalSelector">
+    <eOperations name="getIntervalStart">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getNonInstantaneousFragment();"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getIntervalEnd">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getNonInstantaneousFragment();"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//AliasedPointInTime">
+        <eTypeArguments>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nonInstantaneousFragment"
+        eType="#//NonInstantaneousFragment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//NonInstantaneousFragment">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonInstantaneousFragment">
+    <eTypeParameters name="UMLType">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="#//Fragment"/>
+    <eGenericSuperTypes eClassifier="#//AliasedPointInTime">
+      <eTypeArguments eTypeParameter="#//NonInstantaneousFragment/UMLType"/>
+    </eGenericSuperTypes>
   </eClassifiers>
 </ecore:EPackage>

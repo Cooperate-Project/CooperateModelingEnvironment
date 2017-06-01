@@ -17,13 +17,16 @@ import de.cooperateproject.modeling.textual.sequence.sequence.ActorType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.uml2.uml.Lifeline;
 
 /**

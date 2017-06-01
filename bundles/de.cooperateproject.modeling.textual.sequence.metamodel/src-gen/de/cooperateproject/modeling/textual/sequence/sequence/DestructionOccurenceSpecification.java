@@ -3,8 +3,6 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 
 /**
@@ -23,7 +21,7 @@ import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
  * @model
  * @generated
  */
-public interface DestructionOccurenceSpecification extends OccurenceSpecification, UMLReferencingElement<DestructionOccurrenceSpecification> {
+public interface DestructionOccurenceSpecification extends OccurenceSpecification<DestructionOccurrenceSpecification> {
     /**
      * Returns the value of the '<em><b>Target</b></em>' reference.
      * <!-- begin-user-doc -->

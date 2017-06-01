@@ -6,17 +6,23 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.uml2.uml.Interaction;
 
 /**
@@ -27,10 +33,10 @@ import org.eclipse.uml2.uml.Interaction;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SequenceDiagramImpl#getFragments <em>Fragments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SequenceDiagramImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SequenceDiagramImpl#getRootPackage <em>Root Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SequenceDiagramImpl#getActors <em>Actors</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SequenceDiagramImpl#getBehaviorFragments <em>Behavior Fragments</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +80,16 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     @Override
     public void setReferencedElement(Interaction newReferencedElement) {
         super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Fragment> getFragments() {
+        return (EList<Fragment>)eDynamicGet(SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS, SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS, true, true);
     }
 
     /**
@@ -137,25 +153,15 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public EList<BehaviorFragment> getBehaviorFragments() {
-        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS, SequencePackage.Literals.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
+            case SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS:
+                return ((InternalEList<?>)getFragments()).basicRemove(otherEnd, msgs);
             case SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE:
                 return basicSetRootPackage(null, msgs);
             case SequencePackage.SEQUENCE_DIAGRAM__ACTORS:
                 return ((InternalEList<?>)getActors()).basicRemove(otherEnd, msgs);
-            case SequencePackage.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS:
-                return ((InternalEList<?>)getBehaviorFragments()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -168,14 +174,14 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS:
+                return getFragments();
             case SequencePackage.SEQUENCE_DIAGRAM__TITLE:
                 return getTitle();
             case SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE:
                 return getRootPackage();
             case SequencePackage.SEQUENCE_DIAGRAM__ACTORS:
                 return getActors();
-            case SequencePackage.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS:
-                return getBehaviorFragments();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -189,6 +195,10 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS:
+                getFragments().clear();
+                getFragments().addAll((Collection<? extends Fragment>)newValue);
+                return;
             case SequencePackage.SEQUENCE_DIAGRAM__TITLE:
                 setTitle((String)newValue);
                 return;
@@ -198,10 +208,6 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
             case SequencePackage.SEQUENCE_DIAGRAM__ACTORS:
                 getActors().clear();
                 getActors().addAll((Collection<? extends Actor>)newValue);
-                return;
-            case SequencePackage.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS:
-                getBehaviorFragments().clear();
-                getBehaviorFragments().addAll((Collection<? extends BehaviorFragment>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -215,6 +221,9 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS:
+                getFragments().clear();
+                return;
             case SequencePackage.SEQUENCE_DIAGRAM__TITLE:
                 setTitle(TITLE_EDEFAULT);
                 return;
@@ -223,9 +232,6 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
                 return;
             case SequencePackage.SEQUENCE_DIAGRAM__ACTORS:
                 getActors().clear();
-                return;
-            case SequencePackage.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS:
-                getBehaviorFragments().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -239,16 +245,48 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS:
+                return !getFragments().isEmpty();
             case SequencePackage.SEQUENCE_DIAGRAM__TITLE:
                 return TITLE_EDEFAULT == null ? getTitle() != null : !TITLE_EDEFAULT.equals(getTitle());
             case SequencePackage.SEQUENCE_DIAGRAM__ROOT_PACKAGE:
                 return getRootPackage() != null;
             case SequencePackage.SEQUENCE_DIAGRAM__ACTORS:
                 return !getActors().isEmpty();
-            case SequencePackage.SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS:
-                return !getBehaviorFragments().isEmpty();
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == FragmentSequence.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS: return SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == FragmentSequence.class) {
+            switch (baseFeatureID) {
+                case SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS: return SequencePackage.SEQUENCE_DIAGRAM__FRAGMENTS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //SequenceDiagramImpl

@@ -3,9 +3,6 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
-import org.eclipse.emf.cdo.CDOObject;
-
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,29 +13,65 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getTime <em>Time</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getEvent <em>Event</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getTimeConstraint()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface TimeConstraint extends CDOObject {
+public interface TimeConstraint extends Constraint {
     /**
-     * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint}.
+     * Returns the value of the '<em><b>Time</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Time</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Constraints</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getTimeConstraint_Constraints()
+     * @return the value of the '<em>Time</em>' attribute.
+     * @see #setTime(String)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getTimeConstraint_Time()
+     * @model
+     * @generated
+     */
+    String getTime();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getTime <em>Time</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Time</em>' attribute.
+     * @see #getTime()
+     * @generated
+     */
+    void setTime(String value);
+
+    /**
+     * Returns the value of the '<em><b>Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Event</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Event</em>' containment reference.
+     * @see #setEvent(PointInTimeSelector)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getTimeConstraint_Event()
      * @model containment="true"
      * @generated
      */
-    EList<InnerTimeConstraint> getConstraints();
+    PointInTimeSelector getEvent();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getEvent <em>Event</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Event</em>' containment reference.
+     * @see #getEvent()
+     * @generated
+     */
+    void setEvent(PointInTimeSelector value);
 
 } // TimeConstraint

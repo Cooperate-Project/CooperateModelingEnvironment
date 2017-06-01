@@ -3,34 +3,19 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments;
 import de.cooperateproject.modeling.textual.sequence.sequence.Parallel;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Parallel</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ParallelImpl#getParallels <em>Parallels</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class ParallelImpl extends CombinedFragmentImpl implements Parallel {
+public class ParallelImpl extends MultipleRegionContainerImpl implements Parallel {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -48,90 +33,6 @@ public class ParallelImpl extends CombinedFragmentImpl implements Parallel {
     @Override
     protected EClass eStaticClass() {
         return SequencePackage.Literals.PARALLEL;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    public EList<BehaviorFragments> getParallels() {
-        return (EList<BehaviorFragments>)eDynamicGet(SequencePackage.PARALLEL__PARALLELS, SequencePackage.Literals.PARALLEL__PARALLELS, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SequencePackage.PARALLEL__PARALLELS:
-                return ((InternalEList<?>)getParallels()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SequencePackage.PARALLEL__PARALLELS:
-                return getParallels();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SequencePackage.PARALLEL__PARALLELS:
-                getParallels().clear();
-                getParallels().addAll((Collection<? extends BehaviorFragments>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case SequencePackage.PARALLEL__PARALLELS:
-                getParallels().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SequencePackage.PARALLEL__PARALLELS:
-                return !getParallels().isEmpty();
-        }
-        return super.eIsSet(featureID);
     }
 
 } //ParallelImpl

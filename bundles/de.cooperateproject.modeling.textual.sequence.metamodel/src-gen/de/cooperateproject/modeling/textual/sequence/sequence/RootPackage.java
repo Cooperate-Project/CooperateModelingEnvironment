@@ -17,5 +17,4 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @generated
  */
 public interface RootPackage extends UMLReferencingElement<org.eclipse.uml2.uml.Package>, NamedElement {
-
 } // RootPackage

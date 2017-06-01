@@ -9,25 +9,25 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Behavior Fragments</b></em>'.
+ * A representation of the model object '<em><b>Fragment Sequence</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments#getFragments <em>Fragments</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence#getFragments <em>Fragments</em>}</li>
  * </ul>
  *
- * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getBehaviorFragments()
- * @model
+ * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getFragmentSequence()
+ * @model abstract="true"
  * @extends CDOObject
  * @generated
  */
-public interface BehaviorFragments extends CDOObject {
+public interface FragmentSequence extends CDOObject {
     /**
      * Returns the value of the '<em><b>Fragments</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment}.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.sequence.sequence.Fragment}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Fragments</em>' containment reference list isn't clear,
@@ -35,10 +35,10 @@ public interface BehaviorFragments extends CDOObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Fragments</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getBehaviorFragments_Fragments()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getFragmentSequence_Fragments()
      * @model containment="true"
      * @generated
      */
-    EList<BehaviorFragment> getFragments();
+    EList<Fragment> getFragments();
 
-} // BehaviorFragments
+} // FragmentSequence

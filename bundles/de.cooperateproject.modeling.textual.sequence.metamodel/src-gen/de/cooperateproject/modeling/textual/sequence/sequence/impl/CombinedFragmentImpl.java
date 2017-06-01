@@ -3,18 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.eclipse.uml2.uml.CombinedFragment;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,12 +30,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CombinedFragmentImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CombinedFragmentImpl#getComments <em>Comments</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CombinedFragmentImpl extends BehaviorFragmentImpl implements CombinedFragment {
+public abstract class CombinedFragmentImpl extends NonInstantaneousFragmentImpl<CombinedFragment> implements de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -52,10 +58,12 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public org.eclipse.uml2.uml.CombinedFragment getReferencedElement() {
-        return (org.eclipse.uml2.uml.CombinedFragment)eDynamicGet(SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    @Override
+    public void setReferencedElement(CombinedFragment newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
     }
 
     /**
@@ -63,8 +71,9 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      * <!-- end-user-doc -->
      * @generated
      */
-    public org.eclipse.uml2.uml.CombinedFragment basicGetReferencedElement() {
-        return (org.eclipse.uml2.uml.CombinedFragment)eDynamicGet(SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    @SuppressWarnings("unchecked")
+    public EList<Comment> getComments() {
+        return (EList<Comment>)eDynamicGet(SequencePackage.COMBINED_FRAGMENT__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
     /**
@@ -72,21 +81,28 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReferencedElement(org.eclipse.uml2.uml.CombinedFragment newReferencedElement) {
-        eDynamicSet(SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PackageBase<?> getNearestPackage() {
-        EObject parent = this;
-        while (parent != null && !(parent instanceof PackageBase)) {
-            parent = parent.eContainer();
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case SequencePackage.COMBINED_FRAGMENT__COMMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
         }
-        return (PackageBase<?>)parent;
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case SequencePackage.COMBINED_FRAGMENT__COMMENTS:
+                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
     /**
@@ -97,9 +113,8 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case SequencePackage.COMBINED_FRAGMENT__COMMENTS:
+                return getComments();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -109,11 +124,13 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.CombinedFragment)newValue);
+            case SequencePackage.COMBINED_FRAGMENT__COMMENTS:
+                getComments().clear();
+                getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -127,8 +144,8 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT:
-                setReferencedElement((org.eclipse.uml2.uml.CombinedFragment)null);
+            case SequencePackage.COMBINED_FRAGMENT__COMMENTS:
+                getComments().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -142,8 +159,8 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+            case SequencePackage.COMBINED_FRAGMENT__COMMENTS:
+                return !getComments().isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -155,14 +172,9 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
+        if (baseClass == Commentable.class) {
             switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (derivedFeatureID) {
-                case SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case SequencePackage.COMBINED_FRAGMENT__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
                 default: return -1;
             }
         }
@@ -176,53 +188,13 @@ public class CombinedFragmentImpl extends BehaviorFragmentImpl implements Combin
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
+        if (baseClass == Commentable.class) {
             switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return SequencePackage.COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return SequencePackage.COMBINED_FRAGMENT__COMMENTS;
                 default: return -1;
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseOperationID) {
-                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return SequencePackage.COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case SequencePackage.COMBINED_FRAGMENT___GET_NEAREST_PACKAGE:
-                return getNearestPackage();
-        }
-        return super.eInvoke(operationID, arguments);
     }
 
 } //CombinedFragmentImpl

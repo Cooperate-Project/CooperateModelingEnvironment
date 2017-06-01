@@ -7,6 +7,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

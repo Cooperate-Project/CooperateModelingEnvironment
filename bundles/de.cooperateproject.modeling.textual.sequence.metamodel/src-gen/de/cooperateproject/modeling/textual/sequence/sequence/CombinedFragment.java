@@ -3,6 +3,7 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 /**
@@ -12,8 +13,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  *
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getCombinedFragment()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface CombinedFragment extends BehaviorFragment, UMLReferencingElement<org.eclipse.uml2.uml.CombinedFragment> {
+public interface CombinedFragment extends NonInstantaneousFragment<org.eclipse.uml2.uml.CombinedFragment>, UMLReferencingElement<org.eclipse.uml2.uml.CombinedFragment>, Commentable<org.eclipse.uml2.uml.CombinedFragment> {
 } // CombinedFragment

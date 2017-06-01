@@ -38,21 +38,26 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRootPackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootPackageAssignment_3.eContents().get(0);
 		private final Assignment cActorsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cActorsActorParserRuleCall_4_0 = (RuleCall)cActorsAssignment_4.eContents().get(0);
-		private final Assignment cBehaviorFragmentsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cBehaviorFragmentsBehaviorFragmentParserRuleCall_5_0 = (RuleCall)cBehaviorFragmentsAssignment_5.eContents().get(0);
-		private final Keyword cEndSeqdKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cFragmentsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cFragmentsFragmentParserRuleCall_5_0 = (RuleCall)cFragmentsAssignment_5.eContents().get(0);
+		private final Assignment cFragmentsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final Alternatives cFragmentsAlternatives_6_0 = (Alternatives)cFragmentsAssignment_6.eContents().get(0);
+		private final RuleCall cFragmentsConstraintParserRuleCall_6_0_0 = (RuleCall)cFragmentsAlternatives_6_0.eContents().get(0);
+		private final RuleCall cFragmentsObservationParserRuleCall_6_0_1 = (RuleCall)cFragmentsAlternatives_6_0.eContents().get(1);
+		private final Keyword cEndSeqdKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//SequenceDiagram:
 		//	{SequenceDiagram}
 		//	'@start-seqd' title=STRING
 		//	rootPackage=RootPackage
 		//	actors+=Actor*
-		//	behaviorFragments+=BehaviorFragment*
+		//	fragments+=Fragment*
+		//	fragments+=(Constraint | Observation)*
 		//	'@end-seqd';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SequenceDiagram} '@start-seqd' title=STRING rootPackage=RootPackage actors+=Actor* behaviorFragments+=BehaviorFragment*
-		//'@end-seqd'
+		//{SequenceDiagram} '@start-seqd' title=STRING rootPackage=RootPackage actors+=Actor* fragments+=Fragment*
+		//fragments+=(Constraint | Observation)* '@end-seqd'
 		public Group getGroup() { return cGroup; }
 		
 		//{SequenceDiagram}
@@ -79,14 +84,26 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//Actor
 		public RuleCall getActorsActorParserRuleCall_4_0() { return cActorsActorParserRuleCall_4_0; }
 		
-		//behaviorFragments+=BehaviorFragment*
-		public Assignment getBehaviorFragmentsAssignment_5() { return cBehaviorFragmentsAssignment_5; }
+		//fragments+=Fragment*
+		public Assignment getFragmentsAssignment_5() { return cFragmentsAssignment_5; }
 		
-		//BehaviorFragment
-		public RuleCall getBehaviorFragmentsBehaviorFragmentParserRuleCall_5_0() { return cBehaviorFragmentsBehaviorFragmentParserRuleCall_5_0; }
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_5_0() { return cFragmentsFragmentParserRuleCall_5_0; }
+		
+		//fragments+=(Constraint | Observation)*
+		public Assignment getFragmentsAssignment_6() { return cFragmentsAssignment_6; }
+		
+		//(Constraint | Observation)
+		public Alternatives getFragmentsAlternatives_6_0() { return cFragmentsAlternatives_6_0; }
+		
+		//Constraint
+		public RuleCall getFragmentsConstraintParserRuleCall_6_0_0() { return cFragmentsConstraintParserRuleCall_6_0_0; }
+		
+		//Observation
+		public RuleCall getFragmentsObservationParserRuleCall_6_0_1() { return cFragmentsObservationParserRuleCall_6_0_1; }
 		
 		//'@end-seqd'
-		public Keyword getEndSeqdKeyword_6() { return cEndSeqdKeyword_6; }
+		public Keyword getEndSeqdKeyword_7() { return cEndSeqdKeyword_7; }
 	}
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.RootPackage");
@@ -142,15 +159,18 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cActorTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cActorTypeActorTypeEnumRuleCall_3_1_0 = (RuleCall)cActorTypeAssignment_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Assignment cCommentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cCommentsInlineCommentParserRuleCall_4_0 = (RuleCall)cCommentsAssignment_4.eContents().get(0);
 		
 		//Actor:
 		//	deferred?='def'? 'act' (name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as' alias=ID
-		//	| name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')? //comments+=Comment? 
-		//;
+		//	| name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')?
+		//	comments+=InlineComment?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//deferred?='def'? 'act' (name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as' alias=ID |
 		//name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')?
+		//comments+=InlineComment?
 		public Group getGroup() { return cGroup; }
 		
 		//deferred?='def'?
@@ -237,6 +257,12 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_3_2() { return cRightSquareBracketKeyword_3_2; }
+		
+		//comments+=InlineComment?
+		public Assignment getCommentsAssignment_4() { return cCommentsAssignment_4; }
+		
+		//InlineComment
+		public RuleCall getCommentsInlineCommentParserRuleCall_4_0() { return cCommentsInlineCommentParserRuleCall_4_0; }
 	}
 	public class ActorClassifierMappingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.ActorClassifierMapping");
@@ -265,18 +291,19 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getClassifierClassifierFQNParserRuleCall_1_0_1() { return cClassifierClassifierFQNParserRuleCall_1_0_1; }
 	}
-	public class BehaviorFragmentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragment");
+	public class FragmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMessageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cOccurenceSpecificationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cCombinedFragmentParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cReferenceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
-		//BehaviorFragment:
-		//	Message | OccurenceSpecification | CombinedFragment;
+		//Fragment:
+		//	Message | OccurenceSpecification | CombinedFragment | Reference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Message | OccurenceSpecification | CombinedFragment
+		//Message | OccurenceSpecification | CombinedFragment | Reference
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Message
@@ -287,45 +314,183 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//CombinedFragment
 		public RuleCall getCombinedFragmentParserRuleCall_2() { return cCombinedFragmentParserRuleCall_2; }
+		
+		//Reference
+		public RuleCall getReferenceParserRuleCall_3() { return cReferenceParserRuleCall_3; }
 	}
-	public class BehaviorFragmentsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragments");
+	public class OneFragmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OneFragment");
+		private final Assignment cFragmentsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cFragmentsFragmentParserRuleCall_0 = (RuleCall)cFragmentsAssignment.eContents().get(0);
+		
+		//OneFragment OrderedFragmentContainer:
+		//	fragments+=Fragment;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//fragments+=Fragment
+		public Assignment getFragmentsAssignment() { return cFragmentsAssignment; }
+		
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_0() { return cFragmentsFragmentParserRuleCall_0; }
+	}
+	public class OneOrMultipleFragmentsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OneOrMultipleFragments");
+		private final Assignment cFragmentsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cFragmentsFragmentParserRuleCall_0 = (RuleCall)cFragmentsAssignment.eContents().get(0);
+		
+		//OneOrMultipleFragments OrderedFragmentContainer:
+		//	fragments+=Fragment+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//fragments+=Fragment+
+		public Assignment getFragmentsAssignment() { return cFragmentsAssignment; }
+		
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_0() { return cFragmentsFragmentParserRuleCall_0; }
+	}
+	public class OrderedFragmentContainerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainer");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cFragmentsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_0_1_0 = (RuleCall)cFragmentsAssignment_0_1.eContents().get(0);
+		private final RuleCall cOneOrMultipleFragmentsParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
-		private final Assignment cFragmentsAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_1_0 = (RuleCall)cFragmentsAssignment_1.eContents().get(0);
+		private final RuleCall cOneFragmentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//BehaviorFragments:
-		//	'{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment;
+		//OrderedFragmentContainer:
+		//	'{' OneOrMultipleFragments '}' | OneFragment;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment
+		//'{' OneOrMultipleFragments '}' | OneFragment
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'{' fragments+=BehaviorFragment+ '}'
+		//'{' OneOrMultipleFragments '}'
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_0_0() { return cLeftCurlyBracketKeyword_0_0; }
 		
-		//fragments+=BehaviorFragment+
-		public Assignment getFragmentsAssignment_0_1() { return cFragmentsAssignment_0_1; }
-		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_0_1_0() { return cFragmentsBehaviorFragmentParserRuleCall_0_1_0; }
+		//OneOrMultipleFragments
+		public RuleCall getOneOrMultipleFragmentsParserRuleCall_0_1() { return cOneOrMultipleFragmentsParserRuleCall_0_1; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_0_2() { return cRightCurlyBracketKeyword_0_2; }
 		
-		//fragments+=BehaviorFragment
-		public Assignment getFragmentsAssignment_1() { return cFragmentsAssignment_1; }
+		//OneFragment
+		public RuleCall getOneFragmentParserRuleCall_1() { return cOneFragmentParserRuleCall_1; }
+	}
+	public class ConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Condition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cConditionUnescapedStringParserRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_1_0() { return cFragmentsBehaviorFragmentParserRuleCall_1_0; }
+		//Condition:
+		//	'[' condition=UnescapedString ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'[' condition=UnescapedString ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//condition=UnescapedString
+		public Assignment getConditionAssignment_1() { return cConditionAssignment_1; }
+		
+		//UnescapedString
+		public RuleCall getConditionUnescapedStringParserRuleCall_1_0() { return cConditionUnescapedStringParserRuleCall_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+	}
+	public class OrderedFragmentContainerWithConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerWithCondition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cConditionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cConditionConditionParserRuleCall_0_0 = (RuleCall)cConditionAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Assignment cFragmentsAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cFragmentsFragmentParserRuleCall_1_0_1_0 = (RuleCall)cFragmentsAssignment_1_0_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_0_2 = (Keyword)cGroup_1_0.eContents().get(2);
+		private final Assignment cFragmentsAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cFragmentsFragmentParserRuleCall_1_1_0 = (RuleCall)cFragmentsAssignment_1_1.eContents().get(0);
+		
+		//OrderedFragmentContainerWithCondition OrderedFragmentContainer:
+		//	condition=Condition ('{' fragments+=Fragment+ '}' | fragments+=Fragment);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//condition=Condition ('{' fragments+=Fragment+ '}' | fragments+=Fragment)
+		public Group getGroup() { return cGroup; }
+		
+		//condition=Condition
+		public Assignment getConditionAssignment_0() { return cConditionAssignment_0; }
+		
+		//Condition
+		public RuleCall getConditionConditionParserRuleCall_0_0() { return cConditionConditionParserRuleCall_0_0; }
+		
+		//'{' fragments+=Fragment+ '}' | fragments+=Fragment
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'{' fragments+=Fragment+ '}'
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1_0_0() { return cLeftCurlyBracketKeyword_1_0_0; }
+		
+		//fragments+=Fragment+
+		public Assignment getFragmentsAssignment_1_0_1() { return cFragmentsAssignment_1_0_1; }
+		
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_1_0_1_0() { return cFragmentsFragmentParserRuleCall_1_0_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_1_0_2() { return cRightCurlyBracketKeyword_1_0_2; }
+		
+		//fragments+=Fragment
+		public Assignment getFragmentsAssignment_1_1() { return cFragmentsAssignment_1_1; }
+		
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_1_1_0() { return cFragmentsFragmentParserRuleCall_1_1_0; }
+	}
+	public class OrderedFragmentContainerWithConditionMandatoryBracketsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerWithConditionMandatoryBrackets");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cConditionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cConditionConditionParserRuleCall_0_0 = (RuleCall)cConditionAssignment_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cFragmentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cFragmentsFragmentParserRuleCall_2_0 = (RuleCall)cFragmentsAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//OrderedFragmentContainerWithConditionMandatoryBrackets OrderedFragmentContainer:
+		//	condition=Condition '{' fragments+=Fragment+ '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//condition=Condition '{' fragments+=Fragment+ '}'
+		public Group getGroup() { return cGroup; }
+		
+		//condition=Condition
+		public Assignment getConditionAssignment_0() { return cConditionAssignment_0; }
+		
+		//Condition
+		public RuleCall getConditionConditionParserRuleCall_0_0() { return cConditionConditionParserRuleCall_0_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//fragments+=Fragment+
+		public Assignment getFragmentsAssignment_2() { return cFragmentsAssignment_2; }
+		
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_2_0() { return cFragmentsFragmentParserRuleCall_2_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class MessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Message");
@@ -338,21 +503,26 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCreateMessageParserRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
 		private final RuleCall cDestructionMessageParserRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cNumKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOrderAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOrderOrderParserRuleCall_1_1_0 = (RuleCall)cOrderAssignment_1_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cTimeConstraintAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTimeConstraintTimeConstraintParserRuleCall_2_0 = (RuleCall)cTimeConstraintAssignment_2.eContents().get(0);
+		private final Keyword cAsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cAliasAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cAliasIDTerminalRuleCall_1_1_0 = (RuleCall)cAliasAssignment_1_1.eContents().get(0);
+		private final Assignment cSendEventAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSendEventImplicitSendOccurenceSpecificationParserRuleCall_2_0 = (RuleCall)cSendEventAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cArrivalEventAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cArrivalEventExplicitArrivalOccurenceReferenceParserRuleCall_3_0_0 = (RuleCall)cArrivalEventAssignment_3_0.eContents().get(0);
+		private final Assignment cArrivalEventAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cArrivalEventImplicitArrivalOccurenceSpecificationParserRuleCall_3_1_0 = (RuleCall)cArrivalEventAssignment_3_1.eContents().get(0);
 		
 		//Message:
-		//	(StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage) ('num['
-		//	order=Order ']')?
-		//	timeConstraint=TimeConstraint?;
+		//	(StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage) ('as' alias=ID)?
+		//	sendEvent=ImplicitSendOccurenceSpecification (arrivalEvent=ExplicitArrivalOccurenceReference |
+		//	arrivalEvent=ImplicitArrivalOccurenceSpecification);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage) ('num['
-		//order=Order ']')? timeConstraint=TimeConstraint?
+		//(StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage) ('as' alias=ID)?
+		//sendEvent=ImplicitSendOccurenceSpecification (arrivalEvent=ExplicitArrivalOccurenceReference |
+		//arrivalEvent=ImplicitArrivalOccurenceSpecification)
 		public Group getGroup() { return cGroup; }
 		
 		//StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage
@@ -376,84 +546,96 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//DestructionMessage
 		public RuleCall getDestructionMessageParserRuleCall_0_5() { return cDestructionMessageParserRuleCall_0_5; }
 		
-		//('num[' order=Order ']')?
+		//('as' alias=ID)?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'num['
-		public Keyword getNumKeyword_1_0() { return cNumKeyword_1_0; }
+		//'as'
+		public Keyword getAsKeyword_1_0() { return cAsKeyword_1_0; }
 		
-		//order=Order
-		public Assignment getOrderAssignment_1_1() { return cOrderAssignment_1_1; }
+		//alias=ID
+		public Assignment getAliasAssignment_1_1() { return cAliasAssignment_1_1; }
 		
-		//Order
-		public RuleCall getOrderOrderParserRuleCall_1_1_0() { return cOrderOrderParserRuleCall_1_1_0; }
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_1_1_0() { return cAliasIDTerminalRuleCall_1_1_0; }
 		
-		//']'
-		public Keyword getRightSquareBracketKeyword_1_2() { return cRightSquareBracketKeyword_1_2; }
+		//sendEvent=ImplicitSendOccurenceSpecification
+		public Assignment getSendEventAssignment_2() { return cSendEventAssignment_2; }
 		
-		//timeConstraint=TimeConstraint?
-		public Assignment getTimeConstraintAssignment_2() { return cTimeConstraintAssignment_2; }
+		//ImplicitSendOccurenceSpecification
+		public RuleCall getSendEventImplicitSendOccurenceSpecificationParserRuleCall_2_0() { return cSendEventImplicitSendOccurenceSpecificationParserRuleCall_2_0; }
 		
-		//TimeConstraint
-		public RuleCall getTimeConstraintTimeConstraintParserRuleCall_2_0() { return cTimeConstraintTimeConstraintParserRuleCall_2_0; }
+		//arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//arrivalEvent=ExplicitArrivalOccurenceReference
+		public Assignment getArrivalEventAssignment_3_0() { return cArrivalEventAssignment_3_0; }
+		
+		//ExplicitArrivalOccurenceReference
+		public RuleCall getArrivalEventExplicitArrivalOccurenceReferenceParserRuleCall_3_0_0() { return cArrivalEventExplicitArrivalOccurenceReferenceParserRuleCall_3_0_0; }
+		
+		//arrivalEvent=ImplicitArrivalOccurenceSpecification
+		public Assignment getArrivalEventAssignment_3_1() { return cArrivalEventAssignment_3_1; }
+		
+		//ImplicitArrivalOccurenceSpecification
+		public RuleCall getArrivalEventImplicitArrivalOccurenceSpecificationParserRuleCall_3_1_0() { return cArrivalEventImplicitArrivalOccurenceSpecificationParserRuleCall_3_1_0; }
 	}
-	public class TimeConstraintElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.TimeConstraint");
+	public class ExplicitArrivalOccurenceReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.ExplicitArrivalOccurenceReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTimeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cConstraintsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cConstraintsInnerTimeConstraintParserRuleCall_1_0 = (RuleCall)cConstraintsAssignment_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cArrivesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOccurenceSpecificationAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cOccurenceSpecificationExplicitArrivalOccurenceSpecificationCrossReference_2_0 = (CrossReference)cOccurenceSpecificationAssignment_2.eContents().get(0);
+		private final RuleCall cOccurenceSpecificationExplicitArrivalOccurenceSpecificationIDTerminalRuleCall_2_0_1 = (RuleCall)cOccurenceSpecificationExplicitArrivalOccurenceSpecificationCrossReference_2_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//TimeConstraint:
-		//	'time[' constraints+=InnerTimeConstraint+ ']';
+		//ExplicitArrivalOccurenceReference:
+		//	'arrives' '[' occurenceSpecification=[ExplicitArrivalOccurenceSpecification] ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'time[' constraints+=InnerTimeConstraint+ ']'
+		//'arrives' '[' occurenceSpecification=[ExplicitArrivalOccurenceSpecification] ']'
 		public Group getGroup() { return cGroup; }
 		
-		//'time['
-		public Keyword getTimeKeyword_0() { return cTimeKeyword_0; }
+		//'arrives'
+		public Keyword getArrivesKeyword_0() { return cArrivesKeyword_0; }
 		
-		//constraints+=InnerTimeConstraint+
-		public Assignment getConstraintsAssignment_1() { return cConstraintsAssignment_1; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//InnerTimeConstraint
-		public RuleCall getConstraintsInnerTimeConstraintParserRuleCall_1_0() { return cConstraintsInnerTimeConstraintParserRuleCall_1_0; }
+		//occurenceSpecification=[ExplicitArrivalOccurenceSpecification]
+		public Assignment getOccurenceSpecificationAssignment_2() { return cOccurenceSpecificationAssignment_2; }
+		
+		//[ExplicitArrivalOccurenceSpecification]
+		public CrossReference getOccurenceSpecificationExplicitArrivalOccurenceSpecificationCrossReference_2_0() { return cOccurenceSpecificationExplicitArrivalOccurenceSpecificationCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getOccurenceSpecificationExplicitArrivalOccurenceSpecificationIDTerminalRuleCall_2_0_1() { return cOccurenceSpecificationExplicitArrivalOccurenceSpecificationIDTerminalRuleCall_2_0_1; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
-	public class InnerTimeConstraintElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.InnerTimeConstraint");
+	public class ExplicitArrivalOccurenceSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.ExplicitArrivalOccurenceSpecification");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeTimeConstraintTypeEnumRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cValueSTRINGTerminalRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final Keyword cArrivalKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//InnerTimeConstraint:
-		//	type=TimeConstraintType '=' value=STRING;
+		//ExplicitArrivalOccurenceSpecification:
+		//	'arrival' name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type=TimeConstraintType '=' value=STRING
+		//'arrival' name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//type=TimeConstraintType
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//'arrival'
+		public Keyword getArrivalKeyword_0() { return cArrivalKeyword_0; }
 		
-		//TimeConstraintType
-		public RuleCall getTypeTimeConstraintTypeEnumRuleCall_0_0() { return cTypeTimeConstraintTypeEnumRuleCall_0_0; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//'='
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
-		
-		//value=STRING
-		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
-		
-		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_2_0() { return cValueSTRINGTerminalRuleCall_2_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class StandardMessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.StandardMessage");
@@ -609,7 +791,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightActorFQNParserRuleCall_6_0_1 = (RuleCall)cRightActorCrossReference_6_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
-		//FoundMessage:
+		//FoundMessage StandardMessage:
 		//	'found' type=MessageType name=UnescapedString '(' '_' ',' right=[Actor|FQN] ')';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -656,8 +838,14 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.LostMessage");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLostKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeMessageTypeEnumRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cReplyKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Action cResponseMessageAction_1_0_1 = (Action)cGroup_1_0.eContents().get(1);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Action cStandardMessageAction_1_1_0 = (Action)cGroup_1_1.eContents().get(0);
+		private final Assignment cTypeAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cTypeMessageTypeEnumRuleCall_1_1_1_0 = (RuleCall)cTypeAssignment_1_1_1.eContents().get(0);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameUnescapedStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -668,21 +856,41 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword c_Keyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cRightParenthesisKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
-		//LostMessage:
-		//	'lost' type=MessageType name=UnescapedString '(' left=[Actor|FQN] ',' '_' ')';
+		//LostMessage Message:
+		//	'lost' ('reply' {ResponseMessage} | {StandardMessage} type=MessageType) name=UnescapedString '(' left=[Actor|FQN] ','
+		//	'_' ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'lost' type=MessageType name=UnescapedString '(' left=[Actor|FQN] ',' '_' ')'
+		//'lost' ('reply' {ResponseMessage} | {StandardMessage} type=MessageType) name=UnescapedString '(' left=[Actor|FQN] ','
+		//'_' ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'lost'
 		public Keyword getLostKeyword_0() { return cLostKeyword_0; }
 		
+		//'reply' {ResponseMessage} | {StandardMessage} type=MessageType
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'reply' {ResponseMessage}
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//'reply'
+		public Keyword getReplyKeyword_1_0_0() { return cReplyKeyword_1_0_0; }
+		
+		//{ResponseMessage}
+		public Action getResponseMessageAction_1_0_1() { return cResponseMessageAction_1_0_1; }
+		
+		//{StandardMessage} type=MessageType
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//{StandardMessage}
+		public Action getStandardMessageAction_1_1_0() { return cStandardMessageAction_1_1_0; }
+		
 		//type=MessageType
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		public Assignment getTypeAssignment_1_1_1() { return cTypeAssignment_1_1_1; }
 		
 		//MessageType
-		public RuleCall getTypeMessageTypeEnumRuleCall_1_0() { return cTypeMessageTypeEnumRuleCall_1_0; }
+		public RuleCall getTypeMessageTypeEnumRuleCall_1_1_1_0() { return cTypeMessageTypeEnumRuleCall_1_1_1_0; }
 		
 		//name=UnescapedString
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -831,14 +1039,22 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class OccurenceSpecificationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OccurenceSpecification");
-		private final RuleCall cDestructionOccurenceSpecificationParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cDestructionOccurenceSpecificationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cExplicitArrivalOccurenceSpecificationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//OccurenceSpecification:
-		//	DestructionOccurenceSpecification;
+		//	DestructionOccurenceSpecification | ExplicitArrivalOccurenceSpecification;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//DestructionOccurenceSpecification | ExplicitArrivalOccurenceSpecification
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//DestructionOccurenceSpecification
-		public RuleCall getDestructionOccurenceSpecificationParserRuleCall() { return cDestructionOccurenceSpecificationParserRuleCall; }
+		public RuleCall getDestructionOccurenceSpecificationParserRuleCall_0() { return cDestructionOccurenceSpecificationParserRuleCall_0; }
+		
+		//ExplicitArrivalOccurenceSpecification
+		public RuleCall getExplicitArrivalOccurenceSpecificationParserRuleCall_1() { return cExplicitArrivalOccurenceSpecificationParserRuleCall_1; }
 	}
 	public class DestructionOccurenceSpecificationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.DestructionOccurenceSpecification");
@@ -870,117 +1086,78 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	public class CombinedFragmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.CombinedFragment");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cAlternativeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cOptionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cParallelParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cCriticalParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cLoopParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cMultipleRegionContainerParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSingleRegionContainerParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//CombinedFragment:
-		//	Alternative | Option | Parallel | Critical | Loop //| Timed
-		//;
+		//	MultipleRegionContainer | SingleRegionContainer;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Alternative | Option | Parallel | Critical | Loop
+		//MultipleRegionContainer | SingleRegionContainer
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//Alternative
-		public RuleCall getAlternativeParserRuleCall_0() { return cAlternativeParserRuleCall_0; }
+		//MultipleRegionContainer
+		public RuleCall getMultipleRegionContainerParserRuleCall_0() { return cMultipleRegionContainerParserRuleCall_0; }
+		
+		//SingleRegionContainer
+		public RuleCall getSingleRegionContainerParserRuleCall_1() { return cSingleRegionContainerParserRuleCall_1; }
+	}
+	public class SingleRegionContainerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.SingleRegionContainer");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cLoopParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cOptionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cCriticalParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//SingleRegionContainer:
+		//	Loop | Option | Critical;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Loop | Option | Critical
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Loop
+		public RuleCall getLoopParserRuleCall_0() { return cLoopParserRuleCall_0; }
 		
 		//Option
 		public RuleCall getOptionParserRuleCall_1() { return cOptionParserRuleCall_1; }
 		
-		//Parallel
-		public RuleCall getParallelParserRuleCall_2() { return cParallelParserRuleCall_2; }
-		
 		//Critical
-		public RuleCall getCriticalParserRuleCall_3() { return cCriticalParserRuleCall_3; }
-		
-		//Loop
-		public RuleCall getLoopParserRuleCall_4() { return cLoopParserRuleCall_4; }
+		public RuleCall getCriticalParserRuleCall_2() { return cCriticalParserRuleCall_2; }
 	}
-	public class AlternativeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Alternative");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cAltKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cAlternativesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAlternativesBehaviorFragmentsWithConditionParserRuleCall_2_0 = (RuleCall)cAlternativesAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+	public class MultipleRegionContainerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.MultipleRegionContainer");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cParallelParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAlternativeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//Alternative:
-		//	'alt' '{'
-		//	alternatives+=BehaviorFragmentsWithCondition+
-		//	'}';
+		//MultipleRegionContainer:
+		//	Parallel | Alternative;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'alt' '{' alternatives+=BehaviorFragmentsWithCondition+ '}'
-		public Group getGroup() { return cGroup; }
+		//Parallel | Alternative
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'alt'
-		public Keyword getAltKeyword_0() { return cAltKeyword_0; }
+		//Parallel
+		public RuleCall getParallelParserRuleCall_0() { return cParallelParserRuleCall_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//alternatives+=BehaviorFragmentsWithCondition+
-		public Assignment getAlternativesAssignment_2() { return cAlternativesAssignment_2; }
-		
-		//BehaviorFragmentsWithCondition
-		public RuleCall getAlternativesBehaviorFragmentsWithConditionParserRuleCall_2_0() { return cAlternativesBehaviorFragmentsWithConditionParserRuleCall_2_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-	}
-	public class OptionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Option");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cOptKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOptionalAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOptionalBehaviorFragmentsWithConditionParserRuleCall_2_0 = (RuleCall)cOptionalAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		
-		//Option:
-		//	'opt' '{'
-		//	optional+=BehaviorFragmentsWithCondition
-		//	'}';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'opt' '{' optional+=BehaviorFragmentsWithCondition '}'
-		public Group getGroup() { return cGroup; }
-		
-		//'opt'
-		public Keyword getOptKeyword_0() { return cOptKeyword_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
-		//optional+=BehaviorFragmentsWithCondition
-		public Assignment getOptionalAssignment_2() { return cOptionalAssignment_2; }
-		
-		//BehaviorFragmentsWithCondition
-		public RuleCall getOptionalBehaviorFragmentsWithConditionParserRuleCall_2_0() { return cOptionalBehaviorFragmentsWithConditionParserRuleCall_2_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		//Alternative
+		public RuleCall getAlternativeParserRuleCall_1() { return cAlternativeParserRuleCall_1; }
 	}
 	public class ParallelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Parallel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cParKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cParallelsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cParallelsBehaviorFragmentsParserRuleCall_2_0 = (RuleCall)cParallelsAssignment_2.eContents().get(0);
+		private final Assignment cRegionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRegionsOrderedFragmentContainerParserRuleCall_2_0 = (RuleCall)cRegionsAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Parallel:
-		//	'par' '{'
-		//	parallels+=BehaviorFragments+
-		//	'}';
+		//	'par' '{' regions+=OrderedFragmentContainer+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'par' '{' parallels+=BehaviorFragments+ '}'
+		//'par' '{' regions+=OrderedFragmentContainer+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'par'
@@ -989,44 +1166,42 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//parallels+=BehaviorFragments+
-		public Assignment getParallelsAssignment_2() { return cParallelsAssignment_2; }
+		//regions+=OrderedFragmentContainer+
+		public Assignment getRegionsAssignment_2() { return cRegionsAssignment_2; }
 		
-		//BehaviorFragments
-		public RuleCall getParallelsBehaviorFragmentsParserRuleCall_2_0() { return cParallelsBehaviorFragmentsParserRuleCall_2_0; }
+		//OrderedFragmentContainer
+		public RuleCall getRegionsOrderedFragmentContainerParserRuleCall_2_0() { return cRegionsOrderedFragmentContainerParserRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
-	public class CriticalElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Critical");
+	public class AlternativeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Alternative");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cCriticalKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cAltKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cFragmentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_2_0 = (RuleCall)cFragmentsAssignment_2.eContents().get(0);
+		private final Assignment cRegionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRegionsOrderedFragmentContainerWithConditionParserRuleCall_2_0 = (RuleCall)cRegionsAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//Critical:
-		//	'critical' '{'
-		//	fragments+=BehaviorFragment+
-		//	'}';
+		//Alternative:
+		//	'alt' '{' regions+=OrderedFragmentContainerWithCondition+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'critical' '{' fragments+=BehaviorFragment+ '}'
+		//'alt' '{' regions+=OrderedFragmentContainerWithCondition+ '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'critical'
-		public Keyword getCriticalKeyword_0() { return cCriticalKeyword_0; }
+		//'alt'
+		public Keyword getAltKeyword_0() { return cAltKeyword_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//fragments+=BehaviorFragment+
-		public Assignment getFragmentsAssignment_2() { return cFragmentsAssignment_2; }
+		//regions+=OrderedFragmentContainerWithCondition+
+		public Assignment getRegionsAssignment_2() { return cRegionsAssignment_2; }
 		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_2_0() { return cFragmentsBehaviorFragmentParserRuleCall_2_0; }
+		//OrderedFragmentContainerWithCondition
+		public RuleCall getRegionsOrderedFragmentContainerWithConditionParserRuleCall_2_0() { return cRegionsOrderedFragmentContainerWithConditionParserRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -1035,146 +1210,473 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Loop");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLoopKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cConditionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cConditionSTRINGTerminalRuleCall_2_0 = (RuleCall)cConditionAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cFragmentsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_5_0 = (RuleCall)cFragmentsAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cRegionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0 = (RuleCall)cRegionAssignment_1.eContents().get(0);
 		
 		//Loop:
-		//	'loop' '[' condition=STRING ']' '{'
-		//	fragments+=BehaviorFragment+
-		//	'}';
+		//	'loop' region=OrderedFragmentContainerWithConditionMandatoryBrackets;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'loop' '[' condition=STRING ']' '{' fragments+=BehaviorFragment+ '}'
+		//'loop' region=OrderedFragmentContainerWithConditionMandatoryBrackets
 		public Group getGroup() { return cGroup; }
 		
 		//'loop'
 		public Keyword getLoopKeyword_0() { return cLoopKeyword_0; }
 		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		//region=OrderedFragmentContainerWithConditionMandatoryBrackets
+		public Assignment getRegionAssignment_1() { return cRegionAssignment_1; }
 		
-		//condition=STRING
-		public Assignment getConditionAssignment_2() { return cConditionAssignment_2; }
-		
-		//STRING
-		public RuleCall getConditionSTRINGTerminalRuleCall_2_0() { return cConditionSTRINGTerminalRuleCall_2_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
-		
-		//fragments+=BehaviorFragment+
-		public Assignment getFragmentsAssignment_5() { return cFragmentsAssignment_5; }
-		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_5_0() { return cFragmentsBehaviorFragmentParserRuleCall_5_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		//OrderedFragmentContainerWithConditionMandatoryBrackets
+		public RuleCall getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0() { return cRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0; }
 	}
-	public class TimedElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Timed");
+	public class OptionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Option");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cConstraintAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cConstraintTimeConstraintParserRuleCall_0_0 = (RuleCall)cConstraintAssignment_0.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cFragmentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_2_0 = (RuleCall)cFragmentsAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cOptKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cRegionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0 = (RuleCall)cRegionAssignment_1.eContents().get(0);
 		
-		//Timed:
-		//	constraint=TimeConstraint '{'
-		//	fragments+=BehaviorFragment+
-		//	'}';
+		//Option:
+		//	'opt' region=OrderedFragmentContainerWithConditionMandatoryBrackets;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//constraint=TimeConstraint '{' fragments+=BehaviorFragment+ '}'
+		//'opt' region=OrderedFragmentContainerWithConditionMandatoryBrackets
 		public Group getGroup() { return cGroup; }
 		
-		//constraint=TimeConstraint
-		public Assignment getConstraintAssignment_0() { return cConstraintAssignment_0; }
+		//'opt'
+		public Keyword getOptKeyword_0() { return cOptKeyword_0; }
 		
-		//TimeConstraint
-		public RuleCall getConstraintTimeConstraintParserRuleCall_0_0() { return cConstraintTimeConstraintParserRuleCall_0_0; }
+		//region=OrderedFragmentContainerWithConditionMandatoryBrackets
+		public Assignment getRegionAssignment_1() { return cRegionAssignment_1; }
+		
+		//OrderedFragmentContainerWithConditionMandatoryBrackets
+		public RuleCall getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0() { return cRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0; }
+	}
+	public class CriticalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Critical");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCriticalKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRegionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRegionOneOrMultipleFragmentsParserRuleCall_2_0 = (RuleCall)cRegionAssignment_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Critical:
+		//	'critical' '{' region=OneOrMultipleFragments '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'critical' '{' region=OneOrMultipleFragments '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'critical'
+		public Keyword getCriticalKeyword_0() { return cCriticalKeyword_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//fragments+=BehaviorFragment+
-		public Assignment getFragmentsAssignment_2() { return cFragmentsAssignment_2; }
+		//region=OneOrMultipleFragments
+		public Assignment getRegionAssignment_2() { return cRegionAssignment_2; }
 		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_2_0() { return cFragmentsBehaviorFragmentParserRuleCall_2_0; }
+		//OneOrMultipleFragments
+		public RuleCall getRegionOneOrMultipleFragmentsParserRuleCall_2_0() { return cRegionOneOrMultipleFragmentsParserRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
-	public class BehaviorFragmentsWithConditionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.BehaviorFragmentsWithCondition");
+	public class ReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Reference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cConditionSTRINGTerminalRuleCall_1_0 = (RuleCall)cConditionAssignment_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
-		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3_0_0 = (Keyword)cGroup_3_0.eContents().get(0);
-		private final Assignment cFragmentsAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_3_0_1_0 = (RuleCall)cFragmentsAssignment_3_0_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3_0_2 = (Keyword)cGroup_3_0.eContents().get(2);
-		private final Assignment cFragmentsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final RuleCall cFragmentsBehaviorFragmentParserRuleCall_3_1_0 = (RuleCall)cFragmentsAssignment_3_1.eContents().get(0);
+		private final Keyword cRefKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cReferenceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cReferenceInteractionCrossReference_1_0 = (CrossReference)cReferenceAssignment_1.eContents().get(0);
+		private final RuleCall cReferenceInteractionFQNParserRuleCall_1_0_1 = (RuleCall)cReferenceInteractionCrossReference_1_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cAsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cAliasAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cAliasIDTerminalRuleCall_2_1_0 = (RuleCall)cAliasAssignment_2_1.eContents().get(0);
 		
-		//BehaviorFragmentsWithCondition:
-		//	'[' condition=STRING ']' ('{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment);
+		//Reference:
+		//	'ref' reference=[uml::Interaction|FQN] ('as' alias=ID)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'[' condition=STRING ']' ('{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment)
+		//'ref' reference=[uml::Interaction|FQN] ('as' alias=ID)?
 		public Group getGroup() { return cGroup; }
 		
+		//'ref'
+		public Keyword getRefKeyword_0() { return cRefKeyword_0; }
+		
+		//reference=[uml::Interaction|FQN]
+		public Assignment getReferenceAssignment_1() { return cReferenceAssignment_1; }
+		
+		//[uml::Interaction|FQN]
+		public CrossReference getReferenceInteractionCrossReference_1_0() { return cReferenceInteractionCrossReference_1_0; }
+		
+		//FQN
+		public RuleCall getReferenceInteractionFQNParserRuleCall_1_0_1() { return cReferenceInteractionFQNParserRuleCall_1_0_1; }
+		
+		//('as' alias=ID)?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'as'
+		public Keyword getAsKeyword_2_0() { return cAsKeyword_2_0; }
+		
+		//alias=ID
+		public Assignment getAliasAssignment_2_1() { return cAliasAssignment_2_1; }
+		
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_2_1_0() { return cAliasIDTerminalRuleCall_2_1_0; }
+	}
+	public class ConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Constraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCstrKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cTimeConstraintParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cDurationConstraintParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		
+		//Constraint:
+		//	'cstr' (TimeConstraint | DurationConstraint);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'cstr' (TimeConstraint | DurationConstraint)
+		public Group getGroup() { return cGroup; }
+		
+		//'cstr'
+		public Keyword getCstrKeyword_0() { return cCstrKeyword_0; }
+		
+		//TimeConstraint | DurationConstraint
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//TimeConstraint
+		public RuleCall getTimeConstraintParserRuleCall_1_0() { return cTimeConstraintParserRuleCall_1_0; }
+		
+		//DurationConstraint
+		public RuleCall getDurationConstraintParserRuleCall_1_1() { return cDurationConstraintParserRuleCall_1_1; }
+	}
+	public class TimeConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.TimeConstraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cEventAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cEventPointInTimeSelectorParserRuleCall_1_0 = (RuleCall)cEventAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cTKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTimeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTimeUnescapedStringParserRuleCall_5_0 = (RuleCall)cTimeAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//TimeConstraint:
+		//	'(' event=PointInTimeSelector ')' 't' '[' time=UnescapedString ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' event=PointInTimeSelector ')' 't' '[' time=UnescapedString ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//event=PointInTimeSelector
+		public Assignment getEventAssignment_1() { return cEventAssignment_1; }
+		
+		//PointInTimeSelector
+		public RuleCall getEventPointInTimeSelectorParserRuleCall_1_0() { return cEventPointInTimeSelectorParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+		
+		//'t'
+		public Keyword getTKeyword_3() { return cTKeyword_3; }
+		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
 		
-		//condition=STRING
-		public Assignment getConditionAssignment_1() { return cConditionAssignment_1; }
+		//time=UnescapedString
+		public Assignment getTimeAssignment_5() { return cTimeAssignment_5; }
 		
-		//STRING
-		public RuleCall getConditionSTRINGTerminalRuleCall_1_0() { return cConditionSTRINGTerminalRuleCall_1_0; }
+		//UnescapedString
+		public RuleCall getTimeUnescapedStringParserRuleCall_5_0() { return cTimeUnescapedStringParserRuleCall_5_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+	}
+	public class DurationConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.DurationConstraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIntervalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIntervalTimeIntervalSelectorParserRuleCall_1_0 = (RuleCall)cIntervalAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cDKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDurationAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDurationUnescapedStringParserRuleCall_5_0 = (RuleCall)cDurationAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
-		//'{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment
-		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		//DurationConstraint:
+		//	'(' interval=TimeIntervalSelector ')' 'd' '[' duration=UnescapedString ']';
+		@Override public ParserRule getRule() { return rule; }
 		
-		//'{' fragments+=BehaviorFragment+ '}'
-		public Group getGroup_3_0() { return cGroup_3_0; }
+		//'(' interval=TimeIntervalSelector ')' 'd' '[' duration=UnescapedString ']'
+		public Group getGroup() { return cGroup; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_3_0_0() { return cLeftCurlyBracketKeyword_3_0_0; }
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 		
-		//fragments+=BehaviorFragment+
-		public Assignment getFragmentsAssignment_3_0_1() { return cFragmentsAssignment_3_0_1; }
+		//interval=TimeIntervalSelector
+		public Assignment getIntervalAssignment_1() { return cIntervalAssignment_1; }
 		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_3_0_1_0() { return cFragmentsBehaviorFragmentParserRuleCall_3_0_1_0; }
+		//TimeIntervalSelector
+		public RuleCall getIntervalTimeIntervalSelectorParserRuleCall_1_0() { return cIntervalTimeIntervalSelectorParserRuleCall_1_0; }
 		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3_0_2() { return cRightCurlyBracketKeyword_3_0_2; }
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 		
-		//fragments+=BehaviorFragment
-		public Assignment getFragmentsAssignment_3_1() { return cFragmentsAssignment_3_1; }
+		//'d'
+		public Keyword getDKeyword_3() { return cDKeyword_3; }
 		
-		//BehaviorFragment
-		public RuleCall getFragmentsBehaviorFragmentParserRuleCall_3_1_0() { return cFragmentsBehaviorFragmentParserRuleCall_3_1_0; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+		
+		//duration=UnescapedString
+		public Assignment getDurationAssignment_5() { return cDurationAssignment_5; }
+		
+		//UnescapedString
+		public RuleCall getDurationUnescapedStringParserRuleCall_5_0() { return cDurationUnescapedStringParserRuleCall_5_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+	}
+	public class ObservationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Observation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cObsKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cTimeObservationParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cDurationObservationParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		
+		//Observation:
+		//	'obs' (TimeObservation | DurationObservation);
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'obs' (TimeObservation | DurationObservation)
+		public Group getGroup() { return cGroup; }
+		
+		//'obs'
+		public Keyword getObsKeyword_0() { return cObsKeyword_0; }
+		
+		//TimeObservation | DurationObservation
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//TimeObservation
+		public RuleCall getTimeObservationParserRuleCall_1_0() { return cTimeObservationParserRuleCall_1_0; }
+		
+		//DurationObservation
+		public RuleCall getDurationObservationParserRuleCall_1_1() { return cDurationObservationParserRuleCall_1_1; }
+	}
+	public class TimeObservationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.TimeObservation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cEventAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cEventPointInTimeSelectorParserRuleCall_1_0 = (RuleCall)cEventAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cTKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTimeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTimeUnescapedStringParserRuleCall_5_0 = (RuleCall)cTimeAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//TimeObservation:
+		//	'(' event=PointInTimeSelector ')' 't' '[' time=UnescapedString ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' event=PointInTimeSelector ')' 't' '[' time=UnescapedString ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//event=PointInTimeSelector
+		public Assignment getEventAssignment_1() { return cEventAssignment_1; }
+		
+		//PointInTimeSelector
+		public RuleCall getEventPointInTimeSelectorParserRuleCall_1_0() { return cEventPointInTimeSelectorParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+		
+		//'t'
+		public Keyword getTKeyword_3() { return cTKeyword_3; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+		
+		//time=UnescapedString
+		public Assignment getTimeAssignment_5() { return cTimeAssignment_5; }
+		
+		//UnescapedString
+		public RuleCall getTimeUnescapedStringParserRuleCall_5_0() { return cTimeUnescapedStringParserRuleCall_5_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+	}
+	public class DurationObservationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.DurationObservation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cIntervalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIntervalTimeIntervalSelectorParserRuleCall_1_0 = (RuleCall)cIntervalAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cDKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDurationAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDurationUnescapedStringParserRuleCall_5_0 = (RuleCall)cDurationAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//DurationObservation:
+		//	'(' interval=TimeIntervalSelector ')' 'd' '[' duration=UnescapedString ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'(' interval=TimeIntervalSelector ')' 'd' '[' duration=UnescapedString ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
+		
+		//interval=TimeIntervalSelector
+		public Assignment getIntervalAssignment_1() { return cIntervalAssignment_1; }
+		
+		//TimeIntervalSelector
+		public RuleCall getIntervalTimeIntervalSelectorParserRuleCall_1_0() { return cIntervalTimeIntervalSelectorParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+		
+		//'d'
+		public Keyword getDKeyword_3() { return cDKeyword_3; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+		
+		//duration=UnescapedString
+		public Assignment getDurationAssignment_5() { return cDurationAssignment_5; }
+		
+		//UnescapedString
+		public RuleCall getDurationUnescapedStringParserRuleCall_5_0() { return cDurationUnescapedStringParserRuleCall_5_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+	}
+	public class PointInTimeSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.PointInTimeSelector");
+		private final Assignment cPointInTimeAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cPointInTimeAliasedPointInTimeCrossReference_0 = (CrossReference)cPointInTimeAssignment.eContents().get(0);
+		private final RuleCall cPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1 = (RuleCall)cPointInTimeAliasedPointInTimeCrossReference_0.eContents().get(1);
+		
+		//PointInTimeSelector:
+		//	pointInTime=[AliasedPointInTime|FQN];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//pointInTime=[AliasedPointInTime|FQN]
+		public Assignment getPointInTimeAssignment() { return cPointInTimeAssignment; }
+		
+		//[AliasedPointInTime|FQN]
+		public CrossReference getPointInTimeAliasedPointInTimeCrossReference_0() { return cPointInTimeAliasedPointInTimeCrossReference_0; }
+		
+		//FQN
+		public RuleCall getPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1() { return cPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1; }
+	}
+	public class TimeIntervalSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.TimeIntervalSelector");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cBiPointInTimeTimeIntervalSelectorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFragmentTimeIntervalSelectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//TimeIntervalSelector:
+		//	BiPointInTimeTimeIntervalSelector | FragmentTimeIntervalSelector;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//BiPointInTimeTimeIntervalSelector | FragmentTimeIntervalSelector
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//BiPointInTimeTimeIntervalSelector
+		public RuleCall getBiPointInTimeTimeIntervalSelectorParserRuleCall_0() { return cBiPointInTimeTimeIntervalSelectorParserRuleCall_0; }
+		
+		//FragmentTimeIntervalSelector
+		public RuleCall getFragmentTimeIntervalSelectorParserRuleCall_1() { return cFragmentTimeIntervalSelectorParserRuleCall_1; }
+	}
+	public class BiPointInTimeTimeIntervalSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.BiPointInTimeTimeIntervalSelector");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cStartAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cStartPointInTimeSelectorParserRuleCall_0_0 = (RuleCall)cStartAssignment_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEndPointInTimeSelectorParserRuleCall_2_0 = (RuleCall)cEndAssignment_2.eContents().get(0);
+		
+		//BiPointInTimeTimeIntervalSelector:
+		//	start=PointInTimeSelector ',' end=PointInTimeSelector;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//start=PointInTimeSelector ',' end=PointInTimeSelector
+		public Group getGroup() { return cGroup; }
+		
+		//start=PointInTimeSelector
+		public Assignment getStartAssignment_0() { return cStartAssignment_0; }
+		
+		//PointInTimeSelector
+		public RuleCall getStartPointInTimeSelectorParserRuleCall_0_0() { return cStartPointInTimeSelectorParserRuleCall_0_0; }
+		
+		//','
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
+		
+		//end=PointInTimeSelector
+		public Assignment getEndAssignment_2() { return cEndAssignment_2; }
+		
+		//PointInTimeSelector
+		public RuleCall getEndPointInTimeSelectorParserRuleCall_2_0() { return cEndPointInTimeSelectorParserRuleCall_2_0; }
+	}
+	public class FragmentTimeIntervalSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.FragmentTimeIntervalSelector");
+		private final Assignment cNonInstantaneousFragmentAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cNonInstantaneousFragmentNonInstantaneousFragmentCrossReference_0 = (CrossReference)cNonInstantaneousFragmentAssignment.eContents().get(0);
+		private final RuleCall cNonInstantaneousFragmentNonInstantaneousFragmentFQNParserRuleCall_0_1 = (RuleCall)cNonInstantaneousFragmentNonInstantaneousFragmentCrossReference_0.eContents().get(1);
+		
+		//FragmentTimeIntervalSelector:
+		//	nonInstantaneousFragment=[NonInstantaneousFragment|FQN];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//nonInstantaneousFragment=[NonInstantaneousFragment|FQN]
+		public Assignment getNonInstantaneousFragmentAssignment() { return cNonInstantaneousFragmentAssignment; }
+		
+		//[NonInstantaneousFragment|FQN]
+		public CrossReference getNonInstantaneousFragmentNonInstantaneousFragmentCrossReference_0() { return cNonInstantaneousFragmentNonInstantaneousFragmentCrossReference_0; }
+		
+		//FQN
+		public RuleCall getNonInstantaneousFragmentNonInstantaneousFragmentFQNParserRuleCall_0_1() { return cNonInstantaneousFragmentNonInstantaneousFragmentFQNParserRuleCall_0_1; }
+	}
+	public class ImplicitSendOccurenceSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.ImplicitSendOccurenceSpecification");
+		private final Action cImplicitSendOccurenceSpecificationAction = (Action)rule.eContents().get(1);
+		
+		//ImplicitSendOccurenceSpecification:
+		//	{ImplicitSendOccurenceSpecification};
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ImplicitSendOccurenceSpecification}
+		public Action getImplicitSendOccurenceSpecificationAction() { return cImplicitSendOccurenceSpecificationAction; }
+	}
+	public class ImplicitArrivalOccurenceSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.ImplicitArrivalOccurenceSpecification");
+		private final Action cImplicitArrivalOccurenceSpecificationAction = (Action)rule.eContents().get(1);
+		
+		//ImplicitArrivalOccurenceSpecification:
+		//	{ImplicitArrivalOccurenceSpecification};
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ImplicitArrivalOccurenceSpecification}
+		public Action getImplicitArrivalOccurenceSpecificationAction() { return cImplicitArrivalOccurenceSpecificationAction; }
 	}
 	public class FQNElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.FQN");
@@ -1203,32 +1705,36 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
-	public class OrderElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Order");
+	public class InlineCommentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.InlineComment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cINTTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Keyword cNoteKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBodyCommentBodyParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//Order:
-		//	INT ('.' INT)*;
+		//InlineComment commons::Comment:
+		//	'note' '[' body=CommentBody ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//INT ('.' INT)*
+		//'note' '[' body=CommentBody ']'
 		public Group getGroup() { return cGroup; }
 		
-		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		//'note'
+		public Keyword getNoteKeyword_0() { return cNoteKeyword_0; }
 		
-		//('.' INT)*
-		public Group getGroup_1() { return cGroup_1; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//'.'
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		//body=CommentBody
+		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
 		
-		//INT
-		public RuleCall getINTTerminalRuleCall_1_1() { return cINTTerminalRuleCall_1_1; }
+		//CommentBody
+		public RuleCall getBodyCommentBodyParserRuleCall_2_0() { return cBodyCommentBodyParserRuleCall_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 	public class CommentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Comment");
@@ -1340,62 +1846,21 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//'machine'
 		public Keyword getMACHINEMachineKeyword_1_0() { return cMACHINEMachineKeyword_1_0; }
 	}
-	public class TimeConstraintTypeElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.TimeConstraintType");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cDURATIONEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cDURATIONDKeyword_0_0 = (Keyword)cDURATIONEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cTIMEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cTIMETKeyword_1_0 = (Keyword)cTIMEEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cMAXIMUMEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cMAXIMUMMaxKeyword_2_0 = (Keyword)cMAXIMUMEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cDIFFERENCEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cDIFFERENCEDiffKeyword_3_0 = (Keyword)cDIFFERENCEEnumLiteralDeclaration_3.eContents().get(0);
-		
-		//enum TimeConstraintType:
-		//	DURATION='d'
-		//	| TIME='t'
-		//	| MAXIMUM='max'
-		//	| DIFFERENCE='diff';
-		public EnumRule getRule() { return rule; }
-		
-		//DURATION='d' | TIME='t' | MAXIMUM='max' | DIFFERENCE='diff'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//DURATION='d'
-		public EnumLiteralDeclaration getDURATIONEnumLiteralDeclaration_0() { return cDURATIONEnumLiteralDeclaration_0; }
-		
-		//'d'
-		public Keyword getDURATIONDKeyword_0_0() { return cDURATIONDKeyword_0_0; }
-		
-		//TIME='t'
-		public EnumLiteralDeclaration getTIMEEnumLiteralDeclaration_1() { return cTIMEEnumLiteralDeclaration_1; }
-		
-		//'t'
-		public Keyword getTIMETKeyword_1_0() { return cTIMETKeyword_1_0; }
-		
-		//MAXIMUM='max'
-		public EnumLiteralDeclaration getMAXIMUMEnumLiteralDeclaration_2() { return cMAXIMUMEnumLiteralDeclaration_2; }
-		
-		//'max'
-		public Keyword getMAXIMUMMaxKeyword_2_0() { return cMAXIMUMMaxKeyword_2_0; }
-		
-		//DIFFERENCE='diff'
-		public EnumLiteralDeclaration getDIFFERENCEEnumLiteralDeclaration_3() { return cDIFFERENCEEnumLiteralDeclaration_3; }
-		
-		//'diff'
-		public Keyword getDIFFERENCEDiffKeyword_3_0() { return cDIFFERENCEDiffKeyword_3_0; }
-	}
 	
 	private final SequenceDiagramElements pSequenceDiagram;
 	private final RootPackageElements pRootPackage;
 	private final ActorElements pActor;
 	private final ActorClassifierMappingElements pActorClassifierMapping;
-	private final BehaviorFragmentElements pBehaviorFragment;
-	private final BehaviorFragmentsElements pBehaviorFragments;
+	private final FragmentElements pFragment;
+	private final OneFragmentElements pOneFragment;
+	private final OneOrMultipleFragmentsElements pOneOrMultipleFragments;
+	private final OrderedFragmentContainerElements pOrderedFragmentContainer;
+	private final ConditionElements pCondition;
+	private final OrderedFragmentContainerWithConditionElements pOrderedFragmentContainerWithCondition;
+	private final OrderedFragmentContainerWithConditionMandatoryBracketsElements pOrderedFragmentContainerWithConditionMandatoryBrackets;
 	private final MessageElements pMessage;
-	private final TimeConstraintElements pTimeConstraint;
-	private final InnerTimeConstraintElements pInnerTimeConstraint;
+	private final ExplicitArrivalOccurenceReferenceElements pExplicitArrivalOccurenceReference;
+	private final ExplicitArrivalOccurenceSpecificationElements pExplicitArrivalOccurenceSpecification;
 	private final StandardMessageElements pStandardMessage;
 	private final ResponseMessageElements pResponseMessage;
 	private final FoundMessageElements pFoundMessage;
@@ -1405,21 +1870,33 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	private final OccurenceSpecificationElements pOccurenceSpecification;
 	private final DestructionOccurenceSpecificationElements pDestructionOccurenceSpecification;
 	private final CombinedFragmentElements pCombinedFragment;
-	private final AlternativeElements pAlternative;
-	private final OptionElements pOption;
+	private final SingleRegionContainerElements pSingleRegionContainer;
+	private final MultipleRegionContainerElements pMultipleRegionContainer;
 	private final ParallelElements pParallel;
-	private final CriticalElements pCritical;
+	private final AlternativeElements pAlternative;
 	private final LoopElements pLoop;
-	private final TimedElements pTimed;
-	private final BehaviorFragmentsWithConditionElements pBehaviorFragmentsWithCondition;
+	private final OptionElements pOption;
+	private final CriticalElements pCritical;
+	private final ReferenceElements pReference;
+	private final ConstraintElements pConstraint;
+	private final TimeConstraintElements pTimeConstraint;
+	private final DurationConstraintElements pDurationConstraint;
+	private final ObservationElements pObservation;
+	private final TimeObservationElements pTimeObservation;
+	private final DurationObservationElements pDurationObservation;
+	private final PointInTimeSelectorElements pPointInTimeSelector;
+	private final TimeIntervalSelectorElements pTimeIntervalSelector;
+	private final BiPointInTimeTimeIntervalSelectorElements pBiPointInTimeTimeIntervalSelector;
+	private final FragmentTimeIntervalSelectorElements pFragmentTimeIntervalSelector;
+	private final ImplicitSendOccurenceSpecificationElements pImplicitSendOccurenceSpecification;
+	private final ImplicitArrivalOccurenceSpecificationElements pImplicitArrivalOccurenceSpecification;
 	private final FQNElements pFQN;
-	private final OrderElements pOrder;
+	private final InlineCommentElements pInlineComment;
 	private final CommentElements pComment;
 	private final CommentBodyElements pCommentBody;
 	private final UnescapedStringElements pUnescapedString;
 	private final MessageTypeElements eMessageType;
 	private final ActorTypeElements eActorType;
-	private final TimeConstraintTypeElements eTimeConstraintType;
 	
 	private final Grammar grammar;
 	
@@ -1434,11 +1911,16 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		this.pRootPackage = new RootPackageElements();
 		this.pActor = new ActorElements();
 		this.pActorClassifierMapping = new ActorClassifierMappingElements();
-		this.pBehaviorFragment = new BehaviorFragmentElements();
-		this.pBehaviorFragments = new BehaviorFragmentsElements();
+		this.pFragment = new FragmentElements();
+		this.pOneFragment = new OneFragmentElements();
+		this.pOneOrMultipleFragments = new OneOrMultipleFragmentsElements();
+		this.pOrderedFragmentContainer = new OrderedFragmentContainerElements();
+		this.pCondition = new ConditionElements();
+		this.pOrderedFragmentContainerWithCondition = new OrderedFragmentContainerWithConditionElements();
+		this.pOrderedFragmentContainerWithConditionMandatoryBrackets = new OrderedFragmentContainerWithConditionMandatoryBracketsElements();
 		this.pMessage = new MessageElements();
-		this.pTimeConstraint = new TimeConstraintElements();
-		this.pInnerTimeConstraint = new InnerTimeConstraintElements();
+		this.pExplicitArrivalOccurenceReference = new ExplicitArrivalOccurenceReferenceElements();
+		this.pExplicitArrivalOccurenceSpecification = new ExplicitArrivalOccurenceSpecificationElements();
 		this.pStandardMessage = new StandardMessageElements();
 		this.pResponseMessage = new ResponseMessageElements();
 		this.pFoundMessage = new FoundMessageElements();
@@ -1448,21 +1930,33 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		this.pOccurenceSpecification = new OccurenceSpecificationElements();
 		this.pDestructionOccurenceSpecification = new DestructionOccurenceSpecificationElements();
 		this.pCombinedFragment = new CombinedFragmentElements();
-		this.pAlternative = new AlternativeElements();
-		this.pOption = new OptionElements();
+		this.pSingleRegionContainer = new SingleRegionContainerElements();
+		this.pMultipleRegionContainer = new MultipleRegionContainerElements();
 		this.pParallel = new ParallelElements();
-		this.pCritical = new CriticalElements();
+		this.pAlternative = new AlternativeElements();
 		this.pLoop = new LoopElements();
-		this.pTimed = new TimedElements();
-		this.pBehaviorFragmentsWithCondition = new BehaviorFragmentsWithConditionElements();
+		this.pOption = new OptionElements();
+		this.pCritical = new CriticalElements();
+		this.pReference = new ReferenceElements();
+		this.pConstraint = new ConstraintElements();
+		this.pTimeConstraint = new TimeConstraintElements();
+		this.pDurationConstraint = new DurationConstraintElements();
+		this.pObservation = new ObservationElements();
+		this.pTimeObservation = new TimeObservationElements();
+		this.pDurationObservation = new DurationObservationElements();
+		this.pPointInTimeSelector = new PointInTimeSelectorElements();
+		this.pTimeIntervalSelector = new TimeIntervalSelectorElements();
+		this.pBiPointInTimeTimeIntervalSelector = new BiPointInTimeTimeIntervalSelectorElements();
+		this.pFragmentTimeIntervalSelector = new FragmentTimeIntervalSelectorElements();
+		this.pImplicitSendOccurenceSpecification = new ImplicitSendOccurenceSpecificationElements();
+		this.pImplicitArrivalOccurenceSpecification = new ImplicitArrivalOccurenceSpecificationElements();
 		this.pFQN = new FQNElements();
-		this.pOrder = new OrderElements();
+		this.pInlineComment = new InlineCommentElements();
 		this.pComment = new CommentElements();
 		this.pCommentBody = new CommentBodyElements();
 		this.pUnescapedString = new UnescapedStringElements();
 		this.eMessageType = new MessageTypeElements();
 		this.eActorType = new ActorTypeElements();
-		this.eTimeConstraintType = new TimeConstraintTypeElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1497,7 +1991,8 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	//	'@start-seqd' title=STRING
 	//	rootPackage=RootPackage
 	//	actors+=Actor*
-	//	behaviorFragments+=BehaviorFragment*
+	//	fragments+=Fragment*
+	//	fragments+=(Constraint | Observation)*
 	//	'@end-seqd';
 	public SequenceDiagramElements getSequenceDiagramAccess() {
 		return pSequenceDiagram;
@@ -1519,8 +2014,8 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Actor:
 	//	deferred?='def'? 'act' (name=ID typeMapping=ActorClassifierMapping? | typeMapping=ActorClassifierMapping 'as' alias=ID
-	//	| name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')? //comments+=Comment? 
-	//;
+	//	| name=STRING typeMapping=ActorClassifierMapping? 'as' alias=ID) ('role[' actorType=ActorType ']')?
+	//	comments+=InlineComment?;
 	public ActorElements getActorAccess() {
 		return pActor;
 	}
@@ -1539,30 +2034,80 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getActorClassifierMappingAccess().getRule();
 	}
 	
-	//BehaviorFragment:
-	//	Message | OccurenceSpecification | CombinedFragment;
-	public BehaviorFragmentElements getBehaviorFragmentAccess() {
-		return pBehaviorFragment;
+	//Fragment:
+	//	Message | OccurenceSpecification | CombinedFragment | Reference;
+	public FragmentElements getFragmentAccess() {
+		return pFragment;
 	}
 	
-	public ParserRule getBehaviorFragmentRule() {
-		return getBehaviorFragmentAccess().getRule();
+	public ParserRule getFragmentRule() {
+		return getFragmentAccess().getRule();
 	}
 	
-	//BehaviorFragments:
-	//	'{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment;
-	public BehaviorFragmentsElements getBehaviorFragmentsAccess() {
-		return pBehaviorFragments;
+	//OneFragment OrderedFragmentContainer:
+	//	fragments+=Fragment;
+	public OneFragmentElements getOneFragmentAccess() {
+		return pOneFragment;
 	}
 	
-	public ParserRule getBehaviorFragmentsRule() {
-		return getBehaviorFragmentsAccess().getRule();
+	public ParserRule getOneFragmentRule() {
+		return getOneFragmentAccess().getRule();
+	}
+	
+	//OneOrMultipleFragments OrderedFragmentContainer:
+	//	fragments+=Fragment+;
+	public OneOrMultipleFragmentsElements getOneOrMultipleFragmentsAccess() {
+		return pOneOrMultipleFragments;
+	}
+	
+	public ParserRule getOneOrMultipleFragmentsRule() {
+		return getOneOrMultipleFragmentsAccess().getRule();
+	}
+	
+	//OrderedFragmentContainer:
+	//	'{' OneOrMultipleFragments '}' | OneFragment;
+	public OrderedFragmentContainerElements getOrderedFragmentContainerAccess() {
+		return pOrderedFragmentContainer;
+	}
+	
+	public ParserRule getOrderedFragmentContainerRule() {
+		return getOrderedFragmentContainerAccess().getRule();
+	}
+	
+	//Condition:
+	//	'[' condition=UnescapedString ']';
+	public ConditionElements getConditionAccess() {
+		return pCondition;
+	}
+	
+	public ParserRule getConditionRule() {
+		return getConditionAccess().getRule();
+	}
+	
+	//OrderedFragmentContainerWithCondition OrderedFragmentContainer:
+	//	condition=Condition ('{' fragments+=Fragment+ '}' | fragments+=Fragment);
+	public OrderedFragmentContainerWithConditionElements getOrderedFragmentContainerWithConditionAccess() {
+		return pOrderedFragmentContainerWithCondition;
+	}
+	
+	public ParserRule getOrderedFragmentContainerWithConditionRule() {
+		return getOrderedFragmentContainerWithConditionAccess().getRule();
+	}
+	
+	//OrderedFragmentContainerWithConditionMandatoryBrackets OrderedFragmentContainer:
+	//	condition=Condition '{' fragments+=Fragment+ '}';
+	public OrderedFragmentContainerWithConditionMandatoryBracketsElements getOrderedFragmentContainerWithConditionMandatoryBracketsAccess() {
+		return pOrderedFragmentContainerWithConditionMandatoryBrackets;
+	}
+	
+	public ParserRule getOrderedFragmentContainerWithConditionMandatoryBracketsRule() {
+		return getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getRule();
 	}
 	
 	//Message:
-	//	(StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage) ('num['
-	//	order=Order ']')?
-	//	timeConstraint=TimeConstraint?;
+	//	(StandardMessage | ResponseMessage | FoundMessage | LostMessage | CreateMessage | DestructionMessage) ('as' alias=ID)?
+	//	sendEvent=ImplicitSendOccurenceSpecification (arrivalEvent=ExplicitArrivalOccurenceReference |
+	//	arrivalEvent=ImplicitArrivalOccurenceSpecification);
 	public MessageElements getMessageAccess() {
 		return pMessage;
 	}
@@ -1571,24 +2116,24 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getMessageAccess().getRule();
 	}
 	
-	//TimeConstraint:
-	//	'time[' constraints+=InnerTimeConstraint+ ']';
-	public TimeConstraintElements getTimeConstraintAccess() {
-		return pTimeConstraint;
+	//ExplicitArrivalOccurenceReference:
+	//	'arrives' '[' occurenceSpecification=[ExplicitArrivalOccurenceSpecification] ']';
+	public ExplicitArrivalOccurenceReferenceElements getExplicitArrivalOccurenceReferenceAccess() {
+		return pExplicitArrivalOccurenceReference;
 	}
 	
-	public ParserRule getTimeConstraintRule() {
-		return getTimeConstraintAccess().getRule();
+	public ParserRule getExplicitArrivalOccurenceReferenceRule() {
+		return getExplicitArrivalOccurenceReferenceAccess().getRule();
 	}
 	
-	//InnerTimeConstraint:
-	//	type=TimeConstraintType '=' value=STRING;
-	public InnerTimeConstraintElements getInnerTimeConstraintAccess() {
-		return pInnerTimeConstraint;
+	//ExplicitArrivalOccurenceSpecification:
+	//	'arrival' name=ID;
+	public ExplicitArrivalOccurenceSpecificationElements getExplicitArrivalOccurenceSpecificationAccess() {
+		return pExplicitArrivalOccurenceSpecification;
 	}
 	
-	public ParserRule getInnerTimeConstraintRule() {
-		return getInnerTimeConstraintAccess().getRule();
+	public ParserRule getExplicitArrivalOccurenceSpecificationRule() {
+		return getExplicitArrivalOccurenceSpecificationAccess().getRule();
 	}
 	
 	//StandardMessage:
@@ -1611,7 +2156,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getResponseMessageAccess().getRule();
 	}
 	
-	//FoundMessage:
+	//FoundMessage StandardMessage:
 	//	'found' type=MessageType name=UnescapedString '(' '_' ',' right=[Actor|FQN] ')';
 	public FoundMessageElements getFoundMessageAccess() {
 		return pFoundMessage;
@@ -1621,8 +2166,9 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getFoundMessageAccess().getRule();
 	}
 	
-	//LostMessage:
-	//	'lost' type=MessageType name=UnescapedString '(' left=[Actor|FQN] ',' '_' ')';
+	//LostMessage Message:
+	//	'lost' ('reply' {ResponseMessage} | {StandardMessage} type=MessageType) name=UnescapedString '(' left=[Actor|FQN] ','
+	//	'_' ')';
 	public LostMessageElements getLostMessageAccess() {
 		return pLostMessage;
 	}
@@ -1652,7 +2198,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//OccurenceSpecification:
-	//	DestructionOccurenceSpecification;
+	//	DestructionOccurenceSpecification | ExplicitArrivalOccurenceSpecification;
 	public OccurenceSpecificationElements getOccurenceSpecificationAccess() {
 		return pOccurenceSpecification;
 	}
@@ -1672,8 +2218,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CombinedFragment:
-	//	Alternative | Option | Parallel | Critical | Loop //| Timed
-	//;
+	//	MultipleRegionContainer | SingleRegionContainer;
 	public CombinedFragmentElements getCombinedFragmentAccess() {
 		return pCombinedFragment;
 	}
@@ -1682,34 +2227,28 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getCombinedFragmentAccess().getRule();
 	}
 	
-	//Alternative:
-	//	'alt' '{'
-	//	alternatives+=BehaviorFragmentsWithCondition+
-	//	'}';
-	public AlternativeElements getAlternativeAccess() {
-		return pAlternative;
+	//SingleRegionContainer:
+	//	Loop | Option | Critical;
+	public SingleRegionContainerElements getSingleRegionContainerAccess() {
+		return pSingleRegionContainer;
 	}
 	
-	public ParserRule getAlternativeRule() {
-		return getAlternativeAccess().getRule();
+	public ParserRule getSingleRegionContainerRule() {
+		return getSingleRegionContainerAccess().getRule();
 	}
 	
-	//Option:
-	//	'opt' '{'
-	//	optional+=BehaviorFragmentsWithCondition
-	//	'}';
-	public OptionElements getOptionAccess() {
-		return pOption;
+	//MultipleRegionContainer:
+	//	Parallel | Alternative;
+	public MultipleRegionContainerElements getMultipleRegionContainerAccess() {
+		return pMultipleRegionContainer;
 	}
 	
-	public ParserRule getOptionRule() {
-		return getOptionAccess().getRule();
+	public ParserRule getMultipleRegionContainerRule() {
+		return getMultipleRegionContainerAccess().getRule();
 	}
 	
 	//Parallel:
-	//	'par' '{'
-	//	parallels+=BehaviorFragments+
-	//	'}';
+	//	'par' '{' regions+=OrderedFragmentContainer+ '}';
 	public ParallelElements getParallelAccess() {
 		return pParallel;
 	}
@@ -1718,22 +2257,18 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getParallelAccess().getRule();
 	}
 	
-	//Critical:
-	//	'critical' '{'
-	//	fragments+=BehaviorFragment+
-	//	'}';
-	public CriticalElements getCriticalAccess() {
-		return pCritical;
+	//Alternative:
+	//	'alt' '{' regions+=OrderedFragmentContainerWithCondition+ '}';
+	public AlternativeElements getAlternativeAccess() {
+		return pAlternative;
 	}
 	
-	public ParserRule getCriticalRule() {
-		return getCriticalAccess().getRule();
+	public ParserRule getAlternativeRule() {
+		return getAlternativeAccess().getRule();
 	}
 	
 	//Loop:
-	//	'loop' '[' condition=STRING ']' '{'
-	//	fragments+=BehaviorFragment+
-	//	'}';
+	//	'loop' region=OrderedFragmentContainerWithConditionMandatoryBrackets;
 	public LoopElements getLoopAccess() {
 		return pLoop;
 	}
@@ -1742,26 +2277,154 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getLoopAccess().getRule();
 	}
 	
-	//Timed:
-	//	constraint=TimeConstraint '{'
-	//	fragments+=BehaviorFragment+
-	//	'}';
-	public TimedElements getTimedAccess() {
-		return pTimed;
+	//Option:
+	//	'opt' region=OrderedFragmentContainerWithConditionMandatoryBrackets;
+	public OptionElements getOptionAccess() {
+		return pOption;
 	}
 	
-	public ParserRule getTimedRule() {
-		return getTimedAccess().getRule();
+	public ParserRule getOptionRule() {
+		return getOptionAccess().getRule();
 	}
 	
-	//BehaviorFragmentsWithCondition:
-	//	'[' condition=STRING ']' ('{' fragments+=BehaviorFragment+ '}' | fragments+=BehaviorFragment);
-	public BehaviorFragmentsWithConditionElements getBehaviorFragmentsWithConditionAccess() {
-		return pBehaviorFragmentsWithCondition;
+	//Critical:
+	//	'critical' '{' region=OneOrMultipleFragments '}';
+	public CriticalElements getCriticalAccess() {
+		return pCritical;
 	}
 	
-	public ParserRule getBehaviorFragmentsWithConditionRule() {
-		return getBehaviorFragmentsWithConditionAccess().getRule();
+	public ParserRule getCriticalRule() {
+		return getCriticalAccess().getRule();
+	}
+	
+	//Reference:
+	//	'ref' reference=[uml::Interaction|FQN] ('as' alias=ID)?;
+	public ReferenceElements getReferenceAccess() {
+		return pReference;
+	}
+	
+	public ParserRule getReferenceRule() {
+		return getReferenceAccess().getRule();
+	}
+	
+	//Constraint:
+	//	'cstr' (TimeConstraint | DurationConstraint);
+	public ConstraintElements getConstraintAccess() {
+		return pConstraint;
+	}
+	
+	public ParserRule getConstraintRule() {
+		return getConstraintAccess().getRule();
+	}
+	
+	//TimeConstraint:
+	//	'(' event=PointInTimeSelector ')' 't' '[' time=UnescapedString ']';
+	public TimeConstraintElements getTimeConstraintAccess() {
+		return pTimeConstraint;
+	}
+	
+	public ParserRule getTimeConstraintRule() {
+		return getTimeConstraintAccess().getRule();
+	}
+	
+	//DurationConstraint:
+	//	'(' interval=TimeIntervalSelector ')' 'd' '[' duration=UnescapedString ']';
+	public DurationConstraintElements getDurationConstraintAccess() {
+		return pDurationConstraint;
+	}
+	
+	public ParserRule getDurationConstraintRule() {
+		return getDurationConstraintAccess().getRule();
+	}
+	
+	//Observation:
+	//	'obs' (TimeObservation | DurationObservation);
+	public ObservationElements getObservationAccess() {
+		return pObservation;
+	}
+	
+	public ParserRule getObservationRule() {
+		return getObservationAccess().getRule();
+	}
+	
+	//TimeObservation:
+	//	'(' event=PointInTimeSelector ')' 't' '[' time=UnescapedString ']';
+	public TimeObservationElements getTimeObservationAccess() {
+		return pTimeObservation;
+	}
+	
+	public ParserRule getTimeObservationRule() {
+		return getTimeObservationAccess().getRule();
+	}
+	
+	//DurationObservation:
+	//	'(' interval=TimeIntervalSelector ')' 'd' '[' duration=UnescapedString ']';
+	public DurationObservationElements getDurationObservationAccess() {
+		return pDurationObservation;
+	}
+	
+	public ParserRule getDurationObservationRule() {
+		return getDurationObservationAccess().getRule();
+	}
+	
+	//PointInTimeSelector:
+	//	pointInTime=[AliasedPointInTime|FQN];
+	public PointInTimeSelectorElements getPointInTimeSelectorAccess() {
+		return pPointInTimeSelector;
+	}
+	
+	public ParserRule getPointInTimeSelectorRule() {
+		return getPointInTimeSelectorAccess().getRule();
+	}
+	
+	//TimeIntervalSelector:
+	//	BiPointInTimeTimeIntervalSelector | FragmentTimeIntervalSelector;
+	public TimeIntervalSelectorElements getTimeIntervalSelectorAccess() {
+		return pTimeIntervalSelector;
+	}
+	
+	public ParserRule getTimeIntervalSelectorRule() {
+		return getTimeIntervalSelectorAccess().getRule();
+	}
+	
+	//BiPointInTimeTimeIntervalSelector:
+	//	start=PointInTimeSelector ',' end=PointInTimeSelector;
+	public BiPointInTimeTimeIntervalSelectorElements getBiPointInTimeTimeIntervalSelectorAccess() {
+		return pBiPointInTimeTimeIntervalSelector;
+	}
+	
+	public ParserRule getBiPointInTimeTimeIntervalSelectorRule() {
+		return getBiPointInTimeTimeIntervalSelectorAccess().getRule();
+	}
+	
+	//FragmentTimeIntervalSelector:
+	//	nonInstantaneousFragment=[NonInstantaneousFragment|FQN];
+	public FragmentTimeIntervalSelectorElements getFragmentTimeIntervalSelectorAccess() {
+		return pFragmentTimeIntervalSelector;
+	}
+	
+	public ParserRule getFragmentTimeIntervalSelectorRule() {
+		return getFragmentTimeIntervalSelectorAccess().getRule();
+	}
+	
+	//ImplicitSendOccurenceSpecification:
+	//	{ImplicitSendOccurenceSpecification};
+	public ImplicitSendOccurenceSpecificationElements getImplicitSendOccurenceSpecificationAccess() {
+		return pImplicitSendOccurenceSpecification;
+	}
+	
+	public ParserRule getImplicitSendOccurenceSpecificationRule() {
+		return getImplicitSendOccurenceSpecificationAccess().getRule();
+	}
+	
+	//ImplicitArrivalOccurenceSpecification:
+	//	{ImplicitArrivalOccurenceSpecification};
+	public ImplicitArrivalOccurenceSpecificationElements getImplicitArrivalOccurenceSpecificationAccess() {
+		return pImplicitArrivalOccurenceSpecification;
+	}
+	
+	public ParserRule getImplicitArrivalOccurenceSpecificationRule() {
+		return getImplicitArrivalOccurenceSpecificationAccess().getRule();
 	}
 	
 	//FQN:
@@ -1774,14 +2437,14 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getFQNAccess().getRule();
 	}
 	
-	//Order:
-	//	INT ('.' INT)*;
-	public OrderElements getOrderAccess() {
-		return pOrder;
+	//InlineComment commons::Comment:
+	//	'note' '[' body=CommentBody ']';
+	public InlineCommentElements getInlineCommentAccess() {
+		return pInlineComment;
 	}
 	
-	public ParserRule getOrderRule() {
-		return getOrderAccess().getRule();
+	public ParserRule getInlineCommentRule() {
+		return getInlineCommentAccess().getRule();
 	}
 	
 	//Comment commons::Comment:
@@ -1834,19 +2497,6 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getActorTypeRule() {
 		return getActorTypeAccess().getRule();
-	}
-	
-	//enum TimeConstraintType:
-	//	DURATION='d'
-	//	| TIME='t'
-	//	| MAXIMUM='max'
-	//	| DIFFERENCE='diff';
-	public TimeConstraintTypeElements getTimeConstraintTypeAccess() {
-		return eTimeConstraintType;
-	}
-	
-	public EnumRule getTimeConstraintTypeRule() {
-		return getTimeConstraintTypeAccess().getRule();
 	}
 	
 	//terminal ID:

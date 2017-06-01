@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_k7MI0DVxEeeZLe-EOXQkBw">
   <packagedElement xmi:type="uml:Class" xmi:id="_nTbukDWdEee_KrQFmKyNwQ" name="Bar"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CTHToD8LEeeEo8ogtpaykA" name="Kunde"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_DwZJ8D8LEeeEo8ogtpaykA" name="Mitarbeiter"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_I66cID8NEeeEo8ogtpaykA" name="Window"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_JiQI8D8NEeeEo8ogtpaykA" name="Comments"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_J8o-4D8NEeeEo8ogtpaykA" name="Proxy"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Kb674D8NEeeEo8ogtpaykA" name="DWRServlet"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KqQ54D8NEeeEo8ogtpaykA" name="DWRService"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_RWgIYD8NEeeEo8ogtpaykA" name="PluckRequestBatch"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_R78-0D8NEeeEo8ogtpaykA" name="PluckService"/>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_UVQY4EaqEeePNp1s0Z5IeQ" name="Handle_errors_from_Pluck"/>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_WBbm0EaqEeePNp1s0Z5IeQ" name="Request_all_comment"/>
 </uml:Model>

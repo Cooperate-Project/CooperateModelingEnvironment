@@ -4,6 +4,7 @@
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 

@@ -9,25 +9,32 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments;
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition;
+import de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector;
+import de.cooperateproject.modeling.textual.sequence.sequence.Condition;
 import de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.Critical;
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification;
-import de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage;
-import de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint;
+import de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint;
+import de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation;
+import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference;
+import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector;
+import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification;
+import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.Loop;
-import de.cooperateproject.modeling.textual.sequence.sequence.LostMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.Option;
+import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer;
 import de.cooperateproject.modeling.textual.sequence.sequence.Parallel;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector;
+import de.cooperateproject.modeling.textual.sequence.sequence.Reference;
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
-import de.cooperateproject.modeling.textual.sequence.sequence.Timed;
+import de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation;
 import de.cooperateproject.modeling.textual.sequence.services.SequenceGrammarAccess;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
@@ -63,18 +70,18 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SequencePackage.ALTERNATIVE:
 				sequence_Alternative(context, (Alternative) semanticObject); 
 				return; 
-			case SequencePackage.BEHAVIOR_FRAGMENTS:
-				sequence_BehaviorFragments(context, (BehaviorFragments) semanticObject); 
+			case SequencePackage.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR:
+				sequence_BiPointInTimeTimeIntervalSelector(context, (BiPointInTimeTimeIntervalSelector) semanticObject); 
 				return; 
-			case SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION:
-				sequence_BehaviorFragmentsWithCondition(context, (BehaviorFragmentsWithCondition) semanticObject); 
+			case SequencePackage.CONDITION:
+				sequence_Condition(context, (Condition) semanticObject); 
 				return; 
 			case SequencePackage.CREATE_MESSAGE:
 				if (rule == grammarAccess.getCreateMessageRule()) {
 					sequence_CreateMessage(context, (CreateMessage) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getBehaviorFragmentRule()
+				else if (rule == grammarAccess.getFragmentRule()
 						|| rule == grammarAccess.getMessageRule()) {
 					sequence_CreateMessage_Message(context, (CreateMessage) semanticObject); 
 					return; 
@@ -88,7 +95,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 					sequence_DestructionMessage(context, (DestructionMessage) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getBehaviorFragmentRule()
+				else if (rule == grammarAccess.getFragmentRule()
 						|| rule == grammarAccess.getMessageRule()) {
 					sequence_DestructionMessage_Message(context, (DestructionMessage) semanticObject); 
 					return; 
@@ -97,44 +104,72 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION:
 				sequence_DestructionOccurenceSpecification(context, (DestructionOccurenceSpecification) semanticObject); 
 				return; 
-			case SequencePackage.FOUND_MESSAGE:
-				if (rule == grammarAccess.getFoundMessageRule()) {
-					sequence_FoundMessage(context, (FoundMessage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getBehaviorFragmentRule()
-						|| rule == grammarAccess.getMessageRule()) {
-					sequence_FoundMessage_Message(context, (FoundMessage) semanticObject); 
-					return; 
-				}
-				else break;
-			case SequencePackage.INNER_TIME_CONSTRAINT:
-				sequence_InnerTimeConstraint(context, (InnerTimeConstraint) semanticObject); 
+			case SequencePackage.DURATION_CONSTRAINT:
+				sequence_DurationConstraint(context, (DurationConstraint) semanticObject); 
+				return; 
+			case SequencePackage.DURATION_OBSERVATION:
+				sequence_DurationObservation(context, (DurationObservation) semanticObject); 
+				return; 
+			case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE:
+				sequence_ExplicitArrivalOccurenceReference(context, (ExplicitArrivalOccurenceReference) semanticObject); 
+				return; 
+			case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION:
+				sequence_ExplicitArrivalOccurenceSpecification(context, (ExplicitArrivalOccurenceSpecification) semanticObject); 
+				return; 
+			case SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR:
+				sequence_FragmentTimeIntervalSelector(context, (FragmentTimeIntervalSelector) semanticObject); 
+				return; 
+			case SequencePackage.IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION:
+				sequence_ImplicitArrivalOccurenceSpecification(context, (ImplicitArrivalOccurenceSpecification) semanticObject); 
+				return; 
+			case SequencePackage.IMPLICIT_SEND_OCCURENCE_SPECIFICATION:
+				sequence_ImplicitSendOccurenceSpecification(context, (ImplicitSendOccurenceSpecification) semanticObject); 
 				return; 
 			case SequencePackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
 				return; 
-			case SequencePackage.LOST_MESSAGE:
-				if (rule == grammarAccess.getLostMessageRule()) {
-					sequence_LostMessage(context, (LostMessage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getBehaviorFragmentRule()
-						|| rule == grammarAccess.getMessageRule()) {
-					sequence_LostMessage_Message(context, (LostMessage) semanticObject); 
-					return; 
-				}
-				else break;
 			case SequencePackage.OPTION:
 				sequence_Option(context, (Option) semanticObject); 
 				return; 
+			case SequencePackage.ORDERED_FRAGMENT_CONTAINER:
+				if (rule == grammarAccess.getOrderedFragmentContainerRule()) {
+					sequence_OneFragment_OneOrMultipleFragments(context, (OrderedFragmentContainer) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOneFragmentRule()) {
+					sequence_OneFragment(context, (OrderedFragmentContainer) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOneOrMultipleFragmentsRule()) {
+					sequence_OneOrMultipleFragments(context, (OrderedFragmentContainer) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsRule()) {
+					sequence_OrderedFragmentContainerWithConditionMandatoryBrackets(context, (OrderedFragmentContainer) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOrderedFragmentContainerWithConditionRule()) {
+					sequence_OrderedFragmentContainerWithCondition(context, (OrderedFragmentContainer) semanticObject); 
+					return; 
+				}
+				else break;
 			case SequencePackage.PARALLEL:
 				sequence_Parallel(context, (Parallel) semanticObject); 
 				return; 
+			case SequencePackage.POINT_IN_TIME_SELECTOR:
+				sequence_PointInTimeSelector(context, (PointInTimeSelector) semanticObject); 
+				return; 
+			case SequencePackage.REFERENCE:
+				sequence_Reference(context, (Reference) semanticObject); 
+				return; 
 			case SequencePackage.RESPONSE_MESSAGE:
-				if (rule == grammarAccess.getBehaviorFragmentRule()
+				if (rule == grammarAccess.getFragmentRule()
 						|| rule == grammarAccess.getMessageRule()) {
-					sequence_Message_ResponseMessage(context, (ResponseMessage) semanticObject); 
+					sequence_LostMessage_Message_ResponseMessage(context, (ResponseMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getLostMessageRule()) {
+					sequence_LostMessage(context, (ResponseMessage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getResponseMessageRule()) {
@@ -149,9 +184,17 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				sequence_SequenceDiagram(context, (SequenceDiagram) semanticObject); 
 				return; 
 			case SequencePackage.STANDARD_MESSAGE:
-				if (rule == grammarAccess.getBehaviorFragmentRule()
+				if (rule == grammarAccess.getFragmentRule()
 						|| rule == grammarAccess.getMessageRule()) {
-					sequence_Message_StandardMessage(context, (StandardMessage) semanticObject); 
+					sequence_FoundMessage_LostMessage_Message_StandardMessage(context, (StandardMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFoundMessageRule()) {
+					sequence_FoundMessage(context, (StandardMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getLostMessageRule()) {
+					sequence_LostMessage(context, (StandardMessage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStandardMessageRule()) {
@@ -162,15 +205,22 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case SequencePackage.TIME_CONSTRAINT:
 				sequence_TimeConstraint(context, (TimeConstraint) semanticObject); 
 				return; 
-			case SequencePackage.TIMED:
-				sequence_Timed(context, (Timed) semanticObject); 
+			case SequencePackage.TIME_OBSERVATION:
+				sequence_TimeObservation(context, (TimeObservation) semanticObject); 
 				return; 
 			}
 		else if (epackage == TextualCommonsPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case TextualCommonsPackage.COMMENT:
-				sequence_Comment(context, (Comment) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getCommentRule()) {
+					sequence_Comment(context, (Comment) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInlineCommentRule()) {
+					sequence_InlineComment(context, (Comment) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -206,7 +256,8 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *             (typeMapping=ActorClassifierMapping alias=ID) | 
 	 *             (name=STRING typeMapping=ActorClassifierMapping? alias=ID)
 	 *         ) 
-	 *         actorType=ActorType?
+	 *         actorType=ActorType? 
+	 *         comments+=InlineComment?
 	 *     )
 	 */
 	protected void sequence_Actor(ISerializationContext context, Actor semanticObject) {
@@ -216,12 +267,13 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns Alternative
+	 *     Fragment returns Alternative
 	 *     CombinedFragment returns Alternative
+	 *     MultipleRegionContainer returns Alternative
 	 *     Alternative returns Alternative
 	 *
 	 * Constraint:
-	 *     alternatives+=BehaviorFragmentsWithCondition+
+	 *     regions+=OrderedFragmentContainerWithCondition+
 	 */
 	protected void sequence_Alternative(ISerializationContext context, Alternative semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -230,25 +282,23 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragmentsWithCondition returns BehaviorFragmentsWithCondition
+	 *     TimeIntervalSelector returns BiPointInTimeTimeIntervalSelector
+	 *     BiPointInTimeTimeIntervalSelector returns BiPointInTimeTimeIntervalSelector
 	 *
 	 * Constraint:
-	 *     (condition=STRING (fragments+=BehaviorFragment+ | fragments+=BehaviorFragment))
+	 *     (start=PointInTimeSelector end=PointInTimeSelector)
 	 */
-	protected void sequence_BehaviorFragmentsWithCondition(ISerializationContext context, BehaviorFragmentsWithCondition semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BehaviorFragments returns BehaviorFragments
-	 *
-	 * Constraint:
-	 *     (fragments+=BehaviorFragment+ | fragments+=BehaviorFragment)
-	 */
-	protected void sequence_BehaviorFragments(ISerializationContext context, BehaviorFragments semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+	protected void sequence_BiPointInTimeTimeIntervalSelector(ISerializationContext context, BiPointInTimeTimeIntervalSelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__START) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__START));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__END) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__END));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getBiPointInTimeTimeIntervalSelectorAccess().getStartPointInTimeSelectorParserRuleCall_0_0(), semanticObject.getStart());
+		feeder.accept(grammarAccess.getBiPointInTimeTimeIntervalSelectorAccess().getEndPointInTimeSelectorParserRuleCall_2_0(), semanticObject.getEnd());
+		feeder.finish();
 	}
 	
 	
@@ -272,6 +322,24 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Condition returns Condition
+	 *
+	 * Constraint:
+	 *     condition=UnescapedString
+	 */
+	protected void sequence_Condition(ISerializationContext context, Condition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.CONDITION__CONDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.CONDITION__CONDITION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getConditionAccess().getConditionUnescapedStringParserRuleCall_1_0(), semanticObject.getCondition());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     CreateMessage returns CreateMessage
 	 *
 	 * Constraint:
@@ -284,11 +352,18 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns CreateMessage
+	 *     Fragment returns CreateMessage
 	 *     Message returns CreateMessage
 	 *
 	 * Constraint:
-	 *     (name=UnescapedString? left=[Actor|FQN] right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
+	 *     (
+	 *         name=UnescapedString? 
+	 *         left=[Actor|FQN] 
+	 *         right=[Actor|FQN] 
+	 *         alias=ID? 
+	 *         sendEvent=ImplicitSendOccurenceSpecification 
+	 *         (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
+	 *     )
 	 */
 	protected void sequence_CreateMessage_Message(ISerializationContext context, CreateMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -297,15 +372,22 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns Critical
+	 *     Fragment returns Critical
 	 *     CombinedFragment returns Critical
+	 *     SingleRegionContainer returns Critical
 	 *     Critical returns Critical
 	 *
 	 * Constraint:
-	 *     fragments+=BehaviorFragment+
+	 *     region=OneOrMultipleFragments
 	 */
 	protected void sequence_Critical(ISerializationContext context, Critical semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getCriticalAccess().getRegionOneOrMultipleFragmentsParserRuleCall_2_0(), semanticObject.getRegion());
+		feeder.finish();
 	}
 	
 	
@@ -323,11 +405,18 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns DestructionMessage
+	 *     Fragment returns DestructionMessage
 	 *     Message returns DestructionMessage
 	 *
 	 * Constraint:
-	 *     (name=UnescapedString? left=[Actor|FQN] right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
+	 *     (
+	 *         name=UnescapedString? 
+	 *         left=[Actor|FQN] 
+	 *         right=[Actor|FQN] 
+	 *         alias=ID? 
+	 *         sendEvent=ImplicitSendOccurenceSpecification 
+	 *         (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
+	 *     )
 	 */
 	protected void sequence_DestructionMessage_Message(ISerializationContext context, DestructionMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -336,7 +425,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns DestructionOccurenceSpecification
+	 *     Fragment returns DestructionOccurenceSpecification
 	 *     OccurenceSpecification returns DestructionOccurenceSpecification
 	 *     DestructionOccurenceSpecification returns DestructionOccurenceSpecification
 	 *
@@ -356,170 +445,400 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     FoundMessage returns FoundMessage
+	 *     Constraint returns DurationConstraint
+	 *     DurationConstraint returns DurationConstraint
 	 *
 	 * Constraint:
-	 *     (type=MessageType name=UnescapedString right=[Actor|FQN])
+	 *     (interval=TimeIntervalSelector duration=UnescapedString)
 	 */
-	protected void sequence_FoundMessage(ISerializationContext context, FoundMessage semanticObject) {
+	protected void sequence_DurationConstraint(ISerializationContext context, DurationConstraint semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.FOUND_MESSAGE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.FOUND_MESSAGE__TYPE));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.DURATION_CONSTRAINT__INTERVAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.DURATION_CONSTRAINT__INTERVAL));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.DURATION_CONSTRAINT__DURATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.DURATION_CONSTRAINT__DURATION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getDurationConstraintAccess().getIntervalTimeIntervalSelectorParserRuleCall_1_0(), semanticObject.getInterval());
+		feeder.accept(grammarAccess.getDurationConstraintAccess().getDurationUnescapedStringParserRuleCall_5_0(), semanticObject.getDuration());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Observation returns DurationObservation
+	 *     DurationObservation returns DurationObservation
+	 *
+	 * Constraint:
+	 *     (interval=TimeIntervalSelector duration=UnescapedString)
+	 */
+	protected void sequence_DurationObservation(ISerializationContext context, DurationObservation semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.DURATION_OBSERVATION__INTERVAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.DURATION_OBSERVATION__INTERVAL));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.DURATION_OBSERVATION__DURATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.DURATION_OBSERVATION__DURATION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getDurationObservationAccess().getIntervalTimeIntervalSelectorParserRuleCall_1_0(), semanticObject.getInterval());
+		feeder.accept(grammarAccess.getDurationObservationAccess().getDurationUnescapedStringParserRuleCall_5_0(), semanticObject.getDuration());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ExplicitArrivalOccurenceReference returns ExplicitArrivalOccurenceReference
+	 *
+	 * Constraint:
+	 *     occurenceSpecification=[ExplicitArrivalOccurenceSpecification|ID]
+	 */
+	protected void sequence_ExplicitArrivalOccurenceReference(ISerializationContext context, ExplicitArrivalOccurenceReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getExplicitArrivalOccurenceReferenceAccess().getOccurenceSpecificationExplicitArrivalOccurenceSpecificationIDTerminalRuleCall_2_0_1(), semanticObject.eGet(SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns ExplicitArrivalOccurenceSpecification
+	 *     ExplicitArrivalOccurenceSpecification returns ExplicitArrivalOccurenceSpecification
+	 *     OccurenceSpecification returns ExplicitArrivalOccurenceSpecification
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_ExplicitArrivalOccurenceSpecification(ISerializationContext context, ExplicitArrivalOccurenceSpecification semanticObject) {
+		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.FOUND_MESSAGE__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.FOUND_MESSAGE__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getFoundMessageAccess().getTypeMessageTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getFoundMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getFoundMessageAccess().getRightActorFQNParserRuleCall_6_0_1(), semanticObject.eGet(SequencePackage.Literals.FOUND_MESSAGE__RIGHT, false));
+		feeder.accept(grammarAccess.getExplicitArrivalOccurenceSpecificationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns FoundMessage
-	 *     Message returns FoundMessage
-	 *
-	 * Constraint:
-	 *     (type=MessageType name=UnescapedString right=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
-	 */
-	protected void sequence_FoundMessage_Message(ISerializationContext context, FoundMessage semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     InnerTimeConstraint returns InnerTimeConstraint
-	 *
-	 * Constraint:
-	 *     (type=TimeConstraintType value=STRING)
-	 */
-	protected void sequence_InnerTimeConstraint(ISerializationContext context, InnerTimeConstraint semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.INNER_TIME_CONSTRAINT__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.INNER_TIME_CONSTRAINT__TYPE));
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.INNER_TIME_CONSTRAINT__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.INNER_TIME_CONSTRAINT__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getInnerTimeConstraintAccess().getTypeTimeConstraintTypeEnumRuleCall_0_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getInnerTimeConstraintAccess().getValueSTRINGTerminalRuleCall_2_0(), semanticObject.getValue());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BehaviorFragment returns Loop
-	 *     CombinedFragment returns Loop
-	 *     Loop returns Loop
-	 *
-	 * Constraint:
-	 *     (condition=STRING fragments+=BehaviorFragment+)
-	 */
-	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     LostMessage returns LostMessage
-	 *
-	 * Constraint:
-	 *     (type=MessageType name=UnescapedString left=[Actor|FQN])
-	 */
-	protected void sequence_LostMessage(ISerializationContext context, LostMessage semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.LOST_MESSAGE__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.LOST_MESSAGE__TYPE));
-			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
-			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.LOST_MESSAGE__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.LOST_MESSAGE__LEFT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getLostMessageAccess().getTypeMessageTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getLostMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getLostMessageAccess().getLeftActorFQNParserRuleCall_4_0_1(), semanticObject.eGet(SequencePackage.Literals.LOST_MESSAGE__LEFT, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BehaviorFragment returns LostMessage
-	 *     Message returns LostMessage
-	 *
-	 * Constraint:
-	 *     (type=MessageType name=UnescapedString left=[Actor|FQN] order=Order? timeConstraint=TimeConstraint?)
-	 */
-	protected void sequence_LostMessage_Message(ISerializationContext context, LostMessage semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BehaviorFragment returns ResponseMessage
-	 *     Message returns ResponseMessage
-	 *
-	 * Constraint:
-	 *     (name=UnescapedString left=[Actor|FQN]? right=[Actor|FQN]? order=Order? timeConstraint=TimeConstraint?)
-	 */
-	protected void sequence_Message_ResponseMessage(ISerializationContext context, ResponseMessage semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     BehaviorFragment returns StandardMessage
+	 *     Fragment returns StandardMessage
 	 *     Message returns StandardMessage
 	 *
 	 * Constraint:
 	 *     (
-	 *         type=MessageType 
-	 *         name=UnescapedString 
-	 *         left=[Actor|FQN] 
-	 *         right=[Actor|FQN] 
-	 *         order=Order? 
-	 *         timeConstraint=TimeConstraint?
+	 *         (
+	 *             (type=MessageType name=UnescapedString left=[Actor|FQN] right=[Actor|FQN]) | 
+	 *             (type=MessageType name=UnescapedString right=[Actor|FQN]) | 
+	 *             (type=MessageType name=UnescapedString left=[Actor|FQN])
+	 *         ) 
+	 *         alias=ID? 
+	 *         sendEvent=ImplicitSendOccurenceSpecification 
+	 *         (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
 	 *     )
 	 */
-	protected void sequence_Message_StandardMessage(ISerializationContext context, StandardMessage semanticObject) {
+	protected void sequence_FoundMessage_LostMessage_Message_StandardMessage(ISerializationContext context, StandardMessage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns Option
+	 *     FoundMessage returns StandardMessage
+	 *
+	 * Constraint:
+	 *     (type=MessageType name=UnescapedString right=[Actor|FQN])
+	 */
+	protected void sequence_FoundMessage(ISerializationContext context, StandardMessage semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__TYPE));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getFoundMessageAccess().getTypeMessageTypeEnumRuleCall_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getFoundMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFoundMessageAccess().getRightActorFQNParserRuleCall_6_0_1(), semanticObject.eGet(SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TimeIntervalSelector returns FragmentTimeIntervalSelector
+	 *     FragmentTimeIntervalSelector returns FragmentTimeIntervalSelector
+	 *
+	 * Constraint:
+	 *     nonInstantaneousFragment=[NonInstantaneousFragment|FQN]
+	 */
+	protected void sequence_FragmentTimeIntervalSelector(ISerializationContext context, FragmentTimeIntervalSelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getFragmentTimeIntervalSelectorAccess().getNonInstantaneousFragmentNonInstantaneousFragmentFQNParserRuleCall_0_1(), semanticObject.eGet(SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ImplicitArrivalOccurenceSpecification returns ImplicitArrivalOccurenceSpecification
+	 *
+	 * Constraint:
+	 *     {ImplicitArrivalOccurenceSpecification}
+	 */
+	protected void sequence_ImplicitArrivalOccurenceSpecification(ISerializationContext context, ImplicitArrivalOccurenceSpecification semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ImplicitSendOccurenceSpecification returns ImplicitSendOccurenceSpecification
+	 *
+	 * Constraint:
+	 *     {ImplicitSendOccurenceSpecification}
+	 */
+	protected void sequence_ImplicitSendOccurenceSpecification(ISerializationContext context, ImplicitSendOccurenceSpecification semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     InlineComment returns Comment
+	 *
+	 * Constraint:
+	 *     body=CommentBody
+	 */
+	protected void sequence_InlineComment(ISerializationContext context, Comment semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.COMMENT__BODY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.COMMENT__BODY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getInlineCommentAccess().getBodyCommentBodyParserRuleCall_2_0(), semanticObject.getBody());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns Loop
+	 *     CombinedFragment returns Loop
+	 *     SingleRegionContainer returns Loop
+	 *     Loop returns Loop
+	 *
+	 * Constraint:
+	 *     region=OrderedFragmentContainerWithConditionMandatoryBrackets
+	 */
+	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getLoopAccess().getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0(), semanticObject.getRegion());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns ResponseMessage
+	 *     Message returns ResponseMessage
+	 *
+	 * Constraint:
+	 *     (
+	 *         ((name=UnescapedString left=[Actor|FQN]? right=[Actor|FQN]?) | (name=UnescapedString left=[Actor|FQN])) 
+	 *         alias=ID? 
+	 *         sendEvent=ImplicitSendOccurenceSpecification 
+	 *         (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
+	 *     )
+	 */
+	protected void sequence_LostMessage_Message_ResponseMessage(ISerializationContext context, ResponseMessage semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LostMessage returns ResponseMessage
+	 *
+	 * Constraint:
+	 *     (name=UnescapedString left=[Actor|FQN])
+	 */
+	protected void sequence_LostMessage(ISerializationContext context, ResponseMessage semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.RESPONSE_MESSAGE__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.RESPONSE_MESSAGE__LEFT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getLostMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getLostMessageAccess().getLeftActorFQNParserRuleCall_4_0_1(), semanticObject.eGet(SequencePackage.Literals.RESPONSE_MESSAGE__LEFT, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LostMessage returns StandardMessage
+	 *
+	 * Constraint:
+	 *     (type=MessageType name=UnescapedString left=[Actor|FQN])
+	 */
+	protected void sequence_LostMessage(ISerializationContext context, StandardMessage semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__TYPE));
+			if (transientValues.isValueTransient((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.STANDARD_MESSAGE__LEFT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getLostMessageAccess().getTypeMessageTypeEnumRuleCall_1_1_1_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getLostMessageAccess().getNameUnescapedStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getLostMessageAccess().getLeftActorFQNParserRuleCall_4_0_1(), semanticObject.eGet(SequencePackage.Literals.STANDARD_MESSAGE__LEFT, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OrderedFragmentContainer returns OrderedFragmentContainer
+	 *
+	 * Constraint:
+	 *     (fragments+=Fragment | fragments+=Fragment+)
+	 */
+	protected void sequence_OneFragment_OneOrMultipleFragments(ISerializationContext context, OrderedFragmentContainer semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OneFragment returns OrderedFragmentContainer
+	 *
+	 * Constraint:
+	 *     fragments+=Fragment
+	 */
+	protected void sequence_OneFragment(ISerializationContext context, OrderedFragmentContainer semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OneOrMultipleFragments returns OrderedFragmentContainer
+	 *
+	 * Constraint:
+	 *     fragments+=Fragment+
+	 */
+	protected void sequence_OneOrMultipleFragments(ISerializationContext context, OrderedFragmentContainer semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns Option
 	 *     CombinedFragment returns Option
+	 *     SingleRegionContainer returns Option
 	 *     Option returns Option
 	 *
 	 * Constraint:
-	 *     optional+=BehaviorFragmentsWithCondition
+	 *     region=OrderedFragmentContainerWithConditionMandatoryBrackets
 	 */
 	protected void sequence_Option(ISerializationContext context, Option semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getOptionAccess().getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0(), semanticObject.getRegion());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OrderedFragmentContainerWithConditionMandatoryBrackets returns OrderedFragmentContainer
+	 *
+	 * Constraint:
+	 *     (condition=Condition fragments+=Fragment+)
+	 */
+	protected void sequence_OrderedFragmentContainerWithConditionMandatoryBrackets(ISerializationContext context, OrderedFragmentContainer semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     BehaviorFragment returns Parallel
+	 *     OrderedFragmentContainerWithCondition returns OrderedFragmentContainer
+	 *
+	 * Constraint:
+	 *     (condition=Condition (fragments+=Fragment+ | fragments+=Fragment))
+	 */
+	protected void sequence_OrderedFragmentContainerWithCondition(ISerializationContext context, OrderedFragmentContainer semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns Parallel
 	 *     CombinedFragment returns Parallel
+	 *     MultipleRegionContainer returns Parallel
 	 *     Parallel returns Parallel
 	 *
 	 * Constraint:
-	 *     parallels+=BehaviorFragments+
+	 *     regions+=OrderedFragmentContainer+
 	 */
 	protected void sequence_Parallel(ISerializationContext context, Parallel semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PointInTimeSelector returns PointInTimeSelector
+	 *
+	 * Constraint:
+	 *     pointInTime=[AliasedPointInTime|FQN]
+	 */
+	protected void sequence_PointInTimeSelector(ISerializationContext context, PointInTimeSelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1(), semanticObject.eGet(SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns Reference
+	 *     Reference returns Reference
+	 *
+	 * Constraint:
+	 *     (reference=[Interaction|FQN] alias=ID?)
+	 */
+	protected void sequence_Reference(ISerializationContext context, Reference semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
@@ -559,7 +878,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     SequenceDiagram returns SequenceDiagram
 	 *
 	 * Constraint:
-	 *     (title=STRING rootPackage=RootPackage actors+=Actor* behaviorFragments+=BehaviorFragment*)
+	 *     (title=STRING rootPackage=RootPackage actors+=Actor* fragments+=Fragment* (fragments+=Constraint | fragments+=Observation)*)
 	 */
 	protected void sequence_SequenceDiagram(ISerializationContext context, SequenceDiagram semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -595,25 +914,45 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Constraint returns TimeConstraint
 	 *     TimeConstraint returns TimeConstraint
 	 *
 	 * Constraint:
-	 *     constraints+=InnerTimeConstraint+
+	 *     (event=PointInTimeSelector time=UnescapedString)
 	 */
 	protected void sequence_TimeConstraint(ISerializationContext context, TimeConstraint semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.TIME_CONSTRAINT__EVENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.TIME_CONSTRAINT__EVENT));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.TIME_CONSTRAINT__TIME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.TIME_CONSTRAINT__TIME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getTimeConstraintAccess().getEventPointInTimeSelectorParserRuleCall_1_0(), semanticObject.getEvent());
+		feeder.accept(grammarAccess.getTimeConstraintAccess().getTimeUnescapedStringParserRuleCall_5_0(), semanticObject.getTime());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     Timed returns Timed
+	 *     Observation returns TimeObservation
+	 *     TimeObservation returns TimeObservation
 	 *
 	 * Constraint:
-	 *     (constraint=TimeConstraint fragments+=BehaviorFragment+)
+	 *     (event=PointInTimeSelector time=UnescapedString)
 	 */
-	protected void sequence_Timed(ISerializationContext context, Timed semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+	protected void sequence_TimeObservation(ISerializationContext context, TimeObservation semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.TIME_OBSERVATION__EVENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.TIME_OBSERVATION__EVENT));
+			if (transientValues.isValueTransient((EObject) semanticObject, SequencePackage.Literals.TIME_OBSERVATION__TIME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.TIME_OBSERVATION__TIME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getTimeObservationAccess().getEventPointInTimeSelectorParserRuleCall_1_0(), semanticObject.getEvent());
+		feeder.accept(grammarAccess.getTimeObservationAccess().getTimeUnescapedStringParserRuleCall_5_0(), semanticObject.getTime());
+		feeder.finish();
 	}
 	
 	

@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence.util;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.*;
@@ -15,6 +14,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,6 +80,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 SequenceDiagram sequenceDiagram = (SequenceDiagram)theEObject;
                 T result = caseSequenceDiagram(sequenceDiagram);
                 if (result == null) result = caseUMLReferencingElement(sequenceDiagram);
+                if (result == null) result = caseFragmentSequence(sequenceDiagram);
                 if (result == null) result = caseElement(sequenceDiagram);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -101,31 +105,35 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.BEHAVIOR_FRAGMENT: {
-                BehaviorFragment behaviorFragment = (BehaviorFragment)theEObject;
-                T result = caseBehaviorFragment(behaviorFragment);
+            case SequencePackage.ACTOR_CLASSIFIER_MAPPING: {
+                ActorClassifierMapping actorClassifierMapping = (ActorClassifierMapping)theEObject;
+                T result = caseActorClassifierMapping(actorClassifierMapping);
+                if (result == null) result = caseUMLReferencingElement(actorClassifierMapping);
+                if (result == null) result = caseElement(actorClassifierMapping);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.FRAGMENT: {
+                Fragment fragment = (Fragment)theEObject;
+                T result = caseFragment(fragment);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.FRAGMENT_SEQUENCE: {
+                FragmentSequence fragmentSequence = (FragmentSequence)theEObject;
+                T result = caseFragmentSequence(fragmentSequence);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case SequencePackage.MESSAGE: {
                 Message message = (Message)theEObject;
                 T result = caseMessage(message);
-                if (result == null) result = caseBehaviorFragment(message);
+                if (result == null) result = caseFragment(message);
+                if (result == null) result = caseCommentable(message);
+                if (result == null) result = caseAliasedElement(message);
                 if (result == null) result = caseUMLReferencingElement(message);
                 if (result == null) result = caseNamedElement(message);
                 if (result == null) result = caseElement(message);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SequencePackage.TIME_CONSTRAINT: {
-                TimeConstraint timeConstraint = (TimeConstraint)theEObject;
-                T result = caseTimeConstraint(timeConstraint);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SequencePackage.INNER_TIME_CONSTRAINT: {
-                InnerTimeConstraint innerTimeConstraint = (InnerTimeConstraint)theEObject;
-                T result = caseInnerTimeConstraint(innerTimeConstraint);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -133,7 +141,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 StandardMessage standardMessage = (StandardMessage)theEObject;
                 T result = caseStandardMessage(standardMessage);
                 if (result == null) result = caseMessage(standardMessage);
-                if (result == null) result = caseBehaviorFragment(standardMessage);
+                if (result == null) result = caseFragment(standardMessage);
+                if (result == null) result = caseCommentable(standardMessage);
+                if (result == null) result = caseAliasedElement(standardMessage);
                 if (result == null) result = caseUMLReferencingElement(standardMessage);
                 if (result == null) result = caseNamedElement(standardMessage);
                 if (result == null) result = caseElement(standardMessage);
@@ -144,32 +154,12 @@ public class SequenceSwitch<T> extends Switch<T> {
                 ResponseMessage responseMessage = (ResponseMessage)theEObject;
                 T result = caseResponseMessage(responseMessage);
                 if (result == null) result = caseMessage(responseMessage);
-                if (result == null) result = caseBehaviorFragment(responseMessage);
+                if (result == null) result = caseFragment(responseMessage);
+                if (result == null) result = caseCommentable(responseMessage);
+                if (result == null) result = caseAliasedElement(responseMessage);
                 if (result == null) result = caseUMLReferencingElement(responseMessage);
                 if (result == null) result = caseNamedElement(responseMessage);
                 if (result == null) result = caseElement(responseMessage);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SequencePackage.FOUND_MESSAGE: {
-                FoundMessage foundMessage = (FoundMessage)theEObject;
-                T result = caseFoundMessage(foundMessage);
-                if (result == null) result = caseMessage(foundMessage);
-                if (result == null) result = caseBehaviorFragment(foundMessage);
-                if (result == null) result = caseUMLReferencingElement(foundMessage);
-                if (result == null) result = caseNamedElement(foundMessage);
-                if (result == null) result = caseElement(foundMessage);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SequencePackage.LOST_MESSAGE: {
-                LostMessage lostMessage = (LostMessage)theEObject;
-                T result = caseLostMessage(lostMessage);
-                if (result == null) result = caseMessage(lostMessage);
-                if (result == null) result = caseBehaviorFragment(lostMessage);
-                if (result == null) result = caseUMLReferencingElement(lostMessage);
-                if (result == null) result = caseNamedElement(lostMessage);
-                if (result == null) result = caseElement(lostMessage);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -177,7 +167,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 CreateMessage createMessage = (CreateMessage)theEObject;
                 T result = caseCreateMessage(createMessage);
                 if (result == null) result = caseMessage(createMessage);
-                if (result == null) result = caseBehaviorFragment(createMessage);
+                if (result == null) result = caseFragment(createMessage);
+                if (result == null) result = caseCommentable(createMessage);
+                if (result == null) result = caseAliasedElement(createMessage);
                 if (result == null) result = caseUMLReferencingElement(createMessage);
                 if (result == null) result = caseNamedElement(createMessage);
                 if (result == null) result = caseElement(createMessage);
@@ -188,7 +180,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 DestructionMessage destructionMessage = (DestructionMessage)theEObject;
                 T result = caseDestructionMessage(destructionMessage);
                 if (result == null) result = caseMessage(destructionMessage);
-                if (result == null) result = caseBehaviorFragment(destructionMessage);
+                if (result == null) result = caseFragment(destructionMessage);
+                if (result == null) result = caseCommentable(destructionMessage);
+                if (result == null) result = caseAliasedElement(destructionMessage);
                 if (result == null) result = caseUMLReferencingElement(destructionMessage);
                 if (result == null) result = caseNamedElement(destructionMessage);
                 if (result == null) result = caseElement(destructionMessage);
@@ -196,9 +190,15 @@ public class SequenceSwitch<T> extends Switch<T> {
                 return result;
             }
             case SequencePackage.OCCURENCE_SPECIFICATION: {
-                OccurenceSpecification occurenceSpecification = (OccurenceSpecification)theEObject;
+                OccurenceSpecification<?> occurenceSpecification = (OccurenceSpecification<?>)theEObject;
                 T result = caseOccurenceSpecification(occurenceSpecification);
-                if (result == null) result = caseBehaviorFragment(occurenceSpecification);
+                if (result == null) result = caseFragment(occurenceSpecification);
+                if (result == null) result = caseAliasedPointInTime(occurenceSpecification);
+                if (result == null) result = caseCommentable(occurenceSpecification);
+                if (result == null) result = caseUMLReferencingElement(occurenceSpecification);
+                if (result == null) result = caseAliasedElement(occurenceSpecification);
+                if (result == null) result = caseNamedElement(occurenceSpecification);
+                if (result == null) result = caseElement(occurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -206,8 +206,12 @@ public class SequenceSwitch<T> extends Switch<T> {
                 DestructionOccurenceSpecification destructionOccurenceSpecification = (DestructionOccurenceSpecification)theEObject;
                 T result = caseDestructionOccurenceSpecification(destructionOccurenceSpecification);
                 if (result == null) result = caseOccurenceSpecification(destructionOccurenceSpecification);
+                if (result == null) result = caseFragment(destructionOccurenceSpecification);
+                if (result == null) result = caseAliasedPointInTime(destructionOccurenceSpecification);
+                if (result == null) result = caseCommentable(destructionOccurenceSpecification);
                 if (result == null) result = caseUMLReferencingElement(destructionOccurenceSpecification);
-                if (result == null) result = caseBehaviorFragment(destructionOccurenceSpecification);
+                if (result == null) result = caseAliasedElement(destructionOccurenceSpecification);
+                if (result == null) result = caseNamedElement(destructionOccurenceSpecification);
                 if (result == null) result = caseElement(destructionOccurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -215,18 +219,69 @@ public class SequenceSwitch<T> extends Switch<T> {
             case SequencePackage.COMBINED_FRAGMENT: {
                 CombinedFragment combinedFragment = (CombinedFragment)theEObject;
                 T result = caseCombinedFragment(combinedFragment);
-                if (result == null) result = caseBehaviorFragment(combinedFragment);
+                if (result == null) result = caseNonInstantaneousFragment(combinedFragment);
+                if (result == null) result = caseCommentable(combinedFragment);
+                if (result == null) result = caseFragment(combinedFragment);
+                if (result == null) result = caseAliasedPointInTime(combinedFragment);
+                if (result == null) result = caseAliasedElement(combinedFragment);
                 if (result == null) result = caseUMLReferencingElement(combinedFragment);
+                if (result == null) result = caseNamedElement(combinedFragment);
                 if (result == null) result = caseElement(combinedFragment);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER: {
+                OrderedFragmentContainer orderedFragmentContainer = (OrderedFragmentContainer)theEObject;
+                T result = caseOrderedFragmentContainer(orderedFragmentContainer);
+                if (result == null) result = caseFragmentSequence(orderedFragmentContainer);
+                if (result == null) result = caseCommentable(orderedFragmentContainer);
+                if (result == null) result = caseUMLReferencingElement(orderedFragmentContainer);
+                if (result == null) result = caseElement(orderedFragmentContainer);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.SINGLE_REGION_CONTAINER: {
+                SingleRegionContainer singleRegionContainer = (SingleRegionContainer)theEObject;
+                T result = caseSingleRegionContainer(singleRegionContainer);
+                if (result == null) result = caseCombinedFragment(singleRegionContainer);
+                if (result == null) result = caseNonInstantaneousFragment(singleRegionContainer);
+                if (result == null) result = caseCommentable(singleRegionContainer);
+                if (result == null) result = caseFragment(singleRegionContainer);
+                if (result == null) result = caseAliasedPointInTime(singleRegionContainer);
+                if (result == null) result = caseAliasedElement(singleRegionContainer);
+                if (result == null) result = caseUMLReferencingElement(singleRegionContainer);
+                if (result == null) result = caseNamedElement(singleRegionContainer);
+                if (result == null) result = caseElement(singleRegionContainer);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.MULTIPLE_REGION_CONTAINER: {
+                MultipleRegionContainer multipleRegionContainer = (MultipleRegionContainer)theEObject;
+                T result = caseMultipleRegionContainer(multipleRegionContainer);
+                if (result == null) result = caseCombinedFragment(multipleRegionContainer);
+                if (result == null) result = caseNonInstantaneousFragment(multipleRegionContainer);
+                if (result == null) result = caseCommentable(multipleRegionContainer);
+                if (result == null) result = caseFragment(multipleRegionContainer);
+                if (result == null) result = caseAliasedPointInTime(multipleRegionContainer);
+                if (result == null) result = caseAliasedElement(multipleRegionContainer);
+                if (result == null) result = caseUMLReferencingElement(multipleRegionContainer);
+                if (result == null) result = caseNamedElement(multipleRegionContainer);
+                if (result == null) result = caseElement(multipleRegionContainer);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case SequencePackage.ALTERNATIVE: {
                 Alternative alternative = (Alternative)theEObject;
                 T result = caseAlternative(alternative);
+                if (result == null) result = caseMultipleRegionContainer(alternative);
                 if (result == null) result = caseCombinedFragment(alternative);
-                if (result == null) result = caseBehaviorFragment(alternative);
+                if (result == null) result = caseNonInstantaneousFragment(alternative);
+                if (result == null) result = caseCommentable(alternative);
+                if (result == null) result = caseFragment(alternative);
+                if (result == null) result = caseAliasedPointInTime(alternative);
+                if (result == null) result = caseAliasedElement(alternative);
                 if (result == null) result = caseUMLReferencingElement(alternative);
+                if (result == null) result = caseNamedElement(alternative);
                 if (result == null) result = caseElement(alternative);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -234,19 +289,47 @@ public class SequenceSwitch<T> extends Switch<T> {
             case SequencePackage.OPTION: {
                 Option option = (Option)theEObject;
                 T result = caseOption(option);
+                if (result == null) result = caseSingleRegionContainer(option);
                 if (result == null) result = caseCombinedFragment(option);
-                if (result == null) result = caseBehaviorFragment(option);
+                if (result == null) result = caseNonInstantaneousFragment(option);
+                if (result == null) result = caseCommentable(option);
+                if (result == null) result = caseFragment(option);
+                if (result == null) result = caseAliasedPointInTime(option);
+                if (result == null) result = caseAliasedElement(option);
                 if (result == null) result = caseUMLReferencingElement(option);
+                if (result == null) result = caseNamedElement(option);
                 if (result == null) result = caseElement(option);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.CO_REGION: {
+                CoRegion coRegion = (CoRegion)theEObject;
+                T result = caseCoRegion(coRegion);
+                if (result == null) result = caseMultipleRegionContainer(coRegion);
+                if (result == null) result = caseCombinedFragment(coRegion);
+                if (result == null) result = caseNonInstantaneousFragment(coRegion);
+                if (result == null) result = caseCommentable(coRegion);
+                if (result == null) result = caseFragment(coRegion);
+                if (result == null) result = caseAliasedPointInTime(coRegion);
+                if (result == null) result = caseAliasedElement(coRegion);
+                if (result == null) result = caseUMLReferencingElement(coRegion);
+                if (result == null) result = caseNamedElement(coRegion);
+                if (result == null) result = caseElement(coRegion);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case SequencePackage.PARALLEL: {
                 Parallel parallel = (Parallel)theEObject;
                 T result = caseParallel(parallel);
+                if (result == null) result = caseMultipleRegionContainer(parallel);
                 if (result == null) result = caseCombinedFragment(parallel);
-                if (result == null) result = caseBehaviorFragment(parallel);
+                if (result == null) result = caseNonInstantaneousFragment(parallel);
+                if (result == null) result = caseCommentable(parallel);
+                if (result == null) result = caseFragment(parallel);
+                if (result == null) result = caseAliasedPointInTime(parallel);
+                if (result == null) result = caseAliasedElement(parallel);
                 if (result == null) result = caseUMLReferencingElement(parallel);
+                if (result == null) result = caseNamedElement(parallel);
                 if (result == null) result = caseElement(parallel);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -254,9 +337,15 @@ public class SequenceSwitch<T> extends Switch<T> {
             case SequencePackage.CRITICAL: {
                 Critical critical = (Critical)theEObject;
                 T result = caseCritical(critical);
+                if (result == null) result = caseSingleRegionContainer(critical);
                 if (result == null) result = caseCombinedFragment(critical);
-                if (result == null) result = caseBehaviorFragment(critical);
+                if (result == null) result = caseNonInstantaneousFragment(critical);
+                if (result == null) result = caseCommentable(critical);
+                if (result == null) result = caseFragment(critical);
+                if (result == null) result = caseAliasedPointInTime(critical);
+                if (result == null) result = caseAliasedElement(critical);
                 if (result == null) result = caseUMLReferencingElement(critical);
+                if (result == null) result = caseNamedElement(critical);
                 if (result == null) result = caseElement(critical);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -264,40 +353,188 @@ public class SequenceSwitch<T> extends Switch<T> {
             case SequencePackage.LOOP: {
                 Loop loop = (Loop)theEObject;
                 T result = caseLoop(loop);
+                if (result == null) result = caseSingleRegionContainer(loop);
                 if (result == null) result = caseCombinedFragment(loop);
-                if (result == null) result = caseBehaviorFragment(loop);
+                if (result == null) result = caseNonInstantaneousFragment(loop);
+                if (result == null) result = caseCommentable(loop);
+                if (result == null) result = caseFragment(loop);
+                if (result == null) result = caseAliasedPointInTime(loop);
+                if (result == null) result = caseAliasedElement(loop);
                 if (result == null) result = caseUMLReferencingElement(loop);
+                if (result == null) result = caseNamedElement(loop);
                 if (result == null) result = caseElement(loop);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.BEHAVIOR_FRAGMENTS: {
-                BehaviorFragments behaviorFragments = (BehaviorFragments)theEObject;
-                T result = caseBehaviorFragments(behaviorFragments);
+            case SequencePackage.CONDITION: {
+                Condition condition = (Condition)theEObject;
+                T result = caseCondition(condition);
+                if (result == null) result = caseUMLReferencingElement(condition);
+                if (result == null) result = caseElement(condition);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.BEHAVIOR_FRAGMENTS_WITH_CONDITION: {
-                BehaviorFragmentsWithCondition behaviorFragmentsWithCondition = (BehaviorFragmentsWithCondition)theEObject;
-                T result = caseBehaviorFragmentsWithCondition(behaviorFragmentsWithCondition);
+            case SequencePackage.OBSERVATION: {
+                Observation observation = (Observation)theEObject;
+                T result = caseObservation(observation);
+                if (result == null) result = caseFragment(observation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.ACTOR_CLASSIFIER_MAPPING: {
-                ActorClassifierMapping actorClassifierMapping = (ActorClassifierMapping)theEObject;
-                T result = caseActorClassifierMapping(actorClassifierMapping);
-                if (result == null) result = caseUMLReferencingElement(actorClassifierMapping);
-                if (result == null) result = caseElement(actorClassifierMapping);
+            case SequencePackage.TIME_OBSERVATION: {
+                TimeObservation timeObservation = (TimeObservation)theEObject;
+                T result = caseTimeObservation(timeObservation);
+                if (result == null) result = caseObservation(timeObservation);
+                if (result == null) result = caseFragment(timeObservation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.TIMED: {
-                Timed timed = (Timed)theEObject;
-                T result = caseTimed(timed);
-                if (result == null) result = caseCombinedFragment(timed);
-                if (result == null) result = caseBehaviorFragment(timed);
-                if (result == null) result = caseUMLReferencingElement(timed);
-                if (result == null) result = caseElement(timed);
+            case SequencePackage.DURATION_OBSERVATION: {
+                DurationObservation durationObservation = (DurationObservation)theEObject;
+                T result = caseDurationObservation(durationObservation);
+                if (result == null) result = caseObservation(durationObservation);
+                if (result == null) result = caseFragment(durationObservation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.CONSTRAINT: {
+                Constraint constraint = (Constraint)theEObject;
+                T result = caseConstraint(constraint);
+                if (result == null) result = caseFragment(constraint);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.TIME_CONSTRAINT: {
+                TimeConstraint timeConstraint = (TimeConstraint)theEObject;
+                T result = caseTimeConstraint(timeConstraint);
+                if (result == null) result = caseConstraint(timeConstraint);
+                if (result == null) result = caseFragment(timeConstraint);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.DURATION_CONSTRAINT: {
+                DurationConstraint durationConstraint = (DurationConstraint)theEObject;
+                T result = caseDurationConstraint(durationConstraint);
+                if (result == null) result = caseConstraint(durationConstraint);
+                if (result == null) result = caseFragment(durationConstraint);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.OCCURENCE_REFERENCE: {
+                OccurenceReference<?> occurenceReference = (OccurenceReference<?>)theEObject;
+                T result = caseOccurenceReference(occurenceReference);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE: {
+                ExplicitArrivalOccurenceReference explicitArrivalOccurenceReference = (ExplicitArrivalOccurenceReference)theEObject;
+                T result = caseExplicitArrivalOccurenceReference(explicitArrivalOccurenceReference);
+                if (result == null) result = caseOccurenceReference(explicitArrivalOccurenceReference);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION: {
+                ImplicitArrivalOccurenceSpecification implicitArrivalOccurenceSpecification = (ImplicitArrivalOccurenceSpecification)theEObject;
+                T result = caseImplicitArrivalOccurenceSpecification(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseOccurenceSpecification(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseOccurenceReference(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseFragment(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseAliasedPointInTime(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseCommentable(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseUMLReferencingElement(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseAliasedElement(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseNamedElement(implicitArrivalOccurenceSpecification);
+                if (result == null) result = caseElement(implicitArrivalOccurenceSpecification);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION: {
+                ExplicitArrivalOccurenceSpecification explicitArrivalOccurenceSpecification = (ExplicitArrivalOccurenceSpecification)theEObject;
+                T result = caseExplicitArrivalOccurenceSpecification(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseOccurenceSpecification(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseFragment(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseAliasedPointInTime(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseCommentable(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseUMLReferencingElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseAliasedElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseNamedElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.IMPLICIT_SEND_OCCURENCE_SPECIFICATION: {
+                ImplicitSendOccurenceSpecification implicitSendOccurenceSpecification = (ImplicitSendOccurenceSpecification)theEObject;
+                T result = caseImplicitSendOccurenceSpecification(implicitSendOccurenceSpecification);
+                if (result == null) result = caseOccurenceSpecification(implicitSendOccurenceSpecification);
+                if (result == null) result = caseOccurenceReference(implicitSendOccurenceSpecification);
+                if (result == null) result = caseFragment(implicitSendOccurenceSpecification);
+                if (result == null) result = caseAliasedPointInTime(implicitSendOccurenceSpecification);
+                if (result == null) result = caseCommentable(implicitSendOccurenceSpecification);
+                if (result == null) result = caseUMLReferencingElement(implicitSendOccurenceSpecification);
+                if (result == null) result = caseAliasedElement(implicitSendOccurenceSpecification);
+                if (result == null) result = caseNamedElement(implicitSendOccurenceSpecification);
+                if (result == null) result = caseElement(implicitSendOccurenceSpecification);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.ALIASED_POINT_IN_TIME: {
+                AliasedPointInTime<?> aliasedPointInTime = (AliasedPointInTime<?>)theEObject;
+                T result = caseAliasedPointInTime(aliasedPointInTime);
+                if (result == null) result = caseAliasedElement(aliasedPointInTime);
+                if (result == null) result = caseUMLReferencingElement(aliasedPointInTime);
+                if (result == null) result = caseNamedElement(aliasedPointInTime);
+                if (result == null) result = caseElement(aliasedPointInTime);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.POINT_IN_TIME_SELECTOR: {
+                PointInTimeSelector pointInTimeSelector = (PointInTimeSelector)theEObject;
+                T result = casePointInTimeSelector(pointInTimeSelector);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.TIME_INTERVAL_SELECTOR: {
+                TimeIntervalSelector timeIntervalSelector = (TimeIntervalSelector)theEObject;
+                T result = caseTimeIntervalSelector(timeIntervalSelector);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR: {
+                BiPointInTimeTimeIntervalSelector biPointInTimeTimeIntervalSelector = (BiPointInTimeTimeIntervalSelector)theEObject;
+                T result = caseBiPointInTimeTimeIntervalSelector(biPointInTimeTimeIntervalSelector);
+                if (result == null) result = caseTimeIntervalSelector(biPointInTimeTimeIntervalSelector);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR: {
+                FragmentTimeIntervalSelector fragmentTimeIntervalSelector = (FragmentTimeIntervalSelector)theEObject;
+                T result = caseFragmentTimeIntervalSelector(fragmentTimeIntervalSelector);
+                if (result == null) result = caseTimeIntervalSelector(fragmentTimeIntervalSelector);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.REFERENCE: {
+                Reference reference = (Reference)theEObject;
+                T result = caseReference(reference);
+                if (result == null) result = caseNonInstantaneousFragment(reference);
+                if (result == null) result = caseFragment(reference);
+                if (result == null) result = caseAliasedPointInTime(reference);
+                if (result == null) result = caseUMLReferencingElement(reference);
+                if (result == null) result = caseAliasedElement(reference);
+                if (result == null) result = caseNamedElement(reference);
+                if (result == null) result = caseElement(reference);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT: {
+                NonInstantaneousFragment<?> nonInstantaneousFragment = (NonInstantaneousFragment<?>)theEObject;
+                T result = caseNonInstantaneousFragment(nonInstantaneousFragment);
+                if (result == null) result = caseFragment(nonInstantaneousFragment);
+                if (result == null) result = caseAliasedPointInTime(nonInstantaneousFragment);
+                if (result == null) result = caseAliasedElement(nonInstantaneousFragment);
+                if (result == null) result = caseUMLReferencingElement(nonInstantaneousFragment);
+                if (result == null) result = caseNamedElement(nonInstantaneousFragment);
+                if (result == null) result = caseElement(nonInstantaneousFragment);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -351,17 +588,47 @@ public class SequenceSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Behavior Fragment</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Actor Classifier Mapping</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Behavior Fragment</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Actor Classifier Mapping</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseBehaviorFragment(BehaviorFragment object) {
+    public T caseActorClassifierMapping(ActorClassifierMapping object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Fragment</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Fragment</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFragment(Fragment object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Fragment Sequence</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Fragment Sequence</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFragmentSequence(FragmentSequence object) {
         return null;
     }
 
@@ -377,36 +644,6 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseMessage(Message object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Time Constraint</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Time Constraint</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseTimeConstraint(TimeConstraint object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Inner Time Constraint</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Inner Time Constraint</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseInnerTimeConstraint(InnerTimeConstraint object) {
         return null;
     }
 
@@ -437,36 +674,6 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseResponseMessage(ResponseMessage object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Found Message</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Found Message</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseFoundMessage(FoundMessage object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Lost Message</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Lost Message</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseLostMessage(LostMessage object) {
         return null;
     }
 
@@ -511,7 +718,7 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseOccurenceSpecification(OccurenceSpecification object) {
+    public <UMLOccurenceType extends OccurrenceSpecification> T caseOccurenceSpecification(OccurenceSpecification<UMLOccurenceType> object) {
         return null;
     }
 
@@ -546,6 +753,51 @@ public class SequenceSwitch<T> extends Switch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Ordered Fragment Container</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Ordered Fragment Container</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseOrderedFragmentContainer(OrderedFragmentContainer object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Single Region Container</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Single Region Container</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSingleRegionContainer(SingleRegionContainer object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Multiple Region Container</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Multiple Region Container</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseMultipleRegionContainer(MultipleRegionContainer object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Alternative</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -572,6 +824,21 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseOption(Option object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Co Region</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Co Region</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCoRegion(CoRegion object) {
         return null;
     }
 
@@ -621,62 +888,287 @@ public class SequenceSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Behavior Fragments</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Behavior Fragments</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseBehaviorFragments(BehaviorFragments object) {
+    public T caseCondition(Condition object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Behavior Fragments With Condition</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Observation</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Behavior Fragments With Condition</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Observation</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseBehaviorFragmentsWithCondition(BehaviorFragmentsWithCondition object) {
+    public T caseObservation(Observation object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Actor Classifier Mapping</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Time Observation</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Actor Classifier Mapping</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Time Observation</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseActorClassifierMapping(ActorClassifierMapping object) {
+    public T caseTimeObservation(TimeObservation object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Timed</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Duration Observation</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Timed</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Duration Observation</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseTimed(Timed object) {
+    public T caseDurationObservation(DurationObservation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseConstraint(Constraint object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Time Constraint</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Time Constraint</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTimeConstraint(TimeConstraint object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Duration Constraint</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Duration Constraint</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDurationConstraint(DurationConstraint object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Occurence Reference</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Occurence Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public <OccurenceType extends OccurenceSpecification<?>> T caseOccurenceReference(OccurenceReference<OccurenceType> object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Explicit Arrival Occurence Reference</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Explicit Arrival Occurence Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExplicitArrivalOccurenceReference(ExplicitArrivalOccurenceReference object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Implicit Arrival Occurence Specification</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Implicit Arrival Occurence Specification</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseImplicitArrivalOccurenceSpecification(ImplicitArrivalOccurenceSpecification object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Explicit Arrival Occurence Specification</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Explicit Arrival Occurence Specification</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExplicitArrivalOccurenceSpecification(ExplicitArrivalOccurenceSpecification object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Implicit Send Occurence Specification</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Implicit Send Occurence Specification</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseImplicitSendOccurenceSpecification(ImplicitSendOccurenceSpecification object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Aliased Point In Time</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Aliased Point In Time</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public <UMLPointInTimeType extends NamedElement> T caseAliasedPointInTime(AliasedPointInTime<UMLPointInTimeType> object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Point In Time Selector</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Point In Time Selector</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePointInTimeSelector(PointInTimeSelector object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Time Interval Selector</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Time Interval Selector</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTimeIntervalSelector(TimeIntervalSelector object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Bi Point In Time Time Interval Selector</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Bi Point In Time Time Interval Selector</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseBiPointInTimeTimeIntervalSelector(BiPointInTimeTimeIntervalSelector object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Fragment Time Interval Selector</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Fragment Time Interval Selector</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFragmentTimeIntervalSelector(FragmentTimeIntervalSelector object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Reference</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseReference(Reference object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Non Instantaneous Fragment</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Non Instantaneous Fragment</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public <UMLType extends InteractionFragment> T caseNonInstantaneousFragment(NonInstantaneousFragment<UMLType> object) {
         return null;
     }
 
@@ -721,7 +1213,7 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseNamedElement(NamedElement object) {
+    public T caseNamedElement(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement object) {
         return null;
     }
 

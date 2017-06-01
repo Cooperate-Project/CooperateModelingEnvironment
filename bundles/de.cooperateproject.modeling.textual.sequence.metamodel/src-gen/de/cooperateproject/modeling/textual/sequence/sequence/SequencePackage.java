@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
@@ -79,13 +81,22 @@ public interface SequencePackage extends EPackage {
     int SEQUENCE_DIAGRAM__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEQUENCE_DIAGRAM__FRAGMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Title</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SEQUENCE_DIAGRAM__TITLE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int SEQUENCE_DIAGRAM__TITLE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Root Package</b></em>' containment reference.
@@ -94,7 +105,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SEQUENCE_DIAGRAM__ROOT_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int SEQUENCE_DIAGRAM__ROOT_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Actors</b></em>' containment reference list.
@@ -103,16 +114,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SEQUENCE_DIAGRAM__ACTORS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Behavior Fragments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int SEQUENCE_DIAGRAM__ACTORS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Diagram</em>' class.
@@ -297,32 +299,142 @@ public interface SequencePackage extends EPackage {
     int ACTOR_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentImpl <em>Behavior Fragment</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl <em>Actor Classifier Mapping</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBehaviorFragment()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorClassifierMapping()
      * @generated
      */
-    int BEHAVIOR_FRAGMENT = 3;
+    int ACTOR_CLASSIFIER_MAPPING = 3;
 
     /**
-     * The number of structural features of the '<em>Behavior Fragment</em>' class.
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BEHAVIOR_FRAGMENT_FEATURE_COUNT = 0;
+    int ACTOR_CLASSIFIER_MAPPING__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The number of operations of the '<em>Behavior Fragment</em>' class.
+     * The feature id for the '<em><b>Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BEHAVIOR_FRAGMENT_OPERATION_COUNT = 0;
+    int ACTOR_CLASSIFIER_MAPPING__CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Actor</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING__ACTOR = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Classifier Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Actor Classifier Mapping</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Actor Classifier Mapping</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR_CLASSIFIER_MAPPING_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentImpl <em>Fragment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragment()
+     * @generated
+     */
+    int FRAGMENT = 4;
+
+    /**
+     * The number of structural features of the '<em>Fragment</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_FEATURE_COUNT = 0;
+
+    /**
+     * The number of operations of the '<em>Fragment</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_OPERATION_COUNT = 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl <em>Fragment Sequence</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragmentSequence()
+     * @generated
+     */
+    int FRAGMENT_SEQUENCE = 5;
+
+    /**
+     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_SEQUENCE__FRAGMENTS = 0;
+
+    /**
+     * The number of structural features of the '<em>Fragment Sequence</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_SEQUENCE_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Fragment Sequence</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_SEQUENCE_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl <em>Message</em>}' class.
@@ -332,7 +444,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getMessage()
      * @generated
      */
-    int MESSAGE = 4;
+    int MESSAGE = 6;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -341,7 +453,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE__REFERENCED_ELEMENT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 0;
+    int MESSAGE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -350,25 +471,34 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE__NAME = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 1;
+    int MESSAGE__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MESSAGE__ORDER = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 2;
+    int MESSAGE__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
+     * The feature id for the '<em><b>Arrival Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MESSAGE__TIME_CONSTRAINT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 3;
+    int MESSAGE__ARRIVAL_EVENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Send Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE__SEND_EVENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Message</em>' class.
@@ -377,7 +507,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE_FEATURE_COUNT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 4;
+    int MESSAGE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -386,7 +516,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE___GET_NEAREST_PACKAGE = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 0;
+    int MESSAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Message</em>' class.
@@ -395,90 +525,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MESSAGE_OPERATION_COUNT = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 1;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl <em>Time Constraint</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraint()
-     * @generated
-     */
-    int TIME_CONSTRAINT = 5;
-
-    /**
-     * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TIME_CONSTRAINT__CONSTRAINTS = 0;
-
-    /**
-     * The number of structural features of the '<em>Time Constraint</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TIME_CONSTRAINT_FEATURE_COUNT = 1;
-
-    /**
-     * The number of operations of the '<em>Time Constraint</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TIME_CONSTRAINT_OPERATION_COUNT = 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.InnerTimeConstraintImpl <em>Inner Time Constraint</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.InnerTimeConstraintImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getInnerTimeConstraint()
-     * @generated
-     */
-    int INNER_TIME_CONSTRAINT = 6;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int INNER_TIME_CONSTRAINT__TYPE = 0;
-
-    /**
-     * The feature id for the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int INNER_TIME_CONSTRAINT__VALUE = 1;
-
-    /**
-     * The number of structural features of the '<em>Inner Time Constraint</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int INNER_TIME_CONSTRAINT_FEATURE_COUNT = 2;
-
-    /**
-     * The number of operations of the '<em>Inner Time Constraint</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int INNER_TIME_CONSTRAINT_OPERATION_COUNT = 0;
+    int MESSAGE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl <em>Standard Message</em>}' class.
@@ -500,6 +547,15 @@ public interface SequencePackage extends EPackage {
     int STANDARD_MESSAGE__REFERENCED_ELEMENT = MESSAGE__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE__COMMENTS = MESSAGE__COMMENTS;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -509,22 +565,31 @@ public interface SequencePackage extends EPackage {
     int STANDARD_MESSAGE__NAME = MESSAGE__NAME;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STANDARD_MESSAGE__ORDER = MESSAGE__ORDER;
+    int STANDARD_MESSAGE__ALIAS = MESSAGE__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
+     * The feature id for the '<em><b>Arrival Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STANDARD_MESSAGE__TIME_CONSTRAINT = MESSAGE__TIME_CONSTRAINT;
+    int STANDARD_MESSAGE__ARRIVAL_EVENT = MESSAGE__ARRIVAL_EVENT;
+
+    /**
+     * The feature id for the '<em><b>Send Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE__SEND_EVENT = MESSAGE__SEND_EVENT;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -600,6 +665,15 @@ public interface SequencePackage extends EPackage {
     int RESPONSE_MESSAGE__REFERENCED_ELEMENT = MESSAGE__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE__COMMENTS = MESSAGE__COMMENTS;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -609,22 +683,31 @@ public interface SequencePackage extends EPackage {
     int RESPONSE_MESSAGE__NAME = MESSAGE__NAME;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE__ORDER = MESSAGE__ORDER;
+    int RESPONSE_MESSAGE__ALIAS = MESSAGE__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
+     * The feature id for the '<em><b>Arrival Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE__TIME_CONSTRAINT = MESSAGE__TIME_CONSTRAINT;
+    int RESPONSE_MESSAGE__ARRIVAL_EVENT = MESSAGE__ARRIVAL_EVENT;
+
+    /**
+     * The feature id for the '<em><b>Send Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE__SEND_EVENT = MESSAGE__SEND_EVENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -672,188 +755,6 @@ public interface SequencePackage extends EPackage {
     int RESPONSE_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl <em>Found Message</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFoundMessage()
-     * @generated
-     */
-    int FOUND_MESSAGE = 9;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE__REFERENCED_ELEMENT = MESSAGE__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE__NAME = MESSAGE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE__ORDER = MESSAGE__ORDER;
-
-    /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE__TIME_CONSTRAINT = MESSAGE__TIME_CONSTRAINT;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE__TYPE = MESSAGE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Right</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE__RIGHT = MESSAGE_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Found Message</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
-
-    /**
-     * The number of operations of the '<em>Found Message</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOUND_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.LostMessageImpl <em>Lost Message</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.LostMessageImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getLostMessage()
-     * @generated
-     */
-    int LOST_MESSAGE = 10;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE__REFERENCED_ELEMENT = MESSAGE__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE__NAME = MESSAGE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE__ORDER = MESSAGE__ORDER;
-
-    /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE__TIME_CONSTRAINT = MESSAGE__TIME_CONSTRAINT;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE__TYPE = MESSAGE_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Left</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE__LEFT = MESSAGE_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Lost Message</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
-
-    /**
-     * The number of operations of the '<em>Lost Message</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOST_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
-
-    /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -861,7 +762,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCreateMessage()
      * @generated
      */
-    int CREATE_MESSAGE = 11;
+    int CREATE_MESSAGE = 9;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -873,6 +774,15 @@ public interface SequencePackage extends EPackage {
     int CREATE_MESSAGE__REFERENCED_ELEMENT = MESSAGE__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CREATE_MESSAGE__COMMENTS = MESSAGE__COMMENTS;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -882,22 +792,31 @@ public interface SequencePackage extends EPackage {
     int CREATE_MESSAGE__NAME = MESSAGE__NAME;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CREATE_MESSAGE__ORDER = MESSAGE__ORDER;
+    int CREATE_MESSAGE__ALIAS = MESSAGE__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
+     * The feature id for the '<em><b>Arrival Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CREATE_MESSAGE__TIME_CONSTRAINT = MESSAGE__TIME_CONSTRAINT;
+    int CREATE_MESSAGE__ARRIVAL_EVENT = MESSAGE__ARRIVAL_EVENT;
+
+    /**
+     * The feature id for the '<em><b>Send Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CREATE_MESSAGE__SEND_EVENT = MESSAGE__SEND_EVENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -952,7 +871,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getDestructionMessage()
      * @generated
      */
-    int DESTRUCTION_MESSAGE = 12;
+    int DESTRUCTION_MESSAGE = 10;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -964,6 +883,15 @@ public interface SequencePackage extends EPackage {
     int DESTRUCTION_MESSAGE__REFERENCED_ELEMENT = MESSAGE__REFERENCED_ELEMENT;
 
     /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_MESSAGE__COMMENTS = MESSAGE__COMMENTS;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -973,22 +901,31 @@ public interface SequencePackage extends EPackage {
     int DESTRUCTION_MESSAGE__NAME = MESSAGE__NAME;
 
     /**
-     * The feature id for the '<em><b>Order</b></em>' attribute.
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DESTRUCTION_MESSAGE__ORDER = MESSAGE__ORDER;
+    int DESTRUCTION_MESSAGE__ALIAS = MESSAGE__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Time Constraint</b></em>' containment reference.
+     * The feature id for the '<em><b>Arrival Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DESTRUCTION_MESSAGE__TIME_CONSTRAINT = MESSAGE__TIME_CONSTRAINT;
+    int DESTRUCTION_MESSAGE__ARRIVAL_EVENT = MESSAGE__ARRIVAL_EVENT;
+
+    /**
+     * The feature id for the '<em><b>Send Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_MESSAGE__SEND_EVENT = MESSAGE__SEND_EVENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -1043,7 +980,43 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getOccurenceSpecification()
      * @generated
      */
-    int OCCURENCE_SPECIFICATION = 13;
+    int OCCURENCE_SPECIFICATION = 11;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION__NAME = FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION__ALIAS = FRAGMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION__COMMENTS = FRAGMENT_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Occurence Specification</em>' class.
@@ -1052,7 +1025,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OCCURENCE_SPECIFICATION_FEATURE_COUNT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 0;
+    int OCCURENCE_SPECIFICATION_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 4;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = FRAGMENT_OPERATION_COUNT + 0;
 
     /**
      * The number of operations of the '<em>Occurence Specification</em>' class.
@@ -1061,7 +1043,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 0;
+    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl <em>Destruction Occurence Specification</em>}' class.
@@ -1071,7 +1053,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getDestructionOccurenceSpecification()
      * @generated
      */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION = 14;
+    int DESTRUCTION_OCCURENCE_SPECIFICATION = 12;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1080,7 +1062,34 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
+    int DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1089,7 +1098,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 1;
+    int DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Destruction Occurence Specification</em>' class.
@@ -1098,7 +1107,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 2;
+    int DESTRUCTION_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1107,7 +1116,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 0;
+    int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Destruction Occurence Specification</em>' class.
@@ -1116,7 +1125,71 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
+    int DESTRUCTION_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl <em>Non Instantaneous Fragment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getNonInstantaneousFragment()
+     * @generated
+     */
+    int NON_INSTANTANEOUS_FRAGMENT = 41;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT__NAME = FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT__ALIAS = FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT = FRAGMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Non Instantaneous Fragment</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT___GET_NEAREST_PACKAGE = FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Non Instantaneous Fragment</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CombinedFragmentImpl <em>Combined Fragment</em>}' class.
@@ -1126,7 +1199,25 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCombinedFragment()
      * @generated
      */
-    int COMBINED_FRAGMENT = 15;
+    int COMBINED_FRAGMENT = 13;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT__NAME = NON_INSTANTANEOUS_FRAGMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT__ALIAS = NON_INSTANTANEOUS_FRAGMENT__ALIAS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1135,7 +1226,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMBINED_FRAGMENT__REFERENCED_ELEMENT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 0;
+    int COMBINED_FRAGMENT__REFERENCED_ELEMENT = NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT__COMMENTS = NON_INSTANTANEOUS_FRAGMENT_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Combined Fragment</em>' class.
@@ -1144,7 +1244,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMBINED_FRAGMENT_FEATURE_COUNT = BEHAVIOR_FRAGMENT_FEATURE_COUNT + 1;
+    int COMBINED_FRAGMENT_FEATURE_COUNT = NON_INSTANTANEOUS_FRAGMENT_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1153,7 +1253,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMBINED_FRAGMENT___GET_NEAREST_PACKAGE = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 0;
+    int COMBINED_FRAGMENT___GET_NEAREST_PACKAGE = NON_INSTANTANEOUS_FRAGMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Combined Fragment</em>' class.
@@ -1162,7 +1262,244 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMBINED_FRAGMENT_OPERATION_COUNT = BEHAVIOR_FRAGMENT_OPERATION_COUNT + 1;
+    int COMBINED_FRAGMENT_OPERATION_COUNT = NON_INSTANTANEOUS_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl <em>Ordered Fragment Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getOrderedFragmentContainer()
+     * @generated
+     */
+    int ORDERED_FRAGMENT_CONTAINER = 14;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER__FRAGMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Condition</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Ordered Fragment Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Ordered Fragment Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SingleRegionContainerImpl <em>Single Region Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SingleRegionContainerImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getSingleRegionContainer()
+     * @generated
+     */
+    int SINGLE_REGION_CONTAINER = 15;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER__NAME = COMBINED_FRAGMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER__ALIAS = COMBINED_FRAGMENT__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER__COMMENTS = COMBINED_FRAGMENT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Region</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER__REGION = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Single Region Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Single Region Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MultipleRegionContainerImpl <em>Multiple Region Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.MultipleRegionContainerImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getMultipleRegionContainer()
+     * @generated
+     */
+    int MULTIPLE_REGION_CONTAINER = 16;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER__NAME = COMBINED_FRAGMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER__ALIAS = COMBINED_FRAGMENT__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER__COMMENTS = COMBINED_FRAGMENT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Regions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER__REGIONS = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Multiple Region Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Multiple Region Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AlternativeImpl <em>Alternative</em>}' class.
@@ -1172,7 +1509,25 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getAlternative()
      * @generated
      */
-    int ALTERNATIVE = 16;
+    int ALTERNATIVE = 17;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE__NAME = MULTIPLE_REGION_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE__ALIAS = MULTIPLE_REGION_CONTAINER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1181,16 +1536,25 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALTERNATIVE__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+    int ALTERNATIVE__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Alternatives</b></em>' containment reference list.
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ALTERNATIVE__ALTERNATIVES = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+    int ALTERNATIVE__COMMENTS = MULTIPLE_REGION_CONTAINER__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Regions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE__REGIONS = MULTIPLE_REGION_CONTAINER__REGIONS;
 
     /**
      * The number of structural features of the '<em>Alternative</em>' class.
@@ -1199,7 +1563,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALTERNATIVE_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+    int ALTERNATIVE_FEATURE_COUNT = MULTIPLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1208,7 +1572,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALTERNATIVE___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+    int ALTERNATIVE___GET_NEAREST_PACKAGE = MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Alternative</em>' class.
@@ -1217,7 +1581,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALTERNATIVE_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+    int ALTERNATIVE_OPERATION_COUNT = MULTIPLE_REGION_CONTAINER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OptionImpl <em>Option</em>}' class.
@@ -1227,7 +1591,25 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getOption()
      * @generated
      */
-    int OPTION = 17;
+    int OPTION = 18;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION__NAME = SINGLE_REGION_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION__ALIAS = SINGLE_REGION_CONTAINER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1236,16 +1618,25 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPTION__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+    int OPTION__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Optional</b></em>' containment reference list.
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int OPTION__OPTIONAL = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+    int OPTION__COMMENTS = SINGLE_REGION_CONTAINER__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Region</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION__REGION = SINGLE_REGION_CONTAINER__REGION;
 
     /**
      * The number of structural features of the '<em>Option</em>' class.
@@ -1254,7 +1645,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPTION_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+    int OPTION_FEATURE_COUNT = SINGLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1263,7 +1654,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPTION___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+    int OPTION___GET_NEAREST_PACKAGE = SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Option</em>' class.
@@ -1272,7 +1663,89 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OPTION_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+    int OPTION_OPERATION_COUNT = SINGLE_REGION_CONTAINER_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CoRegionImpl <em>Co Region</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.CoRegionImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCoRegion()
+     * @generated
+     */
+    int CO_REGION = 19;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION__NAME = MULTIPLE_REGION_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION__ALIAS = MULTIPLE_REGION_CONTAINER__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION__COMMENTS = MULTIPLE_REGION_CONTAINER__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Regions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION__REGIONS = MULTIPLE_REGION_CONTAINER__REGIONS;
+
+    /**
+     * The number of structural features of the '<em>Co Region</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION_FEATURE_COUNT = MULTIPLE_REGION_CONTAINER_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION___GET_NEAREST_PACKAGE = MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Co Region</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION_OPERATION_COUNT = MULTIPLE_REGION_CONTAINER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ParallelImpl <em>Parallel</em>}' class.
@@ -1282,7 +1755,25 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getParallel()
      * @generated
      */
-    int PARALLEL = 18;
+    int PARALLEL = 20;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL__NAME = MULTIPLE_REGION_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL__ALIAS = MULTIPLE_REGION_CONTAINER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1291,16 +1782,25 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARALLEL__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+    int PARALLEL__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Parallels</b></em>' containment reference list.
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PARALLEL__PARALLELS = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+    int PARALLEL__COMMENTS = MULTIPLE_REGION_CONTAINER__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Regions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL__REGIONS = MULTIPLE_REGION_CONTAINER__REGIONS;
 
     /**
      * The number of structural features of the '<em>Parallel</em>' class.
@@ -1309,7 +1809,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARALLEL_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+    int PARALLEL_FEATURE_COUNT = MULTIPLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1318,7 +1818,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARALLEL___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+    int PARALLEL___GET_NEAREST_PACKAGE = MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Parallel</em>' class.
@@ -1327,7 +1827,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARALLEL_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+    int PARALLEL_OPERATION_COUNT = MULTIPLE_REGION_CONTAINER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CriticalImpl <em>Critical</em>}' class.
@@ -1337,7 +1837,25 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCritical()
      * @generated
      */
-    int CRITICAL = 19;
+    int CRITICAL = 21;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL__NAME = SINGLE_REGION_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL__ALIAS = SINGLE_REGION_CONTAINER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1346,16 +1864,25 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CRITICAL__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+    int CRITICAL__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CRITICAL__FRAGMENTS = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+    int CRITICAL__COMMENTS = SINGLE_REGION_CONTAINER__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Region</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL__REGION = SINGLE_REGION_CONTAINER__REGION;
 
     /**
      * The number of structural features of the '<em>Critical</em>' class.
@@ -1364,7 +1891,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CRITICAL_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+    int CRITICAL_FEATURE_COUNT = SINGLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1373,7 +1900,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CRITICAL___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+    int CRITICAL___GET_NEAREST_PACKAGE = SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Critical</em>' class.
@@ -1382,7 +1909,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CRITICAL_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+    int CRITICAL_OPERATION_COUNT = SINGLE_REGION_CONTAINER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.LoopImpl <em>Loop</em>}' class.
@@ -1392,7 +1919,25 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getLoop()
      * @generated
      */
-    int LOOP = 20;
+    int LOOP = 22;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP__NAME = SINGLE_REGION_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP__ALIAS = SINGLE_REGION_CONTAINER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1401,25 +1946,25 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int LOOP__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+    int LOOP__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Condition</b></em>' attribute.
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int LOOP__CONDITION = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+    int LOOP__COMMENTS = SINGLE_REGION_CONTAINER__COMMENTS;
 
     /**
-     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * The feature id for the '<em><b>Region</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int LOOP__FRAGMENTS = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+    int LOOP__REGION = SINGLE_REGION_CONTAINER__REGION;
 
     /**
      * The number of structural features of the '<em>Loop</em>' class.
@@ -1428,7 +1973,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int LOOP_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 2;
+    int LOOP_FEATURE_COUNT = SINGLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1437,7 +1982,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int LOOP___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+    int LOOP___GET_NEAREST_PACKAGE = SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Loop</em>' class.
@@ -1446,54 +1991,26 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int LOOP_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+    int LOOP_OPERATION_COUNT = SINGLE_REGION_CONTAINER_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsImpl <em>Behavior Fragments</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ConditionImpl <em>Condition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBehaviorFragments()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ConditionImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCondition()
      * @generated
      */
-    int BEHAVIOR_FRAGMENTS = 21;
+    int CONDITION = 23;
 
     /**
-     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BEHAVIOR_FRAGMENTS__FRAGMENTS = 0;
-
-    /**
-     * The number of structural features of the '<em>Behavior Fragments</em>' class.
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BEHAVIOR_FRAGMENTS_FEATURE_COUNT = 1;
-
-    /**
-     * The number of operations of the '<em>Behavior Fragments</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BEHAVIOR_FRAGMENTS_OPERATION_COUNT = 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsWithConditionImpl <em>Behavior Fragments With Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsWithConditionImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBehaviorFragmentsWithCondition()
-     * @generated
-     */
-    int BEHAVIOR_FRAGMENTS_WITH_CONDITION = 22;
+    int CONDITION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -1502,89 +2019,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION = 0;
+    int CONDITION__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * The number of structural features of the '<em>Condition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS = 1;
-
-    /**
-     * The number of structural features of the '<em>Behavior Fragments With Condition</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BEHAVIOR_FRAGMENTS_WITH_CONDITION_FEATURE_COUNT = 2;
-
-    /**
-     * The number of operations of the '<em>Behavior Fragments With Condition</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BEHAVIOR_FRAGMENTS_WITH_CONDITION_OPERATION_COUNT = 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl <em>Actor Classifier Mapping</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorClassifierMapping()
-     * @generated
-     */
-    int ACTOR_CLASSIFIER_MAPPING = 23;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTOR_CLASSIFIER_MAPPING__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Classifier</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTOR_CLASSIFIER_MAPPING__CLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Actor</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTOR_CLASSIFIER_MAPPING__ACTOR = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Classifier Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The number of structural features of the '<em>Actor Classifier Mapping</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ACTOR_CLASSIFIER_MAPPING_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int CONDITION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1593,26 +2037,349 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ACTOR_CLASSIFIER_MAPPING___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+    int CONDITION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
-     * The number of operations of the '<em>Actor Classifier Mapping</em>' class.
+     * The number of operations of the '<em>Condition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ACTOR_CLASSIFIER_MAPPING_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int CONDITION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimedImpl <em>Timed</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ObservationImpl <em>Observation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimedImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimed()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ObservationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getObservation()
      * @generated
      */
-    int TIMED = 24;
+    int OBSERVATION = 24;
+
+    /**
+     * The number of structural features of the '<em>Observation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBSERVATION_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Observation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBSERVATION_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeObservationImpl <em>Time Observation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeObservationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeObservation()
+     * @generated
+     */
+    int TIME_OBSERVATION = 25;
+
+    /**
+     * The feature id for the '<em><b>Time</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_OBSERVATION__TIME = OBSERVATION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_OBSERVATION__EVENT = OBSERVATION_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Time Observation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_OBSERVATION_FEATURE_COUNT = OBSERVATION_FEATURE_COUNT + 2;
+
+    /**
+     * The number of operations of the '<em>Time Observation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_OBSERVATION_OPERATION_COUNT = OBSERVATION_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationObservationImpl <em>Duration Observation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationObservationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getDurationObservation()
+     * @generated
+     */
+    int DURATION_OBSERVATION = 26;
+
+    /**
+     * The feature id for the '<em><b>Duration</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_OBSERVATION__DURATION = OBSERVATION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Interval</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_OBSERVATION__INTERVAL = OBSERVATION_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Duration Observation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_OBSERVATION_FEATURE_COUNT = OBSERVATION_FEATURE_COUNT + 2;
+
+    /**
+     * The number of operations of the '<em>Duration Observation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_OBSERVATION_OPERATION_COUNT = OBSERVATION_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ConstraintImpl <em>Constraint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ConstraintImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getConstraint()
+     * @generated
+     */
+    int CONSTRAINT = 27;
+
+    /**
+     * The number of structural features of the '<em>Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINT_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINT_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl <em>Time Constraint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraint()
+     * @generated
+     */
+    int TIME_CONSTRAINT = 28;
+
+    /**
+     * The feature id for the '<em><b>Time</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_CONSTRAINT__TIME = CONSTRAINT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Event</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_CONSTRAINT__EVENT = CONSTRAINT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Time Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of operations of the '<em>Time Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationConstraintImpl <em>Duration Constraint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationConstraintImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getDurationConstraint()
+     * @generated
+     */
+    int DURATION_CONSTRAINT = 29;
+
+    /**
+     * The feature id for the '<em><b>Duration</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_CONSTRAINT__DURATION = CONSTRAINT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Interval</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_CONSTRAINT__INTERVAL = CONSTRAINT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Duration Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of operations of the '<em>Duration Constraint</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceReferenceImpl <em>Occurence Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceReferenceImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getOccurenceReference()
+     * @generated
+     */
+    int OCCURENCE_REFERENCE = 30;
+
+    /**
+     * The number of structural features of the '<em>Occurence Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_REFERENCE_FEATURE_COUNT = 0;
+
+    /**
+     * The operation id for the '<em>Get Occurence Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION = 0;
+
+    /**
+     * The number of operations of the '<em>Occurence Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_REFERENCE_OPERATION_COUNT = 1;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceReferenceImpl <em>Explicit Arrival Occurence Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceReferenceImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getExplicitArrivalOccurenceReference()
+     * @generated
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE = 31;
+
+    /**
+     * The feature id for the '<em><b>Occurence Specification</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION = OCCURENCE_REFERENCE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Explicit Arrival Occurence Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE_FEATURE_COUNT = OCCURENCE_REFERENCE_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Occurence Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION = OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION;
+
+    /**
+     * The number of operations of the '<em>Explicit Arrival Occurence Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE_OPERATION_COUNT = OCCURENCE_REFERENCE_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl <em>Implicit Arrival Occurence Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitArrivalOccurenceSpecification()
+     * @generated
+     */
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = 32;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -1621,34 +2388,43 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TIMED__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Fragments</b></em>' containment reference list.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TIMED__FRAGMENTS = COMBINED_FRAGMENT_FEATURE_COUNT + 0;
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
 
     /**
-     * The feature id for the '<em><b>Constraint</b></em>' containment reference.
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TIMED__CONSTRAINT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
 
     /**
-     * The number of structural features of the '<em>Timed</em>' class.
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TIMED_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 2;
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
+
+    /**
+     * The number of structural features of the '<em>Implicit Arrival Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1657,16 +2433,519 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TIMED___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
 
     /**
-     * The number of operations of the '<em>Timed</em>' class.
+     * The operation id for the '<em>Get Occurence Specification</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TIMED_OPERATION_COUNT = COMBINED_FRAGMENT_OPERATION_COUNT + 0;
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
+
+    /**
+     * The number of operations of the '<em>Implicit Arrival Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl <em>Explicit Arrival Occurence Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getExplicitArrivalOccurenceSpecification()
+     * @generated
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = 33;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME = TextualCommonsPackage.NAMED_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Explicit Arrival Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.NAMED_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Explicit Arrival Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl <em>Implicit Send Occurence Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitSendOccurenceSpecification()
+     * @generated
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION = 34;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
+
+    /**
+     * The number of structural features of the '<em>Implicit Send Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Occurence Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
+
+    /**
+     * The number of operations of the '<em>Implicit Send Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl <em>Aliased Point In Time</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getAliasedPointInTime()
+     * @generated
+     */
+    int ALIASED_POINT_IN_TIME = 35;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALIASED_POINT_IN_TIME__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALIASED_POINT_IN_TIME__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALIASED_POINT_IN_TIME__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Aliased Point In Time</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALIASED_POINT_IN_TIME_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALIASED_POINT_IN_TIME___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Aliased Point In Time</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALIASED_POINT_IN_TIME_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl <em>Point In Time Selector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getPointInTimeSelector()
+     * @generated
+     */
+    int POINT_IN_TIME_SELECTOR = 36;
+
+    /**
+     * The feature id for the '<em><b>Point In Time</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME_SELECTOR__POINT_IN_TIME = 0;
+
+    /**
+     * The number of structural features of the '<em>Point In Time Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME_SELECTOR_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Point In Time Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME_SELECTOR_OPERATION_COUNT = 0;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeIntervalSelectorImpl <em>Time Interval Selector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeIntervalSelectorImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeIntervalSelector()
+     * @generated
+     */
+    int TIME_INTERVAL_SELECTOR = 37;
+
+    /**
+     * The number of structural features of the '<em>Time Interval Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_INTERVAL_SELECTOR_FEATURE_COUNT = 0;
+
+    /**
+     * The operation id for the '<em>Get Interval Start</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_INTERVAL_SELECTOR___GET_INTERVAL_START = 0;
+
+    /**
+     * The operation id for the '<em>Get Interval End</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_INTERVAL_SELECTOR___GET_INTERVAL_END = 1;
+
+    /**
+     * The number of operations of the '<em>Time Interval Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_INTERVAL_SELECTOR_OPERATION_COUNT = 2;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BiPointInTimeTimeIntervalSelectorImpl <em>Bi Point In Time Time Interval Selector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BiPointInTimeTimeIntervalSelectorImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBiPointInTimeTimeIntervalSelector()
+     * @generated
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR = 38;
+
+    /**
+     * The feature id for the '<em><b>Start</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__START = TIME_INTERVAL_SELECTOR_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>End</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__END = TIME_INTERVAL_SELECTOR_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Bi Point In Time Time Interval Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR_FEATURE_COUNT = TIME_INTERVAL_SELECTOR_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Interval Start</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR___GET_INTERVAL_START = TIME_INTERVAL_SELECTOR_OPERATION_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Interval End</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR___GET_INTERVAL_END = TIME_INTERVAL_SELECTOR_OPERATION_COUNT + 1;
+
+    /**
+     * The number of operations of the '<em>Bi Point In Time Time Interval Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR_OPERATION_COUNT = TIME_INTERVAL_SELECTOR_OPERATION_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentTimeIntervalSelectorImpl <em>Fragment Time Interval Selector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentTimeIntervalSelectorImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragmentTimeIntervalSelector()
+     * @generated
+     */
+    int FRAGMENT_TIME_INTERVAL_SELECTOR = 39;
+
+    /**
+     * The feature id for the '<em><b>Non Instantaneous Fragment</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT = TIME_INTERVAL_SELECTOR_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Fragment Time Interval Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_TIME_INTERVAL_SELECTOR_FEATURE_COUNT = TIME_INTERVAL_SELECTOR_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Interval Start</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_TIME_INTERVAL_SELECTOR___GET_INTERVAL_START = TIME_INTERVAL_SELECTOR_OPERATION_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Interval End</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_TIME_INTERVAL_SELECTOR___GET_INTERVAL_END = TIME_INTERVAL_SELECTOR_OPERATION_COUNT + 1;
+
+    /**
+     * The number of operations of the '<em>Fragment Time Interval Selector</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_TIME_INTERVAL_SELECTOR_OPERATION_COUNT = TIME_INTERVAL_SELECTOR_OPERATION_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ReferenceImpl <em>Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ReferenceImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getReference()
+     * @generated
+     */
+    int REFERENCE = 40;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Reference</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE__REFERENCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}' enum.
@@ -1676,7 +2955,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getMessageType()
      * @generated
      */
-    int MESSAGE_TYPE = 25;
+    int MESSAGE_TYPE = 42;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorType <em>Actor Type</em>}' enum.
@@ -1686,17 +2965,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorType()
      * @generated
      */
-    int ACTOR_TYPE = 26;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType <em>Time Constraint Type</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraintType()
-     * @generated
-     */
-    int TIME_CONSTRAINT_TYPE = 27;
+    int ACTOR_TYPE = 43;
 
 
     /**
@@ -1741,17 +3010,6 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EReference getSequenceDiagram_Actors();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram#getBehaviorFragments <em>Behavior Fragments</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Behavior Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram#getBehaviorFragments()
-     * @see #getSequenceDiagram()
-     * @generated
-     */
-    EReference getSequenceDiagram_BehaviorFragments();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.RootPackage <em>Root Package</em>}'.
@@ -1807,14 +3065,78 @@ public interface SequencePackage extends EPackage {
     EAttribute getActor_ActorType();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment <em>Behavior Fragment</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping <em>Actor Classifier Mapping</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Behavior Fragment</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment
+     * @return the meta object for class '<em>Actor Classifier Mapping</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
      * @generated
      */
-    EClass getBehaviorFragment();
+    EClass getActorClassifierMapping();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifier <em>Classifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Classifier</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifier()
+     * @see #getActorClassifierMapping()
+     * @generated
+     */
+    EReference getActorClassifierMapping_Classifier();
+
+    /**
+     * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor <em>Actor</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Actor</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor()
+     * @see #getActorClassifierMapping()
+     * @generated
+     */
+    EReference getActorClassifierMapping_Actor();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifierName <em>Classifier Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Classifier Name</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifierName()
+     * @see #getActorClassifierMapping()
+     * @generated
+     */
+    EAttribute getActorClassifierMapping_ClassifierName();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Fragment <em>Fragment</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Fragment</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Fragment
+     * @generated
+     */
+    EClass getFragment();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence <em>Fragment Sequence</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Fragment Sequence</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence
+     * @generated
+     */
+    EClass getFragmentSequence();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence#getFragments <em>Fragments</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Fragments</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence#getFragments()
+     * @see #getFragmentSequence()
+     * @generated
+     */
+    EReference getFragmentSequence_Fragments();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message <em>Message</em>}'.
@@ -1827,79 +3149,26 @@ public interface SequencePackage extends EPackage {
     EClass getMessage();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getOrder <em>Order</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getArrivalEvent <em>Arrival Event</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Order</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Message#getOrder()
+     * @return the meta object for the containment reference '<em>Arrival Event</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Message#getArrivalEvent()
      * @see #getMessage()
      * @generated
      */
-    EAttribute getMessage_Order();
+    EReference getMessage_ArrivalEvent();
 
     /**
-     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getTimeConstraint <em>Time Constraint</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getSendEvent <em>Send Event</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Time Constraint</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Message#getTimeConstraint()
+     * @return the meta object for the containment reference '<em>Send Event</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Message#getSendEvent()
      * @see #getMessage()
      * @generated
      */
-    EReference getMessage_TimeConstraint();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint <em>Time Constraint</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Time Constraint</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint
-     * @generated
-     */
-    EClass getTimeConstraint();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getConstraints <em>Constraints</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Constraints</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getConstraints()
-     * @see #getTimeConstraint()
-     * @generated
-     */
-    EReference getTimeConstraint_Constraints();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint <em>Inner Time Constraint</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Inner Time Constraint</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint
-     * @generated
-     */
-    EClass getInnerTimeConstraint();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint#getType()
-     * @see #getInnerTimeConstraint()
-     * @generated
-     */
-    EAttribute getInnerTimeConstraint_Type();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint#getValue <em>Value</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Value</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.InnerTimeConstraint#getValue()
-     * @see #getInnerTimeConstraint()
-     * @generated
-     */
-    EAttribute getInnerTimeConstraint_Value();
+    EReference getMessage_SendEvent();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage <em>Standard Message</em>}'.
@@ -1975,70 +3244,6 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EReference getResponseMessage_Right();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage <em>Found Message</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Found Message</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage
-     * @generated
-     */
-    EClass getFoundMessage();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage#getType()
-     * @see #getFoundMessage()
-     * @generated
-     */
-    EAttribute getFoundMessage_Type();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage#getRight <em>Right</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Right</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage#getRight()
-     * @see #getFoundMessage()
-     * @generated
-     */
-    EReference getFoundMessage_Right();
-
-    /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.LostMessage <em>Lost Message</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Lost Message</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.LostMessage
-     * @generated
-     */
-    EClass getLostMessage();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.LostMessage#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.LostMessage#getType()
-     * @see #getLostMessage()
-     * @generated
-     */
-    EAttribute getLostMessage_Type();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.LostMessage#getLeft <em>Left</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Left</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.LostMessage#getLeft()
-     * @see #getLostMessage()
-     * @generated
-     */
-    EReference getLostMessage_Left();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage <em>Create Message</em>}'.
@@ -2146,6 +3351,69 @@ public interface SequencePackage extends EPackage {
     EClass getCombinedFragment();
 
     /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer <em>Ordered Fragment Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Ordered Fragment Container</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
+     * @generated
+     */
+    EClass getOrderedFragmentContainer();
+
+    /**
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer#getCondition <em>Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Condition</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer#getCondition()
+     * @see #getOrderedFragmentContainer()
+     * @generated
+     */
+    EReference getOrderedFragmentContainer_Condition();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer <em>Single Region Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Single Region Container</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer
+     * @generated
+     */
+    EClass getSingleRegionContainer();
+
+    /**
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer#getRegion <em>Region</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Region</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer#getRegion()
+     * @see #getSingleRegionContainer()
+     * @generated
+     */
+    EReference getSingleRegionContainer_Region();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer <em>Multiple Region Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Multiple Region Container</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer
+     * @generated
+     */
+    EClass getMultipleRegionContainer();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer#getRegions <em>Regions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Regions</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer#getRegions()
+     * @see #getMultipleRegionContainer()
+     * @generated
+     */
+    EReference getMultipleRegionContainer_Regions();
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Alternative <em>Alternative</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2154,17 +3422,6 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EClass getAlternative();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.Alternative#getAlternatives <em>Alternatives</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Alternatives</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Alternative#getAlternatives()
-     * @see #getAlternative()
-     * @generated
-     */
-    EReference getAlternative_Alternatives();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Option <em>Option</em>}'.
@@ -2177,15 +3434,14 @@ public interface SequencePackage extends EPackage {
     EClass getOption();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.Option#getOptional <em>Optional</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CoRegion <em>Co Region</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Optional</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Option#getOptional()
-     * @see #getOption()
+     * @return the meta object for class '<em>Co Region</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.CoRegion
      * @generated
      */
-    EReference getOption_Optional();
+    EClass getCoRegion();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Parallel <em>Parallel</em>}'.
@@ -2198,17 +3454,6 @@ public interface SequencePackage extends EPackage {
     EClass getParallel();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.Parallel#getParallels <em>Parallels</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Parallels</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Parallel#getParallels()
-     * @see #getParallel()
-     * @generated
-     */
-    EReference getParallel_Parallels();
-
-    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Critical <em>Critical</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2217,17 +3462,6 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EClass getCritical();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.Critical#getFragments <em>Fragments</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Critical#getFragments()
-     * @see #getCritical()
-     * @generated
-     */
-    EReference getCritical_Fragments();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Loop <em>Loop</em>}'.
@@ -2240,154 +3474,449 @@ public interface SequencePackage extends EPackage {
     EClass getLoop();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.Loop#getCondition <em>Condition</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Condition <em>Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Condition</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Condition
+     * @generated
+     */
+    EClass getCondition();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.Condition#getCondition <em>Condition</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Condition</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Loop#getCondition()
-     * @see #getLoop()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Condition#getCondition()
+     * @see #getCondition()
      * @generated
      */
-    EAttribute getLoop_Condition();
+    EAttribute getCondition_Condition();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.Loop#getFragments <em>Fragments</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Observation <em>Observation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Loop#getFragments()
-     * @see #getLoop()
+     * @return the meta object for class '<em>Observation</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Observation
      * @generated
      */
-    EReference getLoop_Fragments();
+    EClass getObservation();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments <em>Behavior Fragments</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation <em>Time Observation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Behavior Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments
+     * @return the meta object for class '<em>Time Observation</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation
      * @generated
      */
-    EClass getBehaviorFragments();
+    EClass getTimeObservation();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments#getFragments <em>Fragments</em>}'.
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation#getTime <em>Time</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragments#getFragments()
-     * @see #getBehaviorFragments()
+     * @return the meta object for the attribute '<em>Time</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation#getTime()
+     * @see #getTimeObservation()
      * @generated
      */
-    EReference getBehaviorFragments_Fragments();
+    EAttribute getTimeObservation_Time();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition <em>Behavior Fragments With Condition</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation#getEvent <em>Event</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Behavior Fragments With Condition</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition
+     * @return the meta object for the containment reference '<em>Event</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation#getEvent()
+     * @see #getTimeObservation()
      * @generated
      */
-    EClass getBehaviorFragmentsWithCondition();
+    EReference getTimeObservation_Event();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition#getCondition <em>Condition</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation <em>Duration Observation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Condition</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition#getCondition()
-     * @see #getBehaviorFragmentsWithCondition()
+     * @return the meta object for class '<em>Duration Observation</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation
      * @generated
      */
-    EAttribute getBehaviorFragmentsWithCondition_Condition();
+    EClass getDurationObservation();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition#getFragments <em>Fragments</em>}'.
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation#getDuration <em>Duration</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragmentsWithCondition#getFragments()
-     * @see #getBehaviorFragmentsWithCondition()
+     * @return the meta object for the attribute '<em>Duration</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation#getDuration()
+     * @see #getDurationObservation()
      * @generated
      */
-    EReference getBehaviorFragmentsWithCondition_Fragments();
+    EAttribute getDurationObservation_Duration();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping <em>Actor Classifier Mapping</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation#getInterval <em>Interval</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Actor Classifier Mapping</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
+     * @return the meta object for the containment reference '<em>Interval</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationObservation#getInterval()
+     * @see #getDurationObservation()
      * @generated
      */
-    EClass getActorClassifierMapping();
+    EReference getDurationObservation_Interval();
 
     /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifier <em>Classifier</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Constraint <em>Constraint</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Classifier</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifier()
-     * @see #getActorClassifierMapping()
+     * @return the meta object for class '<em>Constraint</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Constraint
      * @generated
      */
-    EReference getActorClassifierMapping_Classifier();
+    EClass getConstraint();
 
     /**
-     * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor <em>Actor</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint <em>Time Constraint</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the container reference '<em>Actor</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor()
-     * @see #getActorClassifierMapping()
+     * @return the meta object for class '<em>Time Constraint</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint
      * @generated
      */
-    EReference getActorClassifierMapping_Actor();
+    EClass getTimeConstraint();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifierName <em>Classifier Name</em>}'.
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getTime <em>Time</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Classifier Name</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getClassifierName()
-     * @see #getActorClassifierMapping()
+     * @return the meta object for the attribute '<em>Time</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getTime()
+     * @see #getTimeConstraint()
      * @generated
      */
-    EAttribute getActorClassifierMapping_ClassifierName();
+    EAttribute getTimeConstraint_Time();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Timed <em>Timed</em>}'.
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getEvent <em>Event</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Timed</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Timed
+     * @return the meta object for the containment reference '<em>Event</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint#getEvent()
+     * @see #getTimeConstraint()
      * @generated
      */
-    EClass getTimed();
+    EReference getTimeConstraint_Event();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.sequence.sequence.Timed#getFragments <em>Fragments</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint <em>Duration Constraint</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Fragments</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Timed#getFragments()
-     * @see #getTimed()
+     * @return the meta object for class '<em>Duration Constraint</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint
      * @generated
      */
-    EReference getTimed_Fragments();
+    EClass getDurationConstraint();
 
     /**
-     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Timed#getConstraint <em>Constraint</em>}'.
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint#getDuration <em>Duration</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Constraint</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.Timed#getConstraint()
-     * @see #getTimed()
+     * @return the meta object for the attribute '<em>Duration</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint#getDuration()
+     * @see #getDurationConstraint()
      * @generated
      */
-    EReference getTimed_Constraint();
+    EAttribute getDurationConstraint_Duration();
+
+    /**
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint#getInterval <em>Interval</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Interval</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.DurationConstraint#getInterval()
+     * @see #getDurationConstraint()
+     * @generated
+     */
+    EReference getDurationConstraint_Interval();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference <em>Occurence Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Occurence Reference</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference
+     * @generated
+     */
+    EClass getOccurenceReference();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Occurence Specification</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference#getOccurenceSpecification()
+     * @generated
+     */
+    EOperation getOccurenceReference__GetOccurenceSpecification();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference <em>Explicit Arrival Occurence Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Explicit Arrival Occurence Reference</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference
+     * @generated
+     */
+    EClass getExplicitArrivalOccurenceReference();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification <em>Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Occurence Specification</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification()
+     * @see #getExplicitArrivalOccurenceReference()
+     * @generated
+     */
+    EReference getExplicitArrivalOccurenceReference_OccurenceSpecification();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification <em>Implicit Arrival Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Implicit Arrival Occurence Specification</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification
+     * @generated
+     */
+    EClass getImplicitArrivalOccurenceSpecification();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Occurence Specification</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification#getOccurenceSpecification()
+     * @generated
+     */
+    EOperation getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification <em>Explicit Arrival Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Explicit Arrival Occurence Specification</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification
+     * @generated
+     */
+    EClass getExplicitArrivalOccurenceSpecification();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification <em>Implicit Send Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Implicit Send Occurence Specification</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification
+     * @generated
+     */
+    EClass getImplicitSendOccurenceSpecification();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Occurence Specification</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification#getOccurenceSpecification()
+     * @generated
+     */
+    EOperation getImplicitSendOccurenceSpecification__GetOccurenceSpecification();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime <em>Aliased Point In Time</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Aliased Point In Time</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime
+     * @generated
+     */
+    EClass getAliasedPointInTime();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector <em>Point In Time Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Point In Time Selector</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector
+     * @generated
+     */
+    EClass getPointInTimeSelector();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector#getPointInTime <em>Point In Time</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Point In Time</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector#getPointInTime()
+     * @see #getPointInTimeSelector()
+     * @generated
+     */
+    EReference getPointInTimeSelector_PointInTime();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector <em>Time Interval Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Time Interval Selector</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector
+     * @generated
+     */
+    EClass getTimeIntervalSelector();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector#getIntervalStart() <em>Get Interval Start</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interval Start</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector#getIntervalStart()
+     * @generated
+     */
+    EOperation getTimeIntervalSelector__GetIntervalStart();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector#getIntervalEnd() <em>Get Interval End</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interval End</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector#getIntervalEnd()
+     * @generated
+     */
+    EOperation getTimeIntervalSelector__GetIntervalEnd();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector <em>Bi Point In Time Time Interval Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Bi Point In Time Time Interval Selector</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector
+     * @generated
+     */
+    EClass getBiPointInTimeTimeIntervalSelector();
+
+    /**
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getStart <em>Start</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Start</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getStart()
+     * @see #getBiPointInTimeTimeIntervalSelector()
+     * @generated
+     */
+    EReference getBiPointInTimeTimeIntervalSelector_Start();
+
+    /**
+     * Returns the meta object for the containment reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getEnd <em>End</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>End</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getEnd()
+     * @see #getBiPointInTimeTimeIntervalSelector()
+     * @generated
+     */
+    EReference getBiPointInTimeTimeIntervalSelector_End();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getIntervalStart() <em>Get Interval Start</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interval Start</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getIntervalStart()
+     * @generated
+     */
+    EOperation getBiPointInTimeTimeIntervalSelector__GetIntervalStart();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getIntervalEnd() <em>Get Interval End</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interval End</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector#getIntervalEnd()
+     * @generated
+     */
+    EOperation getBiPointInTimeTimeIntervalSelector__GetIntervalEnd();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector <em>Fragment Time Interval Selector</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Fragment Time Interval Selector</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector
+     * @generated
+     */
+    EClass getFragmentTimeIntervalSelector();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getNonInstantaneousFragment <em>Non Instantaneous Fragment</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Non Instantaneous Fragment</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getNonInstantaneousFragment()
+     * @see #getFragmentTimeIntervalSelector()
+     * @generated
+     */
+    EReference getFragmentTimeIntervalSelector_NonInstantaneousFragment();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getIntervalStart() <em>Get Interval Start</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interval Start</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getIntervalStart()
+     * @generated
+     */
+    EOperation getFragmentTimeIntervalSelector__GetIntervalStart();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getIntervalEnd() <em>Get Interval End</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interval End</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getIntervalEnd()
+     * @generated
+     */
+    EOperation getFragmentTimeIntervalSelector__GetIntervalEnd();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Reference <em>Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Reference</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Reference
+     * @generated
+     */
+    EClass getReference();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Reference#getReference <em>Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Reference</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Reference#getReference()
+     * @see #getReference()
+     * @generated
+     */
+    EReference getReference_Reference();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment <em>Non Instantaneous Fragment</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Non Instantaneous Fragment</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment
+     * @generated
+     */
+    EClass getNonInstantaneousFragment();
 
     /**
      * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}'.
@@ -2410,16 +3939,6 @@ public interface SequencePackage extends EPackage {
     EEnum getActorType();
 
     /**
-     * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType <em>Time Constraint Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Time Constraint Type</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType
-     * @generated
-     */
-    EEnum getTimeConstraintType();
-
-    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2434,6 +3953,7 @@ public interface SequencePackage extends EPackage {
      * <ul>
      *   <li>each class,</li>
      *   <li>each feature of each class,</li>
+     *   <li>each operation of each class,</li>
      *   <li>each enum,</li>
      *   <li>and each data type</li>
      * </ul>
@@ -2474,14 +3994,6 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EReference SEQUENCE_DIAGRAM__ACTORS = eINSTANCE.getSequenceDiagram_Actors();
-
-        /**
-         * The meta object literal for the '<em><b>Behavior Fragments</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference SEQUENCE_DIAGRAM__BEHAVIOR_FRAGMENTS = eINSTANCE.getSequenceDiagram_BehaviorFragments();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl <em>Root Package</em>}' class.
@@ -2528,14 +4040,66 @@ public interface SequencePackage extends EPackage {
         EAttribute ACTOR__ACTOR_TYPE = eINSTANCE.getActor_ActorType();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentImpl <em>Behavior Fragment</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl <em>Actor Classifier Mapping</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBehaviorFragment()
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorClassifierMapping()
          * @generated
          */
-        EClass BEHAVIOR_FRAGMENT = eINSTANCE.getBehaviorFragment();
+        EClass ACTOR_CLASSIFIER_MAPPING = eINSTANCE.getActorClassifierMapping();
+
+        /**
+         * The meta object literal for the '<em><b>Classifier</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ACTOR_CLASSIFIER_MAPPING__CLASSIFIER = eINSTANCE.getActorClassifierMapping_Classifier();
+
+        /**
+         * The meta object literal for the '<em><b>Actor</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ACTOR_CLASSIFIER_MAPPING__ACTOR = eINSTANCE.getActorClassifierMapping_Actor();
+
+        /**
+         * The meta object literal for the '<em><b>Classifier Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME = eINSTANCE.getActorClassifierMapping_ClassifierName();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentImpl <em>Fragment</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragment()
+         * @generated
+         */
+        EClass FRAGMENT = eINSTANCE.getFragment();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl <em>Fragment Sequence</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragmentSequence()
+         * @generated
+         */
+        EClass FRAGMENT_SEQUENCE = eINSTANCE.getFragmentSequence();
+
+        /**
+         * The meta object literal for the '<em><b>Fragments</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference FRAGMENT_SEQUENCE__FRAGMENTS = eINSTANCE.getFragmentSequence_Fragments();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl <em>Message</em>}' class.
@@ -2548,64 +4112,20 @@ public interface SequencePackage extends EPackage {
         EClass MESSAGE = eINSTANCE.getMessage();
 
         /**
-         * The meta object literal for the '<em><b>Order</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Arrival Event</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute MESSAGE__ORDER = eINSTANCE.getMessage_Order();
+        EReference MESSAGE__ARRIVAL_EVENT = eINSTANCE.getMessage_ArrivalEvent();
 
         /**
-         * The meta object literal for the '<em><b>Time Constraint</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Send Event</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference MESSAGE__TIME_CONSTRAINT = eINSTANCE.getMessage_TimeConstraint();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl <em>Time Constraint</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraint()
-         * @generated
-         */
-        EClass TIME_CONSTRAINT = eINSTANCE.getTimeConstraint();
-
-        /**
-         * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference TIME_CONSTRAINT__CONSTRAINTS = eINSTANCE.getTimeConstraint_Constraints();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.InnerTimeConstraintImpl <em>Inner Time Constraint</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.InnerTimeConstraintImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getInnerTimeConstraint()
-         * @generated
-         */
-        EClass INNER_TIME_CONSTRAINT = eINSTANCE.getInnerTimeConstraint();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute INNER_TIME_CONSTRAINT__TYPE = eINSTANCE.getInnerTimeConstraint_Type();
-
-        /**
-         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute INNER_TIME_CONSTRAINT__VALUE = eINSTANCE.getInnerTimeConstraint_Value();
+        EReference MESSAGE__SEND_EVENT = eINSTANCE.getMessage_SendEvent();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl <em>Standard Message</em>}' class.
@@ -2666,58 +4186,6 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EReference RESPONSE_MESSAGE__RIGHT = eINSTANCE.getResponseMessage_Right();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl <em>Found Message</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FoundMessageImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFoundMessage()
-         * @generated
-         */
-        EClass FOUND_MESSAGE = eINSTANCE.getFoundMessage();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute FOUND_MESSAGE__TYPE = eINSTANCE.getFoundMessage_Type();
-
-        /**
-         * The meta object literal for the '<em><b>Right</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference FOUND_MESSAGE__RIGHT = eINSTANCE.getFoundMessage_Right();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.LostMessageImpl <em>Lost Message</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.LostMessageImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getLostMessage()
-         * @generated
-         */
-        EClass LOST_MESSAGE = eINSTANCE.getLostMessage();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute LOST_MESSAGE__TYPE = eINSTANCE.getLostMessage_Type();
-
-        /**
-         * The meta object literal for the '<em><b>Left</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference LOST_MESSAGE__LEFT = eINSTANCE.getLostMessage_Left();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.
@@ -2810,6 +4278,60 @@ public interface SequencePackage extends EPackage {
         EClass COMBINED_FRAGMENT = eINSTANCE.getCombinedFragment();
 
         /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl <em>Ordered Fragment Container</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getOrderedFragmentContainer()
+         * @generated
+         */
+        EClass ORDERED_FRAGMENT_CONTAINER = eINSTANCE.getOrderedFragmentContainer();
+
+        /**
+         * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ORDERED_FRAGMENT_CONTAINER__CONDITION = eINSTANCE.getOrderedFragmentContainer_Condition();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SingleRegionContainerImpl <em>Single Region Container</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SingleRegionContainerImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getSingleRegionContainer()
+         * @generated
+         */
+        EClass SINGLE_REGION_CONTAINER = eINSTANCE.getSingleRegionContainer();
+
+        /**
+         * The meta object literal for the '<em><b>Region</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SINGLE_REGION_CONTAINER__REGION = eINSTANCE.getSingleRegionContainer_Region();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MultipleRegionContainerImpl <em>Multiple Region Container</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.MultipleRegionContainerImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getMultipleRegionContainer()
+         * @generated
+         */
+        EClass MULTIPLE_REGION_CONTAINER = eINSTANCE.getMultipleRegionContainer();
+
+        /**
+         * The meta object literal for the '<em><b>Regions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MULTIPLE_REGION_CONTAINER__REGIONS = eINSTANCE.getMultipleRegionContainer_Regions();
+
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AlternativeImpl <em>Alternative</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2818,14 +4340,6 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EClass ALTERNATIVE = eINSTANCE.getAlternative();
-
-        /**
-         * The meta object literal for the '<em><b>Alternatives</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference ALTERNATIVE__ALTERNATIVES = eINSTANCE.getAlternative_Alternatives();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OptionImpl <em>Option</em>}' class.
@@ -2838,12 +4352,14 @@ public interface SequencePackage extends EPackage {
         EClass OPTION = eINSTANCE.getOption();
 
         /**
-         * The meta object literal for the '<em><b>Optional</b></em>' containment reference list feature.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CoRegionImpl <em>Co Region</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.CoRegionImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCoRegion()
          * @generated
          */
-        EReference OPTION__OPTIONAL = eINSTANCE.getOption_Optional();
+        EClass CO_REGION = eINSTANCE.getCoRegion();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ParallelImpl <em>Parallel</em>}' class.
@@ -2856,14 +4372,6 @@ public interface SequencePackage extends EPackage {
         EClass PARALLEL = eINSTANCE.getParallel();
 
         /**
-         * The meta object literal for the '<em><b>Parallels</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference PARALLEL__PARALLELS = eINSTANCE.getParallel_Parallels();
-
-        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CriticalImpl <em>Critical</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2872,14 +4380,6 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EClass CRITICAL = eINSTANCE.getCritical();
-
-        /**
-         * The meta object literal for the '<em><b>Fragments</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CRITICAL__FRAGMENTS = eINSTANCE.getCritical_Fragments();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.LoopImpl <em>Loop</em>}' class.
@@ -2892,48 +4392,14 @@ public interface SequencePackage extends EPackage {
         EClass LOOP = eINSTANCE.getLoop();
 
         /**
-         * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ConditionImpl <em>Condition</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ConditionImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getCondition()
          * @generated
          */
-        EAttribute LOOP__CONDITION = eINSTANCE.getLoop_Condition();
-
-        /**
-         * The meta object literal for the '<em><b>Fragments</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference LOOP__FRAGMENTS = eINSTANCE.getLoop_Fragments();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsImpl <em>Behavior Fragments</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBehaviorFragments()
-         * @generated
-         */
-        EClass BEHAVIOR_FRAGMENTS = eINSTANCE.getBehaviorFragments();
-
-        /**
-         * The meta object literal for the '<em><b>Fragments</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference BEHAVIOR_FRAGMENTS__FRAGMENTS = eINSTANCE.getBehaviorFragments_Fragments();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsWithConditionImpl <em>Behavior Fragments With Condition</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BehaviorFragmentsWithConditionImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBehaviorFragmentsWithCondition()
-         * @generated
-         */
-        EClass BEHAVIOR_FRAGMENTS_WITH_CONDITION = eINSTANCE.getBehaviorFragmentsWithCondition();
+        EClass CONDITION = eINSTANCE.getCondition();
 
         /**
          * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
@@ -2941,75 +4407,371 @@ public interface SequencePackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute BEHAVIOR_FRAGMENTS_WITH_CONDITION__CONDITION = eINSTANCE.getBehaviorFragmentsWithCondition_Condition();
+        EAttribute CONDITION__CONDITION = eINSTANCE.getCondition_Condition();
 
         /**
-         * The meta object literal for the '<em><b>Fragments</b></em>' containment reference list feature.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ObservationImpl <em>Observation</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ObservationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getObservation()
+         * @generated
+         */
+        EClass OBSERVATION = eINSTANCE.getObservation();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeObservationImpl <em>Time Observation</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeObservationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeObservation()
+         * @generated
+         */
+        EClass TIME_OBSERVATION = eINSTANCE.getTimeObservation();
+
+        /**
+         * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference BEHAVIOR_FRAGMENTS_WITH_CONDITION__FRAGMENTS = eINSTANCE.getBehaviorFragmentsWithCondition_Fragments();
+        EAttribute TIME_OBSERVATION__TIME = eINSTANCE.getTimeObservation_Time();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl <em>Actor Classifier Mapping</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ActorClassifierMappingImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorClassifierMapping()
-         * @generated
-         */
-        EClass ACTOR_CLASSIFIER_MAPPING = eINSTANCE.getActorClassifierMapping();
-
-        /**
-         * The meta object literal for the '<em><b>Classifier</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Event</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference ACTOR_CLASSIFIER_MAPPING__CLASSIFIER = eINSTANCE.getActorClassifierMapping_Classifier();
+        EReference TIME_OBSERVATION__EVENT = eINSTANCE.getTimeObservation_Event();
 
         /**
-         * The meta object literal for the '<em><b>Actor</b></em>' container reference feature.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationObservationImpl <em>Duration Observation</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationObservationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getDurationObservation()
+         * @generated
+         */
+        EClass DURATION_OBSERVATION = eINSTANCE.getDurationObservation();
+
+        /**
+         * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference ACTOR_CLASSIFIER_MAPPING__ACTOR = eINSTANCE.getActorClassifierMapping_Actor();
+        EAttribute DURATION_OBSERVATION__DURATION = eINSTANCE.getDurationObservation_Duration();
 
         /**
-         * The meta object literal for the '<em><b>Classifier Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Interval</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME = eINSTANCE.getActorClassifierMapping_ClassifierName();
+        EReference DURATION_OBSERVATION__INTERVAL = eINSTANCE.getDurationObservation_Interval();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimedImpl <em>Timed</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ConstraintImpl <em>Constraint</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimedImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimed()
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ConstraintImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getConstraint()
          * @generated
          */
-        EClass TIMED = eINSTANCE.getTimed();
+        EClass CONSTRAINT = eINSTANCE.getConstraint();
 
         /**
-         * The meta object literal for the '<em><b>Fragments</b></em>' containment reference list feature.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl <em>Time Constraint</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeConstraintImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraint()
          * @generated
          */
-        EReference TIMED__FRAGMENTS = eINSTANCE.getTimed_Fragments();
+        EClass TIME_CONSTRAINT = eINSTANCE.getTimeConstraint();
 
         /**
-         * The meta object literal for the '<em><b>Constraint</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Time</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference TIMED__CONSTRAINT = eINSTANCE.getTimed_Constraint();
+        EAttribute TIME_CONSTRAINT__TIME = eINSTANCE.getTimeConstraint_Time();
+
+        /**
+         * The meta object literal for the '<em><b>Event</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TIME_CONSTRAINT__EVENT = eINSTANCE.getTimeConstraint_Event();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationConstraintImpl <em>Duration Constraint</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.DurationConstraintImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getDurationConstraint()
+         * @generated
+         */
+        EClass DURATION_CONSTRAINT = eINSTANCE.getDurationConstraint();
+
+        /**
+         * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DURATION_CONSTRAINT__DURATION = eINSTANCE.getDurationConstraint_Duration();
+
+        /**
+         * The meta object literal for the '<em><b>Interval</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DURATION_CONSTRAINT__INTERVAL = eINSTANCE.getDurationConstraint_Interval();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceReferenceImpl <em>Occurence Reference</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceReferenceImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getOccurenceReference()
+         * @generated
+         */
+        EClass OCCURENCE_REFERENCE = eINSTANCE.getOccurenceReference();
+
+        /**
+         * The meta object literal for the '<em><b>Get Occurence Specification</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getOccurenceReference__GetOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceReferenceImpl <em>Explicit Arrival Occurence Reference</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceReferenceImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getExplicitArrivalOccurenceReference()
+         * @generated
+         */
+        EClass EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE = eINSTANCE.getExplicitArrivalOccurenceReference();
+
+        /**
+         * The meta object literal for the '<em><b>Occurence Specification</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION = eINSTANCE.getExplicitArrivalOccurenceReference_OccurenceSpecification();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl <em>Implicit Arrival Occurence Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitArrivalOccurenceSpecification()
+         * @generated
+         */
+        EClass IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitArrivalOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Get Occurence Specification</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl <em>Explicit Arrival Occurence Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getExplicitArrivalOccurenceSpecification()
+         * @generated
+         */
+        EClass EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = eINSTANCE.getExplicitArrivalOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl <em>Implicit Send Occurence Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitSendOccurenceSpecification()
+         * @generated
+         */
+        EClass IMPLICIT_SEND_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitSendOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Get Occurence Specification</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitSendOccurenceSpecification__GetOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl <em>Aliased Point In Time</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getAliasedPointInTime()
+         * @generated
+         */
+        EClass ALIASED_POINT_IN_TIME = eINSTANCE.getAliasedPointInTime();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl <em>Point In Time Selector</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getPointInTimeSelector()
+         * @generated
+         */
+        EClass POINT_IN_TIME_SELECTOR = eINSTANCE.getPointInTimeSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Point In Time</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference POINT_IN_TIME_SELECTOR__POINT_IN_TIME = eINSTANCE.getPointInTimeSelector_PointInTime();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeIntervalSelectorImpl <em>Time Interval Selector</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.TimeIntervalSelectorImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeIntervalSelector()
+         * @generated
+         */
+        EClass TIME_INTERVAL_SELECTOR = eINSTANCE.getTimeIntervalSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Get Interval Start</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation TIME_INTERVAL_SELECTOR___GET_INTERVAL_START = eINSTANCE.getTimeIntervalSelector__GetIntervalStart();
+
+        /**
+         * The meta object literal for the '<em><b>Get Interval End</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation TIME_INTERVAL_SELECTOR___GET_INTERVAL_END = eINSTANCE.getTimeIntervalSelector__GetIntervalEnd();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.BiPointInTimeTimeIntervalSelectorImpl <em>Bi Point In Time Time Interval Selector</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.BiPointInTimeTimeIntervalSelectorImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBiPointInTimeTimeIntervalSelector()
+         * @generated
+         */
+        EClass BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR = eINSTANCE.getBiPointInTimeTimeIntervalSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Start</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__START = eINSTANCE.getBiPointInTimeTimeIntervalSelector_Start();
+
+        /**
+         * The meta object literal for the '<em><b>End</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR__END = eINSTANCE.getBiPointInTimeTimeIntervalSelector_End();
+
+        /**
+         * The meta object literal for the '<em><b>Get Interval Start</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR___GET_INTERVAL_START = eINSTANCE.getBiPointInTimeTimeIntervalSelector__GetIntervalStart();
+
+        /**
+         * The meta object literal for the '<em><b>Get Interval End</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR___GET_INTERVAL_END = eINSTANCE.getBiPointInTimeTimeIntervalSelector__GetIntervalEnd();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentTimeIntervalSelectorImpl <em>Fragment Time Interval Selector</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentTimeIntervalSelectorImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragmentTimeIntervalSelector()
+         * @generated
+         */
+        EClass FRAGMENT_TIME_INTERVAL_SELECTOR = eINSTANCE.getFragmentTimeIntervalSelector();
+
+        /**
+         * The meta object literal for the '<em><b>Non Instantaneous Fragment</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT = eINSTANCE.getFragmentTimeIntervalSelector_NonInstantaneousFragment();
+
+        /**
+         * The meta object literal for the '<em><b>Get Interval Start</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation FRAGMENT_TIME_INTERVAL_SELECTOR___GET_INTERVAL_START = eINSTANCE.getFragmentTimeIntervalSelector__GetIntervalStart();
+
+        /**
+         * The meta object literal for the '<em><b>Get Interval End</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation FRAGMENT_TIME_INTERVAL_SELECTOR___GET_INTERVAL_END = eINSTANCE.getFragmentTimeIntervalSelector__GetIntervalEnd();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ReferenceImpl <em>Reference</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ReferenceImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getReference()
+         * @generated
+         */
+        EClass REFERENCE = eINSTANCE.getReference();
+
+        /**
+         * The meta object literal for the '<em><b>Reference</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REFERENCE__REFERENCE = eINSTANCE.getReference_Reference();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl <em>Non Instantaneous Fragment</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getNonInstantaneousFragment()
+         * @generated
+         */
+        EClass NON_INSTANTANEOUS_FRAGMENT = eINSTANCE.getNonInstantaneousFragment();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}' enum.
@@ -3030,16 +4792,6 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EEnum ACTOR_TYPE = eINSTANCE.getActorType();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType <em>Time Constraint Type</em>}' enum.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraintType
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeConstraintType()
-         * @generated
-         */
-        EEnum TIME_CONSTRAINT_TYPE = eINSTANCE.getTimeConstraintType();
 
     }
 

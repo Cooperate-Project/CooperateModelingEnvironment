@@ -7,8 +7,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
+
 import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -102,7 +104,6 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {

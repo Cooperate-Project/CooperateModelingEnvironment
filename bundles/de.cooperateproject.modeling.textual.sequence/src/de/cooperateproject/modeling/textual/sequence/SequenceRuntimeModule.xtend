@@ -6,10 +6,11 @@ package de.cooperateproject.modeling.textual.sequence
 import com.google.inject.Binder
 import com.google.inject.name.Names
 import de.cooperateproject.modeling.textual.common.generator.CommonDerivedStateModuleExtension
-import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.common.scoping.CooperateValueConverterBase
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService
 import de.cooperateproject.modeling.textual.sequence.generator.SequenceDerivedStateComputer
+import de.cooperateproject.modeling.textual.sequence.naming.SequenceDiagramQualifiedNameProvider
+import de.cooperateproject.modeling.textual.sequence.scoping.SequenceDiagramImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.cdotext.TextualStateCalculator
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
@@ -19,7 +20,6 @@ import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
-import de.cooperateproject.modeling.textual.sequence.naming.SequenceDiagramQualifiedNameProvider
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -58,6 +58,6 @@ class SequenceRuntimeModule extends AbstractSequenceRuntimeModule implements Com
         binder.bind(IScopeProvider)
                 .annotatedWith(Names
                         .named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
-                .to(CooperateImportedNamespaceAwareLocalScopeProvider);
+                .to(SequenceDiagramImportedNamespaceAwareLocalScopeProvider);
     }
 }

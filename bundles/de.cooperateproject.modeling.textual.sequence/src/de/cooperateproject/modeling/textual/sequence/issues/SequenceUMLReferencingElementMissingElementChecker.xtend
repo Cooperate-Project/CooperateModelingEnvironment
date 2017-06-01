@@ -9,6 +9,7 @@ import org.eclipse.uml2.uml.Element
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
+import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage
 
 class SequenceUMLReferencingElementMissingElementChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -27,6 +28,11 @@ class SequenceUMLReferencingElementMissingElementChecker implements IResolvableC
 	private def dispatch resolvePossible(ActorClassifierMapping element) {
 	    return element.hasValidParent(SequencePackage.Literals.ACTOR) &&
 	       element.classifier !== null
+	}
+	
+	private def dispatch resolvePossible(StandardMessage message) {
+	    return message.hasValidParent(SequencePackage.Literals.SEQUENCE_DIAGRAM) 
+	       && message.left.hasReferencedElement && message.right.hasReferencedElement
 	}
 	
 	private def dispatch resolvePossible(UMLReferencingElement element) {

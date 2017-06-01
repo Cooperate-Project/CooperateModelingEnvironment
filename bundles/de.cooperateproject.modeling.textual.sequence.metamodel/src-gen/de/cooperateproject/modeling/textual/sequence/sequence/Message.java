@@ -3,8 +3,11 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,65 +18,65 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getOrder <em>Order</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getTimeConstraint <em>Time Constraint</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getArrivalEvent <em>Arrival Event</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getSendEvent <em>Send Event</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage()
  * @model
  * @generated
  */
-public interface Message extends BehaviorFragment, UMLReferencingElement<org.eclipse.uml2.uml.Message>, NamedElement {
+public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Message>, Fragment, Commentable<org.eclipse.uml2.uml.Message>, AliasedElement {
     /**
-     * Returns the value of the '<em><b>Order</b></em>' attribute.
+     * Returns the value of the '<em><b>Arrival Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Order</em>' attribute isn't clear,
+     * If the meaning of the '<em>Arrival Event</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Order</em>' attribute.
-     * @see #setOrder(String)
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_Order()
-     * @model
+     * @return the value of the '<em>Arrival Event</em>' containment reference.
+     * @see #setArrivalEvent(OccurenceReference)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_ArrivalEvent()
+     * @model containment="true" required="true"
      * @generated
      */
-    String getOrder();
+    OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getArrivalEvent();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getOrder <em>Order</em>}' attribute.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getArrivalEvent <em>Arrival Event</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Order</em>' attribute.
-     * @see #getOrder()
+     * @param value the new value of the '<em>Arrival Event</em>' containment reference.
+     * @see #getArrivalEvent()
      * @generated
      */
-    void setOrder(String value);
+    void setArrivalEvent(OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> value);
 
     /**
-     * Returns the value of the '<em><b>Time Constraint</b></em>' containment reference.
+     * Returns the value of the '<em><b>Send Event</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Time Constraint</em>' containment reference isn't clear,
+     * If the meaning of the '<em>Send Event</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Time Constraint</em>' containment reference.
-     * @see #setTimeConstraint(TimeConstraint)
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_TimeConstraint()
-     * @model containment="true"
+     * @return the value of the '<em>Send Event</em>' containment reference.
+     * @see #setSendEvent(OccurenceReference)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_SendEvent()
+     * @model containment="true" required="true"
      * @generated
      */
-    TimeConstraint getTimeConstraint();
+    OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getSendEvent();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getTimeConstraint <em>Time Constraint</em>}' containment reference.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getSendEvent <em>Send Event</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Time Constraint</em>' containment reference.
-     * @see #getTimeConstraint()
+     * @param value the new value of the '<em>Send Event</em>' containment reference.
+     * @see #getSendEvent()
      * @generated
      */
-    void setTimeConstraint(TimeConstraint value);
+    void setSendEvent(OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> value);
 
 } // Message

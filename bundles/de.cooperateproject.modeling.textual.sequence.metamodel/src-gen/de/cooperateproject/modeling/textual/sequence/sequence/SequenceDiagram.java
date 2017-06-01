@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.uml2.uml.Interaction;
 
 /**
@@ -20,14 +21,13 @@ import org.eclipse.uml2.uml.Interaction;
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram#getTitle <em>Title</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram#getRootPackage <em>Root Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram#getActors <em>Actors</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram#getBehaviorFragments <em>Behavior Fragments</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram()
  * @model
  * @generated
  */
-public interface SequenceDiagram extends UMLReferencingElement<Interaction> {
+public interface SequenceDiagram extends UMLReferencingElement<Interaction>, FragmentSequence {
     /**
      * Returns the value of the '<em><b>Title</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -95,21 +95,5 @@ public interface SequenceDiagram extends UMLReferencingElement<Interaction> {
      * @generated
      */
     EList<Actor> getActors();
-
-    /**
-     * Returns the value of the '<em><b>Behavior Fragments</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Behavior Fragments</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Behavior Fragments</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram_BehaviorFragments()
-     * @model containment="true"
-     * @generated
-     */
-    EList<BehaviorFragment> getBehaviorFragments();
 
 } // SequenceDiagram

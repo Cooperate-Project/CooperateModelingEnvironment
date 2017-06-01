@@ -6,9 +6,8 @@ package de.cooperateproject.modeling.textual.sequence.tests
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification
-import de.cooperateproject.modeling.textual.sequence.sequence.FoundMessage
-import de.cooperateproject.modeling.textual.sequence.sequence.LostMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType
+import de.cooperateproject.modeling.textual.sequence.sequence.Option
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
@@ -27,6 +26,7 @@ import org.junit.runner.RunWith
 
 import static org.hamcrest.Matchers.*
 import static org.junit.Assert.assertThat
+import de.cooperateproject.modeling.textual.sequence.sequence.Constraint
 
 @RunWith(XtextRunner)
 @InjectWith(SequenceCustomizedInjectorProvider.DefaultProvider)
@@ -97,22 +97,21 @@ class SequenceParsingTest extends AbstractSequenceTest{
         act actor1:Bar
         act actor2:Bar
         
-        sync "fragen()" (actor1, actor2) num[1]
-        reply "fragen():Antwort" (actor2, actor1) num[2]
-        found async "schicken()" (_, actor1) num[3]
-        lost async "goodbye()" (actor1, _) num[4]
+        sync "fragen()" (actor1, actor2)
+        reply "fragen():Antwort" (actor2, actor1)
+        found async "schicken()" (_, actor1)
+        lost async "goodbye()" (actor1, _)
         @end-seqd
         '''.parse(rs)
        validationTestHelper.assertNoIssues(model)
        model => [
-            
             assertThat(actors, hasSize(2));
             val actor1 = actors.findFirst[it.name == "actor1"]
             val actor2 = actors.findFirst[it.name == "actor2"]
             assertThat(actor1, notNullValue)
             assertThat(actor2, notNullValue)
-            assertThat(behaviorFragments, hasSize(4))
-            assertThat(behaviorFragments, contains(
+            assertThat(fragments, hasSize(4))
+            assertThat(fragments, contains(
                 allOf(
                     isA(StandardMessage as Class),
                     hasProperty("name", equalTo("fragen()")),
@@ -127,16 +126,18 @@ class SequenceParsingTest extends AbstractSequenceTest{
                     hasProperty("right", equalTo(actor1))
                 ),
                 allOf(
-                    isA(FoundMessage as Class),
+                    isA(StandardMessage as Class),
                     hasProperty("name", equalTo("schicken()")),
                     hasProperty("type", equalTo(MessageType.ASYNC)),
+                    hasProperty("left", nullValue),
                     hasProperty("right", equalTo(actor1))
                 ),
                 allOf(
-                    isA(LostMessage as Class),
+                    isA(StandardMessage as Class),
                     hasProperty("name", equalTo("goodbye()")),
                     hasProperty("type", equalTo(MessageType.ASYNC)),
-                    hasProperty("left", equalTo(actor1))
+                    hasProperty("left", equalTo(actor1)),
+                    hasProperty("right", nullValue)
                 )
             ))
         ]        
@@ -161,8 +162,8 @@ class SequenceParsingTest extends AbstractSequenceTest{
            val actor2 = actors.findFirst[it.name == "actor2"]
            assertThat(actor1, notNullValue)
            assertThat(actor2, notNullValue)
-           assertThat(behaviorFragments, hasSize(2))
-           assertThat(behaviorFragments, contains(
+           assertThat(fragments, hasSize(2))
+           assertThat(fragments, contains(
                allOf(
                    isA(CreateMessage as Class),
                    hasProperty("name", equalTo("teleport")),
@@ -179,20 +180,104 @@ class SequenceParsingTest extends AbstractSequenceTest{
     @Test
     def void timeAndDurationCoordination() {
         val model = '''
+        @start-seqd "timeAndDurationCoordination"
+        
+        rootElement RootElement
+        
         act :Kunde as kunde
         act :Mitarbeiter as mitarbeiter
         
-        sync rufen (kunde, mitarbeiter) num[1] time[d=2min]
+        sync rufen (kunde, mitarbeiter)
+        reply "" (mitarbeiter, kunde)
         
-        sync rufen (kunde ,mitarbeiter) num[2] time[max=1sec]
+        sync anschreien (kunde ,mitarbeiter)
+        reply "" (mitarbeiter, kunde)
         
-        async rufen (kunde, mitarbeiter) time[diff=1sec]
+        lost async geschaeftVerlassen (kunde, _)
         
-        time[max=5min]  {
-            sync rufen  (kunde,mitarbeiter)
-            sync anschreien (kunde,mitarbeiter)
-        }'''.parse(rs)
+        cstr (rufen.snd, anschreien.snd) d["d<5min"]
+        @end-seqd'''.parse(rs)
+        validationTestHelper.assertNoIssues(model)
+        model => [
+            assertThat(actors, hasSize(2))
+            assertThat(fragments, hasItem(
+                allOf(
+                    isA(Constraint),
+                    hasProperty("duration", equalTo("d<5min"))    
+                )
+            ))
+        ]
     }
+    
+    @Test
+    def void notationSEQD_Example3() {
+        val model = '''
+        @start-seqd "submit comments"
+        
+        rootElement RootElement
+        
+        // 1. Teilnehmer
+        act :Window as W
+        act :Comments as C note["javascript"]
+        def act :Proxy as P1 note["ajax"]
+        act :DWRServlet as SL note["servlet"]
+        act :DWRService as SV note["service"]
+        act :PluckRequestBatch as PR note["javascript"]
+        def act :Proxy as P2 note["ajax"]
+        act :PluckService as PS note["service"]
+        
+        // 2. Nachrichten entsprechend des zeitlichen Auftretens
+        found sync "validate()" (_, W) as val1
+        sync "validate()" (W,C) as val2
+        create "create" (C, P1)
+        async "ajax" (C,P1)
+        reply "" (C,W)
+        sync "ajax" (P1, SL)
+        sync "validate()" (SL, SV) as val3
+        lost reply "" (W,_) as rspValidate1
+        reply "errors" (SV, SL) as errors1
+        reply "errors" (SL, P1) as errors2
+        sync "callback" (P1,W) as callback1
+        
+        opt["no errors"]{
+            sync "post_comments()" (W, C) as post_comments
+            sync "BeginRequest()" (C, PR)
+            create "create" (PR, P2)
+            async "ajax" (PR, P2)
+            reply "" (PR, C)
+            sync "postComments()" (P2, PS)
+            reply "" (C, W) as rsp_post_comments
+            reply "json" (PS, P2)
+            sync "callback" (P2, W) as callback2 // Semantisch korrekt müsste es async sein
+            ref Handle_errors_from_Pluck
+            ref Request_all_comment as R1
+        }
+        
+        cstr (rspValidate1.snd, callback1.rcv) d["10..200ms"]
+        cstr (post_comments.snd, rsp_post_comments.rcv) d["10..100ms"]
+        cstr (rsp_post_comments.rcv, callback2.rcv ) d["1s..4s"]
+        cstr (R1) d["10..100ms"]
+        
+        /* Explicit comments are not yet supported
+        note (validate3().rcv, errors1.snd) "- form fields validation - CAPTCHA check"
+        */
+        @end-seqd
+        
+        '''.parse(rs)
+        validationTestHelper.assertNoIssues(model)
+        model => [
+            assertThat(actors, hasSize(8))
+            assertThat(fragments, hasSize(16))
+            val options = fragments.filter(Option).toList
+            assertThat(options, hasSize(1))
+            val option = options.get(0)
+            val region = option.region
+            assertThat(region, notNullValue)
+            assertThat(region.condition.condition, equalTo("no errors"))
+            assertThat(region.fragments, hasSize(11))
+        ]
+    }
+	
 	
 		
 	

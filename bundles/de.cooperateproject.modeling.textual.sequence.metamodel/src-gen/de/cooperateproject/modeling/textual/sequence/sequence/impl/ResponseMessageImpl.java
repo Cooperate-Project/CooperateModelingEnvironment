@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**

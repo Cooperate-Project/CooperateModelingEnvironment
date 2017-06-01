@@ -3,7 +3,7 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -12,18 +12,18 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Behavior Fragment</b></em>'.
+ * An implementation of the model object '<em><b>Fragment</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class BehaviorFragmentImpl extends CDOObjectImpl implements BehaviorFragment {
+public class FragmentImpl extends CDOObjectImpl implements Fragment {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected BehaviorFragmentImpl() {
+    protected FragmentImpl() {
         super();
     }
 
@@ -34,7 +34,7 @@ public class BehaviorFragmentImpl extends CDOObjectImpl implements BehaviorFragm
      */
     @Override
     protected EClass eStaticClass() {
-        return SequencePackage.Literals.BEHAVIOR_FRAGMENT;
+        return SequencePackage.Literals.FRAGMENT;
     }
 
     /**
@@ -47,4 +47,4 @@ public class BehaviorFragmentImpl extends CDOObjectImpl implements BehaviorFragm
         return 0;
     }
 
-} //BehaviorFragmentImpl
+} //FragmentImpl

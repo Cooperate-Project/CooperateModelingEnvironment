@@ -10,9 +10,10 @@ import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMap
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 

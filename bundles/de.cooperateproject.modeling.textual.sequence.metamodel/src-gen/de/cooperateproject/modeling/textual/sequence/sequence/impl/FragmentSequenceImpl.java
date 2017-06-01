@@ -3,10 +3,9 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.BehaviorFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
-import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
-import de.cooperateproject.modeling.textual.sequence.sequence.Timed;
 
 import java.util.Collection;
 
@@ -19,27 +18,28 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Timed</b></em>'.
+ * An implementation of the model object '<em><b>Fragment Sequence</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimedImpl#getFragments <em>Fragments</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.TimedImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl#getFragments <em>Fragments</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TimedImpl extends CombinedFragmentImpl implements Timed {
+public abstract class FragmentSequenceImpl extends CDOObjectImpl implements FragmentSequence {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected TimedImpl() {
+    protected FragmentSequenceImpl() {
         super();
     }
 
@@ -50,7 +50,17 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
      */
     @Override
     protected EClass eStaticClass() {
-        return SequencePackage.Literals.TIMED;
+        return SequencePackage.Literals.FRAGMENT_SEQUENCE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected int eStaticFeatureCount() {
+        return 0;
     }
 
     /**
@@ -59,36 +69,8 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<BehaviorFragment> getFragments() {
-        return (EList<BehaviorFragment>)eDynamicGet(SequencePackage.TIMED__FRAGMENTS, SequencePackage.Literals.TIMED__FRAGMENTS, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TimeConstraint getConstraint() {
-        return (TimeConstraint)eDynamicGet(SequencePackage.TIMED__CONSTRAINT, SequencePackage.Literals.TIMED__CONSTRAINT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetConstraint(TimeConstraint newConstraint, NotificationChain msgs) {
-        msgs = eDynamicInverseAdd((InternalEObject)newConstraint, SequencePackage.TIMED__CONSTRAINT, msgs);
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setConstraint(TimeConstraint newConstraint) {
-        eDynamicSet(SequencePackage.TIMED__CONSTRAINT, SequencePackage.Literals.TIMED__CONSTRAINT, newConstraint);
+    public EList<Fragment> getFragments() {
+        return (EList<Fragment>)eDynamicGet(SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS, SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS, true, true);
     }
 
     /**
@@ -99,10 +81,8 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case SequencePackage.TIMED__FRAGMENTS:
+            case SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS:
                 return ((InternalEList<?>)getFragments()).basicRemove(otherEnd, msgs);
-            case SequencePackage.TIMED__CONSTRAINT:
-                return basicSetConstraint(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -115,10 +95,8 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.TIMED__FRAGMENTS:
+            case SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS:
                 return getFragments();
-            case SequencePackage.TIMED__CONSTRAINT:
-                return getConstraint();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -132,12 +110,9 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.TIMED__FRAGMENTS:
+            case SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS:
                 getFragments().clear();
-                getFragments().addAll((Collection<? extends BehaviorFragment>)newValue);
-                return;
-            case SequencePackage.TIMED__CONSTRAINT:
-                setConstraint((TimeConstraint)newValue);
+                getFragments().addAll((Collection<? extends Fragment>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -151,11 +126,8 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.TIMED__FRAGMENTS:
+            case SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS:
                 getFragments().clear();
-                return;
-            case SequencePackage.TIMED__CONSTRAINT:
-                setConstraint((TimeConstraint)null);
                 return;
         }
         super.eUnset(featureID);
@@ -169,12 +141,10 @@ public class TimedImpl extends CombinedFragmentImpl implements Timed {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.TIMED__FRAGMENTS:
+            case SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS:
                 return !getFragments().isEmpty();
-            case SequencePackage.TIMED__CONSTRAINT:
-                return getConstraint() != null;
         }
         return super.eIsSet(featureID);
     }
 
-} //TimedImpl
+} //FragmentSequenceImpl

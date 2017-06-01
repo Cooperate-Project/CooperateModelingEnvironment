@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
 import org.eclipse.uml2.uml.Lifeline;
 
 /**
@@ -58,7 +59,7 @@ public interface Actor extends UMLReferencingElement<Lifeline>, AliasedElement, 
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor <em>Actor</em>}'.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Type Mapping</em>' reference isn't clear,
+     * If the meaning of the '<em>Type Mapping</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->

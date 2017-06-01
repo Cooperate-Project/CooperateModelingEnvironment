@@ -3,6 +3,10 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +18,5 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
  * @model
  * @generated
  */
-public interface OccurenceSpecification extends BehaviorFragment {
+public interface OccurenceSpecification<UMLOccurenceType extends OccurrenceSpecification> extends Fragment, UMLReferencingElement<UMLOccurenceType>, AliasedPointInTime<UMLOccurenceType>, Commentable<UMLOccurenceType> {
 } // OccurenceSpecification
