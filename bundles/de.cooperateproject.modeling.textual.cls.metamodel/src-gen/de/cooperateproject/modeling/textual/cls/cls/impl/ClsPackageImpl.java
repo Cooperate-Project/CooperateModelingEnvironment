@@ -844,6 +844,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         ETypeParameter classifierEClass_T = addETypeParameter(classifierEClass, "T");
         ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
         ETypeParameter memberEClass_T = addETypeParameter(memberEClass, "T");
+        ETypeParameter typedConnectorEClass_T = addETypeParameter(typedConnectorEClass, "T");
 
         // Set bounds for type parameters
         EGenericType g1 = createEGenericType(theUMLPackage.getClassifier());
@@ -852,6 +853,8 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         propertyEClass_T.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getFeature());
         memberEClass_T.getEBounds().add(g1);
+        g1 = createEGenericType(theUMLPackage.getDirectedRelationship());
+        typedConnectorEClass_T.getEBounds().add(g1);
 
         // Add supertypes to classes
         g1 = createEGenericType(theTextualCommonsPackage.getPackageBase());
@@ -909,18 +912,19 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1.getETypeArguments().add(g2);
         parameterEClass.getEGenericSuperTypes().add(g1);
         connectorEClass.getESuperTypes().add(theTextualCommonsPackage.getPackageableElement());
-        typedConnectorEClass.getESuperTypes().add(this.getConnector());
+        g1 = createEGenericType(this.getConnector());
+        typedConnectorEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(typedConnectorEClass_T);
+        g1.getETypeArguments().add(g2);
+        typedConnectorEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getTypedConnector());
         g2 = createEGenericType(theUMLPackage.getGeneralization());
         g1.getETypeArguments().add(g2);
         generalizationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getTypedConnector());
-        generalizationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getInterfaceRealization());
         g1.getETypeArguments().add(g2);
-        implementationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getTypedConnector());
         implementationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getAssociation());
@@ -1010,13 +1014,13 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getClassifier());
         g2.setEUpperBound(g3);
-        initEReference(getTypedConnector_Left(), g1, null, "left", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTypedConnector_Left(), g1, null, "left", null, 1, 1, TypedConnector.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getClassifier());
         g2.setEUpperBound(g3);
-        initEReference(getTypedConnector_Right(), g1, null, "right", null, 1, 1, TypedConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTypedConnector_Right(), g1, null, "right", null, 1, 1, TypedConnector.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(generalizationEClass, Generalization.class, "Generalization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

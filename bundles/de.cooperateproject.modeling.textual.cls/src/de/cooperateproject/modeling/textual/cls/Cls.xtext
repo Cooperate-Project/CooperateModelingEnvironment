@@ -94,7 +94,6 @@ Method:
 
 Parameter:
 	(visibility = Visibility)? 
-	(static ?= 'static')? 
 	name = ID ':' type = [uml::Classifier|FQN]
 ;
 

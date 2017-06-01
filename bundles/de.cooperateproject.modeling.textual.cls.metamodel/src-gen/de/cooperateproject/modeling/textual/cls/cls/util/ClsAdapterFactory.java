@@ -35,6 +35,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -139,7 +140,7 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createConnectorAdapter();
             }
             @Override
-            public Adapter caseTypedConnector(TypedConnector object) {
+            public <T extends DirectedRelationship> Adapter caseTypedConnector(TypedConnector<T> object) {
                 return createTypedConnectorAdapter();
             }
             @Override

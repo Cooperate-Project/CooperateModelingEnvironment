@@ -1185,23 +1185,9 @@ ruleParameter returns [EObject current=null]
 		)?
 		(
 			(
-				lv_static_1_0='static'
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_static_1_0, grammarAccess.getParameterAccess().getStaticStaticKeyword_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getParameterRule());
-					}
-					setWithLastConsumed($current, "static", true, "static");
-				}
-			)
-		)?
-		(
-			(
-				lv_name_2_0=RULE_ID
-				{
-					newLeafNode(lv_name_2_0, grammarAccess.getParameterAccess().getNameIDTerminalRuleCall_2_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getParameterAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -1210,14 +1196,14 @@ ruleParameter returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_2_0,
+						lv_name_1_0,
 						"de.cooperateproject.modeling.textual.cls.Cls.ID");
 				}
 			)
 		)
-		otherlv_3=':'
+		otherlv_2=':'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getParameterAccess().getColonKeyword_3());
+			newLeafNode(otherlv_2, grammarAccess.getParameterAccess().getColonKeyword_2());
 		}
 		(
 			(
@@ -1227,7 +1213,7 @@ ruleParameter returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getParameterAccess().getTypeClassifierCrossReference_4_0());
+					newCompositeNode(grammarAccess.getParameterAccess().getTypeClassifierCrossReference_3_0());
 				}
 				ruleFQN
 				{

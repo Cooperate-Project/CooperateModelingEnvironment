@@ -136,33 +136,38 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" lowerBound="1"
         eType="#//Package" eOpposite="#//Package/connectors"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1">
+  <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DirectedRelationship"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" transient="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" transient="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//Connector"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eTypeParameter="#//TypedConnector/T"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization">
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+    <eGenericSuperTypes eClassifier="#//TypedConnector">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//TypedConnector"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Implementation">
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+    <eGenericSuperTypes eClassifier="#//TypedConnector">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//TypedConnector"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
     <eLiterals name="NONE"/>

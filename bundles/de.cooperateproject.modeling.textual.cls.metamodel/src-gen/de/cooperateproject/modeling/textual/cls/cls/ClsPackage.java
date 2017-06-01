@@ -1054,13 +1054,22 @@ public interface ClsPackage extends EPackage {
     int TYPED_CONNECTOR__OWNING_PACKAGE = CONNECTOR__OWNING_PACKAGE;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPED_CONNECTOR__REFERENCED_ELEMENT = CONNECTOR_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Left</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR__LEFT = CONNECTOR_FEATURE_COUNT + 0;
+    int TYPED_CONNECTOR__LEFT = CONNECTOR_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1069,7 +1078,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR__RIGHT = CONNECTOR_FEATURE_COUNT + 1;
+    int TYPED_CONNECTOR__RIGHT = CONNECTOR_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Typed Connector</em>' class.
@@ -1078,7 +1087,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 2;
+    int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1109,22 +1118,22 @@ public interface ClsPackage extends EPackage {
     int GENERALIZATION = 12;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int GENERALIZATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION__OWNING_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int GENERALIZATION__OWNING_PACKAGE = TYPED_CONNECTOR__OWNING_PACKAGE;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__REFERENCED_ELEMENT = TYPED_CONNECTOR__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -1133,7 +1142,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__LEFT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int GENERALIZATION__LEFT = TYPED_CONNECTOR__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1142,7 +1151,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__RIGHT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int GENERALIZATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -1151,7 +1160,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1160,7 +1169,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+    int GENERALIZATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Generalization</em>' class.
@@ -1169,7 +1178,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int GENERALIZATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl <em>Implementation</em>}' class.
@@ -1182,22 +1191,22 @@ public interface ClsPackage extends EPackage {
     int IMPLEMENTATION = 13;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLEMENTATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION__OWNING_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int IMPLEMENTATION__OWNING_PACKAGE = TYPED_CONNECTOR__OWNING_PACKAGE;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLEMENTATION__REFERENCED_ELEMENT = TYPED_CONNECTOR__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -1206,7 +1215,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION__LEFT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int IMPLEMENTATION__LEFT = TYPED_CONNECTOR__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1215,7 +1224,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION__RIGHT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int IMPLEMENTATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
     /**
      * The number of structural features of the '<em>Implementation</em>' class.
@@ -1224,7 +1233,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1233,7 +1242,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+    int IMPLEMENTATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Implementation</em>' class.
@@ -1242,7 +1251,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int IMPLEMENTATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.

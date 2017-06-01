@@ -68,6 +68,18 @@
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.MethodRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.TypedConnectorInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.TypedConnectorRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.GeneralizationInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.ImplementationInitializer">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">

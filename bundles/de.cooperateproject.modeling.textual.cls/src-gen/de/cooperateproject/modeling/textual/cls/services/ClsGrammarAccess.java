@@ -671,20 +671,18 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityVisibilityEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
-		private final Assignment cStaticAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Keyword cStaticStaticKeyword_1_0 = (Keyword)cStaticAssignment_1.eContents().get(0);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cTypeClassifierCrossReference_4_0 = (CrossReference)cTypeAssignment_4.eContents().get(0);
-		private final RuleCall cTypeClassifierFQNParserRuleCall_4_0_1 = (RuleCall)cTypeClassifierCrossReference_4_0.eContents().get(1);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cTypeClassifierCrossReference_3_0 = (CrossReference)cTypeAssignment_3.eContents().get(0);
+		private final RuleCall cTypeClassifierFQNParserRuleCall_3_0_1 = (RuleCall)cTypeClassifierCrossReference_3_0.eContents().get(1);
 		
 		//Parameter:
-		//	visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
+		//	visibility=Visibility? name=ID ':' type=[uml::Classifier|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN]
+		//visibility=Visibility? name=ID ':' type=[uml::Classifier|FQN]
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -693,29 +691,23 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 		//Visibility
 		public RuleCall getVisibilityVisibilityEnumRuleCall_0_0() { return cVisibilityVisibilityEnumRuleCall_0_0; }
 		
-		//static?='static'?
-		public Assignment getStaticAssignment_1() { return cStaticAssignment_1; }
-		
-		//'static'
-		public Keyword getStaticStaticKeyword_1_0() { return cStaticStaticKeyword_1_0; }
-		
 		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//':'
-		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
 		//type=[uml::Classifier|FQN]
-		public Assignment getTypeAssignment_4() { return cTypeAssignment_4; }
+		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
 		
 		//[uml::Classifier|FQN]
-		public CrossReference getTypeClassifierCrossReference_4_0() { return cTypeClassifierCrossReference_4_0; }
+		public CrossReference getTypeClassifierCrossReference_3_0() { return cTypeClassifierCrossReference_3_0; }
 		
 		//FQN
-		public RuleCall getTypeClassifierFQNParserRuleCall_4_0_1() { return cTypeClassifierFQNParserRuleCall_4_0_1; }
+		public RuleCall getTypeClassifierFQNParserRuleCall_3_0_1() { return cTypeClassifierFQNParserRuleCall_3_0_1; }
 	}
 	public class ConnectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.cls.Cls.Connector");
@@ -1463,7 +1455,7 @@ public class ClsGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Parameter:
-	//	visibility=Visibility? static?='static'? name=ID ':' type=[uml::Classifier|FQN];
+	//	visibility=Visibility? name=ID ':' type=[uml::Classifier|FQN];
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}

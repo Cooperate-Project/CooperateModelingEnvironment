@@ -28,5 +28,6 @@ Export-Package: de.cooperateproject.modeling.textual.common,
  de.cooperateproject.modeling.textual.common.naming,
  de.cooperateproject.modeling.textual.common.scoping,
  de.cooperateproject.modeling.textual.common.services,
+ de.cooperateproject.modeling.textual.common.util,
  de.cooperateproject.modeling.textual.common.validation
 

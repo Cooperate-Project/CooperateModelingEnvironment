@@ -20,7 +20,8 @@ public class ClsTransientStatusProvider implements ITransientStatusProvider {
                     ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES,
                     ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND,
                     ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY,
-                    ClsPackage.Literals.CLASS__ABSTRACT, ClsPackage.Literals.MEMBER__STATIC));
+                    ClsPackage.Literals.CLASS__ABSTRACT, ClsPackage.Literals.MEMBER__STATIC,
+                    ClsPackage.Literals.TYPED_CONNECTOR__LEFT, ClsPackage.Literals.TYPED_CONNECTOR__RIGHT));
 
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>(
             Arrays.asList(ClsPackage.Literals.ASSOCIATION__MEMBER_ENDS,

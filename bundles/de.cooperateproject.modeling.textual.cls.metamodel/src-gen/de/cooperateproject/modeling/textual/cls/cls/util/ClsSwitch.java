@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -216,9 +217,10 @@ public class ClsSwitch<T1> extends Switch<T1> {
                 return result;
             }
             case ClsPackage.TYPED_CONNECTOR: {
-                TypedConnector typedConnector = (TypedConnector)theEObject;
+                TypedConnector<?> typedConnector = (TypedConnector<?>)theEObject;
                 T1 result = caseTypedConnector(typedConnector);
                 if (result == null) result = caseConnector(typedConnector);
+                if (result == null) result = caseUMLReferencingElement(typedConnector);
                 if (result == null) result = casePackageableElement(typedConnector);
                 if (result == null) result = caseElement(typedConnector);
                 if (result == null) result = defaultCase(theEObject);
@@ -227,9 +229,9 @@ public class ClsSwitch<T1> extends Switch<T1> {
             case ClsPackage.GENERALIZATION: {
                 Generalization generalization = (Generalization)theEObject;
                 T1 result = caseGeneralization(generalization);
-                if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseTypedConnector(generalization);
                 if (result == null) result = caseConnector(generalization);
+                if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = casePackageableElement(generalization);
                 if (result == null) result = caseElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
@@ -238,9 +240,9 @@ public class ClsSwitch<T1> extends Switch<T1> {
             case ClsPackage.IMPLEMENTATION: {
                 Implementation implementation = (Implementation)theEObject;
                 T1 result = caseImplementation(implementation);
-                if (result == null) result = caseUMLReferencingElement(implementation);
                 if (result == null) result = caseTypedConnector(implementation);
                 if (result == null) result = caseConnector(implementation);
+                if (result == null) result = caseUMLReferencingElement(implementation);
                 if (result == null) result = casePackageableElement(implementation);
                 if (result == null) result = caseElement(implementation);
                 if (result == null) result = defaultCase(theEObject);
@@ -466,7 +468,7 @@ public class ClsSwitch<T1> extends Switch<T1> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T1 caseTypedConnector(TypedConnector object) {
+    public <T extends DirectedRelationship> T1 caseTypedConnector(TypedConnector<T> object) {
         return null;
     }
 
