@@ -3,6 +3,7 @@ package de.cooperateproject.ui.wizards.modelnew;
 import java.io.IOException;
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -38,6 +39,8 @@ import de.cooperateproject.ui.Activator;
 
 public class ModelCreator {
 
+    private static final Logger LOGGER = Logger.getLogger(ModelCreator.class);
+
     private static class ModelCreatorException extends Exception {
 
         private static final long serialVersionUID = -6483202457818490926L;
@@ -69,8 +72,10 @@ public class ModelCreator {
 
                 return Status.OK_STATUS;
             } catch (ModelCreatorException e) {
+                LOGGER.error("Error during model creation", e);
                 return new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e.getCause());
             } catch (CommitException e) {
+                LOGGER.error("Error during commit", e);
                 return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not persist created diagrams.", e);
             } finally {
                 IOUtil.closeSilent(branchTransaction);
@@ -170,9 +175,7 @@ public class ModelCreator {
 
         URI textualURI = ModelNamingConventions.getTextualFromGraphicalURI(papyrusResource.getURI(), diagramName,
                 textualFileExtension.get().getFileExtension());
-        CDOResource textualResource = getOrCreate(transaction, folder, textualURI.lastSegment());
-
-        return textualResource;
+        return getOrCreate(transaction, folder, textualURI.lastSegment());
     }
 
 }

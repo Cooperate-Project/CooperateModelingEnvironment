@@ -10,7 +10,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.session.CDOSession;
@@ -109,8 +108,8 @@ public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
         if (window != null) {
             IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
             for (int i = 0; i < selection.size(); i++) {
-                if (selection.toList().get(i) instanceof IAdaptable) {
-                    projectList.add((IProject) ((IAdaptable) selection.toList().get(i)).getAdapter(IProject.class));
+                if (selection.toList().get(i) instanceof IProject) {
+                    projectList.add((IProject) selection.toList().get(i));
                 }
             }
         }

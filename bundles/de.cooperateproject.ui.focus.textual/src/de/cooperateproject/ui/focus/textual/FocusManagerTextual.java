@@ -17,7 +17,6 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
-import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
@@ -60,11 +59,6 @@ class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
         getEditorPart().setFocus();
     }
 
-    /**
-     * Extracts the current element focus of the editor.
-     * 
-     * @return the focused element
-     */
     @Override
     public Optional<Element> getFocusedElement() {
         FocusIUnitOfWork unit = new FocusIUnitOfWork();
@@ -113,8 +107,6 @@ class FocusManagerTextual extends FocusManagerBase<XtextEditor> {
 
         if (focusedElement == null) {
             return Optional.empty();
-        } else if (focusedElement instanceof ClassDiagram) {
-            return Optional.ofNullable(((ClassDiagram) focusedElement).getRootPackage().getReferencedElement());
         } else if (focusedElement instanceof UMLReferencingElement) {
             return getElementFromUml((UMLReferencingElement) focusedElement);
         } else {

@@ -51,7 +51,7 @@ public class ClsResourceValidator extends ResourceValidatorImpl {
             return issues;
         }
 
-        Collection<Issue> filteredIssues = issues.stream().filter(i -> mandatoryIssues.contains(i))
+        Collection<Issue> filteredIssues = issues.stream().filter(mandatoryIssues::contains)
                 .collect(Collectors.toList());
         if (filteredIssues.isEmpty()) {
             filteredIssues = issues.stream().filter(i -> !ISSUE_CODE_BLACKLIST.contains(i.getCode()))
