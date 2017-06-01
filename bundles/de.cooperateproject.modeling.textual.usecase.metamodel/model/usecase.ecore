@@ -111,9 +111,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Include">
     <eStructuralFeatures xsi:type="ecore:EReference" name="addition" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includingCase" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eGenericSuperTypes eClassifier="#//Relationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>

@@ -16,7 +16,8 @@ public class UseCaseTransientStatusProvider implements ITransientStatusProvider 
 
     private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>(
             Arrays.asList(UsecasePackage.Literals.ACTOR__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT,
-                    UsecasePackage.Literals.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__SPECIFIC));
+                    UsecasePackage.Literals.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__SPECIFIC,
+                    UsecasePackage.Literals.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE));
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
 
     @Override
