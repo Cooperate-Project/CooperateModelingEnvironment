@@ -33,6 +33,12 @@
       <class
             class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.UseCaseInitializer">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.GeneralizationInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.GeneralizationRemover">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
