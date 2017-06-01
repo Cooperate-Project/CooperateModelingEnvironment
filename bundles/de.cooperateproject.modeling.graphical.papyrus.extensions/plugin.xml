@@ -85,10 +85,10 @@
       </service>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.services.validation.diagnosticians">
-      <diagnostician
-            class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateDiagnostician"
-            id="http://www.eclipse.org/uml2/5.0.0/UML">
-      </diagnostician>
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <configuration
+            file="resource/CooperateModeling.configuration"
+            priority="1">
+      </configuration>
    </extension>
 </plugin>
