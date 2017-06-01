@@ -121,12 +121,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Extend">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extension" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedCase" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionLocation" lowerBound="1"
-        eType="#//ExtensionPoint"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//ExtensionPoint" transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
     <eGenericSuperTypes eClassifier="#//Relationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
