@@ -231,6 +231,24 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAbstract() {
+        eDynamicUnset(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAbstract() {
+        return eDynamicIsSet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ActorType getType() {
         return (ActorType)eDynamicGet(UsecasePackage.ACTOR__TYPE, UsecasePackage.Literals.ACTOR__TYPE, true, true);
     }
@@ -350,7 +368,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
                 unsetVisibility();
                 return;
             case UsecasePackage.ACTOR__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
+                unsetAbstract();
                 return;
             case UsecasePackage.ACTOR__TYPE:
                 setType(TYPE_EDEFAULT);
@@ -376,7 +394,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
             case UsecasePackage.ACTOR__VISIBILITY:
                 return isSetVisibility();
             case UsecasePackage.ACTOR__ABSTRACT:
-                return isAbstract() != ABSTRACT_EDEFAULT;
+                return isSetAbstract();
             case UsecasePackage.ACTOR__TYPE:
                 return getType() != TYPE_EDEFAULT;
         }

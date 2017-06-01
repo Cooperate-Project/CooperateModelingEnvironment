@@ -1,10 +1,12 @@
 package de.cooperateproject.modeling.textual.usecase.services;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 
 /**
@@ -12,7 +14,8 @@ import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatu
  */
 public class UseCaseTransientStatusProvider implements ITransientStatusProvider {
 
-    private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>();
+    private static final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = new HashSet<>(
+            Arrays.asList(UsecasePackage.Literals.ACTOR__ABSTRACT));
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
 
     @Override

@@ -21,7 +21,7 @@ RootPackage:
 ;
 
 Actor:
-	visibility=Visibility? abstract?='abstract'? 'actor'('['type=ActorType']')? (name = ID | name = STRING 'as' alias = ID) comments+=Comment? 
+	visibility=Visibility? (abstract?='abstract')? 'actor'('['type=ActorType']')? (name = ID | name = STRING 'as' alias = ID) comments+=Comment? 
 ;
 
 System:

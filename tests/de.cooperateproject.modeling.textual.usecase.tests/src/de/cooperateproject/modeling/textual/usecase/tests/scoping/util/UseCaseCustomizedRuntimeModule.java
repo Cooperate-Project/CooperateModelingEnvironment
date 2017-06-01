@@ -30,6 +30,8 @@ import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLRefer
 import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule;
 import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator;
+import de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ActorInitializer;
+import de.cooperateproject.modeling.textual.usecase.derivedstate.removers.ActorRemover;
 import de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientStatusProvider;
 import de.cooperateproject.modeling.textual.usecase.tests.UsecaseInjectorProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
@@ -74,7 +76,7 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
 
         private static final Class<?>[] RELEVANT_CLASSES = { IAtomicDerivedStateProcessor.class,
                 AssociationCalculator.class, UMLReferencingElementCalculator.class, UMLReferencingElementRemover.class,
-                VisibilityHavingElementInitializer.class };
+                VisibilityHavingElementInitializer.class, ActorInitializer.class, ActorRemover.class };
         @SuppressWarnings("rawtypes")
         private static final Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> PROCESSORS = getProcessors();
 

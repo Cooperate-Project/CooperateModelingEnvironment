@@ -21,6 +21,12 @@
       <class
             class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.IncludeCalculator">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ActorInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.ActorRemover">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">

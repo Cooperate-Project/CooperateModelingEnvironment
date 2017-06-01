@@ -24,13 +24,15 @@ Require-Bundle: org.eclipse.xtext,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
  de.cooperateproject.modeling.textual.usecase.derivedstate.calculator,
+ de.cooperateproject.modeling.textual.usecase.derivedstate.initializers,
+ de.cooperateproject.modeling.textual.usecase.derivedstate.removers,
  de.cooperateproject.modeling.textual.usecase.formatting2,
+ de.cooperateproject.modeling.textual.usecase.generator,
  de.cooperateproject.modeling.textual.usecase.issues,
  de.cooperateproject.modeling.textual.usecase.parser.antlr,
  de.cooperateproject.modeling.textual.usecase.parser.antlr.internal,
  de.cooperateproject.modeling.textual.usecase.scoping,
  de.cooperateproject.modeling.textual.usecase.serializer,
  de.cooperateproject.modeling.textual.usecase.services,
- de.cooperateproject.modeling.textual.usecase.validation,
- de.cooperateproject.modeling.textual.usecase.generator
+ de.cooperateproject.modeling.textual.usecase.validation
 Import-Package: org.apache.log4j
