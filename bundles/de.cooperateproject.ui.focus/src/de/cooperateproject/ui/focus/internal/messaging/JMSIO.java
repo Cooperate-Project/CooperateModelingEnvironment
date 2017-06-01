@@ -18,10 +18,10 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 
-public class JMSIO implements Closeable {
+class JMSIO implements Closeable {
 
     @FunctionalInterface
-    public interface FocusMessageHandler {
+    interface FocusMessageHandler {
         void handleMessage(IFocusMessage message);
     }
 
@@ -37,13 +37,13 @@ public class JMSIO implements Closeable {
     private TopicSubscriber topicSubscriber;
     private FocusMessageHandler focusMessageHandler;
 
-    public JMSIO(String hostname, int port, String topicName) {
+    JMSIO(String hostname, int port, String topicName) {
         this.messageBrokerHost = hostname;
         this.messageBrokerPort = port;
         this.topicName = topicName;
     }
 
-    public void init(FocusMessageHandler messageHandler) throws JMSException, URISyntaxException {
+    void init(FocusMessageHandler messageHandler) throws JMSException, URISyntaxException {
         String address = String.format("failover:tcp://%s:%d", messageBrokerHost, messageBrokerPort);
         connection = ActiveMQConnection.makeConnection(address);
         connection.start();
@@ -74,7 +74,7 @@ public class JMSIO implements Closeable {
         }
     }
 
-    public void sendMessage(CDOID cdoId) throws JMSException {
+    void sendMessage(CDOID cdoId) throws JMSException {
         Message message = topicSession.createMessage();
         StringBuilder cdoIdStringBuilder = new StringBuilder();
         CDOIDUtil.write(cdoIdStringBuilder, cdoId);
@@ -90,6 +90,7 @@ public class JMSIO implements Closeable {
             Method closeMethod = topicSubscriber.getClass().getMethod(JMS_CLOSE_METHOD_NAME);
             closeMethod.invoke(topicSubscriber);
         } catch (Exception e) {
+            LOGGER.warn("Could not close.", e);
             return;
         }
     }

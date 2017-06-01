@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='71'>
+  <ius size='73'>
     <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
       <repositories size='2'>
         <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
@@ -420,6 +420,16 @@
     <iu id='org.eclipse.xtext.sdk.feature.group' name='Xtext Complete SDK' version='2.11.0.v20170201-0242'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/'/>
+      </repositories>
+    </iu>
+    <iu id='javassist' name='Javassist' version='3.19.0.GA'>
+      <repositories size='1'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='org.reflections' name='org.reflections' version='0.9.10'>
+      <repositories size='1'>
+        <repository location='https://cooperate-project.github.io/Externals/updatesite/latest/'/>
       </repositories>
     </iu>
   </ius>

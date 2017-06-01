@@ -8,7 +8,7 @@ import org.eclipse.ui.IEditorPart;
 
 import de.cooperateproject.ui.focus.internal.history.IHistoryProvider;
 
-public interface IFocusedDiagram extends IHistoryProvider, Closeable {
+interface IFocusedDiagram extends IHistoryProvider, Closeable {
 
     IEditorPart getEditorPart();
 
