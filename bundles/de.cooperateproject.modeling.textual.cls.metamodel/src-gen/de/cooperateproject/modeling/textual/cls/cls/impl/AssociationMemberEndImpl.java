@@ -151,8 +151,9 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<?> getType() {
-        return (Classifier<?>)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__TYPE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<? extends org.eclipse.uml2.uml.Classifier> getType() {
+        return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__TYPE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE, true, true);
     }
 
     /**
@@ -160,8 +161,8 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<?> basicGetType() {
-        return (Classifier<?>)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__TYPE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE, false, true);
+    public Classifier<? extends org.eclipse.uml2.uml.Classifier> basicGetType() {
+        return (Classifier<? extends org.eclipse.uml2.uml.Classifier>)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__TYPE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE, false, true);
     }
 
     /**
@@ -169,7 +170,7 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setType(Classifier<?> newType) {
+    public void setType(Classifier<? extends org.eclipse.uml2.uml.Classifier> newType) {
         eDynamicSet(ClsPackage.ASSOCIATION_MEMBER_END__TYPE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE, newType);
     }
 
@@ -189,6 +190,24 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      */
     public void setNavigable(boolean newNavigable) {
         eDynamicSet(ClsPackage.ASSOCIATION_MEMBER_END__NAVIGABLE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__NAVIGABLE, newNavigable);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetNavigable() {
+        eDynamicUnset(ClsPackage.ASSOCIATION_MEMBER_END__NAVIGABLE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__NAVIGABLE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetNavigable() {
+        return eDynamicIsSet(ClsPackage.ASSOCIATION_MEMBER_END__NAVIGABLE, ClsPackage.Literals.ASSOCIATION_MEMBER_END__NAVIGABLE);
     }
 
     /**
@@ -235,6 +254,24 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      */
     public void setAggregationKind(AggregationKind newAggregationKind) {
         eDynamicSet(ClsPackage.ASSOCIATION_MEMBER_END__AGGREGATION_KIND, ClsPackage.Literals.ASSOCIATION_MEMBER_END__AGGREGATION_KIND, newAggregationKind);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAggregationKind() {
+        eDynamicUnset(ClsPackage.ASSOCIATION_MEMBER_END__AGGREGATION_KIND, ClsPackage.Literals.ASSOCIATION_MEMBER_END__AGGREGATION_KIND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAggregationKind() {
+        return eDynamicIsSet(ClsPackage.ASSOCIATION_MEMBER_END__AGGREGATION_KIND, ClsPackage.Literals.ASSOCIATION_MEMBER_END__AGGREGATION_KIND);
     }
 
     /**
@@ -313,6 +350,7 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -323,7 +361,7 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
                 setCardinality((Cardinality)newValue);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__TYPE:
-                setType((Classifier<?>)newValue);
+                setType((Classifier<? extends org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__NAVIGABLE:
                 setNavigable((Boolean)newValue);
@@ -353,16 +391,16 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
                 setCardinality((Cardinality)null);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__TYPE:
-                setType((Classifier<?>)null);
+                setType((Classifier<? extends org.eclipse.uml2.uml.Classifier>)null);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__NAVIGABLE:
-                setNavigable(NAVIGABLE_EDEFAULT);
+                unsetNavigable();
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__ASSOCIATION:
                 setAssociation((Association)null);
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__AGGREGATION_KIND:
-                setAggregationKind(AGGREGATION_KIND_EDEFAULT);
+                unsetAggregationKind();
                 return;
         }
         super.eUnset(featureID);
@@ -383,11 +421,11 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
             case ClsPackage.ASSOCIATION_MEMBER_END__TYPE:
                 return basicGetType() != null;
             case ClsPackage.ASSOCIATION_MEMBER_END__NAVIGABLE:
-                return isNavigable() != NAVIGABLE_EDEFAULT;
+                return isSetNavigable();
             case ClsPackage.ASSOCIATION_MEMBER_END__ASSOCIATION:
                 return getAssociation() != null;
             case ClsPackage.ASSOCIATION_MEMBER_END__AGGREGATION_KIND:
-                return getAggregationKind() != AGGREGATION_KIND_EDEFAULT;
+                return isSetAggregationKind();
         }
         return super.eIsSet(featureID);
     }

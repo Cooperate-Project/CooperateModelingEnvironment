@@ -9,14 +9,21 @@ import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.TypedElement;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
+import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+import de.cooperateproject.modeling.textual.cls.utils.ClsConversionUtilities;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
@@ -73,11 +80,46 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
         if (memberEnd.getReferencedElement() == null) {
             return;
         }
-
-        if (StringUtils.isEmpty(memberEnd.getName())) {
-            Optional.ofNullable(memberEnd.getReferencedElement().getName()).ifPresent(memberEnd::setName);
-        }
+        Optional<Property> referencedElement = Optional.ofNullable(memberEnd.getReferencedElement());
+        initName(memberEnd, referencedElement);
+        initNavigability(memberEnd, referencedElement);
+        initType(memberEnd, referencedElement);
+        initAggregationKind(memberEnd, referencedElement);
         initCardinality(memberEnd.getCardinality());
+    }
+
+    private static void initName(AssociationMemberEnd memberEnd, Optional<Property> referencedElement) {
+        if (StringUtils.isEmpty(memberEnd.getName())) {
+            referencedElement.map(NamedElement::getName).ifPresent(memberEnd::setName);
+        }
+    }
+
+    private static void initNavigability(AssociationMemberEnd memberEnd, Optional<Property> referencedElement) {
+        if (!memberEnd.isSetNavigable()) {
+            referencedElement.map(Property::isNavigable).ifPresent(memberEnd::setNavigable);
+        }
+    }
+
+    private static void initType(AssociationMemberEnd memberEnd, Optional<Property> referencedElement) {
+        if (memberEnd.getType() == null) {
+            Optional<Type> foundClassifier = referencedElement.map(TypedElement::getType);
+            UMLReferencingElementFinder elementFinder = UMLReferencingElementFinder
+                    .create(EcoreUtil.getRootContainer(memberEnd));
+            foundClassifier
+                    .ifPresent(t -> elementFinder.findElement(t, getClassifierClass()).ifPresent(memberEnd::setType));
+        }
+    }
+
+    private static void initAggregationKind(AssociationMemberEnd memberEnd, Optional<Property> referencedElement) {
+        if (!memberEnd.isSetAggregationKind()) {
+            referencedElement.map(Property::getAggregation).map(ClsConversionUtilities::convert)
+                    .ifPresent(memberEnd::setAggregationKind);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Class<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getClassifierClass() {
+        return (Class<Classifier<? extends org.eclipse.uml2.uml.Classifier>>) (Class<?>) Classifier.class;
     }
 
     private static void initCardinality(Cardinality cardinality) {

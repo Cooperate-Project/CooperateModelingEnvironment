@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.eclipse.emf.ecore.EObject;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
@@ -39,6 +40,9 @@ public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<Xte
 
     private static void process(AssociationMemberEnd memberEnd) {
         memberEnd.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+        memberEnd.eUnset(ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE);
+        memberEnd.unsetAggregationKind();
+        memberEnd.unsetNavigable();
         Optional.ofNullable(memberEnd.getCardinality()).ifPresent(XtextAssociationRemover::process);
     }
 
