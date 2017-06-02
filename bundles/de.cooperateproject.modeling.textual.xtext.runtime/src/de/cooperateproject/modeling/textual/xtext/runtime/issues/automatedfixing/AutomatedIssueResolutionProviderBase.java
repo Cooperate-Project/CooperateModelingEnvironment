@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -14,6 +15,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
 public abstract class AutomatedIssueResolutionProviderBase implements IAutomatedIssueResolutionProvider {
+    private static final Logger LOGGER = Logger.getLogger(AutomatedIssueResolutionProviderBase.class);
 
     private static class IssueResolutionGroup implements IAutomatedIssueResolution {
 
@@ -72,6 +74,7 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
             IAutomatedIssueResolution resolver = factory.create(element);
             return Optional.of(resolver);
         } catch (CreationException e) {
+            LOGGER.error("Error during creating issue instance", e);
             return Optional.empty();
         }
     }

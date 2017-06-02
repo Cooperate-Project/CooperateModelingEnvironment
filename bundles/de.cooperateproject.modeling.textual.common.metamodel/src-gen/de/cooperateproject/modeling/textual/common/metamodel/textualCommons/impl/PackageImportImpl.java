@@ -20,23 +20,13 @@ import org.eclipse.uml2.uml.PackageImport;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl#getImportedPackage <em>Imported Package</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl#getImportingPackage <em>Importing Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl#getImportedPackage <em>Imported Package</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> implements de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport {
-	/**
-     * The default value of the '{@link #getImportedPackage() <em>Imported Package</em>}' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getImportedPackage()
-     * @generated
-     * @ordered
-     */
-	protected static final String IMPORTED_PACKAGE_EDEFAULT = null;
-
 	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,20 +62,29 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String getImportedPackage() {
-        return (String)eDynamicGet(TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE, true, true);
+	public org.eclipse.uml2.uml.Package getImportedPackage() {
+        return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE, true, true);
     }
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setImportedPackage(String newImportedPackage) {
+    public org.eclipse.uml2.uml.Package basicGetImportedPackage() {
+        return (org.eclipse.uml2.uml.Package)eDynamicGet(TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setImportedPackage(org.eclipse.uml2.uml.Package newImportedPackage) {
         eDynamicSet(TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE, TextualCommonsPackage.Literals.PACKAGE_IMPORT__IMPORTED_PACKAGE, newImportedPackage);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -165,10 +164,11 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
-                return getImportedPackage();
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 return getImportingPackage();
+            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
+                if (resolve) return getImportedPackage();
+                return basicGetImportedPackage();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -181,11 +181,11 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
-                setImportedPackage((String)newValue);
-                return;
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 setImportingPackage((PackageBase<?>)newValue);
+                return;
+            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
+                setImportedPackage((org.eclipse.uml2.uml.Package)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -199,11 +199,11 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public void eUnset(int featureID) {
         switch (featureID) {
-            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
-                setImportedPackage(IMPORTED_PACKAGE_EDEFAULT);
-                return;
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 setImportingPackage((PackageBase<?>)null);
+                return;
+            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
+                setImportedPackage((org.eclipse.uml2.uml.Package)null);
                 return;
         }
         super.eUnset(featureID);
@@ -217,10 +217,10 @@ public class PackageImportImpl extends UMLReferencingElementImpl<PackageImport> 
 	@Override
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
-                return IMPORTED_PACKAGE_EDEFAULT == null ? getImportedPackage() != null : !IMPORTED_PACKAGE_EDEFAULT.equals(getImportedPackage());
             case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTING_PACKAGE:
                 return getImportingPackage() != null;
+            case TextualCommonsPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
+                return basicGetImportedPackage() != null;
         }
         return super.eIsSet(featureID);
     }

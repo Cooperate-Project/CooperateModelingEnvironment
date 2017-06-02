@@ -16,23 +16,23 @@ public class FocusViewLabelProvider extends LabelProvider implements ITableLabel
 
     @Override
     public String getColumnText(Object obj, int index) {
-        String ret = "";
-
         if (!(obj instanceof HistoryElement)) {
-            return ret;
+            return "";
         }
         HistoryElement element = (HistoryElement) obj;
+        return getTextFromHistoryElement(index, element);
+    }
+
+    private String getTextFromHistoryElement(int index, HistoryElement element) {
         switch (index) {
         case 0:
             Date date = new Date(element.getTimestamp());
-            ret = formatterTime.format(date);
-            break;
+            return formatterTime.format(date);
         case 1:
-            ret = LabelUtils.getEObjectLabel(element.getFocusedElement());
+            return LabelUtils.getEObjectLabel(element.getFocusedElement());
         default:
+            return "";
         }
-
-        return ret;
     }
 
     @Override

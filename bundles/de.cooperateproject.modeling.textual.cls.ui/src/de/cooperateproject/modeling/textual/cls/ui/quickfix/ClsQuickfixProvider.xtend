@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheckFactory
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifierFactory
-import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifierFactory
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQuickfixProvider
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
@@ -19,6 +18,7 @@ import org.eclipse.xtext.ui.editor.quickfix.Fix
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import de.cooperateproject.modeling.textual.cls.issues.ClsMemberStaticQualifierFactory
 
 class ClsQuickfixProvider extends CooperateQuickfixProvider {
 
@@ -32,7 +32,7 @@ class ClsQuickfixProvider extends CooperateQuickfixProvider {
 	/**
 	 * Quickfix for wrong static qualifier in the Cls-model.
 	 */
-	@Fix(ClsPropertyStaticQualifierFactory.ISSUE_CODE)
+	@Fix(ClsMemberStaticQualifierFactory.ISSUE_CODE)
 	def wrongStaticQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, 'Change Static Qualifier', 'Change the static qualifier into the right one', null) [ element, context |
 			element.fixWrongStaticQualifier

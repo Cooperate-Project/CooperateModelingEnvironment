@@ -6,11 +6,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Feature;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +20,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getMembers <em>Members</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getOwningPackage <em>Owning Package</em>}</li>
  * </ul>
@@ -30,39 +28,10 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends UMLReferencingElement<T>, AliasedElement, PackageableElement, Commentable<T> {
-    /**
-     * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-     * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #setVisibility(Visibility)
-     * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClassifier_Visibility()
-     * @model unique="false"
-     * @generated
-     */
-    Visibility getVisibility();
-
-    /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getVisibility <em>Visibility</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #getVisibility()
-     * @generated
-     */
-    void setVisibility(Visibility value);
-
+public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends UMLReferencingElement<T>, AliasedElement, PackageableElement, Commentable<T>, VisibilityHavingElement {
     /**
      * Returns the value of the '<em><b>Members</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}&lt;? extends org.eclipse.uml2.uml.NamedElement>.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}&lt;? extends org.eclipse.uml2.uml.Feature>.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Member#getOwner <em>Owner</em>}'.
      * <!-- begin-user-doc -->
      * <p>
@@ -76,7 +45,7 @@ public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends U
      * @model opposite="owner" containment="true"
      * @generated
      */
-    EList<Member<? extends NamedElement>> getMembers();
+    EList<Member<? extends Feature>> getMembers();
 
     /**
      * Returns the value of the '<em><b>Owning Package</b></em>' container reference.

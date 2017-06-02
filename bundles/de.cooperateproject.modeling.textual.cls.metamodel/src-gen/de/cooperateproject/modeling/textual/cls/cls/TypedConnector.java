@@ -2,6 +2,9 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import org.eclipse.uml2.uml.DirectedRelationship;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +23,7 @@ package de.cooperateproject.modeling.textual.cls.cls;
  * @model abstract="true"
  * @generated
  */
-public interface TypedConnector extends Connector {
+public interface TypedConnector<T extends DirectedRelationship> extends Connector, UMLReferencingElement<T> {
     /**
      * Returns the value of the '<em><b>Left</b></em>' reference.
      * <!-- begin-user-doc -->
@@ -32,7 +35,7 @@ public interface TypedConnector extends Connector {
      * @return the value of the '<em>Left</em>' reference.
      * @see #setLeft(Classifier)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getTypedConnector_Left()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     Classifier<? extends org.eclipse.uml2.uml.Classifier> getLeft();
@@ -58,7 +61,7 @@ public interface TypedConnector extends Connector {
      * @return the value of the '<em>Right</em>' reference.
      * @see #setRight(Classifier)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getTypedConnector_Right()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     Classifier<? extends org.eclipse.uml2.uml.Classifier> getRight();

@@ -4,7 +4,6 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -518,13 +517,22 @@ public interface TextualCommonsPackage extends EPackage {
 	int CARDINALITY_FEATURE_COUNT = 2;
 
 	/**
+     * The operation id for the '<em>Get Referenced Element</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CARDINALITY___GET_REFERENCED_ELEMENT = 0;
+
+    /**
      * The number of operations of the '<em>Cardinality</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CARDINALITY_OPERATION_COUNT = 0;
+	int CARDINALITY_OPERATION_COUNT = 1;
 
 	/**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl <em>Package Import</em>}' class.
@@ -546,22 +554,22 @@ public interface TextualCommonsPackage extends EPackage {
 	int PACKAGE_IMPORT__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
 	/**
-     * The feature id for the '<em><b>Imported Package</b></em>' attribute.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PACKAGE_IMPORT__IMPORTED_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
      * The feature id for the '<em><b>Importing Package</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int PACKAGE_IMPORT__IMPORTING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+	int PACKAGE_IMPORT__IMPORTING_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Imported Package</b></em>' reference.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int PACKAGE_IMPORT__IMPORTED_PACKAGE = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
      * The number of structural features of the '<em>Package Import</em>' class.
@@ -591,17 +599,43 @@ public interface TextualCommonsPackage extends EPackage {
 	int PACKAGE_IMPORT_OPERATION_COUNT = UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility <em>Visibility</em>}' enum.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl <em>Visibility Having Element</em>}' class.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibility()
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibilityHavingElement()
      * @generated
      */
-	int VISIBILITY = 10;
+    int VISIBILITY_HAVING_ELEMENT = 10;
 
+    /**
+     * The feature id for the '<em><b>Visibility</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VISIBILITY_HAVING_ELEMENT__VISIBILITY = 0;
 
-	/**
+    /**
+     * The number of structural features of the '<em>Visibility Having Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VISIBILITY_HAVING_ELEMENT_FEATURE_COUNT = 1;
+
+    /**
+     * The number of operations of the '<em>Visibility Having Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VISIBILITY_HAVING_ELEMENT_OPERATION_COUNT = 0;
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -813,6 +847,16 @@ public interface TextualCommonsPackage extends EPackage {
 	EAttribute getCardinality_UpperBound();
 
 	/**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getReferencedElement() <em>Get Referenced Element</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Referenced Element</em>' operation.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getReferencedElement()
+     * @generated
+     */
+    EOperation getCardinality__GetReferencedElement();
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,15 +877,15 @@ public interface TextualCommonsPackage extends EPackage {
 	EClass getPackageImport();
 
 	/**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage <em>Imported Package</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Imported Package</em>'.
+     * @return the meta object for the reference '<em>Imported Package</em>'.
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportedPackage()
      * @see #getPackageImport()
      * @generated
      */
-	EAttribute getPackageImport_ImportedPackage();
+	EReference getPackageImport_ImportedPackage();
 
 	/**
      * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage <em>Importing Package</em>}'.
@@ -855,16 +899,27 @@ public interface TextualCommonsPackage extends EPackage {
 	EReference getPackageImport_ImportingPackage();
 
 	/**
-     * Returns the meta object for enum '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility <em>Visibility</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement <em>Visibility Having Element</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Visibility Having Element</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement
      * @generated
      */
-	EEnum getVisibility();
+    EClass getVisibilityHavingElement();
 
-	/**
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement#getVisibility <em>Visibility</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Visibility</em>'.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement#getVisibility()
+     * @see #getVisibilityHavingElement()
+     * @generated
+     */
+    EAttribute getVisibilityHavingElement_Visibility();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1064,6 +1119,14 @@ public interface TextualCommonsPackage extends EPackage {
 		EAttribute CARDINALITY__UPPER_BOUND = eINSTANCE.getCardinality_UpperBound();
 
 		/**
+         * The meta object literal for the '<em><b>Get Referenced Element</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation CARDINALITY___GET_REFERENCED_ELEMENT = eINSTANCE.getCardinality__GetReferencedElement();
+
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1084,12 +1147,12 @@ public interface TextualCommonsPackage extends EPackage {
 		EClass PACKAGE_IMPORT = eINSTANCE.getPackageImport();
 
 		/**
-         * The meta object literal for the '<em><b>Imported Package</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Imported Package</b></em>' reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
          */
-		EAttribute PACKAGE_IMPORT__IMPORTED_PACKAGE = eINSTANCE.getPackageImport_ImportedPackage();
+		EReference PACKAGE_IMPORT__IMPORTED_PACKAGE = eINSTANCE.getPackageImport_ImportedPackage();
 
 		/**
          * The meta object literal for the '<em><b>Importing Package</b></em>' container reference feature.
@@ -1100,14 +1163,22 @@ public interface TextualCommonsPackage extends EPackage {
 		EReference PACKAGE_IMPORT__IMPORTING_PACKAGE = eINSTANCE.getPackageImport_ImportingPackage();
 
 		/**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility <em>Visibility</em>}' enum.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl <em>Visibility Having Element</em>}' class.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibility()
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.VisibilityHavingElementImpl
+         * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.TextualCommonsPackageImpl#getVisibilityHavingElement()
          * @generated
          */
-		EEnum VISIBILITY = eINSTANCE.getVisibility();
+        EClass VISIBILITY_HAVING_ELEMENT = eINSTANCE.getVisibilityHavingElement();
+
+        /**
+         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VISIBILITY_HAVING_ELEMENT__VISIBILITY = eINSTANCE.getVisibilityHavingElement_Visibility();
 
 	}
 

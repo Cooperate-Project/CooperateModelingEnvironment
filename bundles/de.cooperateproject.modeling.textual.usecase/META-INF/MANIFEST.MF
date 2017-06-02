@@ -23,6 +23,9 @@ Require-Bundle: org.eclipse.xtext,
  com.google.inject.multibindings.bundle;bundle-version="3.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
+ de.cooperateproject.modeling.textual.usecase.derivedstate.calculator,
+ de.cooperateproject.modeling.textual.usecase.derivedstate.initializers,
+ de.cooperateproject.modeling.textual.usecase.derivedstate.removers,
  de.cooperateproject.modeling.textual.usecase.formatting2,
  de.cooperateproject.modeling.textual.usecase.generator,
  de.cooperateproject.modeling.textual.usecase.issues,

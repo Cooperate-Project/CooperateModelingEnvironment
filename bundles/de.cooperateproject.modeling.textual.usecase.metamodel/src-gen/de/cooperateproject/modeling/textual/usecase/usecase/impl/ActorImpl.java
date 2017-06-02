@@ -7,8 +7,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comm
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.ActorType;
@@ -26,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      * @generated
      * @ordered
      */
-    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
+    protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
     /**
      * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
@@ -177,8 +177,8 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      * <!-- end-user-doc -->
      * @generated
      */
-    public Visibility getVisibility() {
-        return (Visibility)eDynamicGet(UsecasePackage.ACTOR__VISIBILITY, UsecasePackage.Literals.ACTOR__VISIBILITY, true, true);
+    public VisibilityKind getVisibility() {
+        return (VisibilityKind)eDynamicGet(UsecasePackage.ACTOR__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
 
     /**
@@ -186,8 +186,26 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVisibility(Visibility newVisibility) {
-        eDynamicSet(UsecasePackage.ACTOR__VISIBILITY, UsecasePackage.Literals.ACTOR__VISIBILITY, newVisibility);
+    public void setVisibility(VisibilityKind newVisibility) {
+        eDynamicSet(UsecasePackage.ACTOR__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, newVisibility);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetVisibility() {
+        eDynamicUnset(UsecasePackage.ACTOR__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetVisibility() {
+        return eDynamicIsSet(UsecasePackage.ACTOR__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -206,6 +224,24 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      */
     public void setAbstract(boolean newAbstract) {
         eDynamicSet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT, newAbstract);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAbstract() {
+        eDynamicUnset(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAbstract() {
+        return eDynamicIsSet(UsecasePackage.ACTOR__ABSTRACT, UsecasePackage.Literals.ACTOR__ABSTRACT);
     }
 
     /**
@@ -299,7 +335,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
                 setAlias((String)newValue);
                 return;
             case UsecasePackage.ACTOR__VISIBILITY:
-                setVisibility((Visibility)newValue);
+                setVisibility((VisibilityKind)newValue);
                 return;
             case UsecasePackage.ACTOR__ABSTRACT:
                 setAbstract((Boolean)newValue);
@@ -329,10 +365,10 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
                 setAlias(ALIAS_EDEFAULT);
                 return;
             case UsecasePackage.ACTOR__VISIBILITY:
-                setVisibility(VISIBILITY_EDEFAULT);
+                unsetVisibility();
                 return;
             case UsecasePackage.ACTOR__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
+                unsetAbstract();
                 return;
             case UsecasePackage.ACTOR__TYPE:
                 setType(TYPE_EDEFAULT);
@@ -356,9 +392,9 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
             case UsecasePackage.ACTOR__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case UsecasePackage.ACTOR__VISIBILITY:
-                return getVisibility() != VISIBILITY_EDEFAULT;
+                return isSetVisibility();
             case UsecasePackage.ACTOR__ABSTRACT:
-                return isAbstract() != ABSTRACT_EDEFAULT;
+                return isSetAbstract();
             case UsecasePackage.ACTOR__TYPE:
                 return getType() != TYPE_EDEFAULT;
         }
@@ -390,6 +426,12 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
                 default: return -1;
             }
         }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.ACTOR__VISIBILITY: return TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -415,6 +457,12 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return UsecasePackage.ACTOR__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY: return UsecasePackage.ACTOR__VISIBILITY;
                 default: return -1;
             }
         }

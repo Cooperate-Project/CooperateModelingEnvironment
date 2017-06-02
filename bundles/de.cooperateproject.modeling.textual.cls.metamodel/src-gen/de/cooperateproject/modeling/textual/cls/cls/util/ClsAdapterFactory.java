@@ -26,6 +26,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -34,6 +35,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.DirectedRelationship;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -117,7 +120,7 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createPropertyAdapter();
             }
             @Override
-            public <T extends NamedElement> Adapter caseMember(Member<T> object) {
+            public <T extends Feature> Adapter caseMember(Member<T> object) {
                 return createMemberAdapter();
             }
             @Override
@@ -137,7 +140,7 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
                 return createConnectorAdapter();
             }
             @Override
-            public Adapter caseTypedConnector(TypedConnector object) {
+            public <T extends DirectedRelationship> Adapter caseTypedConnector(TypedConnector<T> object) {
                 return createTypedConnectorAdapter();
             }
             @Override
@@ -191,6 +194,10 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
             @Override
             public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
                 return createCommentableAdapter();
+            }
+            @Override
+            public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
+                return createVisibilityHavingElementAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -559,6 +566,20 @@ public class ClsAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCommentableAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement <em>Visibility Having Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement
+     * @generated
+     */
+    public Adapter createVisibilityHavingElementAdapter() {
         return null;
     }
 

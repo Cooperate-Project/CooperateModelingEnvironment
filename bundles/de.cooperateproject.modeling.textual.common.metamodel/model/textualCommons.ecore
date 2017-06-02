@@ -13,10 +13,12 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AliasedElement" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UMLReferencingElement" abstract="true"
       eSuperTypes="#//Element">
@@ -26,13 +28,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElement">
       <eGenericType eTypeParameter="#//UMLReferencingElement/UMLType"/>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Visibility">
-    <eLiterals name="UNDEFINED"/>
-    <eLiterals name="PUBLIC" value="1"/>
-    <eLiterals name="PRIVATE" value="2"/>
-    <eLiterals name="PROTECTED" value="3"/>
-    <eLiterals name="PACKAGE" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageBase" abstract="true">
     <eTypeParameters name="PackageType">
@@ -73,28 +68,41 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cardinality">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="getReferencedElement" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="&lt;%org.eclipse.emf.ecore.EObject%> container = eContainer();&#xD;&#xA;if (container instanceof UMLReferencingElement) {&#xD;&#xA;    @SuppressWarnings(&quot;unchecked&quot;)&#xD;&#xA;    &lt;%de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement%>&lt;&lt;%org.eclipse.uml2.uml.Element%>> umlReferencingElement = (&lt;%de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement%>&lt;&lt;%org.eclipse.uml2.uml.Element%>>) container;&#xD;&#xA;    org.eclipse.uml2.uml.Element referencedElement = umlReferencingElement.getReferencedElement();&#xD;&#xA;    if (referencedElement instanceof MultiplicityElement) {&#xD;&#xA;        return (MultiplicityElement) referencedElement;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;return null;"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        transient="true" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        transient="true" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
       interface="true" eSuperTypes="#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="PackageImport">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedPackage" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="importingPackage" lowerBound="1"
         eOpposite="#//PackageBase/packageImports">
       <eGenericType eClassifier="#//PackageBase">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedPackage" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"
+        transient="true"/>
     <eGenericSuperTypes eClassifier="#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
     </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VisibilityHavingElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//VisibilityKind"
+        transient="true" unsettable="true"/>
   </eClassifiers>
 </ecore:EPackage>

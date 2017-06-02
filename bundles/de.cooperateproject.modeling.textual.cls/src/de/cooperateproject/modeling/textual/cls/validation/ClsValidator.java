@@ -33,7 +33,6 @@ public class ClsValidator extends AbstractClsValidator {
     private static final String NOT_A_CLASS = "not_a_class";
     private static final String ALIAS_TAKEN = "alias_taken";
     private static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
-    private static final String ROLE_NAMES_AMBIGOUS = "role_names_ambigous";
 
     @Inject
     @SuppressWarnings("unused")
@@ -52,8 +51,7 @@ public class ClsValidator extends AbstractClsValidator {
     }
 
     @Check
-    private void checkUniqueAlias(
-            de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier> classifier) {
+    private void checkUniqueAlias(Classifier<? extends Classifier> classifier) {
         Element classifierPackageRef = classifier.getNearestPackage().getReferencedElement();
         for (Element element : classifierPackageRef.getOwnedElements()) {
             if (hasSameAlias(classifier.getReferencedElement(), element)) {
@@ -63,7 +61,7 @@ public class ClsValidator extends AbstractClsValidator {
         }
     }
 
-    private boolean hasSameAlias(Element firstElement, Element secondElement) {
+    private static boolean hasSameAlias(Element firstElement, Element secondElement) {
         if (!(firstElement instanceof org.eclipse.uml2.uml.Classifier)
                 || !(secondElement instanceof org.eclipse.uml2.uml.Classifier)) {
             return false;
@@ -72,13 +70,15 @@ public class ClsValidator extends AbstractClsValidator {
                 (org.eclipse.uml2.uml.Classifier) secondElement);
     }
 
-    private boolean hasSameAlias(org.eclipse.uml2.uml.Classifier firstClassifier,
+    private static boolean hasSameAlias(org.eclipse.uml2.uml.Classifier firstClassifier,
             org.eclipse.uml2.uml.Classifier secondClassifier) {
         boolean isNotSameElement = secondClassifier != firstClassifier;
         if (isNotSameElement) {
             StringExpression firstAlias = firstClassifier.getNameExpression();
             StringExpression secondAlias = secondClassifier.getNameExpression();
-            return (firstAlias != null && secondAlias != null && firstAlias.getName().equals(secondAlias.getName()));
+            boolean firstAliasIsNull = firstAlias == null;
+            boolean secondAliasIsNull = secondAlias == null;
+            return !firstAliasIsNull && !secondAliasIsNull && firstAlias.getName().equals(secondAlias.getName());
         }
         return false;
     }

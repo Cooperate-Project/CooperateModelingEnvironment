@@ -3,8 +3,7 @@
 package de.cooperateproject.modeling.textual.usecase.usecase;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -16,7 +15,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getExtensionPoints <em>Extension Points</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getSystem <em>System</em>}</li>
@@ -26,36 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface UseCase extends BehavioredClassifier<org.eclipse.uml2.uml.UseCase>, AliasedElement {
-    /**
-     * Returns the value of the '<em><b>Visibility</b></em>' attribute.
-     * The literals are from the enumeration {@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Visibility</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #setVisibility(Visibility)
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUseCase_Visibility()
-     * @model
-     * @generated
-     */
-    Visibility getVisibility();
-
-    /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getVisibility <em>Visibility</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Visibility</em>' attribute.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility
-     * @see #getVisibility()
-     * @generated
-     */
-    void setVisibility(Visibility value);
-
+public interface UseCase extends BehavioredClassifier<org.eclipse.uml2.uml.UseCase>, AliasedElement, VisibilityHavingElement {
     /**
      * Returns the value of the '<em><b>Abstract</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -65,9 +34,11 @@ public interface UseCase extends BehavioredClassifier<org.eclipse.uml2.uml.UseCa
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Abstract</em>' attribute.
+     * @see #isSetAbstract()
+     * @see #unsetAbstract()
      * @see #setAbstract(boolean)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getUseCase_Abstract()
-     * @model
+     * @model unsettable="true" transient="true"
      * @generated
      */
     boolean isAbstract();
@@ -77,10 +48,35 @@ public interface UseCase extends BehavioredClassifier<org.eclipse.uml2.uml.UseCa
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Abstract</em>' attribute.
+     * @see #isSetAbstract()
+     * @see #unsetAbstract()
      * @see #isAbstract()
      * @generated
      */
     void setAbstract(boolean value);
+
+    /**
+     * Unsets the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#isAbstract <em>Abstract</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetAbstract()
+     * @see #isAbstract()
+     * @see #setAbstract(boolean)
+     * @generated
+     */
+    void unsetAbstract();
+
+    /**
+     * Returns whether the value of the '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#isAbstract <em>Abstract</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Abstract</em>' attribute is set.
+     * @see #unsetAbstract()
+     * @see #isAbstract()
+     * @see #setAbstract(boolean)
+     * @generated
+     */
+    boolean isSetAbstract();
 
     /**
      * Returns the value of the '<em><b>Extension Points</b></em>' containment reference list.

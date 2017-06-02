@@ -14,11 +14,9 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsFactory;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -109,12 +107,12 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	private EEnum visibilityEEnum = null;
+    private EClass visibilityHavingElementEClass = null;
 
-	/**
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -360,6 +358,15 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getCardinality__GetReferencedElement() {
+        return cardinalityEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -381,16 +388,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EAttribute getPackageImport_ImportedPackage() {
-        return (EAttribute)packageImportEClass.getEStructuralFeatures().get(0);
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EReference getPackageImport_ImportingPackage() {
+	public EReference getPackageImport_ImportedPackage() {
         return (EReference)packageImportEClass.getEStructuralFeatures().get(1);
     }
 
@@ -399,11 +397,29 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EEnum getVisibility() {
-        return visibilityEEnum;
+	public EReference getPackageImport_ImportingPackage() {
+        return (EReference)packageImportEClass.getEStructuralFeatures().get(0);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getVisibilityHavingElement() {
+        return visibilityHavingElementEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getVisibilityHavingElement_Visibility() {
+        return (EAttribute)visibilityHavingElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -458,15 +474,16 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         cardinalityEClass = createEClass(CARDINALITY);
         createEAttribute(cardinalityEClass, CARDINALITY__LOWER_BOUND);
         createEAttribute(cardinalityEClass, CARDINALITY__UPPER_BOUND);
+        createEOperation(cardinalityEClass, CARDINALITY___GET_REFERENCED_ELEMENT);
 
         packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
 
         packageImportEClass = createEClass(PACKAGE_IMPORT);
-        createEAttribute(packageImportEClass, PACKAGE_IMPORT__IMPORTED_PACKAGE);
         createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTING_PACKAGE);
+        createEReference(packageImportEClass, PACKAGE_IMPORT__IMPORTED_PACKAGE);
 
-        // Create enums
-        visibilityEEnum = createEEnum(VISIBILITY);
+        visibilityHavingElementEClass = createEClass(VISIBILITY_HAVING_ELEMENT);
+        createEAttribute(visibilityHavingElementEClass, VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
 	/**
@@ -547,10 +564,10 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEOperation(op, g1);
 
         initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(aliasedElementEClass, AliasedElement.class, "AliasedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getAliasedElement_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, AliasedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAliasedElement_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, AliasedElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(umlReferencingElementEClass, UMLReferencingElement.class, "UMLReferencingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(umlReferencingElementEClass_UMLType);
@@ -571,28 +588,25 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEReference(getComment_CommentedElement(), g1, this.getCommentable_Comments(), "commentedElement", null, 1, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getComment_Body(), ecorePackage.getEString(), "body", null, 1, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getComment_Body(), ecorePackage.getEString(), "body", null, 1, 1, Comment.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(cardinalityEClass, Cardinality.class, "Cardinality", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCardinality_LowerBound(), theEcorePackage.getEInt(), "lowerBound", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCardinality_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 0, 1, Cardinality.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCardinality_LowerBound(), theEcorePackage.getEInt(), "lowerBound", null, 0, 1, Cardinality.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCardinality_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 0, 1, Cardinality.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEOperation(getCardinality__GetReferencedElement(), theUMLPackage.getMultiplicityElement(), "getReferencedElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(packageImportEClass, PackageImport.class, "PackageImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getPackageImport_ImportedPackage(), ecorePackage.getEString(), "importedPackage", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getPackageBase());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEReference(getPackageImport_ImportingPackage(), g1, this.getPackageBase_PackageImports(), "importingPackage", null, 1, 1, PackageImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPackageImport_ImportedPackage(), theUMLPackage.getPackage(), null, "importedPackage", null, 1, 1, PackageImport.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        // Initialize enums and add enum literals
-        initEEnum(visibilityEEnum, Visibility.class, "Visibility");
-        addEEnumLiteral(visibilityEEnum, Visibility.UNDEFINED);
-        addEEnumLiteral(visibilityEEnum, Visibility.PUBLIC);
-        addEEnumLiteral(visibilityEEnum, Visibility.PRIVATE);
-        addEEnumLiteral(visibilityEEnum, Visibility.PROTECTED);
-        addEEnumLiteral(visibilityEEnum, Visibility.PACKAGE);
+        initEClass(visibilityHavingElementEClass, VisibilityHavingElement.class, "VisibilityHavingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getVisibilityHavingElement_Visibility(), theUMLPackage.getVisibilityKind(), "visibility", null, 0, 1, VisibilityHavingElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

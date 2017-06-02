@@ -10,8 +10,6 @@ import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.jface.layout.PixelConverter;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -24,12 +22,28 @@ import org.eclipse.swt.widgets.Composite;
 import de.cooperateproject.cdo.util.utils.CDOHelper;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 
+/**
+ * Composite for the ImportWizardPage of the cooperate project.
+ * 
+ * @author persch
+ *
+ */
 public class CooperateProjectImportComposite extends Composite {
 
     private static Set<String> selectedProjects;
     private static CheckboxTableViewer tv;
 
-    public CooperateProjectImportComposite(Composite parent, int style) {
+    /**
+     * Constructor, creates a CheckboxTableViewer and selection buttons.
+     * 
+     * @param parent
+     *            The parent composite.
+     * @param style
+     *            Style which will be used.
+     * @param page
+     *            Page which uses this composite.
+     */
+    public CooperateProjectImportComposite(Composite parent, int style, ImportWizardPage page) {
         super(parent, style);
         Composite tableComposite = new Composite(this, SWT.NONE);
         GridLayout layout = new GridLayout();
@@ -47,28 +61,19 @@ public class CooperateProjectImportComposite extends Composite {
         gridData.heightHint = new PixelConverter(tv.getControl()).convertHeightInCharsToPixels(10);
         tv.getControl().setLayoutData(gridData);
         setLayout(layout);
-
-        tv.addSelectionChangedListener(new ISelectionChangedListener() {
-            @Override
-            public void selectionChanged(SelectionChangedEvent event) {
-                Set<Object> checked = new HashSet<>(Arrays.asList(tv.getGrayedElements()));
-                checked.addAll(Arrays.asList(tv.getCheckedElements()));
-                tv.setCheckedElements(checked.toArray());
-            }
-        });
-        addSelectionButtons();
+        tv.addSelectionChangedListener(event -> selectionChanged(page));
+        addSelectionButtons(page);
     }
 
-    public static Set<String> getSelectedProjects() {
-        selectedProjects = new HashSet<>();
-        for (Object o : tv.getCheckedElements()) {
-            if (!tv.getGrayed(o.toString())) {
-                selectedProjects.add(o.toString());
-            }
-        }
-        return selectedProjects;
-    }
-
+    /**
+     * Opens connection to CDO server with the given connection information from projectProperties. Checks if projects
+     * on server exist in the workspace.
+     * Already existing projects are added as grayedElements to the end of the table, others are added at the top of the
+     * table.
+     * 
+     * @param projectProperties
+     *            Stores the connection information for the CDO server which stores the cooperate projects.
+     */
     public static void fillTable(ProjectPropertiesDTO projectProperties) {
         CDOSession session = CDOHelper.getSessionFromConnectionInfo(projectProperties.getCdoHost(),
                 projectProperties.getCdoPort(), projectProperties.getCdoRepo());
@@ -92,7 +97,17 @@ public class CooperateProjectImportComposite extends Composite {
         }
     }
 
-    private void addSelectionButtons() {
+    public static Set<String> getSelectedProjects() {
+        selectedProjects = new HashSet<>();
+        for (Object o : tv.getCheckedElements()) {
+            if (!tv.getGrayed(o.toString())) {
+                selectedProjects.add(o.toString());
+            }
+        }
+        return selectedProjects;
+    }
+
+    private void addSelectionButtons(ImportWizardPage page) {
         Composite buttonsComposite = new Composite(this, SWT.NONE);
         GridLayout layout = new GridLayout();
         buttonsComposite.setLayout(layout);
@@ -108,6 +123,7 @@ public class CooperateProjectImportComposite extends Composite {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 tv.setAllChecked(true);
+                checkSelection(page);
             }
         });
 
@@ -118,8 +134,23 @@ public class CooperateProjectImportComposite extends Composite {
             @Override
             public void widgetSelected(SelectionEvent e) {
                 tv.setCheckedElements(tv.getGrayedElements());
-
+                checkSelection(page);
             }
         });
+    }
+
+    private static void checkSelection(ImportWizardPage page) {
+        if (tv.getCheckedElements().length > tv.getGrayedElements().length) {
+            page.setPageComplete(true);
+        } else {
+            page.setPageComplete(false);
+        }
+    }
+
+    private static void selectionChanged(ImportWizardPage page) {
+        Set<Object> checked = new HashSet<>(Arrays.asList(tv.getGrayedElements()));
+        checked.addAll(Arrays.asList(tv.getCheckedElements()));
+        tv.setCheckedElements(checked.toArray());
+        checkSelection(page);
     }
 }

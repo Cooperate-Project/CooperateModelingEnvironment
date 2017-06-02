@@ -8,16 +8,21 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
+/**
+ * Filter and sorter for the cooperate cls outline that flattens the structure.
+ * 
+ * @author czogalik
+ *
+ */
 public class OutlineFlattenFilterAndSorter extends OutlineFilterAndSorter {
     private IComparator comparator;
 
     @Override
     public IOutlineNode[] filterAndSort(Iterable<IOutlineNode> nodes) {
         final Iterable<IFilter> enabledFilters = getEnabledFilters();
-        Iterable<IOutlineNode> filteredNodes = null;
+        Iterable<IOutlineNode> filteredNodes;
         if (Iterables.isEmpty(enabledFilters)) {
             filteredNodes = nodes;
         } else {
@@ -30,12 +35,13 @@ public class OutlineFlattenFilterAndSorter extends OutlineFilterAndSorter {
             }
         }
         IOutlineNode[] nodesAsArray = Iterables.toArray(filteredNodes, IOutlineNode.class);
-        if (comparator != null && isSortingEnabled())
+        if (comparator != null && isSortingEnabled()) {
             Arrays.sort(nodesAsArray, comparator);
+        }
         return nodesAsArray;
     }
 
-    private List<IOutlineNode> extractChildrenFromStructuralFeatureNodes(Iterable<IOutlineNode> nodes) {
+    private static List<IOutlineNode> extractChildrenFromStructuralFeatureNodes(Iterable<IOutlineNode> nodes) {
         List<IOutlineNode> nodesToFilter = new ArrayList<>();
         for (IOutlineNode node : nodes) {
             if (node instanceof EStructuralFeatureNode) {
@@ -46,21 +52,11 @@ public class OutlineFlattenFilterAndSorter extends OutlineFilterAndSorter {
         return nodesToFilter;
     }
 
-    private Iterable<IOutlineNode> filterNodes(final Iterable<IFilter> enabledFilters,
+    private static Iterable<IOutlineNode> filterNodes(final Iterable<IFilter> enabledFilters,
             Iterable<IOutlineNode> nodesToFilter) {
         Iterable<IOutlineNode> filteredNodes;
-        filteredNodes = Iterables.filter(nodesToFilter, new Predicate<IOutlineNode>() {
-            @Override
-            public boolean apply(final IOutlineNode node) {
-                return Iterables.all(enabledFilters, new Predicate<IFilter>() {
-                    @Override
-                    public boolean apply(IFilter filter) {
-                        return filter.apply(node);
-                    }
-                });
-            }
-        });
+        filteredNodes = Iterables.filter(nodesToFilter,
+                node -> Iterables.all(enabledFilters, filter -> filter.apply(node)));
         return filteredNodes;
     }
-
 }

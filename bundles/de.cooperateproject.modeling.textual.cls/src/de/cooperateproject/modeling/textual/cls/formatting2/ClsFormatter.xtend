@@ -22,8 +22,9 @@ import de.cooperateproject.modeling.textual.cls.services.ClsGrammarAccess
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import org.eclipse.xtext.formatting2.AbstractFormatter2
 
-class ClsFormatter extends AbstractClsFormatter {
+class ClsFormatter extends AbstractFormatter2 {
 	
 	@Inject extension ClsGrammarAccess
 

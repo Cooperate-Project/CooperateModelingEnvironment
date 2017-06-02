@@ -6,13 +6,9 @@
 
    <extension
          point="org.eclipse.ui.views">
-      <category
-            name="Focus transfer"
-            id="de.cooperateproject.ui.focus">
-      </category>
       <view
             allowMultiple="false"
-            category="de.cooperateproject.ui.focus"
+            category="de.cooperateproject.ui.cooperate"
             class="de.cooperateproject.ui.focus.internal.views.FocusView"
             icon="icons/sample.gif"
             id="de.cooperateproject.ui.focus.views.FocusView"

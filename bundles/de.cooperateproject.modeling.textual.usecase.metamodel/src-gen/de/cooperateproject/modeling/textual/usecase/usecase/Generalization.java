@@ -33,7 +33,7 @@ public interface Generalization extends Relationship, UMLReferencingElement<org.
      * @return the value of the '<em>Specific</em>' reference.
      * @see #setSpecific(BehavioredClassifier)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization_Specific()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> getSpecific();
@@ -59,7 +59,7 @@ public interface Generalization extends Relationship, UMLReferencingElement<org.
      * @return the value of the '<em>General</em>' reference.
      * @see #setGeneral(BehavioredClassifier)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getGeneralization_General()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier> getGeneral();

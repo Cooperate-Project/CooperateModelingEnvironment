@@ -50,7 +50,6 @@ when {self.element.oclIsKindOf(uml::UseCase)}
 	var umlUseCase := self.element.oclAsType(uml::UseCase);
 	name := umlUseCase.name;
 	_abstract := umlUseCase.isAbstract;
-	visibility := umlUseCase.getVisibility();
 	alias := umlUseCase.nameExpression.name;
 	referencedElement := self.element.toElement();
 	extensionPoints := self.children->any(type = PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED).children->select(type = PAPYRUS_NOTATION_NODE_EXTENSIONPOINTLABEL_REGULAR).map nodeToExtensionPoint();
@@ -70,7 +69,6 @@ when {self.element.oclIsKindOf(uml::Actor)}
 	var umlActor := self.element.oclAsType(uml::Actor);
 	name := umlActor.name;
 	alias := umlActor.nameExpression.name;
-	visibility := umlActor.getVisibility();
 	_abstract := umlActor.isAbstract;
 	referencedElement := self.element.toElement();
 }
@@ -158,21 +156,6 @@ when {self.hasCardinality()}
 {
 	lowerBound := self.lower;
 	upperBound := self.upper;
-}
-
-
-
-
-query uml::NamedElement::getVisibility() : Visibility
-{
-	var visibilityKind := self.visibility();
-		switch {
-		case(visibilityKind = uml::VisibilityKind::public) {return Visibility::PUBLIC}
-		case(visibilityKind = uml::VisibilityKind::private) {return Visibility::PRIVATE}
-		case(visibilityKind = uml::VisibilityKind::protected) {return Visibility::PROTECTED}
-		case(visibilityKind = uml::VisibilityKind::package) {return Visibility::PACKAGE}
-	};
-	return Visibility::UNDEFINED
 }
 
 query ecore::EObject::toElement() : uml::Element {

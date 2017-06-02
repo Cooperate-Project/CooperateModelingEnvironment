@@ -142,8 +142,6 @@ mapping notation::Node::nodeToClass() : cls::Class
 {
 	var clz := self.element.oclAsType(uml::Class);
 	referencedElement := clz;
-	
-	visibility := clz.getVisibility();
 	_abstract := clz.isAbstract;
 	
 	name := clz.name;
@@ -165,8 +163,6 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 	var interface := self.element.oclAsType(uml::Interface);
 	referencedElement := interface;
 	
-	visibility := interface.getVisibility();
-	
 	name := interface.name;
 	alias := interface.nameExpression.name;
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
@@ -182,7 +178,6 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
 	name := operation.name;
-	visibility := operation.getVisibility();
 	_static := operation.isStatic;
 	_abstract := operation.isAbstract;
 	type := operation.type.oclAsType(uml::Classifier);
@@ -192,7 +187,6 @@ mapping notation::Node::nodeToOperation() : cls::Method {
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
 	name := self.name;
-	visibility := self.getVisibility();
 	type := self.type.oclAsType(uml::Classifier);
 }
 
@@ -200,7 +194,6 @@ mapping notation::Node::nodeToProperty() : cls::Attribute {
 	var prop := self.element.oclAsType(uml::Property);
 	referencedElement := prop;
 	name := prop.name;
-	visibility := prop.getVisibility();
 	_static := prop.isStatic;
 	type := prop.type.oclAsType(uml::Classifier);
 }
@@ -396,18 +389,6 @@ query notation::View::findViewCommentViews() : OrderedSet(notation::View) {
 		->union(
 		allEdges->select(target = self and source.element.oclIsKindOf(uml::Comment))->collect(source)
 		)->asOrderedSet();
-}
-
-
-query uml::NamedElement::getVisibility() : textualCommons::Visibility {
-	var visibilityKind := self.visibility();
-	switch {
-		case(visibilityKind = uml::VisibilityKind::public) {return textualCommons::Visibility::PUBLIC}
-		case(visibilityKind = uml::VisibilityKind::private) {return textualCommons::Visibility::PRIVATE}
-		case(visibilityKind = uml::VisibilityKind::protected) {return textualCommons::Visibility::PROTECTED}
-		case(visibilityKind = uml::VisibilityKind::package) {return textualCommons::Visibility::PACKAGE}
-	};
-	return textualCommons::Visibility::UNDEFINED
 }
 
 query uml::AggregationKind::convert() : cls::AggregationKind {

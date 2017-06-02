@@ -60,7 +60,7 @@ query uml::NamedElement::visibility() : uml::VisibilityKind {
 	// we have to ensure that the visibility is set before using it
 	// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=437449
 	return
-		if self.oclAsType(ecore::EObject).eIsSet(uml::NamedElement.oclAsType(ecore::EClass).eStructuralFeatures->select(name = "visibility")->first())
+		if self.eIsSet("visibility")
 			then
 				self.visibility
 			else
@@ -68,6 +68,11 @@ query uml::NamedElement::visibility() : uml::VisibilityKind {
 		endif;
 }
 
+query OclAny::eIsSet(featureName : String) : Boolean {
+    var typedSelf := self.toEObject();
+	var featureToCheck := typedSelf.eClass().eAllStructuralFeatures->any(name = featureName);
+	return typedSelf.eIsSet(featureToCheck);
+}
 
 query OclAny::toEObject() : ecore::EObject {
 	return self.oclAsType(ecore::EObject);

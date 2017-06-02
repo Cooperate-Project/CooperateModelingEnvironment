@@ -24,14 +24,67 @@
             class="de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifierFactory">
       </factory>
       <factory
-            class="de.cooperateproject.modeling.textual.cls.issues.ClsPropertyStaticQualifierFactory">
+            class="de.cooperateproject.modeling.textual.cls.issues.ClsMemberStaticQualifierFactory">
       </factory>
       <factory
             class="de.cooperateproject.modeling.textual.cls.issues.ClsRootPackageMissingFactory">
       </factory>
-      <factory
-            class="de.cooperateproject.modeling.textual.cls.issues.ClsVisibilityCheckFactory">
-      </factory>
    </extension>
-
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.GeneralizationCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.ImplementationCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.XtextAssociationCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.XtextAssociationInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.XtextAssociationRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.AssociationMemberEndDummy">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.ClassRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.ClassInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.MemberInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.MemberRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.MethodInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.MethodRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.TypedConnectorInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.remover.TypedConnectorRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.GeneralizationInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.initializer.ImplementationInitializer">
+      </class>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.cls.services.ClsTransientStatusProvider">
+      </class>
+   </extension>
 </plugin>

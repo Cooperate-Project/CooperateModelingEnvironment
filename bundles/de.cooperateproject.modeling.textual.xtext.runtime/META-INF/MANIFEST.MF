@@ -15,16 +15,16 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  de.cooperateproject.ui.preferences;bundle-version="0.1.8",
  org.eclipse.emf.transaction,
  com.google.inject.multibindings.bundle;bundle-version="3.0.0";visibility:=reexport,
- de.cooperateproject.modeling.common
-Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
+ de.cooperateproject.modeling.common,
+ org.jgrapht.core;bundle-version="1.0.1"
+Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer,
  de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
- de.cooperateproject.modeling.textual.xtext.runtime.generator,
  de.cooperateproject.modeling.textual.xtext.runtime.issues,
  de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping,
+ de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus,
  de.cooperateproject.modeling.textual.xtext.runtime.validator
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator
-Import-Package: com.google.inject.multibindings

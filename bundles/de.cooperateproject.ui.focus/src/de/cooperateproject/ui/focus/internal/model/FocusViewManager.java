@@ -33,11 +33,11 @@ public class FocusViewManager implements IDisposable {
     @Override
     public void dispose() {
         editorMonitor.stop();
-        focusedDiagrams.values().forEach(d -> IOUtils.closeQuietly(d));
+        focusedDiagrams.values().forEach(IOUtils::closeQuietly);
     }
 
     public void sendCurrentFocus() {
-        executeForFocusedDiagram(fd -> fd.sendCurrentlyFocusedElement());
+        executeForFocusedDiagram(IFocusedDiagram::sendCurrentlyFocusedElement);
     }
 
     public void setFocus(HistoryElement historyElement) {
@@ -45,7 +45,7 @@ public class FocusViewManager implements IDisposable {
     }
 
     public void clearHistoryElements() {
-        executeForFocusedDiagram(fd -> fd.clearHistoryElements());
+        executeForFocusedDiagram(IFocusedDiagram::clearHistoryElements);
     }
 
     public IObservableValue<String> getDiagramTitleObservable() {
@@ -61,17 +61,16 @@ public class FocusViewManager implements IDisposable {
     }
 
     private void editorActivated(IEditorPart editor) {
-        if (!focusedDiagrams.containsKey(editor)) {
-            if (InternalFocusManagerFactory.getInstance().canHandle(editor)) {
-                IFocusManager focusManager = InternalFocusManagerFactory.getInstance().create(editor);
-                IFocusedDiagram focusedDiagram = new FocusedDiagram(focusManager);
-                focusedDiagrams.put(editor, focusedDiagram);
-                try {
-                    focusedDiagram.init();
-                } catch (IOException e) {
-                    LOGGER.warn(String.format("Could not initialize focus management for editor %s.", editor), e);
-                }
+        if (!focusedDiagrams.containsKey(editor) && InternalFocusManagerFactory.INSTANCE.canHandle(editor)) {
+            IFocusManager focusManager = InternalFocusManagerFactory.INSTANCE.create(editor);
+            IFocusedDiagram focusedDiagram = new FocusedDiagram(focusManager);
+            focusedDiagrams.put(editor, focusedDiagram);
+            try {
+                focusedDiagram.init();
+            } catch (IOException e) {
+                LOGGER.warn(String.format("Could not initialize focus management for editor %s.", editor), e);
             }
+
         }
         setActiveEditor(editor);
     }

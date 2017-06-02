@@ -30,6 +30,16 @@
             id="de.cooperateproject.ui.AddProjectNatureCommand"
             name="Convert to Cooperate Project">
       </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.nature.ResetCooperateProjectsCommand"
+            id="de.cooperateproject.ui.ResetCooperateProjectsCommand"
+            name="Reset Cooperate Projects">
+      </command>
+      <command
+            defaultHandler="de.cooperateproject.ui.nature.DeleteProjectFromRepositoryCommand"
+            id="de.cooperateproject.ui.DeleteProjectFromRepositoryCommand"
+            name="Delete Project from Repositoy">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -234,6 +244,85 @@
             </parameter>
          </command>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="de.cooperateproject.ui.Cooperate">
+            <command
+                  commandId="de.cooperateproject.ui.ResetCooperateProjectsCommand"
+                  icon="platform:/plugin/org.eclipse.jdt.doc.user/images/org.eclipse.debug.ui/elcl16/memoryreset_tsk.png"
+                  label="Reset Cooperate Projects"
+                  style="push">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?endof=org.eclipse.ui.edit.delete">
+         <command
+               commandId="de.cooperateproject.ui.DeleteProjectFromRepositoryCommand"
+               icon="platform:/plugin/org.eclipse.ui/icons/full/obj16/delete_obj.png"
+               label="Delete from Repository"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="activeWorkbenchWindow.activePerspective">
+                     <equals
+                           value="de.cooperateproject.ui.perspective">
+                     </equals>
+                  </with>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <and>
+                        <instanceof
+                              value="org.eclipse.core.resources.IProject">
+                        </instanceof>
+                        <test
+                              property="org.eclipse.core.resources.projectNature"
+                              value="de.cooperateproject.ui.CooperateProjectNature">
+                        </test>
+                     </and>
+                  </iterate>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:common.import.menu?after=new">
+         <command
+               commandId="org.eclipse.ui.file.import"
+               icon="icons/16/cooperate_16.png"
+               label="Cooperate Project"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.cooperateproject.ui.perspective">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <parameter
+                  name="importWizardId"
+                  value="de.cooperateproject.ui.importCooperateProjectWizard">
+            </parameter>
+         </command>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.importWizards">
@@ -248,5 +337,12 @@
             id="de.cooperateproject.ui.importCooperateProjectWizard"
             name="Import Cooperate Project">
       </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="de.cooperateproject.ui.cooperate"
+            name="Cooperate">
+      </category>
    </extension>
 </plugin>

@@ -2,8 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.cls.cls;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**
@@ -16,5 +14,5 @@ import org.eclipse.uml2.uml.InterfaceRealization;
  * @model
  * @generated
  */
-public interface Implementation extends UMLReferencingElement<InterfaceRealization>, TypedConnector {
+public interface Implementation extends TypedConnector<InterfaceRealization> {
 } // Implementation

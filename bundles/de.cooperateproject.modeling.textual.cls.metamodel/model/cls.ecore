@@ -47,13 +47,11 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
-        eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         containment="true" resolveProxies="false" eOpposite="#//Member/owner">
       <eGenericType eClassifier="#//Member">
         <eTypeArguments>
-          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+          <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
@@ -67,10 +65,12 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
       <eTypeArguments eTypeParameter="#//Classifier/T"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" transient="true"
+        unsettable="true"/>
     <eGenericSuperTypes eClassifier="#//Classifier">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     </eGenericSuperTypes>
@@ -84,20 +84,17 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
-        eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eTypeParameter="#//Property/T"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Element"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Member" abstract="true">
     <eTypeParameters name="T">
-      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" changeable="false"
         eOpposite="#//Classifier/members">
@@ -105,6 +102,9 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" transient="true"
+        unsettable="true"/>
     <eGenericSuperTypes eClassifier="#//Property">
       <eTypeArguments eTypeParameter="#//Member/T"/>
     </eGenericSuperTypes>
@@ -116,7 +116,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Method">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" transient="true"
+        unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true" resolveProxies="false" eOpposite="#//Parameter/owner"/>
     <eGenericSuperTypes eClassifier="#//Member">
@@ -135,33 +136,38 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningPackage" lowerBound="1"
         eType="#//Package" eOpposite="#//Package/connectors"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true" eSuperTypes="#//Connector">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1">
+  <eClassifiers xsi:type="ecore:EClass" name="TypedConnector" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//DirectedRelationship"/>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" transient="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" transient="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
+    <eGenericSuperTypes eClassifier="#//Connector"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eTypeParameter="#//TypedConnector/T"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization">
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+    <eGenericSuperTypes eClassifier="#//TypedConnector">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//TypedConnector"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Implementation">
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+    <eGenericSuperTypes eClassifier="#//TypedConnector">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//TypedConnector"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
     <eLiterals name="NONE"/>
@@ -223,7 +229,7 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="twoSideAggregationKind"
-        lowerBound="1" eType="#//AggregationKind" transient="true"/>
+        lowerBound="1" eType="#//AggregationKind" transient="true" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XtextAssociationMemberEndReferencedType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1">

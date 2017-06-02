@@ -6,6 +6,59 @@
       <factory
             class="de.cooperateproject.modeling.textual.common.issues.CommonUMLReferencingElementMissingElementFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.common.issues.VisibilityHavingElementResolutionFactory">
+      </factory>
    </extension>
-
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.CommentCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.UMLReferencingElementInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.VisibilityHavingElementRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.AliasedElementInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.AliasedElementRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.CommentInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.CommentRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.CardinalityInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.CardinalityRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.remover.PackageImportRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.initializer.PackageImportInitializer">
+      </class>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider">
+      </class>
+   </extension>
 </plugin>

@@ -10,6 +10,12 @@ import org.eclipse.uml2.uml.Element;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 
+/**
+ * Manages focus transfer.
+ * 
+ * @author Tischner, czogalik
+ *
+ */
 public interface IFocusManager {
 
     /**
@@ -27,11 +33,31 @@ public interface IFocusManager {
      */
     Optional<Element> getFocusedElement();
 
+    /**
+     * Returns actual editor part.
+     * 
+     * @return actual editor part.
+     */
     IEditorPart getEditorPart();
 
+    /**
+     * Returns launcher file.
+     * 
+     * @return launcher file.
+     */
     IFile getCooperateLauncherFile();
 
+    /**
+     * Returns cdo view.
+     * 
+     * @return cdo view.
+     */
     Optional<CDOView> getCDOView();
 
+    /**
+     * Returns actual diagram type.
+     * 
+     * @return actual diagram type.
+     */
     Optional<DiagramTypes> getDiagramType();
 }

@@ -7,5 +7,55 @@
             class="de.cooperateproject.modeling.textual.usecase.issues.UsecaseUMLReferencingElementMissingElementFactory">
       </factory>
    </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.ExtendCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.GeneralizationCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.IncludeCalculator">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ActorInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.ActorRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.UseCaseRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.UseCaseInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.GeneralizationInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.GeneralizationRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.IncludeInitialization">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.IncludeRemover">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ExtendInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.ExtendRemover">
+      </class>
+   </extension>
+   <extension
+         point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientStatusProvider"></class>
+   </extension>
 
 </plugin>

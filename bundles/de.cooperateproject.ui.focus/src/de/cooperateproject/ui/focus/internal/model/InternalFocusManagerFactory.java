@@ -11,7 +11,7 @@ import de.cooperateproject.ui.focus.manager.IFocusManager;
 import de.cooperateproject.ui.focus.manager.IFocusManagerFactory;
 import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
-public enum InternalFocusManagerFactory implements IFocusManagerFactory {
+enum InternalFocusManagerFactory implements IFocusManagerFactory {
 
     INSTANCE;
 
@@ -20,12 +20,20 @@ public enum InternalFocusManagerFactory implements IFocusManagerFactory {
     private static final Logger LOGGER = Logger.getLogger(InternalFocusManagerFactory.class);
     private final Collection<IFocusManagerFactory> factories;
 
-    public static IFocusManagerFactory getInstance() {
-        return INSTANCE;
+    @Override
+    public IFocusManager create(IWorkbenchPart workbenchPart) {
+        Set<IFocusManagerFactory> matchingFactories = findMatchingFactories(workbenchPart);
+        if (matchingFactories.size() == 1) {
+            return matchingFactories.iterator().next().create(workbenchPart);
+        }
+        throw new IllegalArgumentException(
+                String.format("The factory cannot handle the given workbench part %s.", workbenchPart));
     }
 
-    private InternalFocusManagerFactory() {
-        factories = getRegisteredFactories();
+    @Override
+    public boolean canHandle(IWorkbenchPart workbenchPart) {
+        Set<IFocusManagerFactory> matchingFactories = findMatchingFactories(workbenchPart);
+        return matchingFactories.size() == 1;
     }
 
     private Collection<IFocusManagerFactory> getRegisteredFactories() {
@@ -33,10 +41,8 @@ public enum InternalFocusManagerFactory implements IFocusManagerFactory {
                 IFocusManagerFactory.class);
     }
 
-    @Override
-    public boolean canHandle(IWorkbenchPart workbenchPart) {
-        Set<IFocusManagerFactory> matchingFactories = findMatchingFactories(workbenchPart);
-        return matchingFactories.size() == 1;
+    private InternalFocusManagerFactory() {
+        factories = getRegisteredFactories();
     }
 
     private Set<IFocusManagerFactory> findMatchingFactories(IWorkbenchPart workbenchPart) {
@@ -47,16 +53,6 @@ public enum InternalFocusManagerFactory implements IFocusManagerFactory {
                     workbenchPart));
         }
         return matchingFactories;
-    }
-
-    @Override
-    public IFocusManager create(IWorkbenchPart workbenchPart) {
-        Set<IFocusManagerFactory> matchingFactories = findMatchingFactories(workbenchPart);
-        if (matchingFactories.size() == 1) {
-            return matchingFactories.iterator().next().create(workbenchPart);
-        }
-        throw new IllegalArgumentException(
-                String.format("The factory cannot handle the given workbench part %s.", workbenchPart));
     }
 
 }

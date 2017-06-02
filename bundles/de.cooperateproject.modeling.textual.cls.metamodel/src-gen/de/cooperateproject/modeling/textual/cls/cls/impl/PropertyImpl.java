@@ -6,14 +6,14 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Property;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.PropertyImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -50,17 +49,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * @generated
      * @ordered
      */
-    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
-
-    /**
-     * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isStatic()
-     * @generated
-     * @ordered
-     */
-    protected static final boolean STATIC_EDEFAULT = false;
+    protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
     /**
      * <!-- begin-user-doc -->
@@ -115,8 +104,8 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public Visibility getVisibility() {
-        return (Visibility)eDynamicGet(ClsPackage.PROPERTY__VISIBILITY, ClsPackage.Literals.PROPERTY__VISIBILITY, true, true);
+    public VisibilityKind getVisibility() {
+        return (VisibilityKind)eDynamicGet(ClsPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
 
     /**
@@ -124,8 +113,8 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVisibility(Visibility newVisibility) {
-        eDynamicSet(ClsPackage.PROPERTY__VISIBILITY, ClsPackage.Literals.PROPERTY__VISIBILITY, newVisibility);
+    public void setVisibility(VisibilityKind newVisibility) {
+        eDynamicSet(ClsPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, newVisibility);
     }
 
     /**
@@ -133,8 +122,8 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isStatic() {
-        return (Boolean)eDynamicGet(ClsPackage.PROPERTY__STATIC, ClsPackage.Literals.PROPERTY__STATIC, true, true);
+    public void unsetVisibility() {
+        eDynamicUnset(ClsPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -142,8 +131,8 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStatic(boolean newStatic) {
-        eDynamicSet(ClsPackage.PROPERTY__STATIC, ClsPackage.Literals.PROPERTY__STATIC, newStatic);
+    public boolean isSetVisibility() {
+        return eDynamicIsSet(ClsPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -185,8 +174,6 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 return getName();
             case ClsPackage.PROPERTY__VISIBILITY:
                 return getVisibility();
-            case ClsPackage.PROPERTY__STATIC:
-                return isStatic();
             case ClsPackage.PROPERTY__TYPE:
                 if (resolve) return getType();
                 return basicGetType();
@@ -206,10 +193,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 setName((String)newValue);
                 return;
             case ClsPackage.PROPERTY__VISIBILITY:
-                setVisibility((Visibility)newValue);
-                return;
-            case ClsPackage.PROPERTY__STATIC:
-                setStatic((Boolean)newValue);
+                setVisibility((VisibilityKind)newValue);
                 return;
             case ClsPackage.PROPERTY__TYPE:
                 setType((Classifier)newValue);
@@ -230,10 +214,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 setName(NAME_EDEFAULT);
                 return;
             case ClsPackage.PROPERTY__VISIBILITY:
-                setVisibility(VISIBILITY_EDEFAULT);
-                return;
-            case ClsPackage.PROPERTY__STATIC:
-                setStatic(STATIC_EDEFAULT);
+                unsetVisibility();
                 return;
             case ClsPackage.PROPERTY__TYPE:
                 setType((Classifier)null);
@@ -253,9 +234,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
             case ClsPackage.PROPERTY__NAME:
                 return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case ClsPackage.PROPERTY__VISIBILITY:
-                return getVisibility() != VISIBILITY_EDEFAULT;
-            case ClsPackage.PROPERTY__STATIC:
-                return isStatic() != STATIC_EDEFAULT;
+                return isSetVisibility();
             case ClsPackage.PROPERTY__TYPE:
                 return basicGetType() != null;
         }
@@ -275,6 +254,12 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 default: return -1;
             }
         }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (derivedFeatureID) {
+                case ClsPackage.PROPERTY__VISIBILITY: return TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -288,6 +273,12 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
         if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.PROPERTY__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY: return ClsPackage.PROPERTY__VISIBILITY;
                 default: return -1;
             }
         }

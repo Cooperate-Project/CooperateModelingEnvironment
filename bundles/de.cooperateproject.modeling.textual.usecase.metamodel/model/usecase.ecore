@@ -34,15 +34,14 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Actor">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" lowerBound="1"
-        eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ActorType"/>
     <eGenericSuperTypes eClassifier="#//BehavioredClassifier">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="System">
     <eStructuralFeatures xsi:type="ecore:EReference" name="usecases" upperBound="-1"
@@ -58,8 +57,8 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseCase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true" unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionPoints" upperBound="-1"
         eType="#//ExtensionPoint" containment="true" eOpposite="#//ExtensionPoint/useCase"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="system" lowerBound="1"
@@ -68,6 +67,7 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtensionPoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" lowerBound="1"
@@ -92,12 +92,14 @@
     <eGenericSuperTypes eClassifier="#//Relationship"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Generalization">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" lowerBound="1"
+        transient="true">
       <eGenericType eClassifier="#//BehavioredClassifier">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="general" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" lowerBound="1"
+        transient="true">
       <eGenericType eClassifier="#//BehavioredClassifier">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
       </eGenericType>
@@ -109,9 +111,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Include">
     <eStructuralFeatures xsi:type="ecore:EReference" name="addition" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includingCase" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eGenericSuperTypes eClassifier="#//Relationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
@@ -119,12 +121,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Extend">
     <eStructuralFeatures xsi:type="ecore:EReference" name="extension" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extendedCase" lowerBound="1"
-        eType="#//UseCase"/>
+        eType="#//UseCase" transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensionLocation" lowerBound="1"
-        eType="#//ExtensionPoint"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//ExtensionPoint" transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        transient="true"/>
     <eGenericSuperTypes eClassifier="#//Relationship"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
