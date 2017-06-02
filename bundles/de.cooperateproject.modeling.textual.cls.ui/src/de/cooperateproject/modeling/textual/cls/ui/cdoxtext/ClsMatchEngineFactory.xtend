@@ -6,7 +6,8 @@ package de.cooperateproject.modeling.textual.cls.ui.cdoxtext
 import com.google.common.base.Function
 import com.google.inject.Inject
 import com.google.inject.Provider
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import java.util.List
 import org.eclipse.emf.cdo.util.CDOUtil
@@ -19,11 +20,11 @@ import org.eclipse.emf.compare.match.impl.MatchEngineFactoryImpl
 import org.eclipse.emf.compare.scope.IComparisonScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.StringExpression
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
 class ClsMatchEngineFactory extends MatchEngineFactoryImpl { 
 	
-	private static final String NS_URI = "http://www.cooperateproject.de/modeling/textual/cls/Cls"
+	private static final String NS_URI = ClsPackage.eINSTANCE.nsURI
 	
 	@Inject
 	Provider<ProximityEObjectMatcher.DistanceFunction> dfProvider
@@ -47,7 +48,8 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 		val idFunction = new Function<EObject, String>() {
 			override apply(EObject input) {				
 				switch input {
-					UMLReferencingElement: input.class.simpleName + "_UMLReferencingElement" + idComputation.apply(input.referencedElement)
+					Cardinality: Cardinality.simpleName + input.eContainingFeature.name + idComputation.apply(input.referencedElement)
+					UMLReferencingElement<?>: input.class.simpleName + "_UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					StringExpression: "StringExp" + input.name
 					XtextAssociationMemberEndReferencedType: XtextAssociationMemberEndReferencedType.simpleName + input.calculateContainmentIdPart([apply])
 					default: null

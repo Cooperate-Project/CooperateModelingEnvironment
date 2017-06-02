@@ -2,12 +2,14 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.remover;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -32,8 +34,12 @@ public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<Xte
         object.getMemberEndNames().clear();
         object.getMemberEndNavigabilities().clear();
         object.getMemberEndTypes().clear();
-        object.getMemberEnds().stream().map(AssociationMemberEnd::getCardinality)
-                .forEach(XtextAssociationRemover::process);
+        object.getMemberEnds().forEach(XtextAssociationRemover::process);
+    }
+
+    private static void process(AssociationMemberEnd memberEnd) {
+        memberEnd.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+        Optional.ofNullable(memberEnd.getCardinality()).ifPresent(XtextAssociationRemover::process);
     }
 
     private static void process(Cardinality cardinality) {

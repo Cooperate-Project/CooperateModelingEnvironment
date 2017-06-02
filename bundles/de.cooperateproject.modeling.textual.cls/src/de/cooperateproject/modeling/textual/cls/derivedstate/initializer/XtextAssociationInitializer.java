@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
@@ -45,12 +46,12 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
         object.getMemberEndNavigabilities().clear();
         object.getMemberEndTypes().clear();
         for (AssociationMemberEnd memberEnd : object.getMemberEnds()) {
+            init(memberEnd);
             XtextAssociationMemberEndReferencedType typeReference = ClsFactory.eINSTANCE
                     .createXtextAssociationMemberEndReferencedType();
             typeReference.setType(memberEnd.getType());
             object.getMemberEndTypes().add(typeReference);
             if (memberEnd.getCardinality() != null) {
-                initCardinality(memberEnd.getCardinality());
                 object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
             }
             object.getMemberEndNames().add(memberEnd.getName());
@@ -68,7 +69,21 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
         }
     }
 
+    private static void init(AssociationMemberEnd memberEnd) {
+        if (memberEnd.getReferencedElement() == null) {
+            return;
+        }
+
+        if (StringUtils.isEmpty(memberEnd.getName())) {
+            Optional.ofNullable(memberEnd.getReferencedElement().getName()).ifPresent(memberEnd::setName);
+        }
+        initCardinality(memberEnd.getCardinality());
+    }
+
     private static void initCardinality(Cardinality cardinality) {
+        if (cardinality == null) {
+            return;
+        }
         Optional<MultiplicityElement> multiplicityElement = Optional.ofNullable(cardinality.getReferencedElement());
         if (!cardinality.isSetLowerBound()) {
             multiplicityElement.map(MultiplicityElement::getLower).ifPresent(cardinality::setLowerBound);
