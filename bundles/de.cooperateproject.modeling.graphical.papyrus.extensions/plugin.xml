@@ -91,4 +91,10 @@
             priority="1">
       </configuration>
    </extension>
+   <extension
+         point="de.cooperateproject.ui.modelcreator.postprocessor">
+      <class
+            class="de.cooperate.modeling.graphical.papyrus.extensions.configuration.PapyrusConfigurationModelCreationPostProcessor">
+      </class>
+   </extension>
 </plugin>

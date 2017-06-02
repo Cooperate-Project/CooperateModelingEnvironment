@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.wizards.modelnew;
+package de.cooperateproject.ui.modelcreator;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -161,6 +161,9 @@ public class ModelCreator {
         diagram.getStyles().add(papyrusViewStyle);
 
         notationResource.getContents().add(diagram);
+
+        ModelCreatorPostProcessorRegistry.getInstance().getPostProcessors()
+                .forEach(processor -> processor.postProcessModel(diagram));
 
         return notationResource;
     }

@@ -9,6 +9,8 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.emf.ecore,
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.papyrus.infra.services.openelement,
- de.cooperateproject.ui,
- org.eclipse.papyrus.infra.properties
+ org.eclipse.papyrus.infra.properties,
+ de.cooperateproject.ui;bundle-version="0.1.8",
+ de.cooperateproject.modeling.graphical.common
 Bundle-Activator: de.cooperate.modeling.graphical.papyrus.extensions.Activator
+Bundle-ActivationPolicy: lazy
