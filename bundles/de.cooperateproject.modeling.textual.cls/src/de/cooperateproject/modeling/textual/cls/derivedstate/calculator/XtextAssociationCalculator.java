@@ -83,10 +83,12 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
     private static void process(AssociationMemberEnd object) {
         Optional<Property> umlMemberEnd = getUmlMemberEnd(object);
         if (!umlMemberEnd.isPresent()) {
-            // set to null?
-            return;
+            object.setReferencedElement(null);
+        } else {
+            object.setReferencedElement(umlMemberEnd.get());
+            Optional.ofNullable(object.getCardinality())
+                    .ifPresent(cardinality -> cardinality.setReferencedElement(umlMemberEnd.get()));
         }
-        object.setReferencedElement(umlMemberEnd.get());
     }
 
     private static Optional<Property> getUmlMemberEnd(AssociationMemberEnd object) {

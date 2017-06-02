@@ -19,7 +19,8 @@ public class UseCaseTransientStatusProvider implements ITransientStatusProvider 
                     UsecasePackage.Literals.GENERALIZATION__GENERAL, UsecasePackage.Literals.GENERALIZATION__SPECIFIC,
                     UsecasePackage.Literals.INCLUDE__ADDITION, UsecasePackage.Literals.INCLUDE__INCLUDING_CASE,
                     UsecasePackage.Literals.EXTEND__CONDITION, UsecasePackage.Literals.EXTEND__EXTENDED_CASE,
-                    UsecasePackage.Literals.EXTEND__EXTENSION, UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION));
+                    UsecasePackage.Literals.EXTEND__EXTENSION, UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION,
+                    UsecasePackage.Literals.ASSOCIATION__ACTOR, UsecasePackage.Literals.ASSOCIATION__USECASE));
     private static final Set<EStructuralFeature> TRANSIENT_FEATURES = new HashSet<>();
 
     @Override

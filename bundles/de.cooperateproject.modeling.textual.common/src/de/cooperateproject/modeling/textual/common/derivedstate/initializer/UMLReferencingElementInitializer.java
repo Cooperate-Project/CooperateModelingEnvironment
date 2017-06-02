@@ -9,9 +9,15 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
+/**
+ * State initializer for {@link UMLReferencingElement} elements.
+ */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.INITIALIZATION)
 public class UMLReferencingElementInitializer extends AtomicDerivedStateProcessorBase<UMLReferencingElement<Element>> {
 
+    /**
+     * Instantiates the initializer.
+     */
     @SuppressWarnings("unchecked")
     public UMLReferencingElementInitializer() {
         super((Class<UMLReferencingElement<Element>>) (Class<?>) UMLReferencingElement.class);
@@ -26,7 +32,7 @@ public class UMLReferencingElementInitializer extends AtomicDerivedStateProcesso
 
     private static void handle(NamedElement object) {
         if (StringUtils.isEmpty(object.getName()) && object instanceof UMLReferencingElement) {
-            UMLReferencingElement typedObject = (UMLReferencingElement) object;
+            UMLReferencingElement<?> typedObject = (UMLReferencingElement<?>) object;
             if (typedObject.getReferencedElement() instanceof org.eclipse.uml2.uml.NamedElement) {
                 object.setName(((org.eclipse.uml2.uml.NamedElement) typedObject.getReferencedElement()).getName());
             }

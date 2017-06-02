@@ -5,7 +5,9 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -30,6 +32,15 @@ public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<Xte
         object.getMemberEndNames().clear();
         object.getMemberEndNavigabilities().clear();
         object.getMemberEndTypes().clear();
+        object.getMemberEnds().stream().map(AssociationMemberEnd::getCardinality)
+                .forEach(XtextAssociationRemover::process);
+    }
+
+    private static void process(Cardinality cardinality) {
+        if (cardinality.getReferencedElement() != null) {
+            cardinality.unsetLowerBound();
+            cardinality.unsetUpperBound();
+        }
     }
 
     @Override

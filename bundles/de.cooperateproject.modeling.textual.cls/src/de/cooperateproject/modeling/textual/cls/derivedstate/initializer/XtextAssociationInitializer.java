@@ -3,15 +3,18 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.initializer;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.MultiplicityElement;
 
 import de.cooperateproject.modeling.textual.cls.cls.AggregationKind;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -47,6 +50,7 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
             typeReference.setType(memberEnd.getType());
             object.getMemberEndTypes().add(typeReference);
             if (memberEnd.getCardinality() != null) {
+                initCardinality(memberEnd.getCardinality());
                 object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
             }
             object.getMemberEndNames().add(memberEnd.getName());
@@ -61,6 +65,16 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
             object.setTwoSideBidirectionality(
                     object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
             object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
+        }
+    }
+
+    private static void initCardinality(Cardinality cardinality) {
+        Optional<MultiplicityElement> multiplicityElement = Optional.ofNullable(cardinality.getReferencedElement());
+        if (!cardinality.isSetLowerBound()) {
+            multiplicityElement.map(MultiplicityElement::getLower).ifPresent(cardinality::setLowerBound);
+        }
+        if (!cardinality.isSetUpperBound()) {
+            multiplicityElement.map(MultiplicityElement::getUpper).ifPresent(cardinality::setUpperBound);
         }
     }
 

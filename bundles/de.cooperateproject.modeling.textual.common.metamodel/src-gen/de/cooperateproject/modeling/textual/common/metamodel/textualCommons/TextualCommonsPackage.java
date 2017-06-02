@@ -490,13 +490,22 @@ public interface TextualCommonsPackage extends EPackage {
 	int CARDINALITY = 7;
 
 	/**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CARDINALITY__REFERENCED_ELEMENT = UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CARDINALITY__LOWER_BOUND = 0;
+	int CARDINALITY__LOWER_BOUND = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
      * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
@@ -505,7 +514,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY__UPPER_BOUND = 1;
+	int CARDINALITY__UPPER_BOUND = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
      * The number of structural features of the '<em>Cardinality</em>' class.
@@ -514,16 +523,16 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY_FEATURE_COUNT = 2;
+	int CARDINALITY_FEATURE_COUNT = UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-     * The operation id for the '<em>Get Referenced Element</em>' operation.
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CARDINALITY___GET_REFERENCED_ELEMENT = 0;
+    int CARDINALITY___GET_NEAREST_PACKAGE = UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Cardinality</em>' class.
@@ -532,7 +541,7 @@ public interface TextualCommonsPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int CARDINALITY_OPERATION_COUNT = 1;
+	int CARDINALITY_OPERATION_COUNT = UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageImportImpl <em>Package Import</em>}' class.
@@ -847,16 +856,6 @@ public interface TextualCommonsPackage extends EPackage {
 	EAttribute getCardinality_UpperBound();
 
 	/**
-     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getReferencedElement() <em>Get Referenced Element</em>}' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the '<em>Get Referenced Element</em>' operation.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality#getReferencedElement()
-     * @generated
-     */
-    EOperation getCardinality__GetReferencedElement();
-
-    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1119,14 +1118,6 @@ public interface TextualCommonsPackage extends EPackage {
 		EAttribute CARDINALITY__UPPER_BOUND = eINSTANCE.getCardinality_UpperBound();
 
 		/**
-         * The meta object literal for the '<em><b>Get Referenced Element</b></em>' operation.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EOperation CARDINALITY___GET_REFERENCED_ELEMENT = eINSTANCE.getCardinality__GetReferencedElement();
-
-        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement <em>Packageable Element</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

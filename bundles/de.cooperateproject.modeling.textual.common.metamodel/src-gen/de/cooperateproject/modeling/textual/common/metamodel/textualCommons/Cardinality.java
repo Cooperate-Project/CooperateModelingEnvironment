@@ -2,7 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.common.metamodel.textualCommons;
 
-import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.uml2.uml.MultiplicityElement;
 
 /**
@@ -20,10 +19,9 @@ import org.eclipse.uml2.uml.MultiplicityElement;
  *
  * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality()
  * @model
- * @extends CDOObject
  * @generated
  */
-public interface Cardinality extends CDOObject {
+public interface Cardinality extends UMLReferencingElement<MultiplicityElement> {
 	/**
      * Returns the value of the '<em><b>Lower Bound</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -129,14 +127,5 @@ public interface Cardinality extends CDOObject {
      * @generated
      */
     boolean isSetUpperBound();
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='<%org.eclipse.emf.ecore.EObject%> container = eContainer();\r\nif (container instanceof UMLReferencingElement) {\r\n    @SuppressWarnings(\"unchecked\")\r\n    <%de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement%><<%org.eclipse.uml2.uml.Element%>> umlReferencingElement = (<%de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement%><<%org.eclipse.uml2.uml.Element%>>) container;\r\n    org.eclipse.uml2.uml.Element referencedElement = umlReferencingElement.getReferencedElement();\r\n    if (referencedElement instanceof MultiplicityElement) {\r\n        return (MultiplicityElement) referencedElement;\r\n    }\r\n}\r\nreturn null;'"
-     * @generated
-     */
-    MultiplicityElement getReferencedElement();
 
 } // Cardinality

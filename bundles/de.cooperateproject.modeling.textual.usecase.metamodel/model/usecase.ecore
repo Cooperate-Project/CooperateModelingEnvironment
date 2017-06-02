@@ -80,8 +80,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Relationship" abstract="true" interface="true"
       eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Element"/>
   <eClassifiers xsi:type="ecore:EClass" name="Association">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usecase" eType="#//UseCase"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usecase" eType="#//UseCase"
+        transient="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actorCardinality" eType="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Cardinality"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="useCaseCardinality" eType="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Cardinality"

@@ -37,10 +37,13 @@ public class UMLReferencingElementFinder {
      * 
      * @param umlElement
      *            The element referenced by the wanted {@link UMLReferencingElement}.
+     * @param wantedType
+     *            The type of the element that shall be found.
      * @return The found element or {@link Optional#empty()} if no such element could be found.
      */
     @SuppressWarnings("unchecked")
-    public <T extends Element> Optional<UMLReferencingElement<? extends T>> findElement(T umlElement) {
+    public <T extends Element, U extends UMLReferencingElement<? extends T>> Optional<U> findElement(T umlElement,
+            Class<U> wantedType) {
         for (TreeIterator<EObject> contentIter = rootElement.eAllContents(); contentIter.hasNext();) {
             EObject contentElement = contentIter.next();
             if (!TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT.isInstance(contentElement)) {
@@ -49,8 +52,8 @@ public class UMLReferencingElementFinder {
 
             Object referencedUMlElement = contentElement
                     .eGet(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
-            if (referencedUMlElement == umlElement) {
-                return Optional.of((UMLReferencingElement<? extends T>) contentElement);
+            if (referencedUMlElement == umlElement && wantedType.isInstance(referencedUMlElement)) {
+                return Optional.of((U) contentElement);
             }
         }
 

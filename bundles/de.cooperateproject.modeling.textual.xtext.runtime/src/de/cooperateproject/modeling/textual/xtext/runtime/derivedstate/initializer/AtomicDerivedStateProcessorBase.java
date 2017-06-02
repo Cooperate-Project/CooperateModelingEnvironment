@@ -6,11 +6,27 @@ import java.util.Collections;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Base class for {@link IAtomicDerivedStateProcessor} implementations.
+ * 
+ * This class allows client implementations to handle calculation requests for elements in a type-safe way. The default
+ * implementations of {@link IAtomicDerivedStateProcessor#getReplacements()} and
+ * {@link IAtomicDerivedStateProcessor#getRequirements()} return empty collections.
+ * 
+ * @param <T>
+ *            The type of the supported element.
+ */
 public abstract class AtomicDerivedStateProcessorBase<T extends EObject> implements IAtomicDerivedStateProcessor<T> {
 
     private static final Logger LOGGER = Logger.getLogger(AtomicDerivedStateProcessorBase.class);
     private final Class<T> clazz;
 
+    /**
+     * Instantiates the processor.
+     * 
+     * @param clazz
+     *            The type that can be handled by the processor.
+     */
     public AtomicDerivedStateProcessorBase(Class<T> clazz) {
         this.clazz = clazz;
     }

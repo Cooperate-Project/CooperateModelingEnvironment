@@ -12,7 +12,6 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 import com.google.common.base.Strings;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -52,25 +51,25 @@ public class ExtendInitializer extends AtomicDerivedStateProcessorBase<Extend> {
 
     private static void initExtensionLocation(Extend object, org.eclipse.uml2.uml.Extend umlExtend) {
         UMLReferencingElementFinder finder = UMLReferencingElementFinder.create(EcoreUtil.getRootContainer(object));
-        Optional<Optional<UMLReferencingElement<? extends ExtensionPoint>>> foundElement = umlExtend
-                .getExtensionLocations().stream().findFirst().map(finder::<ExtensionPoint> findElement);
-        foundElement.map(de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint.class::cast)
-                .ifPresent(object::setExtensionLocation);
+        Optional<ExtensionPoint> umlExtensionPoint = umlExtend.getExtensionLocations().stream().findFirst();
+        if (umlExtensionPoint.isPresent()) {
+            finder.findElement(umlExtensionPoint.get(),
+                    de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint.class)
+                    .ifPresent(object::setExtensionLocation);
+        }
     }
 
     private static void initExtension(Extend object, org.eclipse.uml2.uml.Extend umlExtend) {
         UseCase umlExtension = umlExtend.getExtension();
         UMLReferencingElementFinder finder = UMLReferencingElementFinder.create(EcoreUtil.getRootContainer(object));
-        Optional<UMLReferencingElement<? extends UseCase>> foundElement = finder.findElement(umlExtension);
-        foundElement.map(de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class::cast)
+        finder.findElement(umlExtension, de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class)
                 .ifPresent(object::setExtension);
     }
 
     private static void initExtendedCase(Extend object, org.eclipse.uml2.uml.Extend umlExtend) {
         UseCase umlExtendedCase = umlExtend.getExtendedCase();
         UMLReferencingElementFinder finder = UMLReferencingElementFinder.create(EcoreUtil.getRootContainer(object));
-        Optional<UMLReferencingElement<? extends UseCase>> foundElement = finder.findElement(umlExtendedCase);
-        foundElement.map(de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class::cast)
+        finder.findElement(umlExtendedCase, de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class)
                 .ifPresent(object::setExtendedCase);
     }
 

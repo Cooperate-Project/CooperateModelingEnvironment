@@ -2,12 +2,8 @@ package de.cooperateproject.modeling.textual.usecase.derivedstate.initializers;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.INITIALIZATION;
 
-import java.util.Optional;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.uml.UseCase;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -31,15 +27,13 @@ public class IncludeInitialization extends AtomicDerivedStateProcessorBase<Inclu
         if (object.getReferencedElement() != null) {
             UMLReferencingElementFinder finder = UMLReferencingElementFinder.create(EcoreUtil.getRootContainer(object));
             if (object.getIncludingCase() == null) {
-                Optional<UMLReferencingElement<? extends UseCase>> foundElement = finder
-                        .findElement(object.getReferencedElement().getIncludingCase());
-                foundElement.map(de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class::cast)
+                finder.findElement(object.getReferencedElement().getIncludingCase(),
+                        de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class)
                         .ifPresent(object::setIncludingCase);
             }
             if (object.getAddition() == null) {
-                Optional<UMLReferencingElement<? extends UseCase>> foundElement = finder
-                        .findElement(object.getReferencedElement().getAddition());
-                foundElement.map(de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class::cast)
+                finder.findElement(object.getReferencedElement().getAddition(),
+                        de.cooperateproject.modeling.textual.usecase.usecase.UseCase.class)
                         .ifPresent(object::setAddition);
             }
         }

@@ -5,6 +5,11 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter;
 
+/**
+ * Element sorter for the class diagram language to be used in conjunction with derived state calculation.
+ * 
+ * The implementation prioritizes classifiers.
+ */
 public class ClsDerivedStateElementComparator implements IDerivedStateComputerSorter {
 
     @Override

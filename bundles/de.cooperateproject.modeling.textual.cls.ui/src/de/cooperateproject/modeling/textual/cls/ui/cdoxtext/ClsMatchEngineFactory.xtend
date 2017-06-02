@@ -47,9 +47,8 @@ class ClsMatchEngineFactory extends MatchEngineFactoryImpl {
 		val idFunction = new Function<EObject, String>() {
 			override apply(EObject input) {				
 				switch input {
-					UMLReferencingElement: "UMLReferencingElement" + idComputation.apply(input.referencedElement)
+					UMLReferencingElement: input.class.simpleName + "_UMLReferencingElement" + idComputation.apply(input.referencedElement)
 					StringExpression: "StringExp" + input.name
-					Cardinality: Cardinality.simpleName + input.calculateContainmentIdPart([apply])
 					XtextAssociationMemberEndReferencedType: XtextAssociationMemberEndReferencedType.simpleName + input.calculateContainmentIdPart([apply])
 					default: null
 				}

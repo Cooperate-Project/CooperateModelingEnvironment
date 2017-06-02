@@ -358,15 +358,6 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
 	/**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EOperation getCardinality__GetReferencedElement() {
-        return cardinalityEClass.getEOperations().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -474,7 +465,6 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         cardinalityEClass = createEClass(CARDINALITY);
         createEAttribute(cardinalityEClass, CARDINALITY__LOWER_BOUND);
         createEAttribute(cardinalityEClass, CARDINALITY__UPPER_BOUND);
-        createEOperation(cardinalityEClass, CARDINALITY___GET_REFERENCED_ELEMENT);
 
         packageableElementEClass = createEClass(PACKAGEABLE_ELEMENT);
 
@@ -548,6 +538,10 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         g2 = createEGenericType(theUMLPackage.getComment());
         g1.getETypeArguments().add(g2);
         commentEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getMultiplicityElement());
+        g1.getETypeArguments().add(g2);
+        cardinalityEClass.getEGenericSuperTypes().add(g1);
         packageableElementEClass.getESuperTypes().add(this.getElement());
         g1 = createEGenericType(this.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getPackageImport());
@@ -593,8 +587,6 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEClass(cardinalityEClass, Cardinality.class, "Cardinality", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCardinality_LowerBound(), theEcorePackage.getEInt(), "lowerBound", null, 0, 1, Cardinality.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCardinality_UpperBound(), ecorePackage.getEInt(), "upperBound", null, 0, 1, Cardinality.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEOperation(getCardinality__GetReferencedElement(), theUMLPackage.getMultiplicityElement(), "getReferencedElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(packageableElementEClass, PackageableElement.class, "PackageableElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
