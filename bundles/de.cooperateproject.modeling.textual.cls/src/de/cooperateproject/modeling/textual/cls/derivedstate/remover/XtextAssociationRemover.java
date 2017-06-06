@@ -39,11 +39,13 @@ public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<Xte
     }
 
     private static void process(AssociationMemberEnd memberEnd) {
-        memberEnd.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-        memberEnd.eUnset(ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE);
-        memberEnd.unsetAggregationKind();
-        memberEnd.unsetNavigable();
-        Optional.ofNullable(memberEnd.getCardinality()).ifPresent(XtextAssociationRemover::process);
+        if (memberEnd.getReferencedElement() != null) {
+            memberEnd.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+            memberEnd.eUnset(ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE);
+            memberEnd.unsetAggregationKind();
+            memberEnd.unsetNavigable();
+            Optional.ofNullable(memberEnd.getCardinality()).ifPresent(XtextAssociationRemover::process);
+        }
     }
 
     private static void process(Cardinality cardinality) {

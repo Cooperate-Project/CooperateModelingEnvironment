@@ -52,7 +52,7 @@ public class UMLReferencingElementFinder {
 
             Object referencedUMlElement = contentElement
                     .eGet(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
-            if (referencedUMlElement == umlElement && wantedType.isInstance(referencedUMlElement)) {
+            if (referencedUMlElement == umlElement && wantedType.isInstance(contentElement)) {
                 return Optional.of((U) contentElement);
             }
         }
