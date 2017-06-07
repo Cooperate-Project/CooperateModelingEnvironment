@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.StringExpression;
 import org.eclipse.xtext.validation.Check;
 
 import com.google.inject.Inject;
@@ -19,7 +18,9 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
+import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
@@ -51,36 +52,28 @@ public class ClsValidator extends AbstractClsValidator {
     }
 
     @Check
-    private void checkUniqueAlias(Classifier<? extends Classifier> classifier) {
-        Element classifierPackageRef = classifier.getNearestPackage().getReferencedElement();
-        for (Element element : classifierPackageRef.getOwnedElements()) {
-            if (hasSameAlias(classifier.getReferencedElement(), element)) {
+    private void checkUniqueAliasInItsPackage(Classifier<? extends org.eclipse.uml2.uml.Classifier> classifier) {
+        PackageBase<?> nearestPackage = classifier.getNearestPackage();
+        if (!(nearestPackage instanceof Package)) {
+            return;
+        }
+        List<Classifier<? extends org.eclipse.uml2.uml.Classifier>> classifiers = ((Package) nearestPackage)
+                .getClassifiers();
+
+        checkUniqueAlias(classifier, classifiers);
+    }
+
+    private void checkUniqueAlias(Classifier<? extends org.eclipse.uml2.uml.Classifier> classifier,
+            List<Classifier<? extends org.eclipse.uml2.uml.Classifier>> classifiers) {
+        for (Classifier<? extends org.eclipse.uml2.uml.Classifier> cls : classifiers) {
+            if (cls.equals(classifier)) {
+                continue;
+            }
+            if (cls.getAlias().equals(classifier.getAlias())) {
                 error("\"" + classifier.getAlias() + "\"" + " Alias is taken!",
                         TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, ALIAS_TAKEN);
             }
         }
-    }
-
-    private static boolean hasSameAlias(Element firstElement, Element secondElement) {
-        if (!(firstElement instanceof org.eclipse.uml2.uml.Classifier)
-                || !(secondElement instanceof org.eclipse.uml2.uml.Classifier)) {
-            return false;
-        }
-        return hasSameAlias((org.eclipse.uml2.uml.Classifier) firstElement,
-                (org.eclipse.uml2.uml.Classifier) secondElement);
-    }
-
-    private static boolean hasSameAlias(org.eclipse.uml2.uml.Classifier firstClassifier,
-            org.eclipse.uml2.uml.Classifier secondClassifier) {
-        boolean isNotSameElement = secondClassifier != firstClassifier;
-        if (isNotSameElement) {
-            StringExpression firstAlias = firstClassifier.getNameExpression();
-            StringExpression secondAlias = secondClassifier.getNameExpression();
-            boolean firstAliasIsNull = firstAlias == null;
-            boolean secondAliasIsNull = secondAlias == null;
-            return !firstAliasIsNull && !secondAliasIsNull && firstAlias.getName().equals(secondAlias.getName());
-        }
-        return false;
     }
 
     @Check
