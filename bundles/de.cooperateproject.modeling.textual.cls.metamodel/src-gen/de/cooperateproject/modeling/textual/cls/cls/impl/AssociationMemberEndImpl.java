@@ -123,6 +123,24 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ClsPackage.ASSOCIATION_MEMBER_END__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ClsPackage.ASSOCIATION_MEMBER_END__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public Cardinality getCardinality() {
         return (Cardinality)eDynamicGet(ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY, ClsPackage.Literals.ASSOCIATION_MEMBER_END__CARDINALITY, true, true);
     }
@@ -385,7 +403,7 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.ASSOCIATION_MEMBER_END__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY:
                 setCardinality((Cardinality)null);
@@ -415,7 +433,7 @@ public class AssociationMemberEndImpl extends UMLReferencingElementImpl<Property
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ClsPackage.ASSOCIATION_MEMBER_END__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ClsPackage.ASSOCIATION_MEMBER_END__CARDINALITY:
                 return getCardinality() != null;
             case ClsPackage.ASSOCIATION_MEMBER_END__TYPE:

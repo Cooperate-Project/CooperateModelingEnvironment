@@ -70,6 +70,24 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetName() {
+        eDynamicUnset(TextualCommonsPackage.NAMED_ELEMENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(TextualCommonsPackage.NAMED_ELEMENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -106,7 +124,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	public void eUnset(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.NAMED_ELEMENT__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
         }
         super.eUnset(featureID);
@@ -121,7 +139,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.NAMED_ELEMENT__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
         }
         return super.eIsSet(featureID);
     }

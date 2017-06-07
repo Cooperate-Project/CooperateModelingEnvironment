@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering'"
  * @generated
  */
 public interface TextualCommonsPackage extends EPackage {

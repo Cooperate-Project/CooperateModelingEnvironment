@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.uml.DirectedRelationship;
 
@@ -32,6 +33,16 @@ import org.eclipse.uml2.uml.DirectedRelationship;
  * @generated
  */
 public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends ElementImpl implements TypedConnector<T> {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -290,7 +301,7 @@ public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends
             case ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE:
                 return getOwningPackage() != null;
             case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 return basicGetLeft() != null;
             case ClsPackage.TYPED_CONNECTOR__RIGHT:

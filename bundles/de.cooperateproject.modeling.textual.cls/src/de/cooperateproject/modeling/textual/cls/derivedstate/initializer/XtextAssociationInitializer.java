@@ -89,7 +89,7 @@ public class XtextAssociationInitializer extends AtomicDerivedStateProcessorBase
     }
 
     private static void initName(AssociationMemberEnd memberEnd, Optional<Property> referencedElement) {
-        if (StringUtils.isEmpty(memberEnd.getName())) {
+        if (!memberEnd.isSetName() && StringUtils.isEmpty(memberEnd.getName())) {
             referencedElement.map(NamedElement::getName).ifPresent(memberEnd::setName);
         }
     }

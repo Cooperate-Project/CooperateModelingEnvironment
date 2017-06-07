@@ -558,7 +558,7 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         initEOperation(op, g1);
 
         initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(aliasedElementEClass, AliasedElement.class, "AliasedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAliasedElement_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, AliasedElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -602,6 +602,43 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
 
         // Create resource
         createResource(eNS_URI);
+
+        // Create annotations
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
+        // http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering
+        createDuplicatefilteringAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEcoreAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore";	
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "settingDelegates", "http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"
+           });
+    }
+
+    /**
+     * Initializes the annotations for <b>http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createDuplicatefilteringAnnotations() {
+        String source = "http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering";	
+        addAnnotation
+          (getUMLReferencingElement_ReferencedElement(), 
+           source, 
+           new String[] {
+           });
     }
 
 } //TextualCommonsPackageImpl

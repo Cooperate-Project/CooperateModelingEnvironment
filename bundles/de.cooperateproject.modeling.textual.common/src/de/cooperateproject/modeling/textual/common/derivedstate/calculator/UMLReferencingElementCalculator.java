@@ -59,7 +59,9 @@ public class UMLReferencingElementCalculator extends AtomicDerivedStateProcessor
         List<EObject> matchingElements = foundElements.stream().filter(d -> qn.equals(d.getQualifiedName()))
                 .map(IEObjectDescription::getEObjectOrProxy).distinct().collect(Collectors.toList());
         if (matchingElements.size() == 1) {
-            object.setReferencedElement((Element) matchingElements.get(0));
+            if (matchingElements.get(0) != object.getReferencedElement()) {
+                object.setReferencedElement((Element) matchingElements.get(0));
+            }
         } else {
             object.setReferencedElement(null);
         }

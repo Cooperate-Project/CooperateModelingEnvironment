@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering'"
  * @generated
  */
 public interface ClsPackage extends EPackage {

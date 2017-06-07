@@ -150,6 +150,24 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(UsecasePackage.USE_CASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -400,7 +418,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
                 getComments().clear();
                 return;
             case UsecasePackage.USE_CASE__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case UsecasePackage.USE_CASE__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
@@ -432,7 +450,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
             case UsecasePackage.USE_CASE__COMMENTS:
                 return !getComments().isEmpty();
             case UsecasePackage.USE_CASE__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case UsecasePackage.USE_CASE__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case UsecasePackage.USE_CASE__VISIBILITY:

@@ -2,15 +2,15 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.remover;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.TypedElement;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
-import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -40,18 +40,28 @@ public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<Xte
 
     private static void process(AssociationMemberEnd memberEnd) {
         if (memberEnd.getReferencedElement() != null) {
-            memberEnd.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-            memberEnd.eUnset(ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE);
-            memberEnd.unsetAggregationKind();
-            memberEnd.unsetNavigable();
+            if (Objects.equals(memberEnd.getName(), memberEnd.getReferencedElement().getName())) {
+                memberEnd.unsetName();
+            }
+            if (Optional.ofNullable(memberEnd.getType()).map(UMLReferencingElement::getReferencedElement)
+                    .equals(Optional.ofNullable(memberEnd.getReferencedElement()).map(TypedElement::getType))) {
+                memberEnd.unsetAggregationKind();
+            }
+            if (memberEnd.isNavigable() == memberEnd.getReferencedElement().isNavigable()) {
+                memberEnd.unsetNavigable();
+            }
             Optional.ofNullable(memberEnd.getCardinality()).ifPresent(XtextAssociationRemover::process);
         }
     }
 
     private static void process(Cardinality cardinality) {
         if (cardinality.getReferencedElement() != null) {
-            cardinality.unsetLowerBound();
-            cardinality.unsetUpperBound();
+            if (cardinality.getLowerBound() == cardinality.getReferencedElement().getLower()) {
+                cardinality.unsetLowerBound();
+            }
+            if (cardinality.getUpperBound() == cardinality.getReferencedElement().getUpper()) {
+                cardinality.unsetUpperBound();
+            }
         }
     }
 

@@ -104,6 +104,24 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ClsPackage.PROPERTY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ClsPackage.PROPERTY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public VisibilityKind getVisibility() {
         return (VisibilityKind)eDynamicGet(ClsPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
@@ -211,7 +229,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.PROPERTY__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ClsPackage.PROPERTY__VISIBILITY:
                 unsetVisibility();
@@ -232,7 +250,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ClsPackage.PROPERTY__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ClsPackage.PROPERTY__VISIBILITY:
                 return isSetVisibility();
             case ClsPackage.PROPERTY__TYPE:
