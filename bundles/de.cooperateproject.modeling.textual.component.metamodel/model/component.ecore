@@ -7,11 +7,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootpackage" lowerBound="1"
         eType="#//RootPackage" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RootPackage" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//PackageableElement ../../org.eclipse.uml2.uml/model/UML.ecore#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="RootPackage">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relation" upperBound="-1"
         eType="#//ElementRelation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementcontent" upperBound="-1"
         eType="#//ElementContent" containment="true"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//PackageBase">
+      <eTypeArguments eClassifier="#//RootPackage"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementRelation" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="2"
@@ -59,9 +62,7 @@
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="#//ElementRelation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementContent" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementContent" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Property" abstract="true">
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
@@ -89,7 +90,6 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
       <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//ElementContent"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interface">
@@ -121,7 +121,8 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceRelation" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" eType="#//Interface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
+        eType="#//Interface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Provide">
     <eGenericSuperTypes eClassifier="#//InterfaceRelation"/>

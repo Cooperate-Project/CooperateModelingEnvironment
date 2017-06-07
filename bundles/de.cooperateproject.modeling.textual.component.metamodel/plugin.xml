@@ -14,7 +14,12 @@
    </extension>
 
 
-<extension  point="org.eclipse.emf.ecp.view.model.provider.xmi.file">
-<file filePath="model/ComponentDiagram.view"/>
-</extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated component -->
+      <package
+            uri="http://www.cooperateproject.de/modeling/textual/component/Component"
+            class="de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage"
+            genModel="model/component.genmodel"/>
+   </extension>
+
 </plugin>
