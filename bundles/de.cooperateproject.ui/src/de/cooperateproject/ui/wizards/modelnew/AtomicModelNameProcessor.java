@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.log4j.Logger;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.resources.IProject;
@@ -16,6 +15,8 @@ import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Strings;
 
@@ -24,7 +25,7 @@ import de.cooperateproject.ui.Activator;
 
 public class AtomicModelNameProcessor implements IValidator, IConverter {
 
-    private static final Logger LOGGER = Logger.getLogger(AtomicModelNameProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AtomicModelNameProcessor.class);
 
     public static class ModelName {
         private final IProject project;

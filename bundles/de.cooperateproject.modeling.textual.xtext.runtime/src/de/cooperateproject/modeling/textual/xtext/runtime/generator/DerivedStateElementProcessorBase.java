@@ -7,10 +7,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorRegistry;
@@ -46,7 +47,7 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
         boolean supports(EPackage pkg);
     }
 
-    private static final Logger LOGGER = Logger.getLogger(DerivedStateElementProcessorBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DerivedStateElementProcessorBase.class);
     private final IInternalDerivedStateElementProcessor calculator;
     private final IInternalDerivedStateElementProcessor remover;
 
@@ -110,7 +111,7 @@ public abstract class DerivedStateElementProcessorBase implements IDerivedStateE
             IllegalStateException e = new IllegalStateException(
                     String.format("The requested classes %s where not completely available in the registry.",
                             Arrays.stream(classes).map(Class::getSimpleName).collect(Collectors.joining(", "))));
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage(), e);
             throw e;
         }
         return foundProcessors;

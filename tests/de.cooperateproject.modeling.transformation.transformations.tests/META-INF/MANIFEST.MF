@@ -7,7 +7,7 @@ Fragment-Host: de.cooperateproject.modeling.transformation.transformations;bundl
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.4",
- org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.emf.compare;bundle-version="3.2.0",
  org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.emf.compare.rcp;bundle-version="2.3.1"
+Import-Package: org.slf4j

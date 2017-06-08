@@ -1,7 +1,8 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.derivedstate;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class for atomic state processor extensions.
@@ -15,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 public abstract class AtomicStateProcessorExtensionBase<T extends EObject>
         implements IAtomicStateProcessorExtension<T> {
 
-    private static final Logger LOGGER = Logger.getLogger(AtomicStateProcessorExtensionBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AtomicStateProcessorExtensionBase.class);
     private final Class<T> clazz;
 
     /**
@@ -35,8 +36,8 @@ public abstract class AtomicStateProcessorExtensionBase<T extends EObject>
             return applyTyped((T) object);
         }
         if (object != null) {
-            LOGGER.error(String.format("An element compatible to %s was expected but got %s", clazz.getSimpleName(),
-                    object.getClass().getSimpleName()));
+            LOGGER.error("An element compatible to {} was expected but got {}", clazz.getSimpleName(),
+                    object.getClass().getSimpleName());
         }
         return false;
     }
