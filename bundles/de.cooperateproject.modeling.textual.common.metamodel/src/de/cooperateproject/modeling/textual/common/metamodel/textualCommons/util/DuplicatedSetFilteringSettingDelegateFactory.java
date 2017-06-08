@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.common.derivedstate.util;
+package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;

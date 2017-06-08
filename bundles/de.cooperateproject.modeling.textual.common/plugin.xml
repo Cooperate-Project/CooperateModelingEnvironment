@@ -61,11 +61,4 @@
             class="de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider">
       </class>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.setting_delegate">
-      <factory
-            class="de.cooperateproject.modeling.textual.common.derivedstate.util.DuplicatedSetFilteringSettingDelegateFactory"
-            uri="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering">
-      </factory>
-   </extension>
 </plugin>

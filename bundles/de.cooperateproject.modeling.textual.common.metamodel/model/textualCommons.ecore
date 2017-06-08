@@ -5,6 +5,10 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="settingDelegates" value="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"/>
   </eAnnotations>
+  <eAnnotations source="http://cooperate-project.de/ecore/settingdelegate/implementations">
+    <details key="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"
+        value="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.DuplicatedSetFilteringSettingDelegateFactory"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eOperations name="getNearestPackage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
