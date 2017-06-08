@@ -94,6 +94,7 @@ public interface XtextAssociation extends Association {
 
     /**
      * Returns the value of the '<em><b>Two Side Bidirectionality</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Two Side Bidirectionality</em>' attribute isn't clear,
@@ -103,7 +104,7 @@ public interface XtextAssociation extends Association {
      * @return the value of the '<em>Two Side Bidirectionality</em>' attribute.
      * @see #setTwoSideBidirectionality(boolean)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getXtextAssociation_TwoSideBidirectionality()
-     * @model required="true" transient="true"
+     * @model default="false" required="true" transient="true"
      * @generated
      */
     boolean isTwoSideBidirectionality();

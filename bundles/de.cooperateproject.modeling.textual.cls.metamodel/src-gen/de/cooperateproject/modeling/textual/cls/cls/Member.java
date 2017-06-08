@@ -41,6 +41,7 @@ public interface Member<T extends Feature> extends Property<T> {
 
     /**
      * Returns the value of the '<em><b>Static</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Static</em>' attribute isn't clear,
@@ -52,7 +53,7 @@ public interface Member<T extends Feature> extends Property<T> {
      * @see #unsetStatic()
      * @see #setStatic(boolean)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMember_Static()
-     * @model unique="false" unsettable="true" transient="true"
+     * @model default="false" unique="false" unsettable="true" transient="true"
      * @generated
      */
     boolean isStatic();

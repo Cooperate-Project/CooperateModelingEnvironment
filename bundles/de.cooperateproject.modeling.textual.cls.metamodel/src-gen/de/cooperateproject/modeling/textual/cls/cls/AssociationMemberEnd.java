@@ -83,6 +83,7 @@ public interface AssociationMemberEnd extends UMLReferencingElement<Property>, N
 
     /**
      * Returns the value of the '<em><b>Navigable</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Navigable</em>' attribute isn't clear,
@@ -94,7 +95,7 @@ public interface AssociationMemberEnd extends UMLReferencingElement<Property>, N
      * @see #unsetNavigable()
      * @see #setNavigable(boolean)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getAssociationMemberEnd_Navigable()
-     * @model unsettable="true" dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true"
+     * @model default="false" unsettable="true" required="true" transient="true"
      * @generated
      */
     boolean isNavigable();

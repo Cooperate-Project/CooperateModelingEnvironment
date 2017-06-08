@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.Operation;
 public interface Method extends Member<Operation> {
     /**
      * Returns the value of the '<em><b>Abstract</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
@@ -37,7 +38,7 @@ public interface Method extends Member<Operation> {
      * @see #unsetAbstract()
      * @see #setAbstract(boolean)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getMethod_Abstract()
-     * @model unique="false" unsettable="true" transient="true"
+     * @model default="false" unique="false" unsettable="true" transient="true"
      * @generated
      */
     boolean isAbstract();
