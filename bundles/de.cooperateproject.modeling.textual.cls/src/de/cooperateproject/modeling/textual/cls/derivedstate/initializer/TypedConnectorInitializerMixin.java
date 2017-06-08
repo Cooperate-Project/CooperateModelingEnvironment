@@ -2,7 +2,6 @@ package de.cooperateproject.modeling.textual.cls.derivedstate.initializer;
 
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.DirectedRelationship;
 
@@ -26,22 +25,21 @@ public interface TypedConnectorInitializerMixin {
      *            The UML element on the left side.
      * @param right
      *            The UML element on the right side.
-     * @param logger
-     *            A logger to log errors during initialization.
      */
     default void initTypedConnector(TypedConnector<? extends DirectedRelationship> object,
-            org.eclipse.uml2.uml.Classifier left, org.eclipse.uml2.uml.Classifier right, Logger logger) {
+            org.eclipse.uml2.uml.Classifier left, org.eclipse.uml2.uml.Classifier right) {
         UMLReferencingElementFinder finder = UMLReferencingElementFinder.create(EcoreUtil.getRootContainer(object));
-        Optional<Classifier<? extends org.eclipse.uml2.uml.Classifier>> leftElement = finder.findElement(left,
-                getQueryClass());
-        Optional<Classifier<? extends org.eclipse.uml2.uml.Classifier>> rightElement = finder.findElement(right,
-                getQueryClass());
-        if (leftElement.isPresent() && rightElement.isPresent()) {
+
+        if (object.getLeft() == null) {
+            Optional<Classifier<? extends org.eclipse.uml2.uml.Classifier>> leftElement = finder.findElement(left,
+                    getQueryClass());
             leftElement.ifPresent(object::setLeft);
+        }
+
+        if (object.getRight() == null) {
+            Optional<Classifier<? extends org.eclipse.uml2.uml.Classifier>> rightElement = finder.findElement(right,
+                    getQueryClass());
             rightElement.ifPresent(object::setRight);
-        } else {
-            logger.error(String.format("The element %s refers to classifiers %s and %s which are not both available.",
-                    object, right, left));
         }
     }
 
