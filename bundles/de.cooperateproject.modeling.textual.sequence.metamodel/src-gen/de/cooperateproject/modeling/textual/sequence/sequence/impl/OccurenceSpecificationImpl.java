@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -50,6 +51,16 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * @generated
  */
 public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpecification> extends FragmentImpl implements OccurenceSpecification<UMLOccurenceType> {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -133,6 +144,24 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
      */
     public void setName(String newName) {
         eDynamicSet(SequencePackage.OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetName() {
+        eDynamicUnset(SequencePackage.OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(SequencePackage.OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
     }
 
     /**
@@ -273,7 +302,7 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
                 setReferencedElement((UMLOccurenceType)null);
                 return;
             case SequencePackage.OCCURENCE_SPECIFICATION__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
@@ -294,9 +323,9 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case SequencePackage.OCCURENCE_SPECIFICATION__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case SequencePackage.OCCURENCE_SPECIFICATION__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS:

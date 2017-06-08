@@ -4,15 +4,7 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.MultiplicityElement;
 
 /**
@@ -29,7 +21,7 @@ import org.eclipse.uml2.uml.MultiplicityElement;
  *
  * @generated
  */
-public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
+public class CardinalityImpl extends UMLReferencingElementImpl<MultiplicityElement> implements Cardinality {
 	/**
      * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -71,15 +63,16 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-	@Override
-	protected int eStaticFeatureCount() {
-        return 0;
+    @Override
+    public void setReferencedElement(MultiplicityElement newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -153,24 +146,6 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 
     /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public MultiplicityElement getReferencedElement() {
-        EObject container = eContainer();
-        if (container instanceof UMLReferencingElement) {
-            @SuppressWarnings("unchecked")
-            UMLReferencingElement<Element> umlReferencingElement = (UMLReferencingElement<Element>) container;
-            org.eclipse.uml2.uml.Element referencedElement = umlReferencingElement.getReferencedElement();
-            if (referencedElement instanceof MultiplicityElement) {
-                return (MultiplicityElement) referencedElement;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -235,20 +210,6 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
                 return isSetUpperBound();
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case TextualCommonsPackage.CARDINALITY___GET_REFERENCED_ELEMENT:
-                return getReferencedElement();
-        }
-        return super.eInvoke(operationID, arguments);
     }
 
 } //CardinalityImpl

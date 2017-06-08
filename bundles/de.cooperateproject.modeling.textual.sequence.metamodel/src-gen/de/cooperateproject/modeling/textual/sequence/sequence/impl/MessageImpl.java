@@ -137,6 +137,24 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(SequencePackage.MESSAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(SequencePackage.MESSAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(SequencePackage.MESSAGE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -377,7 +395,7 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
                 getComments().clear();
                 return;
             case SequencePackage.MESSAGE__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case SequencePackage.MESSAGE__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
@@ -409,7 +427,7 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
             case SequencePackage.MESSAGE__COMMENTS:
                 return !getComments().isEmpty();
             case SequencePackage.MESSAGE__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case SequencePackage.MESSAGE__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case SequencePackage.MESSAGE__ARRIVAL_EVENT:

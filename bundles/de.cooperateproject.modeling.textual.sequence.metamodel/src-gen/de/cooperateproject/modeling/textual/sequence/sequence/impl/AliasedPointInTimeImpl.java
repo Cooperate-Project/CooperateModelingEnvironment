@@ -13,6 +13,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -29,6 +30,16 @@ import org.eclipse.uml2.uml.NamedElement;
  * @generated
  */
 public class AliasedPointInTimeImpl<UMLPointInTimeType extends NamedElement> extends AliasedElementImpl implements AliasedPointInTime<UMLPointInTimeType> {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -131,7 +142,7 @@ public class AliasedPointInTimeImpl<UMLPointInTimeType extends NamedElement> ext
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.ALIASED_POINT_IN_TIME__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
         }
         return super.eIsSet(featureID);
     }

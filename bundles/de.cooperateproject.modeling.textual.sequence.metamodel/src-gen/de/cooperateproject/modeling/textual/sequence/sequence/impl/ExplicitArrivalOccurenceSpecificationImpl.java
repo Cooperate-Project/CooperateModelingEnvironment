@@ -29,6 +29,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -52,6 +53,15 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * @generated
  */
 public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl implements ExplicitArrivalOccurenceSpecification {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
     /**
      * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -308,7 +318,7 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:

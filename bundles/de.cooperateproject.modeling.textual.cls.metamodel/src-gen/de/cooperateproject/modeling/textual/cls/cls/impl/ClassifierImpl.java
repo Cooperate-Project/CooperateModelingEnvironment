@@ -131,6 +131,24 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ClsPackage.CLASSIFIER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ClsPackage.CLASSIFIER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -347,7 +365,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.CLASSIFIER__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ClsPackage.CLASSIFIER__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
@@ -377,7 +395,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ClsPackage.CLASSIFIER__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ClsPackage.CLASSIFIER__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case ClsPackage.CLASSIFIER__COMMENTS:

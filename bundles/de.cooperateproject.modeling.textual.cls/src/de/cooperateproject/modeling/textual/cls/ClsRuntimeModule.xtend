@@ -20,11 +20,12 @@ import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
 import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.TransientStatusProviderModuleMixin
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.FeatureFilterMixin
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-class ClsRuntimeModule extends AbstractClsRuntimeModule implements DerivedStateModuleMixin, TransientStatusProviderModuleMixin {
+class ClsRuntimeModule extends AbstractClsRuntimeModule implements DerivedStateModuleMixin, TransientStatusProviderModuleMixin, FeatureFilterMixin {
 		
 	override bindILinker() {
 		return ClsLazyLinker

@@ -123,6 +123,8 @@ public class TextualCommonsSwitch<T> extends Switch<T> {
             case TextualCommonsPackage.CARDINALITY: {
                 Cardinality cardinality = (Cardinality)theEObject;
                 T result = caseCardinality(cardinality);
+                if (result == null) result = caseUMLReferencingElement(cardinality);
+                if (result == null) result = caseElement(cardinality);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

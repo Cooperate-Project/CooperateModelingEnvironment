@@ -1,7 +1,9 @@
 package de.cooperateproject.modeling.textual.common.services;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultTransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.LegacyTransientValueService;
@@ -48,19 +50,34 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
 
     @Override
     public ValueTransient isValueTransient(EObject semanticObject, EStructuralFeature feature) {
-        ValueTransient result = legacyService.isValueTransient(semanticObject, feature);
-        if (result == ValueTransient.YES && transientStatusProvider.isFeatureConsideredNonTransient(feature)) {
-            if (semanticObject.eIsSet(feature)) {
-                return ValueTransient.PREFERABLY;
-            } else {
-                return ValueTransient.YES;
-            }
+        ValueTransient originalResult = legacyService.isValueTransient(semanticObject, feature);
+        if (!transientStatusProvider.isFeatureConsideredNonTransient(feature) && originalResult == ValueTransient.YES) {
+            return originalResult;
         }
-        return result;
+
+        boolean isSet = semanticObject.eIsSet(feature);
+        if ((defaultValueIsSerializeable(feature) && !isSet) || feature.getEType() == EcorePackage.Literals.EBOOLEAN) {
+            return ValueTransient.PREFERABLY;
+        }
+        if (isTransient(semanticObject, feature, 0)) {
+            return ValueTransient.YES;
+        }
+        return isSet ? ValueTransient.NO : ValueTransient.YES;
     }
 
     private boolean isTransient(EStructuralFeature feature) {
-        return transientStatusProvider.isFeatureConsideredTransient(feature);
+        return (feature.isTransient() && !transientStatusProvider.isFeatureConsideredNonTransient(feature))
+                || transientStatusProvider.isFeatureConsideredTransient(feature);
+    }
+
+    private static boolean defaultValueIsSerializeable(EStructuralFeature feature) {
+        if (feature instanceof EAttribute) {
+            if (feature.getEType() == EcorePackage.eINSTANCE.getEString() && feature.getDefaultValue() == null) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
 }

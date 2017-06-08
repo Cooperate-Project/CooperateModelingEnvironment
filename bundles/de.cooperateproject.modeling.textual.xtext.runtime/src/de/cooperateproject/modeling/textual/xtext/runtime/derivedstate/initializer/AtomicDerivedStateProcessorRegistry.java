@@ -12,12 +12,26 @@ import com.google.inject.Injector;
 
 import de.cooperateproject.util.eclipse.ExtensionPointHelper;
 
+/**
+ * Implementation of {@link IAtomicDerivedStateProcessorRegistry} that is based on extension points.
+ * 
+ * The processors register themselves as extension. The registry will inject members and methods annotated with
+ * {@link Inject}. Injecting constructors is not possible because of the usage of the extension point mechanism that
+ * requires default constructors.
+ */
 public class AtomicDerivedStateProcessorRegistry implements IAtomicDerivedStateProcessorRegistry {
 
     private static final String EP_ID = "de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor";
     private static final String EP_ATTR_NAME = "class";
     private final Map<DerivedStateProcessorApplicability, Map<Class<? extends EObject>, IAtomicDerivedStateProcessor<EObject>>> processors;
 
+    /**
+     * Instantiates the registry
+     * 
+     * @param injector
+     *            The injector for the currently processed language. This will be provided by the dependency injection
+     *            framework.
+     */
     @Inject
     public AtomicDerivedStateProcessorRegistry(Injector injector) {
         processors = createProcessors(injector);

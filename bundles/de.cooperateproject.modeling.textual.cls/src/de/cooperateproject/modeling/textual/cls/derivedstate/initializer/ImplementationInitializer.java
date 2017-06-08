@@ -7,7 +7,8 @@ import java.util.Collection;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
@@ -35,8 +36,8 @@ public class ImplementationInitializer extends AtomicDerivedStateProcessorBase<I
     protected void applyTyped(Implementation object) {
         if (object.getLeft() != null && object.getRight() != null && object.getReferencedElement() != null) {
             InterfaceRealization umlGeneralization = object.getReferencedElement();
-            Element specific = umlGeneralization.getImplementingClassifier();
-            Element general = umlGeneralization.getContract();
+            BehavioredClassifier specific = umlGeneralization.getImplementingClassifier();
+            Interface general = umlGeneralization.getContract();
             initTypedConnector(object, specific, general, LOGGER);
         }
     }

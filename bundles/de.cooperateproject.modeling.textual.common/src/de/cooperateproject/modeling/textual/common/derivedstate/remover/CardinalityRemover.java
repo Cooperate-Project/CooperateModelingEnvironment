@@ -27,8 +27,12 @@ public class CardinalityRemover extends AtomicDerivedStateProcessorBase<Cardinal
     protected void applyTyped(Cardinality object) {
         Optional<MultiplicityElement> umlElement = Optional.ofNullable(object.getReferencedElement());
         if (umlElement.isPresent()) {
-            object.unsetLowerBound();
-            object.unsetUpperBound();
+            if (umlElement.map(MultiplicityElement::getLower).equals(Optional.ofNullable(object.getLowerBound()))) {
+                object.unsetLowerBound();
+            }
+            if (umlElement.map(MultiplicityElement::getUpper).equals(Optional.ofNullable(object.getUpperBound()))) {
+                object.unsetUpperBound();
+            }
         }
     }
 

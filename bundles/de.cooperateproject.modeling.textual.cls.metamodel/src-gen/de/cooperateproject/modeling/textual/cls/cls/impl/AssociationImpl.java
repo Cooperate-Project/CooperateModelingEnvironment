@@ -145,6 +145,24 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<Associat
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ClsPackage.ASSOCIATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ClsPackage.ASSOCIATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<AssociationMemberEnd> getMemberEnds() {
         return (EList<AssociationMemberEnd>)eDynamicGet(ClsPackage.ASSOCIATION__MEMBER_ENDS, ClsPackage.Literals.ASSOCIATION__MEMBER_ENDS, true, true);
@@ -265,7 +283,7 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<Associat
                 getComments().clear();
                 return;
             case ClsPackage.ASSOCIATION__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ClsPackage.ASSOCIATION__MEMBER_ENDS:
                 getMemberEnds().clear();
@@ -287,7 +305,7 @@ public abstract class AssociationImpl extends UMLReferencingElementImpl<Associat
             case ClsPackage.ASSOCIATION__COMMENTS:
                 return !getComments().isEmpty();
             case ClsPackage.ASSOCIATION__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ClsPackage.ASSOCIATION__MEMBER_ENDS:
                 return !getMemberEnds().isEmpty();
         }

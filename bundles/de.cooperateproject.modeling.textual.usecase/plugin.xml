@@ -51,6 +51,12 @@
       <class
             class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.ExtendRemover">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.AssociationInitializer">
+      </class>
+      <class
+            class="de.cooperateproject.modeling.textual.usecase.derivedstate.removers.AssociationRemover">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">

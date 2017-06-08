@@ -16,6 +16,7 @@
 	<modules>
 		<module>de.cooperateproject.modeling.textual.cls.tests</module>
 		<module>de.cooperateproject.modeling.textual.cls.ui.tests</module>
+		<module>de.cooperateproject.modeling.textual.common.tests</module>
 		<module>de.cooperateproject.modeling.textual.usecase.tests</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ui.tests</module>
 		<module>de.cooperateproject.modeling.textual.xtext.runtime.tests</module>

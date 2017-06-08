@@ -34,7 +34,7 @@
         <bundles name="org.apache.activemq.all"/>
         <features name="de.cooperateproject.externals.guice.feature.group"/>
       </repositories>
-      <repositories location="https://dl.bintray.com/cooperate-project/Xtext/" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/Xtext-Mirror/updatesite/2.12.0/" mirrorArtifacts="false">
         <features name="org.eclipse.xtext.sdk.feature.group"/>
       </repositories>
     </contributions>

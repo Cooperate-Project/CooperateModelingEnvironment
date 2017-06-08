@@ -30,7 +30,10 @@ public class UMLReferencingElementCalculator
     protected void applyTyped(UMLReferencingElement<Element> object) {
         Collection<Element> matchingElements = getReferenceCandidates(object);
         if (matchingElements.size() == 1) {
-            object.setReferencedElement(matchingElements.iterator().next());
+            Element e = matchingElements.iterator().next();
+            if (e != object.getReferencedElement()) {
+                object.setReferencedElement(e);
+            }
         } else {
             object.setReferencedElement(null);
         }

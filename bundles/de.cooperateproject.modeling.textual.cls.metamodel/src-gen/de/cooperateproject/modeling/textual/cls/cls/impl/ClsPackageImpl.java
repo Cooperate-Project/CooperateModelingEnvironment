@@ -1034,10 +1034,12 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        initEReference(getAssociationMemberEnd_Type(), g1, null, "type", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getAssociationMemberEnd_Navigable(), theTypesPackage.getBoolean(), "navigable", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g3 = createEGenericType(theUMLPackage.getClassifier());
+        g2.setEUpperBound(g3);
+        initEReference(getAssociationMemberEnd_Type(), g1, null, "type", null, 1, 1, AssociationMemberEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAssociationMemberEnd_Navigable(), theTypesPackage.getBoolean(), "navigable", null, 1, 1, AssociationMemberEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getAssociationMemberEnd_Association(), this.getAssociation(), this.getAssociation_MemberEnds(), "association", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getAssociationMemberEnd_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 1, 1, AssociationMemberEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAssociationMemberEnd_AggregationKind(), this.getAggregationKind(), "aggregationKind", null, 0, 1, AssociationMemberEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(xtextAssociationEClass, XtextAssociation.class, "XtextAssociation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getXtextAssociation_MemberEndTypes(), this.getXtextAssociationMemberEndReferencedType(), null, "memberEndTypes", null, 0, -1, XtextAssociation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1067,6 +1069,26 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
 
         // Create resource
         createResource(eNS_URI);
+
+        // Create annotations
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEcoreAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore";	
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "settingDelegates", "http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"
+           });
     }
 
 } //ClsPackageImpl

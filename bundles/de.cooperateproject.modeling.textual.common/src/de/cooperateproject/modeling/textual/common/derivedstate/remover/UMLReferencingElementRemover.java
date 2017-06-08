@@ -9,9 +9,15 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
+/**
+ * Removes the state of {@link UMLReferencingElement} elements.
+ */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.CLEANING)
 public class UMLReferencingElementRemover extends AtomicDerivedStateProcessorBase<UMLReferencingElement<Element>> {
 
+    /**
+     * Instantiates the remover.
+     */
     @SuppressWarnings("unchecked")
     public UMLReferencingElementRemover() {
         super((Class<UMLReferencingElement<Element>>) (Class<?>) UMLReferencingElement.class);
@@ -25,10 +31,9 @@ public class UMLReferencingElementRemover extends AtomicDerivedStateProcessorBas
     }
 
     private static void handle(NamedElement object) {
-        if (object instanceof UMLReferencingElement) {
-            if (((UMLReferencingElement) object).getReferencedElement() != null) {
-                object.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-            }
+        if (object instanceof UMLReferencingElement
+                && ((UMLReferencingElement<?>) object).getReferencedElement() != null) {
+            object.eUnset(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
         }
     }
 

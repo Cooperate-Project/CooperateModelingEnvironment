@@ -159,6 +159,24 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(UsecasePackage.ACTOR__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(UsecasePackage.ACTOR__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(UsecasePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -359,7 +377,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
                 getComments().clear();
                 return;
             case UsecasePackage.ACTOR__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case UsecasePackage.ACTOR__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
@@ -388,7 +406,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
             case UsecasePackage.ACTOR__COMMENTS:
                 return !getComments().isEmpty();
             case UsecasePackage.ACTOR__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case UsecasePackage.ACTOR__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case UsecasePackage.ACTOR__VISIBILITY:

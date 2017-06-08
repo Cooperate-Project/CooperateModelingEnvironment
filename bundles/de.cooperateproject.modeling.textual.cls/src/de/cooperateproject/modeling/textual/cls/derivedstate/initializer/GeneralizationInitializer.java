@@ -7,7 +7,7 @@ import java.util.Collection;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Classifier;
 
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
@@ -34,8 +34,8 @@ public class GeneralizationInitializer extends AtomicDerivedStateProcessorBase<G
     protected void applyTyped(Generalization object) {
         if (object.getLeft() != null && object.getRight() != null && object.getReferencedElement() != null) {
             org.eclipse.uml2.uml.Generalization umlGeneralization = object.getReferencedElement();
-            Element specific = umlGeneralization.getSpecific();
-            Element general = umlGeneralization.getGeneral();
+            Classifier specific = umlGeneralization.getSpecific();
+            Classifier general = umlGeneralization.getGeneral();
             initTypedConnector(object, specific, general, LOGGER);
         }
     }

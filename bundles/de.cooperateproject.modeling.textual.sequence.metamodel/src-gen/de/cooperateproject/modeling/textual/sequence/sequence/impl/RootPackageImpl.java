@@ -90,6 +90,24 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(SequencePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(SequencePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -123,7 +141,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     public void eUnset(int featureID) {
         switch (featureID) {
             case SequencePackage.ROOT_PACKAGE__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
         }
         super.eUnset(featureID);
@@ -138,7 +156,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case SequencePackage.ROOT_PACKAGE__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
         }
         return super.eIsSet(featureID);
     }

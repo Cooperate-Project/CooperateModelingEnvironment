@@ -4,12 +4,10 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DirectedRelationship;
-import org.eclipse.uml2.uml.Element;
 
+import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.util.UMLReferencingElementFinder;
 
 /**
@@ -31,19 +29,28 @@ public interface TypedConnectorInitializerMixin {
      * @param logger
      *            A logger to log errors during initialization.
      */
-    @SuppressWarnings("unchecked")
-    default void initTypedConnector(TypedConnector<? extends DirectedRelationship> object, Element left, Element right,
-            Logger logger) {
+    default void initTypedConnector(TypedConnector<? extends DirectedRelationship> object,
+            org.eclipse.uml2.uml.Classifier left, org.eclipse.uml2.uml.Classifier right, Logger logger) {
         UMLReferencingElementFinder finder = UMLReferencingElementFinder.create(EcoreUtil.getRootContainer(object));
-        Optional<UMLReferencingElement<? extends Element>> leftElement = finder.findElement(left);
-        Optional<UMLReferencingElement<? extends Element>> rightElement = finder.findElement(right);
+        Optional<Classifier<? extends org.eclipse.uml2.uml.Classifier>> leftElement = finder.findElement(left,
+                getQueryClass());
+        Optional<Classifier<? extends org.eclipse.uml2.uml.Classifier>> rightElement = finder.findElement(right,
+                getQueryClass());
         if (leftElement.isPresent() && rightElement.isPresent()) {
-            object.setLeft((de.cooperateproject.modeling.textual.cls.cls.Classifier<Classifier>) leftElement.get());
-            object.setRight((de.cooperateproject.modeling.textual.cls.cls.Classifier<Classifier>) rightElement.get());
+            leftElement.ifPresent(object::setLeft);
+            rightElement.ifPresent(object::setRight);
         } else {
             logger.error(String.format("The element %s refers to classifiers %s and %s which are not both available.",
                     object, right, left));
         }
+    }
+
+    /**
+     * @return The type of the left and right features.
+     */
+    @SuppressWarnings({ "unchecked", "squid:S1452" })
+    static Class<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getQueryClass() {
+        return (Class<Classifier<? extends org.eclipse.uml2.uml.Classifier>>) (Class<?>) Classifier.class;
     }
 
 }
