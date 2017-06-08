@@ -9,6 +9,9 @@ Require-Bundle: org.eclipse.xtext.generator;bundle-version="2.9.1",
  org.eclipse.xtext,
  org.eclipse.xtext.ui,
  de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.1.8",
- org.apache.commons.lang3;bundle-version="3.1.0"
-Export-Package: de.cooperateproject.modeling.textual.xtext.generator.naming,
+ org.apache.commons.lang3;bundle-version="3.1.0",
+ org.eclipse.xtend.lib
+Export-Package: de.cooperateproject.modeling.textual.xtext.generator,
+ de.cooperateproject.modeling.textual.xtext.generator.naming,
  de.cooperateproject.modeling.textual.xtext.generator.resources
+Import-Package: org.slf4j;version="1.7.2"

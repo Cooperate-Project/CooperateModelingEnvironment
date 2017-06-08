@@ -41,7 +41,6 @@ Export-Package: de.cooperateproject.modeling.textual.cls,
  de.cooperateproject.modeling.textual.cls.scoping,
  de.cooperateproject.modeling.textual.cls.serializer,
  de.cooperateproject.modeling.textual.cls.services,
- de.cooperateproject.modeling.textual.cls.validation,
- de.cooperateproject.modeling.textual.cls.issues
+ de.cooperateproject.modeling.textual.cls.validation
 Bundle-Activator: de.cooperateproject.modeling.textual.cls.Activator
 Import-Package: org.slf4j
