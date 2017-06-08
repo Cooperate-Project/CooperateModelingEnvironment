@@ -8,12 +8,24 @@ import de.cooperateproject.ui.properties.ProjectPropertiesComposite;
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.util.WizardPageValidationProcessor;
 
+/**
+ * WizardPage to request the connection information for a CDO repository.
+ * 
+ * @author seifermann, persch
+ *
+ */
 public class CDOConfigurationWizardPage extends WizardPage {
 
     private final ProjectPropertiesDTO projectProperties;
     private WizardPageValidationProcessor validatorHandler;
     ProjectPropertiesComposite propertiesComposite;
 
+    /**
+     * Constructor for CDOConfigurationWizardPage.
+     * 
+     * @param projectProperties
+     *            CDO connection properties, like repository name, port and URL.
+     */
     public CDOConfigurationWizardPage(ProjectPropertiesDTO projectProperties) {
         super("CDO Connection Properties");
         setTitle("CDO Connection");
@@ -38,6 +50,10 @@ public class CDOConfigurationWizardPage extends WizardPage {
         return projectProperties;
     }
 
+    /**
+     * Changes the repository name and changes it back to what it was before to trigger validation of the
+     * project properties.
+     */
     public void triggerValidation() {
         String cdoRepo = projectProperties.getCdoRepo();
         projectProperties.setCdoRepo(cdoRepo + "0");

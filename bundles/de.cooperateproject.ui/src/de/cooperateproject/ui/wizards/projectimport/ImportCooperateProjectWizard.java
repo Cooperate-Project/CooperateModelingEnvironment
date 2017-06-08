@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
@@ -20,16 +21,24 @@ import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 import de.cooperateproject.ui.wizards.projectnew.CDOConfigurationWizardPage;
 
+/**
+ * Wizard to import projects with cooperate nature to workspace.
+ * 
+ * @author persch
+ *
+ */
 public class ImportCooperateProjectWizard extends Wizard implements IImportWizard {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ImportCooperateProjectWizard.class);
-    private IStructuredSelection selection;
     private CDOConfigurationWizardPage cdoPage;
     private ImportWizardPage importPage;
     private boolean importPageShown = false;
     private boolean connectionInfoValidated = false;
     private ProjectPropertiesDTO projectProperties = ProjectPropertiesStore.getDefaults();
 
+    /**
+     * Constructor for ImportCooperateProjectWizard.
+     */
     public ImportCooperateProjectWizard() {
         super();
         setWindowTitle("Import Cooperate Project");
@@ -40,13 +49,8 @@ public class ImportCooperateProjectWizard extends Wizard implements IImportWizar
         super.addPages();
         cdoPage = new CDOConfigurationWizardPage(projectProperties);
         addPage(cdoPage);
-        importPage = new ImportWizardPage(selection);
+        importPage = new ImportWizardPage();
         addPage(importPage);
-    }
-
-    @Override
-    public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this.selection = selection;
     }
 
     @Override
@@ -57,13 +61,26 @@ public class ImportCooperateProjectWizard extends Wizard implements IImportWizar
         }
         if (getContainer().getCurrentPage() == importPage) {
             importPageShown = true;
-            importPage.triggerFillTable(projectProperties);
         } else {
             importPageShown = false;
         }
         boolean baseCanFinish = super.canFinish();
 
         return importPageShown && baseCanFinish;
+    }
+
+    @Override
+    public IWizardPage getNextPage(IWizardPage page) {
+        IWizardPage nextPage = super.getNextPage(page);
+        if (nextPage == importPage) {
+            importPage.triggerFillTable(projectProperties);
+        }
+        return nextPage;
+    }
+
+    @Override
+    public void init(IWorkbench workbench, IStructuredSelection selection) {
+        // empty on purpose
     }
 
     @Override

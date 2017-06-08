@@ -7,6 +7,12 @@ import org.eclipse.emf.ecore.EObject;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.AbstractDerivedStateGenerator;
 
+/**
+ * Derived state computer and remover for cls diagrams.
+ * 
+ * This class specifies an order for processing the elements contained in the diagram. The remaining features are
+ * defined via the dependencies described in {@link AbstractDerivedStateGenerator}.
+ */
 public class ClsDerivedStateComputer extends AbstractDerivedStateGenerator {
 
     private static class ClsContentSorter implements Comparator<EObject> {

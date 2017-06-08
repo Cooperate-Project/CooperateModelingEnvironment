@@ -16,7 +16,9 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.uml2.uml.resources;bundle-version="5.2.0",
  org.eclipse.xtext.testing;bundle-version="2.11.0",
- org.eclipse.xtext.xbase.testing;bundle-version="2.11.0"
+ org.eclipse.xtext.xbase.testing;bundle-version="2.11.0",
+ org.reflections;bundle-version="0.9.10",
+ javassist;bundle-version="3.19.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls.tests;x-internal=true
 Import-Package: org.hamcrest.core,

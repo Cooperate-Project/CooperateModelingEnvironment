@@ -32,7 +32,7 @@ public class ReloadingResourceChangeManager extends RecursiveResourceChangeManag
         }
     }
 
-    private void reloadResource(Resource r) throws Exception {
+    private static void reloadResource(Resource r) throws Exception {
         if (r instanceof CDOResource) {
             CDOResource realResource = (CDOResource) r;
             CDOSession session = realResource.cdoView().getSession();

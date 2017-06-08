@@ -28,7 +28,7 @@ import de.cooperateproject.ui.focus.internal.messaging.MessageHandler;
 import de.cooperateproject.ui.focus.internal.utils.LabelUtils;
 import de.cooperateproject.ui.focus.manager.IFocusManager;
 
-public class FocusedDiagram implements IFocusedDiagram {
+class FocusedDiagram implements IFocusedDiagram {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FocusedDiagram.class);
     private final Collection<IHistoryChangedListener> historyChangedListeners = new HashSet<>();
@@ -37,7 +37,7 @@ public class FocusedDiagram implements IFocusedDiagram {
     private final IFocusManager focusManager;
     private boolean mute;
 
-    public FocusedDiagram(IFocusManager focusManager) {
+    FocusedDiagram(IFocusManager focusManager) {
         this.focusManager = focusManager;
         this.mute = false;
     }

@@ -82,17 +82,6 @@ public final class CDOHelper {
 
     }
 
-    public static Optional<CDORepository> findRepository(IProject project) {
-        final String repositoryLabel = createRepositoryLabel(project);
-        CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
-        return Iterables.tryFind(Arrays.asList(repositoryManager.getRepositories()),
-                r -> repositoryLabel.equals(r.getLabel()));
-    }
-
-    private static String createRepositoryLabel(IProject project) {
-        return String.format("%s - CooperateRepository", project.getName());
-    }
-
     public static CDOCheckout createCheckout(CDORepository repo) {
         return createCheckout(repo, 0);
     }
@@ -110,6 +99,10 @@ public final class CDOHelper {
         return CDOExplorerUtil.getCheckoutManager().addCheckout(checkoutProperties);
     }
 
+    public static CDOBranch createRandomBranchFromMain(CDOSession session) {
+        return session.getBranchManager().getMainBranch().createBranch(CDOHelper.createRandomBranchName());
+    }
+
     public static CDORepository createRepositoryFor(IProject project, CDOConnectionSettings settings) {
         String repositoryLabel = createRepositoryLabel(project);
         return createRepositoryFor(repositoryLabel, settings);
@@ -121,11 +114,9 @@ public final class CDOHelper {
         return repositoryManager.addRepository(repositoryProperties);
     }
 
-    public static void deleteRepositoryFor(IProject project) {
-        String repositoryLabel = createRepositoryLabel(project);
-        CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
-        Arrays.asList(repositoryManager.getRepositories()).stream().filter(r -> repositoryLabel.equals(r.getLabel()))
-                .forEach(CDOHelper::delete);
+    public static void delete(CDOCheckout checkout) {
+        checkout.close();
+        checkout.delete(true);
     }
 
     public static void delete(CDORepository repository) {
@@ -134,9 +125,11 @@ public final class CDOHelper {
         repository.delete(true);
     }
 
-    public static void delete(CDOCheckout checkout) {
-        checkout.close();
-        checkout.delete(true);
+    public static void deleteRepositoryFor(IProject project) {
+        String repositoryLabel = createRepositoryLabel(project);
+        CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
+        Arrays.asList(repositoryManager.getRepositories()).stream().filter(r -> repositoryLabel.equals(r.getLabel()))
+                .forEach(CDOHelper::delete);
     }
 
     public static java.util.Optional<CDOCheckout> findCheckoutByCheckoutURI(URI checkoutURI) {
@@ -149,12 +142,35 @@ public final class CDOHelper {
         return java.util.Optional.of(checkout);
     }
 
-    public static CDOBranch createRandomBranchFromMain(CDOSession session) {
-        return session.getBranchManager().getMainBranch().createBranch(CDOHelper.createRandomBranchName());
+    public static Optional<CDORepository> findRepository(IProject project) {
+        final String repositoryLabel = createRepositoryLabel(project);
+        CDORepositoryManager repositoryManager = CDOExplorerUtil.getRepositoryManager();
+        return Iterables.tryFind(Arrays.asList(repositoryManager.getRepositories()),
+                r -> repositoryLabel.equals(r.getLabel()));
     }
 
-    private static String createRandomBranchName() {
-        return String.format("z_cooperate_%s_%s", System.currentTimeMillis(), RandomStringUtils.randomAlphanumeric(2));
+    /**
+     * Opens a CDOSession with the given connection information.
+     * 
+     * @param cdoHost
+     *            URL of the CDO repository.
+     * @param cdoPort
+     *            Port of the CDO repository.
+     * @param cdoRepo
+     *            Name of the CDO repository.
+     * @return CdoSession for given connection info.
+     */
+    public static CDOSession getSessionFromConnectionInfo(String cdoHost, Integer cdoPort, String cdoRepo) {
+        String cdoServerURI = "tcp://" + cdoHost + ":" + cdoPort;
+        IConnector connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, cdoServerURI);
+        CDONet4jSessionConfiguration sessionConfiguration = CDONet4jUtil.createNet4jSessionConfiguration();
+        sessionConfiguration.setConnector(connector);
+        sessionConfiguration.setRepositoryName(cdoRepo);
+        return sessionConfiguration.openNet4jSession();
+    }
+
+    private static String createCheckoutLabel() {
+        return String.format("tmp_cooperate_%d", System.currentTimeMillis());
     }
 
     private static Properties createProperties(String repositoryLabel, CDOConnectionSettings settings) {
@@ -169,16 +185,11 @@ public final class CDOHelper {
         return repositoryProperties;
     }
 
-    private static String createCheckoutLabel() {
-        return String.format("tmp_cooperate_%d", System.currentTimeMillis());
+    private static String createRandomBranchName() {
+        return String.format("z_cooperate_%s_%s", System.currentTimeMillis(), RandomStringUtils.randomAlphanumeric(2));
     }
 
-    public static CDOSession getSessionFromConnectionInfo(String cdoHost, Integer cdoPort, String cdoRepo) {
-        String cdoServerURI = "tcp://" + cdoHost + ":" + cdoPort;
-        IConnector connector = Net4jUtil.getConnector(IPluginContainer.INSTANCE, cdoServerURI);
-        CDONet4jSessionConfiguration sessionConfiguration = CDONet4jUtil.createNet4jSessionConfiguration();
-        sessionConfiguration.setConnector(connector);
-        sessionConfiguration.setRepositoryName(cdoRepo);
-        return sessionConfiguration.openNet4jSession();
+    private static String createRepositoryLabel(IProject project) {
+        return String.format("%s - CooperateRepository", project.getName());
     }
 }

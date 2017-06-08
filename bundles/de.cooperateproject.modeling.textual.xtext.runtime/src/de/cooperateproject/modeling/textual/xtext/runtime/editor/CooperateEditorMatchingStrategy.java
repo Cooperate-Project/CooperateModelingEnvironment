@@ -1,4 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.editor;
+
+import org.apache.log4j.Logger;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorReference;
@@ -8,31 +10,33 @@ import org.eclipse.ui.PartInitException;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 
 public class CooperateEditorMatchingStrategy implements IEditorMatchingStrategy {
+    private static final Logger LOGGER = Logger.getLogger(CooperateEditorMatchingStrategy.class);
 
-	@Override
-	public boolean matches(IEditorReference editorRef, IEditorInput input) {
-		if (!(input instanceof IFileEditorInput)) {
-			return false;
-		}
-		
-		IFileEditorInput newInput = (IFileEditorInput)input;
-		
-		IEditorInput ownInput;
-		try {
-			ownInput = editorRef.getEditorInput();
-		} catch (PartInitException e) {
-			return false;
-		}
-		
-		if (ownInput instanceof IFileEditorInput) {
-			return ((IFileEditorInput)ownInput).getFile().equals(newInput.getFile());
-		}
-		
-		if (ownInput instanceof CooperateCDOLobEditorInput) {
-			return ((CooperateCDOLobEditorInput)ownInput).getAssociatedLauncherFile().equals(newInput.getFile());
-		}
-		
-		return false;
-	}
+    @Override
+    public boolean matches(IEditorReference editorRef, IEditorInput input) {
+        if (!(input instanceof IFileEditorInput)) {
+            return false;
+        }
+
+        IFileEditorInput newInput = (IFileEditorInput) input;
+
+        IEditorInput ownInput;
+        try {
+            ownInput = editorRef.getEditorInput();
+        } catch (PartInitException e) {
+            LOGGER.error("Error during editor part init operation.", e);
+            return false;
+        }
+
+        if (ownInput instanceof IFileEditorInput) {
+            return ((IFileEditorInput) ownInput).getFile().equals(newInput.getFile());
+        }
+
+        if (ownInput instanceof CooperateCDOLobEditorInput) {
+            return ((CooperateCDOLobEditorInput) ownInput).getAssociatedLauncherFile().equals(newInput.getFile());
+        }
+
+        return false;
+    }
 
 }

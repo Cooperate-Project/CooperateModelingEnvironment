@@ -5,6 +5,8 @@ import com.google.inject.binder.LinkedBindingBuilder;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.name.Names;
 
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.IDerivedStateElementProcessor;
 
 @SuppressWarnings("all")
@@ -22,6 +24,10 @@ public interface CommonDerivedStateModuleExtension {
         binder.bind(IDerivedStateElementProcessor.class)
                 .annotatedWith(Names.named(IDerivedStateElementProcessor.DERIVED_STATE_PROCESSOR_MAIN_PROCESSOR))
                 .to(ComposedDerivedStateElementProcessor.class);
+    }
+
+    public default Class<? extends IAtomicStateProcessorRegistry> bindIAtomicStateProcessorRegistry() {
+        return AtomicStateProcessorRegistry.class;
     }
 
 }

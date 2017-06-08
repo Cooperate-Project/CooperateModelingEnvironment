@@ -1,99 +1,57 @@
 package de.cooperateproject.modeling.textual.common.generator;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.scoping.IScope;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.generator.DerivedStateElementProcessorBase;
-import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
-public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElementProcessorBase<Optional<Void>> {
+/**
+ * Derived state element processor for the textual commons meta model.
+ * 
+ * You should always use this processor in conjunction with another meta model specific processor. Use
+ * {@link CommonDerivedStateModuleExtension} to configure the Guice module correctly.
+ */
+public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElementProcessorBase {
 
+    /**
+     * Constructs the element processor.
+     * 
+     * @param atomicStateProcessorRegistry
+     *            The registry of atomic state processors. This allows reusing existing atomic processors.
+     */
     @Inject
-    public TextualCommonsDerivedStateElementProcessor(IQualifiedNameProvider qualifiedNameProvider,
-            IGlobalScopeTypeQueryProvider globalScopeProvider) {
-        super(new DerivedStateCalculation(qualifiedNameProvider, globalScopeProvider), new DerivedStateRemover());
+    public TextualCommonsDerivedStateElementProcessor(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
+        super(new DerivedStateCalculation(atomicStateProcessorRegistry),
+                new DerivedStateRemover(atomicStateProcessorRegistry));
     }
 
-    private static class DerivedStateCalculation extends TextualCommonsSwitch<Optional<Void>>
-            implements IInternalDerivedStateElementProcessor<Optional<Void>> {
+    private static class DerivedStateCalculation extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor>>
+            implements IInternalDerivedStateElementProcessor {
 
-        private final IQualifiedNameProvider qualifiedNameProvider;
-        private final IGlobalScopeTypeQueryProvider globalScopeProvider;
+        private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
 
-        public DerivedStateCalculation(IQualifiedNameProvider qualifiedNameProvider,
-                IGlobalScopeTypeQueryProvider globalScopeProvider) {
-            this.qualifiedNameProvider = qualifiedNameProvider;
-            this.globalScopeProvider = globalScopeProvider;
+        public DerivedStateCalculation(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
+            this.atomicStateProcessorRegistry = atomicStateProcessorRegistry;
         }
 
         @Override
-        public Optional<Void> caseComment(Comment object) {
-
-            UMLReferencingElement<?> realElement = object.getCommentedElement();
-            if (realElement != null) {
-                Element umlCommentedElement = realElement.getReferencedElement();
-
-                IScope candidates = globalScopeProvider.queryScope(object.eResource(), true,
-                        UMLPackage.Literals.COMMENT,
-                        c -> ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getAnnotatedElements()
-                                .contains(umlCommentedElement)
-                                && ((org.eclipse.uml2.uml.Comment) c.getEObjectOrProxy()).getBody()
-                                        .equals(object.getBody()));
-                Iterable<org.eclipse.uml2.uml.Comment> typedCandidates = Iterables.transform(
-                        candidates.getAllElements(), e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
-                if (Iterables.size(typedCandidates) == 1) {
-                    object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
-                }
-            }
-            return Optional.empty();
-
+        public Iterable<IAtomicStateProcessor> caseComment(Comment object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, Comment.class);
         }
 
         @Override
-        public <UMLType extends Element> Optional<Void> caseUMLReferencingElement(
-                UMLReferencingElement<UMLType> object) {
-            QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
-            if (qn == null) {
-                return Optional.empty();
-            }
-
-            EGenericType requiredType = object.eClass()
-                    .getFeatureType(TextualCommonsPackage.eINSTANCE.getUMLReferencingElement_ReferencedElement());
-            Collection<IEObjectDescription> foundElements = Sets
-                    .newHashSet(globalScopeProvider.queryScope(object.eResource(), true,
-                            (EClass) requiredType.getEClassifier(), Predicates.alwaysTrue()).getAllElements());
-
-            List<EObject> matchingElements = foundElements.stream().filter(d -> qn.equals(d.getQualifiedName()))
-                    .map(IEObjectDescription::getEObjectOrProxy).distinct().collect(Collectors.toList());
-            if (matchingElements.size() == 1) {
-                object.setReferencedElement((UMLType) matchingElements.get(0));
-                return Optional.empty();
-            } else {
-                object.setReferencedElement(null);
-            }
-            return Optional.empty();
+        public <T extends Element> Iterable<IAtomicStateProcessor> caseUMLReferencingElement(
+                UMLReferencingElement<T> object) {
+            return getAtomicCalculators(atomicStateProcessorRegistry, UMLReferencingElement.class);
         }
 
         @Override
@@ -102,20 +60,28 @@ public class TextualCommonsDerivedStateElementProcessor extends DerivedStateElem
         }
 
         @Override
-        public Optional<Void> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
     }
 
-    private static class DerivedStateRemover extends TextualCommonsSwitch<Optional<Void>>
-            implements IInternalDerivedStateElementProcessor<Optional<Void>> {
+    private static class DerivedStateRemover extends TextualCommonsSwitch<Iterable<IAtomicStateProcessor>>
+            implements IInternalDerivedStateElementProcessor {
+
+        @SuppressWarnings("unused")
+        private final IAtomicStateProcessorRegistry atomicStateProcessorRegistry;
+
+        public DerivedStateRemover(IAtomicStateProcessorRegistry atomicStateProcessorRegistry) {
+            this.atomicStateProcessorRegistry = atomicStateProcessorRegistry;
+        }
+
         @Override
         public boolean supports(EPackage pkg) {
             return isSwitchFor(pkg);
         }
 
         @Override
-        public Optional<Void> apply(EClass clz, EObject obj) {
+        public Iterable<IAtomicStateProcessor> apply(EClass clz, EObject obj) {
             return doSwitch(clz, obj);
         }
     }

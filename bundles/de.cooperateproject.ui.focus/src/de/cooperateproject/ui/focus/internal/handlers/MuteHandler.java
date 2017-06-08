@@ -11,24 +11,22 @@ import de.cooperateproject.ui.focus.internal.views.FocusView;
 
 /**
  * Handler for muting all incoming focus requests.
+ * 
  * @author Jasmin
  *
  */
 public class MuteHandler extends AbstractHandler {
 
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		IWorkbenchPage page = window.getActivePage();
-		FocusView focusView = null;
+    @Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        IWorkbenchPage page = window.getActivePage();
+        FocusView focusView = (FocusView) page.findView(FocusView.ID);
 
-		focusView = (FocusView) page.findView(FocusView.ID);
-
-		if (focusView != null) {
-			focusView.hitMuteButton();
-
-		}
-		return null;
-	}
+        if (focusView != null) {
+            focusView.hitMuteButton();
+        }
+        return null;
+    }
 
 }

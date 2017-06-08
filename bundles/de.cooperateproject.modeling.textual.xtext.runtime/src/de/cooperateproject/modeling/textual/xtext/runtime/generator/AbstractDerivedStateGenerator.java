@@ -13,6 +13,12 @@ import org.eclipse.xtext.resource.IDerivedStateComputer;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 
+/**
+ * Base class for derived state computers.
+ * 
+ * The computer provides abilities to install a derived state as well as simulating a reload event by discarding certain
+ * states.
+ */
 public abstract class AbstractDerivedStateGenerator implements IDerivedStateComputer {
 
     @Inject
@@ -35,6 +41,13 @@ public abstract class AbstractDerivedStateGenerator implements IDerivedStateComp
         installDerivedState(rootObject);
     }
 
+    /**
+     * Installs the derived state as described in {@link #installDerivedState(DerivedStateAwareResource, boolean)} for
+     * the given object.
+     * 
+     * @param object
+     *            The object into which the derived state shall be installed.
+     */
     public void installDerivedState(EObject object) {
         executeForAllContents(object, derivedStateElementProcessor::processElement);
     }
@@ -44,8 +57,20 @@ public abstract class AbstractDerivedStateGenerator implements IDerivedStateComp
         // intentionally left blank
     }
 
-    abstract protected Comparator<EObject> getContentComparator();
+    /**
+     * @return A comparator that orders the content before installing or removing the state.
+     */
+    protected abstract Comparator<EObject> getContentComparator();
 
+    /**
+     * Simulates the reloading of a resource by discarding specific states that are not recalculated automatically.
+     * 
+     * This differs from {@link #discardDerivedState(DerivedStateAwareResource)} because not all states are removed but
+     * only a subset of the state. After running the state installation again, the effect should, however, be the same.
+     * 
+     * @param object
+     *            The object for which a resource reload is simulated.
+     */
     public void simulateReloadingResource(EObject object) {
         executeForAllContents(object, derivedStateElementProcessor::simulateReload);
     }

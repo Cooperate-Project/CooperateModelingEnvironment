@@ -110,42 +110,70 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         performPreSaveActions();
         IStatus status = scheduleValidation(cooperateXtextDocument);
         if (status.isOK()) {
-            if (!getAllIssues(cooperateXtextDocument).isEmpty()) {
-                openErrorDialog("Save Error", "Can't save because of semantic errors.");
-                return;
-            }
-            Job job = new Job("Save") {
-                @Override
-                protected IStatus run(IProgressMonitor monitor) {
-                    SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
-                    Display.getDefault().syncExec(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            try {
-                                lock.acquire();
-                                subMonitor.setTaskName("Saving diagram.");
-                                saveDocument(subMonitor.split(100));
-                            } finally {
-                                lock.release();
-                            }
-                        }
-                    });
-                    return Status.OK_STATUS;
-                }
-            };
-            job.setUser(true);
-            job.schedule();
-            try {
-                job.join();
-            } catch (InterruptedException e) {
-                LOGGER.error("Error during save operation.", e);
+            if (!tryDocumentSave(cooperateXtextDocument)) {
                 return;
             }
         } else if (status.matches(IStatus.CANCEL)) {
             openErrorDialog("Wait for validation", "Wait for Validation to finish before saving!");
             return;
         }
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Object getAdapter(Class requestedClass) {
+        if (SaveablePostProcessingSupport.class.isAssignableFrom(requestedClass)) {
+            return postProcessorHandler;
+        }
+        return super.getAdapter(requestedClass);
+    }
+
+    @Override
+    public void createPartControl(Composite parent) {
+        super.createPartControl(parent);
+        contextActivation = getSite().getService(IContextService.class).activateContext(CONTEXT_ID);
+    }
+
+    @Override
+    public void dispose() {
+        getSite().getService(IContextService.class).deactivateContext(contextActivation);
+        super.dispose();
+    }
+
+    private boolean tryDocumentSave(CooperateXtextDocument cooperateXtextDocument) throws OperationCanceledError {
+        if (!getAllIssues(cooperateXtextDocument).isEmpty()) {
+            openErrorDialog("Save Error", "Can't save because of semantic errors.");
+            return false;
+        }
+        Job job = getDiagramSaveJob();
+        job.setUser(true);
+        job.schedule();
+        try {
+            job.join();
+        } catch (InterruptedException e) {
+            LOGGER.error("Error during save operation.", e);
+            return false;
+        }
+        return true;
+    }
+
+    private Job getDiagramSaveJob() {
+        return new Job("Save") {
+            @Override
+            protected IStatus run(IProgressMonitor monitor) {
+                SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+                Display.getDefault().syncExec(() -> {
+                    try {
+                        lock.acquire();
+                        subMonitor.setTaskName("Saving diagram.");
+                        saveDocument(subMonitor.split(100));
+                    } finally {
+                        lock.release();
+                    }
+                });
+                return Status.OK_STATUS;
+            }
+        };
     }
 
     private boolean containsSyntaxErrors(CooperateXtextDocument document) {
@@ -157,9 +185,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     }
 
     private List<Issue> getAllIssues(CooperateXtextDocument document) throws OperationCanceledError {
-        List<Issue> detectedIssues = resourceValidator.validate(document.getResource(), CheckMode.ALL,
-                CancelIndicator.NullImpl);
-        return detectedIssues;
+        return resourceValidator.validate(document.getResource(), CheckMode.ALL, CancelIndicator.NullImpl);
     }
 
     private void performPreSaveActions() {
@@ -193,7 +219,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
             protected void doExecute() {
                 Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
                 do {
-                    issueResolutions.forEach(i -> i.resolve());
+                    issueResolutions.forEach(IAutomatedIssueResolution::resolve);
                     if (documentResource instanceof DerivedStateAwareResource) {
                         resourceStateCalculator.simulateReloadingResource(documentResource);
                         resourceStateCalculator.calculateState(documentResource);
@@ -215,7 +241,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private void saveDocument(IProgressMonitor progressMonitor) {
         SubMonitor subMonitor = SubMonitor.convert(progressMonitor, 100);
         if (getDocument() != null) {
-            saveAllAssociated(getDocument());
+            saveAllAssociated();
         }
         super.doSave(subMonitor.split(100));
         try {
@@ -225,7 +251,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         }
     }
 
-    private IStatus scheduleValidation(CooperateXtextDocument cooperateXtextDocument) {
+    private static IStatus scheduleValidation(CooperateXtextDocument cooperateXtextDocument) {
         Job validationJob = cooperateXtextDocument.getValidationJob();
         validationJob.schedule();
         try {
@@ -236,20 +262,20 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
         return validationJob.getResult();
     }
 
-    private void openErrorDialog(String title, String body) {
+    private static void openErrorDialog(String title, String body) {
         MessageDialog dialog = new MessageDialog(Display.getCurrent().getActiveShell(), title, null, body,
                 MessageDialog.ERROR, new String[] { "OK" }, 0);
         dialog.open();
     }
 
-    private void saveAllAssociated(IXtextDocument iXtextDocument) {
+    private void saveAllAssociated() {
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
         if (cooperateXtextDocument != null) {
             saveAllAssociated(cooperateXtextDocument);
         }
     }
 
-    private void saveAllAssociated(CooperateXtextDocument document) {
+    private static void saveAllAssociated(CooperateXtextDocument document) {
         ResourceSet rs = document.getResource().getResourceSet();
         List<Resource> resourcesToBeSaved = rs.getResources().stream().filter(r -> r != document.getResource())
                 .filter(r -> !r.isTrackingModification() || r.isModified()).collect(Collectors.toList());
@@ -261,26 +287,6 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
                 throw new RuntimeException("Error during save of associated resources.", e);
             }
         }
-    }
-
-    @SuppressWarnings("rawtypes")
-    public Object getAdapter(Class requestedClass) {
-        if (SaveablePostProcessingSupport.class.isAssignableFrom(requestedClass)) {
-            return postProcessorHandler;
-        }
-        return super.getAdapter(requestedClass);
-    }
-
-    @Override
-    public void createPartControl(Composite parent) {
-        super.createPartControl(parent);
-        contextActivation = getSite().getService(IContextService.class).activateContext(CONTEXT_ID);
-    }
-
-    @Override
-    public void dispose() {
-        getSite().getService(IContextService.class).deactivateContext(contextActivation);
-        super.dispose();
     }
 
 }

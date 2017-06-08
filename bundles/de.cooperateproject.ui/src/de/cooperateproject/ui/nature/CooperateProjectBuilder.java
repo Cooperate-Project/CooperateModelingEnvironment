@@ -21,6 +21,12 @@ import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 import de.cooperateproject.ui.util.ConnectionValidator;
 
+/**
+ * IncrementalProjectBuilder for cooperate projects which provides custom build logic.
+ * 
+ * @author seifermann, persch
+ *
+ */
 public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CooperateProjectBuilder.class);
@@ -32,6 +38,7 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
         LOGGER.debug(String.format("%s started with kind %d.", CooperateProjectBuilder.class.getSimpleName(), kind));
         boolean treatAsNew = kind == CLEAN_BUILD || kind == FULL_BUILD;
         Collection<IProject> processedProjects = Lists.newArrayList();
+
         for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
             if (project.isOpen() && NatureUtils.hasCooperateNature(project)) {
                 buildProject(project, treatAsNew, monitor);
@@ -41,6 +48,7 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
                 BackgroundTasksAdapter.getManager().deregisterProject(project);
             }
         }
+        deregisterOrphanProjects();
         return processedProjects.toArray(new IProject[0]);
     }
 
@@ -54,8 +62,7 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
         if (ConnectionValidator.connectionInfoIsValid(currentProperties.getCdoHost(), currentProperties.getCdoPort(),
                 currentProperties.getCdoRepo(), currentProperties.getMsgPort(), 1000)) {
             if (treatAsNew || !currentProperties.equals(oldProperties.get(project))) {
-                BackgroundTasksAdapter.getManager().deregisterProject(project);
-                CDOConnectionManager.getInstance().unregister(project);
+                deregisterProject(project);
             }
             CDOConnectionManager.getInstance().register(project, convert(currentProperties));
             BackgroundTasksAdapter.getManager().registerProject(project);
@@ -73,5 +80,24 @@ public class CooperateProjectBuilder extends IncrementalProjectBuilder {
     private static CDOConnectionSettings convert(ProjectPropertiesDTO properties) {
         return CDOConnectionSettings.builder().setHost(properties.getCdoHost()).setPort(properties.getCdoPort())
                 .setRepo(properties.getCdoRepo()).build();
+    }
+
+    private static void deregisterOrphanProjects() {
+        boolean orphan = true;
+        for (IProject project : CDOConnectionManager.getInstance().getProjects()) {
+            for (IProject workspaceProject : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+                if (workspaceProject.getName().equals(project.getName())) {
+                    orphan = false;
+                }
+            }
+            if (orphan) {
+                deregisterProject(project);
+            }
+        }
+    }
+
+    private static void deregisterProject(IProject project) {
+        BackgroundTasksAdapter.getManager().deregisterProject(project);
+        CDOConnectionManager.getInstance().unregister(project);
     }
 }

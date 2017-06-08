@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  com.google.inject.multibindings.bundle;bundle-version="3.0.0";visibility:=reexport,
  de.cooperateproject.modeling.common
 Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
+ de.cooperateproject.modeling.textual.xtext.runtime.derivedstate,
  de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
  de.cooperateproject.modeling.textual.xtext.runtime.generator,
