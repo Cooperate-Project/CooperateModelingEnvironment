@@ -5,10 +5,18 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification;
+import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
@@ -20,7 +28,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceReferenceImpl#getOccurenceSpecification <em>Occurence Specification</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceReferenceImpl#getExplicitOccurenceSpecification <em>Explicit Occurence Specification</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,8 +58,8 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
      * <!-- end-user-doc -->
      * @generated
      */
-    public ExplicitArrivalOccurenceSpecification getOccurenceSpecification() {
-        return (ExplicitArrivalOccurenceSpecification)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, true, true);
+    public ExplicitArrivalOccurenceSpecification getExplicitOccurenceSpecification() {
+        return (ExplicitArrivalOccurenceSpecification)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, true, true);
     }
 
     /**
@@ -59,8 +67,8 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
      * <!-- end-user-doc -->
      * @generated
      */
-    public ExplicitArrivalOccurenceSpecification basicGetOccurenceSpecification() {
-        return (ExplicitArrivalOccurenceSpecification)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, false, true);
+    public ExplicitArrivalOccurenceSpecification basicGetExplicitOccurenceSpecification() {
+        return (ExplicitArrivalOccurenceSpecification)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, false, true);
     }
 
     /**
@@ -68,8 +76,58 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOccurenceSpecification(ExplicitArrivalOccurenceSpecification newOccurenceSpecification) {
-        eDynamicSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION, newOccurenceSpecification);
+    public NotificationChain basicSetExplicitOccurenceSpecification(ExplicitArrivalOccurenceSpecification newExplicitOccurenceSpecification, NotificationChain msgs) {
+        msgs = eDynamicInverseAdd((InternalEObject)newExplicitOccurenceSpecification, SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExplicitOccurenceSpecification(ExplicitArrivalOccurenceSpecification newExplicitOccurenceSpecification) {
+        eDynamicSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, newExplicitOccurenceSpecification);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OccurenceSpecification<MessageOccurrenceSpecification> getOccurenceSpecification() {
+        return this.getExplicitOccurenceSpecification();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION:
+                ExplicitArrivalOccurenceSpecification explicitOccurenceSpecification = basicGetExplicitOccurenceSpecification();
+                if (explicitOccurenceSpecification != null)
+                    msgs = ((InternalEObject)explicitOccurenceSpecification).eInverseRemove(this, SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, ExplicitArrivalOccurenceSpecification.class, msgs);
+                return basicSetExplicitOccurenceSpecification((ExplicitArrivalOccurenceSpecification)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION:
+                return basicSetExplicitOccurenceSpecification(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
     /**
@@ -80,9 +138,9 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION:
-                if (resolve) return getOccurenceSpecification();
-                return basicGetOccurenceSpecification();
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION:
+                if (resolve) return getExplicitOccurenceSpecification();
+                return basicGetExplicitOccurenceSpecification();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -95,8 +153,8 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION:
-                setOccurenceSpecification((ExplicitArrivalOccurenceSpecification)newValue);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION:
+                setExplicitOccurenceSpecification((ExplicitArrivalOccurenceSpecification)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -110,8 +168,8 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION:
-                setOccurenceSpecification((ExplicitArrivalOccurenceSpecification)null);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION:
+                setExplicitOccurenceSpecification((ExplicitArrivalOccurenceSpecification)null);
                 return;
         }
         super.eUnset(featureID);
@@ -125,10 +183,40 @@ public class ExplicitArrivalOccurenceReferenceImpl extends OccurenceReferenceImp
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION:
-                return basicGetOccurenceSpecification() != null;
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION:
+                return basicGetExplicitOccurenceSpecification() != null;
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == OccurenceReference.class) {
+            switch (baseOperationID) {
+                case SequencePackage.OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION;
+                default: return super.eDerivedOperationID(baseOperationID, baseClass);
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION:
+                return getOccurenceSpecification();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //ExplicitArrivalOccurenceReferenceImpl

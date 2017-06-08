@@ -36,7 +36,7 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      * @model
      * @generated
      */
-    NonInstantaneousFragment getNonInstantaneousFragment();
+    NonInstantaneousFragment<?> getNonInstantaneousFragment();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector#getNonInstantaneousFragment <em>Non Instantaneous Fragment</em>}' reference.
@@ -46,7 +46,7 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      * @see #getNonInstantaneousFragment()
      * @generated
      */
-    void setNonInstantaneousFragment(NonInstantaneousFragment value);
+    void setNonInstantaneousFragment(NonInstantaneousFragment<?> value);
 
     /**
      * <!-- begin-user-doc -->

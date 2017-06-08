@@ -27,7 +27,8 @@ class SequenceUMLReferencingElementMissingElementFactory extends SequenceAutomat
 	}
 	
 	override protected getIssueDescriptionInternal(UMLReferencingElement<Element> element) {
-		"The UML element does not exist yet.";
+	    val requiredType = element.eClass.getFeatureType(TextualCommonsPackage.eINSTANCE.UMLReferencingElement_ReferencedElement).EClassifier
+		'''The UML element («requiredType.name») does not exist yet.'''
 	}
 	
     override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {

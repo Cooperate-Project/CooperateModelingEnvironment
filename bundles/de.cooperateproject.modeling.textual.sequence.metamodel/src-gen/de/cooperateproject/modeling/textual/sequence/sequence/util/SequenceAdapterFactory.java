@@ -206,16 +206,12 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createExplicitArrivalOccurenceReferenceAdapter();
             }
             @Override
-            public Adapter caseImplicitArrivalOccurenceSpecification(ImplicitArrivalOccurenceSpecification object) {
-                return createImplicitArrivalOccurenceSpecificationAdapter();
+            public Adapter caseImplicitMessageOccurenceSpecification(ImplicitMessageOccurenceSpecification object) {
+                return createImplicitMessageOccurenceSpecificationAdapter();
             }
             @Override
             public Adapter caseExplicitArrivalOccurenceSpecification(ExplicitArrivalOccurenceSpecification object) {
                 return createExplicitArrivalOccurenceSpecificationAdapter();
-            }
-            @Override
-            public Adapter caseImplicitSendOccurenceSpecification(ImplicitSendOccurenceSpecification object) {
-                return createImplicitSendOccurenceSpecificationAdapter();
             }
             @Override
             public <UMLPointInTimeType extends NamedElement> Adapter caseAliasedPointInTime(AliasedPointInTime<UMLPointInTimeType> object) {
@@ -734,16 +730,16 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification <em>Implicit Arrival Occurence Specification</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification <em>Implicit Message Occurence Specification</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification
      * @generated
      */
-    public Adapter createImplicitArrivalOccurenceSpecificationAdapter() {
+    public Adapter createImplicitMessageOccurenceSpecificationAdapter() {
         return null;
     }
 
@@ -758,20 +754,6 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createExplicitArrivalOccurenceSpecificationAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification <em>Implicit Send Occurence Specification</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification
-     * @generated
-     */
-    public Adapter createImplicitSendOccurenceSpecificationAdapter() {
         return null;
     }
 

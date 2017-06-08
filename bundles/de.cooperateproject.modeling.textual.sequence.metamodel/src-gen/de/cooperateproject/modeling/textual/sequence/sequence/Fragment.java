@@ -17,4 +17,13 @@ import org.eclipse.emf.cdo.CDOObject;
  * @generated
  */
 public interface Fragment extends CDOObject {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);'"
+     * @generated
+     */
+    FragmentSequence getContainingSequence();
+
 } // Fragment

@@ -7,6 +7,8 @@ import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,6 +21,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+
+import org.eclipse.uml2.uml.InteractionFragment;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,6 +75,15 @@ public abstract class FragmentSequenceImpl extends CDOObjectImpl implements Frag
     @SuppressWarnings("unchecked")
     public EList<Fragment> getFragments() {
         return (EList<Fragment>)eDynamicGet(SequencePackage.FRAGMENT_SEQUENCE__FRAGMENTS, SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<InteractionFragment> getUMLFragmentSequence() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUMLFragmentSequence(this);
     }
 
     /**
@@ -145,6 +158,20 @@ public abstract class FragmentSequenceImpl extends CDOObjectImpl implements Frag
                 return !getFragments().isEmpty();
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.FRAGMENT_SEQUENCE___GET_UML_FRAGMENT_SEQUENCE:
+                return getUMLFragmentSequence();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //FragmentSequenceImpl

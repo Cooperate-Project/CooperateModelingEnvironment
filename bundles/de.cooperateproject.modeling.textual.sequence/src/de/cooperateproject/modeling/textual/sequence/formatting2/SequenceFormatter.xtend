@@ -37,7 +37,7 @@ class SequenceFormatter extends AbstractFormatter2 {
             format(behaviorFragments, document);
             behaviorFragments.append[newLine]
         }
-        sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_7).prepend[newLines = 2]
+        sequencediagram.regionFor.keyword(sequenceDiagramAccess.endSeqdKeyword_7).prepend[newLines = 2; priority=2]
 	}
 
     def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {

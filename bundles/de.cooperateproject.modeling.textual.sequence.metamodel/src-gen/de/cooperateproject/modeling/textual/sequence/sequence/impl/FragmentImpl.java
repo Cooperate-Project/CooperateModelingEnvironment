@@ -4,7 +4,12 @@
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -45,6 +50,29 @@ public class FragmentImpl extends CDOObjectImpl implements Fragment {
     @Override
     protected int eStaticFeatureCount() {
         return 0;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FragmentSequence getContainingSequence() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.FRAGMENT___GET_CONTAINING_SEQUENCE:
+                return getContainingSequence();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //FragmentImpl

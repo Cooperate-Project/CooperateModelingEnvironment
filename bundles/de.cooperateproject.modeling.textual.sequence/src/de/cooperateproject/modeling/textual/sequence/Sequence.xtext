@@ -71,13 +71,12 @@ Message:
         LostMessage     |
         CreateMessage   |
         DestructionMessage)
-    ('as' alias = ID)?    
-    sendEvent=ImplicitSendOccurenceSpecification
-    (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
+       
+    
 ;
 
 ExplicitArrivalOccurenceReference: 
-    'arrives''['occurenceSpecification=[ExplicitArrivalOccurenceSpecification]']'
+    'arrives''['explicitOccurenceSpecification=[ExplicitArrivalOccurenceSpecification]']'
 ;
 
 
@@ -87,27 +86,35 @@ ExplicitArrivalOccurenceSpecification:
 
 
 StandardMessage:
-    type=MessageType name=UnescapedString '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+    type=MessageType name=UnescapedString '('left = [Actor|FQN]',' right = [Actor|FQN]')' ('as' alias = ID)? sendEvent=ImplicitSendOccurenceSpecification
+    (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
 ;
 
 ResponseMessage:
-   'reply' name=UnescapedString '(' (left = [Actor|FQN]|'_') ',' (right = ([Actor|FQN])|'_') ')'   
+   'reply' name=UnescapedString '('(left = [Actor|FQN]|'_')',' (right = ([Actor|FQN])|'_')')' ('as' alias = ID)? sendEvent=ImplicitSendOccurenceSpecification
+    (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
 ;
 
 FoundMessage returns StandardMessage:
-    'found' type=MessageType name=UnescapedString '(' '_' ',' right = [Actor|FQN]')'
+    'found' type=MessageType name=UnescapedString '(''_'',' right = [Actor|FQN]')' ('as' alias = ID)? 
+    (arrivalEvent=ImplicitArrivalOccurenceSpecification)
 ;
 
 LostMessage returns Message:
-    'lost' (('reply' {ResponseMessage}) | ({StandardMessage} type=MessageType)) name=UnescapedString '(' left = [Actor|FQN] ',' '_'')'
+    'lost' (('reply' {ResponseMessage}) | ({StandardMessage} type=MessageType)) name=UnescapedString '('left = [Actor|FQN]',' '_'')'
+    ('as' alias = ID)? sendEvent=ImplicitSendOccurenceSpecification
 ;
 
 CreateMessage:
-    'create' name=UnescapedString? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+    'create' name=UnescapedString? '('left = [Actor|FQN]',' right = [Actor|FQN]')' ('as' alias = ID)? 
+    sendEvent=ImplicitSendOccurenceSpecification
+    (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
 ;
 
 DestructionMessage:
-    'dest' name=UnescapedString? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')'
+    'dest' name=UnescapedString? '(' left = [Actor|FQN] ',' right = [Actor|FQN] ')' ('as' alias = ID)? 
+    sendEvent=ImplicitSendOccurenceSpecification
+    (arrivalEvent=ExplicitArrivalOccurenceReference | arrivalEvent=ImplicitArrivalOccurenceSpecification)
 ;
 
 
@@ -196,12 +203,12 @@ FragmentTimeIntervalSelector:
 ;
 
 
-ImplicitSendOccurenceSpecification: 
-    {ImplicitSendOccurenceSpecification}
+ImplicitSendOccurenceSpecification returns ImplicitMessageOccurenceSpecification: 
+    {ImplicitMessageOccurenceSpecification}
 ;
 
-ImplicitArrivalOccurenceSpecification: 
-    {ImplicitArrivalOccurenceSpecification}
+ImplicitArrivalOccurenceSpecification returns ImplicitMessageOccurenceSpecification: 
+    {ImplicitMessageOccurenceSpecification}
 ;
 
 FQN:

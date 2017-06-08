@@ -5,41 +5,38 @@ package de.cooperateproject.modeling.textual.sequence
 
 import com.google.inject.Binder
 import com.google.inject.name.Names
-import de.cooperateproject.modeling.textual.common.generator.CommonDerivedStateModuleExtension
 import de.cooperateproject.modeling.textual.common.scoping.CooperateValueConverterBase
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService
-import de.cooperateproject.modeling.textual.sequence.generator.SequenceDerivedStateComputer
 import de.cooperateproject.modeling.textual.sequence.naming.SequenceDiagramQualifiedNameProvider
 import de.cooperateproject.modeling.textual.sequence.scoping.SequenceDiagramImportedNamespaceAwareLocalScopeProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.cdotext.TextualStateCalculator
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateModuleMixin
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
-import net.winklerweb.cdoxtext.runtime.ICDOResourceStateCalculator
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.TransientStatusProviderModuleMixin
 import org.eclipse.xtext.resource.DerivedStateAwareResource
-import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter
+import de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.SequenceDerivedStateElementComparator
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.InitializingStateAwareResource
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-class SequenceRuntimeModule extends AbstractSequenceRuntimeModule implements CommonDerivedStateModuleExtension {
+class SequenceRuntimeModule extends AbstractSequenceRuntimeModule implements DerivedStateModuleMixin, TransientStatusProviderModuleMixin {
     
     override bindITransientValueService() {
         BasicCooperateTransientValueService
     }
     
-    def Class<? extends ICDOResourceStateCalculator> bindICDOResourceStateCalculator() {
-        TextualStateCalculator;
-    }
-    
-    def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
-        return SequenceDerivedStateComputer;
+    def configureITransientValueService(Binder binder) {
+        binder.bind(ITransientValueService).to(BasicCooperateTransientValueService)
     }
     
     override Class<? extends XtextResource> bindXtextResource() {
-        return DerivedStateAwareResource;
+        return InitializingStateAwareResource;
     }
     
     override bindIValueConverterService() {
@@ -59,5 +56,9 @@ class SequenceRuntimeModule extends AbstractSequenceRuntimeModule implements Com
                 .annotatedWith(Names
                         .named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
                 .to(SequenceDiagramImportedNamespaceAwareLocalScopeProvider);
+    }
+    
+    def bindIDerivedStateComputerSorter() {
+        SequenceDerivedStateElementComparator as Class<? extends IDerivedStateComputerSorter>
     }
 }

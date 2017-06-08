@@ -7,11 +7,11 @@ package de.cooperateproject.modeling.textual.sequence.issues;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionFactoryBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker;
+import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IssueRevalidatingAutomatedIssueResolutionFactoryBase;
 
 public abstract class SequenceAutomatedIssueResolutionFactoryBase<T extends EObject>
-        extends AutomatedIssueResolutionFactoryBase<T> {
+        extends IssueRevalidatingAutomatedIssueResolutionFactoryBase<T> {
 
     public SequenceAutomatedIssueResolutionFactoryBase(String issueId, IResolvableChecker<T> checker,
             Class<T> acceptedType) {

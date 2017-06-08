@@ -17,6 +17,10 @@ class SequenceDiagramImportedNamespaceAwareLocalScopeProvider extends CooperateI
             val List<ImportNormalizer> implicitNamespaceResolvers = context.eAllContents
                     .filter[it instanceof OrderedFragmentContainer].map[qualifiedNameProvider.getFullyQualifiedName(it)]
                     .map[doCreateImportNormalizer(it, true, ignoreCase)].toList;
+                    
+            implicitNamespaceResolvers += doCreateImportNormalizer(
+                qualifiedNameProvider.getFullyQualifiedName(context.rootPackage), true, ignoreCase)
+                
             return Lists.newArrayList(Iterables.concat(originalResolvers, implicitNamespaceResolvers));
         }
         return originalResolvers

@@ -7,4 +7,16 @@
                 class="de.cooperateproject.modeling.textual.sequence.issues.SequenceUMLReferencingElementMissingElementFactory">
           </factory>
     </extension>
+    <extension
+          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
+       <class
+             class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.ActorClassifierMappingCalculator">
+       </class>
+       <class
+             class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.OccurenceSpecificationCalculator">
+       </class>
+       <class
+             class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.MessageCalculator">
+       </class>
+    </extension>
 </plugin>

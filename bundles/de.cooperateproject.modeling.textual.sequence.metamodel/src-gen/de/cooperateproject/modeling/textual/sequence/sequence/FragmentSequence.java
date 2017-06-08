@@ -7,6 +7,8 @@ import org.eclipse.emf.cdo.CDOObject;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.uml2.uml.InteractionFragment;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Fragment Sequence</b></em>'.
@@ -40,5 +42,14 @@ public interface FragmentSequence extends CDOObject {
      * @generated
      */
     EList<Fragment> getFragments();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUMLFragmentSequence(this);'"
+     * @generated
+     */
+    EList<InteractionFragment> getUMLFragmentSequence();
 
 } // FragmentSequence

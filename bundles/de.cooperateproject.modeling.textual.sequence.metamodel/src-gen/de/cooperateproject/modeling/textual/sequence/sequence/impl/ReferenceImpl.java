@@ -11,9 +11,14 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl
 
 import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.Reference;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -147,6 +152,15 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
      */
     public void setReference(Interaction newReference) {
         eDynamicSet(SequencePackage.REFERENCE__REFERENCE, SequencePackage.Literals.REFERENCE__REFERENCE, newReference);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FragmentSequence getContainingSequence() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);
     }
 
     /**
@@ -300,6 +314,56 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Fragment.class) {
+            switch (baseOperationID) {
+                case SequencePackage.FRAGMENT___GET_CONTAINING_SEQUENCE: return SequencePackage.REFERENCE___GET_CONTAINING_SEQUENCE;
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedPointInTime.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NonInstantaneousFragment.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.REFERENCE___GET_CONTAINING_SEQUENCE:
+                return getContainingSequence();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //ReferenceImpl

@@ -13,6 +13,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
+import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
@@ -160,6 +161,15 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(SequencePackage.OCCURENCE_SPECIFICATION__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OccurenceReference<OccurenceSpecification<UMLOccurenceType>> getOccurenceReference() {
+        return null;
     }
 
     /**
@@ -432,6 +442,8 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
     @Override
     public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
         switch (operationID) {
+            case SequencePackage.OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE:
+                return getOccurenceReference();
             case SequencePackage.OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE:
                 return getNearestPackage();
         }

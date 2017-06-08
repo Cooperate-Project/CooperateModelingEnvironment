@@ -12,6 +12,8 @@ import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import java.lang.reflect.InvocationTargetException;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,6 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,6 +149,15 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
     @SuppressWarnings("unchecked")
     public EList<Actor> getActors() {
         return (EList<Actor>)eDynamicGet(SequencePackage.SEQUENCE_DIAGRAM__ACTORS, SequencePackage.Literals.SEQUENCE_DIAGRAM__ACTORS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<InteractionFragment> getUMLFragmentSequence() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUMLFragmentSequence(this);
     }
 
     /**
@@ -287,6 +299,36 @@ public class SequenceDiagramImpl extends UMLReferencingElementImpl<Interaction> 
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == FragmentSequence.class) {
+            switch (baseOperationID) {
+                case SequencePackage.FRAGMENT_SEQUENCE___GET_UML_FRAGMENT_SEQUENCE: return SequencePackage.SEQUENCE_DIAGRAM___GET_UML_FRAGMENT_SEQUENCE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.SEQUENCE_DIAGRAM___GET_UML_FRAGMENT_SEQUENCE:
+                return getUMLFragmentSequence();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //SequenceDiagramImpl

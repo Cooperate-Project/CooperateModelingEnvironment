@@ -261,13 +261,13 @@ public interface SequenceFactory extends EFactory {
     ExplicitArrivalOccurenceReference createExplicitArrivalOccurenceReference();
 
     /**
-     * Returns a new object of class '<em>Implicit Arrival Occurence Specification</em>'.
+     * Returns a new object of class '<em>Implicit Message Occurence Specification</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Implicit Arrival Occurence Specification</em>'.
+     * @return a new object of class '<em>Implicit Message Occurence Specification</em>'.
      * @generated
      */
-    ImplicitArrivalOccurenceSpecification createImplicitArrivalOccurenceSpecification();
+    ImplicitMessageOccurenceSpecification createImplicitMessageOccurenceSpecification();
 
     /**
      * Returns a new object of class '<em>Explicit Arrival Occurence Specification</em>'.
@@ -277,15 +277,6 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     ExplicitArrivalOccurenceSpecification createExplicitArrivalOccurenceSpecification();
-
-    /**
-     * Returns a new object of class '<em>Implicit Send Occurence Specification</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Implicit Send Occurence Specification</em>'.
-     * @generated
-     */
-    ImplicitSendOccurenceSpecification createImplicitSendOccurenceSpecification();
 
     /**
      * Returns a new object of class '<em>Aliased Point In Time</em>'.

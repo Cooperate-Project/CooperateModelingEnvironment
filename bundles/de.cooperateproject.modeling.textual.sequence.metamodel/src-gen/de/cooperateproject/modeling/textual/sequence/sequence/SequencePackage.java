@@ -135,13 +135,22 @@ public interface SequencePackage extends EPackage {
     int SEQUENCE_DIAGRAM___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Fragment Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEQUENCE_DIAGRAM___GET_UML_FRAGMENT_SEQUENCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Diagram</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SEQUENCE_DIAGRAM_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int SEQUENCE_DIAGRAM_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.RootPackageImpl <em>Root Package</em>}' class.
@@ -391,13 +400,22 @@ public interface SequencePackage extends EPackage {
     int FRAGMENT_FEATURE_COUNT = 0;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT___GET_CONTAINING_SEQUENCE = 0;
+
+    /**
      * The number of operations of the '<em>Fragment</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FRAGMENT_OPERATION_COUNT = 0;
+    int FRAGMENT_OPERATION_COUNT = 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl <em>Fragment Sequence</em>}' class.
@@ -428,13 +446,22 @@ public interface SequencePackage extends EPackage {
     int FRAGMENT_SEQUENCE_FEATURE_COUNT = 1;
 
     /**
+     * The operation id for the '<em>Get UML Fragment Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FRAGMENT_SEQUENCE___GET_UML_FRAGMENT_SEQUENCE = 0;
+
+    /**
      * The number of operations of the '<em>Fragment Sequence</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FRAGMENT_SEQUENCE_OPERATION_COUNT = 0;
+    int FRAGMENT_SEQUENCE_OPERATION_COUNT = 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl <em>Message</em>}' class.
@@ -501,13 +528,31 @@ public interface SequencePackage extends EPackage {
     int MESSAGE__SEND_EVENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
+     * The feature id for the '<em><b>Left</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE__LEFT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Right</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE__RIGHT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Message</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MESSAGE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
+    int MESSAGE_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 7;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -519,13 +564,22 @@ public interface SequencePackage extends EPackage {
     int MESSAGE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MESSAGE___GET_CONTAINING_SEQUENCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Message</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MESSAGE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int MESSAGE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl <em>Standard Message</em>}' class.
@@ -592,6 +646,24 @@ public interface SequencePackage extends EPackage {
     int STANDARD_MESSAGE__SEND_EVENT = MESSAGE__SEND_EVENT;
 
     /**
+     * The feature id for the '<em><b>Left</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE__LEFT = MESSAGE__LEFT;
+
+    /**
+     * The feature id for the '<em><b>Right</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE__RIGHT = MESSAGE__RIGHT;
+
+    /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -601,31 +673,13 @@ public interface SequencePackage extends EPackage {
     int STANDARD_MESSAGE__TYPE = MESSAGE_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Left</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int STANDARD_MESSAGE__LEFT = MESSAGE_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Right</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int STANDARD_MESSAGE__RIGHT = MESSAGE_FEATURE_COUNT + 2;
-
-    /**
      * The number of structural features of the '<em>Standard Message</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STANDARD_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 3;
+    int STANDARD_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -635,6 +689,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int STANDARD_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STANDARD_MESSAGE___GET_CONTAINING_SEQUENCE = MESSAGE___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Standard Message</em>' class.
@@ -716,7 +779,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE__LEFT = MESSAGE_FEATURE_COUNT + 0;
+    int RESPONSE_MESSAGE__LEFT = MESSAGE__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -725,7 +788,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE__RIGHT = MESSAGE_FEATURE_COUNT + 1;
+    int RESPONSE_MESSAGE__RIGHT = MESSAGE__RIGHT;
 
     /**
      * The number of structural features of the '<em>Response Message</em>' class.
@@ -734,7 +797,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
+    int RESPONSE_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -744,6 +807,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int RESPONSE_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE___GET_CONTAINING_SEQUENCE = MESSAGE___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Response Message</em>' class.
@@ -825,7 +897,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CREATE_MESSAGE__LEFT = MESSAGE_FEATURE_COUNT + 0;
+    int CREATE_MESSAGE__LEFT = MESSAGE__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -834,7 +906,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CREATE_MESSAGE__RIGHT = MESSAGE_FEATURE_COUNT + 1;
+    int CREATE_MESSAGE__RIGHT = MESSAGE__RIGHT;
 
     /**
      * The number of structural features of the '<em>Create Message</em>' class.
@@ -843,7 +915,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CREATE_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
+    int CREATE_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -853,6 +925,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int CREATE_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CREATE_MESSAGE___GET_CONTAINING_SEQUENCE = MESSAGE___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Create Message</em>' class.
@@ -934,7 +1015,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_MESSAGE__LEFT = MESSAGE_FEATURE_COUNT + 0;
+    int DESTRUCTION_MESSAGE__LEFT = MESSAGE__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -943,7 +1024,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_MESSAGE__RIGHT = MESSAGE_FEATURE_COUNT + 1;
+    int DESTRUCTION_MESSAGE__RIGHT = MESSAGE__RIGHT;
 
     /**
      * The number of structural features of the '<em>Destruction Message</em>' class.
@@ -952,7 +1033,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DESTRUCTION_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 2;
+    int DESTRUCTION_MESSAGE_FEATURE_COUNT = MESSAGE_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -962,6 +1043,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int DESTRUCTION_MESSAGE___GET_NEAREST_PACKAGE = MESSAGE___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_MESSAGE___GET_CONTAINING_SEQUENCE = MESSAGE___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Destruction Message</em>' class.
@@ -1028,6 +1118,15 @@ public interface SequencePackage extends EPackage {
     int OCCURENCE_SPECIFICATION_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 4;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE = FRAGMENT___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1037,13 +1136,22 @@ public interface SequencePackage extends EPackage {
     int OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = FRAGMENT_OPERATION_COUNT + 0;
 
     /**
+     * The operation id for the '<em>Get Occurence Reference</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = FRAGMENT_OPERATION_COUNT + 1;
+
+    /**
      * The number of operations of the '<em>Occurence Specification</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 1;
+    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 2;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl <em>Destruction Occurence Specification</em>}' class.
@@ -1110,6 +1218,15 @@ public interface SequencePackage extends EPackage {
     int DESTRUCTION_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE = OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1117,6 +1234,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Occurence Reference</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE;
 
     /**
      * The number of operations of the '<em>Destruction Occurence Specification</em>' class.
@@ -1135,7 +1261,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getNonInstantaneousFragment()
      * @generated
      */
-    int NON_INSTANTANEOUS_FRAGMENT = 41;
+    int NON_INSTANTANEOUS_FRAGMENT = 40;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1172,6 +1298,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int NON_INSTANTANEOUS_FRAGMENT_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT___GET_CONTAINING_SEQUENCE = FRAGMENT___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1245,6 +1380,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int COMBINED_FRAGMENT_FEATURE_COUNT = NON_INSTANTANEOUS_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT___GET_CONTAINING_SEQUENCE = NON_INSTANTANEOUS_FRAGMENT___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1329,13 +1473,22 @@ public interface SequencePackage extends EPackage {
     int ORDERED_FRAGMENT_CONTAINER___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get UML Fragment Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER___GET_UML_FRAGMENT_SEQUENCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Ordered Fragment Container</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ORDERED_FRAGMENT_CONTAINER_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int ORDERED_FRAGMENT_CONTAINER_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.SingleRegionContainerImpl <em>Single Region Container</em>}' class.
@@ -1400,6 +1553,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int SINGLE_REGION_CONTAINER_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE = COMBINED_FRAGMENT___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1484,6 +1646,15 @@ public interface SequencePackage extends EPackage {
     int MULTIPLE_REGION_CONTAINER_FEATURE_COUNT = COMBINED_FRAGMENT_FEATURE_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE = COMBINED_FRAGMENT___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1564,6 +1735,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int ALTERNATIVE_FEATURE_COUNT = MULTIPLE_REGION_CONTAINER_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE___GET_CONTAINING_SEQUENCE = MULTIPLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1648,6 +1828,15 @@ public interface SequencePackage extends EPackage {
     int OPTION_FEATURE_COUNT = SINGLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION___GET_CONTAINING_SEQUENCE = SINGLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1728,6 +1917,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int CO_REGION_FEATURE_COUNT = MULTIPLE_REGION_CONTAINER_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION___GET_CONTAINING_SEQUENCE = MULTIPLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1812,6 +2010,15 @@ public interface SequencePackage extends EPackage {
     int PARALLEL_FEATURE_COUNT = MULTIPLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL___GET_CONTAINING_SEQUENCE = MULTIPLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1894,6 +2101,15 @@ public interface SequencePackage extends EPackage {
     int CRITICAL_FEATURE_COUNT = SINGLE_REGION_CONTAINER_FEATURE_COUNT + 0;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL___GET_CONTAINING_SEQUENCE = SINGLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1974,6 +2190,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int LOOP_FEATURE_COUNT = SINGLE_REGION_CONTAINER_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP___GET_CONTAINING_SEQUENCE = SINGLE_REGION_CONTAINER___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2068,6 +2293,15 @@ public interface SequencePackage extends EPackage {
     int OBSERVATION_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 0;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBSERVATION___GET_CONTAINING_SEQUENCE = FRAGMENT___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The number of operations of the '<em>Observation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2112,6 +2346,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int TIME_OBSERVATION_FEATURE_COUNT = OBSERVATION_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_OBSERVATION___GET_CONTAINING_SEQUENCE = OBSERVATION___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Time Observation</em>' class.
@@ -2160,6 +2403,15 @@ public interface SequencePackage extends EPackage {
     int DURATION_OBSERVATION_FEATURE_COUNT = OBSERVATION_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_OBSERVATION___GET_CONTAINING_SEQUENCE = OBSERVATION___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The number of operations of the '<em>Duration Observation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2186,6 +2438,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int CONSTRAINT_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINT___GET_CONTAINING_SEQUENCE = FRAGMENT___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Constraint</em>' class.
@@ -2234,6 +2495,15 @@ public interface SequencePackage extends EPackage {
     int TIME_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIME_CONSTRAINT___GET_CONTAINING_SEQUENCE = CONSTRAINT___GET_CONTAINING_SEQUENCE;
+
+    /**
      * The number of operations of the '<em>Time Constraint</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2278,6 +2548,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int DURATION_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DURATION_CONSTRAINT___GET_CONTAINING_SEQUENCE = CONSTRAINT___GET_CONTAINING_SEQUENCE;
 
     /**
      * The number of operations of the '<em>Duration Constraint</em>' class.
@@ -2336,13 +2615,13 @@ public interface SequencePackage extends EPackage {
     int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE = 31;
 
     /**
-     * The feature id for the '<em><b>Occurence Specification</b></em>' reference.
+     * The feature id for the '<em><b>Explicit Occurence Specification</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION = OCCURENCE_REFERENCE_FEATURE_COUNT + 0;
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION = OCCURENCE_REFERENCE_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Explicit Arrival Occurence Reference</em>' class.
@@ -2360,7 +2639,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION = OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION;
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION = OCCURENCE_REFERENCE_OPERATION_COUNT + 0;
 
     /**
      * The number of operations of the '<em>Explicit Arrival Occurence Reference</em>' class.
@@ -2369,17 +2648,17 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE_OPERATION_COUNT = OCCURENCE_REFERENCE_OPERATION_COUNT + 0;
+    int EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE_OPERATION_COUNT = OCCURENCE_REFERENCE_OPERATION_COUNT + 1;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl <em>Implicit Arrival Occurence Specification</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitMessageOccurenceSpecificationImpl <em>Implicit Message Occurence Specification</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitArrivalOccurenceSpecification()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitMessageOccurenceSpecificationImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitMessageOccurenceSpecification()
      * @generated
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = 32;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION = 32;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -2388,7 +2667,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2397,7 +2676,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
 
     /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2406,7 +2685,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -2415,16 +2694,25 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
 
     /**
-     * The number of structural features of the '<em>Implicit Arrival Occurence Specification</em>' class.
+     * The number of structural features of the '<em>Implicit Message Occurence Specification</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE = OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2433,7 +2721,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Occurence Reference</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Occurence Specification</em>' operation.
@@ -2442,16 +2739,34 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 2;
 
     /**
-     * The number of operations of the '<em>Implicit Arrival Occurence Specification</em>' class.
+     * The operation id for the '<em>Is Arrival</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 2;
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___IS_ARRIVAL = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Is Send</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___IS_SEND = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 4;
+
+    /**
+     * The number of operations of the '<em>Implicit Message Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 5;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl <em>Explicit Arrival Occurence Specification</em>}' class.
@@ -2500,13 +2815,22 @@ public interface SequencePackage extends EPackage {
     int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+     * The feature id for the '<em><b>Explicit Occurence Reference</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Explicit Arrival Occurence Specification</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2518,95 +2842,31 @@ public interface SequencePackage extends EPackage {
     int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.NAMED_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Occurence Reference</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+    /**
      * The number of operations of the '<em>Explicit Arrival Occurence Specification</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl <em>Implicit Send Occurence Specification</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitSendOccurenceSpecification()
-     * @generated
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION = 34;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
-
-    /**
-     * The number of structural features of the '<em>Implicit Send Occurence Specification</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
-
-    /**
-     * The operation id for the '<em>Get Occurence Specification</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
-
-    /**
-     * The number of operations of the '<em>Implicit Send Occurence Specification</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_SEND_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 2;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl <em>Aliased Point In Time</em>}' class.
@@ -2616,7 +2876,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getAliasedPointInTime()
      * @generated
      */
-    int ALIASED_POINT_IN_TIME = 35;
+    int ALIASED_POINT_IN_TIME = 34;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2680,7 +2940,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getPointInTimeSelector()
      * @generated
      */
-    int POINT_IN_TIME_SELECTOR = 36;
+    int POINT_IN_TIME_SELECTOR = 35;
 
     /**
      * The feature id for the '<em><b>Point In Time</b></em>' reference.
@@ -2717,7 +2977,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getTimeIntervalSelector()
      * @generated
      */
-    int TIME_INTERVAL_SELECTOR = 37;
+    int TIME_INTERVAL_SELECTOR = 36;
 
     /**
      * The number of structural features of the '<em>Time Interval Selector</em>' class.
@@ -2763,7 +3023,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getBiPointInTimeTimeIntervalSelector()
      * @generated
      */
-    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR = 38;
+    int BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR = 37;
 
     /**
      * The feature id for the '<em><b>Start</b></em>' containment reference.
@@ -2827,7 +3087,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getFragmentTimeIntervalSelector()
      * @generated
      */
-    int FRAGMENT_TIME_INTERVAL_SELECTOR = 39;
+    int FRAGMENT_TIME_INTERVAL_SELECTOR = 38;
 
     /**
      * The feature id for the '<em><b>Non Instantaneous Fragment</b></em>' reference.
@@ -2882,7 +3142,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getReference()
      * @generated
      */
-    int REFERENCE = 40;
+    int REFERENCE = 39;
 
     /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
@@ -2939,13 +3199,22 @@ public interface SequencePackage extends EPackage {
     int REFERENCE___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCE___GET_CONTAINING_SEQUENCE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Reference</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REFERENCE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int REFERENCE_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.MessageType <em>Message Type</em>}' enum.
@@ -2955,7 +3224,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getMessageType()
      * @generated
      */
-    int MESSAGE_TYPE = 42;
+    int MESSAGE_TYPE = 41;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ActorType <em>Actor Type</em>}' enum.
@@ -2965,7 +3234,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getActorType()
      * @generated
      */
-    int ACTOR_TYPE = 43;
+    int ACTOR_TYPE = 42;
 
 
     /**
@@ -3118,6 +3387,16 @@ public interface SequencePackage extends EPackage {
     EClass getFragment();
 
     /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Fragment#getContainingSequence() <em>Get Containing Sequence</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Containing Sequence</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Fragment#getContainingSequence()
+     * @generated
+     */
+    EOperation getFragment__GetContainingSequence();
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence <em>Fragment Sequence</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3137,6 +3416,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EReference getFragmentSequence_Fragments();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence#getUMLFragmentSequence() <em>Get UML Fragment Sequence</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get UML Fragment Sequence</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence#getUMLFragmentSequence()
+     * @generated
+     */
+    EOperation getFragmentSequence__GetUMLFragmentSequence();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message <em>Message</em>}'.
@@ -3171,6 +3460,28 @@ public interface SequencePackage extends EPackage {
     EReference getMessage_SendEvent();
 
     /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getLeft <em>Left</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Left</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Message#getLeft()
+     * @see #getMessage()
+     * @generated
+     */
+    EReference getMessage_Left();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getRight <em>Right</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Right</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.Message#getRight()
+     * @see #getMessage()
+     * @generated
+     */
+    EReference getMessage_Right();
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage <em>Standard Message</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3192,28 +3503,6 @@ public interface SequencePackage extends EPackage {
     EAttribute getStandardMessage_Type();
 
     /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage#getLeft <em>Left</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Left</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage#getLeft()
-     * @see #getStandardMessage()
-     * @generated
-     */
-    EReference getStandardMessage_Left();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage#getRight <em>Right</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Right</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage#getRight()
-     * @see #getStandardMessage()
-     * @generated
-     */
-    EReference getStandardMessage_Right();
-
-    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage <em>Response Message</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3222,28 +3511,6 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EClass getResponseMessage();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#getLeft <em>Left</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Left</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#getLeft()
-     * @see #getResponseMessage()
-     * @generated
-     */
-    EReference getResponseMessage_Left();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#getRight <em>Right</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Right</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#getRight()
-     * @see #getResponseMessage()
-     * @generated
-     */
-    EReference getResponseMessage_Right();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage <em>Create Message</em>}'.
@@ -3256,28 +3523,6 @@ public interface SequencePackage extends EPackage {
     EClass getCreateMessage();
 
     /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage#getLeft <em>Left</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Left</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage#getLeft()
-     * @see #getCreateMessage()
-     * @generated
-     */
-    EReference getCreateMessage_Left();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage#getRight <em>Right</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Right</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage#getRight()
-     * @see #getCreateMessage()
-     * @generated
-     */
-    EReference getCreateMessage_Right();
-
-    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage <em>Destruction Message</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3288,28 +3533,6 @@ public interface SequencePackage extends EPackage {
     EClass getDestructionMessage();
 
     /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage#getLeft <em>Left</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Left</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage#getLeft()
-     * @see #getDestructionMessage()
-     * @generated
-     */
-    EReference getDestructionMessage_Left();
-
-    /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage#getRight <em>Right</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Right</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage#getRight()
-     * @see #getDestructionMessage()
-     * @generated
-     */
-    EReference getDestructionMessage_Right();
-
-    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification <em>Occurence Specification</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3318,6 +3541,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EClass getOccurenceSpecification();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification#getOccurenceReference() <em>Get Occurence Reference</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Occurence Reference</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification#getOccurenceReference()
+     * @generated
+     */
+    EOperation getOccurenceSpecification__GetOccurenceReference();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification <em>Destruction Occurence Specification</em>}'.
@@ -3673,35 +3906,75 @@ public interface SequencePackage extends EPackage {
     EClass getExplicitArrivalOccurenceReference();
 
     /**
-     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification <em>Occurence Specification</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getExplicitOccurenceSpecification <em>Explicit Occurence Specification</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Occurence Specification</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification()
+     * @return the meta object for the reference '<em>Explicit Occurence Specification</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getExplicitOccurenceSpecification()
      * @see #getExplicitArrivalOccurenceReference()
      * @generated
      */
-    EReference getExplicitArrivalOccurenceReference_OccurenceSpecification();
+    EReference getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification <em>Implicit Arrival Occurence Specification</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Implicit Arrival Occurence Specification</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification
-     * @generated
-     */
-    EClass getImplicitArrivalOccurenceSpecification();
-
-    /**
-     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the '<em>Get Occurence Specification</em>' operation.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification#getOccurenceSpecification()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification()
      * @generated
      */
-    EOperation getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification();
+    EOperation getExplicitArrivalOccurenceReference__GetOccurenceSpecification();
+
+    /**
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification <em>Implicit Message Occurence Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Implicit Message Occurence Specification</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification
+     * @generated
+     */
+    EClass getImplicitMessageOccurenceSpecification();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#getOccurenceReference() <em>Get Occurence Reference</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Occurence Reference</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#getOccurenceReference()
+     * @generated
+     */
+    EOperation getImplicitMessageOccurenceSpecification__GetOccurenceReference();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Occurence Specification</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#getOccurenceSpecification()
+     * @generated
+     */
+    EOperation getImplicitMessageOccurenceSpecification__GetOccurenceSpecification();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#isArrival() <em>Is Arrival</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Is Arrival</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#isArrival()
+     * @generated
+     */
+    EOperation getImplicitMessageOccurenceSpecification__IsArrival();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#isSend() <em>Is Send</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Is Send</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification#isSend()
+     * @generated
+     */
+    EOperation getImplicitMessageOccurenceSpecification__IsSend();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification <em>Explicit Arrival Occurence Specification</em>}'.
@@ -3714,24 +3987,25 @@ public interface SequencePackage extends EPackage {
     EClass getExplicitArrivalOccurenceSpecification();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification <em>Implicit Send Occurence Specification</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification#getExplicitOccurenceReference <em>Explicit Occurence Reference</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Implicit Send Occurence Specification</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification
+     * @return the meta object for the reference '<em>Explicit Occurence Reference</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification#getExplicitOccurenceReference()
+     * @see #getExplicitArrivalOccurenceSpecification()
      * @generated
      */
-    EClass getImplicitSendOccurenceSpecification();
+    EReference getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference();
 
     /**
-     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification#getOccurenceSpecification() <em>Get Occurence Specification</em>}' operation.
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification#getOccurenceReference() <em>Get Occurence Reference</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the '<em>Get Occurence Specification</em>' operation.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification#getOccurenceSpecification()
+     * @return the meta object for the '<em>Get Occurence Reference</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification#getOccurenceReference()
      * @generated
      */
-    EOperation getImplicitSendOccurenceSpecification__GetOccurenceSpecification();
+    EOperation getExplicitArrivalOccurenceSpecification__GetOccurenceReference();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime <em>Aliased Point In Time</em>}'.
@@ -4084,6 +4358,14 @@ public interface SequencePackage extends EPackage {
         EClass FRAGMENT = eINSTANCE.getFragment();
 
         /**
+         * The meta object literal for the '<em><b>Get Containing Sequence</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation FRAGMENT___GET_CONTAINING_SEQUENCE = eINSTANCE.getFragment__GetContainingSequence();
+
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.FragmentSequenceImpl <em>Fragment Sequence</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4100,6 +4382,14 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EReference FRAGMENT_SEQUENCE__FRAGMENTS = eINSTANCE.getFragmentSequence_Fragments();
+
+        /**
+         * The meta object literal for the '<em><b>Get UML Fragment Sequence</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation FRAGMENT_SEQUENCE___GET_UML_FRAGMENT_SEQUENCE = eINSTANCE.getFragmentSequence__GetUMLFragmentSequence();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl <em>Message</em>}' class.
@@ -4128,6 +4418,22 @@ public interface SequencePackage extends EPackage {
         EReference MESSAGE__SEND_EVENT = eINSTANCE.getMessage_SendEvent();
 
         /**
+         * The meta object literal for the '<em><b>Left</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MESSAGE__LEFT = eINSTANCE.getMessage_Left();
+
+        /**
+         * The meta object literal for the '<em><b>Right</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MESSAGE__RIGHT = eINSTANCE.getMessage_Right();
+
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl <em>Standard Message</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4146,22 +4452,6 @@ public interface SequencePackage extends EPackage {
         EAttribute STANDARD_MESSAGE__TYPE = eINSTANCE.getStandardMessage_Type();
 
         /**
-         * The meta object literal for the '<em><b>Left</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference STANDARD_MESSAGE__LEFT = eINSTANCE.getStandardMessage_Left();
-
-        /**
-         * The meta object literal for the '<em><b>Right</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference STANDARD_MESSAGE__RIGHT = eINSTANCE.getStandardMessage_Right();
-
-        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ResponseMessageImpl <em>Response Message</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4170,22 +4460,6 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EClass RESPONSE_MESSAGE = eINSTANCE.getResponseMessage();
-
-        /**
-         * The meta object literal for the '<em><b>Left</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference RESPONSE_MESSAGE__LEFT = eINSTANCE.getResponseMessage_Left();
-
-        /**
-         * The meta object literal for the '<em><b>Right</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference RESPONSE_MESSAGE__RIGHT = eINSTANCE.getResponseMessage_Right();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.
@@ -4198,22 +4472,6 @@ public interface SequencePackage extends EPackage {
         EClass CREATE_MESSAGE = eINSTANCE.getCreateMessage();
 
         /**
-         * The meta object literal for the '<em><b>Left</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CREATE_MESSAGE__LEFT = eINSTANCE.getCreateMessage_Left();
-
-        /**
-         * The meta object literal for the '<em><b>Right</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CREATE_MESSAGE__RIGHT = eINSTANCE.getCreateMessage_Right();
-
-        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionMessageImpl <em>Destruction Message</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4224,22 +4482,6 @@ public interface SequencePackage extends EPackage {
         EClass DESTRUCTION_MESSAGE = eINSTANCE.getDestructionMessage();
 
         /**
-         * The meta object literal for the '<em><b>Left</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DESTRUCTION_MESSAGE__LEFT = eINSTANCE.getDestructionMessage_Left();
-
-        /**
-         * The meta object literal for the '<em><b>Right</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DESTRUCTION_MESSAGE__RIGHT = eINSTANCE.getDestructionMessage_Right();
-
-        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl <em>Occurence Specification</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4248,6 +4490,14 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EClass OCCURENCE_SPECIFICATION = eINSTANCE.getOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Get Occurence Reference</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = eINSTANCE.getOccurenceSpecification__GetOccurenceReference();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl <em>Destruction Occurence Specification</em>}' class.
@@ -4562,22 +4812,12 @@ public interface SequencePackage extends EPackage {
         EClass EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE = eINSTANCE.getExplicitArrivalOccurenceReference();
 
         /**
-         * The meta object literal for the '<em><b>Occurence Specification</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Explicit Occurence Specification</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION = eINSTANCE.getExplicitArrivalOccurenceReference_OccurenceSpecification();
-
-        /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl <em>Implicit Arrival Occurence Specification</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitArrivalOccurenceSpecificationImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitArrivalOccurenceSpecification()
-         * @generated
-         */
-        EClass IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitArrivalOccurenceSpecification();
+        EReference EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION = eINSTANCE.getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification();
 
         /**
          * The meta object literal for the '<em><b>Get Occurence Specification</b></em>' operation.
@@ -4585,7 +4825,49 @@ public interface SequencePackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EOperation IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification();
+        EOperation EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getExplicitArrivalOccurenceReference__GetOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitMessageOccurenceSpecificationImpl <em>Implicit Message Occurence Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitMessageOccurenceSpecificationImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitMessageOccurenceSpecification()
+         * @generated
+         */
+        EClass IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitMessageOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Get Occurence Reference</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = eINSTANCE.getImplicitMessageOccurenceSpecification__GetOccurenceReference();
+
+        /**
+         * The meta object literal for the '<em><b>Get Occurence Specification</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitMessageOccurenceSpecification__GetOccurenceSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Is Arrival</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___IS_ARRIVAL = eINSTANCE.getImplicitMessageOccurenceSpecification__IsArrival();
+
+        /**
+         * The meta object literal for the '<em><b>Is Send</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___IS_SEND = eINSTANCE.getImplicitMessageOccurenceSpecification__IsSend();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl <em>Explicit Arrival Occurence Specification</em>}' class.
@@ -4598,22 +4880,20 @@ public interface SequencePackage extends EPackage {
         EClass EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = eINSTANCE.getExplicitArrivalOccurenceSpecification();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl <em>Implicit Send Occurence Specification</em>}' class.
+         * The meta object literal for the '<em><b>Explicit Occurence Reference</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.ImplicitSendOccurenceSpecificationImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getImplicitSendOccurenceSpecification()
          * @generated
          */
-        EClass IMPLICIT_SEND_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitSendOccurenceSpecification();
+        EReference EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE = eINSTANCE.getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference();
 
         /**
-         * The meta object literal for the '<em><b>Get Occurence Specification</b></em>' operation.
+         * The meta object literal for the '<em><b>Get Occurence Reference</b></em>' operation.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EOperation IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION = eINSTANCE.getImplicitSendOccurenceSpecification__GetOccurenceSpecification();
+        EOperation EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = eINSTANCE.getExplicitArrivalOccurenceSpecification__GetOccurenceReference();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl <em>Aliased Point In Time</em>}' class.

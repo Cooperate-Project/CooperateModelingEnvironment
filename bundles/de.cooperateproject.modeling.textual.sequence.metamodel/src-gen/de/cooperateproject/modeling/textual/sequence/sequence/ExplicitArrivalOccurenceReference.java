@@ -14,7 +14,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification <em>Occurence Specification</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getExplicitOccurenceSpecification <em>Explicit Occurence Specification</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getExplicitArrivalOccurenceReference()
@@ -23,29 +23,40 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  */
 public interface ExplicitArrivalOccurenceReference extends OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> {
     /**
-     * Returns the value of the '<em><b>Occurence Specification</b></em>' reference.
+     * Returns the value of the '<em><b>Explicit Occurence Specification</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification#getExplicitOccurenceReference <em>Explicit Occurence Reference</em>}'.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Occurence Specification</em>' reference isn't clear,
+     * If the meaning of the '<em>Explicit Occurence Specification</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Occurence Specification</em>' reference.
-     * @see #setOccurenceSpecification(ExplicitArrivalOccurenceSpecification)
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getExplicitArrivalOccurenceReference_OccurenceSpecification()
-     * @model
+     * @return the value of the '<em>Explicit Occurence Specification</em>' reference.
+     * @see #setExplicitOccurenceSpecification(ExplicitArrivalOccurenceSpecification)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification()
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification#getExplicitOccurenceReference
+     * @model opposite="explicitOccurenceReference"
      * @generated
      */
-    ExplicitArrivalOccurenceSpecification getOccurenceSpecification();
+    ExplicitArrivalOccurenceSpecification getExplicitOccurenceSpecification();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getOccurenceSpecification <em>Occurence Specification</em>}' reference.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getExplicitOccurenceSpecification <em>Explicit Occurence Specification</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Occurence Specification</em>' reference.
-     * @see #getOccurenceSpecification()
+     * @param value the new value of the '<em>Explicit Occurence Specification</em>' reference.
+     * @see #getExplicitOccurenceSpecification()
      * @generated
      */
-    void setOccurenceSpecification(ExplicitArrivalOccurenceSpecification value);
+    void setExplicitOccurenceSpecification(ExplicitArrivalOccurenceSpecification value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getExplicitOccurenceSpecification();'"
+     * @generated
+     */
+    OccurenceSpecification<MessageOccurrenceSpecification> getOccurenceSpecification();
 
 } // ExplicitArrivalOccurenceReference

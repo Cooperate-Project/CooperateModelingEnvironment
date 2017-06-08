@@ -3,7 +3,6 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
@@ -19,8 +18,6 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl#getType <em>Type</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.StandardMessageImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,71 +75,11 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Actor getLeft() {
-        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__LEFT, SequencePackage.Literals.STANDARD_MESSAGE__LEFT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor basicGetLeft() {
-        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__LEFT, SequencePackage.Literals.STANDARD_MESSAGE__LEFT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setLeft(Actor newLeft) {
-        eDynamicSet(SequencePackage.STANDARD_MESSAGE__LEFT, SequencePackage.Literals.STANDARD_MESSAGE__LEFT, newLeft);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor getRight() {
-        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__RIGHT, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor basicGetRight() {
-        return (Actor)eDynamicGet(SequencePackage.STANDARD_MESSAGE__RIGHT, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setRight(Actor newRight) {
-        eDynamicSet(SequencePackage.STANDARD_MESSAGE__RIGHT, SequencePackage.Literals.STANDARD_MESSAGE__RIGHT, newRight);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case SequencePackage.STANDARD_MESSAGE__TYPE:
                 return getType();
-            case SequencePackage.STANDARD_MESSAGE__LEFT:
-                if (resolve) return getLeft();
-                return basicGetLeft();
-            case SequencePackage.STANDARD_MESSAGE__RIGHT:
-                if (resolve) return getRight();
-                return basicGetRight();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -157,12 +94,6 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
         switch (featureID) {
             case SequencePackage.STANDARD_MESSAGE__TYPE:
                 setType((MessageType)newValue);
-                return;
-            case SequencePackage.STANDARD_MESSAGE__LEFT:
-                setLeft((Actor)newValue);
-                return;
-            case SequencePackage.STANDARD_MESSAGE__RIGHT:
-                setRight((Actor)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -179,12 +110,6 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
             case SequencePackage.STANDARD_MESSAGE__TYPE:
                 setType(TYPE_EDEFAULT);
                 return;
-            case SequencePackage.STANDARD_MESSAGE__LEFT:
-                setLeft((Actor)null);
-                return;
-            case SequencePackage.STANDARD_MESSAGE__RIGHT:
-                setRight((Actor)null);
-                return;
         }
         super.eUnset(featureID);
     }
@@ -199,10 +124,6 @@ public class StandardMessageImpl extends MessageImpl implements StandardMessage 
         switch (featureID) {
             case SequencePackage.STANDARD_MESSAGE__TYPE:
                 return getType() != TYPE_EDEFAULT;
-            case SequencePackage.STANDARD_MESSAGE__LEFT:
-                return basicGetLeft() != null;
-            case SequencePackage.STANDARD_MESSAGE__RIGHT:
-                return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
     }

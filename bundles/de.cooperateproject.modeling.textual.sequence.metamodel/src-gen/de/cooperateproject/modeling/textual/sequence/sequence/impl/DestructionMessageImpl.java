@@ -3,7 +3,6 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
@@ -13,13 +12,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Destruction Message</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionMessageImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionMessageImpl#getRight <em>Right</em>}</li>
- * </ul>
  *
  * @generated
  */
@@ -41,130 +33,6 @@ public class DestructionMessageImpl extends MessageImpl implements DestructionMe
     @Override
     protected EClass eStaticClass() {
         return SequencePackage.Literals.DESTRUCTION_MESSAGE;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor getLeft() {
-        return (Actor)eDynamicGet(SequencePackage.DESTRUCTION_MESSAGE__LEFT, SequencePackage.Literals.DESTRUCTION_MESSAGE__LEFT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor basicGetLeft() {
-        return (Actor)eDynamicGet(SequencePackage.DESTRUCTION_MESSAGE__LEFT, SequencePackage.Literals.DESTRUCTION_MESSAGE__LEFT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setLeft(Actor newLeft) {
-        eDynamicSet(SequencePackage.DESTRUCTION_MESSAGE__LEFT, SequencePackage.Literals.DESTRUCTION_MESSAGE__LEFT, newLeft);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor getRight() {
-        return (Actor)eDynamicGet(SequencePackage.DESTRUCTION_MESSAGE__RIGHT, SequencePackage.Literals.DESTRUCTION_MESSAGE__RIGHT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Actor basicGetRight() {
-        return (Actor)eDynamicGet(SequencePackage.DESTRUCTION_MESSAGE__RIGHT, SequencePackage.Literals.DESTRUCTION_MESSAGE__RIGHT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setRight(Actor newRight) {
-        eDynamicSet(SequencePackage.DESTRUCTION_MESSAGE__RIGHT, SequencePackage.Literals.DESTRUCTION_MESSAGE__RIGHT, newRight);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SequencePackage.DESTRUCTION_MESSAGE__LEFT:
-                if (resolve) return getLeft();
-                return basicGetLeft();
-            case SequencePackage.DESTRUCTION_MESSAGE__RIGHT:
-                if (resolve) return getRight();
-                return basicGetRight();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SequencePackage.DESTRUCTION_MESSAGE__LEFT:
-                setLeft((Actor)newValue);
-                return;
-            case SequencePackage.DESTRUCTION_MESSAGE__RIGHT:
-                setRight((Actor)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case SequencePackage.DESTRUCTION_MESSAGE__LEFT:
-                setLeft((Actor)null);
-                return;
-            case SequencePackage.DESTRUCTION_MESSAGE__RIGHT:
-                setRight((Actor)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SequencePackage.DESTRUCTION_MESSAGE__LEFT:
-                return basicGetLeft() != null;
-            case SequencePackage.DESTRUCTION_MESSAGE__RIGHT:
-                return basicGetRight() != null;
-        }
-        return super.eIsSet(featureID);
     }
 
 } //DestructionMessageImpl

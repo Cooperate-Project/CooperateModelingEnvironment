@@ -41,28 +41,42 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Fragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment">
+    <eOperations name="getContainingSequence" eType="#//FragmentSequence">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FragmentSequence" abstract="true">
+    <eOperations name="getUMLFragmentSequence">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUMLFragmentSequence(this);"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragments" upperBound="-1"
         eType="#//Fragment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Message">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivalEvent" lowerBound="1"
-        containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivalEvent" containment="true">
       <eGenericType eClassifier="#//OccurenceReference">
         <eTypeArguments eClassifier="#//OccurenceSpecification">
           <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sendEvent" lowerBound="1"
-        containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sendEvent" containment="true">
       <eGenericType eClassifier="#//OccurenceReference">
         <eTypeArguments eClassifier="#//OccurenceSpecification">
           <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
         </eTypeArguments>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     </eGenericSuperTypes>
@@ -74,25 +88,24 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StandardMessage" eSuperTypes="#//Message">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//MessageType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResponseMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CreateMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DestructionMessage" eSuperTypes="#//Message">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Actor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Actor"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResponseMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateMessage" eSuperTypes="#//Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DestructionMessage" eSuperTypes="#//Message"/>
   <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification">
     <eTypeParameters name="UMLOccurenceType">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
     </eTypeParameters>
+    <eOperations name="getOccurenceReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return null;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//OccurenceReference">
+        <eTypeArguments eClassifier="#//OccurenceSpecification">
+          <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
     <eGenericSuperTypes eClassifier="#//Fragment"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
@@ -190,15 +203,33 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExplicitArrivalOccurenceReference">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="occurenceSpecification"
-        eType="#//ExplicitArrivalOccurenceSpecification"/>
+    <eOperations name="getOccurenceSpecification">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getExplicitOccurenceSpecification();"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//OccurenceSpecification">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="explicitOccurenceSpecification"
+        eType="#//ExplicitArrivalOccurenceSpecification" eOpposite="#//ExplicitArrivalOccurenceSpecification/explicitOccurenceReference"/>
     <eGenericSuperTypes eClassifier="#//OccurenceReference">
       <eTypeArguments eClassifier="#//OccurenceSpecification">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
       </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImplicitArrivalOccurenceSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicitMessageOccurenceSpecification">
+    <eOperations name="getOccurenceReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//OccurenceReference">
+        <eTypeArguments eClassifier="#//OccurenceSpecification">
+          <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
     <eOperations name="getOccurenceSpecification">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return this;"/>
@@ -206,6 +237,16 @@
       <eGenericType eClassifier="#//OccurenceSpecification">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
       </eGenericType>
+    </eOperations>
+    <eOperations name="isArrival" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isArrivalOccurrence(this);"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="isSend" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isSendOccurrence(this);"/>
+      </eAnnotations>
     </eOperations>
     <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
@@ -217,27 +258,21 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExplicitArrivalOccurenceSpecification">
+    <eOperations name="getOccurenceReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return this.getExplicitOccurenceReference();"/>
+      </eAnnotations>
+      <eGenericType eClassifier="#//OccurenceReference">
+        <eTypeArguments eClassifier="#//OccurenceSpecification">
+          <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+        </eTypeArguments>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="explicitOccurenceReference"
+        eType="#//ExplicitArrivalOccurenceReference" eOpposite="#//ExplicitArrivalOccurenceReference/explicitOccurenceSpecification"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
     <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImplicitSendOccurenceSpecification">
-    <eOperations name="getOccurenceSpecification">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return this;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="#//OccurenceSpecification">
-        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
-      </eGenericType>
-    </eOperations>
-    <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
-      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
-    </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//OccurenceReference">
-      <eTypeArguments eClassifier="#//OccurenceSpecification">
-        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
-      </eTypeArguments>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MessageType">
@@ -329,8 +364,11 @@
         </eTypeArguments>
       </eGenericType>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="nonInstantaneousFragment"
-        eType="#//NonInstantaneousFragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nonInstantaneousFragment">
+      <eGenericType eClassifier="#//NonInstantaneousFragment">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>

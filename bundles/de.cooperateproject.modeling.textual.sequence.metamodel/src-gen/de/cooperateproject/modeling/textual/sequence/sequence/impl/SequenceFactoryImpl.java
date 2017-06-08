@@ -88,9 +88,8 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.TIME_CONSTRAINT: return (EObject)createTimeConstraint();
             case SequencePackage.DURATION_CONSTRAINT: return (EObject)createDurationConstraint();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE: return (EObject)createExplicitArrivalOccurenceReference();
-            case SequencePackage.IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION: return (EObject)createImplicitArrivalOccurenceSpecification();
+            case SequencePackage.IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION: return (EObject)createImplicitMessageOccurenceSpecification();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION: return (EObject)createExplicitArrivalOccurenceSpecification();
-            case SequencePackage.IMPLICIT_SEND_OCCURENCE_SPECIFICATION: return (EObject)createImplicitSendOccurenceSpecification();
             case SequencePackage.ALIASED_POINT_IN_TIME: return (EObject)createAliasedPointInTime();
             case SequencePackage.POINT_IN_TIME_SELECTOR: return (EObject)createPointInTimeSelector();
             case SequencePackage.TIME_INTERVAL_SELECTOR: return (EObject)createTimeIntervalSelector();
@@ -402,9 +401,9 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public ImplicitArrivalOccurenceSpecification createImplicitArrivalOccurenceSpecification() {
-        ImplicitArrivalOccurenceSpecificationImpl implicitArrivalOccurenceSpecification = new ImplicitArrivalOccurenceSpecificationImpl();
-        return implicitArrivalOccurenceSpecification;
+    public ImplicitMessageOccurenceSpecification createImplicitMessageOccurenceSpecification() {
+        ImplicitMessageOccurenceSpecificationImpl implicitMessageOccurenceSpecification = new ImplicitMessageOccurenceSpecificationImpl();
+        return implicitMessageOccurenceSpecification;
     }
 
     /**
@@ -415,16 +414,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
     public ExplicitArrivalOccurenceSpecification createExplicitArrivalOccurenceSpecification() {
         ExplicitArrivalOccurenceSpecificationImpl explicitArrivalOccurenceSpecification = new ExplicitArrivalOccurenceSpecificationImpl();
         return explicitArrivalOccurenceSpecification;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ImplicitSendOccurenceSpecification createImplicitSendOccurenceSpecification() {
-        ImplicitSendOccurenceSpecificationImpl implicitSendOccurenceSpecification = new ImplicitSendOccurenceSpecificationImpl();
-        return implicitSendOccurenceSpecification;
     }
 
     /**

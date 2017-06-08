@@ -11,8 +11,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping;
 import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment;
-import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification;
-import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification;
+import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer;
 import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer;
 import de.cooperateproject.modeling.textual.sequence.sequence.RootPackage;
@@ -30,21 +29,15 @@ public class SequenceDiagramQualifiedNameProvider extends CooperateQualifiedName
         return super.qualifiedName(element);
     }
     
-    protected QualifiedName qualifiedName(ImplicitArrivalOccurenceSpecification element) {
+    protected QualifiedName qualifiedName(ImplicitMessageOccurenceSpecification element) {
         QualifiedName rootName = getFullyQualifiedName(element.eContainer());
         if (rootName != null) {
-            return rootName.append(getConverter().toQualifiedName("rcv"));
+            return rootName.append(element.isArrival() ? getConverter().toQualifiedName("rcv")
+                    : getConverter().toQualifiedName("snd"));
         }
         return super.qualifiedName(element);
     }
     
-    protected QualifiedName qualifiedName(ImplicitSendOccurenceSpecification element) {
-        QualifiedName rootName = getFullyQualifiedName(element.eContainer());
-        if (rootName != null) {
-            return rootName.append(getConverter().toQualifiedName("snd"));
-        }
-        return super.qualifiedName(element);
-    }
     
     protected QualifiedName qualifiedName(CombinedFragment element) {
         String localName = Optional.ofNullable(element.getName())

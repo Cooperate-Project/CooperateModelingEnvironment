@@ -433,18 +433,18 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION: {
-                ImplicitArrivalOccurenceSpecification implicitArrivalOccurenceSpecification = (ImplicitArrivalOccurenceSpecification)theEObject;
-                T result = caseImplicitArrivalOccurenceSpecification(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseOccurenceSpecification(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseOccurenceReference(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseFragment(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseAliasedPointInTime(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseCommentable(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseUMLReferencingElement(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseAliasedElement(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseNamedElement(implicitArrivalOccurenceSpecification);
-                if (result == null) result = caseElement(implicitArrivalOccurenceSpecification);
+            case SequencePackage.IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION: {
+                ImplicitMessageOccurenceSpecification implicitMessageOccurenceSpecification = (ImplicitMessageOccurenceSpecification)theEObject;
+                T result = caseImplicitMessageOccurenceSpecification(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseOccurenceSpecification(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseOccurenceReference(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseFragment(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseAliasedPointInTime(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseCommentable(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseUMLReferencingElement(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseAliasedElement(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseNamedElement(implicitMessageOccurenceSpecification);
+                if (result == null) result = caseElement(implicitMessageOccurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -459,21 +459,6 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseUMLReferencingElement(explicitArrivalOccurenceSpecification);
                 if (result == null) result = caseAliasedElement(explicitArrivalOccurenceSpecification);
                 if (result == null) result = caseNamedElement(explicitArrivalOccurenceSpecification);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case SequencePackage.IMPLICIT_SEND_OCCURENCE_SPECIFICATION: {
-                ImplicitSendOccurenceSpecification implicitSendOccurenceSpecification = (ImplicitSendOccurenceSpecification)theEObject;
-                T result = caseImplicitSendOccurenceSpecification(implicitSendOccurenceSpecification);
-                if (result == null) result = caseOccurenceSpecification(implicitSendOccurenceSpecification);
-                if (result == null) result = caseOccurenceReference(implicitSendOccurenceSpecification);
-                if (result == null) result = caseFragment(implicitSendOccurenceSpecification);
-                if (result == null) result = caseAliasedPointInTime(implicitSendOccurenceSpecification);
-                if (result == null) result = caseCommentable(implicitSendOccurenceSpecification);
-                if (result == null) result = caseUMLReferencingElement(implicitSendOccurenceSpecification);
-                if (result == null) result = caseAliasedElement(implicitSendOccurenceSpecification);
-                if (result == null) result = caseNamedElement(implicitSendOccurenceSpecification);
-                if (result == null) result = caseElement(implicitSendOccurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -1023,17 +1008,17 @@ public class SequenceSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Implicit Arrival Occurence Specification</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Implicit Message Occurence Specification</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Implicit Arrival Occurence Specification</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Implicit Message Occurence Specification</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseImplicitArrivalOccurenceSpecification(ImplicitArrivalOccurenceSpecification object) {
+    public T caseImplicitMessageOccurenceSpecification(ImplicitMessageOccurenceSpecification object) {
         return null;
     }
 
@@ -1049,21 +1034,6 @@ public class SequenceSwitch<T> extends Switch<T> {
      * @generated
      */
     public T caseExplicitArrivalOccurenceSpecification(ExplicitArrivalOccurenceSpecification object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Implicit Send Occurence Specification</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Implicit Send Occurence Specification</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseImplicitSendOccurenceSpecification(ImplicitSendOccurenceSpecification object) {
         return null;
     }
 

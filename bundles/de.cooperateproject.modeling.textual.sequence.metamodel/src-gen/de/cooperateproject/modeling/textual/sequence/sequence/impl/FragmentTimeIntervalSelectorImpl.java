@@ -55,8 +55,8 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public NonInstantaneousFragment getNonInstantaneousFragment() {
-        return (NonInstantaneousFragment)eDynamicGet(SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, true, true);
+    public NonInstantaneousFragment<?> getNonInstantaneousFragment() {
+        return (NonInstantaneousFragment<?>)eDynamicGet(SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, true, true);
     }
 
     /**
@@ -64,8 +64,8 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public NonInstantaneousFragment basicGetNonInstantaneousFragment() {
-        return (NonInstantaneousFragment)eDynamicGet(SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, false, true);
+    public NonInstantaneousFragment<?> basicGetNonInstantaneousFragment() {
+        return (NonInstantaneousFragment<?>)eDynamicGet(SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, false, true);
     }
 
     /**
@@ -73,7 +73,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNonInstantaneousFragment(NonInstantaneousFragment newNonInstantaneousFragment) {
+    public void setNonInstantaneousFragment(NonInstantaneousFragment<?> newNonInstantaneousFragment) {
         eDynamicSet(SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT, newNonInstantaneousFragment);
     }
 
@@ -119,7 +119,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT:
-                setNonInstantaneousFragment((NonInstantaneousFragment)newValue);
+                setNonInstantaneousFragment((NonInstantaneousFragment<?>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -134,7 +134,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
     public void eUnset(int featureID) {
         switch (featureID) {
             case SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR__NON_INSTANTANEOUS_FRAGMENT:
-                setNonInstantaneousFragment((NonInstantaneousFragment)null);
+                setNonInstantaneousFragment((NonInstantaneousFragment<?>)null);
                 return;
         }
         super.eUnset(featureID);

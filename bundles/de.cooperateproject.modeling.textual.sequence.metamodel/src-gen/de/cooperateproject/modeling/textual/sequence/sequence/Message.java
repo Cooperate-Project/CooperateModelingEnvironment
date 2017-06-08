@@ -20,6 +20,8 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getArrivalEvent <em>Arrival Event</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getSendEvent <em>Send Event</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getLeft <em>Left</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage()
@@ -38,7 +40,7 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @return the value of the '<em>Arrival Event</em>' containment reference.
      * @see #setArrivalEvent(OccurenceReference)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_ArrivalEvent()
-     * @model containment="true" required="true"
+     * @model containment="true"
      * @generated
      */
     OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getArrivalEvent();
@@ -64,7 +66,7 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @return the value of the '<em>Send Event</em>' containment reference.
      * @see #setSendEvent(OccurenceReference)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_SendEvent()
-     * @model containment="true" required="true"
+     * @model containment="true"
      * @generated
      */
     OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getSendEvent();
@@ -78,5 +80,57 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @generated
      */
     void setSendEvent(OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> value);
+
+    /**
+     * Returns the value of the '<em><b>Left</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Left</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Left</em>' reference.
+     * @see #setLeft(Actor)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_Left()
+     * @model
+     * @generated
+     */
+    Actor getLeft();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getLeft <em>Left</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Left</em>' reference.
+     * @see #getLeft()
+     * @generated
+     */
+    void setLeft(Actor value);
+
+    /**
+     * Returns the value of the '<em><b>Right</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Right</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Right</em>' reference.
+     * @see #setRight(Actor)
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_Right()
+     * @model
+     * @generated
+     */
+    Actor getRight();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.Message#getRight <em>Right</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Right</em>' reference.
+     * @see #getRight()
+     * @generated
+     */
+    void setRight(Actor value);
 
 } // Message

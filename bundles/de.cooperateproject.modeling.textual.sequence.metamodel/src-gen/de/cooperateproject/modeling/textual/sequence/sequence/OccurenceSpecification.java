@@ -19,4 +19,13 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * @generated
  */
 public interface OccurenceSpecification<UMLOccurenceType extends OccurrenceSpecification> extends Fragment, UMLReferencingElement<UMLOccurenceType>, AliasedPointInTime<UMLOccurenceType>, Commentable<UMLOccurenceType> {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return null;'"
+     * @generated
+     */
+    OccurenceReference<OccurenceSpecification<UMLOccurenceType>> getOccurenceReference();
+
 } // OccurenceSpecification

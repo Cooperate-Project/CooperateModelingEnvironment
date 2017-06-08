@@ -26,8 +26,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOcc
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector;
-import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitArrivalOccurenceSpecification;
-import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitSendOccurenceSpecification;
+import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.Loop;
 import de.cooperateproject.modeling.textual.sequence.sequence.Message;
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType;
@@ -304,7 +303,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass implicitArrivalOccurenceSpecificationEClass = null;
+    private EClass implicitMessageOccurenceSpecificationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -312,13 +311,6 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * @generated
      */
     private EClass explicitArrivalOccurenceSpecificationEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass implicitSendOccurenceSpecificationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -578,6 +570,15 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EOperation getFragment__GetContainingSequence() {
+        return fragmentEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getFragmentSequence() {
         return fragmentSequenceEClass;
     }
@@ -589,6 +590,15 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      */
     public EReference getFragmentSequence_Fragments() {
         return (EReference)fragmentSequenceEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getFragmentSequence__GetUMLFragmentSequence() {
+        return fragmentSequenceEClass.getEOperations().get(0);
     }
 
     /**
@@ -623,6 +633,24 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getMessage_Left() {
+        return (EReference)messageEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMessage_Right() {
+        return (EReference)messageEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getStandardMessage() {
         return standardMessageEClass;
     }
@@ -641,44 +669,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getStandardMessage_Left() {
-        return (EReference)standardMessageEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getStandardMessage_Right() {
-        return (EReference)standardMessageEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getResponseMessage() {
         return responseMessageEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getResponseMessage_Left() {
-        return (EReference)responseMessageEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getResponseMessage_Right() {
-        return (EReference)responseMessageEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -695,24 +687,6 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCreateMessage_Left() {
-        return (EReference)createMessageEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getCreateMessage_Right() {
-        return (EReference)createMessageEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getDestructionMessage() {
         return destructionMessageEClass;
     }
@@ -722,26 +696,17 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDestructionMessage_Left() {
-        return (EReference)destructionMessageEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDestructionMessage_Right() {
-        return (EReference)destructionMessageEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getOccurenceSpecification() {
         return occurenceSpecificationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getOccurenceSpecification__GetOccurenceReference() {
+        return occurenceSpecificationEClass.getEOperations().get(0);
     }
 
     /**
@@ -1055,7 +1020,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getExplicitArrivalOccurenceReference_OccurenceSpecification() {
+    public EReference getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification() {
         return (EReference)explicitArrivalOccurenceReferenceEClass.getEStructuralFeatures().get(0);
     }
 
@@ -1064,8 +1029,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getImplicitArrivalOccurenceSpecification() {
-        return implicitArrivalOccurenceSpecificationEClass;
+    public EOperation getExplicitArrivalOccurenceReference__GetOccurenceSpecification() {
+        return explicitArrivalOccurenceReferenceEClass.getEOperations().get(0);
     }
 
     /**
@@ -1073,8 +1038,44 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification() {
-        return implicitArrivalOccurenceSpecificationEClass.getEOperations().get(0);
+    public EClass getImplicitMessageOccurenceSpecification() {
+        return implicitMessageOccurenceSpecificationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getImplicitMessageOccurenceSpecification__GetOccurenceReference() {
+        return implicitMessageOccurenceSpecificationEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getImplicitMessageOccurenceSpecification__GetOccurenceSpecification() {
+        return implicitMessageOccurenceSpecificationEClass.getEOperations().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getImplicitMessageOccurenceSpecification__IsArrival() {
+        return implicitMessageOccurenceSpecificationEClass.getEOperations().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getImplicitMessageOccurenceSpecification__IsSend() {
+        return implicitMessageOccurenceSpecificationEClass.getEOperations().get(3);
     }
 
     /**
@@ -1091,8 +1092,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getImplicitSendOccurenceSpecification() {
-        return implicitSendOccurenceSpecificationEClass;
+    public EReference getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference() {
+        return (EReference)explicitArrivalOccurenceSpecificationEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -1100,8 +1101,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getImplicitSendOccurenceSpecification__GetOccurenceSpecification() {
-        return implicitSendOccurenceSpecificationEClass.getEOperations().get(0);
+    public EOperation getExplicitArrivalOccurenceSpecification__GetOccurenceReference() {
+        return explicitArrivalOccurenceSpecificationEClass.getEOperations().get(0);
     }
 
     /**
@@ -1330,32 +1331,29 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEAttribute(actorClassifierMappingEClass, ACTOR_CLASSIFIER_MAPPING__CLASSIFIER_NAME);
 
         fragmentEClass = createEClass(FRAGMENT);
+        createEOperation(fragmentEClass, FRAGMENT___GET_CONTAINING_SEQUENCE);
 
         fragmentSequenceEClass = createEClass(FRAGMENT_SEQUENCE);
         createEReference(fragmentSequenceEClass, FRAGMENT_SEQUENCE__FRAGMENTS);
+        createEOperation(fragmentSequenceEClass, FRAGMENT_SEQUENCE___GET_UML_FRAGMENT_SEQUENCE);
 
         messageEClass = createEClass(MESSAGE);
         createEReference(messageEClass, MESSAGE__ARRIVAL_EVENT);
         createEReference(messageEClass, MESSAGE__SEND_EVENT);
+        createEReference(messageEClass, MESSAGE__LEFT);
+        createEReference(messageEClass, MESSAGE__RIGHT);
 
         standardMessageEClass = createEClass(STANDARD_MESSAGE);
         createEAttribute(standardMessageEClass, STANDARD_MESSAGE__TYPE);
-        createEReference(standardMessageEClass, STANDARD_MESSAGE__LEFT);
-        createEReference(standardMessageEClass, STANDARD_MESSAGE__RIGHT);
 
         responseMessageEClass = createEClass(RESPONSE_MESSAGE);
-        createEReference(responseMessageEClass, RESPONSE_MESSAGE__LEFT);
-        createEReference(responseMessageEClass, RESPONSE_MESSAGE__RIGHT);
 
         createMessageEClass = createEClass(CREATE_MESSAGE);
-        createEReference(createMessageEClass, CREATE_MESSAGE__LEFT);
-        createEReference(createMessageEClass, CREATE_MESSAGE__RIGHT);
 
         destructionMessageEClass = createEClass(DESTRUCTION_MESSAGE);
-        createEReference(destructionMessageEClass, DESTRUCTION_MESSAGE__LEFT);
-        createEReference(destructionMessageEClass, DESTRUCTION_MESSAGE__RIGHT);
 
         occurenceSpecificationEClass = createEClass(OCCURENCE_SPECIFICATION);
+        createEOperation(occurenceSpecificationEClass, OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE);
 
         destructionOccurenceSpecificationEClass = createEClass(DESTRUCTION_OCCURENCE_SPECIFICATION);
         createEReference(destructionOccurenceSpecificationEClass, DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET);
@@ -1410,15 +1408,18 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEOperation(occurenceReferenceEClass, OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION);
 
         explicitArrivalOccurenceReferenceEClass = createEClass(EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE);
-        createEReference(explicitArrivalOccurenceReferenceEClass, EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__OCCURENCE_SPECIFICATION);
+        createEReference(explicitArrivalOccurenceReferenceEClass, EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION);
+        createEOperation(explicitArrivalOccurenceReferenceEClass, EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE___GET_OCCURENCE_SPECIFICATION);
 
-        implicitArrivalOccurenceSpecificationEClass = createEClass(IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION);
-        createEOperation(implicitArrivalOccurenceSpecificationEClass, IMPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION);
+        implicitMessageOccurenceSpecificationEClass = createEClass(IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION);
+        createEOperation(implicitMessageOccurenceSpecificationEClass, IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE);
+        createEOperation(implicitMessageOccurenceSpecificationEClass, IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION);
+        createEOperation(implicitMessageOccurenceSpecificationEClass, IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___IS_ARRIVAL);
+        createEOperation(implicitMessageOccurenceSpecificationEClass, IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___IS_SEND);
 
         explicitArrivalOccurenceSpecificationEClass = createEClass(EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION);
-
-        implicitSendOccurenceSpecificationEClass = createEClass(IMPLICIT_SEND_OCCURENCE_SPECIFICATION);
-        createEOperation(implicitSendOccurenceSpecificationEClass, IMPLICIT_SEND_OCCURENCE_SPECIFICATION___GET_OCCURENCE_SPECIFICATION);
+        createEReference(explicitArrivalOccurenceSpecificationEClass, EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE);
+        createEOperation(explicitArrivalOccurenceSpecificationEClass, EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE);
 
         aliasedPointInTimeEClass = createEClass(ALIASED_POINT_IN_TIME);
 
@@ -1607,29 +1608,19 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g1 = createEGenericType(this.getOccurenceSpecification());
         g2 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g1.getETypeArguments().add(g2);
-        implicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
+        implicitMessageOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getOccurenceReference());
         g2 = createEGenericType(this.getOccurenceSpecification());
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g2.getETypeArguments().add(g3);
-        implicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
+        implicitMessageOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         explicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getOccurenceSpecification());
         g2 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g1.getETypeArguments().add(g2);
         explicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getOccurenceSpecification());
-        g2 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
-        g1.getETypeArguments().add(g2);
-        implicitSendOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getOccurenceReference());
-        g2 = createEGenericType(this.getOccurenceSpecification());
-        g1.getETypeArguments().add(g2);
-        g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
-        g2.getETypeArguments().add(g3);
-        implicitSendOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
         aliasedPointInTimeEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
@@ -1673,8 +1664,16 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+        initEOperation(getFragment__GetContainingSequence(), this.getFragmentSequence(), "getContainingSequence", 0, 1, IS_UNIQUE, IS_ORDERED);
+
         initEClass(fragmentSequenceEClass, FragmentSequence.class, "FragmentSequence", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getFragmentSequence_Fragments(), this.getFragment(), null, "fragments", null, 0, -1, FragmentSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        EOperation op = initEOperation(getFragmentSequence__GetUMLFragmentSequence(), null, "getUMLFragmentSequence", 0, 1, IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(theEcorePackage.getEEList());
+        g2 = createEGenericType(theUMLPackage.getInteractionFragment());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
 
         initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(this.getOccurenceReference());
@@ -1682,32 +1681,34 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g2.getETypeArguments().add(g3);
-        initEReference(getMessage_ArrivalEvent(), g1, null, "arrivalEvent", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMessage_ArrivalEvent(), g1, null, "arrivalEvent", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getOccurenceReference());
         g2 = createEGenericType(this.getOccurenceSpecification());
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g2.getETypeArguments().add(g3);
-        initEReference(getMessage_SendEvent(), g1, null, "sendEvent", null, 1, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMessage_SendEvent(), g1, null, "sendEvent", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMessage_Left(), this.getActor(), null, "left", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMessage_Right(), this.getActor(), null, "right", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(standardMessageEClass, StandardMessage.class, "StandardMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getStandardMessage_Type(), this.getMessageType(), "type", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getStandardMessage_Left(), this.getActor(), null, "left", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getStandardMessage_Right(), this.getActor(), null, "right", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(responseMessageEClass, ResponseMessage.class, "ResponseMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getResponseMessage_Left(), this.getActor(), null, "left", null, 0, 1, ResponseMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getResponseMessage_Right(), this.getActor(), null, "right", null, 0, 1, ResponseMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(createMessageEClass, CreateMessage.class, "CreateMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCreateMessage_Left(), this.getActor(), null, "left", null, 0, 1, CreateMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getCreateMessage_Right(), this.getActor(), null, "right", null, 0, 1, CreateMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(destructionMessageEClass, DestructionMessage.class, "DestructionMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getDestructionMessage_Left(), this.getActor(), null, "left", null, 0, 1, DestructionMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDestructionMessage_Right(), this.getActor(), null, "right", null, 0, 1, DestructionMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(occurenceSpecificationEClass, OccurenceSpecification.class, "OccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        op = initEOperation(getOccurenceSpecification__GetOccurenceReference(), null, "getOccurenceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(this.getOccurenceReference());
+        g2 = createEGenericType(this.getOccurenceSpecification());
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(occurenceSpecificationEClass_UMLOccurenceType);
+        g2.getETypeArguments().add(g3);
+        initEOperation(op, g1);
 
         initEClass(destructionOccurenceSpecificationEClass, DestructionOccurenceSpecification.class, "DestructionOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDestructionOccurenceSpecification_Target(), this.getActor(), null, "target", null, 0, 1, DestructionOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1760,29 +1761,48 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         initEClass(occurenceReferenceEClass, OccurenceReference.class, "OccurenceReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-        EOperation op = initEOperation(getOccurenceReference__GetOccurenceSpecification(), null, "getOccurenceSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getOccurenceReference__GetOccurenceSpecification(), null, "getOccurenceSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(occurenceReferenceEClass_OccurenceType);
         initEOperation(op, g1);
 
         initEClass(explicitArrivalOccurenceReferenceEClass, ExplicitArrivalOccurenceReference.class, "ExplicitArrivalOccurenceReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getExplicitArrivalOccurenceReference_OccurenceSpecification(), this.getExplicitArrivalOccurenceSpecification(), null, "occurenceSpecification", null, 0, 1, ExplicitArrivalOccurenceReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification(), this.getExplicitArrivalOccurenceSpecification(), this.getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference(), "explicitOccurenceSpecification", null, 0, 1, ExplicitArrivalOccurenceReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(implicitArrivalOccurenceSpecificationEClass, ImplicitArrivalOccurenceSpecification.class, "ImplicitArrivalOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        op = initEOperation(getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification(), null, "getOccurenceSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getExplicitArrivalOccurenceReference__GetOccurenceSpecification(), null, "getOccurenceSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getOccurenceSpecification());
         g2 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
-        initEClass(explicitArrivalOccurenceSpecificationEClass, ExplicitArrivalOccurenceSpecification.class, "ExplicitArrivalOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(implicitMessageOccurenceSpecificationEClass, ImplicitMessageOccurenceSpecification.class, "ImplicitMessageOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-        initEClass(implicitSendOccurenceSpecificationEClass, ImplicitSendOccurenceSpecification.class, "ImplicitSendOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        op = initEOperation(getImplicitMessageOccurenceSpecification__GetOccurenceReference(), null, "getOccurenceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(this.getOccurenceReference());
+        g2 = createEGenericType(this.getOccurenceSpecification());
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
+        g2.getETypeArguments().add(g3);
+        initEOperation(op, g1);
 
-        op = initEOperation(getImplicitSendOccurenceSpecification__GetOccurenceSpecification(), null, "getOccurenceSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getImplicitMessageOccurenceSpecification__GetOccurenceSpecification(), null, "getOccurenceSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getOccurenceSpecification());
         g2 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEOperation(getImplicitMessageOccurenceSpecification__IsArrival(), theTypesPackage.getBoolean(), "isArrival", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+        initEOperation(getImplicitMessageOccurenceSpecification__IsSend(), theTypesPackage.getBoolean(), "isSend", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+        initEClass(explicitArrivalOccurenceSpecificationEClass, ExplicitArrivalOccurenceSpecification.class, "ExplicitArrivalOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference(), this.getExplicitArrivalOccurenceReference(), this.getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification(), "explicitOccurenceReference", null, 0, 1, ExplicitArrivalOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        op = initEOperation(getExplicitArrivalOccurenceSpecification__GetOccurenceReference(), null, "getOccurenceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(this.getOccurenceReference());
+        g2 = createEGenericType(this.getOccurenceSpecification());
+        g1.getETypeArguments().add(g2);
+        g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
+        g2.getETypeArguments().add(g3);
         initEOperation(op, g1);
 
         initEClass(aliasedPointInTimeEClass, AliasedPointInTime.class, "AliasedPointInTime", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1828,7 +1848,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEOperation(op, g1);
 
         initEClass(fragmentTimeIntervalSelectorEClass, FragmentTimeIntervalSelector.class, "FragmentTimeIntervalSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getFragmentTimeIntervalSelector_NonInstantaneousFragment(), this.getNonInstantaneousFragment(), null, "nonInstantaneousFragment", null, 0, 1, FragmentTimeIntervalSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        g1 = createEGenericType(this.getNonInstantaneousFragment());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEReference(getFragmentTimeIntervalSelector_NonInstantaneousFragment(), g1, null, "nonInstantaneousFragment", null, 0, 1, FragmentTimeIntervalSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         op = initEOperation(getFragmentTimeIntervalSelector__GetIntervalStart(), null, "getIntervalStart", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getAliasedPointInTime());
@@ -1877,22 +1900,64 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
     protected void createGenModelAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/GenModel";	
         addAnnotation
+          (getFragment__GetContainingSequence(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);"
+           });	
+        addAnnotation
+          (getFragmentSequence__GetUMLFragmentSequence(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUMLFragmentSequence(this);"
+           });	
+        addAnnotation
+          (getOccurenceSpecification__GetOccurenceReference(), 
+           source, 
+           new String[] {
+             "body", "return null;"
+           });	
+        addAnnotation
           (getOccurenceReference__GetOccurenceSpecification(), 
            source, 
            new String[] {
              "body", "throw new RuntimeException(\"This method should have been overidden\");"
            });	
         addAnnotation
-          (getImplicitArrivalOccurenceSpecification__GetOccurenceSpecification(), 
+          (getExplicitArrivalOccurenceReference__GetOccurenceSpecification(), 
+           source, 
+           new String[] {
+             "body", "return this.getExplicitOccurenceSpecification();"
+           });	
+        addAnnotation
+          (getImplicitMessageOccurenceSpecification__GetOccurenceReference(), 
            source, 
            new String[] {
              "body", "return this;"
            });	
         addAnnotation
-          (getImplicitSendOccurenceSpecification__GetOccurenceSpecification(), 
+          (getImplicitMessageOccurenceSpecification__GetOccurenceSpecification(), 
            source, 
            new String[] {
              "body", "return this;"
+           });	
+        addAnnotation
+          (getImplicitMessageOccurenceSpecification__IsArrival(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isArrivalOccurrence(this);"
+           });	
+        addAnnotation
+          (getImplicitMessageOccurenceSpecification__IsSend(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isSendOccurrence(this);"
+           });	
+        addAnnotation
+          (getExplicitArrivalOccurenceSpecification__GetOccurenceReference(), 
+           source, 
+           new String[] {
+             "body", "return this.getExplicitOccurenceReference();"
            });	
         addAnnotation
           (getTimeIntervalSelector__GetIntervalStart(), 

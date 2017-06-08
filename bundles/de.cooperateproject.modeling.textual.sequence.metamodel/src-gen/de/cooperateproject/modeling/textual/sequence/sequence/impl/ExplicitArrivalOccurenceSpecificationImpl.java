@@ -12,10 +12,15 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
+import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
+import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
+import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
@@ -41,6 +46,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getComments <em>Comments</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getExplicitOccurenceReference <em>Explicit Occurence Reference</em>}</li>
  * </ul>
  *
  * @generated
@@ -135,12 +141,72 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      * <!-- end-user-doc -->
      * @generated
      */
+    public ExplicitArrivalOccurenceReference getExplicitOccurenceReference() {
+        return (ExplicitArrivalOccurenceReference)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExplicitArrivalOccurenceReference basicGetExplicitOccurenceReference() {
+        return (ExplicitArrivalOccurenceReference)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetExplicitOccurenceReference(ExplicitArrivalOccurenceReference newExplicitOccurenceReference, NotificationChain msgs) {
+        msgs = eDynamicInverseAdd((InternalEObject)newExplicitOccurenceReference, SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExplicitOccurenceReference(ExplicitArrivalOccurenceReference newExplicitOccurenceReference) {
+        eDynamicSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, newExplicitOccurenceReference);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getOccurenceReference() {
+        return this.getExplicitOccurenceReference();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FragmentSequence getContainingSequence() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
+                ExplicitArrivalOccurenceReference explicitOccurenceReference = basicGetExplicitOccurenceReference();
+                if (explicitOccurenceReference != null)
+                    msgs = ((InternalEObject)explicitOccurenceReference).eInverseRemove(this, SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE__EXPLICIT_OCCURENCE_SPECIFICATION, ExplicitArrivalOccurenceReference.class, msgs);
+                return basicSetExplicitOccurenceReference((ExplicitArrivalOccurenceReference)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -155,6 +221,8 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
         switch (featureID) {
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
                 return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
+                return basicSetExplicitOccurenceReference(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -174,6 +242,9 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
                 return getAlias();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
                 return getComments();
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
+                if (resolve) return getExplicitOccurenceReference();
+                return basicGetExplicitOccurenceReference();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -197,6 +268,9 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
                 getComments().clear();
                 getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
+                setExplicitOccurenceReference((ExplicitArrivalOccurenceReference)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -218,6 +292,9 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
                 getComments().clear();
                 return;
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
+                setExplicitOccurenceReference((ExplicitArrivalOccurenceReference)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -236,6 +313,8 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
                 return !getComments().isEmpty();
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
+                return basicGetExplicitOccurenceReference() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -324,6 +403,64 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Fragment.class) {
+            switch (baseOperationID) {
+                case SequencePackage.FRAGMENT___GET_CONTAINING_SEQUENCE: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE;
+                default: return -1;
+            }
+        }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedPointInTime.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == OccurenceSpecification.class) {
+            switch (baseOperationID) {
+                case SequencePackage.OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE;
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE:
+                return getOccurenceReference();
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE:
+                return getContainingSequence();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //ExplicitArrivalOccurenceSpecificationImpl

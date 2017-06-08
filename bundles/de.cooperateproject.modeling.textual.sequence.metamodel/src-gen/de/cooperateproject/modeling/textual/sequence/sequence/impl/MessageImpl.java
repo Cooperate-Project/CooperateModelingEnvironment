@@ -11,10 +11,14 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
+import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+
+import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
@@ -43,6 +47,8 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getArrivalEvent <em>Arrival Event</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getSendEvent <em>Send Event</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.MessageImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
@@ -205,6 +211,69 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public Actor getLeft() {
+        return (Actor)eDynamicGet(SequencePackage.MESSAGE__LEFT, SequencePackage.Literals.MESSAGE__LEFT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Actor basicGetLeft() {
+        return (Actor)eDynamicGet(SequencePackage.MESSAGE__LEFT, SequencePackage.Literals.MESSAGE__LEFT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLeft(Actor newLeft) {
+        eDynamicSet(SequencePackage.MESSAGE__LEFT, SequencePackage.Literals.MESSAGE__LEFT, newLeft);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Actor getRight() {
+        return (Actor)eDynamicGet(SequencePackage.MESSAGE__RIGHT, SequencePackage.Literals.MESSAGE__RIGHT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Actor basicGetRight() {
+        return (Actor)eDynamicGet(SequencePackage.MESSAGE__RIGHT, SequencePackage.Literals.MESSAGE__RIGHT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRight(Actor newRight) {
+        eDynamicSet(SequencePackage.MESSAGE__RIGHT, SequencePackage.Literals.MESSAGE__RIGHT, newRight);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FragmentSequence getContainingSequence() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -251,6 +320,12 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
                 return getArrivalEvent();
             case SequencePackage.MESSAGE__SEND_EVENT:
                 return getSendEvent();
+            case SequencePackage.MESSAGE__LEFT:
+                if (resolve) return getLeft();
+                return basicGetLeft();
+            case SequencePackage.MESSAGE__RIGHT:
+                if (resolve) return getRight();
+                return basicGetRight();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -280,6 +355,12 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
             case SequencePackage.MESSAGE__SEND_EVENT:
                 setSendEvent((OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>>)newValue);
                 return;
+            case SequencePackage.MESSAGE__LEFT:
+                setLeft((Actor)newValue);
+                return;
+            case SequencePackage.MESSAGE__RIGHT:
+                setRight((Actor)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -307,6 +388,12 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
             case SequencePackage.MESSAGE__SEND_EVENT:
                 setSendEvent((OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>>)null);
                 return;
+            case SequencePackage.MESSAGE__LEFT:
+                setLeft((Actor)null);
+                return;
+            case SequencePackage.MESSAGE__RIGHT:
+                setRight((Actor)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -329,6 +416,10 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
                 return getArrivalEvent() != null;
             case SequencePackage.MESSAGE__SEND_EVENT:
                 return getSendEvent() != null;
+            case SequencePackage.MESSAGE__LEFT:
+                return basicGetLeft() != null;
+            case SequencePackage.MESSAGE__RIGHT:
+                return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -397,6 +488,51 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+        if (baseClass == Fragment.class) {
+            switch (baseOperationID) {
+                case SequencePackage.FRAGMENT___GET_CONTAINING_SEQUENCE: return SequencePackage.MESSAGE___GET_CONTAINING_SEQUENCE;
+                default: return -1;
+            }
+        }
+        if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        return super.eDerivedOperationID(baseOperationID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.MESSAGE___GET_CONTAINING_SEQUENCE:
+                return getContainingSequence();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //MessageImpl
