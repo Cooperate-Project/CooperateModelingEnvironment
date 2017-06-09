@@ -61,19 +61,19 @@
 							</injections>
 							<vmArgs>
 								<vmArg>${argLineIt}</vmArg>
-								<vmArg>-Xmx768m</vmArg>
+								<vmArg>-Xmx1024m</vmArg>
 								<vmArg>-XX:MaxPermSize=256m</vmArg>
 							</vmArgs>
 						</aut>
 						<runner>
 							<version>${rcptt-maven-version}</version>
 							<vmArgs>
-								<vmArg>-Xmx768m</vmArg>
+								<vmArg>-Xmx1024m</vmArg>
 								<vmArg>-XX:MaxPermSize=256m</vmArg>
 							</vmArgs>
 						</runner>
 						<testOptions>
-							<execTimeout>1800</execTimeout>
+							<execTimeout>3600</execTimeout>
 							<testExecTimeout>300</testExecTimeout>
 						</testOptions>
 					</configuration>
