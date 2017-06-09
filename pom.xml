@@ -66,7 +66,7 @@
 		</repository>
 		<repository>
 			<id>cooperate-cdoxtext</id>
-			<url>https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.1.4/</url>
+			<url>https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.2.0/</url>
 			<layout>p2</layout>
 		</repository>
 		<repository>
