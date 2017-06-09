@@ -7,12 +7,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.NatureUtils;
 import de.cooperateproject.ui.util.IValidateable;
@@ -26,7 +27,7 @@ public class SelectedNamesDTO implements IValidateable {
     private ModelName selectedModelName;
     private String selectedDiagramName;
 
-    private static final Logger LOGGER = Logger.getLogger(SelectedNamesDTO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SelectedNamesDTO.class);
 
     private static ObservableList<IProject> createProjectList() {
         List<IProject> tmp = Arrays.stream(ResourcesPlugin.getWorkspace().getRoot().getProjects())

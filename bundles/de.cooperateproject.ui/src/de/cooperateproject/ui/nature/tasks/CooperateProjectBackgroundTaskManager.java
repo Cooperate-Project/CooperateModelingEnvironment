@@ -6,8 +6,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -16,7 +17,7 @@ import de.cooperateproject.ui.nature.NatureUtils;
 
 public class CooperateProjectBackgroundTaskManager {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateProjectBackgroundTaskManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateProjectBackgroundTaskManager.class);
     private final Map<IProject, Collection<BackgroundTask>> tasks = Maps.newHashMap();
     private final Collection<BackgroundTaskFactory<?>> taskFactories = Sets.newHashSet();
 

@@ -3,15 +3,16 @@ package de.cooperateproject.modeling.textual.xtext.runtime.resources;
 import java.util.Collections;
 
 import org.apache.commons.lang3.Validate;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ReloadingResourceChangeManager extends RecursiveResourceChangeManager {
 
-    private static final Logger LOGGER = Logger.getLogger(ReloadingResourceChangeManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReloadingResourceChangeManager.class);
 
     public ReloadingResourceChangeManager(PreparedResourceListener... listeners) {
         super(listeners);
@@ -25,7 +26,7 @@ public class ReloadingResourceChangeManager extends RecursiveResourceChangeManag
             addEventFilterFor(r);
             reloadResource(r);
         } catch (Exception e) {
-            LOGGER.error("Could not reload resource " + r.getURI() + ".", e);
+            LOGGER.error("Could not reload resource {}.", r.getURI(), e);
         } finally {
             removeEventFilterFor(r);
         }

@@ -14,9 +14,10 @@ import javax.jms.TopicSession;
 import javax.jms.TopicSubscriber;
 
 import org.apache.activemq.ActiveMQConnection;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class JMSIO implements Closeable {
 
@@ -25,7 +26,7 @@ class JMSIO implements Closeable {
         void handleMessage(IFocusMessage message);
     }
 
-    private static final Logger LOGGER = Logger.getLogger(JMSIO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JMSIO.class);
     private static final String JMS_CLOSE_METHOD_NAME = "close";
     private static final String JMS_MESSAGE_PROPERTY_NAME_CDOID = "CDOID";
     private final String messageBrokerHost;

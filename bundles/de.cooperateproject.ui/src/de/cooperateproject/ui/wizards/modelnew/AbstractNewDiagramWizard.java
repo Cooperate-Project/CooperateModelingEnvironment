@@ -8,6 +8,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
+import de.cooperateproject.ui.modelcreator.ModelCreator;
 
 public class AbstractNewDiagramWizard extends Wizard implements INewWizard {
 

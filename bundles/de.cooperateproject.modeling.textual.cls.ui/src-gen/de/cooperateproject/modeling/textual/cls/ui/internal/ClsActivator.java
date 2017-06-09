@@ -11,11 +11,12 @@ import de.cooperateproject.modeling.textual.cls.ClsRuntimeModule;
 import de.cooperateproject.modeling.textual.cls.ui.ClsUiModule;
 import java.util.Collections;
 import java.util.Map;
-import org.apache.log4j.Logger;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class was generated. Customizations should only happen in a newly
@@ -25,7 +26,7 @@ public class ClsActivator extends AbstractUIPlugin {
 
 	public static final String DE_COOPERATEPROJECT_MODELING_TEXTUAL_CLS_CLS = "de.cooperateproject.modeling.textual.cls.Cls";
 	
-	private static final Logger logger = Logger.getLogger(ClsActivator.class);
+	private static final Logger logger = LoggerFactory.getLogger(ClsActivator.class);
 	
 	private static ClsActivator INSTANCE;
 	
@@ -66,7 +67,7 @@ public class ClsActivator extends AbstractUIPlugin {
 			Module mergedModule = Modules2.mixin(runtimeModule, sharedStateModule, uiModule);
 			return Guice.createInjector(mergedModule);
 		} catch (Exception e) {
-			logger.error("Failed to create injector for " + language);
+			logger.error("Failed to create injector for {}", language);
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException("Failed to create injector for " + language, e);
 		}

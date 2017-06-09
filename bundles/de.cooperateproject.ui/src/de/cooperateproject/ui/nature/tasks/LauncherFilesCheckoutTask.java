@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -21,6 +20,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
@@ -40,7 +41,7 @@ import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
  */
 public class LauncherFilesCheckoutTask extends CDOHandlingBackgroundTask {
 
-    private static final Logger LOGGER = Logger.getLogger(LauncherFilesCheckoutTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LauncherFilesCheckoutTask.class);
     private static final String LAUNCHER_FILE_EXTENSION = LauncherResourceImpl.EXTENSION;
     private static final String NOTATION_FILE_EXTENSION = "notation";
     private static final String MODELS_DIRECTORY_NAME = "models";
