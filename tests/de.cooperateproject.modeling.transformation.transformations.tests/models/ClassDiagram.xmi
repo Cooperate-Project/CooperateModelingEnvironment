@@ -6,13 +6,11 @@
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
     <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_sLlvoEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </members>
     <members xsi:type="cls:Method">
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_WwgHEEKSEeaXCq-9LXQNWQ"/>
       <parameters>
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_Z8Kx0EKSEeaXCq-9LXQNWQ"/>
-        <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       </parameters>
     </members>
   </classifiers>
@@ -20,7 +18,6 @@
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
     <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_oNOcoEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
     </members>
   </classifiers>
   <classifiers xsi:type="cls:Class">
@@ -30,7 +27,6 @@
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
     <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_5_7pQEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </members>
   </classifiers>
   <classifiers xsi:type="cls:Interface">
@@ -39,7 +35,6 @@
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_Qoso0HjsEea7c9xs28iX1A"/>
       <parameters>
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_WCYDQHjsEea7c9xs28iX1A"/>
-        <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       </parameters>
     </members>
   </classifiers>

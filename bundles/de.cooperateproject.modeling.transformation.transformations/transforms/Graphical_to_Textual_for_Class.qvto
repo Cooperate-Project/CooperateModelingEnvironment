@@ -169,19 +169,16 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 mapping notation::Node::nodeToOperation() : cls::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
-	type := operation.type.oclAsType(uml::Classifier);
 	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
-	type := self.type.oclAsType(uml::Classifier);
 }
 
 mapping notation::Node::nodeToProperty() : cls::Attribute {
 	var prop := self.element.oclAsType(uml::Property);
 	referencedElement := prop;
-	type := prop.type.oclAsType(uml::Classifier);
 }
 
 mapping notation::Edge::edgeToConnector() : cls::Connector
@@ -306,25 +303,6 @@ mapping notation::Node::associationNodeToMultiAssociation(allEdges : OrderedSet(
 	var properties := accordingEdges.styles->selectByKind(notation::EObjectValueStyle)->select(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
 	memberEnds += properties.map propertyToMemberEnd();
 }
-
-//mapping notation::Edge::edgeToMemberEnd() : cls::MemberEnd
-//{
-//	var umlProperty := self.styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
-//	referencedElement := if umlProperty.name != null then umlProperty else null endif;
-//	cardinality := umlProperty.map multiplicityElementToCardinality();
-//	type := umlProperty.type.oclAsType(uml::Classifier);
-//	navigable := umlProperty.association.navigableOwnedEnd->includes(umlProperty);
-//}
-
-/*
-mapping uml::Property::propertyToMemberEnd() : cls::MemberEnd
-{
-	referencedElement := if self.name != null then self else null endif;
-	cardinality := self.map multiplicityElementToCardinality();
-	type := self.type.map typeToUMLTypeReference(result);
-	navigable := self.association.navigableOwnedEnd->includes(self);
-}
-*/
 
 query notation::Edge::isCommentLink() : Boolean {
 	return  (
