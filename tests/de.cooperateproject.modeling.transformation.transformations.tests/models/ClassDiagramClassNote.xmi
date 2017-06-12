@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Christmas Class Diagram">
-  <rootPackage name="RootElement">
+  <rootPackage>
     <referencedElement xsi:type="uml:Model" href="ClassDiagramClassNote.uml#_AvM_AA11EeeHpu4pMbT6JQ"/>
-      <classifiers xsi:type="cls:Class" name="Toy">
-      <comments
-          body="Children often do like them more than clothes.">
+      <classifiers xsi:type="cls:Class">
+      <comments>
           <referencedElement xsi:type="uml:Comment" href="ClassDiagramClassNote.uml#_EALAgA11EeeHpu4pMbT6JQ"/>
           </comments>
         <referencedElement xsi:type="uml:Class" href="ClassDiagramClassNote.uml#_DOYXMA11EeeHpu4pMbT6JQ"/>

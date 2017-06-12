@@ -7,6 +7,9 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.PatternLayout;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -43,8 +46,9 @@ public abstract class TransformationTestBase {
 
     @BeforeClass
     public static void init() throws Exception {
-        // BasicConfigurator.resetConfiguration();
-        // BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
+
+        BasicConfigurator.resetConfiguration();
+        BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
 
         if (!isPluginEnvironment()) {
             EcorePlugin.getPlatformResourceMap().put(Activator.PLUGIN_ID,
