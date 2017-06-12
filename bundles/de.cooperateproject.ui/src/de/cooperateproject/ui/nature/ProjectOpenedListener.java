@@ -20,7 +20,7 @@ import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 /**
  * IResourceChangeListener which provides custom logic for cooperate projects.
  * 
- * @author faller, seifermann, persch
+ * @author faller, seifermann, persch, henss
  *
  */
 public class ProjectOpenedListener implements IResourceChangeListener {
@@ -53,18 +53,20 @@ public class ProjectOpenedListener implements IResourceChangeListener {
 
     private static boolean isRelevantForClean(IResourceDelta delta) {
         if ((delta.getResource().getType() & IResource.PROJECT) != 0 && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
-            return true;
+            IProject project = delta.getResource().getAdapter(IProject.class);
+            return project.isAccessible();
         }
 
         return false;
     }
 
-    private static boolean isRelevantForDelete(IResourceDelta delta) {
+    private static boolean isRelevantForDeregister(IResourceDelta delta) {
         if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
             return false;
         }
+        IProject project = delta.getResource().getAdapter(IProject.class);
 
-        if (delta.getKind() == IResourceDelta.REMOVED) {
+        if (delta.getKind() == IResourceDelta.REMOVED || !project.isAccessible()) {
             return true;
         }
 
@@ -75,7 +77,7 @@ public class ProjectOpenedListener implements IResourceChangeListener {
         @Override
         public boolean visit(final IResourceDelta delta) throws CoreException {
             if (isRelevantForClean(delta)) {
-                IProject project = (IProject) delta.getResource();
+                IProject project = delta.getResource().getAdapter(IProject.class);
                 Job rebuild = new Job("rebuild") {
                     @Override
                     protected IStatus run(IProgressMonitor monitor) {
@@ -90,7 +92,8 @@ public class ProjectOpenedListener implements IResourceChangeListener {
                 };
                 rebuild.schedule();
             }
-            if (isRelevantForDelete(delta)) {
+
+            if (isRelevantForDeregister(delta)) {
                 BackgroundTasksAdapter.getManager().deregisterProject((IProject) delta.getResource());
             }
             return true;
