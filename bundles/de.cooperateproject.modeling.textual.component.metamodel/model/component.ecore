@@ -20,7 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="2"
         upperBound="2" eType="#//Component"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PortRelation" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="PortRelation" abstract="true" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="port" lowerBound="2" upperBound="2"
         eType="#//Component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
@@ -91,6 +91,7 @@
       <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
+    <eGenericSuperTypes eClassifier="#//ElementContent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interface">
     <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
