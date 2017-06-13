@@ -21,7 +21,7 @@ class MessageCalculator extends AtomicDerivedStateProcessorBase<Message> {
     override protected applyTyped(Message object) {
         object.referencedElement = if (object.sendEvent !== null)
             object.sendEvent.occurenceSpecification.referencedElement?.message
-            else object.arrivalEvent?.occurenceSpecification.referencedElement?.message
+            else object.arrivalEvent?.occurenceSpecification?.referencedElement?.message
     }
     
     override getReplacements() {

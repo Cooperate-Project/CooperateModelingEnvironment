@@ -4,35 +4,23 @@
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
-
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification;
-import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
-import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceReference;
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.lang.reflect.InvocationTargetException;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
@@ -44,24 +32,24 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getReferencedElement <em>Referenced Element</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getAlias <em>Alias</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getComments <em>Comments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.ExplicitArrivalOccurenceSpecificationImpl#getExplicitOccurenceReference <em>Explicit Occurence Reference</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl implements ExplicitArrivalOccurenceSpecification {
+public class ExplicitArrivalOccurenceSpecificationImpl extends OccurenceSpecificationImpl<MessageOccurrenceSpecification> implements ExplicitArrivalOccurenceSpecification {
     /**
-     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReferencedElement()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+    protected static final String NAME_EDEFAULT = null;
+
     /**
      * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -94,28 +82,48 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-    public MessageOccurrenceSpecification getReferencedElement() {
-        return (MessageOccurrenceSpecification)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public MessageOccurrenceSpecification basicGetReferencedElement() {
-        return (MessageOccurrenceSpecification)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @Override
     public void setReferencedElement(MessageOccurrenceSpecification newReferencedElement) {
-        eDynamicSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
+        super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetName() {
+        eDynamicUnset(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
     }
 
     /**
@@ -134,16 +142,6 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      */
     public void setAlias(String newAlias) {
         eDynamicSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    public EList<Comment> getComments() {
-        return (EList<Comment>)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
     }
 
     /**
@@ -197,21 +195,9 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      * <!-- end-user-doc -->
      * @generated
      */
-    public FragmentSequence getContainingSequence() {
-        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComments()).basicAdd(otherEnd, msgs);
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 ExplicitArrivalOccurenceReference explicitOccurenceReference = basicGetExplicitOccurenceReference();
                 if (explicitOccurenceReference != null)
@@ -229,8 +215,6 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
-                return ((InternalEList<?>)getComments()).basicRemove(otherEnd, msgs);
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 return basicSetExplicitOccurenceReference(null, msgs);
         }
@@ -245,13 +229,10 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME:
+                return getName();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
                 return getAlias();
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
-                return getComments();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 if (resolve) return getExplicitOccurenceReference();
                 return basicGetExplicitOccurenceReference();
@@ -264,19 +245,14 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                setReferencedElement((MessageOccurrenceSpecification)newValue);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME:
+                setName((String)newValue);
                 return;
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
                 setAlias((String)newValue);
-                return;
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
-                getComments().clear();
-                getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 setExplicitOccurenceReference((ExplicitArrivalOccurenceReference)newValue);
@@ -293,14 +269,11 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                setReferencedElement((MessageOccurrenceSpecification)null);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME:
+                unsetName();
                 return;
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
-                return;
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
-                getComments().clear();
                 return;
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 setExplicitOccurenceReference((ExplicitArrivalOccurenceReference)null);
@@ -317,12 +290,10 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT:
-                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME:
+                return isSetName();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS:
-                return !getComments().isEmpty();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 return basicGetExplicitOccurenceReference() != null;
         }
@@ -336,36 +307,15 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Fragment.class) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (derivedFeatureID) {
-                case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
             }
         }
         if (baseClass == AliasedElement.class) {
             switch (derivedFeatureID) {
                 case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == Commentable.class) {
-            switch (derivedFeatureID) {
-                case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS: return TextualCommonsPackage.COMMENTABLE__COMMENTS;
-                default: return -1;
-            }
-        }
-        if (baseClass == OccurenceSpecification.class) {
-            switch (derivedFeatureID) {
                 default: return -1;
             }
         }
@@ -379,36 +329,15 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Fragment.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME;
                 default: return -1;
             }
         }
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == Commentable.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.COMMENTABLE__COMMENTS: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS;
-                default: return -1;
-            }
-        }
-        if (baseClass == OccurenceSpecification.class) {
-            switch (baseFeatureID) {
                 default: return -1;
             }
         }
@@ -422,35 +351,19 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
      */
     @Override
     public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == Fragment.class) {
+        if (baseClass == OccurenceSpecification.class) {
             switch (baseOperationID) {
-                case SequencePackage.FRAGMENT___GET_CONTAINING_SEQUENCE: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE;
-                default: return -1;
+                case SequencePackage.OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE;
+                default: return super.eDerivedOperationID(baseOperationID, baseClass);
             }
         }
-        if (baseClass == UMLReferencingElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseOperationID) {
                 default: return -1;
             }
         }
         if (baseClass == AliasedElement.class) {
             switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == Commentable.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == OccurenceSpecification.class) {
-            switch (baseOperationID) {
-                case SequencePackage.OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE: return SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE;
                 default: return -1;
             }
         }
@@ -467,8 +380,6 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends NamedElementImpl 
         switch (operationID) {
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE:
                 return getOccurenceReference();
-            case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE:
-                return getContainingSequence();
         }
         return super.eInvoke(operationID, arguments);
     }

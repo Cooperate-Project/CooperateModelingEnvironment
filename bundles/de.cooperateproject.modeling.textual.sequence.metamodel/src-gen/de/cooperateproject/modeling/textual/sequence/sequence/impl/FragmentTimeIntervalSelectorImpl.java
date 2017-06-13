@@ -3,9 +3,9 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.FragmentTimeIntervalSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector;
 
@@ -82,7 +82,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<? extends InteractionFragment> getIntervalStart() {
+    public PointInTime<? extends InteractionFragment> getIntervalStart() {
         return this.getNonInstantaneousFragment();
     }
 
@@ -91,7 +91,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<? extends InteractionFragment> getIntervalEnd() {
+    public PointInTime<? extends InteractionFragment> getIntervalEnd() {
         return this.getNonInstantaneousFragment();
     }
 

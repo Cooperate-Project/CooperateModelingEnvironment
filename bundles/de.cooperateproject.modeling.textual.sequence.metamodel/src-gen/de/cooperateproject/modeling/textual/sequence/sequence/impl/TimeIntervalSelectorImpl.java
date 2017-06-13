@@ -3,7 +3,7 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector;
 
@@ -59,7 +59,7 @@ public class TimeIntervalSelectorImpl extends CDOObjectImpl implements TimeInter
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<? extends NamedElement> getIntervalStart() {
+    public PointInTime<? extends NamedElement> getIntervalStart() {
         throw new RuntimeException("This method should have been overidden");
     }
 
@@ -68,7 +68,7 @@ public class TimeIntervalSelectorImpl extends CDOObjectImpl implements TimeInter
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<? extends NamedElement> getIntervalEnd() {
+    public PointInTime<? extends NamedElement> getIntervalEnd() {
         throw new RuntimeException("This method should have been overidden");
     }
 

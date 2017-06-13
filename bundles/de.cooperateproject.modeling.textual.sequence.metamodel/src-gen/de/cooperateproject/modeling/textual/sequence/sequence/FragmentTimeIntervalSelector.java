@@ -55,7 +55,7 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getNonInstantaneousFragment();'"
      * @generated
      */
-    AliasedPointInTime<? extends InteractionFragment> getIntervalStart();
+    PointInTime<? extends InteractionFragment> getIntervalStart();
 
     /**
      * <!-- begin-user-doc -->
@@ -64,6 +64,6 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getNonInstantaneousFragment();'"
      * @generated
      */
-    AliasedPointInTime<? extends InteractionFragment> getIntervalEnd();
+    PointInTime<? extends InteractionFragment> getIntervalEnd();
 
 } // FragmentTimeIntervalSelector

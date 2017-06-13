@@ -214,8 +214,8 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
                 return createExplicitArrivalOccurenceSpecificationAdapter();
             }
             @Override
-            public <UMLPointInTimeType extends NamedElement> Adapter caseAliasedPointInTime(AliasedPointInTime<UMLPointInTimeType> object) {
-                return createAliasedPointInTimeAdapter();
+            public <UMLPointInTimeType extends NamedElement> Adapter casePointInTime(PointInTime<UMLPointInTimeType> object) {
+                return createPointInTimeAdapter();
             }
             @Override
             public Adapter casePointInTimeSelector(PointInTimeSelector object) {
@@ -758,16 +758,16 @@ public class SequenceAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime <em>Aliased Point In Time</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTime <em>Point In Time</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.PointInTime
      * @generated
      */
-    public Adapter createAliasedPointInTimeAdapter() {
+    public Adapter createPointInTimeAdapter() {
         return null;
     }
 

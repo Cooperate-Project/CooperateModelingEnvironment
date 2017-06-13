@@ -18,7 +18,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * @model
  * @generated
  */
-public interface OccurenceSpecification<UMLOccurenceType extends OccurrenceSpecification> extends Fragment, UMLReferencingElement<UMLOccurenceType>, AliasedPointInTime<UMLOccurenceType>, Commentable<UMLOccurenceType> {
+public interface OccurenceSpecification<UMLOccurenceType extends OccurrenceSpecification> extends Fragment, UMLReferencingElement<UMLOccurenceType>, PointInTime<UMLOccurenceType>, Commentable<UMLOccurenceType> {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -3,7 +3,7 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
@@ -59,8 +59,8 @@ public class PointInTimeSelectorImpl extends CDOObjectImpl implements PointInTim
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<?> getPointInTime() {
-        return (AliasedPointInTime<?>)eDynamicGet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, true, true);
+    public PointInTime<?> getPointInTime() {
+        return (PointInTime<?>)eDynamicGet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, true, true);
     }
 
     /**
@@ -68,8 +68,8 @@ public class PointInTimeSelectorImpl extends CDOObjectImpl implements PointInTim
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<?> basicGetPointInTime() {
-        return (AliasedPointInTime<?>)eDynamicGet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, false, true);
+    public PointInTime<?> basicGetPointInTime() {
+        return (PointInTime<?>)eDynamicGet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, false, true);
     }
 
     /**
@@ -77,7 +77,7 @@ public class PointInTimeSelectorImpl extends CDOObjectImpl implements PointInTim
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPointInTime(AliasedPointInTime<?> newPointInTime) {
+    public void setPointInTime(PointInTime<?> newPointInTime) {
         eDynamicSet(SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, newPointInTime);
     }
 
@@ -105,7 +105,7 @@ public class PointInTimeSelectorImpl extends CDOObjectImpl implements PointInTim
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME:
-                setPointInTime((AliasedPointInTime<?>)newValue);
+                setPointInTime((PointInTime<?>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -120,7 +120,7 @@ public class PointInTimeSelectorImpl extends CDOObjectImpl implements PointInTim
     public void eUnset(int featureID) {
         switch (featureID) {
             case SequencePackage.POINT_IN_TIME_SELECTOR__POINT_IN_TIME:
-                setPointInTime((AliasedPointInTime<?>)null);
+                setPointInTime((PointInTime<?>)null);
                 return;
         }
         super.eUnset(featureID);

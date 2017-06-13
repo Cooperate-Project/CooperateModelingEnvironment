@@ -3,7 +3,7 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
  * @model
  * @generated
  */
-public interface ExplicitArrivalOccurenceSpecification extends NamedElement, OccurenceSpecification<MessageOccurrenceSpecification> {
+public interface ExplicitArrivalOccurenceSpecification extends OccurenceSpecification<MessageOccurrenceSpecification>, AliasedElement {
     /**
      * Returns the value of the '<em><b>Explicit Occurence Reference</b></em>' reference.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getExplicitOccurenceSpecification <em>Explicit Occurence Specification</em>}'.

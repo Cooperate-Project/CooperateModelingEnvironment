@@ -2959,7 +2959,7 @@ rulePointInTimeSelector returns [EObject current=null]
 				}
 			}
 			{
-				newCompositeNode(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeCrossReference_0());
+				newCompositeNode(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeCrossReference_0());
 			}
 			ruleFQN
 			{

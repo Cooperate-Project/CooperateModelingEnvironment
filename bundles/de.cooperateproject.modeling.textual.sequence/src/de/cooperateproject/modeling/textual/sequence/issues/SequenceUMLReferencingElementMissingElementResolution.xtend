@@ -1,18 +1,23 @@
 package de.cooperateproject.modeling.textual.sequence.issues
 
-import com.google.common.base.Strings
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
+import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment
+import de.cooperateproject.modeling.textual.sequence.sequence.Condition
 import de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment
 import de.cooperateproject.modeling.textual.sequence.sequence.Message
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType
+import de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer
 import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification
+import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
+import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
+import de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
@@ -20,12 +25,14 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.Interaction
+import org.eclipse.uml2.uml.LiteralString
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification
 import org.eclipse.uml2.uml.MessageSort
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.OccurrenceSpecification
 import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.UMLFactory
+import org.eclipse.uml2.uml.UMLPackage
 
 class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -82,16 +89,22 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
             }
 	    )
 	}
+	
+	private def dispatch fixMissingUMLElement(ResponseMessage element) {
+	    if (!resolvePossible) return Void
+	    element.createMessage(
+	        element.containingSequenceDiagram.referencedElement,
+	        MessageSort.REPLY_LITERAL
+	    )
+	}
     
     private def dispatch fixMissingUMLElement(CreateMessage element) {
         if (!resolvePossible) return Void
-        
         element.createMessage(
             element.containingSequenceDiagram.referencedElement,
             MessageSort.CREATE_MESSAGE_LITERAL
         )
     }
-    
     private def dispatch fixMissingUMLElement(DestructionMessage element) {
         if (!resolvePossible) return Void
         
@@ -106,25 +119,58 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
         val umlOccurrence = (UMLFactory.eINSTANCE.create(occurrenceType as EClass) as OccurrenceSpecification)
         element.containingSequence.UMLFragmentSequence += umlOccurrence;
         umlOccurrence.setupOccurrenceSpecification(element)
-        umlOccurrence.handleAliasedElement(element)
+        if (element instanceof AliasedElement) umlOccurrence.handleAliasedElement(element)
         (element as UMLReferencingElement<OccurrenceSpecification>).referencedElement = umlOccurrence
     }
+    
+    private def dispatch fixMissingUMLElement(CombinedFragment element) {
+        val umlElement = UMLFactory.eINSTANCE.createCombinedFragment
+        umlElement.interactionOperator = element.interactionOperatorKind
+        element.containingSequence.UMLFragmentSequence += umlElement 
+        element.referencedElement = umlElement
+        
+        if (element instanceof AliasedElement) umlElement.handleAliasedElement(element)
+        element.createOperands
+    }
+    
+    private def dispatch void createOperands(SingleRegionContainer container) {
+        container.referencedElement.operands += container.region.createFragmentContainer
+    }
+    
+    private def dispatch void createOperands(MultipleRegionContainer container) {
+        container.regions.map[createFragmentContainer].forEach[container.referencedElement.operands.add(it)]
+    }
+    
+    private def createFragmentContainer(OrderedFragmentContainer element) {
+        UMLFactory.eINSTANCE.createInteractionOperand => [
+            element.referencedElement = it
+            element.condition?.fixMissingUMLElement
+        ]
+    }
+    
+    private def dispatch fixMissingUMLElement(Condition element) {
+        val container = (element.eContainer as OrderedFragmentContainer).referencedElement
+        container.guard = UMLFactory.eINSTANCE.createInteractionConstraint => [
+            createSpecification(null, null, UMLPackage.eINSTANCE.literalString) as LiteralString => [
+                value = element.condition
+            ]
+        ]
+    }  
     
     private def dispatch setupOccurrenceSpecification(MessageOccurrenceSpecification spec, OccurenceSpecification<? extends OccurrenceSpecification> element) {
         val message = element.occurenceReference?.eContainer 
         if (message instanceof Message) {
             spec.message = message.referencedElement
-            if (message.arrivalEvent.occurenceSpecification == element) {
+            if (message.arrivalEvent?.occurenceSpecification == element) {
                 message.referencedElement.receiveEvent = spec
                 spec.covered = message.right.referencedElement
-                spec.name = if (!Strings.isNullOrEmpty(element.name)) element.name
-                    else '''«message.name»_«spec.covered?.name»_receive'''    
-            } else if (message.sendEvent.occurenceSpecification == element) {
+                spec.name = '''«message.name»_«spec.covered?.name»_receive'''    
+            } else if (message.sendEvent?.occurenceSpecification == element) {
                 message.referencedElement.sendEvent = spec
                 spec.covered = message.left.referencedElement
-                spec.name = if (!Strings.isNullOrEmpty(element.name)) element.name
-                    else '''«message.name»_«spec.covered?.name»_send'''
+                spec.name = '''«message.name»_«spec.covered?.name»_send'''
             }
+            if (element instanceof NamedElement) spec.name = element.name
         }
     }
     
@@ -132,7 +178,7 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
         throw new UnsupportedOperationException('''The type «spec.class.name» is currently not supported by the UML Missing Element Quickfix''')
     }
     
-	private def createMessage(Message element, Interaction interaction, MessageSort sort) {
+	private def void createMessage(Message element, Interaction interaction, MessageSort sort) {
 	    element.referencedElement = UMLFactory.eINSTANCE.createMessage => [
             name = element.name
             messageSort = sort

@@ -33,27 +33,28 @@ class MessageMatcher {
     }
     
     def getSendEventOccurenceSpecification(Message message) {
-        context.referencedElement.messageOccurrenceSpecifications
-            .filter[it.isSend]
-            .filter[it.covered == message.left.referencedElement]
-            .filter[it.message.messageMatches(message)]
-            .drop(message.indexOfMessageSendAmongSimilarMessages)
-            .head            
+        context.referencedElement?.messageOccurrenceSpecifications
+            ?.filter[it.isSend]
+            ?.filter[it.covered == message.left.referencedElement]
+            ?.filter[it.message.messageMatches(message)]
+            ?.drop(message.indexOfMessageSendAmongSimilarMessages)
+            ?.head            
     }
     
     def getReceiveEventOccurenceSpecification(Message message) {
         val index = message.indexOfMessageReceiveAmongSimilarMessages
-        val filteredIt = context.referencedElement.messageOccurrenceSpecifications
-            .filter[m | 
+        context.referencedElement?.messageOccurrenceSpecifications
+            ?.filter[m | 
                 m.isReceive
             ]
-            .filter[m | 
+            ?.filter[m | 
                 m.covered == message.right.referencedElement
             ]
-            .filter[m | 
+            ?.filter[m | 
                 m.message.messageMatches(message)
-            ]
-        filteredIt.drop(index).head
+                ]
+            ?.drop(index)
+            ?.head
     }
     
     private def dispatch getMessageFragments(FragmentSequence container) {

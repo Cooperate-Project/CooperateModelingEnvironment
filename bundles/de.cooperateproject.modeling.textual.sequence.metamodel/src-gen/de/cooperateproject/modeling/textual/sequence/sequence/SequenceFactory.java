@@ -6,7 +6,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 import org.eclipse.emf.ecore.EFactory;
 
 import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -277,15 +276,6 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     ExplicitArrivalOccurenceSpecification createExplicitArrivalOccurenceSpecification();
-
-    /**
-     * Returns a new object of class '<em>Aliased Point In Time</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Aliased Point In Time</em>'.
-     * @generated
-     */
-    <UMLPointInTimeType extends NamedElement> AliasedPointInTime<UMLPointInTimeType> createAliasedPointInTime();
 
     /**
      * Returns a new object of class '<em>Point In Time Selector</em>'.

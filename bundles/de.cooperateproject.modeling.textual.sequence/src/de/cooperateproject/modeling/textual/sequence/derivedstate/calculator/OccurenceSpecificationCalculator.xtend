@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.textual.sequence.derivedstate.calculator
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification
 import de.cooperateproject.modeling.textual.sequence.sequence.Message
@@ -37,7 +38,7 @@ class OccurenceSpecificationCalculator extends AtomicDerivedStateProcessorBase<O
         spec.referencedElement = refElement
     }
     
-    private def dispatch handleElement(OccurenceSpecification<? extends OccurrenceSpecification> spec) {
+    private def dispatch handleElement(AliasedElement spec) {
         val alternatives = (spec.eContainer as UMLReferencingElement<? extends NamedElement>)?.referencedElement.alternatives
         val matches = newArrayList(); 
         alternatives.map[if (!spec.name.nullOrEmpty && spec.name == it.name) matches += it; it]

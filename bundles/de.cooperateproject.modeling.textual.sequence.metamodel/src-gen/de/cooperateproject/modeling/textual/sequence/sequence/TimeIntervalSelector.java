@@ -26,7 +26,7 @@ public interface TimeIntervalSelector extends CDOObject {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new RuntimeException(\"This method should have been overidden\");'"
      * @generated
      */
-    AliasedPointInTime<? extends NamedElement> getIntervalStart();
+    PointInTime<? extends NamedElement> getIntervalStart();
 
     /**
      * <!-- begin-user-doc -->
@@ -35,6 +35,6 @@ public interface TimeIntervalSelector extends CDOObject {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new RuntimeException(\"This method should have been overidden\");'"
      * @generated
      */
-    AliasedPointInTime<? extends NamedElement> getIntervalEnd();
+    PointInTime<? extends NamedElement> getIntervalEnd();
 
 } // TimeIntervalSelector

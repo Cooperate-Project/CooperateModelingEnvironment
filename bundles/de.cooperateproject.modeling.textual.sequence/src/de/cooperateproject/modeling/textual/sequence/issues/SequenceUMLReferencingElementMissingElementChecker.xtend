@@ -11,6 +11,9 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing
 import org.eclipse.uml2.uml.Element
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+import de.cooperateproject.modeling.textual.sequence.sequence.Message
+import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment
+import de.cooperateproject.modeling.textual.sequence.sequence.Condition
 
 class SequenceUMLReferencingElementMissingElementChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -18,7 +21,7 @@ class SequenceUMLReferencingElementMissingElementChecker implements IResolvableC
 		element.resolvePossible
 	}	
 	
-	private def dispatch resolvePossible(SequenceDiagram element) {
+	private def dispatch boolean resolvePossible(SequenceDiagram element) {
 	    return element.rootPackage.hasReferencedElement 
 	}
 	
@@ -31,14 +34,23 @@ class SequenceUMLReferencingElementMissingElementChecker implements IResolvableC
 	       element.classifier !== null
 	}
 	
-	private def dispatch resolvePossible(StandardMessage message) {
+	private def dispatch boolean resolvePossible(Message message) {
 	    return message.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE) 
-           && (message.left === null || message.left.hasReferencedElement)
-           && (message.right === null || message.right.hasReferencedElement)
+	       && (!(message.left === null && (message.right === null))
+           && (message.left === null || (message.left.hasReferencedElement && message.sendEvent?.occurenceSpecification?.resolvePossible))
+           && (message.right === null || message.right.hasReferencedElement && message.arrivalEvent?.occurenceSpecification?.resolvePossible))
 	}
 	
-	private def dispatch resolvePossible(OccurenceSpecification spec) {
-	    return spec.occurenceReference?.hasValidParent(SequencePackage.Literals.MESSAGE)
+	private def dispatch boolean resolvePossible(OccurenceSpecification spec) {
+	    spec.occurenceReference?.hasValidParent(SequencePackage.Literals.MESSAGE)
+	}
+	
+	private def dispatch resolvePossible(CombinedFragment fragment) {
+	    fragment.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE)
+	}
+	
+	private def dispatch resolvePossible(Condition fragment) {
+	    fragment.hasValidParent(SequencePackage.Literals.ORDERED_FRAGMENT_CONTAINER)
 	}
 	
 	private def dispatch resolvePossible(UMLReferencingElement element) {

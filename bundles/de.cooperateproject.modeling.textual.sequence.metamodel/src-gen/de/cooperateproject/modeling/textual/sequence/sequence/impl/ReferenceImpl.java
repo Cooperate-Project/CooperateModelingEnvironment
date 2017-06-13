@@ -9,10 +9,10 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.Reference;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
@@ -272,6 +272,11 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
                 default: return -1;
             }
         }
+        if (baseClass == PointInTime.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
                 case SequencePackage.REFERENCE__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
@@ -281,11 +286,6 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
         if (baseClass == AliasedElement.class) {
             switch (derivedFeatureID) {
                 case SequencePackage.REFERENCE__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (derivedFeatureID) {
                 default: return -1;
             }
         }
@@ -309,6 +309,11 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
                 default: return -1;
             }
         }
+        if (baseClass == PointInTime.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return SequencePackage.REFERENCE__NAME;
@@ -318,11 +323,6 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return SequencePackage.REFERENCE__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (baseFeatureID) {
                 default: return -1;
             }
         }
@@ -347,17 +347,17 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
                 default: return -1;
             }
         }
+        if (baseClass == PointInTime.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
         if (baseClass == NamedElement.class) {
             switch (baseOperationID) {
                 default: return -1;
             }
         }
         if (baseClass == AliasedElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
             switch (baseOperationID) {
                 default: return -1;
             }

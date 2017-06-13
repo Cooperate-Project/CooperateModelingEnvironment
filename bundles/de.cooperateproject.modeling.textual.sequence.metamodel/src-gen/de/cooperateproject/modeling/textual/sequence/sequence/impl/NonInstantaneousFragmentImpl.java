@@ -10,8 +10,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.uml2.uml.InteractionFragment;
 
 /**
@@ -32,14 +32,24 @@ import org.eclipse.uml2.uml.InteractionFragment;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl#getAlias <em>Alias</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.NonInstantaneousFragmentImpl#getReferencedElement <em>Referenced Element</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> extends FragmentImpl implements NonInstantaneousFragment<UMLType> {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -61,16 +71,6 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
     protected static final String ALIAS_EDEFAULT = null;
 
     /**
-     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getReferencedElement()
-     * @generated
-     * @ordered
-     */
-    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -87,6 +87,34 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
     @Override
     protected EClass eStaticClass() {
         return SequencePackage.Literals.NON_INSTANTANEOUS_FRAGMENT;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public UMLType getReferencedElement() {
+        return (UMLType)eDynamicGet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UMLType basicGetReferencedElement() {
+        return (UMLType)eDynamicGet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setReferencedElement(UMLType newReferencedElement) {
+        eDynamicSet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
     /**
@@ -148,34 +176,6 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public UMLType getReferencedElement() {
-        return (UMLType)eDynamicGet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public UMLType basicGetReferencedElement() {
-        return (UMLType)eDynamicGet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setReferencedElement(UMLType newReferencedElement) {
-        eDynamicSet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public PackageBase<?> getNearestPackage() {
         EObject parent = this;
         while (parent != null && !(parent instanceof PackageBase)) {
@@ -192,13 +192,13 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME:
                 return getName();
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS:
                 return getAlias();
-            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
-                if (resolve) return getReferencedElement();
-                return basicGetReferencedElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -212,14 +212,14 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
+                setReferencedElement((UMLType)newValue);
+                return;
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME:
                 setName((String)newValue);
                 return;
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS:
                 setAlias((String)newValue);
-                return;
-            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
-                setReferencedElement((UMLType)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -233,14 +233,14 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
+                setReferencedElement((UMLType)null);
+                return;
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME:
                 unsetName();
                 return;
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
-                return;
-            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
-                setReferencedElement((UMLType)null);
                 return;
         }
         super.eUnset(featureID);
@@ -254,12 +254,12 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME:
                 return isSetName();
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
-            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT:
-                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
         }
         return super.eIsSet(featureID);
     }
@@ -276,6 +276,17 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
                 default: return -1;
             }
         }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == PointInTime.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
                 case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
@@ -285,17 +296,6 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
         if (baseClass == AliasedElement.class) {
             switch (derivedFeatureID) {
                 case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (derivedFeatureID) {
-                case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (derivedFeatureID) {
                 default: return -1;
             }
         }
@@ -314,6 +314,17 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
                 default: return -1;
             }
         }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        if (baseClass == PointInTime.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
         if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME;
@@ -323,17 +334,6 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return SequencePackage.NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
-            switch (baseFeatureID) {
                 default: return -1;
             }
         }
@@ -353,22 +353,22 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
                 default: return -1;
             }
         }
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == PointInTime.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
         if (baseClass == NamedElement.class) {
             switch (baseOperationID) {
                 default: return -1;
             }
         }
         if (baseClass == AliasedElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedPointInTime.class) {
             switch (baseOperationID) {
                 default: return -1;
             }

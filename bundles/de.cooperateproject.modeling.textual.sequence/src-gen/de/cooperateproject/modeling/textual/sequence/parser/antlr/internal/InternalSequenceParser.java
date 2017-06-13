@@ -7396,7 +7396,7 @@ public class InternalSequenceParser extends AbstractInternalAntlrParser {
             				}
             			
 
-            				newCompositeNode(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeCrossReference_0());
+            				newCompositeNode(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeCrossReference_0());
             			
             pushFollow(FOLLOW_2);
             ruleFQN();

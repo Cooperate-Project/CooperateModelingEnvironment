@@ -3,6 +3,8 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+
 import org.eclipse.uml2.uml.InteractionFragment;
 
 /**
@@ -15,5 +17,5 @@ import org.eclipse.uml2.uml.InteractionFragment;
  * @model
  * @generated
  */
-public interface NonInstantaneousFragment<UMLType extends InteractionFragment> extends Fragment, AliasedPointInTime<UMLType> {
+public interface NonInstantaneousFragment<UMLType extends InteractionFragment> extends Fragment, PointInTime<UMLType>, AliasedElement {
 } // NonInstantaneousFragment

@@ -3,8 +3,8 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector;
@@ -113,7 +113,7 @@ public class BiPointInTimeTimeIntervalSelectorImpl extends TimeIntervalSelectorI
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<?> getIntervalStart() {
+    public PointInTime<?> getIntervalStart() {
         return this.getStart().getPointInTime();
     }
 
@@ -122,7 +122,7 @@ public class BiPointInTimeTimeIntervalSelectorImpl extends TimeIntervalSelectorI
      * <!-- end-user-doc -->
      * @generated
      */
-    public AliasedPointInTime<?> getIntervalEnd() {
+    public PointInTime<?> getIntervalEnd() {
         return this.getEnd().getPointInTime();
     }
 

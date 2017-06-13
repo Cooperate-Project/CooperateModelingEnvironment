@@ -1761,21 +1761,21 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	public class PointInTimeSelectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.PointInTimeSelector");
 		private final Assignment cPointInTimeAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cPointInTimeAliasedPointInTimeCrossReference_0 = (CrossReference)cPointInTimeAssignment.eContents().get(0);
-		private final RuleCall cPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1 = (RuleCall)cPointInTimeAliasedPointInTimeCrossReference_0.eContents().get(1);
+		private final CrossReference cPointInTimePointInTimeCrossReference_0 = (CrossReference)cPointInTimeAssignment.eContents().get(0);
+		private final RuleCall cPointInTimePointInTimeFQNParserRuleCall_0_1 = (RuleCall)cPointInTimePointInTimeCrossReference_0.eContents().get(1);
 		
 		//PointInTimeSelector:
-		//	pointInTime=[AliasedPointInTime|FQN];
+		//	pointInTime=[PointInTime|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//pointInTime=[AliasedPointInTime|FQN]
+		//pointInTime=[PointInTime|FQN]
 		public Assignment getPointInTimeAssignment() { return cPointInTimeAssignment; }
 		
-		//[AliasedPointInTime|FQN]
-		public CrossReference getPointInTimeAliasedPointInTimeCrossReference_0() { return cPointInTimeAliasedPointInTimeCrossReference_0; }
+		//[PointInTime|FQN]
+		public CrossReference getPointInTimePointInTimeCrossReference_0() { return cPointInTimePointInTimeCrossReference_0; }
 		
 		//FQN
-		public RuleCall getPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1() { return cPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1; }
+		public RuleCall getPointInTimePointInTimeFQNParserRuleCall_0_1() { return cPointInTimePointInTimeFQNParserRuleCall_0_1; }
 	}
 	public class TimeIntervalSelectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.TimeIntervalSelector");
@@ -2565,7 +2565,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PointInTimeSelector:
-	//	pointInTime=[AliasedPointInTime|FQN];
+	//	pointInTime=[PointInTime|FQN];
 	public PointInTimeSelectorElements getPointInTimeSelectorAccess() {
 		return pPointInTimeSelector;
 	}

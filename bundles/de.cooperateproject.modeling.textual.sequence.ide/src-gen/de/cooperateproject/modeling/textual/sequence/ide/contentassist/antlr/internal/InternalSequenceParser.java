@@ -24888,21 +24888,21 @@ public class InternalSequenceParser extends AbstractInternalContentAssistParser 
             // InternalSequence.g:8304:2: ( ( ruleFQN ) )
             // InternalSequence.g:8305:3: ( ruleFQN )
             {
-             before(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeCrossReference_0()); 
+             before(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeCrossReference_0()); 
             // InternalSequence.g:8306:3: ( ruleFQN )
             // InternalSequence.g:8307:4: ruleFQN
             {
-             before(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1()); 
+             before(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeFQNParserRuleCall_0_1()); 
             pushFollow(FOLLOW_2);
             ruleFQN();
 
             state._fsp--;
 
-             after(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1()); 
+             after(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeFQNParserRuleCall_0_1()); 
 
             }
 
-             after(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeCrossReference_0()); 
+             after(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeCrossReference_0()); 
 
             }
 

@@ -81,7 +81,7 @@ public interface BiPointInTimeTimeIntervalSelector extends TimeIntervalSelector 
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getStart().getPointInTime();'"
      * @generated
      */
-    AliasedPointInTime<?> getIntervalStart();
+    PointInTime<?> getIntervalStart();
 
     /**
      * <!-- begin-user-doc -->
@@ -90,6 +90,6 @@ public interface BiPointInTimeTimeIntervalSelector extends TimeIntervalSelector 
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getEnd().getPointInTime();'"
      * @generated
      */
-    AliasedPointInTime<?> getIntervalEnd();
+    PointInTime<?> getIntervalEnd();
 
 } // BiPointInTimeTimeIntervalSelector

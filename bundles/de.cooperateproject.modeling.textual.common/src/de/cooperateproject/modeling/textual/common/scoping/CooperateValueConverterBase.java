@@ -1,14 +1,28 @@
 package de.cooperateproject.modeling.textual.common.scoping;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.common.services.DefaultTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
 import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.service.GrammarProvider;
+
+import com.google.inject.Inject;
 
 public class CooperateValueConverterBase extends DefaultTerminalConverters {
+
+    protected Set<String> LIST_OF_KEYWORDS = Collections.emptySet();
+
+    @Inject
+    protected void setGrammarProvider(GrammarProvider grammarProvider) {
+        LIST_OF_KEYWORDS = GrammarUtil.getAllKeywords(grammarProvider.getGrammar(this));
+    };
 
     @ValueConverter(rule = "NameString")
     public IValueConverter<String> NameString() {
@@ -111,10 +125,9 @@ public class CooperateValueConverterBase extends DefaultTerminalConverters {
     @ValueConverter(rule = "UnescapedString")
     public IValueConverter<String> convertUnescapedString() {
         return new AbstractNullSafeConverter<String>() {
-
             @Override
             protected String internalToString(String value) {
-                if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9]*")) {
+                if (value.matches("^?[a-zA-Z_][a-zA-Z_0-9]*") && !LIST_OF_KEYWORDS.contains(value)) {
                     return value;
                 }
                 return String.format("\"%s\"", value);

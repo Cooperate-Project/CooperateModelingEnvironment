@@ -739,7 +739,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     PointInTimeSelector returns PointInTimeSelector
 	 *
 	 * Constraint:
-	 *     pointInTime=[AliasedPointInTime|FQN]
+	 *     pointInTime=[PointInTime|FQN]
 	 */
 	protected void sequence_PointInTimeSelector(ISerializationContext context, PointInTimeSelector semanticObject) {
 		if (errorAcceptor != null) {
@@ -747,7 +747,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getPointInTimeSelectorAccess().getPointInTimeAliasedPointInTimeFQNParserRuleCall_0_1(), semanticObject.eGet(SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, false));
+		feeder.accept(grammarAccess.getPointInTimeSelectorAccess().getPointInTimePointInTimeFQNParserRuleCall_0_1(), semanticObject.eGet(SequencePackage.Literals.POINT_IN_TIME_SELECTOR__POINT_IN_TIME, false));
 		feeder.finish();
 	}
 	

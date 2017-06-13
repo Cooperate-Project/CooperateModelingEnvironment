@@ -9,6 +9,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,6 +76,15 @@ public abstract class CombinedFragmentImpl extends NonInstantaneousFragmentImpl<
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(SequencePackage.COMBINED_FRAGMENT__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InteractionOperatorKind getInteractionOperatorKind() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getInteractionOperatorKindOfCombinedFragment(this);
     }
 
     /**
@@ -195,6 +206,20 @@ public abstract class CombinedFragmentImpl extends NonInstantaneousFragmentImpl<
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.COMBINED_FRAGMENT___GET_INTERACTION_OPERATOR_KIND:
+                return getInteractionOperatorKind();
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //CombinedFragmentImpl

@@ -1082,31 +1082,13 @@ public interface SequencePackage extends EPackage {
     int OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = FRAGMENT_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int OCCURENCE_SPECIFICATION__NAME = FRAGMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int OCCURENCE_SPECIFICATION__ALIAS = FRAGMENT_FEATURE_COUNT + 2;
-
-    /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int OCCURENCE_SPECIFICATION__COMMENTS = FRAGMENT_FEATURE_COUNT + 3;
+    int OCCURENCE_SPECIFICATION__COMMENTS = FRAGMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Occurence Specification</em>' class.
@@ -1115,7 +1097,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int OCCURENCE_SPECIFICATION_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 4;
+    int OCCURENCE_SPECIFICATION_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Containing Sequence</em>' operation.
@@ -1171,24 +1153,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int DESTRUCTION_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DESTRUCTION_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1264,13 +1228,22 @@ public interface SequencePackage extends EPackage {
     int NON_INSTANTANEOUS_FRAGMENT = 40;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT = FRAGMENT_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int NON_INSTANTANEOUS_FRAGMENT__NAME = FRAGMENT_FEATURE_COUNT + 0;
+    int NON_INSTANTANEOUS_FRAGMENT__NAME = FRAGMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1279,16 +1252,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int NON_INSTANTANEOUS_FRAGMENT__ALIAS = FRAGMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT = FRAGMENT_FEATURE_COUNT + 2;
+    int NON_INSTANTANEOUS_FRAGMENT__ALIAS = FRAGMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Non Instantaneous Fragment</em>' class.
@@ -1337,6 +1301,15 @@ public interface SequencePackage extends EPackage {
     int COMBINED_FRAGMENT = 13;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT__REFERENCED_ELEMENT = NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1353,15 +1326,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int COMBINED_FRAGMENT__ALIAS = NON_INSTANTANEOUS_FRAGMENT__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int COMBINED_FRAGMENT__REFERENCED_ELEMENT = NON_INSTANTANEOUS_FRAGMENT__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1400,13 +1364,22 @@ public interface SequencePackage extends EPackage {
     int COMBINED_FRAGMENT___GET_NEAREST_PACKAGE = NON_INSTANTANEOUS_FRAGMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMBINED_FRAGMENT___GET_INTERACTION_OPERATOR_KIND = NON_INSTANTANEOUS_FRAGMENT_OPERATION_COUNT + 0;
+
+    /**
      * The number of operations of the '<em>Combined Fragment</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COMBINED_FRAGMENT_OPERATION_COUNT = NON_INSTANTANEOUS_FRAGMENT_OPERATION_COUNT + 0;
+    int COMBINED_FRAGMENT_OPERATION_COUNT = NON_INSTANTANEOUS_FRAGMENT_OPERATION_COUNT + 1;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl <em>Ordered Fragment Container</em>}' class.
@@ -1501,6 +1474,15 @@ public interface SequencePackage extends EPackage {
     int SINGLE_REGION_CONTAINER = 15;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1517,15 +1499,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int SINGLE_REGION_CONTAINER__ALIAS = COMBINED_FRAGMENT__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1573,6 +1546,15 @@ public interface SequencePackage extends EPackage {
     int SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SINGLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND = COMBINED_FRAGMENT___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Single Region Container</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1592,6 +1574,15 @@ public interface SequencePackage extends EPackage {
     int MULTIPLE_REGION_CONTAINER = 16;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1608,15 +1599,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int MULTIPLE_REGION_CONTAINER__ALIAS = COMBINED_FRAGMENT__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT = COMBINED_FRAGMENT__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1664,6 +1646,15 @@ public interface SequencePackage extends EPackage {
     int MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE = COMBINED_FRAGMENT___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MULTIPLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND = COMBINED_FRAGMENT___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Multiple Region Container</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1683,6 +1674,15 @@ public interface SequencePackage extends EPackage {
     int ALTERNATIVE = 17;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1699,15 +1699,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int ALTERNATIVE__ALIAS = MULTIPLE_REGION_CONTAINER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ALTERNATIVE__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1755,6 +1746,15 @@ public interface SequencePackage extends EPackage {
     int ALTERNATIVE___GET_NEAREST_PACKAGE = MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ALTERNATIVE___GET_INTERACTION_OPERATOR_KIND = MULTIPLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Alternative</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1774,6 +1774,15 @@ public interface SequencePackage extends EPackage {
     int OPTION = 18;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1790,15 +1799,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int OPTION__ALIAS = SINGLE_REGION_CONTAINER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int OPTION__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1846,6 +1846,15 @@ public interface SequencePackage extends EPackage {
     int OPTION___GET_NEAREST_PACKAGE = SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPTION___GET_INTERACTION_OPERATOR_KIND = SINGLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Option</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1865,6 +1874,15 @@ public interface SequencePackage extends EPackage {
     int CO_REGION = 19;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1881,15 +1899,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int CO_REGION__ALIAS = MULTIPLE_REGION_CONTAINER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CO_REGION__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1937,6 +1946,15 @@ public interface SequencePackage extends EPackage {
     int CO_REGION___GET_NEAREST_PACKAGE = MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CO_REGION___GET_INTERACTION_OPERATOR_KIND = MULTIPLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Co Region</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1956,6 +1974,15 @@ public interface SequencePackage extends EPackage {
     int PARALLEL = 20;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1972,15 +1999,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int PARALLEL__ALIAS = MULTIPLE_REGION_CONTAINER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PARALLEL__REFERENCED_ELEMENT = MULTIPLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -2028,6 +2046,15 @@ public interface SequencePackage extends EPackage {
     int PARALLEL___GET_NEAREST_PACKAGE = MULTIPLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARALLEL___GET_INTERACTION_OPERATOR_KIND = MULTIPLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Parallel</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2047,6 +2074,15 @@ public interface SequencePackage extends EPackage {
     int CRITICAL = 21;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2063,15 +2099,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int CRITICAL__ALIAS = SINGLE_REGION_CONTAINER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CRITICAL__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -2119,6 +2146,15 @@ public interface SequencePackage extends EPackage {
     int CRITICAL___GET_NEAREST_PACKAGE = SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CRITICAL___GET_INTERACTION_OPERATOR_KIND = SINGLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND;
+
+    /**
      * The number of operations of the '<em>Critical</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2138,6 +2174,15 @@ public interface SequencePackage extends EPackage {
     int LOOP = 22;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2154,15 +2199,6 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int LOOP__ALIAS = SINGLE_REGION_CONTAINER__ALIAS;
-
-    /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int LOOP__REFERENCED_ELEMENT = SINGLE_REGION_CONTAINER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -2208,6 +2244,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int LOOP___GET_NEAREST_PACKAGE = SINGLE_REGION_CONTAINER___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Interaction Operator Kind</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOOP___GET_INTERACTION_OPERATOR_KIND = SINGLE_REGION_CONTAINER___GET_INTERACTION_OPERATOR_KIND;
 
     /**
      * The number of operations of the '<em>Loop</em>' class.
@@ -2670,24 +2715,6 @@ public interface SequencePackage extends EPackage {
     int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION__NAME;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION__ALIAS;
-
-    /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2779,31 +2806,13 @@ public interface SequencePackage extends EPackage {
     int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION = 33;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME = TextualCommonsPackage.NAMED_ELEMENT__NAME;
-
-    /**
      * The feature id for the '<em><b>Referenced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Alias</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT = OCCURENCE_SPECIFICATION__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -2812,71 +2821,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The feature id for the '<em><b>Explicit Occurence Reference</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
-     * The number of structural features of the '<em>Explicit Arrival Occurence Specification</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = TextualCommonsPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-    /**
-     * The operation id for the '<em>Get Nearest Package</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.NAMED_ELEMENT___GET_NEAREST_PACKAGE;
-
-    /**
-     * The operation id for the '<em>Get Containing Sequence</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-    /**
-     * The operation id for the '<em>Get Occurence Reference</em>' operation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
-
-    /**
-     * The number of operations of the '<em>Explicit Arrival Occurence Specification</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = TextualCommonsPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
-
-    /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl <em>Aliased Point In Time</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getAliasedPointInTime()
-     * @generated
-     */
-    int ALIASED_POINT_IN_TIME = 34;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__COMMENTS = OCCURENCE_SPECIFICATION__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2885,7 +2830,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALIASED_POINT_IN_TIME__NAME = TextualCommonsPackage.ALIASED_ELEMENT__NAME;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -2894,25 +2839,34 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALIASED_POINT_IN_TIME__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * The feature id for the '<em><b>Explicit Occurence Reference</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ALIASED_POINT_IN_TIME__REFERENCED_ELEMENT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 2;
 
     /**
-     * The number of structural features of the '<em>Aliased Point In Time</em>' class.
+     * The number of structural features of the '<em>Explicit Arrival Occurence Specification</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ALIASED_POINT_IN_TIME_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_FEATURE_COUNT = OCCURENCE_SPECIFICATION_FEATURE_COUNT + 3;
+
+    /**
+     * The operation id for the '<em>Get Containing Sequence</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE = OCCURENCE_SPECIFICATION___GET_CONTAINING_SEQUENCE;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -2921,16 +2875,71 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ALIASED_POINT_IN_TIME___GET_NEAREST_PACKAGE = TextualCommonsPackage.ALIASED_ELEMENT___GET_NEAREST_PACKAGE;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
 
     /**
-     * The number of operations of the '<em>Aliased Point In Time</em>' class.
+     * The operation id for the '<em>Get Occurence Reference</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ALIASED_POINT_IN_TIME_OPERATION_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_OPERATION_COUNT + 0;
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 0;
+
+    /**
+     * The number of operations of the '<em>Explicit Arrival Occurence Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION_OPERATION_COUNT = OCCURENCE_SPECIFICATION_OPERATION_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeImpl <em>Point In Time</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeImpl
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getPointInTime()
+     * @generated
+     */
+    int POINT_IN_TIME = 34;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+
+    /**
+     * The number of structural features of the '<em>Point In Time</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+
+    /**
+     * The number of operations of the '<em>Point In Time</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POINT_IN_TIME_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl <em>Point In Time Selector</em>}' class.
@@ -3584,6 +3593,16 @@ public interface SequencePackage extends EPackage {
     EClass getCombinedFragment();
 
     /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment#getInteractionOperatorKind() <em>Get Interaction Operator Kind</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Interaction Operator Kind</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment#getInteractionOperatorKind()
+     * @generated
+     */
+    EOperation getCombinedFragment__GetInteractionOperatorKind();
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer <em>Ordered Fragment Container</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4008,14 +4027,14 @@ public interface SequencePackage extends EPackage {
     EOperation getExplicitArrivalOccurenceSpecification__GetOccurenceReference();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime <em>Aliased Point In Time</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTime <em>Point In Time</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Aliased Point In Time</em>'.
-     * @see de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime
+     * @return the meta object for class '<em>Point In Time</em>'.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.PointInTime
      * @generated
      */
-    EClass getAliasedPointInTime();
+    EClass getPointInTime();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector <em>Point In Time Selector</em>}'.
@@ -4528,6 +4547,14 @@ public interface SequencePackage extends EPackage {
         EClass COMBINED_FRAGMENT = eINSTANCE.getCombinedFragment();
 
         /**
+         * The meta object literal for the '<em><b>Get Interaction Operator Kind</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation COMBINED_FRAGMENT___GET_INTERACTION_OPERATOR_KIND = eINSTANCE.getCombinedFragment__GetInteractionOperatorKind();
+
+        /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl <em>Ordered Fragment Container</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4896,14 +4923,14 @@ public interface SequencePackage extends EPackage {
         EOperation EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = eINSTANCE.getExplicitArrivalOccurenceSpecification__GetOccurenceReference();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl <em>Aliased Point In Time</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeImpl <em>Point In Time</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.AliasedPointInTimeImpl
-         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getAliasedPointInTime()
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeImpl
+         * @see de.cooperateproject.modeling.textual.sequence.sequence.impl.SequencePackageImpl#getPointInTime()
          * @generated
          */
-        EClass ALIASED_POINT_IN_TIME = eINSTANCE.getAliasedPointInTime();
+        EClass POINT_IN_TIME = eINSTANCE.getPointInTime();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.PointInTimeSelectorImpl <em>Point In Time Selector</em>}' class.

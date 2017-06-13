@@ -110,7 +110,7 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
     </eGenericSuperTypes>
-    <eGenericSuperTypes eClassifier="#//AliasedPointInTime">
+    <eGenericSuperTypes eClassifier="#//PointInTime">
       <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
@@ -124,6 +124,11 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CombinedFragment" abstract="true">
+    <eOperations name="getInteractionOperatorKind" eType="ecore:EEnum platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperatorKind">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getInteractionOperatorKindOfCombinedFragment(this);"/>
+      </eAnnotations>
+    </eOperations>
     <eGenericSuperTypes eClassifier="#//NonInstantaneousFragment">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
     </eGenericSuperTypes>
@@ -270,10 +275,10 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="explicitOccurenceReference"
         eType="#//ExplicitArrivalOccurenceReference" eOpposite="#//ExplicitArrivalOccurenceReference/explicitOccurenceSpecification"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
     <eGenericSuperTypes eClassifier="#//OccurenceSpecification">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MessageType">
     <eLiterals name="SYNC" literal="sync"/>
@@ -283,18 +288,17 @@
     <eLiterals name="HUMAN" literal="human"/>
     <eLiterals name="MACHINE" value="1" literal="machine"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AliasedPointInTime">
+  <eClassifiers xsi:type="ecore:EClass" name="PointInTime" abstract="true">
     <eTypeParameters name="UMLPointInTimeType">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
-    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments eTypeParameter="#//AliasedPointInTime/UMLPointInTimeType"/>
+      <eTypeArguments eTypeParameter="#//PointInTime/UMLPointInTimeType"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PointInTimeSelector">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pointInTime">
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
@@ -304,7 +308,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="throw new RuntimeException(&quot;This method should have been overidden&quot;);"/>
       </eAnnotations>
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
         </eTypeArguments>
@@ -314,7 +318,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="throw new RuntimeException(&quot;This method should have been overidden&quot;);"/>
       </eAnnotations>
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
         </eTypeArguments>
@@ -326,7 +330,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return this.getStart().getPointInTime();"/>
       </eAnnotations>
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments/>
       </eGenericType>
     </eOperations>
@@ -334,7 +338,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return this.getEnd().getPointInTime();"/>
       </eAnnotations>
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments/>
       </eGenericType>
     </eOperations>
@@ -348,7 +352,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return this.getNonInstantaneousFragment();"/>
       </eAnnotations>
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
         </eTypeArguments>
@@ -358,7 +362,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return this.getNonInstantaneousFragment();"/>
       </eAnnotations>
-      <eGenericType eClassifier="#//AliasedPointInTime">
+      <eGenericType eClassifier="#//PointInTime">
         <eTypeArguments>
           <eUpperBound eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
         </eTypeArguments>
@@ -384,8 +388,9 @@
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
     </eTypeParameters>
     <eGenericSuperTypes eClassifier="#//Fragment"/>
-    <eGenericSuperTypes eClassifier="#//AliasedPointInTime">
+    <eGenericSuperTypes eClassifier="#//PointInTime">
       <eTypeArguments eTypeParameter="#//NonInstantaneousFragment/UMLType"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
   </eClassifiers>
 </ecore:EPackage>

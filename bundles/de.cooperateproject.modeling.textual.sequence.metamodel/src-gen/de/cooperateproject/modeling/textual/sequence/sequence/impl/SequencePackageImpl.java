@@ -8,7 +8,6 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping;
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorType;
-import de.cooperateproject.modeling.textual.sequence.sequence.AliasedPointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
 import de.cooperateproject.modeling.textual.sequence.sequence.BiPointInTimeTimeIntervalSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.CoRegion;
@@ -38,6 +37,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecifica
 import de.cooperateproject.modeling.textual.sequence.sequence.Option;
 import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer;
 import de.cooperateproject.modeling.textual.sequence.sequence.Parallel;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.Reference;
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
@@ -317,7 +317,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass aliasedPointInTimeEClass = null;
+    private EClass pointInTimeEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -741,6 +741,15 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EOperation getCombinedFragment__GetInteractionOperatorKind() {
+        return combinedFragmentEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getOrderedFragmentContainer() {
         return orderedFragmentContainerEClass;
     }
@@ -1110,8 +1119,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getAliasedPointInTime() {
-        return aliasedPointInTimeEClass;
+    public EClass getPointInTime() {
+        return pointInTimeEClass;
     }
 
     /**
@@ -1359,6 +1368,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEReference(destructionOccurenceSpecificationEClass, DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET);
 
         combinedFragmentEClass = createEClass(COMBINED_FRAGMENT);
+        createEOperation(combinedFragmentEClass, COMBINED_FRAGMENT___GET_INTERACTION_OPERATOR_KIND);
 
         orderedFragmentContainerEClass = createEClass(ORDERED_FRAGMENT_CONTAINER);
         createEReference(orderedFragmentContainerEClass, ORDERED_FRAGMENT_CONTAINER__CONDITION);
@@ -1421,7 +1431,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEReference(explicitArrivalOccurenceSpecificationEClass, EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE);
         createEOperation(explicitArrivalOccurenceSpecificationEClass, EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE);
 
-        aliasedPointInTimeEClass = createEClass(ALIASED_POINT_IN_TIME);
+        pointInTimeEClass = createEClass(POINT_IN_TIME);
 
         pointInTimeSelectorEClass = createEClass(POINT_IN_TIME_SELECTOR);
         createEReference(pointInTimeSelectorEClass, POINT_IN_TIME_SELECTOR__POINT_IN_TIME);
@@ -1483,7 +1493,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         // Create type parameters
         ETypeParameter occurenceSpecificationEClass_UMLOccurenceType = addETypeParameter(occurenceSpecificationEClass, "UMLOccurenceType");
         ETypeParameter occurenceReferenceEClass_OccurenceType = addETypeParameter(occurenceReferenceEClass, "OccurenceType");
-        ETypeParameter aliasedPointInTimeEClass_UMLPointInTimeType = addETypeParameter(aliasedPointInTimeEClass, "UMLPointInTimeType");
+        ETypeParameter pointInTimeEClass_UMLPointInTimeType = addETypeParameter(pointInTimeEClass, "UMLPointInTimeType");
         ETypeParameter nonInstantaneousFragmentEClass_UMLType = addETypeParameter(nonInstantaneousFragmentEClass, "UMLType");
 
         // Set bounds for type parameters
@@ -1494,7 +1504,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g1.getETypeArguments().add(g2);
         occurenceReferenceEClass_OccurenceType.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getNamedElement());
-        aliasedPointInTimeEClass_UMLPointInTimeType.getEBounds().add(g1);
+        pointInTimeEClass_UMLPointInTimeType.getEBounds().add(g1);
         g1 = createEGenericType(theUMLPackage.getInteractionFragment());
         nonInstantaneousFragmentEClass_UMLType.getEBounds().add(g1);
 
@@ -1547,7 +1557,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g2 = createEGenericType(occurenceSpecificationEClass_UMLOccurenceType);
         g1.getETypeArguments().add(g2);
         occurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType(occurenceSpecificationEClass_UMLOccurenceType);
         g1.getETypeArguments().add(g2);
         occurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
@@ -1615,18 +1625,16 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g3 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g2.getETypeArguments().add(g3);
         implicitMessageOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
-        explicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getOccurenceSpecification());
         g2 = createEGenericType(theUMLPackage.getMessageOccurrenceSpecification());
         g1.getETypeArguments().add(g2);
         explicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
-        aliasedPointInTimeEClass.getEGenericSuperTypes().add(g1);
+        explicitArrivalOccurenceSpecificationEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(aliasedPointInTimeEClass_UMLPointInTimeType);
+        g2 = createEGenericType(pointInTimeEClass_UMLPointInTimeType);
         g1.getETypeArguments().add(g2);
-        aliasedPointInTimeEClass.getEGenericSuperTypes().add(g1);
+        pointInTimeEClass.getEGenericSuperTypes().add(g1);
         biPointInTimeTimeIntervalSelectorEClass.getESuperTypes().add(this.getTimeIntervalSelector());
         fragmentTimeIntervalSelectorEClass.getESuperTypes().add(this.getTimeIntervalSelector());
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
@@ -1639,9 +1647,11 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         referenceEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(this.getFragment());
         nonInstantaneousFragmentEClass.getEGenericSuperTypes().add(g1);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType(nonInstantaneousFragmentEClass_UMLType);
         g1.getETypeArguments().add(g2);
+        nonInstantaneousFragmentEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
         nonInstantaneousFragmentEClass.getEGenericSuperTypes().add(g1);
 
         // Initialize classes, features, and operations; add parameters
@@ -1714,6 +1724,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEReference(getDestructionOccurenceSpecification_Target(), this.getActor(), null, "target", null, 0, 1, DestructionOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(combinedFragmentEClass, CombinedFragment.class, "CombinedFragment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEOperation(getCombinedFragment__GetInteractionOperatorKind(), theUMLPackage.getInteractionOperatorKind(), "getInteractionOperatorKind", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(orderedFragmentContainerEClass, OrderedFragmentContainer.class, "OrderedFragmentContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getOrderedFragmentContainer_Condition(), this.getCondition(), null, "condition", null, 0, 1, OrderedFragmentContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1805,10 +1817,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g2.getETypeArguments().add(g3);
         initEOperation(op, g1);
 
-        initEClass(aliasedPointInTimeEClass, AliasedPointInTime.class, "AliasedPointInTime", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(pointInTimeEClass, PointInTime.class, "PointInTime", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(pointInTimeSelectorEClass, PointInTimeSelector.class, "PointInTimeSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEReference(getPointInTimeSelector_PointInTime(), g1, null, "pointInTime", null, 0, 1, PointInTimeSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1816,7 +1828,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEClass(timeIntervalSelectorEClass, TimeIntervalSelector.class, "TimeIntervalSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         op = initEOperation(getTimeIntervalSelector__GetIntervalStart(), null, "getIntervalStart", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getNamedElement());
@@ -1824,7 +1836,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEOperation(op, g1);
 
         op = initEOperation(getTimeIntervalSelector__GetIntervalEnd(), null, "getIntervalEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getNamedElement());
@@ -1836,13 +1848,13 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEReference(getBiPointInTimeTimeIntervalSelector_End(), this.getPointInTimeSelector(), null, "end", null, 0, 1, BiPointInTimeTimeIntervalSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         op = initEOperation(getBiPointInTimeTimeIntervalSelector__GetIntervalStart(), null, "getIntervalStart", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
         op = initEOperation(getBiPointInTimeTimeIntervalSelector__GetIntervalEnd(), null, "getIntervalEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
@@ -1854,7 +1866,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEReference(getFragmentTimeIntervalSelector_NonInstantaneousFragment(), g1, null, "nonInstantaneousFragment", null, 0, 1, FragmentTimeIntervalSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         op = initEOperation(getFragmentTimeIntervalSelector__GetIntervalStart(), null, "getIntervalStart", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getInteractionFragment());
@@ -1862,7 +1874,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEOperation(op, g1);
 
         op = initEOperation(getFragmentTimeIntervalSelector__GetIntervalEnd(), null, "getIntervalEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(this.getAliasedPointInTime());
+        g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         g3 = createEGenericType(theUMLPackage.getInteractionFragment());
@@ -1916,6 +1928,12 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
            source, 
            new String[] {
              "body", "return null;"
+           });	
+        addAnnotation
+          (getCombinedFragment__GetInteractionOperatorKind(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getInteractionOperatorKindOfCombinedFragment(this);"
            });	
         addAnnotation
           (getOccurenceReference__GetOccurenceSpecification(), 

@@ -193,11 +193,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 OccurenceSpecification<?> occurenceSpecification = (OccurenceSpecification<?>)theEObject;
                 T result = caseOccurenceSpecification(occurenceSpecification);
                 if (result == null) result = caseFragment(occurenceSpecification);
-                if (result == null) result = caseAliasedPointInTime(occurenceSpecification);
+                if (result == null) result = casePointInTime(occurenceSpecification);
                 if (result == null) result = caseCommentable(occurenceSpecification);
                 if (result == null) result = caseUMLReferencingElement(occurenceSpecification);
-                if (result == null) result = caseAliasedElement(occurenceSpecification);
-                if (result == null) result = caseNamedElement(occurenceSpecification);
                 if (result == null) result = caseElement(occurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -207,11 +205,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 T result = caseDestructionOccurenceSpecification(destructionOccurenceSpecification);
                 if (result == null) result = caseOccurenceSpecification(destructionOccurenceSpecification);
                 if (result == null) result = caseFragment(destructionOccurenceSpecification);
-                if (result == null) result = caseAliasedPointInTime(destructionOccurenceSpecification);
+                if (result == null) result = casePointInTime(destructionOccurenceSpecification);
                 if (result == null) result = caseCommentable(destructionOccurenceSpecification);
                 if (result == null) result = caseUMLReferencingElement(destructionOccurenceSpecification);
-                if (result == null) result = caseAliasedElement(destructionOccurenceSpecification);
-                if (result == null) result = caseNamedElement(destructionOccurenceSpecification);
                 if (result == null) result = caseElement(destructionOccurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -222,7 +218,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(combinedFragment);
                 if (result == null) result = caseCommentable(combinedFragment);
                 if (result == null) result = caseFragment(combinedFragment);
-                if (result == null) result = caseAliasedPointInTime(combinedFragment);
+                if (result == null) result = casePointInTime(combinedFragment);
                 if (result == null) result = caseAliasedElement(combinedFragment);
                 if (result == null) result = caseUMLReferencingElement(combinedFragment);
                 if (result == null) result = caseNamedElement(combinedFragment);
@@ -247,7 +243,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(singleRegionContainer);
                 if (result == null) result = caseCommentable(singleRegionContainer);
                 if (result == null) result = caseFragment(singleRegionContainer);
-                if (result == null) result = caseAliasedPointInTime(singleRegionContainer);
+                if (result == null) result = casePointInTime(singleRegionContainer);
                 if (result == null) result = caseAliasedElement(singleRegionContainer);
                 if (result == null) result = caseUMLReferencingElement(singleRegionContainer);
                 if (result == null) result = caseNamedElement(singleRegionContainer);
@@ -262,7 +258,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(multipleRegionContainer);
                 if (result == null) result = caseCommentable(multipleRegionContainer);
                 if (result == null) result = caseFragment(multipleRegionContainer);
-                if (result == null) result = caseAliasedPointInTime(multipleRegionContainer);
+                if (result == null) result = casePointInTime(multipleRegionContainer);
                 if (result == null) result = caseAliasedElement(multipleRegionContainer);
                 if (result == null) result = caseUMLReferencingElement(multipleRegionContainer);
                 if (result == null) result = caseNamedElement(multipleRegionContainer);
@@ -278,7 +274,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(alternative);
                 if (result == null) result = caseCommentable(alternative);
                 if (result == null) result = caseFragment(alternative);
-                if (result == null) result = caseAliasedPointInTime(alternative);
+                if (result == null) result = casePointInTime(alternative);
                 if (result == null) result = caseAliasedElement(alternative);
                 if (result == null) result = caseUMLReferencingElement(alternative);
                 if (result == null) result = caseNamedElement(alternative);
@@ -294,7 +290,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(option);
                 if (result == null) result = caseCommentable(option);
                 if (result == null) result = caseFragment(option);
-                if (result == null) result = caseAliasedPointInTime(option);
+                if (result == null) result = casePointInTime(option);
                 if (result == null) result = caseAliasedElement(option);
                 if (result == null) result = caseUMLReferencingElement(option);
                 if (result == null) result = caseNamedElement(option);
@@ -310,7 +306,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(coRegion);
                 if (result == null) result = caseCommentable(coRegion);
                 if (result == null) result = caseFragment(coRegion);
-                if (result == null) result = caseAliasedPointInTime(coRegion);
+                if (result == null) result = casePointInTime(coRegion);
                 if (result == null) result = caseAliasedElement(coRegion);
                 if (result == null) result = caseUMLReferencingElement(coRegion);
                 if (result == null) result = caseNamedElement(coRegion);
@@ -326,7 +322,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(parallel);
                 if (result == null) result = caseCommentable(parallel);
                 if (result == null) result = caseFragment(parallel);
-                if (result == null) result = caseAliasedPointInTime(parallel);
+                if (result == null) result = casePointInTime(parallel);
                 if (result == null) result = caseAliasedElement(parallel);
                 if (result == null) result = caseUMLReferencingElement(parallel);
                 if (result == null) result = caseNamedElement(parallel);
@@ -342,7 +338,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(critical);
                 if (result == null) result = caseCommentable(critical);
                 if (result == null) result = caseFragment(critical);
-                if (result == null) result = caseAliasedPointInTime(critical);
+                if (result == null) result = casePointInTime(critical);
                 if (result == null) result = caseAliasedElement(critical);
                 if (result == null) result = caseUMLReferencingElement(critical);
                 if (result == null) result = caseNamedElement(critical);
@@ -358,7 +354,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseNonInstantaneousFragment(loop);
                 if (result == null) result = caseCommentable(loop);
                 if (result == null) result = caseFragment(loop);
-                if (result == null) result = caseAliasedPointInTime(loop);
+                if (result == null) result = casePointInTime(loop);
                 if (result == null) result = caseAliasedElement(loop);
                 if (result == null) result = caseUMLReferencingElement(loop);
                 if (result == null) result = caseNamedElement(loop);
@@ -439,11 +435,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 if (result == null) result = caseOccurenceSpecification(implicitMessageOccurenceSpecification);
                 if (result == null) result = caseOccurenceReference(implicitMessageOccurenceSpecification);
                 if (result == null) result = caseFragment(implicitMessageOccurenceSpecification);
-                if (result == null) result = caseAliasedPointInTime(implicitMessageOccurenceSpecification);
+                if (result == null) result = casePointInTime(implicitMessageOccurenceSpecification);
                 if (result == null) result = caseCommentable(implicitMessageOccurenceSpecification);
                 if (result == null) result = caseUMLReferencingElement(implicitMessageOccurenceSpecification);
-                if (result == null) result = caseAliasedElement(implicitMessageOccurenceSpecification);
-                if (result == null) result = caseNamedElement(implicitMessageOccurenceSpecification);
                 if (result == null) result = caseElement(implicitMessageOccurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -452,23 +446,21 @@ public class SequenceSwitch<T> extends Switch<T> {
                 ExplicitArrivalOccurenceSpecification explicitArrivalOccurenceSpecification = (ExplicitArrivalOccurenceSpecification)theEObject;
                 T result = caseExplicitArrivalOccurenceSpecification(explicitArrivalOccurenceSpecification);
                 if (result == null) result = caseOccurenceSpecification(explicitArrivalOccurenceSpecification);
-                if (result == null) result = caseFragment(explicitArrivalOccurenceSpecification);
-                if (result == null) result = caseAliasedPointInTime(explicitArrivalOccurenceSpecification);
-                if (result == null) result = caseCommentable(explicitArrivalOccurenceSpecification);
-                if (result == null) result = caseElement(explicitArrivalOccurenceSpecification);
-                if (result == null) result = caseUMLReferencingElement(explicitArrivalOccurenceSpecification);
                 if (result == null) result = caseAliasedElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseFragment(explicitArrivalOccurenceSpecification);
+                if (result == null) result = casePointInTime(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseCommentable(explicitArrivalOccurenceSpecification);
                 if (result == null) result = caseNamedElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseUMLReferencingElement(explicitArrivalOccurenceSpecification);
+                if (result == null) result = caseElement(explicitArrivalOccurenceSpecification);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case SequencePackage.ALIASED_POINT_IN_TIME: {
-                AliasedPointInTime<?> aliasedPointInTime = (AliasedPointInTime<?>)theEObject;
-                T result = caseAliasedPointInTime(aliasedPointInTime);
-                if (result == null) result = caseAliasedElement(aliasedPointInTime);
-                if (result == null) result = caseUMLReferencingElement(aliasedPointInTime);
-                if (result == null) result = caseNamedElement(aliasedPointInTime);
-                if (result == null) result = caseElement(aliasedPointInTime);
+            case SequencePackage.POINT_IN_TIME: {
+                PointInTime<?> pointInTime = (PointInTime<?>)theEObject;
+                T result = casePointInTime(pointInTime);
+                if (result == null) result = caseUMLReferencingElement(pointInTime);
+                if (result == null) result = caseElement(pointInTime);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -503,9 +495,9 @@ public class SequenceSwitch<T> extends Switch<T> {
                 T result = caseReference(reference);
                 if (result == null) result = caseNonInstantaneousFragment(reference);
                 if (result == null) result = caseFragment(reference);
-                if (result == null) result = caseAliasedPointInTime(reference);
-                if (result == null) result = caseUMLReferencingElement(reference);
+                if (result == null) result = casePointInTime(reference);
                 if (result == null) result = caseAliasedElement(reference);
+                if (result == null) result = caseUMLReferencingElement(reference);
                 if (result == null) result = caseNamedElement(reference);
                 if (result == null) result = caseElement(reference);
                 if (result == null) result = defaultCase(theEObject);
@@ -515,7 +507,7 @@ public class SequenceSwitch<T> extends Switch<T> {
                 NonInstantaneousFragment<?> nonInstantaneousFragment = (NonInstantaneousFragment<?>)theEObject;
                 T result = caseNonInstantaneousFragment(nonInstantaneousFragment);
                 if (result == null) result = caseFragment(nonInstantaneousFragment);
-                if (result == null) result = caseAliasedPointInTime(nonInstantaneousFragment);
+                if (result == null) result = casePointInTime(nonInstantaneousFragment);
                 if (result == null) result = caseAliasedElement(nonInstantaneousFragment);
                 if (result == null) result = caseUMLReferencingElement(nonInstantaneousFragment);
                 if (result == null) result = caseNamedElement(nonInstantaneousFragment);
@@ -1038,17 +1030,17 @@ public class SequenceSwitch<T> extends Switch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Aliased Point In Time</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Point In Time</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Aliased Point In Time</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Point In Time</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public <UMLPointInTimeType extends NamedElement> T caseAliasedPointInTime(AliasedPointInTime<UMLPointInTimeType> object) {
+    public <UMLPointInTimeType extends NamedElement> T casePointInTime(PointInTime<UMLPointInTimeType> object) {
         return null;
     }
 

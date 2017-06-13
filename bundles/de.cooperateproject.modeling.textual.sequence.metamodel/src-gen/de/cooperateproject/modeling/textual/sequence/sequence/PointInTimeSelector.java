@@ -32,12 +32,12 @@ public interface PointInTimeSelector extends CDOObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Point In Time</em>' reference.
-     * @see #setPointInTime(AliasedPointInTime)
+     * @see #setPointInTime(PointInTime)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getPointInTimeSelector_PointInTime()
      * @model
      * @generated
      */
-    AliasedPointInTime<?> getPointInTime();
+    PointInTime<?> getPointInTime();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.sequence.sequence.PointInTimeSelector#getPointInTime <em>Point In Time</em>}' reference.
@@ -47,6 +47,6 @@ public interface PointInTimeSelector extends CDOObject {
      * @see #getPointInTime()
      * @generated
      */
-    void setPointInTime(AliasedPointInTime<?> value);
+    void setPointInTime(PointInTime<?> value);
 
 } // PointInTimeSelector

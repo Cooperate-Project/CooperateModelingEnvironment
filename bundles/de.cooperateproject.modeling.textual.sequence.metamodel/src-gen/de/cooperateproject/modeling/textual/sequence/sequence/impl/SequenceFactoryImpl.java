@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -90,7 +89,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE: return (EObject)createExplicitArrivalOccurenceReference();
             case SequencePackage.IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION: return (EObject)createImplicitMessageOccurenceSpecification();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION: return (EObject)createExplicitArrivalOccurenceSpecification();
-            case SequencePackage.ALIASED_POINT_IN_TIME: return (EObject)createAliasedPointInTime();
             case SequencePackage.POINT_IN_TIME_SELECTOR: return (EObject)createPointInTimeSelector();
             case SequencePackage.TIME_INTERVAL_SELECTOR: return (EObject)createTimeIntervalSelector();
             case SequencePackage.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR: return (EObject)createBiPointInTimeTimeIntervalSelector();
@@ -414,16 +412,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
     public ExplicitArrivalOccurenceSpecification createExplicitArrivalOccurenceSpecification() {
         ExplicitArrivalOccurenceSpecificationImpl explicitArrivalOccurenceSpecification = new ExplicitArrivalOccurenceSpecificationImpl();
         return explicitArrivalOccurenceSpecification;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public <UMLPointInTimeType extends NamedElement> AliasedPointInTime<UMLPointInTimeType> createAliasedPointInTime() {
-        AliasedPointInTimeImpl<UMLPointInTimeType> aliasedPointInTime = new AliasedPointInTimeImpl<UMLPointInTimeType>();
-        return aliasedPointInTime;
     }
 
     /**
