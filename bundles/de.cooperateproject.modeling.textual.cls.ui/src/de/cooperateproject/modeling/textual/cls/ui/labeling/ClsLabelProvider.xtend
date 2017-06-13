@@ -31,6 +31,7 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.uml2.uml.PrimitiveType
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import org.eclipse.uml2.uml.VisibilityKind
 
 /**
  * Provides labels for EObjects.
@@ -39,10 +40,10 @@ import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
  */
 class ClsLabelProvider extends DefaultEObjectLabelProvider {
 
-	static val visibilityMap = #{Visibility.PUBLIC -> UMLImage.VISIBILITY_PUBLIC.image,
-		Visibility.PRIVATE -> UMLImage.VISIBILITY_PRIVATE.image,
-		Visibility.PROTECTED -> UMLImage.VISIBILITY_PROTECTED.image,
-		Visibility.PACKAGE -> UMLImage.VISIBILITY_PACKAGE.image}
+	static val visibilityMap = #{VisibilityKind.PUBLIC -> UMLImage.VISIBILITY_PUBLIC.image,
+		VisibilityKind.PRIVATE -> UMLImage.VISIBILITY_PRIVATE.image,
+		VisibilityKind.PROTECTED -> UMLImage.VISIBILITY_PROTECTED.image,
+		VisibilityKind.PACKAGE -> UMLImage.VISIBILITY_PACKAGE.image}
 
 	@Inject
 	IQualifiedNameProvider qualifiedNameProvider;
@@ -206,8 +207,8 @@ class ClsLabelProvider extends DefaultEObjectLabelProvider {
 		return lowerString
 	}
 	
-	private def decorate(Image img, Visibility visibility) {
-		if (visibility === null || visibility == Visibility.UNDEFINED) {
+	private def decorate(Image img, VisibilityKind visibility) {
+		if (visibility === null) {
 			return img
 		}
 		val visibilityImage = visibilityMap.get(visibility)

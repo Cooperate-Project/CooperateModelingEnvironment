@@ -4,12 +4,15 @@ import org.eclipse.uml2.uml.Classifier;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State calculator for generalizations.
  */
-public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<Generalization> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class GeneralizationCalculator extends AtomicDerivedStateProcessorBase<Generalization> {
 
     /**
      * Constructs the calculator.
@@ -19,7 +22,7 @@ public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<
     }
 
     @Override
-    protected Boolean applyTyped(Generalization object) {
+    protected void applyTyped(Generalization object) {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         UMLReferencingElement<Classifier> specific = (UMLReferencingElement) object.getSpecific();
         @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -29,16 +32,16 @@ public class GeneralizationCalculator extends AtomicStateProcessorExtensionBase<
         Classifier umlGeneral = general.getReferencedElement();
 
         if (umlSpecific == null || umlGeneral == null) {
-            return false;
+            return;
         }
 
         org.eclipse.uml2.uml.Generalization umlGeneralization = umlSpecific.getGeneralization(umlGeneral);
         if (umlGeneralization != null) {
             object.setReferencedElement(umlGeneralization);
-            return true;
+            return;
         }
 
-        return false;
+        return;
     }
 
 }

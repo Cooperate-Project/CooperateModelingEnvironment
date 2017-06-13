@@ -59,7 +59,7 @@ Workflow {
 		registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
 	}
     
-	component = XtextGenerator {		
+	component = CooperateXtextGenerator {		
 		configuration = {
 			project = StandardProjectConfig {
 				baseName = "${basename}"

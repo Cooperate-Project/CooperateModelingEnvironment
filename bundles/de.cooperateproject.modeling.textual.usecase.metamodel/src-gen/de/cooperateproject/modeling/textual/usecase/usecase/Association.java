@@ -36,7 +36,7 @@ public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.
      * @return the value of the '<em>Actor</em>' reference.
      * @see #setActor(Actor)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_Actor()
-     * @model
+     * @model transient="true"
      * @generated
      */
     Actor getActor();
@@ -62,7 +62,7 @@ public interface Association extends UMLReferencingElement<org.eclipse.uml2.uml.
      * @return the value of the '<em>Usecase</em>' reference.
      * @see #setUsecase(UseCase)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getAssociation_Usecase()
-     * @model
+     * @model transient="true"
      * @generated
      */
     UseCase getUsecase();

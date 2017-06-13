@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.cooperateproject.modeling.textual.cls.cls.ClsFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering'"
  * @generated
  */
 public interface ClsPackage extends EPackage {
@@ -580,22 +581,13 @@ public interface ClsPackage extends EPackage {
     int PROPERTY__VISIBILITY = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PROPERTY__STATIC = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTY__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int PROPERTY__TYPE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Property</em>' class.
@@ -604,7 +596,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int PROPERTY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -662,15 +654,6 @@ public interface ClsPackage extends EPackage {
     int MEMBER__VISIBILITY = PROPERTY__VISIBILITY;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int MEMBER__STATIC = PROPERTY__STATIC;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -689,13 +672,22 @@ public interface ClsPackage extends EPackage {
     int MEMBER__OWNER = PROPERTY_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEMBER__STATIC = PROPERTY_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Member</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MEMBER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+    int MEMBER_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -753,15 +745,6 @@ public interface ClsPackage extends EPackage {
     int ATTRIBUTE__VISIBILITY = MEMBER__VISIBILITY;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ATTRIBUTE__STATIC = MEMBER__STATIC;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -778,6 +761,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int ATTRIBUTE__OWNER = MEMBER__OWNER;
+
+    /**
+     * The feature id for the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATTRIBUTE__STATIC = MEMBER__STATIC;
 
     /**
      * The number of structural features of the '<em>Attribute</em>' class.
@@ -844,15 +836,6 @@ public interface ClsPackage extends EPackage {
     int METHOD__VISIBILITY = MEMBER__VISIBILITY;
 
     /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int METHOD__STATIC = MEMBER__STATIC;
-
-    /**
      * The feature id for the '<em><b>Type</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -869,6 +852,15 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int METHOD__OWNER = MEMBER__OWNER;
+
+    /**
+     * The feature id for the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int METHOD__STATIC = MEMBER__STATIC;
 
     /**
      * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -951,15 +943,6 @@ public interface ClsPackage extends EPackage {
      * @ordered
      */
     int PARAMETER__VISIBILITY = PROPERTY__VISIBILITY;
-
-    /**
-     * The feature id for the '<em><b>Static</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PARAMETER__STATIC = PROPERTY__STATIC;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1072,13 +1055,22 @@ public interface ClsPackage extends EPackage {
     int TYPED_CONNECTOR__OWNING_PACKAGE = CONNECTOR__OWNING_PACKAGE;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPED_CONNECTOR__REFERENCED_ELEMENT = CONNECTOR_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Left</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR__LEFT = CONNECTOR_FEATURE_COUNT + 0;
+    int TYPED_CONNECTOR__LEFT = CONNECTOR_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1087,7 +1079,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR__RIGHT = CONNECTOR_FEATURE_COUNT + 1;
+    int TYPED_CONNECTOR__RIGHT = CONNECTOR_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Typed Connector</em>' class.
@@ -1096,7 +1088,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 2;
+    int TYPED_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1127,22 +1119,22 @@ public interface ClsPackage extends EPackage {
     int GENERALIZATION = 12;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int GENERALIZATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION__OWNING_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int GENERALIZATION__OWNING_PACKAGE = TYPED_CONNECTOR__OWNING_PACKAGE;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__REFERENCED_ELEMENT = TYPED_CONNECTOR__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -1151,7 +1143,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__LEFT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int GENERALIZATION__LEFT = TYPED_CONNECTOR__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1160,7 +1152,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION__RIGHT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int GENERALIZATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -1169,7 +1161,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int GENERALIZATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1178,7 +1170,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+    int GENERALIZATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Generalization</em>' class.
@@ -1187,7 +1179,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int GENERALIZATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.ImplementationImpl <em>Implementation</em>}' class.
@@ -1200,22 +1192,22 @@ public interface ClsPackage extends EPackage {
     int IMPLEMENTATION = 13;
 
     /**
-     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int IMPLEMENTATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
-
-    /**
      * The feature id for the '<em><b>Owning Package</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION__OWNING_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int IMPLEMENTATION__OWNING_PACKAGE = TYPED_CONNECTOR__OWNING_PACKAGE;
+
+    /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLEMENTATION__REFERENCED_ELEMENT = TYPED_CONNECTOR__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Left</b></em>' reference.
@@ -1224,7 +1216,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION__LEFT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int IMPLEMENTATION__LEFT = TYPED_CONNECTOR__LEFT;
 
     /**
      * The feature id for the '<em><b>Right</b></em>' reference.
@@ -1233,7 +1225,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION__RIGHT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int IMPLEMENTATION__RIGHT = TYPED_CONNECTOR__RIGHT;
 
     /**
      * The number of structural features of the '<em>Implementation</em>' class.
@@ -1242,7 +1234,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int IMPLEMENTATION_FEATURE_COUNT = TYPED_CONNECTOR_FEATURE_COUNT + 0;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1251,7 +1243,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION___GET_NEAREST_PACKAGE = TextualCommonsPackage.UML_REFERENCING_ELEMENT___GET_NEAREST_PACKAGE;
+    int IMPLEMENTATION___GET_NEAREST_PACKAGE = TYPED_CONNECTOR___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Implementation</em>' class.
@@ -1260,7 +1252,7 @@ public interface ClsPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int IMPLEMENTATION_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
+    int IMPLEMENTATION_OPERATION_COUNT = TYPED_CONNECTOR_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AssociationImpl <em>Association</em>}' class.
@@ -1742,17 +1734,6 @@ public interface ClsPackage extends EPackage {
     EClass getClassifier();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Classifier#getVisibility()
-     * @see #getClassifier()
-     * @generated
-     */
-    EAttribute getClassifier_Visibility();
-
-    /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getMembers <em>Members</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1816,28 +1797,6 @@ public interface ClsPackage extends EPackage {
     EClass getProperty();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Property#getVisibility()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Visibility();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Property#isStatic <em>Static</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Static</em>'.
-     * @see de.cooperateproject.modeling.textual.cls.cls.Property#isStatic()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Static();
-
-    /**
      * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.cls.cls.Property#getType <em>Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1868,6 +1827,17 @@ public interface ClsPackage extends EPackage {
      * @generated
      */
     EReference getMember_Owner();
+
+    /**
+     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.cls.cls.Member#isStatic <em>Static</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Static</em>'.
+     * @see de.cooperateproject.modeling.textual.cls.cls.Member#isStatic()
+     * @see #getMember()
+     * @generated
+     */
+    EAttribute getMember_Static();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.cls.cls.Attribute <em>Attribute</em>}'.
@@ -2318,14 +2288,6 @@ public interface ClsPackage extends EPackage {
         EClass CLASSIFIER = eINSTANCE.getClassifier();
 
         /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute CLASSIFIER__VISIBILITY = eINSTANCE.getClassifier_Visibility();
-
-        /**
          * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2380,22 +2342,6 @@ public interface ClsPackage extends EPackage {
         EClass PROPERTY = eINSTANCE.getProperty();
 
         /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__VISIBILITY = eINSTANCE.getProperty_Visibility();
-
-        /**
-         * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__STATIC = eINSTANCE.getProperty_Static();
-
-        /**
          * The meta object literal for the '<em><b>Type</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2420,6 +2366,14 @@ public interface ClsPackage extends EPackage {
          * @generated
          */
         EReference MEMBER__OWNER = eINSTANCE.getMember_Owner();
+
+        /**
+         * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MEMBER__STATIC = eINSTANCE.getMember_Static();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.cls.cls.impl.AttributeImpl <em>Attribute</em>}' class.

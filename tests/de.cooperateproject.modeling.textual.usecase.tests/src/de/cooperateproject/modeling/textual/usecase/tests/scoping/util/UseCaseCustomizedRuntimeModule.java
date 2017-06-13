@@ -5,11 +5,15 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
@@ -17,22 +21,29 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
+import de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer;
+import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover;
+import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.usecase.UsecaseRuntimeModule;
 import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator;
+import de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ActorInitializer;
+import de.cooperateproject.modeling.textual.usecase.derivedstate.removers.ActorRemover;
+import de.cooperateproject.modeling.textual.usecase.services.UseCaseTransientStatusProvider;
 import de.cooperateproject.modeling.textual.usecase.tests.UsecaseInjectorProvider;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorRegistry;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessorRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactoryRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.DelegatingTransientStatusProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 
 public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
 
@@ -61,44 +72,30 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
 
     }
 
-    private static class DummyAtomicProcessorRegistry implements IAtomicStateProcessorRegistry {
+    private static class DummyAtomicProcessorRegistry implements IAtomicDerivedStateProcessorRegistry {
 
-        private static final Class<?> BASE_CLS = IAtomicStateProcessorExtension.class;
-        private static final Class<?>[] CALCULATOR_CLS = { AssociationCalculator.class,
-                UMLReferencingElementCalculator.class };
-        private static final Class<?>[] REMOVER_CLS = {};
-        private final Map<Class<?>, IAtomicStateProcessor> calculators;
-        private final Map<Class<?>, IAtomicStateProcessor> removers;
+        private static final Class<?>[] RELEVANT_CLASSES = { IAtomicDerivedStateProcessor.class,
+                AssociationCalculator.class, UMLReferencingElementCalculator.class, UMLReferencingElementRemover.class,
+                VisibilityHavingElementInitializer.class, ActorInitializer.class, ActorRemover.class };
+        @SuppressWarnings("rawtypes")
+        private static final Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> PROCESSORS = getProcessors();
 
         @Inject
         public DummyAtomicProcessorRegistry(Injector injector) {
-            try {
-                calculators = getCalculators(injector);
-                removers = getRemovers(injector);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-
-        private static Map<Class<?>, IAtomicStateProcessor> getCalculators(Injector injector)
-                throws InstantiationException, IllegalAccessException {
-            return getProcessors(injector, CALCULATOR_CLS);
-        }
-
-        private static Map<Class<?>, IAtomicStateProcessor> getRemovers(Injector injector)
-                throws InstantiationException, IllegalAccessException {
-            return getProcessors(injector, REMOVER_CLS);
+            PROCESSORS.values().stream().map(Map::values).flatMap(Collection::stream).distinct()
+                    .forEach(injector::injectMembers);
         }
 
         @SuppressWarnings("rawtypes")
-        private static Map<Class<?>, IAtomicStateProcessor> getProcessors(Injector injector,
-                Class<?>... relevantClasses) throws InstantiationException, IllegalAccessException {
-            Collection<Class<?>> packageProvidingClasses = Sets.newHashSet(relevantClasses);
-            if (packageProvidingClasses.isEmpty()) {
-                return Collections.emptyMap();
+        private static Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> getProcessors() {
+
+            Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> categories = new EnumMap<>(
+                    DerivedStateProcessorApplicability.class);
+            for (DerivedStateProcessorApplicability applicability : DerivedStateProcessorApplicability.values()) {
+                categories.put(applicability, new HashMap<>());
             }
-            packageProvidingClasses.add(BASE_CLS);
+
+            List<Class<?>> packageProvidingClasses = Arrays.asList(RELEVANT_CLASSES);
             Collection<URL> urls = packageProvidingClasses.stream()
                     .map(cls -> ClasspathHelper.forPackage(cls.getPackage().getName(), cls.getClassLoader()))
                     .flatMap(Collection::stream).collect(Collectors.toSet());
@@ -107,31 +104,54 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
             Reflections reflections = new Reflections(
                     new ConfigurationBuilder().setUrls(urls).setScanners(new SubTypesScanner(false))
                             .filterInputsBy(new FilterBuilder().includePackage(packageNames)));
-            Set<Class<? extends IAtomicStateProcessorExtension>> subTypes = reflections
-                    .getSubTypesOf(IAtomicStateProcessorExtension.class).stream().filter(c -> !c.isInterface()
+            Set<Class<? extends IAtomicDerivedStateProcessor>> subTypes = reflections
+                    .getSubTypesOf(IAtomicDerivedStateProcessor.class).stream().filter(c -> !c.isInterface()
                             && !Modifier.isAbstract(c.getModifiers()) && Modifier.isPublic(c.getModifiers()))
                     .collect(Collectors.toSet());
 
-            Map<Class<?>, IAtomicStateProcessor> processorInstances = Maps.newHashMap();
-            for (Class<? extends IAtomicStateProcessorExtension> type : subTypes) {
-                IAtomicStateProcessorExtension<?> instance = type.newInstance();
-                injector.injectMembers(instance);
-                processorInstances.put(instance.getSupportedType(), instance);
+            for (Class<? extends IAtomicDerivedStateProcessor> type : subTypes) {
+                IAtomicDerivedStateProcessor<?> instance;
+                try {
+                    instance = type.newInstance();
+                } catch (InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+                Applicability applicabilities = instance.getClass().getAnnotation(Applicability.class);
+                for (DerivedStateProcessorApplicability applicability : applicabilities.applicabilities()) {
+                    categories.get(applicability).put(instance.getType(), instance);
+                }
             }
 
-            return processorInstances;
+            return categories;
         }
 
         @Override
-        public Optional<IAtomicStateProcessor> getCalculator(Class<?> clz) {
-            return Optional.ofNullable(calculators.getOrDefault(clz, null));
+        @SuppressWarnings("unchecked")
+        public <T extends EObject> Optional<IAtomicDerivedStateProcessor<T>> findInitializer(Class<T> type) {
+            return Optional.ofNullable(
+                    PROCESSORS.get(DerivedStateProcessorApplicability.INITIALIZATION).getOrDefault(type, null));
         }
 
         @Override
-        public Optional<IAtomicStateProcessor> getRemover(Class<?> clz) {
-            return Optional.ofNullable(removers.getOrDefault(clz, null));
+        @SuppressWarnings("unchecked")
+        public <T extends EObject> Optional<IAtomicDerivedStateProcessor<T>> findCleaner(Class<T> type) {
+            return Optional
+                    .ofNullable(PROCESSORS.get(DerivedStateProcessorApplicability.CLEANING).getOrDefault(type, null));
         }
 
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T extends EObject> Optional<IAtomicDerivedStateProcessor<T>> findCalculator(Class<T> type) {
+            return Optional.ofNullable(
+                    PROCESSORS.get(DerivedStateProcessorApplicability.CALCULATION).getOrDefault(type, null));
+        }
+
+    }
+
+    private static class StaticallyBoundTransientStatusProvider extends DelegatingTransientStatusProvider {
+        public StaticallyBoundTransientStatusProvider() {
+            super(Arrays.asList(new UseCaseTransientStatusProvider(), new TextualCommonsTransientStatusProvider()));
+        }
     }
 
     @Override
@@ -150,8 +170,13 @@ public class UseCaseCustomizedRuntimeModule extends UsecaseRuntimeModule {
     }
 
     @Override
-    public Class<? extends IAtomicStateProcessorRegistry> bindIAtomicStateProcessorRegistry() {
+    public Class<? extends IAtomicDerivedStateProcessorRegistry> bindIAtomicDerivedStateProcessorRegistry() {
         return DummyAtomicProcessorRegistry.class;
+    }
+
+    @Override
+    public Class<? extends ITransientStatusProvider> bindITransientStatusProvider() {
+        return StaticallyBoundTransientStatusProvider.class;
     }
 
 }

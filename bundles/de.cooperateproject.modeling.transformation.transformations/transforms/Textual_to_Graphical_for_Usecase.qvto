@@ -17,7 +17,7 @@ main() {
 
 mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootPackage.referencedElement.oclAsType(uml::Package);
-	var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(condition != null and condition != "");
+	var conditionedExtends := self.rootPackage.relationships->selectByKind(usecase::Extend)->select(referencedElement.oclAsType(uml::Extend).condition != null);
 
 	type := "UseCase";
 	name := self.title;
@@ -124,19 +124,10 @@ disjuncts
 mapping usecase::Generalization::generalizationToEdge() : notation::Connector
 when {self.oclIsKindOf(usecase::Generalization)}
 {
-	var sourceShape := resolveoneIn(
-		usecase::BehavioredClassifier::behavioredClassifierToShape,
-		s : notation::Shape | s.element = self.specific.referencedElement.toEObject()
-	);
-	var targetShape := resolveoneIn(
-		usecase::BehavioredClassifier::behavioredClassifierToShape,
-		s : notation::Shape | s.element = self.general.referencedElement.toEObject()
-	);
-	
 	type := PAPYRUS_NOTATION_EDGE_GENERALIZATION;
 	element := self.referencedElement.toEObject();
-	source := sourceShape;
-	target := targetShape;
+	source := late resolveoneIn(usecase::BehavioredClassifier::behavioredClassifierToShape, s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Generalization).specific.toEObject());
+	target := late resolveoneIn(usecase::BehavioredClassifier::behavioredClassifierToShape, s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Generalization).general.toEObject());
 	children += self.map generalizationToSteoretypeLabel();
 	styles := result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();
@@ -145,19 +136,14 @@ when {self.oclIsKindOf(usecase::Generalization)}
 mapping usecase::Extend::extendToEdge() : notation::Connector
 when {self.oclIsKindOf(usecase::Extend)}
 {
-	var sourceShape := resolveoneIn(
-		usecase::UseCase::usecaseToShape,
-		s : notation::Shape | s.element = self.extension.referencedElement.toEObject()
-	);
-	var targetShape := resolveoneIn(
-		usecase::UseCase::usecaseToShape,
-		s : notation::Shape | s.element = self.extendedCase.referencedElement.toEObject()
-	);
-
 	type := PAPYRUS_NOTATION_EDGE_EXTEND;
 	element := self.referencedElement.toEObject();
-	source := sourceShape;
-	target := targetShape;	
+	source := late resolveoneIn(
+		usecase::UseCase::usecaseToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Extend).extension.toEObject());
+	target := late resolveoneIn(
+		usecase::UseCase::usecaseToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Extend).extendedCase.toEObject());
 	children += self.map extendToKeywordLabel();
 	children += self.map extendToStereotypeLabel();
 	styles := result.toEObject().map fontStyle();
@@ -167,18 +153,15 @@ when {self.oclIsKindOf(usecase::Extend)}
 mapping usecase::Association::associationToEdge() : notation::Connector
 when {self.oclIsKindOf(usecase::Association)}
 {
-	var sourceShape := resolveoneIn(
-		usecase::Actor::actorToShape,
-		s : notation::Shape | s.element = self.actor.referencedElement.toEObject()
-	);
-	var targetShape := resolveoneIn(
-		usecase::UseCase::usecaseToShape,
-		s : notation::Shape | s.element = self.usecase.referencedElement.toEObject()
-	);
-	
 	type := PAPYRUS_NOTATION_EDGE_ASSOCIATION;
-	source := sourceShape;
-	target := targetShape;
+	source := late resolveoneIn(
+		usecase::Actor::actorToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Association).memberEnd.type->any(oclIsKindOf(uml::Actor)).toEObject()
+	);
+	target := late resolveoneIn(
+		usecase::UseCase::usecaseToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Association).memberEnd.type->any(oclIsKindOf(uml::UseCase)).toEObject()
+	);
 	element := self.referencedElement.toEObject();
 	styles := result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();
@@ -193,18 +176,15 @@ when {self.oclIsKindOf(usecase::Association)}
 mapping usecase::Include::includeToEdge() : notation::Connector
 when {self.oclIsKindOf(usecase::Include)}
 {
-	var sourceShape := resolveoneIn(
-		usecase::UseCase::usecaseToShape,
-		s : notation::Shape | s.element = self.includingCase.referencedElement.toEObject()
-	);
-	var targetShape := resolveoneIn(
-		usecase::UseCase::usecaseToShape,
-		s : notation::Shape | s.element = self.addition.referencedElement.toEObject()
-	);
-
 	type := PAPYRUS_NOTATION_EDGE_INCLUDE;
-	source := sourceShape;
-	target := targetShape;
+	source := late resolveoneIn(
+		usecase::UseCase::usecaseToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Include).includingCase.toEObject()
+	);
+	target := late resolveoneIn(
+		usecase::UseCase::usecaseToShape,
+		s : notation::Shape | s.element = self.referencedElement.oclAsType(uml::Include).addition.toEObject()
+	);
 	element := self.referencedElement.toEObject();
 	styles := result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();
@@ -214,20 +194,16 @@ when {self.oclIsKindOf(usecase::Include)}
 
 mapping usecase::Extend::extendToConstraintEdge() : notation::Connector
 {
-	var umlConstraint := self.referencedElement.oclAsType(uml::Extend).condition;
-	var constraintShape := resolveoneIn(
+	type := PAPYRUS_NOTATION_EDGE_CONSTRAINT;
+	element := null;
+	source := late resolveoneIn(
 		usecase::Extend::extendToShape,
-		s : notation::Shape | s.element.oclAsType(uml::Constraint) = umlConstraint
+		s : notation::Shape | s.element.oclAsType(uml::Constraint) = self.referencedElement.oclAsType(uml::Extend).condition
 	);
-	var extendEdge := resolveoneIn(
+	target := late resolveoneIn(
 		usecase::Extend::extendToEdge,
 		c : notation::Connector | c.element = self.referencedElement.toEObject()
 	);
-	
-	type := PAPYRUS_NOTATION_EDGE_CONSTRAINT;
-	element := null;
-	source := constraintShape;
-	target := extendEdge;
 	styles := result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();
 }

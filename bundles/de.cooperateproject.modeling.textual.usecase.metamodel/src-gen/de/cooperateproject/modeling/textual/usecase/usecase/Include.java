@@ -33,7 +33,7 @@ public interface Include extends Relationship, UMLReferencingElement<org.eclipse
      * @return the value of the '<em>Addition</em>' reference.
      * @see #setAddition(UseCase)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude_Addition()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     UseCase getAddition();
@@ -59,7 +59,7 @@ public interface Include extends Relationship, UMLReferencingElement<org.eclipse
      * @return the value of the '<em>Including Case</em>' reference.
      * @see #setIncludingCase(UseCase)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getInclude_IncludingCase()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     UseCase getIncludingCase();

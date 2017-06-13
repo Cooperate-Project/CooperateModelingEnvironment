@@ -1062,17 +1062,6 @@ public interface UsecasePackage extends EPackage {
     EClass getActor();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.Actor#getVisibility()
-     * @see #getActor()
-     * @generated
-     */
-    EAttribute getActor_Visibility();
-
-    /**
      * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.usecase.usecase.Actor#isAbstract <em>Abstract</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1135,17 +1124,6 @@ public interface UsecasePackage extends EPackage {
      * @generated
      */
     EClass getUseCase();
-
-    /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.usecase.usecase.UseCase#getVisibility()
-     * @see #getUseCase()
-     * @generated
-     */
-    EAttribute getUseCase_Visibility();
 
     /**
      * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.usecase.usecase.UseCase#isAbstract <em>Abstract</em>}'.
@@ -1505,14 +1483,6 @@ public interface UsecasePackage extends EPackage {
         EClass ACTOR = eINSTANCE.getActor();
 
         /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute ACTOR__VISIBILITY = eINSTANCE.getActor_Visibility();
-
-        /**
          * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1563,14 +1533,6 @@ public interface UsecasePackage extends EPackage {
          * @generated
          */
         EClass USE_CASE = eINSTANCE.getUseCase();
-
-        /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute USE_CASE__VISIBILITY = eINSTANCE.getUseCase_Visibility();
 
         /**
          * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.

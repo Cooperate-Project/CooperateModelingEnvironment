@@ -2,7 +2,6 @@ package de.cooperateproject.ui.properties;
 
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.swt.SWT;
@@ -10,6 +9,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.util.PropertiesPageValidationProcessor;
 
@@ -19,7 +20,7 @@ public class ProjectPropertiesPage extends PropertyPage implements IWorkbenchPro
     private ProjectPropertiesStore preferenceStore;
     private ProjectPropertiesComposite composite;
 
-    private static final Logger LOGGER = Logger.getLogger(ProjectPropertiesPage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectPropertiesPage.class);
 
     private IProject getProject() {
         return (IProject) getElement().getAdapter(IResource.class);

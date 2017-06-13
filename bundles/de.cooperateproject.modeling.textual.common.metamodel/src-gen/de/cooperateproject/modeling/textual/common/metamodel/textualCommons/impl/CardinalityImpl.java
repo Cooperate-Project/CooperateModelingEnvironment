@@ -4,10 +4,8 @@ package de.cooperateproject.modeling.textual.common.metamodel.textualCommons.imp
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.uml2.uml.MultiplicityElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +21,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
+public class CardinalityImpl extends UMLReferencingElementImpl<MultiplicityElement> implements Cardinality {
 	/**
      * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -65,15 +63,16 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
+     * This is specialized for the more specific type known in this context.
      * @generated
      */
-	@Override
-	protected int eStaticFeatureCount() {
-        return 0;
+    @Override
+    public void setReferencedElement(MultiplicityElement newReferencedElement) {
+        super.setReferencedElement(newReferencedElement);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -93,6 +92,24 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetLowerBound() {
+        eDynamicUnset(TextualCommonsPackage.CARDINALITY__LOWER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetLowerBound() {
+        return eDynamicIsSet(TextualCommonsPackage.CARDINALITY__LOWER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -110,6 +127,24 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetUpperBound() {
+        eDynamicUnset(TextualCommonsPackage.CARDINALITY__UPPER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetUpperBound() {
+        return eDynamicIsSet(TextualCommonsPackage.CARDINALITY__UPPER_BOUND, TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -152,10 +187,10 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	public void eUnset(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.CARDINALITY__LOWER_BOUND:
-                setLowerBound(LOWER_BOUND_EDEFAULT);
+                unsetLowerBound();
                 return;
             case TextualCommonsPackage.CARDINALITY__UPPER_BOUND:
-                setUpperBound(UPPER_BOUND_EDEFAULT);
+                unsetUpperBound();
                 return;
         }
         super.eUnset(featureID);
@@ -170,9 +205,9 @@ public class CardinalityImpl extends CDOObjectImpl implements Cardinality {
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.CARDINALITY__LOWER_BOUND:
-                return getLowerBound() != LOWER_BOUND_EDEFAULT;
+                return isSetLowerBound();
             case TextualCommonsPackage.CARDINALITY__UPPER_BOUND:
-                return getUpperBound() != UPPER_BOUND_EDEFAULT;
+                return isSetUpperBound();
         }
         return super.eIsSet(featureID);
     }

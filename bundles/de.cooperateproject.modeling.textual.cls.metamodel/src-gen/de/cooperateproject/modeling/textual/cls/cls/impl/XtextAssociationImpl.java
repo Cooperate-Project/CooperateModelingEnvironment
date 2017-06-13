@@ -159,6 +159,24 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetTwoSideAggregationKind() {
+        eDynamicUnset(ClsPackage.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND, ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetTwoSideAggregationKind() {
+        return eDynamicIsSet(ClsPackage.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND, ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EList<Classifier<?>> collectMemberEndTypes() {
         return new BasicEList<Classifier<?>>(getMemberEndTypes().stream() .map(XtextAssociationMemberEndReferencedType::getType).collect(Collectors.toList()));
     }
@@ -262,7 +280,7 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
                 setTwoSideBidirectionality(TWO_SIDE_BIDIRECTIONALITY_EDEFAULT);
                 return;
             case ClsPackage.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND:
-                setTwoSideAggregationKind(TWO_SIDE_AGGREGATION_KIND_EDEFAULT);
+                unsetTwoSideAggregationKind();
                 return;
         }
         super.eUnset(featureID);
@@ -287,7 +305,7 @@ public class XtextAssociationImpl extends AssociationImpl implements XtextAssoci
             case ClsPackage.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY:
                 return isTwoSideBidirectionality() != TWO_SIDE_BIDIRECTIONALITY_EDEFAULT;
             case ClsPackage.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND:
-                return getTwoSideAggregationKind() != TWO_SIDE_AGGREGATION_KIND_EDEFAULT;
+                return isSetTwoSideAggregationKind();
         }
         return super.eIsSet(featureID);
     }

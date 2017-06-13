@@ -1,97 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
-  <rootPackage xsi:type="cls:Package" name="RootElement">
+  <rootPackage xsi:type="cls:Package">
   	<referencedElement xsi:type="uml:Model" href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
-  <classifiers xsi:type="cls:Class" name="Car">
+  <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_QHekoEKSEeaXCq-9LXQNWQ"/>
-    <members xsi:type="cls:Attribute" name="TypeName">
+    <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_sLlvoEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
     </members>
-    <members xsi:type="cls:Method" name="drive">
+    <members xsi:type="cls:Method">
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_WwgHEEKSEeaXCq-9LXQNWQ"/>
-      <parameters visibility="PROTECTED" name="speed">
+      <parameters>
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_Z8Kx0EKSEeaXCq-9LXQNWQ"/>
-        <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       </parameters>
     </members>
   </classifiers>
-  <classifiers xsi:type="cls:Class" name="Wheel">
+  <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_Qr2dAEKSEeaXCq-9LXQNWQ"/>
-    <members xsi:type="cls:Attribute" name="radius">
+    <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_oNOcoEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
     </members>
   </classifiers>
-  <classifiers xsi:type="cls:Class" name="ConvertibleCar">
-    <comments
-      body="I would not buy this for myself.">
+  <classifiers xsi:type="cls:Class">
+    <comments>
       <referencedElement xsi:type="uml:Comment" href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>
     </comments>
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_xEjCoEKSEeaXCq-9LXQNWQ"/>
-    <members xsi:type="cls:Attribute" name="conversionTime">
+    <members xsi:type="cls:Attribute">
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_5_7pQEKSEeaXCq-9LXQNWQ"/>
-      <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
     </members>
   </classifiers>
-  <classifiers xsi:type="cls:Interface" name="Vehicle">
+  <classifiers xsi:type="cls:Interface">
     <referencedElement xsi:type="uml:Interface" href="ClassDiagram.uml#_PJ3TUHjsEea7c9xs28iX1A"/>
-    <members xsi:type="cls:Method" name="drive">
+    <members xsi:type="cls:Method">
       <referencedElement xsi:type="uml:Operation" href="ClassDiagram.uml#_Qoso0HjsEea7c9xs28iX1A"/>
-      <parameters name="speed">
+      <parameters>
         <referencedElement xsi:type="uml:Parameter" href="ClassDiagram.uml#_WCYDQHjsEea7c9xs28iX1A"/>
-        <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EInt"/>
       </parameters>
     </members>
   </classifiers>
-  <classifiers xsi:type="cls:Class" name="Screw">
+  <classifiers xsi:type="cls:Class">
     <referencedElement xsi:type="uml:Class" href="ClassDiagram.uml#_a_o2UHnPEea_kLaSOi1rnw"/>
   </classifiers>
-  <connectors xsi:type="cls:XtextAssociation" name="akwardAssociation">
+  <connectors xsi:type="cls:XtextAssociation">
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
-    <memberEnds name="wheel" type="//@rootPackage/@classifiers.1">
+    <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
-      <cardinality lowerBound="1" upperBound="1"/>
+      <cardinality/>
     </memberEnds>
-    <memberEnds name="car" type="//@rootPackage/@classifiers.0">
+    <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
-      <cardinality lowerBound="1" upperBound="1"/>
+      <cardinality/>
     </memberEnds>
-    <memberEnds name="ConvertibleCar" navigable="true" type="//@rootPackage/@classifiers.2">
+    <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
-      <cardinality upperBound="1"/>
+      <cardinality/>
     </memberEnds>
   </connectors>
-  <connectors xsi:type="cls:XtextAssociation" name="has">
-	<comments
-      body="Obvious, isn't it?">
+  <connectors xsi:type="cls:XtextAssociation">
+	<comments>
 	  <referencedElement xsi:type="uml:Comment" href="ClassDiagram.uml#_DX9voEKTEeaXCq-9LXQNWQ"/>
 	</comments>
 	<referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
-	<memberEnds name="car" type="//@rootPackage/@classifiers.0">
+	<memberEnds>
 		<referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
-      <cardinality lowerBound="1" upperBound="1"/>
+      <cardinality/>
     </memberEnds>
-    <memberEnds name="wheel" type="//@rootPackage/@classifiers.1" aggregationKind="COMPOSITION" navigable="true">
+    <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
-      <cardinality lowerBound="1" upperBound="-1"/>
+      <cardinality/>
     </memberEnds>
   </connectors>
-  <connectors xsi:type="cls:Generalization" left="//@rootPackage/@classifiers.2" right="//@rootPackage/@classifiers.0">
+  <connectors xsi:type="cls:Generalization">
   	<referencedElement xsi:type="uml:Generalization" href="ClassDiagram.uml#_4i2AMEKSEeaXCq-9LXQNWQ"/>
   </connectors>
-  <connectors xsi:type="cls:Implementation" left="//@rootPackage/@classifiers.0" right="//@rootPackage/@classifiers.3">
+  <connectors xsi:type="cls:Implementation">
   	<referencedElement xsi:type="uml:InterfaceRealization" href="ClassDiagram.uml#_YCfg4HjsEea7c9xs28iX1A"/>
   </connectors>
-  <connectors xsi:type="cls:XtextAssociation" name="matches">
+  <connectors xsi:type="cls:XtextAssociation">
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_cPAzgHnPEea_kLaSOi1rnw"/>
-    <memberEnds name="wheel" navigable="true"  type="//@rootPackage/@classifiers.1">
+    <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IXnPEea_kLaSOi1rnw"/>
-      <cardinality lowerBound="0" upperBound="-1"/>
+      <cardinality/>
     </memberEnds>
-    <memberEnds name="screw" navigable="true"  type="//@rootPackage/@classifiers.4">
+    <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IHnPEea_kLaSOi1rnw"/>
-      <cardinality lowerBound="0" upperBound="-1"/>
+      <cardinality/>
     </memberEnds>
   </connectors> 
   </rootPackage>

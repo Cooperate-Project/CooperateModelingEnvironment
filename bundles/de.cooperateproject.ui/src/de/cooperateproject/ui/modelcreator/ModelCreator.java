@@ -3,7 +3,6 @@ package de.cooperateproject.ui.modelcreator;
 import java.io.IOException;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -26,6 +25,8 @@ import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
 import org.eclipse.papyrus.infra.viewpoints.style.StyleFactory;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
@@ -39,7 +40,7 @@ import de.cooperateproject.ui.Activator;
 
 public class ModelCreator {
 
-    private static final Logger LOGGER = Logger.getLogger(ModelCreator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ModelCreator.class);
 
     private static class ModelCreatorException extends Exception {
 

@@ -20,12 +20,16 @@ import org.eclipse.xtext.testing.InjectWith
 import org.junit.Test
 
 import static org.junit.Assert.*
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateProcessor
 
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class ClsSerializerTest extends AbstractClsTest {
 	static val TEST_FOLDER = "testmodels/serializer/"
 
 	@Inject extension ISerializer
+	
+	@Inject
+	IDerivedStateProcessor stateProcessor
 	
 	@Test
 	def void testMinimalModel() {
@@ -110,6 +114,8 @@ class ClsSerializerTest extends AbstractClsTest {
 	private def test(String modelName, EObject diagram) {
 		val path = modelName.getRelativePath
 		val expected = path.readText
+//		stateProcessor.initState(diagram)
+//		stateProcessor.calculateState(diagram)
 		val actual = diagram.serialize(SaveOptions.newBuilder.format.options)
 		assertEqualsNormalized(expected, actual)
 	}	

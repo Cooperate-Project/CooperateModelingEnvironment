@@ -19,13 +19,10 @@ import org.apache.commons.io.IOUtils
 import java.util.Collections
 import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UseCaseCustomizedInjectorProvider
 
-@RunWith(XtextRunner)
 @InjectWith(UseCaseCustomizedInjectorProvider.DefaultProvider)
 class UsecaseParsingTest extends AbstractUseCaseTest{
-	@Inject
-	ParseHelper<UseCaseDiagram> parseHelper
 	
-	@Inject ValidationTestHelper validationTestHelper
+	@Inject extension ValidationTestHelper
 	
 	override setup() {
 		super.setup()
@@ -39,7 +36,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			rootElement RootElement
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -51,7 +48,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			sys System1
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -66,7 +63,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			}
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -81,7 +78,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			}
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -98,7 +95,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			}
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -118,7 +115,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			iac (Bob, AbstractUseCase1)
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -138,7 +135,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			iac (Bob, RootElement.System1.AbstractUseCase1)
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -162,7 +159,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			ext (Extension2ToAbstractUseCase1, AbstractUseCase1) ep[AliasedExtensionPoint1] cond["Sometimes"]
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -184,7 +181,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			inc (ConcreteUseCase2, IncludedUseCase1)
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)	
+		assertNoIssues(model)	
 	}
 	
 	

@@ -1,16 +1,17 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.editor;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 
 public class CooperateEditorMatchingStrategy implements IEditorMatchingStrategy {
-    private static final Logger LOGGER = Logger.getLogger(CooperateEditorMatchingStrategy.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateEditorMatchingStrategy.class);
 
     @Override
     public boolean matches(IEditorReference editorRef, IEditorInput input) {

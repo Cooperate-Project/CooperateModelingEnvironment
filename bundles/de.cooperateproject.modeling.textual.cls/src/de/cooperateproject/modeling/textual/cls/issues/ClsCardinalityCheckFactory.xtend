@@ -76,7 +76,7 @@ class ClsCardinalityCheckFactory extends ClsAutomatedIssueResolutionFactoryBase<
 
     override getIssueDescriptionInternal(AssociationMemberEnd element) {
         return "The cardinality " + toString(element.getCardinality())
-                + " does not match the existing cardinality in UML.";
+                + " does not match the existing cardinality in UML " + element.referencedElement.lower + ".." + element.referencedElement.upper  + ".";
     }
 
     override getIssueFeatureInternal(AssociationMemberEnd eObject) {

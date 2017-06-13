@@ -268,8 +268,10 @@ when { self.oclIsKindOf(cls::Association) and self.memberEnds->size() <= 2 }
 	
 	type := PAPYRUS_NOTATION_EDGE_ASSOCIATION;
 	
-	source := sourceMemberEnd.type.typeToView();
-	target := targetMemberEnd.type.typeToView();
+	var sourceProperty := sourceMemberEnd.referencedElement.oclAsType(uml::Property);
+	source := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = sourceProperty.type.toEObject());
+	var targetProperty := targetMemberEnd.referencedElement.oclAsType(uml::Property);
+	target := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = targetProperty.type.toEObject());
 	
 	element := self.referencedElement.toEObject();
 
@@ -289,13 +291,12 @@ when { self.oclIsKindOf(cls::Generalization) }
 {
 	type := PAPYRUS_NOTATION_EDGE_GENERALIZATION;
 	
-	var specialClassifier := self.left;
-	var generalClassifier := self.right;
+	var umlGeneralization := self.referencedElement.oclAsType(uml::Generalization);
 	
-	source := specialClassifier.typeToView();
-	target := generalClassifier.typeToView();
-
-	element := specialClassifier.referencedElement.oclAsType(uml::Classifier).generalization->any(specific = specialClassifier.referencedElement).toEObject();
+	source := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = umlGeneralization.specific.toEObject());
+	target := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = umlGeneralization.general.toEObject());
+	
+	element := umlGeneralization.toEObject();
 	
 	children += self.map stereotypeDecorationGeneralization();
 	
@@ -308,13 +309,12 @@ when { self.oclIsKindOf(cls::Implementation) }
 {
 	type := PAPYRUS_NOTATION_EDGE_IMPLEMENTATION;
 	
-	var implementingClassifier := self.left;
-	var implementedInterface := self.right;
+	var umlInterfaceRealization := self.referencedElement.oclAsType(uml::InterfaceRealization);
+		
+	source := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = umlInterfaceRealization.implementingClassifier.toEObject());
+	target := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = umlInterfaceRealization.contract.toEObject());
 	
-	source := implementingClassifier.typeToView();
-	target := implementedInterface.typeToView();
-	
-	element := implementingClassifier.referencedElement.oclAsType(uml::BehavioredClassifier).interfaceRealization->any(contract = implementedInterface.referencedElement).toEObject();
+	element := umlInterfaceRealization.toEObject();
 	
 	children += self.map stereotypeDecorationImplementation();
 	children += self.map nameDecorationImplementation();
@@ -335,9 +335,8 @@ mapping cls::AssociationMemberEnd::connectorEndToEdge() : notation::Connector
 	assert error (associationDiamondShape != null) with log('Could not find the association diamond for a n-ary association.', umlAssociation);
 	source := associationDiamondShape;
 	
-	var referencedNotationElement := self.type.typeToView();
-	assert error (referencedNotationElement != null) with log('Could not find the referenced view for a UML type.', self.type);
-	target := referencedNotationElement;
+	var umlProperty := self.referencedElement.oclAsType(uml::Property);
+	target := late resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = umlProperty.type.toEObject());
 
 	children += self.map targetRoleDecorationMemberEnd();
 	children += self.map targetMultiplicityDecorationMemberEnd();
@@ -370,7 +369,7 @@ mapping textualCommons::PackageImport::packageImportToEdge() : notation::Connect
 	element := umlPackageImport.toEObject();
 	
 	source := self.importingPackage.resolveoneIn(cls::Package::packageToShape);
-	target := umlPackageImport.importedPackage.packageToShape();
+	target := late resolveoneIn(cls::Package::packageToShape, s: notation::Shape | s.element = umlPackageImport.importedPackage.toEObject());
 	
 	children += self.map stereotypeDecorationPackageImport();
 	
@@ -512,39 +511,7 @@ mapping cls::ClassDiagram::papyrusViewStyle(rootElement : uml::Package) : style:
 mapping cls::AssociationMemberEnd::semanticBranchStyle() : notation::EObjectValueStyle
 {
 	name := "Semantic_Branch_Style";
-	eObjectValue := self.determineProperty().toEObject();
-}
-
-query cls::AssociationMemberEnd::determineProperty() : uml::Property
-{
-	var umlAssociation := self.association.referencedElement.oclAsType(uml::Association);
-	var referencedProperty := self.referencedElement;
-	
-	var candidates := umlAssociation.memberEnd->select(p | p.matches(self));
-	return if candidates->size() = 1 then candidates->any(true) else referencedProperty.oclAsType(uml::Property) endif;
-}
-
-query uml::Property::matches(memberEnd : cls::AssociationMemberEnd) : Boolean
-{
-	return
-		memberEnd.referencedElement = self or
-		(
-			self.type = memberEnd.type.referencedElement and
-			(
-				memberEnd.cardinality = null or
-				self.matches(memberEnd.cardinality)
-			)
-		);
-}
-
-query uml::MultiplicityElement::matches(cardinality : textualCommons::Cardinality) : Boolean
-{
-	return
-		self.lower = cardinality.lowerBound and
-		(
-			self.upper = cardinality.upperBound or
-			(cardinality.upperBound = -1 and self.upper = *) 
-		);
+	eObjectValue := self.referencedElement.toEObject();
 }
 
 // helpers
@@ -562,26 +529,6 @@ query textualCommons::PackageableElement::typeToEdge() : notation::View
 query textualCommons::PackageableElement::typeToShape() : notation::View
 {
 	return self.resolveoneIn(cls::Classifier::classifierToShape);
-}
-
-query uml::Type::typeToView() : notation::View
-{
-	return if self.oclIsKindOf(uml::Association) then self.typeToEdge() else self.typeToShape() endif;
-}
-
-query uml::Type::typeToShape() : notation::Shape
-{
-	return resolveoneIn(cls::Classifier::classifierToShape, s : notation::Shape | s.element = self.toEObject());
-}
-
-query uml::Type::typeToEdge() : notation::Edge
-{
-	return resolveoneIn(cls::Connector::connectorToConnector, e : notation::Edge | e.element = self.toEObject());
-}
-
-query uml::Package::packageToShape() : notation::Shape
-{
-	return resolveoneIn(cls::Package::packageToShape, s : notation::Shape | s.element = self.toEObject());
 }
 
 query textualCommons::Element::isCommentable() : Boolean

@@ -1,16 +1,24 @@
 package de.cooperateproject.modeling.textual.cls.derivedstate.calculator;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State calculation for implementations.
  */
-public class ImplementationCalculator extends AtomicStateProcessorExtensionBase<Implementation> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class ImplementationCalculator extends AtomicDerivedStateProcessorBase<Implementation> {
 
     /**
      * Constructs the calculator.
@@ -20,7 +28,7 @@ public class ImplementationCalculator extends AtomicStateProcessorExtensionBase<
     }
 
     @Override
-    protected Boolean applyTyped(Implementation object) {
+    protected void applyTyped(Implementation object) {
         if (object.getLeft() != null && object.getLeft().getReferencedElement() != null && object.getRight() != null
                 && object.getRight().getReferencedElement() != null) {
             org.eclipse.uml2.uml.Classifier left = object.getLeft().getReferencedElement();
@@ -29,15 +37,14 @@ public class ImplementationCalculator extends AtomicStateProcessorExtensionBase<
                 InterfaceRealization umlInterfaceRealization = ((Class) left).getInterfaceRealization(null,
                         (Interface) right);
                 object.setReferencedElement(umlInterfaceRealization);
-                return true;
+                return;
             }
         }
-        return false;
     }
 
     @Override
-    public java.lang.Class<Implementation> getSupportedType() {
-        return Implementation.class;
+    public Collection<java.lang.Class<? extends EObject>> getReplacements() {
+        return Arrays.asList(UMLReferencingElement.class);
     }
 
 }

@@ -6,11 +6,15 @@ import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.TypedConnector;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.ElementImpl;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.uml2.uml.DirectedRelationship;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,13 +25,24 @@ import org.eclipse.emf.ecore.InternalEObject;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.TypedConnectorImpl#getOwningPackage <em>Owning Package</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.TypedConnectorImpl#getReferencedElement <em>Referenced Element</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.TypedConnectorImpl#getLeft <em>Left</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.cls.cls.impl.TypedConnectorImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class TypedConnectorImpl extends ElementImpl implements TypedConnector {
+public abstract class TypedConnectorImpl<T extends DirectedRelationship> extends ElementImpl implements TypedConnector<T> {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -73,6 +88,34 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
      */
     public void setOwningPackage(de.cooperateproject.modeling.textual.cls.cls.Package newOwningPackage) {
         eDynamicSet(ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE, ClsPackage.Literals.CONNECTOR__OWNING_PACKAGE, newOwningPackage);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public T getReferencedElement() {
+        return (T)eDynamicGet(ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public T basicGetReferencedElement() {
+        return (T)eDynamicGet(ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setReferencedElement(T newReferencedElement) {
+        eDynamicSet(ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
     }
 
     /**
@@ -185,6 +228,9 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
         switch (featureID) {
             case ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE:
                 return getOwningPackage();
+            case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT:
+                if (resolve) return getReferencedElement();
+                return basicGetReferencedElement();
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 if (resolve) return getLeft();
                 return basicGetLeft();
@@ -207,6 +253,9 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
             case ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE:
                 setOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)newValue);
                 return;
+            case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT:
+                setReferencedElement((T)newValue);
+                return;
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 setLeft((Classifier<? extends org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
@@ -228,6 +277,9 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
             case ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE:
                 setOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)null);
                 return;
+            case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT:
+                setReferencedElement((T)null);
+                return;
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 setLeft((Classifier<? extends org.eclipse.uml2.uml.Classifier>)null);
                 return;
@@ -248,12 +300,46 @@ public abstract class TypedConnectorImpl extends ElementImpl implements TypedCon
         switch (featureID) {
             case ClsPackage.TYPED_CONNECTOR__OWNING_PACKAGE:
                 return getOwningPackage() != null;
+            case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT:
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case ClsPackage.TYPED_CONNECTOR__LEFT:
                 return basicGetLeft() != null;
             case ClsPackage.TYPED_CONNECTOR__RIGHT:
                 return basicGetRight() != null;
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == UMLReferencingElement.class) {
+            switch (derivedFeatureID) {
+                case ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == UMLReferencingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ClsPackage.TYPED_CONNECTOR__REFERENCED_ELEMENT;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //TypedConnectorImpl

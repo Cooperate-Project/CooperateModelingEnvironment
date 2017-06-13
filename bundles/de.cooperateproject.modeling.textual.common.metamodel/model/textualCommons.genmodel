@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.modeling.textual.common.metamodel/src-gen"
-    modelPluginID="de.cooperateproject.modeling.textual.common.metamodel" modelName="TextualCommons"
-    rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
-    importerID="org.eclipse.emf.importer.cdo" featureDelegation="Dynamic" complianceLevel="8.0"
-    copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
+    modelPluginID="de.cooperateproject.modeling.textual.common.metamodel" templateDirectory="/de.cooperateproject.modeling.textual.common.metamodel/templates"
+    dynamicTemplates="true" modelName="TextualCommons" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject"
+    rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl" importerID="org.eclipse.emf.importer.cdo"
+    featureDelegation="Dynamic" complianceLevel="8.0" copyrightFields="false" providerRootExtendsClass="org.eclipse.emf.cdo.edit.CDOItemProviderAdapter"
     usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <foreignModel>textualCommons.ecore</foreignModel>
   <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
   <genPackages prefix="TextualCommons" basePackage="de.cooperateproject.modeling.textual.common.metamodel"
       disposableProviderFactory="true" ecorePackage="textualCommons.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="textualCommons.ecore#//Visibility">
-      <genEnumLiterals ecoreEnumLiteral="textualCommons.ecore#//Visibility/UNDEFINED"/>
-      <genEnumLiterals ecoreEnumLiteral="textualCommons.ecore#//Visibility/PUBLIC"/>
-      <genEnumLiterals ecoreEnumLiteral="textualCommons.ecore#//Visibility/PRIVATE"/>
-      <genEnumLiterals ecoreEnumLiteral="textualCommons.ecore#//Visibility/PROTECTED"/>
-      <genEnumLiterals ecoreEnumLiteral="textualCommons.ecore#//Visibility/PACKAGE"/>
-    </genEnums>
-    <genClasses image="false" ecoreClass="textualCommons.ecore#//Element"/>
+    <genClasses image="false" ecoreClass="textualCommons.ecore#//Element">
+      <genOperations ecoreOperation="textualCommons.ecore#//Element/getNearestPackage"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="textualCommons.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textualCommons.ecore#//NamedElement/name"/>
     </genClasses>
@@ -29,10 +24,14 @@
       <genTypeParameters ecoreTypeParameter="textualCommons.ecore#//UMLReferencingElement/UMLType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textualCommons.ecore#//UMLReferencingElement/referencedElement"/>
     </genClasses>
-    <genClasses ecoreClass="textualCommons.ecore#//Package"/>
-    <genClasses ecoreClass="textualCommons.ecore#//RootPackage"/>
+    <genClasses image="false" ecoreClass="textualCommons.ecore#//PackageBase">
+      <genTypeParameters ecoreTypeParameter="textualCommons.ecore#//PackageBase/PackageType"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textualCommons.ecore#//PackageBase/owningPackage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textualCommons.ecore#//PackageBase/packages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textualCommons.ecore#//PackageBase/packageImports"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="textualCommons.ecore#//Commentable">
-      <genTypeParameters ecoreTypeParameter="textualCommons.ecore#//Commentable/UMLType"/>
+      <genTypeParameters ecoreTypeParameter="textualCommons.ecore#//Commentable/CommentableUMLType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textualCommons.ecore#//Commentable/comments"/>
     </genClasses>
     <genClasses ecoreClass="textualCommons.ecore#//Comment">
@@ -42,6 +41,14 @@
     <genClasses ecoreClass="textualCommons.ecore#//Cardinality">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textualCommons.ecore#//Cardinality/lowerBound"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textualCommons.ecore#//Cardinality/upperBound"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="textualCommons.ecore#//PackageableElement"/>
+    <genClasses ecoreClass="textualCommons.ecore#//PackageImport">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textualCommons.ecore#//PackageImport/importingPackage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference textualCommons.ecore#//PackageImport/importedPackage"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="textualCommons.ecore#//VisibilityHavingElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textualCommons.ecore#//VisibilityHavingElement/visibility"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

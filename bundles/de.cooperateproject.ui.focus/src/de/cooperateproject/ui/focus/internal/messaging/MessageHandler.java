@@ -8,10 +8,11 @@ import java.util.Optional;
 import javax.inject.Provider;
 import javax.jms.JMSException;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.view.CDOView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.properties.ProjectPropertiesDTO;
 import de.cooperateproject.ui.properties.ProjectPropertiesStore;
@@ -23,7 +24,7 @@ public class MessageHandler implements Closeable {
         void handleFocusRequest(CDOObject object, long timestamp);
     }
 
-    private static final Logger LOGGER = Logger.getLogger(MessageHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MessageHandler.class);
     private JMSIO jmsIO;
     private FocusRequestHandler focusRequestHandler;
 

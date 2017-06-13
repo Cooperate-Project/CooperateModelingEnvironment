@@ -106,6 +106,24 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(UsecasePackage.SYSTEM__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(UsecasePackage.SYSTEM__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(UsecasePackage.SYSTEM__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
@@ -258,7 +276,7 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
     public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case UsecasePackage.SYSTEM__COMMENTS:
                 getComments().clear();
@@ -282,7 +300,7 @@ public class SystemImpl extends UMLReferencingElementImpl<Classifier> implements
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.SYSTEM__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case UsecasePackage.SYSTEM__COMMENTS:
                 return !getComments().isEmpty();
             case UsecasePackage.SYSTEM__USECASES:

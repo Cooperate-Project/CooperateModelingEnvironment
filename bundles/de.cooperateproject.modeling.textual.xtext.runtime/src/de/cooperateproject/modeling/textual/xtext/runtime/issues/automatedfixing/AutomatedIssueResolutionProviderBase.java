@@ -5,17 +5,18 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.validation.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory.CreationException;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
 public abstract class AutomatedIssueResolutionProviderBase implements IAutomatedIssueResolutionProvider {
-    private static final Logger LOGGER = Logger.getLogger(AutomatedIssueResolutionProviderBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutomatedIssueResolutionProviderBase.class);
 
     private static class IssueResolutionGroup implements IAutomatedIssueResolution {
 

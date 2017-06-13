@@ -3,7 +3,6 @@ package de.cooperateproject.modeling.textual.cls.ui.outline;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -13,6 +12,8 @@ import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter.IFilter;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Contribution for the flat outline view filter.
@@ -42,7 +43,7 @@ public class FlatOutlineViewContribution extends AbstractFilterOutlineContributi
     private static final String ACTION_IMAGE_URL = "platform:/plugin/org.eclipse.team.ui/icons/full/elcl16/"
             + "hierarchicalLayout.gif";
 
-    private static final Logger LOGGER = Logger.getLogger(FlatOutlineViewContribution.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlatOutlineViewContribution.class);
 
     private TreeViewer treeViewer;
     private IFilter filter;

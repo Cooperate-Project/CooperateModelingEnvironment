@@ -1,22 +1,30 @@
 package de.cooperateproject.modeling.textual.cls.derivedstate.calculator;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Property;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State calculation for Xtext associations.
  */
-public class XtextAssociationCalculator extends AtomicStateProcessorExtensionBase<XtextAssociation> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<XtextAssociation> {
 
     /**
      * Constructs the calculator.
@@ -26,9 +34,7 @@ public class XtextAssociationCalculator extends AtomicStateProcessorExtensionBas
     }
 
     @Override
-    protected Boolean applyTyped(XtextAssociation object) {
-        initTransientMemberEnds(object);
-
+    protected void applyTyped(XtextAssociation object) {
         List<Classifier<?>> types = object.collectMemberEndTypes();
         List<String> names = object.getMemberEndNames();
         List<Cardinality> cardinalities = object.getMemberEndCardinalities();
@@ -71,39 +77,38 @@ public class XtextAssociationCalculator extends AtomicStateProcessorExtensionBas
             secondMemberEnd.setAggregationKind(object.getTwoSideAggregationKind());
         }
 
-        return true;
+        object.getMemberEnds().forEach(XtextAssociationCalculator::process);
     }
 
-    private static void initTransientMemberEnds(XtextAssociation object) {
-        if (object.getMemberEndTypes().isEmpty()) {
-            object.getMemberEndNames().clear();
-            object.getMemberEndCardinalities().clear();
-            object.getMemberEndNavigabilities().clear();
-            for (AssociationMemberEnd memberEnd : object.getMemberEnds()) {
-                XtextAssociationMemberEndReferencedType typeReference = ClsFactory.eINSTANCE
-                        .createXtextAssociationMemberEndReferencedType();
-                typeReference.setType(memberEnd.getType());
-                object.getMemberEndTypes().add(typeReference);
-                if (memberEnd.getCardinality() != null) {
-                    object.getMemberEndCardinalities().add(EcoreUtil.copy(memberEnd.getCardinality()));
-                }
-                object.getMemberEndNames().add(memberEnd.getName());
-                object.getMemberEndNavigabilities().add(memberEnd.isNavigable());
-            }
-            if (object.getMemberEndNames().stream().allMatch(Objects::isNull)) {
-                object.getMemberEndNames().clear();
-            }
-            if (object.getMemberEnds().size() == 2) {
-                object.setTwoSideBidirectionality(
-                        object.getMemberEndNavigabilities().stream().allMatch(Boolean.TRUE::equals));
-                object.setTwoSideAggregationKind(object.getMemberEnds().get(1).getAggregationKind());
-            }
+    private static void process(AssociationMemberEnd object) {
+        Optional<Property> umlMemberEnd = getUmlMemberEnd(object);
+        if (!umlMemberEnd.isPresent()) {
+            object.setReferencedElement(null);
+            Optional.ofNullable(object.getCardinality()).ifPresent(c -> c.setReferencedElement(null));
+        } else {
+            object.setReferencedElement(umlMemberEnd.get());
+            Optional.ofNullable(object.getCardinality())
+                    .ifPresent(cardinality -> cardinality.setReferencedElement(umlMemberEnd.get()));
         }
     }
 
-    @Override
-    public Class<XtextAssociation> getSupportedType() {
-        return XtextAssociation.class;
+    private static Optional<Property> getUmlMemberEnd(AssociationMemberEnd object) {
+        int index = object.getAssociation().getMemberEnds().indexOf(object);
+        if (index == -1) {
+            return Optional.empty();
+        }
+        if (object.getAssociation().getMemberEnds().size() == 2) {
+            index = Math.abs(index - 1);
+        }
+        Association umlAssociation = object.getAssociation().getReferencedElement();
+        if (umlAssociation == null || umlAssociation.getMemberEnds().size() <= index) {
+            return Optional.empty();
+        }
+        return Optional.of(umlAssociation.getMemberEnds().get(index));
     }
 
+    @Override
+    public Collection<Class<? extends EObject>> getRequirements() {
+        return Arrays.asList(UMLReferencingElement.class);
+    }
 }
