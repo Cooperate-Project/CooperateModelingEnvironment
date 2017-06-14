@@ -22,8 +22,8 @@ public class ComponentAutomatedIssueResolutionProvider extends AutomatedIssueRes
     @Override
     protected Collection<IAutomatedIssueResolutionFactory> findResolutionFactories(String issueCode) {
     	Collection<IAutomatedIssueResolutionFactory> foundFactories = new HashSet<>();
-    	foundFactories.addAll(registry.findFactories(Collections.singletonList(de.cooperateproject.modeling.textual.component.component.ComponentPackage.eINSTANCE), issueCode));
-    	foundFactories.addAll(registry.findFactories(Collections.singletonList(de.cooperateproject.modeling.textual.component.textualCommons.TextualCommonsPackage.eINSTANCE), issueCode));
+    	foundFactories.addAll(registry.findFactories(Collections.singletonList(de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage.eINSTANCE), issueCode));
+    	foundFactories.addAll(registry.findFactories(Collections.singletonList(de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage.eINSTANCE), issueCode));
         return foundFactories;
     }
 
