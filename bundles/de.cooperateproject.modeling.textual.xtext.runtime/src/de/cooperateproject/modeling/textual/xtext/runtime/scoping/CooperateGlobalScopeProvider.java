@@ -3,6 +3,7 @@ package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -63,11 +64,12 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
 
     private IScope getScopeFromUMLResource(Resource umlResource, boolean ignoreCase, EClass type,
             Predicate<IEObjectDescription> predicate) {
-        Stream<EObject> umlResourceElements = null;
+        Stream<EObject> umlResourceElements;
         if (umlResource instanceof CDOResource) {
             umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, ignoreCase, type);
+        } else {
+            umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
         }
-        umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
         Stream<EObject> umlPrimitiveElements = getPrimitiveTypesIfRequested(umlResource, type);
 
         Stream<EObject> scopeElements = Stream.concat(umlPrimitiveElements, umlResourceElements);
@@ -80,16 +82,15 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
                 .map(PrimitiveType.class::cast).filter(umlPrimitiveTypeSelector::isSelected).map(EObject.class::cast);
     }
 
-    private Stream<EObject> getScopeElementsFromUMLResource(Resource umlResource, EClass type) {
+    private static Stream<EObject> getScopeElementsFromUMLResource(Resource umlResource, EClass type) {
         Iterable<EObject> allContents = Iterables.concat(umlResource.getContents(),
                 () -> umlResource.getContents().get(0).eAllContents());
         Stream<EObject> allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
-        allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
-        Stream<EObject> results = allContentsStream.filter(type::isInstance);
-        return results;
+        return allContentsStream.filter(type::isInstance);
     }
 
-    private Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, boolean ignoreCase, EClass type) {
+    private static Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, boolean ignoreCase,
+            EClass type) {
         CDOView view = umlResource.cdoView();
         if (view == null) {
             return Stream.empty();
@@ -103,7 +104,7 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
 
     private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
         Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(d -> d.stream())
-                .filter(d -> d != null).filter(d -> predicate == null ? true : predicate.apply(d))
+                .filter(Objects::nonNull).filter(d -> predicate == null ? true : predicate.apply(d))
                 .collect(Collectors.toList());
         return new SimpleScope(descriptions);
     }
