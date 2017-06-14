@@ -27,7 +27,13 @@ Require-Bundle: de.cooperateproject.modeling.textual.cls,
  de.cooperateproject.modeling.common;bundle-version="0.1.8",
  de.cooperateproject.ui.preferences;bundle-version="0.1.8",
  de.cooperateproject.modeling.textual.common.metamodel,
- de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.1.8"
+ de.cooperateproject.modeling.textual.xtext.runtime.ui;bundle-version="0.1.8",
+ org.apache.commons.io;bundle-version="2.2.0",
+ org.eclipse.ltk.ui.refactoring;bundle-version="3.8.0",
+ org.eclipse.core.databinding.observable,
+ org.eclipse.core.databinding,
+ org.eclipse.jface.databinding,
+ org.eclipse.core.databinding.property;bundle-version="1.6.0"
 Import-Package: org.slf4j;version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.cls.ui.internal,
