@@ -146,10 +146,8 @@ public abstract class DomainIndependentTransformationBase {
         if (!traceURI.isPresent()) {
             return Optional.empty();
         }
-        Resource traceResource = null;
-        Trace traceModel = Trace.createEmptyTrace();
-        traceResource = rs.getResource(traceURI.get(), true);
-        traceModel = new Trace(traceResource.getContents());
+        Resource traceResource = rs.getResource(traceURI.get(), true);
+        Trace traceModel = new Trace(traceResource.getContents());
         EcoreUtil.resolveAll(traceResource);
         return Optional.of(traceModel);
     }

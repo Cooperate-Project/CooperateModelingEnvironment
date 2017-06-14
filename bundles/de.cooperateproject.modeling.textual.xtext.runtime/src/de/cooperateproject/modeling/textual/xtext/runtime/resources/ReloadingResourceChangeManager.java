@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.resources;
 
+import java.io.IOException;
 import java.util.Collections;
 
 import org.apache.commons.lang3.Validate;
@@ -25,19 +26,19 @@ public class ReloadingResourceChangeManager extends RecursiveResourceChangeManag
         try {
             addEventFilterFor(r);
             reloadResource(r);
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.error("Could not reload resource {}.", r.getURI(), e);
         } finally {
             removeEventFilterFor(r);
         }
     }
 
-    private static void reloadResource(Resource r) throws Exception {
+    private static void reloadResource(Resource r) throws IOException {
         if (r instanceof CDOResource) {
             CDOResource realResource = (CDOResource) r;
             CDOSession session = realResource.cdoView().getSession();
             if (session == null) {
-                throw new IllegalStateException("Could not refresh resource because session is not available.");
+                throw new IOException("Could not refresh resource because session is not available.");
             }
             session.refresh();
         } else {
