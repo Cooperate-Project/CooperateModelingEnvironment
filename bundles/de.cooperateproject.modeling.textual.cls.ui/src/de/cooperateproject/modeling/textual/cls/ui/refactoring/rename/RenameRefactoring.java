@@ -16,12 +16,13 @@ import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.RefactoringStatusContext;
-import org.eclipse.ui.IReusableEditor;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StringExpression;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
 
 public class RenameRefactoring extends Refactoring {
 
@@ -55,7 +56,7 @@ public class RenameRefactoring extends Refactoring {
 
     private UMLReferencingElement<NamedElement> elementToRename;
     private String newName;
-    private IReusableEditor editor;
+    private IEditorPart editor;
 
     public void setElementToRename(UMLReferencingElement<NamedElement> elementToRename) {
         this.elementToRename = elementToRename;
@@ -65,7 +66,7 @@ public class RenameRefactoring extends Refactoring {
         this.newName = newName;
     }
 
-    public void setEditor(IReusableEditor editor) {
+    public void setEditor(IEditorPart editor) {
         this.editor = editor;
     }
 
@@ -77,7 +78,7 @@ public class RenameRefactoring extends Refactoring {
         return newName;
     }
 
-    protected IReusableEditor getEditor() {
+    protected IEditorPart getEditor() {
         return editor;
     }
 
@@ -110,6 +111,11 @@ public class RenameRefactoring extends Refactoring {
 
         try {
             pm.beginTask("Check final conditions.", 0);
+
+            if (getEditor().getAdapter(IReloadingEditor.class) == null) {
+                throw new ConditionCheckFailed(
+                        String.format("The editor has to be of type %s.", IReloadingEditor.class));
+            }
 
             if (getEditor().isDirty()) {
                 throw new ConditionCheckFailed("The editor contents have to be saved before applying the refactoring.");
@@ -168,9 +174,10 @@ public class RenameRefactoring extends Refactoring {
         try {
             pm.beginTask("Generate change.", 1);
             return new CompositeChange("Rename Refactoring",
-                    new Change[] {
+                    new Change[] { new DerivedStateCleanerChange(getEditor().getAdapter(IReloadingEditor.class)),
                             new UMLElementRenameChange(getElementToRename().getReferencedElement(), getNewName()),
-                            new EditorReloadingChange(getEditor()), new SaveEditorChange(getEditor()) });
+                            new EditorReloadingChange(getEditor().getAdapter(IReloadingEditor.class)),
+                            new SaveEditorChange(getEditor()) });
         } finally {
             pm.done();
         }

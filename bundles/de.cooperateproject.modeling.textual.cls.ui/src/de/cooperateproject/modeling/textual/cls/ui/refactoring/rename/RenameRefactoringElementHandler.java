@@ -10,7 +10,7 @@ import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IReusableEditor;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -57,7 +57,7 @@ public class RenameRefactoringElementHandler extends AbstractHandler {
     }
 
     @SuppressWarnings("unchecked")
-    private void startRename(EObject selectedEObject, IReusableEditor editor, Shell parentShell) {
+    private void startRename(EObject selectedEObject, IEditorPart editor, Shell parentShell) {
         if (selectedEObject instanceof UMLReferencingElement && selectedEObject instanceof NamedElement) {
             startRename((UMLReferencingElement<org.eclipse.uml2.uml.NamedElement>) selectedEObject, editor,
                     parentShell);
@@ -65,7 +65,7 @@ public class RenameRefactoringElementHandler extends AbstractHandler {
     }
 
     private void startRename(UMLReferencingElement<org.eclipse.uml2.uml.NamedElement> selectedEObject,
-            IReusableEditor editor, Shell parentShell) {
+            IEditorPart editor, Shell parentShell) {
         try {
             RefactoringWizardOpenOperation openOperation = new RefactoringWizardOpenOperation(
                     new RenameRefactoringWizard(selectedEObject, editor));

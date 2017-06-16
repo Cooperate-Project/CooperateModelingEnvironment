@@ -8,18 +8,18 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
 
-public class EditorReloadingChange extends Change {
+public class DerivedStateCleanerChange extends Change {
 
     private final IReloadingEditor editor;
 
-    public EditorReloadingChange(IReloadingEditor editor) {
+    public DerivedStateCleanerChange(IReloadingEditor editor) {
         super();
         this.editor = editor;
     }
 
     @Override
     public String getName() {
-        return "Reload editor contents";
+        return "Clean derived state.";
     }
 
     @Override
@@ -35,9 +35,9 @@ public class EditorReloadingChange extends Change {
     @Override
     public Change perform(IProgressMonitor pm) throws CoreException {
         try {
-            pm.beginTask("Reloading editor contents", 0);
-            editor.getEditorSite().getShell().getDisplay().syncExec(() -> editor.reloadDocumentContent());
-            return new EditorReloadingChange(editor);
+            pm.beginTask(getName(), 0);
+            editor.cleanDerivedState();
+            return null;
         } finally {
             pm.done();
         }

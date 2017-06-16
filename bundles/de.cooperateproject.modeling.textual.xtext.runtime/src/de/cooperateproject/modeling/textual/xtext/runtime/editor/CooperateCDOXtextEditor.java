@@ -46,7 +46,7 @@ import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
-public class CooperateCDOXtextEditor extends CDOXtextEditor {
+public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadingEditor {
 
     private static class PostProcessorHandler implements SaveablePostProcessingSupport {
 
@@ -88,6 +88,31 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     private ICDOResourceStateHandler resourceStateHandler;
 
     @Override
+    public void reloadDocumentContent() {
+        if (!(getDocument() instanceof CooperateXtextDocument)) {
+            // dadam
+            return;
+        }
+        if (!(getDocumentProvider() instanceof IReinitializingDocumentProvider)) {
+            // dadam
+            return;
+        }
+
+        CooperateXtextDocument currentDocument = (CooperateXtextDocument) getDocument();
+        IReinitializingDocumentProvider documentProvider = (IReinitializingDocumentProvider) getDocumentProvider();
+        documentProvider.reinitializeDocumentContent(currentDocument,
+                currentDocument.getResource().getContents().get(0));
+    }
+
+    @Override
+    public void cleanDerivedState() {
+        CooperateXtextDocument document = getDocument().getAdapter(CooperateXtextDocument.class);
+        if (document != null) {
+            resourceStateHandler.cleanState(document.getResource());
+        }
+    }
+
+    @Override
     protected void handleCursorPositionChanged() {
         super.handleCursorPositionChanged();
         IXtextDocument document = getDocument();
@@ -125,6 +150,12 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor {
     public Object getAdapter(Class requestedClass) {
         if (SaveablePostProcessingSupport.class.isAssignableFrom(requestedClass)) {
             return postProcessorHandler;
+        }
+        if (CooperateCDOXtextEditor.class.isAssignableFrom(requestedClass)) {
+            return this;
+        }
+        if (IReloadingEditor.class.isAssignableFrom(requestedClass)) {
+            return this;
         }
         return super.getAdapter(requestedClass);
     }
