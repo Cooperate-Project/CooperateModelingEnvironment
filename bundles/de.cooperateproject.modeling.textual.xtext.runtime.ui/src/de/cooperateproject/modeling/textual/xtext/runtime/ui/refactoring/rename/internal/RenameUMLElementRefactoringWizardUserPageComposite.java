@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.ui.refactoring.rename;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.internal;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
@@ -15,19 +15,26 @@ import org.eclipse.swt.widgets.Text;
 
 import com.google.common.base.Strings;
 
-import de.cooperateproject.modeling.textual.cls.ui.internal.ClsActivator;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.Activator;
 
-public class RenameRefactoringWizardUserPageComposite extends Composite {
+/**
+ * Composite that contains the controls to ask for a new name.
+ */
+public class RenameUMLElementRefactoringWizardUserPageComposite extends Composite {
     private final IObservableValue<String> newName;
     private Text textNewName;
 
     /**
-     * Create the composite.
+     * Creates the composite.
      * 
      * @param parent
+     *            The parent composite.
      * @param style
+     *            The SWT style.
+     * @param newNameDTO
+     *            The object that receives the chosen new name.
      */
-    public RenameRefactoringWizardUserPageComposite(Composite parent, int style, IObservableValue<String> newNameDTO) {
+    public RenameUMLElementRefactoringWizardUserPageComposite(Composite parent, int style, IObservableValue<String> newNameDTO) {
         super(parent, style);
         this.newName = newNameDTO;
         setLayout(new GridLayout(2, false));
@@ -53,18 +60,18 @@ public class RenameRefactoringWizardUserPageComposite extends Composite {
 
         UpdateValueStrategy strategyAtomicModelNameTargetToModel = new UpdateValueStrategy();
         strategyAtomicModelNameTargetToModel
-                .setAfterGetValidator(RenameRefactoringWizardUserPageComposite::newNameIsValid);
+                .setAfterGetValidator(RenameUMLElementRefactoringWizardUserPageComposite::newNameIsValid);
         bindingContext.bindValue(observedNewName, newName, strategyAtomicModelNameTargetToModel,
                 new UpdateValueStrategy(UpdateValueStrategy.POLICY_UPDATE));
     }
 
     private static IStatus newNameIsValid(Object newName) {
         if (!(newName instanceof String)) {
-            return new Status(IStatus.ERROR, ClsActivator.getInstance().getBundle().getSymbolicName(),
+            return new Status(IStatus.ERROR, Activator.getInstance().getBundle().getSymbolicName(),
                     "The new name must be a string.");
         }
         if (Strings.isNullOrEmpty((String) newName)) {
-            return new Status(IStatus.ERROR, ClsActivator.getInstance().getBundle().getSymbolicName(),
+            return new Status(IStatus.ERROR, Activator.getInstance().getBundle().getSymbolicName(),
                     "The new name must not be empty.");
         }
         return Status.OK_STATUS;

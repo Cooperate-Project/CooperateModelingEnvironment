@@ -17,6 +17,15 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.Cooperate
 import net.winklerweb.cdoxtext.runtime.CDOXtextDocumentProvider;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
+/**
+ * Customized document provider for Xtext documents in conjunction with CDO.
+ * 
+ * This provider correctly handles
+ * <ul>
+ * <li>annotation markers</li>
+ * <li>document reinitialization</li>
+ * </ul>
+ */
 public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
         implements IReinitializingDocumentProvider {
 
@@ -33,6 +42,7 @@ public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
         resourceStateHandler.initState(rootElement);
         resourceStateHandler.calculateState(rootElement);
         document.set(serializer.serialize(rootElement));
+
     }
 
     @Override

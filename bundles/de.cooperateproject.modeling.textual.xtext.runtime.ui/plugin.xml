@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers" name="Injector Provider" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers.exsd"/>
+   <extension-point id="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter" name="Rename Refactoring Filter" schema="schema/de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter.exsd"/>
+ <extension
+       point="org.eclipse.ui.commands">
+      <command
+            id="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
+            categoryId="org.eclipse.xtext.ui.category.refactoring"
+            name="Rename"
+            description="Rename the given element">
+      </command>
+ </extension>
+ <extension
+       point="org.eclipse.ui.handlers">
+    <handler
+          class="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.internal.RenameUMLElementRefactoringHandler"
+          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename">
+          	<activeWhen>
+              <with
+                    variable="activeEditor">
+                 <test
+                       forcePluginActivation="true"
+                       property="de.cooperateproject.modeling.textual.xtext.runtime.ui.propertytester.UMLReferencingElementSelectionTester.isUMLReferencingElementSelected">
+                 </test>
+              </with>
+			</activeWhen>
+    </handler>
+ </extension>
+ <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+          class="de.cooperateproject.modeling.textual.xtext.runtime.ui.propertytester.UMLReferencingElementSelectionTester"
+          id="de.cooperateproject.modeling.textual.xtext.runtime.ui.propertytester.UMLReferencingElementSelectionTester.isUMLReferencingElementSelected"
+          namespace="de.cooperateproject.modeling.textual.xtext.runtime.ui.propertytester.UMLReferencingElementSelectionTester"
+          properties="isUMLReferencingElementSelected"
+          type="org.eclipse.xtext.ui.editor.XtextEditor">
+    </propertyTester>
+ </extension>
+</plugin>

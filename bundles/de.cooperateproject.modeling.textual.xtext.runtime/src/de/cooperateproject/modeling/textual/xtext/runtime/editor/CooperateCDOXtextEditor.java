@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.ILock;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.EList;
@@ -21,6 +24,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
@@ -28,6 +32,7 @@ import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.ui.editor.reconciler.XtextReconciler;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -46,6 +51,18 @@ import de.cooperateproject.ui.preferences.PreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
+/**
+ * Customized version of {@link CDOXtextEditor} that provides necessary integration points for the Cooperate modeling
+ * environment.
+ * 
+ * This editor handles
+ * <ul>
+ * <li>automated issue resolution</li>
+ * <li>validation before save</li>
+ * <li>saving of all associated resources</li>
+ * <li>reloading of document contents</li>
+ * </ul>
+ */
 public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadingEditor {
 
     private static class PostProcessorHandler implements SaveablePostProcessingSupport {
@@ -70,6 +87,25 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
 
     }
 
+    private static class JobStartListener extends JobChangeListenerBase {
+        private boolean started = false;
+
+        /**
+         * Records if any job that this listener has been registered for has already been started.
+         * 
+         * @return True if any job has already been started. False, otherwise.
+         */
+        public synchronized boolean isStarted() {
+            return started;
+        }
+
+        @Override
+        public synchronized void running(IJobChangeEvent event) {
+            started = true;
+            notifyAll();
+        }
+    }
+
     public static final String CONTEXT_ID = "de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor";
     private final PostProcessorHandler postProcessorHandler = new PostProcessorHandler();
     private final ErrorIndicatorContext errorSignalContext = new ErrorIndicatorContext();
@@ -90,18 +126,19 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     @Override
     public void reloadDocumentContent() {
         if (!(getDocument() instanceof CooperateXtextDocument)) {
-            // dadam
-            return;
+            throw new IllegalStateException(
+                    String.format("The document has to be of type %s.", CooperateXtextDocument.class));
         }
         if (!(getDocumentProvider() instanceof IReinitializingDocumentProvider)) {
-            // dadam
-            return;
+            throw new IllegalStateException(String.format("The document provider has to be of type %s.",
+                    IReinitializingDocumentProvider.class));
         }
 
         CooperateXtextDocument currentDocument = (CooperateXtextDocument) getDocument();
         IReinitializingDocumentProvider documentProvider = (IReinitializingDocumentProvider) getDocumentProvider();
         documentProvider.reinitializeDocumentContent(currentDocument,
                 currentDocument.getResource().getContents().get(0));
+        waitForReconcileToStartAndFinish();
     }
 
     @Override
@@ -284,7 +321,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
         try {
             postProcessorHandler.executePostProcessors();
         } catch (Exception e) {
-            throw new RuntimeException("Error during post processing.", e);
+            throw new IllegalStateException("Error during post processing.", e);
         }
     }
 
@@ -321,8 +358,36 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
             try {
                 r.save(Collections.emptyMap());
             } catch (IOException e) {
-                throw new RuntimeException("Error during save of associated resources.", e);
+                throw new IllegalStateException("Error during save of associated resources.", e);
             }
+        }
+    }
+
+    private void waitForReconcileToStartAndFinish() {
+        Optional<XtextReconciler> foundReconciler = Optional.ofNullable(getInternalSourceViewer())
+                .filter(IAdaptable.class::isInstance).map(IAdaptable.class::cast)
+                .map(a -> a.getAdapter(IReconciler.class)).filter(XtextReconciler.class::isInstance)
+                .map(XtextReconciler.class::cast);
+        if (!foundReconciler.isPresent()) {
+            return;
+        }
+
+        JobStartListener listener = new JobStartListener();
+        XtextReconciler reconciler = foundReconciler.get();
+        try {
+            reconciler.join();
+            reconciler.addJobChangeListener(listener);
+            reconciler.forceReconcile();
+            synchronized (listener) {
+                while (!listener.isStarted()) {
+                    listener.wait();
+                }
+            }
+            reconciler.join();
+        } catch (InterruptedException e) {
+            return;
+        } finally {
+            reconciler.removeJobChangeListener(listener);
         }
     }
 

@@ -1,4 +1,4 @@
-package de.cooperateproject.modeling.textual.cls.ui.refactoring.rename;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.internal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
@@ -9,7 +9,6 @@ import java.util.Optional;
 import org.apache.commons.io.IOUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
@@ -20,16 +19,24 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StringExpression;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes.DefaultEditorFinalizingChange;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes.DefaultEditorPreparationChange;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes.UMLElementRenameChange;
 
-public class RenameRefactoring extends Refactoring {
+/**
+ * Rename refactoring for UML elements.
+ */
+public class RenameUMLElementRefactoring extends Refactoring {
 
     private static class ConditionCheckFailed extends Exception {
 
         private static final long serialVersionUID = 3577225951304039918L;
-        private final RefactoringStatusContext context;
+        private final transient RefactoringStatusContext context;
 
         public ConditionCheckFailed(String message) {
             this(message, null);
@@ -54,6 +61,7 @@ public class RenameRefactoring extends Refactoring {
         }
     }
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RenameUMLElementRefactoring.class);
     private UMLReferencingElement<NamedElement> elementToRename;
     private String newName;
     private IEditorPart editor;
@@ -106,6 +114,7 @@ public class RenameRefactoring extends Refactoring {
     }
 
     @Override
+    @SuppressWarnings("squid:S2093")
     public RefactoringStatus checkFinalConditions(IProgressMonitor pm) throws CoreException {
         RefactoringStatus status = new RefactoringStatus();
 
@@ -137,7 +146,7 @@ public class RenameRefactoring extends Refactoring {
             }
 
             if (Optional.ofNullable(umlParentPackage)
-                    .map(p -> p.getMembers().stream().map(RenameRefactoring::determineUnqualifiedNames)
+                    .map(p -> p.getMembers().stream().map(RenameUMLElementRefactoring::determineUnqualifiedNames)
                             .flatMap(Collection::stream).anyMatch(getNewName()::equals))
                     .orElse(false)) {
                 throw new ConditionCheckFailed(String.format("There is already an element with name %s.", getNewName()),
@@ -146,22 +155,21 @@ public class RenameRefactoring extends Refactoring {
 
         } catch (ConditionCheckFailed e) {
             status.addFatalError(e.getMessage(), e.getContext());
+            LOGGER.debug("Condition check failed.", e);
         } catch (Exception e) {
             String stackTrace;
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                PrintWriter pw = new PrintWriter(baos);
-                try {
+                try (PrintWriter pw = new PrintWriter(baos)) {
                     e.printStackTrace(pw);
                     stackTrace = baos.toString();
-                } finally {
-                    IOUtils.closeQuietly(pw);
                 }
             } finally {
                 IOUtils.closeQuietly(baos);
             }
             status.addFatalError(
                     String.format("Exception in checking the initial conditions: %s%n%s", e.getMessage(), stackTrace));
+            LOGGER.debug("Condition check failed.", e);
         } finally {
             pm.done();
         }
@@ -170,14 +178,13 @@ public class RenameRefactoring extends Refactoring {
     }
 
     @Override
-    public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+    public Change createChange(IProgressMonitor pm) throws CoreException {
         try {
             pm.beginTask("Generate change.", 1);
             return new CompositeChange("Rename Refactoring",
-                    new Change[] { new DerivedStateCleanerChange(getEditor().getAdapter(IReloadingEditor.class)),
+                    new Change[] { new DefaultEditorPreparationChange(getEditor().getAdapter(IReloadingEditor.class)),
                             new UMLElementRenameChange(getElementToRename().getReferencedElement(), getNewName()),
-                            new EditorReloadingChange(getEditor().getAdapter(IReloadingEditor.class)),
-                            new SaveEditorChange(getEditor()) });
+                            new DefaultEditorFinalizingChange(getEditor().getAdapter(IReloadingEditor.class)) });
         } finally {
             pm.done();
         }

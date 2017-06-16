@@ -1,10 +1,23 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtext UI Runtime Utilities
-Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime.ui
+Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime.ui;singleton:=true
 Bundle-Version: 0.1.8.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext.ui;bundle-version="2.11.0",
- de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.8"
-Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.ui.issues
+ org.apache.commons.io;bundle-version="2.2.0",
+ org.eclipse.core.databinding,
+ org.eclipse.core.databinding.observable,
+ org.eclipse.core.databinding.property;bundle-version="1.6.0",
+ org.eclipse.jface.databinding,
+ org.eclipse.ltk.ui.refactoring,
+ org.eclipse.uml2.uml,
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.1.8",
+ de.cooperateproject.modeling.textual.common.metamodel,
+ de.cooperateproject.util;bundle-version="0.1.8"
+Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory,
+ de.cooperateproject.modeling.textual.xtext.runtime.ui.issues,
+ de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename
 Import-Package: org.slf4j;version="1.7.2"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.ui.Activator

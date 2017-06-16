@@ -1,25 +1,36 @@
-package de.cooperateproject.modeling.textual.cls.ui.refactoring.rename;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.IReloadingEditor;
 
-public class DerivedStateCleanerChange extends Change {
+/**
+ * Default change that prepares the editor for following change operations.
+ * 
+ * Precondition: The change assumes are clean editor state.
+ * 
+ * Action: Clean the derived editor state.
+ */
+public class DefaultEditorPreparationChange extends Change {
 
     private final IReloadingEditor editor;
 
-    public DerivedStateCleanerChange(IReloadingEditor editor) {
-        super();
+    /**
+     * Initializes the change.
+     * 
+     * @param editor
+     *            The editor that shall be prepared.
+     */
+    public DefaultEditorPreparationChange(IReloadingEditor editor) {
         this.editor = editor;
     }
 
     @Override
     public String getName() {
-        return "Clean derived state.";
+        return "Prepare editor";
     }
 
     @Override
@@ -28,7 +39,7 @@ public class DerivedStateCleanerChange extends Change {
     }
 
     @Override
-    public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+    public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException {
         return new RefactoringStatus();
     }
 

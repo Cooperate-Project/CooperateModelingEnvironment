@@ -1,19 +1,29 @@
-package de.cooperateproject.modeling.textual.cls.ui.refactoring.rename;
+package de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.changes;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.uml2.uml.NamedElement;
 
+/**
+ * Change that renames a UML element.
+ */
 public class UMLElementRenameChange extends Change {
 
     private final String newName;
     private final NamedElement umlElement;
 
-    public UMLElementRenameChange(NamedElement referencedElement, String newName) {
-        this.umlElement = referencedElement;
+    /**
+     * Initializes the change.
+     * 
+     * @param umlElement
+     *            The element to be renamed.
+     * @param newName
+     *            The new name of the element.
+     */
+    public UMLElementRenameChange(NamedElement umlElement, String newName) {
+        this.umlElement = umlElement;
         this.newName = newName;
     }
 
@@ -24,19 +34,24 @@ public class UMLElementRenameChange extends Change {
 
     @Override
     public void initializeValidationData(IProgressMonitor pm) {
+        return;
     }
 
     @Override
-    public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-        // we should check this, most probably
+    public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException {
         return new RefactoringStatus();
     }
 
     @Override
     public Change perform(IProgressMonitor pm) throws CoreException {
-        String oldName = umlElement.getName();
-        umlElement.setName(newName);
-        return new UMLElementRenameChange(umlElement, oldName);
+        pm.beginTask(getName(), 0);
+        try {
+            String oldName = umlElement.getName();
+            umlElement.setName(newName);
+            return new UMLElementRenameChange(umlElement, oldName);
+        } finally {
+            pm.done();
+        }
     }
 
     @Override

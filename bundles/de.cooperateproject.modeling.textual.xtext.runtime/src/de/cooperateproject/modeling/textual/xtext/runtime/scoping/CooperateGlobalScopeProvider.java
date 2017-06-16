@@ -33,6 +33,14 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
+/**
+ * Global scope provider with special handling of queries to UML elements.
+ * 
+ * The provider only processes queries about UML elements. All other queries are delegated to
+ * {@link DefaultGlobalScopeProvider}. The UML queries are mapped to CDO (if available) or to calls to local resources.
+ * A {@link IUMLUriFinder} provides us with the URI of the UML resource that matches the resource of the textual editor.
+ * The scope handles queries to primitive types.
+ */
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider implements IGlobalScopeTypeQueryProvider {
 
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
@@ -60,10 +68,10 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
         if (!umlResource.isPresent()) {
             return IScope.NULLSCOPE;
         }
-        return getScopeFromUMLResource(umlResource.get(), ignoreCase, type, predicate);
+        return getScopeFromUMLResource(umlResource.get(), type, predicate);
     }
 
-    private IScope getScopeFromUMLResource(Resource umlResource, boolean ignoreCase, EClass type,
+    private IScope getScopeFromUMLResource(Resource umlResource, EClass type,
             Predicate<IEObjectDescription> predicate) {
         Stream<EObject> umlResourceElements;
         if (umlResource instanceof CDOResource && ((CDOResource) umlResource).cdoView() instanceof CDOTransaction) {
@@ -104,7 +112,7 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
     }
 
     private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-        Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(d -> d.stream())
+        Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(Collection::stream)
                 .filter(Objects::nonNull).filter(d -> predicate == null ? true : predicate.apply(d))
                 .collect(Collectors.toList());
         return new SimpleScope(descriptions);
