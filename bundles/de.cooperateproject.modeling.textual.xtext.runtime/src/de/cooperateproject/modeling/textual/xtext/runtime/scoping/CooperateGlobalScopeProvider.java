@@ -9,7 +9,8 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -65,8 +66,8 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
     private IScope getScopeFromUMLResource(Resource umlResource, boolean ignoreCase, EClass type,
             Predicate<IEObjectDescription> predicate) {
         Stream<EObject> umlResourceElements;
-        if (umlResource instanceof CDOResource) {
-            umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, ignoreCase, type);
+        if (umlResource instanceof CDOResource && ((CDOResource) umlResource).cdoView() instanceof CDOTransaction) {
+            umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, type);
         } else {
             umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
         }
@@ -89,16 +90,16 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
         return allContentsStream.filter(type::isInstance);
     }
 
-    private static Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, boolean ignoreCase,
-            EClass type) {
-        CDOView view = umlResource.cdoView();
-        if (view == null) {
+    private static Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, EClass type) {
+        Optional<CDOTransaction> transation = Optional.fromNullable(umlResource.cdoView())
+                .transform(v -> v.getAdapter(CDOTransaction.class));
+        if (!transation.isPresent()) {
             return Stream.empty();
         }
-        // TODO this only returns elements with a clean state, so save is
-        // required. We should find a better way...
-        Collection<EObject> results = view.queryInstances(type).stream().filter(o -> o.eResource() == umlResource)
-                .collect(Collectors.toList());
+        CDOQuery query = transation.get().createQuery("ocl",
+                String.format("%s::%s.allInstances()", type.getEPackage().getNsPrefix(), type.getName()), true);
+        Collection<EObject> results = query.getResult().stream().filter(EObject.class::isInstance)
+                .map(EObject.class::cast).filter(o -> o.eResource() == umlResource).collect(Collectors.toList());
         return results.stream();
     }
 
