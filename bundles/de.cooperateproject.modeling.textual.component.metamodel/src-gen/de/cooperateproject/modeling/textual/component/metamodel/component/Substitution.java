@@ -14,5 +14,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Substitution extends UMLReferencingElement<org.eclipse.uml2.uml.Substitution>, ElementRelation {
+public interface Substitution extends UMLReferencingElement<org.eclipse.uml2.uml.Substitution>, ClassifierRelation {
 } // Substitution

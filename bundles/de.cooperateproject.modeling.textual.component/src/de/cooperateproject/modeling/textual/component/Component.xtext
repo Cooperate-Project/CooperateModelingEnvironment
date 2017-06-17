@@ -14,10 +14,10 @@ ComponentDiagram returns ComponentDiagram:
 ;
 
 
-ElementRelation returns ElementRelation: 
+ClassifierRelation returns ClassifierRelation: 
 	Generalization | Abstraction | Manifestation | Substitution | Dependency;
 
-ElementContent returns ElementContent: 
+Classifier returns Classifier: 
 	Interface | Component;
 
 NameString returns ecore::EString: 
@@ -43,8 +43,8 @@ EString returns ecore::EString:
 RootPackage returns RootPackage: 
 	{RootPackage}
 	'rootPackage' name=FQN
-			relation+=ElementRelation*
-			elementcontent+=ElementContent*
+			relation+=ClassifierRelation*
+			classifier+=Classifier*
 	;
 
 Component returns Component: 
@@ -61,23 +61,23 @@ Component returns Component:
 
 
 Generalization returns Generalization:
-		'isa' '(' component+=[Component|EString] "," component+=[Component|EString] ')' 
+		'isa' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
 ;
 
 Abstraction returns Abstraction:
-		'abs' '(' component+=[Component|EString] "," component+=[Component|EString] ')'
+		'abs' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
  ;
 
 Manifestation returns Manifestation:
-		'man' '(' component+=[Component|EString] "," component+=[Component|EString] ')' 
+		'man' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
 ;
 
 Substitution returns Substitution:
-		'sub' '(' component+=[Component|EString] "," component+=[Component|EString] ')' 
+		'sub' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
 ;
 
 Dependency returns Dependency:
-		'dep' '(' component+=[Component|EString] "," component+=[Component|EString] ')' 
+		'dep' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
 ;
 
 
@@ -97,7 +97,7 @@ Interface returns Interface:
 Connector returns Connector: 
 	'Con' ((name=EString 'as' alias = ID)|name = ID) 
 	'('
-		port+=[Component|FQN] "," port+=[Component|FQN] "," interface=[Interface|EString]
+		leftport=[Component|FQN] "," rightport=[Component|FQN] "," interface=[Interface|EString]
 	')';
 
 Provide returns Provide: 

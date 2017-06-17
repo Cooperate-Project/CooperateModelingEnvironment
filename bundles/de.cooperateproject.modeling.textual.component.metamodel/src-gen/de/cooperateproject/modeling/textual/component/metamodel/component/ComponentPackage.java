@@ -2,23 +2,23 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each operation of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentFactory
@@ -169,13 +169,13 @@ public interface ComponentPackage extends EPackage {
     int ROOT_PACKAGE__RELATION = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Elementcontent</b></em>' containment reference list.
+     * The feature id for the '<em><b>Classifier</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ROOT_PACKAGE__ELEMENTCONTENT = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
+    int ROOT_PACKAGE__CLASSIFIER = TextualCommonsPackage.PACKAGE_BASE_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Root Package</em>' class.
@@ -205,41 +205,50 @@ public interface ComponentPackage extends EPackage {
     int ROOT_PACKAGE_OPERATION_COUNT = TextualCommonsPackage.PACKAGE_BASE_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementRelationImpl <em>Element Relation</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl <em>Classifier Relation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementRelationImpl
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getElementRelation()
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getClassifierRelation()
      * @generated
      */
-    int ELEMENT_RELATION = 2;
+    int CLASSIFIER_RELATION = 2;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' reference list.
+     * The feature id for the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ELEMENT_RELATION__COMPONENT = 0;
+    int CLASSIFIER_RELATION__LEFTCLASSIFIER = 0;
 
     /**
-     * The number of structural features of the '<em>Element Relation</em>' class.
+     * The feature id for the '<em><b>Rightclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ELEMENT_RELATION_FEATURE_COUNT = 1;
+    int CLASSIFIER_RELATION__RIGHTCLASSIFIER = 1;
 
     /**
-     * The number of operations of the '<em>Element Relation</em>' class.
+     * The number of structural features of the '<em>Classifier Relation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ELEMENT_RELATION_OPERATION_COUNT = 0;
+    int CLASSIFIER_RELATION_FEATURE_COUNT = 2;
+
+    /**
+     * The number of operations of the '<em>Classifier Relation</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER_RELATION_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl <em>Port Relation</em>}' class.
@@ -270,22 +279,31 @@ public interface ComponentPackage extends EPackage {
     int PORT_RELATION__ALIAS = TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
 
     /**
-     * The feature id for the '<em><b>Port</b></em>' reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PORT_RELATION__PORT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Interface</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PORT_RELATION__INTERFACE = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+    int PORT_RELATION__INTERFACE = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Leftport</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT_RELATION__LEFTPORT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Rightport</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT_RELATION__RIGHTPORT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Port Relation</em>' class.
@@ -294,7 +312,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PORT_RELATION_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 2;
+    int PORT_RELATION_FEATURE_COUNT = TextualCommonsPackage.ALIASED_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -352,22 +370,31 @@ public interface ComponentPackage extends EPackage {
     int CONNECTOR__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Port</b></em>' reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CONNECTOR__PORT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
      * The feature id for the '<em><b>Interface</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CONNECTOR__INTERFACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int CONNECTOR__INTERFACE = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Leftport</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR__LEFTPORT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Rightport</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTOR__RIGHTPORT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Connector</em>' class.
@@ -376,7 +403,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CONNECTOR_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
+    int CONNECTOR_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -416,13 +443,22 @@ public interface ComponentPackage extends EPackage {
     int GENERALIZATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' reference list.
+     * The feature id for the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GENERALIZATION__COMPONENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int GENERALIZATION__LEFTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Rightclassifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GENERALIZATION__RIGHTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Generalization</em>' class.
@@ -431,7 +467,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int GENERALIZATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int GENERALIZATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -471,13 +507,22 @@ public interface ComponentPackage extends EPackage {
     int ABSTRACTION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' reference list.
+     * The feature id for the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ABSTRACTION__COMPONENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int ABSTRACTION__LEFTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Rightclassifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACTION__RIGHTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Abstraction</em>' class.
@@ -486,7 +531,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ABSTRACTION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int ABSTRACTION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -526,13 +571,22 @@ public interface ComponentPackage extends EPackage {
     int MANIFESTATION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' reference list.
+     * The feature id for the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MANIFESTATION__COMPONENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int MANIFESTATION__LEFTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Rightclassifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MANIFESTATION__RIGHTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Manifestation</em>' class.
@@ -541,7 +595,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MANIFESTATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int MANIFESTATION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -581,13 +635,22 @@ public interface ComponentPackage extends EPackage {
     int SUBSTITUTION__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' reference list.
+     * The feature id for the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__COMPONENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int SUBSTITUTION__LEFTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Rightclassifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUBSTITUTION__RIGHTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Substitution</em>' class.
@@ -596,7 +659,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int SUBSTITUTION_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -636,13 +699,22 @@ public interface ComponentPackage extends EPackage {
     int DEPENDENCY__REFERENCED_ELEMENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
 
     /**
-     * The feature id for the '<em><b>Component</b></em>' reference list.
+     * The feature id for the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DEPENDENCY__COMPONENT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+    int DEPENDENCY__LEFTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Rightclassifier</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DEPENDENCY__RIGHTCLASSIFIER = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Dependency</em>' class.
@@ -651,7 +723,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DEPENDENCY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
+    int DEPENDENCY_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -672,32 +744,32 @@ public interface ComponentPackage extends EPackage {
     int DEPENDENCY_OPERATION_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_OPERATION_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementContentImpl <em>Element Content</em>}' class.
+     * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierImpl <em>Classifier</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementContentImpl
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getElementContent()
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierImpl
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getClassifier()
      * @generated
      */
-    int ELEMENT_CONTENT = 10;
+    int CLASSIFIER = 10;
 
     /**
-     * The number of structural features of the '<em>Element Content</em>' class.
+     * The number of structural features of the '<em>Classifier</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ELEMENT_CONTENT_FEATURE_COUNT = 0;
+    int CLASSIFIER_FEATURE_COUNT = 0;
 
     /**
-     * The number of operations of the '<em>Element Content</em>' class.
+     * The number of operations of the '<em>Classifier</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ELEMENT_CONTENT_OPERATION_COUNT = 0;
+    int CLASSIFIER_OPERATION_COUNT = 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PropertyImpl <em>Property</em>}' class.
@@ -1474,6 +1546,7 @@ public interface ComponentPackage extends EPackage {
      */
     int REQUIRE_OPERATION_COUNT = INTERFACE_RELATION_OPERATION_COUNT + 1;
 
+
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram <em>Diagram</em>}'.
      * <!-- begin-user-doc -->
@@ -1528,36 +1601,47 @@ public interface ComponentPackage extends EPackage {
     EReference getRootPackage_Relation();
 
     /**
-     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getElementcontent <em>Elementcontent</em>}'.
+     * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getClassifier <em>Classifier</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Elementcontent</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getElementcontent()
+     * @return the meta object for the containment reference list '<em>Classifier</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getClassifier()
      * @see #getRootPackage()
      * @generated
      */
-    EReference getRootPackage_Elementcontent();
+    EReference getRootPackage_Classifier();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation <em>Element Relation</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation <em>Classifier Relation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Element Relation</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation
+     * @return the meta object for class '<em>Classifier Relation</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation
      * @generated
      */
-    EClass getElementRelation();
+    EClass getClassifierRelation();
 
     /**
-     * Returns the meta object for the reference list '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation#getComponent <em>Component</em>}'.
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftclassifier <em>Leftclassifier</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Component</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation#getComponent()
-     * @see #getElementRelation()
+     * @return the meta object for the reference '<em>Leftclassifier</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftclassifier()
+     * @see #getClassifierRelation()
      * @generated
      */
-    EReference getElementRelation_Component();
+    EReference getClassifierRelation_Leftclassifier();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightclassifier <em>Rightclassifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Rightclassifier</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightclassifier()
+     * @see #getClassifierRelation()
+     * @generated
+     */
+    EReference getClassifierRelation_Rightclassifier();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation <em>Port Relation</em>}'.
@@ -1570,17 +1654,6 @@ public interface ComponentPackage extends EPackage {
     EClass getPortRelation();
 
     /**
-     * Returns the meta object for the reference list '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getPort <em>Port</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Port</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getPort()
-     * @see #getPortRelation()
-     * @generated
-     */
-    EReference getPortRelation_Port();
-
-    /**
      * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getInterface <em>Interface</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1590,6 +1663,28 @@ public interface ComponentPackage extends EPackage {
      * @generated
      */
     EReference getPortRelation_Interface();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getLeftport <em>Leftport</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Leftport</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getLeftport()
+     * @see #getPortRelation()
+     * @generated
+     */
+    EReference getPortRelation_Leftport();
+
+    /**
+     * Returns the meta object for the reference '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getRightport <em>Rightport</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Rightport</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getRightport()
+     * @see #getPortRelation()
+     * @generated
+     */
+    EReference getPortRelation_Rightport();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Connector <em>Connector</em>}'.
@@ -1652,14 +1747,14 @@ public interface ComponentPackage extends EPackage {
     EClass getDependency();
 
     /**
-     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent <em>Element Content</em>}'.
+     * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Classifier <em>Classifier</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Element Content</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent
+     * @return the meta object for class '<em>Classifier</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
      * @generated
      */
-    EClass getElementContent();
+    EClass getClassifier();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Property <em>Property</em>}'.
@@ -1906,11 +2001,11 @@ public interface ComponentPackage extends EPackage {
      * <!-- begin-user-doc -->
      * Defines literals for the meta objects that represent
      * <ul>
-     * <li>each class,</li>
-     * <li>each feature of each class,</li>
-     * <li>each operation of each class,</li>
-     * <li>each enum,</li>
-     * <li>and each data type</li>
+     *   <li>each class,</li>
+     *   <li>each feature of each class,</li>
+     *   <li>each operation of each class,</li>
+     *   <li>each enum,</li>
+     *   <li>and each data type</li>
      * </ul>
      * <!-- end-user-doc -->
      * @generated
@@ -1961,30 +2056,38 @@ public interface ComponentPackage extends EPackage {
         EReference ROOT_PACKAGE__RELATION = eINSTANCE.getRootPackage_Relation();
 
         /**
-         * The meta object literal for the '<em><b>Elementcontent</b></em>' containment reference list feature.
+         * The meta object literal for the '<em><b>Classifier</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference ROOT_PACKAGE__ELEMENTCONTENT = eINSTANCE.getRootPackage_Elementcontent();
+        EReference ROOT_PACKAGE__CLASSIFIER = eINSTANCE.getRootPackage_Classifier();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementRelationImpl <em>Element Relation</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl <em>Classifier Relation</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementRelationImpl
-         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getElementRelation()
+         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl
+         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getClassifierRelation()
          * @generated
          */
-        EClass ELEMENT_RELATION = eINSTANCE.getElementRelation();
+        EClass CLASSIFIER_RELATION = eINSTANCE.getClassifierRelation();
 
         /**
-         * The meta object literal for the '<em><b>Component</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Leftclassifier</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference ELEMENT_RELATION__COMPONENT = eINSTANCE.getElementRelation_Component();
+        EReference CLASSIFIER_RELATION__LEFTCLASSIFIER = eINSTANCE.getClassifierRelation_Leftclassifier();
+
+        /**
+         * The meta object literal for the '<em><b>Rightclassifier</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CLASSIFIER_RELATION__RIGHTCLASSIFIER = eINSTANCE.getClassifierRelation_Rightclassifier();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl <em>Port Relation</em>}' class.
@@ -1997,20 +2100,28 @@ public interface ComponentPackage extends EPackage {
         EClass PORT_RELATION = eINSTANCE.getPortRelation();
 
         /**
-         * The meta object literal for the '<em><b>Port</b></em>' reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference PORT_RELATION__PORT = eINSTANCE.getPortRelation_Port();
-
-        /**
          * The meta object literal for the '<em><b>Interface</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         EReference PORT_RELATION__INTERFACE = eINSTANCE.getPortRelation_Interface();
+
+        /**
+         * The meta object literal for the '<em><b>Leftport</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PORT_RELATION__LEFTPORT = eINSTANCE.getPortRelation_Leftport();
+
+        /**
+         * The meta object literal for the '<em><b>Rightport</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PORT_RELATION__RIGHTPORT = eINSTANCE.getPortRelation_Rightport();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl <em>Connector</em>}' class.
@@ -2073,14 +2184,14 @@ public interface ComponentPackage extends EPackage {
         EClass DEPENDENCY = eINSTANCE.getDependency();
 
         /**
-         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementContentImpl <em>Element Content</em>}' class.
+         * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierImpl <em>Classifier</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ElementContentImpl
-         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getElementContent()
+         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierImpl
+         * @see de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentPackageImpl#getClassifier()
          * @generated
          */
-        EClass ELEMENT_CONTENT = eINSTANCE.getElementContent();
+        EClass CLASSIFIER = eINSTANCE.getClassifier();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PropertyImpl <em>Property</em>}' class.
@@ -2280,4 +2391,4 @@ public interface ComponentPackage extends EPackage {
 
     }
 
-} // ComponentPackage
+} //ComponentPackage

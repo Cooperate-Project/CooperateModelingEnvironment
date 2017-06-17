@@ -7,8 +7,6 @@ package de.cooperateproject.modeling.textual.component.metamodel.component.valid
 import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * A sample validator interface for {@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation}.
  * This doesn't really do anything, and it's not a real EMF artifact.
@@ -18,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 public interface PortRelationValidator {
     boolean validate();
 
-    boolean validatePort(EList<Component> value);
     boolean validateInterface(Interface value);
+    boolean validateLeftport(Component value);
+    boolean validateRightport(Component value);
 }

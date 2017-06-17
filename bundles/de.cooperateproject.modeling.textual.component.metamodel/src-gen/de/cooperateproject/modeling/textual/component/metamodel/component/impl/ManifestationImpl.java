@@ -4,13 +4,9 @@ package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
+import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -24,7 +20,8 @@ import org.eclipse.uml2.uml.Manifestation;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ManifestationImpl#getComponent <em>Component</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ManifestationImpl#getLeftclassifier <em>Leftclassifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ManifestationImpl#getRightclassifier <em>Rightclassifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,9 +62,53 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public EList<Component> getComponent() {
-        return (EList<Component>)eDynamicGet(ComponentPackage.MANIFESTATION__COMPONENT, ComponentPackage.Literals.ELEMENT_RELATION__COMPONENT, true, true);
+    public Classifier getLeftclassifier() {
+        return (Classifier)eDynamicGet(ComponentPackage.MANIFESTATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier basicGetLeftclassifier() {
+        return (Classifier)eDynamicGet(ComponentPackage.MANIFESTATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLeftclassifier(Classifier newLeftclassifier) {
+        eDynamicSet(ComponentPackage.MANIFESTATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier getRightclassifier() {
+        return (Classifier)eDynamicGet(ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Classifier basicGetRightclassifier() {
+        return (Classifier)eDynamicGet(ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRightclassifier(Classifier newRightclassifier) {
+        eDynamicSet(ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
     }
 
     /**
@@ -78,8 +119,12 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ComponentPackage.MANIFESTATION__COMPONENT:
-                return getComponent();
+            case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER:
+                if (resolve) return getLeftclassifier();
+                return basicGetLeftclassifier();
+            case ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER:
+                if (resolve) return getRightclassifier();
+                return basicGetRightclassifier();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -89,13 +134,14 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ComponentPackage.MANIFESTATION__COMPONENT:
-                getComponent().clear();
-                getComponent().addAll((Collection<? extends Component>)newValue);
+            case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER:
+                setLeftclassifier((Classifier)newValue);
+                return;
+            case ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER:
+                setRightclassifier((Classifier)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -109,8 +155,11 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ComponentPackage.MANIFESTATION__COMPONENT:
-                getComponent().clear();
+            case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER:
+                setLeftclassifier((Classifier)null);
+                return;
+            case ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER:
+                setRightclassifier((Classifier)null);
                 return;
         }
         super.eUnset(featureID);
@@ -124,8 +173,10 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ComponentPackage.MANIFESTATION__COMPONENT:
-                return !getComponent().isEmpty();
+            case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER:
+                return basicGetLeftclassifier() != null;
+            case ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER:
+                return basicGetRightclassifier() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -137,9 +188,10 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == ElementRelation.class) {
+        if (baseClass == ClassifierRelation.class) {
             switch (derivedFeatureID) {
-                case ComponentPackage.MANIFESTATION__COMPONENT: return ComponentPackage.ELEMENT_RELATION__COMPONENT;
+                case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER;
+                case ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER;
                 default: return -1;
             }
         }
@@ -153,9 +205,10 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == ElementRelation.class) {
+        if (baseClass == ClassifierRelation.class) {
             switch (baseFeatureID) {
-                case ComponentPackage.ELEMENT_RELATION__COMPONENT: return ComponentPackage.MANIFESTATION__COMPONENT;
+                case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER: return ComponentPackage.MANIFESTATION__LEFTCLASSIFIER;
+                case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER: return ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER;
                 default: return -1;
             }
         }

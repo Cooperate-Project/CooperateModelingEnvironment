@@ -4,8 +4,8 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.validation;
 
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
+import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.EList;
 public interface RootPackageValidator {
     boolean validate();
 
-    boolean validateRelation(EList<ElementRelation> value);
-    boolean validateElementcontent(EList<ElementContent> value);
+    boolean validateRelation(EList<ClassifierRelation> value);
+    boolean validateClassifier(EList<Classifier> value);
+
+    boolean validateElementcontent(EList<Classifier> value);
 }

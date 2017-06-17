@@ -133,15 +133,15 @@ ruleComponentDiagram returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleElementRelation
-entryRuleElementRelation returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getElementRelationRule()); }
-	iv_ruleElementRelation=ruleElementRelation
-	{ $current=$iv_ruleElementRelation.current; }
+// Entry rule entryRuleClassifierRelation
+entryRuleClassifierRelation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassifierRelationRule()); }
+	iv_ruleClassifierRelation=ruleClassifierRelation
+	{ $current=$iv_ruleClassifierRelation.current; }
 	EOF;
 
-// Rule ElementRelation
-ruleElementRelation returns [EObject current=null]
+// Rule ClassifierRelation
+ruleClassifierRelation returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -150,7 +150,7 @@ ruleElementRelation returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getElementRelationAccess().getGeneralizationParserRuleCall_0());
+			newCompositeNode(grammarAccess.getClassifierRelationAccess().getGeneralizationParserRuleCall_0());
 		}
 		this_Generalization_0=ruleGeneralization
 		{
@@ -159,7 +159,7 @@ ruleElementRelation returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementRelationAccess().getAbstractionParserRuleCall_1());
+			newCompositeNode(grammarAccess.getClassifierRelationAccess().getAbstractionParserRuleCall_1());
 		}
 		this_Abstraction_1=ruleAbstraction
 		{
@@ -168,7 +168,7 @@ ruleElementRelation returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementRelationAccess().getManifestationParserRuleCall_2());
+			newCompositeNode(grammarAccess.getClassifierRelationAccess().getManifestationParserRuleCall_2());
 		}
 		this_Manifestation_2=ruleManifestation
 		{
@@ -177,7 +177,7 @@ ruleElementRelation returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementRelationAccess().getSubstitutionParserRuleCall_3());
+			newCompositeNode(grammarAccess.getClassifierRelationAccess().getSubstitutionParserRuleCall_3());
 		}
 		this_Substitution_3=ruleSubstitution
 		{
@@ -186,7 +186,7 @@ ruleElementRelation returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementRelationAccess().getDependencyParserRuleCall_4());
+			newCompositeNode(grammarAccess.getClassifierRelationAccess().getDependencyParserRuleCall_4());
 		}
 		this_Dependency_4=ruleDependency
 		{
@@ -196,15 +196,15 @@ ruleElementRelation returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleElementContent
-entryRuleElementContent returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getElementContentRule()); }
-	iv_ruleElementContent=ruleElementContent
-	{ $current=$iv_ruleElementContent.current; }
+// Entry rule entryRuleClassifier
+entryRuleClassifier returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClassifierRule()); }
+	iv_ruleClassifier=ruleClassifier
+	{ $current=$iv_ruleClassifier.current; }
 	EOF;
 
-// Rule ElementContent
-ruleElementContent returns [EObject current=null]
+// Rule Classifier
+ruleClassifier returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -213,7 +213,7 @@ ruleElementContent returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getElementContentAccess().getInterfaceParserRuleCall_0());
+			newCompositeNode(grammarAccess.getClassifierAccess().getInterfaceParserRuleCall_0());
 		}
 		this_Interface_0=ruleInterface
 		{
@@ -222,7 +222,7 @@ ruleElementContent returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getElementContentAccess().getComponentParserRuleCall_1());
+			newCompositeNode(grammarAccess.getClassifierAccess().getComponentParserRuleCall_1());
 		}
 		this_Component_1=ruleComponent
 		{
@@ -412,9 +412,9 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationElementRelationParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0());
 				}
-				lv_relation_3_0=ruleElementRelation
+				lv_relation_3_0=ruleClassifierRelation
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
@@ -423,7 +423,7 @@ ruleRootPackage returns [EObject current=null]
 						$current,
 						"relation",
 						lv_relation_3_0,
-						"de.cooperateproject.modeling.textual.component.Component.ElementRelation");
+						"de.cooperateproject.modeling.textual.component.Component.ClassifierRelation");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -431,18 +431,18 @@ ruleRootPackage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRootPackageAccess().getElementcontentElementContentParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0());
 				}
-				lv_elementcontent_4_0=ruleElementContent
+				lv_classifier_4_0=ruleClassifier
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRootPackageRule());
 					}
 					add(
 						$current,
-						"elementcontent",
-						lv_elementcontent_4_0,
-						"de.cooperateproject.modeling.textual.component.Component.ElementContent");
+						"classifier",
+						lv_classifier_4_0,
+						"de.cooperateproject.modeling.textual.component.Component.Classifier");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -680,7 +680,7 @@ ruleGeneralization returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getGeneralizationAccess().getComponentComponentCrossReference_2_0());
+					newCompositeNode(grammarAccess.getGeneralizationAccess().getLeftclassifierClassifierCrossReference_2_0());
 				}
 				ruleEString
 				{
@@ -700,7 +700,7 @@ ruleGeneralization returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getGeneralizationAccess().getComponentComponentCrossReference_4_0());
+					newCompositeNode(grammarAccess.getGeneralizationAccess().getRightclassifierClassifierCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -747,7 +747,7 @@ ruleAbstraction returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getAbstractionAccess().getComponentComponentCrossReference_2_0());
+					newCompositeNode(grammarAccess.getAbstractionAccess().getLeftclassifierClassifierCrossReference_2_0());
 				}
 				ruleEString
 				{
@@ -767,7 +767,7 @@ ruleAbstraction returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getAbstractionAccess().getComponentComponentCrossReference_4_0());
+					newCompositeNode(grammarAccess.getAbstractionAccess().getRightclassifierClassifierCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -814,7 +814,7 @@ ruleManifestation returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getManifestationAccess().getComponentComponentCrossReference_2_0());
+					newCompositeNode(grammarAccess.getManifestationAccess().getLeftclassifierClassifierCrossReference_2_0());
 				}
 				ruleEString
 				{
@@ -834,7 +834,7 @@ ruleManifestation returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getManifestationAccess().getComponentComponentCrossReference_4_0());
+					newCompositeNode(grammarAccess.getManifestationAccess().getRightclassifierClassifierCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -881,7 +881,7 @@ ruleSubstitution returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getSubstitutionAccess().getComponentComponentCrossReference_2_0());
+					newCompositeNode(grammarAccess.getSubstitutionAccess().getLeftclassifierClassifierCrossReference_2_0());
 				}
 				ruleEString
 				{
@@ -901,7 +901,7 @@ ruleSubstitution returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getSubstitutionAccess().getComponentComponentCrossReference_4_0());
+					newCompositeNode(grammarAccess.getSubstitutionAccess().getRightclassifierClassifierCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -948,7 +948,7 @@ ruleDependency returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getDependencyAccess().getComponentComponentCrossReference_2_0());
+					newCompositeNode(grammarAccess.getDependencyAccess().getLeftclassifierClassifierCrossReference_2_0());
 				}
 				ruleEString
 				{
@@ -968,7 +968,7 @@ ruleDependency returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getDependencyAccess().getComponentComponentCrossReference_4_0());
+					newCompositeNode(grammarAccess.getDependencyAccess().getRightclassifierClassifierCrossReference_4_0());
 				}
 				ruleEString
 				{
@@ -1284,7 +1284,7 @@ ruleConnector returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getConnectorAccess().getPortComponentCrossReference_3_0());
+					newCompositeNode(grammarAccess.getConnectorAccess().getLeftportComponentCrossReference_3_0());
 				}
 				ruleFQN
 				{
@@ -1304,7 +1304,7 @@ ruleConnector returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getConnectorAccess().getPortComponentCrossReference_5_0());
+					newCompositeNode(grammarAccess.getConnectorAccess().getRightportComponentCrossReference_5_0());
 				}
 				ruleFQN
 				{

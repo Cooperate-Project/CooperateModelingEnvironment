@@ -8,8 +8,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl;
 
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Member;
 
 import java.util.Collection;
@@ -227,7 +227,7 @@ public class InterfaceImpl extends CommentableImpl<Interface> implements de.coop
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == ElementContent.class) {
+        if (baseClass == Classifier.class) {
             switch (derivedFeatureID) {
                 default: return -1;
             }
@@ -254,7 +254,7 @@ public class InterfaceImpl extends CommentableImpl<Interface> implements de.coop
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == ElementContent.class) {
+        if (baseClass == Classifier.class) {
             switch (baseFeatureID) {
                 default: return -1;
             }

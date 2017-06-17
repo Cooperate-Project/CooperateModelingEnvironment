@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.NamedElement;
@@ -84,8 +85,8 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createRootPackageAdapter();
             }
             @Override
-            public Adapter caseElementRelation(ElementRelation object) {
-                return createElementRelationAdapter();
+            public Adapter caseClassifierRelation(ClassifierRelation object) {
+                return createClassifierRelationAdapter();
             }
             @Override
             public Adapter casePortRelation(PortRelation object) {
@@ -116,8 +117,8 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createDependencyAdapter();
             }
             @Override
-            public Adapter caseElementContent(ElementContent object) {
-                return createElementContentAdapter();
+            public Adapter caseClassifier(Classifier object) {
+                return createClassifierAdapter();
             }
             @Override
             public <T extends NamedElement> Adapter caseProperty(Property<T> object) {
@@ -236,16 +237,16 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation <em>Element Relation</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation <em>Classifier Relation</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation
      * @generated
      */
-    public Adapter createElementRelationAdapter() {
+    public Adapter createClassifierRelationAdapter() {
         return null;
     }
 
@@ -348,16 +349,16 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent <em>Element Content</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Classifier <em>Classifier</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
      * @generated
      */
-    public Adapter createElementContentAdapter() {
+    public Adapter createClassifierAdapter() {
         return null;
     }
 
@@ -530,6 +531,20 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement <em>UML Referencing Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+     * @generated
+     */
+    public Adapter createUMLReferencingElementAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement <em>Named Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -558,16 +573,16 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement <em>UML Referencing Element</em>}'.
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement <em>Aliased Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
      * @generated
      */
-    public Adapter createUMLReferencingElementAdapter() {
+    public Adapter createAliasedElementAdapter() {
         return null;
     }
 
@@ -582,20 +597,6 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCommentableAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement <em>Aliased Element</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement
-     * @generated
-     */
-    public Adapter createAliasedElementAdapter() {
         return null;
     }
 

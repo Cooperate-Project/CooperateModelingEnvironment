@@ -12,42 +12,44 @@ Package component <http://www.cooperateproject.de/modeling/textual/component/Com
     Reference rootpackage : RootPackage<<1..1>>
 
   Class RootPackage -> PackageBase
-    Reference relation : ElementRelation<<0..*>>
-    Reference elementcontent : ElementContent<<0..*>>
+    Reference relation : ClassifierRelation<<0..*>>
+    Reference classifier : Classifier<<0..*>>
 
-  Class ElementRelation
-    Reference component : Component<<2..2>>
+  Class ClassifierRelation
+    Reference leftclassifier : Classifier<<1..1>>
+    Reference rightclassifier : Classifier<<1..1>>
 
   Class PortRelation -> AliasedElement
-    Reference port : Component<<2..2>>
     Reference interface : Interface<<1..1>>
+    Reference leftport : Component<<1..1>>
+    Reference rightport : Component<<1..1>>
 
   Class Connector -> UMLReferencingElement, PortRelation
 
-  Class Generalization -> UMLReferencingElement, ElementRelation
+  Class Generalization -> UMLReferencingElement, ClassifierRelation
 
-  Class Abstraction -> UMLReferencingElement, ElementRelation
+  Class Abstraction -> UMLReferencingElement, ClassifierRelation
 
-  Class Manifestation -> UMLReferencingElement, ElementRelation
+  Class Manifestation -> UMLReferencingElement, ClassifierRelation
 
-  Class Substitution -> UMLReferencingElement, ElementRelation
+  Class Substitution -> UMLReferencingElement, ClassifierRelation
 
-  Class Dependency -> UMLReferencingElement, ElementRelation
+  Class Dependency -> UMLReferencingElement, ClassifierRelation
 
-  Class ElementContent
+  Class Classifier
 
   Class Property -> UMLReferencingElement, Element, NamedElement
     Attribute visibility : Visibility
     Attribute static : EBoolean
     Reference type : Classifier
 
-  Class Component -> Commentable, AliasedElement, ElementContent
+  Class Component -> Commentable, AliasedElement, Classifier
     Reference component : Component<<0..*>>
     Reference port : PortRelation<<0..*>>
     Reference interfacerelation : InterfaceRelation<<0..*>>
     Reference interface : Interface<<0..*>>
 
-  Class Interface -> Commentable, ElementContent, AliasedElement
+  Class Interface -> Commentable, Classifier, AliasedElement
     Reference member : Member<<0..*>>
 
   Class Method -> Member

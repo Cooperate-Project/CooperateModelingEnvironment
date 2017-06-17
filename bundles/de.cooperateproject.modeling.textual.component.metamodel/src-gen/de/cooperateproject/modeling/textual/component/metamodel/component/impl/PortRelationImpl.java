@@ -3,14 +3,11 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
+
 import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -22,8 +19,9 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getPort <em>Port</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getLeftport <em>Leftport</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getRightport <em>Rightport</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,16 +44,6 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
     @Override
     protected EClass eStaticClass() {
         return ComponentPackage.Literals.PORT_RELATION;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    public EList<Component> getPort() {
-        return (EList<Component>)eDynamicGet(ComponentPackage.PORT_RELATION__PORT, ComponentPackage.Literals.PORT_RELATION__PORT, true, true);
     }
 
     /**
@@ -90,14 +78,72 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
+    public Component getLeftport() {
+        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Component basicGetLeftport() {
+        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLeftport(Component newLeftport) {
+        eDynamicSet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, newLeftport);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Component getRightport() {
+        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Component basicGetRightport() {
+        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRightport(Component newRightport) {
+        eDynamicSet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, newRightport);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ComponentPackage.PORT_RELATION__PORT:
-                return getPort();
             case ComponentPackage.PORT_RELATION__INTERFACE:
                 if (resolve) return getInterface();
                 return basicGetInterface();
+            case ComponentPackage.PORT_RELATION__LEFTPORT:
+                if (resolve) return getLeftport();
+                return basicGetLeftport();
+            case ComponentPackage.PORT_RELATION__RIGHTPORT:
+                if (resolve) return getRightport();
+                return basicGetRightport();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -107,16 +153,17 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ComponentPackage.PORT_RELATION__PORT:
-                getPort().clear();
-                getPort().addAll((Collection<? extends Component>)newValue);
-                return;
             case ComponentPackage.PORT_RELATION__INTERFACE:
                 setInterface((Interface)newValue);
+                return;
+            case ComponentPackage.PORT_RELATION__LEFTPORT:
+                setLeftport((Component)newValue);
+                return;
+            case ComponentPackage.PORT_RELATION__RIGHTPORT:
+                setRightport((Component)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -130,11 +177,14 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ComponentPackage.PORT_RELATION__PORT:
-                getPort().clear();
-                return;
             case ComponentPackage.PORT_RELATION__INTERFACE:
                 setInterface((Interface)null);
+                return;
+            case ComponentPackage.PORT_RELATION__LEFTPORT:
+                setLeftport((Component)null);
+                return;
+            case ComponentPackage.PORT_RELATION__RIGHTPORT:
+                setRightport((Component)null);
                 return;
         }
         super.eUnset(featureID);
@@ -148,10 +198,12 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ComponentPackage.PORT_RELATION__PORT:
-                return !getPort().isEmpty();
             case ComponentPackage.PORT_RELATION__INTERFACE:
                 return basicGetInterface() != null;
+            case ComponentPackage.PORT_RELATION__LEFTPORT:
+                return basicGetLeftport() != null;
+            case ComponentPackage.PORT_RELATION__RIGHTPORT:
+                return basicGetRightport() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -2,8 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -11,18 +11,18 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Element Content</b></em>'.
+ * An implementation of the model object '<em><b>Classifier</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class ElementContentImpl extends CDOObjectImpl implements ElementContent {
+public abstract class ClassifierImpl extends CDOObjectImpl implements Classifier {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected ElementContentImpl() {
+    protected ClassifierImpl() {
         super();
     }
 
@@ -33,7 +33,7 @@ public abstract class ElementContentImpl extends CDOObjectImpl implements Elemen
      */
     @Override
     protected EClass eStaticClass() {
-        return ComponentPackage.Literals.ELEMENT_CONTENT;
+        return ComponentPackage.Literals.CLASSIFIER;
     }
 
     /**
@@ -46,4 +46,4 @@ public abstract class ElementContentImpl extends CDOObjectImpl implements Elemen
         return 0;
     }
 
-} //ElementContentImpl
+} //ClassifierImpl

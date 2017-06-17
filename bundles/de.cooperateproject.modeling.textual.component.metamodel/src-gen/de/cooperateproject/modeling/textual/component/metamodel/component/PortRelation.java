@@ -3,7 +3,6 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,8 +13,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getPort <em>Port</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getLeftport <em>Leftport</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getRightport <em>Rightport</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation()
@@ -23,22 +23,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface PortRelation extends AliasedElement {
-    /**
-     * Returns the value of the '<em><b>Port</b></em>' reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Component}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Port</em>' reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Port</em>' reference list.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation_Port()
-     * @model lower="2" upper="2"
-     * @generated
-     */
-    EList<Component> getPort();
-
     /**
      * Returns the value of the '<em><b>Interface</b></em>' reference.
      * <!-- begin-user-doc -->
@@ -64,5 +48,57 @@ public interface PortRelation extends AliasedElement {
      * @generated
      */
     void setInterface(Interface value);
+
+    /**
+     * Returns the value of the '<em><b>Leftport</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Leftport</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Leftport</em>' reference.
+     * @see #setLeftport(Component)
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation_Leftport()
+     * @model required="true"
+     * @generated
+     */
+    Component getLeftport();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getLeftport <em>Leftport</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Leftport</em>' reference.
+     * @see #getLeftport()
+     * @generated
+     */
+    void setLeftport(Component value);
+
+    /**
+     * Returns the value of the '<em><b>Rightport</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Rightport</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Rightport</em>' reference.
+     * @see #setRightport(Component)
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation_Rightport()
+     * @model required="true"
+     * @generated
+     */
+    Component getRightport();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getRightport <em>Rightport</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Rightport</em>' reference.
+     * @see #getRightport()
+     * @generated
+     */
+    void setRightport(Component value);
 
 } // PortRelation

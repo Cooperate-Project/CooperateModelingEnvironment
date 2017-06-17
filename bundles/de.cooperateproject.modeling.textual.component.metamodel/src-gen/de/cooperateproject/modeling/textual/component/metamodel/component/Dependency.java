@@ -14,5 +14,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Dependency extends UMLReferencingElement<org.eclipse.uml2.uml.Dependency>, ElementRelation {
+public interface Dependency extends UMLReferencingElement<org.eclipse.uml2.uml.Dependency>, ClassifierRelation {
 } // Dependency

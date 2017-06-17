@@ -5,8 +5,8 @@ package de.cooperateproject.modeling.textual.component.formatting2
 
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
+import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation
 import de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage
 import de.cooperateproject.modeling.textual.component.services.ComponentGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
@@ -23,10 +23,10 @@ class ComponentFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(RootPackage rootPackage, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (ElementRelation elementRelation : rootPackage.getRelation()) {
+		for (ClassifierRelation elementRelation : rootPackage.getRelation()) {
 			elementRelation.format;
 		}
-		for (ElementContent elementContent : rootPackage.getElementcontent()) {
+		for (Classifier elementContent : rootPackage.getClassifier()) {
 			elementContent.format;
 		}
 	}

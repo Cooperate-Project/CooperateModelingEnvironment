@@ -14,5 +14,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Abstraction extends UMLReferencingElement<org.eclipse.uml2.uml.Abstraction>, ElementRelation {
+public interface Abstraction extends UMLReferencingElement<org.eclipse.uml2.uml.Abstraction>, ClassifierRelation {
 } // Abstraction

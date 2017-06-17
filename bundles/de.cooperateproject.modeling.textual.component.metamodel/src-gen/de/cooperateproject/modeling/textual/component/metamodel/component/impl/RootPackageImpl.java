@@ -3,15 +3,21 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.PackageBaseImpl;
+
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
+import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -23,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getRelation <em>Relation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getElementcontent <em>Elementcontent</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getClassifier <em>Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,8 +71,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<ElementRelation> getRelation() {
-        return (EList<ElementRelation>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__RELATION, ComponentPackage.Literals.ROOT_PACKAGE__RELATION, true, true);
+    public EList<ClassifierRelation> getRelation() {
+        return (EList<ClassifierRelation>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__RELATION, ComponentPackage.Literals.ROOT_PACKAGE__RELATION, true, true);
     }
 
     /**
@@ -75,8 +81,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<ElementContent> getElementcontent() {
-        return (EList<ElementContent>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__ELEMENTCONTENT, ComponentPackage.Literals.ROOT_PACKAGE__ELEMENTCONTENT, true, true);
+    public EList<Classifier> getClassifier() {
+        return (EList<Classifier>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__CLASSIFIER, ComponentPackage.Literals.ROOT_PACKAGE__CLASSIFIER, true, true);
     }
 
     /**
@@ -89,8 +95,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
         switch (featureID) {
             case ComponentPackage.ROOT_PACKAGE__RELATION:
                 return ((InternalEList<?>)getRelation()).basicRemove(otherEnd, msgs);
-            case ComponentPackage.ROOT_PACKAGE__ELEMENTCONTENT:
-                return ((InternalEList<?>)getElementcontent()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
+                return ((InternalEList<?>)getClassifier()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -105,8 +111,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
         switch (featureID) {
             case ComponentPackage.ROOT_PACKAGE__RELATION:
                 return getRelation();
-            case ComponentPackage.ROOT_PACKAGE__ELEMENTCONTENT:
-                return getElementcontent();
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
+                return getClassifier();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -122,11 +128,11 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
         switch (featureID) {
             case ComponentPackage.ROOT_PACKAGE__RELATION:
                 getRelation().clear();
-                getRelation().addAll((Collection<? extends ElementRelation>)newValue);
+                getRelation().addAll((Collection<? extends ClassifierRelation>)newValue);
                 return;
-            case ComponentPackage.ROOT_PACKAGE__ELEMENTCONTENT:
-                getElementcontent().clear();
-                getElementcontent().addAll((Collection<? extends ElementContent>)newValue);
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
+                getClassifier().clear();
+                getClassifier().addAll((Collection<? extends Classifier>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -143,8 +149,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
             case ComponentPackage.ROOT_PACKAGE__RELATION:
                 getRelation().clear();
                 return;
-            case ComponentPackage.ROOT_PACKAGE__ELEMENTCONTENT:
-                getElementcontent().clear();
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
+                getClassifier().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -160,8 +166,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
         switch (featureID) {
             case ComponentPackage.ROOT_PACKAGE__RELATION:
                 return !getRelation().isEmpty();
-            case ComponentPackage.ROOT_PACKAGE__ELEMENTCONTENT:
-                return !getElementcontent().isEmpty();
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
+                return !getClassifier().isEmpty();
         }
         return super.eIsSet(featureID);
     }

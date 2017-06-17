@@ -5,16 +5,13 @@ package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -30,8 +27,9 @@ import org.eclipse.uml2.uml.Connector;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getAlias <em>Alias</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getPort <em>Port</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getLeftport <em>Leftport</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getRightport <em>Rightport</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +44,7 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * @ordered
      */
     protected static final String NAME_EDEFAULT = null;
+
     /**
      * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -127,16 +126,6 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    public EList<Component> getPort() {
-        return (EList<Component>)eDynamicGet(ComponentPackage.CONNECTOR__PORT, ComponentPackage.Literals.PORT_RELATION__PORT, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public Interface getInterface() {
         return (Interface)eDynamicGet(ComponentPackage.CONNECTOR__INTERFACE, ComponentPackage.Literals.PORT_RELATION__INTERFACE, true, true);
     }
@@ -164,6 +153,60 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
+    public Component getLeftport() {
+        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Component basicGetLeftport() {
+        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLeftport(Component newLeftport) {
+        eDynamicSet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, newLeftport);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Component getRightport() {
+        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Component basicGetRightport() {
+        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, false, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRightport(Component newRightport) {
+        eDynamicSet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, newRightport);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -171,11 +214,15 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 return getName();
             case ComponentPackage.CONNECTOR__ALIAS:
                 return getAlias();
-            case ComponentPackage.CONNECTOR__PORT:
-                return getPort();
             case ComponentPackage.CONNECTOR__INTERFACE:
                 if (resolve) return getInterface();
                 return basicGetInterface();
+            case ComponentPackage.CONNECTOR__LEFTPORT:
+                if (resolve) return getLeftport();
+                return basicGetLeftport();
+            case ComponentPackage.CONNECTOR__RIGHTPORT:
+                if (resolve) return getRightport();
+                return basicGetRightport();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -185,7 +232,6 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -195,12 +241,14 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
             case ComponentPackage.CONNECTOR__ALIAS:
                 setAlias((String)newValue);
                 return;
-            case ComponentPackage.CONNECTOR__PORT:
-                getPort().clear();
-                getPort().addAll((Collection<? extends Component>)newValue);
-                return;
             case ComponentPackage.CONNECTOR__INTERFACE:
                 setInterface((Interface)newValue);
+                return;
+            case ComponentPackage.CONNECTOR__LEFTPORT:
+                setLeftport((Component)newValue);
+                return;
+            case ComponentPackage.CONNECTOR__RIGHTPORT:
+                setRightport((Component)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -220,11 +268,14 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
             case ComponentPackage.CONNECTOR__ALIAS:
                 setAlias(ALIAS_EDEFAULT);
                 return;
-            case ComponentPackage.CONNECTOR__PORT:
-                getPort().clear();
-                return;
             case ComponentPackage.CONNECTOR__INTERFACE:
                 setInterface((Interface)null);
+                return;
+            case ComponentPackage.CONNECTOR__LEFTPORT:
+                setLeftport((Component)null);
+                return;
+            case ComponentPackage.CONNECTOR__RIGHTPORT:
+                setRightport((Component)null);
                 return;
         }
         super.eUnset(featureID);
@@ -242,10 +293,12 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
             case ComponentPackage.CONNECTOR__ALIAS:
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
-            case ComponentPackage.CONNECTOR__PORT:
-                return !getPort().isEmpty();
             case ComponentPackage.CONNECTOR__INTERFACE:
                 return basicGetInterface() != null;
+            case ComponentPackage.CONNECTOR__LEFTPORT:
+                return basicGetLeftport() != null;
+            case ComponentPackage.CONNECTOR__RIGHTPORT:
+                return basicGetRightport() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -271,8 +324,9 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
         }
         if (baseClass == PortRelation.class) {
             switch (derivedFeatureID) {
-                case ComponentPackage.CONNECTOR__PORT: return ComponentPackage.PORT_RELATION__PORT;
                 case ComponentPackage.CONNECTOR__INTERFACE: return ComponentPackage.PORT_RELATION__INTERFACE;
+                case ComponentPackage.CONNECTOR__LEFTPORT: return ComponentPackage.PORT_RELATION__LEFTPORT;
+                case ComponentPackage.CONNECTOR__RIGHTPORT: return ComponentPackage.PORT_RELATION__RIGHTPORT;
                 default: return -1;
             }
         }
@@ -300,8 +354,9 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
         }
         if (baseClass == PortRelation.class) {
             switch (baseFeatureID) {
-                case ComponentPackage.PORT_RELATION__PORT: return ComponentPackage.CONNECTOR__PORT;
                 case ComponentPackage.PORT_RELATION__INTERFACE: return ComponentPackage.CONNECTOR__INTERFACE;
+                case ComponentPackage.PORT_RELATION__LEFTPORT: return ComponentPackage.CONNECTOR__LEFTPORT;
+                case ComponentPackage.PORT_RELATION__RIGHTPORT: return ComponentPackage.CONNECTOR__RIGHTPORT;
                 default: return -1;
             }
         }

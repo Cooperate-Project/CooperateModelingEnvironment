@@ -265,25 +265,25 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleComponentDiagram"
 
 
-    // $ANTLR start "entryRuleElementRelation"
-    // InternalComponent.g:137:1: entryRuleElementRelation returns [EObject current=null] : iv_ruleElementRelation= ruleElementRelation EOF ;
-    public final EObject entryRuleElementRelation() throws RecognitionException {
+    // $ANTLR start "entryRuleClassifierRelation"
+    // InternalComponent.g:137:1: entryRuleClassifierRelation returns [EObject current=null] : iv_ruleClassifierRelation= ruleClassifierRelation EOF ;
+    public final EObject entryRuleClassifierRelation() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleElementRelation = null;
+        EObject iv_ruleClassifierRelation = null;
 
 
         try {
-            // InternalComponent.g:137:56: (iv_ruleElementRelation= ruleElementRelation EOF )
-            // InternalComponent.g:138:2: iv_ruleElementRelation= ruleElementRelation EOF
+            // InternalComponent.g:137:59: (iv_ruleClassifierRelation= ruleClassifierRelation EOF )
+            // InternalComponent.g:138:2: iv_ruleClassifierRelation= ruleClassifierRelation EOF
             {
-             newCompositeNode(grammarAccess.getElementRelationRule()); 
+             newCompositeNode(grammarAccess.getClassifierRelationRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleElementRelation=ruleElementRelation();
+            iv_ruleClassifierRelation=ruleClassifierRelation();
 
             state._fsp--;
 
-             current =iv_ruleElementRelation; 
+             current =iv_ruleClassifierRelation; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -298,12 +298,12 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleElementRelation"
+    // $ANTLR end "entryRuleClassifierRelation"
 
 
-    // $ANTLR start "ruleElementRelation"
-    // InternalComponent.g:144:1: ruleElementRelation returns [EObject current=null] : (this_Generalization_0= ruleGeneralization | this_Abstraction_1= ruleAbstraction | this_Manifestation_2= ruleManifestation | this_Substitution_3= ruleSubstitution | this_Dependency_4= ruleDependency ) ;
-    public final EObject ruleElementRelation() throws RecognitionException {
+    // $ANTLR start "ruleClassifierRelation"
+    // InternalComponent.g:144:1: ruleClassifierRelation returns [EObject current=null] : (this_Generalization_0= ruleGeneralization | this_Abstraction_1= ruleAbstraction | this_Manifestation_2= ruleManifestation | this_Substitution_3= ruleSubstitution | this_Dependency_4= ruleDependency ) ;
+    public final EObject ruleClassifierRelation() throws RecognitionException {
         EObject current = null;
 
         EObject this_Generalization_0 = null;
@@ -364,7 +364,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:152:3: this_Generalization_0= ruleGeneralization
                     {
 
-                    			newCompositeNode(grammarAccess.getElementRelationAccess().getGeneralizationParserRuleCall_0());
+                    			newCompositeNode(grammarAccess.getClassifierRelationAccess().getGeneralizationParserRuleCall_0());
                     		
                     pushFollow(FOLLOW_2);
                     this_Generalization_0=ruleGeneralization();
@@ -382,7 +382,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:161:3: this_Abstraction_1= ruleAbstraction
                     {
 
-                    			newCompositeNode(grammarAccess.getElementRelationAccess().getAbstractionParserRuleCall_1());
+                    			newCompositeNode(grammarAccess.getClassifierRelationAccess().getAbstractionParserRuleCall_1());
                     		
                     pushFollow(FOLLOW_2);
                     this_Abstraction_1=ruleAbstraction();
@@ -400,7 +400,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:170:3: this_Manifestation_2= ruleManifestation
                     {
 
-                    			newCompositeNode(grammarAccess.getElementRelationAccess().getManifestationParserRuleCall_2());
+                    			newCompositeNode(grammarAccess.getClassifierRelationAccess().getManifestationParserRuleCall_2());
                     		
                     pushFollow(FOLLOW_2);
                     this_Manifestation_2=ruleManifestation();
@@ -418,7 +418,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:179:3: this_Substitution_3= ruleSubstitution
                     {
 
-                    			newCompositeNode(grammarAccess.getElementRelationAccess().getSubstitutionParserRuleCall_3());
+                    			newCompositeNode(grammarAccess.getClassifierRelationAccess().getSubstitutionParserRuleCall_3());
                     		
                     pushFollow(FOLLOW_2);
                     this_Substitution_3=ruleSubstitution();
@@ -436,7 +436,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:188:3: this_Dependency_4= ruleDependency
                     {
 
-                    			newCompositeNode(grammarAccess.getElementRelationAccess().getDependencyParserRuleCall_4());
+                    			newCompositeNode(grammarAccess.getClassifierRelationAccess().getDependencyParserRuleCall_4());
                     		
                     pushFollow(FOLLOW_2);
                     this_Dependency_4=ruleDependency();
@@ -469,28 +469,28 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleElementRelation"
+    // $ANTLR end "ruleClassifierRelation"
 
 
-    // $ANTLR start "entryRuleElementContent"
-    // InternalComponent.g:200:1: entryRuleElementContent returns [EObject current=null] : iv_ruleElementContent= ruleElementContent EOF ;
-    public final EObject entryRuleElementContent() throws RecognitionException {
+    // $ANTLR start "entryRuleClassifier"
+    // InternalComponent.g:200:1: entryRuleClassifier returns [EObject current=null] : iv_ruleClassifier= ruleClassifier EOF ;
+    public final EObject entryRuleClassifier() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleElementContent = null;
+        EObject iv_ruleClassifier = null;
 
 
         try {
-            // InternalComponent.g:200:55: (iv_ruleElementContent= ruleElementContent EOF )
-            // InternalComponent.g:201:2: iv_ruleElementContent= ruleElementContent EOF
+            // InternalComponent.g:200:51: (iv_ruleClassifier= ruleClassifier EOF )
+            // InternalComponent.g:201:2: iv_ruleClassifier= ruleClassifier EOF
             {
-             newCompositeNode(grammarAccess.getElementContentRule()); 
+             newCompositeNode(grammarAccess.getClassifierRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleElementContent=ruleElementContent();
+            iv_ruleClassifier=ruleClassifier();
 
             state._fsp--;
 
-             current =iv_ruleElementContent; 
+             current =iv_ruleClassifier; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -505,12 +505,12 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleElementContent"
+    // $ANTLR end "entryRuleClassifier"
 
 
-    // $ANTLR start "ruleElementContent"
-    // InternalComponent.g:207:1: ruleElementContent returns [EObject current=null] : (this_Interface_0= ruleInterface | this_Component_1= ruleComponent ) ;
-    public final EObject ruleElementContent() throws RecognitionException {
+    // $ANTLR start "ruleClassifier"
+    // InternalComponent.g:207:1: ruleClassifier returns [EObject current=null] : (this_Interface_0= ruleInterface | this_Component_1= ruleComponent ) ;
+    public final EObject ruleClassifier() throws RecognitionException {
         EObject current = null;
 
         EObject this_Interface_0 = null;
@@ -546,7 +546,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:215:3: this_Interface_0= ruleInterface
                     {
 
-                    			newCompositeNode(grammarAccess.getElementContentAccess().getInterfaceParserRuleCall_0());
+                    			newCompositeNode(grammarAccess.getClassifierAccess().getInterfaceParserRuleCall_0());
                     		
                     pushFollow(FOLLOW_2);
                     this_Interface_0=ruleInterface();
@@ -564,7 +564,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                     // InternalComponent.g:224:3: this_Component_1= ruleComponent
                     {
 
-                    			newCompositeNode(grammarAccess.getElementContentAccess().getComponentParserRuleCall_1());
+                    			newCompositeNode(grammarAccess.getClassifierAccess().getComponentParserRuleCall_1());
                     		
                     pushFollow(FOLLOW_2);
                     this_Component_1=ruleComponent();
@@ -597,7 +597,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleElementContent"
+    // $ANTLR end "ruleClassifier"
 
 
     // $ANTLR start "entryRulePortRelation"
@@ -1078,7 +1078,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRootPackage"
-    // InternalComponent.g:374:1: ruleRootPackage returns [EObject current=null] : ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleElementRelation ) )* ( (lv_elementcontent_4_0= ruleElementContent ) )* ) ;
+    // InternalComponent.g:374:1: ruleRootPackage returns [EObject current=null] : ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* ) ;
     public final EObject ruleRootPackage() throws RecognitionException {
         EObject current = null;
 
@@ -1087,18 +1087,18 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
         EObject lv_relation_3_0 = null;
 
-        EObject lv_elementcontent_4_0 = null;
+        EObject lv_classifier_4_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalComponent.g:380:2: ( ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleElementRelation ) )* ( (lv_elementcontent_4_0= ruleElementContent ) )* ) )
-            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleElementRelation ) )* ( (lv_elementcontent_4_0= ruleElementContent ) )* )
+            // InternalComponent.g:380:2: ( ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* ) )
+            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* )
             {
-            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleElementRelation ) )* ( (lv_elementcontent_4_0= ruleElementContent ) )* )
-            // InternalComponent.g:382:3: () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleElementRelation ) )* ( (lv_elementcontent_4_0= ruleElementContent ) )*
+            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* )
+            // InternalComponent.g:382:3: () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )*
             {
             // InternalComponent.g:382:3: ()
             // InternalComponent.g:383:4: 
@@ -1146,7 +1146,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalComponent.g:412:3: ( (lv_relation_3_0= ruleElementRelation ) )*
+            // InternalComponent.g:412:3: ( (lv_relation_3_0= ruleClassifierRelation ) )*
             loop6:
             do {
                 int alt6=2;
@@ -1159,16 +1159,16 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalComponent.g:413:4: (lv_relation_3_0= ruleElementRelation )
+            	    // InternalComponent.g:413:4: (lv_relation_3_0= ruleClassifierRelation )
             	    {
-            	    // InternalComponent.g:413:4: (lv_relation_3_0= ruleElementRelation )
-            	    // InternalComponent.g:414:5: lv_relation_3_0= ruleElementRelation
+            	    // InternalComponent.g:413:4: (lv_relation_3_0= ruleClassifierRelation )
+            	    // InternalComponent.g:414:5: lv_relation_3_0= ruleClassifierRelation
             	    {
 
-            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationElementRelationParserRuleCall_3_0());
+            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0());
             	    				
             	    pushFollow(FOLLOW_7);
-            	    lv_relation_3_0=ruleElementRelation();
+            	    lv_relation_3_0=ruleClassifierRelation();
 
             	    state._fsp--;
 
@@ -1180,7 +1180,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             	    						current,
             	    						"relation",
             	    						lv_relation_3_0,
-            	    						"de.cooperateproject.modeling.textual.component.Component.ElementRelation");
+            	    						"de.cooperateproject.modeling.textual.component.Component.ClassifierRelation");
             	    					afterParserOrEnumRuleCall();
             	    				
 
@@ -1195,7 +1195,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            // InternalComponent.g:431:3: ( (lv_elementcontent_4_0= ruleElementContent ) )*
+            // InternalComponent.g:431:3: ( (lv_classifier_4_0= ruleClassifier ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1208,16 +1208,16 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalComponent.g:432:4: (lv_elementcontent_4_0= ruleElementContent )
+            	    // InternalComponent.g:432:4: (lv_classifier_4_0= ruleClassifier )
             	    {
-            	    // InternalComponent.g:432:4: (lv_elementcontent_4_0= ruleElementContent )
-            	    // InternalComponent.g:433:5: lv_elementcontent_4_0= ruleElementContent
+            	    // InternalComponent.g:432:4: (lv_classifier_4_0= ruleClassifier )
+            	    // InternalComponent.g:433:5: lv_classifier_4_0= ruleClassifier
             	    {
 
-            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getElementcontentElementContentParserRuleCall_4_0());
+            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0());
             	    				
             	    pushFollow(FOLLOW_8);
-            	    lv_elementcontent_4_0=ruleElementContent();
+            	    lv_classifier_4_0=ruleClassifier();
 
             	    state._fsp--;
 
@@ -1227,9 +1227,9 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             	    					}
             	    					add(
             	    						current,
-            	    						"elementcontent",
-            	    						lv_elementcontent_4_0,
-            	    						"de.cooperateproject.modeling.textual.component.Component.ElementContent");
+            	    						"classifier",
+            	    						lv_classifier_4_0,
+            	    						"de.cooperateproject.modeling.textual.component.Component.Classifier");
             	    					afterParserOrEnumRuleCall();
             	    				
 
@@ -1820,7 +1820,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getGeneralizationAccess().getComponentComponentCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getGeneralizationAccess().getLeftclassifierClassifierCrossReference_2_0());
             				
             pushFollow(FOLLOW_17);
             ruleEString();
@@ -1852,7 +1852,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getGeneralizationAccess().getComponentComponentCrossReference_4_0());
+            					newCompositeNode(grammarAccess.getGeneralizationAccess().getRightclassifierClassifierCrossReference_4_0());
             				
             pushFollow(FOLLOW_18);
             ruleEString();
@@ -1970,7 +1970,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getAbstractionAccess().getComponentComponentCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getAbstractionAccess().getLeftclassifierClassifierCrossReference_2_0());
             				
             pushFollow(FOLLOW_17);
             ruleEString();
@@ -2002,7 +2002,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getAbstractionAccess().getComponentComponentCrossReference_4_0());
+            					newCompositeNode(grammarAccess.getAbstractionAccess().getRightclassifierClassifierCrossReference_4_0());
             				
             pushFollow(FOLLOW_18);
             ruleEString();
@@ -2120,7 +2120,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getManifestationAccess().getComponentComponentCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getManifestationAccess().getLeftclassifierClassifierCrossReference_2_0());
             				
             pushFollow(FOLLOW_17);
             ruleEString();
@@ -2152,7 +2152,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getManifestationAccess().getComponentComponentCrossReference_4_0());
+            					newCompositeNode(grammarAccess.getManifestationAccess().getRightclassifierClassifierCrossReference_4_0());
             				
             pushFollow(FOLLOW_18);
             ruleEString();
@@ -2270,7 +2270,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getSubstitutionAccess().getComponentComponentCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getSubstitutionAccess().getLeftclassifierClassifierCrossReference_2_0());
             				
             pushFollow(FOLLOW_17);
             ruleEString();
@@ -2302,7 +2302,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getSubstitutionAccess().getComponentComponentCrossReference_4_0());
+            					newCompositeNode(grammarAccess.getSubstitutionAccess().getRightclassifierClassifierCrossReference_4_0());
             				
             pushFollow(FOLLOW_18);
             ruleEString();
@@ -2420,7 +2420,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getDependencyAccess().getComponentComponentCrossReference_2_0());
+            					newCompositeNode(grammarAccess.getDependencyAccess().getLeftclassifierClassifierCrossReference_2_0());
             				
             pushFollow(FOLLOW_17);
             ruleEString();
@@ -2452,7 +2452,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getDependencyAccess().getComponentComponentCrossReference_4_0());
+            					newCompositeNode(grammarAccess.getDependencyAccess().getRightclassifierClassifierCrossReference_4_0());
             				
             pushFollow(FOLLOW_18);
             ruleEString();
@@ -3227,7 +3227,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getConnectorAccess().getPortComponentCrossReference_3_0());
+            					newCompositeNode(grammarAccess.getConnectorAccess().getLeftportComponentCrossReference_3_0());
             				
             pushFollow(FOLLOW_17);
             ruleFQN();
@@ -3259,7 +3259,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             					}
             				
 
-            					newCompositeNode(grammarAccess.getConnectorAccess().getPortComponentCrossReference_5_0());
+            					newCompositeNode(grammarAccess.getConnectorAccess().getRightportComponentCrossReference_5_0());
             				
             pushFollow(FOLLOW_17);
             ruleFQN();

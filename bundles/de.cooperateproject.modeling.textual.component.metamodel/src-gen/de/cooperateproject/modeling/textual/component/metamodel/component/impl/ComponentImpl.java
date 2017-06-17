@@ -8,8 +8,8 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl;
 
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
-import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
@@ -313,7 +313,7 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 default: return -1;
             }
         }
-        if (baseClass == ElementContent.class) {
+        if (baseClass == Classifier.class) {
             switch (derivedFeatureID) {
                 default: return -1;
             }
@@ -340,7 +340,7 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 default: return -1;
             }
         }
-        if (baseClass == ElementContent.class) {
+        if (baseClass == Classifier.class) {
             switch (baseFeatureID) {
                 default: return -1;
             }
