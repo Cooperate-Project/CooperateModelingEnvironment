@@ -109,7 +109,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Abstraction returns Abstraction
 	 *
 	 * Constraint:
-	 *     (component+=[Component|EString] component+=[Component|EString]*)
+	 *     (component+=[Component|EString] component+=[Component|EString])
 	 */
 	protected void sequence_Abstraction(ISerializationContext context, Abstraction semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -122,7 +122,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (static?='static'? name=EString visibility=Visibility?)
+	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -142,7 +142,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.COMMENT__BODY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getCommentAccess().getBodyEStringParserRuleCall_3_0(), semanticObject.getBody());
+		feeder.accept(grammarAccess.getCommentAccess().getBodyEStringParserRuleCall_1_0(), semanticObject.getBody());
 		feeder.finish();
 	}
 	
@@ -162,8 +162,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.COMPONENT_DIAGRAM__ROOTPACKAGE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getComponentDiagramAccess().getTitleEStringParserRuleCall_3_0(), semanticObject.getTitle());
-		feeder.accept(grammarAccess.getComponentDiagramAccess().getRootpackageRootPackageParserRuleCall_5_0(), semanticObject.getRootpackage());
+		feeder.accept(grammarAccess.getComponentDiagramAccess().getTitleEStringParserRuleCall_2_0(), semanticObject.getTitle());
+		feeder.accept(grammarAccess.getComponentDiagramAccess().getRootpackageRootPackageParserRuleCall_3_0(), semanticObject.getRootpackage());
 		feeder.finish();
 	}
 	
@@ -175,13 +175,12 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=EString 
-	 *         alias=EString? 
-	 *         (comments+=Comment comments+=Comment*)? 
-	 *         (component+=Component component+=Component*)? 
-	 *         (port+=PortRelation port+=PortRelation*)? 
-	 *         (interfacerelation+=InterfaceRelation interfacerelation+=InterfaceRelation*)? 
-	 *         (interface+=Interface interface+=Interface*)?
+	 *         ((name=STRING alias=ID) | name=ID) 
+	 *         comments+=Comment? 
+	 *         component+=Component* 
+	 *         port+=PortRelation* 
+	 *         interfacerelation+=InterfaceRelation* 
+	 *         interface+=Interface*
 	 *     )
 	 */
 	protected void sequence_Component(ISerializationContext context, Component semanticObject) {
@@ -195,7 +194,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Connector returns Connector
 	 *
 	 * Constraint:
-	 *     (port+=[Component|EString] port+=[Component|EString]* interface=[Interface|EString])
+	 *     (((name=EString alias=ID) | name=ID) port+=[Component|FQN] port+=[Component|FQN] interface=[Interface|EString])
 	 */
 	protected void sequence_Connector(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -208,7 +207,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Dependency returns Dependency
 	 *
 	 * Constraint:
-	 *     (component+=[Component|EString] component+=[Component|EString]*)
+	 *     (component+=[Component|EString] component+=[Component|EString])
 	 */
 	protected void sequence_Dependency(ISerializationContext context, Dependency semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -221,7 +220,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Generalization returns Generalization
 	 *
 	 * Constraint:
-	 *     (component+=[Component|EString] component+=[Component|EString]*)
+	 *     (component+=[Component|EString] component+=[Component|EString])
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -234,7 +233,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Interface returns Interface
 	 *
 	 * Constraint:
-	 *     (name=EString alias=EString? (comments+=Comment comments+=Comment*)? (member+=Member member+=Member*)?)
+	 *     (((name=STRING alias=ID) | name=ID) (comments+=Comment | (comments+=Comment? member+=Member*))?)
 	 */
 	protected void sequence_Interface(ISerializationContext context, Interface semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -247,7 +246,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Manifestation returns Manifestation
 	 *
 	 * Constraint:
-	 *     (component+=[Component|EString] component+=[Component|EString]*)
+	 *     (component+=[Component|EString] component+=[Component|EString])
 	 */
 	protected void sequence_Manifestation(ISerializationContext context, Manifestation semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -260,7 +259,14 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Method returns Method
 	 *
 	 * Constraint:
-	 *     (static?='static'? abstract?='abstract'? name=EString visibility=Visibility? (parameters+=Parameter parameters+=Parameter*)?)
+	 *     (
+	 *         visibility=Visibility? 
+	 *         abstract?='abstract'? 
+	 *         static?='static'? 
+	 *         name=ID 
+	 *         (parameters+=Parameter parameters+=Parameter*)* 
+	 *         type=[Classifier|FQN]?
+	 *     )
 	 */
 	protected void sequence_Method(ISerializationContext context, Method semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -272,7 +278,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (static?='static'? name=EString visibility=Visibility?)
+	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.component.metamodel.component.Parameter semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -285,10 +291,16 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Provide returns Provide
 	 *
 	 * Constraint:
-	 *     interface=[Interface|EString]?
+	 *     interface=[Interface|FQN]
 	 */
 	protected void sequence_Provide(ISerializationContext context, Provide semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.INTERFACE_RELATION__INTERFACE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.INTERFACE_RELATION__INTERFACE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getProvideAccess().getInterfaceInterfaceFQNParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.INTERFACE_RELATION__INTERFACE, false));
+		feeder.finish();
 	}
 	
 	
@@ -298,10 +310,16 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Require returns Require
 	 *
 	 * Constraint:
-	 *     interface=[Interface|EString]?
+	 *     interface=[Interface|FQN]
 	 */
 	protected void sequence_Require(ISerializationContext context, Require semanticObject) {
-		genericSequencer.createSequence(context, (EObject) semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient((EObject) semanticObject, ComponentPackage.Literals.INTERFACE_RELATION__INTERFACE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.INTERFACE_RELATION__INTERFACE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
+		feeder.accept(grammarAccess.getRequireAccess().getInterfaceInterfaceFQNParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.INTERFACE_RELATION__INTERFACE, false));
+		feeder.finish();
 	}
 	
 	
@@ -310,7 +328,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RootPackage returns RootPackage
 	 *
 	 * Constraint:
-	 *     ((relation+=ElementRelation relation+=ElementRelation*)? (elementcontent+=ElementContent elementcontent+=ElementContent*)?)
+	 *     (name=FQN relation+=ElementRelation* elementcontent+=ElementContent*)
 	 */
 	protected void sequence_RootPackage(ISerializationContext context, RootPackage semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -323,7 +341,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substitution returns Substitution
 	 *
 	 * Constraint:
-	 *     (component+=[Component|EString] component+=[Component|EString]*)
+	 *     (component+=[Component|EString] component+=[Component|EString])
 	 */
 	protected void sequence_Substitution(ISerializationContext context, Substitution semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

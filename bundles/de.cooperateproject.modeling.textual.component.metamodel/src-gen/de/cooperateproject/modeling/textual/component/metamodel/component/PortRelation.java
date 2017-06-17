@@ -2,8 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
-import org.eclipse.emf.cdo.CDOObject;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -21,10 +20,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface PortRelation extends CDOObject {
+public interface PortRelation extends AliasedElement {
     /**
      * Returns the value of the '<em><b>Port</b></em>' reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Component}.

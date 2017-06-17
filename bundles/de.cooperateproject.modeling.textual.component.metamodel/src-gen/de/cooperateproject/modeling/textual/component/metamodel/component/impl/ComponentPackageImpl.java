@@ -748,6 +748,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         EGenericType g2 = createEGenericType(this.getRootPackage());
         g1.getETypeArguments().add(g2);
         rootPackageEClass.getEGenericSuperTypes().add(g1);
+        portRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getConnector());
         g1.getETypeArguments().add(g2);
@@ -797,6 +798,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g1.getETypeArguments().add(g2);
         componentEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
+        componentEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getElementContent());
         componentEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
         g2 = createEGenericType(theUMLPackage.getInterface());

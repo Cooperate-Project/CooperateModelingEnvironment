@@ -100,6 +100,9 @@ public class ComponentSwitch<T1> extends Switch<T1> {
             case ComponentPackage.PORT_RELATION: {
                 PortRelation portRelation = (PortRelation)theEObject;
                 T1 result = casePortRelation(portRelation);
+                if (result == null) result = caseAliasedElement(portRelation);
+                if (result == null) result = caseNamedElement(portRelation);
+                if (result == null) result = caseElement(portRelation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -108,6 +111,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseConnector(connector);
                 if (result == null) result = caseUMLReferencingElement(connector);
                 if (result == null) result = casePortRelation(connector);
+                if (result == null) result = caseAliasedElement(connector);
+                if (result == null) result = caseNamedElement(connector);
                 if (result == null) result = caseElement(connector);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -177,6 +182,7 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseComponent(component);
                 if (result == null) result = caseCommentable(component);
                 if (result == null) result = caseAliasedElement(component);
+                if (result == null) result = caseElementContent(component);
                 if (result == null) result = caseUMLReferencingElement(component);
                 if (result == null) result = caseNamedElement(component);
                 if (result == null) result = caseElement(component);

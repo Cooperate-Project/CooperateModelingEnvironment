@@ -3,16 +3,15 @@ grammar de.cooperateproject.modeling.textual.component.Component with org.eclips
 
 import "http://www.cooperateproject.de/modeling/textual/component/Component"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-import "http://www.cooperateproject.de/modeling/textual/commons" as textualCommons
+import "platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore" as textualCommons
 import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore" as uml
 
 ComponentDiagram returns ComponentDiagram: 
-	'ComponentDiagram'
-	'{'
+	{ComponentDiagram}
 		'@start-cpd' title=EString
 		 rootpackage=RootPackage
-		'@end-clsd'
-	'}';
+		'@end-cpd'
+;
 
 
 ElementRelation returns ElementRelation: 
@@ -50,13 +49,13 @@ RootPackage returns RootPackage:
 
 Component returns Component: 
 	{Component}
-	'Component'
-	((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? |
-		(('{' (comments+=Comment)? 
+	'component'
+	((name=STRING 'as' alias = ID)|name = ID)'{'  (
+		(((comments+=Comment)? 
 		(component+=Component)*
 		(port+=PortRelation)*
 		(interfacerelation+=InterfaceRelation)*
-		(interface+=Interface)* '}')))
+		(interface+=Interface)* )))'}'
 		
 		;
 

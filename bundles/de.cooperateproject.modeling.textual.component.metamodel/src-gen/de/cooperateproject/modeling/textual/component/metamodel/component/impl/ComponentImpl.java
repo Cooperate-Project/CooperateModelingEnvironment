@@ -9,6 +9,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Text
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl;
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.component.metamodel.component.ElementContent;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
@@ -312,6 +313,11 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 default: return -1;
             }
         }
+        if (baseClass == ElementContent.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -331,6 +337,11 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return ComponentPackage.COMPONENT__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == ElementContent.class) {
+            switch (baseFeatureID) {
                 default: return -1;
             }
         }

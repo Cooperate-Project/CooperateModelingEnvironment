@@ -180,12 +180,12 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createPackageBaseAdapter();
             }
             @Override
-            public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
-                return createCommentableAdapter();
-            }
-            @Override
             public Adapter caseAliasedElement(AliasedElement object) {
                 return createAliasedElementAdapter();
+            }
+            @Override
+            public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
+                return createCommentableAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {

@@ -2,6 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
@@ -12,8 +13,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +28,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class PortRelationImpl extends CDOObjectImpl implements PortRelation {
+public abstract class PortRelationImpl extends AliasedElementImpl implements PortRelation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -47,16 +46,6 @@ public abstract class PortRelationImpl extends CDOObjectImpl implements PortRela
     @Override
     protected EClass eStaticClass() {
         return ComponentPackage.Literals.PORT_RELATION;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected int eStaticFeatureCount() {
-        return 0;
     }
 
     /**

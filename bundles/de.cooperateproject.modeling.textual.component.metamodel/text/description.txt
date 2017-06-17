@@ -18,7 +18,7 @@ Package component <http://www.cooperateproject.de/modeling/textual/component/Com
   Class ElementRelation
     Reference component : Component<<2..2>>
 
-  Class PortRelation
+  Class PortRelation -> AliasedElement
     Reference port : Component<<2..2>>
     Reference interface : Interface<<1..1>>
 
@@ -41,7 +41,7 @@ Package component <http://www.cooperateproject.de/modeling/textual/component/Com
     Attribute static : EBoolean
     Reference type : Classifier
 
-  Class Component -> Commentable, AliasedElement
+  Class Component -> Commentable, AliasedElement, ElementContent
     Reference component : Component<<0..*>>
     Reference port : PortRelation<<0..*>>
     Reference interfacerelation : InterfaceRelation<<0..*>>

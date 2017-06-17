@@ -11,6 +11,9 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
+import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
@@ -18,10 +21,12 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class ComponentSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ComponentGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Interface___LeftCurlyBracketKeyword_3_1_0_RightCurlyBracketKeyword_3_1_3__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ComponentGrammarAccess) access;
+		match_Interface___LeftCurlyBracketKeyword_3_1_0_RightCurlyBracketKeyword_3_1_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getInterfaceAccess().getLeftCurlyBracketKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getInterfaceAccess().getRightCurlyBracketKeyword_3_1_3()));
 	}
 	
 	@Override
@@ -36,8 +41,22 @@ public class ComponentSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			acceptNodes(getLastNavigableState(), syntaxNodes);
+			if (match_Interface___LeftCurlyBracketKeyword_3_1_0_RightCurlyBracketKeyword_3_1_3__q.equals(syntax))
+				emit_Interface___LeftCurlyBracketKeyword_3_1_0_RightCurlyBracketKeyword_3_1_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ('{' '}')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     alias=ID (ambiguity) (rule end)
+	 *     name=ID (ambiguity) (rule end)
+	 */
+	protected void emit_Interface___LeftCurlyBracketKeyword_3_1_0_RightCurlyBracketKeyword_3_1_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 }
