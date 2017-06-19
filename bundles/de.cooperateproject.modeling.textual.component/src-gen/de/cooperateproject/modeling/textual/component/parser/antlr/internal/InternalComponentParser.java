@@ -1078,27 +1078,27 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRootPackage"
-    // InternalComponent.g:374:1: ruleRootPackage returns [EObject current=null] : ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* ) ;
+    // InternalComponent.g:374:1: ruleRootPackage returns [EObject current=null] : ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_classifier_3_0= ruleClassifier ) )* ( (lv_relation_4_0= ruleClassifierRelation ) )* ) ;
     public final EObject ruleRootPackage() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         AntlrDatatypeRuleToken lv_name_2_0 = null;
 
-        EObject lv_relation_3_0 = null;
+        EObject lv_classifier_3_0 = null;
 
-        EObject lv_classifier_4_0 = null;
+        EObject lv_relation_4_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalComponent.g:380:2: ( ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* ) )
-            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* )
+            // InternalComponent.g:380:2: ( ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_classifier_3_0= ruleClassifier ) )* ( (lv_relation_4_0= ruleClassifierRelation ) )* ) )
+            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_classifier_3_0= ruleClassifier ) )* ( (lv_relation_4_0= ruleClassifierRelation ) )* )
             {
-            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )* )
-            // InternalComponent.g:382:3: () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_relation_3_0= ruleClassifierRelation ) )* ( (lv_classifier_4_0= ruleClassifier ) )*
+            // InternalComponent.g:381:2: ( () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_classifier_3_0= ruleClassifier ) )* ( (lv_relation_4_0= ruleClassifierRelation ) )* )
+            // InternalComponent.g:382:3: () otherlv_1= 'rootPackage' ( (lv_name_2_0= ruleFQN ) ) ( (lv_classifier_3_0= ruleClassifier ) )* ( (lv_relation_4_0= ruleClassifierRelation ) )*
             {
             // InternalComponent.g:382:3: ()
             // InternalComponent.g:383:4: 
@@ -1146,29 +1146,29 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalComponent.g:412:3: ( (lv_relation_3_0= ruleClassifierRelation ) )*
+            // InternalComponent.g:412:3: ( (lv_classifier_3_0= ruleClassifier ) )*
             loop6:
             do {
                 int alt6=2;
                 int LA6_0 = input.LA(1);
 
-                if ( (LA6_0==19||(LA6_0>=23 && LA6_0<=26)) ) {
+                if ( (LA6_0==15||LA6_0==28) ) {
                     alt6=1;
                 }
 
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalComponent.g:413:4: (lv_relation_3_0= ruleClassifierRelation )
+            	    // InternalComponent.g:413:4: (lv_classifier_3_0= ruleClassifier )
             	    {
-            	    // InternalComponent.g:413:4: (lv_relation_3_0= ruleClassifierRelation )
-            	    // InternalComponent.g:414:5: lv_relation_3_0= ruleClassifierRelation
+            	    // InternalComponent.g:413:4: (lv_classifier_3_0= ruleClassifier )
+            	    // InternalComponent.g:414:5: lv_classifier_3_0= ruleClassifier
             	    {
 
-            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0());
+            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_3_0());
             	    				
             	    pushFollow(FOLLOW_7);
-            	    lv_relation_3_0=ruleClassifierRelation();
+            	    lv_classifier_3_0=ruleClassifier();
 
             	    state._fsp--;
 
@@ -1178,9 +1178,9 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             	    					}
             	    					add(
             	    						current,
-            	    						"relation",
-            	    						lv_relation_3_0,
-            	    						"de.cooperateproject.modeling.textual.component.Component.ClassifierRelation");
+            	    						"classifier",
+            	    						lv_classifier_3_0,
+            	    						"de.cooperateproject.modeling.textual.component.Component.Classifier");
             	    					afterParserOrEnumRuleCall();
             	    				
 
@@ -1195,29 +1195,29 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            // InternalComponent.g:431:3: ( (lv_classifier_4_0= ruleClassifier ) )*
+            // InternalComponent.g:431:3: ( (lv_relation_4_0= ruleClassifierRelation ) )*
             loop7:
             do {
                 int alt7=2;
                 int LA7_0 = input.LA(1);
 
-                if ( (LA7_0==15||LA7_0==28) ) {
+                if ( (LA7_0==19||(LA7_0>=23 && LA7_0<=26)) ) {
                     alt7=1;
                 }
 
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalComponent.g:432:4: (lv_classifier_4_0= ruleClassifier )
+            	    // InternalComponent.g:432:4: (lv_relation_4_0= ruleClassifierRelation )
             	    {
-            	    // InternalComponent.g:432:4: (lv_classifier_4_0= ruleClassifier )
-            	    // InternalComponent.g:433:5: lv_classifier_4_0= ruleClassifier
+            	    // InternalComponent.g:432:4: (lv_relation_4_0= ruleClassifierRelation )
+            	    // InternalComponent.g:433:5: lv_relation_4_0= ruleClassifierRelation
             	    {
 
-            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0());
+            	    					newCompositeNode(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_4_0());
             	    				
             	    pushFollow(FOLLOW_8);
-            	    lv_classifier_4_0=ruleClassifier();
+            	    lv_relation_4_0=ruleClassifierRelation();
 
             	    state._fsp--;
 
@@ -1227,9 +1227,9 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             	    					}
             	    					add(
             	    						current,
-            	    						"classifier",
-            	    						lv_classifier_4_0,
-            	    						"de.cooperateproject.modeling.textual.component.Component.Classifier");
+            	    						"relation",
+            	    						lv_relation_4_0,
+            	    						"de.cooperateproject.modeling.textual.component.Component.ClassifierRelation");
             	    					afterParserOrEnumRuleCall();
             	    				
 
@@ -2810,7 +2810,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==EOF||LA18_0==13||LA18_0==15||LA18_0==18||(LA18_0>=27 && LA18_0<=28)) ) {
+            if ( (LA18_0==EOF||LA18_0==13||LA18_0==15||(LA18_0>=18 && LA18_0<=19)||(LA18_0>=23 && LA18_0<=28)) ) {
                 alt18=1;
             }
             else if ( (LA18_0==17) ) {
@@ -4790,7 +4790,7 @@ public class InternalComponentParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000017888002L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000010008002L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000007880002L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x00000000F8048000L});

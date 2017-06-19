@@ -7,7 +7,6 @@ import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
-import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,18 +18,20 @@ import org.apache.commons.io.IOUtils
 import java.util.Collections
 import de.cooperateproject.modeling.textual.component.tests.scoping.util.ComponentCustomizedInjectorProvider
 
+
+
 @RunWith(XtextRunner)
 @InjectWith(ComponentCustomizedInjectorProvider.DefaultProvider)
 class ComponentParsingTest extends AbstractComponentTest{
-	@Inject
-	ParseHelper<ComponentDiagram> parseHelper
+
 	
 	@Inject ValidationTestHelper validationTestHelper
+	
+	
 	
 	override setup() {
 		super.setup()
 		rs.packageRegistry.put(ComponentPackage.eNS_URI, ComponentPackage.eINSTANCE)
-		
 	}
 	
 	@Test
@@ -68,28 +69,135 @@ class ComponentParsingTest extends AbstractComponentTest{
 		validationTestHelper.assertNoIssues(model)
 	}
 	
-			@Test
-	def void singleComponentTest() {
-		
+	@Test
+	def void singleComponentTest() {		
 		val model = '''
 			@start-cpd "someDiagram"
 			rootPackage RootElement
-			component "Test Comp" as TestComp { }
+			component testComp { }
+			component "Test Comp" as testComp { }
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+		@Test
+		def void innerComponentTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp {
+				component "Test Comp" as testComp { }
+			}
+
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	@Test
+	def void noteTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp { 
+				note "This is a great and usefull note."				
+			}
+			interface testIface { 
+				note "This is a great and usefull note fore interfaces"				
+			}			
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
 	
 	
+		@Test
+		def void innerInterfaceTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp {
+				interface testiface { }
+			}
+
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	@Test
+	def void singleInterface() {
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			interface testiface {
+			}
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+		@Test
+	def void singleInterfaceWithAttribute() {
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			interface testiface {
+				static testmethod ()
+				static age : int
+			}
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+
+	}
+	
+	
+	
+	@Test
+	def void interfaceRelationTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp { 
+				provide testiface
+				require testiface2
+			}
+			interface testiface { }
+			interface testiface2 { }			
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	@Test
+	def void classifierRelationTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp { }
+			component testComp2 { }
+			interface iface { }
+			isa ( testComp, testComp2)
+			abs ( testComp, testComp2)
+			man ( testComp, testComp2)
+			sub ( testComp, testComp2)
+			dep ( testComp, testComp2)
+			isa ( testComp, iface)
+			abs ( testComp, iface)
+			man ( testComp, iface)
+			sub ( testComp, iface)
+			dep ( testComp, iface)
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
 	
 	private static def parse(CharSequence text, ResourceSet rs) {
 		val r = rs.createResource(URI.createFileURI("testfile.cmp"))
-		System.out.println("2"+rs);
-		System.out.println(rs.getResources());
-		System.out.println("1"+ URI.createFileURI("testmodels/CPDParsingTest.component"));
-		val is = IOUtils.toInputStream(text);
-				System.out.println(is);
-			
+		val is = IOUtils.toInputStream(text);		
 		r.load(is, Collections.emptyMap());
 		return r.contents.get(0) as ComponentDiagram
 	}

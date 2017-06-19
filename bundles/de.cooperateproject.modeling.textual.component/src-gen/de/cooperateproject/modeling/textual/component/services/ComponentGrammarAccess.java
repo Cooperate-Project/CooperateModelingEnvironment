@@ -205,19 +205,19 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRootPackageKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameFQNParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Assignment cRelationAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRelationClassifierRelationParserRuleCall_3_0 = (RuleCall)cRelationAssignment_3.eContents().get(0);
-		private final Assignment cClassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cClassifierClassifierParserRuleCall_4_0 = (RuleCall)cClassifierAssignment_4.eContents().get(0);
+		private final Assignment cClassifierAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cClassifierClassifierParserRuleCall_3_0 = (RuleCall)cClassifierAssignment_3.eContents().get(0);
+		private final Assignment cRelationAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRelationClassifierRelationParserRuleCall_4_0 = (RuleCall)cRelationAssignment_4.eContents().get(0);
 		
 		//RootPackage:
 		//	{RootPackage}
 		//	'rootPackage' name=FQN
-		//	relation+=ClassifierRelation*
-		//	classifier+=Classifier*;
+		//	classifier+=Classifier*
+		//	relation+=ClassifierRelation*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{RootPackage} 'rootPackage' name=FQN relation+=ClassifierRelation* classifier+=Classifier*
+		//{RootPackage} 'rootPackage' name=FQN classifier+=Classifier* relation+=ClassifierRelation*
 		public Group getGroup() { return cGroup; }
 		
 		//{RootPackage}
@@ -232,17 +232,17 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_2_0() { return cNameFQNParserRuleCall_2_0; }
 		
-		//relation+=ClassifierRelation*
-		public Assignment getRelationAssignment_3() { return cRelationAssignment_3; }
-		
-		//ClassifierRelation
-		public RuleCall getRelationClassifierRelationParserRuleCall_3_0() { return cRelationClassifierRelationParserRuleCall_3_0; }
-		
 		//classifier+=Classifier*
-		public Assignment getClassifierAssignment_4() { return cClassifierAssignment_4; }
+		public Assignment getClassifierAssignment_3() { return cClassifierAssignment_3; }
 		
 		//Classifier
-		public RuleCall getClassifierClassifierParserRuleCall_4_0() { return cClassifierClassifierParserRuleCall_4_0; }
+		public RuleCall getClassifierClassifierParserRuleCall_3_0() { return cClassifierClassifierParserRuleCall_3_0; }
+		
+		//relation+=ClassifierRelation*
+		public Assignment getRelationAssignment_4() { return cRelationAssignment_4; }
+		
+		//ClassifierRelation
+		public RuleCall getRelationClassifierRelationParserRuleCall_4_0() { return cRelationClassifierRelationParserRuleCall_4_0; }
 	}
 	public class ComponentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Component");
@@ -1422,8 +1422,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//RootPackage:
 	//	{RootPackage}
 	//	'rootPackage' name=FQN
-	//	relation+=ClassifierRelation*
-	//	classifier+=Classifier*;
+	//	classifier+=Classifier*
+	//	relation+=ClassifierRelation*;
 	public RootPackageElements getRootPackageAccess() {
 		return pRootPackage;
 	}

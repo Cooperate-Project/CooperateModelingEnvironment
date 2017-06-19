@@ -71,8 +71,8 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getComponentDiagramAccess().getTitleAssignment_2(), "rule__ComponentDiagram__TitleAssignment_2");
 					put(grammarAccess.getComponentDiagramAccess().getRootpackageAssignment_3(), "rule__ComponentDiagram__RootpackageAssignment_3");
 					put(grammarAccess.getRootPackageAccess().getNameAssignment_2(), "rule__RootPackage__NameAssignment_2");
-					put(grammarAccess.getRootPackageAccess().getRelationAssignment_3(), "rule__RootPackage__RelationAssignment_3");
-					put(grammarAccess.getRootPackageAccess().getClassifierAssignment_4(), "rule__RootPackage__ClassifierAssignment_4");
+					put(grammarAccess.getRootPackageAccess().getClassifierAssignment_3(), "rule__RootPackage__ClassifierAssignment_3");
+					put(grammarAccess.getRootPackageAccess().getRelationAssignment_4(), "rule__RootPackage__RelationAssignment_4");
 					put(grammarAccess.getComponentAccess().getNameAssignment_2_0_0(), "rule__Component__NameAssignment_2_0_0");
 					put(grammarAccess.getComponentAccess().getAliasAssignment_2_0_2(), "rule__Component__AliasAssignment_2_0_2");
 					put(grammarAccess.getComponentAccess().getNameAssignment_2_1(), "rule__Component__NameAssignment_2_1");

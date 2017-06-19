@@ -1132,9 +1132,9 @@ rule__RootPackage__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRootPackageAccess().getRelationAssignment_3()); }
-	(rule__RootPackage__RelationAssignment_3)*
-	{ after(grammarAccess.getRootPackageAccess().getRelationAssignment_3()); }
+	{ before(grammarAccess.getRootPackageAccess().getClassifierAssignment_3()); }
+	(rule__RootPackage__ClassifierAssignment_3)*
+	{ after(grammarAccess.getRootPackageAccess().getClassifierAssignment_3()); }
 )
 ;
 finally {
@@ -1158,9 +1158,9 @@ rule__RootPackage__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRootPackageAccess().getClassifierAssignment_4()); }
-	(rule__RootPackage__ClassifierAssignment_4)*
-	{ after(grammarAccess.getRootPackageAccess().getClassifierAssignment_4()); }
+	{ before(grammarAccess.getRootPackageAccess().getRelationAssignment_4()); }
+	(rule__RootPackage__RelationAssignment_4)*
+	{ after(grammarAccess.getRootPackageAccess().getRelationAssignment_4()); }
 )
 ;
 finally {
@@ -4048,30 +4048,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RootPackage__RelationAssignment_3
+rule__RootPackage__ClassifierAssignment_3
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0()); }
-		ruleClassifierRelation
-		{ after(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0()); }
+		{ before(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_3_0()); }
+		ruleClassifier
+		{ after(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_3_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RootPackage__ClassifierAssignment_4
+rule__RootPackage__RelationAssignment_4
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0()); }
-		ruleClassifier
-		{ after(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0()); }
+		{ before(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_4_0()); }
+		ruleClassifierRelation
+		{ after(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_4_0()); }
 	)
 ;
 finally {

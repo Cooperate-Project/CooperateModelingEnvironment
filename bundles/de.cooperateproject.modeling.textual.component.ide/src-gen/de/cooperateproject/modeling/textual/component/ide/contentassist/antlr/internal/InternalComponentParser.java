@@ -2555,7 +2555,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             int alt9=2;
             int LA9_0 = input.LA(1);
 
-            if ( (LA9_0==EOF||LA9_0==20||LA9_0==22||LA9_0==24||(LA9_0>=34 && LA9_0<=35)) ) {
+            if ( (LA9_0==EOF||LA9_0==20||LA9_0==22||LA9_0==24||LA9_0==26||(LA9_0>=30 && LA9_0<=35)) ) {
                 alt9=1;
             }
             else if ( (LA9_0==23) ) {
@@ -3631,36 +3631,36 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__RootPackage__Group__3__Impl"
-    // InternalComponent.g:1129:1: rule__RootPackage__Group__3__Impl : ( ( rule__RootPackage__RelationAssignment_3 )* ) ;
+    // InternalComponent.g:1129:1: rule__RootPackage__Group__3__Impl : ( ( rule__RootPackage__ClassifierAssignment_3 )* ) ;
     public final void rule__RootPackage__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalComponent.g:1133:1: ( ( ( rule__RootPackage__RelationAssignment_3 )* ) )
-            // InternalComponent.g:1134:1: ( ( rule__RootPackage__RelationAssignment_3 )* )
+            // InternalComponent.g:1133:1: ( ( ( rule__RootPackage__ClassifierAssignment_3 )* ) )
+            // InternalComponent.g:1134:1: ( ( rule__RootPackage__ClassifierAssignment_3 )* )
             {
-            // InternalComponent.g:1134:1: ( ( rule__RootPackage__RelationAssignment_3 )* )
-            // InternalComponent.g:1135:2: ( rule__RootPackage__RelationAssignment_3 )*
+            // InternalComponent.g:1134:1: ( ( rule__RootPackage__ClassifierAssignment_3 )* )
+            // InternalComponent.g:1135:2: ( rule__RootPackage__ClassifierAssignment_3 )*
             {
-             before(grammarAccess.getRootPackageAccess().getRelationAssignment_3()); 
-            // InternalComponent.g:1136:2: ( rule__RootPackage__RelationAssignment_3 )*
+             before(grammarAccess.getRootPackageAccess().getClassifierAssignment_3()); 
+            // InternalComponent.g:1136:2: ( rule__RootPackage__ClassifierAssignment_3 )*
             loop12:
             do {
                 int alt12=2;
                 int LA12_0 = input.LA(1);
 
-                if ( (LA12_0==26||(LA12_0>=30 && LA12_0<=33)) ) {
+                if ( (LA12_0==22||LA12_0==35) ) {
                     alt12=1;
                 }
 
 
                 switch (alt12) {
             	case 1 :
-            	    // InternalComponent.g:1136:3: rule__RootPackage__RelationAssignment_3
+            	    // InternalComponent.g:1136:3: rule__RootPackage__ClassifierAssignment_3
             	    {
             	    pushFollow(FOLLOW_9);
-            	    rule__RootPackage__RelationAssignment_3();
+            	    rule__RootPackage__ClassifierAssignment_3();
 
             	    state._fsp--;
 
@@ -3673,7 +3673,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                 }
             } while (true);
 
-             after(grammarAccess.getRootPackageAccess().getRelationAssignment_3()); 
+             after(grammarAccess.getRootPackageAccess().getClassifierAssignment_3()); 
 
             }
 
@@ -3729,36 +3729,36 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__RootPackage__Group__4__Impl"
-    // InternalComponent.g:1155:1: rule__RootPackage__Group__4__Impl : ( ( rule__RootPackage__ClassifierAssignment_4 )* ) ;
+    // InternalComponent.g:1155:1: rule__RootPackage__Group__4__Impl : ( ( rule__RootPackage__RelationAssignment_4 )* ) ;
     public final void rule__RootPackage__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalComponent.g:1159:1: ( ( ( rule__RootPackage__ClassifierAssignment_4 )* ) )
-            // InternalComponent.g:1160:1: ( ( rule__RootPackage__ClassifierAssignment_4 )* )
+            // InternalComponent.g:1159:1: ( ( ( rule__RootPackage__RelationAssignment_4 )* ) )
+            // InternalComponent.g:1160:1: ( ( rule__RootPackage__RelationAssignment_4 )* )
             {
-            // InternalComponent.g:1160:1: ( ( rule__RootPackage__ClassifierAssignment_4 )* )
-            // InternalComponent.g:1161:2: ( rule__RootPackage__ClassifierAssignment_4 )*
+            // InternalComponent.g:1160:1: ( ( rule__RootPackage__RelationAssignment_4 )* )
+            // InternalComponent.g:1161:2: ( rule__RootPackage__RelationAssignment_4 )*
             {
-             before(grammarAccess.getRootPackageAccess().getClassifierAssignment_4()); 
-            // InternalComponent.g:1162:2: ( rule__RootPackage__ClassifierAssignment_4 )*
+             before(grammarAccess.getRootPackageAccess().getRelationAssignment_4()); 
+            // InternalComponent.g:1162:2: ( rule__RootPackage__RelationAssignment_4 )*
             loop13:
             do {
                 int alt13=2;
                 int LA13_0 = input.LA(1);
 
-                if ( (LA13_0==22||LA13_0==35) ) {
+                if ( (LA13_0==26||(LA13_0>=30 && LA13_0<=33)) ) {
                     alt13=1;
                 }
 
 
                 switch (alt13) {
             	case 1 :
-            	    // InternalComponent.g:1162:3: rule__RootPackage__ClassifierAssignment_4
+            	    // InternalComponent.g:1162:3: rule__RootPackage__RelationAssignment_4
             	    {
             	    pushFollow(FOLLOW_10);
-            	    rule__RootPackage__ClassifierAssignment_4();
+            	    rule__RootPackage__RelationAssignment_4();
 
             	    state._fsp--;
 
@@ -3771,7 +3771,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                 }
             } while (true);
 
-             after(grammarAccess.getRootPackageAccess().getClassifierAssignment_4()); 
+             after(grammarAccess.getRootPackageAccess().getRelationAssignment_4()); 
 
             }
 
@@ -4661,7 +4661,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
             	case 1 :
             	    // InternalComponent.g:1460:3: rule__Component__ComponentAssignment_4_1
             	    {
-            	    pushFollow(FOLLOW_10);
+            	    pushFollow(FOLLOW_9);
             	    rule__Component__ComponentAssignment_4_1();
 
             	    state._fsp--;
@@ -12455,67 +12455,26 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__RootPackage__NameAssignment_2"
 
 
-    // $ANTLR start "rule__RootPackage__RelationAssignment_3"
-    // InternalComponent.g:4051:1: rule__RootPackage__RelationAssignment_3 : ( ruleClassifierRelation ) ;
-    public final void rule__RootPackage__RelationAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__RootPackage__ClassifierAssignment_3"
+    // InternalComponent.g:4051:1: rule__RootPackage__ClassifierAssignment_3 : ( ruleClassifier ) ;
+    public final void rule__RootPackage__ClassifierAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalComponent.g:4055:1: ( ( ruleClassifierRelation ) )
-            // InternalComponent.g:4056:2: ( ruleClassifierRelation )
+            // InternalComponent.g:4055:1: ( ( ruleClassifier ) )
+            // InternalComponent.g:4056:2: ( ruleClassifier )
             {
-            // InternalComponent.g:4056:2: ( ruleClassifierRelation )
-            // InternalComponent.g:4057:3: ruleClassifierRelation
+            // InternalComponent.g:4056:2: ( ruleClassifier )
+            // InternalComponent.g:4057:3: ruleClassifier
             {
-             before(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_2);
-            ruleClassifierRelation();
-
-            state._fsp--;
-
-             after(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_3_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__RootPackage__RelationAssignment_3"
-
-
-    // $ANTLR start "rule__RootPackage__ClassifierAssignment_4"
-    // InternalComponent.g:4066:1: rule__RootPackage__ClassifierAssignment_4 : ( ruleClassifier ) ;
-    public final void rule__RootPackage__ClassifierAssignment_4() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalComponent.g:4070:1: ( ( ruleClassifier ) )
-            // InternalComponent.g:4071:2: ( ruleClassifier )
-            {
-            // InternalComponent.g:4071:2: ( ruleClassifier )
-            // InternalComponent.g:4072:3: ruleClassifier
-            {
-             before(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0()); 
+             before(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
             ruleClassifier();
 
             state._fsp--;
 
-             after(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_4_0()); 
+             after(grammarAccess.getRootPackageAccess().getClassifierClassifierParserRuleCall_3_0()); 
 
             }
 
@@ -12534,7 +12493,48 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RootPackage__ClassifierAssignment_4"
+    // $ANTLR end "rule__RootPackage__ClassifierAssignment_3"
+
+
+    // $ANTLR start "rule__RootPackage__RelationAssignment_4"
+    // InternalComponent.g:4066:1: rule__RootPackage__RelationAssignment_4 : ( ruleClassifierRelation ) ;
+    public final void rule__RootPackage__RelationAssignment_4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalComponent.g:4070:1: ( ( ruleClassifierRelation ) )
+            // InternalComponent.g:4071:2: ( ruleClassifierRelation )
+            {
+            // InternalComponent.g:4071:2: ( ruleClassifierRelation )
+            // InternalComponent.g:4072:3: ruleClassifierRelation
+            {
+             before(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_4_0()); 
+            pushFollow(FOLLOW_2);
+            ruleClassifierRelation();
+
+            state._fsp--;
+
+             after(grammarAccess.getRootPackageAccess().getRelationClassifierRelationParserRuleCall_4_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RootPackage__RelationAssignment_4"
 
 
     // $ANTLR start "rule__Component__NameAssignment_2_0_0"
@@ -14678,8 +14678,8 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000BC4400000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x00000003C4000002L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000800400002L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000800400002L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x00000003C4000002L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000800400000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000007C00400000L});

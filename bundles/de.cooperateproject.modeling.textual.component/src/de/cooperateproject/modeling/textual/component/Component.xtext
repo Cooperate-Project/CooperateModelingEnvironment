@@ -43,8 +43,8 @@ EString returns ecore::EString:
 RootPackage returns RootPackage: 
 	{RootPackage}
 	'rootPackage' name=FQN
-			relation+=ClassifierRelation*
 			classifier+=Classifier*
+			relation+=ClassifierRelation*
 	;
 
 Component returns Component: 

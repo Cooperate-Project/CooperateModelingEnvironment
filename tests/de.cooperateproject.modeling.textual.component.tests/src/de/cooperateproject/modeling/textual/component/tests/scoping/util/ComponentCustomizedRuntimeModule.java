@@ -25,6 +25,7 @@ import com.google.inject.Injector;
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
 import de.cooperateproject.modeling.textual.component.ComponentRuntimeModule;
 import de.cooperateproject.modeling.textual.component.tests.ComponentInjectorProvider;
+import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessor;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.IAtomicStateProcessorExtension;
