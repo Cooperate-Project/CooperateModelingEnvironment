@@ -199,14 +199,14 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
 
     @Override
     public void createPartControl(Composite parent) {
-        super.createPartControl(parent);
         contextActivation = getSite().getService(IContextService.class).activateContext(CONTEXT_ID);
+        super.createPartControl(parent);
     }
 
     @Override
     public void dispose() {
-        getSite().getService(IContextService.class).deactivateContext(contextActivation);
         super.dispose();
+        getSite().getService(IContextService.class).deactivateContext(contextActivation);
     }
 
     private boolean tryDocumentSave(CooperateXtextDocument cooperateXtextDocument) throws OperationCanceledError {

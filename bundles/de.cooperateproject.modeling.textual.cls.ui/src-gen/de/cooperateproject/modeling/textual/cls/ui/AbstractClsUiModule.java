@@ -82,16 +82,7 @@ import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.IReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.IRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.IRenameStrategy;
 import org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameStrategy;
-import org.eclipse.xtext.ui.refactoring.ui.DefaultRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider;
@@ -223,33 +214,6 @@ public abstract class AbstractClsUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ui.contentAssist.ContentAssistFragment2
 	public Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
 		return ClsProposalProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameStrategy> bindIRenameStrategy() {
-		return DefaultRenameStrategy.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IReferenceUpdater> bindIReferenceUpdater() {
-		return DefaultReferenceUpdater.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public void configureIPreferenceStoreInitializer(Binder binder) {
-		binder.bind(IPreferenceStoreInitializer.class)
-			.annotatedWith(Names.named("RefactoringPreferences"))
-			.to(RefactoringPreferences.Initializer.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameRefactoringProvider> bindIRenameRefactoringProvider() {
-		return DefaultRenameRefactoringProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameSupport.Factory> bindIRenameSupport$Factory() {
-		return DefaultRenameSupport.Factory.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
