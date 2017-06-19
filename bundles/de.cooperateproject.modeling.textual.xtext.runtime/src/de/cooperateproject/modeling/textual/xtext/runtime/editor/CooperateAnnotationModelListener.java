@@ -9,26 +9,40 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.text.source.IAnnotationModel;
-import org.eclipse.jface.text.source.IAnnotationModelListener;
 import org.eclipse.xtext.ui.MarkerTypes;
 import org.eclipse.xtext.ui.editor.validation.MarkerCreator;
 import org.eclipse.xtext.ui.editor.validation.XtextAnnotation;
-import org.eclipse.xtext.ui.validation.MarkerTypeProvider;
+import org.eclipse.xtext.ui.validation.LanguageAwareMarkerTypeProvider;
 import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.validation.Issue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Iterators;
+import com.google.inject.Inject;
 
-public class CooperateAnnotationModelListener implements IAnnotationModelListener {
+/**
+ * A annotation model listener that can handle issues in virtual Cooperate resources. The implementation delegates the
+ * markers to a specified resource.
+ */
+public class CooperateAnnotationModelListener implements IResourceDelegatingAnnotationModelListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CooperateAnnotationModelListener.class);
-    private static final MarkerCreator MARKER_CREATOR = new MarkerCreator();
-    private static final MarkerTypeProvider MARKER_TYPE_PROVIDER = new MarkerTypeProvider();
     private static final Collection<String> AVAILABLE_MARKER_TYPES = getAvailableMarkerTypes();
     private final IFile associatedFile;
 
+    @Inject
+    private MarkerCreator markerCreator;
+
+    @Inject
+    private LanguageAwareMarkerTypeProvider markerTypeProvider;
+
+    /**
+     * Constructs the listener.
+     * 
+     * @param annotationFile
+     *            The file to delegate the markers to.
+     */
     public CooperateAnnotationModelListener(IFile annotationFile) {
         this.associatedFile = annotationFile;
     }
@@ -40,15 +54,16 @@ public class CooperateAnnotationModelListener implements IAnnotationModelListene
                 .forEachRemaining(this::createXtextAnnotationMarker);
     }
 
+    @Override
     public void disconnect() {
         deleteAllXtextMarkers();
     }
 
     private void createXtextAnnotationMarker(XtextAnnotation annotation) {
         Issue xtextIssue = annotation.getIssue();
-        String markerType = MARKER_TYPE_PROVIDER.getMarkerType(xtextIssue);
+        String markerType = markerTypeProvider.getMarkerType(xtextIssue);
         try {
-            MARKER_CREATOR.createMarker(xtextIssue, associatedFile, markerType);
+            markerCreator.createMarker(xtextIssue, associatedFile, markerType);
         } catch (CoreException e) {
             LOGGER.warn("Could not create marker on {}.", associatedFile, e);
         }
@@ -67,8 +82,8 @@ public class CooperateAnnotationModelListener implements IAnnotationModelListene
     }
 
     private static Collection<String> getAvailableMarkerTypes() {
-        return Collections.unmodifiableCollection(Arrays.asList(CheckType.values()).stream()
-                .map(t -> MarkerTypes.forCheckType(t)).collect(Collectors.toSet()));
+        return Collections.unmodifiableCollection(
+                Arrays.asList(CheckType.values()).stream().map(MarkerTypes::forCheckType).collect(Collectors.toSet()));
     }
 
 }

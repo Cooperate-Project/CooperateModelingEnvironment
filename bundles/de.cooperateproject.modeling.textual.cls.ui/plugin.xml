@@ -330,31 +330,31 @@
 	</extension>
 	<!-- quickfix marker resolution generator for de.cooperateproject.modeling.textual.cls.Cls -->
 	<extension
-	        point="org.eclipse.ui.ide.markerResolution">
-	    <markerResolutionGenerator
-	        class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-	        markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.fast">
-	        <attribute
-	            name="FIXABLE_KEY"
-	            value="true">
-	        </attribute>
-	    </markerResolutionGenerator>
-	    <markerResolutionGenerator
-	        class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-	        markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.normal">
-	        <attribute
-	            name="FIXABLE_KEY"
-	            value="true">
-	        </attribute>
-	    </markerResolutionGenerator>
-	    <markerResolutionGenerator
-	        class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-	        markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.expensive">
-	        <attribute
-	            name="FIXABLE_KEY"
-	            value="true">
-	        </attribute>
-	    </markerResolutionGenerator>
+			point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator
+			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
+			markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.fast">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
+			markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.normal">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
+			markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.expensive">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
 	</extension>
 	<!-- Cooperate Refactoring -->
 	<extension

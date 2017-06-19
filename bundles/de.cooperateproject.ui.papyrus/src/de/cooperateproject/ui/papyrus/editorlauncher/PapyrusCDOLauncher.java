@@ -42,7 +42,7 @@ import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
-import de.cooperateproject.ui.util.EditorFinderUtil;
+import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 
 public class PapyrusCDOLauncher extends EditorLauncher {
 

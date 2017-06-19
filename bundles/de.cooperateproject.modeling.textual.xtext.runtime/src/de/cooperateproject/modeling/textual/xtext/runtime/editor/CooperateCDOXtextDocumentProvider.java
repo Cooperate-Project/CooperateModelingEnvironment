@@ -12,6 +12,7 @@ import org.eclipse.xtext.serializer.ISerializer;
 
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 import net.winklerweb.cdoxtext.runtime.CDOXtextDocumentProvider;
@@ -29,12 +30,25 @@ import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
         implements IReinitializingDocumentProvider {
 
-    private final Map<Object, CooperateAnnotationModelListener> annotationModelListeners = Maps.newHashMap();
+    private final Map<Object, IResourceDelegatingAnnotationModelListener> annotationModelListeners = Maps.newHashMap();
+    private final IResourceDelegatingAnnotationModelListenerFactory listenerFactory;
+
     @Inject
     private ISerializer serializer;
 
     @Inject
     private ICDOResourceStateHandler resourceStateHandler;
+
+    /**
+     * Constructs the document provider.
+     * 
+     * @param injector
+     *            The injector to be used with newly created elements. Will be injected.
+     */
+    @Inject
+    public CooperateCDOXtextDocumentProvider(Injector injector) {
+        listenerFactory = createListenerFactory(injector);
+    }
 
     @Override
     public void reinitializeDocumentContent(IDocument document, EObject rootElement) {
@@ -59,7 +73,7 @@ public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
     protected ElementInfo createElementInfo(Object element) throws CoreException {
         if (element instanceof CooperateCDOLobEditorInput) {
             IFile f = ((CooperateCDOLobEditorInput) element).getAssociatedLauncherFile();
-            CooperateAnnotationModelListener listener = new CooperateAnnotationModelListener(f);
+            IResourceDelegatingAnnotationModelListener listener = listenerFactory.create(f);
             annotationModelListeners.put(element, listener);
         }
         return super.createElementInfo(element);
@@ -67,7 +81,7 @@ public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
 
     @Override
     protected void disposeElementInfo(Object element, ElementInfo info) {
-        CooperateAnnotationModelListener listener = annotationModelListeners.get(element);
+        IResourceDelegatingAnnotationModelListener listener = annotationModelListeners.get(element);
         if (listener != null) {
             listener.disconnect();
             IAnnotationModel annotationModel = getAnnotationModel(element);
@@ -76,6 +90,16 @@ public class CooperateCDOXtextDocumentProvider extends CDOXtextDocumentProvider
             }
         }
         super.disposeElementInfo(element, info);
+    }
+
+    private static IResourceDelegatingAnnotationModelListenerFactory createListenerFactory(Injector injector) {
+        return delegationTarget -> {
+            IResourceDelegatingAnnotationModelListener listener = new CooperateAnnotationModelListener(
+                    delegationTarget);
+            injector.injectMembers(listener);
+            return listener;
+        };
+
     }
 
 }
