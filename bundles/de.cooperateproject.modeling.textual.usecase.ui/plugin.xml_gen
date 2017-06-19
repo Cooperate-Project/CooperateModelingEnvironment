@@ -325,7 +325,7 @@
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.usecase.ui.usecase.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -333,7 +333,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.usecase.ui.usecase.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -341,7 +341,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.usecase.ui.UsecaseExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.usecase.ui.usecase.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
