@@ -369,32 +369,6 @@
 	          class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.cls.ui.refactoring.rename.ClsRenameUMLElementRefactoringFilter">
 	    </class>
 	 </extension>
-	 <extension
-	       point="org.eclipse.ui.bindings">
-	    <key
-	          sequence="COMMAND+ALT+R"
-	          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-	          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-	          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-	          platform="carbon"/>
-	    <key
-	          sequence="SHIFT+ALT+R"
-	          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-	          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-	          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-	          platform="win32"/>
-	    <key
-	          sequence="SHIFT+ALT+R"
-	          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-	          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-	          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-	          platform="gtk"/>
-	    <key
-	          sequence="F2"
-	          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-	          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-	          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"/>
-	 </extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="de.cooperateproject.modeling.textual.cls.Cls.compare.contentViewers"
 			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"

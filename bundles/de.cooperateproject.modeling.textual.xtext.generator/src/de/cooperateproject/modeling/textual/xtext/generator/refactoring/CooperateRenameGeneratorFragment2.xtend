@@ -130,32 +130,6 @@ class CooperateRenameGeneratorFragment2 extends RefactorElementNameFragment2 {
 				          class="«grammar.eclipsePluginExecutableExtensionFactory»:«renameFilterName»">
 				    </class>
 				 </extension>
-				 <extension
-				       point="org.eclipse.ui.bindings">
-				    <key
-				          sequence="COMMAND+ALT+R"
-				          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-				          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-				          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-				          platform="carbon"/>
-				    <key
-				          sequence="SHIFT+ALT+R"
-				          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-				          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-				          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-				          platform="win32"/>
-				    <key
-				          sequence="SHIFT+ALT+R"
-				          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-				          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-				          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"
-				          platform="gtk"/>
-				    <key
-				          sequence="F2"
-				          commandId="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename"
-				          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-				          contextId="de.cooperateproject.modeling.textual.xtext.runtime.CooperateCDOXtextEditor"/>
-				 </extension>
 			'''
 		}
 	}

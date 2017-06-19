@@ -67,7 +67,7 @@ public class UsecaseActivator extends AbstractUIPlugin {
 			Module mergedModule = Modules2.mixin(runtimeModule, sharedStateModule, uiModule);
 			return Guice.createInjector(mergedModule);
 		} catch (Exception e) {
-			logger.error("Failed to create injector for " + language);
+			logger.error("Failed to create injector for {}", language);
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException("Failed to create injector for " + language, e);
 		}

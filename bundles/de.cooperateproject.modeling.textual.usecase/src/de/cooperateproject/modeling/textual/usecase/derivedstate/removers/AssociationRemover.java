@@ -27,7 +27,7 @@ public class AssociationRemover extends AtomicDerivedStateProcessorBase<Associat
     }
 
     private static void process(Cardinality cardinality) {
-        if (cardinality.getReferencedElement() != null) {
+        if (cardinality != null && cardinality.getReferencedElement() != null) {
             cardinality.unsetLowerBound();
             cardinality.unsetUpperBound();
         }

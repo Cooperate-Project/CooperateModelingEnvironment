@@ -93,6 +93,8 @@ Workflow {
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
 			
+			renameRefactoring = refactoring.CooperateRenameGeneratorFragment2 auto-inject {}
+			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 
 			fragment = org.eclipse.xtext.generator.adapter.FragmentAdapter {
