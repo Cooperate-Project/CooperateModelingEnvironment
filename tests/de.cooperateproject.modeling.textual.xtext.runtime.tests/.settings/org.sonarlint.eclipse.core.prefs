@@ -1,3 +1,5 @@
 autoEnabled=true
 eclipse.preferences.version=1
 extraProperties=
+moduleKey=de.cooperateproject.modeling\:de.cooperateproject.modeling.textual.xtext.runtime.tests
+serverId=mammutbaum36

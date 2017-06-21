@@ -3,8 +3,9 @@ package de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixin
 import java.util.Optional;
 import java.util.function.Function;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 
@@ -13,7 +14,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegis
 public abstract class AutomatedIssueResolutionFactoryBase<T extends EObject>
         implements IAutomatedIssueResolutionFactory {
 
-    private static final Logger LOGGER = Logger.getLogger(AutomatedIssueResolutionFactoryBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutomatedIssueResolutionFactoryBase.class);
     private final String issueId;
     private final IResolvableChecker<T> checker;
     private final Class<T> acceptedType;
@@ -86,8 +87,8 @@ public abstract class AutomatedIssueResolutionFactoryBase<T extends EObject>
     private <R> R delegateTyped(EObject element, Function<T, R> delegate) {
         Optional<T> typedElement = getCompatibleElement(element);
         if (!typedElement.isPresent()) {
-            LOGGER.warn("The given element " + element + " does not have the required type "
-                    + acceptedType.getSimpleName());
+            LOGGER.warn("The given element {} does not have the required type {}.", element,
+                    acceptedType.getSimpleName());
             return null;
         }
         return delegate.apply(typedElement.get());

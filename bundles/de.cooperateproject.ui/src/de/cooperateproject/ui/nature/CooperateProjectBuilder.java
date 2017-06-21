@@ -3,12 +3,13 @@ package de.cooperateproject.ui.nature;
 import java.util.Collection;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -28,7 +29,7 @@ import de.cooperateproject.ui.util.ConnectionValidator;
  */
 public class CooperateProjectBuilder extends IncrementalProjectBuilder {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateProjectBuilder.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateProjectBuilder.class);
     public static final String BUILDER_ID = "de.cooperateproject.ui.CooperateProjectBuilder";
     private final Map<IProject, ProjectPropertiesDTO> oldProperties = Maps.newHashMap();
 

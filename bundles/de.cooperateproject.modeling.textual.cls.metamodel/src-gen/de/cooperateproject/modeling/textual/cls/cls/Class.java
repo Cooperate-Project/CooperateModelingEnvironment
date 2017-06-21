@@ -22,6 +22,7 @@ package de.cooperateproject.modeling.textual.cls.cls;
 public interface Class extends Classifier<org.eclipse.uml2.uml.Class> {
     /**
      * Returns the value of the '<em><b>Abstract</b></em>' attribute.
+     * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Abstract</em>' attribute isn't clear,
@@ -33,7 +34,7 @@ public interface Class extends Classifier<org.eclipse.uml2.uml.Class> {
      * @see #unsetAbstract()
      * @see #setAbstract(boolean)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getClass_Abstract()
-     * @model unique="false" unsettable="true" transient="true"
+     * @model default="false" unique="false" unsettable="true" transient="true"
      * @generated
      */
     boolean isAbstract();

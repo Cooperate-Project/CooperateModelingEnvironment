@@ -13,13 +13,14 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ClassUtils;
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.alg.CycleDetector;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.traverse.TopologicalOrderIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 
@@ -40,7 +41,7 @@ public class DerivedStateProcessor implements IDerivedStateProcessor {
         private static final long serialVersionUID = -5069957874239306073L;
     }
 
-    private static final Logger LOGGER = Logger.getLogger(DerivedStateProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DerivedStateProcessor.class);
     private final IProcessorCache initCache = new ProcessorCache();
     private final IProcessorCache cleanCache = new ProcessorCache();
     private final IProcessorCache calculateCache = new ProcessorCache();
@@ -102,7 +103,7 @@ public class DerivedStateProcessor implements IDerivedStateProcessor {
         if (cycleDetector.detectCycles()) {
             IllegalStateException ex = new IllegalStateException(String.format(
                     "The state initializers for element type %s have cyclic dependencies.", clazz.getSimpleName()));
-            LOGGER.error(ex);
+            LOGGER.error(ex.getMessage(), ex);
             throw ex;
         }
 

@@ -3,8 +3,9 @@ package de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initiali
 import java.util.Collection;
 import java.util.Collections;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class for {@link IAtomicDerivedStateProcessor} implementations.
@@ -18,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public abstract class AtomicDerivedStateProcessorBase<T extends EObject> implements IAtomicDerivedStateProcessor<T> {
 
-    private static final Logger LOGGER = Logger.getLogger(AtomicDerivedStateProcessorBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AtomicDerivedStateProcessorBase.class);
     private final Class<T> clazz;
 
     /**

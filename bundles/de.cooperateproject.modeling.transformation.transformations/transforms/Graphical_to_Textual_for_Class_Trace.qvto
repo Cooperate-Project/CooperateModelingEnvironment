@@ -377,10 +377,10 @@ when {self.mappingOperation.name = "propertyToMemberEnd"}
 	var umlAssociation := umlProperty.association;
 	
 	var trace := self.oclAsType(ecore::EObject).eContainer().oclAsType(trace::Trace);
-
-	var associationTraces := trace.traceRecordMap.value->select(tr | tr.getResult().modelElement.oclIsKindOf(cls::Association) and tr.getResult().modelElement.oclAsType(cls::Association).memberEnds->includes(memberEnd));	
-	if (associationTraces->exists(tr | tr.mappingOperation.name = "associationNodeToMultiAssociation")) {
-		var multiTrace := associationTraces->any(tr | tr.mappingOperation.name = "associationNodeToMultiAssociation");
+	
+	var relevantAssociationTraces := trace.traceRecordMap.value->select(tr | tr.getResult().modelElement <> null and tr.getResult().modelElement.oclIsKindOf(cls::Association) and tr.getResult().modelElement.oclAsType(cls::Association).referencedElement = umlAssociation);
+	if (relevantAssociationTraces->exists(tr | tr.mappingOperation.name = "associationNodeToMultiAssociation")) {
+		var multiTrace := relevantAssociationTraces->any(tr | tr.mappingOperation.name = "associationNodeToMultiAssociation");
 		var diamondShape = multiTrace.getSelf().modelElement.oclAsType(notation::Node);
 		var connectorCandidates = diamondShape.sourceEdges->union(diamondShape.targetEdges)->selectByKind(notation::Connector);
 		var connector = connectorCandidates->any(styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style").eObjectValue = umlProperty.eobject());

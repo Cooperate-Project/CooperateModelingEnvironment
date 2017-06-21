@@ -11,7 +11,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Method
 import de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheckFactory
 import de.cooperateproject.modeling.textual.cls.issues.ClsPropertyAbstractQualifierFactory
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQuickfixProvider
-import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext
 import org.eclipse.xtext.ui.editor.quickfix.Fix
@@ -19,10 +18,11 @@ import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
 import org.eclipse.xtext.validation.Issue
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.cls.issues.ClsMemberStaticQualifierFactory
+import org.slf4j.LoggerFactory
 
 class ClsQuickfixProvider extends CooperateQuickfixProvider {
 
-	static val LOGGER = Logger.getLogger(ClsQuickfixProvider)
+	static val LOGGER = LoggerFactory.getLogger(ClsQuickfixProvider)
 	
 	new() {
 		super(#[ClsPackage.eINSTANCE, TextualCommonsPackage.eINSTANCE])

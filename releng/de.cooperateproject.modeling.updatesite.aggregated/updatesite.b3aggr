@@ -27,7 +27,7 @@
       <repositories location="https://dl.bintray.com/cooperate-project/CooperateLicense/updatesite/1.0.0/" mirrorArtifacts="false">
         <features name="de.cooperateproject.license.feature.group"/>
       </repositories>
-      <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.1.4/" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.2.0/" mirrorArtifacts="false">
         <features name="de.cooperateproject.cdoxtext.feature.feature.group"/>
       </repositories>
       <repositories location="https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/" mirrorArtifacts="false">

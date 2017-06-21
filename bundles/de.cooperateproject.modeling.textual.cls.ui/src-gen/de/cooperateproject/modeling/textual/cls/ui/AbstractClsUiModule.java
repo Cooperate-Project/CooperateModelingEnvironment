@@ -18,6 +18,7 @@ import de.cooperateproject.modeling.textual.cls.ui.outline.ClsOutlineTreeProvide
 import de.cooperateproject.modeling.textual.cls.ui.quickfix.ClsQuickfixProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
@@ -79,19 +80,11 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider;
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
+import org.eclipse.xtext.ui.editor.quickfix.ILanguageResourceHelper;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.IReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.IRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.IRenameStrategy;
 import org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameStrategy;
-import org.eclipse.xtext.ui.refactoring.ui.DefaultRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider;
@@ -220,36 +213,14 @@ public abstract class AbstractClsUiModule extends DefaultUiModule {
 		return ClsQuickfixProvider.class;
 	}
 	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateQuickfixProviderFragment2
+	public Class<? extends ILanguageResourceHelper> bindILanguageResourceHelper() {
+		return CooperateLanguageResourceHelper.class;
+	}
+	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.contentAssist.ContentAssistFragment2
 	public Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
 		return ClsProposalProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameStrategy> bindIRenameStrategy() {
-		return DefaultRenameStrategy.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IReferenceUpdater> bindIReferenceUpdater() {
-		return DefaultReferenceUpdater.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public void configureIPreferenceStoreInitializer(Binder binder) {
-		binder.bind(IPreferenceStoreInitializer.class)
-			.annotatedWith(Names.named("RefactoringPreferences"))
-			.to(RefactoringPreferences.Initializer.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameRefactoringProvider> bindIRenameRefactoringProvider() {
-		return DefaultRenameRefactoringProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameSupport.Factory> bindIRenameSupport$Factory() {
-		return DefaultRenameSupport.Factory.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2

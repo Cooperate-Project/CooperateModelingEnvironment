@@ -9,7 +9,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.TypedElement;
 
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.utils.ClsConversionUtilities;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -45,10 +47,14 @@ public class XtextAssociationRemover extends AtomicDerivedStateProcessorBase<Xte
             }
             if (Optional.ofNullable(memberEnd.getType()).map(UMLReferencingElement::getReferencedElement)
                     .equals(Optional.ofNullable(memberEnd.getReferencedElement()).map(TypedElement::getType))) {
-                memberEnd.unsetAggregationKind();
+                memberEnd.eUnset(ClsPackage.Literals.ASSOCIATION_MEMBER_END__TYPE);
             }
             if (memberEnd.isNavigable() == memberEnd.getReferencedElement().isNavigable()) {
                 memberEnd.unsetNavigable();
+            }
+            if (memberEnd.getReferencedElement().getAggregation() == ClsConversionUtilities
+                    .convert(memberEnd.getAggregationKind())) {
+                memberEnd.unsetAggregationKind();
             }
             Optional.ofNullable(memberEnd.getCardinality()).ifPresent(XtextAssociationRemover::process);
         }

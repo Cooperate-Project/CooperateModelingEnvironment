@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
@@ -8,10 +7,12 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class CooperateConstraint extends AbstractModelConstraint {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateConstraint.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateConstraint.class);
 
     @Override
     public final IStatus validate(IValidationContext ctx) {

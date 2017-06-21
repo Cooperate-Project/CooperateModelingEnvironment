@@ -56,7 +56,8 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
         }
 
         boolean isSet = semanticObject.eIsSet(feature);
-        if ((defaultValueIsSerializeable(feature) && !isSet) || feature.getEType() == EcorePackage.Literals.EBOOLEAN) {
+        if ((defaultValueIsSerializeable(feature) && !isSet) || (feature.getEType() == EcorePackage.Literals.EBOOLEAN
+                && semanticObject.eGet(feature) == feature.getDefaultValue())) {
             return ValueTransient.PREFERABLY;
         }
         if (isTransient(semanticObject, feature, 0)) {

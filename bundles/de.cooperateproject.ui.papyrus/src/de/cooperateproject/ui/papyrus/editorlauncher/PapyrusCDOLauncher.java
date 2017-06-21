@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
@@ -35,19 +34,21 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
-import de.cooperateproject.ui.util.EditorFinderUtil;
+import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 
 public class PapyrusCDOLauncher extends EditorLauncher {
 
     private static final String EDITOR_ID_GRAPHICAL = PapyrusMultiDiagramEditor.EDITOR_ID;
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
-    private static final Logger LOGGER = Logger.getLogger(PapyrusCDOLauncher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PapyrusCDOLauncher.class);
 
     private final EditorLifecycleEventListener editorCloseListener = new EditorLifecycleEventListener() {
 

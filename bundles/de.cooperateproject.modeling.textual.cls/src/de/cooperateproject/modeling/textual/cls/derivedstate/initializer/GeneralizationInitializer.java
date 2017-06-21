@@ -5,7 +5,6 @@ import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.in
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 
@@ -21,8 +20,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 public class GeneralizationInitializer extends AtomicDerivedStateProcessorBase<Generalization>
         implements TypedConnectorInitializerMixin {
 
-    private static final Logger LOGGER = Logger.getLogger(GeneralizationInitializer.class);
-
     /**
      * Instantiates the initializer.
      */
@@ -32,11 +29,11 @@ public class GeneralizationInitializer extends AtomicDerivedStateProcessorBase<G
 
     @Override
     protected void applyTyped(Generalization object) {
-        if (object.getLeft() != null && object.getRight() != null && object.getReferencedElement() != null) {
+        if (object.getReferencedElement() != null) {
             org.eclipse.uml2.uml.Generalization umlGeneralization = object.getReferencedElement();
             Classifier specific = umlGeneralization.getSpecific();
             Classifier general = umlGeneralization.getGeneral();
-            initTypedConnector(object, specific, general, LOGGER);
+            initTypedConnector(object, specific, general);
         }
     }
 
