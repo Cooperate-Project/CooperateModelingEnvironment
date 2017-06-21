@@ -6,6 +6,12 @@
       <factory
             class="de.cooperateproject.modeling.textual.usecase.issues.UsecaseUMLReferencingElementMissingElementFactory">
       </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyAbstractQualifierFactory">
+      </factory>
+      <factory
+            class="de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyVisibilityFactory">
+      </factory>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">

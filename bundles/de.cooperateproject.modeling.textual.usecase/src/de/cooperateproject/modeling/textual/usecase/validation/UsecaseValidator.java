@@ -29,9 +29,6 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
 
     private static final String NAME_TAKEN = "name_taken";
 
-    private static final String WRONG_ABSTRACT_ACTOR_QUALIFIER = "wrong_actor_visibility";
-    private static final String WRONG_ABSTRACT_USECASE_QUALIFIER = "wrong_usecase_visibility";
-
     @Inject
     @SuppressWarnings("unused")
     private ICooperateAutomatedValidator automatedValidator;
@@ -64,28 +61,12 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
             EStructuralFeature feature, String code) {
         for (NamedElement element : elements) {
             if (element.equals(comparableElement)) {
-                return;
+                continue;
             }
             if (element.getName().equals(comparableElement.getName())) {
                 error("\"" + element.getName() + "\"" + " no duplicates!", feature, code);
             }
 
-        }
-    }
-
-    @Check
-    private void checkActorQualifier(Actor actor) {
-        if (actor.isAbstract() != actor.getReferencedElement().isAbstract()) {
-            error("\"" + actor.getName() + "\"" + " has the wrong abstract qualifier!",
-                    UsecasePackage.Literals.ACTOR__ABSTRACT, WRONG_ABSTRACT_ACTOR_QUALIFIER);
-        }
-    }
-
-    @Check
-    private void checkUseCaseQualifier(UseCase useCase) {
-        if (useCase.isAbstract() != useCase.getReferencedElement().isAbstract()) {
-            error("\"" + useCase.getName() + "\"" + " has the wrong abstract qualifier!",
-                    UsecasePackage.Literals.USE_CASE__ABSTRACT, WRONG_ABSTRACT_ACTOR_QUALIFIER);
         }
     }
 }
