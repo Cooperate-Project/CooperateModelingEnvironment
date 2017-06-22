@@ -31,7 +31,7 @@ public class AliasedElementInitializer extends AtomicDerivedStateProcessorBase<A
 
     @Override
     protected void applyTyped(AliasedElement object) {
-        if (object instanceof UMLReferencingElement) {
+        if (!object.isSetAlias() && object instanceof UMLReferencingElement) {
             @SuppressWarnings("rawtypes")
             Element umlElement = ((UMLReferencingElement) object).getReferencedElement();
             if (umlElement instanceof NamedElement) {

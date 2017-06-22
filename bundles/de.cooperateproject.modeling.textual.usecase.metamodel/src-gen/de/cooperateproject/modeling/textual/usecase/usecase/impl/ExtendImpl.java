@@ -13,6 +13,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +33,15 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class ExtendImpl extends ElementImpl implements Extend {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
     /**
      * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -276,7 +286,7 @@ public class ExtendImpl extends ElementImpl implements Extend {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.EXTEND__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case UsecasePackage.EXTEND__EXTENSION:
                 return basicGetExtension() != null;
             case UsecasePackage.EXTEND__EXTENDED_CASE:

@@ -167,6 +167,24 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(ClsPackage.CLASSIFIER__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
@@ -368,7 +386,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
                 unsetName();
                 return;
             case ClsPackage.CLASSIFIER__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case ClsPackage.CLASSIFIER__COMMENTS:
                 getComments().clear();
@@ -397,7 +415,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
             case ClsPackage.CLASSIFIER__NAME:
                 return isSetName();
             case ClsPackage.CLASSIFIER__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case ClsPackage.CLASSIFIER__COMMENTS:
                 return !getComments().isEmpty();
             case ClsPackage.CLASSIFIER__VISIBILITY:

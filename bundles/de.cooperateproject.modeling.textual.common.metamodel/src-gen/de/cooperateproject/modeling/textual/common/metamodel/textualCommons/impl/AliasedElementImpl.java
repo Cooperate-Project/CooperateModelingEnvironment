@@ -70,6 +70,24 @@ public abstract class AliasedElementImpl extends NamedElementImpl implements Ali
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAlias() {
+        eDynamicUnset(TextualCommonsPackage.ALIASED_ELEMENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(TextualCommonsPackage.ALIASED_ELEMENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -106,7 +124,7 @@ public abstract class AliasedElementImpl extends NamedElementImpl implements Ali
 	public void eUnset(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
         }
         super.eUnset(featureID);
@@ -121,7 +139,7 @@ public abstract class AliasedElementImpl extends NamedElementImpl implements Ali
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
         }
         return super.eIsSet(featureID);
     }

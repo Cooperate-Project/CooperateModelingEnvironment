@@ -186,6 +186,24 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public VisibilityKind getVisibility() {
         return (VisibilityKind)eDynamicGet(UsecasePackage.USE_CASE__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
@@ -421,7 +439,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
                 unsetName();
                 return;
             case UsecasePackage.USE_CASE__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case UsecasePackage.USE_CASE__VISIBILITY:
                 unsetVisibility();
@@ -452,7 +470,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
             case UsecasePackage.USE_CASE__NAME:
                 return isSetName();
             case UsecasePackage.USE_CASE__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case UsecasePackage.USE_CASE__VISIBILITY:
                 return isSetVisibility();
             case UsecasePackage.USE_CASE__ABSTRACT:
