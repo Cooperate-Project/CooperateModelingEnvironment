@@ -14,6 +14,7 @@
       <paletteRules xmi:id="_fqqWcEagEeeAXeDvGhh7sQ" element="clazz.tool.operation"/>
       <paletteRules xmi:id="_h1O-oB3ZEeaWluI_M9CcJQ" element="clazz.tool.package"/>
       <paletteRules xmi:id="_Zv4D0B5XEeaKs_GrNRbBjw" element="clazz.tool.class"/>
+      <paletteRules xmi:id="_Zv4D0B5XEeaKs_GrNRbBjw" element="clazz.tool.interface"/>
       <paletteRules xmi:id="_eH07gB5XEeaKs_GrNRbBjw" element="clazz.tool.property"/>
       <paletteRules xmi:id="_ixbhIB3ZEeaWluI_M9CcJQ" element="clazz.tool.realization"/>
       <paletteRules xmi:id="_i2Y5oB3ZEeaWluI_M9CcJQ" element="clazz.tool.generalization"/>
@@ -36,7 +37,6 @@
       <assistantRules xmi:id="_dbYQgS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.PackageImport_Edge"/>
       <assistantRules xmi:id="_dbYQgi2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Realization_Edge"/>
       <assistantRules xmi:id="_dbYQgy2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Generalization_Edge"/>
-      <assistantRules xmi:id="_dbYQhC2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.GeneralizationSet_Edge"/>
       <assistantRules xmi:id="_dbYQhS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Association_Edge"/>
       <assistantRules xmi:id="_1LpvIC2PEeamkv8UzKSY-w" permit="false" elementTypeID="*"/>
     </modelKinds>

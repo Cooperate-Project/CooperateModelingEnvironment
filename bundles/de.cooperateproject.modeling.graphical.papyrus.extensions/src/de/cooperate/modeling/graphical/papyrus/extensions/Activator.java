@@ -28,7 +28,6 @@ public class Activator extends AbstractUIPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         setInstance(this);
-        // TODO register cooperate configuration unnecessary?
         registerCooperateConfiguration();
         enableCooperatePropertyContext();
     }
