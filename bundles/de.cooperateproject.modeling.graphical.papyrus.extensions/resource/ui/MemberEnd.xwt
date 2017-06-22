@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Group xmlns="http://www.eclipse.org/xwt/presentation" xmlns:j="clr-namespace:java.lang"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" text="Member End">
+	<Group.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Group.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"></ppe:StringEditor>
+		<ppe:BooleanRadio input="{Binding}" property="MemberEnd:navigable"></ppe:BooleanRadio>
+		<ppe:EnumCombo input="{Binding}" property="UML:Property:aggregation"></ppe:EnumCombo>
+		<uml:MultiplicityDialog input="{Binding}"
+			property="Multiplicity:multiplicity"></uml:MultiplicityDialog>
+	</Composite>
+</Group>

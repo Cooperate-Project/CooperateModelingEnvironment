@@ -91,4 +91,8 @@
             priority="1">
       </configuration>
    </extension>
+   <extension
+      point="org.eclipse.papyrus.infra.properties.contexts">
+   <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
+</extension>
 </plugin>
