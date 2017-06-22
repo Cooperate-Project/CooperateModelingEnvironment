@@ -70,23 +70,23 @@ import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
  */
 public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadingEditor {
 
-    private static class PostProcessorHandler implements SaveablePostProcessingSupport {
+    private static class PostProcessorHandler implements IPostSaveListenerSupport {
 
-        private final Set<SavePostProcessor> processors = Sets.newHashSet();
+        private final Set<IPostSaveListener> processors = Sets.newHashSet();
 
         @Override
-        public void register(SavePostProcessor postProcessor) {
+        public void register(IPostSaveListener postProcessor) {
             processors.add(postProcessor);
         }
 
         @Override
-        public void unregister(SavePostProcessor postProcessor) {
+        public void unregister(IPostSaveListener postProcessor) {
             processors.remove(postProcessor);
         }
 
-        private void executePostProcessors() throws Exception {
-            for (SavePostProcessor processor : processors) {
-                processor.processAfterSafe();
+        private void executePostProcessors() {
+            for (IPostSaveListener processor : processors) {
+                processor.saveEventHappened();
             }
         }
 
@@ -190,7 +190,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     @SuppressWarnings("rawtypes")
     @Override
     public Object getAdapter(Class requestedClass) {
-        if (SaveablePostProcessingSupport.class.isAssignableFrom(requestedClass)) {
+        if (IPostSaveListenerSupport.class.isAssignableFrom(requestedClass)) {
             return postProcessorHandler;
         }
         if (CooperateCDOXtextEditor.class.isAssignableFrom(requestedClass)) {
