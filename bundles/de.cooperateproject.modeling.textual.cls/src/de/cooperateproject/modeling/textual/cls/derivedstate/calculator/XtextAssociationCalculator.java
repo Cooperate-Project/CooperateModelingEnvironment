@@ -10,6 +10,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
+import com.google.inject.Inject;
+
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsFactory;
@@ -19,12 +21,17 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessorRegistry;
 
 /**
  * State calculation for Xtext associations.
  */
 @Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
 public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<XtextAssociation> {
+
+    @Inject
+    private IAtomicDerivedStateProcessorRegistry stateProcessorRegistry;
 
     /**
      * Constructs the calculator.
@@ -55,6 +62,11 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
             }
             memberEnd.setType(types.get(i));
             if (cardinalities.size() > i) {
+                Optional<IAtomicDerivedStateProcessor<Cardinality>> cardinalityCalculator = stateProcessorRegistry
+                        .findCalculator(Cardinality.class);
+                if (cardinalityCalculator.isPresent()) {
+                    cardinalityCalculator.get().accept(cardinalities.get(i));
+                }
                 if (memberEnd.getCardinality() != null) {
                     memberEnd.getCardinality().setLowerBound(cardinalities.get(i).getLowerBound());
                     memberEnd.getCardinality().setUpperBound(cardinalities.get(i).getUpperBound());
