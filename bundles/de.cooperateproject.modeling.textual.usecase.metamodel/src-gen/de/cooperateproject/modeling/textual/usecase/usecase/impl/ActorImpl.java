@@ -195,6 +195,24 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(UsecasePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(UsecasePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public VisibilityKind getVisibility() {
         return (VisibilityKind)eDynamicGet(UsecasePackage.ACTOR__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
@@ -380,7 +398,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
                 unsetName();
                 return;
             case UsecasePackage.ACTOR__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case UsecasePackage.ACTOR__VISIBILITY:
                 unsetVisibility();
@@ -408,7 +426,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Actor> implements de.co
             case UsecasePackage.ACTOR__NAME:
                 return isSetName();
             case UsecasePackage.ACTOR__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case UsecasePackage.ACTOR__VISIBILITY:
                 return isSetVisibility();
             case UsecasePackage.ACTOR__ABSTRACT:

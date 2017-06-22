@@ -143,6 +143,24 @@ public class ExtensionPointImpl extends UMLReferencingElementImpl<ExtensionPoint
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(UsecasePackage.EXTENSION_POINT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(UsecasePackage.EXTENSION_POINT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public UseCase getUseCase() {
         return (UseCase)eDynamicGet(UsecasePackage.EXTENSION_POINT__USE_CASE, UsecasePackage.Literals.EXTENSION_POINT__USE_CASE, true, true);
     }
@@ -261,7 +279,7 @@ public class ExtensionPointImpl extends UMLReferencingElementImpl<ExtensionPoint
                 unsetName();
                 return;
             case UsecasePackage.EXTENSION_POINT__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case UsecasePackage.EXTENSION_POINT__USE_CASE:
                 setUseCase((UseCase)null);
@@ -281,7 +299,7 @@ public class ExtensionPointImpl extends UMLReferencingElementImpl<ExtensionPoint
             case UsecasePackage.EXTENSION_POINT__NAME:
                 return isSetName();
             case UsecasePackage.EXTENSION_POINT__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case UsecasePackage.EXTENSION_POINT__USE_CASE:
                 return getUseCase() != null;
         }
