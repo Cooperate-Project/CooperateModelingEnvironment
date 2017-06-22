@@ -23,54 +23,59 @@ import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
-import de.cooperateproject.ui.util.EditorFinderUtil;
+import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 
 public class TextualCDOEditorLauncher extends EditorLauncher {
 
-	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType)
-			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType, false);
-	}
+    public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType)
+            throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        super(launcherFile, editorType, false);
+    }
 
-	@Override
-	protected IEditorPart doOpenEditor() throws PartInitException {
-		CDOResourceLeaf cdoResource = (CDOResourceLeaf) getConcreteSyntaxModel().getRootElement().eResource();
-		IEditorInput editorInput = new CooperateCDOLobEditorInput(cdoResource, getLauncherFile());
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		TextualCDOEditorIDs editorId;
-		try {
-			editorId = getEditorId(getConcreteSyntaxModel());
-		} catch (ConcreteSyntaxTypeNotAvailableException e) {
-			throw new PartInitException("Error in loading the editor.", e);
-		}
-		IEditorPart editor = IDE.openEditor(page, editorInput, editorId.getId());
-		
-		SaveablePostProcessingSupport postProcessingSupport = editor.getAdapter(SaveablePostProcessingSupport.class);
-		if (postProcessingSupport != null) {
-			postProcessingSupport.register(new SavePostProcessor() {
-				@Override
-				public void processAfterSafe() throws Exception {
-					handleEditorSave(editor);
-				}
-			});			
-		}
-		
-		return editor;
-	}
+    @Override
+    protected IEditorPart doOpenEditor() throws PartInitException {
+        CDOResourceLeaf cdoResource = (CDOResourceLeaf) getConcreteSyntaxModel().getRootElement().eResource();
+        IEditorInput editorInput = new CooperateCDOLobEditorInput(cdoResource, getLauncherFile());
+        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+        TextualCDOEditorIDs editorId;
+        try {
+            editorId = getEditorId(getConcreteSyntaxModel());
+        } catch (ConcreteSyntaxTypeNotAvailableException e) {
+            throw new PartInitException("Error in loading the editor.", e);
+        }
+        IEditorPart editor = IDE.openEditor(page, editorInput, editorId.getId());
 
-	private static TextualCDOEditorIDs getEditorId(ConcreteSyntaxModel concreteSyntaxModel) throws ConcreteSyntaxTypeNotAvailableException {
-		Optional<TextualCDOEditorIDs> editorId = TextualCDOEditorIDs.findByExtension(concreteSyntaxModel.getExtension());
-		if (!editorId.isPresent()) {
-			throw new ConcreteSyntaxTypeNotAvailableException("Could not find appropriate editor.");
-		}
-		return editorId.get();
-	}
+        SaveablePostProcessingSupport postProcessingSupport = editor.getAdapter(SaveablePostProcessingSupport.class);
+        if (postProcessingSupport != null) {
+            postProcessingSupport.register(new SavePostProcessor() {
+                @Override
+                public void processAfterSafe() throws Exception {
+                    handleEditorSave(editor);
+                }
+            });
+        }
 
-	public static Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		IEditorInput editorInput = new FileEditorInput(launcherFile);
-		Collection<IEditorPart> editorCandidates = EditorFinderUtil.findEditor(editorInput);
-		Collection<String> availableEditorIds = Arrays.asList(TextualCDOEditorIDs.values()).stream().map(v -> v.getId()).collect(Collectors.toSet());
-		return editorCandidates.stream().filter(e -> availableEditorIds.contains(e.getEditorSite().getId())).findFirst();
-	}
+        return editor;
+    }
+
+    private static TextualCDOEditorIDs getEditorId(ConcreteSyntaxModel concreteSyntaxModel)
+            throws ConcreteSyntaxTypeNotAvailableException {
+        Optional<TextualCDOEditorIDs> editorId = TextualCDOEditorIDs
+                .findByExtension(concreteSyntaxModel.getExtension());
+        if (!editorId.isPresent()) {
+            throw new ConcreteSyntaxTypeNotAvailableException("Could not find appropriate editor.");
+        }
+        return editorId.get();
+    }
+
+    public static Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType)
+            throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        IEditorInput editorInput = new FileEditorInput(launcherFile);
+        Collection<IEditorPart> editorCandidates = EditorFinderUtil.findEditor(editorInput);
+        Collection<String> availableEditorIds = Arrays.asList(TextualCDOEditorIDs.values()).stream()
+                .map(TextualCDOEditorIDs::getId).collect(Collectors.toSet());
+        return editorCandidates.stream().filter(e -> availableEditorIds.contains(e.getEditorSite().getId()))
+                .findFirst();
+    }
 
 }

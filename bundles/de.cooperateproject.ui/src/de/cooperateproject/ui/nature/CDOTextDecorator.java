@@ -1,6 +1,5 @@
 package de.cooperateproject.ui.nature;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -8,10 +7,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CDOTextDecorator implements ILightweightLabelDecorator {
 
-    private static final Logger LOGGER = Logger.getLogger(CDOTextDecorator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CDOTextDecorator.class);
 
     @Override
     public void addListener(ILabelProviderListener listener) {

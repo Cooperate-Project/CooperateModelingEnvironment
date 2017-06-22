@@ -34,9 +34,9 @@ class ClsUMLReferencingElementMissingElementFactory extends ClsAutomatedIssueRes
 		"Create UML element";
 	}
 
-	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) {
-		"The UML element does not exist yet.";
-	}
+	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject)
+		'''The UML element («eObject.eClass.name») does not exist yet.'''
+	
 
 	override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
 	    new IssueLocator(eObject.relevantFeature, eObject)

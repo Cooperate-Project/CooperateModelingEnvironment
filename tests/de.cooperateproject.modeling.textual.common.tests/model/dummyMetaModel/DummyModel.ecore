@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dummy" nsURI="http://example.org/dummy/model/internal/use/only"
+    nsPrefix="dummy">
+  <eClassifiers xsi:type="ecore:EClass" name="Containable" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferencingElement">
+    <eGenericSuperTypes eClassifier="#//Containable"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass ../../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//Containable">
+    <eOperations name="createReferencingElement" lowerBound="1" eType="#//ReferencingElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ReferencingElement element = DummyFactory.eINSTANCE.createReferencingElement();&#xD;&#xA;getContent().add(element);&#xD;&#xA;return element;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="createReferencingElement2" lowerBound="1" eType="#//ReferencingElement2">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ReferencingElement2 element = DummyFactory.eINSTANCE.createReferencingElement2();&#xD;&#xA;getContent().add(element);&#xD;&#xA;return element;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="createContainer" lowerBound="1" eType="#//Container">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="dummy.Container element = DummyFactory.eINSTANCE.createContainer();&#xD;&#xA;getContent().add(element);&#xD;&#xA;return element;"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
+        eType="#//Containable" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferencingElement2">
+    <eGenericSuperTypes eClassifier="#//Containable"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
+      <eTypeArguments eClassifier="ecore:EClass ../../../org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+</ecore:EPackage>

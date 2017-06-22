@@ -108,6 +108,10 @@ public class TextualCommonsAdapterFactory extends AdapterFactoryImpl {
                 return createPackageImportAdapter();
             }
             @Override
+            public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
+                return createVisibilityHavingElementAdapter();
+            }
+            @Override
             public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
@@ -268,6 +272,20 @@ public class TextualCommonsAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement <em>Visibility Having Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement
+     * @generated
+     */
+    public Adapter createVisibilityHavingElementAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for the default case.
      * <!-- begin-user-doc -->
 	 * This default implementation returns null.

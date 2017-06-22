@@ -2,13 +2,14 @@ package de.cooperateproject.ui.wizards.projectnew;
 
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.CooperateProjectNature;
 import de.cooperateproject.ui.nature.NatureUtils;
@@ -16,7 +17,7 @@ import de.cooperateproject.ui.properties.ProjectPropertiesStore;
 
 public class NewCooperateProjectWizard extends BasicNewProjectResourceWizard implements INewWizard {
 
-    private static final Logger LOGGER = Logger.getLogger(NewCooperateProjectWizard.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewCooperateProjectWizard.class);
 
     private CDOConfigurationWizardPage cdoPage;
     private boolean cdoPageShown = false;

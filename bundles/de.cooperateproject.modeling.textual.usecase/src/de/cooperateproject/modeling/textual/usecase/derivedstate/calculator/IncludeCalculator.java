@@ -6,12 +6,15 @@ import java.util.stream.Collectors;
 import org.eclipse.uml2.uml.UseCase;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Include;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State calculator for include relationships.
  */
-public class IncludeCalculator extends AtomicStateProcessorExtensionBase<Include> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class IncludeCalculator extends AtomicDerivedStateProcessorBase<Include> {
 
     /**
      * Constructs the calculator.
@@ -21,22 +24,20 @@ public class IncludeCalculator extends AtomicStateProcessorExtensionBase<Include
     }
 
     @Override
-    protected Boolean applyTyped(Include object) {
+    protected void applyTyped(Include object) {
         UseCase umlIncludingCase = object.getIncludingCase().getReferencedElement();
         UseCase umlAddition = object.getAddition().getReferencedElement();
 
         if (umlIncludingCase == null || umlAddition == null) {
-            return false;
+            return;
         }
 
         Set<org.eclipse.uml2.uml.Include> candidates = umlIncludingCase.getIncludes().stream()
                 .filter(i -> umlAddition == i.getAddition()).collect(Collectors.toSet());
         if (candidates.size() == 1) {
             object.setReferencedElement(candidates.iterator().next());
-            return true;
+            return;
         }
-
-        return false;
     }
 
 }

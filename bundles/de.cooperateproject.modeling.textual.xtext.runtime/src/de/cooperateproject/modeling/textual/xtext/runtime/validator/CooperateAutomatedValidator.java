@@ -5,11 +5,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.validation.AbstractInjectableValidator;
@@ -47,8 +50,11 @@ public class CooperateAutomatedValidator extends AbstractInjectableValidator imp
     protected boolean internalValidate(EClass eClass, EObject eObject, DiagnosticChain diagnostics,
             Map<Object, Object> context) {
         boolean newDiagnostics = false;
+        Set<EPackage> relevantPackages = eClass.getEAllSuperTypes().stream().map(EClassifier::getEPackage)
+                .collect(Collectors.toSet());
+        relevantPackages.add(eClass.getEPackage());
         Collection<IAutomatedIssueResolutionFactory> applicableFactories = registry
-                .findFactories(Collections.singletonList(eClass.getEPackage()));
+                .findFactories(Collections.unmodifiableCollection(relevantPackages));
         for (IAutomatedIssueResolutionFactory factory : applicableFactories) {
             if (factory.hasIssue(eObject)) {
                 int severity = factory.resolvePossible(eObject) ? Diagnostic.INFO : Diagnostic.ERROR;

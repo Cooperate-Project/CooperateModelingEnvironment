@@ -113,14 +113,14 @@ public abstract class FlatResourceChangeManager extends ResourceChangeManagerBas
     private void unregisterAdapter(ResourceSet rs) {
         Validate.notNull(rs);
 
-        rs.eAdapters().removeIf(a -> a == resourceSetObserver);
+        rs.eAdapters().removeIf(resourceSetObserver::equals);
         resourceSetObserver = null;
     }
 
     private void unregisterAdapter(Resource r) {
         Validate.notNull(r);
 
-        resourceObservers.stream().filter(o -> o.getObservedResource() == r).forEach(o -> o.close());
+        resourceObservers.stream().filter(o -> o.getObservedResource() == r).forEach(IResourceChangeObserver::close);
         resourceObservers.removeIf(o -> o.getObservedResource() == r);
         fireResourceProcessed(r, PreparationReason.DISCARDED);
     }

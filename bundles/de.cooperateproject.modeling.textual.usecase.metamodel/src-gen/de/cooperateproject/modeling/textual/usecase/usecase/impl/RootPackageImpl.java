@@ -105,6 +105,24 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(UsecasePackage.ROOT_PACKAGE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<Actor> getActors() {
         return (EList<Actor>)eDynamicGet(UsecasePackage.ROOT_PACKAGE__ACTORS, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, true, true);
@@ -273,7 +291,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     public void eUnset(int featureID) {
         switch (featureID) {
             case UsecasePackage.ROOT_PACKAGE__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 getActors().clear();
@@ -300,7 +318,7 @@ public class RootPackageImpl extends UMLReferencingElementImpl<org.eclipse.uml2.
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.ROOT_PACKAGE__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case UsecasePackage.ROOT_PACKAGE__ACTORS:
                 return !getActors().isEmpty();
             case UsecasePackage.ROOT_PACKAGE__SYSTEMS:

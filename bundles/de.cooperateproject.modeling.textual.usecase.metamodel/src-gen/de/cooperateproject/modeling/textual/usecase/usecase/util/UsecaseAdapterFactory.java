@@ -8,6 +8,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Elem
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
@@ -152,6 +153,10 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseAliasedElement(AliasedElement object) {
                 return createAliasedElementAdapter();
+            }
+            @Override
+            public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
+                return createVisibilityHavingElementAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -408,6 +413,20 @@ public class UsecaseAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createAliasedElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement <em>Visibility Having Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement
+     * @generated
+     */
+    public Adapter createVisibilityHavingElementAdapter() {
         return null;
     }
 

@@ -59,7 +59,7 @@ Workflow {
 		registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
 	}
     
-	component = XtextGenerator {
+	component = CooperateXtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
 				baseName = "${basename}"
@@ -92,6 +92,8 @@ Workflow {
 			referencedResource = "platform:/resource/${basename}.metamodel/model/usecase.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
+			
+			renameRefactoring = refactoring.CooperateRenameGeneratorFragment2 auto-inject {}
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 

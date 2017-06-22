@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.common.branch.CDOBranch;
 import org.eclipse.emf.cdo.common.revision.CDORevision;
@@ -26,6 +25,8 @@ import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.net4j.util.container.IPluginContainer;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
@@ -35,7 +36,7 @@ import de.cooperateproject.util.connection.ConnectionUtils;
 
 public final class CDOHelper {
 
-    private static final Logger LOGGER = Logger.getLogger(CDOHelper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CDOHelper.class);
 
     private CDOHelper() {
         // intentionally left blank

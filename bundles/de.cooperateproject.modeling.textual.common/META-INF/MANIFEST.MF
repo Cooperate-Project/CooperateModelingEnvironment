@@ -6,7 +6,6 @@ Bundle-Version: 0.1.8.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
  org.apache.commons.lang3;bundle-version="3.1.0",
- org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.emf.common,
  org.eclipse.gmf.runtime.notation;bundle-version="1.8.0",
  org.eclipse.emf.ecore;bundle-version="2.11.2",
@@ -22,10 +21,12 @@ Require-Bundle: org.apache.commons.io;bundle-version="2.2.0",
 Export-Package: de.cooperateproject.modeling.textual.common,
  de.cooperateproject.modeling.textual.common.conventions,
  de.cooperateproject.modeling.textual.common.derivedstate.calculator,
- de.cooperateproject.modeling.textual.common.generator,
+ de.cooperateproject.modeling.textual.common.derivedstate.initializer,
+ de.cooperateproject.modeling.textual.common.derivedstate.remover,
  de.cooperateproject.modeling.textual.common.issues,
  de.cooperateproject.modeling.textual.common.naming,
  de.cooperateproject.modeling.textual.common.scoping,
  de.cooperateproject.modeling.textual.common.services,
+ de.cooperateproject.modeling.textual.common.util,
  de.cooperateproject.modeling.textual.common.validation
-
+Import-Package: org.slf4j;version="1.7.2"

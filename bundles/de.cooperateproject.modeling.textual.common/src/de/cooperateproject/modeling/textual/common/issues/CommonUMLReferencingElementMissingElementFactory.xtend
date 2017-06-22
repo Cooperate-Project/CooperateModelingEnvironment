@@ -1,14 +1,14 @@
 package de.cooperateproject.modeling.textual.common.issues
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import org.eclipse.uml2.uml.Element
 
 class CommonUMLReferencingElementMissingElementFactory extends CommonAutomatedIssueResolutionFactoryBase<UMLReferencingElement<Element>> {
 
-	static val ISSUE_CODE = "missingUMLReference";
+    static val ONLY_CHECK_FIXABLE_TYPES = true
+	static val ISSUE_CODE = "textualCommons_missingUMLReference"
 	static val RESOLVABLE_CHECKER = new CommonUMLReferencingElementMissingElementResolvableChecker()
 
 	@SuppressWarnings("unchecked")
@@ -18,12 +18,11 @@ class CommonUMLReferencingElementMissingElementFactory extends CommonAutomatedIs
 	}
 
 	override hasIssueInternal(UMLReferencingElement<Element> element) {
-		if (element instanceof PackageBase) {
-			if (element.owningPackage === null) {
-				return false;
-			}
-		}
-		return element.referencedElement === null;
+	    if (!ONLY_CHECK_FIXABLE_TYPES || CommonUMLReferencingElementMissingElementResolution.
+	        acceptableTypes.exists[t | t.isInstance(element)]) {
+            return element.referencedElement === null;
+	    }
+	    return false;
 	}
 
 	override createInternal(UMLReferencingElement<Element> element) {
@@ -34,9 +33,8 @@ class CommonUMLReferencingElementMissingElementFactory extends CommonAutomatedIs
 		"Create UML element";
 	}
 
-	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) {
-		"The UML element does not exist yet.";
-	}
+	override getIssueDescriptionInternal(UMLReferencingElement<Element> eObject) 
+		'''The UML element («eObject.eClass.name») does not exist yet.'''
 
 	override getIssueFeatureInternal(UMLReferencingElement<Element> eObject) {
 	    new IssueLocator(eObject.relevantFeature, eObject)

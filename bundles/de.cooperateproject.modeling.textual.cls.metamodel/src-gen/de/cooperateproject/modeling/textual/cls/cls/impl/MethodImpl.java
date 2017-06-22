@@ -86,6 +86,24 @@ public class MethodImpl extends MemberImpl<Operation> implements Method {
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAbstract() {
+        eDynamicUnset(ClsPackage.METHOD__ABSTRACT, ClsPackage.Literals.METHOD__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAbstract() {
+        return eDynamicIsSet(ClsPackage.METHOD__ABSTRACT, ClsPackage.Literals.METHOD__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<Parameter> getParameters() {
         return (EList<Parameter>)eDynamicGet(ClsPackage.METHOD__PARAMETERS, ClsPackage.Literals.METHOD__PARAMETERS, true, true);
@@ -165,7 +183,7 @@ public class MethodImpl extends MemberImpl<Operation> implements Method {
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.METHOD__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
+                unsetAbstract();
                 return;
             case ClsPackage.METHOD__PARAMETERS:
                 getParameters().clear();
@@ -183,7 +201,7 @@ public class MethodImpl extends MemberImpl<Operation> implements Method {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ClsPackage.METHOD__ABSTRACT:
-                return isAbstract() != ABSTRACT_EDEFAULT;
+                return isSetAbstract();
             case ClsPackage.METHOD__PARAMETERS:
                 return !getParameters().isEmpty();
         }

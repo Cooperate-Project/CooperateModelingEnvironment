@@ -35,7 +35,7 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
      * @return the value of the '<em>Extension</em>' reference.
      * @see #setExtension(UseCase)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Extension()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     UseCase getExtension();
@@ -61,7 +61,7 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
      * @return the value of the '<em>Extended Case</em>' reference.
      * @see #setExtendedCase(UseCase)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_ExtendedCase()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     UseCase getExtendedCase();
@@ -87,7 +87,7 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
      * @return the value of the '<em>Extension Location</em>' reference.
      * @see #setExtensionLocation(ExtensionPoint)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_ExtensionLocation()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     ExtensionPoint getExtensionLocation();
@@ -113,7 +113,7 @@ public interface Extend extends Relationship, UMLReferencingElement<org.eclipse.
      * @return the value of the '<em>Condition</em>' attribute.
      * @see #setCondition(String)
      * @see de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage#getExtend_Condition()
-     * @model
+     * @model transient="true"
      * @generated
      */
     String getCondition();

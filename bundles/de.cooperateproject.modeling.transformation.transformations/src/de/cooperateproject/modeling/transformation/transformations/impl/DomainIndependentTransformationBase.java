@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -29,6 +27,8 @@ import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.Trace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -37,7 +37,7 @@ import de.cooperateproject.modeling.transformation.transformations.Activator;
 
 public abstract class DomainIndependentTransformationBase {
 
-    private static final Logger LOGGER = Logger.getLogger(DomainIndependentTransformationBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DomainIndependentTransformationBase.class);
     private final Map<URI, QVTOResource> specialMappings = Maps.newHashMap();
     private final Map<URI, TransformationExecutor> transformationExecutors = Maps.newHashMap();
     private final ResourceSet rs;
@@ -87,7 +87,7 @@ public abstract class DomainIndependentTransformationBase {
             context.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, transformationTrace.get());
         }
         context.setConfigProperty("keepModeling", true);
-        context.setLog(new Log4JLogger(LOGGER, Level.DEBUG));
+        context.setLog(new Slf4JLogger(LOGGER));
 
         TransformationExecutor executor = getOrCreateTransformationExecutor(transformationURI);
         ExecutionDiagnostic result = executor.execute(context, transformationParameters.toArray(new ModelExtent[0]));
@@ -146,10 +146,8 @@ public abstract class DomainIndependentTransformationBase {
         if (!traceURI.isPresent()) {
             return Optional.empty();
         }
-        Resource traceResource = null;
-        Trace traceModel = Trace.createEmptyTrace();
-        traceResource = rs.getResource(traceURI.get(), true);
-        traceModel = new Trace(traceResource.getContents());
+        Resource traceResource = rs.getResource(traceURI.get(), true);
+        Trace traceModel = new Trace(traceResource.getContents());
         EcoreUtil.resolveAll(traceResource);
         return Optional.of(traceModel);
     }

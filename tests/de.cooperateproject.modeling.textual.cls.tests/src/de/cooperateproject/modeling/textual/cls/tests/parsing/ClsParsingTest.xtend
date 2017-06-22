@@ -305,11 +305,11 @@ class ClsParsingTest extends AbstractClsTest {
 			val setNameMember = clsMembers.findFirst[x|x.name.equals("setName")] as Method
 			val calculateAgeMember = clsMembers.findFirst[x|x.name.equals("calculateAge")] as Method
 
-			checkVisibility(nameMember, Visibility.PUBLIC, VisibilityKind.PUBLIC_LITERAL)
-			checkVisibility(ageMember, Visibility.PRIVATE, VisibilityKind.PRIVATE_LITERAL)
-			checkVisibility(getNameMember, Visibility.PROTECTED, VisibilityKind.PROTECTED_LITERAL)
-			checkVisibility(setNameMember, Visibility.PROTECTED, VisibilityKind.PROTECTED_LITERAL)
-			checkVisibility(calculateAgeMember, Visibility.PACKAGE, VisibilityKind.PACKAGE_LITERAL)
+			checkVisibility(nameMember, VisibilityKind.PUBLIC_LITERAL)
+			checkVisibility(ageMember, VisibilityKind.PRIVATE_LITERAL)
+			checkVisibility(getNameMember, VisibilityKind.PROTECTED_LITERAL)
+			checkVisibility(setNameMember, VisibilityKind.PROTECTED_LITERAL)
+			checkVisibility(calculateAgeMember, VisibilityKind.PACKAGE_LITERAL)
 		]
 	}
 
@@ -319,9 +319,9 @@ class ClsParsingTest extends AbstractClsTest {
 	 * @param visibility the visibility the member should have.
 	 * @param kind the visibility the referenced element of the member should have.
 	 */
-	private def void checkVisibility(Member<? extends NamedElement> member, Visibility visibility, VisibilityKind kind) {
+	private def void checkVisibility(Member<? extends NamedElement> member, VisibilityKind visibility) {
 		assertEquals(visibility, member.visibility)
-		assertEquals(kind, member.referencedElement.visibility)
+		assertEquals(visibility, member.referencedElement.visibility)
 	}
 
 	@Test
@@ -698,24 +698,24 @@ class ClsParsingTest extends AbstractClsTest {
 				// Check UML and cls cardinalities
 				val aliceClassMembers = aliceClass.referencedElement.members.filter(Property)
 				// card0 [*]
-				checkClsCardinality(asc0.memberEnds.get(0).cardinality, asc0.memberEnds.get(1).cardinality, -1, 0, 0, 0)
+				checkClsCardinality(asc0.memberEnds.get(0).cardinality, asc0.memberEnds.get(1).cardinality, 0, -1, 0, 0)
 				checkUMLCardinality(aliceClassMembers, asc0.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 0, -1, 0, -1)
 
 				// card1 [42|1..*]
-				checkClsCardinality(asc1.memberEnds.get(0).cardinality, asc1.memberEnds.get(1).cardinality, 42, 0, 1, -1)
+				checkClsCardinality(asc1.memberEnds.get(0).cardinality, asc1.memberEnds.get(1).cardinality, 42, 42, 1, -1)
 				checkUMLCardinality(aliceClassMembers, asc1.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 42, 42, 1, -1)
 				// card2 [*|24..42]
-				checkClsCardinality(asc2.memberEnds.get(0).cardinality, asc2.memberEnds.get(1).cardinality, -1, 0, 24, 42)
+				checkClsCardinality(asc2.memberEnds.get(0).cardinality, asc2.memberEnds.get(1).cardinality, 0, -1, 24, 42)
 				checkUMLCardinality(aliceClassMembers, asc2.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 0, -1, 24, 42)
 				// card3 [24..42|*]
-				checkClsCardinality(asc3.memberEnds.get(0).cardinality, asc3.memberEnds.get(1).cardinality, 24, 42, -1, 0)
+				checkClsCardinality(asc3.memberEnds.get(0).cardinality, asc3.memberEnds.get(1).cardinality, 24, 42, 0, -1)
 				checkUMLCardinality(aliceClassMembers, asc3.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 24, 42, 0, -1)
 				// card4 [*|*]
-				checkClsCardinality(asc4.memberEnds.get(0).cardinality, asc4.memberEnds.get(1).cardinality, -1, 0, -1, 0)
+				checkClsCardinality(asc4.memberEnds.get(0).cardinality, asc4.memberEnds.get(1).cardinality, 0, -1, 0, -1)
 				checkUMLCardinality(aliceClassMembers, asc4.referencedElement.members.filter(Property), "AliceAsc",
 					"BobAsc", 0, -1, 0, -1)
 
@@ -811,7 +811,7 @@ class ClsParsingTest extends AbstractClsTest {
 					bobClass.referencedElement.members.filter(Property), "AliceBi", "BobBi", association, 0, -1, 0, -1)
 
 				checkClsCardinality(associationCard.memberEnds.get(0).cardinality,
-					associationCard.memberEnds.get(1).cardinality, 24, 0, 42, 0)
+					associationCard.memberEnds.get(1).cardinality, 24, 24, 42, 42)
 
 				bidirectionalCardinalityTest(aliceClass.referencedElement.members.filter(Property),
 					bobClass.referencedElement.members.filter(Property), "AliceBi", "BobBi", associationCard, 24, 24,

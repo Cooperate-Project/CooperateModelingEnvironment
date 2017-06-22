@@ -19,7 +19,6 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.databinding.property,
  org.eclipse.jface.databinding,
  com.ibm.icu,
- org.apache.log4j,
  de.cooperateproject.ui.launchermodel;visibility:=reexport,
  org.eclipse.emf.cdo;bundle-version="4.4.1";visibility:=reexport,
  org.eclipse.emf.cdo.explorer;bundle-version="4.4.1",
@@ -39,15 +38,17 @@ Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.uml2.uml.resources,
  de.cooperateproject.modeling.graphical.common;bundle-version="0.1.8",
  de.cooperateproject.modeling.common,
- org.apache.activemq.all,
  org.eclipse.xtext,
- org.eclipse.ui.navigator
+ org.eclipse.ui.navigator,
+ org.apache.activemq.activemq-client;bundle-version="5.14.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Export-Package: de.cooperateproject.ui.editors.launcher,
  de.cooperateproject.ui.editors.launcher.extensions,
+ de.cooperateproject.ui.modelcreator,
  de.cooperateproject.ui.nature,
  de.cooperateproject.ui.properties,
  de.cooperateproject.ui.util
+Import-Package: org.slf4j;version="1.7.2"
 

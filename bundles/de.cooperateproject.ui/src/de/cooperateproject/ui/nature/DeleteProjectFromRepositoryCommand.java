@@ -3,7 +3,6 @@ package de.cooperateproject.ui.nature;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -15,12 +14,13 @@ import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CommitException;
-import org.eclipse.emf.cdo.util.ConcurrentAccessException;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 
@@ -33,8 +33,7 @@ import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
  */
 public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
 
-    private static final Logger LOGGER = Logger.getLogger(DeleteProjectFromRepositoryCommand.class);
-    private static final String ERRMSG = "Could not delete project ";
+    private static final Logger LOGGER = LoggerFactory.getLogger(DeleteProjectFromRepositoryCommand.class);
     private boolean confirmation = false;
 
     @Override
@@ -47,7 +46,7 @@ public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
             }
             for (IProject project : getSelectedProjects()) {
                 if (!deleteProject(project)) {
-                    LOGGER.error(ERRMSG + project.getName() + ".");
+                    LOGGER.error("Could not delete project {}.", project.getName());
                 }
             }
         }
@@ -60,7 +59,7 @@ public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
                 return deleteProjectFromWorkspace(project);
             }
         } catch (CoreException e) {
-            LOGGER.error("Can't access project " + project.getName() + ". Please make sure the project is opened.", e);
+            LOGGER.error("Can't access project {}. Please make sure the project is opened.", project.getName(), e);
         }
         return false;
     }
@@ -72,17 +71,14 @@ public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
             CDOTransaction transaction = session.openTransaction();
             CDOResourceFolder resource = transaction.getResourceFolder(project.getName());
             if (resource == null) {
-                LOGGER.error("Project " + project + " doesn't exist in repository.");
+                LOGGER.error("Project {} doesn't exist in repository.", project);
                 return false;
             }
             EcoreUtil.delete(resource);
             try {
                 transaction.commit();
-            } catch (ConcurrentAccessException e) {
-                LOGGER.error(ERRMSG + project.getName() + " from repository.", e);
-                return false;
             } catch (CommitException e) {
-                LOGGER.error(ERRMSG + project.getName() + " from repository.", e);
+                LOGGER.error("Could not delete project {} from repository.", project.getName(), e);
                 return false;
             }
         } finally {
@@ -96,7 +92,7 @@ public class DeleteProjectFromRepositoryCommand extends AbstractHandler {
             ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName()).delete(true, true,
                     new NullProgressMonitor());
         } catch (CoreException e) {
-            LOGGER.error(ERRMSG + project.getName() + " from workspace.", e);
+            LOGGER.error("Could not delete project {} from workspace.", project.getName(), e);
             return false;
         }
         return true;

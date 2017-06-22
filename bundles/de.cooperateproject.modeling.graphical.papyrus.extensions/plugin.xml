@@ -92,6 +92,12 @@
       </configuration>
    </extension>
    <extension
+         point="de.cooperateproject.ui.modelcreator.postprocessor">
+      <class
+            class="de.cooperate.modeling.graphical.papyrus.extensions.configuration.PapyrusConfigurationModelCreationPostProcessor">
+      </class>
+   </extension>
+   <extension
       point="org.eclipse.papyrus.infra.properties.contexts">
    <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
 </extension>

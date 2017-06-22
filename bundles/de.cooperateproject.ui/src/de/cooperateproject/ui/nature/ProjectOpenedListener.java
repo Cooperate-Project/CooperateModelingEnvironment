@@ -1,6 +1,5 @@
 package de.cooperateproject.ui.nature;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -13,18 +12,20 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.nature.tasks.BackgroundTasksAdapter;
 
 /**
  * IResourceChangeListener which provides custom logic for cooperate projects.
  * 
- * @author faller, seifermann, persch
+ * @author faller, seifermann, persch, henss
  *
  */
 public class ProjectOpenedListener implements IResourceChangeListener {
 
-    private static final Logger LOGGER = Logger.getLogger(ProjectOpenedListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProjectOpenedListener.class);
 
     @Override
     public void resourceChanged(IResourceChangeEvent event) {
@@ -52,18 +53,20 @@ public class ProjectOpenedListener implements IResourceChangeListener {
 
     private static boolean isRelevantForClean(IResourceDelta delta) {
         if ((delta.getResource().getType() & IResource.PROJECT) != 0 && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
-            return true;
+            IProject project = delta.getResource().getAdapter(IProject.class);
+            return project.isAccessible();
         }
 
         return false;
     }
 
-    private static boolean isRelevantForDelete(IResourceDelta delta) {
+    private static boolean isRelevantForDeregister(IResourceDelta delta) {
         if ((delta.getResource().getType() & IResource.PROJECT) == 0) {
             return false;
         }
+        IProject project = delta.getResource().getAdapter(IProject.class);
 
-        if (delta.getKind() == IResourceDelta.REMOVED) {
+        if (delta.getKind() == IResourceDelta.REMOVED || !project.isAccessible()) {
             return true;
         }
 
@@ -74,7 +77,7 @@ public class ProjectOpenedListener implements IResourceChangeListener {
         @Override
         public boolean visit(final IResourceDelta delta) throws CoreException {
             if (isRelevantForClean(delta)) {
-                IProject project = (IProject) delta.getResource();
+                IProject project = delta.getResource().getAdapter(IProject.class);
                 Job rebuild = new Job("rebuild") {
                     @Override
                     protected IStatus run(IProgressMonitor monitor) {
@@ -89,7 +92,8 @@ public class ProjectOpenedListener implements IResourceChangeListener {
                 };
                 rebuild.schedule();
             }
-            if (isRelevantForDelete(delta)) {
+
+            if (isRelevantForDeregister(delta)) {
                 BackgroundTasksAdapter.getManager().deregisterProject((IProject) delta.getResource());
             }
             return true;
