@@ -1,5 +1,7 @@
 package de.cooperateproject.modeling.textual.usecase.derivedstate.calculator;
 
+import java.util.Optional;
+
 import org.eclipse.uml2.uml.Classifier;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
@@ -23,25 +25,19 @@ public class GeneralizationCalculator extends AtomicDerivedStateProcessorBase<Ge
 
     @Override
     protected void applyTyped(Generalization object) {
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        UMLReferencingElement<Classifier> specific = (UMLReferencingElement) object.getSpecific();
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        UMLReferencingElement<Classifier> general = (UMLReferencingElement) object.getGeneral();
+        Optional<Classifier> umlSpecific = Optional.ofNullable(object.getSpecific())
+                .map(UMLReferencingElement::getReferencedElement);
+        Optional<Classifier> umlGeneral = Optional.ofNullable(object.getGeneral())
+                .map(UMLReferencingElement::getReferencedElement);
 
-        Classifier umlSpecific = specific.getReferencedElement();
-        Classifier umlGeneral = general.getReferencedElement();
-
-        if (umlSpecific == null || umlGeneral == null) {
+        if (!umlSpecific.isPresent() || !umlGeneral.isPresent()) {
             return;
         }
 
-        org.eclipse.uml2.uml.Generalization umlGeneralization = umlSpecific.getGeneralization(umlGeneral);
+        org.eclipse.uml2.uml.Generalization umlGeneralization = umlSpecific.get().getGeneralization(umlGeneral.get());
         if (umlGeneralization != null) {
             object.setReferencedElement(umlGeneralization);
-            return;
         }
-
-        return;
     }
 
 }
