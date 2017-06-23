@@ -58,7 +58,7 @@ public class Activator extends AbstractUIPlugin {
     }
 
     public static void enableCooperatePropertyContext() {
-        Collection<Context> contexts = ConfigurationManager.getInstance().getContexts();
+        Collection<Context> contexts = ConfigurationManager.getInstance().getCustomizableContexts();
         contexts.forEach(ctx -> {
             if (!"CooperateProperties".equals(ctx.getName())) {
                 ConfigurationManager.getInstance().disableContext(ctx, true);
