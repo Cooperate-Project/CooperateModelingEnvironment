@@ -101,4 +101,12 @@
       point="org.eclipse.papyrus.infra.properties.contexts">
    <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
 </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage"
+            genModel="platform:/plugin/org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.genmodel"
+            uri="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet">
+      </package>
+   </extension>
 </plugin>
