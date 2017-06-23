@@ -3,31 +3,38 @@
  */
 package de.cooperateproject.modeling.textual.usecase.formatting2;
 
-import com.google.inject.Inject;
-import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAccess;
-import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
-import de.cooperateproject.modeling.textual.usecase.usecase.Association;
-import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
-import de.cooperateproject.modeling.textual.usecase.usecase.Relationship;
-import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
-import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
-import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram;
-import org.eclipse.xtext.formatting2.AbstractFormatter2;
-import org.eclipse.xtext.formatting2.IFormattableDocument;
+import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
+import de.cooperateproject.modeling.textual.usecase.services.UsecaseGrammarAccess
+import de.cooperateproject.modeling.textual.usecase.usecase.Actor
+import de.cooperateproject.modeling.textual.usecase.usecase.Association
+import de.cooperateproject.modeling.textual.usecase.usecase.Extend
+import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint
+import de.cooperateproject.modeling.textual.usecase.usecase.Generalization
+import de.cooperateproject.modeling.textual.usecase.usecase.Include
+import de.cooperateproject.modeling.textual.usecase.usecase.Relationship
+import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage
+import de.cooperateproject.modeling.textual.usecase.usecase.System
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
+import org.eclipse.xtext.formatting2.AbstractFormatter2
+import org.eclipse.xtext.formatting2.IFormattableDocument
 
 class UsecaseFormatter extends AbstractFormatter2 {
 	
 	@Inject extension UsecaseGrammarAccess
 
 	def dispatch void format(UseCaseDiagram usecasediagram, extension IFormattableDocument document) {
-		usecasediagram.regionFor.feature(UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE).append[newLines = 2]
+		usecasediagram.regionFor.feature(UsecasePackage.Literals.USE_CASE_DIAGRAM__TITLE).append[newLines = 2].prepend[space = " "]
 		format(usecasediagram.getRootPackage(), document);
 		usecasediagram.regionFor.keyword(useCaseDiagramAccess.endUcdKeyword_4).prepend[newLines = 2]
 	}
 
 	def dispatch void format(RootPackage rootpackage, extension IFormattableDocument document) {
 		rootpackage.regionFor.assignment(rootPackageAccess.nameAssignment_1).append[newLines = 2] 
+		rootpackage.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		
 		for (Actor actor : rootpackage.getActors()) {
 			format(actor, document);
@@ -35,7 +42,7 @@ class UsecaseFormatter extends AbstractFormatter2 {
 		}
 		rootpackage.actors.last?.append[newLines = 2; priority=2]
 		
-		for (de.cooperateproject.modeling.textual.usecase.usecase.System systems : rootpackage.getSystems()) {
+		for (System systems : rootpackage.getSystems()) {
 			format(systems, document);
 		}
 		rootpackage.systems.last?.append[newLines = 2]
@@ -46,13 +53,34 @@ class UsecaseFormatter extends AbstractFormatter2 {
 		}
 		rootpackage.relationships.last?.append[newLines = 2; priority=2]
 	}
+	
+	def dispatch void format(Actor actor, extension IFormattableDocument document) {
+		actor.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
+		actor.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "]
+		actor.regionFor.feature(UsecasePackage.Literals.ACTOR__ABSTRACT).prepend[space = " "]
+		actor.regionFor.keyword(actorAccess.actKeyword_2).prepend[space = " "]
+		actor.regionFor.keyword(actorAccess.asKeyword_3_1_1).prepend[space = " "]
+		actor.regionFor.keyword(actorAccess.roleKeyword_4_0).prepend[space = " "]
+		actor.regionFor.keyword(actorAccess.leftSquareBracketKeyword_4_1).prepend[space = ""].append[space = ""]
+		actor.regionFor.keyword(actorAccess.rightSquareBracketKeyword_4_3).prepend[space = ""]
+		actor.comments.forEach[c | c.format(document)]
+	}
+	
+	def dispatch void format(Comment comment, extension IFormattableDocument document) {
+		comment.regionFor.keyword(commentAccess.noteKeyword_0).prepend[space = " "].append[space = " "]
+	}
 
-	def dispatch void format(de.cooperateproject.modeling.textual.usecase.usecase.System system, extension IFormattableDocument document) {
+	def dispatch void format(System system, extension IFormattableDocument document) {
+		system.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		interior(
-			system.regionFor.keyword(systemAccess.leftCurlyBracketKeyword_2_1_0).append[newLine],
+			system.regionFor.keyword(systemAccess.leftCurlyBracketKeyword_2_1_0).append[newLine].prepend[space = " "],
 			system.regionFor.keyword(systemAccess.rightCurlyBracketKeyword_2_1_3),
 			[indent]
 		)
+		for (comment : system.comments) {
+			comment.format(document)
+			comment.append[newLine]
+		}
 		for (UseCase usecases : system.getUsecases()) {
 			format(usecases, document);
 		}
@@ -64,8 +92,10 @@ class UsecaseFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(UseCase usecase, extension IFormattableDocument document) {
+		usecase.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
+		usecase.regionFor.feature(TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS).prepend[space = " "]
 		interior(
-			usecase.regionFor.keyword(useCaseAccess.leftCurlyBracketKeyword_4_1_0).append[newLine],
+			usecase.regionFor.keyword(useCaseAccess.leftCurlyBracketKeyword_4_1_0).append[newLine].prepend[space = " "],
 			usecase.regionFor.keyword(useCaseAccess.rightCurlyBracketKeyword_4_1_3),
 			[indent]
 		) 
@@ -78,11 +108,47 @@ class UsecaseFormatter extends AbstractFormatter2 {
 		} else {
 			usecase.append[newLines = 2; priority = 2]
 		}
+		usecase.comments.forEach[c | c.format(document)]
+	}
+	
+	def dispatch void format(ExtensionPoint ep, extension IFormattableDocument document) {
+		ep.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 	}
 
 	def dispatch void format(Association association, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
+		association.regionFor.keyword(associationAccess.leftParenthesisKeyword_1).prepend[space = " "].append[space = ""]
+		association.regionFor.keyword(associationAccess.rightParenthesisKeyword_5).prepend[space = ""]
+		association.regionFor.keyword(associationAccess.commaKeyword_3).prepend[space = ""].append[space = " "]
 		format(association.getActorCardinality(), document);
 		format(association.getUseCaseCardinality(), document);
 	}
+	
+	def dispatch void format(Generalization generalization, extension IFormattableDocument document) {
+		generalization.regionFor.keyword(generalizationAccess.leftParenthesisKeyword_1).prepend[space = " "]
+		generalization.regionFor.keyword(generalizationAccess.rightParenthesisKeyword_5).prepend[space = ""]
+		generalization.regionFor.feature(UsecasePackage.Literals.GENERALIZATION__SPECIFIC).prepend[space = ""]
+		generalization.regionFor.keyword(generalizationAccess.commaKeyword_3).prepend[space = ""].append[space = " "]
+	}
+	
+	 def dispatch void format(Include include, extension IFormattableDocument document) {
+	 	include.regionFor.keyword(includeAccess.leftParenthesisKeyword_1).prepend[space = " "]
+	 	include.regionFor.keyword(includeAccess.rightParenthesisKeyword_5).prepend[space = ""]
+	 	include.regionFor.feature(UsecasePackage.Literals.INCLUDE__INCLUDING_CASE).prepend[space = ""]
+	 	include.regionFor.keyword(includeAccess.commaKeyword_3).prepend[space = ""].append[space = " "]
+	 }
+	 
+	 def dispatch void format(Extend extend, extension IFormattableDocument document) {
+	 	extend.regionFor.keyword(extendAccess.leftParenthesisKeyword_1).prepend[space = " "]
+	 	extend.regionFor.keyword(extendAccess.rightParenthesisKeyword_5).prepend[space = ""]
+	 	extend.regionFor.feature(UsecasePackage.Literals.EXTEND__EXTENSION).prepend[space = ""]
+	 	extend.regionFor.keyword(extendAccess.commaKeyword_3).prepend[space = ""].append[space = " "]
+	 	extend.regionFor.keyword(extendAccess.epKeyword_6).prepend[space = " "]
+	 	extend.regionFor.keyword(extendAccess.leftSquareBracketKeyword_7).prepend[space = ""]
+	 	extend.regionFor.keyword(extendAccess.rightSquareBracketKeyword_9).prepend[space = ""]
+	 	extend.regionFor.feature(UsecasePackage.Literals.EXTEND__EXTENSION_LOCATION).prepend[space = ""]
+	 	extend.regionFor.keyword(extendAccess.condKeyword_10_0).prepend[space = " "]
+	 	extend.regionFor.keyword(extendAccess.leftSquareBracketKeyword_10_1).prepend[space = ""]
+	 	extend.regionFor.keyword(extendAccess.rightSquareBracketKeyword_10_3).prepend[space = ""]
+	 	extend.regionFor.feature(UsecasePackage.Literals.EXTEND__CONDITION).prepend[space = ""]
+	 }
 }
