@@ -106,6 +106,7 @@ when {self.element != null and self.element.oclIsKindOf(uml::Include)}
 mapping uml::MultiplicityElement::multiplicityElementToCardinality() : Cardinality
 when {self.hasCardinality()}
 {
+	referencedElement := self;
 }
 
 query ecore::EObject::toElement() : uml::Element {
