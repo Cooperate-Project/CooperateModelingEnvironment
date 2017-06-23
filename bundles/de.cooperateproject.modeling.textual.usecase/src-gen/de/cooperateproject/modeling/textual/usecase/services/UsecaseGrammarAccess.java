@@ -120,31 +120,32 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVisibilityVisibilityEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
 		private final Assignment cAbstractAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final Keyword cAbstractAbstractKeyword_1_0 = (Keyword)cAbstractAssignment_1.eContents().get(0);
-		private final Keyword cActorKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cTypeActorTypeEnumRuleCall_3_1_0 = (RuleCall)cTypeAssignment_3_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Assignment cNameAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_4_0_0 = (RuleCall)cNameAssignment_4_0.eContents().get(0);
-		private final Group cGroup_4_1 = (Group)cAlternatives_4.eContents().get(1);
-		private final Assignment cNameAssignment_4_1_0 = (Assignment)cGroup_4_1.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_4_1_0_0 = (RuleCall)cNameAssignment_4_1_0.eContents().get(0);
-		private final Keyword cAsKeyword_4_1_1 = (Keyword)cGroup_4_1.eContents().get(1);
-		private final Assignment cAliasAssignment_4_1_2 = (Assignment)cGroup_4_1.eContents().get(2);
-		private final RuleCall cAliasIDTerminalRuleCall_4_1_2_0 = (RuleCall)cAliasAssignment_4_1_2.eContents().get(0);
+		private final Keyword cActKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cNameAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_3_0_0 = (RuleCall)cNameAssignment_3_0.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Assignment cNameAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final RuleCall cNameSTRINGTerminalRuleCall_3_1_0_0 = (RuleCall)cNameAssignment_3_1_0.eContents().get(0);
+		private final Keyword cAsKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
+		private final Assignment cAliasAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
+		private final RuleCall cAliasIDTerminalRuleCall_3_1_2_0 = (RuleCall)cAliasAssignment_3_1_2.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cRoleKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Assignment cTypeAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cTypeActorTypeEnumRuleCall_4_2_0 = (RuleCall)cTypeAssignment_4_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		private final Assignment cCommentsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cCommentsCommentParserRuleCall_5_0 = (RuleCall)cCommentsAssignment_5.eContents().get(0);
 		
 		//Actor:
-		//	visibility=Visibility? abstract?='abstract'? 'actor' ('[' type=ActorType ']')? (name=ID | name=STRING 'as' alias=ID)
-		//	comments+=Comment?;
+		//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID) ('role' '[' type=ActorType
+		//	']')? comments+=Comment?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//visibility=Visibility? abstract?='abstract'? 'actor' ('[' type=ActorType ']')? (name=ID | name=STRING 'as' alias=ID)
-		//comments+=Comment?
+		//visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID) ('role' '[' type=ActorType
+		//']')? comments+=Comment?
 		public Group getGroup() { return cGroup; }
 		
 		//visibility=Visibility?
@@ -159,50 +160,53 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//'abstract'
 		public Keyword getAbstractAbstractKeyword_1_0() { return cAbstractAbstractKeyword_1_0; }
 		
-		//'actor'
-		public Keyword getActorKeyword_2() { return cActorKeyword_2; }
-		
-		//('[' type=ActorType ']')?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_3_0() { return cLeftSquareBracketKeyword_3_0; }
-		
-		//type=ActorType
-		public Assignment getTypeAssignment_3_1() { return cTypeAssignment_3_1; }
-		
-		//ActorType
-		public RuleCall getTypeActorTypeEnumRuleCall_3_1_0() { return cTypeActorTypeEnumRuleCall_3_1_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_3_2() { return cRightSquareBracketKeyword_3_2; }
+		//'act'
+		public Keyword getActKeyword_2() { return cActKeyword_2; }
 		
 		//name=ID | name=STRING 'as' alias=ID
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//name=ID
-		public Assignment getNameAssignment_4_0() { return cNameAssignment_4_0; }
+		public Assignment getNameAssignment_3_0() { return cNameAssignment_3_0; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_4_0_0() { return cNameIDTerminalRuleCall_4_0_0; }
+		public RuleCall getNameIDTerminalRuleCall_3_0_0() { return cNameIDTerminalRuleCall_3_0_0; }
 		
 		//name=STRING 'as' alias=ID
-		public Group getGroup_4_1() { return cGroup_4_1; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 		
 		//name=STRING
-		public Assignment getNameAssignment_4_1_0() { return cNameAssignment_4_1_0; }
+		public Assignment getNameAssignment_3_1_0() { return cNameAssignment_3_1_0; }
 		
 		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_4_1_0_0() { return cNameSTRINGTerminalRuleCall_4_1_0_0; }
+		public RuleCall getNameSTRINGTerminalRuleCall_3_1_0_0() { return cNameSTRINGTerminalRuleCall_3_1_0_0; }
 		
 		//'as'
-		public Keyword getAsKeyword_4_1_1() { return cAsKeyword_4_1_1; }
+		public Keyword getAsKeyword_3_1_1() { return cAsKeyword_3_1_1; }
 		
 		//alias=ID
-		public Assignment getAliasAssignment_4_1_2() { return cAliasAssignment_4_1_2; }
+		public Assignment getAliasAssignment_3_1_2() { return cAliasAssignment_3_1_2; }
 		
 		//ID
-		public RuleCall getAliasIDTerminalRuleCall_4_1_2_0() { return cAliasIDTerminalRuleCall_4_1_2_0; }
+		public RuleCall getAliasIDTerminalRuleCall_3_1_2_0() { return cAliasIDTerminalRuleCall_3_1_2_0; }
+		
+		//('role' '[' type=ActorType ']')?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'role'
+		public Keyword getRoleKeyword_4_0() { return cRoleKeyword_4_0; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_4_1() { return cLeftSquareBracketKeyword_4_1; }
+		
+		//type=ActorType
+		public Assignment getTypeAssignment_4_2() { return cTypeAssignment_4_2; }
+		
+		//ActorType
+		public RuleCall getTypeActorTypeEnumRuleCall_4_2_0() { return cTypeActorTypeEnumRuleCall_4_2_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4_3() { return cRightSquareBracketKeyword_4_3; }
 		
 		//comments+=Comment?
 		public Assignment getCommentsAssignment_5() { return cCommentsAssignment_5; }
@@ -760,32 +764,24 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.Comment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNoteKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBodyCommentBodyParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cBodyCommentBodyParserRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
 		
 		//Comment commons::Comment:
-		//	'note' '[' body=CommentBody ']';
+		//	'note' body=CommentBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'note' '[' body=CommentBody ']'
+		//'note' body=CommentBody
 		public Group getGroup() { return cGroup; }
 		
 		//'note'
 		public Keyword getNoteKeyword_0() { return cNoteKeyword_0; }
 		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
-		
 		//body=CommentBody
-		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
+		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
 		
 		//CommentBody
-		public RuleCall getBodyCommentBodyParserRuleCall_2_0() { return cBodyCommentBodyParserRuleCall_2_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public RuleCall getBodyCommentBodyParserRuleCall_1_0() { return cBodyCommentBodyParserRuleCall_1_0; }
 	}
 	public class CommentBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.usecase.Usecase.CommentBody");
@@ -1071,8 +1067,8 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Actor:
-	//	visibility=Visibility? abstract?='abstract'? 'actor' ('[' type=ActorType ']')? (name=ID | name=STRING 'as' alias=ID)
-	//	comments+=Comment?;
+	//	visibility=Visibility? abstract?='abstract'? 'act' (name=ID | name=STRING 'as' alias=ID) ('role' '[' type=ActorType
+	//	']')? comments+=Comment?;
 	public ActorElements getActorAccess() {
 		return pActor;
 	}
@@ -1165,7 +1161,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Comment commons::Comment:
-	//	'note' '[' body=CommentBody ']';
+	//	'note' body=CommentBody;
 	public CommentElements getCommentAccess() {
 		return pComment;
 	}

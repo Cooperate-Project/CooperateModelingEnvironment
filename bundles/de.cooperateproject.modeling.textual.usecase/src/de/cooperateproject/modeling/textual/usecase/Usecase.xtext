@@ -21,7 +21,7 @@ RootPackage:
 ;
 
 Actor:
-	visibility=Visibility? (abstract?='abstract')? 'actor'('['type=ActorType']')? (name = ID | name = STRING 'as' alias = ID) comments+=Comment? 
+	visibility=Visibility? (abstract?='abstract')? 'act' (name = ID | name = STRING 'as' alias = ID) ('role' '['type=ActorType']')? comments+=Comment? 
 ;
 
 System:
@@ -62,7 +62,7 @@ Extend:
 ;
 
 Comment returns commons::Comment:
-	'note''['body = CommentBody']'
+	'note' body = CommentBody
 ;
 
 CommentBody returns ecore::EString:

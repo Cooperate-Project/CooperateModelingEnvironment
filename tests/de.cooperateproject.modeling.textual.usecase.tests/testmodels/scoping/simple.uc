@@ -2,7 +2,7 @@
 
 rootElement RootElement
 
-actor User1
+act User1
 
 sys System1 {
 	uc UC1

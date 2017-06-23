@@ -2,10 +2,10 @@
 
 rootElement RootElement
 
-# abstract actor[human] "AbstractHumanUser" as hu
-# abstract actor[machine] "AbstractMachineUser" as mu
-+ actor HumanUser1
-+ actor MachineUser1
+# abstract act "AbstractHumanUser" as hu role[human]
+# abstract act "AbstractMachineUser" as mu role[machine]
++ act HumanUser1
++ act MachineUser1
 
 sys System1 {
 	uc UseCase1 {
