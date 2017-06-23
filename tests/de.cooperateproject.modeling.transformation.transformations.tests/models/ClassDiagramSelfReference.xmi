@@ -8,11 +8,15 @@
      <connectors xsi:type="cls:XtextAssociation">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramSelfReference.uml#_dmukMLAQEeaCyqV64VKpeQ"/>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramSelfReference.uml#_dmxngLAQEeaCyqV64VKpeQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramSelfReference.uml#_dmxngLAQEeaCyqV64VKpeQ"/>
 		</memberEnds>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramSelfReference.uml#_dmxAcLAQEeaCyqV64VKpeQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramSelfReference.uml#_dmxAcLAQEeaCyqV64VKpeQ"/>
 		</memberEnds>
       </connectors>

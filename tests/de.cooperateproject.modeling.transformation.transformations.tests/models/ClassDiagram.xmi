@@ -45,15 +45,21 @@
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_IN0fQHmREea7c9xs28iX1A"/>
     <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
-      <cardinality/>
+      <cardinality>
+      	<referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN1tYXmREea7c9xs28iX1A"/>
+      </cardinality>
     </memberEnds>
     <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
-      <cardinality/>
+      <cardinality>
+        <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_IN2UcHmREea7c9xs28iX1A"/>
+      </cardinality>
     </memberEnds>
     <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
-      <cardinality/>
+      <cardinality>
+        <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_NdebAHmREea7c9xs28iX1A"/>
+      </cardinality>
     </memberEnds>
   </connectors>
   <connectors xsi:type="cls:XtextAssociation">
@@ -63,11 +69,15 @@
 	<referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_RpctsEKSEeaXCq-9LXQNWQ"/>
 	<memberEnds>
 		<referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
-      <cardinality/>
+      <cardinality>
+        <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8UKSEeaXCq-9LXQNWQ"/>
+      </cardinality>
     </memberEnds>
     <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
-      <cardinality/>
+      <cardinality>
+        <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_RpfJ8EKSEeaXCq-9LXQNWQ"/>
+      </cardinality>
     </memberEnds>
   </connectors>
   <connectors xsi:type="cls:Generalization">
@@ -80,11 +90,15 @@
     <referencedElement xsi:type="uml:Association" href="ClassDiagram.uml#_cPAzgHnPEea_kLaSOi1rnw"/>
     <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IXnPEea_kLaSOi1rnw"/>
-      <cardinality/>
+      <cardinality>
+        <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IXnPEea_kLaSOi1rnw"/>
+      </cardinality>
     </memberEnds>
     <memberEnds>
       <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IHnPEea_kLaSOi1rnw"/>
-      <cardinality/>
+      <cardinality>
+        <referencedElement xsi:type="uml:Property" href="ClassDiagram.uml#_cPG6IHnPEea_kLaSOi1rnw"/>
+      </cardinality>
     </memberEnds>
   </connectors> 
   </rootPackage>
