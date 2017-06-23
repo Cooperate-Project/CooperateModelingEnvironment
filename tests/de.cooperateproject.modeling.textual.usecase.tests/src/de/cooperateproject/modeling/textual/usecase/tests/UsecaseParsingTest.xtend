@@ -207,7 +207,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			note "test2"
 			uc C note "test3"
 		}
-		sys B note "test4"
+		sys D note "test4"
 		@end-ucd
 		'''.parse(rs)
 		assertNoIssues(model)
