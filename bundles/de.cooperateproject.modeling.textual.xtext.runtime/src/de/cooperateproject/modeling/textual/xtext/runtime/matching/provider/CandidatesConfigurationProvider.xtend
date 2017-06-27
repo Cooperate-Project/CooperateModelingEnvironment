@@ -3,38 +3,34 @@ package de.cooperateproject.modeling.textual.xtext.runtime.matching.provider
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.CandidatesConfiguration
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementCandidateSelector
 import java.util.HashMap
-import java.util.Iterator
 import java.util.Map
 import java.util.NoSuchElementException
-import java.util.function.Function
+import org.eclipse.emf.ecore.EObject
 
-abstract class CandidatesConfigurationProvider<RightType> implements Iterator<CandidatesConfiguration<RightType>> {
-    val Class<RightType> typeOfCandidates
-    var ElementCandidateSelector<RightType> selector = null
+class CandidatesConfigurationProvider<CandidatesType extends EObject> {
+    val ElementCandidateSelector<CandidatesType> selector
+    val CandidatesConfigurationPool<CandidatesType> pool
     
-    val Map<RightType, CandidatesConfiguration<RightType>> selectedChoices = new HashMap
-    var CandidatesConfiguration<RightType> nextVal = null
-    var CandidatesConfiguration<RightType> currentVal = null
+    val Map<CandidatesType, CandidatesConfiguration<CandidatesType>> selectedChoices = new HashMap
+    var CandidatesConfiguration<CandidatesType> nextVal = null
+    var CandidatesConfiguration<CandidatesType> currentVal = null
     
-    protected new (CandidatesConfigurationProvider<RightType> continueFrom) {
-        this.typeOfCandidates = continueFrom.typeOfCandidates
+    new (CandidatesConfigurationPool<CandidatesType> pool) {
+        this(ElementCandidateSelector.DEFAULT_SELECTOR.apply(null), pool)
     }
     
-    new (Class<RightType> typeOfCandidates) {
-        this.typeOfCandidates = typeOfCandidates
-    }
-    
-    def initialize(ElementCandidateSelector<RightType> selector) {
-        if (this.selector !== null) throw new IllegalStateException("The provider is already initialized.")
+    new (ElementCandidateSelector<CandidatesType> selector, CandidatesConfigurationPool<CandidatesType> pool) {
         this.selector = selector
+        this.pool = pool
     }
     
-    override hasNext() {
+    def hasNext(EObject forCandidate) {
         if (nextVal === null) {
+            this.candidatesPool.unregisterTemporary(forCandidate, currentVal.candidateChoice, this)
             val candidates = this.availableCandidates
             val selected = candidates.findFirst[!selectedChoices.containsKey(it)]
             this.nextVal = if(selected !== null) {
-                new CandidatesConfiguration<RightType>() {    
+                new CandidatesConfiguration<CandidatesType>() {    
                     override getCandidateChoice() {
                         selected
                     }
@@ -43,52 +39,35 @@ abstract class CandidatesConfigurationProvider<RightType> implements Iterator<Ca
                         candidates.filter[it != selected]
                     }
                     
-                    override getAllRemainingCandidates() {
-                        internalAllCandidates.filter[it != selected]
-                    }
-                    
                 }
-            } else null        
+            } else null
+            this.candidatesPool.registerTemporary(forCandidate, currentVal.candidateChoice, this)        
         }
         nextVal !== null
     }
     
-    override next() {
-        if (this.nextVal === null && !hasNext) throw new NoSuchElementException  
+    def next(EObject forCandidate) {
+        if (this.nextVal === null && !hasNext(forCandidate)) throw new NoSuchElementException  
+        this.candidatesPool.unregisterTemporary(forCandidate, currentVal.candidateChoice, this)
         currentVal = nextVal
+        this.candidatesPool.registerTemporary(forCandidate, currentVal.candidateChoice, this)  
         nextVal = null
         currentVal
     }
     
-    def CandidatesConfiguration<RightType> getCurrentConfiguration() {
+    def CandidatesConfiguration<CandidatesType> getCurrentConfiguration() {
         currentVal
     }
     
-    def Class<RightType> getTypeOfCandidates() {
-        typeOfCandidates
-    }
-    
-    def CandidatesConfigurationProvider<RightType> continueProvider() {
-        assertInitialized
-        null
-    }
-    
-    def <T> CandidatesConfigurationProvider<T> getDependentCandidatesProvider(Function<RightType, Iterable<T>> candidateGetter, Class<T> candidateType) {
-        assertInitialized 
-        null
+    def <T extends EObject> CandidatesConfigurationPool<T> getDependentCandidatesPool((CandidatesType) => Iterable<T> candidateGetter) {
+        ConfigurationProviderDependentCandidatesPool.createDependentConfigurationPool(this, candidateGetter)
     }
         
-    protected def Iterable<RightType> getAvailableCandidates() {
-        selector.getCandidates(internalCandidates).value
+    protected def Iterable<CandidatesType> getAvailableCandidates() {
+        selector.getCandidates(this.candidatesPool.availableCandidates).value
     }
     
-    abstract def protected Iterable<RightType> internalCandidates()
-    
-    def protected Iterable<RightType> internalAllCandidates() {
-        internalCandidates
-    } 
-    
-    private def void assertInitialized() {
-        if (this.selector === null) throw new IllegalStateException("The provider is not initialized.")
+    def CandidatesConfigurationPool<CandidatesType> getCandidatesPool() {
+        pool
     }
 }

@@ -25,12 +25,14 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.ecore;bundle-version="2.11.0",
  de.cooperateproject.modeling.textual.common.metamodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: de.cooperateproject.modeling.textual.sequence.parser.antlr.internal,
+Export-Package: de.cooperateproject.modeling.textual.sequence,
+ de.cooperateproject.modeling.textual.sequence.issues,
+ de.cooperateproject.modeling.textual.sequence.matching,
+ de.cooperateproject.modeling.textual.sequence.matching.matcher,
  de.cooperateproject.modeling.textual.sequence.parser.antlr,
- de.cooperateproject.modeling.textual.sequence.validation,
+ de.cooperateproject.modeling.textual.sequence.parser.antlr.internal,
  de.cooperateproject.modeling.textual.sequence.scoping,
- de.cooperateproject.modeling.textual.sequence.services,
  de.cooperateproject.modeling.textual.sequence.serializer,
- de.cooperateproject.modeling.textual.sequence,
- de.cooperateproject.modeling.textual.sequence.issues
-Import-Package: org.apache.log4j
+ de.cooperateproject.modeling.textual.sequence.services,
+ de.cooperateproject.modeling.textual.sequence.validation
+Import-Package: org.slf4j

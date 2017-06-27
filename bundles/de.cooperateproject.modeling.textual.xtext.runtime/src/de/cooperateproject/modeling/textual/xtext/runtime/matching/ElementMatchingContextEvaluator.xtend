@@ -3,48 +3,39 @@ package de.cooperateproject.modeling.textual.xtext.runtime.matching
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.matcher.ElementMatcher
 import java.util.Deque
 import java.util.LinkedList
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.MatchingResult
-import java.util.Iterator
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
 
-class ElementMatchingContextEvaluator<LeftBase, RightBase> {
-    protected static class MatcherApplication<L, R> {
-        val ElementMatchingInstance<L, R> instance
-        val ElementMatcher<L, R> matcher
-        var Iterator<MatchingResult<L>> evaluator = null
-        
-        new (ElementMatchingInstance<L, R> instance, ElementMatcher<L, R> matcher) {
-            this.instance = instance
-            this.matcher = matcher                 
-        }
-        
-        def isEvaluationRunning() {
-            evaluator !== null
-        }
-        
-        def startEvaluation() {
-            evaluator = instance.evaluateWithMatcher(matcher)
-        }
-    }
+class ElementMatchingContextEvaluator {
+    val ElementMatchingContext matchingContext
+    val Deque<ElementMatcherApplication<? extends EObject, ? extends EObject>> evaluationQueue = new LinkedList
     
-    val ElementMatchingContext<?,?> matchingContext
-    val Deque<MatcherApplication<? extends LeftBase, ? extends RightBase>> evaluationQueue = new LinkedList
-    
-    new (ElementMatchingContext<?,?> context) {
+    new (ElementMatchingContext context) {
         this.matchingContext = context
     }
     
-    def <R extends RightBase> evaluateElement(LeftBase l, Class<R> matchToType) {
-        val mat = matchingContext.getMatcher(l.class as Class<LeftBase>, matchToType)
-        val inst = matchingContext.getElementMatchingInstance(l, matchToType);
+    def <L extends EObject, R extends EObject> instantiateElementEvaluation(L elementToMatch) {
+        instantiateElementEvaluation(elementToMatch, elementToMatch.eClass)
+    }
+    
+    def <L extends EObject, R extends EObject> instantiateElementEvaluation(L elementToMatch, EClass matchAs) {
+        val ElementMatcher<L, EObject> mat = matchingContext.findMatcher(elementToMatch, matchAs) as ElementMatcher<L, EObject>
+        val inst = matchingContext.getElementMatchingInstance(elementToMatch);
         
-        var application = evaluationQueue.findFirst[it.instance == inst && it.matcher == mat]
+        var application = evaluationQueue.findFirst[isSimilarApplication(inst, mat)] as ElementMatcherApplication<L, EObject>
         if (application !== null) {
-            if (application.evaluator !== null) throw new UnsupportedOperationException("Circular dependency during evaluation")
+            if (application.evaluationRunning) throw new UnsupportedOperationException("Circular dependency during evaluation")
             evaluationQueue.remove(application)
         } else {
-            application = new MatcherApplication(inst, mat)
+            application = new ElementMatcherApplication(inst, mat)
         }
         evaluationQueue.addFirst(application)
+        
+        application => [app |
+            mat.match.map[apply(inst)].forEach[prepare(app.getApplicationRegisterDelegate, matchingContext)]    
+        ]
+        
+        application.resultDelegate
     }
     
     def boolean isEvaluationFinished() {
@@ -59,7 +50,11 @@ class ElementMatchingContextEvaluator<LeftBase, RightBase> {
             application.startEvaluation
         }
         
-        if (application.evaluator.hasNext) application.evaluator.next
+        if (application.canEvaluateFurtherConfiguration) application.evaluateNextConfiguration
         else evaluationQueue.removeFirst         
     }
+    
+    def <L extends EObject> ElementMatcherApplicationRegisterDelegate getApplicationRegisterDelegate(ElementMatcherApplication<L, ? extends EObject> parent) {
+        new EvaluatorRegisterDelegate(this)
+    } 
 }

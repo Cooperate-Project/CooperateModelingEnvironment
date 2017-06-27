@@ -36,7 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actor" eType="#//Actor"
         eOpposite="#//Actor/typeMapping"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifierName" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="classifierName" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </eGenericSuperTypes>
@@ -167,7 +167,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Critical" eSuperTypes="#//SingleRegionContainer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//SingleRegionContainer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Condition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionConstraint"/>
     </eGenericSuperTypes>
@@ -243,12 +243,12 @@
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
       </eGenericType>
     </eOperations>
-    <eOperations name="isArrival" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean">
+    <eOperations name="isArrival" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isArrivalOccurrence(this);"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="isSend" eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean">
+    <eOperations name="isSend" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Boolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isSendOccurrence(this);"/>
       </eAnnotations>

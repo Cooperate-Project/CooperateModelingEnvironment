@@ -1,6 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching.result
 
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.MatchingIssue
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.issues.MatchingIssue
 import java.util.List
 
 class SuccessfulMatch<RootType, ResultType> extends MatchingResult<RootType> {

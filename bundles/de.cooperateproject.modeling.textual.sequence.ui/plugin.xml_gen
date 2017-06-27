@@ -325,7 +325,7 @@
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.sequence.ui.sequence.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -333,7 +333,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.sequence.ui.sequence.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -341,7 +341,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.sequence.ui.sequence.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"

@@ -2,56 +2,68 @@ package de.cooperateproject.modeling.textual.xtext.runtime.matching
 
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.matcher.ElementMatcher
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.InitialCandidatesConfigurationProvider
 import java.util.HashMap
 import java.util.Map
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 
-class ElementMatchingContext<LeftType extends EObject, RightType extends EObject> {
-   val registeredMatchers = new HashMap<Class<?>, ElementMatcher<? extends EObject, ? extends EObject>>
+abstract class ElementMatchingContext {
+   protected val matchTypeRegister = new HashMap<EClass, EClass>
+   protected val registeredMatchers = new HashMap<EClass, ElementMatcher<? extends EObject, ? extends EObject>>
+   val CandidatesConfigurationProvider<?> rootCandidatesProvider
+   val Map<EObject, ElementMatchingInstance<?,?>> existingMatchingInstances = new HashMap
+   var initialized = false
    
-   val Map<Object, Map<Class<?>, ElementMatchingInstance<?,?>>> existingMatchingInstances = new HashMap
-   
-   var CandidatesConfigurationProvider<RightType> rootCandidatesProvider = null 
-   
-   
-   def <L, R> ElementMatchingInstance<L,R> getElementMatchingInstance(L element, CandidatesConfigurationProvider<R> provider) {
-       val elementMatchings = this.existingMatchingInstances.computeIfAbsent(element, [new HashMap])
-       elementMatchings.computeIfAbsent(provider.typeOfCandidates, [createElementMatchingInstance(element, provider)]) as ElementMatchingInstance<L,R>
+   new(CandidatesConfigurationProvider<?> rootCandidatesProvider) {
+      this.rootCandidatesProvider = rootCandidatesProvider
    }
    
-   def <L, R> ElementMatchingInstance<L,R> getElementMatchingInstance(L element, Class<R> matchAgainst) {
-       val elementMatchings = this.existingMatchingInstances.computeIfAbsent(element, [new HashMap])
-       elementMatchings.computeIfAbsent(matchAgainst, [createRootElementMatchingInstance(element, matchAgainst)]) as ElementMatchingInstance<L,R>
+   def <L extends EObject, R extends EObject> ElementMatchingInstance<L,R> getElementMatchingInstance(L element) {
+       this.existingMatchingInstances.computeIfAbsent(element, [element.createElementMatchingInstance]) as ElementMatchingInstance<L,R>
+   }
+
+   private def <L extends EObject, R extends EObject> ElementMatchingInstance<L,R> createElementMatchingInstance(L element) {
+       val type = matchTypeRegister.get(element.eClass)
+       new ElementMatchingInstance(element, type)
    }
    
-   private def <L, R> ElementMatchingInstance<L,R> createRootElementMatchingInstance(L element, Class<R> matchAgainst) {
-       new ElementMatchingInstance(element, createRootCandidatesProvider)
-   }
-   
-   private def <L, R> ElementMatchingInstance<L,R> createElementMatchingInstance(L element, CandidatesConfigurationProvider<R> provider) {
-       new ElementMatchingInstance(element, provider)
-   }
-   
-   def synchronized CandidatesConfigurationProvider<RightType> createRootCandidatesProvider() {
-       rootCandidatesProvider.continueProvider() => [
-           rootCandidatesProvider = it
-       ]
-   }
-   
-   def doMatch(Iterable<LeftType> initialElementsToMatch, Iterable<RightType> initialCandidates, Class<? extends RightType> matchAgainstType) {
-       rootCandidatesProvider = new InitialCandidatesConfigurationProvider(initialCandidates, matchAgainstType as Class<RightType>)
-       
+   def doMatch(Iterable<? extends EObject> initialElementsToMatch, EClass matchAgainstType) {
+       if (!initialized) {
+           initializeMatchers
+           initialized = true
+       }
        val evaluator = new ElementMatchingContextEvaluator(this)
        
-       initialElementsToMatch.forEach[evaluator.evaluateElement(it, matchAgainstType)]
+       initialElementsToMatch.forEach[evaluator.instantiateElementEvaluation(it, matchAgainstType)]
+       
+       while(!evaluator.evaluationFinished) evaluator.evaluateNext
    }
+   
+   abstract def void initializeMatchers()
+   
+   
+   private def <L extends EObject, R extends EObject> getMatcherAlternatives(L element) {
+       element.eClass.EAllSuperTypes.map[registeredMatchers.get(it.instanceClass) as ElementMatcher<L,? extends EObject>]
+                .filter[it !== null]
+                .filter[it.acceptsAsLeft(element)]
+   } 
+
+    def <L extends EObject> findMatcher(L element) {
+        var matcher = registeredMatchers.get(element.eClass) as ElementMatcher<L,? extends EObject>
+        if (matcher === null || !matcher.acceptsAsLeft(element)) {
+                matcher = element.matcherAlternatives.findFirst[true] 
+        }
+        if (matcher === null)
+            throw new UnsupportedOperationException('''No compatible Matcher registered for matching of «element.eClass.name»''')
+        matcher
+    }
     
-    def <L, R> getMatcher(Class<L> leftType, Class<R> rightType) {
-        val matcher = registeredMatchers.get(leftType)
-        if (!matcher.isMatcherFor(leftType, rightType)) 
-            throw new UnsupportedOperationException('''No compatible Matcher registered for matching between «leftType.name» and «rightType.name»''') 
-        matcher as ElementMatcher<L, R>
+    def <L extends EObject> findMatcher(L element, EClass asClass) {
+        var matcher = registeredMatchers.get(asClass) as ElementMatcher<L,? extends EObject>
+        if (matcher === null || !matcher.acceptsAsLeft(element)) {
+            throw new UnsupportedOperationException('''No compatible Matcher registered for matching «element.eClass.name» as «asClass.name»''')
+        } 
+        matcher
     }
     
 }

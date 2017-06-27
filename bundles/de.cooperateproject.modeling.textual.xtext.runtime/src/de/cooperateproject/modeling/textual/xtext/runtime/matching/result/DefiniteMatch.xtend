@@ -1,6 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching.result
 
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.MatchingIssue
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.issues.MatchingIssue
 
 class DefiniteMatch<RootType, ResultType> extends SuccessfulMatch<RootType, ResultType> {
     

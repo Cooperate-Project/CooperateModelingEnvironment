@@ -1,6 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching.result
 
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.MatchingIssue
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.issues.MatchingIssue
 import java.util.LinkedList
 
 class MatchingResultFactory {
@@ -8,6 +8,10 @@ class MatchingResultFactory {
     
    def <T, R> SuccessfulMatch<T, R> createDefinite(T element, R match) {
        return new DefiniteMatch(element, match)
+   }
+   
+   def <T, R> SuccessfulMatch<T, R> createDefinite(T element, R match, Iterable<MatchingIssue> issues) {
+       return new DefiniteMatch(element, match, issues)
    }
    
    def <T, R> MatchingResult<T> create(T element, R match) {
@@ -26,7 +30,10 @@ class MatchingResultFactory {
        val noMatches = new LinkedList<MatchingResult<T>>
        nestedResults.forEach[
            switch(it) {
-               DefiniteMatch: definiteMatches.add(it)
+               DefiniteMatch: {
+                   definiteMatches.add(it)
+                   if (it.hasIssues) issues.addAll(it.issues)
+               }
                SuccessfulMatch: {
                    matches.add(it)
                    if (it.hasIssues) issues.addAll(it.issues)

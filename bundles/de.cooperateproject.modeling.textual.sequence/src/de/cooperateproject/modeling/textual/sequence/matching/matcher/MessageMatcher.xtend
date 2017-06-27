@@ -2,13 +2,15 @@ package de.cooperateproject.modeling.textual.sequence.matching.matcher
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.sequence.sequence.Message
+import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.matcher.AbstractElementMatcherBase
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification
+import org.eclipse.uml2.uml.UMLPackage
 
 class MessageMatcher extends AbstractElementMatcherBase<Message, org.eclipse.uml2.uml.Message> {
     
     new() {
-        super(Message, org.eclipse.uml2.uml.Message)
+        super(SequencePackage.eINSTANCE.message, UMLPackage.eINSTANCE.message)
     }
     
     override match() {

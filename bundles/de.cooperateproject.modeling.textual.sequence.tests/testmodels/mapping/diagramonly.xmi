@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sequence:SequenceDiagram
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:sequence="http://www.cooperateproject.de/modeling/textual/sequence/Sequence"
+    title="emptyDiagram">
+  <rootPackage/>
+</sequence:SequenceDiagram>

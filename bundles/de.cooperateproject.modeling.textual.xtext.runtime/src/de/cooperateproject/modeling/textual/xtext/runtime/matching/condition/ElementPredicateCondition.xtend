@@ -4,8 +4,10 @@ import de.cooperateproject.modeling.textual.xtext.runtime.matching.CandidatesCon
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatcherApplicationRegisterDelegate
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.MatchingResultFactory
 import java.util.function.BiPredicate
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchingContext
+import org.eclipse.emf.ecore.EObject
 
-class ElementPredicateCondition<LeftType, RightType> implements ElementMatcherCondition<LeftType, RightType> {
+class ElementPredicateCondition<LeftType extends EObject, RightType> implements ElementMatcherCondition<LeftType, RightType> {
     val BiPredicate<LeftType, RightType> predicate
     val LeftType element
     
@@ -19,6 +21,5 @@ class ElementPredicateCondition<LeftType, RightType> implements ElementMatcherCo
         MatchingResultFactory.INSTANCE.create(element, if (predicate.test(this.element, cand)) cand)
     }
     
-    override registerMatchings(ElementMatcherApplicationRegisterDelegate registerDelegate) {}
-    
+    override prepare(ElementMatcherApplicationRegisterDelegate registerDelegate, ElementMatchingContext context) {}
 }

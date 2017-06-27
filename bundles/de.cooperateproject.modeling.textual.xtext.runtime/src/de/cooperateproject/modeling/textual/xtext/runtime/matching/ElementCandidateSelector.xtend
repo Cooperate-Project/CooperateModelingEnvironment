@@ -4,7 +4,7 @@ import java.util.Collections
 import java.util.function.Function
 
 class ElementCandidateSelector<RightType> {
-    public static def <U, T> Function<U, ElementCandidateSelector<T>> DEFAULT_SELECTOR() {
+    public static def <U, T> (U)=>ElementCandidateSelector<T> DEFAULT_SELECTOR() {
          [U u | new ElementCandidateSelector<T> {           
             override protected match(T match) {
                 true

@@ -7,19 +7,18 @@ import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.Matchi
 import java.util.HashMap
 import java.util.Iterator
 import java.util.Map
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
 
-class ElementMatchingInstance<LeftType, RightType> {
+class ElementMatchingInstance<LeftType extends EObject, RightType extends EObject> {
     
-    static def <L, R> getOrCreateElementMatchingInstance(ElementMatchingContext<? super L,? super R> context, L elementToMatch, CandidatesConfigurationProvider<R> candidatesProvider) {
-        context.getElementMatchingInstance(elementToMatch, candidatesProvider)
-    }
-    
-    val CandidatesConfigurationProvider<RightType> candidatesProvider
+    var CandidatesConfigurationPool<RightType> candidatesPool
     val Map<CandidatesConfiguration<RightType>, MatchingResult<LeftType>> evaluatedMatches = new HashMap
         
-    new (LeftType elementToMatch, CandidatesConfigurationProvider<RightType> candidatesProvider) {
+    new (LeftType elementToMatch, EClass rightType) {
         this.elementToMatch = elementToMatch
-        this.candidatesProvider = candidatesProvider
+        this.rightType = rightType        
     }
     
     val LeftType elementToMatch
@@ -27,18 +26,35 @@ class ElementMatchingInstance<LeftType, RightType> {
         elementToMatch
     }
     
+    val EClass rightType
+    def EClass getRightType() {
+        rightType
+    }
+    
+    def void setCandidatesPool(CandidatesConfigurationPool<?> pool) {
+        candidatesPool = pool
+    }
+    
+    def getCandidatesPool() {
+        candidatesPool
+    }
+       
     def Iterator<MatchingResult<LeftType>> evaluateWithMatcher(ElementMatcher<LeftType, RightType> matcher) {
-        val matches = matcher.match.map[apply(elementToMatch)]
+        if (candidatesPool === null) {
+            throw new IllegalStateException("The matching instance has not been initialized with a candidates provider!")
+        }
+        val matches = matcher.match.map[apply(this)]
         
         new Iterator<MatchingResult<LeftType>>() {
+            val candidatesProvider = ElementMatchingInstance.this.candidatesPool.createConfigurationProvider(matcher.select.apply(ElementMatchingInstance.this))
             
             override hasNext() {
-                candidatesProvider.hasNext
+                candidatesProvider.hasNext(ElementMatchingInstance.this.elementToMatch)
             }
             
             override next() {
-                val cand = candidatesProvider.next
-                val res = MatchingResultFactory.INSTANCE.wrap(matches.map[it.evaluate(cand)])
+                val cand = candidatesProvider.next(ElementMatchingInstance.this.elementToMatch) as CandidatesConfiguration<RightType>
+                val res = MatchingResultFactory.INSTANCE.wrap(matches.map[evaluate(cand)])
                 evaluatedMatches.put(cand, res)
                 res 
             }

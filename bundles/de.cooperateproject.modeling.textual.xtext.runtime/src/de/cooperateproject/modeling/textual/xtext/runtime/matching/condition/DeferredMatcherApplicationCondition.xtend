@@ -1,27 +1,30 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching.condition
 
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.condition.ElementMatcherCondition
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.CandidatesConfiguration
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatcherApplicationRegisterDelegate
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatcherApplicationResultDelegate
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchingContext
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
 
-class DeferredMatcherApplicationCondition<LeftType, RightType> implements ElementMatcherCondition<LeftType, RightType> {
+class DeferredMatcherApplicationCondition<LeftType extends EObject, RightType> implements ElementMatcherCondition<LeftType, RightType> {
     val LeftType elementToMatch
-    val Class<RightType> matchAs
-    val boolean before
+    val EClass matchAs
+    var ElementMatcherApplicationResultDelegate<LeftType> delegate = null
     
-    new (LeftType elementToMatch, Class<RightType> matchAs, boolean before) {
+    new (LeftType elementToMatch, EClass matchAs) {
         this.elementToMatch = elementToMatch
         this.matchAs = matchAs
-        this.before = before
     }
     
     override evaluate(CandidatesConfiguration<RightType> config) {
-        throw new UnsupportedOperationException("TODO: auto-generated method stub")
+        if (delegate !== null && delegate.hasResult) {
+            delegate.result
+        } else throw new IllegalStateException("Trying to evaluate a deferred condition without properly initializing the deferred matches")
     }
     
-    override registerMatchings(ElementMatcherApplicationRegisterDelegate registerDelegate) {
-        if (before) registerDelegate.evaluateBefore(elementToMatch, matchAs)
-        else registerDelegate.evaluate(elementToMatch, matchAs)
-    }
-    
+    override prepare(ElementMatcherApplicationRegisterDelegate registerDelegate, ElementMatchingContext context) {
+        this.delegate = registerDelegate.evaluateAs(elementToMatch, matchAs)
+    }    
+
 }

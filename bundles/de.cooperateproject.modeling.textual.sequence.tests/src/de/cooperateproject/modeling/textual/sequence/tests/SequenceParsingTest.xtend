@@ -49,6 +49,11 @@ class SequenceParsingTest extends AbstractSequenceTest{
 			@end-seqd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
+		
+		val storeat = rs.createResource(URI.createFileURI("result.xmi"))
+		storeat.contents += model
+		storeat.save(Collections.emptyMap)
+		
 	    model => [
            assertThat(title, equalTo("emptyDiagram"))
            assertThat(rootPackage, notNullValue)
