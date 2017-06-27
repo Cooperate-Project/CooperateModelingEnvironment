@@ -1,20 +1,13 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching
 
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.matcher.ElementMatcher
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.MatchingResult
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.MatchingResultFactory
-import java.util.HashMap
-import java.util.Iterator
-import java.util.Map
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
 
 class ElementMatchingInstance<LeftType extends EObject, RightType extends EObject> {
     
     var CandidatesConfigurationPool<RightType> candidatesPool
-    val Map<CandidatesConfiguration<RightType>, MatchingResult<LeftType>> evaluatedMatches = new HashMap
         
     new (LeftType elementToMatch, EClass rightType) {
         this.elementToMatch = elementToMatch
@@ -39,26 +32,11 @@ class ElementMatchingInstance<LeftType extends EObject, RightType extends EObjec
         candidatesPool
     }
        
-    def Iterator<MatchingResult<LeftType>> evaluateWithMatcher(ElementMatcher<LeftType, RightType> matcher) {
+    def ElementMatcherApplication<LeftType, RightType> evaluateWithMatcher(ElementMatcher<LeftType, RightType> matcher) {
         if (candidatesPool === null) {
             throw new IllegalStateException("The matching instance has not been initialized with a candidates provider!")
         }
-        val matches = matcher.match.map[apply(this)]
         
-        new Iterator<MatchingResult<LeftType>>() {
-            val candidatesProvider = ElementMatchingInstance.this.candidatesPool.createConfigurationProvider(matcher.select.apply(ElementMatchingInstance.this))
-            
-            override hasNext() {
-                candidatesProvider.hasNext(ElementMatchingInstance.this.elementToMatch)
-            }
-            
-            override next() {
-                val cand = candidatesProvider.next(ElementMatchingInstance.this.elementToMatch) as CandidatesConfiguration<RightType>
-                val res = MatchingResultFactory.INSTANCE.wrap(matches.map[evaluate(cand)])
-                evaluatedMatches.put(cand, res)
-                res 
-            }
-            
-        }
+        new ElementMatcherApplication(this, matcher, ElementMatchingInstance.this.candidatesPool)
     }
 }

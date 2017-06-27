@@ -14,9 +14,12 @@ class CombinedFragmentMatcher extends AbstractElementMatcherBase<CombinedFragmen
     
     override match() {
         #[
-            definiteIf(matchAs(TextualCommonsPackage.eINSTANCE.aliasedElement)),
-            is([l, r | l.interactionOperatorKind == r.interactionOperator])
+            definiteIf(matchAs(TextualCommonsPackage.eINSTANCE.aliasedElement))
         ]
+    }
+    
+    override select() {
+        mustBe([l, r | l.interactionOperatorKind == r.interactionOperator])
     }
     
 }

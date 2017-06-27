@@ -1,7 +1,7 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching.matcher
 
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementCandidateSelector
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchingInstance
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatcherApplication
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.condition.CollectionMatcherApplicationCondition
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.condition.DeferredMatcherApplicationCondition
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.condition.DefiniteMatcherApplicationCondition
@@ -31,53 +31,53 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
         this.rightType.instanceClass.isAssignableFrom(rightInstance.instanceClass)
     }
     
-    protected def <T extends EObject, U extends EObject> (ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> is(BiPredicate<LeftType, RightType> condition) {
-        [new ElementPredicateCondition(condition, it.elementToMatch)]
+    protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> is(BiPredicate<LeftType, RightType> condition) {
+        [new ElementPredicateCondition(condition, matchingInstance.elementToMatch)]
     }
     
-    protected def <T extends EObject, U extends EObject> (ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchAs(EClass clazz) {
-        [i | new DeferredMatcherApplicationCondition(i.elementToMatch, clazz)]
+    protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchAs(EClass clazz) {
+        [new DeferredMatcherApplicationCondition(matchingInstance.elementToMatch, clazz)]
     }
     
-    protected def <T extends EObject, U extends EObject> (ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matches((LeftType)=>T elementToMatch, (RightType)=>U candidateToMatch) {
-        [instance |
-            val provider = instance.candidatesProvider as CandidatesConfigurationProvider<RightType>
+    protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matches((LeftType)=>T elementToMatch, (RightType)=>U candidateToMatch) {
+        [app |
+            val provider = app.candidatesProvider as CandidatesConfigurationProvider<RightType>
             val candPool = provider.getDependentCandidatesPool(([r | #[candidateToMatch.apply(r)]]))
-            val etm = elementToMatch.apply(instance.elementToMatch)
-            new MatchExistsCondition(instance, etm, candPool)
+            val etm = elementToMatch.apply(app.matchingInstance.elementToMatch)
+            new MatchExistsCondition(app.matchingInstance, etm, candPool)
         ]
     }
     
-    protected def <T extends EObject, U extends EObject> (ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchExists((LeftType)=>T  elementToMatch, (RightType)=>Iterable<U> candidateToMatch) {
-        [instance |
-            val provider = instance.candidatesProvider as CandidatesConfigurationProvider<RightType>
+    protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchExists((LeftType)=>T  elementToMatch, (RightType)=>Iterable<U> candidateToMatch) {
+        [app |
+            val provider = app.candidatesProvider as CandidatesConfigurationProvider<RightType>
             val candPool = provider.getDependentCandidatesPool(([r | candidateToMatch.apply(r)]))
-            val etm = elementToMatch.apply(instance.elementToMatch)
-            new MatchExistsCondition(instance, etm, candPool)
+            val etm = elementToMatch.apply(app.matchingInstance.elementToMatch)
+            new MatchExistsCondition(app.matchingInstance, etm, candPool)
         ]
     }
     
-    protected def <T extends EObject, U extends EObject> (ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchesExist((LeftType)=>Iterable<T> elementsToMatch, (RightType)=>Iterable<U> candidatesToMatch) {
-        [instance |
-            val provider = instance.candidatesProvider as CandidatesConfigurationProvider<RightType>
+    protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchesExist((LeftType)=>Iterable<T> elementsToMatch, (RightType)=>Iterable<U> candidatesToMatch) {
+        [app |
+            val provider = app.candidatesProvider as CandidatesConfigurationProvider<RightType>
             val candPool = provider.getDependentCandidatesPool(([r | candidatesToMatch.apply(r)]))
             
-            val etm = elementsToMatch.apply(instance.elementToMatch)
-            new CollectionMatcherApplicationCondition(instance, etm, candPool)
+            val etm = elementsToMatch.apply(app.matchingInstance.elementToMatch)
+            new CollectionMatcherApplicationCondition(app.matchingInstance, etm, candPool)
         ]
     }
     
-    protected def <T extends EObject, U extends EObject> (ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> definiteIf((ElementMatchingInstance<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matcher) {
-        [instance |
-            new DefiniteMatcherApplicationCondition(matcher.apply(instance))
+    protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> definiteIf((ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matcher) {
+        [app |
+            new DefiniteMatcherApplicationCondition(matcher.apply(app))
         ]
     }
     
-    protected def Function<ElementMatchingInstance<LeftType, RightType>, ElementCandidateSelector<RightType>> id(BiPredicate<LeftType, RightType> condition) {
+    protected def Function<ElementMatcherApplication<LeftType, RightType>, ElementCandidateSelector<RightType>> definiteIf(BiPredicate<LeftType, RightType> condition) {
         [new ElementCandidateSelector<RightType>() {
             
             override protected matchDefinite(RightType match) {
-                condition.test(it.elementToMatch, match)
+                condition.test(matchingInstance.elementToMatch, match)
             }
             
             override protected mustMatchDefinite() {
@@ -86,10 +86,10 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
         }]
     }
     
-    protected def Function<ElementMatchingInstance<LeftType, RightType>, ElementCandidateSelector<RightType>> must(BiPredicate<LeftType, RightType> condition) {
+    protected def Function<ElementMatcherApplication<LeftType, RightType>, ElementCandidateSelector<RightType>> mustBe(BiPredicate<LeftType, RightType> condition) {
         [new ElementCandidateSelector<RightType>() {
             override protected match(RightType match) {
-                condition.test(it.elementToMatch, match)
+                condition.test(matchingInstance.elementToMatch, match)
             }
         }]
     }

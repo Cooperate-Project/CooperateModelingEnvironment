@@ -27,12 +27,12 @@ class ElementMatchingContextEvaluator {
             if (application.evaluationRunning) throw new UnsupportedOperationException("Circular dependency during evaluation")
             evaluationQueue.remove(application)
         } else {
-            application = new ElementMatcherApplication(inst, mat)
+            application = inst.evaluateWithMatcher(mat)
         }
         evaluationQueue.addFirst(application)
         
         application => [app |
-            mat.match.map[apply(inst)].forEach[prepare(app.getApplicationRegisterDelegate, matchingContext)]    
+            mat.match.map[apply(app)].forEach[prepare(app.getApplicationRegisterDelegate, matchingContext)]    
         ]
         
         application.resultDelegate
