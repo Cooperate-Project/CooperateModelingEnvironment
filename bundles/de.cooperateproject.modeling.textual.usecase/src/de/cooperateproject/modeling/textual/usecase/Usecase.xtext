@@ -46,7 +46,7 @@ Relationship:
 ;
 
 Association:
-	'iac' '('actor = [Actor|FQN] ',' usecase = [UseCase|FQN] ')' ('card''[' actorCardinality=Cardinality ('|' useCaseCardinality=Cardinality)? ']')?
+	'iac' '('actor = [Actor|FQN] ',' usecase = [UseCase|FQN] ')' ('card''[' actorCardinality=Cardinality (':' useCaseCardinality=Cardinality)? ']')?
 ;
 
 Generalization:

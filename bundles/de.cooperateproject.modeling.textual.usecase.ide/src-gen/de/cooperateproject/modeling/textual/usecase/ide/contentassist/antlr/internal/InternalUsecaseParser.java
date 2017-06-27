@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'", "'@start-ucd'", "'@end-ucd'", "'rootElement'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "'|'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'.'", "'abstract'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'+'", "'public'", "'-'", "'private'", "'#'", "'protected'", "'~'", "'human'", "'machine'", "'@start-ucd'", "'@end-ucd'", "'rootElement'", "'act'", "'as'", "'role'", "'['", "']'", "'sys'", "'{'", "'}'", "'uc'", "'ep'", "'iac'", "'('", "','", "')'", "'card'", "':'", "'isa'", "'inc'", "'ext'", "'cond'", "'note'", "'..'", "'.'", "'abstract'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -7334,21 +7334,21 @@ public class InternalUsecaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Association__Group_6_3__0__Impl"
-    // InternalUsecase.g:2320:1: rule__Association__Group_6_3__0__Impl : ( '|' ) ;
+    // InternalUsecase.g:2320:1: rule__Association__Group_6_3__0__Impl : ( ':' ) ;
     public final void rule__Association__Group_6_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUsecase.g:2324:1: ( ( '|' ) )
-            // InternalUsecase.g:2325:1: ( '|' )
+            // InternalUsecase.g:2324:1: ( ( ':' ) )
+            // InternalUsecase.g:2325:1: ( ':' )
             {
-            // InternalUsecase.g:2325:1: ( '|' )
-            // InternalUsecase.g:2326:2: '|'
+            // InternalUsecase.g:2325:1: ( ':' )
+            // InternalUsecase.g:2326:2: ':'
             {
-             before(grammarAccess.getAssociationAccess().getVerticalLineKeyword_6_3_0()); 
+             before(grammarAccess.getAssociationAccess().getColonKeyword_6_3_0()); 
             match(input,39,FOLLOW_2); 
-             after(grammarAccess.getAssociationAccess().getVerticalLineKeyword_6_3_0()); 
+             after(grammarAccess.getAssociationAccess().getColonKeyword_6_3_0()); 
 
             }
 

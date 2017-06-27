@@ -483,17 +483,17 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cActorCardinalityAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
 		private final RuleCall cActorCardinalityCardinalityParserRuleCall_6_2_0 = (RuleCall)cActorCardinalityAssignment_6_2.eContents().get(0);
 		private final Group cGroup_6_3 = (Group)cGroup_6.eContents().get(3);
-		private final Keyword cVerticalLineKeyword_6_3_0 = (Keyword)cGroup_6_3.eContents().get(0);
+		private final Keyword cColonKeyword_6_3_0 = (Keyword)cGroup_6_3.eContents().get(0);
 		private final Assignment cUseCaseCardinalityAssignment_6_3_1 = (Assignment)cGroup_6_3.eContents().get(1);
 		private final RuleCall cUseCaseCardinalityCardinalityParserRuleCall_6_3_1_0 = (RuleCall)cUseCaseCardinalityAssignment_6_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
 		
 		//Association:
-		//	'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality ('|'
+		//	'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality (':'
 		//	useCaseCardinality=Cardinality)? ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality ('|'
+		//'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality (':'
 		//useCaseCardinality=Cardinality)? ']')?
 		public Group getGroup() { return cGroup; }
 		
@@ -527,7 +527,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 		
-		//('card' '[' actorCardinality=Cardinality ('|' useCaseCardinality=Cardinality)? ']')?
+		//('card' '[' actorCardinality=Cardinality (':' useCaseCardinality=Cardinality)? ']')?
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//'card'
@@ -542,11 +542,11 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 		//Cardinality
 		public RuleCall getActorCardinalityCardinalityParserRuleCall_6_2_0() { return cActorCardinalityCardinalityParserRuleCall_6_2_0; }
 		
-		//('|' useCaseCardinality=Cardinality)?
+		//(':' useCaseCardinality=Cardinality)?
 		public Group getGroup_6_3() { return cGroup_6_3; }
 		
-		//'|'
-		public Keyword getVerticalLineKeyword_6_3_0() { return cVerticalLineKeyword_6_3_0; }
+		//':'
+		public Keyword getColonKeyword_6_3_0() { return cColonKeyword_6_3_0; }
 		
 		//useCaseCardinality=Cardinality
 		public Assignment getUseCaseCardinalityAssignment_6_3_1() { return cUseCaseCardinalityAssignment_6_3_1; }
@@ -1119,7 +1119,7 @@ public class UsecaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Association:
-	//	'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality ('|'
+	//	'iac' '(' actor=[Actor|FQN] ',' usecase=[UseCase|FQN] ')' ('card' '[' actorCardinality=Cardinality (':'
 	//	useCaseCardinality=Cardinality)? ']')?;
 	public AssociationElements getAssociationAccess() {
 		return pAssociation;
