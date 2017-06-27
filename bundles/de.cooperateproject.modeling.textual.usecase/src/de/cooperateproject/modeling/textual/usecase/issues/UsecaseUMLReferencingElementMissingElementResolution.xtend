@@ -41,7 +41,9 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		umlActor.name = element.name
 		umlActor.package = parent.referencedElement
 		umlActor.isAbstract = element.abstract
-		umlActor.setVisibility(element.visibility)
+		if (element.isSetVisibility) {
+			umlActor.setVisibility(element.visibility)
+		}
 		umlActor.handleAliasedElement(element);
 		
 		element.referencedElement = umlActor		
@@ -61,7 +63,9 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		val parent = element.eContainer as System
 		val umlUseCase = UMLFactory.eINSTANCE.createUseCase
 		umlUseCase.name = element.name
-		umlUseCase.setVisibility(element.visibility)
+		if (element.isSetVisibility) {
+			umlUseCase.setVisibility(element.visibility)
+		}
 		parent.referencedElement.ownedUseCases.add(umlUseCase)
 		umlUseCase.subjects += element.system.referencedElement
 		umlUseCase.isAbstract = element.abstract
