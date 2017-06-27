@@ -17,7 +17,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.PreferenceActivator;
-import de.cooperateproject.ui.preferences.PreferenceHandler;
+import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 
 /**
  * Preference page for error indicator.
@@ -62,7 +62,7 @@ public class WorkbenchPreferenceErrorIndicator extends PreferencePage implements
     }
 
     private static ComboFieldEditor getErrorIndicatorComboField(Group group) {
-        return new ComboFieldEditor(PreferenceHandler.INSTANCE.getErrorIndicatorPreferenceStore(),
+        return new ComboFieldEditor(ErrorIndicatorPreferenceHandler.INSTANCE.getErrorIndicatorPreferenceStore(),
                 "Choose An Audio Error Indicator",
                 new String[][] { { "No Audio Indicator", ErrorIndicatorSettings.NONE.toString() },
                         { "Line Audio Indicator", ErrorIndicatorSettings.LINE.toString() },
