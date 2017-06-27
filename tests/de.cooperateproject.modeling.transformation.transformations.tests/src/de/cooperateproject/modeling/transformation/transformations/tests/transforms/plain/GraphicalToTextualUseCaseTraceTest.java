@@ -28,4 +28,9 @@ public class GraphicalToTextualUseCaseTraceTest extends DirectedTraceTransformat
         testTraceTransformation("UseCaseDiagram");
     }
 
+    @Test
+    public void testNotes() throws Exception {
+        testTraceTransformation("UseCaseDiagramNotes");
+    }
+
 }

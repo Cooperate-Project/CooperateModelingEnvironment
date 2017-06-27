@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ML0-gFtBEeePL9Bh2-2JIA" name="RootElement">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_UX5oEFtBEeePL9Bh2-2JIA" annotatedElement="_P4MikFtBEeePL9Bh2-2JIA">
+    <body>Comment for system1</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_WkI2IFtBEeePL9Bh2-2JIA" annotatedElement="_RI1rEFtBEeePL9Bh2-2JIA">
+    <body>Comment for system2</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_Xeb7MFtBEeePL9Bh2-2JIA" annotatedElement="_S9zooFtBEeePL9Bh2-2JIA">
+    <body>Comment for actor1</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_Yf4KEFtBEeePL9Bh2-2JIA" annotatedElement="_TmBfMFtBEeePL9Bh2-2JIA">
+    <body>Comment for usecase1</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Component" xmi:id="_P4MikFtBEeePL9Bh2-2JIA" name="System1" useCase="_TmBfMFtBEeePL9Bh2-2JIA">
+    <ownedUseCase xmi:type="uml:UseCase" xmi:id="_TmBfMFtBEeePL9Bh2-2JIA" name="UseCase1" subject="_P4MikFtBEeePL9Bh2-2JIA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_RI1rEFtBEeePL9Bh2-2JIA" name="System2"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_S9zooFtBEeePL9Bh2-2JIA" name="Actor1"/>
+</uml:Model>

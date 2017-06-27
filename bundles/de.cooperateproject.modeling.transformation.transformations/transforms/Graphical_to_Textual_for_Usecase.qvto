@@ -40,6 +40,7 @@ mapping notation::Node::nodeToSystem() : usecase::System
 {
 	referencedElement := self.element.toElement();
 	usecases := self.children->any(type = PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR).children->select(type = PAPYRUS_NOTATION_SHAPE_USECASE_NESTED).map nodeToBehavioredClassifier().oclAsType(usecase::UseCase);
+	comments := self.getCommentShape().map commentToComment();
 }
 
 mapping notation::Node::nodeToUsecase() : usecase::UseCase
@@ -48,6 +49,7 @@ when {self.element.oclIsKindOf(uml::UseCase)}
 	var umlUseCase := self.element.oclAsType(uml::UseCase);
 	referencedElement := self.element.toElement();
 	extensionPoints := self.children->any(type = PAPYRUS_NOTATION_SHAPE_EXTENSIONPOINTCOMPARTMENT_NESTED).children->select(type = PAPYRUS_NOTATION_NODE_EXTENSIONPOINTLABEL_REGULAR).map nodeToExtensionPoint();
+	comments := self.getCommentShape().map commentToComment();
 }
 
 mapping notation::Node::nodeToExtensionPoint() : usecase::ExtensionPoint
@@ -61,6 +63,13 @@ when {self.element.oclIsKindOf(uml::Actor)}
 {
 	var umlActor := self.element.oclAsType(uml::Actor);
 	referencedElement := self.element.toElement();
+	comments := self.getCommentShape().map commentToComment();
+}
+
+mapping notation::View::commentToComment() : textualCommons::Comment
+when {not self.oclIsInvalid() and not self.oclIsUndefined()}
+{
+	referencedElement := self.element.oclAsType(uml::Comment);
 }
 
 mapping notation::Edge::edgeToRelationship() : usecase::Relationship
@@ -107,6 +116,13 @@ mapping uml::MultiplicityElement::multiplicityElementToCardinality() : Cardinali
 when {self.hasCardinality()}
 {
 	referencedElement := self;
+}
+
+query notation::View::getCommentShape() : notation::View
+{
+	return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR)->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
+//	return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR).element
+//	       ->selectByKind(uml::Comment)->any(annotatedElement->includes(self.element));
 }
 
 query ecore::EObject::toElement() : uml::Element {

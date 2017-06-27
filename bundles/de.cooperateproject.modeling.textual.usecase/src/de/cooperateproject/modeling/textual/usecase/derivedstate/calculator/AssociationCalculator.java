@@ -13,6 +13,7 @@ import org.eclipse.uml2.uml.UseCase;
 import com.google.common.collect.Sets;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Association;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -33,20 +34,23 @@ public class AssociationCalculator extends AtomicDerivedStateProcessorBase<Assoc
 
     @Override
     protected void applyTyped(Association object) {
-        object.setReferencedElement(null);
-        if (object.getActor() != null && object.getUsecase() != null) {
-            Actor actor = object.getActor().getReferencedElement();
-            UseCase usecase = object.getUsecase().getReferencedElement();
-            if (actor != null && usecase != null) {
-                Set<org.eclipse.uml2.uml.Association> matchingAssociations = actor.getAssociations().stream()
-                        .filter(a -> isAssociationBetween(a, actor, usecase)).collect(Collectors.toSet());
-                if (matchingAssociations.size() == 1) {
-                    object.setReferencedElement(matchingAssociations.iterator().next());
-                    return;
-                }
+        Optional<Actor> umlActor = Optional.ofNullable(object.getActor())
+                .map(UMLReferencingElement::getReferencedElement);
+        Optional<UseCase> umlUsecase = Optional.ofNullable(object.getUsecase())
+                .map(UMLReferencingElement::getReferencedElement);
+
+        if (umlActor.isPresent() && umlUsecase.isPresent()) {
+            Set<org.eclipse.uml2.uml.Association> candidates = umlActor.get().getAssociations().stream()
+                    .filter(a -> isAssociationBetween(a, umlActor.get(), umlUsecase.get())).collect(Collectors.toSet());
+            if (candidates.size() == 1) {
+                object.setReferencedElement(candidates.iterator().next());
+                process(object.getActorCardinality(), umlActor.get());
+                process(object.getUseCaseCardinality(), umlUsecase.get());
+            } else {
+                object.setReferencedElement(null);
             }
-            process(object.getActorCardinality(), actor);
-            process(object.getUseCaseCardinality(), usecase);
+        } else {
+            object.setReferencedElement(null);
         }
     }
 
