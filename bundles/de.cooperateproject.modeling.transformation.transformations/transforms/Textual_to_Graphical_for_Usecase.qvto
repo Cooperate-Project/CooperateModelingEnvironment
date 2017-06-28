@@ -24,21 +24,25 @@ mapping usecase::UseCaseDiagram::diagramToDiagram() : notation::Diagram {
 	measurementUnit := notation::MeasurementUnit::Pixel;
 	element := rootPackage.toEObject();
 	
-	children += self.rootPackage.systems.map systemToShape();
-	children += self.rootPackage.actors.map behavioredClassifierToShape();
+	children += self.rootPackage.systems.map commentableToShape();
+	children += self.rootPackage.actors.map commentableToShape();
 	children += conditionedExtends.map extendToShape();
+	children += self.rootPackage.findAllComments().map commentToShape();
 
 	edges += self.rootPackage.relationships.map relationshipToEdge();
 	edges += conditionedExtends.map extendToConstraintEdge();
+	edges += self.rootPackage.findAllComments().map commentToEdge(); 
 	
 	styles += self.map stringValueStyle();
 	styles += self.map diagramStyle();
 	styles += self.map papyrusViewStyle(rootPackage);
 }
 
+mapping textualCommons::Commentable::commentableToShape() : notation::Shape
+disjuncts usecase::BehavioredClassifier::behavioredClassifierToShape, usecase::System::systemToShape;
+
 mapping usecase::BehavioredClassifier::behavioredClassifierToShape() : notation::Shape
-disjuncts usecase::Actor::actorToShape, usecase::UseCase::usecaseToShape
-{}
+disjuncts usecase::Actor::actorToShape, usecase::UseCase::usecaseToShape;
 
 mapping usecase::Actor::actorToShape() : notation::Shape
 when {self.oclIsKindOf(usecase::Actor)}
@@ -53,6 +57,7 @@ when {self.oclIsKindOf(usecase::Actor)}
 }
 
 mapping usecase::System::systemToShape() : notation::Shape
+when {self.oclIsKindOf(usecase::System)}
 {
 	type := PAPYRUS_NOTATION_SHAPE_SUBJECT_REGULAR;
 	element := self.referencedElement.toEObject();
@@ -66,7 +71,7 @@ mapping usecase::System::systemToShape() : notation::Shape
 mapping usecase::System::systemToCompartment() : notation::BasicCompartment
 {
 	type := PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR;
-	children := self.usecases.map behavioredClassifierToShape();
+	children := self.usecases.map commentableToShape();
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
@@ -108,6 +113,14 @@ mapping usecase::Extend::extendToShape() : notation::Shape
 	layoutConstraint := result.toEObject().map notationBounds();
 	children += self.map extendToNameLabel();
 	children += self.map extendToBodyLabel();
+}
+
+mapping textualCommons::Comment::commentToShape() : notation::Shape
+{
+	type := PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR;
+	element := self.referencedElement.toEObject();
+	children += self.map commentLabelBodyHintDecoration();
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 
@@ -195,7 +208,7 @@ when {self.oclIsKindOf(usecase::Include)}
 mapping usecase::Extend::extendToConstraintEdge() : notation::Connector
 {
 	type := PAPYRUS_NOTATION_EDGE_CONSTRAINT;
-	element := null;
+	result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
 	source := late resolveoneIn(
 		usecase::Extend::extendToShape,
 		s : notation::Shape | s.element.oclAsType(uml::Constraint) = self.referencedElement.oclAsType(uml::Extend).condition
@@ -206,6 +219,18 @@ mapping usecase::Extend::extendToConstraintEdge() : notation::Connector
 	);
 	styles := result.toEObject().map fontStyle();
 	bendpoints := result.map connectorToBendpoint();
+}
+
+mapping textualCommons::Comment::commentToEdge() : notation::Connector
+{
+	type := PAPYRUS_NOTATION_EDGE_COMMENTLINK;
+
+	source := self.resolveoneIn(textualCommons::Comment::commentToShape);
+	target := self.commentedElement.resolveoneIn(textualCommons::Commentable::commentableToShape);
+	result.toEObject().eUnset(notation::View.oclAsType(ecore::EClass).eStructuralFeatures->any(name = "element"));
+	
+	bendpoints := result.map connectorToBendpoint();
+	styles += result.toEObject().map fontStyle();
 }
 
 
@@ -351,6 +376,10 @@ mapping usecase::Generalization::generalizationToSteoretypeLabel() : notation::D
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
+mapping textualCommons::Comment::commentLabelBodyHintDecoration() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR;
+}
 
 
 
@@ -380,4 +409,15 @@ mapping ecore::EAnnotation::annotationToShowTitleDetail() : ecore::EStringToStri
 {
 	key := "showTitle";
 	value := "true";
+}
+
+
+
+
+// helpers
+query usecase::RootPackage::findAllComments() : Sequence(textualCommons::Comment) {
+	var actorComments := self.actors.comments->flatten();
+	var systemComments := self.systems.comments->flatten();
+	var usecaseComments := self.systems.usecases.comments->flatten();
+	return actorComments->union(systemComments)->union(usecaseComments);
 }

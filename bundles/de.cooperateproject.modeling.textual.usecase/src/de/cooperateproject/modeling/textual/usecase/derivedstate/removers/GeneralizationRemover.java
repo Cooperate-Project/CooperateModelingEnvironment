@@ -2,6 +2,9 @@ package de.cooperateproject.modeling.textual.usecase.derivedstate.removers;
 
 import static de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability.CLEANING;
 
+import java.util.Optional;
+
+import de.cooperateproject.modeling.textual.usecase.usecase.BehavioredClassifier;
 import de.cooperateproject.modeling.textual.usecase.usecase.Generalization;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
@@ -23,8 +26,16 @@ public class GeneralizationRemover extends AtomicDerivedStateProcessorBase<Gener
     @Override
     protected void applyTyped(Generalization object) {
         if (object.getReferencedElement() != null) {
-            object.eUnset(UsecasePackage.Literals.GENERALIZATION__GENERAL);
-            object.eUnset(UsecasePackage.Literals.GENERALIZATION__SPECIFIC);
+            if (Optional.ofNullable(object.getReferencedElement()).map(org.eclipse.uml2.uml.Generalization::getGeneral)
+                    .orElse(null) == Optional.ofNullable(object.getGeneral())
+                            .map(BehavioredClassifier::getReferencedElement).orElse(null)) {
+                object.eUnset(UsecasePackage.Literals.GENERALIZATION__GENERAL);
+            }
+            if (Optional.ofNullable(object.getReferencedElement()).map(org.eclipse.uml2.uml.Generalization::getSpecific)
+                    .orElse(null) == Optional.ofNullable(object.getSpecific())
+                            .map(BehavioredClassifier::getReferencedElement).orElse(null)) {
+                object.eUnset(UsecasePackage.Literals.GENERALIZATION__SPECIFIC);
+            }
         }
     }
 

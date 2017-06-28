@@ -41,6 +41,7 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordGeneralization();
 	result += self.map traceRecordExtend();
 	result += self.map traceRecordInclude();
+	result += self.map traceRecordComment();
 }
 
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
@@ -69,6 +70,7 @@ when {self.mappingOperation.name = "nodeToSystem"}
 	var systemFloatingNameLabel := shape.children->any(type = PAPYRUS_NOTATION_NODE_CLASSIFIER_FLOATINGNAME_REGULAR);
 	var usecaseCompartment := shape.children->any(type = PAPYRUS_NOTATION_SHAPE_USECASECOMPARTMENT_REGULAR);
 	
+	result += new TraceRecord("commentableToShape", "Commentable", system, "Shape", shape.toEObject());
 	result += new TraceRecord("systemToShape", "System", system, "Shape", shape.toEObject());
 	result += shape.map traceRecordExtended_notationBounds();
 	result += new TraceRecord("systemToNameLabel", "System", system, "DecorationNode", shape.children->any(type = PAPYRUS_NOTATION_NODE_CLASSIFIER_NAME_REGULAR).toEObject());
@@ -85,6 +87,7 @@ when {self.mappingOperation.name = "nodeToBehavioredClassifier"}
 	var classifier := self.getResult().modelElement;
 	
 	result += new TraceRecord("behavioredClassifierToShape", "BehavioredClassifier", classifier, "Shape", shape);
+	result += new TraceRecord("commentableToShape", "Commentable", classifier, "Shape", shape);
 }
 
 mapping trace::TraceRecord::traceRecordActor() : List(trace::TraceRecord)
@@ -131,6 +134,21 @@ when {self.mappingOperation.name = "nodeToExtensionPoint"}
 	
 	result += new TraceRecord("extensionPointToShape", "ExtensionPoint", extensionPoint, "Shape", shape.toEObject());
 	result += shape.map traceRecordExtended_locationConstraint();
+}
+
+mapping trace::TraceRecord::traceRecordComment() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "commentToComment"}
+{
+	var viewComment := self.getSelf().modelElement.oclAsType(notation::Node);
+	var txtComment := self.getResult().modelElement;
+	var bodyDecoration := viewComment.children->any(type = PAPYRUS_NOTATION_NODE_COMMENT_BODY_REGULAR);
+	var edgeComment = viewComment.diagram.edges->select(type = PAPYRUS_NOTATION_EDGE_COMMENTLINK)->any(source = viewComment or target = viewComment);
+
+	result += new TraceRecord("commentToShape", "Comment", txtComment, "Shape", viewComment.toEObject());
+	result += new TraceRecord("commentLabelBodyHintDecoration", "Comment", txtComment, "DecorationNode", bodyDecoration.toEObject());
+	result += viewComment.map traceRecordExtended_notationBounds();
+	result += new TraceRecord("commentToEdge", "Comment", txtComment, "Connector", edgeComment.toEObject());
+	result += edgeComment.map edge();
 }
 
 mapping trace::TraceRecord::traceRecordRelationship() : List(trace::TraceRecord)
@@ -204,7 +222,6 @@ when {self.mappingOperation.name = "edgeToInclude"}
 	result += stereotypeLabel.map decorationNode("includeToStereotypeLabel", "Include", include);
 	result += keywordLabel.map decorationNode("includeToKeywordLabel", "Include", include);
 }
-
 
 
 mapping notation::Edge::extendConstraintEdgeToTraceRecord(extend : usecase::Extend) : List(trace::TraceRecord)

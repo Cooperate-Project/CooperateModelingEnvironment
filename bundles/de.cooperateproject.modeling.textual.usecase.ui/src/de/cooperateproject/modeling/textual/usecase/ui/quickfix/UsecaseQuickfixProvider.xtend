@@ -13,6 +13,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
 import org.slf4j.LoggerFactory
 import de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyAbstractQualifierFactory
 import de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyVisibilityFactory
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 
 /**
  * Custom quickfixes.
@@ -24,7 +25,7 @@ class UsecaseQuickfixProvider extends CooperateQuickfixProvider {
 	private static val LOGGER = LoggerFactory.getLogger(UsecaseQuickfixProvider)
 
 	new() {
-		super(#[de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage.eINSTANCE])
+		super(#[de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage.eINSTANCE, TextualCommonsPackage.eINSTANCE])
 	}
 	
 	/**

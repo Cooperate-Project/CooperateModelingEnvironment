@@ -936,9 +936,9 @@ ruleAssociation returns [EObject current=null]
 				)
 			)
 			(
-				otherlv_9='|'
+				otherlv_9=':'
 				{
-					newLeafNode(otherlv_9, grammarAccess.getAssociationAccess().getVerticalLineKeyword_6_3_0());
+					newLeafNode(otherlv_9, grammarAccess.getAssociationAccess().getColonKeyword_6_3_0());
 				}
 				(
 					(

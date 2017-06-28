@@ -21,6 +21,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCaseDiagram
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Cardinality
 
 class UsecaseFormatter extends AbstractFormatter2 {
 	
@@ -119,6 +120,9 @@ class UsecaseFormatter extends AbstractFormatter2 {
 		association.regionFor.keyword(associationAccess.leftParenthesisKeyword_1).prepend[space = " "].append[space = ""]
 		association.regionFor.keyword(associationAccess.rightParenthesisKeyword_5).prepend[space = ""]
 		association.regionFor.keyword(associationAccess.commaKeyword_3).prepend[space = ""].append[space = " "]
+		association.regionFor.keyword(associationAccess.cardKeyword_6_0).prepend[space = " "]
+		association.regionFor.keyword(associationAccess.leftSquareBracketKeyword_6_1).prepend[space = ""]
+		association.regionFor.keyword(associationAccess.rightSquareBracketKeyword_6_4).prepend[space = ""]
 		format(association.getActorCardinality(), document);
 		format(association.getUseCaseCardinality(), document);
 	}
@@ -150,5 +154,11 @@ class UsecaseFormatter extends AbstractFormatter2 {
 	 	extend.regionFor.keyword(extendAccess.leftSquareBracketKeyword_10_1).prepend[space = ""]
 	 	extend.regionFor.keyword(extendAccess.rightSquareBracketKeyword_10_3).prepend[space = ""]
 	 	extend.regionFor.feature(UsecasePackage.Literals.EXTEND__CONDITION).prepend[space = ""]
+	 }
+	 
+	 def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {
+	 	cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).prepend[space = ""]
+	 	cardinality.regionFor.feature(TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND).prepend[space = ""]
+	 	cardinality.regionFor.feature(TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND).prepend[space = ""]
 	 }
 }

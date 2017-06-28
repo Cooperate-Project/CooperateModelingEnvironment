@@ -2323,9 +2323,9 @@ rule__Association__Group_6_3__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAssociationAccess().getVerticalLineKeyword_6_3_0()); }
-	'|'
-	{ after(grammarAccess.getAssociationAccess().getVerticalLineKeyword_6_3_0()); }
+	{ before(grammarAccess.getAssociationAccess().getColonKeyword_6_3_0()); }
+	':'
+	{ after(grammarAccess.getAssociationAccess().getColonKeyword_6_3_0()); }
 )
 ;
 finally {

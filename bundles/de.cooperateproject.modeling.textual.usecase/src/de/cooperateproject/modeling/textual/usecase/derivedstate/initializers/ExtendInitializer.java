@@ -23,6 +23,8 @@ import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializ
 @Applicability(applicabilities = INITIALIZATION)
 public class ExtendInitializer extends AtomicDerivedStateProcessorBase<Extend> {
 
+    public static final String CONDITION_LANGUAGE_NAME = "Natural language";
+
     /**
      * Instantiates the initializer.
      */
@@ -77,7 +79,7 @@ public class ExtendInitializer extends AtomicDerivedStateProcessorBase<Extend> {
         ValueSpecification valueSpecification = umlExtend.getCondition().getSpecification();
         if (valueSpecification instanceof OpaqueExpression) {
             OpaqueExpression expression = (OpaqueExpression) valueSpecification;
-            int bodyIndex = expression.getLanguages().indexOf("Natural language");
+            int bodyIndex = expression.getLanguages().indexOf(CONDITION_LANGUAGE_NAME);
             if (bodyIndex != -1 && expression.getBodies().size() > bodyIndex) {
                 String conditionString = expression.getBodies().get(bodyIndex);
                 object.setCondition(conditionString);
