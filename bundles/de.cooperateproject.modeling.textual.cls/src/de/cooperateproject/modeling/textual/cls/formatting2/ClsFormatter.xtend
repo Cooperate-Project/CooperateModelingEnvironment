@@ -160,21 +160,27 @@ class ClsFormatter extends AbstractFormatter2 {
 	}
 	
 	def dispatch void format(XtextAssociation association, extension IFormattableDocument document) {
-		//TODO: asc asc3 (A, B,          C) in testConnectors test
-		association.regionFor.feature(ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_BIDIRECTIONALITY).append[space = " "]
-		association.regionFor.feature(ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND).append[space = " "]
+		association.regionFor.feature(ClsPackage.Literals.XTEXT_ASSOCIATION__TWO_SIDE_AGGREGATION_KIND).prepend[space = " "]
+		association.regionFor.feature(TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME).prepend[space = " "]
 		
 		association.regionFor.keyword(xtextAssociationAccess.leftParenthesisKeyword_3).prepend[space = " "].append[space = ""]
-		association.regionFor.keyword(xtextAssociationAccess.rightParenthesisKeyword_6).prepend[space = ""].append[space = " "]
-		association.regionFor.keyword(xtextAssociationAccess.commaKeyword_5_0).append[space = " "]
+		if (association.memberEndTypes.size > 1) {
+			association.memberEndTypes.subList(1, association.memberEndTypes.size).forEach[prepend[space = " "]]			
+		}
+		association.regionFor.keyword(xtextAssociationAccess.rightParenthesisKeyword_6).prepend[space = ""]
+		association.regionFor.keyword(xtextAssociationAccess.commaKeyword_5_0).prepend[space = ""]
 		
+		association.regionFor.keyword(xtextAssociationAccess.roleKeyword_7_0).prepend[space = " "]
 		association.regionFor.keyword(xtextAssociationAccess.leftSquareBracketKeyword_7_1).prepend[space = " "].append[space = ""]
-		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_7_4).prepend[space = ""].append[space = " "]
 		association.regionFor.keyword(xtextAssociationAccess.commaKeyword_7_3_0).append[space = " "]
+		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_7_4).prepend[space = ""].append[space = " "]
 		
-		association.regionFor.keyword(xtextAssociationAccess.leftSquareBracketKeyword_8_1).prepend[space = " "].append[space = "" priority = 2]
-		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_8_4).prepend[space = "" priority = 2]
-		association.regionFor.keyword(xtextAssociationAccess.colonKeyword_8_3_0).prepend[space = " "].append[space = " "]
+		association.regionFor.keyword(xtextAssociationAccess.cardKeyword_8_0).prepend[space = " "]
+		association.regionFor.keyword(xtextAssociationAccess.leftSquareBracketKeyword_8_1).prepend[space = " "].append[space = ""]
+		if (association.memberEndCardinalities.size > 1) {
+			association.memberEndCardinalities.subList(1, association.memberEndCardinalities.size).forEach[prepend[space = " "]]			
+		}
+		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_8_4).prepend[space = ""]
 		association.append[newLine priority = 2]
 		
 		association.comments.forEach[format]

@@ -1,21 +1,20 @@
 package de.cooperateproject.modeling.textual.cls.tests.formatter
 
+import com.google.common.base.Function
+import com.google.common.base.Strings
 import com.google.inject.Inject
+import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
 import de.cooperateproject.modeling.textual.cls.tests.scoping.util.ClsCustomizedInjectorProvider
 import java.io.File
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
 import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.resource.SaveOptions
 import org.eclipse.xtext.serializer.ISerializer
+import org.eclipse.xtext.testing.InjectWith
 import org.junit.Test
 
 import static org.junit.Assert.*
-import de.cooperateproject.modeling.textual.cls.tests.AbstractClsTest
-import com.google.common.base.Strings
-import com.google.common.base.Function
-import org.junit.Ignore
 
 @InjectWith(ClsCustomizedInjectorProvider.DefaultProvider)
 class FormatterTest extends AbstractClsTest {
@@ -34,7 +33,7 @@ class FormatterTest extends AbstractClsTest {
 		"classifiers.cls".test
 	}
 	
-	@Test @Ignore
+	@Test
 	def testConnectors() {
 		"connectors.cls".test
 	}
