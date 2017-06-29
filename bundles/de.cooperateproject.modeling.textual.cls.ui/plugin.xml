@@ -85,6 +85,12 @@
         name="Cls">
 			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
 		</page>
+  <page
+        category="de.cooperateproject.modeling.textual.cls.ui.cooperate"
+        class="de.cooperateproject.ui.preferences.preferencepage.CDOServerConnectionPreference"
+        id="de.cooperateproject.modeling.textual.cls.cdoserver"
+        name="CDO">
+  </page>
 		<page
 			category="de.cooperateproject.modeling.textual.cls.Cls"
 			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"

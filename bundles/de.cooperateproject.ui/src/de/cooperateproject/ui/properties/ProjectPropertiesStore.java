@@ -9,6 +9,7 @@ import org.eclipse.jface.preference.IPersistentPreferenceStore;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 
 import de.cooperateproject.ui.nature.CooperateProjectNature;
+import de.cooperateproject.ui.preferences.CDOServerPreferenceHandler;
 
 public class ProjectPropertiesStore {
 
@@ -77,6 +78,20 @@ public class ProjectPropertiesStore {
         ProjectPropertiesDTO dto = new ProjectPropertiesDTO();
         initWithDefaults(dto);
         return dto;
+    }
+
+    public static ProjectPropertiesDTO getValuesFromPreferenceStore() {
+        ProjectPropertiesDTO dto = new ProjectPropertiesDTO();
+        initFromPreferenceStore(dto);
+        return dto;
+    }
+
+    private static void initFromPreferenceStore(ProjectPropertiesDTO dto) {
+        dto.setCdoHost(CDOServerPreferenceHandler.INSTANCE.getCDOServerHostnameSetting());
+        dto.setCdoPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerPortSetting());
+        dto.setCdoRepo(CDOServerPreferenceHandler.INSTANCE.getCDOServerRepositorySetting());
+        dto.setMsgPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerMessageBrokerSetting());
+
     }
 
 }

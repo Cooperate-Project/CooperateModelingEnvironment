@@ -52,7 +52,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
-import de.cooperateproject.ui.preferences.PreferenceHandler;
+import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
@@ -162,7 +162,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
         if (cooperateXtextDocument.getResource() == null) {
             return;
         }
-        ErrorIndicatorSettings signalType = PreferenceHandler.INSTANCE.getErrorIndicatorSetting();
+        ErrorIndicatorSettings signalType = ErrorIndicatorPreferenceHandler.INSTANCE.getErrorIndicatorSetting();
         EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
 
         errorSignalContext.createSignal(errors, getCursorPosition(), signalType);
