@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Commons
 Bundle-SymbolicName: de.cooperateproject.modeling.common
-Bundle-Version: 2.0.0
+Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.common.conventions,
  de.cooperateproject.modeling.common.types

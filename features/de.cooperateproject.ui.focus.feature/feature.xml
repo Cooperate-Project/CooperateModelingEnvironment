@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.ui.focus.feature"
       label="%featureName"
-      version="2.0.0"
+      version="0.2.0.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -19,7 +19,7 @@
    </license>
 
    <requires>
-      <import feature="de.cooperateproject.ui.feature" version="2.0.0" match="compatible"/>
+      <import feature="de.cooperateproject.ui.feature" version="0.2.0" match="compatible"/>
    </requires>
 
    <plugin
