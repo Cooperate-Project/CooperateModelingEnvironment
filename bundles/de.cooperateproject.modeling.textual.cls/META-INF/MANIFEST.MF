@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Class Diagrams
-Bundle-Version: 0.1.8.qualifier
+Bundle-Version: 0.1.8
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.cls; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;resolution:=optional,

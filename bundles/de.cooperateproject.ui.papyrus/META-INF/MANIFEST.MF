@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cooperate UI Papyrus
 Bundle-SymbolicName: de.cooperateproject.ui.papyrus;singleton:=true
-Bundle-Version: 0.1.8.qualifier
+Bundle-Version: 0.1.8
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: de.cooperateproject.ui;bundle-version="0.1.8",
  org.eclipse.core.resources,
