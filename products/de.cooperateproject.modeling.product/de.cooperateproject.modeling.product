@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Cooperate Modeling Environment" uid="de.cooperateproject.modeling.product" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="0.1.8" useFeatures="true" includeLaunchers="true">
+<product name="Cooperate Modeling Environment" uid="de.cooperateproject.modeling.product" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="2.0.0" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -31,9 +31,9 @@
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
       <feature id="org.eclipse.ecf.core.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="de.cooperateproject.ui.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.ui.feature" version="2.0.0"/>
       <feature id="org.eclipse.papyrus.uml.ui.feature"/>
-      <feature id="de.cooperateproject.modeling.textual.commons.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.textual.commons.feature" version="2.0.0"/>
       <feature id="org.eclipse.papyrus.infra.gmfdiag.css.feature"/>
       <feature id="org.eclipse.papyrus.uml.tools.feature"/>
       <feature id="org.eclipse.gmf.runtime.notation.source"/>
@@ -54,7 +54,7 @@
       <feature id="org.eclipse.uml2.examples.source"/>
       <feature id="org.eclipse.m2m.qvt.oml.runtime.source"/>
       <feature id="org.eclipse.emf.mapping.source"/>
-      <feature id="de.cooperateproject.modeling.textual.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.textual.feature" version="2.0.0"/>
       <feature id="org.eclipse.emf.codegen.ecore.ui.source"/>
       <feature id="org.eclipse.uml2.common.edit.source"/>
       <feature id="org.eclipse.uml2.codegen.ecore.ui.source"/>
@@ -99,13 +99,13 @@
       <feature id="org.eclipse.papyrus.uml.search.feature"/>
       <feature id="org.eclipse.emf"/>
       <feature id="org.eclipse.m2m.qvt.oml.editor"/>
-      <feature id="de.cooperateproject.modeling.textual.class.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.textual.class.feature" version="2.0.0"/>
       <feature id="org.eclipse.uml2.uml"/>
       <feature id="org.eclipse.uml2.common.source"/>
-      <feature id="de.cooperateproject.modeling.transformation.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.transformation.feature" version="2.0.0"/>
       <feature id="de.cooperateproject.cdo.patched.client.feature"/>
-      <feature id="de.cooperateproject.modeling.graphical.feature" version="0.1.8"/>
-      <feature id="de.cooperateproject.modeling.textual.metamodels.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.graphical.feature" version="2.0.0"/>
+      <feature id="de.cooperateproject.modeling.textual.metamodels.feature" version="2.0.0"/>
       <feature id="org.eclipse.emf.edit"/>
       <feature id="org.eclipse.xtext.runtime"/>
       <feature id="org.eclipse.papyrus.views.references.feature"/>
@@ -127,7 +127,7 @@
       <feature id="org.eclipse.uml2"/>
       <feature id="org.eclipse.papyrus.infra.feature"/>
       <feature id="org.eclipse.papyrus.uml.properties.feature"/>
-      <feature id="de.cooperateproject.modeling.textual.usecase.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.textual.usecase.feature" version="2.0.0"/>
       <feature id="org.eclipse.papyrus.doc.feature"/>
       <feature id="org.eclipse.papyrus.uml.assistants.feature"/>
       <feature id="org.eclipse.xtext.xtext.ui"/>
@@ -211,7 +211,7 @@
       <feature id="org.eclipse.ocl.unified.core"/>
       <feature id="org.eclipse.wst.common.fproj"/>
       <feature id="org.eclipse.emf.compare.rcp.ui"/>
-      <feature id="de.cooperateproject.modeling.externals.feature" version="0.1.8"/>
+      <feature id="de.cooperateproject.modeling.externals.feature" version="2.0.0"/>
    </features>
 
    <configurations>

@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.externals.feature"
       label="Cooperate Modeling Environment External Dependencies"
-      version="0.1.8">
+      version="2.0.0">
 
    <description>
       Dependencies of the Cooperate modeling environment to external libraries.
