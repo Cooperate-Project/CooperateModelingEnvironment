@@ -3,10 +3,9 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
-
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
 
 import org.eclipse.emf.ecore.EClass;
@@ -22,11 +21,22 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getInterface <em>Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getLeftport <em>Leftport</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#getRightport <em>Rightport</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PortRelationImpl#isStatic <em>Static</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class PortRelationImpl extends AliasedElementImpl implements PortRelation {
+    /**
+     * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isStatic()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean STATIC_EDEFAULT = false;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -78,8 +88,8 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component getLeftport() {
-        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, true, true);
+    public Port getLeftport() {
+        return (Port)eDynamicGet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, true, true);
     }
 
     /**
@@ -87,8 +97,8 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component basicGetLeftport() {
-        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, false, true);
+    public Port basicGetLeftport() {
+        return (Port)eDynamicGet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, false, true);
     }
 
     /**
@@ -96,7 +106,7 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftport(Component newLeftport) {
+    public void setLeftport(Port newLeftport) {
         eDynamicSet(ComponentPackage.PORT_RELATION__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, newLeftport);
     }
 
@@ -105,8 +115,8 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component getRightport() {
-        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, true, true);
+    public Port getRightport() {
+        return (Port)eDynamicGet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, true, true);
     }
 
     /**
@@ -114,8 +124,8 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component basicGetRightport() {
-        return (Component)eDynamicGet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, false, true);
+    public Port basicGetRightport() {
+        return (Port)eDynamicGet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, false, true);
     }
 
     /**
@@ -123,8 +133,26 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightport(Component newRightport) {
+    public void setRightport(Port newRightport) {
         eDynamicSet(ComponentPackage.PORT_RELATION__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, newRightport);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isStatic() {
+        return (Boolean)eDynamicGet(ComponentPackage.PORT_RELATION__STATIC, ComponentPackage.Literals.PORT_RELATION__STATIC, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setStatic(boolean newStatic) {
+        eDynamicSet(ComponentPackage.PORT_RELATION__STATIC, ComponentPackage.Literals.PORT_RELATION__STATIC, newStatic);
     }
 
     /**
@@ -144,6 +172,8 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
             case ComponentPackage.PORT_RELATION__RIGHTPORT:
                 if (resolve) return getRightport();
                 return basicGetRightport();
+            case ComponentPackage.PORT_RELATION__STATIC:
+                return isStatic();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -160,10 +190,13 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
                 setInterface((Interface)newValue);
                 return;
             case ComponentPackage.PORT_RELATION__LEFTPORT:
-                setLeftport((Component)newValue);
+                setLeftport((Port)newValue);
                 return;
             case ComponentPackage.PORT_RELATION__RIGHTPORT:
-                setRightport((Component)newValue);
+                setRightport((Port)newValue);
+                return;
+            case ComponentPackage.PORT_RELATION__STATIC:
+                setStatic((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -181,10 +214,13 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
                 setInterface((Interface)null);
                 return;
             case ComponentPackage.PORT_RELATION__LEFTPORT:
-                setLeftport((Component)null);
+                setLeftport((Port)null);
                 return;
             case ComponentPackage.PORT_RELATION__RIGHTPORT:
-                setRightport((Component)null);
+                setRightport((Port)null);
+                return;
+            case ComponentPackage.PORT_RELATION__STATIC:
+                setStatic(STATIC_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -204,6 +240,8 @@ public abstract class PortRelationImpl extends AliasedElementImpl implements Por
                 return basicGetLeftport() != null;
             case ComponentPackage.PORT_RELATION__RIGHTPORT:
                 return basicGetRightport() != null;
+            case ComponentPackage.PORT_RELATION__STATIC:
+                return isStatic() != STATIC_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }

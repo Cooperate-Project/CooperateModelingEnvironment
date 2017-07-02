@@ -586,9 +586,9 @@ ruleComponent returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getComponentAccess().getPortPortRelationParserRuleCall_4_2_0());
+						newCompositeNode(grammarAccess.getComponentAccess().getPortPortParserRuleCall_4_2_0());
 					}
-					lv_port_9_0=rulePortRelation
+					lv_port_9_0=rulePort
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getComponentRule());
@@ -597,6 +597,25 @@ ruleComponent returns [EObject current=null]
 							$current,
 							"port",
 							lv_port_9_0,
+							"de.cooperateproject.modeling.textual.component.Component.Port");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getComponentAccess().getPortrelationPortRelationParserRuleCall_4_3_0());
+					}
+					lv_portrelation_10_0=rulePortRelation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getComponentRule());
+						}
+						add(
+							$current,
+							"portrelation",
+							lv_portrelation_10_0,
 							"de.cooperateproject.modeling.textual.component.Component.PortRelation");
 						afterParserOrEnumRuleCall();
 					}
@@ -605,9 +624,9 @@ ruleComponent returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getComponentAccess().getInterfacerelationInterfaceRelationParserRuleCall_4_3_0());
+						newCompositeNode(grammarAccess.getComponentAccess().getInterfacerelationInterfaceRelationParserRuleCall_4_4_0());
 					}
-					lv_interfacerelation_10_0=ruleInterfaceRelation
+					lv_interfacerelation_11_0=ruleInterfaceRelation
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getComponentRule());
@@ -615,7 +634,7 @@ ruleComponent returns [EObject current=null]
 						add(
 							$current,
 							"interfacerelation",
-							lv_interfacerelation_10_0,
+							lv_interfacerelation_11_0,
 							"de.cooperateproject.modeling.textual.component.Component.InterfaceRelation");
 						afterParserOrEnumRuleCall();
 					}
@@ -624,9 +643,9 @@ ruleComponent returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getComponentAccess().getInterfaceInterfaceParserRuleCall_4_4_0());
+						newCompositeNode(grammarAccess.getComponentAccess().getInterfaceInterfaceParserRuleCall_4_5_0());
 					}
-					lv_interface_11_0=ruleInterface
+					lv_interface_12_0=ruleInterface
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getComponentRule());
@@ -634,16 +653,16 @@ ruleComponent returns [EObject current=null]
 						add(
 							$current,
 							"interface",
-							lv_interface_11_0,
+							lv_interface_12_0,
 							"de.cooperateproject.modeling.textual.component.Component.Interface");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)*
 		)
-		otherlv_12='}'
+		otherlv_13='}'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_13, grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;
@@ -1025,6 +1044,73 @@ ruleComment returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRulePort
+entryRulePort returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPortRule()); }
+	iv_rulePort=rulePort
+	{ $current=$iv_rulePort.current; }
+	EOF;
+
+// Rule Port
+rulePort returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getPortAccess().getPortAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPortAccess().getVisibilityVisibilityEnumRuleCall_1_0());
+				}
+				lv_visibility_1_0=ruleVisibility
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPortRule());
+					}
+					set(
+						$current,
+						"visibility",
+						lv_visibility_1_0,
+						"de.cooperateproject.modeling.textual.component.Component.Visibility");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_2='port'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getPortAccess().getPortKeyword_2());
+		}
+		(
+			(
+				lv_name_3_0=RULE_ID
+				{
+					newLeafNode(lv_name_3_0, grammarAccess.getPortAccess().getNameIDTerminalRuleCall_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getPortRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_3_0,
+						"de.cooperateproject.modeling.textual.component.Component.ID");
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRuleInterface
 entryRuleInterface returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getInterfaceRule()); }
@@ -1204,7 +1290,7 @@ ruleConnector returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='Con'
+		otherlv_0='con'
 		{
 			newLeafNode(otherlv_0, grammarAccess.getConnectorAccess().getConKeyword_0());
 		}
@@ -1283,12 +1369,9 @@ ruleConnector returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getConnectorRule());
 					}
 				}
+				otherlv_6=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getConnectorAccess().getLeftportComponentCrossReference_3_0());
-				}
-				ruleFQN
-				{
-					afterParserOrEnumRuleCall();
+					newLeafNode(otherlv_6, grammarAccess.getConnectorAccess().getLeftportPortCrossReference_3_0());
 				}
 			)
 		)
@@ -1303,12 +1386,9 @@ ruleConnector returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getConnectorRule());
 					}
 				}
+				otherlv_8=RULE_ID
 				{
-					newCompositeNode(grammarAccess.getConnectorAccess().getRightportComponentCrossReference_5_0());
-				}
-				ruleFQN
-				{
-					afterParserOrEnumRuleCall();
+					newLeafNode(otherlv_8, grammarAccess.getConnectorAccess().getRightportPortCrossReference_5_0());
 				}
 			)
 		)

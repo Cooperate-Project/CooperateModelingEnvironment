@@ -17,9 +17,10 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getComponent <em>Component</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPort <em>Port</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPortrelation <em>Portrelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterfacerelation <em>Interfacerelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPort <em>Port</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent()
@@ -44,8 +45,24 @@ public interface Component extends Commentable<org.eclipse.uml2.uml.Component>, 
     EList<Component> getComponent();
 
     /**
-     * Returns the value of the '<em><b>Port</b></em>' containment reference list.
+     * Returns the value of the '<em><b>Portrelation</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Portrelation</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Portrelation</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_Portrelation()
+     * @model containment="true"
+     * @generated
+     */
+    EList<PortRelation> getPortrelation();
+
+    /**
+     * Returns the value of the '<em><b>Port</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Port}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Port</em>' containment reference list isn't clear,
@@ -57,7 +74,7 @@ public interface Component extends Commentable<org.eclipse.uml2.uml.Component>, 
      * @model containment="true"
      * @generated
      */
-    EList<PortRelation> getPort();
+    EList<Port> getPort();
 
     /**
      * Returns the value of the '<em><b>Interfacerelation</b></em>' containment reference list.

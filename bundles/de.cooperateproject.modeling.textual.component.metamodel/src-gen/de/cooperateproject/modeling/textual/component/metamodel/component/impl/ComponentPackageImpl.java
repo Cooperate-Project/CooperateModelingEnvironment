@@ -21,6 +21,7 @@ import de.cooperateproject.modeling.textual.component.metamodel.component.Manife
 import de.cooperateproject.modeling.textual.component.metamodel.component.Member;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Method;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Parameter;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Property;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Provide;
@@ -193,6 +194,13 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * @generated
      */
     private EClass requireEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass portEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -380,6 +388,15 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getPortRelation_Static() {
+        return (EAttribute)portRelationEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getConnector() {
         return connectorEClass;
     }
@@ -497,8 +514,17 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_Port() {
+    public EReference getComponent_Portrelation() {
         return (EReference)componentEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getComponent_Port() {
+        return (EReference)componentEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -641,6 +667,24 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getPort() {
+        return portEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPort_Visibility() {
+        return (EAttribute)portEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ComponentFactory getComponentFactory() {
         return (ComponentFactory)getEFactoryInstance();
     }
@@ -680,6 +724,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         createEReference(portRelationEClass, PORT_RELATION__INTERFACE);
         createEReference(portRelationEClass, PORT_RELATION__LEFTPORT);
         createEReference(portRelationEClass, PORT_RELATION__RIGHTPORT);
+        createEAttribute(portRelationEClass, PORT_RELATION__STATIC);
 
         connectorEClass = createEClass(CONNECTOR);
 
@@ -702,9 +747,10 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
         componentEClass = createEClass(COMPONENT);
         createEReference(componentEClass, COMPONENT__COMPONENT);
-        createEReference(componentEClass, COMPONENT__PORT);
+        createEReference(componentEClass, COMPONENT__PORTRELATION);
         createEReference(componentEClass, COMPONENT__INTERFACERELATION);
         createEReference(componentEClass, COMPONENT__INTERFACE);
+        createEReference(componentEClass, COMPONENT__PORT);
 
         interfaceEClass = createEClass(INTERFACE);
         createEReference(interfaceEClass, INTERFACE__MEMBER);
@@ -726,6 +772,9 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         provideEClass = createEClass(PROVIDE);
 
         requireEClass = createEClass(REQUIRE);
+
+        portEClass = createEClass(PORT);
+        createEAttribute(portEClass, PORT__VISIBILITY);
     }
 
     /**
@@ -768,6 +817,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         EGenericType g2 = createEGenericType(this.getRootPackage());
         g1.getETypeArguments().add(g2);
         rootPackageEClass.getEGenericSuperTypes().add(g1);
+        classifierRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
         portRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
         g2 = createEGenericType(theUMLPackage.getConnector());
@@ -851,6 +901,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g2 = createEGenericType(theUMLPackage.getDependency());
         g1.getETypeArguments().add(g2);
         requireEClass.getEGenericSuperTypes().add(g1);
+        portEClass.getESuperTypes().add(theTextualCommonsPackage.getNamedElement());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(componentDiagramEClass, ComponentDiagram.class, "ComponentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -867,8 +918,9 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
         initEClass(portRelationEClass, PortRelation.class, "PortRelation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPortRelation_Interface(), this.getInterface(), null, "interface", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPortRelation_Leftport(), this.getComponent(), null, "leftport", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPortRelation_Rightport(), this.getComponent(), null, "rightport", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPortRelation_Leftport(), this.getPort(), null, "leftport", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPortRelation_Rightport(), this.getPort(), null, "rightport", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPortRelation_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -891,9 +943,10 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
         initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getComponent_Component(), this.getComponent(), null, "component", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_Port(), this.getPortRelation(), null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_Portrelation(), this.getPortRelation(), null, "portrelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_Interfacerelation(), this.getInterfaceRelation(), null, "interfacerelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_Interface(), this.getInterface(), null, "interface", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_Port(), this.getPort(), null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getInterface_Member(), this.getMember(), null, "member", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -915,6 +968,9 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         initEClass(provideEClass, Provide.class, "Provide", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(requireEClass, Require.class, "Require", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPort_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

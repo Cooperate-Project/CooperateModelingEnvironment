@@ -7,10 +7,9 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Name
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
-
-import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
 
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +29,7 @@ import org.eclipse.uml2.uml.Connector;
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getInterface <em>Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getLeftport <em>Leftport</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#getRightport <em>Rightport</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ConnectorImpl#isStatic <em>Static</em>}</li>
  * </ul>
  *
  * @generated
@@ -54,6 +54,16 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * @ordered
      */
     protected static final String ALIAS_EDEFAULT = null;
+
+    /**
+     * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isStatic()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean STATIC_EDEFAULT = false;
 
     /**
      * <!-- begin-user-doc -->
@@ -153,8 +163,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component getLeftport() {
-        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, true, true);
+    public Port getLeftport() {
+        return (Port)eDynamicGet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, true, true);
     }
 
     /**
@@ -162,8 +172,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component basicGetLeftport() {
-        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, false, true);
+    public Port basicGetLeftport() {
+        return (Port)eDynamicGet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, false, true);
     }
 
     /**
@@ -171,7 +181,7 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftport(Component newLeftport) {
+    public void setLeftport(Port newLeftport) {
         eDynamicSet(ComponentPackage.CONNECTOR__LEFTPORT, ComponentPackage.Literals.PORT_RELATION__LEFTPORT, newLeftport);
     }
 
@@ -180,8 +190,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component getRightport() {
-        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, true, true);
+    public Port getRightport() {
+        return (Port)eDynamicGet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, true, true);
     }
 
     /**
@@ -189,8 +199,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Component basicGetRightport() {
-        return (Component)eDynamicGet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, false, true);
+    public Port basicGetRightport() {
+        return (Port)eDynamicGet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, false, true);
     }
 
     /**
@@ -198,8 +208,26 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightport(Component newRightport) {
+    public void setRightport(Port newRightport) {
         eDynamicSet(ComponentPackage.CONNECTOR__RIGHTPORT, ComponentPackage.Literals.PORT_RELATION__RIGHTPORT, newRightport);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isStatic() {
+        return (Boolean)eDynamicGet(ComponentPackage.CONNECTOR__STATIC, ComponentPackage.Literals.PORT_RELATION__STATIC, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setStatic(boolean newStatic) {
+        eDynamicSet(ComponentPackage.CONNECTOR__STATIC, ComponentPackage.Literals.PORT_RELATION__STATIC, newStatic);
     }
 
     /**
@@ -223,6 +251,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
             case ComponentPackage.CONNECTOR__RIGHTPORT:
                 if (resolve) return getRightport();
                 return basicGetRightport();
+            case ComponentPackage.CONNECTOR__STATIC:
+                return isStatic();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -245,10 +275,13 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 setInterface((Interface)newValue);
                 return;
             case ComponentPackage.CONNECTOR__LEFTPORT:
-                setLeftport((Component)newValue);
+                setLeftport((Port)newValue);
                 return;
             case ComponentPackage.CONNECTOR__RIGHTPORT:
-                setRightport((Component)newValue);
+                setRightport((Port)newValue);
+                return;
+            case ComponentPackage.CONNECTOR__STATIC:
+                setStatic((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -272,10 +305,13 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 setInterface((Interface)null);
                 return;
             case ComponentPackage.CONNECTOR__LEFTPORT:
-                setLeftport((Component)null);
+                setLeftport((Port)null);
                 return;
             case ComponentPackage.CONNECTOR__RIGHTPORT:
-                setRightport((Component)null);
+                setRightport((Port)null);
+                return;
+            case ComponentPackage.CONNECTOR__STATIC:
+                setStatic(STATIC_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -299,6 +335,8 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 return basicGetLeftport() != null;
             case ComponentPackage.CONNECTOR__RIGHTPORT:
                 return basicGetRightport() != null;
+            case ComponentPackage.CONNECTOR__STATIC:
+                return isStatic() != STATIC_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -327,6 +365,7 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 case ComponentPackage.CONNECTOR__INTERFACE: return ComponentPackage.PORT_RELATION__INTERFACE;
                 case ComponentPackage.CONNECTOR__LEFTPORT: return ComponentPackage.PORT_RELATION__LEFTPORT;
                 case ComponentPackage.CONNECTOR__RIGHTPORT: return ComponentPackage.PORT_RELATION__RIGHTPORT;
+                case ComponentPackage.CONNECTOR__STATIC: return ComponentPackage.PORT_RELATION__STATIC;
                 default: return -1;
             }
         }
@@ -357,6 +396,7 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
                 case ComponentPackage.PORT_RELATION__INTERFACE: return ComponentPackage.CONNECTOR__INTERFACE;
                 case ComponentPackage.PORT_RELATION__LEFTPORT: return ComponentPackage.CONNECTOR__LEFTPORT;
                 case ComponentPackage.PORT_RELATION__RIGHTPORT: return ComponentPackage.CONNECTOR__RIGHTPORT;
+                case ComponentPackage.PORT_RELATION__STATIC: return ComponentPackage.CONNECTOR__STATIC;
                 default: return -1;
             }
         }

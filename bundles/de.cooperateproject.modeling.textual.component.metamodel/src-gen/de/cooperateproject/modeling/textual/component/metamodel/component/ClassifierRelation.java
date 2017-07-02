@@ -2,7 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
-import org.eclipse.emf.cdo.CDOObject;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,10 +19,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface ClassifierRelation extends CDOObject {
+public interface ClassifierRelation extends AliasedElement {
     /**
      * Returns the value of the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->

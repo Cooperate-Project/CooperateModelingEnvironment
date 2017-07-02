@@ -95,6 +95,9 @@ public class ComponentSwitch<T1> extends Switch<T1> {
             case ComponentPackage.CLASSIFIER_RELATION: {
                 ClassifierRelation classifierRelation = (ClassifierRelation)theEObject;
                 T1 result = caseClassifierRelation(classifierRelation);
+                if (result == null) result = caseAliasedElement(classifierRelation);
+                if (result == null) result = caseNamedElement(classifierRelation);
+                if (result == null) result = caseElement(classifierRelation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -123,6 +126,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseGeneralization(generalization);
                 if (result == null) result = caseUMLReferencingElement(generalization);
                 if (result == null) result = caseClassifierRelation(generalization);
+                if (result == null) result = caseAliasedElement(generalization);
+                if (result == null) result = caseNamedElement(generalization);
                 if (result == null) result = caseElement(generalization);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -132,6 +137,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseAbstraction(abstraction);
                 if (result == null) result = caseUMLReferencingElement(abstraction);
                 if (result == null) result = caseClassifierRelation(abstraction);
+                if (result == null) result = caseAliasedElement(abstraction);
+                if (result == null) result = caseNamedElement(abstraction);
                 if (result == null) result = caseElement(abstraction);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -141,6 +148,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseManifestation(manifestation);
                 if (result == null) result = caseUMLReferencingElement(manifestation);
                 if (result == null) result = caseClassifierRelation(manifestation);
+                if (result == null) result = caseAliasedElement(manifestation);
+                if (result == null) result = caseNamedElement(manifestation);
                 if (result == null) result = caseElement(manifestation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -150,6 +159,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseSubstitution(substitution);
                 if (result == null) result = caseUMLReferencingElement(substitution);
                 if (result == null) result = caseClassifierRelation(substitution);
+                if (result == null) result = caseAliasedElement(substitution);
+                if (result == null) result = caseNamedElement(substitution);
                 if (result == null) result = caseElement(substitution);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -159,6 +170,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseDependency(dependency);
                 if (result == null) result = caseUMLReferencingElement(dependency);
                 if (result == null) result = caseClassifierRelation(dependency);
+                if (result == null) result = caseAliasedElement(dependency);
+                if (result == null) result = caseNamedElement(dependency);
                 if (result == null) result = caseElement(dependency);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -265,6 +278,14 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 if (result == null) result = caseInterfaceRelation(require);
                 if (result == null) result = caseUMLReferencingElement(require);
                 if (result == null) result = caseElement(require);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ComponentPackage.PORT: {
+                Port port = (Port)theEObject;
+                T1 result = casePort(port);
+                if (result == null) result = caseNamedElement(port);
+                if (result == null) result = caseElement(port);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -584,6 +605,21 @@ public class ComponentSwitch<T1> extends Switch<T1> {
      * @generated
      */
     public T1 caseRequire(Require object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Port</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Port</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T1 casePort(Port object) {
         return null;
     }
 

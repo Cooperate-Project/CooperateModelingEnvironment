@@ -2,13 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.AliasedElementImpl;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +23,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public abstract class ClassifierRelationImpl extends CDOObjectImpl implements ClassifierRelation {
+public abstract class ClassifierRelationImpl extends AliasedElementImpl implements ClassifierRelation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -42,16 +41,6 @@ public abstract class ClassifierRelationImpl extends CDOObjectImpl implements Cl
     @Override
     protected EClass eStaticClass() {
         return ComponentPackage.Literals.CLASSIFIER_RELATION;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected int eStaticFeatureCount() {
-        return 0;
     }
 
     /**

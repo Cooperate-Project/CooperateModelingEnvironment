@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.component.metamodel.component.valid
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.Component;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 
 /**
  * A sample validator interface for {@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation}.
@@ -17,6 +18,12 @@ public interface PortRelationValidator {
     boolean validate();
 
     boolean validateInterface(Interface value);
+    boolean validateLeftport(Port value);
+
+    boolean validateRightport(Port value);
+
+    boolean validateStatic(boolean value);
+
     boolean validateLeftport(Component value);
     boolean validateRightport(Component value);
 }

@@ -16,6 +16,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getInterface <em>Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getLeftport <em>Leftport</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getRightport <em>Rightport</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#isStatic <em>Static</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation()
@@ -58,12 +59,12 @@ public interface PortRelation extends AliasedElement {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Leftport</em>' reference.
-     * @see #setLeftport(Component)
+     * @see #setLeftport(Port)
      * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation_Leftport()
      * @model required="true"
      * @generated
      */
-    Component getLeftport();
+    Port getLeftport();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getLeftport <em>Leftport</em>}' reference.
@@ -73,7 +74,7 @@ public interface PortRelation extends AliasedElement {
      * @see #getLeftport()
      * @generated
      */
-    void setLeftport(Component value);
+    void setLeftport(Port value);
 
     /**
      * Returns the value of the '<em><b>Rightport</b></em>' reference.
@@ -84,12 +85,12 @@ public interface PortRelation extends AliasedElement {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Rightport</em>' reference.
-     * @see #setRightport(Component)
+     * @see #setRightport(Port)
      * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation_Rightport()
      * @model required="true"
      * @generated
      */
-    Component getRightport();
+    Port getRightport();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#getRightport <em>Rightport</em>}' reference.
@@ -99,6 +100,32 @@ public interface PortRelation extends AliasedElement {
      * @see #getRightport()
      * @generated
      */
-    void setRightport(Component value);
+    void setRightport(Port value);
+
+    /**
+     * Returns the value of the '<em><b>Static</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Static</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Static</em>' attribute.
+     * @see #setStatic(boolean)
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getPortRelation_Static()
+     * @model unique="false"
+     * @generated
+     */
+    boolean isStatic();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation#isStatic <em>Static</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Static</em>' attribute.
+     * @see #isStatic()
+     * @generated
+     */
+    void setStatic(boolean value);
 
 } // PortRelation

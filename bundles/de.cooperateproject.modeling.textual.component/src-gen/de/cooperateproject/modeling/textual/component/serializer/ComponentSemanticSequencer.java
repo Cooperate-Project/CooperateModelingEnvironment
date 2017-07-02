@@ -17,6 +17,7 @@ import de.cooperateproject.modeling.textual.component.metamodel.component.Genera
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Manifestation;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Method;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Provide;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Require;
 import de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage;
@@ -79,6 +80,9 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case ComponentPackage.PARAMETER:
 				sequence_Parameter(context, (de.cooperateproject.modeling.textual.component.metamodel.component.Parameter) semanticObject); 
+				return; 
+			case ComponentPackage.PORT:
+				sequence_Port(context, (Port) semanticObject); 
 				return; 
 			case ComponentPackage.PROVIDE:
 				sequence_Provide(context, (Provide) semanticObject); 
@@ -187,7 +191,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         ((name=STRING alias=ID) | name=ID) 
 	 *         comments+=Comment? 
 	 *         component+=Component* 
-	 *         port+=PortRelation* 
+	 *         port+=Port* 
+	 *         portrelation+=PortRelation* 
 	 *         interfacerelation+=InterfaceRelation* 
 	 *         interface+=Interface*
 	 *     )
@@ -203,7 +208,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Connector returns Connector
 	 *
 	 * Constraint:
-	 *     (((name=EString alias=ID) | name=ID) leftport=[Component|FQN] rightport=[Component|FQN] interface=[Interface|EString])
+	 *     (((name=EString alias=ID) | name=ID) leftport=[Port|ID] rightport=[Port|ID] interface=[Interface|EString])
 	 */
 	protected void sequence_Connector(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -317,6 +322,18 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (visibility=Visibility? static?='static'? name=ID type=[Classifier|FQN])
 	 */
 	protected void sequence_Parameter(ISerializationContext context, de.cooperateproject.modeling.textual.component.metamodel.component.Parameter semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Port returns Port
+	 *
+	 * Constraint:
+	 *     (visibility=Visibility? name=ID)
+	 */
+	protected void sequence_Port(ISerializationContext context, Port semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	

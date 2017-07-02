@@ -265,24 +265,27 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cComponentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cComponentComponentParserRuleCall_4_1_0 = (RuleCall)cComponentAssignment_4_1.eContents().get(0);
 		private final Assignment cPortAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cPortPortRelationParserRuleCall_4_2_0 = (RuleCall)cPortAssignment_4_2.eContents().get(0);
-		private final Assignment cInterfacerelationAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
-		private final RuleCall cInterfacerelationInterfaceRelationParserRuleCall_4_3_0 = (RuleCall)cInterfacerelationAssignment_4_3.eContents().get(0);
-		private final Assignment cInterfaceAssignment_4_4 = (Assignment)cGroup_4.eContents().get(4);
-		private final RuleCall cInterfaceInterfaceParserRuleCall_4_4_0 = (RuleCall)cInterfaceAssignment_4_4.eContents().get(0);
+		private final RuleCall cPortPortParserRuleCall_4_2_0 = (RuleCall)cPortAssignment_4_2.eContents().get(0);
+		private final Assignment cPortrelationAssignment_4_3 = (Assignment)cGroup_4.eContents().get(3);
+		private final RuleCall cPortrelationPortRelationParserRuleCall_4_3_0 = (RuleCall)cPortrelationAssignment_4_3.eContents().get(0);
+		private final Assignment cInterfacerelationAssignment_4_4 = (Assignment)cGroup_4.eContents().get(4);
+		private final RuleCall cInterfacerelationInterfaceRelationParserRuleCall_4_4_0 = (RuleCall)cInterfacerelationAssignment_4_4.eContents().get(0);
+		private final Assignment cInterfaceAssignment_4_5 = (Assignment)cGroup_4.eContents().get(5);
+		private final RuleCall cInterfaceInterfaceParserRuleCall_4_5_0 = (RuleCall)cInterfaceAssignment_4_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Component:
 		//	{Component}
 		//	'component' (name=STRING 'as' alias=ID | name=ID) '{' (comments+=Comment?
 		//	component+=Component*
-		//	port+=PortRelation*
+		//	port+=Port*
+		//	portrelation+=PortRelation*
 		//	interfacerelation+=InterfaceRelation*
 		//	interface+=Interface*) '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Component} 'component' (name=STRING 'as' alias=ID | name=ID) '{' (comments+=Comment? component+=Component*
-		//port+=PortRelation* interfacerelation+=InterfaceRelation* interface+=Interface*) '}'
+		//{Component} 'component' (name=STRING 'as' alias=ID | name=ID) '{' (comments+=Comment? component+=Component* port+=Port*
+		//portrelation+=PortRelation* interfacerelation+=InterfaceRelation* interface+=Interface*) '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Component}
@@ -321,7 +324,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 		
-		//comments+=Comment? component+=Component* port+=PortRelation* interfacerelation+=InterfaceRelation* interface+=Interface*
+		//comments+=Comment? component+=Component* port+=Port* portrelation+=PortRelation* interfacerelation+=InterfaceRelation*
+		//interface+=Interface*
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//comments+=Comment?
@@ -336,23 +340,29 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//Component
 		public RuleCall getComponentComponentParserRuleCall_4_1_0() { return cComponentComponentParserRuleCall_4_1_0; }
 		
-		//port+=PortRelation*
+		//port+=Port*
 		public Assignment getPortAssignment_4_2() { return cPortAssignment_4_2; }
 		
+		//Port
+		public RuleCall getPortPortParserRuleCall_4_2_0() { return cPortPortParserRuleCall_4_2_0; }
+		
+		//portrelation+=PortRelation*
+		public Assignment getPortrelationAssignment_4_3() { return cPortrelationAssignment_4_3; }
+		
 		//PortRelation
-		public RuleCall getPortPortRelationParserRuleCall_4_2_0() { return cPortPortRelationParserRuleCall_4_2_0; }
+		public RuleCall getPortrelationPortRelationParserRuleCall_4_3_0() { return cPortrelationPortRelationParserRuleCall_4_3_0; }
 		
 		//interfacerelation+=InterfaceRelation*
-		public Assignment getInterfacerelationAssignment_4_3() { return cInterfacerelationAssignment_4_3; }
+		public Assignment getInterfacerelationAssignment_4_4() { return cInterfacerelationAssignment_4_4; }
 		
 		//InterfaceRelation
-		public RuleCall getInterfacerelationInterfaceRelationParserRuleCall_4_3_0() { return cInterfacerelationInterfaceRelationParserRuleCall_4_3_0; }
+		public RuleCall getInterfacerelationInterfaceRelationParserRuleCall_4_4_0() { return cInterfacerelationInterfaceRelationParserRuleCall_4_4_0; }
 		
 		//interface+=Interface*
-		public Assignment getInterfaceAssignment_4_4() { return cInterfaceAssignment_4_4; }
+		public Assignment getInterfaceAssignment_4_5() { return cInterfaceAssignment_4_5; }
 		
 		//Interface
-		public RuleCall getInterfaceInterfaceParserRuleCall_4_4_0() { return cInterfaceInterfaceParserRuleCall_4_4_0; }
+		public RuleCall getInterfaceInterfaceParserRuleCall_4_5_0() { return cInterfaceInterfaceParserRuleCall_4_5_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
@@ -635,6 +645,42 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getBodyEStringParserRuleCall_1_0() { return cBodyEStringParserRuleCall_1_0; }
 	}
+	public class PortElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Port");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cPortAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVisibilityVisibilityEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
+		private final Keyword cPortKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		
+		//Port:
+		//	{Port} visibility=Visibility? 'port'
+		//	name=ID;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Port} visibility=Visibility? 'port' name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//{Port}
+		public Action getPortAction_0() { return cPortAction_0; }
+		
+		//visibility=Visibility?
+		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
+		
+		//Visibility
+		public RuleCall getVisibilityVisibilityEnumRuleCall_1_0() { return cVisibilityVisibilityEnumRuleCall_1_0; }
+		
+		//'port'
+		public Keyword getPortKeyword_2() { return cPortKeyword_2; }
+		
+		//name=ID
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
+	}
 	public class InterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Interface");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -747,12 +793,12 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cLeftportAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cLeftportComponentCrossReference_3_0 = (CrossReference)cLeftportAssignment_3.eContents().get(0);
-		private final RuleCall cLeftportComponentFQNParserRuleCall_3_0_1 = (RuleCall)cLeftportComponentCrossReference_3_0.eContents().get(1);
+		private final CrossReference cLeftportPortCrossReference_3_0 = (CrossReference)cLeftportAssignment_3.eContents().get(0);
+		private final RuleCall cLeftportPortIDTerminalRuleCall_3_0_1 = (RuleCall)cLeftportPortCrossReference_3_0.eContents().get(1);
 		private final Keyword cCommaKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cRightportAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final CrossReference cRightportComponentCrossReference_5_0 = (CrossReference)cRightportAssignment_5.eContents().get(0);
-		private final RuleCall cRightportComponentFQNParserRuleCall_5_0_1 = (RuleCall)cRightportComponentCrossReference_5_0.eContents().get(1);
+		private final CrossReference cRightportPortCrossReference_5_0 = (CrossReference)cRightportAssignment_5.eContents().get(0);
+		private final RuleCall cRightportPortIDTerminalRuleCall_5_0_1 = (RuleCall)cRightportPortCrossReference_5_0.eContents().get(1);
 		private final Keyword cCommaKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cInterfaceAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final CrossReference cInterfaceInterfaceCrossReference_7_0 = (CrossReference)cInterfaceAssignment_7.eContents().get(0);
@@ -760,17 +806,17 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Connector:
-		//	'Con' (name=EString 'as' alias=ID | name=ID)
+		//	'con' (name=EString 'as' alias=ID | name=ID)
 		//	'('
-		//	leftport=[Component|FQN] "," rightport=[Component|FQN] "," interface=[Interface|EString]
+		//	leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Con' (name=EString 'as' alias=ID | name=ID) '(' leftport=[Component|FQN] "," rightport=[Component|FQN] ","
-		//interface=[Interface|EString] ')'
+		//'con' (name=EString 'as' alias=ID | name=ID) '(' leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
+		//')'
 		public Group getGroup() { return cGroup; }
 		
-		//'Con'
+		//'con'
 		public Keyword getConKeyword_0() { return cConKeyword_0; }
 		
 		//name=EString 'as' alias=ID | name=ID
@@ -803,28 +849,28 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//leftport=[Component|FQN]
+		//leftport=[Port]
 		public Assignment getLeftportAssignment_3() { return cLeftportAssignment_3; }
 		
-		//[Component|FQN]
-		public CrossReference getLeftportComponentCrossReference_3_0() { return cLeftportComponentCrossReference_3_0; }
+		//[Port]
+		public CrossReference getLeftportPortCrossReference_3_0() { return cLeftportPortCrossReference_3_0; }
 		
-		//FQN
-		public RuleCall getLeftportComponentFQNParserRuleCall_3_0_1() { return cLeftportComponentFQNParserRuleCall_3_0_1; }
+		//ID
+		public RuleCall getLeftportPortIDTerminalRuleCall_3_0_1() { return cLeftportPortIDTerminalRuleCall_3_0_1; }
 		
-		//","
+		//','
 		public Keyword getCommaKeyword_4() { return cCommaKeyword_4; }
 		
-		//rightport=[Component|FQN]
+		//rightport=[Port]
 		public Assignment getRightportAssignment_5() { return cRightportAssignment_5; }
 		
-		//[Component|FQN]
-		public CrossReference getRightportComponentCrossReference_5_0() { return cRightportComponentCrossReference_5_0; }
+		//[Port]
+		public CrossReference getRightportPortCrossReference_5_0() { return cRightportPortCrossReference_5_0; }
 		
-		//FQN
-		public RuleCall getRightportComponentFQNParserRuleCall_5_0_1() { return cRightportComponentFQNParserRuleCall_5_0_1; }
+		//ID
+		public RuleCall getRightportPortIDTerminalRuleCall_5_0_1() { return cRightportPortIDTerminalRuleCall_5_0_1; }
 		
-		//","
+		//','
 		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
 		
 		//interface=[Interface|EString]
@@ -1257,6 +1303,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	private final SubstitutionElements pSubstitution;
 	private final DependencyElements pDependency;
 	private final CommentElements pComment;
+	private final PortElements pPort;
 	private final InterfaceElements pInterface;
 	private final ConnectorElements pConnector;
 	private final ProvideElements pProvide;
@@ -1295,6 +1342,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSubstitution = new SubstitutionElements();
 		this.pDependency = new DependencyElements();
 		this.pComment = new CommentElements();
+		this.pPort = new PortElements();
 		this.pInterface = new InterfaceElements();
 		this.pConnector = new ConnectorElements();
 		this.pProvide = new ProvideElements();
@@ -1436,7 +1484,8 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//	{Component}
 	//	'component' (name=STRING 'as' alias=ID | name=ID) '{' (comments+=Comment?
 	//	component+=Component*
-	//	port+=PortRelation*
+	//	port+=Port*
+	//	portrelation+=PortRelation*
 	//	interfacerelation+=InterfaceRelation*
 	//	interface+=Interface*) '}';
 	public ComponentElements getComponentAccess() {
@@ -1507,6 +1556,17 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		return getCommentAccess().getRule();
 	}
 	
+	//Port:
+	//	{Port} visibility=Visibility? 'port'
+	//	name=ID;
+	public PortElements getPortAccess() {
+		return pPort;
+	}
+	
+	public ParserRule getPortRule() {
+		return getPortAccess().getRule();
+	}
+	
 	//Interface:
 	//	{Interface}
 	//	'interface' (name=STRING 'as' alias=ID | name=ID) (comments+=Comment? | '{' comments+=Comment? member+=Member* '}');
@@ -1519,9 +1579,9 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Connector:
-	//	'Con' (name=EString 'as' alias=ID | name=ID)
+	//	'con' (name=EString 'as' alias=ID | name=ID)
 	//	'('
-	//	leftport=[Component|FQN] "," rightport=[Component|FQN] "," interface=[Interface|EString]
+	//	leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
 	//	')';
 	public ConnectorElements getConnectorAccess() {
 		return pConnector;

@@ -161,6 +161,10 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createRequireAdapter();
             }
             @Override
+            public Adapter casePort(Port object) {
+                return createPortAdapter();
+            }
+            @Override
             public Adapter caseElement(Element object) {
                 return createElementAdapter();
             }
@@ -499,6 +503,20 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createRequireAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Port <em>Port</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Port
+     * @generated
+     */
+    public Adapter createPortAdapter() {
         return null;
     }
 

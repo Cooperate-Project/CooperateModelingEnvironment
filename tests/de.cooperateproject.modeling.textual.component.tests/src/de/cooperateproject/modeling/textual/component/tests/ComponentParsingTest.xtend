@@ -7,7 +7,7 @@ import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentDiagram
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
-import org.junit.Assert
+import static org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
@@ -19,14 +19,12 @@ import java.util.Collections
 import de.cooperateproject.modeling.textual.component.tests.scoping.util.ComponentCustomizedInjectorProvider
 
 
-
 @RunWith(XtextRunner)
 @InjectWith(ComponentCustomizedInjectorProvider.DefaultProvider)
 class ComponentParsingTest extends AbstractComponentTest{
 
 	
 	@Inject ValidationTestHelper validationTestHelper
-	
 	
 	
 	override setup() {
@@ -64,6 +62,7 @@ class ComponentParsingTest extends AbstractComponentTest{
 			@start-cpd "someDiagram"
 			rootPackage RootElement
 			interface iface
+			interface "iface 2" as iface
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
@@ -105,15 +104,17 @@ class ComponentParsingTest extends AbstractComponentTest{
 			}
 			interface testIface { 
 				note "This is a great and usefull note fore interfaces"				
-			}			
+			}	
+			interface testIface note "This is a great and usefull note fore interfaces"				
+			
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)
 	}
 	
 	
-		@Test
-		def void innerInterfaceTest() {		
+	@Test
+	def void innerInterfaceTest() {		
 		val model = '''
 			@start-cpd "someDiagram"
 			rootPackage RootElement
@@ -126,20 +127,9 @@ class ComponentParsingTest extends AbstractComponentTest{
 		validationTestHelper.assertNoIssues(model)
 	}
 	
-	@Test
-	def void singleInterface() {
-		val model = '''
-			@start-cpd "someDiagram"
-			rootPackage RootElement
-			interface testiface {
-			}
-			@end-cpd
-		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
-	}
 	
-		@Test
-	def void singleInterfaceWithAttribute() {
+	@Test
+	def void singleInterfaceWithElements() {
 		val model = '''
 			@start-cpd "someDiagram"
 			rootPackage RootElement
@@ -171,6 +161,23 @@ class ComponentParsingTest extends AbstractComponentTest{
 		validationTestHelper.assertNoIssues(model)
 	}
 	
+	
+		@Test
+		def void classifierWrongRelationTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp { 
+				provide testcomponent
+				require testcomponent
+			}
+			component testcomponent { }			
+			@end-cpd
+		'''.parse(rs)
+		val issue  = validationTestHelper.validate(model);
+		assertTrue(!issue.isEmpty());		
+	}
+	
 	@Test
 	def void classifierRelationTest() {		
 		val model = '''
@@ -194,6 +201,54 @@ class ComponentParsingTest extends AbstractComponentTest{
 		validationTestHelper.assertNoIssues(model)
 	}
 	
+	@Test
+	def void interfaceAliasRelationTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp { }
+			component "testComp2 test" as testComp2 { }
+			interface "iface test" as iface { }
+			isa ( testComp, "testComp2 test")
+			isa ( testComp, "iface test")
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	
+	@Test
+	def void portTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp {
+				port portiport
+				public port port2
+			}
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+	
+	@Test
+	def void connectorTest() {		
+		val model = '''
+			@start-cpd "someDiagram"
+			rootPackage RootElement
+			component testComp {
+				component innerComp{
+					port port2
+					con contest (port2, port1, iface)
+				}				
+				port port1
+				interface iface {}
+			}
+			@end-cpd
+		'''.parse(rs)
+		validationTestHelper.assertNoIssues(model)
+	}
+		
 	
 	private static def parse(CharSequence text, ResourceSet rs) {
 		val r = rs.createResource(URI.createFileURI("testfile.cmp"))

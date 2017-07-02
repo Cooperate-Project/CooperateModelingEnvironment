@@ -21,6 +21,10 @@ public interface ComponentValidator {
     boolean validate();
 
     boolean validateComponent(EList<Component> value);
+    boolean validatePortrelation(EList<PortRelation> value);
+
+    boolean validatePortRelation(EList<PortRelation> value);
+
     boolean validatePort(EList<PortRelation> value);
     boolean validateInterfacerelation(EList<InterfaceRelation> value);
     boolean validateInterface(EList<Interface> value);

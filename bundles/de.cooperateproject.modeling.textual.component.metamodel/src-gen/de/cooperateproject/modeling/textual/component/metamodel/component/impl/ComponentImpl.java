@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.component.metamodel.component.Classi
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation;
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation;
 
 import java.util.Collection;
@@ -38,9 +39,10 @@ import org.eclipse.uml2.uml.Component;
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getComponent <em>Component</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPortrelation <em>Portrelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterfacerelation <em>Interfacerelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPort <em>Port</em>}</li>
  * </ul>
  *
  * @generated
@@ -137,8 +139,18 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<PortRelation> getPort() {
-        return (EList<PortRelation>)eDynamicGet(ComponentPackage.COMPONENT__PORT, ComponentPackage.Literals.COMPONENT__PORT, true, true);
+    public EList<PortRelation> getPortrelation() {
+        return (EList<PortRelation>)eDynamicGet(ComponentPackage.COMPONENT__PORTRELATION, ComponentPackage.Literals.COMPONENT__PORTRELATION, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Port> getPort() {
+        return (EList<Port>)eDynamicGet(ComponentPackage.COMPONENT__PORT, ComponentPackage.Literals.COMPONENT__PORT, true, true);
     }
 
     /**
@@ -171,12 +183,14 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
         switch (featureID) {
             case ComponentPackage.COMPONENT__COMPONENT:
                 return ((InternalEList<?>)getComponent()).basicRemove(otherEnd, msgs);
-            case ComponentPackage.COMPONENT__PORT:
-                return ((InternalEList<?>)getPort()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__PORTRELATION:
+                return ((InternalEList<?>)getPortrelation()).basicRemove(otherEnd, msgs);
             case ComponentPackage.COMPONENT__INTERFACERELATION:
                 return ((InternalEList<?>)getInterfacerelation()).basicRemove(otherEnd, msgs);
             case ComponentPackage.COMPONENT__INTERFACE:
                 return ((InternalEList<?>)getInterface()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__PORT:
+                return ((InternalEList<?>)getPort()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -195,12 +209,14 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 return getAlias();
             case ComponentPackage.COMPONENT__COMPONENT:
                 return getComponent();
-            case ComponentPackage.COMPONENT__PORT:
-                return getPort();
+            case ComponentPackage.COMPONENT__PORTRELATION:
+                return getPortrelation();
             case ComponentPackage.COMPONENT__INTERFACERELATION:
                 return getInterfacerelation();
             case ComponentPackage.COMPONENT__INTERFACE:
                 return getInterface();
+            case ComponentPackage.COMPONENT__PORT:
+                return getPort();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -224,9 +240,9 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 getComponent().clear();
                 getComponent().addAll((Collection<? extends de.cooperateproject.modeling.textual.component.metamodel.component.Component>)newValue);
                 return;
-            case ComponentPackage.COMPONENT__PORT:
-                getPort().clear();
-                getPort().addAll((Collection<? extends PortRelation>)newValue);
+            case ComponentPackage.COMPONENT__PORTRELATION:
+                getPortrelation().clear();
+                getPortrelation().addAll((Collection<? extends PortRelation>)newValue);
                 return;
             case ComponentPackage.COMPONENT__INTERFACERELATION:
                 getInterfacerelation().clear();
@@ -235,6 +251,10 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
             case ComponentPackage.COMPONENT__INTERFACE:
                 getInterface().clear();
                 getInterface().addAll((Collection<? extends Interface>)newValue);
+                return;
+            case ComponentPackage.COMPONENT__PORT:
+                getPort().clear();
+                getPort().addAll((Collection<? extends Port>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -257,14 +277,17 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
             case ComponentPackage.COMPONENT__COMPONENT:
                 getComponent().clear();
                 return;
-            case ComponentPackage.COMPONENT__PORT:
-                getPort().clear();
+            case ComponentPackage.COMPONENT__PORTRELATION:
+                getPortrelation().clear();
                 return;
             case ComponentPackage.COMPONENT__INTERFACERELATION:
                 getInterfacerelation().clear();
                 return;
             case ComponentPackage.COMPONENT__INTERFACE:
                 getInterface().clear();
+                return;
+            case ComponentPackage.COMPONENT__PORT:
+                getPort().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -284,12 +307,14 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case ComponentPackage.COMPONENT__COMPONENT:
                 return !getComponent().isEmpty();
-            case ComponentPackage.COMPONENT__PORT:
-                return !getPort().isEmpty();
+            case ComponentPackage.COMPONENT__PORTRELATION:
+                return !getPortrelation().isEmpty();
             case ComponentPackage.COMPONENT__INTERFACERELATION:
                 return !getInterfacerelation().isEmpty();
             case ComponentPackage.COMPONENT__INTERFACE:
                 return !getInterface().isEmpty();
+            case ComponentPackage.COMPONENT__PORT:
+                return !getPort().isEmpty();
         }
         return super.eIsSet(featureID);
     }

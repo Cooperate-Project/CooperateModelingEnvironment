@@ -71,6 +71,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
             case ComponentPackage.ATTRIBUTE: return (EObject)createAttribute();
             case ComponentPackage.PROVIDE: return (EObject)createProvide();
             case ComponentPackage.REQUIRE: return (EObject)createRequire();
+            case ComponentPackage.PORT: return (EObject)createPort();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -224,6 +225,16 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
     public Require createRequire() {
         RequireImpl require = new RequireImpl();
         return require;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Port createPort() {
+        PortImpl port = new PortImpl();
+        return port;
     }
 
     /**

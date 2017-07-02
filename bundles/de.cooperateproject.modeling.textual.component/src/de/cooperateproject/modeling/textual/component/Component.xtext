@@ -53,7 +53,8 @@ Component returns Component:
 	((name=STRING 'as' alias = ID)|name = ID)'{'  (
 		(((comments+=Comment)? 
 		(component+=Component)*
-		(port+=PortRelation)*
+		(port+=Port)*
+		(portrelation+=PortRelation)*
 		(interfacerelation+=InterfaceRelation)*
 		(interface+=Interface)* )))'}'
 		
@@ -86,6 +87,12 @@ Comment returns textualCommons::Comment:
 		'note' body=EString
 ;
 
+Port returns Port:
+	{Port}
+	(visibility = Visibility)? 'port'
+	name = ID 
+;
+
 Interface returns Interface: 
 	{Interface}
 	'interface'
@@ -95,9 +102,9 @@ Interface returns Interface:
 
 
 Connector returns Connector: 
-	'Con' ((name=EString 'as' alias = ID)|name = ID) 
+	'con' ((name=EString 'as' alias = ID)|name = ID) 
 	'('
-		leftport=[Component|FQN] "," rightport=[Component|FQN] "," interface=[Interface|EString]
+		leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
 	')';
 
 Provide returns Provide: 

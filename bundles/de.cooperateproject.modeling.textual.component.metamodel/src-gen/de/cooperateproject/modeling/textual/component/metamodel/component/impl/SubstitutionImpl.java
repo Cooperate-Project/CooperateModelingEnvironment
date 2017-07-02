@@ -2,6 +2,9 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
@@ -20,6 +23,8 @@ import org.eclipse.uml2.uml.Substitution;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.SubstitutionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.SubstitutionImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.SubstitutionImpl#getLeftclassifier <em>Leftclassifier</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.SubstitutionImpl#getRightclassifier <em>Rightclassifier</em>}</li>
  * </ul>
@@ -27,6 +32,25 @@ import org.eclipse.uml2.uml.Substitution;
  * @generated
  */
 public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> implements de.cooperateproject.modeling.textual.component.metamodel.component.Substitution {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+    /**
+     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
+    protected static final String ALIAS_EDEFAULT = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -55,6 +79,42 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
     @Override
     public void setReferencedElement(Substitution newReferencedElement) {
         super.setReferencedElement(newReferencedElement);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(ComponentPackage.SUBSTITUTION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(ComponentPackage.SUBSTITUTION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getAlias() {
+        return (String)eDynamicGet(ComponentPackage.SUBSTITUTION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAlias(String newAlias) {
+        eDynamicSet(ComponentPackage.SUBSTITUTION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
     }
 
     /**
@@ -119,6 +179,10 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case ComponentPackage.SUBSTITUTION__NAME:
+                return getName();
+            case ComponentPackage.SUBSTITUTION__ALIAS:
+                return getAlias();
             case ComponentPackage.SUBSTITUTION__LEFTCLASSIFIER:
                 if (resolve) return getLeftclassifier();
                 return basicGetLeftclassifier();
@@ -137,6 +201,12 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case ComponentPackage.SUBSTITUTION__NAME:
+                setName((String)newValue);
+                return;
+            case ComponentPackage.SUBSTITUTION__ALIAS:
+                setAlias((String)newValue);
+                return;
             case ComponentPackage.SUBSTITUTION__LEFTCLASSIFIER:
                 setLeftclassifier((Classifier)newValue);
                 return;
@@ -155,6 +225,12 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case ComponentPackage.SUBSTITUTION__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case ComponentPackage.SUBSTITUTION__ALIAS:
+                setAlias(ALIAS_EDEFAULT);
+                return;
             case ComponentPackage.SUBSTITUTION__LEFTCLASSIFIER:
                 setLeftclassifier((Classifier)null);
                 return;
@@ -173,6 +249,10 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case ComponentPackage.SUBSTITUTION__NAME:
+                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+            case ComponentPackage.SUBSTITUTION__ALIAS:
+                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
             case ComponentPackage.SUBSTITUTION__LEFTCLASSIFIER:
                 return basicGetLeftclassifier() != null;
             case ComponentPackage.SUBSTITUTION__RIGHTCLASSIFIER:
@@ -188,6 +268,18 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == NamedElement.class) {
+            switch (derivedFeatureID) {
+                case ComponentPackage.SUBSTITUTION__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (derivedFeatureID) {
+                case ComponentPackage.SUBSTITUTION__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+                default: return -1;
+            }
+        }
         if (baseClass == ClassifierRelation.class) {
             switch (derivedFeatureID) {
                 case ComponentPackage.SUBSTITUTION__LEFTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER;
@@ -205,6 +297,18 @@ public class SubstitutionImpl extends UMLReferencingElementImpl<Substitution> im
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == NamedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ComponentPackage.SUBSTITUTION__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return ComponentPackage.SUBSTITUTION__ALIAS;
+                default: return -1;
+            }
+        }
         if (baseClass == ClassifierRelation.class) {
             switch (baseFeatureID) {
                 case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER: return ComponentPackage.SUBSTITUTION__LEFTCLASSIFIER;
