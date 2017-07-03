@@ -12,8 +12,12 @@ class UniqueAliasedElementMatcher extends AbstractElementMatcherBase<AliasedElem
         super(TextualCommonsPackage.eINSTANCE.aliasedElement, UMLPackage.eINSTANCE.namedElement)
     }
     
+    override acceptsAsLeft(AliasedElement leftInstance) {
+        !leftInstance.alias.nullOrEmpty
+    }
+    
     override select() {        
-        definiteIf([el, cand | !el.alias.nullOrEmpty && el.alias == cand.nameExpression?.name])
+        definiteIf([el, cand | el.alias == cand.nameExpression?.name])
     }
     
 }

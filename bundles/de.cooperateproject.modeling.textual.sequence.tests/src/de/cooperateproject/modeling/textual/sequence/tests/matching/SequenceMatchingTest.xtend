@@ -9,11 +9,11 @@ import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
 import de.cooperateproject.modeling.textual.sequence.tests.AbstractSequenceTest
 import de.cooperateproject.modeling.textual.sequence.tests.scoping.util.SequenceCustomizedInjectorProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.InitialCandidatesConfigurationProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
 import java.util.Collections
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.uml2.uml.Interaction
 import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.xtext.testing.InjectWith
@@ -22,6 +22,13 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
+
+import static org.hamcrest.Matchers.*
+import static org.junit.Assert.assertThat
+import org.eclipse.uml2.uml.Interaction
+import de.cooperateproject.modeling.textual.sequence.sequence.Actor
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.Match
+import org.eclipse.uml2.uml.Lifeline
 
 @RunWith(XtextRunner)
 @InjectWith(SequenceCustomizedInjectorProvider.DefaultProvider)
@@ -39,12 +46,51 @@ class SequenceMatchingTest extends AbstractSequenceTest{
 	
 	@Test
 	def void testDiagramOnly() {
-	    loadModels("diagramonly", rs).matchSimple
+	    val models = loadModels("diagramonly", rs) 
+	    
+	    models.matchSimple => [ctx |
+	        val interaction = ctx.getMatchingResult(models.key)
+	        assertThat(interaction.isPresent, is(true))
+	        assertThat(interaction.get, is(notNullValue))
+	        assertThat(interaction.get, is(not(empty)))
+	        //equalTo(models.value.ownedElements.filter(Interaction).head
+	    ]
+
+	}
+	
+	@Test
+	def void testNamedActors() {
+        val models = loadModels("namedactors", rs) 
+        
+        models.matchSimple => [ctx |
+            val interaction = ctx.getMatchingResult(models.key)
+            assertThat(interaction.isPresent, is(true))
+            assertThat(interaction.get, is(notNullValue))
+            assertThat(interaction.get, is(not(empty)))
+            
+             models.key.actors.forEach[act |
+                val match = ctx.getMatchingResult(act)
+                assertThat(match.isPresent, is(true))
+                assertThat(match.get, is(notNullValue))
+                assertThat(match.get, is(not(empty)))
+                assertThat((match.get.get(0) as Match).element, equalTo(act))
+                assertThat((match.get.get(0) as Match).match, instanceOf(Lifeline))
+                assertThat(((match.get.get(0) as Match).match as Lifeline).represents.name, equalTo(act.name))
+            ]
+            //equalTo(models.value.ownedElements.filter(Interaction).head,  
+        ]
 	}
 	
 	private static def matchSimple(Pair<SequenceDiagram, Model> models) {
-	    val candProv = new InitialCandidatesConfigurationProvider(models.value.eContents.filter(Interaction), Interaction)
-        val context = new SequenceMatchingContext(candProv)
+	    val candPool = new CandidatesConfigurationPool<EObject>() {
+        
+            override initializeCandidates() {
+                models.value.eContents
+            }
+	        
+	    }
+	    
+        val context = new SequenceMatchingContext(candPool)
         context.doMatch(Collections.singletonList(models.key), UMLPackage.eINSTANCE.interaction)
         context
 	}

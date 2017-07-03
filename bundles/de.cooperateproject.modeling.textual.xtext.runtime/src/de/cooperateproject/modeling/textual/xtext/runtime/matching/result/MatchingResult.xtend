@@ -1,6 +1,8 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching.result
 
-abstract class MatchingResult<RootType> {
+import org.eclipse.emf.ecore.EObject
+
+abstract class MatchingResult<RootType extends EObject> {
    val RootType element
    
    new (RootType element) {
@@ -9,5 +11,5 @@ abstract class MatchingResult<RootType> {
    
    def RootType getElement() {
        element
-   } 
+   }
 }

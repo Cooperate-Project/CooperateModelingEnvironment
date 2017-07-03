@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sequence:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequence="http://www.cooperateproject.de/modeling/textual/sequence/Sequence" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="emptyDiagram">
+  <rootPackage name="rootElement"/>
+  <actors alias="a">
+    <typeMapping>
+      <classifier xsi:type="uml:Class" href="namedactors.uml#_LN8ScFzMEeeYhp28WXQROQ"/>
+    </typeMapping>
+  </actors>
+  <actors alias="b1">
+    <typeMapping>
+      <classifier xsi:type="uml:Class" href="namedactors.uml#_MxuZYFzMEeeYhp28WXQROQ"/>
+    </typeMapping>
+  </actors>
+  <actors alias="b2">
+    <typeMapping>
+      <classifier xsi:type="uml:Class" href="namedactors.uml#_MxuZYFzMEeeYhp28WXQROQ"/>
+    </typeMapping>
+  </actors>
+  <actors alias="c">
+    <typeMapping>
+      <classifier xsi:type="uml:Class" href="namedactors.uml#_M9xRUFzMEeeYhp28WXQROQ"/>
+    </typeMapping>
+  </actors>
+</sequence:SequenceDiagram>

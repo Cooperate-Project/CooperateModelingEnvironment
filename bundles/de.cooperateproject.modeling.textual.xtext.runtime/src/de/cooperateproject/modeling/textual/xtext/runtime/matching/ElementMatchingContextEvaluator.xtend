@@ -14,26 +14,21 @@ class ElementMatchingContextEvaluator {
         this.matchingContext = context
     }
     
-    def <L extends EObject, R extends EObject> instantiateElementEvaluation(L elementToMatch) {
+    def <L extends EObject, R extends EObject> ElementMatcherApplicationResultDelegate<L> instantiateElementEvaluation(L elementToMatch) {
         instantiateElementEvaluation(elementToMatch, elementToMatch.eClass)
     }
     
-    def <L extends EObject, R extends EObject> instantiateElementEvaluation(L elementToMatch, EClass matchAs) {
-        val ElementMatcher<L, EObject> mat = matchingContext.findMatcher(elementToMatch, matchAs) as ElementMatcher<L, EObject>
+    def <L extends EObject, R extends EObject> ElementMatcherApplicationResultDelegate<L> instantiateElementEvaluation(L elementToMatch, EClass matchAs) {
+        val ElementMatcher<L, EObject> mat = matchingContext.findMatcher(elementToMatch, matchAs) as ElementMatcher<L, EObject> 
         val inst = matchingContext.getElementMatchingInstance(elementToMatch);
         
         var application = evaluationQueue.findFirst[isSimilarApplication(inst, mat)] as ElementMatcherApplication<L, EObject>
         if (application !== null) {
-            if (application.evaluationRunning) throw new UnsupportedOperationException("Circular dependency during evaluation")
             evaluationQueue.remove(application)
         } else {
-            application = inst.evaluateWithMatcher(mat)
+            application = inst.evaluateWithMatcher(mat, new EvaluatorRegisterDelegate(this), matchingContext)
         }
         evaluationQueue.addFirst(application)
-        
-        application => [app |
-            mat.match.map[apply(app)].forEach[prepare(app.getApplicationRegisterDelegate, matchingContext)]    
-        ]
         
         application.resultDelegate
     }
@@ -46,15 +41,16 @@ class ElementMatchingContextEvaluator {
         if (evaluationFinished) return
         val application = evaluationQueue.peekFirst
         
-        if (!application.evaluationRunning) {
-            application.startEvaluation
+        if (application.isEvaluationOfConfigurationRunning && !application.canEvaluateFurtherCondition) {
+            matchingContext.appendMatchingResult(application.resultDelegate.result)
         }
         
-        if (application.canEvaluateFurtherConfiguration) application.evaluateNextConfiguration
+        if (application.isEvaluationOfConfigurationRunning && application.canEvaluateFurtherCondition) {
+            application.evaluateNextCondition
+        } else if (application.canEvaluateFurtherConfiguration) {
+            application.startEvaluateOfNextConfiguration
+        }
+        
         else evaluationQueue.removeFirst         
     }
-    
-    def <L extends EObject> ElementMatcherApplicationRegisterDelegate getApplicationRegisterDelegate(ElementMatcherApplication<L, ? extends EObject> parent) {
-        new EvaluatorRegisterDelegate(this)
-    } 
 }

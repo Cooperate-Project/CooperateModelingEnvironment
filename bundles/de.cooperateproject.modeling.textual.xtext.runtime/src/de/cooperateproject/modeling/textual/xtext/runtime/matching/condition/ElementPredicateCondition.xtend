@@ -7,7 +7,7 @@ import java.util.function.BiPredicate
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchingContext
 import org.eclipse.emf.ecore.EObject
 
-class ElementPredicateCondition<LeftType extends EObject, RightType> implements ElementMatcherCondition<LeftType, RightType> {
+class ElementPredicateCondition<LeftType extends EObject, RightType extends EObject> implements ElementMatcherCondition<LeftType, RightType> {
     val BiPredicate<LeftType, RightType> predicate
     val LeftType element
     
@@ -18,7 +18,7 @@ class ElementPredicateCondition<LeftType extends EObject, RightType> implements 
     
     override evaluate(CandidatesConfiguration<RightType> config) {
         val cand = config.candidateChoice
-        MatchingResultFactory.INSTANCE.create(element, if (predicate.test(this.element, cand)) cand)
+        MatchingResultFactory.INSTANCE.create(element, if (cand.isPresent && predicate.test(this.element, cand.get)) cand.get)
     }
     
     override prepare(ElementMatcherApplicationRegisterDelegate registerDelegate, ElementMatchingContext context) {}

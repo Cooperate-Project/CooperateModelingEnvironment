@@ -2,8 +2,9 @@ package de.cooperateproject.modeling.textual.xtext.runtime.matching.result
 
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.issues.MatchingIssue
 import java.util.List
+import org.eclipse.emf.ecore.EObject
 
-class SuccessfulMatch<RootType, ResultType> extends MatchingResult<RootType> {
+class Match<RootType extends EObject, ResultType extends EObject> extends MatchingResult<RootType> {
     val ResultType match
     val List<MatchingIssue> issues
     

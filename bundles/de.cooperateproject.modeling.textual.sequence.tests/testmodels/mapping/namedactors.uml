@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_nKcEwFaFEeeENu8bsfDTCA" name="RootElement">
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_p-A_oFaFEeeENu8bsfDTCA" name="SimpleDiagram">
+    <ownedAttribute xmi:id="_Q8KZgFzMEeeYhp28WXQROQ" name="a" type="_LN8ScFzMEeeYhp28WXQROQ"/>
+    <ownedAttribute xmi:id="_UW8eUFzMEeeYhp28WXQROQ" name="b" type="_MxuZYFzMEeeYhp28WXQROQ"/>
+    <ownedAttribute xmi:id="_UiiqUFzMEeeYhp28WXQROQ" name="c" type="_M9xRUFzMEeeYhp28WXQROQ"/>
+    <lifeline xmi:id="_ZVMhAFzMEeeYhp28WXQROQ" represents="_Q8KZgFzMEeeYhp28WXQROQ"/>
+    <lifeline xmi:id="_Z0wx4FzMEeeYhp28WXQROQ" represents="_UW8eUFzMEeeYhp28WXQROQ"/>
+    <lifeline xmi:id="_aW2yUFzMEeeYhp28WXQROQ" represents="_UiiqUFzMEeeYhp28WXQROQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LN8ScFzMEeeYhp28WXQROQ" name="A"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_MxuZYFzMEeeYhp28WXQROQ" name="B"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_M9xRUFzMEeeYhp28WXQROQ" name="C"/>
+</uml:Model>

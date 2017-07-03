@@ -27,21 +27,17 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
         this.leftType.instanceClass.isAssignableFrom(leftInstance.class)
     }
     
-    override acceptsAsRight(EClass rightInstance) {
-        this.rightType.instanceClass.isAssignableFrom(rightInstance.instanceClass)
-    }
-    
     protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> is(BiPredicate<LeftType, RightType> condition) {
         [new ElementPredicateCondition(condition, matchingInstance.elementToMatch)]
     }
     
     protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchAs(EClass clazz) {
-        [new DeferredMatcherApplicationCondition(matchingInstance.elementToMatch, clazz)]
+        [new DeferredMatcherApplicationCondition<LeftType, RightType>(matchingInstance.elementToMatch, clazz)]
     }
     
     protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matches((LeftType)=>T elementToMatch, (RightType)=>U candidateToMatch) {
         [app |
-            val provider = app.candidatesProvider as CandidatesConfigurationProvider<RightType>
+            val provider = app.candidatesProvider as CandidatesConfigurationProvider<LeftType, RightType>
             val candPool = provider.getDependentCandidatesPool(([r | #[candidateToMatch.apply(r)]]))
             val etm = elementToMatch.apply(app.matchingInstance.elementToMatch)
             new MatchExistsCondition(app.matchingInstance, etm, candPool)
@@ -50,7 +46,7 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
     
     protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchExists((LeftType)=>T  elementToMatch, (RightType)=>Iterable<U> candidateToMatch) {
         [app |
-            val provider = app.candidatesProvider as CandidatesConfigurationProvider<RightType>
+            val provider = app.candidatesProvider as CandidatesConfigurationProvider<LeftType, RightType>
             val candPool = provider.getDependentCandidatesPool(([r | candidateToMatch.apply(r)]))
             val etm = elementToMatch.apply(app.matchingInstance.elementToMatch)
             new MatchExistsCondition(app.matchingInstance, etm, candPool)
@@ -59,7 +55,7 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
     
     protected def <T extends EObject, U extends EObject> (ElementMatcherApplication<LeftType, RightType>)=>ElementMatcherCondition<LeftType, RightType> matchesExist((LeftType)=>Iterable<T> elementsToMatch, (RightType)=>Iterable<U> candidatesToMatch) {
         [app |
-            val provider = app.candidatesProvider as CandidatesConfigurationProvider<RightType>
+            val provider = app.candidatesProvider as CandidatesConfigurationProvider<LeftType, RightType>
             val candPool = provider.getDependentCandidatesPool(([r | candidatesToMatch.apply(r)]))
             
             val etm = elementsToMatch.apply(app.matchingInstance.elementToMatch)
@@ -94,6 +90,13 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
         }]
     }
     
+    override getLeftType() {
+        leftType.instanceClass as Class<LeftType>
+    }
+    
+    override getRightType() {
+        rightType.instanceClass as Class<RightType>
+    }
     
     
 }

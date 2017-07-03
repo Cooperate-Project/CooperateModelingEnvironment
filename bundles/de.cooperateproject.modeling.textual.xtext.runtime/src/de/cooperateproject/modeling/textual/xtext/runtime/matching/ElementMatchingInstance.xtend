@@ -4,39 +4,24 @@ import de.cooperateproject.modeling.textual.xtext.runtime.matching.matcher.Eleme
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtend.lib.annotations.Accessors
 
 class ElementMatchingInstance<LeftType extends EObject, RightType extends EObject> {
     
-    var CandidatesConfigurationPool<RightType> candidatesPool
-        
+    @Accessors var CandidatesConfigurationPool<RightType> candidatesPool
+    @Accessors val LeftType elementToMatch
+    @Accessors val EClass rightType
+    
     new (LeftType elementToMatch, EClass rightType) {
         this.elementToMatch = elementToMatch
         this.rightType = rightType        
     }
-    
-    val LeftType elementToMatch
-    def LeftType getElementToMatch() {
-        elementToMatch
-    }
-    
-    val EClass rightType
-    def EClass getRightType() {
-        rightType
-    }
-    
-    def void setCandidatesPool(CandidatesConfigurationPool<?> pool) {
-        candidatesPool = pool
-    }
-    
-    def getCandidatesPool() {
-        candidatesPool
-    }
        
-    def ElementMatcherApplication<LeftType, RightType> evaluateWithMatcher(ElementMatcher<LeftType, RightType> matcher) {
+    def ElementMatcherApplication<LeftType, RightType> evaluateWithMatcher(ElementMatcher<LeftType, RightType> matcher, ElementMatcherApplicationRegisterDelegate registerDelegate, ElementMatchingContext context) {
         if (candidatesPool === null) {
-            throw new IllegalStateException("The matching instance has not been initialized with a candidates provider!")
+            candidatesPool = context.getCandidatesPool(matcher.rightType)
         }
         
-        new ElementMatcherApplication(this, matcher, ElementMatchingInstance.this.candidatesPool)
+        new ElementMatcherApplication(this, matcher, ElementMatchingInstance.this.candidatesPool, registerDelegate, context)
     }
 }

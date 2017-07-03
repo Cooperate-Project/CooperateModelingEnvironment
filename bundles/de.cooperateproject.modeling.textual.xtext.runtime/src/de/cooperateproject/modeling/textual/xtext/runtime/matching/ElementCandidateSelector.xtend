@@ -1,7 +1,6 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.matching
 
 import java.util.Collections
-import java.util.function.Function
 
 class ElementCandidateSelector<RightType> {
     public static def <U, T> (U)=>ElementCandidateSelector<T> DEFAULT_SELECTOR() {

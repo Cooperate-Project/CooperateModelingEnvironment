@@ -7,7 +7,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchi
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 
-class DeferredMatcherApplicationCondition<LeftType extends EObject, RightType> implements ElementMatcherCondition<LeftType, RightType> {
+class DeferredMatcherApplicationCondition<LeftType extends EObject, RightType extends EObject> implements ElementMatcherCondition<LeftType, RightType> {
     val LeftType elementToMatch
     val EClass matchAs
     var ElementMatcherApplicationResultDelegate<LeftType> delegate = null

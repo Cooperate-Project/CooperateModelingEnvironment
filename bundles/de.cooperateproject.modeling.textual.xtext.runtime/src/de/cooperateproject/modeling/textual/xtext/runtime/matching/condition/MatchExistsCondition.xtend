@@ -7,9 +7,9 @@ import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchi
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.ElementMatchingInstance
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.issues.NoMatchIssue
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.Match
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.MatchingResultFactory
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.NoMatch
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.SuccessfulMatch
 import org.eclipse.emf.ecore.EObject
 
 class MatchExistsCondition<LeftType extends EObject, RightType extends EObject, T extends EObject, U extends EObject> implements ElementMatcherCondition<LeftType, RightType> {
@@ -25,20 +25,24 @@ class MatchExistsCondition<LeftType extends EObject, RightType extends EObject, 
     }
     
     override evaluate(CandidatesConfiguration<RightType> config) {
-        resultDelegate.result.createResult(config)
+        if (!config.candidateChoice.isPresent) {
+            MatchingResultFactory.INSTANCE.create(matchingInstance.elementToMatch)
+        } else {
+            resultDelegate.result.createResult(config)
+        }
     }
     
     private def dispatch createResult(NoMatch<EObject> noMatch, CandidatesConfiguration<RightType> config) {
-        MatchingResultFactory.INSTANCE.create(matchingInstance.elementToMatch, config.candidateChoice, #[new NoMatchIssue(noMatch.element)])
+        MatchingResultFactory.INSTANCE.create(matchingInstance.elementToMatch, config.candidateChoice.get, #[new NoMatchIssue(noMatch.element)])
     }
     
-    private def dispatch createResult(SuccessfulMatch<EObject, EObject> match, CandidatesConfiguration<RightType> config) {
-        MatchingResultFactory.INSTANCE.create(matchingInstance.elementToMatch, config.candidateChoice, match.issues)
+    private def dispatch createResult(Match<EObject, EObject> match, CandidatesConfiguration<RightType> config) {
+        MatchingResultFactory.INSTANCE.create(matchingInstance.elementToMatch, config.candidateChoice.get, match.issues)
     }
         
     override prepare(ElementMatcherApplicationRegisterDelegate registerDelegate, ElementMatchingContext context) {
         val instance = context.getElementMatchingInstance(leftElement)
-        resultDelegate = registerDelegate.evaluate(matchingInstance.elementToMatch)
+        resultDelegate = registerDelegate.evaluate(instance.elementToMatch)
     }
     
 }

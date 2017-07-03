@@ -11,7 +11,7 @@ class EvaluatorRegisterDelegate implements ElementMatcherApplicationRegisterDele
     }
     
     override <L extends EObject> evaluate(L instanceToMatch) {
-        evaluator.instantiateElementEvaluation(instanceToMatch)
+        return evaluator.instantiateElementEvaluation(instanceToMatch)
     }
     
     override <L extends EObject> evaluateAs(L instanceToMatch, EClass leftType) {
