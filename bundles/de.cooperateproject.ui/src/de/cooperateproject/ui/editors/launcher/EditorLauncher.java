@@ -21,6 +21,12 @@ import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncherFactory
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
+/**
+ * Launcher to be used with the Eclipse IDE to open editors for a Cooperate launcher file.
+ * 
+ * The editor asks for the preferred {@link EditorType} and launches a matching editor. It prevents editors from being
+ * launched twice for the same file.
+ */
 public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EditorLauncher.class);
@@ -53,12 +59,11 @@ public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
             if (!editorLauncherFactory.isPresent()) {
                 throw new PartInitException("No editor available for that type.");
             }
-            Optional<IEditorPart> existingEditor = editorLauncherFactory.get().findExistingEditor(launcherFile,
-                    preferredEditorType.get());
+            Optional<IEditorPart> existingEditor = editorLauncherFactory.get().findExistingEditor(launcherFile);
             if (existingEditor.isPresent()) {
                 existingEditor.get().setFocus();
             } else {
-                IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile, preferredEditorType.get());
+                IEditorLauncher launcher = editorLauncherFactory.get().create(launcherFile);
                 launcher.openEditor();
             }
         } catch (IOException e) {
@@ -72,7 +77,7 @@ public class EditorLauncher implements org.eclipse.ui.IEditorLauncher {
 
     }
 
-    private Optional<EditorType> getPreferredEditorType() {
+    private static Optional<EditorType> getPreferredEditorType() {
         MessageDialog dlg = new MessageDialog(Display.getCurrent().getActiveShell(), "Editor Type Selection", null,
                 "Which editor type do you prefer?", MessageDialog.QUESTION_WITH_CANCEL,
                 new String[] { "Textual", "Graphical", "Cancel" }, 0);

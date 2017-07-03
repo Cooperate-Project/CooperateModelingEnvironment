@@ -34,7 +34,7 @@ public class ImportCooperateProjectWizard extends Wizard implements IImportWizar
     private ImportWizardPage importPage;
     private boolean importPageShown = false;
     private boolean connectionInfoValidated = false;
-    private ProjectPropertiesDTO projectProperties = ProjectPropertiesStore.getDefaults();
+    private ProjectPropertiesDTO projectProperties;
 
     /**
      * Constructor for ImportCooperateProjectWizard.
@@ -42,6 +42,7 @@ public class ImportCooperateProjectWizard extends Wizard implements IImportWizar
     public ImportCooperateProjectWizard() {
         super();
         setWindowTitle("Import Cooperate Project");
+        projectProperties = ProjectPropertiesStore.getValuesFromPreferenceStore();
     }
 
     @Override

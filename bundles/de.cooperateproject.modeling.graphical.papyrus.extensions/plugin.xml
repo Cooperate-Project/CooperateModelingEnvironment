@@ -69,6 +69,25 @@
                      class="Association">
                </target>
             </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UnambiguousNamesConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.unambiguousNamesConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="Unambiguous Names Constraint"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The named element {0} is not distinguishable from all other named elements in the namespace.
+               </message>
+               <target
+                     class="NamedElement">
+               </target>
+               <description>
+                  All named elements in the workspace must be distinguishable by their name.
+               </description>
+            </constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
@@ -96,5 +115,17 @@
       <class
             class="de.cooperate.modeling.graphical.papyrus.extensions.configuration.PapyrusConfigurationModelCreationPostProcessor">
       </class>
+   </extension>
+   <extension
+      point="org.eclipse.papyrus.infra.properties.contexts">
+   <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
+</extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage"
+            genModel="platform:/plugin/org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.genmodel"
+            uri="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet">
+      </package>
    </extension>
 </plugin>

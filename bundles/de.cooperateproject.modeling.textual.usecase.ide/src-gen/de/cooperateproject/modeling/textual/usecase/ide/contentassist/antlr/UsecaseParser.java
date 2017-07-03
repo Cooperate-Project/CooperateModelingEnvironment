@@ -31,7 +31,7 @@ public class UsecaseParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getActorAccess().getAlternatives_4(), "rule__Actor__Alternatives_4");
+					put(grammarAccess.getActorAccess().getAlternatives_3(), "rule__Actor__Alternatives_3");
 					put(grammarAccess.getSystemAccess().getAlternatives_2(), "rule__System__Alternatives_2");
 					put(grammarAccess.getUseCaseAccess().getAlternatives_3(), "rule__UseCase__Alternatives_3");
 					put(grammarAccess.getUseCaseAccess().getAlternatives_4(), "rule__UseCase__Alternatives_4");
@@ -43,8 +43,8 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUseCaseDiagramAccess().getGroup(), "rule__UseCaseDiagram__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
 					put(grammarAccess.getActorAccess().getGroup(), "rule__Actor__Group__0");
-					put(grammarAccess.getActorAccess().getGroup_3(), "rule__Actor__Group_3__0");
-					put(grammarAccess.getActorAccess().getGroup_4_1(), "rule__Actor__Group_4_1__0");
+					put(grammarAccess.getActorAccess().getGroup_3_1(), "rule__Actor__Group_3_1__0");
+					put(grammarAccess.getActorAccess().getGroup_4(), "rule__Actor__Group_4__0");
 					put(grammarAccess.getSystemAccess().getGroup(), "rule__System__Group__0");
 					put(grammarAccess.getSystemAccess().getGroup_2_1(), "rule__System__Group_2_1__0");
 					put(grammarAccess.getUseCaseAccess().getGroup(), "rule__UseCase__Group__0");
@@ -72,10 +72,10 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootPackageAccess().getRelationshipsAssignment_4(), "rule__RootPackage__RelationshipsAssignment_4");
 					put(grammarAccess.getActorAccess().getVisibilityAssignment_0(), "rule__Actor__VisibilityAssignment_0");
 					put(grammarAccess.getActorAccess().getAbstractAssignment_1(), "rule__Actor__AbstractAssignment_1");
-					put(grammarAccess.getActorAccess().getTypeAssignment_3_1(), "rule__Actor__TypeAssignment_3_1");
-					put(grammarAccess.getActorAccess().getNameAssignment_4_0(), "rule__Actor__NameAssignment_4_0");
-					put(grammarAccess.getActorAccess().getNameAssignment_4_1_0(), "rule__Actor__NameAssignment_4_1_0");
-					put(grammarAccess.getActorAccess().getAliasAssignment_4_1_2(), "rule__Actor__AliasAssignment_4_1_2");
+					put(grammarAccess.getActorAccess().getNameAssignment_3_0(), "rule__Actor__NameAssignment_3_0");
+					put(grammarAccess.getActorAccess().getNameAssignment_3_1_0(), "rule__Actor__NameAssignment_3_1_0");
+					put(grammarAccess.getActorAccess().getAliasAssignment_3_1_2(), "rule__Actor__AliasAssignment_3_1_2");
+					put(grammarAccess.getActorAccess().getTypeAssignment_4_2(), "rule__Actor__TypeAssignment_4_2");
 					put(grammarAccess.getActorAccess().getCommentsAssignment_5(), "rule__Actor__CommentsAssignment_5");
 					put(grammarAccess.getSystemAccess().getNameAssignment_1(), "rule__System__NameAssignment_1");
 					put(grammarAccess.getSystemAccess().getCommentsAssignment_2_0(), "rule__System__CommentsAssignment_2_0");
@@ -104,7 +104,7 @@ public class UsecaseParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExtendAccess().getExtendedCaseAssignment_4(), "rule__Extend__ExtendedCaseAssignment_4");
 					put(grammarAccess.getExtendAccess().getExtensionLocationAssignment_8(), "rule__Extend__ExtensionLocationAssignment_8");
 					put(grammarAccess.getExtendAccess().getConditionAssignment_10_2(), "rule__Extend__ConditionAssignment_10_2");
-					put(grammarAccess.getCommentAccess().getBodyAssignment_2(), "rule__Comment__BodyAssignment_2");
+					put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 					put(grammarAccess.getCardinalityAccess().getLowerBoundAssignment_0(), "rule__Cardinality__LowerBoundAssignment_0");
 					put(grammarAccess.getCardinalityAccess().getUpperBoundAssignment_1_1(), "rule__Cardinality__UpperBoundAssignment_1_1");
 				}

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -22,7 +23,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.TransactionValidator;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.swt.widgets.Composite;
@@ -30,6 +34,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
+import org.eclipse.xtext.resource.ResourceSetReferencingResourceSet;
 import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.reconciler.XtextReconciler;
@@ -47,7 +52,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
 import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
-import de.cooperateproject.ui.preferences.PreferenceHandler;
+import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
@@ -65,23 +70,23 @@ import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
  */
 public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadingEditor {
 
-    private static class PostProcessorHandler implements SaveablePostProcessingSupport {
+    private static class PostProcessorHandler implements IPostSaveListenerSupport {
 
-        private final Set<SavePostProcessor> processors = Sets.newHashSet();
+        private final Set<IPostSaveListener> processors = Sets.newHashSet();
 
         @Override
-        public void register(SavePostProcessor postProcessor) {
+        public void register(IPostSaveListener postProcessor) {
             processors.add(postProcessor);
         }
 
         @Override
-        public void unregister(SavePostProcessor postProcessor) {
+        public void unregister(IPostSaveListener postProcessor) {
             processors.remove(postProcessor);
         }
 
-        private void executePostProcessors() throws Exception {
-            for (SavePostProcessor processor : processors) {
-                processor.processAfterSafe();
+        private void executePostProcessors() {
+            for (IPostSaveListener processor : processors) {
+                processor.saveEventHappened();
             }
         }
 
@@ -157,7 +162,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
         if (cooperateXtextDocument.getResource() == null) {
             return;
         }
-        ErrorIndicatorSettings signalType = PreferenceHandler.INSTANCE.getErrorIndicatorSetting();
+        ErrorIndicatorSettings signalType = ErrorIndicatorPreferenceHandler.INSTANCE.getErrorIndicatorSetting();
         EList<Diagnostic> errors = cooperateXtextDocument.getResource().getErrors();
 
         errorSignalContext.createSignal(errors, getCursorPosition(), signalType);
@@ -185,7 +190,7 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     @SuppressWarnings("rawtypes")
     @Override
     public Object getAdapter(Class requestedClass) {
-        if (SaveablePostProcessingSupport.class.isAssignableFrom(requestedClass)) {
+        if (IPostSaveListenerSupport.class.isAssignableFrom(requestedClass)) {
             return postProcessorHandler;
         }
         if (CooperateCDOXtextEditor.class.isAssignableFrom(requestedClass)) {
@@ -267,49 +272,102 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
         }
 
         CooperateXtextDocument cooperateXtextDocument = getDocument().getAdapter(CooperateXtextDocument.class);
+        ResourceSet rs = cooperateXtextDocument.getResource().getResourceSet();
 
-        TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
-                .createEditingDomain(cooperateXtextDocument.getResource().getResourceSet());
+        Collection<TransactionalEditingDomain> domains = new HashSet<>();
+        domains.add(TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rs));
+        if (rs instanceof ResourceSetReferencingResourceSet) {
+            ((ResourceSetReferencingResourceSet) rs).getReferencedResourceSets().stream()
+                    .map(TransactionalEditingDomain.Factory.INSTANCE::createEditingDomain).forEach(domains::add);
+        }
+
         try {
-            performIssueValidationFixingTransactional(domain, cooperateXtextDocument.getResource());
+            performIssueValidationFixingTransactional(domains, cooperateXtextDocument.getResource());
         } finally {
-            domain.dispose();
+            domains.forEach(TransactionalEditingDomain::dispose);
         }
 
     }
 
-    private void performIssueValidationFixingTransactional(TransactionalEditingDomain domain, Resource documentResource)
-            throws OperationCanceledError {
+    private void performIssueValidationFixingTransactional(Collection<TransactionalEditingDomain> domains,
+            Resource documentResource) throws OperationCanceledError {
 
         final Collection<Issue> detectedIssues = new ArrayList<>();
-        domain.getCommandStack().execute(new RecordingCommand(domain) {
 
-            @Override
-            protected void doExecute() {
-                int fixAttempts = 0;
-                Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
-                do {
-                    if (fixAttempts++ > MAX_AUTOMATED_FIX_ATTEMPTS) {
-                        break;
-                    }
-                    issueResolutions.forEach(IAutomatedIssueResolution::resolve);
-                    if (documentResource instanceof DerivedStateAwareResource) {
-                        resourceStateHandler.cleanState(documentResource);
-                        resourceStateHandler.initState(documentResource);
-                        resourceStateHandler.calculateState(documentResource);
-                    }
-                    detectedIssues.clear();
-                    detectedIssues.addAll(
-                            resourceValidator.validate(documentResource, CheckMode.ALL, CancelIndicator.NullImpl));
-                    issueResolutions = automatedIssueResolutionProvider.get(documentResource, detectedIssues);
-                } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
+        domains.stream().filter(TransactionalEditingDomainImpl.class::isInstance)
+                .map(TransactionalEditingDomainImpl.class::cast).forEach(d -> setValidatorFactory(d, detectedIssues));
+
+        Runnable lastCommandStackAction = null;
+        for (TransactionalEditingDomain domain : domains) {
+            if (lastCommandStackAction == null) {
+                lastCommandStackAction = createFixingRecordingCommand(domain, documentResource, detectedIssues);
+            } else {
+                lastCommandStackAction = createDelegatingRecordingCommand(domain, lastCommandStackAction);
             }
-        });
 
-        if (detectedIssues.stream().anyMatch(automatedIssueResolutionProvider::hasResolution)) {
-            domain.getCommandStack().undo();
         }
 
+        Optional.ofNullable(lastCommandStackAction).ifPresent(Runnable::run);
+    }
+
+    private Runnable createFixingRecordingCommand(TransactionalEditingDomain domain, Resource documentResource,
+            final Collection<Issue> detectedIssues) {
+        return () -> domain.getCommandStack().execute(new RecordingCommand(domain) {
+            @Override
+            protected void doExecute() {
+                performIssueValidationFixing(detectedIssues, documentResource);
+            }
+        });
+    }
+
+    private static Runnable createDelegatingRecordingCommand(final TransactionalEditingDomain domain,
+            final Runnable delegationTarget) {
+        return () -> domain.getCommandStack().execute(new RecordingCommand(domain) {
+            @Override
+            protected void doExecute() {
+                delegationTarget.run();
+            }
+        });
+    }
+
+    private static void setValidatorFactory(TransactionalEditingDomainImpl domainImpl,
+            final Collection<Issue> detectedIssues) {
+        domainImpl.setValidatorFactory(new DelegatingValidatorFactory() {
+            @Override
+            public TransactionValidator createReadWriteValidator() {
+                return new DelegatingTransactionValidator(super.createReadWriteValidator()) {
+                    @Override
+                    public IStatus validate(Transaction tx) {
+                        IStatus result = super.validate(tx);
+                        if (result.isOK() && !detectedIssues.isEmpty()) {
+                            return new Status(IStatus.ERROR, result.getPlugin(), "There are unfixed issues remaining.");
+                        }
+                        return result;
+                    }
+
+                };
+            }
+        });
+    }
+
+    private void performIssueValidationFixing(Collection<Issue> detectedIssues, Resource documentResource) {
+        int fixAttempts = 0;
+        Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
+        do {
+            if (fixAttempts++ > MAX_AUTOMATED_FIX_ATTEMPTS) {
+                break;
+            }
+            issueResolutions.forEach(IAutomatedIssueResolution::resolve);
+            if (documentResource instanceof DerivedStateAwareResource) {
+                resourceStateHandler.cleanState(documentResource);
+                resourceStateHandler.initState(documentResource);
+                resourceStateHandler.calculateState(documentResource);
+            }
+            detectedIssues.clear();
+            detectedIssues
+                    .addAll(resourceValidator.validate(documentResource, CheckMode.ALL, CancelIndicator.NullImpl));
+            issueResolutions = automatedIssueResolutionProvider.get(documentResource, detectedIssues);
+        } while (issueResolutions.stream().anyMatch(IAutomatedIssueResolution::resolvePossible));
     }
 
     private void saveDocument(IProgressMonitor progressMonitor) {

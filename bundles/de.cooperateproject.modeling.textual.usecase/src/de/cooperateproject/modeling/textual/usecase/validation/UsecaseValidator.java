@@ -11,6 +11,7 @@ import org.eclipse.xtext.validation.Check;
 
 import com.google.inject.Inject;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.usecase.usecase.Actor;
 import de.cooperateproject.modeling.textual.usecase.usecase.RootPackage;
@@ -28,9 +29,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAu
 public class UsecaseValidator extends AbstractUsecaseValidator {
 
     private static final String NAME_TAKEN = "name_taken";
-
-    private static final String WRONG_ABSTRACT_ACTOR_QUALIFIER = "wrong_actor_visibility";
-    private static final String WRONG_ABSTRACT_USECASE_QUALIFIER = "wrong_usecase_visibility";
+    private static final String ALIAS_TAKEN = "alias_taken";
 
     @Inject
     @SuppressWarnings("unused")
@@ -45,6 +44,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
         EList<Actor> actors = rootPackage.getActors();
         for (Actor actor : actors) {
             compareNamedElements(actors, actor, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, NAME_TAKEN);
+            compareAliasedElements(actors, actor, UsecasePackage.Literals.ROOT_PACKAGE__ACTORS, ALIAS_TAKEN);
         }
     }
 
@@ -52,6 +52,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
     private void checkUniqueUseCase(UseCase useCase) {
         EList<UseCase> useCases = useCase.getSystem().getUsecases();
         compareNamedElements(useCases, useCase, UsecasePackage.Literals.USE_CASE__SYSTEM, NAME_TAKEN);
+        compareAliasedElements(useCases, useCase, UsecasePackage.Literals.USE_CASE__SYSTEM, ALIAS_TAKEN);
     }
 
     @Check
@@ -64,7 +65,7 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
             EStructuralFeature feature, String code) {
         for (NamedElement element : elements) {
             if (element.equals(comparableElement)) {
-                return;
+                continue;
             }
             if (element.getName().equals(comparableElement.getName())) {
                 error("\"" + element.getName() + "\"" + " no duplicates!", feature, code);
@@ -73,19 +74,16 @@ public class UsecaseValidator extends AbstractUsecaseValidator {
         }
     }
 
-    @Check
-    private void checkActorQualifier(Actor actor) {
-        if (actor.isAbstract() != actor.getReferencedElement().isAbstract()) {
-            error("\"" + actor.getName() + "\"" + " has the wrong abstract qualifier!",
-                    UsecasePackage.Literals.ACTOR__ABSTRACT, WRONG_ABSTRACT_ACTOR_QUALIFIER);
-        }
-    }
+    private void compareAliasedElements(List<? extends AliasedElement> elements, AliasedElement comparableElement,
+            EStructuralFeature feature, String code) {
+        for (AliasedElement element : elements) {
+            if (element.equals(comparableElement)) {
+                continue;
+            }
+            if (element.getAlias().equals(comparableElement.getAlias())) {
+                error("\"" + element.getAlias() + "\"" + " alias taken!", feature, code);
+            }
 
-    @Check
-    private void checkUseCaseQualifier(UseCase useCase) {
-        if (useCase.isAbstract() != useCase.getReferencedElement().isAbstract()) {
-            error("\"" + useCase.getName() + "\"" + " has the wrong abstract qualifier!",
-                    UsecasePackage.Literals.USE_CASE__ABSTRACT, WRONG_ABSTRACT_ACTOR_QUALIFIER);
         }
     }
 }

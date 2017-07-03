@@ -18,7 +18,7 @@ public class CDOConfigurationWizardPage extends WizardPage {
 
     private final ProjectPropertiesDTO projectProperties;
     private WizardPageValidationProcessor validatorHandler;
-    ProjectPropertiesComposite propertiesComposite;
+    private ProjectPropertiesComposite propertiesComposite;
 
     /**
      * Constructor for CDOConfigurationWizardPage.

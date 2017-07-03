@@ -30,12 +30,12 @@ public class GeneralizationInitializer extends AtomicDerivedStateProcessorBase<G
         if (object.getReferencedElement() != null) {
             UMLReferencingElementFinder elementFinder = UMLReferencingElementFinder
                     .create(EcoreUtil.getRootContainer(object));
-            if (object.getGeneral() == null) {
+            if (object.getSpecific() == null) {
                 Optional<BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>> foundElement = elementFinder
                         .findElement(object.getReferencedElement().getSpecific(), getBehavioredClassifierClass());
                 foundElement.ifPresent(object::setSpecific);
             }
-            if (object.getSpecific() == null) {
+            if (object.getGeneral() == null) {
                 Optional<BehavioredClassifier<org.eclipse.uml2.uml.BehavioredClassifier>> foundElement = elementFinder
                         .findElement(object.getReferencedElement().getGeneral(), getBehavioredClassifierClass());
                 foundElement.ifPresent(object::setGeneral);

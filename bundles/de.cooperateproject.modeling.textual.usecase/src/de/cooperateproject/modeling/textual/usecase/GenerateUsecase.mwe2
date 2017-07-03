@@ -117,6 +117,7 @@ Workflow {
 			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
 			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
 			fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
+			fragment = ui.CooperateEditorFragment auto-inject {}
 		}
 	}
 }

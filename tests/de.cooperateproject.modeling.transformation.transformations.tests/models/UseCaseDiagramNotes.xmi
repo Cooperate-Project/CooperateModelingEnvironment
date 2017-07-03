@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<usecase:UseCaseDiagram xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:usecase="http://www.cooperateproject.de/modeling/textual/usecase/Usecase"
+	xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+	title="UseCaseDiagram">
+	<rootPackage>
+		<referencedElement xsi:type="uml:Model"
+			href="UseCaseDiagramNotes.uml#_ML0-gFtBEeePL9Bh2-2JIA" />
+		<actors>
+			<referencedElement xsi:type="uml:Actor"
+				href="UseCaseDiagramNotes.uml#_S9zooFtBEeePL9Bh2-2JIA" />
+			<comments>
+				<referencedElement xsi:type="uml:Comment" href="UseCaseDiagramNotes.uml#_Xeb7MFtBEeePL9Bh2-2JIA"/>
+			</comments>
+		</actors>
+		<systems>
+			<referencedElement xsi:type="uml:Component"
+				href="UseCaseDiagramNotes.uml#_P4MikFtBEeePL9Bh2-2JIA" />
+			<comments>
+				<referencedElement xsi:type="uml:Comment" href="UseCaseDiagramNotes.uml#_UX5oEFtBEeePL9Bh2-2JIA"/>
+			</comments>
+			<usecases>
+				<referencedElement xsi:type="uml:UseCase"
+					href="UseCaseDiagramNotes.uml#_TmBfMFtBEeePL9Bh2-2JIA" />
+				<comments>
+					<referencedElement xsi:type="uml:Comment" href="UseCaseDiagramNotes.uml#_Yf4KEFtBEeePL9Bh2-2JIA"/>
+				</comments>
+			</usecases>
+		</systems>
+		<systems>
+			<referencedElement xsi:type="uml:Component"
+				href="UseCaseDiagramNotes.uml#_RI1rEFtBEeePL9Bh2-2JIA" />
+			<comments>
+				<referencedElement xsi:type="uml:Comment" href="UseCaseDiagramNotes.uml#_WkI2IFtBEeePL9Bh2-2JIA"/>
+			</comments>
+		</systems>
+	</rootPackage>
+</usecase:UseCaseDiagram>

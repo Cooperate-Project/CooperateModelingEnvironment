@@ -4,6 +4,16 @@
 package de.cooperateproject.modeling.textual.usecase.ui.quickfix
 
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQuickfixProvider
+import org.eclipse.xtext.validation.Issue
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.emf.ecore.EObject
+import de.cooperateproject.modeling.textual.usecase.usecase.Actor
+import de.cooperateproject.modeling.textual.usecase.usecase.UseCase
+import org.slf4j.LoggerFactory
+import de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyAbstractQualifierFactory
+import de.cooperateproject.modeling.textual.usecase.issues.UsecasePropertyVisibilityFactory
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 
 /**
  * Custom quickfixes.
@@ -11,9 +21,71 @@ import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQui
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#quick-fixes
  */
 class UsecaseQuickfixProvider extends CooperateQuickfixProvider {
+	
+	private static val LOGGER = LoggerFactory.getLogger(UsecaseQuickfixProvider)
 
 	new() {
-		super(#[de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage.eINSTANCE])
+		super(#[de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage.eINSTANCE, TextualCommonsPackage.eINSTANCE])
+	}
+	
+	/**
+	 * Quickfix for if abstract qualifier in the uc-model differ from UML.
+	 */
+	@Fix(UsecasePropertyAbstractQualifierFactory.ISSUE_CODE)
+	def wrongAbstractQualifier(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change Abstract Qualifier into the one used in UML', 'Change the abstract qualifier into the right one', null) [ element, context |
+			element.fixWrongAbstractQualifier
+		]
+	}
+	
+	/**
+	 * Quickfix for if the visibility in the uc-model differ from UML.
+	 */
+	@Fix(UsecasePropertyVisibilityFactory.ISSUE_CODE)
+	def wrongVisibility(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, 'Change visibility into the one used in UML', 'Change the visibility into the right one', null) [ element, context |
+			element.fixWrongVisibility
+		]
+	}
+	
+	private static dispatch def void fixWrongVisibility(Actor actor) {
+		val umlElement = actor?.referencedElement
+		if (umlElement === null) {
+			return
+		}
+		actor.visibility = umlElement.visibility
+	}
+	
+	private static dispatch def void fixWrongVisibility(UseCase usecase) {
+		val umlElement = usecase?.referencedElement
+		if (umlElement === null) {
+			return
+		}
+		usecase.visibility = umlElement.visibility
+	}
+	
+	private static dispatch def void fixWrongVisibility(EObject object) {
+		LOGGER.warn("Object does not have visibility.")
+	}
+	
+	private static dispatch def void fixWrongAbstractQualifier(EObject property) {
+		LOGGER.warn("Object does not have abstract qualifier.")
+	}
+
+	private static dispatch def void fixWrongAbstractQualifier(Actor property) {
+		val umlElement = property?.referencedElement
+		if (umlElement === null) {
+			return
+		}
+		property.abstract = umlElement.abstract
+	}
+	
+	private static dispatch def void fixWrongAbstractQualifier(UseCase property) {
+		val umlElement = property?.referencedElement
+		if (umlElement === null) {
+			return
+		}
+		property.abstract = umlElement.abstract
 	}
 
 }

@@ -17,11 +17,11 @@ import de.cooperateproject.modeling.textual.usecase.ui.labeling.UsecaseLabelProv
 import de.cooperateproject.modeling.textual.usecase.ui.outline.UsecaseOutlineTreeProvider;
 import de.cooperateproject.modeling.textual.usecase.ui.quickfix.UsecaseQuickfixProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
-import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import org.eclipse.compare.IViewerCreator;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -285,11 +285,6 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	}
 	
 	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
-	public Class<? extends XtextEditor> bindXtextEditor() {
-		return CDOXtextEditor.class;
-	}
-	
-	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
 	public void configureLanguageSpecificURIEditorOpener(Binder binder) {
 		if (PlatformUI.isWorkbenchRunning())
 			binder.bind(IURIEditorOpener.class)
@@ -320,6 +315,11 @@ public abstract class AbstractUsecaseUiModule extends DefaultUiModule {
 	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2
 	public Class<? extends DistanceFunction> bindDistanceFunction() {
 		return UsecaseDistanceFunction.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.ui.CooperateEditorFragment
+	public Class<? extends XtextEditor> bindXtextEditor() {
+		return CooperateCDOXtextEditor.class;
 	}
 	
 }

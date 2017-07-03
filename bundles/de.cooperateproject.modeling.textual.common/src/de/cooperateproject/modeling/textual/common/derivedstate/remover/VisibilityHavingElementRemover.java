@@ -1,5 +1,8 @@
 package de.cooperateproject.modeling.textual.common.derivedstate.remover;
 
+import org.eclipse.uml2.uml.NamedElement;
+
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
@@ -20,7 +23,13 @@ public class VisibilityHavingElementRemover extends AtomicDerivedStateProcessorB
 
     @Override
     protected void applyTyped(VisibilityHavingElement object) {
-        object.unsetVisibility();
+        if (object instanceof UMLReferencingElement) {
+            @SuppressWarnings("unchecked")
+            NamedElement referencedElement = ((UMLReferencingElement<NamedElement>) object).getReferencedElement();
+            if (object.isSetVisibility() && object.getVisibility() == referencedElement.getVisibility()) {
+                object.unsetVisibility();
+            }
+        }
     }
 
 }

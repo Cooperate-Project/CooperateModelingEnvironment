@@ -14,13 +14,13 @@ public enum TransformationFactoryRegistry {
         return INSTANCE;
     }
 
-    private final Set<TransformationFactory> factories = Sets.newHashSet();
+    private final Set<ITransformationFactory> factories = Sets.newHashSet();
 
-    public void registerTransformation(TransformationFactory factory) {
+    public void registerTransformation(ITransformationFactory factory) {
         factories.add(factory);
     }
 
-    public Collection<TransformationFactory> getTransformationFactories() {
+    public Collection<ITransformationFactory> getTransformationFactories() {
         return Collections.unmodifiableSet(factories);
     }
 

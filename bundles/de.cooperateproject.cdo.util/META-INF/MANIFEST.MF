@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: CDO Utilities
 Bundle-SymbolicName: de.cooperateproject.cdo.util;singleton:=true
-Bundle-Version: 0.1.8.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.cdo;visibility:=reexport,

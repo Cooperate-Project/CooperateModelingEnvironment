@@ -272,7 +272,7 @@ query uml::Association::findNavigableEnds() : OrderedSet(Property)
 }
 
 mapping uml::MultiplicityElement::multiplicityElementToCardinality() : textualCommons::Cardinality {
-
+	referencedElement := self;
 }
 
 

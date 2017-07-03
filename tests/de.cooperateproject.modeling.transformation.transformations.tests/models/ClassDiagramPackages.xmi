@@ -13,22 +13,30 @@
       <connectors xsi:type="cls:XtextAssociation">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_7PhI0H9OEeaePt6Hzoa1yQ"/>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PukMH9OEeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PukMH9OEeaePt6Hzoa1yQ"/>
 		</memberEnds>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PsvAH9OEeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_7PsvAH9OEeaePt6Hzoa1yQ"/>
 		</memberEnds>
       </connectors>
       <connectors xsi:type="cls:XtextAssociation">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_fuLkMH_REeaePt6Hzoa1yQ"/>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_fuMyUX_REeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_fuMyUX_REeaePt6Hzoa1yQ"/>
 		</memberEnds>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_fuMyUH_REeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_fuMyUH_REeaePt6Hzoa1yQ"/>
 		</memberEnds>
       </connectors>
@@ -56,22 +64,30 @@
       <connectors xsi:type="cls:XtextAssociation">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_AVC4MH9PEeaePt6Hzoa1yQ"/>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEtYH9PEeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEtYH9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEGUn9PEeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_AVEGUn9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
       </connectors>
       <connectors xsi:type="cls:XtextAssociation">
         <referencedElement xsi:type="uml:Association" href="ClassDiagramPackages.uml#_I-A5IH9PEeaePt6Hzoa1yQ"/>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-DVYH9PEeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-DVYH9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
         <memberEnds>
-			<cardinality/>
+			<cardinality>
+			  <referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-CuUX9PEeaePt6Hzoa1yQ"/>
+			</cardinality>
 			<referencedElement xsi:type="uml:Property" href="ClassDiagramPackages.uml#_I-CuUX9PEeaePt6Hzoa1yQ"/>
 		</memberEnds>
       </connectors>
