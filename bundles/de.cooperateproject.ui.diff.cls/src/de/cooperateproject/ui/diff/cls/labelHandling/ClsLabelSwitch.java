@@ -5,19 +5,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.PrimitiveType;
 
 import de.cooperateproject.modeling.textual.cls.cls.Association;
-import de.cooperateproject.modeling.textual.cls.cls.AssociationProperties;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
-import de.cooperateproject.modeling.textual.cls.cls.Cardinality;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
-import de.cooperateproject.modeling.textual.cls.cls.CommentLink;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
 import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
-import de.cooperateproject.modeling.textual.cls.cls.PackageImport;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
-import de.cooperateproject.modeling.textual.cls.cls.Visibility;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
 
 public class ClsLabelSwitch extends ClsSwitch<String> {
 
@@ -39,11 +35,6 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 	@Override
 	public String casePackage(de.cooperateproject.modeling.textual.cls.cls.Package object) {
 		return "package" + " " + object.getName();
-	}
-
-	@Override
-	public String casePackageImport(PackageImport object) {
-		return "import " + object.getReferencedElement().getImportedPackage().getName();
 	}
 
 	@Override
@@ -117,28 +108,6 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 	}
 
 	@Override
-	public String caseAssociation(Association object) {
-
-		String typeRefLeft = object.getLeft().getName();
-		String typeRefRight = object.getRight().getName();
-
-		String ret = typeRefLeft + " " + object.getName() + " " + typeRefRight;
-		if (object.getProperties() != null) {
-			String leftRole = "";
-			String rightRole = "";
-			if (object.getProperties().getPropertyLeft().getName() != null)
-				leftRole = ", " + object.getProperties().getPropertyLeft().getName();
-			if (object.getProperties().getPropertyRight().getName() != null)
-				rightRole = ", " + object.getProperties().getPropertyRight().getName();
-
-			ret += " [" + caseCardinality(object.getProperties().getCardinalityLeft()) + leftRole;
-			ret += " | " + caseCardinality(object.getProperties().getCardinalityRight()) + rightRole + "]";
-		}
-
-		return ret;
-	}
-
-	@Override
 	public String caseGeneralization(Generalization object) {
 		String left = object.getLeft().getName();
 		String right = object.getRight().getName();
@@ -152,23 +121,6 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 		return left + " impl " + right;
 	}
 
-	@Override
-	public String caseCommentLink(CommentLink object) {
-		return object.getComment().getBody();
-	}
-
-	@Override
-	public String caseAssociationProperties(AssociationProperties object) {
-		return "left role: " + object.getPropertyLeft().getName() + ", right role: "
-				+ object.getPropertyRight().getName();
-	}
-
-	@Override
-	public String caseCardinality(Cardinality object) {
-		String integerTextLower = handleNonEObject(object.getLowerBound());
-		String integerTextUpper = handleNonEObject(object.getUpperBound());
-		return integerTextLower + ".." + integerTextUpper;
-	}
 
 	private String handleNonEObject(Object object) {
 		String ret = "";
