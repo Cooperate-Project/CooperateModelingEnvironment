@@ -4,14 +4,10 @@
 
    <extension
          point="org.eclipse.ui.views">
-      <category
-            name="Diff View"
-            id="de.cooperateproject.ui.diff">
-      </category>
       <view
             name="Diff View"
             icon="icons/16/cooperate_16.png"
-            category="de.cooperateproject.ui.diff"
+            category="de.cooperateproject.ui.cooperate"
             class="de.cooperateproject.ui.diff.views.DiffView"
             id="de.cooperateproject.ui.diff.views.DiffView">
       </view>
