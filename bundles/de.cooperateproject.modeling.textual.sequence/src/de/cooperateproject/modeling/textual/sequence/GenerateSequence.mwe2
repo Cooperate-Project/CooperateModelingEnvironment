@@ -74,19 +74,21 @@ Workflow {
         registerGeneratedEPackage = "org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage"
     }
     
-	component = XtextGenerator {
+	component = CooperateXtextGenerator {
 		configuration = {
 			project = StandardProjectConfig {
 				baseName = "${basename}"
 				rootPath = rootPath
 				runtimeTest = {
 					enabled = true
+					root = "../../tests/${basename}.tests"
 				}
 				eclipsePlugin = {
 					enabled = true
 				}
 				eclipsePluginTest = {
 					enabled = true
+					root = "../../tests/${basename}.ui.tests"
 				}
 				createEclipseMetaData = true
 			}
@@ -107,7 +109,8 @@ Workflow {
             referencedResource = "platform:/plugin/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.ecore"
             referencedResource = "platform:/plugin/de.cooperateproject.modeling.textual.sequence.metamodel/model/Sequence.genmodel"
             
-            
+            renameRefactoring = refactoring.CooperateRenameGeneratorFragment2 auto-inject {}
+                        
             fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 
             fragment = org.eclipse.xtext.generator.adapter.FragmentAdapter {
@@ -142,6 +145,7 @@ Workflow {
             fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
             fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
             fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
+            fragment = ui.CooperateEditorFragment auto-inject {}
         }
 	}
 }

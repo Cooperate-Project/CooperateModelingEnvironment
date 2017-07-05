@@ -17,11 +17,11 @@ import de.cooperateproject.modeling.textual.sequence.ui.labeling.SequenceLabelPr
 import de.cooperateproject.modeling.textual.sequence.ui.outline.SequenceOutlineTreeProvider;
 import de.cooperateproject.modeling.textual.sequence.ui.quickfix.SequenceQuickfixProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
-import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import org.eclipse.compare.IViewerCreator;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -84,16 +84,7 @@ import org.eclipse.xtext.ui.editor.quickfix.ILanguageResourceHelper;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.IReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.IRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.IRenameStrategy;
 import org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameStrategy;
-import org.eclipse.xtext.ui.refactoring.ui.DefaultRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.resource.XtextLiveScopeResourceSetProvider;
@@ -232,33 +223,6 @@ public abstract class AbstractSequenceUiModule extends DefaultUiModule {
 		return SequenceProposalProvider.class;
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameStrategy> bindIRenameStrategy() {
-		return DefaultRenameStrategy.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IReferenceUpdater> bindIReferenceUpdater() {
-		return DefaultReferenceUpdater.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public void configureIPreferenceStoreInitializer(Binder binder) {
-		binder.bind(IPreferenceStoreInitializer.class)
-			.annotatedWith(Names.named("RefactoringPreferences"))
-			.to(RefactoringPreferences.Initializer.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameRefactoringProvider> bindIRenameRefactoringProvider() {
-		return DefaultRenameRefactoringProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameSupport.Factory> bindIRenameSupport$Factory() {
-		return DefaultRenameSupport.Factory.class;
-	}
-	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
 	public Provider<? extends TemplatesLanguageConfiguration> provideTemplatesLanguageConfiguration() {
 		return AccessibleCodetemplatesActivator.getTemplatesLanguageConfigurationProvider();
@@ -321,11 +285,6 @@ public abstract class AbstractSequenceUiModule extends DefaultUiModule {
 	}
 	
 	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
-	public Class<? extends XtextEditor> bindXtextEditor() {
-		return CDOXtextEditor.class;
-	}
-	
-	// contributed by net.winklerweb.cdoxtext.generator.AddCDOXtextBindingsFragment2
 	public void configureLanguageSpecificURIEditorOpener(Binder binder) {
 		if (PlatformUI.isWorkbenchRunning())
 			binder.bind(IURIEditorOpener.class)
@@ -356,6 +315,11 @@ public abstract class AbstractSequenceUiModule extends DefaultUiModule {
 	// contributed by net.winklerweb.cdoxtext.generator.emfcompare.EMFCompareMatcherFragment2
 	public Class<? extends DistanceFunction> bindDistanceFunction() {
 		return SequenceDistanceFunction.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.ui.CooperateEditorFragment
+	public Class<? extends XtextEditor> bindXtextEditor() {
+		return CooperateCDOXtextEditor.class;
 	}
 	
 }

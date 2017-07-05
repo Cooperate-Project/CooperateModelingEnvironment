@@ -177,6 +177,24 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(SequencePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(SequencePackage.ACTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(SequencePackage.ACTOR__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
@@ -350,7 +368,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
                 unsetName();
                 return;
             case SequencePackage.ACTOR__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case SequencePackage.ACTOR__COMMENTS:
                 getComments().clear();
@@ -379,7 +397,7 @@ public class ActorImpl extends UMLReferencingElementImpl<Lifeline> implements Ac
             case SequencePackage.ACTOR__NAME:
                 return isSetName();
             case SequencePackage.ACTOR__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case SequencePackage.ACTOR__COMMENTS:
                 return !getComments().isEmpty();
             case SequencePackage.ACTOR__DEFERRED:

@@ -149,6 +149,24 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends OccurenceSpecific
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ExplicitArrivalOccurenceReference getExplicitOccurenceReference() {
         return (ExplicitArrivalOccurenceReference)eDynamicGet(SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE, true, true);
     }
@@ -273,7 +291,7 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends OccurenceSpecific
                 unsetName();
                 return;
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 setExplicitOccurenceReference((ExplicitArrivalOccurenceReference)null);
@@ -293,7 +311,7 @@ public class ExplicitArrivalOccurenceSpecificationImpl extends OccurenceSpecific
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__NAME:
                 return isSetName();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION__EXPLICIT_OCCURENCE_REFERENCE:
                 return basicGetExplicitOccurenceReference() != null;
         }

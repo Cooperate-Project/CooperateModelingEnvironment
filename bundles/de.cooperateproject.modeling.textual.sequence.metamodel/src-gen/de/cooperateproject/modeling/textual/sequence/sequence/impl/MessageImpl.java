@@ -173,6 +173,24 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(SequencePackage.MESSAGE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(SequencePackage.MESSAGE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getArrivalEvent() {
         return (OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>>)eDynamicGet(SequencePackage.MESSAGE__ARRIVAL_EVENT, SequencePackage.Literals.MESSAGE__ARRIVAL_EVENT, true, true);
     }
@@ -398,7 +416,7 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
                 unsetName();
                 return;
             case SequencePackage.MESSAGE__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case SequencePackage.MESSAGE__ARRIVAL_EVENT:
                 setArrivalEvent((OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>>)null);
@@ -429,7 +447,7 @@ public class MessageImpl extends UMLReferencingElementImpl<Message> implements d
             case SequencePackage.MESSAGE__NAME:
                 return isSetName();
             case SequencePackage.MESSAGE__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case SequencePackage.MESSAGE__ARRIVAL_EVENT:
                 return getArrivalEvent() != null;
             case SequencePackage.MESSAGE__SEND_EVENT:

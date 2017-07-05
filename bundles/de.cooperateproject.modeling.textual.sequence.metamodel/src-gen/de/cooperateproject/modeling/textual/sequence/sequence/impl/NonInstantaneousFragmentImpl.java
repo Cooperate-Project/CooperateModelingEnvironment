@@ -176,6 +176,24 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public PackageBase<?> getNearestPackage() {
         EObject parent = this;
         while (parent != null && !(parent instanceof PackageBase)) {
@@ -240,7 +258,7 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
                 unsetName();
                 return;
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
         }
         super.eUnset(featureID);
@@ -259,7 +277,7 @@ public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> e
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__NAME:
                 return isSetName();
             case SequencePackage.NON_INSTANTANEOUS_FRAGMENT__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
         }
         return super.eIsSet(featureID);
     }

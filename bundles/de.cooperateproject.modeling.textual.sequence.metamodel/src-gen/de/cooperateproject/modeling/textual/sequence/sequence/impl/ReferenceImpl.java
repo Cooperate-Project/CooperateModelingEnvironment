@@ -150,6 +150,24 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(SequencePackage.REFERENCE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(SequencePackage.REFERENCE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public Interaction getReference() {
         return (Interaction)eDynamicGet(SequencePackage.REFERENCE__REFERENCE, SequencePackage.Literals.REFERENCE__REFERENCE, true, true);
     }
@@ -233,7 +251,7 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
                 unsetName();
                 return;
             case SequencePackage.REFERENCE__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case SequencePackage.REFERENCE__REFERENCE:
                 setReference((Interaction)null);
@@ -253,7 +271,7 @@ public class ReferenceImpl extends UMLReferencingElementImpl<InteractionUse> imp
             case SequencePackage.REFERENCE__NAME:
                 return isSetName();
             case SequencePackage.REFERENCE__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case SequencePackage.REFERENCE__REFERENCE:
                 return basicGetReference() != null;
         }

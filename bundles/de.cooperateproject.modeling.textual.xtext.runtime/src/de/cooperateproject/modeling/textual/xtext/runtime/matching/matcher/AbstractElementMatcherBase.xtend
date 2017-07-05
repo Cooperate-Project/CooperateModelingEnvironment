@@ -10,7 +10,6 @@ import de.cooperateproject.modeling.textual.xtext.runtime.matching.condition.Ele
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.condition.MatchExistsCondition
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationProvider
 import java.util.function.BiPredicate
-import java.util.function.Function
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 
@@ -69,7 +68,7 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
         ]
     }
     
-    protected def Function<ElementMatcherApplication<LeftType, RightType>, ElementCandidateSelector<RightType>> definiteIf(BiPredicate<LeftType, RightType> condition) {
+    protected def (ElementMatcherApplication<LeftType, RightType>)=>ElementCandidateSelector<RightType> definiteIf(BiPredicate<LeftType, RightType> condition) {
         [new ElementCandidateSelector<RightType>() {
             
             override protected matchDefinite(RightType match) {
@@ -82,7 +81,7 @@ abstract class AbstractElementMatcherBase<LeftType extends EObject, RightType ex
         }]
     }
     
-    protected def Function<ElementMatcherApplication<LeftType, RightType>, ElementCandidateSelector<RightType>> mustBe(BiPredicate<LeftType, RightType> condition) {
+    protected def (ElementMatcherApplication<LeftType, RightType>)=>ElementCandidateSelector<RightType> mustBe(BiPredicate<LeftType, RightType> condition) {
         [new ElementCandidateSelector<RightType>() {
             override protected match(RightType match) {
                 condition.test(matchingInstance.elementToMatch, match)
