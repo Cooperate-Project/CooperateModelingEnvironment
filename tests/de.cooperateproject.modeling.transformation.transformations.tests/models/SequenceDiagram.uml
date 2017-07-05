@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_RGqfcF_kEeecvtIPTfT-KQ" name="RootElement">
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_RLYAUF_kEeecvtIPTfT-KQ" name="SimpleExample">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_3LlBAF_kEeecvtIPTfT-KQ" name="a" type="_u-pb0F_kEeecvtIPTfT-KQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7jCwgF_kEeecvtIPTfT-KQ" name="b" type="_s66CcF_kEeecvtIPTfT-KQ"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_yg7PwF_kEeecvtIPTfT-KQ" name="a" represents="_3LlBAF_kEeecvtIPTfT-KQ" coveredBy="_mdVFkF_lEeecvtIPTfT-KQ _mdWTsF_lEeecvtIPTfT-KQ _mdVsoF_lEeecvtIPTfT-KQ _sBmmcF_lEeecvtIPTfT-KQ _xc6YkF_lEeecvtIPTfT-KQ"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_4YmNwF_kEeecvtIPTfT-KQ" name="b" represents="_7jCwgF_kEeecvtIPTfT-KQ" coveredBy="_sBnNgF_lEeecvtIPTfT-KQ _sOkEYF_lEeecvtIPTfT-KQ _xc5xgF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mdVFkF_lEeecvtIPTfT-KQ" name="BehaviorExecSpecStart" covered="_yg7PwF_kEeecvtIPTfT-KQ" execution="_mdVsoF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_mdVsoF_lEeecvtIPTfT-KQ" name="BehaviorExecSpec" covered="_yg7PwF_kEeecvtIPTfT-KQ" finish="_mdWTsF_lEeecvtIPTfT-KQ" start="_mdVFkF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_sBmmcF_lEeecvtIPTfT-KQ" name="MessageSend" covered="_yg7PwF_kEeecvtIPTfT-KQ" message="_sBl_YF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_sOkEYF_lEeecvtIPTfT-KQ" name="BehaviorExecSpec0" covered="_4YmNwF_kEeecvtIPTfT-KQ" finish="_xc5xgF_lEeecvtIPTfT-KQ" start="_sBnNgF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_sBnNgF_lEeecvtIPTfT-KQ" name="MessageRecv" covered="_4YmNwF_kEeecvtIPTfT-KQ" message="_sBl_YF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xc5xgF_lEeecvtIPTfT-KQ" name="MessageSend0" covered="_4YmNwF_kEeecvtIPTfT-KQ" message="_xc5KcF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xc6YkF_lEeecvtIPTfT-KQ" name="MessageRecv0" covered="_yg7PwF_kEeecvtIPTfT-KQ" message="_xc5KcF_lEeecvtIPTfT-KQ"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mdWTsF_lEeecvtIPTfT-KQ" name="BehaviorExecSpecFinish" covered="_yg7PwF_kEeecvtIPTfT-KQ" execution="_mdVsoF_lEeecvtIPTfT-KQ"/>
+    <message xmi:type="uml:Message" xmi:id="_sBl_YF_lEeecvtIPTfT-KQ" name="foo()" receiveEvent="_sBnNgF_lEeecvtIPTfT-KQ" sendEvent="_sBmmcF_lEeecvtIPTfT-KQ"/>
+    <message xmi:type="uml:Message" xmi:id="_xc5KcF_lEeecvtIPTfT-KQ" name="foo():bar" messageSort="reply" receiveEvent="_xc6YkF_lEeecvtIPTfT-KQ" sendEvent="_xc5xgF_lEeecvtIPTfT-KQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_u-pb0F_kEeecvtIPTfT-KQ" name="ClassA"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_s66CcF_kEeecvtIPTfT-KQ" name="ClassB"/>
+</uml:Model>
