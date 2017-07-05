@@ -106,8 +106,8 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
         }
         CDOQuery query = transation.get().createQuery("ocl",
                 String.format("%s::%s.allInstances()", type.getEPackage().getNsPrefix(), type.getName()), true);
-        Collection<EObject> results = query.getResult().stream().filter(EObject.class::isInstance)
-                .map(EObject.class::cast).filter(o -> o.eResource() == umlResource).collect(Collectors.toList());
+        Collection<EObject> results = query.getResult().stream().filter(type::isInstance).map(EObject.class::cast)
+                .filter(o -> o.eResource() == umlResource).collect(Collectors.toList());
         return results.stream();
     }
 
