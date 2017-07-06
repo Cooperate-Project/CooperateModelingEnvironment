@@ -33,7 +33,7 @@ public interface TimeObservation extends Observation {
      * @return the value of the '<em>Time</em>' attribute.
      * @see #setTime(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getTimeObservation_Time()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!TimeObservation!time'"
      * @generated
      */
     String getTime();
@@ -60,6 +60,7 @@ public interface TimeObservation extends Observation {
      * @see #setEvent(PointInTimeSelector)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getTimeObservation_Event()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!TimeObservation!event'"
      * @generated
      */
     PointInTimeSelector getEvent();

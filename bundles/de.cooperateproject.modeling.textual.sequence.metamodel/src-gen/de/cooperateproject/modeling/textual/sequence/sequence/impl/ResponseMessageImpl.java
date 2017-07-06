@@ -6,7 +6,23 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
+import de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables;
+import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +49,78 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
     @Override
     protected EClass eStaticClass() {
         return SequencePackage.Literals.RESPONSE_MESSAGE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public StandardMessage getCorrespondingRequest() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getSynchronousMessageCorrespondingToResponse(this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean mustHaveCorrespondingMessage(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+        /**
+         * 
+         * inv mustHaveCorrespondingMessage:
+         *   let
+         *     severity : Integer[1] = 'ResponseMessage::mustHaveCorrespondingMessage'.getSeverity()
+         *   in
+         *     if severity <= 0
+         *     then true
+         *     else
+         *       let
+         *         status : OclAny[?] = not self.getCorrespondingRequest()
+         *         .oclIsUndefined()
+         *       in
+         *         'ResponseMessage::mustHaveCorrespondingMessage'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+         *     endif
+         */
+        final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
+        final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage);
+        final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, SequenceTables.INT_0).booleanValue();
+        /*@NonInvalid*/ boolean symbol_1;
+        if (le) {
+            symbol_1 = ValueUtil.TRUE_VALUE;
+        }
+        else {
+            /*@Caught*/ /*@NonNull*/ Object CAUGHT_getCorrespondingRequest;
+            try {
+                final /*@Thrown*/ StandardMessage getCorrespondingRequest = this.getCorrespondingRequest();
+                CAUGHT_getCorrespondingRequest = getCorrespondingRequest;
+            }
+            catch (Exception e) {
+                CAUGHT_getCorrespondingRequest = ValueUtil.createInvalidValue(e);
+            }
+            final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_getCorrespondingRequest instanceof InvalidValueException;
+            final /*@NonInvalid*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(symbol_0);
+            final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, status, SequenceTables.INT_0).booleanValue();
+            symbol_1 = logDiagnostic;
+        }
+        return Boolean.TRUE == symbol_1;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+        switch (operationID) {
+            case SequencePackage.RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST:
+                return getCorrespondingRequest();
+            case SequencePackage.RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1:
+                return mustHaveCorrespondingMessage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+        }
+        return super.eInvoke(operationID, arguments);
     }
 
 } //ResponseMessageImpl

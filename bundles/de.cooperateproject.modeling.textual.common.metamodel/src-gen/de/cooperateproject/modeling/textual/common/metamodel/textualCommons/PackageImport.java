@@ -33,6 +33,7 @@ public interface PackageImport extends UMLReferencingElement<org.eclipse.uml2.um
      * @see #setImportedPackage(org.eclipse.uml2.uml.Package)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageImport_ImportedPackage()
      * @model required="true" transient="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageImport!importedPackage'"
      * @generated
      */
 	org.eclipse.uml2.uml.Package getImportedPackage();
@@ -61,6 +62,7 @@ public interface PackageImport extends UMLReferencingElement<org.eclipse.uml2.um
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageImport_ImportingPackage()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackageImports
      * @model opposite="packageImports" required="true" transient="false"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageImport!importingPackage'"
      * @generated
      */
 	PackageBase<?> getImportingPackage();

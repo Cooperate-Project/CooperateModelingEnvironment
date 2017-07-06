@@ -40,6 +40,7 @@ public interface SequenceDiagram extends UMLReferencingElement<Interaction>, Fra
      * @see #setTitle(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram_Title()
      * @model required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SequenceDiagram!title'"
      * @generated
      */
     String getTitle();
@@ -66,6 +67,7 @@ public interface SequenceDiagram extends UMLReferencingElement<Interaction>, Fra
      * @see #setRootPackage(RootPackage)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram_RootPackage()
      * @model containment="true" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SequenceDiagram!rootPackage'"
      * @generated
      */
     RootPackage getRootPackage();
@@ -92,6 +94,7 @@ public interface SequenceDiagram extends UMLReferencingElement<Interaction>, Fra
      * @return the value of the '<em>Actors</em>' containment reference list.
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSequenceDiagram_Actors()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SequenceDiagram!actors'"
      * @generated
      */
     EList<Actor> getActors();

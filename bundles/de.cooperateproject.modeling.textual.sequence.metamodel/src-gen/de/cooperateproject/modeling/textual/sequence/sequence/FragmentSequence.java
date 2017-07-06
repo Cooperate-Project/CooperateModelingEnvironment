@@ -39,6 +39,7 @@ public interface FragmentSequence extends CDOObject {
      * @return the value of the '<em>Fragments</em>' containment reference list.
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getFragmentSequence_Fragments()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!FragmentSequence!fragments'"
      * @generated
      */
     EList<Fragment> getFragments();

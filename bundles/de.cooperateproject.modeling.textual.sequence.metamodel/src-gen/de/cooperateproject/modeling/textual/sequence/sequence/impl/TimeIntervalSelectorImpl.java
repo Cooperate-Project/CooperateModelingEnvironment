@@ -15,8 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 
-import org.eclipse.uml2.uml.NamedElement;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Time Interval Selector</b></em>'.
@@ -59,7 +57,7 @@ public class TimeIntervalSelectorImpl extends CDOObjectImpl implements TimeInter
      * <!-- end-user-doc -->
      * @generated
      */
-    public PointInTime<? extends NamedElement> getIntervalStart() {
+    public PointInTime<?> getIntervalStart() {
         throw new RuntimeException("This method should have been overidden");
     }
 
@@ -68,7 +66,7 @@ public class TimeIntervalSelectorImpl extends CDOObjectImpl implements TimeInter
      * <!-- end-user-doc -->
      * @generated
      */
-    public PointInTime<? extends NamedElement> getIntervalEnd() {
+    public PointInTime<?> getIntervalEnd() {
         throw new RuntimeException("This method should have been overidden");
     }
 

@@ -36,7 +36,7 @@ public interface Reference extends UMLReferencingElement<InteractionUse>, NonIns
      * @return the value of the '<em>Reference</em>' reference.
      * @see #setReference(Interaction)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getReference_Reference()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Reference!reference'"
      * @generated
      */
     Interaction getReference();

@@ -33,7 +33,7 @@ public interface DurationObservation extends Observation {
      * @return the value of the '<em>Duration</em>' attribute.
      * @see #setDuration(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDurationObservation_Duration()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationObservation!duration'"
      * @generated
      */
     String getDuration();
@@ -60,6 +60,7 @@ public interface DurationObservation extends Observation {
      * @see #setInterval(TimeIntervalSelector)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDurationObservation_Interval()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationObservation!interval'"
      * @generated
      */
     TimeIntervalSelector getInterval();

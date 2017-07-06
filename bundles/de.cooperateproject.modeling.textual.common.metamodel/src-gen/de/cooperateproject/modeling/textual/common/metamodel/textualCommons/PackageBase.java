@@ -37,6 +37,7 @@ public interface PackageBase<PackageType extends PackageBase<?>> extends Package
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_OwningPackage()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getPackages
      * @model opposite="packages"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageBase{PackageType}!owningPackage'"
      * @generated
      */
 	PackageType getOwningPackage();
@@ -64,6 +65,7 @@ public interface PackageBase<PackageType extends PackageBase<?>> extends Package
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_Packages()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase#getOwningPackage
      * @model opposite="owningPackage" containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageBase{PackageType}!packages'"
      * @generated
      */
 	EList<PackageType> getPackages();
@@ -82,6 +84,7 @@ public interface PackageBase<PackageType extends PackageBase<?>> extends Package
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getPackageBase_PackageImports()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageImport#getImportingPackage
      * @model opposite="importingPackage" containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageBase{PackageType}!packageImports'"
      * @generated
      */
 	EList<PackageImport> getPackageImports();

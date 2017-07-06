@@ -27,7 +27,7 @@ public enum MessageType implements Enumerator {
      * @generated
      * @ordered
      */
-    SYNC(0, "SYNC", "sync"),
+    SYNC(0, "SYNC", "SYNC"),
 
     /**
      * The '<em><b>ASYNC</b></em>' literal object.
@@ -37,7 +37,7 @@ public enum MessageType implements Enumerator {
      * @generated
      * @ordered
      */
-    ASYNC(1, "ASYNC", "async");
+    ASYNC(1, "ASYNC", "ASYNC");
 
     /**
      * The '<em><b>SYNC</b></em>' literal value.
@@ -48,7 +48,7 @@ public enum MessageType implements Enumerator {
      * </p>
      * <!-- end-user-doc -->
      * @see #SYNC
-     * @model literal="sync"
+     * @model
      * @generated
      * @ordered
      */
@@ -63,7 +63,7 @@ public enum MessageType implements Enumerator {
      * </p>
      * <!-- end-user-doc -->
      * @see #ASYNC
-     * @model literal="async"
+     * @model
      * @generated
      * @ordered
      */

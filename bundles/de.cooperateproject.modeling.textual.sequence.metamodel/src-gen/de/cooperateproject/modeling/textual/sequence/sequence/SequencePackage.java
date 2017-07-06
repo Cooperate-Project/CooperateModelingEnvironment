@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequenceFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' txtCmn='../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#/' uml='../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/'"
  * @generated
  */
 public interface SequencePackage extends EPackage {
@@ -818,13 +819,31 @@ public interface SequencePackage extends EPackage {
     int RESPONSE_MESSAGE___GET_CONTAINING_SEQUENCE = MESSAGE___GET_CONTAINING_SEQUENCE;
 
     /**
+     * The operation id for the '<em>Get Corresponding Request</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST = MESSAGE_OPERATION_COUNT + 0;
+
+    /**
+     * The operation id for the '<em>Must Have Corresponding Message</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1 = MESSAGE_OPERATION_COUNT + 1;
+
+    /**
      * The number of operations of the '<em>Response Message</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 0;
+    int RESPONSE_MESSAGE_OPERATION_COUNT = MESSAGE_OPERATION_COUNT + 2;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.
@@ -3522,6 +3541,26 @@ public interface SequencePackage extends EPackage {
     EClass getResponseMessage();
 
     /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#getCorrespondingRequest() <em>Get Corresponding Request</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Corresponding Request</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#getCorrespondingRequest()
+     * @generated
+     */
+    EOperation getResponseMessage__GetCorrespondingRequest();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#mustHaveCorrespondingMessage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Must Have Corresponding Message</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Must Have Corresponding Message</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#mustHaveCorrespondingMessage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+     * @generated
+     */
+    EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1();
+
+    /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage <em>Create Message</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4479,6 +4518,22 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EClass RESPONSE_MESSAGE = eINSTANCE.getResponseMessage();
+
+        /**
+         * The meta object literal for the '<em><b>Get Corresponding Request</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST = eINSTANCE.getResponseMessage__GetCorrespondingRequest();
+
+        /**
+         * The meta object literal for the '<em><b>Must Have Corresponding Message</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.

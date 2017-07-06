@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.uml2.uml.InteractionFragment;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Fragment Time Interval Selector</b></em>'.
@@ -82,7 +80,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public PointInTime<? extends InteractionFragment> getIntervalStart() {
+    public PointInTime<?> getIntervalStart() {
         return this.getNonInstantaneousFragment();
     }
 
@@ -91,7 +89,7 @@ public class FragmentTimeIntervalSelectorImpl extends TimeIntervalSelectorImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    public PointInTime<? extends InteractionFragment> getIntervalEnd() {
+    public PointInTime<?> getIntervalEnd() {
         return this.getNonInstantaneousFragment();
     }
 

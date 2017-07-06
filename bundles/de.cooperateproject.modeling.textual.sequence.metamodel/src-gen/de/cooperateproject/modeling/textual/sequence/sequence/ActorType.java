@@ -27,7 +27,7 @@ public enum ActorType implements Enumerator {
      * @generated
      * @ordered
      */
-    HUMAN(0, "HUMAN", "human"),
+    HUMAN(0, "HUMAN", "HUMAN"),
 
     /**
      * The '<em><b>MACHINE</b></em>' literal object.
@@ -37,7 +37,7 @@ public enum ActorType implements Enumerator {
      * @generated
      * @ordered
      */
-    MACHINE(1, "MACHINE", "machine");
+    MACHINE(1, "MACHINE", "MACHINE");
 
     /**
      * The '<em><b>HUMAN</b></em>' literal value.
@@ -48,7 +48,7 @@ public enum ActorType implements Enumerator {
      * </p>
      * <!-- end-user-doc -->
      * @see #HUMAN
-     * @model literal="human"
+     * @model
      * @generated
      * @ordered
      */
@@ -63,7 +63,7 @@ public enum ActorType implements Enumerator {
      * </p>
      * <!-- end-user-doc -->
      * @see #MACHINE
-     * @model literal="machine"
+     * @model
      * @generated
      * @ordered
      */

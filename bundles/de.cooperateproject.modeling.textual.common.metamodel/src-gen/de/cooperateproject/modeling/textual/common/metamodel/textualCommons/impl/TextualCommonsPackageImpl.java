@@ -614,6 +614,8 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
         createEcoreAnnotations();
         // http://cooperate-project.de/ecore/settingdelegate/implementations
         createImplementationsAnnotations();
+        // http://www.eclipse.org/emf/2002/GenModel
+        createGenModelAnnotations();
         // http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering
         createDuplicatefilteringAnnotations();
     }
@@ -647,6 +649,106 @@ public class TextualCommonsPackageImpl extends EPackageImpl implements TextualCo
            source, 
            new String[] {
              "http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering", "de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.DuplicatedSetFilteringSettingDelegateFactory"
+           });
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createGenModelAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/GenModel";	
+        addAnnotation
+          (getElement__GetNearestPackage(), 
+           source, 
+           new String[] {
+             "body", "<%org.eclipse.emf.ecore.EObject%> parent = this;\r\nwhile (parent != null && !(parent instanceof PackageBase)) {\r\n\tparent = parent.eContainer();\r\n}\r\nreturn (PackageBase<?>)parent;"
+           });	
+        addAnnotation
+          (getNamedElement_Name(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!NamedElement!name"
+           });	
+        addAnnotation
+          (getAliasedElement_Alias(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!AliasedElement!alias"
+           });	
+        addAnnotation
+          (getUMLReferencingElement_ReferencedElement(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!UMLReferencingElement{UMLType}!referencedElement"
+           });	
+        addAnnotation
+          (getPackageBase_OwningPackage(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageBase{PackageType}!owningPackage"
+           });	
+        addAnnotation
+          (getPackageBase_Packages(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageBase{PackageType}!packages"
+           });	
+        addAnnotation
+          (getPackageBase_PackageImports(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageBase{PackageType}!packageImports"
+           });	
+        addAnnotation
+          (getCommentable_Comments(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Commentable{CommentableUMLType}!comments"
+           });	
+        addAnnotation
+          (getComment_CommentedElement(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Comment!commentedElement"
+           });	
+        addAnnotation
+          (getComment_Body(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Comment!body"
+           });	
+        addAnnotation
+          (getCardinality_LowerBound(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Cardinality!lowerBound"
+           });	
+        addAnnotation
+          (getCardinality_UpperBound(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Cardinality!upperBound"
+           });	
+        addAnnotation
+          (getPackageImport_ImportingPackage(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageImport!importingPackage"
+           });	
+        addAnnotation
+          (getPackageImport_ImportedPackage(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!PackageImport!importedPackage"
+           });	
+        addAnnotation
+          (getVisibilityHavingElement_Visibility(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!VisibilityHavingElement!visibility"
            });
     }
 

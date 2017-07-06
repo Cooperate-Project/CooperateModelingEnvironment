@@ -4,6 +4,7 @@
     nsPrefix="txtCmn">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="settingDelegates" value="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eAnnotations source="http://cooperate-project.de/ecore/settingdelegate/implementations">
     <details key="http://cooperate-project.de/ecore/settingdelegate/duplicatefiltering"

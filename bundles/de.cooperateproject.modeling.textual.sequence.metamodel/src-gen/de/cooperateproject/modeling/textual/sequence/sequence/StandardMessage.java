@@ -34,7 +34,7 @@ public interface StandardMessage extends Message {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.MessageType
      * @see #setType(MessageType)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getStandardMessage_Type()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!StandardMessage!type'"
      * @generated
      */
     MessageType getType();

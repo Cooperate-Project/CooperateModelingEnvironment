@@ -34,6 +34,7 @@ public interface AliasedElement extends NamedElement {
      * @see #setAlias(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getAliasedElement_Alias()
      * @model unsettable="true" transient="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!AliasedElement!alias'"
      * @generated
      */
 	String getAlias();

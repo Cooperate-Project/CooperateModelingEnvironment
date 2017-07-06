@@ -34,7 +34,7 @@ public interface PointInTimeSelector extends CDOObject {
      * @return the value of the '<em>Point In Time</em>' reference.
      * @see #setPointInTime(PointInTime)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getPointInTimeSelector_PointInTime()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!PointInTimeSelector!pointInTime'"
      * @generated
      */
     PointInTime<?> getPointInTime();

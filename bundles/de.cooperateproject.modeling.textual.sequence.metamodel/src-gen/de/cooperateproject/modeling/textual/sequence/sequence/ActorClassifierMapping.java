@@ -38,7 +38,7 @@ public interface ActorClassifierMapping extends UMLReferencingElement<Property> 
      * @return the value of the '<em>Classifier</em>' reference.
      * @see #setClassifier(Classifier)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActorClassifierMapping_Classifier()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ActorClassifierMapping!classifier'"
      * @generated
      */
     Classifier getClassifier();
@@ -67,6 +67,7 @@ public interface ActorClassifierMapping extends UMLReferencingElement<Property> 
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActorClassifierMapping_Actor()
      * @see de.cooperateproject.modeling.textual.sequence.sequence.Actor#getTypeMapping
      * @model opposite="typeMapping" transient="false"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ActorClassifierMapping!actor'"
      * @generated
      */
     Actor getActor();
@@ -92,7 +93,7 @@ public interface ActorClassifierMapping extends UMLReferencingElement<Property> 
      * @return the value of the '<em>Classifier Name</em>' attribute.
      * @see #setClassifierName(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActorClassifierMapping_ClassifierName()
-     * @model dataType="org.eclipse.uml2.types.String"
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ActorClassifierMapping!classifierName'"
      * @generated
      */
     String getClassifierName();

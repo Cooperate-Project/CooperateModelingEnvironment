@@ -5,8 +5,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 
 import org.eclipse.emf.cdo.CDOObject;
 
-import org.eclipse.uml2.uml.NamedElement;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Time Interval Selector</b></em>'.
@@ -26,7 +24,7 @@ public interface TimeIntervalSelector extends CDOObject {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new RuntimeException(\"This method should have been overidden\");'"
      * @generated
      */
-    PointInTime<? extends NamedElement> getIntervalStart();
+    PointInTime<?> getIntervalStart();
 
     /**
      * <!-- begin-user-doc -->
@@ -35,6 +33,6 @@ public interface TimeIntervalSelector extends CDOObject {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='throw new RuntimeException(\"This method should have been overidden\");'"
      * @generated
      */
-    PointInTime<? extends NamedElement> getIntervalEnd();
+    PointInTime<?> getIntervalEnd();
 
 } // TimeIntervalSelector

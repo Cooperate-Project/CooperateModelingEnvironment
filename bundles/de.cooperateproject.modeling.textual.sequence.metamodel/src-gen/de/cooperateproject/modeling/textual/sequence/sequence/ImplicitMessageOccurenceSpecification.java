@@ -37,7 +37,7 @@ public interface ImplicitMessageOccurenceSpecification extends OccurenceSpecific
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.uml2.types.Boolean"
+     * @model kind="operation"
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isArrivalOccurrence(this);'"
      * @generated
      */
@@ -46,7 +46,7 @@ public interface ImplicitMessageOccurenceSpecification extends OccurenceSpecific
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.uml2.types.Boolean"
+     * @model kind="operation"
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.isSendOccurrence(this);'"
      * @generated
      */

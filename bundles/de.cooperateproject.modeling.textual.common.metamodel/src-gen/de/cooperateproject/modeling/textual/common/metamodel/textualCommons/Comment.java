@@ -35,6 +35,7 @@ public interface Comment extends UMLReferencingElement<org.eclipse.uml2.uml.Comm
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getComment_CommentedElement()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable#getComments
      * @model opposite="comments" required="true" transient="false"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Comment!commentedElement'"
      * @generated
      */
 	Commentable<?> getCommentedElement();
@@ -61,6 +62,7 @@ public interface Comment extends UMLReferencingElement<org.eclipse.uml2.uml.Comm
      * @see #setBody(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getComment_Body()
      * @model required="true" transient="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Comment!body'"
      * @generated
      */
 	String getBody();

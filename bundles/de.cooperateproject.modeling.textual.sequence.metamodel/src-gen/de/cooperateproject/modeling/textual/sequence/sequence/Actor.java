@@ -39,7 +39,7 @@ public interface Actor extends UMLReferencingElement<Lifeline>, AliasedElement, 
      * @return the value of the '<em>Deferred</em>' attribute.
      * @see #setDeferred(boolean)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActor_Deferred()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Actor!deferred'"
      * @generated
      */
     boolean isDeferred();
@@ -68,6 +68,7 @@ public interface Actor extends UMLReferencingElement<Lifeline>, AliasedElement, 
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActor_TypeMapping()
      * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping#getActor
      * @model opposite="actor" containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Actor!typeMapping'"
      * @generated
      */
     ActorClassifierMapping getTypeMapping();
@@ -95,7 +96,7 @@ public interface Actor extends UMLReferencingElement<Lifeline>, AliasedElement, 
      * @see de.cooperateproject.modeling.textual.sequence.sequence.ActorType
      * @see #setActorType(ActorType)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getActor_ActorType()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Actor!actorType'"
      * @generated
      */
     ActorType getActorType();

@@ -33,6 +33,7 @@ public interface SingleRegionContainer extends CombinedFragment {
      * @see #setRegion(OrderedFragmentContainer)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getSingleRegionContainer_Region()
      * @model containment="true" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SingleRegionContainer!region'"
      * @generated
      */
     OrderedFragmentContainer getRegion();

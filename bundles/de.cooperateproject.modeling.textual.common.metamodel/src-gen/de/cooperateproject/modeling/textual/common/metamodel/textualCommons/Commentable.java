@@ -36,6 +36,7 @@ public interface Commentable<CommentableUMLType extends Element> extends UMLRefe
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCommentable_Comments()
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment#getCommentedElement
      * @model opposite="commentedElement" containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Commentable{CommentableUMLType}!comments'"
      * @generated
      */
 	EList<Comment> getComments();

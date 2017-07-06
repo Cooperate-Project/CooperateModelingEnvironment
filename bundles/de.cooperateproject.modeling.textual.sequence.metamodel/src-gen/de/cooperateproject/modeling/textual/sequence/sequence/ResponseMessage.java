@@ -3,6 +3,9 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -11,8 +14,25 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
  *
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getResponseMessage()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustHaveCorrespondingMessage'"
  * @generated
  */
 public interface ResponseMessage extends Message {
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getSynchronousMessageCorrespondingToResponse(this);'"
+     * @generated
+     */
+    StandardMessage getCorrespondingRequest();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='/**\n * \n * inv mustHaveCorrespondingMessage:\n *   let\n *     severity : Integer[1] = \'ResponseMessage::mustHaveCorrespondingMessage\'.getSeverity()\n *   in\n *     if severity <= 0\n *     then true\n *     else\n *       let\n *         status : OclAny[?] = not self.getCorrespondingRequest()\n *         .oclIsUndefined()\n *       in\n *         \'ResponseMessage::mustHaveCorrespondingMessage\'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)\n *     endif\n \052/\nfinal /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.evaluation.Executor%> executor = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getExecutor(this);\nfinal /*@NonInvalid\052/ <%org.eclipse.ocl.pivot.values.IntegerValue%> severity_0 = <%org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation%>.INSTANCE.evaluate(executor, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage);\nfinal /*@NonInvalid\052/ boolean le = <%org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation%>.INSTANCE.evaluate(executor, severity_0, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n/*@NonInvalid\052/ boolean symbol_1;\nif (le) {\n    symbol_1 = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.TRUE_VALUE;\n}\nelse {\n    /*@Caught\052/ /*@NonNull\052/ <%java.lang.Object%> CAUGHT_getCorrespondingRequest;\n    try {\n        final /*@Thrown\052/ <%de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage%> getCorrespondingRequest = this.getCorrespondingRequest();\n        CAUGHT_getCorrespondingRequest = getCorrespondingRequest;\n    }\n    catch (<%java.lang.Exception%> e) {\n        CAUGHT_getCorrespondingRequest = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createInvalidValue(e);\n    }\n    final /*@NonInvalid\052/ boolean symbol_0 = CAUGHT_getCorrespondingRequest instanceof <%org.eclipse.ocl.pivot.values.InvalidValueException%>;\n    final /*@NonInvalid\052/ <%java.lang.Boolean%> status = <%org.eclipse.ocl.pivot.library.logical.BooleanNotOperation%>.INSTANCE.evaluate(symbol_0);\n    final /*@NonInvalid\052/ boolean logDiagnostic = <%org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation%>.INSTANCE.evaluate(executor, <%org.eclipse.ocl.pivot.ids.TypeId%>.BOOLEAN, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, status, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n    symbol_1 = logDiagnostic;\n}\nreturn Boolean.TRUE == symbol_1;'"
+     * @generated
+     */
+    boolean mustHaveCorrespondingMessage(DiagnosticChain diagnostics, Map<Object, Object> context);
 } // ResponseMessage

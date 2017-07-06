@@ -41,6 +41,7 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @see #setArrivalEvent(OccurenceReference)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_ArrivalEvent()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!arrivalEvent'"
      * @generated
      */
     OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getArrivalEvent();
@@ -67,6 +68,7 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @see #setSendEvent(OccurenceReference)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_SendEvent()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!sendEvent'"
      * @generated
      */
     OccurenceReference<OccurenceSpecification<MessageOccurrenceSpecification>> getSendEvent();
@@ -92,7 +94,7 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @return the value of the '<em>Left</em>' reference.
      * @see #setLeft(Actor)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_Left()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!left'"
      * @generated
      */
     Actor getLeft();
@@ -118,7 +120,7 @@ public interface Message extends UMLReferencingElement<org.eclipse.uml2.uml.Mess
      * @return the value of the '<em>Right</em>' reference.
      * @see #setRight(Actor)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMessage_Right()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!right'"
      * @generated
      */
     Actor getRight();

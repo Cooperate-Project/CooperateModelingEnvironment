@@ -33,7 +33,7 @@ public interface DestructionOccurenceSpecification extends OccurenceSpecificatio
      * @return the value of the '<em>Target</em>' reference.
      * @see #setTarget(Actor)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDestructionOccurenceSpecification_Target()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DestructionOccurenceSpecification!target'"
      * @generated
      */
     Actor getTarget();

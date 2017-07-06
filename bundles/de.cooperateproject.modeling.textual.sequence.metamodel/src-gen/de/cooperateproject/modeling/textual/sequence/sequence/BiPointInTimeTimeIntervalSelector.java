@@ -34,6 +34,7 @@ public interface BiPointInTimeTimeIntervalSelector extends TimeIntervalSelector 
      * @see #setStart(PointInTimeSelector)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getBiPointInTimeTimeIntervalSelector_Start()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!BiPointInTimeTimeIntervalSelector!start'"
      * @generated
      */
     PointInTimeSelector getStart();
@@ -60,6 +61,7 @@ public interface BiPointInTimeTimeIntervalSelector extends TimeIntervalSelector 
      * @see #setEnd(PointInTimeSelector)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getBiPointInTimeTimeIntervalSelector_End()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!BiPointInTimeTimeIntervalSelector!end'"
      * @generated
      */
     PointInTimeSelector getEnd();

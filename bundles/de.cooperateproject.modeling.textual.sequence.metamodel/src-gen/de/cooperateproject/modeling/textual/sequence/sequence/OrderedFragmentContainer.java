@@ -37,6 +37,7 @@ public interface OrderedFragmentContainer extends UMLReferencingElement<Interact
      * @see #setCondition(Condition)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getOrderedFragmentContainer_Condition()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!OrderedFragmentContainer!condition'"
      * @generated
      */
     Condition getCondition();

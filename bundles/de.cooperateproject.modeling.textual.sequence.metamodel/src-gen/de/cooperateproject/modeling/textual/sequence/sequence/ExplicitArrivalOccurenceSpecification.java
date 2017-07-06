@@ -38,6 +38,7 @@ public interface ExplicitArrivalOccurenceSpecification extends OccurenceSpecific
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference()
      * @see de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceReference#getExplicitOccurenceSpecification
      * @model opposite="explicitOccurenceSpecification"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ExplicitArrivalOccurenceSpecification!explicitOccurenceReference'"
      * @generated
      */
     ExplicitArrivalOccurenceReference getExplicitOccurenceReference();

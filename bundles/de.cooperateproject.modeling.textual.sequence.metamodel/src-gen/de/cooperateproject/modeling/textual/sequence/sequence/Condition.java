@@ -35,7 +35,7 @@ public interface Condition extends UMLReferencingElement<InteractionConstraint> 
      * @return the value of the '<em>Condition</em>' attribute.
      * @see #setCondition(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getCondition_Condition()
-     * @model dataType="org.eclipse.uml2.types.String"
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Condition!condition'"
      * @generated
      */
     String getCondition();

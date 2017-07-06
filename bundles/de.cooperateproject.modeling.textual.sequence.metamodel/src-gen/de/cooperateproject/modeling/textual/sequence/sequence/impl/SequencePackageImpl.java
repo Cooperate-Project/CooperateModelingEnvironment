@@ -51,6 +51,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.TimeConstraint;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeIntervalSelector;
 import de.cooperateproject.modeling.textual.sequence.sequence.TimeObservation;
 
+import de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -59,12 +60,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EcorePackage;
-
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.uml2.types.TypesPackage;
-
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -430,6 +427,15 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         // Initialize created meta-data
         theSequencePackage.initializePackageContents();
 
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theSequencePackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return SequenceValidator.INSTANCE;
+                 }
+             });
+
         // Mark meta-data to indicate it can't be changed
         theSequencePackage.freeze();
 
@@ -671,6 +677,24 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      */
     public EClass getResponseMessage() {
         return responseMessageEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getResponseMessage__GetCorrespondingRequest() {
+        return responseMessageEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1() {
+        return responseMessageEClass.getEOperations().get(1);
     }
 
     /**
@@ -1356,6 +1380,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createEAttribute(standardMessageEClass, STANDARD_MESSAGE__TYPE);
 
         responseMessageEClass = createEClass(RESPONSE_MESSAGE);
+        createEOperation(responseMessageEClass, RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST);
+        createEOperation(responseMessageEClass, RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1);
 
         createMessageEClass = createEClass(CREATE_MESSAGE);
 
@@ -1487,8 +1513,6 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         // Obtain other dependent packages
         TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
         UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-        EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-        TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
         // Create type parameters
         ETypeParameter occurenceSpecificationEClass_UMLOccurenceType = addETypeParameter(occurenceSpecificationEClass, "UMLOccurenceType");
@@ -1656,21 +1680,21 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         // Initialize classes, features, and operations; add parameters
         initEClass(sequenceDiagramEClass, SequenceDiagram.class, "SequenceDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSequenceDiagram_Title(), theEcorePackage.getEString(), "title", null, 1, 1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSequenceDiagram_Title(), ecorePackage.getEString(), "title", null, 1, 1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSequenceDiagram_RootPackage(), this.getRootPackage(), null, "rootPackage", null, 1, 1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSequenceDiagram_Actors(), this.getActor(), null, "actors", null, 0, -1, SequenceDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getActor_Deferred(), theEcorePackage.getEBoolean(), "deferred", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActor_Deferred(), ecorePackage.getEBoolean(), "deferred", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getActor_TypeMapping(), this.getActorClassifierMapping(), this.getActorClassifierMapping_Actor(), "typeMapping", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActor_ActorType(), this.getActorType(), "actorType", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(actorClassifierMappingEClass, ActorClassifierMapping.class, "ActorClassifierMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getActorClassifierMapping_Classifier(), theUMLPackage.getClassifier(), null, "classifier", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getActorClassifierMapping_Actor(), this.getActor(), this.getActor_TypeMapping(), "actor", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getActorClassifierMapping_ClassifierName(), theTypesPackage.getString(), "classifierName", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getActorClassifierMapping_ClassifierName(), ecorePackage.getEString(), "classifierName", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1680,7 +1704,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEReference(getFragmentSequence_Fragments(), this.getFragment(), null, "fragments", null, 0, -1, FragmentSequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         EOperation op = initEOperation(getFragmentSequence__GetUMLFragmentSequence(), null, "getUMLFragmentSequence", 0, 1, IS_UNIQUE, IS_ORDERED);
-        g1 = createEGenericType(theEcorePackage.getEEList());
+        g1 = createEGenericType(ecorePackage.getEEList());
         g2 = createEGenericType(theUMLPackage.getInteractionFragment());
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
@@ -1705,6 +1729,17 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEAttribute(getStandardMessage_Type(), this.getMessageType(), "type", null, 0, 1, StandardMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(responseMessageEClass, ResponseMessage.class, "ResponseMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEOperation(getResponseMessage__GetCorrespondingRequest(), this.getStandardMessage(), "getCorrespondingRequest", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+        op = initEOperation(getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1(), ecorePackage.getEBoolean(), "mustHaveCorrespondingMessage", 0, 1, IS_UNIQUE, IS_ORDERED);
+        addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+        g1 = createEGenericType(ecorePackage.getEMap());
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        g2 = createEGenericType(ecorePackage.getEJavaObject());
+        g1.getETypeArguments().add(g2);
+        addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(createMessageEClass, CreateMessage.class, "CreateMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1749,7 +1784,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCondition_Condition(), theTypesPackage.getString(), "condition", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCondition_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(observationEClass, Observation.class, "Observation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1802,9 +1837,9 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
-        initEOperation(getImplicitMessageOccurenceSpecification__IsArrival(), theTypesPackage.getBoolean(), "isArrival", 0, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getImplicitMessageOccurenceSpecification__IsArrival(), ecorePackage.getEBoolean(), "isArrival", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-        initEOperation(getImplicitMessageOccurenceSpecification__IsSend(), theTypesPackage.getBoolean(), "isSend", 0, 1, IS_UNIQUE, IS_ORDERED);
+        initEOperation(getImplicitMessageOccurenceSpecification__IsSend(), ecorePackage.getEBoolean(), "isSend", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(explicitArrivalOccurenceSpecificationEClass, ExplicitArrivalOccurenceSpecification.class, "ExplicitArrivalOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference(), this.getExplicitArrivalOccurenceReference(), this.getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification(), "explicitOccurenceReference", null, 0, 1, ExplicitArrivalOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1831,16 +1866,12 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        g3 = createEGenericType(theUMLPackage.getNamedElement());
-        g2.setEUpperBound(g3);
         initEOperation(op, g1);
 
         op = initEOperation(getTimeIntervalSelector__GetIntervalEnd(), null, "getIntervalEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        g3 = createEGenericType(theUMLPackage.getNamedElement());
-        g2.setEUpperBound(g3);
         initEOperation(op, g1);
 
         initEClass(biPointInTimeTimeIntervalSelectorEClass, BiPointInTimeTimeIntervalSelector.class, "BiPointInTimeTimeIntervalSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1869,16 +1900,12 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        g3 = createEGenericType(theUMLPackage.getInteractionFragment());
-        g2.setEUpperBound(g3);
         initEOperation(op, g1);
 
         op = initEOperation(getFragmentTimeIntervalSelector__GetIntervalEnd(), null, "getIntervalEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getPointInTime());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        g3 = createEGenericType(theUMLPackage.getInteractionFragment());
-        g2.setEUpperBound(g3);
         initEOperation(op, g1);
 
         initEClass(referenceEClass, Reference.class, "Reference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1899,8 +1926,51 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createResource(eNS_URI);
 
         // Create annotations
+        // http://www.eclipse.org/OCL/Import
+        createImportAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
         // http://www.eclipse.org/emf/2002/GenModel
         createGenModelAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createImportAnnotations() {
+        String source = "http://www.eclipse.org/OCL/Import";	
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "ecore", "http://www.eclipse.org/emf/2002/Ecore",
+             "txtCmn", "../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#/",
+             "uml", "../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"
+           });
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEcoreAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore";	
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+           });	
+        addAnnotation
+          (responseMessageEClass, 
+           source, 
+           new String[] {
+             "constraints", "mustHaveCorrespondingMessage"
+           });
     }
 
     /**
@@ -1911,6 +1981,60 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      */
     protected void createGenModelAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/GenModel";	
+        addAnnotation
+          (getSequenceDiagram_Title(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SequenceDiagram!title"
+           });	
+        addAnnotation
+          (getSequenceDiagram_RootPackage(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SequenceDiagram!rootPackage"
+           });	
+        addAnnotation
+          (getSequenceDiagram_Actors(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SequenceDiagram!actors"
+           });	
+        addAnnotation
+          (getActor_Deferred(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Actor!deferred"
+           });	
+        addAnnotation
+          (getActor_TypeMapping(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Actor!typeMapping"
+           });	
+        addAnnotation
+          (getActor_ActorType(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Actor!actorType"
+           });	
+        addAnnotation
+          (getActorClassifierMapping_Classifier(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ActorClassifierMapping!classifier"
+           });	
+        addAnnotation
+          (getActorClassifierMapping_Actor(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ActorClassifierMapping!actor"
+           });	
+        addAnnotation
+          (getActorClassifierMapping_ClassifierName(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ActorClassifierMapping!classifierName"
+           });	
         addAnnotation
           (getFragment__GetContainingSequence(), 
            source, 
@@ -1924,16 +2048,142 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
              "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getUMLFragmentSequence(this);"
            });	
         addAnnotation
+          (getFragmentSequence_Fragments(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!FragmentSequence!fragments"
+           });	
+        addAnnotation
+          (getMessage_ArrivalEvent(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!arrivalEvent"
+           });	
+        addAnnotation
+          (getMessage_SendEvent(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!sendEvent"
+           });	
+        addAnnotation
+          (getMessage_Left(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!left"
+           });	
+        addAnnotation
+          (getMessage_Right(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Message!right"
+           });	
+        addAnnotation
+          (getStandardMessage_Type(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!StandardMessage!type"
+           });	
+        addAnnotation
+          (getResponseMessage__GetCorrespondingRequest(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getSynchronousMessageCorrespondingToResponse(this);"
+           });	
+        addAnnotation
+          (getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1(), 
+           source, 
+           new String[] {
+             "body", "/**\n * \n * inv mustHaveCorrespondingMessage:\n *   let\n *     severity : Integer[1] = \'ResponseMessage::mustHaveCorrespondingMessage\'.getSeverity()\n *   in\n *     if severity <= 0\n *     then true\n *     else\n *       let\n *         status : OclAny[?] = not self.getCorrespondingRequest()\n *         .oclIsUndefined()\n *       in\n *         \'ResponseMessage::mustHaveCorrespondingMessage\'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)\n *     endif\n */\nfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.evaluation.Executor%> executor = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getExecutor(this);\nfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.values.IntegerValue%> severity_0 = <%org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation%>.INSTANCE.evaluate(executor, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage);\nfinal /*@NonInvalid*/ boolean le = <%org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation%>.INSTANCE.evaluate(executor, severity_0, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n/*@NonInvalid*/ boolean symbol_1;\nif (le) {\n    symbol_1 = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.TRUE_VALUE;\n}\nelse {\n    /*@Caught*/ /*@NonNull*/ <%java.lang.Object%> CAUGHT_getCorrespondingRequest;\n    try {\n        final /*@Thrown*/ <%de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage%> getCorrespondingRequest = this.getCorrespondingRequest();\n        CAUGHT_getCorrespondingRequest = getCorrespondingRequest;\n    }\n    catch (<%java.lang.Exception%> e) {\n        CAUGHT_getCorrespondingRequest = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createInvalidValue(e);\n    }\n    final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_getCorrespondingRequest instanceof <%org.eclipse.ocl.pivot.values.InvalidValueException%>;\n    final /*@NonInvalid*/ <%java.lang.Boolean%> status = <%org.eclipse.ocl.pivot.library.logical.BooleanNotOperation%>.INSTANCE.evaluate(symbol_0);\n    final /*@NonInvalid*/ boolean logDiagnostic = <%org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation%>.INSTANCE.evaluate(executor, <%org.eclipse.ocl.pivot.ids.TypeId%>.BOOLEAN, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, status, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n    symbol_1 = logDiagnostic;\n}\nreturn Boolean.TRUE == symbol_1;"
+           });	
+        addAnnotation
           (getOccurenceSpecification__GetOccurenceReference(), 
            source, 
            new String[] {
              "body", "return null;"
            });	
         addAnnotation
+          (getDestructionOccurenceSpecification_Target(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DestructionOccurenceSpecification!target"
+           });	
+        addAnnotation
           (getCombinedFragment__GetInteractionOperatorKind(), 
            source, 
            new String[] {
              "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getInteractionOperatorKindOfCombinedFragment(this);"
+           });	
+        addAnnotation
+          (getOrderedFragmentContainer_Condition(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!OrderedFragmentContainer!condition"
+           });	
+        addAnnotation
+          (getSingleRegionContainer_Region(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!SingleRegionContainer!region"
+           });	
+        addAnnotation
+          (getMultipleRegionContainer_Regions(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!MultipleRegionContainer!regions"
+           });	
+        addAnnotation
+          (getCondition_Condition(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Condition!condition"
+           });	
+        addAnnotation
+          (getTimeObservation_Time(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!TimeObservation!time"
+           });	
+        addAnnotation
+          (getTimeObservation_Event(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!TimeObservation!event"
+           });	
+        addAnnotation
+          (getDurationObservation_Duration(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationObservation!duration"
+           });	
+        addAnnotation
+          (getDurationObservation_Interval(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationObservation!interval"
+           });	
+        addAnnotation
+          (getTimeConstraint_Time(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!TimeConstraint!time"
+           });	
+        addAnnotation
+          (getTimeConstraint_Event(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!TimeConstraint!event"
+           });	
+        addAnnotation
+          (getDurationConstraint_Duration(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationConstraint!duration"
+           });	
+        addAnnotation
+          (getDurationConstraint_Interval(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationConstraint!interval"
            });	
         addAnnotation
           (getOccurenceReference__GetOccurenceSpecification(), 
@@ -1946,6 +2196,12 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
            source, 
            new String[] {
              "body", "return this.getExplicitOccurenceSpecification();"
+           });	
+        addAnnotation
+          (getExplicitArrivalOccurenceReference_ExplicitOccurenceSpecification(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ExplicitArrivalOccurenceReference!explicitOccurenceSpecification"
            });	
         addAnnotation
           (getImplicitMessageOccurenceSpecification__GetOccurenceReference(), 
@@ -1978,6 +2234,18 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
              "body", "return this.getExplicitOccurenceReference();"
            });	
         addAnnotation
+          (getExplicitArrivalOccurenceSpecification_ExplicitOccurenceReference(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!ExplicitArrivalOccurenceSpecification!explicitOccurenceReference"
+           });	
+        addAnnotation
+          (getPointInTimeSelector_PointInTime(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!PointInTimeSelector!pointInTime"
+           });	
+        addAnnotation
           (getTimeIntervalSelector__GetIntervalStart(), 
            source, 
            new String[] {
@@ -2002,6 +2270,18 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
              "body", "return this.getEnd().getPointInTime();"
            });	
         addAnnotation
+          (getBiPointInTimeTimeIntervalSelector_Start(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!BiPointInTimeTimeIntervalSelector!start"
+           });	
+        addAnnotation
+          (getBiPointInTimeTimeIntervalSelector_End(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!BiPointInTimeTimeIntervalSelector!end"
+           });	
+        addAnnotation
           (getFragmentTimeIntervalSelector__GetIntervalStart(), 
            source, 
            new String[] {
@@ -2012,6 +2292,18 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
            source, 
            new String[] {
              "body", "return this.getNonInstantaneousFragment();"
+           });	
+        addAnnotation
+          (getFragmentTimeIntervalSelector_NonInstantaneousFragment(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!FragmentTimeIntervalSelector!nonInstantaneousFragment"
+           });	
+        addAnnotation
+          (getReference_Reference(), 
+           source, 
+           new String[] {
+             "get", "throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!Reference!reference"
            });
     }
 

@@ -36,6 +36,7 @@ public interface Cardinality extends UMLReferencingElement<MultiplicityElement> 
      * @see #setLowerBound(int)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality_LowerBound()
      * @model unsettable="true" transient="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Cardinality!lowerBound'"
      * @generated
      */
 	int getLowerBound();
@@ -89,6 +90,7 @@ public interface Cardinality extends UMLReferencingElement<MultiplicityElement> 
      * @see #setUpperBound(int)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getCardinality_UpperBound()
      * @model unsettable="true" transient="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!Cardinality!upperBound'"
      * @generated
      */
 	int getUpperBound();

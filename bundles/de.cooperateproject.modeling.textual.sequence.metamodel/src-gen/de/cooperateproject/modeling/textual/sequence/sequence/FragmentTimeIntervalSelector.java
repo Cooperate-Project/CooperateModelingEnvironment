@@ -3,8 +3,6 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
-import org.eclipse.uml2.uml.InteractionFragment;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Fragment Time Interval Selector</b></em>'.
@@ -33,7 +31,7 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      * @return the value of the '<em>Non Instantaneous Fragment</em>' reference.
      * @see #setNonInstantaneousFragment(NonInstantaneousFragment)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getFragmentTimeIntervalSelector_NonInstantaneousFragment()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!FragmentTimeIntervalSelector!nonInstantaneousFragment'"
      * @generated
      */
     NonInstantaneousFragment<?> getNonInstantaneousFragment();
@@ -55,7 +53,7 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getNonInstantaneousFragment();'"
      * @generated
      */
-    PointInTime<? extends InteractionFragment> getIntervalStart();
+    PointInTime<?> getIntervalStart();
 
     /**
      * <!-- begin-user-doc -->
@@ -64,6 +62,6 @@ public interface FragmentTimeIntervalSelector extends TimeIntervalSelector {
      *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.getNonInstantaneousFragment();'"
      * @generated
      */
-    PointInTime<? extends InteractionFragment> getIntervalEnd();
+    PointInTime<?> getIntervalEnd();
 
 } // FragmentTimeIntervalSelector

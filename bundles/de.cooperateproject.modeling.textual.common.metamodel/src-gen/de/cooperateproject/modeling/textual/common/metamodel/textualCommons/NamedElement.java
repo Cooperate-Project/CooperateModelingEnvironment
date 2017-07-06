@@ -34,6 +34,7 @@ public interface NamedElement extends Element {
      * @see #setName(String)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getNamedElement_Name()
      * @model unsettable="true" transient="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!NamedElement!name'"
      * @generated
      */
 	String getName();

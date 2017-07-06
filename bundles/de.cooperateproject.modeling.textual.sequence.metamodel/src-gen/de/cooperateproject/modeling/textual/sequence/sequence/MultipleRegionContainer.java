@@ -34,6 +34,7 @@ public interface MultipleRegionContainer extends CombinedFragment {
      * @return the value of the '<em>Regions</em>' containment reference list.
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getMultipleRegionContainer_Regions()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!MultipleRegionContainer!regions'"
      * @generated
      */
     EList<OrderedFragmentContainer> getRegions();

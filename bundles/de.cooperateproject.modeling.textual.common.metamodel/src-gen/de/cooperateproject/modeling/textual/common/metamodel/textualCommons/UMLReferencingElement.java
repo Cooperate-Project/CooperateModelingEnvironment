@@ -32,7 +32,7 @@ public interface UMLReferencingElement<UMLType extends Element> extends de.coope
      * @return the value of the '<em>Referenced Element</em>' reference.
      * @see #setReferencedElement(Element)
      * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage#getUMLReferencingElement_ReferencedElement()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/commons!UMLReferencingElement{UMLType}!referencedElement'"
      * @generated
      */
 	UMLType getReferencedElement();

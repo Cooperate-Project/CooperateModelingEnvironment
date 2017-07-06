@@ -33,7 +33,7 @@ public interface DurationConstraint extends Constraint {
      * @return the value of the '<em>Duration</em>' attribute.
      * @see #setDuration(String)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDurationConstraint_Duration()
-     * @model
+     * @model annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationConstraint!duration'"
      * @generated
      */
     String getDuration();
@@ -60,6 +60,7 @@ public interface DurationConstraint extends Constraint {
      * @see #setInterval(TimeIntervalSelector)
      * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getDurationConstraint_Interval()
      * @model containment="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel get='throw new UnsupportedOperationException();  // FIXME Unimplemented http://www.cooperateproject.de/modeling/textual/sequence/Sequence!DurationConstraint!interval'"
      * @generated
      */
     TimeIntervalSelector getInterval();
