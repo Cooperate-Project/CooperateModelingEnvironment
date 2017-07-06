@@ -10,5 +10,6 @@ Require-Bundle: org.junit,
  org.eclipse.emf.compare;bundle-version="3.2.0",
  org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.emf.compare.rcp;bundle-version="2.3.1",
- org.apache.log4j;bundle-version="1.2.15"
+ org.apache.log4j;bundle-version="1.2.15",
+ de.cooperateproject.modeling.textual.sequence.metamodel
 Import-Package: org.slf4j

@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.emf.common.util.URI;
@@ -12,6 +14,7 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.util.Trace;
@@ -49,7 +52,12 @@ public abstract class DirectionalTransformationTestBase extends PlainTransformat
         Resource r = getResourceSet().createResource(URI.createFileURI("asdflihjsdaf.xmi"));
         r.getContents().add(actual);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        r.save(baos, Collections.emptyMap());
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put(XMIResource.OPTION_ENCODING, "UTF-8");
+        options.put(XMIResource.OPTION_USE_XMI_TYPE, true);
+        options.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, true);
+        options.put(XMIResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+        r.save(baos, options);
         System.out.println(baos.toString());
 
         assertModelEquals(expected, actual, diffProcessor);

@@ -56,7 +56,7 @@
         xsi:type="uml:Model"
         href="SequenceDiagram.uml#_RGqfcF_kEeecvtIPTfT-KQ"/>
   </rootPackage>
-  <actors actorType="machine" name="a">
+  <actors name="a">
     <referencedElement
         xsi:type="uml:Lifeline"
         href="SequenceDiagram.uml#_yg7PwF_kEeecvtIPTfT-KQ"/>
@@ -69,7 +69,7 @@
           href="SequenceDiagram.uml#_u-pb0F_kEeecvtIPTfT-KQ"/>
     </typeMapping>
   </actors>
-  <actors actorType="machine" name="b">
+  <actors name="b">
     <referencedElement
         xsi:type="uml:Lifeline"
         href="SequenceDiagram.uml#_4YmNwF_kEeecvtIPTfT-KQ"/>

@@ -42,6 +42,10 @@ mapping ecore::EObject::fontStyle() : notation::FontStyle
 {
 }
 
+mapping ecore::EObject::lineStyle() : notation::LineStyle
+{
+}
+
 mapping notation::Connector::connectorToBendpoint() : notation::RelativeBendpoints
 {
 }
