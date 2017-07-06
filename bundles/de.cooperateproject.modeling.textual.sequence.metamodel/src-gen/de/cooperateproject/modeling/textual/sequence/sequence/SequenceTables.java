@@ -101,6 +101,7 @@ public class SequenceTables
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Actor = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Actor);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Fragment = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Fragment);
     public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_OrderedFragmentContainer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_OrderedFragmentContainer);
+    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_StandardMessage = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_StandardMessage);
 
 	/**
 	 *	The type parameters for templated types and operations.

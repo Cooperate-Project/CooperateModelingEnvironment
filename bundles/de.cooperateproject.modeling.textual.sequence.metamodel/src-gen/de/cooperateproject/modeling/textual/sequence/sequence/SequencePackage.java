@@ -834,7 +834,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1 = MESSAGE_OPERATION_COUNT + 1;
+    int RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4 = MESSAGE_OPERATION_COUNT + 1;
 
     /**
      * The number of operations of the '<em>Response Message</em>' class.
@@ -3558,7 +3558,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#mustHaveCorrespondingMessage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
      * @generated
      */
-    EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1();
+    EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage <em>Create Message</em>}'.
@@ -4533,7 +4533,7 @@ public interface SequencePackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EOperation RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1 = eINSTANCE.getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_1();
+        EOperation RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.

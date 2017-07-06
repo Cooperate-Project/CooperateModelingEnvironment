@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
-
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
 import java.lang.reflect.InvocationTargetException;
@@ -16,13 +15,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation;
 import org.eclipse.ocl.pivot.library.logical.BooleanNotOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
-import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.SetValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,9 +76,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
          *     if severity <= 0
          *     then true
          *     else
-         *       let
-         *         status : OclAny[?] = not self.getCorrespondingRequest()
-         *         .oclIsUndefined()
+         *       let status : OclAny[?] = not self.getCorrespondingRequest()->isEmpty()
          *       in
          *         'ResponseMessage::mustHaveCorrespondingMessage'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
          *     endif
@@ -85,25 +84,26 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
         final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
         final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage);
         final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE.evaluate(executor, severity_0, SequenceTables.INT_0).booleanValue();
-        /*@NonInvalid*/ boolean symbol_1;
+        /*@NonInvalid*/ boolean symbol_0;
         if (le) {
-            symbol_1 = ValueUtil.TRUE_VALUE;
+            symbol_0 = ValueUtil.TRUE_VALUE;
         }
         else {
-            /*@Caught*/ /*@NonNull*/ Object CAUGHT_getCorrespondingRequest;
+            /*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
             try {
                 final /*@Thrown*/ StandardMessage getCorrespondingRequest = this.getCorrespondingRequest();
-                CAUGHT_getCorrespondingRequest = getCorrespondingRequest;
+                final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SequenceTables.SET_CLSSid_StandardMessage, getCorrespondingRequest);
+                final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
+                final /*@Thrown*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
+                CAUGHT_status = status;
             }
             catch (Exception e) {
-                CAUGHT_getCorrespondingRequest = ValueUtil.createInvalidValue(e);
+                CAUGHT_status = ValueUtil.createInvalidValue(e);
             }
-            final /*@NonInvalid*/ boolean symbol_0 = CAUGHT_getCorrespondingRequest instanceof InvalidValueException;
-            final /*@NonInvalid*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(symbol_0);
-            final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, status, SequenceTables.INT_0).booleanValue();
-            symbol_1 = logDiagnostic;
+            final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, CAUGHT_status, SequenceTables.INT_0).booleanValue();
+            symbol_0 = logDiagnostic;
         }
-        return Boolean.TRUE == symbol_1;
+        return Boolean.TRUE == symbol_0;
     }
 
     /**
@@ -117,7 +117,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
         switch (operationID) {
             case SequencePackage.RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST:
                 return getCorrespondingRequest();
-            case SequencePackage.RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_1:
+            case SequencePackage.RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4:
                 return mustHaveCorrespondingMessage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
         }
         return super.eInvoke(operationID, arguments);

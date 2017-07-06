@@ -8,6 +8,7 @@
     <details key="uml" value="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
   </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceDiagram">
@@ -101,8 +102,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="mustHaveCorrespondingMessage"/>
     </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
-      <details key="mustHaveCorrespondingMessage" value="not self.getCorrespondingRequest().oclIsUndefined()"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="mustHaveCorrespondingMessage" value="not self.getCorrespondingRequest()->isEmpty()"/>
     </eAnnotations>
     <eOperations name="getCorrespondingRequest" eType="#//StandardMessage">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
