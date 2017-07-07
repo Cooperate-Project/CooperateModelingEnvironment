@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_1j77gGJaEeesHO-ogAGguA" name="RootElement">
-  <packagedElement xmi:type="uml:Actor" xmi:id="_5Xy8wGJcEeesHO-ogAGguA" name="Web Customer"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_8Dnp0GJcEeesHO-ogAGguA" name="Online Bookshop"/>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_zSDpYGJjEee0st3afuUuxA" name="sequence_diagrams">
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_2ZxBMGJjEee0st3afuUuxA" name="Online_Bookshop">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_QRS_4GJkEee0st3afuUuxA" name="" type="_OxidUGJkEee0st3afuUuxA"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_SysloGJkEee0st3afuUuxA" name="" type="_M1UBMGJkEee0st3afuUuxA"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_QRJO4GJkEee0st3afuUuxA" name="" represents="_QRS_4GJkEee0st3afuUuxA" coveredBy="_fX_5QGJkEee0st3afuUuxA _tpJ_0GJmEee0st3afuUuxA _mm0QYGJkEee0st3afuUuxA _nR3YgGJkEee0st3afuUuxA _tW_jsGJkEee0st3afuUuxA _4bhoIGJkEee0st3afuUuxA _2v_d8GJlEee0st3afuUuxA _XGOlcGJmEee0st3afuUuxA _bNumUGJmEee0st3afuUuxA _xQrgIGJmEee0st3afuUuxA _XzF9YGJkEee0st3afuUuxA _Xy_PsGJkEee0st3afuUuxA _IZ8-QWJmEee0st3afuUuxA _4ijLQGJmEee0st3afuUuxA _XzEvQGJkEee0st3afuUuxA"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_Syr-kGJkEee0st3afuUuxA" name="" represents="_SysloGJkEee0st3afuUuxA" coveredBy="_fX_5QGJkEee0st3afuUuxA _tpJ_0GJmEee0st3afuUuxA _mm0QYGJkEee0st3afuUuxA _nR3YgGJkEee0st3afuUuxA _tW_jsGJkEee0st3afuUuxA _4bhoIGJkEee0st3afuUuxA _2v_d8WJlEee0st3afuUuxA _IZ8-QGJmEee0st3afuUuxA _XGPMgGJmEee0st3afuUuxA _jXI9cGJmEee0st3afuUuxA _jXHIQGJmEee0st3afuUuxA _bNumUWJmEee0st3afuUuxA _k17PoGJmEee0st3afuUuxA _k16okGJmEee0st3afuUuxA _xQrgIWJmEee0st3afuUuxA _cF7ckGMJEeeK_Y2-3JJnnA _Vh69AGMJEeeK_Y2-3JJnnA _Vh6V8GMJEeeK_Y2-3JJnnA _cF7ckWMJEeeK_Y2-3JJnnA _lCZBQGMJEeeK_Y2-3JJnnA _Vh69AWMJEeeK_Y2-3JJnnA _lCZBQWMJEeeK_Y2-3JJnnA _4iikMGJmEee0st3afuUuxA _01aLIGJmEee0st3afuUuxA _7lZGoGJlEee0st3afuUuxA"/>
+    <fragment xmi:type="uml:CombinedFragment" xmi:id="_cd_mQGJkEee0st3afuUuxA" name="CombinedFragment1" interactionOperator="loop">
+      <operand xmi:type="uml:InteractionOperand" xmi:id="_fX_5QGJkEee0st3afuUuxA" name="InteractionOperand1" covered="_Syr-kGJkEee0st3afuUuxA _QRJO4GJkEee0st3afuUuxA">
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_7lZGoGJlEee0st3afuUuxA" name="BehaviorExecutionSpecification2" covered="_Syr-kGJkEee0st3afuUuxA" finish="_IZ8-QGJmEee0st3afuUuxA" start="_2v_d8WJlEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_2v_d8WJlEee0st3afuUuxA" name="Message1ReceiveEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_2v-P0GJlEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_2v_d8GJlEee0st3afuUuxA" name="Message1SendEvent" covered="_QRJO4GJkEee0st3afuUuxA" message="_2v-P0GJlEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_IZ8-QGJmEee0st3afuUuxA" name="Message1SendEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_IZ8XMGJmEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:CombinedFragment" xmi:id="_lbP1IGJkEee0st3afuUuxA" name="CombinedFragment1" interactionOperator="par">
+          <operand xmi:type="uml:InteractionOperand" xmi:id="_mm0QYGJkEee0st3afuUuxA" name="InteractionOperand1" covered="_Syr-kGJkEee0st3afuUuxA _QRJO4GJkEee0st3afuUuxA">
+            <fragment xmi:type="uml:InteractionOperand" xmi:id="_nR3YgGJkEee0st3afuUuxA" name="InteractionOperand1" covered="_Syr-kGJkEee0st3afuUuxA _QRJO4GJkEee0st3afuUuxA">
+              <fragment xmi:type="uml:CombinedFragment" xmi:id="_35QokGJkEee0st3afuUuxA" name="CombinedFragment1" interactionOperator="opt">
+                <operand xmi:type="uml:InteractionOperand" xmi:id="_4bhoIGJkEee0st3afuUuxA" name="InteractionOperand1" covered="_Syr-kGJkEee0st3afuUuxA _QRJO4GJkEee0st3afuUuxA">
+                  <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_bNumUGJmEee0st3afuUuxA" name="Message1SendEvent" covered="_QRJO4GJkEee0st3afuUuxA" message="_bNt_QGJmEee0st3afuUuxA"/>
+                </operand>
+              </fragment>
+              <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_k16okGJmEee0st3afuUuxA" name="BehaviorExecutionSpecification2" covered="_Syr-kGJkEee0st3afuUuxA" finish="_k17PoGJmEee0st3afuUuxA" start="_bNumUWJmEee0st3afuUuxA"/>
+              <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_bNumUWJmEee0st3afuUuxA" name="Message1ReceiveEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_bNt_QGJmEee0st3afuUuxA"/>
+              <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_k17PoGJmEee0st3afuUuxA" name="BehaviorExecutionSpecification2Finish" covered="_Syr-kGJkEee0st3afuUuxA" execution="_k16okGJmEee0st3afuUuxA"/>
+            </fragment>
+            <fragment xmi:type="uml:CombinedFragment" xmi:id="_s8buoGJkEee0st3afuUuxA" name="CombinedFragment1" interactionOperator="opt">
+              <operand xmi:type="uml:InteractionOperand" xmi:id="_tW_jsGJkEee0st3afuUuxA" name="InteractionOperand1" covered="_Syr-kGJkEee0st3afuUuxA _QRJO4GJkEee0st3afuUuxA">
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XGOlcGJmEee0st3afuUuxA" name="Message1SendEvent" covered="_QRJO4GJkEee0st3afuUuxA" message="_XGNXUGJmEee0st3afuUuxA"/>
+                <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_jXHIQGJmEee0st3afuUuxA" name="BehaviorExecutionSpecification2" covered="_Syr-kGJkEee0st3afuUuxA" finish="_jXI9cGJmEee0st3afuUuxA" start="_XGPMgGJmEee0st3afuUuxA"/>
+                <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XGPMgGJmEee0st3afuUuxA" name="Message1ReceiveEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_XGNXUGJmEee0st3afuUuxA"/>
+                <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_jXI9cGJmEee0st3afuUuxA" name="BehaviorExecutionSpecification2Finish" covered="_Syr-kGJkEee0st3afuUuxA" execution="_jXHIQGJmEee0st3afuUuxA"/>
+              </operand>
+            </fragment>
+          </operand>
+        </fragment>
+      </operand>
+    </fragment>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_Xy_PsGJkEee0st3afuUuxA" name="BehaviorExecutionSpecification1" covered="_QRJO4GJkEee0st3afuUuxA" finish="_XzF9YGJkEee0st3afuUuxA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_IZ8-QWJmEee0st3afuUuxA" name="Message1ReceiveEvent" covered="_QRJO4GJkEee0st3afuUuxA" message="_IZ8XMGJmEee0st3afuUuxA"/>
+    <fragment xmi:type="uml:CombinedFragment" xmi:id="_pYSAgGJmEee0st3afuUuxA" name="CombinedFragment2" interactionOperator="opt">
+      <operand xmi:type="uml:InteractionOperand" xmi:id="_tpJ_0GJmEee0st3afuUuxA" name="InteractionOperand1" covered="_Syr-kGJkEee0st3afuUuxA _QRJO4GJkEee0st3afuUuxA">
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xQrgIGJmEee0st3afuUuxA" name="Message1SendEvent" covered="_QRJO4GJkEee0st3afuUuxA" message="_xQqSAGJmEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_01aLIGJmEee0st3afuUuxA" name="BehaviorExecutionSpecification2" covered="_Syr-kGJkEee0st3afuUuxA" finish="_4iikMGJmEee0st3afuUuxA" start="_xQrgIWJmEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_xQrgIWJmEee0st3afuUuxA" name="Message1ReceiveEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_xQqSAGJmEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_cF7ckGMJEeeK_Y2-3JJnnA" name="Message1SendEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_cF61gGMJEeeK_Y2-3JJnnA"/>
+        <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Vh69AGMJEeeK_Y2-3JJnnA" name="BehaviorExecutionSpecification2Start" covered="_Syr-kGJkEee0st3afuUuxA" execution="_Vh6V8GMJEeeK_Y2-3JJnnA"/>
+        <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_Vh6V8GMJEeeK_Y2-3JJnnA" name="BehaviorExecutionSpecification3" covered="_Syr-kGJkEee0st3afuUuxA" finish="_lCZBQGMJEeeK_Y2-3JJnnA" start="_xQrgIWJmEee0st3afuUuxA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_cF7ckWMJEeeK_Y2-3JJnnA" name="Message1ReceiveEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_cF61gGMJEeeK_Y2-3JJnnA"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_lCZBQGMJEeeK_Y2-3JJnnA" name="Message1SendEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_lCYaMGMJEeeK_Y2-3JJnnA"/>
+        <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_Vh69AWMJEeeK_Y2-3JJnnA" name="BehaviorExecutionSpecification2Finish" covered="_Syr-kGJkEee0st3afuUuxA" execution="_Vh6V8GMJEeeK_Y2-3JJnnA"/>
+        <guard xmi:type="uml:InteractionConstraint" xmi:id="_tpKm4GJmEee0st3afuUuxA" name="guard">
+          <specification xmi:type="uml:LiteralString" xmi:id="_vnjmMGJmEee0st3afuUuxA" value="shopping cart is not empty"/>
+        </guard>
+      </operand>
+    </fragment>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_lCZBQWMJEeeK_Y2-3JJnnA" name="Message1ReceiveEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_lCYaMGMJEeeK_Y2-3JJnnA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_4iikMGJmEee0st3afuUuxA" name="Message1SendEvent" covered="_Syr-kGJkEee0st3afuUuxA" message="_4ih9IGJmEee0st3afuUuxA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_4ijLQGJmEee0st3afuUuxA" name="Message1ReceiveEvent" covered="_QRJO4GJkEee0st3afuUuxA" message="_4ih9IGJmEee0st3afuUuxA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_XzEvQGJkEee0st3afuUuxA" name="BehaviorExecutionSpecification1Start" covered="_QRJO4GJkEee0st3afuUuxA" execution="_Xy_PsGJkEee0st3afuUuxA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_XzF9YGJkEee0st3afuUuxA" name="BehaviorExecutionSpecification1Finish" covered="_QRJO4GJkEee0st3afuUuxA" execution="_Xy_PsGJkEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_2v-P0GJlEee0st3afuUuxA" name="search inventory" receiveEvent="_2v_d8WJlEee0st3afuUuxA" sendEvent="_2v_d8GJlEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_IZ8XMGJmEee0st3afuUuxA" name="search results" messageSort="reply" receiveEvent="_IZ8-QWJmEee0st3afuUuxA" sendEvent="_IZ8-QGJmEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_XGNXUGJmEee0st3afuUuxA" name="view book description" receiveEvent="_XGPMgGJmEee0st3afuUuxA" sendEvent="_XGOlcGJmEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_bNt_QGJmEee0st3afuUuxA" name="add to shopping cart" receiveEvent="_bNumUWJmEee0st3afuUuxA" sendEvent="_bNumUGJmEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_xQqSAGJmEee0st3afuUuxA" name="do checkout" receiveEvent="_xQrgIWJmEee0st3afuUuxA" sendEvent="_xQrgIGJmEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_4ih9IGJmEee0st3afuUuxA" name="send invoice" messageSort="reply" receiveEvent="_4ijLQGJmEee0st3afuUuxA" sendEvent="_4iikMGJmEee0st3afuUuxA"/>
+    <message xmi:type="uml:Message" xmi:id="_cF61gGMJEeeK_Y2-3JJnnA" name="process transaction" receiveEvent="_cF7ckWMJEeeK_Y2-3JJnnA" sendEvent="_cF7ckGMJEeeK_Y2-3JJnnA"/>
+    <message xmi:type="uml:Message" xmi:id="_lCYaMGMJEeeK_Y2-3JJnnA" name="transaction confirmation" messageSort="reply" receiveEvent="_lCZBQWMJEeeK_Y2-3JJnnA" sendEvent="_lCZBQGMJEeeK_Y2-3JJnnA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_M1UBMGJkEee0st3afuUuxA" name="Online_Bookshop"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_OxidUGJkEee0st3afuUuxA" name="Web Customer"/>
 </uml:Model>
