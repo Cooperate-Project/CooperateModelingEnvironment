@@ -104,11 +104,11 @@
       </service>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <configuration
-            file="resource/CooperateModeling.configuration"
-            priority="1">
-      </configuration>
+         point="org.eclipse.papyrus.infra.architecture.models">
+      <model
+            path="resource/Cooperate.architecture"
+            >
+      </model>
    </extension>
    <extension
          point="de.cooperateproject.ui.modelcreator.postprocessor">
