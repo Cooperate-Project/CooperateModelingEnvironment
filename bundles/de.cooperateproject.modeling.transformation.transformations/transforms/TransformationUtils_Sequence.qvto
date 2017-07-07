@@ -12,6 +12,9 @@ property PAPYRUS_NOTATION_COMPARTEMENT_SHAPE_DISPLAY: String = "compartment_shap
 property PAPYRUS_NOTATION_BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE: String = "BehaviorExecutionSpecification_Shape";
 property PAPYRUS_NOTATION_BEHAVIOR_EXECUTION_SPECIFICATION_BEHAVIOR: String = "BehaviorExecutionSpecification_Behavior";
 
+property PAPYRUS_NOTATION_SHAPE_DESTRUCTION_OCCURRENCE_SPECIFICATION: String = "DestructionOccurrenceSpecification_Shape";
+
+
 property PAPYRUS_NOTATION_EDGE: String = "Edge";
 property PAPYRUS_NOTATION_LABEL_NAME: String = "NameLabel";
 property PAPYRUS_NOTATION_LABEL_STEREOTYPE: String = "StereotypeLabel";

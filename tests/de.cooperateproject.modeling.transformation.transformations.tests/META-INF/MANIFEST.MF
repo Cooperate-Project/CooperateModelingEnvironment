@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Transformations Tests
-Bundle-SymbolicName: de.cooperateproject.modeling.transformation.transformations.tests
+Bundle-SymbolicName: de.cooperateproject.modeling.transformation.transformations.tests;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Fragment-Host: de.cooperateproject.modeling.transformation.transformations;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -11,5 +11,7 @@ Require-Bundle: org.junit,
  org.apache.commons.io;bundle-version="2.2.0",
  org.eclipse.emf.compare.rcp;bundle-version="2.3.1",
  org.apache.log4j;bundle-version="1.2.15",
- de.cooperateproject.modeling.textual.sequence.metamodel
+ de.cooperateproject.modeling.textual.sequence.metamodel,
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="1.0.0",
+ de.cooperateproject.modeling.util
 Import-Package: org.slf4j

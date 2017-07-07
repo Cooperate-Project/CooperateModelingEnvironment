@@ -1,4 +1,5 @@
 import TransformationUtils_Sequence;
+import de.cooperateproject.modeling.util.transformations.blackboxunits.ModelHelperBlackBoxLibrary;
 
 transformation Textual_to_Graphical_for_Sequence(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
 
@@ -58,6 +59,7 @@ mapping sequence::Actor::actorToLifelineShape() : notation::Shape {
 	children += self.map actorToNameLabel();
 	children += self.map actorToCompartementShapeDisplay();
 	children += self.getDirectlyAssociatedBehaviorExecutionSpecifications().map behaviorExecutionSpecificationToShape();
+	children += self.getAssociatedDestructionOccurrenceSpecifications().map destructionOccurrenceSpecificationToShape();
 	
 	element := self.referencedElement.toEObject();
 	layoutConstraint := result.toEObject().map notationBounds();
@@ -89,6 +91,14 @@ mapping uml::BehaviorExecutionSpecification::behaviorExecutionSpecificationToBeh
 	type := PAPYRUS_NOTATION_BEHAVIOR_EXECUTION_SPECIFICATION_BEHAVIOR;
 	
 	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+mapping sequence::DestructionOccurenceSpecification::destructionOccurrenceSpecificationToShape(): notation::Shape {
+	type := PAPYRUS_NOTATION_SHAPE_DESTRUCTION_OCCURRENCE_SPECIFICATION;
+
+	element := self.referencedElement.toEObject();
+	
+	layoutConstraint := result.toEObject().map notationBounds();
 }
 
 mapping sequence::Message::messageToConnector(): notation::Connector {
@@ -135,6 +145,11 @@ mapping sequence::SequenceDiagram::papyrusViewStyle(rootElement : uml::Package) 
 query sequence::Actor::getDirectlyAssociatedBehaviorExecutionSpecifications(): OrderedSet(BehaviorExecutionSpecification) {
     return self.container().oclAsType(sequence::SequenceDiagram).referencedElement.oclAsType(uml::Interaction)
         .fragment[BehaviorExecutionSpecification]->select(b | b.covered->includes(self.referencedElement))
+}
+
+query sequence::Actor::getAssociatedDestructionOccurrenceSpecifications(): Sequence(DestructionOccurenceSpecification) {
+    return self.container().toEObject().getAllContentsInOrder(sequence::DestructionOccurenceSpecification.oclAsType(EClass))
+    	.oclAsType(DestructionOccurenceSpecification)->select(b | b.target = self);
 }
 
 query sequence::Message::determineShapeOfConnectorSource(): notation::Shape

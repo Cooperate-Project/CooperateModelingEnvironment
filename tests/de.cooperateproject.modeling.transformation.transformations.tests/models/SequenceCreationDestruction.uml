@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_zBQMAGMNEeeJlML3FIXVsg" name="SequenceCreationDestruction">
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_1DM1oGMNEeeJlML3FIXVsg" name="SequenceCreationDestruction">
+    <ownedAttribute xmi:id="__wdCgGMNEeeJlML3FIXVsg" name="main" type="_6F3eQGMNEeeJlML3FIXVsg"/>
+    <ownedAttribute xmi:id="_K3jSwGMOEeeJlML3FIXVsg" name="" type="_9nnGsGMNEeeJlML3FIXVsg"/>
+    <ownedAttribute xmi:id="_70B-UGMPEeeJlML3FIXVsg" name="" type="_7gHOsGMNEeeJlML3FIXVsg"/>
+    <lifeline xmi:id="__wcbcGMNEeeJlML3FIXVsg" name="main" represents="__wdCgGMNEeeJlML3FIXVsg" coveredBy="_HQxZUGMOEeeJlML3FIXVsg _HQtu8GMOEeeJlML3FIXVsg _LqUzgGMOEeeJlML3FIXVsg _LZs2MGMREeewYLTaC6vNWA _Pzm1sGMREeewYLTaC6vNWA _emCvQGMREeewYLTaC6vNWA _HQyncGMOEeeJlML3FIXVsg"/>
+    <lifeline xmi:id="_K3hdkGMOEeeJlML3FIXVsg" name="" represents="_K3jSwGMOEeeJlML3FIXVsg" coveredBy="_LqUzgWMOEeeJlML3FIXVsg _u0PHEGMPEeeJlML3FIXVsg _u0NR4GMPEeeJlML3FIXVsg"/>
+    <lifeline xmi:id="_70AwMGMPEeeJlML3FIXVsg" name="" represents="_70B-UGMPEeeJlML3FIXVsg" coveredBy="_LZs2MWMREeewYLTaC6vNWA _Pzm1sWMREeewYLTaC6vNWA _S-sRoWMREeewYLTaC6vNWA _S-sRoGMREeewYLTaC6vNWA _emDWUGMREeewYLTaC6vNWA _mHJwQGMREeewYLTaC6vNWA _mHIiIGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_HQxZUGMOEeeJlML3FIXVsg" name="BehaviorExecutionSpecification1Start" covered="__wcbcGMNEeeJlML3FIXVsg" execution="_HQtu8GMOEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_HQtu8GMOEeeJlML3FIXVsg" name="BehaviorExecutionSpecification1" covered="__wcbcGMNEeeJlML3FIXVsg" finish="_HQyncGMOEeeJlML3FIXVsg" start="_HQxZUGMOEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LqUzgGMOEeeJlML3FIXVsg" name="Message1SendEvent" covered="__wcbcGMNEeeJlML3FIXVsg" message="_LqRwMGMOEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LqUzgWMOEeeJlML3FIXVsg" name="Message1ReceiveEvent" covered="_K3hdkGMOEeeJlML3FIXVsg" message="_LqRwMGMOEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LZs2MGMREeewYLTaC6vNWA" name="Message2SendEvent" covered="__wcbcGMNEeeJlML3FIXVsg" message="_LZsPIGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LZs2MWMREeewYLTaC6vNWA" name="Message2ReceiveEvent" covered="_70AwMGMPEeeJlML3FIXVsg" message="_LZsPIGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_mHIiIGMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification4" covered="_70AwMGMPEeeJlML3FIXVsg" finish="_mHJwQGMREeewYLTaC6vNWA" start="_emDWUGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:DestructionOccurrenceSpecification" xmi:id="_0DKqEGMPEeeJlML3FIXVsg" name="DestructionOccurrenceSpecification1"/>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_u0NR4GMPEeeJlML3FIXVsg" name="BehaviorExecutionSpecification2" covered="_K3hdkGMOEeeJlML3FIXVsg" finish="_u0PHEGMPEeeJlML3FIXVsg" start="_LqUzgWMOEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_u0PHEGMPEeeJlML3FIXVsg" name="BehaviorExecutionSpecification2Finish" covered="_K3hdkGMOEeeJlML3FIXVsg" execution="_u0NR4GMPEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Pzm1sGMREeewYLTaC6vNWA" name="Message3SendEvent" covered="__wcbcGMNEeeJlML3FIXVsg" message="_PzmOoGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Pzm1sWMREeewYLTaC6vNWA" name="Message3ReceiveEvent" covered="_70AwMGMPEeeJlML3FIXVsg" message="_PzmOoGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_S-sRoGMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification3" covered="_70AwMGMPEeeJlML3FIXVsg" finish="_S-sRoWMREeewYLTaC6vNWA" start="_Pzm1sWMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_S-sRoWMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification3Finish" covered="_70AwMGMPEeeJlML3FIXVsg" execution="_S-sRoGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_emCvQGMREeewYLTaC6vNWA" name="Message4SendEvent" covered="__wcbcGMNEeeJlML3FIXVsg" message="_emBhIGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_emDWUGMREeewYLTaC6vNWA" name="Message4ReceiveEvent" covered="_70AwMGMPEeeJlML3FIXVsg" message="_emBhIGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_HQyncGMOEeeJlML3FIXVsg" name="BehaviorExecutionSpecification1Finish" covered="__wcbcGMNEeeJlML3FIXVsg" execution="_HQtu8GMOEeeJlML3FIXVsg"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mHJwQGMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification4Finish" covered="_70AwMGMPEeeJlML3FIXVsg" execution="_mHIiIGMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:DestructionOccurrenceSpecification" xmi:id="_iflMoGMREeewYLTaC6vNWA" name="DestructionOccurrenceSpecification2"/>
+    <message xmi:id="_LqRwMGMOEeeJlML3FIXVsg" name="create first child" messageSort="createMessage" receiveEvent="_LqUzgWMOEeeJlML3FIXVsg" sendEvent="_LqUzgGMOEeeJlML3FIXVsg"/>
+    <message xmi:id="_LZsPIGMREeewYLTaC6vNWA" name="create second child" messageSort="createMessage" receiveEvent="_LZs2MWMREeewYLTaC6vNWA" sendEvent="_LZs2MGMREeewYLTaC6vNWA"/>
+    <message xmi:id="_PzmOoGMREeewYLTaC6vNWA" name="trigger" messageSort="asynchCall" receiveEvent="_Pzm1sWMREeewYLTaC6vNWA" sendEvent="_Pzm1sGMREeewYLTaC6vNWA"/>
+    <message xmi:id="_emBhIGMREeewYLTaC6vNWA" name="kill" messageSort="asynchCall" receiveEvent="_emDWUGMREeewYLTaC6vNWA" sendEvent="_emCvQGMREeewYLTaC6vNWA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6F3eQGMNEeeJlML3FIXVsg" name="MainClass"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7gHOsGMNEeeJlML3FIXVsg" name="LongLivingChild"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_9nnGsGMNEeeJlML3FIXVsg" name="ShortLivingChild"/>
+</uml:Model>

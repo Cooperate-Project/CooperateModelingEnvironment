@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Qzk2AGLyEeeLAtTo6AdWXw" name="model">
   <packagedElement xmi:type="uml:Interaction" xmi:id="_Hr56UGMHEeeK_Y2-3JJnnA" name="NestedExecutionSpecificationTest">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_QCa5UGMHEeeK_Y2-3JJnnA" name="" type="_OuTmEGMHEeeK_Y2-3JJnnA"/>
-    <lifeline xmi:type="uml:Lifeline" xmi:id="_QCaSQGMHEeeK_Y2-3JJnnA" name="" represents="_QCa5UGMHEeeK_Y2-3JJnnA" coveredBy="_XFvLEGMHEeeK_Y2-3JJnnA _XFvLEWMHEeeK_Y2-3JJnnA _gCZkEGMHEeeK_Y2-3JJnnA _SvgKoGMHEeeK_Y2-3JJnnA _SvcgQGMHEeeK_Y2-3JJnnA _gCaLIGMHEeeK_Y2-3JJnnA _UQtesGMHEeeK_Y2-3JJnnA"/>
+    <ownedAttribute xmi:id="_QCa5UGMHEeeK_Y2-3JJnnA" name="" type="_OuTmEGMHEeeK_Y2-3JJnnA"/>
+    <lifeline xmi:id="_QCaSQGMHEeeK_Y2-3JJnnA" name="" represents="_QCa5UGMHEeeK_Y2-3JJnnA" coveredBy="_XFvLEGMHEeeK_Y2-3JJnnA _XFvLEWMHEeeK_Y2-3JJnnA _gCZkEGMHEeeK_Y2-3JJnnA _SvgKoGMHEeeK_Y2-3JJnnA _SvcgQGMHEeeK_Y2-3JJnnA _gCaLIGMHEeeK_Y2-3JJnnA _UQtesGMHEeeK_Y2-3JJnnA">
+      <nameExpression xmi:id="_LIzzIGMUEeeMeI2HQM-FqQ" name="act1"/>
+    </lifeline>
     <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_SvcgQGMHEeeK_Y2-3JJnnA" name="BehaviorExecutionSpecification1" covered="_QCaSQGMHEeeK_Y2-3JJnnA" finish="_SvgKoGMHEeeK_Y2-3JJnnA" start="_XFvLEGMHEeeK_Y2-3JJnnA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_XFvLEGMHEeeK_Y2-3JJnnA" name="Message1SendEvent" covered="_QCaSQGMHEeeK_Y2-3JJnnA" message="_XFtV4GMHEeeK_Y2-3JJnnA"/>
     <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_UQtesGMHEeeK_Y2-3JJnnA" name="BehaviorExecutionSpecification2" covered="_QCaSQGMHEeeK_Y2-3JJnnA" finish="_gCZkEGMHEeeK_Y2-3JJnnA" start="_XFvLEWMHEeeK_Y2-3JJnnA"/>
@@ -10,8 +12,8 @@
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_gCZkEGMHEeeK_Y2-3JJnnA" name="Message2SendEvent" covered="_QCaSQGMHEeeK_Y2-3JJnnA" message="_gCY9AGMHEeeK_Y2-3JJnnA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_gCaLIGMHEeeK_Y2-3JJnnA" name="Message2ReceiveEvent" covered="_QCaSQGMHEeeK_Y2-3JJnnA" message="_gCY9AGMHEeeK_Y2-3JJnnA"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_SvgKoGMHEeeK_Y2-3JJnnA" name="BehaviorExecutionSpecification1Finish" covered="_QCaSQGMHEeeK_Y2-3JJnnA" execution="_SvcgQGMHEeeK_Y2-3JJnnA"/>
-    <message xmi:type="uml:Message" xmi:id="_XFtV4GMHEeeK_Y2-3JJnnA" name="nestedCall" receiveEvent="_XFvLEWMHEeeK_Y2-3JJnnA" sendEvent="_XFvLEGMHEeeK_Y2-3JJnnA"/>
-    <message xmi:type="uml:Message" xmi:id="_gCY9AGMHEeeK_Y2-3JJnnA" name="result" messageSort="reply" receiveEvent="_gCaLIGMHEeeK_Y2-3JJnnA" sendEvent="_gCZkEGMHEeeK_Y2-3JJnnA"/>
+    <message xmi:id="_XFtV4GMHEeeK_Y2-3JJnnA" name="nestedCall" receiveEvent="_XFvLEWMHEeeK_Y2-3JJnnA" sendEvent="_XFvLEGMHEeeK_Y2-3JJnnA"/>
+    <message xmi:id="_gCY9AGMHEeeK_Y2-3JJnnA" name="result" messageSort="reply" receiveEvent="_gCaLIGMHEeeK_Y2-3JJnnA" sendEvent="_gCZkEGMHEeeK_Y2-3JJnnA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_OuTmEGMHEeeK_Y2-3JJnnA" name="TestClass"/>
 </uml:Model>

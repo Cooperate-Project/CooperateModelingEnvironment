@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequence="http://www.cooperateproject.de/modeling/textual/sequence/Sequence" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Online_Bookshop">
+  <referencedElement xsi:type="uml:Interaction" href="SequenceCombinedFragments.uml#_2ZxBMGJjEee0st3afuUuxA"/>
+  <fragments xsi:type="sequence:Loop">
+    <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_cd_mQGJkEee0st3afuUuxA"/>
+    <region>
+      <referencedElement xsi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_fX_5QGJkEee0st3afuUuxA"/>
+      <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.1" name="search inventory">
+        <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_2v-P0GJlEee0st3afuUuxA"/>
+        <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_2v_d8WJlEee0st3afuUuxA"/>
+        </arrivalEvent>
+        <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_2v_d8GJlEee0st3afuUuxA"/>
+        </sendEvent>
+      </fragments>
+      <fragments xsi:type="sequence:ResponseMessage" left="//@actors.1" right="//@actors.0" name="search results">
+        <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_IZ8XMGJmEee0st3afuUuxA"/>
+        <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_IZ8-QWJmEee0st3afuUuxA"/>
+        </arrivalEvent>
+        <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_IZ8-QGJmEee0st3afuUuxA"/>
+        </sendEvent>
+      </fragments>
+      <fragments xsi:type="sequence:Parallel">
+        <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_lbP1IGJkEee0st3afuUuxA"/>
+        <regions>
+          <fragments xsi:type="sequence:Option">
+            <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_s8buoGJkEee0st3afuUuxA"/>
+            <region>
+              <referencedElement xsi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_tW_jsGJkEee0st3afuUuxA"/>
+              <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.1" name="view book description">
+                <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_XGNXUGJmEee0st3afuUuxA"/>
+                <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+                  <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_XGPMgGJmEee0st3afuUuxA"/>
+                </arrivalEvent>
+                <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+                  <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_XGOlcGJmEee0st3afuUuxA"/>
+                </sendEvent>
+              </fragments>
+            </region>
+          </fragments>
+        </regions>
+        <regions>
+          <referencedElement xsi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_nR3YgGJkEee0st3afuUuxA"/>
+          <fragments xsi:type="sequence:Option">
+            <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_35QokGJkEee0st3afuUuxA"/>
+            <region>
+              <referencedElement xsi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_4bhoIGJkEee0st3afuUuxA"/>
+              <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.1" name="add to shopping cart">
+                <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_bNt_QGJmEee0st3afuUuxA"/>
+                <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+                  <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_bNumUWJmEee0st3afuUuxA"/>
+                </arrivalEvent>
+                <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+                  <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_bNumUGJmEee0st3afuUuxA"/>
+                </sendEvent>
+              </fragments>
+            </region>
+          </fragments>
+        </regions>
+      </fragments>
+    </region>
+  </fragments>
+  <fragments xsi:type="sequence:Option">
+    <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_pYSAgGJmEee0st3afuUuxA"/>
+    <region>
+      <referencedElement xsi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_tpJ_0GJmEee0st3afuUuxA"/>
+      <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.1" name="do checkout">
+        <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_xQqSAGJmEee0st3afuUuxA"/>
+        <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_xQrgIWJmEee0st3afuUuxA"/>
+        </arrivalEvent>
+        <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_xQrgIGJmEee0st3afuUuxA"/>
+        </sendEvent>
+      </fragments>
+      <fragments xsi:type="sequence:StandardMessage" left="//@actors.1" right="//@actors.1" name="send invoice">
+        <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_cF61gGMJEeeK_Y2-3JJnnA"/>
+        <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_cF7ckWMJEeeK_Y2-3JJnnA"/>
+        </arrivalEvent>
+        <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_cF7ckGMJEeeK_Y2-3JJnnA"/>
+        </sendEvent>
+      </fragments>
+      <fragments xsi:type="sequence:ResponseMessage" left="//@actors.1" right="//@actors.1" name="process transaction">
+        <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_lCYaMGMJEeeK_Y2-3JJnnA"/>
+        <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_lCZBQWMJEeeK_Y2-3JJnnA"/>
+        </arrivalEvent>
+        <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_lCZBQGMJEeeK_Y2-3JJnnA"/>
+        </sendEvent>
+      </fragments>
+      <fragments xsi:type="sequence:ResponseMessage" left="//@actors.1" right="//@actors.0" name="transaction confirmation">
+        <referencedElement xsi:type="uml:Message" href="SequenceCombinedFragments.uml#_4ih9IGJmEee0st3afuUuxA"/>
+        <arrivalEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_4ijLQGJmEee0st3afuUuxA"/>
+        </arrivalEvent>
+        <sendEvent xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+          <referencedElement xsi:type="uml:MessageOccurrenceSpecification" href="SequenceCombinedFragments.uml#_4iikMGJmEee0st3afuUuxA"/>
+        </sendEvent>
+      </fragments>
+      <condition condition="shopping cart is not empty">
+        <referencedElement xsi:type="uml:InteractionConstraint" href="SequenceCombinedFragments.uml#_tpKm4GJmEee0st3afuUuxA"/>
+      </condition>
+    </region>
+  </fragments>
+  <rootPackage>
+    <referencedElement xsi:type="uml:Model" href="SequenceCombinedFragments.uml#_zSDpYGJjEee0st3afuUuxA"/>
+  </rootPackage>
+  <actors>
+    <referencedElement xsi:type="uml:Lifeline" href="SequenceCombinedFragments.uml#_QRJO4GJkEee0st3afuUuxA"/>
+    <typeMapping>
+      <referencedElement xsi:type="uml:Property" href="SequenceCombinedFragments.uml#_QRS_4GJkEee0st3afuUuxA"/>
+      <classifier xsi:type="uml:Actor" href="SequenceCombinedFragments.uml#_OxidUGJkEee0st3afuUuxA"/>
+    </typeMapping>
+  </actors>
+  <actors>
+    <referencedElement xsi:type="uml:Lifeline" href="SequenceCombinedFragments.uml#_Syr-kGJkEee0st3afuUuxA"/>
+    <typeMapping>
+      <referencedElement xsi:type="uml:Property" href="SequenceCombinedFragments.uml#_SysloGJkEee0st3afuUuxA"/>
+      <classifier xsi:type="uml:Class" href="SequenceCombinedFragments.uml#_M1UBMGJkEee0st3afuUuxA"/>
+    </typeMapping>
+  </actors>
+</sequence:SequenceDiagram>

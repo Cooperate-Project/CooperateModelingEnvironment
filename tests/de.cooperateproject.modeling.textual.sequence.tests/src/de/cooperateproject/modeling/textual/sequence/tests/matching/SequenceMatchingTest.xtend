@@ -10,10 +10,12 @@ import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
 import de.cooperateproject.modeling.textual.sequence.tests.AbstractSequenceTest
 import de.cooperateproject.modeling.textual.sequence.tests.scoping.util.SequenceCustomizedInjectorProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.matching.provider.CandidatesConfigurationPool
+import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.Match
 import java.util.Collections
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.uml2.uml.Lifeline
 import org.eclipse.uml2.uml.Model
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.xtext.testing.InjectWith
@@ -25,10 +27,6 @@ import org.junit.runner.RunWith
 
 import static org.hamcrest.Matchers.*
 import static org.junit.Assert.assertThat
-import org.eclipse.uml2.uml.Interaction
-import de.cooperateproject.modeling.textual.sequence.sequence.Actor
-import de.cooperateproject.modeling.textual.xtext.runtime.matching.result.Match
-import org.eclipse.uml2.uml.Lifeline
 
 @RunWith(XtextRunner)
 @InjectWith(SequenceCustomizedInjectorProvider.DefaultProvider)

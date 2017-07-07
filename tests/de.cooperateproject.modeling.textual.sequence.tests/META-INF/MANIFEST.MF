@@ -15,7 +15,8 @@ Require-Bundle: de.cooperateproject.modeling.textual.sequence,
  org.eclipse.xtext.junit4,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench;resolution:=optional,
- org.eclipse.xtext.xbase.junit
+ org.eclipse.xtext.xbase.junit,
+ de.cooperateproject.modeling.textual.xtext.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.sequence.tests;x-internal=true
 Import-Package: org.hamcrest.core,

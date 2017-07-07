@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequence="http://www.cooperateproject.de/modeling/textual/sequence/Sequence" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="NestedExecutionSpecificationTest">
+  <referencedElement xsi:type="uml:Interaction" href="SequenceNestedExecutionSpecification.uml#_Hr56UGMHEeeK_Y2-3JJnnA"/>
+  <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.0">
+    <referencedElement xsi:type="uml:Message" href="SequenceNestedExecutionSpecification.uml#_XFtV4GMHEeeK_Y2-3JJnnA"/>
+        <sendEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceNestedExecutionSpecification.uml#_XFvLEGMHEeeK_Y2-3JJnnA"/>
+    </sendEvent>
+        <arrivalEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceNestedExecutionSpecification.uml#_XFvLEWMHEeeK_Y2-3JJnnA"/>
+    </arrivalEvent>
+  </fragments>
+  <fragments xsi:type="sequence:ResponseMessage" left="//@actors.0" right="//@actors.0">
+      <sendEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceNestedExecutionSpecification.uml#_gCZkEGMHEeeK_Y2-3JJnnA"/>
+    </sendEvent>
+        <arrivalEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceNestedExecutionSpecification.uml#_gCaLIGMHEeeK_Y2-3JJnnA"/>
+    </arrivalEvent>
+    <referencedElement xsi:type="uml:Message" href="SequenceNestedExecutionSpecification.uml#_gCY9AGMHEeeK_Y2-3JJnnA"/>
+  </fragments>
+  <rootPackage name="model">
+    <referencedElement
+        xsi:type="uml:Model"
+        href="SequenceNestedExecutionSpecification.uml#_Qzk2AGLyEeeLAtTo6AdWXw"/>
+  </rootPackage>
+  <actors actorType="MACHINE" alias="act1">
+    <referencedElement xsi:type="uml:Lifeline" href="SequenceNestedExecutionSpecification.uml#_QCaSQGMHEeeK_Y2-3JJnnA"/>
+    <typeMapping>
+      <referencedElement xsi:type="uml:Property" href="SequenceNestedExecutionSpecification.uml#_QCa5UGMHEeeK_Y2-3JJnnA"/>
+      <classifier xsi:type="uml:Class" href="SequenceNestedExecutionSpecification.uml#_OuTmEGMHEeeK_Y2-3JJnnA"/>
+    </typeMapping>
+  </actors>
+</sequence:SequenceDiagram>

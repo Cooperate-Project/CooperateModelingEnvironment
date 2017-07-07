@@ -5,16 +5,16 @@ import org.junit.Test;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-public class TextualToGraphicalSequenceTest extends DirectionalTransformationTestBase {
+public class GraphicalToTextualSequenceTest extends DirectionalTransformationTestBase {
 
-    private static final URI TRANSFORMATION_URI = createTransformationURI("Textual_to_Graphical_for_Sequence.qvto");
+    private static final URI TRANSFORMATION_URI = createTransformationURI("Graphical_to_Textual_for_Sequence.qvto");
 
     static {
         SequencePackage.eINSTANCE.eClass();
     }
 
-    public TextualToGraphicalSequenceTest() {
-        super(TRANSFORMATION_URI, "xmi", "notation");
+    public GraphicalToTextualSequenceTest() {
+        super(TRANSFORMATION_URI, "notation", "xmi");
     }
 
     @Test
@@ -45,15 +45,5 @@ public class TextualToGraphicalSequenceTest extends DirectionalTransformationTes
     @Test
     public void testCombinedFragmentsIncremental() throws Exception {
         testIncremental("SequenceCombinedFragments");
-    }
-
-    @Test
-    public void testCreationDestruction() throws Exception {
-        testRegular("SequenceCreationDestruction");
-    }
-
-    @Test
-    public void testCreationDestructionIncremental() throws Exception {
-        testIncremental("SequenceCreationDestruction");
     }
 }

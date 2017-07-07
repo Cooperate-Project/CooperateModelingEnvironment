@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence:SequenceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sequence="http://www.cooperateproject.de/modeling/textual/sequence/Sequence" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="SequenceCreationDestruction">
+  <referencedElement xsi:type="uml:Interaction" href="SequenceCreationDestruction.uml#_1DM1oGMNEeeJlML3FIXVsg"/>
+  <fragments xsi:type="sequence:CreateMessage" left="//@actors.0" right="//@actors.1" name="create first child">
+    <referencedElement xsi:type="uml:Message" href="SequenceCreationDestruction.uml#_LqRwMGMOEeeJlML3FIXVsg"/>
+          <sendEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_LqUzgGMOEeeJlML3FIXVsg"/>
+    </sendEvent>
+        <arrivalEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_LqUzgWMOEeeJlML3FIXVsg"/>
+    </arrivalEvent>
+  </fragments>
+  <fragments xsi:type="sequence:CreateMessage" left="//@actors.0" right="//@actors.2" name="create second child">
+    <referencedElement xsi:type="uml:Message" href="SequenceCreationDestruction.uml#_LZsPIGMREeewYLTaC6vNWA"/>
+          <sendEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_LZs2MGMREeewYLTaC6vNWA"/>
+    </sendEvent>
+        <arrivalEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_LZs2MWMREeewYLTaC6vNWA"/>
+    </arrivalEvent>
+  </fragments>
+  <fragments xsi:type="sequence:DestructionOccurenceSpecification" target="//@actors.1">
+    <referencedElement xsi:type="uml:DestructionOccurrenceSpecification" href="SequenceCreationDestruction.uml#_0DKqEGMPEeeJlML3FIXVsg"/>
+  </fragments>
+  <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.2" type="ASYNC">
+    <referencedElement xsi:type="uml:Message" href="SequenceCreationDestruction.uml#_PzmOoGMREeewYLTaC6vNWA"/>
+          <sendEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_Pzm1sGMREeewYLTaC6vNWA"/>
+    </sendEvent>
+        <arrivalEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_Pzm1sWMREeewYLTaC6vNWA"/>
+    </arrivalEvent>
+  </fragments>
+  <fragments xsi:type="sequence:StandardMessage" left="//@actors.0" right="//@actors.2" type="ASYNC">
+    <referencedElement xsi:type="uml:Message" href="SequenceCreationDestruction.uml#_emBhIGMREeewYLTaC6vNWA"/>
+          <sendEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_emCvQGMREeewYLTaC6vNWA"/>
+    </sendEvent>
+        <arrivalEvent
+        xsi:type="sequence:ImplicitMessageOccurenceSpecification">
+        <referencedElement
+        xsi:type="uml:MessageOccurrenceSpecification"
+        href="SequenceCreationDestruction.uml#_emDWUGMREeewYLTaC6vNWA"/>
+    </arrivalEvent>
+  </fragments>
+  <fragments xsi:type="sequence:DestructionOccurenceSpecification" target="//@actors.2">
+    <referencedElement xsi:type="uml:DestructionOccurrenceSpecification" href="SequenceCreationDestruction.uml#_iflMoGMREeewYLTaC6vNWA"/>
+  </fragments>
+  <rootPackage name="SequenceCreationDestruction">
+    <referencedElement
+        xsi:type="uml:Model"
+        href="SequenceCreationDestruction.uml#_zBQMAGMNEeeJlML3FIXVsg"/>
+  </rootPackage>
+  <actors name="main">
+  	<referencedElement xsi:type="uml:Lifeline" href="SequenceCreationDestruction.uml#__wcbcGMNEeeJlML3FIXVsg"/>
+    <typeMapping>
+      <referencedElement xsi:type="uml:Property" href="SequenceCreationDestruction.uml#__wdCgGMNEeeJlML3FIXVsg"/>
+      <classifier xsi:type="uml:Class" href="SequenceCreationDestruction.uml#_6F3eQGMNEeeJlML3FIXVsg"/>
+    </typeMapping>
+  </actors>
+  <actors alias="slc">
+    <referencedElement xsi:type="uml:Lifeline" href="SequenceCreationDestruction.uml#_K3hdkGMOEeeJlML3FIXVsg"/>
+    <typeMapping>
+      <referencedElement xsi:type="uml:Property" href="SequenceCreationDestruction.uml#_K3jSwGMOEeeJlML3FIXVsg"/>
+      <classifier xsi:type="uml:Class" href="SequenceCreationDestruction.uml#_9nnGsGMNEeeJlML3FIXVsg"/>
+    </typeMapping>
+  </actors>
+  <actors alias="llc">
+  	<referencedElement xsi:type="uml:Lifeline" href="SequenceCreationDestruction.uml#_70AwMGMPEeeJlML3FIXVsg"/>
+    <typeMapping>
+      <referencedElement xsi:type="uml:Property" href="SequenceCreationDestruction.uml#_70B-UGMPEeeJlML3FIXVsg"/>
+      <classifier xsi:type="uml:Class" href="SequenceCreationDestruction.uml#_7gHOsGMNEeeJlML3FIXVsg"/>
+    </typeMapping>
+  </actors>
+</sequence:SequenceDiagram>

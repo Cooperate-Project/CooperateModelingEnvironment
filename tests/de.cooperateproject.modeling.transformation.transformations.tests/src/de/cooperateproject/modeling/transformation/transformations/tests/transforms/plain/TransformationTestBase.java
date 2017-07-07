@@ -38,6 +38,7 @@ import de.cooperateproject.modeling.transformation.transformations.Activator;
 import de.cooperateproject.modeling.transformation.transformations.impl.Slf4JLogger;
 import de.cooperateproject.modeling.transformation.transformations.impl.Slf4JLogger.Level;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
+import de.cooperateproject.modeling.util.transformations.blackboxunits.ModelHelperBlackBoxLibrary;
 
 public abstract class TransformationTestBase {
 
@@ -61,6 +62,9 @@ public abstract class TransformationTestBase {
             NotationPackage.eINSTANCE.eClass();
             StylePackage.eINSTANCE.eClass();
             TextualCommonsPackage.eINSTANCE.eClass();
+            org.eclipse.papyrus.infra.gmfdiag.style.StylePackage.eINSTANCE.eClass();
+
+            TransformationExecutor.BlackboxRegistry.INSTANCE.registerModules(ModelHelperBlackBoxLibrary.class);
         }
     }
 
