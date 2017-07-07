@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jesGAGJdEeesHO-ogAGguA" type="PapyrusUMLSequenceDiagram" name="Online_Bookshop" measurementUnit="Pixel">
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_OSOWAGJiEeesHO-ogAGguA" name="diagram_compatibility_version" stringValue="1.2.0"/>
+</notation:Diagram>
