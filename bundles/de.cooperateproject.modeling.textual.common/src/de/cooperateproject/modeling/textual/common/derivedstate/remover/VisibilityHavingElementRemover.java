@@ -26,7 +26,8 @@ public class VisibilityHavingElementRemover extends AtomicDerivedStateProcessorB
         if (object instanceof UMLReferencingElement) {
             @SuppressWarnings("unchecked")
             NamedElement referencedElement = ((UMLReferencingElement<NamedElement>) object).getReferencedElement();
-            if (object.isSetVisibility() && object.getVisibility() == referencedElement.getVisibility()) {
+            if (referencedElement != null && object.isSetVisibility()
+                    && object.getVisibility() == referencedElement.getVisibility()) {
                 object.unsetVisibility();
             }
         }
