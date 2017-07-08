@@ -179,6 +179,7 @@
       <feature id="org.eclipse.emf.cdo.dawn.sdk"/>
       <feature id="org.eclipse.emf.cdo.dawn"/>
       <feature id="org.eclipse.emf.compare.diagram.gmf"/>
+	  <feature id="org.eclipse.emf.compare.diagram.papyrus"/>
       <feature id="org.eclipse.emf.compare.ide.ui"/>
       <feature id="de.cooperateproject.cdo.server.patch"/>
       <feature id="org.eclipse.emf.cdo.server"/>
