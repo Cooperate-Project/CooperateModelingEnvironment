@@ -89,6 +89,11 @@
 			<url>https://dl.bintray.com/cooperate-project/Xtext-Mirror/updatesite/2.12.0/</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>Papyrus Collaborative Modeling</id>
+			<url>https://hudson.eclipse.org/papyrus/job/CollaborativeModeling-Master/lastSuccessfulBuild/artifact/releng/org.eclipse.papyrus.collaborativemodeling.p2/target/repository/</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 
 	<build>
