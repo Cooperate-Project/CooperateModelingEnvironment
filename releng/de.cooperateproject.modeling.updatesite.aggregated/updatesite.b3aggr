@@ -5,12 +5,12 @@
       <repositories location="../de.cooperateproject.modeling.updatesite/target/repository"/>
     </contributions>
     <contributions label="externals">
-      <repositories location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/tools/orbit/downloads/drops/R20170516192513/repository/" mirrorArtifacts="false">
         <bundles name="com.google.inject"/>
         <bundles name="org.apache.commons.io"/>
         <bundles name="org.apache.commons.lang3"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/releases/neon/" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/releases/oxygen/" mirrorArtifacts="false">
         <features name="org.eclipse.jdt.feature.group"/>
         <features name="org.eclipse.emf.cdo.sdk.feature.group"/>
       </repositories>
@@ -20,7 +20,7 @@
         <features name="de.cooperateproject.cdo.patch.feature.group"/>
         <features name="de.cooperateproject.cdo.server.patch.feature.group"/>
       </repositories>
-      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/neon" mirrorArtifacts="false">
+      <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.extra.cdo.feature.feature.group"/>
         <features name="org.eclipse.papyrus.sdk.feature.feature.group"/>
       </repositories>

@@ -49,6 +49,7 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/oxygen</url>
 		</repository>
+		
 		<repository>
 			<id>papyrus</id>
 			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
