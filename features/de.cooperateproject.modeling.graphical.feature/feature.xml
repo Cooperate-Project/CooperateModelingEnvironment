@@ -18,6 +18,10 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.eclipse.papyrus.extra.cdo.feature" version="1.2.0.201706210610" match="greaterOrEqual"/>
+   </requires>
+
    <plugin
          id="de.cooperateproject.modeling.graphical.papyrus.extensions"
          download-size="0"
