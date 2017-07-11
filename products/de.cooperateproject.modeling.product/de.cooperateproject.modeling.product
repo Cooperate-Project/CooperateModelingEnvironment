@@ -103,7 +103,6 @@
       <feature id="org.eclipse.uml2.uml"/>
       <feature id="org.eclipse.uml2.common.source"/>
       <feature id="de.cooperateproject.modeling.transformation.feature" version="0.2.0.qualifier"/>
-      <feature id="de.cooperateproject.cdo.patched.client.feature"/>
       <feature id="de.cooperateproject.modeling.graphical.feature" version="0.2.0.qualifier"/>
       <feature id="de.cooperateproject.modeling.textual.metamodels.feature" version="0.2.0.qualifier"/>
       <feature id="org.eclipse.emf.edit"/>
@@ -147,7 +146,6 @@
       <feature id="org.eclipse.gmf.runtime.notation"/>
       <feature id="org.eclipse.emf.ecore.editor"/>
       <feature id="org.eclipse.papyrus.infra.core.feature"/>
-      <feature id="de.cooperateproject.cdo.patch"/>
       <feature id="org.eclipse.emf.databinding"/>
       <feature id="org.eclipse.emf.transaction"/>
       <feature id="org.eclipse.ocl.all"/>
@@ -179,9 +177,8 @@
       <feature id="org.eclipse.emf.cdo.dawn.sdk"/>
       <feature id="org.eclipse.emf.cdo.dawn"/>
       <feature id="org.eclipse.emf.compare.diagram.gmf"/>
-	  <feature id="org.eclipse.emf.compare.diagram.papyrus"/>
+      <feature id="org.eclipse.emf.compare.diagram.papyrus"/>
       <feature id="org.eclipse.emf.compare.ide.ui"/>
-      <feature id="de.cooperateproject.cdo.server.patch"/>
       <feature id="org.eclipse.emf.cdo.server"/>
       <feature id="org.eclipse.emf.cdo.server.db"/>
       <feature id="org.eclipse.net4j.db"/>

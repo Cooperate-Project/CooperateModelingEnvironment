@@ -31,12 +31,11 @@
          version="0.0.0"/>
 
    <requires>
-      <import feature="de.cooperateproject.cdo.patched.client.feature" version="4.5.1" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf.cdo" version="4.5.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf.cdo" version="4.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.gmf.runtime.notation.sdk" version="1.10.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.papyrus.sdk.feature" version="2.0.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.papyrus.sdk.feature" version="3.0.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.uml2.sdk" version="5.2.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.xtend.sdk" version="2.10.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.xtend.sdk" version="2.12.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.papyrus.extra.cdo.feature" version="1.2.0" match="greaterOrEqual"/>
    </requires>
 
