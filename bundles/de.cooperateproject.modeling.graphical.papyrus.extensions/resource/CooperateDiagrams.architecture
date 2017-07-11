@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmi:id="_KXClsGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.softwareEngineering" name="Software Engineering" description="The domain of developing software systems" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/domain.gif">
-  <stakeholders xmi:id="_g36KkGMZEeeNzp_FS7vc9Q" id="de.cooperate.modeler" name="Cooperate Modeler" description=""/>
+  <stakeholders xmi:id="_g36KkGMZEeeNzp_FS7vc9Q" id="de.cooperate.modeler" name="Cooperate Modeler" description="">
+    <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf5MSYEeaKZJ_pGfaSiA"/>
+    <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf48SYEeaKZJ_pGfaSiA"/>
+    <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf4sSYEeaKZJ_pGfaSiA"/>
+  </stakeholders>
   <contexts xsi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_YF14AGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.infra.services.edit.TypeContext" name="UML" description="The Unified Modeling Language" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/uml.gif" creationCommandClass="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand">
     <viewpoints xmi:id="_t2hWEGMZEeeNzp_FS7vc9Q" id="de.cooperateproject.viewpoint" name="Cooperate Viewpoint" representationKinds="__bLfoGMZEeeNzp_FS7vc9Q"/>
-    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="__bLfoGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.uml.diagram.class" name="Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" customStyle="" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="__bLfoGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.uml.diagram.class" name="Cooperate Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" customStyle="" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
+      <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf48SYEeaKZJ_pGfaSiA"/>
+      <parent xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
       <modelRules xmi:id="_Q9t2YBP8EeSS0oyATXohNA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -19,7 +25,9 @@
       <paletteRules xmi:id="_eH07gB5XEeaKs_GrNRbBjw" element="clazz.tool.property"/>
       <paletteRules xmi:id="_ixbhIB3ZEeaWluI_M9CcJQ" element="clazz.tool.realization"/>
       <paletteRules xmi:id="_i2Y5oB3ZEeaWluI_M9CcJQ" element="clazz.tool.generalization"/>
-      <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association"/>
+      <paletteRules xmi:id="_98BhUGZLEeek84eIY1oucg" permit="false" element="clazz.tool.associationclass"/>
+      <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association*"/>
+      <paletteRules xmi:id="_XwNGgGZLEeek84eIY1oucg" element="clazz.tool.packageimport"/>
       <paletteRules xmi:id="_Zu7qEB3SEeaWluI_M9CcJQ" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_JR-5AB3eEeaWluI_M9CcJQ" permit="false" element="createTimeObservation22CreationTool"/>
       <paletteRules xmi:id="_Ri5mUB3eEeaWluI_M9CcJQ" permit="false" element="createDurationObservation7CreationTool"/>
@@ -41,6 +49,6 @@
       <assistantRules xmi:id="_dbYQhS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Association_Edge"/>
       <assistantRules xmi:id="_1LpvIC2PEeamkv8UzKSY-w" permit="false" elementTypeID="*"/>
     </representationKinds>
-    <metamodel href="http:///expansionmodel.ecore#/"/>
+    <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   </contexts>
 </architecture:ArchitectureDomain>
