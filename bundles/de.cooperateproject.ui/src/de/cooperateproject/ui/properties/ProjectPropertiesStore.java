@@ -39,14 +39,14 @@ public class ProjectPropertiesStore {
     }
 
     public void initFromDefaults() {
-        initWithDefaults(preferences);
+        initFromPreferenceStore(preferences);
     }
 
     public void initFromStore() {
-        preferences.setCdoHost(CDO_HOST.getValue(preferencesStore));
-        preferences.setCdoPort(CDO_PORT.getValue(preferencesStore));
-        preferences.setCdoRepo(CDO_REPO.getValue(preferencesStore));
-        preferences.setMsgPort(MSG_PORT.getValue(preferencesStore));
+        preferences.setCdoHost(CDOServerPreferenceHandler.INSTANCE.getCDOServerHostnameSetting());
+        preferences.setCdoPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerPortSetting());
+        preferences.setCdoRepo(CDOServerPreferenceHandler.INSTANCE.getCDOServerRepositorySetting());
+        preferences.setMsgPort(CDOServerPreferenceHandler.INSTANCE.getCDOServerMessageBrokerSetting());
     }
 
     public void saveToStore() throws IOException {
