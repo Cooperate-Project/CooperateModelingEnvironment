@@ -49,7 +49,6 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/oxygen</url>
 		</repository>
-		
 		<repository>
 			<id>papyrus</id>
 			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen</url>
@@ -71,11 +70,6 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>cooperate-cdo</id>
-			<url>https://dl.bintray.com/cooperate-project/CDO/updatesite/4.5.1/</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
 			<id>cooperate-externals</id>
 			<url>https://dl.bintray.com/cooperate-project/Externals/updatesite/latest</url>
 			<layout>p2</layout>
@@ -86,13 +80,8 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
-			<id>xtext-2.12.0</id>
-			<url>https://dl.bintray.com/cooperate-project/Xtext-Mirror/updatesite/2.12.0/</url>
-			<layout>p2</layout>
-		</repository>
-		<repository>
 			<id>Papyrus Collaborative Modeling</id>
-			<url>https://hudson.eclipse.org/papyrus/job/CollaborativeModeling-Master/lastSuccessfulBuild/artifact/releng/org.eclipse.papyrus.collaborativemodeling.p2/target/repository/</url>
+			<url>https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/latest/</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
