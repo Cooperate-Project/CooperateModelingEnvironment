@@ -18,7 +18,7 @@ public class CDOServerPreferenceInitializer extends AbstractPreferenceInitialize
         store.setDefault(CDOServerPreferenceHandler.INSTANCE.getCDOServerHostnamePreference(), "localhost");
         store.setDefault(CDOServerPreferenceHandler.INSTANCE.getCdoServerPortPreference(), 2036);
         store.setDefault(CDOServerPreferenceHandler.INSTANCE.getCdoServerRepositoryPreference(), "repo1");
-        store.setDefault(CDOServerPreferenceHandler.INSTANCE.getCdoServerMessageBrokerPreference(), 69696);
+        store.setDefault(CDOServerPreferenceHandler.INSTANCE.getCdoServerMessageBrokerPreference(), 61616);
     }
 
 }
