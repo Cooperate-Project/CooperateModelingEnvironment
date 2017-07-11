@@ -104,13 +104,6 @@
       </service>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.architecture.models">
-      <model
-            path="resource/Cooperate.architecture"
-            >
-      </model>
-   </extension>
-   <extension
          point="de.cooperateproject.ui.modelcreator.postprocessor">
       <class
             class="de.cooperate.modeling.graphical.papyrus.extensions.configuration.PapyrusConfigurationModelCreationPostProcessor">
