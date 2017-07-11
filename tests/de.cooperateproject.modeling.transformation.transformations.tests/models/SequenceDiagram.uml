@@ -3,8 +3,8 @@
   <packagedElement xmi:type="uml:Interaction" xmi:id="_RLYAUF_kEeecvtIPTfT-KQ" name="SimpleExample">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_3LlBAF_kEeecvtIPTfT-KQ" name="a" type="_u-pb0F_kEeecvtIPTfT-KQ"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_7jCwgF_kEeecvtIPTfT-KQ" name="b" type="_s66CcF_kEeecvtIPTfT-KQ"/>
-    <lifeline xmi:type="uml:Lifeline" xmi:id="_yg7PwF_kEeecvtIPTfT-KQ" name="a" represents="_3LlBAF_kEeecvtIPTfT-KQ" coveredBy="_mdVFkF_lEeecvtIPTfT-KQ _mdWTsF_lEeecvtIPTfT-KQ _mdVsoF_lEeecvtIPTfT-KQ _sBmmcF_lEeecvtIPTfT-KQ _xc6YkF_lEeecvtIPTfT-KQ"/>
-    <lifeline xmi:type="uml:Lifeline" xmi:id="_4YmNwF_kEeecvtIPTfT-KQ" name="b" represents="_7jCwgF_kEeecvtIPTfT-KQ" coveredBy="_sBnNgF_lEeecvtIPTfT-KQ _sOkEYF_lEeecvtIPTfT-KQ _xc5xgF_lEeecvtIPTfT-KQ"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_yg7PwF_kEeecvtIPTfT-KQ" name="a" represents="_3LlBAF_kEeecvtIPTfT-KQ" coveredBy="_mdVFkF_lEeecvtIPTfT-KQ _mdVsoF_lEeecvtIPTfT-KQ _sBmmcF_lEeecvtIPTfT-KQ _xc6YkF_lEeecvtIPTfT-KQ _mdWTsF_lEeecvtIPTfT-KQ"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_4YmNwF_kEeecvtIPTfT-KQ" name="b" represents="_7jCwgF_kEeecvtIPTfT-KQ" coveredBy="_sBnNgF_lEeecvtIPTfT-KQ _xc5xgF_lEeecvtIPTfT-KQ _sOkEYF_lEeecvtIPTfT-KQ"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mdVFkF_lEeecvtIPTfT-KQ" name="BehaviorExecSpecStart" covered="_yg7PwF_kEeecvtIPTfT-KQ" execution="_mdVsoF_lEeecvtIPTfT-KQ"/>
     <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_mdVsoF_lEeecvtIPTfT-KQ" name="BehaviorExecSpec" covered="_yg7PwF_kEeecvtIPTfT-KQ" finish="_mdWTsF_lEeecvtIPTfT-KQ" start="_mdVFkF_lEeecvtIPTfT-KQ"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_sBmmcF_lEeecvtIPTfT-KQ" name="MessageSend" covered="_yg7PwF_kEeecvtIPTfT-KQ" message="_sBl_YF_lEeecvtIPTfT-KQ"/>

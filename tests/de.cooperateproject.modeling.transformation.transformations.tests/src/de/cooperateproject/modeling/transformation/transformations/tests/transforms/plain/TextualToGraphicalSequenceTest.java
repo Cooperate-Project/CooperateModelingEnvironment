@@ -1,13 +1,26 @@
 package de.cooperateproject.modeling.transformation.transformations.tests.transforms.plain;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.diff.FeatureFilter;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.junit.Test;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
+import de.cooperateproject.modeling.transformation.transformations.tests.util.FeatureFilterFactory;
+import de.cooperateproject.modeling.transformation.transformations.tests.util.ModelComparisonFactory;
+import de.cooperateproject.modeling.transformation.transformations.tests.util.ModelComparisonFactoryImpl;
 
 public class TextualToGraphicalSequenceTest extends DirectionalTransformationTestBase {
 
     private static final URI TRANSFORMATION_URI = createTransformationURI("Textual_to_Graphical_for_Sequence.qvto");
+    private static final Collection<EStructuralFeature> ORDER_INSENSITIVE_FEATURES = Collections
+            .unmodifiableList(Arrays.asList(NotationPackage.eINSTANCE.getView_PersistedChildren(),
+                    NotationPackage.eINSTANCE.getDiagram_PersistedEdges()));
 
     static {
         SequencePackage.eINSTANCE.eClass();
@@ -15,6 +28,26 @@ public class TextualToGraphicalSequenceTest extends DirectionalTransformationTes
 
     public TextualToGraphicalSequenceTest() {
         super(TRANSFORMATION_URI, "xmi", "notation");
+    }
+
+    @Override
+    protected ModelComparisonFactory getModelComparisonFactory() {
+        ModelComparisonFactoryImpl factory = new ModelComparisonFactoryImpl();
+        factory.setFeatureFilterFactory(new FeatureFilterFactory() {
+
+            @Override
+            public FeatureFilter createFeatureFilter() {
+                return new FeatureFilter() {
+                    @Override
+                    public boolean checkForOrderingChanges(EStructuralFeature feature) {
+                        return ORDER_INSENSITIVE_FEATURES.contains(feature) ? false
+                                : super.checkForOrderingChanges(feature);
+                    }
+                };
+            }
+        });
+
+        return factory;
     }
 
     @Test

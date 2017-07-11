@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -121,6 +122,15 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
      */
     public OccurenceReference<OccurenceSpecification<UMLOccurenceType>> getOccurenceReference() {
         return null;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ExecutionSpecification getContainingExecutionSpecification() {
+        return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getContainingExecutionSpecification(this);
     }
 
     /**
@@ -341,6 +351,8 @@ public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpeci
         switch (operationID) {
             case SequencePackage.OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE:
                 return getOccurenceReference();
+            case SequencePackage.OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION:
+                return getContainingExecutionSpecification();
             case SequencePackage.OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE:
                 return getNearestPackage();
         }

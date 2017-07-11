@@ -127,6 +127,11 @@
         </eTypeArguments>
       </eGenericType>
     </eOperations>
+    <eOperations name="getContainingExecutionSpecification" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionSpecification">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getContainingExecutionSpecification(this);"/>
+      </eAnnotations>
+    </eOperations>
     <eGenericSuperTypes eClassifier="#//Fragment"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
       <eTypeArguments eTypeParameter="#//OccurenceSpecification/UMLOccurenceType"/>

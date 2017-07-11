@@ -26,6 +26,7 @@
       <fragments xsi:type="sequence:Parallel">
         <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_lbP1IGJkEee0st3afuUuxA"/>
         <regions>
+          <referencedElement xsi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_mm0QYGJkEee0st3afuUuxA"/>
           <fragments xsi:type="sequence:Option">
             <referencedElement xsi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_s8buoGJkEee0st3afuUuxA"/>
             <region>

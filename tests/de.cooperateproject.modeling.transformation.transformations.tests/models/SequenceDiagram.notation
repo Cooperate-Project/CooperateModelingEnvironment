@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_RNijgF_kEeecvtIPTfT-KQ" type="PapyrusUMLSequenceDiagram" name="SimpleExample" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_RNijgF_kEeecvtIPTfT-KQ" type="PapyrusUMLSequenceDiagram" name="SimpleExample" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_RNijgV_kEeecvtIPTfT-KQ" type="Interaction_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_RNijgl_kEeecvtIPTfT-KQ" type="Interaction_NameLabel"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_RNijg1_kEeecvtIPTfT-KQ" type="Interaction_SubfragmentCompartment">
@@ -14,7 +14,7 @@
             <layoutConstraint xmi:type="notation:Location" xmi:id="_mdePgF_lEeecvtIPTfT-KQ" x="18" y="18"/>
           </children>
           <element xmi:type="uml:BehaviorExecutionSpecification" href="SequenceDiagram.uml#_mdVsoF_lEeecvtIPTfT-KQ"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mddocV_lEeecvtIPTfT-KQ" x="42" y="15" width="16" height="104"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mddocV_lEeecvtIPTfT-KQ" x="40" y="66" width="20" height="100"/>
         </children>
         <element xmi:type="uml:Lifeline" href="SequenceDiagram.uml#_yg7PwF_kEeecvtIPTfT-KQ"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yhIrIV_kEeecvtIPTfT-KQ" x="201" y="10" width="100" height="800"/>
@@ -30,7 +30,7 @@
             <layoutConstraint xmi:type="notation:Location" xmi:id="_sOoV0V_lEeecvtIPTfT-KQ" x="18" y="18"/>
           </children>
           <element xmi:type="uml:BehaviorExecutionSpecification" href="SequenceDiagram.uml#_sOkEYF_lEeecvtIPTfT-KQ"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sOnuwV_lEeecvtIPTfT-KQ" x="42" y="37" height="50"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sOnuwV_lEeecvtIPTfT-KQ" x="40" y="88" width="20" height="59"/>
         </children>
         <element xmi:type="uml:Lifeline" href="SequenceDiagram.uml#_4YmNwF_kEeecvtIPTfT-KQ"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4YrtUV_kEeecvtIPTfT-KQ" x="481" y="10" width="100" height="800"/>
@@ -40,9 +40,9 @@
     <element xmi:type="uml:Interaction" href="SequenceDiagram.uml#_RLYAUF_kEeecvtIPTfT-KQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RNijhV_kEeecvtIPTfT-KQ"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_RNijhl_kEeecvtIPTfT-KQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_RNijhl_kEeecvtIPTfT-KQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_RNijh1_kEeecvtIPTfT-KQ"/>
-  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_RNijiF_kEeecvtIPTfT-KQ">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_yvsnIGVsEeerlKXkQjIIbw" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
     <owner xmi:type="uml:Model" href="SequenceDiagram.uml#_RGqfcF_kEeecvtIPTfT-KQ"/>
   </styles>
   <element xmi:type="uml:Interaction" href="SequenceDiagram.uml#_RLYAUF_kEeecvtIPTfT-KQ"/>
@@ -57,8 +57,8 @@
     <styles xmi:type="notation:LineStyle" xmi:id="_sN7yRF_lEeecvtIPTfT-KQ"/>
     <element xmi:type="uml:Message" href="SequenceDiagram.uml#_sBl_YF_lEeecvtIPTfT-KQ"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sN7LMl_lEeecvtIPTfT-KQ" points="[11, 0, -416, -4]$[427, 351, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sOcIkF_lEeecvtIPTfT-KQ" id="(0.875,0.21153846153846154)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sPLIYF_lEeecvtIPTfT-KQ" id="(0.0,0.0){8}"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sOcIkF_lEeecvtIPTfT-KQ" id="(0.65,0.2)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sPLIYF_lEeecvtIPTfT-KQ" id="(0.0,0.0)"/>
   </edges>
   <edges xmi:type="notation:Connector" xmi:id="_xdJpIF_lEeecvtIPTfT-KQ" type="Message_ReplyEdge" source="_sOnuwF_lEeecvtIPTfT-KQ" target="_mddocF_lEeecvtIPTfT-KQ">
     <children xmi:type="notation:DecorationNode" xmi:id="_xdKQMF_lEeecvtIPTfT-KQ" type="Message_ReplyNameLabel">
@@ -71,7 +71,7 @@
     <styles xmi:type="notation:LineStyle" xmi:id="_xdK3Q1_lEeecvtIPTfT-KQ"/>
     <element xmi:type="uml:Message" href="SequenceDiagram.uml#_xc5KcF_lEeecvtIPTfT-KQ"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xdJpIl_lEeecvtIPTfT-KQ" points="[0, 0, 408, -24]$[-396, 48, 12, 24]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xdu38F_lEeecvtIPTfT-KQ" id="(0.0,1.0){32}"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xdu38V_lEeecvtIPTfT-KQ" id="(0.75,0.7019230769230769)"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xdu38F_lEeecvtIPTfT-KQ" id="(0.0,0.6779661016949152)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xdu38V_lEeecvtIPTfT-KQ" id="(0.65,0.8)"/>
   </edges>
 </notation:Diagram>

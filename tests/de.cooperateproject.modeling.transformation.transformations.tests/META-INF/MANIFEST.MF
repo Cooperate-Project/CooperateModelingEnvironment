@@ -13,5 +13,5 @@ Require-Bundle: org.junit,
  org.apache.log4j;bundle-version="1.2.15",
  de.cooperateproject.modeling.textual.sequence.metamodel,
  org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="1.0.0",
- de.cooperateproject.modeling.util
+ de.cooperateproject.qvtoutils.blackbox;bundle-version="1.0.0"
 Import-Package: org.slf4j

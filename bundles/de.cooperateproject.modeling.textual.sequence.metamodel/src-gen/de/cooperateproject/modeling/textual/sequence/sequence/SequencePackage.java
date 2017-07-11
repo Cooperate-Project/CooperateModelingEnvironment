@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequenceFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' txtCmn='../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#/' uml='../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/'"
  * @generated
  */
 public interface SequencePackage extends EPackage {
@@ -834,7 +833,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4 = MESSAGE_OPERATION_COUNT + 1;
+    int RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP = MESSAGE_OPERATION_COUNT + 1;
 
     /**
      * The number of operations of the '<em>Response Message</em>' class.
@@ -1146,13 +1145,22 @@ public interface SequencePackage extends EPackage {
     int OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = FRAGMENT_OPERATION_COUNT + 1;
 
     /**
+     * The operation id for the '<em>Get Containing Execution Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION = FRAGMENT_OPERATION_COUNT + 2;
+
+    /**
      * The number of operations of the '<em>Occurence Specification</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 2;
+    int OCCURENCE_SPECIFICATION_OPERATION_COUNT = FRAGMENT_OPERATION_COUNT + 3;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl <em>Destruction Occurence Specification</em>}' class.
@@ -1226,6 +1234,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE;
+
+    /**
+     * The operation id for the '<em>Get Containing Execution Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DESTRUCTION_OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION = OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION;
 
     /**
      * The number of operations of the '<em>Destruction Occurence Specification</em>' class.
@@ -2770,6 +2787,15 @@ public interface SequencePackage extends EPackage {
     int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
 
     /**
+     * The operation id for the '<em>Get Containing Execution Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION = OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION;
+
+    /**
      * The operation id for the '<em>Get Occurence Reference</em>' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2895,6 +2921,15 @@ public interface SequencePackage extends EPackage {
      * @ordered
      */
     int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE = OCCURENCE_SPECIFICATION___GET_NEAREST_PACKAGE;
+
+    /**
+     * The operation id for the '<em>Get Containing Execution Specification</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION = OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION;
 
     /**
      * The operation id for the '<em>Get Occurence Reference</em>' operation.
@@ -3558,7 +3593,7 @@ public interface SequencePackage extends EPackage {
      * @see de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage#mustHaveCorrespondingMessage(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
      * @generated
      */
-    EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4();
+    EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage <em>Create Message</em>}'.
@@ -3599,6 +3634,16 @@ public interface SequencePackage extends EPackage {
      * @generated
      */
     EOperation getOccurenceSpecification__GetOccurenceReference();
+
+    /**
+     * Returns the meta object for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification#getContainingExecutionSpecification() <em>Get Containing Execution Specification</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the '<em>Get Containing Execution Specification</em>' operation.
+     * @see de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification#getContainingExecutionSpecification()
+     * @generated
+     */
+    EOperation getOccurenceSpecification__GetContainingExecutionSpecification();
 
     /**
      * Returns the meta object for class '{@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification <em>Destruction Occurence Specification</em>}'.
@@ -4533,7 +4578,7 @@ public interface SequencePackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EOperation RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4 = eINSTANCE.getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4();
+        EOperation RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.CreateMessageImpl <em>Create Message</em>}' class.
@@ -4572,6 +4617,14 @@ public interface SequencePackage extends EPackage {
          * @generated
          */
         EOperation OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE = eINSTANCE.getOccurenceSpecification__GetOccurenceReference();
+
+        /**
+         * The meta object literal for the '<em><b>Get Containing Execution Specification</b></em>' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EOperation OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION = eINSTANCE.getOccurenceSpecification__GetContainingExecutionSpecification();
 
         /**
          * The meta object literal for the '{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.DestructionOccurenceSpecificationImpl <em>Destruction Occurence Specification</em>}' class.

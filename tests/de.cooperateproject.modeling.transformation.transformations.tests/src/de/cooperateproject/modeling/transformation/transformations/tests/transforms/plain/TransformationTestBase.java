@@ -12,6 +12,7 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.PatternLayout;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -23,6 +24,7 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.TransformationExecutor.BlackboxRegistry;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
@@ -38,7 +40,7 @@ import de.cooperateproject.modeling.transformation.transformations.Activator;
 import de.cooperateproject.modeling.transformation.transformations.impl.Slf4JLogger;
 import de.cooperateproject.modeling.transformation.transformations.impl.Slf4JLogger.Level;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
-import de.cooperateproject.modeling.util.transformations.blackboxunits.ModelHelperBlackBoxLibrary;
+import de.cooperateproject.qvtoutils.blackbox.CooperateLibrary;
 
 public abstract class TransformationTestBase {
 
@@ -63,8 +65,9 @@ public abstract class TransformationTestBase {
             StylePackage.eINSTANCE.eClass();
             TextualCommonsPackage.eINSTANCE.eClass();
             org.eclipse.papyrus.infra.gmfdiag.style.StylePackage.eINSTANCE.eClass();
-
-            TransformationExecutor.BlackboxRegistry.INSTANCE.registerModules(ModelHelperBlackBoxLibrary.class);
+            BlackboxRegistry.INSTANCE.registerModule(CooperateLibrary.class,
+                    "de.cooperateproject.qvtoutils.CooperateLibrary", "CooperateLibrary",
+                    new String[] { EcorePackage.eNS_URI });
         }
     }
 

@@ -6,6 +6,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -27,5 +28,14 @@ public interface OccurenceSpecification<UMLOccurenceType extends OccurrenceSpeci
      * @generated
      */
     OccurenceReference<OccurenceSpecification<UMLOccurenceType>> getOccurenceReference();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getContainingExecutionSpecification(this);'"
+     * @generated
+     */
+    ExecutionSpecification getContainingExecutionSpecification();
 
 } // OccurenceSpecification

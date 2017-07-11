@@ -68,7 +68,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
      */
     public boolean mustHaveCorrespondingMessage(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
         /**
-         * 
+         *
          * inv mustHaveCorrespondingMessage:
          *   let
          *     severity : Integer[1] = 'ResponseMessage::mustHaveCorrespondingMessage'.getSeverity()
@@ -76,9 +76,11 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
          *     if severity <= 0
          *     then true
          *     else
-         *       let status : OclAny[?] = not self.getCorrespondingRequest()->isEmpty()
+         *       let
+         *         result : Types::Boolean[?] = not self.getCorrespondingRequest()
+         *         ->isEmpty()
          *       in
-         *         'ResponseMessage::mustHaveCorrespondingMessage'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)
+         *         'ResponseMessage::mustHaveCorrespondingMessage'.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
          *     endif
          */
         final /*@NonInvalid*/ Executor executor = PivotUtilInternal.getExecutor(this);
@@ -89,18 +91,11 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
             symbol_0 = ValueUtil.TRUE_VALUE;
         }
         else {
-            /*@Caught*/ /*@Nullable*/ Object CAUGHT_status;
-            try {
-                final /*@Thrown*/ StandardMessage getCorrespondingRequest = this.getCorrespondingRequest();
-                final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SequenceTables.SET_CLSSid_StandardMessage, getCorrespondingRequest);
-                final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
-                final /*@Thrown*/ Boolean status = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
-                CAUGHT_status = status;
-            }
-            catch (Exception e) {
-                CAUGHT_status = ValueUtil.createInvalidValue(e);
-            }
-            final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, CAUGHT_status, SequenceTables.INT_0).booleanValue();
+            final /*@NonInvalid*/ StandardMessage getCorrespondingRequest = this.getCorrespondingRequest();
+            final /*@NonInvalid*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(executor, SequenceTables.SET_CLSSid_StandardMessage, getCorrespondingRequest);
+            final /*@NonInvalid*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE.evaluate(oclAsSet).booleanValue();
+            final /*@NonInvalid*/ Boolean result = BooleanNotOperation.INSTANCE.evaluate(isEmpty);
+            final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE.evaluate(executor, TypeId.BOOLEAN, SequenceTables.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, SequenceTables.INT_0).booleanValue();
             symbol_0 = logDiagnostic;
         }
         return Boolean.TRUE == symbol_0;
@@ -117,7 +112,7 @@ public class ResponseMessageImpl extends MessageImpl implements ResponseMessage 
         switch (operationID) {
             case SequencePackage.RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST:
                 return getCorrespondingRequest();
-            case SequencePackage.RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4:
+            case SequencePackage.RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP:
                 return mustHaveCorrespondingMessage((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
         }
         return super.eInvoke(operationID, arguments);

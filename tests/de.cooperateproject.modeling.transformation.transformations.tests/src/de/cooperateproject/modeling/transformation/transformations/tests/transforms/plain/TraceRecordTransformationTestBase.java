@@ -33,7 +33,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 
 import de.cooperateproject.modeling.transformation.transformations.impl.DomainIndependentTransformationBase;
-import de.cooperateproject.modeling.transformation.transformations.tests.util.ModelComparator;
 
 /**
  * 
@@ -95,8 +94,8 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         repairTransformationTrace(traceModel);
     }
 
-    protected static void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
-        Comparison comparisonResult = ModelComparator.compare(expectedModel.getContents().get(0),
+    protected void repairTransformationTrace(ModelExtent expectedModel, ModelExtent actualModel, Trace trace) {
+        Comparison comparisonResult = modelComparator.compare(expectedModel.getContents().get(0),
                 actualModel.getContents().get(0));
         ImmutableList<EObject> allContents = ImmutableList.copyOf(trace.getTraceContent().get(0).eAllContents());
         allContents.stream().filter(o -> o instanceof EValue).map(o -> (EValue) o)

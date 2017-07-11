@@ -61,7 +61,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -419,7 +421,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         isInited = true;
 
         // Initialize simple dependencies
+        EcorePackage.eINSTANCE.eClass();
         TextualCommonsPackage.eINSTANCE.eClass();
+        TypesPackage.eINSTANCE.eClass();
+        UMLPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
         theSequencePackage.createPackageContents();
@@ -693,7 +698,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4() {
+    public EOperation getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map() {
         return responseMessageEClass.getEOperations().get(1);
     }
 
@@ -731,6 +736,15 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
      */
     public EOperation getOccurenceSpecification__GetOccurenceReference() {
         return occurenceSpecificationEClass.getEOperations().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EOperation getOccurenceSpecification__GetContainingExecutionSpecification() {
+        return occurenceSpecificationEClass.getEOperations().get(1);
     }
 
     /**
@@ -1381,7 +1395,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         responseMessageEClass = createEClass(RESPONSE_MESSAGE);
         createEOperation(responseMessageEClass, RESPONSE_MESSAGE___GET_CORRESPONDING_REQUEST);
-        createEOperation(responseMessageEClass, RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP_4);
+        createEOperation(responseMessageEClass, RESPONSE_MESSAGE___MUST_HAVE_CORRESPONDING_MESSAGE__DIAGNOSTICCHAIN_MAP);
 
         createMessageEClass = createEClass(CREATE_MESSAGE);
 
@@ -1389,6 +1403,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         occurenceSpecificationEClass = createEClass(OCCURENCE_SPECIFICATION);
         createEOperation(occurenceSpecificationEClass, OCCURENCE_SPECIFICATION___GET_OCCURENCE_REFERENCE);
+        createEOperation(occurenceSpecificationEClass, OCCURENCE_SPECIFICATION___GET_CONTAINING_EXECUTION_SPECIFICATION);
 
         destructionOccurenceSpecificationEClass = createEClass(DESTRUCTION_OCCURENCE_SPECIFICATION);
         createEReference(destructionOccurenceSpecificationEClass, DESTRUCTION_OCCURENCE_SPECIFICATION__TARGET);
@@ -1732,7 +1747,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         initEOperation(getResponseMessage__GetCorrespondingRequest(), this.getStandardMessage(), "getCorrespondingRequest", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-        op = initEOperation(getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4(), ecorePackage.getEBoolean(), "mustHaveCorrespondingMessage", 0, 1, IS_UNIQUE, IS_ORDERED);
+        op = initEOperation(getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "mustHaveCorrespondingMessage", 0, 1, IS_UNIQUE, IS_ORDERED);
         addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(ecorePackage.getEMap());
         g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1754,6 +1769,8 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g3 = createEGenericType(occurenceSpecificationEClass_UMLOccurenceType);
         g2.getETypeArguments().add(g3);
         initEOperation(op, g1);
+
+        initEOperation(getOccurenceSpecification__GetContainingExecutionSpecification(), theUMLPackage.getExecutionSpecification(), "getContainingExecutionSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
 
         initEClass(destructionOccurenceSpecificationEClass, DestructionOccurenceSpecification.class, "DestructionOccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDestructionOccurenceSpecification_Target(), this.getActor(), null, "target", null, 0, 1, DestructionOccurenceSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1926,30 +1943,10 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         createResource(eNS_URI);
 
         // Create annotations
-        // http://www.eclipse.org/OCL/Import
-        createImportAnnotations();
         // http://www.eclipse.org/emf/2002/Ecore
         createEcoreAnnotations();
         // http://www.eclipse.org/emf/2002/GenModel
         createGenModelAnnotations();
-    }
-
-    /**
-     * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void createImportAnnotations() {
-        String source = "http://www.eclipse.org/OCL/Import";	
-        addAnnotation
-          (this, 
-           source, 
-           new String[] {
-             "ecore", "http://www.eclipse.org/emf/2002/Ecore",
-             "txtCmn", "../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#/",
-             "uml", "../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"
-           });
     }
 
     /**
@@ -2090,16 +2087,22 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
              "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getSynchronousMessageCorrespondingToResponse(this);"
            });	
         addAnnotation
-          (getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map_4(), 
+          (getResponseMessage__MustHaveCorrespondingMessage__DiagnosticChain_Map(), 
            source, 
            new String[] {
-             "body", "/**\n * \n * inv mustHaveCorrespondingMessage:\n *   let\n *     severity : Integer[1] = \'ResponseMessage::mustHaveCorrespondingMessage\'.getSeverity()\n *   in\n *     if severity <= 0\n *     then true\n *     else\n *       let status : OclAny[?] = not self.getCorrespondingRequest()->isEmpty()\n *       in\n *         \'ResponseMessage::mustHaveCorrespondingMessage\'.logDiagnostic(self, null, diagnostics, context, null, severity, status, 0)\n *     endif\n */\nfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.evaluation.Executor%> executor = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getExecutor(this);\nfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.values.IntegerValue%> severity_0 = <%org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation%>.INSTANCE.evaluate(executor, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage);\nfinal /*@NonInvalid*/ boolean le = <%org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation%>.INSTANCE.evaluate(executor, severity_0, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n/*@NonInvalid*/ boolean symbol_0;\nif (le) {\n    symbol_0 = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.TRUE_VALUE;\n}\nelse {\n    /*@Caught*/ /*@Nullable*/ <%java.lang.Object%> CAUGHT_status;\n    try {\n        final /*@Thrown*/ <%de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage%> getCorrespondingRequest = this.getCorrespondingRequest();\n        final /*@Thrown*/ <%org.eclipse.ocl.pivot.values.SetValue%> oclAsSet = <%org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation%>.INSTANCE.evaluate(executor, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.SET_CLSSid_StandardMessage, getCorrespondingRequest);\n        final /*@Thrown*/ boolean isEmpty = <%org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation%>.INSTANCE.evaluate(oclAsSet).booleanValue();\n        final /*@Thrown*/ <%java.lang.Boolean%> status = <%org.eclipse.ocl.pivot.library.logical.BooleanNotOperation%>.INSTANCE.evaluate(isEmpty);\n        CAUGHT_status = status;\n    }\n    catch (<%java.lang.Exception%> e) {\n        CAUGHT_status = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.createInvalidValue(e);\n    }\n    final /*@NonInvalid*/ boolean logDiagnostic = <%org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation%>.INSTANCE.evaluate(executor, <%org.eclipse.ocl.pivot.ids.TypeId%>.BOOLEAN, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, null, diagnostics, context, null, severity_0, CAUGHT_status, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n    symbol_0 = logDiagnostic;\n}\nreturn Boolean.TRUE == symbol_0;"
+             "body", "/**\n *\n * inv mustHaveCorrespondingMessage:\n *   let\n *     severity : Integer[1] = \'ResponseMessage::mustHaveCorrespondingMessage\'.getSeverity()\n *   in\n *     if severity <= 0\n *     then true\n *     else\n *       let\n *         result : Types::Boolean[?] = not self.getCorrespondingRequest()\n *         ->isEmpty()\n *       in\n *         \'ResponseMessage::mustHaveCorrespondingMessage\'.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)\n *     endif\n */\nfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.evaluation.Executor%> executor = <%org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal%>.getExecutor(this);\nfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.values.IntegerValue%> severity_0 = <%org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation%>.INSTANCE.evaluate(executor, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage);\nfinal /*@NonInvalid*/ boolean le = <%org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation%>.INSTANCE.evaluate(executor, severity_0, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n/*@NonInvalid*/ boolean symbol_0;\nif (le) {\n\tsymbol_0 = <%org.eclipse.ocl.pivot.utilities.ValueUtil%>.TRUE_VALUE;\n}\nelse {\n\tfinal /*@NonInvalid*/ <%de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage%> getCorrespondingRequest = this.getCorrespondingRequest();\n\tfinal /*@NonInvalid*/ <%org.eclipse.ocl.pivot.values.SetValue%> oclAsSet = <%org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation%>.INSTANCE.evaluate(executor, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.SET_CLSSid_StandardMessage, getCorrespondingRequest);\n\tfinal /*@NonInvalid*/ boolean isEmpty = <%org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation%>.INSTANCE.evaluate(oclAsSet).booleanValue();\n\tfinal /*@NonInvalid*/ <%java.lang.Boolean%> result = <%org.eclipse.ocl.pivot.library.logical.BooleanNotOperation%>.INSTANCE.evaluate(isEmpty);\n\tfinal /*@NonInvalid*/ boolean logDiagnostic = <%org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation%>.INSTANCE.evaluate(executor, <%org.eclipse.ocl.pivot.ids.TypeId%>.BOOLEAN, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.STR_ResponseMessage_c_c_mustHaveCorrespondingMessage, this, (Object)null, diagnostics, context, (Object)null, severity_0, result, <%de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables%>.INT_0).booleanValue();\n\tsymbol_0 = logDiagnostic;\n}\nreturn Boolean.TRUE == symbol_0;"
            });	
         addAnnotation
           (getOccurenceSpecification__GetOccurenceReference(), 
            source, 
            new String[] {
              "body", "return null;"
+           });	
+        addAnnotation
+          (getOccurenceSpecification__GetContainingExecutionSpecification(), 
+           source, 
+           new String[] {
+             "body", "return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.getContainingExecutionSpecification(this);"
            });	
         addAnnotation
           (getDestructionOccurenceSpecification_Target(), 

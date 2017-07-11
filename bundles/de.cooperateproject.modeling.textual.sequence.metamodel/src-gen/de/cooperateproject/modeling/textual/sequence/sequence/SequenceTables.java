@@ -58,50 +58,51 @@ public class SequenceTables
 	/**
 	 *	Constants used by auto-generated code.
 	 */
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.cooperateproject.de/modeling/textual/sequence/Sequence", null, de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/uml2/5.0.0/UML", null, org.eclipse.uml2.uml.UMLPackage.eINSTANCE);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Actor = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Actor", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActorClassifierMapping = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ActorClassifierMapping", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_BiPointInTimeTimeIntervalSelector = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("BiPointInTimeTimeIntervalSelector", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Classifier = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getClassId("Classifier", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Condition = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Condition", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_DestructionOccurenceSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("DestructionOccurenceSpecification", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_DurationConstraint = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("DurationConstraint", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_DurationObservation = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("DurationObservation", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExplicitArrivalOccurenceReference = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ExplicitArrivalOccurenceReference", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExplicitArrivalOccurenceSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ExplicitArrivalOccurenceSpecification", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Fragment = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Fragment", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_FragmentSequence = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("FragmentSequence", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Interaction = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getClassId("Interaction", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Message = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Message", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MultipleRegionContainer = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("MultipleRegionContainer", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_NonInstantaneousFragment = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("NonInstantaneousFragment", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OccurenceReference = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("OccurenceReference", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OccurenceSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("OccurenceSpecification", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OrderedFragmentContainer = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("OrderedFragmentContainer", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PointInTime = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("PointInTime", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PointInTimeSelector = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("PointInTimeSelector", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ResponseMessage = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ResponseMessage", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_RootPackage = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("RootPackage", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SequenceDiagram = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("SequenceDiagram", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleRegionContainer = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("SingleRegionContainer", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_StandardMessage = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("StandardMessage", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TimeConstraint = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("TimeConstraint", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TimeIntervalSelector = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("TimeIntervalSelector", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TimeObservation = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("TimeObservation", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EEList = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getDataTypeId("EEList", 0);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ActorType = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getEnumerationId("ActorType");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_InteractionOperatorKind = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getEnumerationId("InteractionOperatorKind");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_MessageType = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getEnumerationId("MessageType");
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
-    public static final /*@NonInvalid*/ java.lang.String STR_ResponseMessage_c_c_mustHaveCorrespondingMessage = "ResponseMessage::mustHaveCorrespondingMessage";
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_DestructionOccurenceSpecification = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_DestructionOccurenceSpecification);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_Message = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Message);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Actor = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Actor);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Fragment = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Fragment);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_OrderedFragmentContainer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_OrderedFragmentContainer);
-    public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_StandardMessage = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_StandardMessage);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.cooperateproject.de/modeling/textual/sequence/Sequence", null, de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage.eINSTANCE);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/ocl/2015/Orphanage", "orphanage", null);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.NsURIPackageId PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML = org.eclipse.ocl.pivot.ids.IdManager.getNsURIPackageId("http://www.eclipse.org/uml2/5.0.0/UML", null, org.eclipse.uml2.uml.UMLPackage.eINSTANCE);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Actor = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Actor", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ActorClassifierMapping = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ActorClassifierMapping", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_BiPointInTimeTimeIntervalSelector = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("BiPointInTimeTimeIntervalSelector", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Classifier = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getClassId("Classifier", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Condition = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Condition", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_DestructionOccurenceSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("DestructionOccurenceSpecification", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_DurationConstraint = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("DurationConstraint", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_DurationObservation = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("DurationObservation", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExecutionSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getClassId("ExecutionSpecification", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExplicitArrivalOccurenceReference = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ExplicitArrivalOccurenceReference", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ExplicitArrivalOccurenceSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ExplicitArrivalOccurenceSpecification", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Fragment = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Fragment", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_FragmentSequence = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("FragmentSequence", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Interaction = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getClassId("Interaction", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_Message = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("Message", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_MultipleRegionContainer = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("MultipleRegionContainer", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_NonInstantaneousFragment = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("NonInstantaneousFragment", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OccurenceReference = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("OccurenceReference", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OccurenceSpecification = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("OccurenceSpecification", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_OrderedFragmentContainer = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("OrderedFragmentContainer", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PointInTime = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getClassId("PointInTime", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_PointInTimeSelector = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("PointInTimeSelector", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_ResponseMessage = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("ResponseMessage", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_RootPackage = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("RootPackage", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SequenceDiagram = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("SequenceDiagram", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_SingleRegionContainer = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("SingleRegionContainer", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_StandardMessage = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("StandardMessage", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TimeConstraint = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("TimeConstraint", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TimeIntervalSelector = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("TimeIntervalSelector", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.ClassId CLSSid_TimeObservation = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getClassId("TimeObservation", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.DataTypeId DATAid_EEList = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_ocl_s_2015_s_Orphanage.getDataTypeId("EEList", 0);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_ActorType = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getEnumerationId("ActorType");
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_InteractionOperatorKind = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_eclipse_org_s_uml2_s_5_0_0_s_UML.getEnumerationId("InteractionOperatorKind");
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.EnumerationId ENUMid_MessageType = de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.PACKid_http_c_s_s_www_cooperateproject_de_s_modeling_s_textual_s_sequence_s_Sequence.getEnumerationId("MessageType");
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.values.IntegerValue INT_0 = org.eclipse.ocl.pivot.utilities.ValueUtil.integerValueOf("0");
+	public static final /*@NonInvalid*/ java.lang.String STR_ResponseMessage_c_c_mustHaveCorrespondingMessage = "ResponseMessage::mustHaveCorrespondingMessage";
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_DestructionOccurenceSpecification = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_DestructionOccurenceSpecification);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId BAG_CLSSid_Message = org.eclipse.ocl.pivot.ids.TypeId.BAG.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Message);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Actor = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Actor);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_Fragment = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_Fragment);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId ORD_CLSSid_OrderedFragmentContainer = org.eclipse.ocl.pivot.ids.TypeId.ORDERED_SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_OrderedFragmentContainer);
+	public static final /*@NonInvalid*/ org.eclipse.ocl.pivot.ids.CollectionTypeId SET_CLSSid_StandardMessage = org.eclipse.ocl.pivot.ids.TypeId.SET.getSpecializedId(de.cooperateproject.modeling.textual.sequence.sequence.SequenceTables.CLSSid_StandardMessage);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -633,6 +634,10 @@ public class SequenceTables
 
 	/**
 	 *	The parameter lists shared by operations.
+	 *
+	 * @noextend This class is not intended to be subclassed by clients.
+	 * @noinstantiate This class is not intended to be instantiated by clients.
+	 * @noreference This class is not intended to be referenced by clients.
 	 */
 	public static class Parameters {
 		static {
@@ -653,6 +658,10 @@ public class SequenceTables
 
 	/**
 	 *	The operation descriptors for each operation of each type.
+	 *
+	 * @noextend This class is not intended to be subclassed by clients.
+	 * @noinstantiate This class is not intended to be instantiated by clients.
+	 * @noreference This class is not intended to be referenced by clients.
 	 */
 	public static class Operations {
 		static {
@@ -697,8 +706,10 @@ public class SequenceTables
 		public static final /*@NonNull*/ ExecutorOperation _OccurenceReference__getOccurenceSpecification = new ExecutorOperation("getOccurenceSpecification", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OccurenceReference,
 			0, TemplateParameters.EMPTY_LIST, null);
 
-		public static final /*@NonNull*/ ExecutorOperation _OccurenceSpecification__getOccurenceReference = new ExecutorOperation("getOccurenceReference", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OccurenceSpecification,
+		public static final /*@NonNull*/ ExecutorOperation _OccurenceSpecification__getContainingExecutionSpecification = new ExecutorOperation("getContainingExecutionSpecification", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OccurenceSpecification,
 			0, TemplateParameters.EMPTY_LIST, null);
+		public static final /*@NonNull*/ ExecutorOperation _OccurenceSpecification__getOccurenceReference = new ExecutorOperation("getOccurenceReference", TypeUtil.EMPTY_PARAMETER_TYPES, Types._OccurenceSpecification,
+			1, TemplateParameters.EMPTY_LIST, null);
 
 		public static final /*@NonNull*/ ExecutorOperation _ResponseMessage__getCorrespondingRequest = new ExecutorOperation("getCorrespondingRequest", TypeUtil.EMPTY_PARAMETER_TYPES, Types._ResponseMessage,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -720,6 +731,10 @@ public class SequenceTables
 
 	/**
 	 *	The property descriptors for each property of each type.
+	 *
+	 * @noextend This class is not intended to be subclassed by clients.
+	 * @noinstantiate This class is not intended to be instantiated by clients.
+	 * @noreference This class is not intended to be referenced by clients.
 	 */
 	public static class Properties {
 		static {
@@ -1886,6 +1901,7 @@ public class SequenceTables
 			SequenceTables.Operations._Fragment__getContainingSequence /* getContainingSequence() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _DestructionOccurenceSpecification__OccurenceSpecification = {
+			SequenceTables.Operations._OccurenceSpecification__getContainingExecutionSpecification /* getContainingExecutionSpecification() */,
 			SequenceTables.Operations._OccurenceSpecification__getOccurenceReference /* getOccurenceReference() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _DestructionOccurenceSpecification__OclAny = {
@@ -2027,6 +2043,7 @@ public class SequenceTables
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ExplicitArrivalOccurenceSpecification__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ExplicitArrivalOccurenceSpecification__OccurenceSpecification = {
+			SequenceTables.Operations._OccurenceSpecification__getContainingExecutionSpecification /* getContainingExecutionSpecification() */,
 			SequenceTables.Operations._ExplicitArrivalOccurenceSpecification__getOccurenceReference /* getOccurenceReference() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ExplicitArrivalOccurenceSpecification__OclAny = {
@@ -2170,6 +2187,7 @@ public class SequenceTables
 			SequenceTables.Operations._ImplicitMessageOccurenceSpecification__getOccurenceSpecification /* getOccurenceSpecification() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ImplicitMessageOccurenceSpecification__OccurenceSpecification = {
+			SequenceTables.Operations._OccurenceSpecification__getContainingExecutionSpecification /* getContainingExecutionSpecification() */,
 			SequenceTables.Operations._ImplicitMessageOccurenceSpecification__getOccurenceReference /* getOccurenceReference() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _ImplicitMessageOccurenceSpecification__OclAny = {
@@ -2460,6 +2478,7 @@ public class SequenceTables
 		};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OccurenceSpecification__OccurenceSpecification = {
+			SequenceTables.Operations._OccurenceSpecification__getContainingExecutionSpecification /* getContainingExecutionSpecification() */,
 			SequenceTables.Operations._OccurenceSpecification__getOccurenceReference /* getOccurenceReference() */
 		};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OccurenceSpecification__Commentable = {};
@@ -3401,11 +3420,7 @@ public class SequenceTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Actor = {
 			SequenceTables.Properties._Actor__actorType,
 			SequenceTables.Properties._Actor__deferred,
-			SequenceTables.Properties._Actor__typeMapping,
-			SequenceTables.Properties._Actor__DestructionOccurenceSpecification__target,
-			SequenceTables.Properties._Actor__Message__left,
-			SequenceTables.Properties._Actor__Message__right,
-			SequenceTables.Properties._Actor__SequenceDiagram__actors
+			SequenceTables.Properties._Actor__typeMapping
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActorClassifierMapping = {
@@ -3417,71 +3432,56 @@ public class SequenceTables
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ActorType = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Alternative = {
-			SequenceTables.Properties._MultipleRegionContainer__regions,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._MultipleRegionContainer__regions
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _BiPointInTimeTimeIntervalSelector = {
 			SequenceTables.Properties._BiPointInTimeTimeIntervalSelector__end,
-			SequenceTables.Properties._BiPointInTimeTimeIntervalSelector__start,
-			SequenceTables.Properties._TimeIntervalSelector__DurationConstraint__interval,
-			SequenceTables.Properties._TimeIntervalSelector__DurationObservation__interval
+			SequenceTables.Properties._BiPointInTimeTimeIntervalSelector__start
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CoRegion = {
-			SequenceTables.Properties._MultipleRegionContainer__regions,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._MultipleRegionContainer__regions
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CombinedFragment = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CombinedFragment = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Condition = {
-			SequenceTables.Properties._Condition__condition,
-			SequenceTables.Properties._Condition__OrderedFragmentContainer__condition
+			SequenceTables.Properties._Condition__condition
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Constraint = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Constraint = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _CreateMessage = {
 			SequenceTables.Properties._Message__arrivalEvent,
 			SequenceTables.Properties._Message__left,
 			SequenceTables.Properties._Message__right,
-			SequenceTables.Properties._Message__sendEvent,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._Message__sendEvent
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Critical = {
-			SequenceTables.Properties._SingleRegionContainer__region,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._SingleRegionContainer__region
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _DestructionMessage = {
 			SequenceTables.Properties._Message__arrivalEvent,
 			SequenceTables.Properties._Message__left,
 			SequenceTables.Properties._Message__right,
-			SequenceTables.Properties._Message__sendEvent,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._Message__sendEvent
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _DestructionOccurenceSpecification = {
-			SequenceTables.Properties._DestructionOccurenceSpecification__target,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._DestructionOccurenceSpecification__target
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _DurationConstraint = {
 			SequenceTables.Properties._DurationConstraint__duration,
-			SequenceTables.Properties._DurationConstraint__interval,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._DurationConstraint__interval
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _DurationObservation = {
 			SequenceTables.Properties._DurationObservation__duration,
-			SequenceTables.Properties._DurationObservation__interval,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._DurationObservation__interval
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ExplicitArrivalOccurenceReference = {
@@ -3489,105 +3489,77 @@ public class SequenceTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ExplicitArrivalOccurenceSpecification = {
-			SequenceTables.Properties._ExplicitArrivalOccurenceSpecification__explicitOccurenceReference,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._ExplicitArrivalOccurenceSpecification__explicitOccurenceReference
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Fragment = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Fragment = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _FragmentSequence = {
 			SequenceTables.Properties._FragmentSequence__fragments
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _FragmentTimeIntervalSelector = {
-			SequenceTables.Properties._FragmentTimeIntervalSelector__nonInstantaneousFragment,
-			SequenceTables.Properties._TimeIntervalSelector__DurationConstraint__interval,
-			SequenceTables.Properties._TimeIntervalSelector__DurationObservation__interval
+			SequenceTables.Properties._FragmentTimeIntervalSelector__nonInstantaneousFragment
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ImplicitMessageOccurenceSpecification = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ImplicitMessageOccurenceSpecification = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Loop = {
-			SequenceTables.Properties._SingleRegionContainer__region,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._SingleRegionContainer__region
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Message = {
 			SequenceTables.Properties._Message__arrivalEvent,
 			SequenceTables.Properties._Message__left,
 			SequenceTables.Properties._Message__right,
-			SequenceTables.Properties._Message__sendEvent,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._Message__sendEvent
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MessageType = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _MultipleRegionContainer = {
-			SequenceTables.Properties._MultipleRegionContainer__regions,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._MultipleRegionContainer__regions
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _NonInstantaneousFragment = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _NonInstantaneousFragment = {};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Observation = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Observation = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _OccurenceReference = {};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _OccurenceSpecification = {
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _OccurenceSpecification = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Option = {
-			SequenceTables.Properties._SingleRegionContainer__region,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._SingleRegionContainer__region
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _OrderedFragmentContainer = {
 			SequenceTables.Properties._OrderedFragmentContainer__condition,
-			SequenceTables.Properties._FragmentSequence__fragments,
-			SequenceTables.Properties._OrderedFragmentContainer__MultipleRegionContainer__regions,
-			SequenceTables.Properties._OrderedFragmentContainer__SingleRegionContainer__region
+			SequenceTables.Properties._FragmentSequence__fragments
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Parallel = {
-			SequenceTables.Properties._MultipleRegionContainer__regions,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._MultipleRegionContainer__regions
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _PointInTime = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _PointInTimeSelector = {
-			SequenceTables.Properties._PointInTimeSelector__pointInTime,
-			SequenceTables.Properties._PointInTimeSelector__BiPointInTimeTimeIntervalSelector__end,
-			SequenceTables.Properties._PointInTimeSelector__BiPointInTimeTimeIntervalSelector__start,
-			SequenceTables.Properties._PointInTimeSelector__TimeConstraint__event,
-			SequenceTables.Properties._PointInTimeSelector__TimeObservation__event
+			SequenceTables.Properties._PointInTimeSelector__pointInTime
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _Reference = {
-			SequenceTables.Properties._Reference__reference,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._Reference__reference
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _ResponseMessage = {
 			SequenceTables.Properties._Message__arrivalEvent,
 			SequenceTables.Properties._Message__left,
 			SequenceTables.Properties._Message__right,
-			SequenceTables.Properties._Message__sendEvent,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._Message__sendEvent
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _RootPackage = {
-			SequenceTables.Properties._RootPackage__SequenceDiagram__rootPackage
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _RootPackage = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SequenceDiagram = {
 			SequenceTables.Properties._SequenceDiagram__actors,
@@ -3597,8 +3569,7 @@ public class SequenceTables
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _SingleRegionContainer = {
-			SequenceTables.Properties._SingleRegionContainer__region,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._SingleRegionContainer__region
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _StandardMessage = {
@@ -3606,25 +3577,19 @@ public class SequenceTables
 			SequenceTables.Properties._Message__left,
 			SequenceTables.Properties._Message__right,
 			SequenceTables.Properties._Message__sendEvent,
-			SequenceTables.Properties._StandardMessage__type,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._StandardMessage__type
 		};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _TimeConstraint = {
 			SequenceTables.Properties._TimeConstraint__event,
-			SequenceTables.Properties._TimeConstraint__time,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._TimeConstraint__time
 		};
 
-		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _TimeIntervalSelector = {
-			SequenceTables.Properties._TimeIntervalSelector__DurationConstraint__interval,
-			SequenceTables.Properties._TimeIntervalSelector__DurationObservation__interval
-		};
+		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _TimeIntervalSelector = {};
 
 		private static final /*@NonNull*/ ExecutorProperty /*@NonNull*/ [] _TimeObservation = {
 			SequenceTables.Properties._TimeObservation__event,
-			SequenceTables.Properties._TimeObservation__time,
-			SequenceTables.Properties._Fragment__FragmentSequence__fragments
+			SequenceTables.Properties._TimeObservation__time
 		};
 
 		/**

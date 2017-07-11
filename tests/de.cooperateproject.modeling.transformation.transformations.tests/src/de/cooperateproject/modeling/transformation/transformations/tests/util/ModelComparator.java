@@ -14,7 +14,6 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.DifferenceSource;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.Match;
-import org.eclipse.emf.compare.diff.DefaultDiffEngine;
 import org.eclipse.emf.compare.diff.DiffBuilder;
 import org.eclipse.emf.compare.diff.IDiffEngine;
 import org.eclipse.emf.compare.diff.IDiffProcessor;
@@ -133,21 +132,27 @@ public class ModelComparator {
 
     };
 
-    private static final Collection<EAttribute> IGNORED_EATTRIBUTES = createIgnoredEAttributes();
-    private static final Collection<EClass> IGNORED_ECLASSES = createIgnoredEClasses();
+    private final Collection<EAttribute> IGNORED_EATTRIBUTES = createIgnoredEAttributes();
+    private final Collection<EClass> IGNORED_ECLASSES = createIgnoredEClasses();
+    private ModelComparisonFactory comparisonFactory;
 
-    public static Comparison compareStrict(EObject expected, EObject actual) {
+    public ModelComparator(ModelComparisonFactory comparisonFactory) {
+        this.comparisonFactory = comparisonFactory;
+        // TODO Auto-generated constructor stub
+    }
+
+    public Comparison compareStrict(EObject expected, EObject actual) {
         DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
         return EMFCompare.builder().build().compare(scope);
     }
 
-    public static Comparison compare(EObject expected, EObject actual) {
+    public Comparison compare(EObject expected, EObject actual) {
         DefaultComparisonScope scope = new DefaultComparisonScope(expected, actual, null);
         scope.setEObjectContentFilter(o -> IGNORED_ECLASSES.stream().allMatch(c -> !c.isSuperTypeOf(o.eClass())));
         return createComparator().compare(scope);
     }
 
-    private static EMFCompare createComparator() {
+    private EMFCompare createComparator() {
         // customize diff processor
         IDiffProcessor customDiffProcessor = new DiffBuilder() {
             @Override
@@ -167,7 +172,7 @@ public class ModelComparator {
             }
 
         };
-        IDiffEngine diffEngine = new DefaultDiffEngine(customDiffProcessor);
+        IDiffEngine diffEngine = comparisonFactory.createEMFCompareDiffEngine(customDiffProcessor);
 
         // customize matcher
         IMatchEngine.Factory.Registry matchEngineRegistry = null;
@@ -212,6 +217,8 @@ public class ModelComparator {
         filter.add(NotationPackage.eINSTANCE.getSize_Height());
         filter.add(NotationPackage.eINSTANCE.getSize_Width());
         filter.add(NotationPackage.eINSTANCE.getRelativeBendpoints_Points());
+        filter.add(NotationPackage.eINSTANCE.getRoutingStyle_Routing());
+        filter.add(NotationPackage.eINSTANCE.getFillStyle_FillColor());
 
         return filter;
     }

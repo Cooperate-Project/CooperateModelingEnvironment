@@ -1,15 +1,31 @@
 package de.cooperateproject.modeling.textual.sequence.sequence.util;
 
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
+import com.google.common.collect.Collections2;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Streams;
 import de.cooperateproject.modeling.textual.sequence.sequence.Alternative;
 import de.cooperateproject.modeling.textual.sequence.sequence.CoRegion;
 import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment;
@@ -28,6 +44,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage;
+import de.cooperateproject.modeling.textual.sequence.sequence.impl.OccurenceSpecificationImpl;
 
 public class SequenceUtils {
     private SequenceUtils() {
@@ -177,6 +194,39 @@ public class SequenceUtils {
     
     public static InteractionOperatorKind getInteractionOperatorKindOfCombinedFragment(CombinedFragment fragment) {
         return COMBINED_FRAGMENT_KIND_SWITCH.doSwitch(fragment);
+    }
+
+    public static ExecutionSpecification getContainingExecutionSpecification(
+            OccurenceSpecification<? extends OccurrenceSpecification> occurenceSpecification) {
+        OccurrenceSpecification spec = occurenceSpecification.getReferencedElement();
+        if (spec != null) {
+            EObject container = EcoreUtil.getRootContainer(spec);
+            
+            AtomicInteger counter = new AtomicInteger(0);
+            Map<OccurrenceSpecification, Integer> occurrences = Streams.stream(container.eAllContents())
+                    .filter(UMLPackage.eINSTANCE.getOccurrenceSpecification()::isInstance)
+                    .map(OccurrenceSpecification.class::cast)
+                    .collect(Collectors.toMap(Function.identity(), (c)->{return counter.incrementAndGet();}));
+            
+            Comparator<ExecutionSpecification> executionStartComparator = new Comparator<ExecutionSpecification>() {
+                @Override
+                public int compare(ExecutionSpecification o1, ExecutionSpecification o2) {
+                    return occurrences.get(o1.getStart()).compareTo(occurrences.get(o2.getStart()));
+                }
+            };
+            
+            int specIndex = occurrences.get(spec);
+            return Streams.stream(container.eAllContents())
+                .filter(UMLPackage.eINSTANCE.getExecutionSpecification()::isInstance)
+                .map(ExecutionSpecification.class::cast)
+                .filter(exspec -> exspec.getCovereds().contains(spec.getCovered()))
+                .sorted(executionStartComparator)
+                .reduce((o, n) -> {
+                    return occurrences.get(n.getStart()) <= specIndex 
+                            && occurrences.get(n.getFinish()) >= specIndex ? n : o;
+                }).get();
+        }
+        return null;
     }
 
 }

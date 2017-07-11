@@ -3,22 +3,26 @@ library TransformationUtils_Sequence;
 import TransformationUtils;
 
 property PAPYRUS_NOTATION_DIAGRAM_SEQUENCE: String = "PapyrusUMLSequenceDiagram";
-property PAPYRUS_NOTATION_SHAPE_INTERACTION : String = "Interaction_Shape";
-property PAPYRUS_NOTATION_NAMELABEL_INTERACTION: String = "Interaction_NameLabel";
-property PAPYRUS_NOTATION_SUBFRAGMENT_COMPARTMENT_INTERACTION: String = "Interaction_SubfragmentCompartment";
-property PAPYRUS_NOTATION_SHAPE_LIFELINE: String = "Lifeline_Shape";
-property PAPYRUS_NOTATION_NAMELABEL_LIFELINE: String = "Lifeline_NameLabel";
 property PAPYRUS_NOTATION_COMPARTEMENT_SHAPE_DISPLAY: String = "compartment_shape_display";
-property PAPYRUS_NOTATION_BEHAVIOR_EXECUTION_SPECIFICATION_SHAPE: String = "BehaviorExecutionSpecification_Shape";
-property PAPYRUS_NOTATION_BEHAVIOR_EXECUTION_SPECIFICATION_BEHAVIOR: String = "BehaviorExecutionSpecification_Behavior";
 
-property PAPYRUS_NOTATION_SHAPE_DESTRUCTION_OCCURRENCE_SPECIFICATION: String = "DestructionOccurrenceSpecification_Shape";
+property PAPYRUS_GMFSTYLE_DIAGRAM_KIND_ID: String = 'org.eclipse.papyrus.uml.diagram.sequence';
 
-
+property PAPYRUS_NOTATION_BEHAVIOR: String = "Behavior";
 property PAPYRUS_NOTATION_EDGE: String = "Edge";
+property PAPYRUS_NOTATION_GUARD: String = "Guard";
 property PAPYRUS_NOTATION_LABEL_NAME: String = "NameLabel";
 property PAPYRUS_NOTATION_LABEL_STEREOTYPE: String = "StereotypeLabel";
+property PAPYRUS_NOTATION_SHAPE: String = "Shape";
+property PAPYRUS_NOTATION_SUBFRAGMENT_COMPARTMENT: String = "SubfragmentCompartment";
 
-property PAPYRUS_NOTATION_TYPE_MESSAGE_SYNC: String = "Message_Synch";
+
+property PAPYRUS_NOTATION_TYPE_BEHAVIOR_EXECUTION_SPECIFICATION: String = "BehaviorExecutionSpecification";
+property PAPYRUS_NOTATION_TYPE_COMBINED_FRAGMENT: String = "CombinedFragment";
+property PAPYRUS_NOTATION_TYPE_DESTRUCTION_OCCURRENCE_SPECIFICATION: String = "DestructionOccurrenceSpecification";
+property PAPYRUS_NOTATION_TYPE_INTERACTION: String = "Interaction";
+property PAPYRUS_NOTATION_TYPE_INTERACTION_OPERAND: String = "InteractionOperand";
+property PAPYRUS_NOTATION_TYPE_LIFELINE: String = "Lifeline";
 property PAPYRUS_NOTATION_TYPE_MESSAGE_ASYNC: String = "Message_Asynch";
+property PAPYRUS_NOTATION_TYPE_MESSAGE_CREATE: String = "Message_Create";
 property PAPYRUS_NOTATION_TYPE_MESSAGE_REPLY: String = "Message_Reply";
+property PAPYRUS_NOTATION_TYPE_MESSAGE_SYNC: String = "Message_Synch";
