@@ -25,7 +25,9 @@
       <paletteRules xmi:id="_eH07gB5XEeaKs_GrNRbBjw" element="clazz.tool.property"/>
       <paletteRules xmi:id="_ixbhIB3ZEeaWluI_M9CcJQ" element="clazz.tool.realization"/>
       <paletteRules xmi:id="_i2Y5oB3ZEeaWluI_M9CcJQ" element="clazz.tool.generalization"/>
-      <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association"/>
+      <paletteRules xmi:id="_98BhUGZLEeek84eIY1oucg" permit="false" element="clazz.tool.associationclass"/>
+      <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association*"/>
+      <paletteRules xmi:id="_XwNGgGZLEeek84eIY1oucg" element="clazz.tool.packageimport"/>
       <paletteRules xmi:id="_Zu7qEB3SEeaWluI_M9CcJQ" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_JR-5AB3eEeaWluI_M9CcJQ" permit="false" element="createTimeObservation22CreationTool"/>
       <paletteRules xmi:id="_Ri5mUB3eEeaWluI_M9CcJQ" permit="false" element="createDurationObservation7CreationTool"/>
