@@ -18,7 +18,7 @@ class ClsAssociationMemberEndTypeFactory extends ClsAutomatedIssueResolutionFact
     }
 
     override hasIssueInternal(AssociationMemberEnd element) {
-        if (element.referencedElement !== null) {
+        if (element.hasReferencedElement) {
             return element.type.referencedElement != element.referencedElement.type
         }
         return false;
