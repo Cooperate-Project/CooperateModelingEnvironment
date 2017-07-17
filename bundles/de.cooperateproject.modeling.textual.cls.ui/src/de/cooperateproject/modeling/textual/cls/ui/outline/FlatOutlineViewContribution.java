@@ -40,8 +40,7 @@ public class FlatOutlineViewContribution extends AbstractFilterOutlineContributi
     private static final String ACTION_NAME = "Outline Hierarchy";
     private static final String ACTION_TOOLTIP = "Hierarchy/Flat";
     private static final String ACTION_DESCRIPTION = "Toggles beetween hierarchy and flat view";
-    private static final String ACTION_IMAGE_URL = "platform:/plugin/org.eclipse.team.ui/icons/full/elcl16/"
-            + "hierarchicalLayout.gif";
+    private static final String ACTION_IMAGE_URL = "platform:/plugin/org.eclipse.ui.ide/icons/full/elcl16/hierarchicalLayout.png";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FlatOutlineViewContribution.class);
 
