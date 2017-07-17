@@ -239,7 +239,7 @@
         lowerBound="1" eType="#//AggregationKind" transient="true" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="XtextAssociationMemberEndReferencedType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" transient="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments/>
       </eGenericType>

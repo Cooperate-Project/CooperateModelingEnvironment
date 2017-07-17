@@ -33,7 +33,7 @@ public interface XtextAssociationMemberEndReferencedType extends CDOObject {
      * @return the value of the '<em>Type</em>' reference.
      * @see #setType(Classifier)
      * @see de.cooperateproject.modeling.textual.cls.cls.ClsPackage#getXtextAssociationMemberEndReferencedType_Type()
-     * @model required="true"
+     * @model required="true" transient="true"
      * @generated
      */
     Classifier<?> getType();
