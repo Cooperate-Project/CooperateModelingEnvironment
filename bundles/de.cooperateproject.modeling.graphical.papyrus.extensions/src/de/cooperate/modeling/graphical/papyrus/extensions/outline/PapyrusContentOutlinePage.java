@@ -19,6 +19,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
+import de.cooperate.modeling.graphical.papyrus.extensions.outline.util.NOPPageLifeCycleEventsListener2;
+
 /**
  * Customized outline page that extends the existing abilities of the default outline of the Papyrus editor.
  */

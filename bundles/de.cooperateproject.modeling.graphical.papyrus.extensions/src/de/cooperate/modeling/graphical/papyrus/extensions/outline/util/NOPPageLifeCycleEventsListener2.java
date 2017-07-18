@@ -1,4 +1,4 @@
-package de.cooperate.modeling.graphical.papyrus.extensions.outline;
+package de.cooperate.modeling.graphical.papyrus.extensions.outline.util;
 
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener2;
