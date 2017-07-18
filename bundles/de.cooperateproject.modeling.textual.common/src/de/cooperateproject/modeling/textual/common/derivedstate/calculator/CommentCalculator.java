@@ -1,5 +1,9 @@
 package de.cooperateproject.modeling.textual.common.derivedstate.calculator;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.scoping.IScope;
@@ -9,13 +13,16 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 /**
  * State calculation for comments.
  */
-public class CommentCalculator extends AtomicStateProcessorExtensionBase<Comment> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class CommentCalculator extends AtomicDerivedStateProcessorBase<Comment> {
 
     @Inject
     private IGlobalScopeTypeQueryProvider globalScopeProvider;
@@ -28,7 +35,7 @@ public class CommentCalculator extends AtomicStateProcessorExtensionBase<Comment
     }
 
     @Override
-    protected Boolean applyTyped(Comment object) {
+    protected void applyTyped(Comment object) {
         UMLReferencingElement<?> realElement = object.getCommentedElement();
         if (realElement != null) {
             Element umlCommentedElement = realElement.getReferencedElement();
@@ -42,10 +49,14 @@ public class CommentCalculator extends AtomicStateProcessorExtensionBase<Comment
                     e -> (org.eclipse.uml2.uml.Comment) e.getEObjectOrProxy());
             if (Iterables.size(typedCandidates) == 1) {
                 object.setReferencedElement(Iterables.getFirst(typedCandidates, null));
-                return true;
+                return;
             }
         }
-        return false;
+    }
+
+    @Override
+    public Collection<Class<? extends EObject>> getReplacements() {
+        return Arrays.asList(UMLReferencingElement.class);
     }
 
 }

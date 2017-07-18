@@ -325,7 +325,7 @@
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -333,7 +333,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -341,7 +341,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator"
 			markerType="de.cooperateproject.modeling.textual.cls.ui.cls.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
@@ -349,40 +349,19 @@
 			</attribute>
 		</markerResolutionGenerator>
 	</extension>
-	<!-- Rename Refactoring -->
-	<extension point="org.eclipse.ui.handlers">
-		<handler 
-			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
-			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
-			<activeWhen>
-				<reference
-					definitionId="de.cooperateproject.modeling.textual.cls.Cls.Editor.opened">
-				</reference>
-			</activeWhen>
-		</handler>
-	</extension>
-	<extension point="org.eclipse.ui.menus">
-		<menuContribution
-			locationURI="popup:#TextEditorContext?after=group.edit">
-			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
-				style="push">
-				<visibleWhen checkEnabled="false">
-					<reference
-						definitionId="de.cooperateproject.modeling.textual.cls.Cls.Editor.opened">
-					</reference>
-				</visibleWhen>
-			</command>
-		</menuContribution>
-	</extension>
-	<extension point="org.eclipse.ui.preferencePages">
-		<page
-			category="de.cooperateproject.modeling.textual.cls.Cls"
-			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="de.cooperateproject.modeling.textual.cls.Cls.refactoring"
-			name="Refactoring">
-			<keywordReference id="de.cooperateproject.modeling.textual.cls.ui.keyword_Cls"/>
-		</page>
-	</extension>
+	<!-- Cooperate Refactoring -->
+	<extension
+	       point="de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.providers">
+	    <class
+	          class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.cls.ui.internal.ClsInjectorProvider">
+	    </class>
+	 </extension>
+	 <extension
+	       point="de.cooperateproject.modeling.textual.xtext.runtime.ui.refactoring.rename.filter">
+	    <class
+	          class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.cls.ui.refactoring.rename.ClsRenameUMLElementRefactoringFilter">
+	    </class>
+	 </extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="de.cooperateproject.modeling.textual.cls.Cls.compare.contentViewers"
 			class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"

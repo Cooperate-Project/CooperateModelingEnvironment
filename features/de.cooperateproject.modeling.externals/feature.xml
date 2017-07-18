@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.externals.feature"
       label="Cooperate Modeling Environment External Dependencies"
-      version="0.1.8.qualifier">
+      version="0.2.0.qualifier">
 
    <description>
       Dependencies of the Cooperate modeling environment to external libraries.
@@ -192,7 +192,7 @@
    </license>
 
    <plugin
-         id="org.apache.activemq.all"
+         id="org.apache.activemq.activemq-client"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -220,7 +220,7 @@
          unpack="false"/>
 
    <plugin
-         id="com.google.inject.multibindings.bundle"
+         id="org.jgrapht.core"
          download-size="0"
          install-size="0"
          version="0.0.0"

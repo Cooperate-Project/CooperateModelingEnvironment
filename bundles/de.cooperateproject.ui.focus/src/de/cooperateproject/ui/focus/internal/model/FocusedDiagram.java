@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +18,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.ui.focus.internal.history.HistoryElement;
@@ -27,16 +28,16 @@ import de.cooperateproject.ui.focus.internal.messaging.MessageHandler;
 import de.cooperateproject.ui.focus.internal.utils.LabelUtils;
 import de.cooperateproject.ui.focus.manager.IFocusManager;
 
-public class FocusedDiagram implements IFocusedDiagram {
+class FocusedDiagram implements IFocusedDiagram {
 
-    private static final Logger LOGGER = Logger.getLogger(FocusedDiagram.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FocusedDiagram.class);
     private final Collection<IHistoryChangedListener> historyChangedListeners = new HashSet<>();
     private final List<HistoryElement> history = new ArrayList<>();
     private final MessageHandler messageHandler = new MessageHandler();
     private final IFocusManager focusManager;
     private boolean mute;
 
-    public FocusedDiagram(IFocusManager focusManager) {
+    FocusedDiagram(IFocusManager focusManager) {
         this.focusManager = focusManager;
         this.mute = false;
     }

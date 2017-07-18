@@ -72,6 +72,24 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAbstract() {
+        eDynamicUnset(ClsPackage.CLASS__ABSTRACT, ClsPackage.Literals.CLASS__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAbstract() {
+        return eDynamicIsSet(ClsPackage.CLASS__ABSTRACT, ClsPackage.Literals.CLASS__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -105,7 +123,7 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.CLASS__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
+                unsetAbstract();
                 return;
         }
         super.eUnset(featureID);
@@ -120,7 +138,7 @@ public class ClassImpl extends ClassifierImpl<org.eclipse.uml2.uml.Class> implem
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ClsPackage.CLASS__ABSTRACT:
-                return isAbstract() != ABSTRACT_EDEFAULT;
+                return isSetAbstract();
         }
         return super.eIsSet(featureID);
     }

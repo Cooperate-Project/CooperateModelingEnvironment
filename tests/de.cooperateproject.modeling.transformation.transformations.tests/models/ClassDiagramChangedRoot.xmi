@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <cls:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cls="http://www.cooperateproject.de/modeling/textual/cls/Cls" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" title="Class Diagram">
-  <rootPackage name="RootElement.Some.Test.Pkg">
+  <rootPackage>
     <referencedElement xsi:type="uml:Package" href="ClassDiagramChangedRoot.uml#_gekboBhpEeeOyLfG8kq01A"/>
-      <classifiers xsi:type="cls:Class" name="Class1">
+      <classifiers xsi:type="cls:Class">
         <referencedElement xsi:type="uml:Class" href="ClassDiagramChangedRoot.uml#_oeyagBhpEeeOyLfG8kq01A"/>
       </classifiers>
   </rootPackage>

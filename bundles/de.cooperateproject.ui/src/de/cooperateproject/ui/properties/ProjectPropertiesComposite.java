@@ -24,6 +24,12 @@ import de.cooperateproject.ui.util.StringToNumberConverter;
 import de.cooperateproject.ui.wizards.projectnew.CDOCredentialsValidator;
 import de.cooperateproject.ui.wizards.projectnew.NonEmptyStringValidator;
 
+/**
+ * Composite used to request and validate connection information from the user.
+ * 
+ * @author seifermann, persch
+ *
+ */
 public class ProjectPropertiesComposite extends Composite {
     private DataBindingContext mBindingContext;
     private Text txtCDOHostname;
@@ -39,10 +45,16 @@ public class ProjectPropertiesComposite extends Composite {
     private static final int UPDATE_DELAY = 1000;
 
     /**
-     * Create the composite.
+     * Creates the composite.
      * 
      * @param parent
+     *            The parent composite.
      * @param style
+     *            Style which will be used.
+     * @param preferencesDTO
+     *            Stores connection information.
+     * @param validatorStatusListener
+     *            The IChangeListener used for the validator.
      */
     public ProjectPropertiesComposite(Composite parent, int style, ProjectPropertiesDTO preferencesDTO,
             IChangeListener validatorStatusListener) {
@@ -189,10 +201,20 @@ public class ProjectPropertiesComposite extends Composite {
         return bindingContext;
     }
 
+    /**
+     * Updates all model observable objects to reflect the current state of the
+     * target observable objects.
+     *
+     */
     public final void updateModels() {
         mBindingContext.updateModels();
     }
 
+    /**
+     * Updates all target observable objects to reflect the current state of the
+     * model observable objects.
+     *
+     */
     public final void updateTargets() {
         mBindingContext.updateTargets();
     }

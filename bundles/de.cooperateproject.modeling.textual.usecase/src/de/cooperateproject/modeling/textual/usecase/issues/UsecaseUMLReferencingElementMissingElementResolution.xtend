@@ -22,6 +22,7 @@ import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+import de.cooperateproject.modeling.textual.usecase.derivedstate.initializers.ExtendInitializer
 
 class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
@@ -40,7 +41,9 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		umlActor.name = element.name
 		umlActor.package = parent.referencedElement
 		umlActor.isAbstract = element.abstract
-		umlActor.setVisibility(element.visibility)
+		if (element.isSetVisibility) {
+			umlActor.setVisibility(element.visibility)
+		}
 		umlActor.handleAliasedElement(element);
 		
 		element.referencedElement = umlActor		
@@ -60,7 +63,9 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		val parent = element.eContainer as System
 		val umlUseCase = UMLFactory.eINSTANCE.createUseCase
 		umlUseCase.name = element.name
-		umlUseCase.setVisibility(element.visibility)
+		if (element.isSetVisibility) {
+			umlUseCase.setVisibility(element.visibility)
+		}
 		parent.referencedElement.ownedUseCases.add(umlUseCase)
 		umlUseCase.subjects += element.system.referencedElement
 		umlUseCase.isAbstract = element.abstract
@@ -85,7 +90,7 @@ class UsecaseUMLReferencingElementMissingElementResolution extends AutomatedIssu
 		umlExtend.extensionLocations += element.extensionLocation.referencedElement
 		val umlCondition = umlExtend.createCondition(null, UMLPackage.eINSTANCE.constraint)
 		val umlExpression = umlCondition.createSpecification(null, null, UMLPackage.eINSTANCE.opaqueExpression) as OpaqueExpression
-		umlExpression.languages += "Natural language"
+		umlExpression.languages += ExtendInitializer.CONDITION_LANGUAGE_NAME
 		umlExpression.bodies += element.condition
 		element.referencedElement = umlExtend
 	}

@@ -24,8 +24,6 @@ mapping notation::Diagram::diagramToRootPackage() : cls::Package {
 	var relevantEdges := self.findRelevantEdges();
 
 	referencedElement := self.element.oclAsType(uml::Package);
-	
-	name := self.element.oclAsType(uml::Package).getFullyQualifiedName();	
 	classifiers += self.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_REGULAR or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->map associationNodeToMultiAssociation(self.edges);
 	connectors += self.edges->select(not isCommentLinkForAssociation())->map edgeToConnector();
@@ -40,7 +38,6 @@ mapping notation::Node::nodeToPackage() : cls::Package
 	var packagedElementsNode := self.children->select(type = PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_INPACKAGE or type = PAPYRUS_NOTATION_COMPARTMENT_PACKAGE_PACKAGEABLE_REGULAR);
 	
 	referencedElement := umlPackage;
-	name := umlPackage.name;
 	classifiers += packagedElementsNode.children->select(type = PAPYRUS_NOTATION_SHAPE_CLASS_INPACKAGE or type = PAPYRUS_NOTATION_SHAPE_INTERFACE_INPACKAGE)->map nodeToClassifier();
 	connectors += self.findRelevantAssociationBranches()->select(element.oclAsType(uml::Element).getNearestPackage() = umlPackage)->map associationNodeToMultiAssociation(self.diagram.edges);
 	connectors += relevantEdges->select(not isCommentLinkForAssociation())->map edgeToConnector();
@@ -142,12 +139,7 @@ mapping notation::Node::nodeToClass() : cls::Class
 {
 	var clz := self.element.oclAsType(uml::Class);
 	referencedElement := clz;
-	
-	visibility := clz.getVisibility();
-	_abstract := clz.isAbstract;
-	
-	name := clz.name;
-	alias := clz.nameExpression.name;
+
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 	
@@ -165,10 +157,6 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 	var interface := self.element.oclAsType(uml::Interface);
 	referencedElement := interface;
 	
-	visibility := interface.getVisibility();
-	
-	name := interface.name;
-	alias := interface.nameExpression.name;
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Property)))-> map nodeToProperty();
 	members += self.children->collect(children->select(element.oclIsKindOf(uml::Operation)))->map nodeToOperation();
 	
@@ -181,28 +169,16 @@ mapping notation::Node::nodeToInterface() : cls::Interface
 mapping notation::Node::nodeToOperation() : cls::Method {
 	var operation := self.element.oclAsType(uml::Operation);
 	referencedElement := operation;
-	name := operation.name;
-	visibility := operation.getVisibility();
-	_static := operation.isStatic;
-	_abstract := operation.isAbstract;
-	type := operation.type.oclAsType(uml::Classifier);
 	parameters += operation.ownedParameter->select(direction != uml::ParameterDirectionKind::_return) ->map umlParameterToParameter();
 }
 
 mapping uml::Parameter::umlParameterToParameter() : cls::Parameter {
 	referencedElement := self;
-	name := self.name;
-	visibility := self.getVisibility();
-	type := self.type.oclAsType(uml::Classifier);
 }
 
 mapping notation::Node::nodeToProperty() : cls::Attribute {
 	var prop := self.element.oclAsType(uml::Property);
 	referencedElement := prop;
-	name := prop.name;
-	visibility := prop.getVisibility();
-	_static := prop.isStatic;
-	type := prop.type.oclAsType(uml::Classifier);
 }
 
 mapping notation::Edge::edgeToConnector() : cls::Connector
@@ -228,7 +204,6 @@ mapping notation::View::commentViewToComment() : textualCommons::Comment
 {
 	var umlComment = self.element.oclAsType(uml::Comment);
 	referencedElement := umlComment;
-	body := umlComment.body;
 }
 
 mapping notation::Edge::edgeToGeneralization() : cls::Generalization
@@ -239,10 +214,7 @@ mapping notation::Edge::edgeToGeneralization() : cls::Generalization
 {
 	var generalization := self.element.oclAsType(uml::Generalization);
 	assert error (generalization.source->size() = 1 and generalization.target->size() = 1) with log ('Generalizations must of exactly one source and one target.', generalization);
-	
 	referencedElement := generalization;
-	left := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = generalization.specific);
-	right := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = generalization.general);
 }
 
 mapping notation::Edge::edgeToImplementation() : cls::Implementation
@@ -253,10 +225,7 @@ mapping notation::Edge::edgeToImplementation() : cls::Implementation
 {
 	var realization := self.element.oclAsType(uml::InterfaceRealization);
 	assert error (realization.source->size() = 1 and realization.target->size() = 1) with log ('Interface realizations must of exactly one source and one target.', realization);
-	
 	referencedElement := realization;
-	left := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = realization.implementingClassifier);
-	right := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = realization.contract);
 }
 
 mapping notation::Edge::edgeToRegularAssociation() : cls::XtextAssociation
@@ -282,7 +251,6 @@ mapping notation::Edge::edgeToRegularAssociation() : cls::XtextAssociation
 	var regularIndex := if aggregatingIndex = 2 then 1 else 2 endif;
 	
 	referencedElement := association;
-	name := association.name;
 	memberEnds := association.memberEnd->at(regularIndex).map propertyToMemberEnd();
 	memberEnds += association.memberEnd->at(aggregatingIndex).map propertyToMemberEnd();
 	
@@ -295,10 +263,6 @@ mapping notation::Edge::edgeToRegularAssociation() : cls::XtextAssociation
 mapping uml::Property::propertyToMemberEnd() : cls::AssociationMemberEnd
 {
 	referencedElement := self;
-	name := self.name;
-	type := late resolveoneIn(notation::Node::nodeToClassifier, c : cls::Classifier | c.referencedElement = self.type.oclAsType(uml::Classifier));
-	navigable := self.isNavigable();
-	aggregationKind := self.aggregation.convert();
 	cardinality := self.map multiplicityElementToCardinality();
 }
 
@@ -308,8 +272,7 @@ query uml::Association::findNavigableEnds() : OrderedSet(Property)
 }
 
 mapping uml::MultiplicityElement::multiplicityElementToCardinality() : textualCommons::Cardinality {
-	lowerBound := self.lower;
-	upperBound := self.upper;
+	referencedElement := self;
 }
 
 
@@ -335,31 +298,11 @@ mapping notation::Node::associationNodeToMultiAssociation(allEdges : OrderedSet(
 {
 	var umlAssociation := self.element.oclAsType(uml::Association);
 	referencedElement := umlAssociation;
-	name := umlAssociation.name;
 	
 	var accordingEdges := allEdges->select(type = PAPYRUS_NOTATION_EDGE_ASSOCIATIONBRANCH and (source = self or target = self));
 	var properties := accordingEdges.styles->selectByKind(notation::EObjectValueStyle)->select(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
 	memberEnds += properties.map propertyToMemberEnd();
 }
-
-//mapping notation::Edge::edgeToMemberEnd() : cls::MemberEnd
-//{
-//	var umlProperty := self.styles->selectByKind(notation::EObjectValueStyle)->any(name = "Semantic_Branch_Style").eObjectValue.oclAsType(uml::Property);
-//	referencedElement := if umlProperty.name != null then umlProperty else null endif;
-//	cardinality := umlProperty.map multiplicityElementToCardinality();
-//	type := umlProperty.type.oclAsType(uml::Classifier);
-//	navigable := umlProperty.association.navigableOwnedEnd->includes(umlProperty);
-//}
-
-/*
-mapping uml::Property::propertyToMemberEnd() : cls::MemberEnd
-{
-	referencedElement := if self.name != null then self else null endif;
-	cardinality := self.map multiplicityElementToCardinality();
-	type := self.type.map typeToUMLTypeReference(result);
-	navigable := self.association.navigableOwnedEnd->includes(self);
-}
-*/
 
 query notation::Edge::isCommentLink() : Boolean {
 	return  (
@@ -398,18 +341,6 @@ query notation::View::findViewCommentViews() : OrderedSet(notation::View) {
 		)->asOrderedSet();
 }
 
-
-query uml::NamedElement::getVisibility() : textualCommons::Visibility {
-	var visibilityKind := self.visibility();
-	switch {
-		case(visibilityKind = uml::VisibilityKind::public) {return textualCommons::Visibility::PUBLIC}
-		case(visibilityKind = uml::VisibilityKind::private) {return textualCommons::Visibility::PRIVATE}
-		case(visibilityKind = uml::VisibilityKind::protected) {return textualCommons::Visibility::PROTECTED}
-		case(visibilityKind = uml::VisibilityKind::package) {return textualCommons::Visibility::PACKAGE}
-	};
-	return textualCommons::Visibility::UNDEFINED
-}
-
 query uml::AggregationKind::convert() : cls::AggregationKind {
 	switch {
 		case(self = uml::AggregationKind::none) {return cls::AggregationKind::NONE}
@@ -420,7 +351,3 @@ query uml::AggregationKind::convert() : cls::AggregationKind {
 	return null;
 }
 
-query uml::NamedElement::getFullyQualifiedName() : String
-{
-	return self.getQualifiedName().replaceAll(self.separator(), ".")
-}

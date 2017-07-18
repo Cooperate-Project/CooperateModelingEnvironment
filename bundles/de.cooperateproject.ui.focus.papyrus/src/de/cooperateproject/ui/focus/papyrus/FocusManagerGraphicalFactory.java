@@ -8,6 +8,12 @@ import de.cooperateproject.ui.focus.manager.IFocusManager;
 import de.cooperateproject.ui.focus.manager.IFocusManagerFactory;
 import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
+/**
+ * Factory for the graphical focus manager.
+ * 
+ * @author czogalik
+ *
+ */
 public class FocusManagerGraphicalFactory implements IFocusManagerFactory {
 
     @Override

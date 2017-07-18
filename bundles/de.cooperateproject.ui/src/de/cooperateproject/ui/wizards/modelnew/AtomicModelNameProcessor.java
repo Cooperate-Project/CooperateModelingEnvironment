@@ -15,6 +15,8 @@ import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Strings;
 
@@ -23,94 +25,97 @@ import de.cooperateproject.ui.Activator;
 
 public class AtomicModelNameProcessor implements IValidator, IConverter {
 
-	public static class ModelName {
-		private final IProject project;
-		private final String modelName;
+    private static final Logger LOGGER = LoggerFactory.getLogger(AtomicModelNameProcessor.class);
 
-		public ModelName(IProject project, String modelName) {
-			super();
-			this.project = project;
-			this.modelName = modelName;
-		}
+    public static class ModelName {
+        private final IProject project;
+        private final String name;
 
-		public IProject getProject() {
-			return project;
-		}
+        public ModelName(IProject project, String modelName) {
+            super();
+            this.project = project;
+            this.name = modelName;
+        }
 
-		public String getModelName() {
-			return modelName;
-		}
-		
-		public String getResourcePath() {
-			//TODO This should not be located here
-			return String.format("%s/%s.%s", project.getName(), modelName, "notation");
-		}
-	}
+        public IProject getProject() {
+            return project;
+        }
 
-	@Override
-	public IStatus validate(Object value) {
-		Pair<ModelName, IStatus> result = converter(value);
-		return result.getRight();
-	}
+        public String getModelName() {
+            return name;
+        }
 
-	@Override
-	public Object getFromType() {
-		return String.class;
-	}
+        public String getResourcePath() {
+            // TODO This should not be located here
+            return String.format("%s/%s.%s", project.getName(), name, "notation");
+        }
+    }
 
-	@Override
-	public Object getToType() {
-		return ModelName.class;
-	}
+    @Override
+    public IStatus validate(Object value) {
+        Pair<ModelName, IStatus> result = converter(value);
+        return result.getRight();
+    }
 
-	@Override
-	public Object convert(Object fromObject) {
-		Pair<ModelName, IStatus> result = converter(fromObject);
-		return result.getLeft();
-	}
+    @Override
+    public Object getFromType() {
+        return String.class;
+    }
 
-	private static Pair<ModelName, IStatus> converter(Object o) {
-		String modelAndProjectName = (String) o;
-		if (Strings.isNullOrEmpty(modelAndProjectName)) {
-			return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The model name must not be empty."));
-		}
+    @Override
+    public Object getToType() {
+        return ModelName.class;
+    }
 
-		Pattern modleNamePattern = Pattern.compile("([^/]+)/([^/]+)");
-		Matcher modelNameMatcher = modleNamePattern.matcher(modelAndProjectName);
-		if (!modelNameMatcher.matches()) {
-			return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-					"The model name must be of form \"<project>/<filename>\"."));
-		}
+    @Override
+    public Object convert(Object fromObject) {
+        Pair<ModelName, IStatus> result = converter(fromObject);
+        return result.getLeft();
+    }
 
-		String projectName = modelNameMatcher.group(1);
-		String modelName = modelNameMatcher.group(2);
+    private static Pair<ModelName, IStatus> converter(Object o) {
+        String modelAndProjectName = (String) o;
+        if (Strings.isNullOrEmpty(modelAndProjectName)) {
+            return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The model name must not be empty."));
+        }
 
-		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-		if (project == null) {
-			return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-					String.format("The given project name \"%s\" is invalid.", projectName)));
-		}
-		
-		CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
-		try {
-			CDOView view = session.openView();
-			try {
-				CDOResourceFolder folder = null;
-				try {
-					folder = view.getResourceFolder(projectName);
-				} catch (CDOException e) {
-					// ignore exception
-				}
-				if (folder == null) {
-					return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID, String.format("The given project \"%s\" is not available in the repository.", projectName)));
-				}
-			} finally {
-				IOUtil.closeSilent(view);
-			}
-		} finally {
-			CDOConnectionManager.getInstance().releaseSession(session);
-		}
+        Pattern modleNamePattern = Pattern.compile("([^/]+)/([^/]+)");
+        Matcher modelNameMatcher = modleNamePattern.matcher(modelAndProjectName);
+        if (!modelNameMatcher.matches()) {
+            return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+                    "The model name must be of form \"<project>/<filename>\"."));
+        }
 
-		return Pair.of(new ModelName(project, modelName), Status.OK_STATUS);
-	}
+        String projectName = modelNameMatcher.group(1);
+        String modelName = modelNameMatcher.group(2);
+
+        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+        if (project == null) {
+            return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+                    String.format("The given project name \"%s\" is invalid.", projectName)));
+        }
+
+        CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
+        try {
+            CDOView view = session.openView();
+            try {
+                CDOResourceFolder folder = null;
+                try {
+                    folder = view.getResourceFolder(projectName);
+                } catch (CDOException e) {
+                    LOGGER.error("Ignore cdo exception", e);
+                }
+                if (folder == null) {
+                    return Pair.of(null, new Status(IStatus.ERROR, Activator.PLUGIN_ID, String
+                            .format("The given project \"%s\" is not available in the repository.", projectName)));
+                }
+            } finally {
+                IOUtil.closeSilent(view);
+            }
+        } finally {
+            CDOConnectionManager.getInstance().releaseSession(session);
+        }
+
+        return Pair.of(new ModelName(project, modelName), Status.OK_STATUS);
+    }
 }

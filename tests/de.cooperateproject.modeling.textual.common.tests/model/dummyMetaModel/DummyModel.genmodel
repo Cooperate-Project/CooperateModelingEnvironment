@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.cooperateproject.modeling.textual.common.tests/src-gen"
+    modelPluginID="de.cooperateproject.modeling.textual.common.tests" modelName="DummyModel"
+    rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
+    importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic" complianceLevel="8.0"
+    copyrightFields="false" usedGenPackages="../../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.genmodel#//textualCommons ../../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>../../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore</foreignModel>
+  <foreignModel>DummyModel.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
+  <genPackages prefix="Dummy" disposableProviderFactory="true" ecorePackage="DummyModel.ecore#/">
+    <genClasses image="false" ecoreClass="DummyModel.ecore#//Containable"/>
+    <genClasses ecoreClass="DummyModel.ecore#//ReferencingElement"/>
+    <genClasses ecoreClass="DummyModel.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DummyModel.ecore#//Container/content"/>
+      <genOperations ecoreOperation="DummyModel.ecore#//Container/createReferencingElement"/>
+      <genOperations ecoreOperation="DummyModel.ecore#//Container/createReferencingElement2"/>
+      <genOperations ecoreOperation="DummyModel.ecore#//Container/createContainer"/>
+    </genClasses>
+    <genClasses ecoreClass="DummyModel.ecore#//ReferencingElement2"/>
+  </genPackages>
+</genmodel:GenModel>

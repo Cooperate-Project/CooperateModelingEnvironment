@@ -33,17 +33,20 @@ import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IUMLUriFinder;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.CooperateAutomatedValidator;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
+/**
+ * Generator fragment that initializes the resource-related tooling for Cooperate Xtext editors.
+ */
 @SuppressWarnings("restriction")
 public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGeneratorFragment {
 
     @Inject
-    Grammar grammar;
+    private Grammar grammar;
 
     @Inject
-    XtextGeneratorNaming naming;
+    private XtextGeneratorNaming naming;
 
     @Inject
-    FileAccessFactory fileAccessFactory;
+    private FileAccessFactory fileAccessFactory;
 
     @Override
     public void generate() {
@@ -62,6 +65,7 @@ public class CooperateResourceHandlingBindingsFragment2 extends AbstractXtextGen
     }
 
     private void registerGuiceBindingsRt() {
+        // TODO Move stuff not related to resources to a new fragment
         new GuiceModuleAccess.BindingFactory()
                 .addTypeToType(typeRef(XtextResourceSet.class), typeRef(CooperateResourceSet.class))
                 .addTypeToType(typeRef(IGlobalScopeProvider.class), typeRef(CooperateGlobalScopeProvider.class))

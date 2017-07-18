@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
@@ -24,17 +23,31 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
 import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
-public class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramEditor> {
+/**
+ * Manages focus in graphical view.
+ * 
+ * @author czogalik
+ *
+ */
+class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramEditor> {
 
-    private static final Logger LOGGER = Logger.getLogger(FocusManagerGraphical.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FocusManagerGraphical.class);
 
-    public FocusManagerGraphical(PapyrusMultiDiagramEditor editorPart) {
+    /**
+     * Sets EditorPart.
+     * 
+     * @param editorPart
+     *            to set.
+     */
+    FocusManagerGraphical(PapyrusMultiDiagramEditor editorPart) {
         super(editorPart);
     }
 
@@ -53,26 +66,11 @@ public class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramE
     @Override
     public Optional<Element> getFocusedElement() {
         ISelection selection = getEditorPart().getSite().getSelectionProvider().getSelection();
-        Object selectedObject = null;
         if (selection instanceof IStructuredSelection) {
-            selectedObject = ((IStructuredSelection) selection).getFirstElement();
+            Object selectedObject = ((IStructuredSelection) selection).getFirstElement();
             return Optional.ofNullable(getSelectedUmlObject(selectedObject));
-        } else {
-
         }
         return Optional.empty();
-    }
-
-    private NamedElement getSelectedUmlObject(Object selection) {
-        NamedElement result = null;
-        if (selection != null) {
-            if (selection instanceof IAdaptable) {
-                result = ((IAdaptable) selection).getAdapter(NamedElement.class);
-            } else {
-                result = Platform.getAdapterManager().getAdapter(selection, NamedElement.class);
-            }
-        }
-        return result;
     }
 
     @Override
@@ -121,6 +119,18 @@ public class FocusManagerGraphical extends FocusManagerBase<PapyrusMultiDiagramE
             LOGGER.warn("Could not load services registry.", e);
         }
         return Optional.empty();
+    }
+
+    private static NamedElement getSelectedUmlObject(Object selection) {
+        NamedElement result = null;
+        if (selection != null) {
+            if (selection instanceof IAdaptable) {
+                result = ((IAdaptable) selection).getAdapter(NamedElement.class);
+            } else {
+                result = Platform.getAdapterManager().getAdapter(selection, NamedElement.class);
+            }
+        }
+        return result;
     }
 
 }

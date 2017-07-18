@@ -8,10 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.StringExpression;
 import org.eclipse.xtext.validation.Check;
 
 import com.google.inject.Inject;
@@ -19,7 +19,11 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.cls.cls.Classifier;
 import de.cooperateproject.modeling.textual.cls.cls.ClsPackage;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
+import de.cooperateproject.modeling.textual.cls.cls.Package;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.IIssueCodeRegistry;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
@@ -32,8 +36,8 @@ public class ClsValidator extends AbstractClsValidator {
     private static final String NOT_AN_INTERFACE = "not_an_interface";
     private static final String NOT_A_CLASS = "not_a_class";
     private static final String ALIAS_TAKEN = "alias_taken";
+    private static final String NAME_TAKEN = "name_taken";
     private static final String NOT_ENOUGH_ROLE_NAMES = "not_enough_role_names";
-    private static final String ROLE_NAMES_AMBIGOUS = "role_names_ambigous";
 
     @Inject
     @SuppressWarnings("unused")
@@ -52,35 +56,60 @@ public class ClsValidator extends AbstractClsValidator {
     }
 
     @Check
-    private void checkUniqueAlias(
-            de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier> classifier) {
-        Element classifierPackageRef = classifier.getNearestPackage().getReferencedElement();
-        for (Element element : classifierPackageRef.getOwnedElements()) {
-            if (hasSameAlias(classifier.getReferencedElement(), element)) {
-                error("\"" + classifier.getAlias() + "\"" + " Alias is taken!",
+    private void checkUniqueNamedElementInItsPackage(NamedElement element) {
+        PackageBase<?> nearestPackage = element.getNearestPackage();
+        if (!(nearestPackage instanceof Package)) {
+            return;
+        }
+
+        checkUniqueElements(element, getNamedElementsFromPackage((Package) nearestPackage));
+    }
+
+    private static List<? extends NamedElement> getNamedElementsFromPackage(Package nearestPackage) {
+
+        return Stream
+                .concat(nearestPackage.getClassifiers().stream(),
+                        nearestPackage.getConnectors().stream().filter(x -> x instanceof NamedElement)
+                                .map(x -> (NamedElement) x).collect(Collectors.toList()).stream())
+                .collect(Collectors.toList());
+    }
+
+    private void checkUniqueElements(NamedElement element, List<? extends NamedElement> namedElements) {
+
+        for (NamedElement namedElement : namedElements) {
+            if (element.equals(namedElement)) {
+                continue;
+            }
+            if (element.getName().equals(namedElement.getName())) {
+                error("\"" + element.getName() + "\"" + " no duplicates!",
+                        TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, NAME_TAKEN);
+            }
+        }
+
+    }
+
+    @Check
+    private void checkUniqueAliasInItsPackage(AliasedElement aliasedElement) {
+        PackageBase<?> nearestPackage = aliasedElement.getNearestPackage();
+        if (!(nearestPackage instanceof Package)) {
+            return;
+        }
+        List<? extends AliasedElement> classifiers = ((Package) nearestPackage).getClassifiers();
+
+        checkUniqueAlias(aliasedElement, classifiers);
+    }
+
+    private void checkUniqueAlias(AliasedElement aliasedElement, List<? extends AliasedElement> aliasedElements) {
+        for (AliasedElement alias : aliasedElements) {
+            if (alias.equals(aliasedElement)) {
+                continue;
+            }
+            String classifierAlias = aliasedElement.getAlias();
+            if (alias.getAlias().equals(classifierAlias)) {
+                error("\"" + classifierAlias + "\"" + " Alias is taken!",
                         TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, ALIAS_TAKEN);
             }
         }
-    }
-
-    private boolean hasSameAlias(Element firstElement, Element secondElement) {
-        if (!(firstElement instanceof org.eclipse.uml2.uml.Classifier)
-                || !(secondElement instanceof org.eclipse.uml2.uml.Classifier)) {
-            return false;
-        }
-        return hasSameAlias((org.eclipse.uml2.uml.Classifier) firstElement,
-                (org.eclipse.uml2.uml.Classifier) secondElement);
-    }
-
-    private boolean hasSameAlias(org.eclipse.uml2.uml.Classifier firstClassifier,
-            org.eclipse.uml2.uml.Classifier secondClassifier) {
-        boolean isNotSameElement = secondClassifier != firstClassifier;
-        if (isNotSameElement) {
-            StringExpression firstAlias = firstClassifier.getNameExpression();
-            StringExpression secondAlias = secondClassifier.getNameExpression();
-            return (firstAlias != null && secondAlias != null && firstAlias.getName().equals(secondAlias.getName()));
-        }
-        return false;
     }
 
     @Check

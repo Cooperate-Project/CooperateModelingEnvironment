@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.graphical.feature"
       label="%featureName"
-      version="0.1.8.qualifier"
+      version="0.2.0.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -17,6 +17,10 @@
    <license url="%licenseURL">
       %license
    </license>
+
+   <requires>
+      <import feature="org.eclipse.papyrus.extra.cdo.feature" version="1.2.0.201706210610" match="greaterOrEqual"/>
+   </requires>
 
    <plugin
          id="de.cooperateproject.modeling.graphical.papyrus.extensions"

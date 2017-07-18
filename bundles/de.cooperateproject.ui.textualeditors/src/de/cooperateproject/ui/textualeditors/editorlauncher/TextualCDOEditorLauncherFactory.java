@@ -11,28 +11,29 @@ import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.IEditorLauncherFactory;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 
-
+/**
+ * Editor launcher factory for textual editors.
+ */
 public class TextualCDOEditorLauncherFactory implements IEditorLauncherFactory {
 
-	public TextualCDOEditorLauncherFactory() {
-		// intentionally left blank
-	}
+    public TextualCDOEditorLauncherFactory() {
+        // intentionally left blank
+    }
 
-	@Override
-	public EditorType getSupportedEditorType() {
-		return EditorType.TEXTUAL;
-	}
+    @Override
+    public EditorType getSupportedEditorType() {
+        return EditorType.TEXTUAL;
+    }
 
-	@Override
-	public IEditorLauncher create(IFile launcherFile, EditorType editorType)
-			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		return new TextualCDOEditorLauncher(launcherFile, editorType);
-	}
+    @Override
+    public IEditorLauncher create(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        return new TextualCDOEditorLauncher(launcherFile);
+    }
 
-	@Override
-	public Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType)
-			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		return TextualCDOEditorLauncher.findExistingEditor(launcherFile, editorType);
-	}
+    @Override
+    public Optional<IEditorPart> findExistingEditor(IFile launcherFile)
+            throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        return TextualCDOEditorLauncher.findExistingEditor(launcherFile);
+    }
 
 }

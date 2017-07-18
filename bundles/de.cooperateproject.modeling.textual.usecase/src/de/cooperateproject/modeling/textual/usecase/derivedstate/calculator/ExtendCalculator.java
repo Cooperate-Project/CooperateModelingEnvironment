@@ -6,12 +6,15 @@ import java.util.stream.Collectors;
 import org.eclipse.uml2.uml.UseCase;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.Extend;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 
 /**
  * State calculator for extend relationships.
  */
-public class ExtendCalculator extends AtomicStateProcessorExtensionBase<Extend> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class ExtendCalculator extends AtomicDerivedStateProcessorBase<Extend> {
 
     /**
      * Constructs the calculator.
@@ -21,23 +24,21 @@ public class ExtendCalculator extends AtomicStateProcessorExtensionBase<Extend> 
     }
 
     @Override
-    protected Boolean applyTyped(Extend object) {
+    protected void applyTyped(Extend object) {
         UseCase umlExtendedCase = object.getExtendedCase().getReferencedElement();
         UseCase umlExtension = object.getExtension().getReferencedElement();
         org.eclipse.uml2.uml.ExtensionPoint umlExtensionPoint = object.getExtensionLocation().getReferencedElement();
 
         if (umlExtendedCase == null || umlExtension == null || umlExtensionPoint == null) {
-            return false;
+            return;
         }
 
         Set<org.eclipse.uml2.uml.Extend> candidates = umlExtension.getExtends().stream()
                 .filter(e -> e.getExtensionLocations().contains(umlExtensionPoint)).collect(Collectors.toSet());
         if (candidates.size() == 1) {
             object.setReferencedElement(candidates.iterator().next());
-            return true;
+            return;
         }
-
-        return false;
     }
 
 }

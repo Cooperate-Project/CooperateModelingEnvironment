@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architecture:ArchitectureDomain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:architecture="http://www.eclipse.org/papyrus/infra/core/architecture" xmlns:gmfdiagrepresentation="http://www.eclipse.org/papyrus/infra/gmfdiag/representation" xmi:id="_KXClsGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.softwareEngineering" name="Software Engineering" description="The domain of developing software systems" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/domain.gif">
+  <stakeholders xmi:id="_g36KkGMZEeeNzp_FS7vc9Q" id="de.cooperate.modeler" name="Cooperate Modeler" description="">
+    <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf5MSYEeaKZJ_pGfaSiA"/>
+    <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf48SYEeaKZJ_pGfaSiA"/>
+    <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf4sSYEeaKZJ_pGfaSiA"/>
+  </stakeholders>
+  <contexts xsi:type="architecture:ArchitectureDescriptionLanguage" xmi:id="_YF14AGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.infra.services.edit.TypeContext" name="UML" description="The Unified Modeling Language" icon="platform:/plugin/org.eclipse.papyrus.uml.architecture/icons/uml.gif" creationCommandClass="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand">
+    <viewpoints xmi:id="_t2hWEGMZEeeNzp_FS7vc9Q" id="de.cooperateproject.viewpoint" name="Cooperate Viewpoint" representationKinds="__bLfoGMZEeeNzp_FS7vc9Q"/>
+    <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="__bLfoGMZEeeNzp_FS7vc9Q" id="org.eclipse.papyrus.uml.diagram.class" name="Cooperate Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" customStyle="" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
+      <concerns href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_HQhf48SYEeaKZJ_pGfaSiA"/>
+      <parent xsi:type="gmfdiagrepresentation:PapyrusDiagram" href="platform:/plugin/org.eclipse.papyrus.uml.architecture/model/uml.architecture#_zzf4gHDtEeWh-MssWmCB_A"/>
+      <modelRules xmi:id="_Q9t2YBP8EeSS0oyATXohNA">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <owningRules xmi:id="_2Y544CG8EeaTOvmjRmNNwg">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <childRules xmi:id="_dwcpMBZFEeSzr5rzfsl7Yg"/>
+      <paletteRules xmi:id="_cLB5EB3SEeaWluI_M9CcJQ" element="clazz.tool.comment"/>
+      <paletteRules xmi:id="_fqqWcEagEeeAXeDvGhh7sQ" element="clazz.tool.operation"/>
+      <paletteRules xmi:id="_h1O-oB3ZEeaWluI_M9CcJQ" element="clazz.tool.package"/>
+      <paletteRules xmi:id="_Zv4D0B5XEeaKs_GrNRbBjw" element="clazz.tool.class"/>
+      <paletteRules xmi:id="_Zv4D0B5XEeaKs_GrNRbBjw" element="clazz.tool.interface"/>
+      <paletteRules xmi:id="_eH07gB5XEeaKs_GrNRbBjw" element="clazz.tool.property"/>
+      <paletteRules xmi:id="_ixbhIB3ZEeaWluI_M9CcJQ" element="clazz.tool.realization"/>
+      <paletteRules xmi:id="_i2Y5oB3ZEeaWluI_M9CcJQ" element="clazz.tool.generalization"/>
+      <paletteRules xmi:id="_98BhUGZLEeek84eIY1oucg" permit="false" element="clazz.tool.associationclass"/>
+      <paletteRules xmi:id="_i7p0IB3ZEeaWluI_M9CcJQ" element="clazz.tool.association*"/>
+      <paletteRules xmi:id="_XwNGgGZLEeek84eIY1oucg" element="clazz.tool.packageimport"/>
+      <paletteRules xmi:id="_Zu7qEB3SEeaWluI_M9CcJQ" permit="false" element="clazz.tool.*"/>
+      <paletteRules xmi:id="_JR-5AB3eEeaWluI_M9CcJQ" permit="false" element="createTimeObservation22CreationTool"/>
+      <paletteRules xmi:id="_Ri5mUB3eEeaWluI_M9CcJQ" permit="false" element="createDurationObservation7CreationTool"/>
+      <assistantRules xmi:id="_UfCdFC2REeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Comment_Shape"/>
+      <assistantRules xmi:id="_UfCdFS2REeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Comment_Shape_CN"/>
+      <assistantRules xmi:id="_Lm0_QEahEeeAXeDvGhh7sQ" elementTypeID="org.eclipse.papyrus.umldi.Operation_ClassOperationLabel"/>
+      <assistantRules xmi:id="_UfCdFS5REeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"/>
+      <assistantRules xmi:id="_uaHUcS2QEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Package_Shape"/>
+      <assistantRules xmi:id="_uaHUci2QEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Package_Shape_CN"/>
+      <assistantRules xmi:id="_tocm8C2QEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Package_ClassDiagram"/>
+      <assistantRules xmi:id="_sWtkMC2OEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Class_Shape"/>
+      <assistantRules xmi:id="_Gk22oC2QEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Class_Shape_CN"/>
+      <assistantRules xmi:id="_6W0akEahEeeAXeDvGhh7sQ" elementTypeID="org.eclipse.papyrus.umldi.Interface_Shape_CN"/>
+      <assistantRules xmi:id="_R4Z1kEaiEeeAXeDvGhh7sQ" elementTypeID="org.eclipse.papyrus.umldi.Interface_Shape"/>
+      <assistantRules xmi:id="_UfCdFy2REeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Property_ClassAttributeLabel"/>
+      <assistantRules xmi:id="_dbYQgS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.PackageImport_Edge"/>
+      <assistantRules xmi:id="_dbYQgi2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Realization_Edge"/>
+      <assistantRules xmi:id="_dbYQgy2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Generalization_Edge"/>
+      <assistantRules xmi:id="_dbYQhS2SEeamkv8UzKSY-w" elementTypeID="org.eclipse.papyrus.umldi.Association_Edge"/>
+      <assistantRules xmi:id="_1LpvIC2PEeamkv8UzKSY-w" permit="false" elementTypeID="*"/>
+    </representationKinds>
+    <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  </contexts>
+</architecture:ArchitectureDomain>

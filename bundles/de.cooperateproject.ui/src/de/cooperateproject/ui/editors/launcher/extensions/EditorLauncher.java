@@ -2,9 +2,9 @@ package de.cooperateproject.ui.editors.launcher.extensions;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
@@ -14,6 +14,8 @@ import org.eclipse.net4j.util.io.IOUtil;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
@@ -23,9 +25,19 @@ import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
 import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 
+/**
+ * Base class for editor launchers that use CDO resources as inputs.
+ * 
+ * This class handles
+ * <ul>
+ * <li>the creation of CDO sessions and views</li>
+ * <li>parsing of the selected launcher file</li>
+ * <li>triggering of transformations on save events</li>
+ * </ul>
+ */
 public abstract class EditorLauncher implements IEditorLauncher {
 
-    private static final Logger LOGGER = Logger.getLogger(EditorLauncher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditorLauncher.class);
     private final CDOCheckout cdoCheckout;
     private final CDOView cdoView;
     private final ConcreteSyntaxModel concreteSyntaxModel;
@@ -33,6 +45,20 @@ public abstract class EditorLauncher implements IEditorLauncher {
     private final TransformationManager transformationManager;
     private DisposedListener disposeListener;
 
+    /**
+     * Instantiates the editor launcher.
+     * 
+     * @param launcherFile
+     *            The selected launcher file that contains the information about the diagram to open.
+     * @param editorType
+     *            The type of the selected editor.
+     * @param readOnlyView
+     *            True if the editor shall be opened read-only, false otherwise.
+     * @throws IOException
+     *             In case of an error while reading and interpreting the launcher file.
+     * @throws ConcreteSyntaxTypeNotAvailableException
+     *             Thrown, if the requested editor type is not available in the launcher file.
+     */
     public EditorLauncher(IFile launcherFile, EditorType editorType, boolean readOnlyView)
             throws IOException, ConcreteSyntaxTypeNotAvailableException {
         cdoCheckout = CDOConnectionManager.getInstance().createCDOCheckout(launcherFile.getProject(), true);
@@ -139,9 +165,9 @@ public abstract class EditorLauncher implements IEditorLauncher {
         }
 
         private static void closeCDOView(CDOView cdoView) {
-            CDOSession session = cdoView.getSession();
+            Optional<CDOSession> cdoSession = Optional.ofNullable(cdoView).map(CDOView::getSession);
             IOUtil.closeSilent(cdoView);
-            CDOConnectionManager.getInstance().releaseSession(session);
+            cdoSession.ifPresent(CDOConnectionManager.getInstance()::releaseSession);
         }
 
     }

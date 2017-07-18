@@ -2,14 +2,15 @@ package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.common.conventions.ModelNamingConventions;
 
 public class ConventionalUMLUriFinder implements IUMLUriFinder {
 
-    private static final Logger LOGGER = Logger.getLogger(ConventionalUMLUriFinder.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConventionalUMLUriFinder.class);
 
     @Override
     public Optional<URI> findUMLURI(URI ownUri) {

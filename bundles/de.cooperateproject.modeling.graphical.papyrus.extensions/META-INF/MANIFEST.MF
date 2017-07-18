@@ -2,11 +2,17 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Papyrus Extensions
 Bundle-SymbolicName: de.cooperateproject.modeling.graphical.papyrus.extensions;singleton:=true
-Bundle-Version: 0.1.8.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.tools;bundle-version="2.0.0",
  org.eclipse.emf.ecore,
- org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.papyrus.infra.services.openelement,
- de.cooperateproject.ui
+ de.cooperateproject.ui,
+ org.eclipse.papyrus.infra.properties,
+ org.eclipse.papyrus.views.properties;bundle-version="2.0.0",
+ org.eclipse.papyrus.uml.architecture;bundle-version="1.0.0"
+Bundle-Activator: de.cooperate.modeling.graphical.papyrus.extensions.Activator
+Bundle-ActivationPolicy: lazy
+Import-Package: de.cooperateproject.modeling.graphical.common.conventions,
+ org.slf4j

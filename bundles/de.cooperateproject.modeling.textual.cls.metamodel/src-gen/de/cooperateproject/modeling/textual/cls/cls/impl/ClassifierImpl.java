@@ -8,10 +8,10 @@ import de.cooperateproject.modeling.textual.cls.cls.Member;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import java.util.Collection;
@@ -26,7 +26,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,7 +76,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * @generated
      * @ordered
      */
-    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
+    protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
     /**
      * <!-- begin-user-doc -->
@@ -130,6 +131,24 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ClsPackage.CLASSIFIER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ClsPackage.CLASSIFIER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -148,6 +167,24 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetAlias() {
+        eDynamicUnset(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(ClsPackage.CLASSIFIER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(ClsPackage.CLASSIFIER__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
@@ -158,8 +195,8 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public Visibility getVisibility() {
-        return (Visibility)eDynamicGet(ClsPackage.CLASSIFIER__VISIBILITY, ClsPackage.Literals.CLASSIFIER__VISIBILITY, true, true);
+    public VisibilityKind getVisibility() {
+        return (VisibilityKind)eDynamicGet(ClsPackage.CLASSIFIER__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
 
     /**
@@ -167,8 +204,26 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVisibility(Visibility newVisibility) {
-        eDynamicSet(ClsPackage.CLASSIFIER__VISIBILITY, ClsPackage.Literals.CLASSIFIER__VISIBILITY, newVisibility);
+    public void setVisibility(VisibilityKind newVisibility) {
+        eDynamicSet(ClsPackage.CLASSIFIER__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, newVisibility);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetVisibility() {
+        eDynamicUnset(ClsPackage.CLASSIFIER__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetVisibility() {
+        return eDynamicIsSet(ClsPackage.CLASSIFIER__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -177,8 +232,8 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Member<? extends NamedElement>> getMembers() {
-        return (EList<Member<? extends NamedElement>>)eDynamicGet(ClsPackage.CLASSIFIER__MEMBERS, ClsPackage.Literals.CLASSIFIER__MEMBERS, true, true);
+    public EList<Member<? extends Feature>> getMembers() {
+        return (EList<Member<? extends Feature>>)eDynamicGet(ClsPackage.CLASSIFIER__MEMBERS, ClsPackage.Literals.CLASSIFIER__MEMBERS, true, true);
     }
 
     /**
@@ -306,11 +361,11 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
                 getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
             case ClsPackage.CLASSIFIER__VISIBILITY:
-                setVisibility((Visibility)newValue);
+                setVisibility((VisibilityKind)newValue);
                 return;
             case ClsPackage.CLASSIFIER__MEMBERS:
                 getMembers().clear();
-                getMembers().addAll((Collection<? extends Member<? extends NamedElement>>)newValue);
+                getMembers().addAll((Collection<? extends Member<? extends Feature>>)newValue);
                 return;
             case ClsPackage.CLASSIFIER__OWNING_PACKAGE:
                 setOwningPackage((de.cooperateproject.modeling.textual.cls.cls.Package)newValue);
@@ -328,16 +383,16 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
     public void eUnset(int featureID) {
         switch (featureID) {
             case ClsPackage.CLASSIFIER__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ClsPackage.CLASSIFIER__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case ClsPackage.CLASSIFIER__COMMENTS:
                 getComments().clear();
                 return;
             case ClsPackage.CLASSIFIER__VISIBILITY:
-                setVisibility(VISIBILITY_EDEFAULT);
+                unsetVisibility();
                 return;
             case ClsPackage.CLASSIFIER__MEMBERS:
                 getMembers().clear();
@@ -358,13 +413,13 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ClsPackage.CLASSIFIER__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ClsPackage.CLASSIFIER__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case ClsPackage.CLASSIFIER__COMMENTS:
                 return !getComments().isEmpty();
             case ClsPackage.CLASSIFIER__VISIBILITY:
-                return getVisibility() != VISIBILITY_EDEFAULT;
+                return isSetVisibility();
             case ClsPackage.CLASSIFIER__MEMBERS:
                 return !getMembers().isEmpty();
             case ClsPackage.CLASSIFIER__OWNING_PACKAGE:
@@ -380,7 +435,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (derivedFeatureID) {
                 case ClsPackage.CLASSIFIER__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
                 default: return -1;
@@ -403,6 +458,12 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
                 default: return -1;
             }
         }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (derivedFeatureID) {
+                case ClsPackage.CLASSIFIER__VISIBILITY: return TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -413,7 +474,7 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
+        if (baseClass == NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ClsPackage.CLASSIFIER__NAME;
                 default: return -1;
@@ -433,6 +494,12 @@ public abstract class ClassifierImpl<T extends Classifier> extends UMLReferencin
         if (baseClass == Commentable.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.COMMENTABLE__COMMENTS: return ClsPackage.CLASSIFIER__COMMENTS;
+                default: return -1;
+            }
+        }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY: return ClsPackage.CLASSIFIER__VISIBILITY;
                 default: return -1;
             }
         }

@@ -16,61 +16,79 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.SavePostProcessor;
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.SaveablePostProcessingSupport;
+import de.cooperateproject.modeling.textual.xtext.runtime.editor.IPostSaveListenerSupport;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.input.CooperateCDOLobEditorInput;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
-import de.cooperateproject.ui.util.EditorFinderUtil;
+import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 
+/**
+ * Editor launcher for textual editors that operate on CDO models.
+ */
 public class TextualCDOEditorLauncher extends EditorLauncher {
 
-	public TextualCDOEditorLauncher(IFile launcherFile, EditorType editorType)
-			throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		super(launcherFile, editorType, false);
-	}
+    /**
+     * Instantiates the launcher.
+     * 
+     * @param launcherFile
+     *            The launcher file that has been selected.
+     * @throws IOException
+     *             Thrown if an error occurs during processing of the launcher file.
+     * @throws ConcreteSyntaxTypeNotAvailableException
+     *             Thrown if there is no textual syntax defined in the launcher file.
+     */
+    public TextualCDOEditorLauncher(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        super(launcherFile, EditorType.TEXTUAL, false);
+    }
 
-	@Override
-	protected IEditorPart doOpenEditor() throws PartInitException {
-		CDOResourceLeaf cdoResource = (CDOResourceLeaf) getConcreteSyntaxModel().getRootElement().eResource();
-		IEditorInput editorInput = new CooperateCDOLobEditorInput(cdoResource, getLauncherFile());
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		TextualCDOEditorIDs editorId;
-		try {
-			editorId = getEditorId(getConcreteSyntaxModel());
-		} catch (ConcreteSyntaxTypeNotAvailableException e) {
-			throw new PartInitException("Error in loading the editor.", e);
-		}
-		IEditorPart editor = IDE.openEditor(page, editorInput, editorId.getId());
-		
-		SaveablePostProcessingSupport postProcessingSupport = editor.getAdapter(SaveablePostProcessingSupport.class);
-		if (postProcessingSupport != null) {
-			postProcessingSupport.register(new SavePostProcessor() {
-				@Override
-				public void processAfterSafe() throws Exception {
-					handleEditorSave(editor);
-				}
-			});			
-		}
-		
-		return editor;
-	}
+    @Override
+    protected IEditorPart doOpenEditor() throws PartInitException {
+        CDOResourceLeaf cdoResource = (CDOResourceLeaf) getConcreteSyntaxModel().getRootElement().eResource();
+        IEditorInput editorInput = new CooperateCDOLobEditorInput(cdoResource, getLauncherFile());
+        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+        TextualCDOEditorIDs editorId;
+        try {
+            editorId = getEditorId(getConcreteSyntaxModel());
+        } catch (ConcreteSyntaxTypeNotAvailableException e) {
+            throw new PartInitException("Error in loading the editor.", e);
+        }
+        IEditorPart editor = IDE.openEditor(page, editorInput, editorId.getId());
 
-	private static TextualCDOEditorIDs getEditorId(ConcreteSyntaxModel concreteSyntaxModel) throws ConcreteSyntaxTypeNotAvailableException {
-		Optional<TextualCDOEditorIDs> editorId = TextualCDOEditorIDs.findByExtension(concreteSyntaxModel.getExtension());
-		if (!editorId.isPresent()) {
-			throw new ConcreteSyntaxTypeNotAvailableException("Could not find appropriate editor.");
-		}
-		return editorId.get();
-	}
+        IPostSaveListenerSupport postProcessingSupport = editor.getAdapter(IPostSaveListenerSupport.class);
+        if (postProcessingSupport != null) {
+            postProcessingSupport.register(() -> handleEditorSave(editor));
+        }
 
-	public static Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType) throws IOException, ConcreteSyntaxTypeNotAvailableException {
-		IEditorInput editorInput = new FileEditorInput(launcherFile);
-		Collection<IEditorPart> editorCandidates = EditorFinderUtil.findEditor(editorInput);
-		Collection<String> availableEditorIds = Arrays.asList(TextualCDOEditorIDs.values()).stream().map(v -> v.getId()).collect(Collectors.toSet());
-		return editorCandidates.stream().filter(e -> availableEditorIds.contains(e.getEditorSite().getId())).findFirst();
-	}
+        return editor;
+    }
+
+    private static TextualCDOEditorIDs getEditorId(ConcreteSyntaxModel concreteSyntaxModel)
+            throws ConcreteSyntaxTypeNotAvailableException {
+        Optional<TextualCDOEditorIDs> editorId = TextualCDOEditorIDs
+                .findByExtension(concreteSyntaxModel.getExtension());
+        if (!editorId.isPresent()) {
+            throw new ConcreteSyntaxTypeNotAvailableException("Could not find appropriate editor.");
+        }
+        return editorId.get();
+    }
+
+    /**
+     * Finds an existing editor instance for the given launcher file. The found editor has the same type as the one that
+     * would be launched for this file by this launcher.
+     * 
+     * @param launcherFile
+     *            The launcher file associated with the wanted editor.
+     * @return The found editor or {@link Optional#empty()} otherwise.
+     */
+    public static Optional<IEditorPart> findExistingEditor(IFile launcherFile) {
+        IEditorInput editorInput = new FileEditorInput(launcherFile);
+        Collection<IEditorPart> editorCandidates = EditorFinderUtil.findEditor(editorInput);
+        Collection<String> availableEditorIds = Arrays.asList(TextualCDOEditorIDs.values()).stream()
+                .map(TextualCDOEditorIDs::getId).collect(Collectors.toSet());
+        return editorCandidates.stream().filter(e -> availableEditorIds.contains(e.getEditorSite().getId()))
+                .findFirst();
+    }
 
 }

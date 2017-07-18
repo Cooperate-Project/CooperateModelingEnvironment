@@ -19,13 +19,10 @@ import org.apache.commons.io.IOUtils
 import java.util.Collections
 import de.cooperateproject.modeling.textual.usecase.tests.scoping.util.UseCaseCustomizedInjectorProvider
 
-@RunWith(XtextRunner)
 @InjectWith(UseCaseCustomizedInjectorProvider.DefaultProvider)
 class UsecaseParsingTest extends AbstractUseCaseTest{
-	@Inject
-	ParseHelper<UseCaseDiagram> parseHelper
 	
-	@Inject ValidationTestHelper validationTestHelper
+	@Inject extension ValidationTestHelper
 	
 	override setup() {
 		super.setup()
@@ -39,7 +36,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			rootElement RootElement
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -47,11 +44,11 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			actor Alice
+			act Alice
 			sys System1
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -66,7 +63,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			}
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -81,7 +78,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			}
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -89,7 +86,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			actor "Employee of the month" as Bob
+			act "Employee of the month" as Bob
 			sys System1 {
 				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
 				abstract uc AbstractUseCase1 {
@@ -98,7 +95,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			}
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -106,8 +103,8 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			actor Alice
-			actor "Employee of the month" as Bob
+			act Alice
+			act "Employee of the month" as Bob
 			sys System1 {
 				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
 				abstract uc AbstractUseCase1 {
@@ -118,7 +115,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			iac (Bob, AbstractUseCase1)
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -126,8 +123,8 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			actor Alice
-			actor "Employee of the month" as Bob
+			act Alice
+			act "Employee of the month" as Bob
 			sys System1 {
 				uc "Concrete and Aliased Usecase 1" as ConcreteUseCase1
 				abstract uc AbstractUseCase1 {
@@ -138,7 +135,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			iac (Bob, RootElement.System1.AbstractUseCase1)
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -162,7 +159,7 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			ext (Extension2ToAbstractUseCase1, AbstractUseCase1) ep[AliasedExtensionPoint1] cond["Sometimes"]
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)
+		assertNoIssues(model)
 	}
 	
 	@Test
@@ -170,8 +167,8 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 		val model = '''
 			@start-ucd "someDiagram"
 			rootElement RootElement
-			actor "Employee of the month" as Bob
-			actor BobInABadMood
+			act "Employee of the month" as Bob
+			act BobInABadMood
 			sys System1 {
 				abstract uc AbstractUseCase1
 				uc IncludedUseCase1
@@ -184,10 +181,37 @@ class UsecaseParsingTest extends AbstractUseCaseTest{
 			inc (ConcreteUseCase2, IncludedUseCase1)
 			@end-ucd
 		'''.parse(rs)
-		validationTestHelper.assertNoIssues(model)	
+		assertNoIssues(model)	
 	}
 	
+	@Test
+	def void testActorTypes() {
+		var model = '''
+		@start-ucd "someDiagram"
+		rootElement RootElement
+		act A role[human]
+		act B role[machine]
+		act C
+		@end-ucd
+		'''.parse(rs)
+		assertNoIssues(model)	
+	}
 	
+	@Test
+	def void testNotes() {
+		var model = '''
+		@start-ucd "someDiagram"
+		rootElement RootElement
+		act A note "test1"
+		sys B {
+			note "test2"
+			uc C note "test3"
+		}
+		sys D note "test4"
+		@end-ucd
+		'''.parse(rs)
+		assertNoIssues(model)
+	}
 	
 	private static def parse(CharSequence text, ResourceSet rs) {
 		val r = rs.createResource(URI.createFileURI("testmodels/UCParsingTest.uc"))

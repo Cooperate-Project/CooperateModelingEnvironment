@@ -43,7 +43,10 @@ class ClsUMLReferencingElementMissingElementResolvableChecker implements IResolv
 	}
 
 	private def dispatch resolvePossible(Association element) {
-		return element.owningPackage.hasReferencedElement && StringUtils.isNotBlank(element.name) && element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
+	    val parentCheck = element.owningPackage.hasReferencedElement
+	    val nameCheck = StringUtils.isNotBlank(element.name)
+	    val memberEndCheck = element.memberEnds.size > 1 && !element.memberEnds.map[type].contains(null)
+		return parentCheck && nameCheck && memberEndCheck
 	}
 
 	private def dispatch resolvePossible(TypedConnector element) {

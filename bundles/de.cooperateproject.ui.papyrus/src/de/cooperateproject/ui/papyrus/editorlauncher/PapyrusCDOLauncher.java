@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
@@ -35,19 +34,24 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.editors.launcher.DisposedListener;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorLauncher;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.helper.ConcreteSyntaxTypeNotAvailableException;
-import de.cooperateproject.ui.util.EditorFinderUtil;
+import de.cooperateproject.ui.util.editor.EditorFinderUtil;
 
+/**
+ * Editor launcher for Papyrus editors that use CDO resources.
+ */
 public class PapyrusCDOLauncher extends EditorLauncher {
 
     private static final String EDITOR_ID_GRAPHICAL = PapyrusMultiDiagramEditor.EDITOR_ID;
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
-    private static final Logger LOGGER = Logger.getLogger(PapyrusCDOLauncher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PapyrusCDOLauncher.class);
 
     private final EditorLifecycleEventListener editorCloseListener = new EditorLifecycleEventListener() {
 
@@ -65,14 +69,23 @@ public class PapyrusCDOLauncher extends EditorLauncher {
 
         @Override
         public void beforeClose(IMultiDiagramEditor arg0) {
-            handleEditorAboutToBeClosed(arg0);
+            handleEditorAboutToBeClosed();
         }
 
     };
 
-    public PapyrusCDOLauncher(IFile launcherFile, EditorType editorType)
-            throws IOException, ConcreteSyntaxTypeNotAvailableException {
-        super(launcherFile, editorType, true);
+    /**
+     * Instantiates the launcher.
+     * 
+     * @param launcherFile
+     *            The launcher file to be used during initialization of the editor.
+     * @throws IOException
+     *             In case of an error while reading and interpreting the launcher file.
+     * @throws ConcreteSyntaxTypeNotAvailableException
+     *             Thrown, if the requested editor type is not available in the launcher file.
+     */
+    public PapyrusCDOLauncher(IFile launcherFile) throws IOException, ConcreteSyntaxTypeNotAvailableException {
+        super(launcherFile, EditorType.GRAPHICAL, true);
     }
 
     @Override
@@ -162,7 +175,7 @@ public class PapyrusCDOLauncher extends EditorLauncher {
         return new CooperateURIEditorInput(uriToLaunch, getLauncherFile());
     }
 
-    private Resource createPlainResource(EObject rootElement) {
+    private static Resource createPlainResource(EObject rootElement) {
         return rootElement.eResource();
     }
 
@@ -171,12 +184,24 @@ public class PapyrusCDOLauncher extends EditorLauncher {
         return (CDOResource) getCDOView().getObject(cdoResource.cdoID());
     }
 
-    public static Optional<IEditorPart> findExistingEditor(IFile launcherFile, EditorType editorType)
+    /**
+     * Finds an existing editor instance for the given launcher file. The found editor has the same type as the one that
+     * would be launched for this file by this launcher.
+     * 
+     * @param launcherFile
+     *            The launcher file associated with the wanted editor.
+     * @return The found editor or {@link Optional#empty()} otherwise.
+     * @throws IOException
+     *             In case of an error while reading and interpreting the launcher file.
+     * @throws ConcreteSyntaxTypeNotAvailableException
+     *             Thrown, if the requested editor type is not available in the launcher file.
+     */
+    public static Optional<IEditorPart> findExistingEditor(IFile launcherFile)
             throws IOException, ConcreteSyntaxTypeNotAvailableException {
         LauncherModelWrapper diagram = loadLauncherModelReadOnly(launcherFile);
         try {
             ConcreteSyntaxModel concreteSyntaxModel = diagram.getDiagram()
-                    .getConcreteSyntaxModel(editorType.getSupportedSyntaxModel());
+                    .getConcreteSyntaxModel(EditorType.GRAPHICAL.getSupportedSyntaxModel());
             URI ownURI = EcoreUtil.getURI(concreteSyntaxModel.getRootElement());
             return EditorFinderUtil.findEditor(EDITOR_ID_GRAPHICAL, i -> compareEditorInputs(ownURI, i));
         } finally {
@@ -196,12 +221,8 @@ public class PapyrusCDOLauncher extends EditorLauncher {
             return false;
         }
 
-        if (!ArrayUtils.isEquals(diagramURI.segments(),
-                otherURI.trimFileExtension().appendFileExtension("notation").segments())) {
-            return false;
-        }
-
-        return true;
+        return ArrayUtils.isEquals(diagramURI.segments(),
+                otherURI.trimFileExtension().appendFileExtension("notation").segments());
     }
 
     @Override
@@ -212,38 +233,24 @@ public class PapyrusCDOLauncher extends EditorLauncher {
             EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
             lifecycleManager.addEditorLifecycleEventsListener(editorCloseListener);
         } catch (ServiceException e) {
-            LOGGER.error("Could not add editor close listener.");
+            LOGGER.error("Could not add editor close listener.", e);
             // we should change the control flow based on this...
         }
     }
 
     @Override
     protected DisposedListener createDisposeListener(IEditorPart editorPart) {
-        return new DisposedListener(editorPart, this::editorClosed, this::editorDisposed);
+        return new DisposedListener(editorPart, this::editorClosed, PapyrusCDOLauncher::editorDisposed);
     }
 
-    // private void deregisterListener(IEditorPart editorPart) {
-    // try {
-    // ServicesRegistry servicesRegistry = getServicesRegistery(editorPart);
-    // EditorLifecycleManager lifecycleManager = servicesRegistry.getService(EditorLifecycleManager.class);
-    // lifecycleManager.removeEditorLifecycleEventsListener(editorCloseListener);
-    // } catch (ServiceException e) {
-    // LOGGER.error("Could not remove editor close listener.");
-    // // we should change the control flow based on this...
-    // }
-    // }
-
-    private void handleEditorAboutToBeClosed(IEditorPart editorPart) {
+    private void handleEditorAboutToBeClosed() {
         // TODO we cannot deregister the listener here because of a concurrent modification exception
         getCDOView().close();
     }
 
-    private boolean editorDisposed(IWorkbenchPartReference partRef) {
+    private static boolean editorDisposed(IWorkbenchPartReference partRef) {
         IWorkbenchPart part = partRef.getPart(false);
-        if (part == null || !(part instanceof IEditorPart)) {
-            return true;
-        }
-        return false;
+        return part == null || !(part instanceof IEditorPart);
     }
 
 }

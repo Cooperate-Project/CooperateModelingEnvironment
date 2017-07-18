@@ -7,8 +7,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comm
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.usecase.usecase.ExtensionPoint;
@@ -26,6 +25,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * @generated
      * @ordered
      */
-    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
+    protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
     /**
      * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
@@ -150,6 +150,24 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(UsecasePackage.USE_CASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -168,8 +186,8 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * <!-- end-user-doc -->
      * @generated
      */
-    public Visibility getVisibility() {
-        return (Visibility)eDynamicGet(UsecasePackage.USE_CASE__VISIBILITY, UsecasePackage.Literals.USE_CASE__VISIBILITY, true, true);
+    public void unsetAlias() {
+        eDynamicUnset(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -177,8 +195,44 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVisibility(Visibility newVisibility) {
-        eDynamicSet(UsecasePackage.USE_CASE__VISIBILITY, UsecasePackage.Literals.USE_CASE__VISIBILITY, newVisibility);
+    public boolean isSetAlias() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public VisibilityKind getVisibility() {
+        return (VisibilityKind)eDynamicGet(UsecasePackage.USE_CASE__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setVisibility(VisibilityKind newVisibility) {
+        eDynamicSet(UsecasePackage.USE_CASE__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, newVisibility);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetVisibility() {
+        eDynamicUnset(UsecasePackage.USE_CASE__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetVisibility() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -197,6 +251,24 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
      */
     public void setAbstract(boolean newAbstract) {
         eDynamicSet(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT, newAbstract);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAbstract() {
+        eDynamicUnset(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAbstract() {
+        return eDynamicIsSet(UsecasePackage.USE_CASE__ABSTRACT, UsecasePackage.Literals.USE_CASE__ABSTRACT);
     }
 
     /**
@@ -336,7 +408,7 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
                 setAlias((String)newValue);
                 return;
             case UsecasePackage.USE_CASE__VISIBILITY:
-                setVisibility((Visibility)newValue);
+                setVisibility((VisibilityKind)newValue);
                 return;
             case UsecasePackage.USE_CASE__ABSTRACT:
                 setAbstract((Boolean)newValue);
@@ -364,16 +436,16 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
                 getComments().clear();
                 return;
             case UsecasePackage.USE_CASE__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case UsecasePackage.USE_CASE__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case UsecasePackage.USE_CASE__VISIBILITY:
-                setVisibility(VISIBILITY_EDEFAULT);
+                unsetVisibility();
                 return;
             case UsecasePackage.USE_CASE__ABSTRACT:
-                setAbstract(ABSTRACT_EDEFAULT);
+                unsetAbstract();
                 return;
             case UsecasePackage.USE_CASE__EXTENSION_POINTS:
                 getExtensionPoints().clear();
@@ -396,13 +468,13 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
             case UsecasePackage.USE_CASE__COMMENTS:
                 return !getComments().isEmpty();
             case UsecasePackage.USE_CASE__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case UsecasePackage.USE_CASE__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case UsecasePackage.USE_CASE__VISIBILITY:
-                return getVisibility() != VISIBILITY_EDEFAULT;
+                return isSetVisibility();
             case UsecasePackage.USE_CASE__ABSTRACT:
-                return isAbstract() != ABSTRACT_EDEFAULT;
+                return isSetAbstract();
             case UsecasePackage.USE_CASE__EXTENSION_POINTS:
                 return !getExtensionPoints().isEmpty();
             case UsecasePackage.USE_CASE__SYSTEM:
@@ -436,6 +508,12 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
                 default: return -1;
             }
         }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (derivedFeatureID) {
+                case UsecasePackage.USE_CASE__VISIBILITY: return TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -461,6 +539,12 @@ public class UseCaseImpl extends UMLReferencingElementImpl<UseCase> implements d
         if (baseClass == AliasedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return UsecasePackage.USE_CASE__ALIAS;
+                default: return -1;
+            }
+        }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY: return UsecasePackage.USE_CASE__VISIBILITY;
                 default: return -1;
             }
         }

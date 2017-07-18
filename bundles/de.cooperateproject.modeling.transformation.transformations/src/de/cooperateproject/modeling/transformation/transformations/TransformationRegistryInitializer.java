@@ -22,14 +22,20 @@ import de.cooperateproject.modeling.transformation.transformations.impl.Graphics
 import de.cooperateproject.modeling.transformation.transformations.impl.PostProcessor;
 import de.cooperateproject.modeling.transformation.transformations.impl.TextToGraphicsTransformation;
 import de.cooperateproject.modeling.transformation.transformations.impl.postprocessors.ClassDiagramPostProcessor;
+import de.cooperateproject.modeling.transformation.transformations.registry.ITransformationFactory;
 import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
-import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactory;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactoryRegistry;
 
+/**
+ * Initializes the registry for transformations.
+ */
 public class TransformationRegistryInitializer {
 
     private final TransformationFactoryRegistry registry = TransformationFactoryRegistry.getInstance();
 
+    /**
+     * Initializes the registry.
+     */
     public void init() {
         registry.registerTransformation(createN2T(NotationDiagramTypes.CLASS, FileExtensions.CLASS.getFileExtension(),
                 new ClassDiagramPostProcessor(50)));
@@ -41,9 +47,9 @@ public class TransformationRegistryInitializer {
 
     }
 
-    private static TransformationFactory createN2T(NotationDiagramTypes diagramType, String textualFileExtension,
+    private static ITransformationFactory createN2T(NotationDiagramTypes diagramType, String textualFileExtension,
             PostProcessor... postProcessors) {
-        return new TransformationFactory() {
+        return new ITransformationFactory() {
 
             @SuppressWarnings("unchecked")
             @Override
@@ -59,6 +65,7 @@ public class TransformationRegistryInitializer {
 
                     // Unchecked conversion as NotationSwitch apparently does not constitute an generic EMF switch
                     result = (Optional<Transformation>) new NotationSwitch() {
+                        @Override
                         public Object caseDiagram(Diagram diagram) {
                             if (diagramType.getNotationDiagramType().equals(diagram.getType())) {
                                 URI targetURI = ModelNamingConventions.getTextualFromGraphicalURI(changedModelURI,
@@ -67,7 +74,7 @@ public class TransformationRegistryInitializer {
                                         changedModelURI, targetURI, Arrays.asList(postProcessors)));
                             }
                             return super.caseDiagram(diagram);
-                        };
+                        }
 
                         @Override
                         public Object defaultCase(EObject object) {
@@ -81,9 +88,9 @@ public class TransformationRegistryInitializer {
 
     }
 
-    private static TransformationFactory createT2N(DiagramTypes diagramType, String textualFileExtension,
+    private static ITransformationFactory createT2N(DiagramTypes diagramType, String textualFileExtension,
             PostProcessor... postProcessors) {
-        return new TransformationFactory() {
+        return new ITransformationFactory() {
 
             @Override
             public Optional<Transformation> create(URI changedModelURI, ResourceSet rs) {

@@ -18,13 +18,16 @@ import com.google.inject.Inject;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.AtomicStateProcessorExtensionBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.AtomicDerivedStateProcessorBase;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider;
 
 /**
  * State calculation for {@link UMLReferencingElement}.
  */
-public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensionBase<UMLReferencingElement<Element>> {
+@Applicability(applicabilities = DerivedStateProcessorApplicability.CALCULATION)
+public class UMLReferencingElementCalculator extends AtomicDerivedStateProcessorBase<UMLReferencingElement<Element>> {
 
     @Inject
     private IQualifiedNameProvider qualifiedNameProvider;
@@ -41,10 +44,10 @@ public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensi
     }
 
     @Override
-    protected Boolean applyTyped(UMLReferencingElement<Element> object) {
+    protected void applyTyped(UMLReferencingElement<Element> object) {
         QualifiedName qn = qualifiedNameProvider.getFullyQualifiedName(object);
         if (qn == null) {
-            return false;
+            return;
         }
 
         EGenericType requiredType = object.eClass()
@@ -56,11 +59,12 @@ public class UMLReferencingElementCalculator extends AtomicStateProcessorExtensi
         List<EObject> matchingElements = foundElements.stream().filter(d -> qn.equals(d.getQualifiedName()))
                 .map(IEObjectDescription::getEObjectOrProxy).distinct().collect(Collectors.toList());
         if (matchingElements.size() == 1) {
-            object.setReferencedElement((Element) matchingElements.get(0));
+            if (matchingElements.get(0) != object.getReferencedElement()) {
+                object.setReferencedElement((Element) matchingElements.get(0));
+            }
         } else {
             object.setReferencedElement(null);
         }
-        return true;
     }
 
 }

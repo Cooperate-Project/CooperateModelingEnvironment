@@ -12,6 +12,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UseCase;
 import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,16 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class IncludeImpl extends ElementImpl implements Include {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -201,7 +212,7 @@ public class IncludeImpl extends ElementImpl implements Include {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case UsecasePackage.INCLUDE__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case UsecasePackage.INCLUDE__ADDITION:
                 return basicGetAddition() != null;
             case UsecasePackage.INCLUDE__INCLUDING_CASE:

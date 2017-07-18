@@ -3,12 +3,14 @@ package de.cooperateproject.modeling.textual.xtext.runtime.scoping;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.view.CDOQuery;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +33,14 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
+/**
+ * Global scope provider with special handling of queries to UML elements.
+ * 
+ * The provider only processes queries about UML elements. All other queries are delegated to
+ * {@link DefaultGlobalScopeProvider}. The UML queries are mapped to CDO (if available) or to calls to local resources.
+ * A {@link IUMLUriFinder} provides us with the URI of the UML resource that matches the resource of the textual editor.
+ * The scope handles queries to primitive types.
+ */
 public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider implements IGlobalScopeTypeQueryProvider {
 
     private static final URI UML_PRIMITIVE_TYPES_URI = URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI);
@@ -58,16 +68,17 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
         if (!umlResource.isPresent()) {
             return IScope.NULLSCOPE;
         }
-        return getScopeFromUMLResource(umlResource.get(), ignoreCase, type, predicate);
+        return getScopeFromUMLResource(umlResource.get(), type, predicate);
     }
 
-    private IScope getScopeFromUMLResource(Resource umlResource, boolean ignoreCase, EClass type,
+    private IScope getScopeFromUMLResource(Resource umlResource, EClass type,
             Predicate<IEObjectDescription> predicate) {
-        Stream<EObject> umlResourceElements = null;
-        if (umlResource instanceof CDOResource) {
-            umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, ignoreCase, type);
+        Stream<EObject> umlResourceElements;
+        if (umlResource instanceof CDOResource && ((CDOResource) umlResource).cdoView() instanceof CDOTransaction) {
+            umlResourceElements = getScopeElementsFromUMLResource((CDOResource) umlResource, type);
+        } else {
+            umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
         }
-        umlResourceElements = getScopeElementsFromUMLResource(umlResource, type);
         Stream<EObject> umlPrimitiveElements = getPrimitiveTypesIfRequested(umlResource, type);
 
         Stream<EObject> scopeElements = Stream.concat(umlPrimitiveElements, umlResourceElements);
@@ -80,30 +91,29 @@ public class CooperateGlobalScopeProvider extends DefaultGlobalScopeProvider imp
                 .map(PrimitiveType.class::cast).filter(umlPrimitiveTypeSelector::isSelected).map(EObject.class::cast);
     }
 
-    private Stream<EObject> getScopeElementsFromUMLResource(Resource umlResource, EClass type) {
+    private static Stream<EObject> getScopeElementsFromUMLResource(Resource umlResource, EClass type) {
         Iterable<EObject> allContents = Iterables.concat(umlResource.getContents(),
                 () -> umlResource.getContents().get(0).eAllContents());
         Stream<EObject> allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
-        allContentsStream = StreamSupport.stream(allContents.spliterator(), false);
-        Stream<EObject> results = allContentsStream.filter(type::isInstance);
-        return results;
+        return allContentsStream.filter(type::isInstance);
     }
 
-    private Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, boolean ignoreCase, EClass type) {
-        CDOView view = umlResource.cdoView();
-        if (view == null) {
+    private static Stream<EObject> getScopeElementsFromUMLResource(CDOResource umlResource, EClass type) {
+        Optional<CDOTransaction> transation = Optional.fromNullable(umlResource.cdoView())
+                .transform(v -> v.getAdapter(CDOTransaction.class));
+        if (!transation.isPresent()) {
             return Stream.empty();
         }
-        // TODO this only returns elements with a clean state, so save is
-        // required. We should find a better way...
-        Collection<EObject> results = view.queryInstances(type).stream().filter(o -> o.eResource() == umlResource)
-                .collect(Collectors.toList());
+        CDOQuery query = transation.get().createQuery("ocl",
+                String.format("%s::%s.allInstances()", type.getEPackage().getNsPrefix(), type.getName()), true);
+        Collection<EObject> results = query.getResult().stream().filter(type::isInstance).map(EObject.class::cast)
+                .filter(o -> o.eResource() == umlResource).collect(Collectors.toList());
         return results.stream();
     }
 
     private IScope createScopeForStream(Stream<EObject> results, Predicate<IEObjectDescription> predicate) {
-        Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(d -> d.stream())
-                .filter(d -> d != null).filter(d -> predicate == null ? true : predicate.apply(d))
+        Collection<IEObjectDescription> descriptions = results.map(this::getDescriptionFor).flatMap(Collection::stream)
+                .filter(Objects::nonNull).filter(d -> predicate == null ? true : predicate.apply(d))
                 .collect(Collectors.toList());
         return new SimpleScope(descriptions);
     }

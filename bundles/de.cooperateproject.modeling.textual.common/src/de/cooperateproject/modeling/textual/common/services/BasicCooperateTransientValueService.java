@@ -1,28 +1,37 @@
 package de.cooperateproject.modeling.textual.common.services;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.xtext.parsetree.reconstr.impl.DefaultTransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.LegacyTransientValueService;
 
 import com.google.inject.Inject;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.ITransientStatusProvider;
 
+/**
+ * Transient value service that includes special handling for transient structural features.
+ * 
+ * Even if features are transient in the meta model, they might be required for the serialization of the model. The
+ * values might originate from state calculators. This service holds sets of features that shall not be treated
+ * transient even if they are transient in the model. On the other side, there might be features that are not transient
+ * but most not be serialized because they hold internal state. The service can handle them as well.
+ * 
+ * Whether a feature is considered transient or not can be defined by implementing an {@link ITransientStatusProvider}
+ * and using the according extension point.
+ */
 @SuppressWarnings("restriction")
 public class BasicCooperateTransientValueService extends DefaultTransientValueService
         implements ITransientValueService {
 
-    private final Set<EStructuralFeature> TRANSIENT_FEATURES = createTransientFeaturesSet();
-    private final Set<EStructuralFeature> NON_TRANSIENT_FEATURES = createNonTransientFeatureSet();
+    @Inject
+    private ITransientStatusProvider transientStatusProvider;
 
     @Inject
-    private LegacyTransientValueService S2;
+    private LegacyTransientValueService legacyService;
 
     @Override
     public boolean isTransient(EObject owner, EStructuralFeature feature, int index) {
@@ -31,32 +40,45 @@ public class BasicCooperateTransientValueService extends DefaultTransientValueSe
 
     @Override
     public ListTransient isListTransient(EObject semanticObject, EStructuralFeature feature) {
-        return S2.isListTransient(semanticObject, feature);
+        return legacyService.isListTransient(semanticObject, feature);
     }
 
     @Override
     public boolean isValueInListTransient(EObject semanticObject, int index, EStructuralFeature feature) {
-        return S2.isValueInListTransient(semanticObject, index, feature);
+        return legacyService.isValueInListTransient(semanticObject, index, feature);
     }
 
     @Override
     public ValueTransient isValueTransient(EObject semanticObject, EStructuralFeature feature) {
-        ValueTransient result = S2.isValueTransient(semanticObject, feature);
-        if (result == ValueTransient.YES && NON_TRANSIENT_FEATURES.contains(feature)) {
+        ValueTransient originalResult = legacyService.isValueTransient(semanticObject, feature);
+        if (!transientStatusProvider.isFeatureConsideredNonTransient(feature) && originalResult == ValueTransient.YES) {
+            return originalResult;
+        }
+
+        boolean isSet = semanticObject.eIsSet(feature);
+        if ((defaultValueIsSerializeable(feature) && !isSet) || (feature.getEType() == EcorePackage.Literals.EBOOLEAN
+                && semanticObject.eGet(feature) == feature.getDefaultValue())) {
             return ValueTransient.PREFERABLY;
         }
-        return result;
+        if (isTransient(semanticObject, feature, 0)) {
+            return ValueTransient.YES;
+        }
+        return isSet ? ValueTransient.NO : ValueTransient.YES;
     }
 
     private boolean isTransient(EStructuralFeature feature) {
-        return TRANSIENT_FEATURES.contains(feature);
+        return (feature.isTransient() && !transientStatusProvider.isFeatureConsideredNonTransient(feature))
+                || transientStatusProvider.isFeatureConsideredTransient(feature);
     }
 
-    protected Set<EStructuralFeature> createNonTransientFeatureSet() {
-        return new HashSet<>();
+    private static boolean defaultValueIsSerializeable(EStructuralFeature feature) {
+        if (feature instanceof EAttribute) {
+            if (feature.getEType() == EcorePackage.eINSTANCE.getEString() && feature.getDefaultValue() == null) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
-    protected Set<EStructuralFeature> createTransientFeaturesSet() {
-        return new HashSet<>(Arrays.asList(TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT));
-    }
 }

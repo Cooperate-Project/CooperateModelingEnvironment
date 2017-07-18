@@ -3,7 +3,6 @@ package de.cooperateproject.ui.nature;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -13,6 +12,8 @@ import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handler which provides logic for reseting all open projects with CooperateProjectNature in the workspace.
@@ -22,7 +23,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
  */
 public class ResetCooperateProjectsCommand extends AbstractHandler {
 
-    private static final Logger LOGGER = Logger.getLogger(ResetCooperateProjectsCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResetCooperateProjectsCommand.class);
 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -30,7 +31,7 @@ public class ResetCooperateProjectsCommand extends AbstractHandler {
             try {
                 project.build(IncrementalProjectBuilder.CLEAN_BUILD, new NullProgressMonitor());
             } catch (CoreException e) {
-                LOGGER.error("Can't refresh project " + project.getName() + ".", e);
+                LOGGER.error("Can't refresh project {}.", project.getName(), e);
             }
         }
         return null;
@@ -45,7 +46,7 @@ public class ResetCooperateProjectsCommand extends AbstractHandler {
                     projectList.add(project);
                 }
             } catch (CoreException e) {
-                LOGGER.error("Project " + project.getName() + " is closed or does not exist.", e);
+                LOGGER.error("Project {} is closed or does not exist.", project.getName(), e);
             }
         }
         return projectList;

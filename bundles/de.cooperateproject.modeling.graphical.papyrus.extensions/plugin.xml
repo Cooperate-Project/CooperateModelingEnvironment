@@ -69,6 +69,25 @@
                      class="Association">
                </target>
             </constraint>
+            <constraint
+                  class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.UnambiguousNamesConstraint"
+                  id="de.cooperateproject.modeling.graphical.papyrus.extensions.unambiguousNamesConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Live"
+                  name="Unambiguous Names Constraint"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  The named element {0} is not distinguishable from all other named elements in the namespace.
+               </message>
+               <target
+                     class="NamedElement">
+               </target>
+               <description>
+                  All named elements in the workspace must be distinguishable by their name.
+               </description>
+            </constraint>
          </constraints>
          <package
                namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
@@ -85,10 +104,7 @@
       </service>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.services.validation.diagnosticians">
-      <diagnostician
-            class="de.cooperateproject.modeling.graphical.papyrus.extensions.validation.CooperateDiagnostician"
-            id="http://www.eclipse.org/uml2/5.0.0/UML">
-      </diagnostician>
-   </extension>
+      point="org.eclipse.papyrus.infra.properties.contexts">
+   <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
+</extension>
 </plugin>

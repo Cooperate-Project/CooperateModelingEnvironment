@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Xtext Runtime Utilities
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.xtext.runtime;singleton:=true
-Bundle-Version: 0.1.8.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.xtext.xbase.lib;bundle-version="2.9.1",
@@ -10,22 +10,20 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.9.1",
  org.eclipse.uml2.uml;bundle-version="5.1.2",
  net.winklerweb.cdoxtext.runtime;bundle-version="0.1.4";visibility:=reexport,
  org.apache.commons.lang3;bundle-version="3.1.0",
- org.apache.log4j,
- de.cooperateproject.util;bundle-version="0.1.8",
- de.cooperateproject.ui.preferences;bundle-version="0.1.8",
+ de.cooperateproject.util;bundle-version="0.2.0",
+ de.cooperateproject.ui.preferences;bundle-version="0.2.0",
  org.eclipse.emf.transaction,
- com.google.inject.multibindings.bundle;bundle-version="3.0.0";visibility:=reexport,
- de.cooperateproject.modeling.common
-Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.cdotext,
- de.cooperateproject.modeling.textual.xtext.runtime.derivedstate,
+ de.cooperateproject.modeling.common,
+ org.jgrapht.core;bundle-version="1.0.1"
+Export-Package: de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer,
  de.cooperateproject.modeling.textual.xtext.runtime.editor,
  de.cooperateproject.modeling.textual.xtext.runtime.editor.input,
- de.cooperateproject.modeling.textual.xtext.runtime.generator,
  de.cooperateproject.modeling.textual.xtext.runtime.issues,
  de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing,
  de.cooperateproject.modeling.textual.xtext.runtime.resources,
  de.cooperateproject.modeling.textual.xtext.runtime.scoping,
+ de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus,
  de.cooperateproject.modeling.textual.xtext.runtime.validator
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.cooperateproject.modeling.textual.xtext.runtime.Activator
-Import-Package: com.google.inject.multibindings
+Import-Package: org.slf4j;version="1.7.2"

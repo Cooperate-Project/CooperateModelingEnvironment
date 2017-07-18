@@ -3,7 +3,6 @@ package de.cooperateproject.modeling.textual.cls.ui.outline;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -13,17 +12,38 @@ import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter.IFilter;
 import org.eclipse.xtext.ui.editor.outline.impl.OutlinePage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Contribution for the flat outline view filter.
+ * 
+ * @author czogalik
+ *
+ */
 public class FlatOutlineViewContribution extends AbstractFilterOutlineContribution {
 
-    public static final String PREFERENCE_KEY = "ui.outline.toggleOperations";
+    private final class IFilterImplementation implements IFilter {
+        @Override
+        public boolean apply(IOutlineNode node) {
+            return FlatOutlineViewContribution.this.apply(node);
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return !isPropertySet();
+        }
+    }
+
+    private static final String PREFERENCE_KEY = "ui.outline.toggleOperations";
 
     private static final String ACTION_NAME = "Outline Hierarchy";
     private static final String ACTION_TOOLTIP = "Hierarchy/Flat";
     private static final String ACTION_DESCRIPTION = "Toggles beetween hierarchy and flat view";
-    private static final String ACTION_IMAGE_URL = "platform:/plugin/org.eclipse.team.ui/icons/full/elcl16/hierarchicalLayout.gif";
+    private static final String ACTION_IMAGE_URL = "platform:/plugin/org.eclipse.team.ui/icons/full/elcl16/"
+            + "hierarchicalLayout.gif";
 
-    private static final Logger LOGGER = Logger.getLogger(FlatOutlineViewContribution.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlatOutlineViewContribution.class);
 
     private TreeViewer treeViewer;
     private IFilter filter;
@@ -63,22 +83,15 @@ public class FlatOutlineViewContribution extends AbstractFilterOutlineContributi
 
     @Override
     protected void stateChanged(boolean newState) {
-        if (treeViewer != null && !treeViewer.getTree().isDisposed())
+        if (treeViewer != null && !treeViewer.getTree().isDisposed()) {
             treeViewer.refresh();
+        }
     }
 
     @Override
     protected IFilter getFilter() {
         if (filter == null) {
-            filter = new IFilter() {
-                public boolean apply(IOutlineNode node) {
-                    return FlatOutlineViewContribution.this.apply(node);
-                }
-
-                public boolean isEnabled() {
-                    return !isPropertySet();
-                }
-            };
+            filter = new IFilterImplementation();
         }
         return filter;
     }
@@ -88,7 +101,7 @@ public class FlatOutlineViewContribution extends AbstractFilterOutlineContributi
         return !(node instanceof EStructuralFeatureNode);
     }
 
-    private ImageDescriptor getImageDescriptor() {
+    private static ImageDescriptor getImageDescriptor() {
         URL url = null;
         try {
             url = new URL(ACTION_IMAGE_URL);

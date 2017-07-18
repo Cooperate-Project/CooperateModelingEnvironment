@@ -1,6 +1,5 @@
 package de.cooperateproject.modeling.graphical.papyrus.extensions.validation;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -26,24 +25,23 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * SaveAndDirtyService for papyrus models created in cooperate projects. Provides model
+ * validation and custom save logic.
+ * 
+ * @author faller, persch
+ *
+ */
 public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
 
-    private static final Logger LOGGER = Logger.getLogger(CooperateSaveAndDirtyService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CooperateSaveAndDirtyService.class);
     private static final String PLUG_IN_ID = "de.cooperateproject.validation";
     private ServicesRegistry serviceRegistry;
     private CooperateValidationError validationError;
     private static ILock lock = Job.getJobManager().newLock();
-
-    public synchronized void setModelInconsistent(CooperateValidationError validationError) {
-        this.validationError = validationError;
-    }
-
-    @Override
-    public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-        super.init(servicesRegistry);
-        this.serviceRegistry = servicesRegistry;
-    }
 
     @Override
     public void doSave(IProgressMonitor monitor) {
@@ -51,18 +49,15 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
             @Override
             protected IStatus run(IProgressMonitor monitor) {
                 SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
-                Display.getDefault().syncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            lock.acquire();
-                            subMonitor.setTaskName("Saving diagram.");
-                            if (validate()) {
-                                internalDoSave(subMonitor.split(100));
-                            }
-                        } finally {
-                            lock.release();
+                Display.getDefault().syncExec(() -> {
+                    try {
+                        lock.acquire();
+                        subMonitor.setTaskName("Saving diagram.");
+                        if (validate()) {
+                            internalDoSave(subMonitor.split(100));
                         }
+                    } finally {
+                        lock.release();
                     }
                 });
                 return Status.OK_STATUS;
@@ -78,9 +73,26 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
         }
     }
 
+    @Override
+    public void init(ServicesRegistry servicesRegistry) throws ServiceException {
+        super.init(servicesRegistry);
+        this.serviceRegistry = servicesRegistry;
+    }
+
+    public synchronized void setModelInconsistent(CooperateValidationError validationError) {
+        this.validationError = validationError;
+    }
+
     private void internalDoSave(IProgressMonitor monitor) {
         SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
         super.doSave(subMonitor.split(100));
+    }
+
+    private static void showErrorDialog(String reason) {
+        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+        ErrorDialog.openError(shell, "Could not save model",
+                "The model contains inconsistencies or unsupported elements and cannot be saved in this state.",
+                new Status(IStatus.ERROR, PLUG_IN_ID, reason));
     }
 
     private boolean validate() {
@@ -120,12 +132,5 @@ public class CooperateSaveAndDirtyService extends SaveAndDirtyService {
             return false;
         }
         return true;
-    }
-
-    private void showErrorDialog(String reason) {
-        Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-        ErrorDialog.openError(shell, "Could not save model",
-                "The model contains inconsistencies or unsupported elements and cannot be saved in this state.",
-                new Status(IStatus.ERROR, PLUG_IN_ID, reason));
     }
 }

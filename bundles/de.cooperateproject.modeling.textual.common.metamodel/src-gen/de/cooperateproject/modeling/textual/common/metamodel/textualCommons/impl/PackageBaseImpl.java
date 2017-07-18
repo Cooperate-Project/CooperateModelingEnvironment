@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -37,6 +38,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extends ElementImpl implements PackageBase<PackageType> {
 	/**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+    /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,6 +121,24 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetName() {
+        eDynamicUnset(TextualCommonsPackage.PACKAGE_BASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(TextualCommonsPackage.PACKAGE_BASE__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -277,7 +305,7 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
                 setReferencedElement((org.eclipse.uml2.uml.Package)null);
                 return;
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
                 setOwningPackage((PackageType)null);
@@ -301,9 +329,9 @@ public abstract class PackageBaseImpl<PackageType extends PackageBase<?>> extend
 	public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TextualCommonsPackage.PACKAGE_BASE__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
             case TextualCommonsPackage.PACKAGE_BASE__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case TextualCommonsPackage.PACKAGE_BASE__OWNING_PACKAGE:
                 return getOwningPackage() != null;
             case TextualCommonsPackage.PACKAGE_BASE__PACKAGES:

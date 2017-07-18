@@ -6,11 +6,12 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.services.IDisposable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.focus.internal.history.HistoryElement;
 import de.cooperateproject.ui.focus.internal.utils.EditorMonitor;
@@ -19,7 +20,7 @@ import de.cooperateproject.ui.focus.manager.IFocusManager;
 
 public class FocusViewManager implements IDisposable {
 
-    private static final Logger LOGGER = Logger.getLogger(FocusViewManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FocusViewManager.class);
     private final Map<IEditorPart, IFocusedDiagram> focusedDiagrams = new HashMap<>();
     private final FocusViewModel focusViewModel = new FocusViewModel();
     private IEditorPart activeEditor;
@@ -33,11 +34,11 @@ public class FocusViewManager implements IDisposable {
     @Override
     public void dispose() {
         editorMonitor.stop();
-        focusedDiagrams.values().forEach(d -> IOUtils.closeQuietly(d));
+        focusedDiagrams.values().forEach(IOUtils::closeQuietly);
     }
 
     public void sendCurrentFocus() {
-        executeForFocusedDiagram(fd -> fd.sendCurrentlyFocusedElement());
+        executeForFocusedDiagram(IFocusedDiagram::sendCurrentlyFocusedElement);
     }
 
     public void setFocus(HistoryElement historyElement) {
@@ -45,7 +46,7 @@ public class FocusViewManager implements IDisposable {
     }
 
     public void clearHistoryElements() {
-        executeForFocusedDiagram(fd -> fd.clearHistoryElements());
+        executeForFocusedDiagram(IFocusedDiagram::clearHistoryElements);
     }
 
     public IObservableValue<String> getDiagramTitleObservable() {
@@ -61,17 +62,16 @@ public class FocusViewManager implements IDisposable {
     }
 
     private void editorActivated(IEditorPart editor) {
-        if (!focusedDiagrams.containsKey(editor)) {
-            if (InternalFocusManagerFactory.getInstance().canHandle(editor)) {
-                IFocusManager focusManager = InternalFocusManagerFactory.getInstance().create(editor);
-                IFocusedDiagram focusedDiagram = new FocusedDiagram(focusManager);
-                focusedDiagrams.put(editor, focusedDiagram);
-                try {
-                    focusedDiagram.init();
-                } catch (IOException e) {
-                    LOGGER.warn(String.format("Could not initialize focus management for editor %s.", editor), e);
-                }
+        if (!focusedDiagrams.containsKey(editor) && InternalFocusManagerFactory.INSTANCE.canHandle(editor)) {
+            IFocusManager focusManager = InternalFocusManagerFactory.INSTANCE.create(editor);
+            IFocusedDiagram focusedDiagram = new FocusedDiagram(focusManager);
+            focusedDiagrams.put(editor, focusedDiagram);
+            try {
+                focusedDiagram.init();
+            } catch (IOException e) {
+                LOGGER.warn(String.format("Could not initialize focus management for editor %s.", editor), e);
             }
+
         }
         setActiveEditor(editor);
     }

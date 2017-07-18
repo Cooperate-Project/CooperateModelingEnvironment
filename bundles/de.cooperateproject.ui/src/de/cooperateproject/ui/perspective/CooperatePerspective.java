@@ -11,7 +11,42 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.INavigatorContentService;
 
+/**
+ * Special perspective which should be used when working with Cooperate projects.
+ * 
+ * @author persch
+ *
+ */
 public class CooperatePerspective implements IPerspectiveFactory {
+
+    /**
+     * Listener which checks whether the Cooperate perspective is used and toggles the activated extensions.
+     */
+    public static void addPerspectiveActivatedListener() {
+        for (IWorkbenchWindow window : PlatformUI.getWorkbench().getWorkbenchWindows()) {
+            window.addPerspectiveListener(new IPerspectiveListener() {
+                @Override
+                public void perspectiveChanged(IWorkbenchPage page, IPerspectiveDescriptor perspective,
+                        String changeId) {
+                    // do nothing
+                }
+
+                @Override
+                public void perspectiveActivated(IWorkbenchPage page, IPerspectiveDescriptor perspective) {
+                    String[] ext = { "org.eclipse.emf.cdo.explorer.ui.CDOCheckouts" };
+                    CommonNavigator commonNavigator = (CommonNavigator) page.findView(IPageLayout.ID_PROJECT_EXPLORER);
+                    INavigatorContentService contentService = commonNavigator.getNavigatorContentService();
+                    if (perspective.getId().contentEquals("de.cooperateproject.ui.perspective")
+                            && contentService.isActive(ext[0])) {
+                        contentService.getActivationService().deactivateExtensions(ext, false);
+                    } else if (!contentService.isActive(ext[0])) {
+                        contentService.getActivationService().activateExtensions(ext, false);
+                    }
+                }
+
+            });
+        }
+    }
 
     @Override
     public void createInitialLayout(IPageLayout layout) {
@@ -19,12 +54,12 @@ public class CooperatePerspective implements IPerspectiveFactory {
         defineLayout(layout);
     }
 
-    private void defineActions(IPageLayout layout) {
+    private static void defineActions(IPageLayout layout) {
         layout.addNewWizardShortcut("de.cooperateproject.ui.newCooperateProjectWizard");
         layout.addNewWizardShortcut("de.cooperateproject.ui.wizards.newClassDiagram");
     }
 
-    private void defineLayout(IPageLayout layout) {
+    private static void defineLayout(IPageLayout layout) {
         String editorArea = layout.getEditorArea();
         final String bottom = "bottom";
         final String left = "left";
@@ -48,31 +83,5 @@ public class CooperatePerspective implements IPerspectiveFactory {
         IFolderLayout bottomright = layout.createFolder("bottomright", IPageLayout.RIGHT, (float) 0.5, bottom);
         bottomright.addView(IPageLayout.ID_PROBLEM_VIEW);
         bottomright.addView("org.eclipse.papyrus.views.validation.ModelValidationView");
-    }
-
-    public static void addPerspectiveActivatedListener() {
-        for (IWorkbenchWindow window : PlatformUI.getWorkbench().getWorkbenchWindows()) {
-            window.addPerspectiveListener((new IPerspectiveListener() {
-                @Override
-                public void perspectiveChanged(IWorkbenchPage page, IPerspectiveDescriptor perspective,
-                        String changeId) {
-                    // do nothing
-                }
-
-                @Override
-                public void perspectiveActivated(IWorkbenchPage page, IPerspectiveDescriptor perspective) {
-                    String[] ext = { "org.eclipse.emf.cdo.explorer.ui.CDOCheckouts" };
-                    CommonNavigator commonNavigator = (CommonNavigator) page.findView(IPageLayout.ID_PROJECT_EXPLORER);
-                    INavigatorContentService contentService = commonNavigator.getNavigatorContentService();
-                    if (perspective.getId().contentEquals("de.cooperateproject.ui.perspective")
-                            && contentService.isActive(ext[0])) {
-                        contentService.getActivationService().deactivateExtensions(ext, false);
-                    } else if (!contentService.isActive(ext[0])) {
-                        contentService.getActivationService().activateExtensions(ext, false);
-                    }
-                }
-
-            }));
-        }
     }
 }

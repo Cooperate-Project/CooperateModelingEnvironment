@@ -9,11 +9,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility class for handling extensions registered for an extension point.
@@ -32,7 +33,7 @@ public final class ExtensionPointHelper {
         Map<String, String> getAttributes(IConfigurationElement config);
     }
 
-    private static final Logger LOGGER = Logger.getLogger(ExtensionPointHelper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExtensionPointHelper.class);
 
     /**
      * Instantiates and returns an executable extension.

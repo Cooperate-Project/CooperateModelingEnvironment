@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<ppe:StringEditor input="{Binding}" property="CustomImage:Image:name"></ppe:StringEditor>
+	<ppe:EnumCombo input="{Binding}" property="CustomImage:Image:kind"></ppe:EnumCombo>
+	<ppe:StringMultiline input="{Binding}"
+		property="CustomImage:Image:expression"></ppe:StringMultiline>
+	<ppe:StringEditor input="{Binding}" property="UML:Image:location"></ppe:StringEditor>
+	<ppe:StringEditor input="{Binding}" property="UML:Image:format"></ppe:StringEditor>
+	<uml:StereotypeImageEditor input="{Binding}"
+		property="UML:Image:content"></uml:StereotypeImageEditor>
+</Composite>

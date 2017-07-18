@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Type
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
-import static extension de.cooperateproject.modeling.textual.cls.issues.ClsIssueResolutionUtilities.*
+import static extension de.cooperateproject.modeling.textual.cls.utils.ClsConversionUtilities.*
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
 class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
@@ -139,8 +139,10 @@ class ClsUMLReferencingElementMissingElementResolution extends AutomatedIssueRes
 		if(!resolvePossible) return Void
 		val umlParent = element.owningPackage.referencedElement
 		val umlClassifier = umlParent.createPackagedElement(element.name, umlType) as org.eclipse.uml2.uml.Classifier
-		umlClassifier.visibility = element.visibility
-		if (element.alias != null) {
+		if (element.isSetVisibility) {
+		  umlClassifier.visibility = element.visibility  
+		}
+		if (element.alias !== null) {
 			umlClassifier.createNameExpression(element.alias, null)
 		}
 		element.referencedElement = umlClassifier

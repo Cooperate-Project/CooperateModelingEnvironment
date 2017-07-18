@@ -9,8 +9,6 @@ import java.nio.file.Paths;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -30,21 +28,25 @@ import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Iterables;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.transformation.transformations.Activator;
-import de.cooperateproject.modeling.transformation.transformations.impl.Log4JLogger;
+import de.cooperateproject.modeling.transformation.transformations.impl.Slf4JLogger;
+import de.cooperateproject.modeling.transformation.transformations.impl.Slf4JLogger.Level;
 import de.cooperateproject.modeling.transformation.transformations.tests.Constants;
 
 public abstract class TransformationTestBase {
 
-    private static final Logger LOGGER = Logger.getLogger(TransformationTestBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransformationTestBase.class);
     private ResourceSet resourceSet;
 
     @BeforeClass
     public static void init() throws Exception {
+
         BasicConfigurator.resetConfiguration();
         BasicConfigurator.configure(new ConsoleAppender(new PatternLayout("%m%n")));
 
@@ -76,7 +78,7 @@ public abstract class TransformationTestBase {
             Trace traceModel) throws IOException {
         TransformationExecutor executor = new TransformationExecutor(transformationURI);
         ExecutionContextImpl ctx = new ExecutionContextImpl();
-        ctx.setLog(new Log4JLogger(LOGGER, Level.INFO));
+        ctx.setLog(new Slf4JLogger(LOGGER, Level.INFO));
         ctx.getSessionData().setValue(QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE, traceModel);
         ExecutionDiagnostic result = executor.execute(ctx,
                 Iterables.toArray(transformationParameters, ModelExtent.class));

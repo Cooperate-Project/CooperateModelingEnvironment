@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.cooperateproject.modeling.transformation.transformations.registry.Transformation;
-import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactory;
+import de.cooperateproject.modeling.transformation.transformations.registry.ITransformationFactory;
 import de.cooperateproject.modeling.transformation.transformations.registry.TransformationFactoryRegistry;
 
 public enum TransformationExecutor {
@@ -21,7 +21,7 @@ public enum TransformationExecutor {
     }
 
     public void transformChanged(URI changedResource, ResourceSet resourceSet) throws IOException {
-        Collection<TransformationFactory> transformationFactories = TransformationFactoryRegistry.getInstance()
+        Collection<ITransformationFactory> transformationFactories = TransformationFactoryRegistry.getInstance()
                 .getTransformationFactories();
         Collection<Transformation> transformations = transformationFactories.stream()
                 .map(f -> f.create(changedResource, resourceSet)).filter(Optional::isPresent).map(Optional::get)

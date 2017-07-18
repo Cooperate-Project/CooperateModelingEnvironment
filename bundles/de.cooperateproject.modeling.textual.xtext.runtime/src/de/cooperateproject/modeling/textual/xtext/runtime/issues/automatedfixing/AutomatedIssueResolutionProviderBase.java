@@ -9,11 +9,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.validation.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionFactory.CreationException;
 import de.cooperateproject.modeling.textual.xtext.runtime.validator.ICooperateAutomatedValidator;
 
 public abstract class AutomatedIssueResolutionProviderBase implements IAutomatedIssueResolutionProvider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutomatedIssueResolutionProviderBase.class);
 
     private static class IssueResolutionGroup implements IAutomatedIssueResolution {
 
@@ -72,6 +75,7 @@ public abstract class AutomatedIssueResolutionProviderBase implements IAutomated
             IAutomatedIssueResolution resolver = factory.create(element);
             return Optional.of(resolver);
         } catch (CreationException e) {
+            LOGGER.error("Error during creating issue instance", e);
             return Optional.empty();
         }
     }

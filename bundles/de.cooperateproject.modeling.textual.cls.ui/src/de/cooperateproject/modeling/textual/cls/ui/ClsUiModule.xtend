@@ -3,29 +3,24 @@
  */
 package de.cooperateproject.modeling.textual.cls.ui
 
-import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import de.cooperateproject.modeling.textual.cls.ui.inFile.ClsLocationInFileProvider
-import org.eclipse.xtext.resource.ILocationInFileProvider
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextEditor
-import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer
-import org.eclipse.xtext.ui.editor.model.edit.DefaultTextEditComposer
-import org.eclipse.xtext.resource.SaveOptions
 import com.google.inject.Binder
 import com.google.inject.name.Names
+import de.cooperateproject.modeling.textual.cls.ui.inFile.ClsLocationInFileProvider
+import de.cooperateproject.modeling.textual.cls.ui.outline.FlatOutlineViewContribution
+import de.cooperateproject.modeling.textual.cls.ui.outline.OutlineFlattenFilterAndSorter
+import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import org.eclipse.xtext.resource.ILocationInFileProvider
+import org.eclipse.xtext.resource.SaveOptions
+import org.eclipse.xtext.ui.editor.model.edit.DefaultTextEditComposer
+import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer
 import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution
 import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter
-import de.cooperateproject.modeling.textual.cls.ui.outline.OutlineFlattenFilterAndSorter
-import de.cooperateproject.modeling.textual.cls.ui.outline.FlatOutlineViewContribution
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class ClsUiModule extends AbstractClsUiModule {
-
-	override bindXtextEditor() {
-		return CooperateCDOXtextEditor;
-	}
 
 	def Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return ClsLocationInFileProvider;

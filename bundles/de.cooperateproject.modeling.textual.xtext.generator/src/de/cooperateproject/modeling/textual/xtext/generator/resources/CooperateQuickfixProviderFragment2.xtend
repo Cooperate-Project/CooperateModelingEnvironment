@@ -2,15 +2,20 @@ package de.cooperateproject.modeling.textual.xtext.generator.resources
 
 import com.google.inject.Inject
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.issues.CooperateQuickfixProvider
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateMarkerResolutionGenerator
 import org.apache.commons.lang3.StringUtils
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.Grammar
 import org.eclipse.xtext.GrammarUtil
+import org.eclipse.xtext.ui.editor.quickfix.ILanguageResourceHelper
 import org.eclipse.xtext.xtext.generator.XtextGeneratorNaming
 import org.eclipse.xtext.xtext.generator.model.FileAccessFactory
+import org.eclipse.xtext.xtext.generator.model.GuiceModuleAccess
 import org.eclipse.xtext.xtext.generator.ui.quickfix.QuickfixProviderFragment2
 
 import static extension de.cooperateproject.modeling.textual.xtext.generator.resources.GrammarPackageHandlingUtilities.*
+import static extension org.eclipse.xtext.GrammarUtil.*
 import static extension org.eclipse.xtext.xtext.generator.model.TypeReference.*
 
 class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
@@ -19,10 +24,21 @@ class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
 	Grammar grammar
 	
 	@Inject
-	XtextGeneratorNaming naming
+	extension XtextGeneratorNaming naming
 	
 	@Inject
 	FileAccessFactory fileAccessFactory
+	
+	override generate() {
+		super.generate
+		registerGuiceBindingsUi();
+	}
+	
+	def registerGuiceBindingsUi() {
+        new GuiceModuleAccess.BindingFactory()
+                .addTypeToType(ILanguageResourceHelper.typeRef, CooperateLanguageResourceHelper.typeRef)
+                .contributeTo(language.eclipsePluginGenModule);
+	}
 	
 	override getQuickfixProviderSuperClass(Grammar g) {
 		CooperateQuickfixProvider.typeRef()
@@ -60,6 +76,42 @@ class CooperateQuickfixProviderFragment2 extends QuickfixProviderFragment2 {
 			
 			}
 		''').writeTo(projectConfig.eclipsePlugin.src)
+	}
+	
+	protected override addRegistrationToPluginXml() {
+		val markerTypePrefix = projectConfig.eclipsePlugin.name + "." + grammar.simpleName.toLowerCase
+		val executableExtensionFactory = grammar.eclipsePluginExecutableExtensionFactory
+
+		projectConfig.eclipsePlugin.pluginXml.entries += '''
+			<!-- quickfix marker resolution generator for «grammar.name» -->
+			<extension
+					point="org.eclipse.ui.ide.markerResolution">
+				<markerResolutionGenerator
+					class="«executableExtensionFactory»:«CooperateMarkerResolutionGenerator.typeRef»"
+					markerType="«markerTypePrefix».check.fast">
+					<attribute
+						name="FIXABLE_KEY"
+						value="true">
+					</attribute>
+				</markerResolutionGenerator>
+				<markerResolutionGenerator
+					class="«executableExtensionFactory»:«CooperateMarkerResolutionGenerator.typeRef»"
+					markerType="«markerTypePrefix».check.normal">
+					<attribute
+						name="FIXABLE_KEY"
+						value="true">
+					</attribute>
+				</markerResolutionGenerator>
+				<markerResolutionGenerator
+					class="«executableExtensionFactory»:«CooperateMarkerResolutionGenerator.typeRef»"
+					markerType="«markerTypePrefix».check.expensive">
+					<attribute
+						name="FIXABLE_KEY"
+						value="true">
+					</attribute>
+				</markerResolutionGenerator>
+			</extension>
+		'''		
 	}
 	
 	private def toInstanceString(Iterable<EPackage> packages) {

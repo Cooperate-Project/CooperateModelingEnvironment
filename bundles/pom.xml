@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.cooperateproject.modeling</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.1.8-SNAPSHOT</version>
+		<version>0.2.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>bundles</artifactId>
@@ -41,6 +41,7 @@
 		<module>de.cooperateproject.ui.papyrus</module>
 		<module>de.cooperateproject.ui.textualeditors</module>
 		<module>de.cooperateproject.ui.preferences</module>
+		<module>de.cooperateproject.ui.util</module>
 		<module>de.cooperateproject.util</module>
 		<module>de.cooperateproject.modeling.graphical.papyrus.extensions</module>
 	</modules>
