@@ -5,7 +5,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence.provider;
 
 
 import de.cooperateproject.modeling.textual.sequence.sequence.MultipleRegionContainer;
-import de.cooperateproject.modeling.textual.sequence.sequence.SequenceFactory;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.util.Collection;
@@ -125,11 +124,6 @@ public class MultipleRegionContainerItemProvider extends CombinedFragmentItemPro
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.MULTIPLE_REGION_CONTAINER__REGIONS,
-                 SequenceFactory.eINSTANCE.createOrderedFragmentContainer()));
     }
 
 }

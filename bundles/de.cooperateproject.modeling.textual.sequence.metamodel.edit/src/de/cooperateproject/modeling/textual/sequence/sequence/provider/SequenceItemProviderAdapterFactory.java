@@ -165,29 +165,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.Fragment} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected FragmentItemProvider fragmentItemProvider;
-
-    /**
-     * This creates an adapter for a {@link de.cooperateproject.modeling.textual.sequence.sequence.Fragment}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createFragmentAdapter() {
-        if (fragmentItemProvider == null) {
-            fragmentItemProvider = new FragmentItemProvider(this);
-        }
-
-        return fragmentItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.Message} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -303,29 +280,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected OccurenceSpecificationItemProvider occurenceSpecificationItemProvider;
-
-    /**
-     * This creates an adapter for a {@link de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createOccurenceSpecificationAdapter() {
-        if (occurenceSpecificationItemProvider == null) {
-            occurenceSpecificationItemProvider = new OccurenceSpecificationItemProvider(this);
-        }
-
-        return occurenceSpecificationItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -346,29 +300,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
         }
 
         return destructionOccurenceSpecificationItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected OrderedFragmentContainerItemProvider orderedFragmentContainerItemProvider;
-
-    /**
-     * This creates an adapter for a {@link de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createOrderedFragmentContainerAdapter() {
-        if (orderedFragmentContainerItemProvider == null) {
-            orderedFragmentContainerItemProvider = new OrderedFragmentContainerItemProvider(this);
-        }
-
-        return orderedFragmentContainerItemProvider;
     }
 
     /**
@@ -576,29 +507,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
         }
 
         return durationObservationItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.Constraint} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ConstraintItemProvider constraintItemProvider;
-
-    /**
-     * This creates an adapter for a {@link de.cooperateproject.modeling.textual.sequence.sequence.Constraint}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createConstraintAdapter() {
-        if (constraintItemProvider == null) {
-            constraintItemProvider = new ConstraintItemProvider(this);
-        }
-
-        return constraintItemProvider;
     }
 
     /**
@@ -832,29 +740,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected NonInstantaneousFragmentItemProvider nonInstantaneousFragmentItemProvider;
-
-    /**
-     * This creates an adapter for a {@link de.cooperateproject.modeling.textual.sequence.sequence.NonInstantaneousFragment}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createNonInstantaneousFragmentAdapter() {
-        if (nonInstantaneousFragmentItemProvider == null) {
-            nonInstantaneousFragmentItemProvider = new NonInstantaneousFragmentItemProvider(this);
-        }
-
-        return nonInstantaneousFragmentItemProvider;
-    }
-
-    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -957,15 +842,12 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
         if (rootPackageItemProvider != null) rootPackageItemProvider.dispose();
         if (actorItemProvider != null) actorItemProvider.dispose();
         if (actorClassifierMappingItemProvider != null) actorClassifierMappingItemProvider.dispose();
-        if (fragmentItemProvider != null) fragmentItemProvider.dispose();
         if (messageItemProvider != null) messageItemProvider.dispose();
         if (standardMessageItemProvider != null) standardMessageItemProvider.dispose();
         if (responseMessageItemProvider != null) responseMessageItemProvider.dispose();
         if (createMessageItemProvider != null) createMessageItemProvider.dispose();
         if (destructionMessageItemProvider != null) destructionMessageItemProvider.dispose();
-        if (occurenceSpecificationItemProvider != null) occurenceSpecificationItemProvider.dispose();
         if (destructionOccurenceSpecificationItemProvider != null) destructionOccurenceSpecificationItemProvider.dispose();
-        if (orderedFragmentContainerItemProvider != null) orderedFragmentContainerItemProvider.dispose();
         if (alternativeItemProvider != null) alternativeItemProvider.dispose();
         if (optionItemProvider != null) optionItemProvider.dispose();
         if (coRegionItemProvider != null) coRegionItemProvider.dispose();
@@ -975,7 +857,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
         if (conditionItemProvider != null) conditionItemProvider.dispose();
         if (timeObservationItemProvider != null) timeObservationItemProvider.dispose();
         if (durationObservationItemProvider != null) durationObservationItemProvider.dispose();
-        if (constraintItemProvider != null) constraintItemProvider.dispose();
         if (timeConstraintItemProvider != null) timeConstraintItemProvider.dispose();
         if (durationConstraintItemProvider != null) durationConstraintItemProvider.dispose();
         if (explicitArrivalOccurenceReferenceItemProvider != null) explicitArrivalOccurenceReferenceItemProvider.dispose();
@@ -986,7 +867,6 @@ public class SequenceItemProviderAdapterFactory extends SequenceAdapterFactory i
         if (biPointInTimeTimeIntervalSelectorItemProvider != null) biPointInTimeTimeIntervalSelectorItemProvider.dispose();
         if (fragmentTimeIntervalSelectorItemProvider != null) fragmentTimeIntervalSelectorItemProvider.dispose();
         if (referenceItemProvider != null) referenceItemProvider.dispose();
-        if (nonInstantaneousFragmentItemProvider != null) nonInstantaneousFragmentItemProvider.dispose();
     }
 
 }

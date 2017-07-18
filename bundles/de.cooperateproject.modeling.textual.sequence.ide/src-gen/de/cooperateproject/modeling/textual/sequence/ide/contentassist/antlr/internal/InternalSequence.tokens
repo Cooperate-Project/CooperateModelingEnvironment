@@ -5,7 +5,7 @@
 ':'=23
 '@end-seqd'=17
 '@start-seqd'=16
-'['=26
+'['=24
 ']'=22
 '_'=11
 'act'=19
@@ -35,8 +35,8 @@
 'rootElement'=18
 'sync'=12
 't'=44
-'{'=24
-'}'=25
+'{'=25
+'}'=26
 RULE_ANY_OTHER=10
 RULE_ID=5
 RULE_INT=6

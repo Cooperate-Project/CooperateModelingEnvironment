@@ -1630,6 +1630,12 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         g2 = createEGenericType(theUMLPackage.getInteractionOperand());
         g1.getETypeArguments().add(g2);
         orderedFragmentContainerEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(this.getPointInTime());
+        g2 = createEGenericType(theUMLPackage.getInteractionOperand());
+        g1.getETypeArguments().add(g2);
+        orderedFragmentContainerEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getAliasedElement());
+        orderedFragmentContainerEClass.getEGenericSuperTypes().add(g1);
         singleRegionContainerEClass.getESuperTypes().add(this.getCombinedFragment());
         multipleRegionContainerEClass.getESuperTypes().add(this.getCombinedFragment());
         alternativeEClass.getESuperTypes().add(this.getMultipleRegionContainer());
@@ -1711,7 +1717,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEReference(getActorClassifierMapping_Actor(), this.getActor(), this.getActor_TypeMapping(), "actor", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getActorClassifierMapping_ClassifierName(), ecorePackage.getEString(), "classifierName", null, 0, 1, ActorClassifierMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(fragmentEClass, Fragment.class, "Fragment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEOperation(getFragment__GetContainingSequence(), this.getFragmentSequence(), "getContainingSequence", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1760,7 +1766,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
 
         initEClass(destructionMessageEClass, DestructionMessage.class, "DestructionMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-        initEClass(occurenceSpecificationEClass, OccurenceSpecification.class, "OccurenceSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(occurenceSpecificationEClass, OccurenceSpecification.class, "OccurenceSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         op = initEOperation(getOccurenceSpecification__GetOccurenceReference(), null, "getOccurenceReference", 0, 1, IS_UNIQUE, IS_ORDERED);
         g1 = createEGenericType(this.getOccurenceReference());
@@ -1813,7 +1819,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEAttribute(getDurationObservation_Duration(), ecorePackage.getEString(), "duration", null, 0, 1, DurationObservation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDurationObservation_Interval(), this.getTimeIntervalSelector(), null, "interval", null, 0, 1, DurationObservation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(timeConstraintEClass, TimeConstraint.class, "TimeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTimeConstraint_Time(), ecorePackage.getEString(), "time", null, 0, 1, TimeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1928,7 +1934,7 @@ public class SequencePackageImpl extends EPackageImpl implements SequencePackage
         initEClass(referenceEClass, Reference.class, "Reference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getReference_Reference(), theUMLPackage.getInteraction(), null, "reference", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(nonInstantaneousFragmentEClass, NonInstantaneousFragment.class, "NonInstantaneousFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(nonInstantaneousFragmentEClass, NonInstantaneousFragment.class, "NonInstantaneousFragment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         // Initialize enums and add enum literals
         initEEnum(messageTypeEEnum, MessageType.class, "MessageType");

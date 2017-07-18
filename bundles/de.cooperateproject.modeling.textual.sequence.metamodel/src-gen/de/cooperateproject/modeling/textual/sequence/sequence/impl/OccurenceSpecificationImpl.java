@@ -47,7 +47,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  *
  * @generated
  */
-public class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpecification> extends FragmentImpl implements OccurenceSpecification<UMLOccurenceType> {
+public abstract class OccurenceSpecificationImpl<UMLOccurenceType extends OccurrenceSpecification> extends FragmentImpl implements OccurenceSpecification<UMLOccurenceType> {
     /**
      * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
      * <!-- begin-user-doc -->

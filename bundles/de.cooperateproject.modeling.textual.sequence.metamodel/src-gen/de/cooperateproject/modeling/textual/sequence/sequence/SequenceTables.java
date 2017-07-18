@@ -148,7 +148,7 @@ public class SequenceTables
 		public static final /*@NonNull*/ EcoreExecutorType _CoRegion = new EcoreExecutorType(SequencePackage.Literals.CO_REGION, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _CombinedFragment = new EcoreExecutorType(SequencePackage.Literals.COMBINED_FRAGMENT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _Condition = new EcoreExecutorType(SequencePackage.Literals.CONDITION, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _Constraint = new EcoreExecutorType(SequencePackage.Literals.CONSTRAINT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _Constraint = new EcoreExecutorType(SequencePackage.Literals.CONSTRAINT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _CreateMessage = new EcoreExecutorType(SequencePackage.Literals.CREATE_MESSAGE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Critical = new EcoreExecutorType(SequencePackage.Literals.CRITICAL, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _DestructionMessage = new EcoreExecutorType(SequencePackage.Literals.DESTRUCTION_MESSAGE, PACKAGE, 0);
@@ -157,7 +157,7 @@ public class SequenceTables
 		public static final /*@NonNull*/ EcoreExecutorType _DurationObservation = new EcoreExecutorType(SequencePackage.Literals.DURATION_OBSERVATION, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExplicitArrivalOccurenceReference = new EcoreExecutorType(SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ExplicitArrivalOccurenceSpecification = new EcoreExecutorType(SequencePackage.Literals.EXPLICIT_ARRIVAL_OCCURENCE_SPECIFICATION, PACKAGE, 0);
-		public static final /*@NonNull*/ EcoreExecutorType _Fragment = new EcoreExecutorType(SequencePackage.Literals.FRAGMENT, PACKAGE, 0);
+		public static final /*@NonNull*/ EcoreExecutorType _Fragment = new EcoreExecutorType(SequencePackage.Literals.FRAGMENT, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _FragmentSequence = new EcoreExecutorType(SequencePackage.Literals.FRAGMENT_SEQUENCE, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _FragmentTimeIntervalSelector = new EcoreExecutorType(SequencePackage.Literals.FRAGMENT_TIME_INTERVAL_SELECTOR, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _ImplicitMessageOccurenceSpecification = new EcoreExecutorType(SequencePackage.Literals.IMPLICIT_MESSAGE_OCCURENCE_SPECIFICATION, PACKAGE, 0);
@@ -165,10 +165,10 @@ public class SequenceTables
 		public static final /*@NonNull*/ EcoreExecutorType _Message = new EcoreExecutorType(SequencePackage.Literals.MESSAGE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorEnumeration _MessageType = new EcoreExecutorEnumeration(SequencePackage.Literals.MESSAGE_TYPE, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _MultipleRegionContainer = new EcoreExecutorType(SequencePackage.Literals.MULTIPLE_REGION_CONTAINER, PACKAGE, 0 | ExecutorType.ABSTRACT);
-		public static final /*@NonNull*/ EcoreExecutorType _NonInstantaneousFragment = new EcoreExecutorType(SequencePackage.Literals.NON_INSTANTANEOUS_FRAGMENT, PACKAGE, 0, TypeParameters._NonInstantaneousFragment_UMLType);
+		public static final /*@NonNull*/ EcoreExecutorType _NonInstantaneousFragment = new EcoreExecutorType(SequencePackage.Literals.NON_INSTANTANEOUS_FRAGMENT, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._NonInstantaneousFragment_UMLType);
 		public static final /*@NonNull*/ EcoreExecutorType _Observation = new EcoreExecutorType(SequencePackage.Literals.OBSERVATION, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final /*@NonNull*/ EcoreExecutorType _OccurenceReference = new EcoreExecutorType(SequencePackage.Literals.OCCURENCE_REFERENCE, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._OccurenceReference_OccurenceType);
-		public static final /*@NonNull*/ EcoreExecutorType _OccurenceSpecification = new EcoreExecutorType(SequencePackage.Literals.OCCURENCE_SPECIFICATION, PACKAGE, 0, TypeParameters._OccurenceSpecification_UMLOccurenceType);
+		public static final /*@NonNull*/ EcoreExecutorType _OccurenceSpecification = new EcoreExecutorType(SequencePackage.Literals.OCCURENCE_SPECIFICATION, PACKAGE, 0 | ExecutorType.ABSTRACT, TypeParameters._OccurenceSpecification_UMLOccurenceType);
 		public static final /*@NonNull*/ EcoreExecutorType _Option = new EcoreExecutorType(SequencePackage.Literals.OPTION, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _OrderedFragmentContainer = new EcoreExecutorType(SequencePackage.Literals.ORDERED_FRAGMENT_CONTAINER, PACKAGE, 0);
 		public static final /*@NonNull*/ EcoreExecutorType _Parallel = new EcoreExecutorType(SequencePackage.Literals.PARALLEL, PACKAGE, 0);
@@ -514,12 +514,15 @@ public class SequenceTables
 		private static final /*@NonNull*/ ExecutorFragment _Option__SingleRegionContainer = new ExecutorFragment(Types._Option, SequenceTables.Types._SingleRegionContainer);
 		private static final /*@NonNull*/ ExecutorFragment _Option__UMLReferencingElement = new ExecutorFragment(Types._Option, TextualCommonsTables.Types._UMLReferencingElement);
 
+		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__AliasedElement = new ExecutorFragment(Types._OrderedFragmentContainer, TextualCommonsTables.Types._AliasedElement);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__Commentable = new ExecutorFragment(Types._OrderedFragmentContainer, TextualCommonsTables.Types._Commentable);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__Element = new ExecutorFragment(Types._OrderedFragmentContainer, TextualCommonsTables.Types._Element);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__FragmentSequence = new ExecutorFragment(Types._OrderedFragmentContainer, SequenceTables.Types._FragmentSequence);
+		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__NamedElement = new ExecutorFragment(Types._OrderedFragmentContainer, TextualCommonsTables.Types._NamedElement);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__OclAny = new ExecutorFragment(Types._OrderedFragmentContainer, OCLstdlibTables.Types._OclAny);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__OclElement = new ExecutorFragment(Types._OrderedFragmentContainer, OCLstdlibTables.Types._OclElement);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__OrderedFragmentContainer = new ExecutorFragment(Types._OrderedFragmentContainer, SequenceTables.Types._OrderedFragmentContainer);
+		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__PointInTime = new ExecutorFragment(Types._OrderedFragmentContainer, SequenceTables.Types._PointInTime);
 		private static final /*@NonNull*/ ExecutorFragment _OrderedFragmentContainer__UMLReferencingElement = new ExecutorFragment(Types._OrderedFragmentContainer, TextualCommonsTables.Types._UMLReferencingElement);
 
 		private static final /*@NonNull*/ ExecutorFragment _Parallel__AliasedElement = new ExecutorFragment(Types._Parallel, TextualCommonsTables.Types._AliasedElement);
@@ -1221,11 +1224,14 @@ public class SequenceTables
 			Fragments._OrderedFragmentContainer__OclElement /* 1 */,
 			Fragments._OrderedFragmentContainer__Element /* 2 */,
 			Fragments._OrderedFragmentContainer__FragmentSequence /* 2 */,
+			Fragments._OrderedFragmentContainer__NamedElement /* 3 */,
 			Fragments._OrderedFragmentContainer__UMLReferencingElement /* 3 */,
+			Fragments._OrderedFragmentContainer__AliasedElement /* 4 */,
 			Fragments._OrderedFragmentContainer__Commentable /* 4 */,
+			Fragments._OrderedFragmentContainer__PointInTime /* 4 */,
 			Fragments._OrderedFragmentContainer__OrderedFragmentContainer /* 5 */
 		};
-		private static final int /*@NonNull*/ [] __OrderedFragmentContainer = { 1,1,2,1,1,1 };
+		private static final int /*@NonNull*/ [] __OrderedFragmentContainer = { 1,1,2,2,3,1 };
 
 		private static final /*@NonNull*/ ExecutorFragment /*@NonNull*/ [] _Parallel =
 		{
@@ -2562,6 +2568,7 @@ public class SequenceTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Option__UMLReferencingElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__OrderedFragmentContainer = {};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__AliasedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__Commentable = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__Element = {
 			TextualCommonsTables.Operations._Element__getNearestPackage /* getNearestPackage() */
@@ -2569,6 +2576,7 @@ public class SequenceTables
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__FragmentSequence = {
 			SequenceTables.Operations._FragmentSequence__getUMLFragmentSequence /* getUMLFragmentSequence() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__NamedElement = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -2595,6 +2603,7 @@ public class SequenceTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__PointInTime = {};
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _OrderedFragmentContainer__UMLReferencingElement = {};
 
 		private static final /*@NonNull*/ ExecutorOperation /*@NonNull*/ [] _Parallel__Parallel = {};
@@ -3291,12 +3300,15 @@ public class SequenceTables
 			Fragments._Option__SingleRegionContainer.initOperations(_Option__SingleRegionContainer);
 			Fragments._Option__UMLReferencingElement.initOperations(_Option__UMLReferencingElement);
 
+			Fragments._OrderedFragmentContainer__AliasedElement.initOperations(_OrderedFragmentContainer__AliasedElement);
 			Fragments._OrderedFragmentContainer__Commentable.initOperations(_OrderedFragmentContainer__Commentable);
 			Fragments._OrderedFragmentContainer__Element.initOperations(_OrderedFragmentContainer__Element);
 			Fragments._OrderedFragmentContainer__FragmentSequence.initOperations(_OrderedFragmentContainer__FragmentSequence);
+			Fragments._OrderedFragmentContainer__NamedElement.initOperations(_OrderedFragmentContainer__NamedElement);
 			Fragments._OrderedFragmentContainer__OclAny.initOperations(_OrderedFragmentContainer__OclAny);
 			Fragments._OrderedFragmentContainer__OclElement.initOperations(_OrderedFragmentContainer__OclElement);
 			Fragments._OrderedFragmentContainer__OrderedFragmentContainer.initOperations(_OrderedFragmentContainer__OrderedFragmentContainer);
+			Fragments._OrderedFragmentContainer__PointInTime.initOperations(_OrderedFragmentContainer__PointInTime);
 			Fragments._OrderedFragmentContainer__UMLReferencingElement.initOperations(_OrderedFragmentContainer__UMLReferencingElement);
 
 			Fragments._Parallel__AliasedElement.initOperations(_Parallel__AliasedElement);

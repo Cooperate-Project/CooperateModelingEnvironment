@@ -14,4 +14,21 @@ modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/te
 main() {
     var traces := graphicalTrace.rootObjects()[trace::Trace];
     assert fatal (traces->size() = 1);
+    traces->initializeProperties();
+    traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+    TARGET_TRANSFORMATION_NAME := "Graphical_to_Textual_for_Sequence";
+    TARGET_TRANSFORMATION := t2gTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
+}
+
+mapping trace::Trace::trace() : trace::Trace
+{
+    traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+    //result += self.map traceRecordExtended();
 }

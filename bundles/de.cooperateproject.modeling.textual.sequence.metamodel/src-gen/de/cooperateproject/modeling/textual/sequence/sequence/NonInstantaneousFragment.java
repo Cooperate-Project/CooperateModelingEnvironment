@@ -14,7 +14,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
  *
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getNonInstantaneousFragment()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface NonInstantaneousFragment<UMLType extends InteractionFragment> extends Fragment, PointInTime<UMLType>, AliasedElement {

@@ -1,4 +1,5 @@
 import TransformationUtils_Sequence;
+import de.cooperateproject.qvtoutils.CooperateLibrary;
 
 transformation PapyrusSequence2Text(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
 
@@ -7,23 +8,243 @@ modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype GMFSTYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
+
+property rootDiagram : Diagram;
 
 main() {
     var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLSequenceDiagram");
     assert fatal (diagrams->size() = 1);
-
-    diagrams->map diagramToDiagram();
+    
+    rootDiagram := diagrams->any(true);
+    
+    rootDiagram.map diagramToDiagram();
 }
 
 mapping notation::Diagram::diagramToDiagram() : sequence::SequenceDiagram {
     title := self.name;
+    referencedElement := self.element.toElement();
+    
+    actors := self.getAllContentsOfType(notation::Shape.oclAsType(EClass), false).oclAsType(notation::Shape).map shapeToActor();
+    fragments := referencedElement.oclAsType(Interaction).fragment->map umlFragmentToSequenceFragment();
     rootPackage := self.map diagramToRootPackage();
 }
 
 mapping notation::Diagram::diagramToRootPackage() : sequence::RootPackage {
-    name := self.element.oclAsType(uml::Package).getQualifiedName();
-    referencedElement := self.element.toElement();
+    referencedElement := self.styles->selectByType(PapyrusDiagramStyle)->first().owner.toElement();
 }
+
+mapping notation::Shape::shapeToActor() : sequence::Actor
+when {self.type = PAPYRUS_NOTATION_TYPE_LIFELINE + '_' + PAPYRUS_NOTATION_SHAPE} {
+    var ll = self.element.oclAsType(Lifeline);
+	referencedElement := ll;
+	typeMapping := ll.represents.map propertyToActorClassifierMapping();
+}
+
+mapping uml::ConnectableElement::propertyToActorClassifierMapping() : sequence::ActorClassifierMapping 
+when {self.oclIsKindOf(Property)} {
+	referencedElement := self;
+	classifier := self.type.oclAsType(Classifier);
+}
+
+mapping uml::InteractionFragment::umlFragmentToSequenceFragment() : sequence::Fragment 
+disjuncts uml::DestructionOccurrenceSpecification::destructionOccurrenceToDesctructionOccurence,
+uml::MessageOccurrenceSpecification::messageOccurrenceToStandardMessage,
+uml::MessageOccurrenceSpecification::messageOccurrenceToResponseMessage,
+uml::MessageOccurrenceSpecification::messageOccurrenceToCreateMessage,
+uml::MessageOccurrenceSpecification::messageOccurrenceToOccurenceSpecification,
+uml::CombinedFragment::combinedFragmentToCombinedFragment;
+
+mapping uml::DestructionOccurrenceSpecification::destructionOccurrenceToDesctructionOccurence(): sequence::DestructionOccurenceSpecification {
+	referencedElement := self;
+	target := self.toEObject().getShapeForElement(PAPYRUS_NOTATION_TYPE_DESTRUCTION_OCCURRENCE_SPECIFICATION + '_' + PAPYRUS_NOTATION_SHAPE)
+	   .container().resolveoneIn(notation::Shape::shapeToActor);
+}
+
+/**
+* Handling of combined fragments
+*/
+
+mapping uml::CombinedFragment::combinedFragmentToCombinedFragment() : sequence::CombinedFragment
+disjuncts uml::CombinedFragment::combinedFragmentToCritical,
+uml::CombinedFragment::combinedFragmentToOption,
+uml::CombinedFragment::combinedFragmentToLoop,
+uml::CombinedFragment::combinedFragmentToAlternative,
+uml::CombinedFragment::combinedFragmentToParallel;
+
+
+mapping uml::CombinedFragment::combinedFragmentToAlternative() : sequence::Alternative
+when {self.interactionOperator = InteractionOperatorKind::alt} {
+	regions := self.operand.map interactionOperandToOrderedFragmentContainer();
+	referencedElement := self;
+}
+
+mapping uml::CombinedFragment::combinedFragmentToCritical() : sequence::Critical
+when {self.interactionOperator = InteractionOperatorKind::critical} {
+    assert fatal (self.operand->size() <= 1);
+	region := self.operand->any(true).map interactionOperandToOrderedFragmentContainer();
+	referencedElement := self;
+}
+
+mapping uml::CombinedFragment::combinedFragmentToLoop() : sequence::Loop
+when {self.interactionOperator = InteractionOperatorKind::loop} {
+    assert fatal (self.operand->size() <= 1);
+    region := self.operand->any(true).map interactionOperandToOrderedFragmentContainer();
+    referencedElement := self;
+}
+
+mapping uml::CombinedFragment::combinedFragmentToOption() : sequence::Option
+when {self.interactionOperator = InteractionOperatorKind::opt}{
+    assert fatal (self.operand->size() <= 1);
+    region := self.operand->any(true).map interactionOperandToOrderedFragmentContainer();
+    referencedElement := self;
+}
+
+mapping uml::CombinedFragment::combinedFragmentToParallel() : sequence::Parallel
+when {self.interactionOperator = InteractionOperatorKind::par}{
+    regions := self.operand.map interactionOperandToOrderedFragmentContainer();
+    referencedElement := self;
+}
+
+
+mapping uml::InteractionOperand::interactionOperandToOrderedFragmentContainer(): sequence::OrderedFragmentContainer {
+	condition := self.guard.map interactionConstraintToCondition();
+	referencedElement := self;
+	
+	fragments := self.fragment->map umlFragmentToSequenceFragment();
+}
+
+mapping uml::InteractionConstraint::interactionConstraintToCondition(): sequence::Condition {
+	condition := self.specification.stringValue();
+	referencedElement := self;
+}
+
+/**
+* Handling of messages
+*/
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToStandardMessage() : sequence::StandardMessage 
+merges uml::MessageOccurrenceSpecification::messageOccurrenceToMessage
+when {self.isRepresentedBySequenceMessage() and 
+    (self.message.messageSort = MessageSort::synchCall or self.message.messageSort = MessageSort::asynchCall)}
+{
+    if (self.message.messageSort = MessageSort::synchCall) {
+        type := MessageType::SYNC;
+    } else type := MessageType::ASYNC;
+}
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToResponseMessage() : sequence::ResponseMessage 
+merges uml::MessageOccurrenceSpecification::messageOccurrenceToMessage
+when {self.isRepresentedBySequenceMessage() and self.message.messageSort = MessageSort::reply};
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToCreateMessage() : sequence::CreateMessage
+merges uml::MessageOccurrenceSpecification::messageOccurrenceToMessage
+when {self.isRepresentedBySequenceMessage() and self.message.messageSort = MessageSort::createMessage};
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToOccurenceSpecification() : sequence::ExplicitArrivalOccurenceSpecification
+when {self.needsToBeExplicit()}
+{
+	referencedElement := self;
+}
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToMessage(): sequence::Message {
+    var msg = self.message.oclAsType(uml::Message);
+    left := msg.sendEvent.oclAsType(OccurrenceSpecification).getCovered().toEObject()
+        .getShapeForElement(PAPYRUS_NOTATION_TYPE_LIFELINE + '_' + PAPYRUS_NOTATION_SHAPE).late resolveoneIn(notation::Shape::shapeToActor);
+    right := msg.receiveEvent.oclAsType(OccurrenceSpecification).getCovered().toEObject()
+        .getShapeForElement(PAPYRUS_NOTATION_TYPE_LIFELINE + '_' + PAPYRUS_NOTATION_SHAPE).late resolveoneIn(notation::Shape::shapeToActor);
+    sendEvent := msg.sendEvent.map messageOccurrenceToOccurenceReference();
+    arrivalEvent := msg.receiveEvent.map messageOccurrenceToOccurenceReference();
+    referencedElement := self.message
+}
+
+mapping uml::MessageEnd::messageOccurrenceToOccurenceReference(): sequence::OccurenceReference 
+disjuncts uml::MessageOccurrenceSpecification::messageOccurrenceToExplicitOccurenceReference,
+uml::MessageOccurrenceSpecification::messageOccurrenceToImplicitOccurenceReference;
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToExplicitOccurenceReference(): sequence::ExplicitArrivalOccurenceReference 
+when {self.needsToBeExplicit()}{
+	explicitOccurenceSpecification := self.late resolveoneIn(uml::MessageOccurrenceSpecification::messageOccurrenceToOccurenceSpecification);
+}
+
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToImplicitOccurenceReference(): sequence::ImplicitMessageOccurenceSpecification 
+when {not self.needsToBeExplicit()}{ 
+    referencedElement := self
+}
+
+mapping uml::MessageEnd::messageOccurrenceToImplicitMessageOccurrence(): sequence::ImplicitMessageOccurenceSpecification 
+when {self.isSend() and self.oclIsKindOf(MessageOccurrenceSpecification)}
+{
+	referencedElement := self;
+}
+
+query MessageOccurrenceSpecification::isRepresentedBySequenceMessage():Boolean {
+    return (self.isSend() or (self.isReceive() and self.message.messageKind = MessageKind::found))
+}
+
+query MessageOccurrenceSpecification::needsToBeExplicit():Boolean {
+    var prevOcc = self.getPreviousOccurrenceSpecificationInParent(); 
+    
+    return self.isReceive() and not self.message.oclIsUndefined()
+        and not self.message.sendEvent.oclIsUndefined()
+        and (prevOcc != self.message.sendEvent);
+}
+
+
+/**
+* Utilities
+*/
+query EObject::getShapeForElement(shapeType: String): notation::Shape {
+	var ll := self;
+	return rootDiagram.getAllContentsOfType(notation::Shape.oclAsType(EClass), false).oclAsType(notation::Shape)
+	   ->any(element = ll and (type = shapeType));
+}
+
+
+query InteractionFragment::getPreviousOccurrenceSpecificationInParent(): uml::OccurrenceSpecification {
+    var fragments: OrderedSet(InteractionFragment);
+	if (not self.enclosingInteraction.oclIsUndefined()) {
+		fragments := self.enclosingInteraction.fragment
+	} else {
+		fragments := self.enclosingOperand.fragment
+	};
+	var old: OccurrenceSpecification = null;
+    fragments->forEach(frag) {
+        if (frag != self) {
+          if (frag.oclIsKindOf(uml::OccurrenceSpecification)) {
+            old := frag.oclAsType(uml::OccurrenceSpecification);
+          };
+        } else {
+            break;
+        }
+    };
+    return old;
+}
+
+query OrderedSet(InteractionFragment)::filterNotRepresentedFragments():OrderedSet(InteractionFragment) {
+    var res : List(InteractionFragment);
+	self->forEach(f) {
+		if (f.oclIsKindOf(uml::CombinedFragment)
+		  or f.oclIsKindOf(uml::DestructionOccurrenceSpecification)) {
+			res += f;
+		} else if (f.oclIsKindOf(MessageOccurrenceSpecification)) {
+			var msgOcc = f.oclAsType(MessageOccurrenceSpecification);
+			if (msgOcc.isSend() or
+			     res->last() != msgOcc.message.sendEvent) {
+				res += msgOcc;
+			};
+		}
+	};
+	
+	return res->asOrderedSet();
+}
+
+/*query getConnectorForMessage(message: sequence::Message): notation::Connector {
+    var res := rootDiagram.edges[notation::Connector]->select(element = message.toEObject());
+    assert fatal (res->size() = 1);
+    return res->any(true);	
+}*/
 
 query ecore::EObject::toElement() : uml::Element {
     return self.oclAsType(uml::Element);

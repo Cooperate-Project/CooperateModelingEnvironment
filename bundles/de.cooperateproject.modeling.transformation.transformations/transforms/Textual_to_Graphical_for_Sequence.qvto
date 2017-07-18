@@ -27,7 +27,7 @@ mapping sequence::SequenceDiagram::diagramToDiagram() : notation::Diagram {
     
     styles += self.map stringValueStyle();
     styles += self.map diagramStyle();
-    styles += self.map papyrusViewStyle(rootPackage);
+    styles += self.map papyrusDiagramStyle(rootPackage);
     
     element := self.referencedElement.toEObject();
     
@@ -207,7 +207,7 @@ mapping sequence::SequenceDiagram::diagramStyle() : notation::DiagramStyle
 {   
 }
 
-mapping sequence::SequenceDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
+mapping sequence::SequenceDiagram::papyrusDiagramStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
 {
     diagramKindId := PAPYRUS_GMFSTYLE_DIAGRAM_KIND_ID;
     owner := rootElement.toEObject();
@@ -220,7 +220,6 @@ query sequence::Actor::getAssociatedBehaviorExecutionSpecifications(): OrderedSe
 
 query sequence::Actor::getAssociatedDestructionOccurrenceSpecifications(): Sequence(DestructionOccurenceSpecification) {
     var res = self.getAllContentsOfType(sequence::DestructionOccurenceSpecification.oclAsType(EClass), true);
-    log("BREAKPOINT", res); 
     return res.oclAsType(sequence::DestructionOccurenceSpecification)->select(b | b.target = self);
 }
 

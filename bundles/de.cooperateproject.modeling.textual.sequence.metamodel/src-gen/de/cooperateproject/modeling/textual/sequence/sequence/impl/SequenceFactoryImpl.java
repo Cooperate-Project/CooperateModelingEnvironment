@@ -14,9 +14,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
@@ -65,13 +62,11 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.ROOT_PACKAGE: return (EObject)createRootPackage();
             case SequencePackage.ACTOR: return (EObject)createActor();
             case SequencePackage.ACTOR_CLASSIFIER_MAPPING: return (EObject)createActorClassifierMapping();
-            case SequencePackage.FRAGMENT: return (EObject)createFragment();
             case SequencePackage.MESSAGE: return (EObject)createMessage();
             case SequencePackage.STANDARD_MESSAGE: return (EObject)createStandardMessage();
             case SequencePackage.RESPONSE_MESSAGE: return (EObject)createResponseMessage();
             case SequencePackage.CREATE_MESSAGE: return (EObject)createCreateMessage();
             case SequencePackage.DESTRUCTION_MESSAGE: return (EObject)createDestructionMessage();
-            case SequencePackage.OCCURENCE_SPECIFICATION: return (EObject)createOccurenceSpecification();
             case SequencePackage.DESTRUCTION_OCCURENCE_SPECIFICATION: return (EObject)createDestructionOccurenceSpecification();
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER: return (EObject)createOrderedFragmentContainer();
             case SequencePackage.ALTERNATIVE: return (EObject)createAlternative();
@@ -83,7 +78,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.CONDITION: return (EObject)createCondition();
             case SequencePackage.TIME_OBSERVATION: return (EObject)createTimeObservation();
             case SequencePackage.DURATION_OBSERVATION: return (EObject)createDurationObservation();
-            case SequencePackage.CONSTRAINT: return (EObject)createConstraint();
             case SequencePackage.TIME_CONSTRAINT: return (EObject)createTimeConstraint();
             case SequencePackage.DURATION_CONSTRAINT: return (EObject)createDurationConstraint();
             case SequencePackage.EXPLICIT_ARRIVAL_OCCURENCE_REFERENCE: return (EObject)createExplicitArrivalOccurenceReference();
@@ -94,7 +88,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
             case SequencePackage.BI_POINT_IN_TIME_TIME_INTERVAL_SELECTOR: return (EObject)createBiPointInTimeTimeIntervalSelector();
             case SequencePackage.FRAGMENT_TIME_INTERVAL_SELECTOR: return (EObject)createFragmentTimeIntervalSelector();
             case SequencePackage.REFERENCE: return (EObject)createReference();
-            case SequencePackage.NON_INSTANTANEOUS_FRAGMENT: return (EObject)createNonInstantaneousFragment();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -179,16 +172,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Fragment createFragment() {
-        FragmentImpl fragment = new FragmentImpl();
-        return fragment;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public Message createMessage() {
         MessageImpl message = new MessageImpl();
         return message;
@@ -232,16 +215,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
     public DestructionMessage createDestructionMessage() {
         DestructionMessageImpl destructionMessage = new DestructionMessageImpl();
         return destructionMessage;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public <UMLOccurenceType extends OccurrenceSpecification> OccurenceSpecification<UMLOccurenceType> createOccurenceSpecification() {
-        OccurenceSpecificationImpl<UMLOccurenceType> occurenceSpecification = new OccurenceSpecificationImpl<UMLOccurenceType>();
-        return occurenceSpecification;
     }
 
     /**
@@ -359,16 +332,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Constraint createConstraint() {
-        ConstraintImpl constraint = new ConstraintImpl();
-        return constraint;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public TimeConstraint createTimeConstraint() {
         TimeConstraintImpl timeConstraint = new TimeConstraintImpl();
         return timeConstraint;
@@ -462,16 +425,6 @@ public class SequenceFactoryImpl extends EFactoryImpl implements SequenceFactory
     public Reference createReference() {
         ReferenceImpl reference = new ReferenceImpl();
         return reference;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public <UMLType extends InteractionFragment> NonInstantaneousFragment<UMLType> createNonInstantaneousFragment() {
-        NonInstantaneousFragmentImpl<UMLType> nonInstantaneousFragment = new NonInstantaneousFragmentImpl<UMLType>();
-        return nonInstantaneousFragment;
     }
 
     /**

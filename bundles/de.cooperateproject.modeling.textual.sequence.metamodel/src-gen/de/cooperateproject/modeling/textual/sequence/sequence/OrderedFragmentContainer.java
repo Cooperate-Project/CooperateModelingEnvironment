@@ -3,6 +3,7 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
@@ -24,7 +25,7 @@ import org.eclipse.uml2.uml.InteractionOperand;
  * @model
  * @generated
  */
-public interface OrderedFragmentContainer extends UMLReferencingElement<InteractionOperand>, FragmentSequence, Commentable<InteractionOperand> {
+public interface OrderedFragmentContainer extends UMLReferencingElement<InteractionOperand>, FragmentSequence, Commentable<InteractionOperand>, PointInTime<InteractionOperand>, AliasedElement {
     /**
      * Returns the value of the '<em><b>Condition</b></em>' containment reference.
      * <!-- begin-user-doc -->

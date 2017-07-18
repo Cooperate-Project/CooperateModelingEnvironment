@@ -47,22 +47,27 @@ OneOrMultipleFragments returns OrderedFragmentContainer:
     fragments += Fragment+
 ;
 
-OrderedFragmentContainer:
-    (('{' OneOrMultipleFragments'}') | OneFragment)
-;
+
 
 Condition:
     '['condition=UnescapedString']'
 ;
 
+OrderedFragmentContainerNoCondition returns OrderedFragmentContainer:
+    (('{' OneOrMultipleFragments'}' ('as' alias=ID)) | OneFragment)
+;
+
 OrderedFragmentContainerWithCondition returns OrderedFragmentContainer:
-    condition=Condition (('{' fragments += Fragment+'}') | fragments += Fragment)
+    condition=Condition (('{' fragments += Fragment+'}' ('as' alias=ID)?) | fragments += Fragment)
 ;
 
 OrderedFragmentContainerWithConditionMandatoryBrackets returns OrderedFragmentContainer:
     condition=Condition '{' fragments += Fragment+'}'
 ;
 
+OrderedFragmentContainerNoConditionMandatoryBrackets returns OrderedFragmentContainer:
+    '{' fragments += Fragment+'}'
+;
 
 Message:
     (StandardMessage    |
@@ -127,7 +132,7 @@ DestructionOccurenceSpecification:
 ;
 
 CombinedFragment:
-    MultipleRegionContainer | SingleRegionContainer   
+    MultipleRegionContainer | SingleRegionContainer ('as' alias=ID)?   
 ;
 
 SingleRegionContainer:
@@ -140,7 +145,7 @@ MultipleRegionContainer:
 ;
 
 Parallel:
-    'par' '{' regions += OrderedFragmentContainer+ '}'
+    'par' '{' regions += OrderedFragmentContainerNoCondition+ '}'
 ;
 Alternative:
     'alt' '{' regions += OrderedFragmentContainerWithCondition+ '}'
@@ -155,7 +160,7 @@ Option:
 ;
 
 Critical:
-    'critical''{'region=OneOrMultipleFragments'}'
+    'critical' region=OrderedFragmentContainerNoConditionMandatoryBrackets
 ;
 
 Reference:

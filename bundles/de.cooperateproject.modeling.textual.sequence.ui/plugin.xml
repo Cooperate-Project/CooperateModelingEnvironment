@@ -392,5 +392,11 @@
 	         class="de.cooperateproject.modeling.textual.sequence.ui.SequenceExecutableExtensionFactory:de.cooperateproject.modeling.textual.sequence.ui.cdoxtext.SequenceMatchEngineFactory"
 	         ranking="20">
 	   </engineFactory>
-	</extension>	
+	</extension>
+ <extension
+       point="de.cooperateproject.ui.modelcreator.postprocessor">
+    <class
+          class="de.cooperateproject.modeling.textual.sequence.ui.modelcreator.postprocessor.SequenceModelCreatorPostProcessor">
+    </class>
+ </extension>	
 </plugin>

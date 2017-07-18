@@ -231,7 +231,10 @@ public class SequenceSwitch<T> extends Switch<T> {
                 T result = caseOrderedFragmentContainer(orderedFragmentContainer);
                 if (result == null) result = caseFragmentSequence(orderedFragmentContainer);
                 if (result == null) result = caseCommentable(orderedFragmentContainer);
+                if (result == null) result = casePointInTime(orderedFragmentContainer);
+                if (result == null) result = caseAliasedElement(orderedFragmentContainer);
                 if (result == null) result = caseUMLReferencingElement(orderedFragmentContainer);
+                if (result == null) result = caseNamedElement(orderedFragmentContainer);
                 if (result == null) result = caseElement(orderedFragmentContainer);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

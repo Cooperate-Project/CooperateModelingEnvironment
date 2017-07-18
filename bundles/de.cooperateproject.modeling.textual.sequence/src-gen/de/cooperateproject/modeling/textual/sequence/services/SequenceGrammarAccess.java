@@ -348,37 +348,6 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//Fragment
 		public RuleCall getFragmentsFragmentParserRuleCall_0() { return cFragmentsFragmentParserRuleCall_0; }
 	}
-	public class OrderedFragmentContainerElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainer");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final RuleCall cOneOrMultipleFragmentsParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
-		private final RuleCall cOneFragmentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//OrderedFragmentContainer:
-		//	'{' OneOrMultipleFragments '}' | OneFragment;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'{' OneOrMultipleFragments '}' | OneFragment
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'{' OneOrMultipleFragments '}'
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_0_0() { return cLeftCurlyBracketKeyword_0_0; }
-		
-		//OneOrMultipleFragments
-		public RuleCall getOneOrMultipleFragmentsParserRuleCall_0_1() { return cOneOrMultipleFragmentsParserRuleCall_0_1; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_0_2() { return cRightCurlyBracketKeyword_0_2; }
-		
-		//OneFragment
-		public RuleCall getOneFragmentParserRuleCall_1() { return cOneFragmentParserRuleCall_1; }
-	}
 	public class ConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Condition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -406,6 +375,53 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//']'
 		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
+	public class OrderedFragmentContainerNoConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerNoCondition");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cOneOrMultipleFragmentsParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Group cGroup_0_3 = (Group)cGroup_0.eContents().get(3);
+		private final Keyword cAsKeyword_0_3_0 = (Keyword)cGroup_0_3.eContents().get(0);
+		private final Assignment cAliasAssignment_0_3_1 = (Assignment)cGroup_0_3.eContents().get(1);
+		private final RuleCall cAliasIDTerminalRuleCall_0_3_1_0 = (RuleCall)cAliasAssignment_0_3_1.eContents().get(0);
+		private final RuleCall cOneFragmentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//OrderedFragmentContainerNoCondition OrderedFragmentContainer:
+		//	'{' OneOrMultipleFragments '}' ('as' alias=ID) | OneFragment;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'{' OneOrMultipleFragments '}' ('as' alias=ID) | OneFragment
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'{' OneOrMultipleFragments '}' ('as' alias=ID)
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_0_0() { return cLeftCurlyBracketKeyword_0_0; }
+		
+		//OneOrMultipleFragments
+		public RuleCall getOneOrMultipleFragmentsParserRuleCall_0_1() { return cOneOrMultipleFragmentsParserRuleCall_0_1; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_0_2() { return cRightCurlyBracketKeyword_0_2; }
+		
+		//'as' alias=ID
+		public Group getGroup_0_3() { return cGroup_0_3; }
+		
+		//'as'
+		public Keyword getAsKeyword_0_3_0() { return cAsKeyword_0_3_0; }
+		
+		//alias=ID
+		public Assignment getAliasAssignment_0_3_1() { return cAliasAssignment_0_3_1; }
+		
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_0_3_1_0() { return cAliasIDTerminalRuleCall_0_3_1_0; }
+		
+		//OneFragment
+		public RuleCall getOneFragmentParserRuleCall_1() { return cOneFragmentParserRuleCall_1; }
+	}
 	public class OrderedFragmentContainerWithConditionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerWithCondition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -417,14 +433,18 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFragmentsAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
 		private final RuleCall cFragmentsFragmentParserRuleCall_1_0_1_0 = (RuleCall)cFragmentsAssignment_1_0_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_0_2 = (Keyword)cGroup_1_0.eContents().get(2);
+		private final Group cGroup_1_0_3 = (Group)cGroup_1_0.eContents().get(3);
+		private final Keyword cAsKeyword_1_0_3_0 = (Keyword)cGroup_1_0_3.eContents().get(0);
+		private final Assignment cAliasAssignment_1_0_3_1 = (Assignment)cGroup_1_0_3.eContents().get(1);
+		private final RuleCall cAliasIDTerminalRuleCall_1_0_3_1_0 = (RuleCall)cAliasAssignment_1_0_3_1.eContents().get(0);
 		private final Assignment cFragmentsAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
 		private final RuleCall cFragmentsFragmentParserRuleCall_1_1_0 = (RuleCall)cFragmentsAssignment_1_1.eContents().get(0);
 		
 		//OrderedFragmentContainerWithCondition OrderedFragmentContainer:
-		//	condition=Condition ('{' fragments+=Fragment+ '}' | fragments+=Fragment);
+		//	condition=Condition ('{' fragments+=Fragment+ '}' ('as' alias=ID)? | fragments+=Fragment);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//condition=Condition ('{' fragments+=Fragment+ '}' | fragments+=Fragment)
+		//condition=Condition ('{' fragments+=Fragment+ '}' ('as' alias=ID)? | fragments+=Fragment)
 		public Group getGroup() { return cGroup; }
 		
 		//condition=Condition
@@ -433,10 +453,10 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//Condition
 		public RuleCall getConditionConditionParserRuleCall_0_0() { return cConditionConditionParserRuleCall_0_0; }
 		
-		//'{' fragments+=Fragment+ '}' | fragments+=Fragment
+		//'{' fragments+=Fragment+ '}' ('as' alias=ID)? | fragments+=Fragment
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//'{' fragments+=Fragment+ '}'
+		//'{' fragments+=Fragment+ '}' ('as' alias=ID)?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//'{'
@@ -450,6 +470,18 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_0_2() { return cRightCurlyBracketKeyword_1_0_2; }
+		
+		//('as' alias=ID)?
+		public Group getGroup_1_0_3() { return cGroup_1_0_3; }
+		
+		//'as'
+		public Keyword getAsKeyword_1_0_3_0() { return cAsKeyword_1_0_3_0; }
+		
+		//alias=ID
+		public Assignment getAliasAssignment_1_0_3_1() { return cAliasAssignment_1_0_3_1; }
+		
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_1_0_3_1_0() { return cAliasIDTerminalRuleCall_1_0_3_1_0; }
 		
 		//fragments+=Fragment
 		public Assignment getFragmentsAssignment_1_1() { return cFragmentsAssignment_1_1; }
@@ -491,6 +523,33 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+	}
+	public class OrderedFragmentContainerNoConditionMandatoryBracketsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerNoConditionMandatoryBrackets");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cFragmentsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cFragmentsFragmentParserRuleCall_1_0 = (RuleCall)cFragmentsAssignment_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//OrderedFragmentContainerNoConditionMandatoryBrackets OrderedFragmentContainer:
+		//	'{' fragments+=Fragment+ '}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'{' fragments+=Fragment+ '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+		
+		//fragments+=Fragment+
+		public Assignment getFragmentsAssignment_1() { return cFragmentsAssignment_1; }
+		
+		//Fragment
+		public RuleCall getFragmentsFragmentParserRuleCall_1_0() { return cFragmentsFragmentParserRuleCall_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
 	}
 	public class MessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Message");
@@ -1277,20 +1336,40 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.CombinedFragment");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMultipleRegionContainerParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cSingleRegionContainerParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final RuleCall cSingleRegionContainerParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cAsKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cAliasAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cAliasIDTerminalRuleCall_1_1_1_0 = (RuleCall)cAliasAssignment_1_1_1.eContents().get(0);
 		
 		//CombinedFragment:
-		//	MultipleRegionContainer | SingleRegionContainer;
+		//	MultipleRegionContainer | SingleRegionContainer ('as' alias=ID)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//MultipleRegionContainer | SingleRegionContainer
+		//MultipleRegionContainer | SingleRegionContainer ('as' alias=ID)?
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//MultipleRegionContainer
 		public RuleCall getMultipleRegionContainerParserRuleCall_0() { return cMultipleRegionContainerParserRuleCall_0; }
 		
+		//SingleRegionContainer ('as' alias=ID)?
+		public Group getGroup_1() { return cGroup_1; }
+		
 		//SingleRegionContainer
-		public RuleCall getSingleRegionContainerParserRuleCall_1() { return cSingleRegionContainerParserRuleCall_1; }
+		public RuleCall getSingleRegionContainerParserRuleCall_1_0() { return cSingleRegionContainerParserRuleCall_1_0; }
+		
+		//('as' alias=ID)?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//'as'
+		public Keyword getAsKeyword_1_1_0() { return cAsKeyword_1_1_0; }
+		
+		//alias=ID
+		public Assignment getAliasAssignment_1_1_1() { return cAliasAssignment_1_1_1; }
+		
+		//ID
+		public RuleCall getAliasIDTerminalRuleCall_1_1_1_0() { return cAliasIDTerminalRuleCall_1_1_1_0; }
 	}
 	public class SingleRegionContainerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.SingleRegionContainer");
@@ -1340,14 +1419,14 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cParKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cRegionsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRegionsOrderedFragmentContainerParserRuleCall_2_0 = (RuleCall)cRegionsAssignment_2.eContents().get(0);
+		private final RuleCall cRegionsOrderedFragmentContainerNoConditionParserRuleCall_2_0 = (RuleCall)cRegionsAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Parallel:
-		//	'par' '{' regions+=OrderedFragmentContainer+ '}';
+		//	'par' '{' regions+=OrderedFragmentContainerNoCondition+ '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'par' '{' regions+=OrderedFragmentContainer+ '}'
+		//'par' '{' regions+=OrderedFragmentContainerNoCondition+ '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'par'
@@ -1356,11 +1435,11 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 		
-		//regions+=OrderedFragmentContainer+
+		//regions+=OrderedFragmentContainerNoCondition+
 		public Assignment getRegionsAssignment_2() { return cRegionsAssignment_2; }
 		
-		//OrderedFragmentContainer
-		public RuleCall getRegionsOrderedFragmentContainerParserRuleCall_2_0() { return cRegionsOrderedFragmentContainerParserRuleCall_2_0; }
+		//OrderedFragmentContainerNoCondition
+		public RuleCall getRegionsOrderedFragmentContainerNoConditionParserRuleCall_2_0() { return cRegionsOrderedFragmentContainerNoConditionParserRuleCall_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
@@ -1446,32 +1525,24 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Critical");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCriticalKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRegionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRegionOneOrMultipleFragmentsParserRuleCall_2_0 = (RuleCall)cRegionAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cRegionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cRegionOrderedFragmentContainerNoConditionMandatoryBracketsParserRuleCall_1_0 = (RuleCall)cRegionAssignment_1.eContents().get(0);
 		
 		//Critical:
-		//	'critical' '{' region=OneOrMultipleFragments '}';
+		//	'critical' region=OrderedFragmentContainerNoConditionMandatoryBrackets;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'critical' '{' region=OneOrMultipleFragments '}'
+		//'critical' region=OrderedFragmentContainerNoConditionMandatoryBrackets
 		public Group getGroup() { return cGroup; }
 		
 		//'critical'
 		public Keyword getCriticalKeyword_0() { return cCriticalKeyword_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		//region=OrderedFragmentContainerNoConditionMandatoryBrackets
+		public Assignment getRegionAssignment_1() { return cRegionAssignment_1; }
 		
-		//region=OneOrMultipleFragments
-		public Assignment getRegionAssignment_2() { return cRegionAssignment_2; }
-		
-		//OneOrMultipleFragments
-		public RuleCall getRegionOneOrMultipleFragmentsParserRuleCall_2_0() { return cRegionOneOrMultipleFragmentsParserRuleCall_2_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		//OrderedFragmentContainerNoConditionMandatoryBrackets
+		public RuleCall getRegionOrderedFragmentContainerNoConditionMandatoryBracketsParserRuleCall_1_0() { return cRegionOrderedFragmentContainerNoConditionMandatoryBracketsParserRuleCall_1_0; }
 	}
 	public class ReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.sequence.Sequence.Reference");
@@ -2044,10 +2115,11 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	private final FragmentElements pFragment;
 	private final OneFragmentElements pOneFragment;
 	private final OneOrMultipleFragmentsElements pOneOrMultipleFragments;
-	private final OrderedFragmentContainerElements pOrderedFragmentContainer;
 	private final ConditionElements pCondition;
+	private final OrderedFragmentContainerNoConditionElements pOrderedFragmentContainerNoCondition;
 	private final OrderedFragmentContainerWithConditionElements pOrderedFragmentContainerWithCondition;
 	private final OrderedFragmentContainerWithConditionMandatoryBracketsElements pOrderedFragmentContainerWithConditionMandatoryBrackets;
+	private final OrderedFragmentContainerNoConditionMandatoryBracketsElements pOrderedFragmentContainerNoConditionMandatoryBrackets;
 	private final MessageElements pMessage;
 	private final ExplicitArrivalOccurenceReferenceElements pExplicitArrivalOccurenceReference;
 	private final ExplicitArrivalOccurenceSpecificationElements pExplicitArrivalOccurenceSpecification;
@@ -2104,10 +2176,11 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFragment = new FragmentElements();
 		this.pOneFragment = new OneFragmentElements();
 		this.pOneOrMultipleFragments = new OneOrMultipleFragmentsElements();
-		this.pOrderedFragmentContainer = new OrderedFragmentContainerElements();
 		this.pCondition = new ConditionElements();
+		this.pOrderedFragmentContainerNoCondition = new OrderedFragmentContainerNoConditionElements();
 		this.pOrderedFragmentContainerWithCondition = new OrderedFragmentContainerWithConditionElements();
 		this.pOrderedFragmentContainerWithConditionMandatoryBrackets = new OrderedFragmentContainerWithConditionMandatoryBracketsElements();
+		this.pOrderedFragmentContainerNoConditionMandatoryBrackets = new OrderedFragmentContainerNoConditionMandatoryBracketsElements();
 		this.pMessage = new MessageElements();
 		this.pExplicitArrivalOccurenceReference = new ExplicitArrivalOccurenceReferenceElements();
 		this.pExplicitArrivalOccurenceSpecification = new ExplicitArrivalOccurenceSpecificationElements();
@@ -2254,16 +2327,6 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getOneOrMultipleFragmentsAccess().getRule();
 	}
 	
-	//OrderedFragmentContainer:
-	//	'{' OneOrMultipleFragments '}' | OneFragment;
-	public OrderedFragmentContainerElements getOrderedFragmentContainerAccess() {
-		return pOrderedFragmentContainer;
-	}
-	
-	public ParserRule getOrderedFragmentContainerRule() {
-		return getOrderedFragmentContainerAccess().getRule();
-	}
-	
 	//Condition:
 	//	'[' condition=UnescapedString ']';
 	public ConditionElements getConditionAccess() {
@@ -2274,8 +2337,18 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 		return getConditionAccess().getRule();
 	}
 	
+	//OrderedFragmentContainerNoCondition OrderedFragmentContainer:
+	//	'{' OneOrMultipleFragments '}' ('as' alias=ID) | OneFragment;
+	public OrderedFragmentContainerNoConditionElements getOrderedFragmentContainerNoConditionAccess() {
+		return pOrderedFragmentContainerNoCondition;
+	}
+	
+	public ParserRule getOrderedFragmentContainerNoConditionRule() {
+		return getOrderedFragmentContainerNoConditionAccess().getRule();
+	}
+	
 	//OrderedFragmentContainerWithCondition OrderedFragmentContainer:
-	//	condition=Condition ('{' fragments+=Fragment+ '}' | fragments+=Fragment);
+	//	condition=Condition ('{' fragments+=Fragment+ '}' ('as' alias=ID)? | fragments+=Fragment);
 	public OrderedFragmentContainerWithConditionElements getOrderedFragmentContainerWithConditionAccess() {
 		return pOrderedFragmentContainerWithCondition;
 	}
@@ -2292,6 +2365,16 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getOrderedFragmentContainerWithConditionMandatoryBracketsRule() {
 		return getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getRule();
+	}
+	
+	//OrderedFragmentContainerNoConditionMandatoryBrackets OrderedFragmentContainer:
+	//	'{' fragments+=Fragment+ '}';
+	public OrderedFragmentContainerNoConditionMandatoryBracketsElements getOrderedFragmentContainerNoConditionMandatoryBracketsAccess() {
+		return pOrderedFragmentContainerNoConditionMandatoryBrackets;
+	}
+	
+	public ParserRule getOrderedFragmentContainerNoConditionMandatoryBracketsRule() {
+		return getOrderedFragmentContainerNoConditionMandatoryBracketsAccess().getRule();
 	}
 	
 	//Message:
@@ -2415,7 +2498,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//CombinedFragment:
-	//	MultipleRegionContainer | SingleRegionContainer;
+	//	MultipleRegionContainer | SingleRegionContainer ('as' alias=ID)?;
 	public CombinedFragmentElements getCombinedFragmentAccess() {
 		return pCombinedFragment;
 	}
@@ -2445,7 +2528,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Parallel:
-	//	'par' '{' regions+=OrderedFragmentContainer+ '}';
+	//	'par' '{' regions+=OrderedFragmentContainerNoCondition+ '}';
 	public ParallelElements getParallelAccess() {
 		return pParallel;
 	}
@@ -2485,7 +2568,7 @@ public class SequenceGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Critical:
-	//	'critical' '{' region=OneOrMultipleFragments '}';
+	//	'critical' region=OrderedFragmentContainerNoConditionMandatoryBrackets;
 	public CriticalElements getCriticalAccess() {
 		return pCritical;
 	}

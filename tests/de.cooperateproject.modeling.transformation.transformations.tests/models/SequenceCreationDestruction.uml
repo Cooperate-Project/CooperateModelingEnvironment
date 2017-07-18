@@ -14,6 +14,7 @@
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LZs2MGMREeewYLTaC6vNWA" name="Message2SendEvent" covered="__wcbcGMNEeeJlML3FIXVsg" message="_LZsPIGMREeewYLTaC6vNWA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_LZs2MWMREeewYLTaC6vNWA" name="Message2ReceiveEvent" covered="_70AwMGMPEeeJlML3FIXVsg" message="_LZsPIGMREeewYLTaC6vNWA"/>
     <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_S-sRoGMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification3" covered="_70AwMGMPEeeJlML3FIXVsg" finish="_S-sRoWMREeewYLTaC6vNWA" start="_Pzm1sWMREeewYLTaC6vNWA"/>
+    <fragment xmi:type="uml:DestructionOccurrenceSpecification" xmi:id="_0DKqEGMPEeeJlML3FIXVsg" name="DestructionOccurrenceSpecification1"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Pzm1sGMREeewYLTaC6vNWA" name="Message3SendEvent" covered="__wcbcGMNEeeJlML3FIXVsg" message="_PzmOoGMREeewYLTaC6vNWA"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Pzm1sWMREeewYLTaC6vNWA" name="Message3ReceiveEvent" covered="_70AwMGMPEeeJlML3FIXVsg" message="_PzmOoGMREeewYLTaC6vNWA"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_S-sRoWMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification3Finish" covered="_70AwMGMPEeeJlML3FIXVsg" execution="_S-sRoGMREeewYLTaC6vNWA"/>
@@ -22,7 +23,6 @@
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_emDWUGMREeewYLTaC6vNWA" name="Message4ReceiveEvent" covered="_70AwMGMPEeeJlML3FIXVsg" message="_emBhIGMREeewYLTaC6vNWA"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_HQyncGMOEeeJlML3FIXVsg" name="BehaviorExecutionSpecification1Finish" covered="__wcbcGMNEeeJlML3FIXVsg" execution="_HQtu8GMOEeeJlML3FIXVsg"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_mHJwQGMREeewYLTaC6vNWA" name="BehaviorExecutionSpecification4Finish" covered="_70AwMGMPEeeJlML3FIXVsg" execution="_mHIiIGMREeewYLTaC6vNWA"/>
-    <fragment xmi:type="uml:DestructionOccurrenceSpecification" xmi:id="_0DKqEGMPEeeJlML3FIXVsg" name="DestructionOccurrenceSpecification1"/>
     <fragment xmi:type="uml:DestructionOccurrenceSpecification" xmi:id="_iflMoGMREeewYLTaC6vNWA" name="DestructionOccurrenceSpecification2"/>
     <message xmi:type="uml:Message" xmi:id="_LqRwMGMOEeeJlML3FIXVsg" name="create first child" messageSort="createMessage" receiveEvent="_LqUzgWMOEeeJlML3FIXVsg" sendEvent="_LqUzgGMOEeeJlML3FIXVsg"/>
     <message xmi:type="uml:Message" xmi:id="_LZsPIGMREeewYLTaC6vNWA" name="create second child" messageSort="createMessage" receiveEvent="_LZs2MWMREeewYLTaC6vNWA" sendEvent="_LZs2MGMREeewYLTaC6vNWA"/>

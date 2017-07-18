@@ -11,7 +11,7 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
  *
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getConstraint()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Constraint extends Fragment {

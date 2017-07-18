@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ConstraintImpl extends FragmentImpl implements Constraint {
+public abstract class ConstraintImpl extends FragmentImpl implements Constraint {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

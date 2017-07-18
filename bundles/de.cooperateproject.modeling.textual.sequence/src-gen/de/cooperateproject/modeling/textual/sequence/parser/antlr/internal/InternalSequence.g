@@ -646,52 +646,6 @@ ruleOneOrMultipleFragments returns [EObject current=null]
 	)+
 ;
 
-// Entry rule entryRuleOrderedFragmentContainer
-entryRuleOrderedFragmentContainer returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOrderedFragmentContainerRule()); }
-	iv_ruleOrderedFragmentContainer=ruleOrderedFragmentContainer
-	{ $current=$iv_ruleOrderedFragmentContainer.current; }
-	EOF;
-
-// Rule OrderedFragmentContainer
-ruleOrderedFragmentContainer returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			otherlv_0='{'
-			{
-				newLeafNode(otherlv_0, grammarAccess.getOrderedFragmentContainerAccess().getLeftCurlyBracketKeyword_0_0());
-			}
-			{
-				newCompositeNode(grammarAccess.getOrderedFragmentContainerAccess().getOneOrMultipleFragmentsParserRuleCall_0_1());
-			}
-			this_OneOrMultipleFragments_1=ruleOneOrMultipleFragments
-			{
-				$current = $this_OneOrMultipleFragments_1.current;
-				afterParserOrEnumRuleCall();
-			}
-			otherlv_2='}'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getOrderedFragmentContainerAccess().getRightCurlyBracketKeyword_0_2());
-			}
-		)
-		    |
-		{
-			newCompositeNode(grammarAccess.getOrderedFragmentContainerAccess().getOneFragmentParserRuleCall_1());
-		}
-		this_OneFragment_3=ruleOneFragment
-		{
-			$current = $this_OneFragment_3.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
 // Entry rule entryRuleCondition
 entryRuleCondition returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getConditionRule()); }
@@ -734,6 +688,76 @@ ruleCondition returns [EObject current=null]
 		otherlv_2=']'
 		{
 			newLeafNode(otherlv_2, grammarAccess.getConditionAccess().getRightSquareBracketKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleOrderedFragmentContainerNoCondition
+entryRuleOrderedFragmentContainerNoCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrderedFragmentContainerNoConditionRule()); }
+	iv_ruleOrderedFragmentContainerNoCondition=ruleOrderedFragmentContainerNoCondition
+	{ $current=$iv_ruleOrderedFragmentContainerNoCondition.current; }
+	EOF;
+
+// Rule OrderedFragmentContainerNoCondition
+ruleOrderedFragmentContainerNoCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='{'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getOrderedFragmentContainerNoConditionAccess().getLeftCurlyBracketKeyword_0_0());
+			}
+			{
+				newCompositeNode(grammarAccess.getOrderedFragmentContainerNoConditionAccess().getOneOrMultipleFragmentsParserRuleCall_0_1());
+			}
+			this_OneOrMultipleFragments_1=ruleOneOrMultipleFragments
+			{
+				$current = $this_OneOrMultipleFragments_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_2='}'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getOrderedFragmentContainerNoConditionAccess().getRightCurlyBracketKeyword_0_2());
+			}
+			(
+				otherlv_3='as'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getOrderedFragmentContainerNoConditionAccess().getAsKeyword_0_3_0());
+				}
+				(
+					(
+						lv_alias_4_0=RULE_ID
+						{
+							newLeafNode(lv_alias_4_0, grammarAccess.getOrderedFragmentContainerNoConditionAccess().getAliasIDTerminalRuleCall_0_3_1_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getOrderedFragmentContainerNoConditionRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_4_0,
+								"org.eclipse.xtext.common.Terminals.ID");
+						}
+					)
+				)
+			)
+		)
+		    |
+		{
+			newCompositeNode(grammarAccess.getOrderedFragmentContainerNoConditionAccess().getOneFragmentParserRuleCall_1());
+		}
+		this_OneFragment_5=ruleOneFragment
+		{
+			$current = $this_OneFragment_5.current;
+			afterParserOrEnumRuleCall();
 		}
 	)
 ;
@@ -802,6 +826,30 @@ ruleOrderedFragmentContainerWithCondition returns [EObject current=null]
 				{
 					newLeafNode(otherlv_3, grammarAccess.getOrderedFragmentContainerWithConditionAccess().getRightCurlyBracketKeyword_1_0_2());
 				}
+				(
+					otherlv_4='as'
+					{
+						newLeafNode(otherlv_4, grammarAccess.getOrderedFragmentContainerWithConditionAccess().getAsKeyword_1_0_3_0());
+					}
+					(
+						(
+							lv_alias_5_0=RULE_ID
+							{
+								newLeafNode(lv_alias_5_0, grammarAccess.getOrderedFragmentContainerWithConditionAccess().getAliasIDTerminalRuleCall_1_0_3_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getOrderedFragmentContainerWithConditionRule());
+								}
+								setWithLastConsumed(
+									$current,
+									"alias",
+									lv_alias_5_0,
+									"org.eclipse.xtext.common.Terminals.ID");
+							}
+						)
+					)
+				)?
 			)
 			    |
 			(
@@ -809,7 +857,7 @@ ruleOrderedFragmentContainerWithCondition returns [EObject current=null]
 					{
 						newCompositeNode(grammarAccess.getOrderedFragmentContainerWithConditionAccess().getFragmentsFragmentParserRuleCall_1_1_0());
 					}
-					lv_fragments_4_0=ruleFragment
+					lv_fragments_6_0=ruleFragment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerWithConditionRule());
@@ -817,7 +865,7 @@ ruleOrderedFragmentContainerWithCondition returns [EObject current=null]
 						add(
 							$current,
 							"fragments",
-							lv_fragments_4_0,
+							lv_fragments_6_0,
 							"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
 						afterParserOrEnumRuleCall();
 					}
@@ -888,6 +936,52 @@ ruleOrderedFragmentContainerWithConditionMandatoryBrackets returns [EObject curr
 		otherlv_3='}'
 		{
 			newLeafNode(otherlv_3, grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsAccess().getRightCurlyBracketKeyword_3());
+		}
+	)
+;
+
+// Entry rule entryRuleOrderedFragmentContainerNoConditionMandatoryBrackets
+entryRuleOrderedFragmentContainerNoConditionMandatoryBrackets returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOrderedFragmentContainerNoConditionMandatoryBracketsRule()); }
+	iv_ruleOrderedFragmentContainerNoConditionMandatoryBrackets=ruleOrderedFragmentContainerNoConditionMandatoryBrackets
+	{ $current=$iv_ruleOrderedFragmentContainerNoConditionMandatoryBrackets.current; }
+	EOF;
+
+// Rule OrderedFragmentContainerNoConditionMandatoryBrackets
+ruleOrderedFragmentContainerNoConditionMandatoryBrackets returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='{'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getOrderedFragmentContainerNoConditionMandatoryBracketsAccess().getLeftCurlyBracketKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOrderedFragmentContainerNoConditionMandatoryBracketsAccess().getFragmentsFragmentParserRuleCall_1_0());
+				}
+				lv_fragments_1_0=ruleFragment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOrderedFragmentContainerNoConditionMandatoryBracketsRule());
+					}
+					add(
+						$current,
+						"fragments",
+						lv_fragments_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.Fragment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		otherlv_2='}'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getOrderedFragmentContainerNoConditionMandatoryBracketsAccess().getRightCurlyBracketKeyword_2());
 		}
 	)
 ;
@@ -2155,14 +2249,40 @@ ruleCombinedFragment returns [EObject current=null]
 			afterParserOrEnumRuleCall();
 		}
 		    |
-		{
-			newCompositeNode(grammarAccess.getCombinedFragmentAccess().getSingleRegionContainerParserRuleCall_1());
-		}
-		this_SingleRegionContainer_1=ruleSingleRegionContainer
-		{
-			$current = $this_SingleRegionContainer_1.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			{
+				newCompositeNode(grammarAccess.getCombinedFragmentAccess().getSingleRegionContainerParserRuleCall_1_0());
+			}
+			this_SingleRegionContainer_1=ruleSingleRegionContainer
+			{
+				$current = $this_SingleRegionContainer_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			(
+				otherlv_2='as'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getCombinedFragmentAccess().getAsKeyword_1_1_0());
+				}
+				(
+					(
+						lv_alias_3_0=RULE_ID
+						{
+							newLeafNode(lv_alias_3_0, grammarAccess.getCombinedFragmentAccess().getAliasIDTerminalRuleCall_1_1_1_0());
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getCombinedFragmentRule());
+							}
+							setWithLastConsumed(
+								$current,
+								"alias",
+								lv_alias_3_0,
+								"org.eclipse.xtext.common.Terminals.ID");
+						}
+					)
+				)
+			)?
+		)
 	)
 ;
 
@@ -2274,9 +2394,9 @@ ruleParallel returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getParallelAccess().getRegionsOrderedFragmentContainerParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getParallelAccess().getRegionsOrderedFragmentContainerNoConditionParserRuleCall_2_0());
 				}
-				lv_regions_2_0=ruleOrderedFragmentContainer
+				lv_regions_2_0=ruleOrderedFragmentContainerNoCondition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getParallelRule());
@@ -2285,7 +2405,7 @@ ruleParallel returns [EObject current=null]
 						$current,
 						"regions",
 						lv_regions_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainer");
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerNoCondition");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2451,16 +2571,12 @@ ruleCritical returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getCriticalAccess().getCriticalKeyword_0());
 		}
-		otherlv_1='{'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getCriticalAccess().getLeftCurlyBracketKeyword_1());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getCriticalAccess().getRegionOneOrMultipleFragmentsParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getCriticalAccess().getRegionOrderedFragmentContainerNoConditionMandatoryBracketsParserRuleCall_1_0());
 				}
-				lv_region_2_0=ruleOneOrMultipleFragments
+				lv_region_1_0=ruleOrderedFragmentContainerNoConditionMandatoryBrackets
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getCriticalRule());
@@ -2468,16 +2584,12 @@ ruleCritical returns [EObject current=null]
 					set(
 						$current,
 						"region",
-						lv_region_2_0,
-						"de.cooperateproject.modeling.textual.sequence.Sequence.OneOrMultipleFragments");
+						lv_region_1_0,
+						"de.cooperateproject.modeling.textual.sequence.Sequence.OrderedFragmentContainerNoConditionMandatoryBrackets");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_3='}'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getCriticalAccess().getRightCurlyBracketKeyword_3());
-		}
 	)
 ;
 

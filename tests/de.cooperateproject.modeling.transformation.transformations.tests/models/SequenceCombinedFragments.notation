@@ -42,14 +42,14 @@
                     <children xmi:type="notation:BasicCompartment" xmi:id="_35c10GJkEee0st3afuUuxA" type="CombinedFragment_SubfragmentCompartment">
                       <children xmi:type="notation:Shape" xmi:id="_4bsnQGJkEee0st3afuUuxA" type="InteractionOperand_Shape">
                         <element xmi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_4bhoIGJkEee0st3afuUuxA"/>
-                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4bsnQWJkEee0st3afuUuxA" width="479" height="61"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4bsnQWJkEee0st3afuUuxA" width="479" height="85"/>
                       </children>
                       <styles xmi:type="notation:SortingStyle" xmi:id="_35c10WJkEee0st3afuUuxA"/>
                       <styles xmi:type="notation:FilteringStyle" xmi:id="_35c10mJkEee0st3afuUuxA"/>
                       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_35c102JkEee0st3afuUuxA"/>
                     </children>
                     <element xmi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_35QokGJkEee0st3afuUuxA"/>
-                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_35cOwWJkEee0st3afuUuxA" x="39" y="21" width="481" height="81"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_35cOwWJkEee0st3afuUuxA" x="39" y="21" width="481" height="105"/>
                   </children>
                   <element xmi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_nR3YgGJkEee0st3afuUuxA"/>
                   <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nSKTcWJkEee0st3afuUuxA" y="136" width="100" height="120"/>
@@ -79,14 +79,14 @@
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tpW0I2JmEee0st3afuUuxA" x="5" y="5"/>
             </children>
             <element xmi:type="uml:InteractionOperand" href="SequenceCombinedFragments.uml#_tpJ_0GJmEee0st3afuUuxA"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tpW0IWJmEee0st3afuUuxA" width="659" height="161"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tpW0IWJmEee0st3afuUuxA" width="659" height="274"/>
           </children>
           <styles xmi:type="notation:SortingStyle" xmi:id="_pYdmsWJmEee0st3afuUuxA"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_pYdmsmJmEee0st3afuUuxA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYdms2JmEee0st3afuUuxA"/>
         </children>
         <element xmi:type="uml:CombinedFragment" href="SequenceCombinedFragments.uml#_pYSAgGJmEee0st3afuUuxA"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYc_oWJmEee0st3afuUuxA" x="74" y="576" width="661" height="261"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYc_oWJmEee0st3afuUuxA" x="74" y="576" width="661" height="294"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_QRfNIGJkEee0st3afuUuxA" type="Lifeline_Shape">
         <children xmi:type="notation:DecorationNode" xmi:id="_QRgbQGJkEee0st3afuUuxA" type="Lifeline_NameLabel"/>

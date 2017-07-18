@@ -50,7 +50,7 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Fragment">
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment" abstract="true">
     <eOperations name="getContainingSequence" eType="#//FragmentSequence">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return de.cooperateproject.modeling.textual.sequence.sequence.util.SequenceUtils.determineClosestContainingFragmentSequence(this);"/>
@@ -113,7 +113,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CreateMessage" eSuperTypes="#//Message"/>
   <eClassifiers xsi:type="ecore:EClass" name="DestructionMessage" eSuperTypes="#//Message"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="OccurenceSpecification" abstract="true">
     <eTypeParameters name="UMLOccurenceType">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
     </eTypeParameters>
@@ -175,6 +175,10 @@
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Commentable">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//PointInTime">
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+    </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SingleRegionContainer" abstract="true"
       eSuperTypes="#//CombinedFragment">
@@ -209,7 +213,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="interval" eType="#//TimeIntervalSelector"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//Fragment"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" eSuperTypes="#//Fragment"/>
   <eClassifiers xsi:type="ecore:EClass" name="TimeConstraint" eSuperTypes="#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="#//PointInTimeSelector"
@@ -401,7 +405,7 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NonInstantaneousFragment">
+  <eClassifiers xsi:type="ecore:EClass" name="NonInstantaneousFragment" abstract="true">
     <eTypeParameters name="UMLType">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
     </eTypeParameters>

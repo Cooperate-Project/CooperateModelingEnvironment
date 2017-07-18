@@ -14,6 +14,8 @@ import static extension de.cooperateproject.modeling.textual.common.issues.Commo
 import de.cooperateproject.modeling.textual.sequence.sequence.Message
 import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment
 import de.cooperateproject.modeling.textual.sequence.sequence.Condition
+import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
+import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification
 
 class SequenceUMLReferencingElementMissingElementChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -42,11 +44,16 @@ class SequenceUMLReferencingElementMissingElementChecker implements IResolvableC
 	}
 	
 	private def dispatch boolean resolvePossible(OccurenceSpecification spec) {
-	    spec.occurenceReference?.hasValidParent(SequencePackage.Literals.MESSAGE)
+	    spec.occurenceReference?.hasValidParent(SequencePackage.Literals.MESSAGE) ||
+	       spec.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE)
 	}
 	
 	private def dispatch resolvePossible(CombinedFragment fragment) {
 	    fragment.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE)
+	}
+	
+	private def dispatch resolvePossible(OrderedFragmentContainer container) {
+	    container.hasValidParent(SequencePackage.Literals.COMBINED_FRAGMENT)
 	}
 	
 	private def dispatch resolvePossible(Condition fragment) {

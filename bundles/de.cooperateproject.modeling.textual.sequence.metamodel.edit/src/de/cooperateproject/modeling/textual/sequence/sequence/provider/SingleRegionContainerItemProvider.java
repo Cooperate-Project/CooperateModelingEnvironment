@@ -4,7 +4,6 @@
 package de.cooperateproject.modeling.textual.sequence.sequence.provider;
 
 
-import de.cooperateproject.modeling.textual.sequence.sequence.SequenceFactory;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 import de.cooperateproject.modeling.textual.sequence.sequence.SingleRegionContainer;
 
@@ -125,11 +124,6 @@ public class SingleRegionContainerItemProvider extends CombinedFragmentItemProvi
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION,
-                 SequenceFactory.eINSTANCE.createOrderedFragmentContainer()));
     }
 
 }

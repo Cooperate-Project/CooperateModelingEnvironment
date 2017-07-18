@@ -22,7 +22,7 @@ import org.eclipse.emf.internal.cdo.CDOObjectImpl;
  *
  * @generated
  */
-public class FragmentImpl extends CDOObjectImpl implements Fragment {
+public abstract class FragmentImpl extends CDOObjectImpl implements Fragment {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -46,4 +46,14 @@ public class GraphicalToTextualSequenceTest extends DirectionalTransformationTes
     public void testCombinedFragmentsIncremental() throws Exception {
         testIncremental("SequenceCombinedFragments");
     }
+
+    @Test
+    public void testCreationDestruction() throws Exception {
+        testRegular("SequenceCreationDestruction");
+    }
+
+    @Test
+    public void testCreationDestructionIncremental() throws Exception {
+        testIncremental("SequenceCreationDestruction");
+    }
 }

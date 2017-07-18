@@ -1455,13 +1455,31 @@ public interface SequencePackage extends EPackage {
     int ORDERED_FRAGMENT_CONTAINER__COMMENTS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 1;
 
     /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER__NAME = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDERED_FRAGMENT_CONTAINER__ALIAS = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
      * The feature id for the '<em><b>Condition</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ORDERED_FRAGMENT_CONTAINER__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 2;
+    int ORDERED_FRAGMENT_CONTAINER__CONDITION = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Ordered Fragment Container</em>' class.
@@ -1470,7 +1488,7 @@ public interface SequencePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ORDERED_FRAGMENT_CONTAINER_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 3;
+    int ORDERED_FRAGMENT_CONTAINER_FEATURE_COUNT = TextualCommonsPackage.UML_REFERENCING_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.

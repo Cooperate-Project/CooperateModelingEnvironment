@@ -16,7 +16,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  *
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getOccurenceSpecification()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface OccurenceSpecification<UMLOccurenceType extends OccurrenceSpecification> extends Fragment, UMLReferencingElement<UMLOccurenceType>, PointInTime<UMLOccurenceType>, Commentable<UMLOccurenceType> {

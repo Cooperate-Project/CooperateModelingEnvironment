@@ -3,8 +3,10 @@
  */
 package de.cooperateproject.modeling.textual.sequence.sequence.impl;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Comment;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
@@ -13,6 +15,7 @@ import de.cooperateproject.modeling.textual.sequence.sequence.Condition;
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment;
 import de.cooperateproject.modeling.textual.sequence.sequence.FragmentSequence;
 import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer;
+import de.cooperateproject.modeling.textual.sequence.sequence.PointInTime;
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
 import java.lang.reflect.InvocationTargetException;
@@ -41,12 +44,33 @@ import org.eclipse.uml2.uml.InteractionOperand;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl#getFragments <em>Fragments</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl#getComments <em>Comments</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.sequence.sequence.impl.OrderedFragmentContainerImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<InteractionOperand> implements OrderedFragmentContainer {
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+    /**
+     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAlias()
+     * @generated
+     * @ordered
+     */
+    protected static final String ALIAS_EDEFAULT = null;
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -95,6 +119,78 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
     @SuppressWarnings("unchecked")
     public EList<Comment> getComments() {
         return (EList<Comment>)eDynamicGet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__COMMENTS, TextualCommonsPackage.Literals.COMMENTABLE__COMMENTS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return (String)eDynamicGet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        eDynamicSet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetName() {
+        eDynamicUnset(SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getAlias() {
+        return (String)eDynamicGet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAlias(String newAlias) {
+        eDynamicSet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAlias() {
+        eDynamicUnset(SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -179,6 +275,10 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
                 return getFragments();
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__COMMENTS:
                 return getComments();
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME:
+                return getName();
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS:
+                return getAlias();
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__CONDITION:
                 return getCondition();
         }
@@ -202,6 +302,12 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
                 getComments().clear();
                 getComments().addAll((Collection<? extends Comment>)newValue);
                 return;
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME:
+                setName((String)newValue);
+                return;
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS:
+                setAlias((String)newValue);
+                return;
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__CONDITION:
                 setCondition((Condition)newValue);
                 return;
@@ -223,6 +329,12 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__COMMENTS:
                 getComments().clear();
                 return;
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME:
+                unsetName();
+                return;
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS:
+                unsetAlias();
+                return;
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__CONDITION:
                 setCondition((Condition)null);
                 return;
@@ -242,6 +354,10 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
                 return !getFragments().isEmpty();
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__COMMENTS:
                 return !getComments().isEmpty();
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME:
+                return isSetName();
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS:
+                return isSetAlias();
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__CONDITION:
                 return getCondition() != null;
         }
@@ -267,6 +383,23 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
                 default: return -1;
             }
         }
+        if (baseClass == PointInTime.class) {
+            switch (derivedFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (derivedFeatureID) {
+                case SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -289,6 +422,23 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
                 default: return -1;
             }
         }
+        if (baseClass == PointInTime.class) {
+            switch (baseFeatureID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS;
+                default: return -1;
+            }
+        }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
@@ -306,6 +456,21 @@ public class OrderedFragmentContainerImpl extends UMLReferencingElementImpl<Inte
             }
         }
         if (baseClass == Commentable.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == PointInTime.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == NamedElement.class) {
+            switch (baseOperationID) {
+                default: return -1;
+            }
+        }
+        if (baseClass == AliasedElement.class) {
             switch (baseOperationID) {
                 default: return -1;
             }

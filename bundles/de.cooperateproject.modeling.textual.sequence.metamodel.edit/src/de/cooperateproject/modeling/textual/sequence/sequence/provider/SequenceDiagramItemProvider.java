@@ -176,11 +176,6 @@ public class SequenceDiagramItemProvider extends UMLReferencingElementItemProvid
         newChildDescriptors.add
             (createChildParameter
                 (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createFragment()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
                  SequenceFactory.eINSTANCE.createMessage()));
 
         newChildDescriptors.add
@@ -206,17 +201,7 @@ public class SequenceDiagramItemProvider extends UMLReferencingElementItemProvid
         newChildDescriptors.add
             (createChildParameter
                 (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createOccurenceSpecification()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
                  SequenceFactory.eINSTANCE.createDestructionOccurenceSpecification()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createNonInstantaneousFragment()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -257,11 +242,6 @@ public class SequenceDiagramItemProvider extends UMLReferencingElementItemProvid
             (createChildParameter
                 (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
                  SequenceFactory.eINSTANCE.createDurationObservation()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createConstraint()));
 
         newChildDescriptors.add
             (createChildParameter

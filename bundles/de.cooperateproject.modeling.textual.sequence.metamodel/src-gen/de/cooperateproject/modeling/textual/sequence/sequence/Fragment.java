@@ -12,7 +12,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  *
  * @see de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage#getFragment()
- * @model
+ * @model abstract="true"
  * @extends CDOObject
  * @generated
  */

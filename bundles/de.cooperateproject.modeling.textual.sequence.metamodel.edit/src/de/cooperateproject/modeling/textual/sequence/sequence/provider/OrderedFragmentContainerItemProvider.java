@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -55,6 +56,8 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
             super.getPropertyDescriptors(object);
 
             addCommentsPropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
+            addAliasPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -77,6 +80,50 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
                  false,
                  true,
                  null,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_NamedElement_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+                 TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Alias feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addAliasPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AliasedElement_alias_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AliasedElement_alias_feature", "_UI_AliasedElement_type"),
+                 TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -120,7 +167,10 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
      */
     @Override
     public String getText(Object object) {
-        return getString("_UI_OrderedFragmentContainer_type");
+        String label = ((OrderedFragmentContainer)object).getName();
+        return label == null || label.length() == 0 ?
+            getString("_UI_OrderedFragmentContainer_type") :
+            getString("_UI_OrderedFragmentContainer_type") + " " + label;
     }
     
 
@@ -136,6 +186,10 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
         updateChildren(notification);
 
         switch (notification.getFeatureID(OrderedFragmentContainer.class)) {
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__NAME:
+            case SequencePackage.ORDERED_FRAGMENT_CONTAINER__ALIAS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__FRAGMENTS:
             case SequencePackage.ORDERED_FRAGMENT_CONTAINER__CONDITION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -154,11 +208,6 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createFragment()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -188,17 +237,7 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
         newChildDescriptors.add
             (createChildParameter
                 (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createOccurenceSpecification()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
                  SequenceFactory.eINSTANCE.createDestructionOccurenceSpecification()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createNonInstantaneousFragment()));
 
         newChildDescriptors.add
             (createChildParameter
@@ -239,11 +278,6 @@ public class OrderedFragmentContainerItemProvider extends UMLReferencingElementI
             (createChildParameter
                 (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
                  SequenceFactory.eINSTANCE.createDurationObservation()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (SequencePackage.Literals.FRAGMENT_SEQUENCE__FRAGMENTS,
-                 SequenceFactory.eINSTANCE.createConstraint()));
 
         newChildDescriptors.add
             (createChildParameter

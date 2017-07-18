@@ -79,8 +79,17 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				sequence_CreateMessage(context, (CreateMessage) semanticObject); 
 				return; 
 			case SequencePackage.CRITICAL:
-				sequence_Critical(context, (Critical) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getFragmentRule()
+						|| rule == grammarAccess.getCombinedFragmentRule()) {
+					sequence_CombinedFragment_Critical(context, (Critical) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSingleRegionContainerRule()
+						|| rule == grammarAccess.getCriticalRule()) {
+					sequence_Critical(context, (Critical) semanticObject); 
+					return; 
+				}
+				else break;
 			case SequencePackage.DESTRUCTION_MESSAGE:
 				sequence_DestructionMessage(context, (DestructionMessage) semanticObject); 
 				return; 
@@ -106,14 +115,32 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				sequence_ImplicitArrivalOccurenceSpecification_ImplicitSendOccurenceSpecification(context, (ImplicitMessageOccurenceSpecification) semanticObject); 
 				return; 
 			case SequencePackage.LOOP:
-				sequence_Loop(context, (Loop) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getFragmentRule()
+						|| rule == grammarAccess.getCombinedFragmentRule()) {
+					sequence_CombinedFragment_Loop(context, (Loop) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSingleRegionContainerRule()
+						|| rule == grammarAccess.getLoopRule()) {
+					sequence_Loop(context, (Loop) semanticObject); 
+					return; 
+				}
+				else break;
 			case SequencePackage.OPTION:
-				sequence_Option(context, (Option) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getFragmentRule()
+						|| rule == grammarAccess.getCombinedFragmentRule()) {
+					sequence_CombinedFragment_Option(context, (Option) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSingleRegionContainerRule()
+						|| rule == grammarAccess.getOptionRule()) {
+					sequence_Option(context, (Option) semanticObject); 
+					return; 
+				}
+				else break;
 			case SequencePackage.ORDERED_FRAGMENT_CONTAINER:
-				if (rule == grammarAccess.getOrderedFragmentContainerRule()) {
-					sequence_OneFragment_OneOrMultipleFragments(context, (OrderedFragmentContainer) semanticObject); 
+				if (rule == grammarAccess.getOrderedFragmentContainerNoConditionRule()) {
+					sequence_OneFragment_OneOrMultipleFragments_OrderedFragmentContainerNoCondition(context, (OrderedFragmentContainer) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOneFragmentRule()) {
@@ -122,6 +149,10 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				}
 				else if (rule == grammarAccess.getOneOrMultipleFragmentsRule()) {
 					sequence_OneOrMultipleFragments(context, (OrderedFragmentContainer) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOrderedFragmentContainerNoConditionMandatoryBracketsRule()) {
+					sequence_OrderedFragmentContainerNoConditionMandatoryBrackets(context, (OrderedFragmentContainer) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOrderedFragmentContainerWithConditionMandatoryBracketsRule()) {
@@ -284,6 +315,45 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Fragment returns Critical
+	 *     CombinedFragment returns Critical
+	 *
+	 * Constraint:
+	 *     (region=OrderedFragmentContainerNoConditionMandatoryBrackets alias=ID?)
+	 */
+	protected void sequence_CombinedFragment_Critical(ISerializationContext context, Critical semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns Loop
+	 *     CombinedFragment returns Loop
+	 *
+	 * Constraint:
+	 *     (region=OrderedFragmentContainerWithConditionMandatoryBrackets alias=ID?)
+	 */
+	protected void sequence_CombinedFragment_Loop(ISerializationContext context, Loop semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Fragment returns Option
+	 *     CombinedFragment returns Option
+	 *
+	 * Constraint:
+	 *     (region=OrderedFragmentContainerWithConditionMandatoryBrackets alias=ID?)
+	 */
+	protected void sequence_CombinedFragment_Option(ISerializationContext context, Option semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Comment returns Comment
 	 *
 	 * Constraint:
@@ -341,13 +411,11 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     Fragment returns Critical
-	 *     CombinedFragment returns Critical
 	 *     SingleRegionContainer returns Critical
 	 *     Critical returns Critical
 	 *
 	 * Constraint:
-	 *     region=OneOrMultipleFragments
+	 *     region=OrderedFragmentContainerNoConditionMandatoryBrackets
 	 */
 	protected void sequence_Critical(ISerializationContext context, Critical semanticObject) {
 		if (errorAcceptor != null) {
@@ -355,7 +423,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, SequencePackage.Literals.SINGLE_REGION_CONTAINER__REGION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getCriticalAccess().getRegionOneOrMultipleFragmentsParserRuleCall_2_0(), semanticObject.getRegion());
+		feeder.accept(grammarAccess.getCriticalAccess().getRegionOrderedFragmentContainerNoConditionMandatoryBracketsParserRuleCall_1_0(), semanticObject.getRegion());
 		feeder.finish();
 	}
 	
@@ -572,8 +640,6 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     Fragment returns Loop
-	 *     CombinedFragment returns Loop
 	 *     SingleRegionContainer returns Loop
 	 *     Loop returns Loop
 	 *
@@ -640,12 +706,12 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     OrderedFragmentContainer returns OrderedFragmentContainer
+	 *     OrderedFragmentContainerNoCondition returns OrderedFragmentContainer
 	 *
 	 * Constraint:
-	 *     (fragments+=Fragment | fragments+=Fragment+)
+	 *     (fragments+=Fragment | (fragments+=Fragment+ alias=ID))
 	 */
-	protected void sequence_OneFragment_OneOrMultipleFragments(ISerializationContext context, OrderedFragmentContainer semanticObject) {
+	protected void sequence_OneFragment_OneOrMultipleFragments_OrderedFragmentContainerNoCondition(ISerializationContext context, OrderedFragmentContainer semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
@@ -676,8 +742,6 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     Fragment returns Option
-	 *     CombinedFragment returns Option
 	 *     SingleRegionContainer returns Option
 	 *     Option returns Option
 	 *
@@ -692,6 +756,18 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
 		feeder.accept(grammarAccess.getOptionAccess().getRegionOrderedFragmentContainerWithConditionMandatoryBracketsParserRuleCall_1_0(), semanticObject.getRegion());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OrderedFragmentContainerNoConditionMandatoryBrackets returns OrderedFragmentContainer
+	 *
+	 * Constraint:
+	 *     fragments+=Fragment+
+	 */
+	protected void sequence_OrderedFragmentContainerNoConditionMandatoryBrackets(ISerializationContext context, OrderedFragmentContainer semanticObject) {
+		genericSequencer.createSequence(context, (EObject) semanticObject);
 	}
 	
 	
@@ -712,7 +788,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     OrderedFragmentContainerWithCondition returns OrderedFragmentContainer
 	 *
 	 * Constraint:
-	 *     (condition=Condition (fragments+=Fragment+ | fragments+=Fragment))
+	 *     (condition=Condition ((fragments+=Fragment+ alias=ID?) | fragments+=Fragment))
 	 */
 	protected void sequence_OrderedFragmentContainerWithCondition(ISerializationContext context, OrderedFragmentContainer semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -727,7 +803,7 @@ public class SequenceSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Parallel returns Parallel
 	 *
 	 * Constraint:
-	 *     regions+=OrderedFragmentContainer+
+	 *     regions+=OrderedFragmentContainerNoCondition+
 	 */
 	protected void sequence_Parallel(ISerializationContext context, Parallel semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);

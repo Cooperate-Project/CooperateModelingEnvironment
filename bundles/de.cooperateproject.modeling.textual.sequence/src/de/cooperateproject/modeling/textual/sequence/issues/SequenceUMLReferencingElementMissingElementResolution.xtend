@@ -34,6 +34,8 @@ import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
+import static extension de.cooperateproject.modeling.textual.sequence.issues.SequenceUniqueNameGenerator.ensureUniqueIdentification
+
 class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
 	new(UMLReferencingElement<Element> problematicElement, IResolvableChecker<UMLReferencingElement<Element>> checker) {
@@ -56,6 +58,9 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
     
 	private def dispatch fixMissingUMLElement(Actor element) {
 		if(!resolvePossible) return Void
+		
+		element.ensureUniqueIdentification
+		
 		val parent = element.eContainer as SequenceDiagram
 		
 		val umlLifeline = UMLFactory.eINSTANCE.createLifeline
@@ -80,7 +85,9 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
 	
 	private def dispatch fixMissingUMLElement(StandardMessage element) {
 	    if (!resolvePossible) return Void
-	    
+	    	    
+	    element.ensureUniqueIdentification
+	    	 
 	    element.createMessage(
 	        element.containingSequenceDiagram.referencedElement,
 	        switch (element.type) {
@@ -92,6 +99,9 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
 	
 	private def dispatch fixMissingUMLElement(ResponseMessage element) {
 	    if (!resolvePossible) return Void
+	    
+	    element.ensureUniqueIdentification
+	    
 	    element.createMessage(
 	        element.containingSequenceDiagram.referencedElement,
 	        MessageSort.REPLY_LITERAL
@@ -100,17 +110,12 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
     
     private def dispatch fixMissingUMLElement(CreateMessage element) {
         if (!resolvePossible) return Void
-        element.createMessage(
-            element.containingSequenceDiagram.referencedElement,
-            MessageSort.CREATE_MESSAGE_LITERAL
-        )
-    }
-    private def dispatch fixMissingUMLElement(DestructionMessage element) {
-        if (!resolvePossible) return Void
+        
+        element.ensureUniqueIdentification
         
         element.createMessage(
             element.containingSequenceDiagram.referencedElement,
-            MessageSort.DELETE_MESSAGE_LITERAL
+            MessageSort.CREATE_MESSAGE_LITERAL
         )
     }
     
@@ -125,6 +130,9 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
     
     private def dispatch fixMissingUMLElement(CombinedFragment element) {
         val umlElement = UMLFactory.eINSTANCE.createCombinedFragment
+        
+        element.ensureUniqueIdentification
+        
         umlElement.interactionOperator = element.interactionOperatorKind
         element.containingSequence.UMLFragmentSequence += umlElement 
         element.referencedElement = umlElement
@@ -203,7 +211,6 @@ class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIss
 	    }
 	    
 	    return result as SequenceDiagram
-	}
-	
+	}	
 }
 				

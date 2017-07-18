@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
  *
  * @generated
  */
-public class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> extends FragmentImpl implements NonInstantaneousFragment<UMLType> {
+public abstract class NonInstantaneousFragmentImpl<UMLType extends InteractionFragment> extends FragmentImpl implements NonInstantaneousFragment<UMLType> {
     /**
      * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
      * <!-- begin-user-doc -->

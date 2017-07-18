@@ -5,9 +5,6 @@ package de.cooperateproject.modeling.textual.sequence.sequence;
 
 import org.eclipse.emf.ecore.EFactory;
 
-import org.eclipse.uml2.uml.InteractionFragment;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -62,15 +59,6 @@ public interface SequenceFactory extends EFactory {
     ActorClassifierMapping createActorClassifierMapping();
 
     /**
-     * Returns a new object of class '<em>Fragment</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Fragment</em>'.
-     * @generated
-     */
-    Fragment createFragment();
-
-    /**
      * Returns a new object of class '<em>Message</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -114,15 +102,6 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     DestructionMessage createDestructionMessage();
-
-    /**
-     * Returns a new object of class '<em>Occurence Specification</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Occurence Specification</em>'.
-     * @generated
-     */
-    <UMLOccurenceType extends OccurrenceSpecification> OccurenceSpecification<UMLOccurenceType> createOccurenceSpecification();
 
     /**
      * Returns a new object of class '<em>Destruction Occurence Specification</em>'.
@@ -224,15 +203,6 @@ public interface SequenceFactory extends EFactory {
     DurationObservation createDurationObservation();
 
     /**
-     * Returns a new object of class '<em>Constraint</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Constraint</em>'.
-     * @generated
-     */
-    Constraint createConstraint();
-
-    /**
      * Returns a new object of class '<em>Time Constraint</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -321,15 +291,6 @@ public interface SequenceFactory extends EFactory {
      * @generated
      */
     Reference createReference();
-
-    /**
-     * Returns a new object of class '<em>Non Instantaneous Fragment</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Non Instantaneous Fragment</em>'.
-     * @generated
-     */
-    <UMLType extends InteractionFragment> NonInstantaneousFragment<UMLType> createNonInstantaneousFragment();
 
     /**
      * Returns the package supported by this factory.
