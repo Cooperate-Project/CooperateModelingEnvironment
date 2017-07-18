@@ -21,7 +21,10 @@ Require-Bundle: org.eclipse.ui,
  de.cooperateproject.ui,
  org.eclipse.e4.core.di;bundle-version="1.6.1",
  org.eclipse.equinox.registry,
- org.eclipse.uml2.uml;bundle-version="5.2.1"
+ org.eclipse.uml2.uml;bundle-version="5.2.1",
+ de.cooperateproject.modeling.textual.xtext.runtime;bundle-version="0.2.0",
+ de.cooperateproject.modeling.textual.cls.ui;bundle-version="0.2.0",
+ org.slf4j.api;bundle-version="1.7.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.cooperateproject.ui.diff.content,

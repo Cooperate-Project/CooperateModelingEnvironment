@@ -25,13 +25,18 @@ import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.scope.IComparisonScope;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateProcessor;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
@@ -54,11 +59,11 @@ public class ComparisonManager {
 	 * Contains the IDs of all changed objects during all found commits of the
 	 * file.
 	 */
-	private Map<CDOCommitInfo, Set<CDOID>> cdoIdsMappedToCommit = new HashMap<CDOCommitInfo, Set<CDOID>>();
+	private Map<CDOCommitInfo, Set<CDOID>> cdoIdsMappedToCommit = new HashMap<>();
 	/**
 	 * Contains information about all relevant commits of the file.
 	 */
-	private Set<CDOCommitInfo> commitInfos = new HashSet<CDOCommitInfo>();
+	private Set<CDOCommitInfo> commitInfos = new HashSet<>();
 	/**
 	 * The file path to the textual diagram.
 	 */
@@ -69,6 +74,7 @@ public class ComparisonManager {
 	 * CDOCommitHistory.
 	 */
 	private static final long loadingTimeOut = 8000;
+	private static final Logger LOGGER = LoggerFactory.getLogger(ComparisonManager.class);
 
 	/**
 	 * Constructor, sets the file on which the CommitManager should work.
@@ -118,6 +124,7 @@ public class ComparisonManager {
 	 * @return The computed comparison
 	 */
 	public Comparison getComparison(CDOCommitInfo commit, CDOView previousView, CDOView currentView) {
+		//TODO DerivedStateCalculatorRegistry.INSTANCE.getExtension("")
 		// Creates the scope, on which differences should be detected. Only the
 		// items with the given cdoIds (all elements from textual cooperate
 		// diagram) are considered.
@@ -158,14 +165,24 @@ public class ComparisonManager {
 			textModel = launcherModel.getConcreteSyntaxModel(EditorType.TEXTUAL.getSupportedSyntaxModel());
 			resourceDiagramPath = CDOURIUtil.extractResourcePath(EcoreUtil.getURI(textModel.getRootElement()));
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(), e);
 			return;
 		}
 
 		CDOObject textRoot = CDOUtil.getCDOObject(textModel.getRootElement());
+		String nsURI = textRoot.eClass().getEPackage().getNsURI();
+		IDerivedStateProcessor derivedStateProcessor = DerivedStateCalculatorRegistry.INSTANCE.getExtension(nsURI).get();
+		derivedStateProcessor.calculateState(textRoot, true);
+		/*while(textRoot.eAllContents().hasNext()) {
+			EObject e = textRoot.eAllContents().next();
+			derivedStateProcessor.calculateState(e);
+			e = e;
+		}*/
+		textRoot.eAllContents().forEachRemaining(x->derivedStateProcessor.calculateState(x));
 		CDOID resourceCDOId = textRoot.cdoResource().cdoID();
 		long firstCommitTimeStamp = view.getRevision(resourceCDOId).getTimeStamp();
 
+		//TODO textRoot.eClass().getEPackage().getNsURI()
 		// get all commits from main branch
 		CDOCommitInfoManager commitManager = session.getCommitInfoManager();
 		CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
@@ -174,10 +191,10 @@ public class ComparisonManager {
 
 		for (int i = 0; i < mainHistory.size(); i++) {
 			CDOCommitInfo commitInfo = mainHistory.getElement(i);
-			if (commitInfo.getTimeStamp() < firstCommitTimeStamp) {
-				break;
-			}
-			if (commitInfo.getPreviousTimeStamp() == CDOCommitInfo.INVALID_DATE) {
+			boolean isFirstCommitTimeStampGreater = commitInfo.getTimeStamp() < firstCommitTimeStamp;
+			boolean isPreviousTimeStampInvalid = commitInfo.getPreviousTimeStamp() == CDOCommitInfo.INVALID_DATE;
+			
+			if (isFirstCommitTimeStampGreater || isPreviousTimeStampInvalid) {
 				break;
 			}
 
@@ -185,6 +202,8 @@ public class ComparisonManager {
 			CDOView previousState = session.openView(mainBranch, previousCommitInfo.getTimeStamp());
 			CDOView currentState = session.openView(mainBranch, commitInfo.getTimeStamp());
 
+			//TODO ref zwischen uml und cls previousState.queryXRefs(arg0, arg1)
+			//TODO previousState.getObject(arg0)
 			List<CDOIDAndVersion> changedObjects = Lists.newArrayList(Iterables.concat(commitInfo.getNewObjects(),
 					commitInfo.getDetachedObjects(), commitInfo.getChangedObjects()));
 			// Set of all IDs of the objects that have been changed
@@ -193,7 +212,7 @@ public class ComparisonManager {
 					.filter(object -> parentMatches(object.getID(), resourceCDOId, previousState, currentState))
 					.map(CDOIDAndVersion::getID).collect(Collectors.toSet());
 
-			if (value.size() > 0) {
+			if (!value.isEmpty()) {
 				cdoIdsMappedToCommit.put(commitInfo, value);
 			}
 
@@ -222,7 +241,7 @@ public class ComparisonManager {
 	 */
 	private boolean parentMatches(CDOID objectID, CDOID parentID, CDOView previousView, CDOView currentView) {
 		boolean ret = checkParentMatching(objectID, parentID, previousView);
-		if (ret == false) {
+		if (!ret) {
 			ret = checkParentMatching(objectID, parentID, currentView);
 		}
 		return ret;
@@ -244,6 +263,7 @@ public class ComparisonManager {
 			CDOObject object = view.getObject(objectID);
 			return object.cdoResource().cdoID().equals(parentID);
 		} catch (Exception e) {
+			LOGGER.warn(e.getMessage(), e);
 		}
 		return false;
 	}

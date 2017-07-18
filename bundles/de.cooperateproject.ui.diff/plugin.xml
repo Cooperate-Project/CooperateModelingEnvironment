@@ -44,5 +44,6 @@
    	<extension-point id="de.cooperateproject.ui.diff.postProcessor" name="DiffView post processor" schema="schema/postProcessor.exsd"/>
     
     <extension-point id="de.cooperateproject.ui.diff.labelHandlers" name="DiffView labels" schema="schema/labelHandlers.exsd"/>
+    <extension-point id="de.cooperateproject.ui.diff.derivedcalculator" name="Derived State Calculator" schema="schema/de.cooperateproject.ui.diff.derivedcalculator.exsd"/>
 
 </plugin>
