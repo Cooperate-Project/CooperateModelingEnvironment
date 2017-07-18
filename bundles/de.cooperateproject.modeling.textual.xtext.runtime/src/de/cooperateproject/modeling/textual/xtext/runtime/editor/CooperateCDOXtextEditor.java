@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
+import org.eclipse.xtext.resource.IDerivedStateComputer;
 import org.eclipse.xtext.resource.ResourceSetReferencingResourceSet;
 import org.eclipse.xtext.service.OperationCanceledError;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
@@ -51,8 +52,8 @@ import com.google.inject.Inject;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.errorindicator.ErrorIndicatorContext;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolution;
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IAutomatedIssueResolutionProvider;
-import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import de.cooperateproject.ui.preferences.ErrorIndicatorPreferenceHandler;
+import de.cooperateproject.ui.preferences.ErrorIndicatorSettings;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
 import net.winklerweb.cdoxtext.runtime.ICDOResourceStateHandler;
 
@@ -127,6 +128,9 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
 
     @Inject
     private ICDOResourceStateHandler resourceStateHandler;
+
+    @Inject(optional = true)
+    private IDerivedStateComputer derivedStateComputer;
 
     @Override
     public void reloadDocumentContent() {
@@ -351,6 +355,18 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     }
 
     private void performIssueValidationFixing(Collection<Issue> detectedIssues, Resource documentResource) {
+        Optional<DerivedStateAwareResource> stateAwareResource = Optional.of(documentResource)
+                .filter(DerivedStateAwareResource.class::isInstance).map(DerivedStateAwareResource.class::cast);
+        try {
+            stateAwareResource.ifPresent(s -> s.setDerivedStateComputer(null));
+            performIssueValidationFixingWithoutAutomatedStateCalculation(detectedIssues, documentResource);
+        } finally {
+            stateAwareResource.ifPresent(r -> r.setDerivedStateComputer(derivedStateComputer));
+        }
+    }
+
+    private void performIssueValidationFixingWithoutAutomatedStateCalculation(Collection<Issue> detectedIssues,
+            Resource documentResource) {
         int fixAttempts = 0;
         Collection<IAutomatedIssueResolution> issueResolutions = Collections.emptyList();
         do {

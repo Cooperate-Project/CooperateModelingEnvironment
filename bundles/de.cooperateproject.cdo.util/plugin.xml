@@ -2,5 +2,4 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="de.cooperateproject.cdo.util.resources" name="FileExtension" schema="schema/de.cooperateproject.cdo.util.resources.exsd"/>
-
 </plugin>

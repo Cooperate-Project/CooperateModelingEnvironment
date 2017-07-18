@@ -81,7 +81,7 @@ public interface ClassDiagram extends CDOObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<Connector> transitiveConnectors = new <%org.eclipse.emf.common.util.BasicEList%><Connector>();\r\n\r\n<%java.util.LinkedList%><<%de.cooperateproject.modeling.textual.cls.cls.Package%>> queue = new <%java.util.LinkedList%><<%de.cooperateproject.modeling.textual.cls.cls.Package%>>();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\t<%de.cooperateproject.modeling.textual.cls.cls.Package%> currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitiveConnectors.addAll(currentPackage.getConnectors());\r\n}\r\n\r\nreturn transitiveConnectors;'"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList&lt;Connector&gt; transitiveConnectors = new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;&lt;Connector&gt;();\r\n\r\n&lt;%java.util.LinkedList%&gt;&lt;&lt;%de.cooperateproject.modeling.textual.cls.cls.Package%&gt;&gt; queue = new &lt;%java.util.LinkedList%&gt;&lt;&lt;%de.cooperateproject.modeling.textual.cls.cls.Package%&gt;&gt;();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\t&lt;%de.cooperateproject.modeling.textual.cls.cls.Package%&gt; currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitiveConnectors.addAll(currentPackage.getConnectors());\r\n}\r\n\r\nreturn transitiveConnectors;'"
      * @generated
      */
     EList<Connector> getAllTransitiveConnectors();
@@ -90,7 +90,7 @@ public interface ClassDiagram extends CDOObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<de.cooperateproject.modeling.textual.cls.cls.Package> transitivePackages = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Package>();\r\n\r\nLinkedList<de.cooperateproject.modeling.textual.cls.cls.Package> queue = new LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package>();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\tde.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitivePackages.add(currentPackage);\r\n}\r\n\r\nreturn transitivePackages;'"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList&lt;de.cooperateproject.modeling.textual.cls.cls.Package&gt; transitivePackages = new BasicEList&lt;de.cooperateproject.modeling.textual.cls.cls.Package&gt;();\r\n\r\nLinkedList&lt;de.cooperateproject.modeling.textual.cls.cls.Package&gt; queue = new LinkedList&lt;de.cooperateproject.modeling.textual.cls.cls.Package&gt;();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\tde.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitivePackages.add(currentPackage);\r\n}\r\n\r\nreturn transitivePackages;'"
      * @generated
      */
     EList<de.cooperateproject.modeling.textual.cls.cls.Package> getAllTransitivePackages();
@@ -99,7 +99,7 @@ public interface ClassDiagram extends CDOObject {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @model kind="operation"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>> transitiveClassifiers = new BasicEList<de.cooperateproject.modeling.textual.cls.cls.Classifier<? extends org.eclipse.uml2.uml.Classifier>>();\r\n\r\nLinkedList<de.cooperateproject.modeling.textual.cls.cls.Package> queue = new LinkedList<de.cooperateproject.modeling.textual.cls.cls.Package>();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\tde.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitiveClassifiers.addAll(currentPackage.getClassifiers());\r\n}\r\n\r\nreturn transitiveClassifiers;'"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList&lt;de.cooperateproject.modeling.textual.cls.cls.Classifier&lt;? extends org.eclipse.uml2.uml.Classifier&gt;&gt; transitiveClassifiers = new BasicEList&lt;de.cooperateproject.modeling.textual.cls.cls.Classifier&lt;? extends org.eclipse.uml2.uml.Classifier&gt;&gt;();\r\n\r\nLinkedList&lt;de.cooperateproject.modeling.textual.cls.cls.Package&gt; queue = new LinkedList&lt;de.cooperateproject.modeling.textual.cls.cls.Package&gt;();\r\nqueue.add(getRootPackage());\r\nwhile (!queue.isEmpty()) {\r\n\tde.cooperateproject.modeling.textual.cls.cls.Package currentPackage = queue.pop();\r\n\tqueue.addAll(0, currentPackage.getPackages());\r\n\ttransitiveClassifiers.addAll(currentPackage.getClassifiers());\r\n}\r\n\r\nreturn transitiveClassifiers;'"
      * @generated
      */
     EList<Classifier<? extends org.eclipse.uml2.uml.Classifier>> getAllTransitiveClassifiers();

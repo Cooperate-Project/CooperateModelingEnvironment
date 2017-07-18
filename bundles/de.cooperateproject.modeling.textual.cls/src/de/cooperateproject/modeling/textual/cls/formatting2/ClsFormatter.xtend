@@ -177,9 +177,7 @@ class ClsFormatter extends AbstractFormatter2 {
 		
 		association.regionFor.keyword(xtextAssociationAccess.cardKeyword_8_0).prepend[space = " "]
 		association.regionFor.keyword(xtextAssociationAccess.leftSquareBracketKeyword_8_1).prepend[space = " "].append[space = ""]
-		if (association.memberEndCardinalities.size > 1) {
-			association.memberEndCardinalities.subList(1, association.memberEndCardinalities.size).forEach[prepend[space = " "]]			
-		}
+		association.regionFor.keywords(xtextAssociationAccess.colonKeyword_8_3_0).forEach[prepend[space = " "].append[space = " "]]
 		association.regionFor.keyword(xtextAssociationAccess.rightSquareBracketKeyword_8_4).prepend[space = ""]
 		association.append[newLine priority = 2]
 		
@@ -189,8 +187,7 @@ class ClsFormatter extends AbstractFormatter2 {
 	}
 	
 	def dispatch void format(Cardinality cardinality, extension IFormattableDocument document) {
-		cardinality.regionFor.feature(TextualCommonsPackage.Literals.CARDINALITY__LOWER_BOUND).prepend[space = " "]
-	 	cardinality.regionFor.feature(TextualCommonsPackage.Literals.CARDINALITY__UPPER_BOUND).append[space = " "]
+		cardinality.regionFor.keyword(cardinalityAccess.fullStopFullStopKeyword_1_0).prepend[noSpace].append[noSpace]
 	}
 	
 }

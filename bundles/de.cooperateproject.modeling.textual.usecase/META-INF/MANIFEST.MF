@@ -19,8 +19,7 @@ Require-Bundle: org.eclipse.xtext,
  de.cooperateproject.modeling.textual.common.metamodel,
  net.winklerweb.cdoxtext.runtime;visibility:=reexport,
  org.eclipse.uml2.codegen.ecore;bundle-version="2.1.2",
- de.cooperateproject.modeling.textual.common,
- com.google.inject.multibindings.bundle;bundle-version="3.0.0"
+ de.cooperateproject.modeling.textual.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.usecase,
  de.cooperateproject.modeling.textual.usecase.derivedstate.calculator,

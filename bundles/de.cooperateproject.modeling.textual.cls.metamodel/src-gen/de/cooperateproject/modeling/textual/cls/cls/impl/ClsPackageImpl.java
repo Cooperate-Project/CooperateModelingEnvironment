@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.ETypeParameter;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -224,7 +225,10 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         isInited = true;
 
         // Initialize simple dependencies
+        EcorePackage.eINSTANCE.eClass();
         TextualCommonsPackage.eINSTANCE.eClass();
+        TypesPackage.eINSTANCE.eClass();
+        UMLPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
         theClsPackage.createPackageContents();
@@ -1057,7 +1061,7 @@ public class ClsPackageImpl extends EPackageImpl implements ClsPackage {
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        initEReference(getXtextAssociationMemberEndReferencedType_Type(), g1, null, "type", null, 1, 1, XtextAssociationMemberEndReferencedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getXtextAssociationMemberEndReferencedType_Type(), g1, null, "type", null, 1, 1, XtextAssociationMemberEndReferencedType.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(aggregationKindEEnum, AggregationKind.class, "AggregationKind");

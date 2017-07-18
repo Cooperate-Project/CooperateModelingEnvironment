@@ -10,7 +10,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -36,7 +35,7 @@ public class QVTOResource implements Resource {
         UnitProxy unit = UnitResolverFactory.Registry.INSTANCE.getUnit(qvtoResource);
         QVTOCompiler compiler = QVTOCompiler.createCompiler(packageRegistry);
         try {
-            compiledUnit = compiler.compile(unit, null, BasicMonitor.toMonitor(new NullProgressMonitor()));
+            compiledUnit = compiler.compile(unit, null, new NullProgressMonitor());
         } catch (MdaException e) {
             throw new IOException("Could not load and compile resource.", e);
         }

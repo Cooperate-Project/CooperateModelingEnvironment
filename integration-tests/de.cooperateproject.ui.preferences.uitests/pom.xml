@@ -21,7 +21,7 @@
 	</pluginRepositories>
 
 	<properties>
-		<rcptt-maven-version>2.1.0</rcptt-maven-version>
+		<rcptt-maven-version>2.2.0</rcptt-maven-version>
 	</properties>
 	
 	<build>

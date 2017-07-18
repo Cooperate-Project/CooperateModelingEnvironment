@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
 public interface Package extends PackageBase<Package>, PackageableElement {
     /**
      * Returns the value of the '<em><b>Classifiers</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}&lt;? extends org.eclipse.uml2.uml.Classifier>.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Classifier}<code>&lt;? extends org.eclipse.uml2.uml.Classifier&gt;</code>.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Classifier#getOwningPackage <em>Owning Package</em>}'.
      * <!-- begin-user-doc -->
      * <p>

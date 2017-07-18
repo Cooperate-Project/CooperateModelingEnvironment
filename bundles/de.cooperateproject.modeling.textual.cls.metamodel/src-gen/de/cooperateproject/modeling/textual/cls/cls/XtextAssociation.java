@@ -179,7 +179,7 @@ public interface XtextAssociation extends Association {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @model unique="false"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new BasicEList<Classifier<?>>(getMemberEndTypes().stream() .map(XtextAssociationMemberEndReferencedType::getType).collect(Collectors.toList()));'"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new BasicEList&lt;Classifier&lt;?&gt;&gt;(getMemberEndTypes().stream() .map(XtextAssociationMemberEndReferencedType::getType).collect(Collectors.toList()));'"
      * @generated
      */
     EList<Classifier<?>> collectMemberEndTypes();
