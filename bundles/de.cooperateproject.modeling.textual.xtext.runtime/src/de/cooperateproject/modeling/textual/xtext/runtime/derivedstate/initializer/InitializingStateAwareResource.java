@@ -1,9 +1,12 @@
 package de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
+import org.eclipse.xtext.resource.IDerivedStateComputer;
 
 import com.google.inject.Inject;
 
@@ -17,7 +20,7 @@ import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatu
  * contents</li>
  * <li>The resource fixes the handling of transient features regarding linking behavior.</li>
  */
-public class InitializingStateAwareResource extends DerivedStateAwareResource {
+public class InitializingStateAwareResource extends DerivedStateAwareResource implements IStateCalculationOptionalizer {
 
     @Inject
     private IDerivedStateProcessor derivedStateProcessor;
@@ -25,7 +28,20 @@ public class InitializingStateAwareResource extends DerivedStateAwareResource {
     @Inject
     private ITransientStatusProvider transientStatusProvider;
 
+    private IDerivedStateComputer derivedStateComputer;
+    private IDerivedStateComputer superDerivedStateComputer;
+
     private volatile boolean firstTimeInitialization = false;
+
+    @Inject
+    @Override
+    public void setDerivedStateComputer(IDerivedStateComputer lateInitialization) {
+        if (derivedStateComputer == null) {
+            derivedStateComputer = lateInitialization;
+        }
+        superDerivedStateComputer = lateInitialization;
+        super.setDerivedStateComputer(lateInitialization);
+    }
 
     @Override
     public void installDerivedState(boolean preIndexingPhase) {
@@ -35,7 +51,7 @@ public class InitializingStateAwareResource extends DerivedStateAwareResource {
             // be skipped to prevent further issues.
             return;
         }
-        if (!firstTimeInitialization) {
+        if (!firstTimeInitialization && isStateCalculation()) {
             boolean priorValue = isInitializing;
             isInitializing = true;
             try {
@@ -46,6 +62,11 @@ public class InitializingStateAwareResource extends DerivedStateAwareResource {
             }
         }
         super.installDerivedState(preIndexingPhase);
+    }
+
+    @Override
+    public Collection<EObject> getContentsWithoutStateCalculation() {
+        return doGetContents();
     }
 
     private static boolean hasResource(EObject o) {
@@ -61,5 +82,19 @@ public class InitializingStateAwareResource extends DerivedStateAwareResource {
     private boolean isFeatureConsideredTransient(EStructuralFeature feature) {
         return (feature.isTransient() && !transientStatusProvider.isFeatureConsideredNonTransient(feature))
                 || transientStatusProvider.isFeatureConsideredTransient(feature);
+    }
+
+    @Override
+    public void setStateCalculation(boolean enable) {
+        if (enable) {
+            setDerivedStateComputer(derivedStateComputer);
+        } else {
+            setDerivedStateComputer(null);
+        }
+    }
+
+    @Override
+    public boolean isStateCalculation() {
+        return superDerivedStateComputer != null;
     }
 }

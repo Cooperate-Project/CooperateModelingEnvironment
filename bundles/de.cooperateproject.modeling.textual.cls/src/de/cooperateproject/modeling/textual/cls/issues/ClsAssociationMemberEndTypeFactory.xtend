@@ -5,40 +5,40 @@ import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
-class ClsAssociationMemberEndRoleNameFactory extends ClsAutomatedIssueResolutionFactoryBase<AssociationMemberEnd> {
+class ClsAssociationMemberEndTypeFactory extends ClsAutomatedIssueResolutionFactoryBase<AssociationMemberEnd> {
 
-    static final val ISSUE_CODE = "associationMemberEndRoleNameMismatch";
+    static final val ISSUE_CODE = "associationMemberEndTypeMismatch";
 
     new() {
         super(ISSUE_CODE, [isResolvable], AssociationMemberEnd);
     }
 
     static def isResolvable(AssociationMemberEnd element) {
-        element.hasReferencedElement && element.association.hasReferencedElement
+        element.association.hasReferencedElement
     }
 
     override hasIssueInternal(AssociationMemberEnd element) {
         if (element.hasReferencedElement) {
-            return element.name != element.referencedElement.name
+            return element.type.referencedElement != element.referencedElement.type
         }
         return false;
     }
 
     override createInternal(AssociationMemberEnd element) {
-        return new ClsAssociationMemberEndRoleNameResolution(element, getResolvableChecker());
+        return new ClsAssociationMemberEndTypeResolution(element, getResolvableChecker());
     }
 
     override getResolutionNameInternal(AssociationMemberEnd element) {
-        "Set name in UML model to currently used name.";
+        "Set type in UML model to currently type.";
     }
 
     override getIssueDescriptionInternal(AssociationMemberEnd eObject) {
-        "The role name does not match the role name in the UML model.";
+        "The type does not match the type in the UML model.";
     }
 
     override getIssueFeatureInternal(AssociationMemberEnd eObject) {
         val index = eObject.association.memberEnds.indexOf(eObject)
-        return new IssueLocator(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_NAMES, index, eObject.association, eObject)
+        return new IssueLocator(ClsPackage.Literals.XTEXT_ASSOCIATION__MEMBER_END_TYPES, index, eObject.association, eObject)
     }
 
 }

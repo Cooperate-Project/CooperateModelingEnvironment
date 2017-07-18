@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Feature;
 public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends UMLReferencingElement<T>, AliasedElement, PackageableElement, Commentable<T>, VisibilityHavingElement {
     /**
      * Returns the value of the '<em><b>Members</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}&lt;? extends org.eclipse.uml2.uml.Feature>.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.cls.cls.Member}<code>&lt;? extends org.eclipse.uml2.uml.Feature&gt;</code>.
      * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.cls.cls.Member#getOwner <em>Owner</em>}'.
      * <!-- begin-user-doc -->
      * <p>

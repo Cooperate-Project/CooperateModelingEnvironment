@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ClassUtils;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.alg.CycleDetector;
 import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
@@ -65,6 +67,18 @@ public class DerivedStateProcessor implements IDerivedStateProcessor {
     @Override
     public void calculateState(EObject o, boolean recursive) {
         executeProcessors(o, calculateCache, registry::findCalculator, recursive);
+    }
+
+    @Override
+    public void forceCleanState(EObject o) {
+        LinkedList<EObject> queue = new LinkedList<>();
+        queue.add(o);
+        while (!queue.isEmpty()) {
+            EObject currentElement = queue.pop();
+            queue.addAll(currentElement.eContents());
+            currentElement.eClass().getEAllStructuralFeatures().stream()
+                    .filter(DerivedStateProcessor::isFeatureForForcedClean).forEach(currentElement::eUnset);
+        }
     }
 
     private void executeProcessors(EObject o, IProcessorCache cache, RegistryFunction fn, boolean recursive) {
@@ -148,4 +162,11 @@ public class DerivedStateProcessor implements IDerivedStateProcessor {
         graph.removeVertex(original);
     }
 
+    private static boolean isFeatureForForcedClean(EStructuralFeature feature) {
+        if (feature.isTransient()) {
+            return Optional.of(feature).filter(EReference.class::isInstance).map(EReference.class::cast)
+                    .map(EReference::getEOpposite).map(EStructuralFeature::isTransient).orElse(true);
+        }
+        return false;
+    }
 }

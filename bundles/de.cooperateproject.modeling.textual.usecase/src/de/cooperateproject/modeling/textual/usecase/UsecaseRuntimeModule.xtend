@@ -13,7 +13,6 @@ import de.cooperateproject.modeling.textual.usecase.services.UsecaseValueConvert
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateModuleMixin
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.InitializingStateAwareResource
-import de.cooperateproject.modeling.textual.xtext.runtime.editor.FeatureFilterMixin
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.TransientStatusProviderModuleMixin
@@ -28,7 +27,7 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
-class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements DerivedStateModuleMixin, TransientStatusProviderModuleMixin, FeatureFilterMixin {
+class UsecaseRuntimeModule extends AbstractUsecaseRuntimeModule implements DerivedStateModuleMixin, TransientStatusProviderModuleMixin {
 
 	override void configureIScopeProviderDelegate(Binder binder) {
 		binder.bind(IScopeProvider).annotatedWith(Names.named(AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(

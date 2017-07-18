@@ -18,6 +18,9 @@
             class="de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndRoleNameFactory">
       </factory>
       <factory
+            class="de.cooperateproject.modeling.textual.cls.issues.ClsAssociationMemberEndTypeFactory">
+      </factory>
+      <factory
             class="de.cooperateproject.modeling.textual.cls.issues.ClsCardinalityCheckFactory">
       </factory>
       <factory

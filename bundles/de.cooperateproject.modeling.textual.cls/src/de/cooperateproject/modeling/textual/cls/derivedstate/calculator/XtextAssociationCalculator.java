@@ -1,5 +1,6 @@
 package de.cooperateproject.modeling.textual.cls.derivedstate.calculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -48,8 +49,8 @@ public class XtextAssociationCalculator extends AtomicDerivedStateProcessorBase<
         List<Boolean> navigabilities = object.getMemberEndNavigabilities();
 
         if (object.getMemberEnds().size() > types.size()) {
-            List<AssociationMemberEnd> memberEndToBeDeleted = object.getMemberEnds().subList(types.size(),
-                    object.getMemberEnds().size());
+            Collection<AssociationMemberEnd> memberEndToBeDeleted = new ArrayList<>(
+                    object.getMemberEnds().subList(types.size(), object.getMemberEnds().size()));
             memberEndToBeDeleted.stream().forEach(EcoreUtil::delete);
         }
         for (int i = 0; i < types.size(); ++i) {
