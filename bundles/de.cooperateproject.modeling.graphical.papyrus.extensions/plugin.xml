@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.ui.papyrusContentOutline">
       <contentoutline
-            class="de.cooperate.modeling.graphical.papyrus.extensions.PapyrusContentOutlinePage"
+            class="de.cooperate.modeling.graphical.papyrus.extensions.outline.PapyrusContentOutlinePage"
             priority="100">
       </contentoutline>
    </extension>
