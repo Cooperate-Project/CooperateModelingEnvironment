@@ -41,6 +41,9 @@
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.ImplementationCalculator">
       </class>
+       <class
+            class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.PackageImportCalculator">
+      </class>
       <class
             class="de.cooperateproject.modeling.textual.cls.derivedstate.calculator.XtextAssociationCalculator">
       </class>
