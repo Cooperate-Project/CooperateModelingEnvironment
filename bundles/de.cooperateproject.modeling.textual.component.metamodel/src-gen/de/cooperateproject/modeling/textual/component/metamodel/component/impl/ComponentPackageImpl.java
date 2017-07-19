@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -469,7 +468,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getProperty_Visibility() {
+    public EAttribute getProperty_Static() {
         return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
     }
 
@@ -478,17 +477,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getProperty_Static() {
-        return (EAttribute)propertyEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getProperty_Type() {
-        return (EReference)propertyEClass.getEStructuralFeatures().get(2);
+        return (EReference)propertyEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -676,15 +666,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getPort_Visibility() {
-        return (EAttribute)portEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public ComponentFactory getComponentFactory() {
         return (ComponentFactory)getEFactoryInstance();
     }
@@ -741,7 +722,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         classifierEClass = createEClass(CLASSIFIER);
 
         propertyEClass = createEClass(PROPERTY);
-        createEAttribute(propertyEClass, PROPERTY__VISIBILITY);
         createEAttribute(propertyEClass, PROPERTY__STATIC);
         createEReference(propertyEClass, PROPERTY__TYPE);
 
@@ -774,7 +754,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         requireEClass = createEClass(REQUIRE);
 
         portEClass = createEClass(PORT);
-        createEAttribute(portEClass, PORT__VISIBILITY);
     }
 
     /**
@@ -801,9 +780,9 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
+        EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
         TextualCommonsPackage theTextualCommonsPackage = (TextualCommonsPackage)EPackage.Registry.INSTANCE.getEPackage(TextualCommonsPackage.eNS_URI);
         UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-        EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
         // Create type parameters
         ETypeParameter propertyEClass_T = addETypeParameter(propertyEClass, "T");
@@ -863,6 +842,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         propertyEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
         propertyEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getVisibilityHavingElement());
+        propertyEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getCommentable());
         g2 = createEGenericType(theUMLPackage.getComponent());
         g1.getETypeArguments().add(g2);
@@ -902,10 +883,11 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g1.getETypeArguments().add(g2);
         requireEClass.getEGenericSuperTypes().add(g1);
         portEClass.getESuperTypes().add(theTextualCommonsPackage.getNamedElement());
+        portEClass.getESuperTypes().add(theTextualCommonsPackage.getVisibilityHavingElement());
 
         // Initialize classes, features, and operations; add parameters
         initEClass(componentDiagramEClass, ComponentDiagram.class, "ComponentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getComponentDiagram_Title(), ecorePackage.getEString(), "title", null, 1, 1, ComponentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getComponentDiagram_Title(), theEcorePackage.getEString(), "title", null, 1, 1, ComponentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponentDiagram_Rootpackage(), this.getRootPackage(), null, "rootpackage", null, 1, 1, ComponentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rootPackageEClass, RootPackage.class, "RootPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -937,7 +919,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         initEClass(classifierEClass, Classifier.class, "Classifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getProperty_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getProperty_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getProperty_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -970,7 +951,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         initEClass(requireEClass, Require.class, "Require", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getPort_Visibility(), theTextualCommonsPackage.getVisibility(), "visibility", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

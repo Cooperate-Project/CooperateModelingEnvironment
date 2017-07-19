@@ -118,6 +118,24 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ComponentPackage.CONNECTOR__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ComponentPackage.CONNECTOR__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(ComponentPackage.CONNECTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -129,6 +147,24 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
      */
     public void setAlias(String newAlias) {
         eDynamicSet(ComponentPackage.CONNECTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAlias() {
+        eDynamicUnset(ComponentPackage.CONNECTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(ComponentPackage.CONNECTOR__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -296,10 +332,10 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.CONNECTOR__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ComponentPackage.CONNECTOR__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case ComponentPackage.CONNECTOR__INTERFACE:
                 setInterface((Interface)null);
@@ -326,9 +362,9 @@ public class ConnectorImpl extends UMLReferencingElementImpl<Connector> implemen
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.CONNECTOR__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ComponentPackage.CONNECTOR__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case ComponentPackage.CONNECTOR__INTERFACE:
                 return basicGetInterface() != null;
             case ComponentPackage.CONNECTOR__LEFTPORT:

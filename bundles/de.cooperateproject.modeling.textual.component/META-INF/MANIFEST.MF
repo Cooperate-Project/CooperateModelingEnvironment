@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Textual Component Diagrams
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-SymbolicName: de.cooperateproject.modeling.textual.component; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -31,4 +31,5 @@ Export-Package: de.cooperateproject.modeling.textual.component,
  de.cooperateproject.modeling.textual.component.parser.antlr.internal,
  de.cooperateproject.modeling.textual.component.parser.antlr,
  de.cooperateproject.modeling.textual.component.validation
-Import-Package: org.apache.log4j
+Import-Package: org.slf4j,
+ org.apache.log4j

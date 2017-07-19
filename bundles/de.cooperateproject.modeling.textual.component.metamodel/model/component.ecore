@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="component" nsURI="http://www.cooperateproject.de/modeling/textual/component/Component"
     nsPrefix="component">
   <eClassifiers xsi:type="ecore:EClass" name="ComponentDiagram">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootpackage" lowerBound="1"
         eType="#//RootPackage" containment="true"/>
   </eClassifiers>
@@ -74,8 +74,6 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
-        eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
@@ -84,6 +82,7 @@
     </eGenericSuperTypes>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Element"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement"/>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" upperBound="-1"
@@ -146,8 +145,5 @@
       <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Port" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" unique="false"
-        eType="ecore:EEnum ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//Visibility"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Port" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//NamedElement ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//VisibilityHavingElement"/>
 </ecore:EPackage>

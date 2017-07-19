@@ -39,8 +39,7 @@ Package component <http://www.cooperateproject.de/modeling/textual/component/Com
 
   Class Classifier
 
-  Class Property -> UMLReferencingElement, Element, NamedElement
-    Attribute visibility : Visibility
+  Class Property -> UMLReferencingElement, Element, NamedElement, VisibilityHavingElement
     Attribute static : EBoolean
     Reference type : Classifier
 
@@ -72,5 +71,4 @@ Package component <http://www.cooperateproject.de/modeling/textual/component/Com
 
   Class Require -> InterfaceRelation, UMLReferencingElement
 
-  Class Port -> NamedElement
-    Attribute visibility : Visibility
+  Class Port -> NamedElement, VisibilityHavingElement

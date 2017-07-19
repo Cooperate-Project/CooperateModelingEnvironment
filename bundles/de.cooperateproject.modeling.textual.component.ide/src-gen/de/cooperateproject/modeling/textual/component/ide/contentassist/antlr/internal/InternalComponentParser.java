@@ -2887,7 +2887,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:880:2: ( ( '+' ) )
                     // InternalComponent.g:881:3: ( '+' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                     before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); 
                     // InternalComponent.g:882:3: ( '+' )
                     // InternalComponent.g:882:4: '+'
                     {
@@ -2895,7 +2895,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); 
+                     after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); 
 
                     }
 
@@ -2908,7 +2908,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:886:2: ( ( 'public' ) )
                     // InternalComponent.g:887:3: ( 'public' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
+                     before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); 
                     // InternalComponent.g:888:3: ( 'public' )
                     // InternalComponent.g:888:4: 'public'
                     {
@@ -2916,7 +2916,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); 
+                     after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); 
 
                     }
 
@@ -2929,7 +2929,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:892:2: ( ( '-' ) )
                     // InternalComponent.g:893:3: ( '-' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
+                     before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); 
                     // InternalComponent.g:894:3: ( '-' )
                     // InternalComponent.g:894:4: '-'
                     {
@@ -2937,7 +2937,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); 
+                     after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); 
 
                     }
 
@@ -2950,7 +2950,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:898:2: ( ( 'private' ) )
                     // InternalComponent.g:899:3: ( 'private' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
+                     before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); 
                     // InternalComponent.g:900:3: ( 'private' )
                     // InternalComponent.g:900:4: 'private'
                     {
@@ -2958,7 +2958,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); 
+                     after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); 
 
                     }
 
@@ -2971,7 +2971,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:904:2: ( ( '#' ) )
                     // InternalComponent.g:905:3: ( '#' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+                     before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); 
                     // InternalComponent.g:906:3: ( '#' )
                     // InternalComponent.g:906:4: '#'
                     {
@@ -2979,7 +2979,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); 
+                     after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); 
 
                     }
 
@@ -2992,7 +2992,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:910:2: ( ( 'protected' ) )
                     // InternalComponent.g:911:3: ( 'protected' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+                     before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); 
                     // InternalComponent.g:912:3: ( 'protected' )
                     // InternalComponent.g:912:4: 'protected'
                     {
@@ -3000,7 +3000,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); 
+                     after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); 
 
                     }
 
@@ -3013,7 +3013,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
                     // InternalComponent.g:916:2: ( ( '~' ) )
                     // InternalComponent.g:917:3: ( '~' )
                     {
-                     before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
+                     before(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); 
                     // InternalComponent.g:918:3: ( '~' )
                     // InternalComponent.g:918:4: '~'
                     {
@@ -3021,7 +3021,7 @@ public class InternalComponentParser extends AbstractInternalContentAssistParser
 
                     }
 
-                     after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); 
+                     after(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); 
 
                     }
 

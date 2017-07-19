@@ -110,6 +110,24 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ComponentPackage.COMPONENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ComponentPackage.COMPONENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -121,6 +139,24 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
      */
     public void setAlias(String newAlias) {
         eDynamicSet(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAlias() {
+        eDynamicUnset(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -269,10 +305,10 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.COMPONENT__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ComponentPackage.COMPONENT__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case ComponentPackage.COMPONENT__COMPONENT:
                 getComponent().clear();
@@ -302,9 +338,9 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.COMPONENT__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ComponentPackage.COMPONENT__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case ComponentPackage.COMPONENT__COMPONENT:
                 return !getComponent().isEmpty();
             case ComponentPackage.COMPONENT__PORTRELATION:

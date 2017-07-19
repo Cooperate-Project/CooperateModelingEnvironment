@@ -878,45 +878,45 @@ rule__Visibility__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); }
+		{ before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); }
 		('+')
-		{ after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_0()); }
+		{ after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); }
+		{ before(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); }
 		('public')
-		{ after(grammarAccess.getVisibilityAccess().getPUBLICEnumLiteralDeclaration_1()); }
+		{ after(grammarAccess.getVisibilityAccess().getPublicEnumLiteralDeclaration_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); }
+		{ before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); }
 		('-')
-		{ after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_2()); }
+		{ after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); }
+		{ before(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); }
 		('private')
-		{ after(grammarAccess.getVisibilityAccess().getPRIVATEEnumLiteralDeclaration_3()); }
+		{ after(grammarAccess.getVisibilityAccess().getPrivateEnumLiteralDeclaration_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); }
+		{ before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); }
 		('#')
-		{ after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_4()); }
+		{ after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_4()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); }
+		{ before(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); }
 		('protected')
-		{ after(grammarAccess.getVisibilityAccess().getPROTECTEDEnumLiteralDeclaration_5()); }
+		{ after(grammarAccess.getVisibilityAccess().getProtectedEnumLiteralDeclaration_5()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); }
+		{ before(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); }
 		('~')
-		{ after(grammarAccess.getVisibilityAccess().getPACKAGEEnumLiteralDeclaration_6()); }
+		{ after(grammarAccess.getVisibilityAccess().getPackageEnumLiteralDeclaration_6()); }
 	)
 ;
 finally {

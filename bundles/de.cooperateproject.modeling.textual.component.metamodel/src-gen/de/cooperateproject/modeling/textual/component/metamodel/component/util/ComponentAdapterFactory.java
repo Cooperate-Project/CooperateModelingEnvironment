@@ -9,6 +9,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Pack
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageableElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.component.metamodel.component.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -187,6 +188,10 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseAliasedElement(AliasedElement object) {
                 return createAliasedElementAdapter();
+            }
+            @Override
+            public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
+                return createVisibilityHavingElementAdapter();
             }
             @Override
             public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
@@ -601,6 +606,20 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createAliasedElementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement <em>Visibility Having Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement
+     * @generated
+     */
+    public Adapter createVisibilityHavingElementAdapter() {
         return null;
     }
 

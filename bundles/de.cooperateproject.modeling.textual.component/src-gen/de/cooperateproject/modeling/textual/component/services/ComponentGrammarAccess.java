@@ -1216,75 +1216,72 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	public class VisibilityElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Visibility");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cPUBLICPlusSignKeyword_0_0 = (Keyword)cPUBLICEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cPUBLICEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cPUBLICPublicKeyword_1_0 = (Keyword)cPUBLICEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cPRIVATEHyphenMinusKeyword_2_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cPRIVATEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cPRIVATEPrivateKeyword_3_0 = (Keyword)cPRIVATEEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cPROTECTEDNumberSignKeyword_4_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_4.eContents().get(0);
-		private final EnumLiteralDeclaration cPROTECTEDEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
-		private final Keyword cPROTECTEDProtectedKeyword_5_0 = (Keyword)cPROTECTEDEnumLiteralDeclaration_5.eContents().get(0);
-		private final EnumLiteralDeclaration cPACKAGEEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
-		private final Keyword cPACKAGETildeKeyword_6_0 = (Keyword)cPACKAGEEnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cPublicEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPublicPlusSignKeyword_0_0 = (Keyword)cPublicEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cPublicEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cPublicPublicKeyword_1_0 = (Keyword)cPublicEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPrivateEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cPrivateHyphenMinusKeyword_2_0 = (Keyword)cPrivateEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cPrivateEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cPrivatePrivateKeyword_3_0 = (Keyword)cPrivateEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cProtectedEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cProtectedNumberSignKeyword_4_0 = (Keyword)cProtectedEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cProtectedEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cProtectedProtectedKeyword_5_0 = (Keyword)cProtectedEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cPackageEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cPackageTildeKeyword_6_0 = (Keyword)cPackageEnumLiteralDeclaration_6.eContents().get(0);
 		
-		//enum Visibility returns textualCommons::Visibility:
-		//	PUBLIC='+'
-		//	| PUBLIC='public'
-		//	| PRIVATE='-'
-		//	| PRIVATE='private'
-		//	| PROTECTED='#'
-		//	| PROTECTED='protected'
-		//	| PACKAGE='~';
+		//enum Visibility returns uml::VisibilityKind:
+		//	public='+'
+		//	| public | private='-'
+		//	| private | protected='#'
+		//	| protected | package='~';
 		public EnumRule getRule() { return rule; }
 		
-		//PUBLIC='+' | PUBLIC='public' | PRIVATE='-' | PRIVATE='private' | PROTECTED='#' | PROTECTED='protected' | PACKAGE='~'
+		//public='+' | public | private='-' | private | protected='#' | protected | package='~'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//PUBLIC='+'
-		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_0() { return cPUBLICEnumLiteralDeclaration_0; }
+		//public='+'
+		public EnumLiteralDeclaration getPublicEnumLiteralDeclaration_0() { return cPublicEnumLiteralDeclaration_0; }
 		
 		//'+'
-		public Keyword getPUBLICPlusSignKeyword_0_0() { return cPUBLICPlusSignKeyword_0_0; }
+		public Keyword getPublicPlusSignKeyword_0_0() { return cPublicPlusSignKeyword_0_0; }
 		
-		//PUBLIC='public'
-		public EnumLiteralDeclaration getPUBLICEnumLiteralDeclaration_1() { return cPUBLICEnumLiteralDeclaration_1; }
+		//public
+		public EnumLiteralDeclaration getPublicEnumLiteralDeclaration_1() { return cPublicEnumLiteralDeclaration_1; }
 		
 		//'public'
-		public Keyword getPUBLICPublicKeyword_1_0() { return cPUBLICPublicKeyword_1_0; }
+		public Keyword getPublicPublicKeyword_1_0() { return cPublicPublicKeyword_1_0; }
 		
-		//PRIVATE='-'
-		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_2() { return cPRIVATEEnumLiteralDeclaration_2; }
+		//private='-'
+		public EnumLiteralDeclaration getPrivateEnumLiteralDeclaration_2() { return cPrivateEnumLiteralDeclaration_2; }
 		
 		//'-'
-		public Keyword getPRIVATEHyphenMinusKeyword_2_0() { return cPRIVATEHyphenMinusKeyword_2_0; }
+		public Keyword getPrivateHyphenMinusKeyword_2_0() { return cPrivateHyphenMinusKeyword_2_0; }
 		
-		//PRIVATE='private'
-		public EnumLiteralDeclaration getPRIVATEEnumLiteralDeclaration_3() { return cPRIVATEEnumLiteralDeclaration_3; }
+		//private
+		public EnumLiteralDeclaration getPrivateEnumLiteralDeclaration_3() { return cPrivateEnumLiteralDeclaration_3; }
 		
 		//'private'
-		public Keyword getPRIVATEPrivateKeyword_3_0() { return cPRIVATEPrivateKeyword_3_0; }
+		public Keyword getPrivatePrivateKeyword_3_0() { return cPrivatePrivateKeyword_3_0; }
 		
-		//PROTECTED='#'
-		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_4() { return cPROTECTEDEnumLiteralDeclaration_4; }
+		//protected='#'
+		public EnumLiteralDeclaration getProtectedEnumLiteralDeclaration_4() { return cProtectedEnumLiteralDeclaration_4; }
 		
 		//'#'
-		public Keyword getPROTECTEDNumberSignKeyword_4_0() { return cPROTECTEDNumberSignKeyword_4_0; }
+		public Keyword getProtectedNumberSignKeyword_4_0() { return cProtectedNumberSignKeyword_4_0; }
 		
-		//PROTECTED='protected'
-		public EnumLiteralDeclaration getPROTECTEDEnumLiteralDeclaration_5() { return cPROTECTEDEnumLiteralDeclaration_5; }
+		//protected
+		public EnumLiteralDeclaration getProtectedEnumLiteralDeclaration_5() { return cProtectedEnumLiteralDeclaration_5; }
 		
 		//'protected'
-		public Keyword getPROTECTEDProtectedKeyword_5_0() { return cPROTECTEDProtectedKeyword_5_0; }
+		public Keyword getProtectedProtectedKeyword_5_0() { return cProtectedProtectedKeyword_5_0; }
 		
-		//PACKAGE='~'
-		public EnumLiteralDeclaration getPACKAGEEnumLiteralDeclaration_6() { return cPACKAGEEnumLiteralDeclaration_6; }
+		//package='~'
+		public EnumLiteralDeclaration getPackageEnumLiteralDeclaration_6() { return cPackageEnumLiteralDeclaration_6; }
 		
 		//'~'
-		public Keyword getPACKAGETildeKeyword_6_0() { return cPACKAGETildeKeyword_6_0; }
+		public Keyword getPackageTildeKeyword_6_0() { return cPackageTildeKeyword_6_0; }
 	}
 	
 	private final ComponentDiagramElements pComponentDiagram;
@@ -1613,14 +1610,11 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		return getRequireAccess().getRule();
 	}
 	
-	//enum Visibility returns textualCommons::Visibility:
-	//	PUBLIC='+'
-	//	| PUBLIC='public'
-	//	| PRIVATE='-'
-	//	| PRIVATE='private'
-	//	| PROTECTED='#'
-	//	| PROTECTED='protected'
-	//	| PACKAGE='~';
+	//enum Visibility returns uml::VisibilityKind:
+	//	public='+'
+	//	| public | private='-'
+	//	| private | protected='#'
+	//	| protected | package='~';
 	public VisibilityElements getVisibilityAccess() {
 		return eVisibility;
 	}

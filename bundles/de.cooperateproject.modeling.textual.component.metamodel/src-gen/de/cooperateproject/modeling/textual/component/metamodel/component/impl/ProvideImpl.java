@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
 /**
@@ -33,6 +34,16 @@ import org.eclipse.uml2.uml.InterfaceRealization;
  * @generated
  */
 public class ProvideImpl extends InterfaceRelationImpl implements Provide {
+    /**
+     * The cached setting delegate for the '{@link #getReferencedElement() <em>Referenced Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElement()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate REFERENCED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT).getSettingDelegate();
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -146,7 +157,7 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.PROVIDE__REFERENCED_ELEMENT:
-                return basicGetReferencedElement() != null;
+                return REFERENCED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
         }
         return super.eIsSet(featureID);
     }

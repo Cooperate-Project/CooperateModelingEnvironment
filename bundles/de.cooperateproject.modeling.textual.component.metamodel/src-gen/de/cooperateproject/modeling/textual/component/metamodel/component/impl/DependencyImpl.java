@@ -104,6 +104,24 @@ public class DependencyImpl extends UMLReferencingElementImpl<Dependency> implem
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ComponentPackage.DEPENDENCY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ComponentPackage.DEPENDENCY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(ComponentPackage.DEPENDENCY__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -115,6 +133,24 @@ public class DependencyImpl extends UMLReferencingElementImpl<Dependency> implem
      */
     public void setAlias(String newAlias) {
         eDynamicSet(ComponentPackage.DEPENDENCY__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAlias() {
+        eDynamicUnset(ComponentPackage.DEPENDENCY__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(ComponentPackage.DEPENDENCY__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -226,10 +262,10 @@ public class DependencyImpl extends UMLReferencingElementImpl<Dependency> implem
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.DEPENDENCY__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ComponentPackage.DEPENDENCY__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case ComponentPackage.DEPENDENCY__LEFTCLASSIFIER:
                 setLeftclassifier((Classifier)null);
@@ -250,9 +286,9 @@ public class DependencyImpl extends UMLReferencingElementImpl<Dependency> implem
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.DEPENDENCY__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ComponentPackage.DEPENDENCY__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case ComponentPackage.DEPENDENCY__LEFTCLASSIFIER:
                 return basicGetLeftclassifier() != null;
             case ComponentPackage.DEPENDENCY__RIGHTCLASSIFIER:

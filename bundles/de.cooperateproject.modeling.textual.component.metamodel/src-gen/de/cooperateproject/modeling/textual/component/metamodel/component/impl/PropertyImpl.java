@@ -3,8 +3,7 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
-
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.UMLReferencingElementImpl;
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
@@ -14,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * @generated
      * @ordered
      */
-    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
+    protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
     /**
      * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
@@ -115,8 +115,8 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public Visibility getVisibility() {
-        return (Visibility)eDynamicGet(ComponentPackage.PROPERTY__VISIBILITY, ComponentPackage.Literals.PROPERTY__VISIBILITY, true, true);
+    public void unsetName() {
+        eDynamicUnset(ComponentPackage.PROPERTY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
     }
 
     /**
@@ -124,8 +124,44 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVisibility(Visibility newVisibility) {
-        eDynamicSet(ComponentPackage.PROPERTY__VISIBILITY, ComponentPackage.Literals.PROPERTY__VISIBILITY, newVisibility);
+    public boolean isSetName() {
+        return eDynamicIsSet(ComponentPackage.PROPERTY__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public VisibilityKind getVisibility() {
+        return (VisibilityKind)eDynamicGet(ComponentPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setVisibility(VisibilityKind newVisibility) {
+        eDynamicSet(ComponentPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, newVisibility);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetVisibility() {
+        eDynamicUnset(ComponentPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetVisibility() {
+        return eDynamicIsSet(ComponentPackage.PROPERTY__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -206,7 +242,7 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 setName((String)newValue);
                 return;
             case ComponentPackage.PROPERTY__VISIBILITY:
-                setVisibility((Visibility)newValue);
+                setVisibility((VisibilityKind)newValue);
                 return;
             case ComponentPackage.PROPERTY__STATIC:
                 setStatic((Boolean)newValue);
@@ -227,10 +263,10 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.PROPERTY__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ComponentPackage.PROPERTY__VISIBILITY:
-                setVisibility(VISIBILITY_EDEFAULT);
+                unsetVisibility();
                 return;
             case ComponentPackage.PROPERTY__STATIC:
                 setStatic(STATIC_EDEFAULT);
@@ -251,9 +287,9 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.PROPERTY__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ComponentPackage.PROPERTY__VISIBILITY:
-                return getVisibility() != VISIBILITY_EDEFAULT;
+                return isSetVisibility();
             case ComponentPackage.PROPERTY__STATIC:
                 return isStatic() != STATIC_EDEFAULT;
             case ComponentPackage.PROPERTY__TYPE:
@@ -275,6 +311,12 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
                 default: return -1;
             }
         }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (derivedFeatureID) {
+                case ComponentPackage.PROPERTY__VISIBILITY: return TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY;
+                default: return -1;
+            }
+        }
         return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
     }
 
@@ -288,6 +330,12 @@ public abstract class PropertyImpl<T extends NamedElement> extends UMLReferencin
         if (baseClass == de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ComponentPackage.PROPERTY__NAME;
+                default: return -1;
+            }
+        }
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY: return ComponentPackage.PROPERTY__VISIBILITY;
                 default: return -1;
             }
         }

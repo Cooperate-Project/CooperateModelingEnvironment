@@ -104,6 +104,24 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
      * <!-- end-user-doc -->
      * @generated
      */
+    public void unsetName() {
+        eDynamicUnset(ComponentPackage.MANIFESTATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetName() {
+        return eDynamicIsSet(ComponentPackage.MANIFESTATION__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAlias() {
         return (String)eDynamicGet(ComponentPackage.MANIFESTATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
     }
@@ -115,6 +133,24 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
      */
     public void setAlias(String newAlias) {
         eDynamicSet(ComponentPackage.MANIFESTATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetAlias() {
+        eDynamicUnset(ComponentPackage.MANIFESTATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetAlias() {
+        return eDynamicIsSet(ComponentPackage.MANIFESTATION__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -226,10 +262,10 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.MANIFESTATION__NAME:
-                setName(NAME_EDEFAULT);
+                unsetName();
                 return;
             case ComponentPackage.MANIFESTATION__ALIAS:
-                setAlias(ALIAS_EDEFAULT);
+                unsetAlias();
                 return;
             case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER:
                 setLeftclassifier((Classifier)null);
@@ -250,9 +286,9 @@ public class ManifestationImpl extends UMLReferencingElementImpl<Manifestation> 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.MANIFESTATION__NAME:
-                return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+                return isSetName();
             case ComponentPackage.MANIFESTATION__ALIAS:
-                return ALIAS_EDEFAULT == null ? getAlias() != null : !ALIAS_EDEFAULT.equals(getAlias());
+                return isSetAlias();
             case ComponentPackage.MANIFESTATION__LEFTCLASSIFIER:
                 return basicGetLeftclassifier() != null;
             case ComponentPackage.MANIFESTATION__RIGHTCLASSIFIER:

@@ -39,6 +39,8 @@ Member returns Member:
 
 EString returns ecore::EString: 
 	STRING | ID;
+	
+	
 
 RootPackage returns RootPackage: 
 	{RootPackage}
@@ -117,14 +119,14 @@ Require returns Require:
 		'require' interface=[Interface|FQN]
 ;
 
-enum Visibility returns textualCommons::Visibility: 
-	PUBLIC = '+' 
-	| PUBLIC = 'public'
-	| PRIVATE = '-' 
-	| PRIVATE = 'private'
-	| PROTECTED = '#' 
-	| PROTECTED = 'protected'
-	| PACKAGE = '~'
+enum Visibility returns uml::VisibilityKind: 
+	public = '+' 
+	| public = 'public'
+	| private = '-' 
+	| private = 'private'
+	| protected = '#' 
+	| protected = 'protected'
+	| package = '~'
 ;
 
 EBoolean returns ecore::EBoolean: 

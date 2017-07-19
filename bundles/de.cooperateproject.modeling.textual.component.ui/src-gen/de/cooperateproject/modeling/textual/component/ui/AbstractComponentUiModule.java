@@ -18,6 +18,7 @@ import de.cooperateproject.modeling.textual.component.ui.outline.ComponentOutlin
 import de.cooperateproject.modeling.textual.component.ui.quickfix.ComponentQuickfixProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateCDOXtextDocumentProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.editor.CooperateXtextDocument;
+import de.cooperateproject.modeling.textual.xtext.runtime.ui.quickfix.CooperateLanguageResourceHelper;
 import net.winklerweb.cdoxtext.runtime.CDOLanguageSpecificURIEditorOpener;
 import net.winklerweb.cdoxtext.runtime.CDOResourceForEditorInputFactory;
 import net.winklerweb.cdoxtext.runtime.CDOXtextEditor;
@@ -78,6 +79,7 @@ import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider;
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
+import org.eclipse.xtext.ui.editor.quickfix.ILanguageResourceHelper;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider;
 import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
@@ -217,6 +219,11 @@ public abstract class AbstractComponentUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ui.quickfix.QuickfixProviderFragment2
 	public Class<? extends IssueResolutionProvider> bindIssueResolutionProvider() {
 		return ComponentQuickfixProvider.class;
+	}
+	
+	// contributed by de.cooperateproject.modeling.textual.xtext.generator.resources.CooperateQuickfixProviderFragment2
+	public Class<? extends ILanguageResourceHelper> bindILanguageResourceHelper() {
+		return CooperateLanguageResourceHelper.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.contentAssist.ContentAssistFragment2

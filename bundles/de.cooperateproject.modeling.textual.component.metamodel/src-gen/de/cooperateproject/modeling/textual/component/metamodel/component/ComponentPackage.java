@@ -1978,17 +1978,6 @@ public interface ComponentPackage extends EPackage {
     EClass getProperty();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Property#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Property#getVisibility()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Visibility();
-
-    /**
      * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Property#isStatic <em>Static</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2221,17 +2210,6 @@ public interface ComponentPackage extends EPackage {
     EClass getPort();
 
     /**
-     * Returns the meta object for the attribute '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Port#getVisibility <em>Visibility</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Visibility</em>'.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Port#getVisibility()
-     * @see #getPort()
-     * @generated
-     */
-    EAttribute getPort_Visibility();
-
-    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2455,14 +2433,6 @@ public interface ComponentPackage extends EPackage {
         EClass PROPERTY = eINSTANCE.getProperty();
 
         /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__VISIBILITY = eINSTANCE.getProperty_Visibility();
-
-        /**
          * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2657,14 +2627,6 @@ public interface ComponentPackage extends EPackage {
          * @generated
          */
         EClass PORT = eINSTANCE.getPort();
-
-        /**
-         * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PORT__VISIBILITY = eINSTANCE.getPort_Visibility();
 
     }
 

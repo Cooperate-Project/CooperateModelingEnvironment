@@ -2,11 +2,13 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.NamedElementImpl;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Port;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +32,7 @@ public class PortImpl extends NamedElementImpl implements Port {
      * @generated
      * @ordered
      */
-    protected static final Visibility VISIBILITY_EDEFAULT = Visibility.UNDEFINED;
+    protected static final VisibilityKind VISIBILITY_EDEFAULT = VisibilityKind.PUBLIC_LITERAL;
 
     /**
      * <!-- begin-user-doc -->
@@ -56,8 +58,8 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Visibility getVisibility() {
-        return (Visibility)eDynamicGet(ComponentPackage.PORT__VISIBILITY, ComponentPackage.Literals.PORT__VISIBILITY, true, true);
+    public VisibilityKind getVisibility() {
+        return (VisibilityKind)eDynamicGet(ComponentPackage.PORT__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, true, true);
     }
 
     /**
@@ -65,8 +67,26 @@ public class PortImpl extends NamedElementImpl implements Port {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setVisibility(Visibility newVisibility) {
-        eDynamicSet(ComponentPackage.PORT__VISIBILITY, ComponentPackage.Literals.PORT__VISIBILITY, newVisibility);
+    public void setVisibility(VisibilityKind newVisibility) {
+        eDynamicSet(ComponentPackage.PORT__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY, newVisibility);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetVisibility() {
+        eDynamicUnset(ComponentPackage.PORT__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetVisibility() {
+        return eDynamicIsSet(ComponentPackage.PORT__VISIBILITY, TextualCommonsPackage.Literals.VISIBILITY_HAVING_ELEMENT__VISIBILITY);
     }
 
     /**
@@ -93,7 +113,7 @@ public class PortImpl extends NamedElementImpl implements Port {
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ComponentPackage.PORT__VISIBILITY:
-                setVisibility((Visibility)newValue);
+                setVisibility((VisibilityKind)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -108,7 +128,7 @@ public class PortImpl extends NamedElementImpl implements Port {
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.PORT__VISIBILITY:
-                setVisibility(VISIBILITY_EDEFAULT);
+                unsetVisibility();
                 return;
         }
         super.eUnset(featureID);
@@ -123,9 +143,41 @@ public class PortImpl extends NamedElementImpl implements Port {
     public boolean eIsSet(int featureID) {
         switch (featureID) {
             case ComponentPackage.PORT__VISIBILITY:
-                return getVisibility() != VISIBILITY_EDEFAULT;
+                return isSetVisibility();
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (derivedFeatureID) {
+                case ComponentPackage.PORT__VISIBILITY: return TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == VisibilityHavingElement.class) {
+            switch (baseFeatureID) {
+                case TextualCommonsPackage.VISIBILITY_HAVING_ELEMENT__VISIBILITY: return ComponentPackage.PORT__VISIBILITY;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //PortImpl
