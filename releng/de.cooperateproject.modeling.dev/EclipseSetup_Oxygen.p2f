@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='26'>
+  <ius size='28'>
     <iu id='org.apache.activemq.activemq-client' name='activemq-client' version='5.14.3'>
       <repositories size='1'>
         <repository location='https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/'/>
@@ -153,6 +153,16 @@
       <repositories size='2'>
         <repository location='http://www.eclipse.org/modeling/amalgam/downloads/package/modeling/oxygen/'/>
         <repository location='http://download.eclipse.org/releases/oxygen/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.emf.cdo.dawn.sdk.feature.group' name='CDO Dawn SDK' version='2.1.200.v20170120-1853'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/releases/oxygen/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.papyrus.extra.cdo.feature.feature.group' name='Papyrus CDO Integration (Incubation)' version='1.2.0.201707111423'>
+      <repositories size='1'>
+        <repository location='https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/latest/'/>
       </repositories>
     </iu>
   </ius>

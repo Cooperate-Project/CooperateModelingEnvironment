@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
 <plugin>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated DummyModel -->
       <package
@@ -10,5 +8,4 @@
             class="dummy.DummyPackage"
             genModel="model/dummyMetaModel/DummyModel.genmodel"/>
    </extension>
-
 </plugin>
