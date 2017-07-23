@@ -1,0 +1,7 @@
+library TransformationUtils_Component;
+
+import TransformationUtils;
+
+property PAPYRUS_NOTATION_EDGE_CONSTRAINT : String = "Constraint_ConstrainedElementEdge";
+
+property PAPYRUS_NOTATION_EDGE_COMMENTLINK : String = "Comment_AnnotatedElementEdge";

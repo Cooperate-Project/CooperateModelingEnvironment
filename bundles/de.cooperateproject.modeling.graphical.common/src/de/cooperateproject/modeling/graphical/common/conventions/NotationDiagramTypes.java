@@ -11,6 +11,7 @@ public enum NotationDiagramTypes {
     USECASE(DiagramTypes.USECASE, "UseCase"),
     ACTIVITY(DiagramTypes.ACTIVITY, "PapyrusUMLActivityDiagram"),
     SEQUENCE(DiagramTypes.SEQUENCE, "PapyrusUMLSequenceDiagram"),
+    COMPONENT(DiagramTypes.COMPONENT, "PapyrusUMLComponentDiagram"),
     STATE(DiagramTypes.STATE, "PapyrusUMLStateMachineDiagram");
 
     private final DiagramTypes diagramType;

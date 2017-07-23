@@ -127,7 +127,7 @@
       <feature id="org.eclipse.papyrus.infra.feature"/>
       <feature id="org.eclipse.papyrus.uml.properties.feature"/>
       <feature id="de.cooperateproject.modeling.textual.usecase.feature" version="0.2.0.qualifier"/>
-      <feature id="org.eclipse.papyrus.doc.feature"/>
+      <feature id="de.cooperateproject.modeling.textual.component.feature" version="0.2.0.qualifier"/>   <feature id="org.eclipse.papyrus.doc.feature"/>
       <feature id="org.eclipse.papyrus.uml.assistants.feature"/>
       <feature id="org.eclipse.xtext.xtext.ui"/>
       <feature id="org.eclipse.emf.common.ui"/>

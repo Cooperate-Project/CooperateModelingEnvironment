@@ -2,5 +2,6 @@
 <uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
   <mapping sourceURI="http://www.cooperateproject.de/modeling/textual/cls/Cls" targetURI="platform:/resource/de.cooperateproject.modeling.textual.cls.metamodel/model/cls.ecore"/>
   <mapping sourceURI="http://www.cooperateproject.de/modeling/language/usecase/Usecase" targetURI="platform:/resource/de.cooperateproject.modeling.textual.usecase.metamodel/model/usecase.ecore"/>
+  <mapping sourceURI="http://www.cooperateproject.de/modeling/language/component/Component" targetURI="platform:/resource/de.cooperateproject.modeling.textual.component.metamodel/model/component.ecore"/>
   <mapping sourceURI="http://www.cooperateproject.de/modeling/textual/commons" targetURI="platform:/resource/de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore"/>
 </uriMap:MappingContainer>

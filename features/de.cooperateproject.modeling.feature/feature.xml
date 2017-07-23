@@ -43,6 +43,10 @@
          version="0.0.0"/>
 
    <includes
+         id="de.cooperateproject.modeling.textual.component.feature"
+         version="0.0.0"/>
+
+   <includes
          id="de.cooperateproject.modeling.transformation.feature"
          version="0.0.0"/>
 

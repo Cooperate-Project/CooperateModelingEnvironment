@@ -11,6 +11,7 @@ public enum FileExtensions {
     USECASE(DiagramTypes.USECASE, "uc"),
     ACTIVITY(DiagramTypes.ACTIVITY, "act"),
     SEQUENCE(DiagramTypes.SEQUENCE, "seq"),
+    COMPONENT(DiagramTypes.COMPONENT, "cmp"),
     STATE(DiagramTypes.STATE, "stm");
 
     private final DiagramTypes diagramType;

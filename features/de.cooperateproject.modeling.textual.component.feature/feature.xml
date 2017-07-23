@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="de.cooperateproject.modeling.textual.metamodels.feature"
+      id="de.cooperateproject.modeling.textual.usecase.feature"
       label="%featureName"
       version="0.2.0.qualifier"
       license-feature="de.cooperateproject.license"
@@ -18,25 +18,9 @@
       %license
    </license>
 
-   <requires>
-      <import feature="org.eclipse.uml2" version="5.2.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.uml2.uml" version="5.2.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf.cdo" version="4.5.0" match="greaterOrEqual"/>
-   </requires>
-
-   <plugin
-         id="de.cooperateproject.modeling.textual.cls.metamodel"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="de.cooperateproject.modeling.textual.usecase.metamodel"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="de.cooperateproject.modeling.textual.commons.feature"
+         version="0.0.0"/>
 
    <plugin
          id="de.cooperateproject.modeling.textual.component.metamodel"
@@ -46,7 +30,21 @@
          unpack="false"/>
 
    <plugin
-         id="de.cooperateproject.modeling.textual.common.metamodel"
+         id="de.cooperateproject.modeling.textual.component"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.textual.component.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.cooperateproject.modeling.textual.component.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

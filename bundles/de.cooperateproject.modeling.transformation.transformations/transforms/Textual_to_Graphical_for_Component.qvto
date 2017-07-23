@@ -1,0 +1,26 @@
+import TransformationUtils_Component;
+
+transformation Textual_to_Graphical_for_Component(in textual : TXT, inout graphical : NOTATION, in umlmodel : UML, in umlprimitives : UML);
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses component('http://www.cooperateproject.de/modeling/textual/component/Component');
+modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+
+main() {
+	var diagrams := textual.rootObjects()[component::ComponentDiagram];
+	assert fatal (diagrams->size() = 1);
+	diagrams->map diagramToDiagram();
+}
+
+mapping component::ComponentDiagram::diagramToDiagram() : notation::Diagram {
+	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
+
+	type := "Component";
+	name := null;
+	measurementUnit := notation::MeasurementUnit::Pixel;
+	element := rootPackage.toEObject();
+	
+}
