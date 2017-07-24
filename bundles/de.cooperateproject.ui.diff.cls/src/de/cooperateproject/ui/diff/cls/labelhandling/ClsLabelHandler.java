@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.cls.labelHandling;
+package de.cooperateproject.ui.diff.cls.labelhandling;
 
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.ui.diff.labeling.LabelHandler;

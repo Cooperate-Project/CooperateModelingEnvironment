@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.cls.labelHandling;
+package de.cooperateproject.ui.diff.cls.labelhandling;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.PrimitiveType;

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,16 +17,22 @@ import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfoManager;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.revision.CDOIDAndVersion;
-import org.eclipse.emf.cdo.compare.CDOCompareUtil;
-import org.eclipse.emf.cdo.compare.CDOComparisonScope;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.cdo.util.ObjectNotFoundException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.compare.Comparison;
+import org.eclipse.emf.compare.EMFCompare;
+import org.eclipse.emf.compare.Match;
+import org.eclipse.emf.compare.diff.DefaultDiffEngine;
+import org.eclipse.emf.compare.diff.FeatureFilter;
+import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.compare.scope.IComparisonScope;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.net4j.util.io.IOUtil;
 import org.slf4j.Logger;
@@ -33,10 +40,10 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.inject.Inject;
 
 import de.cooperateproject.cdo.util.connection.CDOConnectionManager;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateProcessor;
+import de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus.DelegatingTransientStatusProvider;
 import de.cooperateproject.ui.editors.launcher.extensions.EditorType;
 import de.cooperateproject.ui.launchermodel.Launcher.ConcreteSyntaxModel;
 import de.cooperateproject.ui.launchermodel.Launcher.Diagram;
@@ -45,7 +52,7 @@ import de.cooperateproject.ui.launchermodel.helper.LauncherModelHelper;
 /**
  * Provides functions for receiving information about commits from a resource.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class ComparisonManager {
@@ -73,7 +80,7 @@ public class ComparisonManager {
 	 * Timeout in milliseconds for the waiting time while loading the
 	 * CDOCommitHistory.
 	 */
-	private static final long loadingTimeOut = 8000;
+	private static final long LOADING_TIMEOUT = 8000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ComparisonManager.class);
 
 	/**
@@ -110,7 +117,6 @@ public class ComparisonManager {
 	 */
 	public Set<CDOCommitInfo> getAllCommitInfos(long dateMillis) {
 		Set<CDOCommitInfo> commitInfosTemp = getAllCommitInfos();
-		// only keep those commitInfos which are in the given time range
 		commitInfosTemp.removeIf(info -> info.getTimeStamp() < dateMillis);
 
 		return commitInfosTemp;
@@ -124,16 +130,64 @@ public class ComparisonManager {
 	 * @return The computed comparison
 	 */
 	public Comparison getComparison(CDOCommitInfo commit, CDOView previousView, CDOView currentView) {
-		//TODO DerivedStateCalculatorRegistry.INSTANCE.getExtension("")
-		// Creates the scope, on which differences should be detected. Only the
-		// items with the given cdoIds (all elements from textual cooperate
-		// diagram) are considered.
-		IComparisonScope scope = CDOComparisonScope.Minimal.create(currentView, previousView, null,
-				cdoIdsMappedToCommit.get(commit));
-
-		Comparison comparison = CDOCompareUtil.compare(scope);
-		return comparison;
+		initStateOfObjects(commit, previousView, currentView);	
+		return compareStrict(getResource(currentView), getResource(previousView));
 	}
+
+	private void initStateOfObjects(CDOCommitInfo commit, CDOView previousView, CDOView currentView) {
+		Set<CDOID> ids = cdoIdsMappedToCommit.get(commit);
+		for (CDOID cdoid : ids) {
+			initStateOfObject(previousView, cdoid);
+			initStateOfObject(currentView, cdoid);
+		}
+	}
+
+	private static void initStateOfObject(CDOView view, CDOID cdoid) {
+		CDOObject cdoObject = getCDOObjectById(view, cdoid);
+		if (cdoObject == null) {
+			return;
+		}
+		String nsURI = cdoObject.eClass().getEPackage().getNsURI();
+		
+		Optional<IDerivedStateProcessor> extension = DerivedStateCalculatorRegistry.INSTANCE.getExtension(nsURI);
+		if (extension.isPresent()) {
+		    IDerivedStateProcessor prevDerivedStateProcessor = extension.get();
+		    prevDerivedStateProcessor.initState(cdoObject);		    
+		}
+	}
+
+	private static CDOObject getCDOObjectById(CDOView view, CDOID cdoid) {
+		try {
+			return view.getObject(cdoid);
+		} catch (Exception e) {
+			LOGGER.warn(e.getMessage());
+			return null;
+		}
+	}
+	
+	 private static Comparison compareStrict(Resource resource, Resource resource2) {
+		 	IComparisonScope scope = new DefaultComparisonScope(resource, resource2, null);
+	        return EMFCompare.builder().setDiffEngine(new DefaultDiffEngine() {
+
+                @Override
+                protected FeatureFilter createFeatureFilter() {
+                    return new FeatureFilter() {
+                        
+                        @Override
+                        protected boolean isIgnoredReference(Match match, EReference reference) {
+                            DelegatingTransientStatusProvider delegatingTransientStatusProvider = new DelegatingTransientStatusProvider();
+                            return delegatingTransientStatusProvider.isFeatureConsideredTransient(reference) || 
+                                    (super.isIgnoredReference(match, reference) && !delegatingTransientStatusProvider.isFeatureConsideredNonTransient(reference));
+                        }
+
+                        @Override
+                        protected boolean isIgnoredAttribute(EAttribute attribute) {
+                            DelegatingTransientStatusProvider delegatingTransientStatusProvider = new DelegatingTransientStatusProvider();
+                            return delegatingTransientStatusProvider.isFeatureConsideredTransient(attribute) || 
+                                    (super.isIgnoredAttribute(attribute) && !delegatingTransientStatusProvider.isFeatureConsideredNonTransient(attribute));
+                        }};
+                }}).build().compare(scope);
+	 }
 
 	/**
 	 * Gets the resource of the textual diagram in the commit's current version.
@@ -144,7 +198,7 @@ public class ComparisonManager {
 	 *            the current view on the diagram
 	 * @return the corresponding resource
 	 */
-	public CDOResource getResource(CDOCommitInfo commit, CDOView currentView) {
+	public CDOResource getResource(CDOView currentView) {
 		return currentView.getResource(resourceDiagramPath);
 	}
 
@@ -156,61 +210,45 @@ public class ComparisonManager {
 		IProject project = currentFile.getProject();
 		CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
 		CDOView view = session.openView();
-		CDOBranch mainBranch = session.getBranchManager().getMainBranch();
-		ConcreteSyntaxModel textModel = null;
-		Diagram launcherModel = null;
+		ConcreteSyntaxModel textModel = getConcreteSyntaxModel(view);
+		if (textModel != null) {
+		    resourceDiagramPath = CDOURIUtil.extractResourcePath(EcoreUtil.getURI(textModel.getRootElement()));
+		    
+		    CDOObject textRoot = CDOUtil.getCDOObject(textModel.getRootElement());
+		    CDOID resourceCDOId = textRoot.cdoResource().cdoID();
 
-		try {
-			launcherModel = LauncherModelHelper.loadDiagram(view.getResourceSet(), currentFile);
-			textModel = launcherModel.getConcreteSyntaxModel(EditorType.TEXTUAL.getSupportedSyntaxModel());
-			resourceDiagramPath = CDOURIUtil.extractResourcePath(EcoreUtil.getURI(textModel.getRootElement()));
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-			return;
+		    getCommitsFromMainBranch(session, view, resourceCDOId);
 		}
 
-		CDOObject textRoot = CDOUtil.getCDOObject(textModel.getRootElement());
-		String nsURI = textRoot.eClass().getEPackage().getNsURI();
-		IDerivedStateProcessor derivedStateProcessor = DerivedStateCalculatorRegistry.INSTANCE.getExtension(nsURI).get();
-		derivedStateProcessor.calculateState(textRoot, true);
-		/*while(textRoot.eAllContents().hasNext()) {
-			EObject e = textRoot.eAllContents().next();
-			derivedStateProcessor.calculateState(e);
-			e = e;
-		}*/
-		textRoot.eAllContents().forEachRemaining(x->derivedStateProcessor.calculateState(x));
-		CDOID resourceCDOId = textRoot.cdoResource().cdoID();
-		long firstCommitTimeStamp = view.getRevision(resourceCDOId).getTimeStamp();
+		IOUtil.closeSilent(view);
+		CDOConnectionManager.getInstance().releaseSession(session);
+	}
 
-		//TODO textRoot.eClass().getEPackage().getNsURI()
-		// get all commits from main branch
+	private void getCommitsFromMainBranch(CDOSession session, CDOView view, CDOID resourceCDOId) {
 		CDOCommitInfoManager commitManager = session.getCommitInfoManager();
+		CDOBranch mainBranch = session.getBranchManager().getMainBranch();
 		CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
 
-		mainHistory.waitWhileLoading(loadingTimeOut);
+		mainHistory.waitWhileLoading(LOADING_TIMEOUT);
 
+		getCommitsByTime(session, view, resourceCDOId, mainBranch, mainHistory);
+	}
+
+	private void getCommitsByTime(CDOSession session, CDOView view, CDOID resourceCDOId, CDOBranch mainBranch,
+			CDOCommitHistory mainHistory) {
+		long firstCommitTimeStamp = view.getRevision(resourceCDOId).getTimeStamp();
 		for (int i = 0; i < mainHistory.size(); i++) {
 			CDOCommitInfo commitInfo = mainHistory.getElement(i);
-			boolean isFirstCommitTimeStampGreater = commitInfo.getTimeStamp() < firstCommitTimeStamp;
-			boolean isPreviousTimeStampInvalid = commitInfo.getPreviousTimeStamp() == CDOCommitInfo.INVALID_DATE;
 			
-			if (isFirstCommitTimeStampGreater || isPreviousTimeStampInvalid) {
+			if (isTimeStampValid(commitInfo, firstCommitTimeStamp)) {
 				break;
 			}
 
 			CDOCommitInfo previousCommitInfo = mainHistory.getElement(i + 1);
 			CDOView previousState = session.openView(mainBranch, previousCommitInfo.getTimeStamp());
 			CDOView currentState = session.openView(mainBranch, commitInfo.getTimeStamp());
-
-			//TODO ref zwischen uml und cls previousState.queryXRefs(arg0, arg1)
-			//TODO previousState.getObject(arg0)
-			List<CDOIDAndVersion> changedObjects = Lists.newArrayList(Iterables.concat(commitInfo.getNewObjects(),
-					commitInfo.getDetachedObjects(), commitInfo.getChangedObjects()));
-			// Set of all IDs of the objects that have been changed
-			// in the two states and hence are of interest
-			Set<CDOID> value = changedObjects.stream()
-					.filter(object -> parentMatches(object.getID(), resourceCDOId, previousState, currentState))
-					.map(CDOIDAndVersion::getID).collect(Collectors.toSet());
+			
+			Set<CDOID> value = getCDOIdFromChangedObjects(resourceCDOId, previousState, currentState, commitInfo);
 
 			if (!value.isEmpty()) {
 				cdoIdsMappedToCommit.put(commitInfo, value);
@@ -220,10 +258,36 @@ public class ComparisonManager {
 			IOUtil.closeSilent(currentState);
 
 		}
+	}
 
-		IOUtil.closeSilent(view);
-		CDOConnectionManager.getInstance().releaseSession(session);
+	private ConcreteSyntaxModel getConcreteSyntaxModel(CDOView view) {
+		ConcreteSyntaxModel textModel = null;
+		try {
+			Diagram launcherModel = LauncherModelHelper.loadDiagram(view.getResourceSet(), currentFile);
+			textModel = launcherModel.getConcreteSyntaxModel(EditorType.TEXTUAL.getSupportedSyntaxModel());
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+		return textModel;
+	}
+	
+	private boolean isTimeStampValid(CDOCommitInfo commitInfo, long firstCommitTimeStamp) {
+		boolean isFirstCommitTimeStampGreater = commitInfo.getTimeStamp() < firstCommitTimeStamp;
+		boolean isPreviousTimeStampInvalid = commitInfo.getPreviousTimeStamp() == CDOCommitInfo.INVALID_DATE;
+		
+		return isFirstCommitTimeStampGreater || isPreviousTimeStampInvalid;
+	}
 
+	private Set<CDOID> getCDOIdFromChangedObjects(CDOID resourceCDOId, CDOView previousState, CDOView currentState, CDOCommitInfo commitInfo) {
+		List<CDOIDAndVersion> changedObjects = Lists.newArrayList(Iterables.concat(commitInfo.getNewObjects(),
+				commitInfo.getDetachedObjects(), commitInfo.getChangedObjects()));
+
+		//TODO xrefs check ob parent matched
+		//List<CDOObjectReference> queryXRefs = view.queryXRefs(cdoObject, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT);
+		
+		return changedObjects.stream()
+				.filter(object -> parentMatches(object.getID(), resourceCDOId, previousState, currentState)) 
+				.map(CDOIDAndVersion::getID).collect(Collectors.toSet());
 	}
 
 	/**
@@ -242,7 +306,7 @@ public class ComparisonManager {
 	private boolean parentMatches(CDOID objectID, CDOID parentID, CDOView previousView, CDOView currentView) {
 		boolean ret = checkParentMatching(objectID, parentID, previousView);
 		if (!ret) {
-			ret = checkParentMatching(objectID, parentID, currentView);
+			return checkParentMatching(objectID, parentID, currentView);
 		}
 		return ret;
 	}
@@ -262,8 +326,8 @@ public class ComparisonManager {
 		try {
 			CDOObject object = view.getObject(objectID);
 			return object.cdoResource().cdoID().equals(parentID);
-		} catch (Exception e) {
-			LOGGER.warn(e.getMessage(), e);
+		} catch (ObjectNotFoundException e) {
+			LOGGER.trace(e.getMessage(), e);
 		}
 		return false;
 	}

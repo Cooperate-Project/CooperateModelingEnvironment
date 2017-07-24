@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.cls.postProcessing;
+package de.cooperateproject.ui.diff.cls.postprocessing;
 
 import java.util.HashMap;
 import java.util.List;

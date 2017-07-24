@@ -13,35 +13,30 @@ public class CommitContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object[] getChildren(Object parentElement) {
-
-		Object[] ret = {};
 		if (parentElement instanceof DiffTreeItem) {
-			ret = ((DiffTreeItem) parentElement).getContents().toArray();
+			return ((DiffTreeItem) parentElement).getContents().toArray();
 		} else if (parentElement instanceof EObject) {
-			ret = ((EObject) parentElement).eContents().toArray();
-
+			return ((EObject) parentElement).eContents().toArray();
 		}
-		return ret;
+		return null;
 	}
 
 	@Override
 	public Object getParent(Object element) {
-		Object ret = null;
 		if (element instanceof DiffTreeItem) {
-			ret = ((DiffTreeItem) element).getParent();
+			return ((DiffTreeItem) element).getParent();
 		}
-		return ret;
+		return null;
 	}
 
 	@Override
 	public boolean hasChildren(Object element) {
-		boolean ret = false;
 		if (element instanceof DiffTreeItem) {
-			ret = (((DiffTreeItem) element).getContents().size() > 0);
+			return !(((DiffTreeItem) element).getContents().isEmpty());
 		} else if (element instanceof EObject) {
-			ret = (((EObject) element).eContents().size() > 0);
+			return !(((EObject) element).eContents().isEmpty());
 		}
-		return ret;
+		return false;
 	}
 
 	@Override

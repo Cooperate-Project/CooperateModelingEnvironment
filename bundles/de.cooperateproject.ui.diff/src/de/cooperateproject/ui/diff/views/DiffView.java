@@ -5,9 +5,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.ui.part.*;
 
-import com.google.inject.Inject;
-
-import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateProcessor;
 import de.cooperateproject.ui.diff.content.CommitContentProvider;
 import de.cooperateproject.ui.diff.content.DiffTreeBuilder;
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
@@ -28,6 +25,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.common.commit.CDOCommitInfo;
+import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.jface.action.*;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
@@ -67,8 +65,6 @@ public class DiffView extends ViewPart {
 	private Composite commitHistoryComposite;
 	private Composite diffViewComposite;
 	private IFile selectedFile;
-	@Inject
-	IDerivedStateProcessor stateProcessor;
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
@@ -255,8 +251,6 @@ public class DiffView extends ViewPart {
 	 *            the commit of interest and to be opened in the tree viewer and
 	 *            summary table
 	 */
-	
-	//TODO textuell holen, root init
 	private void showDiffViewOfCommit(CDOCommitInfo obj) {
 		SummaryViewBuilder svb = new SummaryViewBuilder();
 		List<SummaryItem> summaryList = svb.buildSummaryView(comparisonManager.getComparison(obj,
@@ -268,7 +262,8 @@ public class DiffView extends ViewPart {
 		}
 		tabFolder.setSelection(diffViewTab);
 
-		DiffTreeBuilder dtb = new DiffTreeBuilder(comparisonManager.getResource(obj, cdoViewManager.getCurrentView()),
+		CDOResource resource = comparisonManager.getResource(cdoViewManager.getCurrentView());
+        DiffTreeBuilder dtb = new DiffTreeBuilder(resource,
 				summaryList);
 		diffViewer.setInput(dtb.buildTree());
 		diffViewer.expandAll();
@@ -328,7 +323,7 @@ public class DiffView extends ViewPart {
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 
 		if (!(obj instanceof DiffTreeItem)) {
-			return;
+			return; 
 		}
 		DiffTreeItem item = (DiffTreeItem) obj;
 		DiffTreeItem parent = item.getParent();

@@ -10,12 +10,11 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This class builds the content for the summary view table.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class SummaryViewBuilder {
@@ -35,51 +34,43 @@ public class SummaryViewBuilder {
 
 		Comparison comparisonResult = comparison;
 		EList<Diff> resultList = comparisonResult.getDifferences();
-		List<SummaryItem> sumList = new ArrayList<SummaryItem>();
-
-		for (Diff diff : resultList) {
-			Object value = getValue(diff);
-			// Don't consider changes of objects that are from this package,
-			// because we have internal cooperate instances for those, which are
-			// being handled here.
-			if (value == null || value.getClass().getPackage().getName()
-					.contentEquals(UMLPackage.eINSTANCE.getClass().getPackage().getName())) {
-				continue;
-			}
-
-			// left side is the object in the "new version" of the
-			// commit
-			Object left = null;
-			// right side is the object in the "old version" of the
-			// commit
-			Object right = null;
-			EObject parent = diff.getMatch().getLeft();
-
-			// don't add a summary item that has no parent class
-			if (parent == null) {
-				continue;
-			}
-			switch (diff.getKind()) {
-			case DELETE:
-				right = value;
-				break;
-			case ADD:
-				left = value;
-				break;
-			default:
-				left = value;
-				if (diff.getMatch().getRight() != null) {
-					right = getOldValue(diff, comparisonResult, value);
-				}
-
-			}
-			sumList.add(new SummaryItem(left, right, parent, diff.getKind(), value));
-		}
+		List<SummaryItem> sumList = createSummaryItemList(comparisonResult, resultList);
+		
 		PostProcessorManager.postProcessSummaryList(sumList);
 
 		return sumList;
 	}
 
+    private List<SummaryItem> createSummaryItemList(Comparison comparisonResult, EList<Diff> resultList) {
+        List<SummaryItem> sumList = new ArrayList<>();
+        for (Diff diff : resultList) {
+			Object value = getValue(diff);
+			EObject parent = diff.getMatch().getLeft();
+			
+			if (value != null && parent != null) {
+			    sumList.add(createSummaryItem(diff, parent, value, comparisonResult));
+			}
+		}
+        return sumList;
+    }
+	
+	private SummaryItem createSummaryItem(Diff diff, EObject parent, Object value, Comparison comparisonResult) {
+	    DifferenceKind kind = diff.getKind();
+        SummaryItem summaryItem = new SummaryItem(parent, kind, value);
+        
+        if (kind == DifferenceKind.DELETE) {
+            summaryItem.setRight(value);
+        } else if (kind == DifferenceKind.ADD) {
+            summaryItem.setLeft(value);
+        } else {
+            summaryItem.setLeft(value);
+            if (diff.getMatch().getRight() != null) {
+                summaryItem.setRight(getOldValue(diff, comparisonResult, value));
+            }
+        }
+        
+        return summaryItem;
+	}
 	/**
 	 * Makes out, of which type the Diff was and returns the item, on which the
 	 * actual difference was detected.
@@ -89,14 +80,13 @@ public class SummaryViewBuilder {
 	 * @return the value on which the difference was detected
 	 */
 	private Object getValue(Diff diff) {
-		Object value = null;
 
 		if (diff instanceof ReferenceChange) {
-			value = ((ReferenceChange) diff).getValue();
+			return ((ReferenceChange) diff).getValue();
 		} else if (diff instanceof AttributeChange) {
-			value = ((AttributeChange) diff).getValue();
+			return ((AttributeChange) diff).getValue();
 		}
-		return value;
+		return null;
 	}
 
 	@SuppressWarnings("rawtypes")

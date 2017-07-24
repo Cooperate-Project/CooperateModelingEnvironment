@@ -10,6 +10,8 @@ import org.eclipse.emf.compare.DifferenceKind;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.diff.content.SummaryItem;
 
@@ -17,14 +19,15 @@ import de.cooperateproject.ui.diff.content.SummaryItem;
  * Label provider for a table viewer which lists all changes in a commit.
  * Delegates the labeling to the meta-model-specific label handler.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class SummaryLabelProvider extends LabelProvider implements ITableLabelProvider {
 
-	private static final String extensionPointId = "de.cooperateproject.ui.diff.labelHandlers";
-	private static final String metamodelAttributeId = "metamodel";
-	private static final String classAttributeId = "class";
+	private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
+	private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
+	private static final String CLASS_ATTRIBUTE_ID = "class";
+	private static final Logger logger = LoggerFactory.getLogger(SummaryLabelProvider.class);
 	private LabelHandler labelHandler = null;
 
 	@Override
@@ -35,9 +38,8 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
 
-		String ret = "";
 		if (!(element instanceof SummaryItem)) {
-			return ret;
+			return null;
 		}
 
 		SummaryItem item = (SummaryItem) element;
@@ -47,52 +49,52 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 		}
 
 		if (item.getDifferenceKind() == DifferenceKind.MOVE) {
-			switch (columnIndex) {
-			case 0:
-				ret = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-						+ labelHandler.getClassText(item.getLeft());
-				break;
-			case 1:
-				ret = labelHandler.getText(item.getLeft());
-				break;
-			case 2:
-				ret = labelHandler.getText(item.getRight());
-				break;
-			case 3:
-				ret = labelHandler.getText(item.getCommonParent());
-				break;
-			default:
-			}
+			return getColumnTextForMoveModification(columnIndex, item);
 		} else {
-			switch (columnIndex) {
-			case 0:
-				String appendix = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " ";
-				if (item.getLeft() != null) {
-					ret = appendix + labelHandler.getClassText(item.getLeft());
-				} else if (item.getRight() != null) {
-					ret = appendix + labelHandler.getClassText(item.getRight());
-				}
-				break;
-			case 1:
-				ret = labelHandler.getText(item.getCommonParent());
-				break;
-			case 2:
-				ret = labelHandler.getText(item.getRight());
-				break;
-			case 3:
-				ret = labelHandler.getText(item.getLeft());
-				break;
-			default:
-			}
+			return getColumnTextForModification(columnIndex, item);
 		}
-
-		return ret;
-
 	}
+
+    private String getColumnTextForModification(int columnIndex, SummaryItem item) {
+        switch (columnIndex) {
+        case 0:
+        	String appendix = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " ";
+        	if (item.getLeft() != null) {
+        	    return appendix + labelHandler.getClassText(item.getLeft());
+        	} else if (item.getRight() != null) {
+        	    return appendix + labelHandler.getClassText(item.getRight());
+        	}
+        	return null;
+        case 1:
+            return labelHandler.getText(item.getCommonParent());
+        case 2:
+            return labelHandler.getText(item.getRight());
+        case 3:
+            return labelHandler.getText(item.getLeft());
+        default:
+            return null;
+        }
+    }
+
+    private String getColumnTextForMoveModification(int columnIndex, SummaryItem item) {
+        switch (columnIndex) {
+        case 0:
+            return DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
+        			+ labelHandler.getClassText(item.getLeft());
+        case 1:
+            return labelHandler.getText(item.getLeft());
+        case 2:
+            return labelHandler.getText(item.getRight());
+        case 3:
+            return labelHandler.getText(item.getCommonParent());
+        default:
+            return null;
+        }
+    }
 
 	private LabelHandler findLabelHandler(SummaryItem item) {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IExtensionPoint ep = reg.getExtensionPoint(extensionPointId);
+		IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
 		IExtension[] extensions = ep.getExtensions();
 
 		String left = "-1";
@@ -113,17 +115,14 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			IExtension ext = extensions[i];
 			IConfigurationElement[] ce = ext.getConfigurationElements();
 			for (int j = 0; j < ce.length; j++) {
-				if (!(ce[j].getAttribute(metamodelAttributeId).contains(left)
-						|| ce[j].getAttribute(metamodelAttributeId).contains(right)
-						|| ce[j].getAttribute(metamodelAttributeId).contains(parent))) {
+				String attribute = ce[j].getAttribute(METAMODEL_ATTRIBUTE_ID);
+                if (!(attribute.contains(left) || attribute.contains(right) || attribute.contains(parent))) {
 					continue;
 				}
-
 				try {
-					labelHandler = (LabelHandler) ce[j].createExecutableExtension(classAttributeId);
-
+					labelHandler = (LabelHandler) ce[j].createExecutableExtension(CLASS_ATTRIBUTE_ID);
 				} catch (CoreException e) {
-					e.printStackTrace();
+				    logger.error(e.getMessage());
 				}
 
 			}

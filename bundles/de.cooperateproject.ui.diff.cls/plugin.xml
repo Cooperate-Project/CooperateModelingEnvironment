@@ -4,14 +4,14 @@
    <extension
          point="de.cooperateproject.ui.diff.labelHandlers">
       <labelHandler
-            class="de.cooperateproject.ui.diff.cls.labelHandling.ClsLabelHandler"
+            class="de.cooperateproject.ui.diff.cls.labelhandling.ClsLabelHandler"
             metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
       </labelHandler>
    </extension>
    <extension
          point="de.cooperateproject.ui.diff.postProcessor">
       <postProcessor
-            class="de.cooperateproject.ui.diff.cls.postProcessing.ClsPostProcessor"
+            class="de.cooperateproject.ui.diff.cls.postprocessing.ClsPostProcessor"
             metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
       </postProcessor>
    </extension>

@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Represents an item of the differences' summary table.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class SummaryItem {
@@ -29,10 +29,6 @@ public class SummaryItem {
 	/**
 	 * Constructs a new SummaryItem.
 	 * 
-	 * @param left
-	 *            the object in the "new version" of the diagram
-	 * @param right
-	 *            the object in the "old version" of the diagram
 	 * @param commonParent
 	 *            the common parent of both
 	 * @param kind
@@ -40,10 +36,7 @@ public class SummaryItem {
 	 * @param value
 	 *            the object on which the actual difference was detected
 	 */
-	public SummaryItem(Object left, Object right, EObject commonParent, DifferenceKind kind, Object value) {
-
-		this.left = left;
-		this.right = right;
+	public SummaryItem(EObject commonParent, DifferenceKind kind, Object value) {
 		this.kind = kind;
 		this.commonParent = commonParent;
 		this.value = value;

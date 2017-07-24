@@ -7,20 +7,23 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.cooperateproject.ui.diff.content.DiffTreeItem;
 
 /**
  * Label Provider for the diff viewer's items of the diagram.
  * 
- * @author Jasmin
+ * @author Jasmin, czogalik
  *
  */
 public class DiffViewLabelProvider extends LabelProvider {
 
-	private static final String extensionPointId = "de.cooperateproject.ui.diff.labelHandlers";
-	private static final String metamodelAttributeId = "metamodel";
-	private static final String classAttributeId = "class";
+    private static final String EXTENSION_POINT_ID = "de.cooperateproject.ui.diff.labelHandlers";
+    private static final String METAMODEL_ATTRIBUTE_ID = "metamodel";
+    private static final String CLASS_ATTRIBUTE_ID = "class";
+    private static final Logger logger = LoggerFactory.getLogger(DiffViewLabelProvider.class);
 
 	@Override
 	public String getText(Object element) {
@@ -30,35 +33,35 @@ public class DiffViewLabelProvider extends LabelProvider {
 		}
 		DiffTreeItem item = (DiffTreeItem) element;
 		LabelHandler labelHandler = findLabelHandler(item.getObject().getClass().getPackage().getName());
+		
+		if (labelHandler == null) {
+		    return ret;
+		}
 
 		if (item.getDiffKind() != null) {
 			ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
 		}
 
-		ret = ret + labelHandler.getText(item.getObject());
-
-		return ret;
-
+		return ret + labelHandler.getText(item.getObject());
 	}
 
 	private LabelHandler findLabelHandler(String objectType) {
 		LabelHandler labelHandler = null;
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IExtensionPoint ep = reg.getExtensionPoint(extensionPointId);
+		IExtensionPoint ep = reg.getExtensionPoint(EXTENSION_POINT_ID);
 		IExtension[] extensions = ep.getExtensions();
 
-		for (int i = 0; i < extensions.length; i++) {
-			IExtension ext = extensions[i];
-			IConfigurationElement[] ce = ext.getConfigurationElements();
-			for (int j = 0; j < ce.length; j++) {
-				if (!ce[j].getAttribute(metamodelAttributeId).contains(objectType)) {
+		for (IExtension ext : extensions) {
+			IConfigurationElement[] configurationElements = ext.getConfigurationElements();
+			for (IConfigurationElement configurationElement : configurationElements) {
+				if (!configurationElement.getAttribute(METAMODEL_ATTRIBUTE_ID).contains(objectType)) {
 					continue;
 				}
 				try {
-					labelHandler = (LabelHandler) ce[j].createExecutableExtension(classAttributeId);
+					labelHandler = (LabelHandler) configurationElement.createExecutableExtension(CLASS_ATTRIBUTE_ID);
 
 				} catch (CoreException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 
 			}
