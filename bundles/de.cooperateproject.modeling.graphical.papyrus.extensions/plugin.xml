@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.ui.papyrusContentOutline">
       <contentoutline
-            class="de.cooperate.modeling.graphical.papyrus.extensions.PapyrusContentOutlinePage"
+            class="de.cooperate.modeling.graphical.papyrus.extensions.outline.PapyrusContentOutlinePage"
             priority="100">
       </contentoutline>
    </extension>
@@ -107,4 +107,14 @@
       point="org.eclipse.papyrus.infra.properties.contexts">
    <context appliedByDefault="true" contextModel="resource/CooperateProperties.ctx" isCustomizable="true" />
 </extension>
+      <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="TreeOutlinePage"
+            labelProvider="org.eclipse.papyrus.infra.properties.ui.providers.PropertiesHeaderLabelProvider"
+            tabDescriptorProvider="de.cooperate.modeling.graphical.papyrus.extensions.outline.CooperateTabDescriptorProvider">
+         <propertyCategory
+               category="org.eclipse.papyrus"></propertyCategory>
+      </propertyContributor>
+   </extension>
 </plugin>
