@@ -3,19 +3,18 @@ package de.cooperateproject.modeling.textual.sequence.issues
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.sequence.sequence.Actor
 import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMapping
-import de.cooperateproject.modeling.textual.sequence.sequence.OccurenceSpecification
+import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment
+import de.cooperateproject.modeling.textual.sequence.sequence.Condition
+import de.cooperateproject.modeling.textual.sequence.sequence.ExplicitArrivalOccurenceSpecification
+import de.cooperateproject.modeling.textual.sequence.sequence.ImplicitMessageOccurenceSpecification
+import de.cooperateproject.modeling.textual.sequence.sequence.Message
+import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
 import de.cooperateproject.modeling.textual.sequence.sequence.SequenceDiagram
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
-import de.cooperateproject.modeling.textual.sequence.sequence.StandardMessage
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Element
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import de.cooperateproject.modeling.textual.sequence.sequence.Message
-import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment
-import de.cooperateproject.modeling.textual.sequence.sequence.Condition
-import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
-import de.cooperateproject.modeling.textual.sequence.sequence.DestructionOccurenceSpecification
 
 class SequenceUMLReferencingElementMissingElementChecker implements IResolvableChecker<UMLReferencingElement<Element>> {
 	
@@ -39,13 +38,20 @@ class SequenceUMLReferencingElementMissingElementChecker implements IResolvableC
 	private def dispatch boolean resolvePossible(Message message) {
 	    return message.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE) 
 	       && (!(message.left === null && (message.right === null))
-           && (message.left === null || (message.left.hasReferencedElement && message.sendEvent?.occurenceSpecification?.resolvePossible))
-           && (message.right === null || message.right.hasReferencedElement && message.arrivalEvent?.occurenceSpecification?.resolvePossible))
+           && (message.left === null || (message.left.hasReferencedElement && message.sendEvent?.occurenceSpecification?.occurrenceSpecificationCanBeResolved))
+           && (message.right === null || message.right.hasReferencedElement && message.arrivalEvent?.occurenceSpecification?.occurrenceSpecificationCanBeResolved))
 	}
 	
-	private def dispatch boolean resolvePossible(OccurenceSpecification spec) {
-	    spec.occurenceReference?.hasValidParent(SequencePackage.Literals.MESSAGE) ||
-	       spec.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE)
+	private def dispatch boolean occurrenceSpecificationCanBeResolved(ExplicitArrivalOccurenceSpecification spec) {
+	    spec.hasReferencedElement
+	}
+	
+	private def dispatch boolean occurrenceSpecificationCanBeResolved(ImplicitMessageOccurenceSpecification spec) {
+	    spec.eContainer().hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE)
+	}
+	
+	private def dispatch boolean resolvePossible(ExplicitArrivalOccurenceSpecification spec) {
+	    spec.hasValidParent(SequencePackage.Literals.FRAGMENT_SEQUENCE)
 	}
 	
 	private def dispatch resolvePossible(CombinedFragment fragment) {

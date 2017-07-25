@@ -6,6 +6,12 @@
           <factory
                 class="de.cooperateproject.modeling.textual.sequence.issues.SequenceUMLReferencingElementMissingElementFactory">
           </factory>
+          <factory
+                class="de.cooperateproject.modeling.textual.sequence.issues.SequenceMessageHasInconsistentExecutionSpecificationFactory">
+          </factory>
+          <factory
+                class="de.cooperateproject.modeling.textual.sequence.issues.SequenceFragmentSequenceHasWrongOrderFactory">
+          </factory>
     </extension>
     <extension
           point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
@@ -14,9 +20,6 @@
        </class>
        <class
              class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.OccurenceSpecificationCalculator">
-       </class>
-       <class
-             class="de.cooperateproject.modeling.textual.sequence.derivedstate.calculator.MessageCalculator">
        </class>
     </extension>
 </plugin>

@@ -1,12 +1,12 @@
 package de.cooperateproject.modeling.textual.sequence.issues
 
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.AutomatedIssueResolutionBase
-import de.cooperateproject.modeling.textual.sequence.sequence.OrderedFragmentContainer
+import de.cooperateproject.modeling.textual.sequence.sequence.Message
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 
-class SequenceUMLElementOutOfOrderResolution extends AutomatedIssueResolutionBase<OrderedFragmentContainer> {
+class SequenceMessageHasInconsistentExecutionSpecificationResolution extends AutomatedIssueResolutionBase<Message> {
     
-    new(OrderedFragmentContainer problematicElement, IResolvableChecker<OrderedFragmentContainer> checker) {
+    new(Message problematicElement, IResolvableChecker<Message> checker) {
         super(problematicElement, checker)
     }
     

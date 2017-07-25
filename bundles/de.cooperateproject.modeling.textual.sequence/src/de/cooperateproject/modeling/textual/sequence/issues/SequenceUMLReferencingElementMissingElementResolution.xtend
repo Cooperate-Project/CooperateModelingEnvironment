@@ -8,7 +8,6 @@ import de.cooperateproject.modeling.textual.sequence.sequence.ActorClassifierMap
 import de.cooperateproject.modeling.textual.sequence.sequence.CombinedFragment
 import de.cooperateproject.modeling.textual.sequence.sequence.Condition
 import de.cooperateproject.modeling.textual.sequence.sequence.CreateMessage
-import de.cooperateproject.modeling.textual.sequence.sequence.DestructionMessage
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment
 import de.cooperateproject.modeling.textual.sequence.sequence.Message
 import de.cooperateproject.modeling.textual.sequence.sequence.MessageType
@@ -26,7 +25,6 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.Interaction
 import org.eclipse.uml2.uml.LiteralString
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification
 import org.eclipse.uml2.uml.MessageSort
 import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.OccurrenceSpecification
@@ -35,6 +33,7 @@ import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.uml2.uml.UMLPackage
 
 import static extension de.cooperateproject.modeling.textual.sequence.issues.SequenceUniqueNameGenerator.ensureUniqueIdentification
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification
 
 class SequenceUMLReferencingElementMissingElementResolution extends AutomatedIssueResolutionBase<UMLReferencingElement<Element>> {
 	
