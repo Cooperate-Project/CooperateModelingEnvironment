@@ -49,14 +49,14 @@ when {self.oclIsKindOf(Property)} {
 }
 
 mapping uml::InteractionFragment::umlFragmentToSequenceFragment() : sequence::Fragment 
-disjuncts uml::DestructionOccurrenceSpecification::destructionOccurrenceToDesctructionOccurence,
+disjuncts uml::DestructionOccurrenceSpecification::destructionOccurrenceToDestructionOccurence,
 uml::MessageOccurrenceSpecification::messageOccurrenceToStandardMessage,
 uml::MessageOccurrenceSpecification::messageOccurrenceToResponseMessage,
 uml::MessageOccurrenceSpecification::messageOccurrenceToCreateMessage,
 uml::MessageOccurrenceSpecification::messageOccurrenceToOccurenceSpecification,
 uml::CombinedFragment::combinedFragmentToCombinedFragment;
 
-mapping uml::DestructionOccurrenceSpecification::destructionOccurrenceToDesctructionOccurence(): sequence::DestructionOccurenceSpecification {
+mapping uml::DestructionOccurrenceSpecification::destructionOccurrenceToDestructionOccurence(): sequence::DestructionOccurenceSpecification {
 	referencedElement := self;
 	target := self.toEObject().getShapeForElement(PAPYRUS_NOTATION_TYPE_DESTRUCTION_OCCURRENCE_SPECIFICATION + '_' + PAPYRUS_NOTATION_SHAPE)
 	   .container().resolveoneIn(notation::Shape::shapeToActor);

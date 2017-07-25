@@ -86,7 +86,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 
     }
 
-    private static final File DEBUG_SERIALIZATION_DIR = null;
+    private static final File DEBUG_SERIALIZATION_DIR = new File(".");
 
     protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
             Trace traceModel) throws IOException {

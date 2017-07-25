@@ -27,10 +27,28 @@ property TARGET_TRANSFORMATION : qvtoperational::expressions::OperationalTransfo
 
 mapping notation::BasicCompartment::traceRecordExtended_basicCompartment() : List(trace::TraceRecord)
 {
-	result += new TraceRecord("titleStyle", "EObject", self.eobject(), "TitleStyle", self.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
-	result += new TraceRecord("sortingStyle", "EObject", self.eobject(), "SortingStyle", self.styles->selectByKind(notation::SortingStyle)->any(true).eobject());
-	result += new TraceRecord("filteringStyle", "EObject", self.eobject(), "FilteringStyle", self.styles->selectByKind(notation::FilteringStyle)->any(true).eobject());
+    result += self.map traceRecordTitleStyle();
+    result += self.map traceRecordSortingStyle();
+	result += self.map traceRecordFilteringStyle();
 	result += self.map traceRecordExtended_notationBounds();
+}
+
+mapping notation::View::traceRecordFilteringStyle(): trace::TraceRecord {
+    init {
+        result := new TraceRecord("filteringStyle", "EObject", self.eobject(), "FilteringStyle", self.styles->selectByKind(notation::FilteringStyle)->any(true).eobject());
+    }    
+}
+
+mapping notation::View::traceRecordSortingStyle(): trace::TraceRecord {
+    init {
+        result := new TraceRecord("sortingStyle", "EObject", self.eobject(), "SortingStyle", self.styles->selectByKind(notation::SortingStyle)->any(true).eobject());
+    }
+}
+
+mapping notation::View::traceRecordTitleStyle(): trace::TraceRecord {
+	init {
+		result := new TraceRecord("titleStyle", "EObject", self.eobject(), "TitleStyle", self.styles->selectByKind(notation::TitleStyle)->any(true).eobject());
+	}
 }
 
 mapping notation::Node::traceRecordExtended_locationConstraint() : trace::TraceRecord
@@ -38,6 +56,18 @@ mapping notation::Node::traceRecordExtended_locationConstraint() : trace::TraceR
 	init {
 		result := new TraceRecord("locationConstraint", "EObject", self.eobject(), "Location", self.layoutConstraint.eobject());
 	}
+}
+
+mapping notation::View::traceRecordFontStyle(): trace::TraceRecord {
+    init {
+        result := new TraceRecord("fontStyle", "EObject", self.eobject(), "FontStyle", self.styles->selectByKind(notation::FontStyle)->any(true).eobject());
+    }    
+}
+
+mapping notation::View::traceRecordLineStyle(): trace::TraceRecord {
+    init {
+        result := new TraceRecord("lineStyle", "EObject", self.eobject(), "LineStyle", self.styles->selectByKind(notation::LineStyle)->any(true).eobject());
+    }    
 }
 
 mapping notation::Node::traceRecordExtended_notationBounds() : trace::TraceRecord
@@ -222,6 +252,7 @@ query String::getMappingModuleName() : String
 		->including("filteringStyle")
 		->including("notationBounds")
 		->including("fontStyle")
+		->including("lineStyle")
 		->including("connectorToBendpoint");
 	return if transformationUtilsMappings->includes(self) then "TransformationUtils" else TARGET_TRANSFORMATION_NAME endif;
 }

@@ -1,6 +1,12 @@
 library TransformationUtils_Sequence;
 
 import TransformationUtils;
+import de.cooperateproject.qvtoutils.CooperateLibrary;
+
+modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
+modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype TXT uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
+modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 
 property PAPYRUS_NOTATION_DIAGRAM_SEQUENCE: String = "PapyrusUMLSequenceDiagram";
 property PAPYRUS_NOTATION_COMPARTEMENT_SHAPE_DISPLAY: String = "compartment_shape_display";
@@ -26,3 +32,70 @@ property PAPYRUS_NOTATION_TYPE_MESSAGE_ASYNC: String = "Message_Asynch";
 property PAPYRUS_NOTATION_TYPE_MESSAGE_CREATE: String = "Message_Create";
 property PAPYRUS_NOTATION_TYPE_MESSAGE_REPLY: String = "Message_Reply";
 property PAPYRUS_NOTATION_TYPE_MESSAGE_SYNC: String = "Message_Synch";
+
+query OclAny::addNodeTypePrefix(in type:String): String {
+    return self.getNodeTypePrefix() + '_' + type;
+}
+
+query sequence::Message::addNodeTypePrefix(in type:String): String {
+    return self.getNodeTypePrefix() + type;
+}
+
+query OclAny::getNodeTypePrefix(): String {
+    return "ABSTRACT_CLASS__INVALID_TYPE";
+}
+
+
+query sequence::Actor::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_LIFELINE;
+}
+
+query sequence::CreateMessage::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_MESSAGE_CREATE;
+}
+
+query sequence::StandardMessage::getNodeTypePrefix(): String {
+    if (self.type = MessageType::SYNC) {
+        return PAPYRUS_NOTATION_TYPE_MESSAGE_SYNC;
+    } else {
+        return PAPYRUS_NOTATION_TYPE_MESSAGE_ASYNC;
+    }
+}
+
+query sequence::Condition::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_INTERACTION_OPERAND;
+}
+
+query uml::BehaviorExecutionSpecification::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_BEHAVIOR_EXECUTION_SPECIFICATION;
+}
+
+query sequence::ResponseMessage::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_MESSAGE_REPLY
+}
+
+query sequence::SequenceDiagram::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_INTERACTION;
+}
+
+query sequence::CombinedFragment::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_COMBINED_FRAGMENT;
+}
+
+query sequence::DestructionOccurenceSpecification::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_DESTRUCTION_OCCURRENCE_SPECIFICATION;
+}
+
+query sequence::OrderedFragmentContainer::getNodeTypePrefix(): String {
+    return PAPYRUS_NOTATION_TYPE_INTERACTION_OPERAND;
+}
+
+query sequence::Actor::getAssociatedBehaviorExecutionSpecifications(): OrderedSet(BehaviorExecutionSpecification) {
+    return self.referencedElement.getAllContentsOfType(BehaviorExecutionSpecification.oclAsType(EClass), true)
+        .oclAsType(BehaviorExecutionSpecification)->select(b | b.covered->includes(self.referencedElement))->asOrderedSet();
+}
+
+query sequence::Actor::getAssociatedDestructionOccurrenceSpecifications(): Sequence(DestructionOccurenceSpecification) {
+    var res = self.getAllContentsOfType(sequence::DestructionOccurenceSpecification.oclAsType(EClass), true);
+    return res.oclAsType(sequence::DestructionOccurenceSpecification)->select(b | b.target = self);
+}
