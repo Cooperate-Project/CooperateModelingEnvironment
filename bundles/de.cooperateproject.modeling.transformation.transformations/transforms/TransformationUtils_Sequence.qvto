@@ -99,3 +99,50 @@ query sequence::Actor::getAssociatedDestructionOccurrenceSpecifications(): Seque
     var res = self.getAllContentsOfType(sequence::DestructionOccurenceSpecification.oclAsType(EClass), true);
     return res.oclAsType(sequence::DestructionOccurenceSpecification)->select(b | b.target = self);
 }
+
+
+query MessageOccurrenceSpecification::messageOccurrenceNeedsToBeRepresentedExplicitly():Boolean {
+    var prevOcc = self.getPreviousOccurrenceSpecificationInParent(); 
+    
+    return self.isReceive() and not self.message.oclIsUndefined()
+        and not self.message.sendEvent.oclIsUndefined()
+        and (prevOcc != self.message.sendEvent);
+}
+
+query InteractionFragment::getPreviousOccurrenceSpecificationInParent(): uml::OccurrenceSpecification {
+    var fragments: OrderedSet(InteractionFragment);
+    if (not self.enclosingInteraction.oclIsUndefined()) {
+        fragments := self.enclosingInteraction.fragment
+    } else {
+        fragments := self.enclosingOperand.fragment
+    };
+    var old: OccurrenceSpecification = null;
+    fragments->forEach(frag) {
+        if (frag != self) {
+          if (frag.oclIsKindOf(uml::OccurrenceSpecification)) {
+            old := frag.oclAsType(uml::OccurrenceSpecification);
+          };
+        } else {
+            break;
+        }
+    };
+    return old;
+}
+
+query OrderedSet(InteractionFragment)::filterNotRepresentedFragments():OrderedSet(InteractionFragment) {
+    var res : List(InteractionFragment);
+    self->forEach(f) {
+        if (f.oclIsKindOf(uml::CombinedFragment)
+          or f.oclIsKindOf(uml::DestructionOccurrenceSpecification)) {
+            res += f;
+        } else if (f.oclIsKindOf(MessageOccurrenceSpecification)) {
+            var msgOcc = f.oclAsType(MessageOccurrenceSpecification);
+            if (msgOcc.isSend() or
+                 res->last() != msgOcc.message.sendEvent) {
+                res += msgOcc;
+            };
+        }
+    };
+    
+    return res->asOrderedSet();
+}

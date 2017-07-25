@@ -1,7 +1,7 @@
 import TransformationUtils_Sequence;
 import de.cooperateproject.qvtoutils.CooperateLibrary;
 
-transformation PapyrusSequence2Text(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
+transformation Graphical_to_Textual_for_Sequence(in graphical : NOTATION, inout textual : TXT, in umlmodel : UML, in umlprimitives : UML);
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
@@ -143,10 +143,11 @@ merges uml::MessageOccurrenceSpecification::messageOccurrenceToMessage
 when {self.isRepresentedBySequenceMessage() and self.message.messageSort = MessageSort::createMessage};
 
 mapping uml::MessageOccurrenceSpecification::messageOccurrenceToOccurenceSpecification() : sequence::ExplicitArrivalOccurenceSpecification
-when {self.needsToBeExplicit()}
+when {self.messageOccurrenceNeedsToBeRepresentedExplicitly()}
 {
 	referencedElement := self;
 }
+
 
 mapping uml::MessageOccurrenceSpecification::messageOccurrenceToMessage(): sequence::Message {
     var msg = self.message.oclAsType(uml::Message);
@@ -164,17 +165,17 @@ disjuncts uml::MessageOccurrenceSpecification::messageOccurrenceToExplicitOccure
 uml::MessageOccurrenceSpecification::messageOccurrenceToImplicitOccurenceReference;
 
 mapping uml::MessageOccurrenceSpecification::messageOccurrenceToExplicitOccurenceReference(): sequence::ExplicitArrivalOccurenceReference 
-when {self.needsToBeExplicit()}{
+when {self.messageOccurrenceNeedsToBeRepresentedExplicitly()}{
 	explicitOccurenceSpecification := self.late resolveoneIn(uml::MessageOccurrenceSpecification::messageOccurrenceToOccurenceSpecification);
 }
 
 mapping uml::MessageOccurrenceSpecification::messageOccurrenceToImplicitOccurenceReference(): sequence::ImplicitMessageOccurenceSpecification 
-when {not self.needsToBeExplicit()}{ 
+when {not self.messageOccurrenceNeedsToBeRepresentedExplicitly()}{ 
     referencedElement := self
 }
 
-mapping uml::MessageEnd::messageOccurrenceToImplicitMessageOccurrence(): sequence::ImplicitMessageOccurenceSpecification 
-when {self.isSend() and self.oclIsKindOf(MessageOccurrenceSpecification)}
+mapping uml::MessageOccurrenceSpecification::messageOccurrenceToImplicitMessageOccurrence(): sequence::ImplicitMessageOccurenceSpecification 
+when {self.isSend()}
 {
 	referencedElement := self;
 }
@@ -183,13 +184,6 @@ query MessageOccurrenceSpecification::isRepresentedBySequenceMessage():Boolean {
     return (self.isSend() or (self.isReceive() and self.message.messageKind = MessageKind::found))
 }
 
-query MessageOccurrenceSpecification::needsToBeExplicit():Boolean {
-    var prevOcc = self.getPreviousOccurrenceSpecificationInParent(); 
-    
-    return self.isReceive() and not self.message.oclIsUndefined()
-        and not self.message.sendEvent.oclIsUndefined()
-        and (prevOcc != self.message.sendEvent);
-}
 
 
 /**
@@ -199,45 +193,6 @@ query EObject::getShapeForElement(shapeType: String): notation::Shape {
 	var ll := self;
 	return rootDiagram.getAllContentsOfType(notation::Shape.oclAsType(EClass), false).oclAsType(notation::Shape)
 	   ->any(element = ll and (type = shapeType));
-}
-
-
-query InteractionFragment::getPreviousOccurrenceSpecificationInParent(): uml::OccurrenceSpecification {
-    var fragments: OrderedSet(InteractionFragment);
-	if (not self.enclosingInteraction.oclIsUndefined()) {
-		fragments := self.enclosingInteraction.fragment
-	} else {
-		fragments := self.enclosingOperand.fragment
-	};
-	var old: OccurrenceSpecification = null;
-    fragments->forEach(frag) {
-        if (frag != self) {
-          if (frag.oclIsKindOf(uml::OccurrenceSpecification)) {
-            old := frag.oclAsType(uml::OccurrenceSpecification);
-          };
-        } else {
-            break;
-        }
-    };
-    return old;
-}
-
-query OrderedSet(InteractionFragment)::filterNotRepresentedFragments():OrderedSet(InteractionFragment) {
-    var res : List(InteractionFragment);
-	self->forEach(f) {
-		if (f.oclIsKindOf(uml::CombinedFragment)
-		  or f.oclIsKindOf(uml::DestructionOccurrenceSpecification)) {
-			res += f;
-		} else if (f.oclIsKindOf(MessageOccurrenceSpecification)) {
-			var msgOcc = f.oclAsType(MessageOccurrenceSpecification);
-			if (msgOcc.isSend() or
-			     res->last() != msgOcc.message.sendEvent) {
-				res += msgOcc;
-			};
-		}
-	};
-	
-	return res->asOrderedSet();
 }
 
 /*query getConnectorForMessage(message: sequence::Message): notation::Connector {

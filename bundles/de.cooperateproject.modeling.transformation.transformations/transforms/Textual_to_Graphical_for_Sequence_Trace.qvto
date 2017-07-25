@@ -8,9 +8,200 @@ modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype TEXTUAL uses sequence('http://www.cooperateproject.de/modeling/textual/sequence/Sequence');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype GMFSTYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 
 main() {
     var traces := textualTrace.rootObjects()[trace::Trace];
     assert fatal (traces->size() = 1);
+    traces->initializeProperties();
+    
+    //notationDiagram := traces.traceRecords->any(mappingOperation.name = "diagramToDiagram").getSelf().modelElement.oclAsType(notation::Diagram);
+    traces->map trace();
+}
+
+helper trace::Trace::initializeProperties() {
+    TARGET_TRANSFORMATION_NAME := "Graphical_to_Textual_for_Sequence";
+    TARGET_TRANSFORMATION := g2tTransformation.rootObjects()[qvtoperational::expressions::OperationalTransformation]->any(true);
+}
+
+
+mapping trace::Trace::trace() : trace::Trace
+{
+    traceRecords += self.traceRecords->map traceRecord()->flatten();
+}
+
+mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
+{
+    result += self.map traceRecordDiagram();
+    result += self.map traceRecordRootPackage();
+    result += self.map traceRecordMessageEnd();
+    result += self.map traceRecordActor();
+    result += self.map traceRecordDestructionOccurrence();
+    result += self.map traceRecordCombinedFragment();
+    result += self.map traceRecordOrderedFragmentContainer();
+    result += self.map traceRecordCondition();
+}
+
+mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
+when {self.mappingOperation.name = "diagramToDiagram"}
+{
+    var seqDiagram := self.getSelf().modelElement.oclAsType(sequence::SequenceDiagram);
+    var notationDiagram := self.getResult().modelElement.oclAsType(notation::Diagram);
+    
+    result += new TraceRecord("diagramToDiagram", "Diagram", notationDiagram.eobject(), 
+        "SequenceDiagram", seqDiagram.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordRootPackage() : List(trace::TraceRecord) 
+when {self.mappingOperation.name = "papyrusDiagramStyle"}
+{
+	var seqDiagram := self.getSelf().modelElement.oclAsType(sequence::SequenceDiagram);
+    var diagramStyle := self.getResult().modelElement.oclAsType(style::PapyrusDiagramStyle);
+    result += new TraceRecord("diagramToRootPackage", "Diagram", diagramStyle.container().eobject(), 
+        "RootPackage", seqDiagram.rootPackage.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordMessageEnd() : List(trace::TraceRecord) 
+when {self.mappingOperation.name = "messageToConnector"}
+{
+	var seqMsg := self.getSelf().modelElement.oclAsType(sequence::Message);
+    var connector := self.getResult().modelElement.oclAsType(notation::Connector);
+    
+    var msgEnd := seqMsg.sendEvent.getOccurenceSpecification().referencedElement.oclAsType(MessageOccurrenceSpecification);
+    result += new TraceRecord("messageOccurrenceToOccurenceReference", "MessageEnd", msgEnd.eobject(), 
+        "OccurenceReference", seqMsg.sendEvent.eobject());
+    result += new TraceRecord("messageOccurrenceToImplicitOccurenceReference", "MessageOccurrenceSpecification", msgEnd.eobject(), 
+        "ImplicitMessageOccurenceSpecification", seqMsg.sendEvent.eobject());        
+        
+    msgEnd := seqMsg.arrivalEvent.getOccurenceSpecification().referencedElement.oclAsType(MessageOccurrenceSpecification);
+    result += new TraceRecord("messageOccurrenceToOccurenceReference", "MessageEnd", msgEnd.eobject(), 
+        "OccurenceReference", seqMsg.arrivalEvent.eobject());
+    if (msgEnd.messageOccurrenceNeedsToBeRepresentedExplicitly()) {
+        new TraceRecord("messageOccurrenceToExplicitOccurenceReference", "MessageOccurrenceSpecification", msgEnd.eobject(), 
+        "ExplicitArrivalOccurenceReference", seqMsg.arrivalEvent.eobject());   
+    } else {
+        result += new TraceRecord("messageOccurrenceToImplicitOccurenceReference", "MessageOccurrenceSpecification", msgEnd.eobject(), 
+            "ImplicitMessageOccurenceSpecification", seqMsg.arrivalEvent.eobject());
+    };  
+    
+    var occurrence : MessageOccurrenceSpecification;
+    if (seqMsg.left.oclIsUndefined()) {
+    	occurrence := seqMsg.arrivalEvent.getOccurenceSpecification().referencedElement.oclAsType(MessageOccurrenceSpecification);
+    } else {
+    	occurrence := seqMsg.sendEvent.getOccurenceSpecification().referencedElement.oclAsType(MessageOccurrenceSpecification);
+    };
+    result += new TraceRecord("messageOccurrenceToMessage", "MessageOccurrenceSpecification", occurrence.eobject(), 
+        "Message", seqMsg.eobject());
+    result += seqMsg.map traceRecordMessage(occurrence);
+    result += seqMsg.map traceRecordUMLFragment(occurrence);
+}
+
+mapping sequence::Message::traceRecordMessage(occ: MessageOccurrenceSpecification) : List(trace::TraceRecord)
+disjuncts StandardMessage::traceRecordStandardMessage, ResponseMessage::traceRecordResponseMessage,
+CreateMessage::traceRecordCreateMessage;
+
+mapping sequence::StandardMessage::traceRecordStandardMessage(occ: MessageOccurrenceSpecification) : List(trace::TraceRecord) {
+	result += new TraceRecord("messageOccurrenceToStandardMessage", "MessageOccurrenceSpecification", occ.eobject(), 
+        "StandardMessage", self.eobject());
+}
+
+mapping sequence::ResponseMessage::traceRecordResponseMessage(occ: MessageOccurrenceSpecification) : List(trace::TraceRecord) {
+    result += new TraceRecord("messageOccurrenceToResponseMessage", "MessageOccurrenceSpecification", occ.eobject(), 
+        "ResponseMessage", self.eobject());
+}
+
+mapping sequence::CreateMessage::traceRecordCreateMessage(occ: MessageOccurrenceSpecification) : List(trace::TraceRecord) {
+    result += new TraceRecord("messageOccurrenceToCreateMessage", "MessageOccurrenceSpecification", occ.eobject(), 
+        "CreateMessage", self.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordActor() : List(trace::TraceRecord) 
+when {self.mappingOperation.name = "actorToLifelineShape"}
+{
+    var seqAct := self.getSelf().modelElement.oclAsType(sequence::Actor);
+    var shape := self.getResult().modelElement.oclAsType(notation::Shape);
+    
+    result += new TraceRecord("shapeToActor", "Shape", shape.eobject(), "Actor", seqAct.eobject());
+    if (not seqAct.typeMapping.oclIsUndefined()) {
+    	result += new TraceRecord("propertyToActorClassifierMapping", "ConnectableElement", 
+    	   shape.element.oclAsType(Lifeline).represents.eobject(), 
+    	   "ActorClassifierMapping", seqAct.typeMapping.eobject());
+    }
+}
+
+mapping sequence::Fragment::traceRecordUMLFragment(umlFrag: uml::InteractionFragment) : List(trace::TraceRecord) {
+	result += new TraceRecord("umlFragmentToSequenceFragment", "InteractionFragment", umlFrag.eobject(),
+	   "Fragment", self.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordDestructionOccurrence(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "destructionOccurrenceSpecificationToShape"} {
+    var seqDest := self.getSelf().modelElement.oclAsType(sequence::DestructionOccurenceSpecification);
+    var shape := self.getResult().modelElement.oclAsType(notation::Shape);
+    
+    result += new TraceRecord("destructionOccurrenceToDestructionOccurence", "DestructionOccurrenceSpecification", shape.element.eobject(),
+       "DestructionOccurenceSpecification", seqDest.eobject());
+    result += seqDest.map traceRecordUMLFragment(seqDest.referencedElement.oclAsType(InteractionFragment));
+} 
+
+mapping trace::TraceRecord::traceRecordCombinedFragment(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "combinedFragmentToShape"} { 
+    var seqFrag := self.getSelf().modelElement.oclAsType(sequence::CombinedFragment);
+    var shape := self.getResult().modelElement.oclAsType(notation::Shape);
+    
+    result += new TraceRecord("combinedFragmentToCombinedFragment", "CombinedFragment", shape.element.eobject(),
+        "CombinedFragment", seqFrag.eobject());
+    result += seqFrag.map traceRecordCombinedFragment(shape.element.oclAsType(uml::CombinedFragment));
+    result += seqFrag.map traceRecordUMLFragment(shape.element.oclAsType(uml::CombinedFragment));
+}
+
+mapping sequence::CombinedFragment::traceRecordCombinedFragment(umlFrag: uml::CombinedFragment): List(trace::TraceRecord)
+disjuncts sequence::Alternative::traceRecordCombinedFragment,
+sequence::Critical::traceRecordCombinedFragment, 
+sequence::Loop::traceRecordCombinedFragment,
+sequence::Option::traceRecordCombinedFragment,
+sequence::Parallel::traceRecordCombinedFragment;
+
+mapping sequence::Alternative::traceRecordCombinedFragment(umlFrag: uml::CombinedFragment): List(trace::TraceRecord) {
+	result += new TraceRecord("combinedFragmentToAlternative", "CombinedFragment", umlFrag.eobject(),
+        "Alternative", self.eobject());
+}
+
+mapping sequence::Critical::traceRecordCombinedFragment(umlFrag: uml::CombinedFragment): List(trace::TraceRecord) {
+	result += new TraceRecord("combinedFragmentToCritical", "CombinedFragment", umlFrag.eobject(),
+        "Critical", self.eobject());
+}
+
+mapping sequence::Loop::traceRecordCombinedFragment(umlFrag: uml::CombinedFragment): List(trace::TraceRecord) {
+    result += new TraceRecord("combinedFragmentToLoop", "CombinedFragment", umlFrag.eobject(),
+        "Loop", self.eobject());	
+}
+
+mapping sequence::Option::traceRecordCombinedFragment(umlFrag: uml::CombinedFragment): List(trace::TraceRecord) {
+	result += new TraceRecord("combinedFragmentToOption", "CombinedFragment", umlFrag.eobject(),
+        "Option", self.eobject());
+}
+
+mapping sequence::Parallel::traceRecordCombinedFragment(umlFrag: uml::CombinedFragment): List(trace::TraceRecord) {
+	result += new TraceRecord("combinedFragmentToParallel", "CombinedFragment", umlFrag.eobject(),
+        "Parallel", self.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordOrderedFragmentContainer(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "orderedFragmentContainerToShape"} { 
+    var seqFrag := self.getSelf().modelElement.oclAsType(sequence::OrderedFragmentContainer);
+    var shape := self.getResult().modelElement.oclAsType(notation::Shape);
+    
+    result += new TraceRecord("interactionOperandToOrderedFragmentContainer", "InteractionOperand", shape.element.eobject(),
+        "OrderedFragmentContainer", seqFrag.eobject());
+}
+
+mapping trace::TraceRecord::traceRecordCondition(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "conditionToDecorationNode"} { 
+    var seqFrag := self.getSelf().modelElement.oclAsType(sequence::Condition);
+    var shape := self.getResult().modelElement.oclAsType(notation::DecorationNode);
+    
+    result += new TraceRecord("interactionConstraintToCondition", "InteractionConstraint", shape.element.eobject(),
+        "Condition", seqFrag.eobject());
 }

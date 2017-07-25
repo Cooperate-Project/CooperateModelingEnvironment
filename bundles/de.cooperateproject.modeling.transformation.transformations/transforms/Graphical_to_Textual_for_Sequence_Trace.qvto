@@ -204,6 +204,9 @@ mapping sequence::MultipleRegionContainer::multipleRegionContainerToTraceRecord(
        "BasicCompartment", compartment.eobject());
 }
 
-    
+mapping trace::TraceRecord::traceRecordDestructionOccurrence(): List(trace::TraceRecord) 
+when {self.mappingOperation.name = "destructionOccurrenceSpecificationToShape"} {
+	
+}    
 
 

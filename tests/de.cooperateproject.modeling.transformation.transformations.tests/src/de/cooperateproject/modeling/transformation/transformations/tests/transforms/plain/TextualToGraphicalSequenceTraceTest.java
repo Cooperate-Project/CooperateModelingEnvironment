@@ -5,22 +5,22 @@ import org.junit.Test;
 
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage;
 
-public class GraphicalToTextualSequenceTraceTest extends DirectedTraceTransformationTestBase {
+public class TextualToGraphicalSequenceTraceTest extends DirectedTraceTransformationTestBase {
 
     private static final URI G2T_MODEL_TRANSFORMATION_URI = createTransformationURI(
             "Graphical_to_Textual_for_Sequence.qvto");
     private static final URI T2G_MODEL_TRANSFORMATION_URI = createTransformationURI(
             "Textual_to_Graphical_for_Sequence.qvto");
-    private static final URI G2T_TRACE_TRANSFORMATION_URI = createTransformationURI(
-            "Graphical_to_Textual_for_Sequence_Trace.qvto");
+    private static final URI T2G_TRACE_TRANSFORMATION_URI = createTransformationURI(
+            "Textual_to_Graphical_for_Sequence_Trace.qvto");
 
     static {
         SequencePackage.eINSTANCE.eClass();
     }
 
-    public GraphicalToTextualSequenceTraceTest() {
-        super("notation", "xmi", G2T_MODEL_TRANSFORMATION_URI, T2G_MODEL_TRANSFORMATION_URI,
-                G2T_TRACE_TRANSFORMATION_URI);
+    public TextualToGraphicalSequenceTraceTest() {
+        super("xmi", "notation", T2G_MODEL_TRANSFORMATION_URI, G2T_MODEL_TRANSFORMATION_URI,
+                T2G_TRACE_TRANSFORMATION_URI);
     }
 
     @Test
@@ -42,4 +42,5 @@ public class GraphicalToTextualSequenceTraceTest extends DirectedTraceTransforma
     public void testCreationDestruction() throws Exception {
         testTraceTransformation("SequenceCreationDestruction");
     }
+
 }
