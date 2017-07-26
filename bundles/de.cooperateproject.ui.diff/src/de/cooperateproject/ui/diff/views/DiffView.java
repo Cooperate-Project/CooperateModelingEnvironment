@@ -127,7 +127,7 @@ public class DiffView extends ViewPart {
 
 				if (obj instanceof CDOCommitInfo) {
 					cdoViewManager = new CommitCDOViewManager((CDOCommitInfo) obj, selectedFile);
-					showDiffViewOfCommit((CDOCommitInfo) obj);
+					showDiffViewOfCommit();
 				}
 			}
 		};
@@ -251,7 +251,7 @@ public class DiffView extends ViewPart {
 	 *            the commit of interest and to be opened in the tree viewer and
 	 *            summary table
 	 */
-	private void showDiffViewOfCommit(CDOCommitInfo obj) {
+	private void showDiffViewOfCommit() {
 		SummaryViewBuilder svb = new SummaryViewBuilder();
 		List<SummaryItem> summaryList = svb.buildSummaryView(comparisonManager.getComparison(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
 		summaryViewer.setInput(summaryList);

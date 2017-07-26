@@ -113,7 +113,7 @@ public class SummaryViewBuilder {
 			} else {
 				oldValue = diff.getMatch().getRight().eGet(((ReferenceChange) diff).getReference());
 			}
-		}
+		} 
 		if (oldValue instanceof org.eclipse.emf.ecore.util.DelegatingEcoreEList) {
 			oldValue = ((org.eclipse.emf.ecore.util.DelegatingEcoreEList) oldValue).getEObject();
 		}

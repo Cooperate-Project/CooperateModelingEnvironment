@@ -19,7 +19,7 @@
          point="de.cooperateproject.ui.diff.derivedcalculator">
       <class
             class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessor"
-            ns_uri="http://www.cooperateproject.de/modeling/textual/cls/Cls">
+            ns_uri="http://www.eclipse.org/emf/CDO/Eresource/4.0.0">
       </class>
    </extension>
 

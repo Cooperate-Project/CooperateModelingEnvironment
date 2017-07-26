@@ -3,6 +3,7 @@ package de.cooperateproject.ui.diff.content;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.compare.DifferenceKind;
 
@@ -35,7 +36,7 @@ public class DiffTreeItem {
 		this.object = object;
 		this.kind = null;
 		this.parent = null;
-		children = new HashSet<DiffTreeItem>();
+		children = new HashSet<>();
 	}
 
 	/**
@@ -63,7 +64,7 @@ public class DiffTreeItem {
 	 * 
 	 * @return a HashSet which contains all children
 	 */
-	public HashSet<DiffTreeItem> getContents() {
+	public Set<DiffTreeItem> getContents() {
 		return children;
 	}
 
@@ -74,7 +75,7 @@ public class DiffTreeItem {
 	 * @return
 	 */
 	public List<DiffTreeItem> getAllContents() {
-		List<DiffTreeItem> allChildren = new ArrayList<DiffTreeItem>();
+		List<DiffTreeItem> allChildren = new ArrayList<>();
 		for (DiffTreeItem item : children) {
 			allChildren.addAll(item.getAllContents());
 		}

@@ -1,5 +1,7 @@
 package de.cooperateproject.ui.diff.cls.labelhandling;
 
+import org.eclipse.emf.ecore.EObject;
+
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
@@ -11,16 +13,22 @@ import de.cooperateproject.ui.diff.labeling.LabelHandler;
  */
 public class ClsLabelHandler extends ClsSwitch<String> implements LabelHandler {
 
-	private ClsClassTextSwitch classTextSwitch = new ClsClassTextSwitch();
-	private ClsLabelSwitch labelSwitch = new ClsLabelSwitch();
+	private ClsSwitch<String> classTextSwitch = new ClsClassTextSwitch();
+	private ClsSwitch<String> labelSwitch = new ClsLabelSwitch();
 
 	@Override
-	public String getText(Object item) {
+	public String getText(EObject item) {
+	    if (item == null) {
+	        return null;
+	    }
 		return labelSwitch.doSwitch(item);
 	}
 
 	@Override
-	public String getClassText(Object item) {
+	public String getClassText(EObject item) {
+	    if (item == null) {
+            return null;
+        }
 		return classTextSwitch.doSwitch(item);
 	}
 

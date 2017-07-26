@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.compare.DifferenceKind;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -54,37 +55,49 @@ public class SummaryLabelProvider extends LabelProvider implements ITableLabelPr
 			return getColumnTextForModification(columnIndex, item);
 		}
 	}
+	
+	private EObject getEObjectOrNull(Object object) {
+	    if (object instanceof EObject) {
+            return (EObject) object;
+        }
+	    return null;
+	}
 
     private String getColumnTextForModification(int columnIndex, SummaryItem item) {
+        EObject left = getEObjectOrNull(item.getLeft());
+        EObject right = getEObjectOrNull(item.getRight());
+        
         switch (columnIndex) {
         case 0:
         	String appendix = DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " ";
-        	if (item.getLeft() != null) {
-        	    return appendix + labelHandler.getClassText(item.getLeft());
-        	} else if (item.getRight() != null) {
-        	    return appendix + labelHandler.getClassText(item.getRight());
+        	if (left != null) {
+        	    return appendix + labelHandler.getClassText(left);
+        	} else if (right != null) {
+        	    return appendix + labelHandler.getClassText(right);
         	}
         	return null;
         case 1:
             return labelHandler.getText(item.getCommonParent());
         case 2:
-            return labelHandler.getText(item.getRight());
+            return labelHandler.getText(right);
         case 3:
-            return labelHandler.getText(item.getLeft());
+            return labelHandler.getText(left);
         default:
             return null;
         }
     }
 
     private String getColumnTextForMoveModification(int columnIndex, SummaryItem item) {
+        EObject left = getEObjectOrNull(item.getLeft());
+        EObject right = getEObjectOrNull(item.getRight());
         switch (columnIndex) {
         case 0:
             return DifferenceKindHelper.convertToVerbalized(item.getDifferenceKind()) + " "
-        			+ labelHandler.getClassText(item.getLeft());
+        			+ labelHandler.getClassText(left);
         case 1:
-            return labelHandler.getText(item.getLeft());
+            return labelHandler.getText(left);
         case 2:
-            return labelHandler.getText(item.getRight());
+            return labelHandler.getText(right);
         case 3:
             return labelHandler.getText(item.getCommonParent());
         default:

@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,20 +30,24 @@ public class DiffViewLabelProvider extends LabelProvider {
 	public String getText(Object element) {
 		String ret = "";
 		if (!(element instanceof DiffTreeItem)) {
-			return ret;
+			return null;
 		}
 		DiffTreeItem item = (DiffTreeItem) element;
-		LabelHandler labelHandler = findLabelHandler(item.getObject().getClass().getPackage().getName());
+		Object object = item.getObject();
+        LabelHandler labelHandler = findLabelHandler(object.getClass().getPackage().getName());
 		
 		if (labelHandler == null) {
-		    return ret;
+		    return null;
 		}
 
 		if (item.getDiffKind() != null) {
 			ret = DifferenceKindHelper.convertToToken(((DiffTreeItem) element).getDiffKind()) + " - ";
 		}
 
-		return ret + labelHandler.getText(item.getObject());
+		if (object instanceof EObject) {
+		    return ret + labelHandler.getText((EObject) object);
+		}
+		return null;
 	}
 
 	private LabelHandler findLabelHandler(String objectType) {
