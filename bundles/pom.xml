@@ -23,6 +23,10 @@
 		<module>de.cooperateproject.modeling.textual.cls.ui</module>
 		<module>de.cooperateproject.modeling.textual.common</module>
 		<module>de.cooperateproject.modeling.textual.common.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.component</module>
+		<module>de.cooperateproject.modeling.textual.component.ide</module>
+		<module>de.cooperateproject.modeling.textual.component.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.component.ui</module>
 		<module>de.cooperateproject.modeling.textual.usecase</module>
 		<module>de.cooperateproject.modeling.textual.usecase.ide</module>
 		<module>de.cooperateproject.modeling.textual.usecase.metamodel</module>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="de.cooperateproject.modeling.textual.usecase.feature"
+      id="de.cooperateproject.modeling.textual.component.feature"
       label="%featureName"
       version="0.2.0.qualifier"
       license-feature="de.cooperateproject.license"
