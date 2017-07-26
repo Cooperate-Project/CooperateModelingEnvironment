@@ -25,7 +25,7 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.ocl.uml.OCL;
-import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
+import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;

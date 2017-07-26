@@ -21,8 +21,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.net4j.util.io.IOUtil;
-import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
-import org.eclipse.papyrus.infra.viewpoints.style.StyleFactory;
+import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
+import org.eclipse.papyrus.infra.gmfdiag.style.StyleFactory;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.slf4j.Logger;
@@ -152,14 +152,15 @@ public class ModelCreator {
 
         StringValueStyle stringValueStyle = NotationFactory.eINSTANCE.createStringValueStyle();
         stringValueStyle.setName("diagram_compatibility_version");
-        stringValueStyle.setStringValue("1.2.0");
+        stringValueStyle.setStringValue("1.3.0");
         diagram.getStyles().add(stringValueStyle);
 
         diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
 
-        PapyrusViewStyle papyrusViewStyle = StyleFactory.eINSTANCE.createPapyrusViewStyle();
-        papyrusViewStyle.setOwner(umlRoot);
-        diagram.getStyles().add(papyrusViewStyle);
+        PapyrusDiagramStyle papyrusDiagramStyle = StyleFactory.eINSTANCE.createPapyrusDiagramStyle();
+        papyrusDiagramStyle.setOwner(umlRoot);
+        papyrusDiagramStyle.setDiagramKindId(notationType.get().getPapyrusDiagramKindId());
+        diagram.getStyles().add(papyrusDiagramStyle);
 
         notationResource.getContents().add(diagram);
 
