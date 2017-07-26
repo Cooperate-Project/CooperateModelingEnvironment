@@ -75,6 +75,11 @@
 			<layout>p2</layout>
 		</repository>
 		<repository>
+			<id>cooperate-qvtoutils</id>
+			<url>https://dl.bintray.com/cooperate-project/QVTOUtils/updatesite/latest/</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
 			<id>emf-compare</id>
 			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827</url>
 			<layout>p2</layout>
