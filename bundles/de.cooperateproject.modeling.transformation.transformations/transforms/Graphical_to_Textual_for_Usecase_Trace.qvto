@@ -9,7 +9,7 @@ modeltype TEXTUAL uses usecase('http://www.cooperateproject.de/modeling/textual/
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 
 main() {
 	var traces := graphicalTrace.rootObjects()[trace::Trace];
@@ -53,7 +53,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	result += new TraceRecord("diagramToDiagram", "UseCaseDiagram", useCaseDiagram, "Diagram", notationDiagram.toEObject());
 	result += new TraceRecord("stringValueStyle", "UseCaseDiagram", useCaseDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
 	result += new TraceRecord("diagramStyle", "UseCaseDiagram", useCaseDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
-	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "UseCaseDiagram", useCaseDiagram, "PapyrusViewStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusViewStyle)).eobject());
+	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "UseCaseDiagram", useCaseDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 	viewStyleRecord.parameters.parameters += object VarParameterValue {
 		name := "rootElement";
 		type := "Package";

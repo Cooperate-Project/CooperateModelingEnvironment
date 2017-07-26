@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Op6acEKSEeaXCq-9LXQNWQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Op6acEKSEeaXCq-9LXQNWQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_QHhA4EKSEeaXCq-9LXQNWQ" type="Class_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_QHhA4kKSEeaXCq-9LXQNWQ" type="Class_NameLabel"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_QHhA40KSEeaXCq-9LXQNWQ" type="Class_FloatingNameLabel">
@@ -167,9 +167,9 @@
     <element xmi:type="uml:Comment" href="ClassDiagram.uml#_-pP9wEKSEeaXCq-9LXQNWQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-pTBEUKSEeaXCq-9LXQNWQ" x="366" y="438"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_Op6acUKSEeaXCq-9LXQNWQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_Op6acUKSEeaXCq-9LXQNWQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_Op6ackKSEeaXCq-9LXQNWQ"/>
-  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Op6ac0KSEeaXCq-9LXQNWQ">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_Op6ac0KSEeaXCq-9LXQNWQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
     <owner xmi:type="uml:Model" href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>
   </styles>
   <element xmi:type="uml:Model" href="ClassDiagram.uml#_Opgx0EKSEeaXCq-9LXQNWQ"/>

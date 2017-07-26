@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_SqwgsH9OEeasAogjkkM7gQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_SqwgsH9OEeasAogjkkM7gQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_iluvoH9OEeaePt6Hzoa1yQ" type="Package_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_il5HsH9OEeaePt6Hzoa1yQ" type="Package_NameLabel"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_il684H9OEeaePt6Hzoa1yQ" type="Package_PackagedElementCompartment">
@@ -157,9 +157,9 @@
     <element xmi:type="uml:Package" href="ClassDiagramPackages.uml#_nYq6MH9OEeaePt6Hzoa1yQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nYt9gX9OEeaePt6Hzoa1yQ" x="618" y="96"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_SqwgsX9OEeasAogjkkM7gQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_SqwgsX9OEeasAogjkkM7gQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_Sqwgsn9OEeasAogjkkM7gQ"/>
-  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Sqwgs39OEeasAogjkkM7gQ">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_Sqwgs39OEeasAogjkkM7gQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
     <owner xmi:type="uml:Model" href="ClassDiagramPackages.uml#_SnrXgH9OEeasAogjkkM7gQ"/>
   </styles>
   <element xmi:type="uml:Model" href="ClassDiagramPackages.uml#_SnrXgH9OEeasAogjkkM7gQ"/>

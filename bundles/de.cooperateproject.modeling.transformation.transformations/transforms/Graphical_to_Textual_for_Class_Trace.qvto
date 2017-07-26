@@ -7,7 +7,7 @@ modeltype TRACE uses trace('http:///www.eclipse.org/m2m/qvt/operational/trace.ec
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype TEXTUAL uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
-modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 
@@ -63,7 +63,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	result += new TraceRecord("diagramToDiagram", "ClassDiagram", classDiagram, "Diagram", notationDiagram.eobject());
 	result += new TraceRecord("stringValueStyle", "ClassDiagram", classDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
 	result += new TraceRecord("diagramStyle", "ClassDiagram", classDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
-	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "ClassDiagram", classDiagram, "PapyrusViewStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusViewStyle)).eobject());
+	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "ClassDiagram", classDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 	viewStyleRecord.parameters.parameters += object VarParameterValue {
 		name := "rootElement";
 		type := "Package";
