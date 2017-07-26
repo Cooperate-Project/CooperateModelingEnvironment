@@ -88,11 +88,13 @@ Workflow {
 		language = StandardLanguage {
 			name = "${basename}.Component"
 			fileExtensions = "cmp"
-			referencedResource = "platform:/resource/de.cooperateproject.modeling.textual.component.metamodel/model/component.genmodel"
+			
+			referencedResource = "platform:/resource/${basename}.metamodel/model/component.genmodel"
 			referencedResource = "platform:/resource/${basename}.metamodel/model/component.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore"
 			referencedResource = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
 			
+			renameRefactoring = refactoring.CooperateRenameGeneratorFragment2 auto-inject {}
 			
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 			
@@ -101,6 +103,7 @@ Workflow {
 				fragment = org.eclipse.xtext.generator.formatting2.Formatter2Fragment {}
 				//fragment = org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment {}
 			}
+			
 			fragment = scoping.ImportNamespacesScopingFragment2 auto-inject {}
 			fragment = exporting.QualifiedNamesFragment2 auto-inject {}
 
@@ -109,14 +112,11 @@ Workflow {
 			generator = {
 				generateStub = false
 			}
-			formatter = {
-				generateStub = true
-			}
 
 			serializer = {
 				generateStub = false
-				
-				}
+			}
+			
 			validator = resources.CooperateValidatorFragment2 auto-inject {
 				generateXtendStub = false
 			}
@@ -130,6 +130,7 @@ Workflow {
 			fragment = resources.CooperateResourceHandlingBindingsFragment2 auto-inject {}
 			fragment = naming.CooperateNamingBindingsFragment2 auto-inject {}
 			fragment = emfcompare.EMFCompareMatcherFragment2 auto-inject {}
+			fragment = ui.CooperateEditorFragment auto-inject {}
 		}
 	}
 }
