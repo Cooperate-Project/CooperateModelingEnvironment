@@ -7,11 +7,13 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.tools;bundle-version="2.0.0",
  org.eclipse.emf.ecore,
- org.eclipse.papyrus.infra.services.openelement,
  de.cooperateproject.ui,
  org.eclipse.papyrus.infra.properties,
+ org.eclipse.papyrus.infra.services.navigation;bundle-version="3.0.0",
+ org.eclipse.papyrus.infra.services.openelement,
  org.eclipse.papyrus.views.properties;bundle-version="2.0.0",
- org.eclipse.papyrus.uml.architecture;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.architecture;bundle-version="1.0.0",
+ com.google.guava;bundle-version="15.0.0"
 Bundle-Activator: de.cooperate.modeling.graphical.papyrus.extensions.Activator
 Bundle-ActivationPolicy: lazy
 Import-Package: de.cooperateproject.modeling.graphical.common.conventions,

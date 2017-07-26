@@ -57,6 +57,9 @@
       <class
             class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.CardinalityCalculator">
       </class>
+      <class
+            class="de.cooperateproject.modeling.textual.common.derivedstate.calculator.PackageImportCalculator">
+      </class>
    </extension>
    <extension
          point="de.cooperateproject.modeling.textual.xtext.runtime.service.transientstatus">
