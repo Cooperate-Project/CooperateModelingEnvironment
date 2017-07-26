@@ -9,7 +9,7 @@ modeltype TEXTUAL uses component('http://www.cooperateproject.de/modeling/textua
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype GRAPHICAL uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 
 main() {
 	var traces := graphicalTrace.rootObjects()[trace::Trace];
@@ -40,13 +40,7 @@ when {self.mappingOperation.name = "diagramToDiagram"}
 	var componentDiagram := self.getResult().modelElement;
 	
 	result += new TraceRecord("diagramToDiagram", "ComponentDiagram", componentDiagram, "Diagram", notationDiagram.toEObject());
-	result += new TraceRecord("stringValueStyle", "ComponentDiagram", componentDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
-	result += new TraceRecord("diagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
-	var viewStyleRecord := new TraceRecord("papyrusViewStyle", "ComponentDiagram", componentDiagram, "PapyrusViewStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusViewStyle)).eobject());
-	viewStyleRecord.parameters.parameters += object VarParameterValue {
-		name := "rootElement";
-		type := "Package";
-		value := new EValue(notationDiagram.element);
-	};
-	result += viewStyleRecord;
+	result += new TraceRecord("diagramToStringValueStyle", "ComponentDiagram", componentDiagram, "StringValueStyle", notationDiagram.styles->any(oclIsKindOf(notation::StringValueStyle)).eobject());
+	result += new TraceRecord("diagramToDiagramStyle", "ComponentDiagram", componentDiagram, "DiagramStyle", notationDiagram.styles->any(oclIsKindOf(notation::DiagramStyle)).eobject());
+	result += new TraceRecord("diagramToDiagramStylePapyrus", "ComponentDiagram", componentDiagram, "PapyrusDiagramStyle", notationDiagram.styles->any(oclIsKindOf(style::PapyrusDiagramStyle)).eobject());
 }

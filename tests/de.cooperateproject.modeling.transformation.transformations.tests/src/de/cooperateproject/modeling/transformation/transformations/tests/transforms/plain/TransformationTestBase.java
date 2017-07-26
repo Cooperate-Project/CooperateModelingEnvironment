@@ -60,6 +60,7 @@ public abstract class TransformationTestBase {
             OCL.initialize(null);
             NotationPackage.eINSTANCE.eClass();
             StylePackage.eINSTANCE.eClass();
+            org.eclipse.papyrus.infra.gmfdiag.style.StylePackage.eINSTANCE.eClass();
             TextualCommonsPackage.eINSTANCE.eClass();
         }
     }

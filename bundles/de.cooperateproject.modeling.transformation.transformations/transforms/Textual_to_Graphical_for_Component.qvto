@@ -7,7 +7,7 @@ modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses component('http://www.cooperateproject.de/modeling/textual/component/Component');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 
 main() {
 	var diagrams := textual.rootObjects()[component::ComponentDiagram];
@@ -18,9 +18,26 @@ main() {
 mapping component::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
 
-	type := "Component";
-	name := null;
+	type := "PapyrusUMLComponentDiagram";
+	name := self.title;
 	measurementUnit := notation::MeasurementUnit::Pixel;
 	element := rootPackage.toEObject();
 	
+	styles := self.map diagramToStringValueStyle();
+	styles += self.map diagramToDiagramStyle();
+	styles += self.map diagramToDiagramStylePapyrus();
+}
+
+mapping component::ComponentDiagram::diagramToStringValueStyle() : notation::StringValueStyle {
+	name := "diagram_compatibility_version";
+	stringValue := "1.3.0";
+}
+
+mapping component::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle {
+	
+}
+
+mapping component::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
+	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
+	owner := self.rootpackage.referencedElement.toEObject();
 }

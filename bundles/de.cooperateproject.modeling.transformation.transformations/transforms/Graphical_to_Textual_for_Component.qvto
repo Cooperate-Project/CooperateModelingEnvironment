@@ -8,10 +8,8 @@ modeltype TXT uses component('http://www.cooperateproject.de/modeling/textual/co
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 
-
-
 main() {
-	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="Component");
+	var diagrams := graphical.rootObjects()[notation::Diagram]->select(type="PapyrusUMLComponentDiagram");
 	assert fatal (diagrams->size() = 1);
 
 	diagrams->map diagramToDiagram();
@@ -19,16 +17,11 @@ main() {
 
 mapping notation::Diagram::diagramToDiagram() : component::ComponentDiagram
 {
-	title := null;
+	title := self.name;
 	rootpackage := self.map diagramToRootPackage();
 }
 
 mapping notation::Diagram::diagramToRootPackage() : component::RootPackage
 {
-	referencedElement := self.element.toElement();
-}
-
-
-query ecore::EObject::toElement() : uml::Element {
-	return self.oclAsType(uml::Element);
+	referencedElement := self.element.oclAsType(uml::Package)
 }
