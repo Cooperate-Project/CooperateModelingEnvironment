@@ -7,7 +7,10 @@ import com.google.inject.Binder
 import com.google.inject.name.Names
 import de.cooperateproject.modeling.textual.common.scoping.CooperateImportedNamespaceAwareLocalScopeProvider
 import de.cooperateproject.modeling.textual.common.services.BasicCooperateTransientValueService
+import de.cooperateproject.modeling.textual.component.services.ComponentDerivedStateComputerSorter
+import de.cooperateproject.modeling.textual.component.services.ComponentValueConverter
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateModuleMixin
+import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IDerivedStateComputerSorter
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.InitializingStateAwareResource
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.CooperateGlobalScopeProvider
 import de.cooperateproject.modeling.textual.xtext.runtime.scoping.IGlobalScopeTypeQueryProvider
@@ -16,7 +19,6 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService
-import de.cooperateproject.modeling.textual.component.services.ComponentValueConverter
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -50,4 +52,7 @@ class ComponentRuntimeModule extends AbstractComponentRuntimeModule implements D
         return ComponentValueConverter;
     }
 	
+	def Class<? extends IDerivedStateComputerSorter> bindIDerivedStateComputerSorter() {
+		return ComponentDerivedStateComputerSorter
+	}
 }
