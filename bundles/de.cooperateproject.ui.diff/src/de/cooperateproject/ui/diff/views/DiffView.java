@@ -253,8 +253,7 @@ public class DiffView extends ViewPart {
 	 */
 	private void showDiffViewOfCommit(CDOCommitInfo obj) {
 		SummaryViewBuilder svb = new SummaryViewBuilder();
-		List<SummaryItem> summaryList = svb.buildSummaryView(comparisonManager.getComparison(obj,
-				cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
+		List<SummaryItem> summaryList = svb.buildSummaryView(comparisonManager.getComparison(cdoViewManager.getPreviousView(), cdoViewManager.getCurrentView()));
 		summaryViewer.setInput(summaryList);
 
 		for (TableColumn c : summaryViewer.getTable().getColumns()) {
