@@ -3,6 +3,8 @@ package de.cooperateproject.ui.diff.cls.labelhandling;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.PrimitiveType;
 
+import de.cooperateproject.modeling.textual.cls.cls.Association;
+import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
@@ -10,6 +12,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
 
@@ -100,6 +104,24 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
         String left = object.getLeft().getName();
         String right = object.getRight().getName();
         return left + " isA " + right;
+    }
+    @Override
+    public String caseXtextAssociation(XtextAssociation object) {
+        return "asc " + object.getName();
+    }
+    @Override
+    public String caseAssociation(Association object) {
+        return null;
+    }
+    
+    @Override
+    public String caseAssociationMemberEnd(AssociationMemberEnd object) {
+        return object.getName();
+    }
+    
+    @Override
+    public String caseXtextAssociationMemberEndReferencedType(XtextAssociationMemberEndReferencedType object) {
+        return null;
     }
 
     @Override

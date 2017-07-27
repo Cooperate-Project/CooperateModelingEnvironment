@@ -200,6 +200,16 @@ public class ComparisonManager {
         }
         return getResourceCDOId(textModel);
     }
+    
+    private CDOID getResourceCDOId(CDOSession session) {
+        CDOView view = null;
+        try {
+            view = session.openView();
+            return getResourceCDOId(view);
+        } finally {
+            IOUtil.closeSilent(view);
+        }
+    }
 
     /**
      * Finds all commits on the selected .cooperate-file and stores all cdoIds of the changed
@@ -210,55 +220,71 @@ public class ComparisonManager {
     private Set<CDOCommitInfo> findAllCommits() {
         IProject project = currentFile.getProject();
         CDOSession session = CDOConnectionManager.getInstance().acquireSession(project);
-        CDOView view = session.openView();
-        ConcreteSyntaxModel textModel = getConcreteSyntaxModel(view);
-        Set<CDOCommitInfo> commitInfos = new HashSet<>();
-        if (textModel != null) {
-            CDOID resourceCDOId = getResourceCDOId(textModel);
-            commitInfos.addAll(getCommitsFromMainBranch(session, view, resourceCDOId));
-        }
 
-        IOUtil.closeSilent(view);
+        Set<CDOCommitInfo> commitInfos = new HashSet<>();
+
+        commitInfos.addAll(getCommitsFromMainBranch(session, getFirstCommitTimeStamp(session)));
+
         CDOConnectionManager.getInstance().releaseSession(session);
         return commitInfos;
     }
 
-    private CDOID getResourceCDOId(ConcreteSyntaxModel textModel) {
-        CDOObject textRoot = CDOUtil.getCDOObject(textModel.getRootElement());
-        return textRoot.cdoResource().cdoID();
+    private long getFirstCommitTimeStamp(CDOSession session) {
+        CDOView view = null;
+        try {
+            view = session.openView();
+            CDOID resourceCDOId = getResourceCDOId(view);
+            return view.getRevision(resourceCDOId).getTimeStamp();
+        } finally {
+            IOUtil.closeSilent(view);
+        }
     }
 
-    private List<CDOCommitInfo> getCommitsFromMainBranch(CDOSession session, CDOView view, CDOID resourceCDOId) {
+    private CDOID getResourceCDOId(ConcreteSyntaxModel textModel) {
+        CDOObject textRoot = CDOUtil.getCDOObject(textModel.getRootElement());
+        CDOResource cdoResource = textRoot.cdoResource();
+        if (cdoResource == null) {
+            return null;
+        }
+        return cdoResource.cdoID();
+    }
+
+    private List<CDOCommitInfo> getCommitsFromMainBranch(CDOSession session, long timeStamp) {
         CDOCommitInfoManager commitManager = session.getCommitInfoManager();
         CDOBranch mainBranch = session.getBranchManager().getMainBranch();
         CDOCommitHistory mainHistory = commitManager.getHistory(mainBranch);
 
         mainHistory.waitWhileLoading(LOADING_TIMEOUT);
 
-        return getCommitsByTime(session, view, resourceCDOId, mainBranch, mainHistory);
+        return getCommitsByTime(session, mainBranch, mainHistory, timeStamp);
     }
 
-    private List<CDOCommitInfo> getCommitsByTime(CDOSession session, CDOView view, CDOID resourceCDOId,
-            CDOBranch mainBranch, CDOCommitHistory mainHistory) {
-        long firstCommitTimeStamp = view.getRevision(resourceCDOId).getTimeStamp();
+    private List<CDOCommitInfo> getCommitsByTime(CDOSession session, CDOBranch mainBranch,
+            CDOCommitHistory mainHistory, long timeStamp) {
         List<CDOCommitInfo> commitInfos = new ArrayList<>();
-        for (int i = 0; i < mainHistory.size(); i++) {
-            CDOCommitInfo commitInfo = mainHistory.getElement(i);
+        
+            for (int i = 0; i < mainHistory.size(); i++) {
+                CDOCommitInfo commitInfo = mainHistory.getElement(i);
 
-            if (isTimeStampValid(commitInfo, firstCommitTimeStamp)) {
-                break;
+                if (isTimeStampValid(commitInfo, timeStamp)) {
+                    break;
+                }
+
+                CDOCommitInfo previousCommitInfo = mainHistory.getElement(i + 1);
+                CDOView previousState = null;
+                CDOView currentState = null;
+                try {
+                    previousState = session.openView(mainBranch, previousCommitInfo.getTimeStamp());
+                    currentState = session.openView(mainBranch, commitInfo.getTimeStamp());
+
+                    if (doChangedObjectsExists(getResourceCDOId(session), previousState, currentState, commitInfo)) {
+                        commitInfos.add(commitInfo);
+                    }
+                } finally {
+                    IOUtil.closeSilent(previousState);
+                    IOUtil.closeSilent(currentState);
+                }
             }
-
-            CDOCommitInfo previousCommitInfo = mainHistory.getElement(i + 1);
-            CDOView previousState = session.openView(mainBranch, previousCommitInfo.getTimeStamp());
-            CDOView currentState = session.openView(mainBranch, commitInfo.getTimeStamp());
-
-            if (doChangedObjectsExists(resourceCDOId, previousState, currentState, commitInfo)) {
-                commitInfos.add(commitInfo);
-            }
-            IOUtil.closeSilent(previousState);
-            IOUtil.closeSilent(currentState);
-        }
         return commitInfos;
     }
 

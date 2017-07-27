@@ -1,6 +1,5 @@
 package de.cooperateproject.ui.diff.cls.labelhandling;
 
-import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
 import de.cooperateproject.modeling.textual.cls.cls.Generalization;
@@ -8,6 +7,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Implementation;
 import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
+import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 
 public class ClsClassTextSwitch extends ClsSwitch<String> {
@@ -48,7 +48,7 @@ public class ClsClassTextSwitch extends ClsSwitch<String> {
 	}
 
 	@Override
-	public String caseAssociation(Association object) {
+	public String caseXtextAssociation(XtextAssociation object) {
 		return "association";
 	}
 
