@@ -1,14 +1,15 @@
-package de.cooperateproject.ui.diff.common.labeling;
+package de.cooperateproject.ui.diff.usecase.labeling;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.util.TextualCommonsSwitch;
+import de.cooperateproject.modeling.textual.usecase.usecase.util.UsecaseSwitch;
 import de.cooperateproject.ui.diff.labeling.LabelHandler;
 
-public class CommonLabelHandler implements LabelHandler {
+public class UsecaseLabelHandler implements LabelHandler {
 
-    private TextualCommonsSwitch<String> labelSwitch = new CommonLabelSwitch();
-    private TextualCommonsSwitch<String> classTextSwitch = new CommonClassTextSwitch();
+
+    private UsecaseSwitch<String> labelSwitch = new UsecaseLabelSwitch();
+    private UsecaseSwitch<String> classTextSwitch = new UsecaseClassTextSwitch();
     
     @Override
     public String getText(EObject item) {

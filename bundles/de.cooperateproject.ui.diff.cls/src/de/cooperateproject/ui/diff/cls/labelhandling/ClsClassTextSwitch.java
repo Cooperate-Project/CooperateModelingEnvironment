@@ -9,6 +9,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
+import de.cooperateproject.modeling.textual.cls.cls.Package;
+import de.cooperateproject.modeling.textual.cls.cls.Class;
 
 public class ClsClassTextSwitch extends ClsSwitch<String> {
 
@@ -18,12 +20,12 @@ public class ClsClassTextSwitch extends ClsSwitch<String> {
 	}
 
 	@Override
-	public String casePackage(de.cooperateproject.modeling.textual.cls.cls.Package object) {
+	public String casePackage(Package object) {
 		return "package";
 	}
 
 	@Override
-	public String caseClass(de.cooperateproject.modeling.textual.cls.cls.Class object) {
+	public String caseClass(Class object) {
 		return "class";
 	}
 

@@ -11,7 +11,7 @@ import de.cooperateproject.ui.diff.labeling.LabelHandler;
  * @author Jasmin
  *
  */
-public class ClsLabelHandler extends ClsSwitch<String> implements LabelHandler {
+public class ClsLabelHandler implements LabelHandler {
 
 	private ClsSwitch<String> classTextSwitch = new ClsClassTextSwitch();
 	private ClsSwitch<String> labelSwitch = new ClsLabelSwitch();
