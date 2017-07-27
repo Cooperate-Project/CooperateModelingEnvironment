@@ -3,7 +3,6 @@ package de.cooperateproject.ui.diff.cls.labelhandling;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.PrimitiveType;
 
-import de.cooperateproject.modeling.textual.cls.cls.Association;
 import de.cooperateproject.modeling.textual.cls.cls.AssociationMemberEnd;
 import de.cooperateproject.modeling.textual.cls.cls.Attribute;
 import de.cooperateproject.modeling.textual.cls.cls.ClassDiagram;
@@ -15,7 +14,8 @@ import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visibility;
+import de.cooperateproject.modeling.textual.cls.cls.Class;
+import de.cooperateproject.modeling.textual.cls.cls.Package;
 
 public class ClsLabelSwitch extends ClsSwitch<String> {
 
@@ -25,12 +25,12 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
     }
 
     @Override
-    public String casePackage(de.cooperateproject.modeling.textual.cls.cls.Package object) {
+    public String casePackage(Package object) {
         return "package" + " " + object.getName();
     }
 
     @Override
-    public String caseClass(de.cooperateproject.modeling.textual.cls.cls.Class object) {
+    public String caseClass(Class object) {
         String isAbstract = "";
         if (object.isAbstract()) {
             isAbstract = "abstract ";
@@ -109,10 +109,6 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
     public String caseXtextAssociation(XtextAssociation object) {
         return "asc " + object.getName();
     }
-    @Override
-    public String caseAssociation(Association object) {
-        return null;
-    }
     
     @Override
     public String caseAssociationMemberEnd(AssociationMemberEnd object) {
@@ -133,12 +129,7 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 
     private String handleNonEObject(Object object) {
         String ret = "";
-        if (object instanceof Visibility) {
-            Visibility visibility = (Visibility) object;
-            if (visibility != Visibility.UNDEFINED) {
-                ret = visibility.getLiteral().toLowerCase() + " ";
-            }
-        } else if (object instanceof Integer) {
+        if (object instanceof Integer) {
             if ((Integer) object == -1) {
                 ret = "*";
             } else {

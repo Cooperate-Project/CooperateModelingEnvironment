@@ -9,13 +9,6 @@
       </labelHandler>
    </extension>
    <extension
-         point="de.cooperateproject.ui.diff.postProcessor">
-      <postProcessor
-            class="de.cooperateproject.ui.diff.cls.postprocessing.ClsPostProcessor"
-            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
-      </postProcessor>
-   </extension>
-   <extension
          point="de.cooperateproject.ui.diff.derivedcalculator">
       <class
             class="de.cooperateproject.modeling.textual.cls.ui.ClsExecutableExtensionFactory:de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessor"
