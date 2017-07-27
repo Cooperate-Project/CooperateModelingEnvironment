@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.cooperateproject.modeling</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.2.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>bundles</artifactId>
+	<packaging>pom</packaging>
+	<name>Bundle Modules</name>
+
+	<modules>
+		<module>de.cooperateproject.cdo.util</module>
+		<module>de.cooperateproject.modeling.common</module>
+		<module>de.cooperateproject.modeling.graphical.common</module>
+		<module>de.cooperateproject.modeling.textual.cls</module>
+		<module>de.cooperateproject.modeling.textual.cls.ide</module>
+		<module>de.cooperateproject.modeling.textual.cls.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.cls.ui</module>
+		<module>de.cooperateproject.modeling.textual.common</module>
+		<module>de.cooperateproject.modeling.textual.common.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.usecase</module>
+		<module>de.cooperateproject.modeling.textual.usecase.ide</module>
+		<module>de.cooperateproject.modeling.textual.usecase.metamodel</module>
+		<module>de.cooperateproject.modeling.textual.usecase.ui</module>
+		<module>de.cooperateproject.modeling.textual.xtext.generator</module>
+		<module>de.cooperateproject.modeling.textual.xtext.runtime</module>
+		<module>de.cooperateproject.modeling.textual.xtext.runtime.ui</module>
+		<module>de.cooperateproject.modeling.transformation.engine</module>
+		<module>de.cooperateproject.modeling.transformation.transformations</module>
+		<module>de.cooperateproject.ui</module>
+		<module>de.cooperateproject.ui.diff</module>
+		<module>de.cooperateproject.ui.diff.cls</module>
+		<module>de.cooperateproject.ui.diff.common</module>
+		<module>de.cooperateproject.ui.diff.usecase</module>
+		<module>de.cooperateproject.ui.focus</module>
+		<module>de.cooperateproject.ui.focus.papyrus</module>
+		<module>de.cooperateproject.ui.focus.textual</module>
+		<module>de.cooperateproject.ui.focus.textual.cls</module>
+		<module>de.cooperateproject.ui.launchermodel</module>
+		<module>de.cooperateproject.ui.papyrus</module>
+		<module>de.cooperateproject.ui.textualeditors</module>
+		<module>de.cooperateproject.ui.preferences</module>
+		<module>de.cooperateproject.ui.util</module>
+		<module>de.cooperateproject.util</module>
+		<module>de.cooperateproject.modeling.graphical.papyrus.extensions</module>
+	</modules>
+
+</project>
