@@ -2,7 +2,8 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
-import org.eclipse.emf.cdo.CDOObject;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,8 +13,7 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifier()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface Classifier extends CDOObject {
+public interface Classifier<T extends org.eclipse.uml2.uml.Classifier> extends Commentable<T>, AliasedElement {
 } // Classifier

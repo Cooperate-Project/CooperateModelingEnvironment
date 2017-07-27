@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -86,7 +87,7 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createRootPackageAdapter();
             }
             @Override
-            public Adapter caseClassifierRelation(ClassifierRelation object) {
+            public <LeftUMLType extends Classifier, RightUMLType extends Classifier> Adapter caseClassifierRelation(ClassifierRelation<LeftUMLType, RightUMLType> object) {
                 return createClassifierRelationAdapter();
             }
             @Override
@@ -118,7 +119,7 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createDependencyAdapter();
             }
             @Override
-            public Adapter caseClassifier(Classifier object) {
+            public <T extends Classifier> Adapter caseClassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<T> object) {
                 return createClassifierAdapter();
             }
             @Override
@@ -190,12 +191,12 @@ public class ComponentAdapterFactory extends AdapterFactoryImpl {
                 return createAliasedElementAdapter();
             }
             @Override
-            public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
-                return createVisibilityHavingElementAdapter();
-            }
-            @Override
             public <CommentableUMLType extends org.eclipse.uml2.uml.Element> Adapter caseCommentable(Commentable<CommentableUMLType> object) {
                 return createCommentableAdapter();
+            }
+            @Override
+            public Adapter caseVisibilityHavingElement(VisibilityHavingElement object) {
+                return createVisibilityHavingElementAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {

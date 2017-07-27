@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Alia
  * @model abstract="true"
  * @generated
  */
-public interface ClassifierRelation extends AliasedElement {
+public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends AliasedElement {
     /**
      * Returns the value of the '<em><b>Leftclassifier</b></em>' reference.
      * <!-- begin-user-doc -->
@@ -31,12 +32,12 @@ public interface ClassifierRelation extends AliasedElement {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Leftclassifier</em>' reference.
-     * @see #setLeftclassifier(Classifier)
+     * @see #setLeftclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier)
      * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation_Leftclassifier()
      * @model required="true"
      * @generated
      */
-    Classifier getLeftclassifier();
+    de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<LeftUMLType> getLeftclassifier();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftclassifier <em>Leftclassifier</em>}' reference.
@@ -46,7 +47,7 @@ public interface ClassifierRelation extends AliasedElement {
      * @see #getLeftclassifier()
      * @generated
      */
-    void setLeftclassifier(Classifier value);
+    void setLeftclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<LeftUMLType> value);
 
     /**
      * Returns the value of the '<em><b>Rightclassifier</b></em>' reference.
@@ -57,12 +58,12 @@ public interface ClassifierRelation extends AliasedElement {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Rightclassifier</em>' reference.
-     * @see #setRightclassifier(Classifier)
+     * @see #setRightclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier)
      * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation_Rightclassifier()
      * @model required="true"
      * @generated
      */
-    Classifier getRightclassifier();
+    de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<RightUMLType> getRightclassifier();
 
     /**
      * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightclassifier <em>Rightclassifier</em>}' reference.
@@ -72,6 +73,6 @@ public interface ClassifierRelation extends AliasedElement {
      * @see #getRightclassifier()
      * @generated
      */
-    void setRightclassifier(Classifier value);
+    void setRightclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<RightUMLType> value);
 
 } // ClassifierRelation

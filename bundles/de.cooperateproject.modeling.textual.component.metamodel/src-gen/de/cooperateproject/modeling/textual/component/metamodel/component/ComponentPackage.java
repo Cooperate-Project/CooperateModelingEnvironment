@@ -889,13 +889,58 @@ public interface ComponentPackage extends EPackage {
     int CLASSIFIER = 10;
 
     /**
+     * The feature id for the '<em><b>Referenced Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER__REFERENCED_ELEMENT = TextualCommonsPackage.COMMENTABLE__REFERENCED_ELEMENT;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER__COMMENTS = TextualCommonsPackage.COMMENTABLE__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER__NAME = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Alias</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER__ALIAS = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Classifier</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CLASSIFIER_FEATURE_COUNT = 0;
+    int CLASSIFIER_FEATURE_COUNT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 2;
+
+    /**
+     * The operation id for the '<em>Get Nearest Package</em>' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLASSIFIER___GET_NEAREST_PACKAGE = TextualCommonsPackage.COMMENTABLE___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Classifier</em>' class.
@@ -904,7 +949,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CLASSIFIER_OPERATION_COUNT = 0;
+    int CLASSIFIER_OPERATION_COUNT = TextualCommonsPackage.COMMENTABLE_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.PropertyImpl <em>Property</em>}' class.
@@ -1005,7 +1050,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__REFERENCED_ELEMENT = TextualCommonsPackage.COMMENTABLE__REFERENCED_ELEMENT;
+    int COMPONENT__REFERENCED_ELEMENT = CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1014,7 +1059,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__COMMENTS = TextualCommonsPackage.COMMENTABLE__COMMENTS;
+    int COMPONENT__COMMENTS = CLASSIFIER__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1023,7 +1068,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__NAME = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 0;
+    int COMPONENT__NAME = CLASSIFIER__NAME;
 
     /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1032,7 +1077,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__ALIAS = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 1;
+    int COMPONENT__ALIAS = CLASSIFIER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Component</b></em>' containment reference list.
@@ -1041,7 +1086,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__COMPONENT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 2;
+    int COMPONENT__COMPONENT = CLASSIFIER_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Portrelation</b></em>' containment reference list.
@@ -1050,7 +1095,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__PORTRELATION = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 3;
+    int COMPONENT__PORTRELATION = CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Interfacerelation</b></em>' containment reference list.
@@ -1059,7 +1104,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__INTERFACERELATION = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 4;
+    int COMPONENT__INTERFACERELATION = CLASSIFIER_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Interface</b></em>' containment reference list.
@@ -1068,7 +1113,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__INTERFACE = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 5;
+    int COMPONENT__INTERFACE = CLASSIFIER_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Port</b></em>' containment reference list.
@@ -1077,7 +1122,16 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT__PORT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 6;
+    int COMPONENT__PORT = CLASSIFIER_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Owning Component</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPONENT__OWNING_COMPONENT = CLASSIFIER_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>Component</em>' class.
@@ -1086,7 +1140,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT_FEATURE_COUNT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 7;
+    int COMPONENT_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 6;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1095,7 +1149,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT___GET_NEAREST_PACKAGE = TextualCommonsPackage.COMMENTABLE___GET_NEAREST_PACKAGE;
+    int COMPONENT___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Component</em>' class.
@@ -1104,7 +1158,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int COMPONENT_OPERATION_COUNT = TextualCommonsPackage.COMMENTABLE_OPERATION_COUNT + 0;
+    int COMPONENT_OPERATION_COUNT = CLASSIFIER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.InterfaceImpl <em>Interface</em>}' class.
@@ -1123,7 +1177,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE__REFERENCED_ELEMENT = TextualCommonsPackage.COMMENTABLE__REFERENCED_ELEMENT;
+    int INTERFACE__REFERENCED_ELEMENT = CLASSIFIER__REFERENCED_ELEMENT;
 
     /**
      * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -1132,7 +1186,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE__COMMENTS = TextualCommonsPackage.COMMENTABLE__COMMENTS;
+    int INTERFACE__COMMENTS = CLASSIFIER__COMMENTS;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1141,7 +1195,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE__NAME = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 0;
+    int INTERFACE__NAME = CLASSIFIER__NAME;
 
     /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1150,7 +1204,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE__ALIAS = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 1;
+    int INTERFACE__ALIAS = CLASSIFIER__ALIAS;
 
     /**
      * The feature id for the '<em><b>Member</b></em>' containment reference list.
@@ -1159,7 +1213,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE__MEMBER = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 2;
+    int INTERFACE__MEMBER = CLASSIFIER_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Interface</em>' class.
@@ -1168,7 +1222,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE_FEATURE_COUNT = TextualCommonsPackage.COMMENTABLE_FEATURE_COUNT + 3;
+    int INTERFACE_FEATURE_COUNT = CLASSIFIER_FEATURE_COUNT + 1;
 
     /**
      * The operation id for the '<em>Get Nearest Package</em>' operation.
@@ -1177,7 +1231,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE___GET_NEAREST_PACKAGE = TextualCommonsPackage.COMMENTABLE___GET_NEAREST_PACKAGE;
+    int INTERFACE___GET_NEAREST_PACKAGE = CLASSIFIER___GET_NEAREST_PACKAGE;
 
     /**
      * The number of operations of the '<em>Interface</em>' class.
@@ -1186,7 +1240,7 @@ public interface ComponentPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int INTERFACE_OPERATION_COUNT = TextualCommonsPackage.COMMENTABLE_OPERATION_COUNT + 0;
+    int INTERFACE_OPERATION_COUNT = CLASSIFIER_OPERATION_COUNT + 0;
 
     /**
      * The meta object id for the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.MemberImpl <em>Member</em>}' class.
@@ -2052,6 +2106,17 @@ public interface ComponentPackage extends EPackage {
     EReference getComponent_Port();
 
     /**
+     * Returns the meta object for the container reference '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent <em>Owning Component</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Owning Component</em>'.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent()
+     * @see #getComponent()
+     * @generated
+     */
+    EReference getComponent_OwningComponent();
+
+    /**
      * Returns the meta object for the containment reference list '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterfacerelation <em>Interfacerelation</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2490,6 +2555,14 @@ public interface ComponentPackage extends EPackage {
          * @generated
          */
         EReference COMPONENT__PORT = eINSTANCE.getComponent_Port();
+
+        /**
+         * The meta object literal for the '<em><b>Owning Component</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference COMPONENT__OWNING_COMPONENT = eINSTANCE.getComponent_OwningComponent();
 
         /**
          * The meta object literal for the '<em><b>Interfacerelation</b></em>' containment reference list feature.

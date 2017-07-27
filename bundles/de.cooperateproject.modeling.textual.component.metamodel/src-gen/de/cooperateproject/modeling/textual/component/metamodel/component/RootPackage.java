@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
 public interface RootPackage extends PackageBase<RootPackage> {
     /**
      * Returns the value of the '<em><b>Relation</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation}.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation}<code>&lt;?, ?&gt;</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Relation</em>' containment reference list isn't clear,
@@ -38,11 +38,11 @@ public interface RootPackage extends PackageBase<RootPackage> {
      * @model containment="true"
      * @generated
      */
-    EList<ClassifierRelation> getRelation();
+    EList<ClassifierRelation<?, ?>> getRelation();
 
     /**
      * Returns the value of the '<em><b>Classifier</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Classifier}.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Classifier}<code>&lt;org.eclipse.uml2.uml.Classifier&gt;</code>.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Classifier</em>' containment reference list isn't clear,
@@ -54,6 +54,6 @@ public interface RootPackage extends PackageBase<RootPackage> {
      * @model containment="true"
      * @generated
      */
-    EList<Classifier> getClassifier();
+    EList<Classifier<org.eclipse.uml2.uml.Classifier>> getClassifier();
 
 } // RootPackage

@@ -71,8 +71,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<ClassifierRelation> getRelation() {
-        return (EList<ClassifierRelation>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__RELATION, ComponentPackage.Literals.ROOT_PACKAGE__RELATION, true, true);
+    public EList<ClassifierRelation<?, ?>> getRelation() {
+        return (EList<ClassifierRelation<?, ?>>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__RELATION, ComponentPackage.Literals.ROOT_PACKAGE__RELATION, true, true);
     }
 
     /**
@@ -81,8 +81,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Classifier> getClassifier() {
-        return (EList<Classifier>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__CLASSIFIER, ComponentPackage.Literals.ROOT_PACKAGE__CLASSIFIER, true, true);
+    public EList<Classifier<org.eclipse.uml2.uml.Classifier>> getClassifier() {
+        return (EList<Classifier<org.eclipse.uml2.uml.Classifier>>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__CLASSIFIER, ComponentPackage.Literals.ROOT_PACKAGE__CLASSIFIER, true, true);
     }
 
     /**
@@ -128,11 +128,11 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
         switch (featureID) {
             case ComponentPackage.ROOT_PACKAGE__RELATION:
                 getRelation().clear();
-                getRelation().addAll((Collection<? extends ClassifierRelation>)newValue);
+                getRelation().addAll((Collection<? extends ClassifierRelation<?, ?>>)newValue);
                 return;
             case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
                 getClassifier().clear();
-                getClassifier().addAll((Collection<? extends Classifier>)newValue);
+                getClassifier().addAll((Collection<? extends Classifier<org.eclipse.uml2.uml.Classifier>>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

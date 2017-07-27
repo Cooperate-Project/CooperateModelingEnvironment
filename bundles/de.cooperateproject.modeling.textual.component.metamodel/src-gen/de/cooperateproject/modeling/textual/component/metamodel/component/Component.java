@@ -2,9 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -21,16 +18,18 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterfacerelation <em>Interfacerelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterface <em>Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPort <em>Port</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent <em>Owning Component</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent()
  * @model
  * @generated
  */
-public interface Component extends Commentable<org.eclipse.uml2.uml.Component>, AliasedElement, Classifier {
+public interface Component extends Classifier<org.eclipse.uml2.uml.Component> {
     /**
      * Returns the value of the '<em><b>Component</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Component}.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent <em>Owning Component</em>}'.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Component</em>' containment reference list isn't clear,
@@ -39,7 +38,8 @@ public interface Component extends Commentable<org.eclipse.uml2.uml.Component>, 
      * <!-- end-user-doc -->
      * @return the value of the '<em>Component</em>' containment reference list.
      * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_Component()
-     * @model containment="true"
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent
+     * @model opposite="owningComponent" containment="true"
      * @generated
      */
     EList<Component> getComponent();
@@ -75,6 +75,34 @@ public interface Component extends Commentable<org.eclipse.uml2.uml.Component>, 
      * @generated
      */
     EList<Port> getPort();
+
+    /**
+     * Returns the value of the '<em><b>Owning Component</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getComponent <em>Component</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Owning Component</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Owning Component</em>' container reference.
+     * @see #setOwningComponent(Component)
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_OwningComponent()
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.Component#getComponent
+     * @model opposite="component" transient="false"
+     * @generated
+     */
+    Component getOwningComponent();
+
+    /**
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent <em>Owning Component</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Owning Component</em>' container reference.
+     * @see #getOwningComponent()
+     * @generated
+     */
+    void setOwningComponent(Component value);
 
     /**
      * Returns the value of the '<em><b>Interfacerelation</b></em>' containment reference list.

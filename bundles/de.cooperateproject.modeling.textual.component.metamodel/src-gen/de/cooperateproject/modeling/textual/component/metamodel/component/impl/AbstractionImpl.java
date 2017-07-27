@@ -158,8 +158,9 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getLeftclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<org.eclipse.uml2.uml.Classifier> getLeftclassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
     }
 
     /**
@@ -167,8 +168,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetLeftclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetLeftclassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
     }
 
     /**
@@ -176,7 +177,7 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftclassifier(Classifier newLeftclassifier) {
+    public void setLeftclassifier(Classifier<org.eclipse.uml2.uml.Classifier> newLeftclassifier) {
         eDynamicSet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
     }
 
@@ -185,8 +186,9 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getRightclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<org.eclipse.uml2.uml.Classifier> getRightclassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
     }
 
     /**
@@ -194,8 +196,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetRightclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetRightclassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
     }
 
     /**
@@ -203,7 +205,7 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightclassifier(Classifier newRightclassifier) {
+    public void setRightclassifier(Classifier<org.eclipse.uml2.uml.Classifier> newRightclassifier) {
         eDynamicSet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
     }
 
@@ -234,6 +236,7 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -244,10 +247,10 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
                 setAlias((String)newValue);
                 return;
             case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier)newValue);
+                setLeftclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
             case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier)newValue);
+                setRightclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -268,10 +271,10 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
                 unsetAlias();
                 return;
             case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier)null);
+                setLeftclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
                 return;
             case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier)null);
+                setRightclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
                 return;
         }
         super.eUnset(featureID);

@@ -2,13 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
-
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl.CommentableImpl;
-
-import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Interface;
 import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation;
@@ -36,38 +29,17 @@ import org.eclipse.uml2.uml.Component;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getName <em>Name</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getComponent <em>Component</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPortrelation <em>Portrelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterfacerelation <em>Interfacerelation</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterface <em>Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getOwningComponent <em>Owning Component</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ComponentImpl extends CommentableImpl<Component> implements de.cooperateproject.modeling.textual.component.metamodel.component.Component {
-    /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
-    protected static final String NAME_EDEFAULT = null;
-
-    /**
-     * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAlias()
-     * @generated
-     * @ordered
-     */
-    protected static final String ALIAS_EDEFAULT = null;
-
+public class ComponentImpl extends ClassifierImpl<Component> implements de.cooperateproject.modeling.textual.component.metamodel.component.Component {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -85,78 +57,6 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     @Override
     protected EClass eStaticClass() {
         return ComponentPackage.Literals.COMPONENT;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getName() {
-        return (String)eDynamicGet(ComponentPackage.COMPONENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setName(String newName) {
-        eDynamicSet(ComponentPackage.COMPONENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME, newName);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetName() {
-        eDynamicUnset(ComponentPackage.COMPONENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetName() {
-        return eDynamicIsSet(ComponentPackage.COMPONENT__NAME, TextualCommonsPackage.Literals.NAMED_ELEMENT__NAME);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getAlias() {
-        return (String)eDynamicGet(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setAlias(String newAlias) {
-        eDynamicSet(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS, newAlias);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetAlias() {
-        eDynamicUnset(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetAlias() {
-        return eDynamicIsSet(ComponentPackage.COMPONENT__ALIAS, TextualCommonsPackage.Literals.ALIASED_ELEMENT__ALIAS);
     }
 
     /**
@@ -187,6 +87,53 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     @SuppressWarnings("unchecked")
     public EList<Port> getPort() {
         return (EList<Port>)eDynamicGet(ComponentPackage.COMPONENT__PORT, ComponentPackage.Literals.COMPONENT__PORT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public de.cooperateproject.modeling.textual.component.metamodel.component.Component getOwningComponent() {
+        return (de.cooperateproject.modeling.textual.component.metamodel.component.Component)eDynamicGet(ComponentPackage.COMPONENT__OWNING_COMPONENT, ComponentPackage.Literals.COMPONENT__OWNING_COMPONENT, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOwningComponent(de.cooperateproject.modeling.textual.component.metamodel.component.Component newOwningComponent, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newOwningComponent, ComponentPackage.COMPONENT__OWNING_COMPONENT, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOwningComponent(de.cooperateproject.modeling.textual.component.metamodel.component.Component newOwningComponent) {
+        eDynamicSet(ComponentPackage.COMPONENT__OWNING_COMPONENT, ComponentPackage.Literals.COMPONENT__OWNING_COMPONENT, newOwningComponent);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case ComponentPackage.COMPONENT__COMPONENT:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getComponent()).basicAdd(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOwningComponent((de.cooperateproject.modeling.textual.component.metamodel.component.Component)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
     }
 
     /**
@@ -227,6 +174,8 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 return ((InternalEList<?>)getInterface()).basicRemove(otherEnd, msgs);
             case ComponentPackage.COMPONENT__PORT:
                 return ((InternalEList<?>)getPort()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                return basicSetOwningComponent(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -237,12 +186,22 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
      * @generated
      */
     @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+        switch (eContainerFeatureID()) {
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                return eInternalContainer().eInverseRemove(this, ComponentPackage.COMPONENT__COMPONENT, de.cooperateproject.modeling.textual.component.metamodel.component.Component.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ComponentPackage.COMPONENT__NAME:
-                return getName();
-            case ComponentPackage.COMPONENT__ALIAS:
-                return getAlias();
             case ComponentPackage.COMPONENT__COMPONENT:
                 return getComponent();
             case ComponentPackage.COMPONENT__PORTRELATION:
@@ -253,6 +212,8 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 return getInterface();
             case ComponentPackage.COMPONENT__PORT:
                 return getPort();
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                return getOwningComponent();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -266,12 +227,6 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ComponentPackage.COMPONENT__NAME:
-                setName((String)newValue);
-                return;
-            case ComponentPackage.COMPONENT__ALIAS:
-                setAlias((String)newValue);
-                return;
             case ComponentPackage.COMPONENT__COMPONENT:
                 getComponent().clear();
                 getComponent().addAll((Collection<? extends de.cooperateproject.modeling.textual.component.metamodel.component.Component>)newValue);
@@ -292,6 +247,9 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 getPort().clear();
                 getPort().addAll((Collection<? extends Port>)newValue);
                 return;
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                setOwningComponent((de.cooperateproject.modeling.textual.component.metamodel.component.Component)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -304,12 +262,6 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ComponentPackage.COMPONENT__NAME:
-                unsetName();
-                return;
-            case ComponentPackage.COMPONENT__ALIAS:
-                unsetAlias();
-                return;
             case ComponentPackage.COMPONENT__COMPONENT:
                 getComponent().clear();
                 return;
@@ -325,6 +277,9 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
             case ComponentPackage.COMPONENT__PORT:
                 getPort().clear();
                 return;
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                setOwningComponent((de.cooperateproject.modeling.textual.component.metamodel.component.Component)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -337,10 +292,6 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ComponentPackage.COMPONENT__NAME:
-                return isSetName();
-            case ComponentPackage.COMPONENT__ALIAS:
-                return isSetAlias();
             case ComponentPackage.COMPONENT__COMPONENT:
                 return !getComponent().isEmpty();
             case ComponentPackage.COMPONENT__PORTRELATION:
@@ -351,62 +302,10 @@ public class ComponentImpl extends CommentableImpl<Component> implements de.coop
                 return !getInterface().isEmpty();
             case ComponentPackage.COMPONENT__PORT:
                 return !getPort().isEmpty();
+            case ComponentPackage.COMPONENT__OWNING_COMPONENT:
+                return getOwningComponent() != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == NamedElement.class) {
-            switch (derivedFeatureID) {
-                case ComponentPackage.COMPONENT__NAME: return TextualCommonsPackage.NAMED_ELEMENT__NAME;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedElement.class) {
-            switch (derivedFeatureID) {
-                case ComponentPackage.COMPONENT__ALIAS: return TextualCommonsPackage.ALIASED_ELEMENT__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == Classifier.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == NamedElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.NAMED_ELEMENT__NAME: return ComponentPackage.COMPONENT__NAME;
-                default: return -1;
-            }
-        }
-        if (baseClass == AliasedElement.class) {
-            switch (baseFeatureID) {
-                case TextualCommonsPackage.ALIASED_ELEMENT__ALIAS: return ComponentPackage.COMPONENT__ALIAS;
-                default: return -1;
-            }
-        }
-        if (baseClass == Classifier.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 } //ComponentImpl

@@ -2,9 +2,6 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -23,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Interface extends Commentable<org.eclipse.uml2.uml.Interface>, Classifier, AliasedElement {
+public interface Interface extends Classifier<org.eclipse.uml2.uml.Interface> {
     /**
      * Returns the value of the '<em><b>Member</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Member}.

@@ -14,6 +14,7 @@ import de.cooperateproject.modeling.textual.component.metamodel.component.Compon
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.Interface;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,8 +159,9 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getLeftclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<Interface> getLeftclassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
     }
 
     /**
@@ -167,8 +169,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetLeftclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    public Classifier<Interface> basicGetLeftclassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
     }
 
     /**
@@ -176,7 +178,7 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftclassifier(Classifier newLeftclassifier) {
+    public void setLeftclassifier(Classifier<Interface> newLeftclassifier) {
         eDynamicSet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
     }
 
@@ -185,8 +187,9 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getRightclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<Interface> getRightclassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
     }
 
     /**
@@ -194,8 +197,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetRightclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    public Classifier<Interface> basicGetRightclassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
     }
 
     /**
@@ -203,7 +206,7 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightclassifier(Classifier newRightclassifier) {
+    public void setRightclassifier(Classifier<Interface> newRightclassifier) {
         eDynamicSet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
     }
 
@@ -234,6 +237,7 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -244,10 +248,10 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
                 setAlias((String)newValue);
                 return;
             case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier)newValue);
+                setLeftclassifier((Classifier<Interface>)newValue);
                 return;
             case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier)newValue);
+                setRightclassifier((Classifier<Interface>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -268,10 +272,10 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
                 unsetAlias();
                 return;
             case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier)null);
+                setLeftclassifier((Classifier<Interface>)null);
                 return;
             case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier)null);
+                setRightclassifier((Classifier<Interface>)null);
                 return;
         }
         super.eUnset(featureID);

@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
+import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +15,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
  * @model
  * @generated
  */
-public interface Manifestation extends UMLReferencingElement<org.eclipse.uml2.uml.Manifestation>, ClassifierRelation {
+public interface Manifestation extends UMLReferencingElement<org.eclipse.uml2.uml.Manifestation>, ClassifierRelation<Classifier, Classifier> {
 } // Manifestation

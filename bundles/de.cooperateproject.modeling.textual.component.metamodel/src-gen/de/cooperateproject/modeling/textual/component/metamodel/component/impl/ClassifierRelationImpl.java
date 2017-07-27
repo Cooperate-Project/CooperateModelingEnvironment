@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class ClassifierRelationImpl extends AliasedElementImpl implements ClassifierRelation {
+public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml2.uml.Classifier, RightUMLType extends org.eclipse.uml2.uml.Classifier> extends AliasedElementImpl implements ClassifierRelation<LeftUMLType, RightUMLType> {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -48,8 +48,9 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getLeftclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<LeftUMLType> getLeftclassifier() {
+        return (Classifier<LeftUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
     }
 
     /**
@@ -57,8 +58,8 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetLeftclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    public Classifier<LeftUMLType> basicGetLeftclassifier() {
+        return (Classifier<LeftUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
     }
 
     /**
@@ -66,7 +67,7 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftclassifier(Classifier newLeftclassifier) {
+    public void setLeftclassifier(Classifier<LeftUMLType> newLeftclassifier) {
         eDynamicSet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
     }
 
@@ -75,8 +76,9 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier getRightclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    @SuppressWarnings("unchecked")
+    public Classifier<RightUMLType> getRightclassifier() {
+        return (Classifier<RightUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
     }
 
     /**
@@ -84,8 +86,8 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier basicGetRightclassifier() {
-        return (Classifier)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    public Classifier<RightUMLType> basicGetRightclassifier() {
+        return (Classifier<RightUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
     }
 
     /**
@@ -93,7 +95,7 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightclassifier(Classifier newRightclassifier) {
+    public void setRightclassifier(Classifier<RightUMLType> newRightclassifier) {
         eDynamicSet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
     }
 
@@ -120,14 +122,15 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier)newValue);
+                setLeftclassifier((Classifier<LeftUMLType>)newValue);
                 return;
             case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier)newValue);
+                setRightclassifier((Classifier<RightUMLType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -142,10 +145,10 @@ public abstract class ClassifierRelationImpl extends AliasedElementImpl implemen
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier)null);
+                setLeftclassifier((Classifier<LeftUMLType>)null);
                 return;
             case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier)null);
+                setRightclassifier((Classifier<RightUMLType>)null);
                 return;
         }
         super.eUnset(featureID);
