@@ -6,7 +6,7 @@ modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notat
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses cls('http://www.cooperateproject.de/modeling/textual/cls/Cls');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 
 main() {
@@ -496,16 +496,17 @@ mapping textualCommons::PackageImport::stereotypeDecorationPackageImport() : not
 mapping cls::ClassDiagram::stringValueStyle() : notation::StringValueStyle
 {
 	name := "diagram_compatibility_version";
-	stringValue := "1.2.0";	
+	stringValue := "1.3.0";	
 }
 
 mapping cls::ClassDiagram::diagramStyle() : notation::DiagramStyle
 {	
 }
 
-mapping cls::ClassDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusViewStyle
+mapping cls::ClassDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
 {
 	owner := rootElement.toEObject();
+	diagramKindId := "org.eclipse.papyrus.uml.diagram.class";
 }
 
 mapping cls::AssociationMemberEnd::semanticBranchStyle() : notation::EObjectValueStyle

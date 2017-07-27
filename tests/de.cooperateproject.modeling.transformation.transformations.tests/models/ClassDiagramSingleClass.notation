@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-VwQANftEeaDUNnAN4oMeQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-VwQANftEeaDUNnAN4oMeQ" type="PapyrusUMLClassDiagram" name="Class Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="__ntAENftEeaDUNnAN4oMeQ" type="Class_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="__n-s4NftEeaDUNnAN4oMeQ" type="Class_NameLabel"/>
     <children xmi:type="notation:DecorationNode" xmi:id="__n_T8NftEeaDUNnAN4oMeQ" type="Class_FloatingNameLabel">
@@ -26,9 +26,9 @@
     <element xmi:type="uml:Class" href="ClassDiagramSingleClass.uml#__nYP8NftEeaDUNnAN4oMeQ"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="__ntAEdftEeaDUNnAN4oMeQ" x="382" y="196"/>
   </children>
-  <styles xmi:type="notation:StringValueStyle" xmi:id="_-VwQAdftEeaDUNnAN4oMeQ" name="diagram_compatibility_version" stringValue="1.2.0"/>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_-VwQAdftEeaDUNnAN4oMeQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_-VwQAtftEeaDUNnAN4oMeQ"/>
-  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_-VwQA9ftEeaDUNnAN4oMeQ">
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_-VwQA9ftEeaDUNnAN4oMeQ" diagramKindId="org.eclipse.papyrus.uml.diagram.class">
     <owner xmi:type="uml:Model" href="ClassDiagramSingleClass.uml#_-MJBANftEeaDUNnAN4oMeQ"/>
   </styles>
   <element xmi:type="uml:Model" href="ClassDiagramSingleClass.uml#_-MJBANftEeaDUNnAN4oMeQ"/>

@@ -7,7 +7,7 @@ modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
 modeltype TXT uses usecase('http://www.cooperateproject.de/modeling/textual/usecase/Usecase');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
-modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/viewpoints/policy/style');
+modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 
 main() {
 	var diagrams := textual.rootObjects()[usecase::UseCaseDiagram];
@@ -348,16 +348,17 @@ mapping usecase::Actor::actorToFloatingNameLabel() : notation::DecorationNode
 mapping usecase::UseCaseDiagram::stringValueStyle() : notation::StringValueStyle
 {
 	name := "diagram_compatibility_version";
-	stringValue := "1.2.0";	
+	stringValue := "1.3.0";	
 }
 
 mapping usecase::UseCaseDiagram::diagramStyle() : notation::DiagramStyle
 {	
 }
 
-mapping usecase::UseCaseDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusViewStyle
+mapping usecase::UseCaseDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
 {
 	owner := rootElement.toEObject();
+	diagramKindId := "org.eclipse.papyrus.uml.diagram.useCase";
 }
 
 mapping usecase::Extend::extendToNameLabel() : notation::DecorationNode
