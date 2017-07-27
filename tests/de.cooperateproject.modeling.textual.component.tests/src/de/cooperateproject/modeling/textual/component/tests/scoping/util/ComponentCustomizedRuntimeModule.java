@@ -21,19 +21,19 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 import de.cooperateproject.modeling.textual.common.derivedstate.calculator.UMLReferencingElementCalculator;
+import de.cooperateproject.modeling.textual.common.derivedstate.initializer.UMLReferencingElementInitializer;
 import de.cooperateproject.modeling.textual.common.derivedstate.initializer.VisibilityHavingElementInitializer;
 import de.cooperateproject.modeling.textual.common.derivedstate.remover.UMLReferencingElementRemover;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.services.TextualCommonsTransientStatusProvider;
 import de.cooperateproject.modeling.textual.component.ComponentRuntimeModule;
-import de.cooperateproject.modeling.textual.component.tests.ComponentInjectorProvider;
-import de.cooperateproject.modeling.textual.usecase.derivedstate.calculator.AssociationCalculator;
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.component.services.ComponentTransientStatusProvider;
+import de.cooperateproject.modeling.textual.component.tests.ComponentInjectorProvider;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.Applicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.DerivedStateProcessorApplicability;
 import de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.initializer.IAtomicDerivedStateProcessor;
@@ -53,7 +53,7 @@ public class ComponentCustomizedRuntimeModule extends ComponentRuntimeModule {
 
         @Override
         public Collection<EPackage> coveredPackages() {
-            return Arrays.asList(ComponentPackage.eINSTANCE);
+            return Arrays.asList(ComponentPackage.eINSTANCE, TextualCommonsPackage.eINSTANCE);
         }
 
         @Override
@@ -78,9 +78,9 @@ public class ComponentCustomizedRuntimeModule extends ComponentRuntimeModule {
     private static class DummyAtomicProcessorRegistry implements IAtomicDerivedStateProcessorRegistry {
 
 
-        private static final Class<?>[] RELEVANT_CLASSES = { IAtomicDerivedStateProcessor.class, UMLReferencingElementCalculator.class,
-                UMLReferencingElementRemover.class,
-                VisibilityHavingElementInitializer.class };
+		private static final Class<?>[] RELEVANT_CLASSES = { IAtomicDerivedStateProcessor.class,
+				UMLReferencingElementCalculator.class, UMLReferencingElementRemover.class,
+				UMLReferencingElementInitializer.class };
         @SuppressWarnings("rawtypes")
         private static final Map<DerivedStateProcessorApplicability, Map<Class<?>, IAtomicDerivedStateProcessor>> PROCESSORS = getProcessors();
 
@@ -151,6 +151,12 @@ public class ComponentCustomizedRuntimeModule extends ComponentRuntimeModule {
         }
 
     }
+    
+    private static class StaticallyBoundTransientStatusProvider extends DelegatingTransientStatusProvider {
+        public StaticallyBoundTransientStatusProvider() {
+            super(Arrays.asList(new ComponentTransientStatusProvider(), new TextualCommonsTransientStatusProvider()));
+        }
+    }
 
     @Override
     public ClassLoader bindClassLoaderToInstance() {
@@ -167,6 +173,14 @@ public class ComponentCustomizedRuntimeModule extends ComponentRuntimeModule {
         return DummyFactoryRegistry.class;
     }
 
+    @Override
+    public Class<? extends IAtomicDerivedStateProcessorRegistry> bindIAtomicDerivedStateProcessorRegistry() {
+        return DummyAtomicProcessorRegistry.class;
+    }
 
+    @Override
+    public Class<? extends ITransientStatusProvider> bindITransientStatusProvider() {
+        return StaticallyBoundTransientStatusProvider.class;
+    }
 
 }

@@ -8,7 +8,7 @@ import "platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore" as uml
 
 ComponentDiagram returns ComponentDiagram: 
 	{ComponentDiagram}
-		'@start-cpd' title=EString
+		'@start-cpd' title=STRING
 		 rootpackage=RootPackage
 		'@end-cpd'
 ;
@@ -20,11 +20,6 @@ ClassifierRelation returns ClassifierRelation:
 Classifier returns Classifier: 
 	Interface | Component;
 
-NameString returns ecore::EString: 
-	STRING
-;
-
-
 PortRelation returns PortRelation: 
 	Connector;
 
@@ -35,10 +30,6 @@ InterfaceRelation returns InterfaceRelation:
 Member returns Member: 
 	Method | Attribute;
 
-
-
-EString returns ecore::EString: 
-	STRING | ID;
 	
 	
 
@@ -64,29 +55,29 @@ Component returns Component:
 
 
 Generalization returns Generalization:
-		'isa' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
+		'isa' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
 ;
 
 Abstraction returns Abstraction:
-		'abs' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
+		'abs' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
  ;
 
 Manifestation returns Manifestation:
-		'man' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
+		'man' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
 ;
 
 Substitution returns Substitution:
-		'sub' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
+		'sub' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
 ;
 
 Dependency returns Dependency:
-		'dep' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')' 
+		'dep' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
 ;
 
 
 
 Comment returns textualCommons::Comment: 
-		'note' body=EString
+		'note' body=STRING
 ;
 
 Port returns Port:
@@ -104,9 +95,9 @@ Interface returns Interface:
 
 
 Connector returns Connector: 
-	'con' ((name=EString 'as' alias = ID)|name = ID) 
+	'con' ((name=STRING 'as' alias = ID)|name = ID) 
 	'('
-		leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
+		leftport=[Port] ',' rightport=[Port] ',' interface=[Interface]
 	')';
 
 Provide returns Provide: 
@@ -128,10 +119,6 @@ enum Visibility returns uml::VisibilityKind:
 	| protected = 'protected'
 	| package = '~'
 ;
-
-EBoolean returns ecore::EBoolean: 
-	'true' | 'false';
-
 
 Method returns Method: 
 	{Method}
@@ -163,4 +150,3 @@ FQN:
 
 @Override
 terminal ID         : '^'?('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-terminal UNDERSCORE : '_';

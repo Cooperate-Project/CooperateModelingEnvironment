@@ -292,6 +292,7 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = casePort(port);
                 if (result == null) result = caseNamedElement(port);
                 if (result == null) result = caseVisibilityHavingElement(port);
+                if (result == null) result = caseUMLReferencingElement(port);
                 if (result == null) result = caseElement(port);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

@@ -209,8 +209,8 @@ class ComponentParsingTest extends AbstractComponentTest{
 			component testComp { }
 			component "testComp2 test" as testComp2 { }
 			interface "iface test" as iface { }
-			isa ( testComp, "testComp2 test")
-			isa ( testComp, "iface test")
+			isa ( testComp, testComp2)
+			isa ( testComp, iface)
 			@end-cpd
 		'''.parse(rs)
 		validationTestHelper.assertNoIssues(model)

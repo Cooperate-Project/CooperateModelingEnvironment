@@ -3,6 +3,7 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.NamedElement;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.VisibilityHavingElement;
 
 /**
@@ -15,5 +16,5 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Visi
  * @model
  * @generated
  */
-public interface Port extends NamedElement, VisibilityHavingElement {
+public interface Port extends NamedElement, VisibilityHavingElement, UMLReferencingElement<org.eclipse.uml2.uml.Port> {
 } // Port

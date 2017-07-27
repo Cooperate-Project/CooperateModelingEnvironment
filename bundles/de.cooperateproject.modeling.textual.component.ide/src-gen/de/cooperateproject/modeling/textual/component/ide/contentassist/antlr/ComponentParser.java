@@ -35,12 +35,10 @@ public class ComponentParser extends AbstractContentAssistParser {
 					put(grammarAccess.getClassifierAccess().getAlternatives(), "rule__Classifier__Alternatives");
 					put(grammarAccess.getInterfaceRelationAccess().getAlternatives(), "rule__InterfaceRelation__Alternatives");
 					put(grammarAccess.getMemberAccess().getAlternatives(), "rule__Member__Alternatives");
-					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
 					put(grammarAccess.getComponentAccess().getAlternatives_2(), "rule__Component__Alternatives_2");
 					put(grammarAccess.getInterfaceAccess().getAlternatives_2(), "rule__Interface__Alternatives_2");
 					put(grammarAccess.getInterfaceAccess().getAlternatives_3(), "rule__Interface__Alternatives_3");
 					put(grammarAccess.getConnectorAccess().getAlternatives_1(), "rule__Connector__Alternatives_1");
-					put(grammarAccess.getEBooleanAccess().getAlternatives(), "rule__EBoolean__Alternatives");
 					put(grammarAccess.getVisibilityAccess().getAlternatives(), "rule__Visibility__Alternatives");
 					put(grammarAccess.getComponentDiagramAccess().getGroup(), "rule__ComponentDiagram__Group__0");
 					put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");

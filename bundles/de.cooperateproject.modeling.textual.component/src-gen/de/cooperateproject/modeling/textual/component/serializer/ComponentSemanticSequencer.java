@@ -113,7 +113,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Abstraction returns Abstraction
 	 *
 	 * Constraint:
-	 *     (leftclassifier=[Classifier|EString] rightclassifier=[Classifier|EString])
+	 *     (leftclassifier=[Classifier|ID] rightclassifier=[Classifier|ID])
 	 */
 	protected void sequence_Abstraction(ISerializationContext context, Abstraction semanticObject) {
 		if (errorAcceptor != null) {
@@ -123,8 +123,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getAbstractionAccess().getLeftclassifierClassifierEStringParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
-		feeder.accept(grammarAccess.getAbstractionAccess().getRightclassifierClassifierEStringParserRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getAbstractionAccess().getLeftclassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getAbstractionAccess().getRightclassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -147,7 +147,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Comment returns Comment
 	 *
 	 * Constraint:
-	 *     body=EString
+	 *     body=STRING
 	 */
 	protected void sequence_Comment(ISerializationContext context, Comment semanticObject) {
 		if (errorAcceptor != null) {
@@ -155,7 +155,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, TextualCommonsPackage.Literals.COMMENT__BODY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getCommentAccess().getBodyEStringParserRuleCall_1_0(), semanticObject.getBody());
+		feeder.accept(grammarAccess.getCommentAccess().getBodySTRINGTerminalRuleCall_1_0(), semanticObject.getBody());
 		feeder.finish();
 	}
 	
@@ -165,7 +165,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ComponentDiagram returns ComponentDiagram
 	 *
 	 * Constraint:
-	 *     (title=EString rootpackage=RootPackage)
+	 *     (title=STRING rootpackage=RootPackage)
 	 */
 	protected void sequence_ComponentDiagram(ISerializationContext context, ComponentDiagram semanticObject) {
 		if (errorAcceptor != null) {
@@ -175,7 +175,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.COMPONENT_DIAGRAM__ROOTPACKAGE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getComponentDiagramAccess().getTitleEStringParserRuleCall_2_0(), semanticObject.getTitle());
+		feeder.accept(grammarAccess.getComponentDiagramAccess().getTitleSTRINGTerminalRuleCall_2_0(), semanticObject.getTitle());
 		feeder.accept(grammarAccess.getComponentDiagramAccess().getRootpackageRootPackageParserRuleCall_3_0(), semanticObject.getRootpackage());
 		feeder.finish();
 	}
@@ -208,7 +208,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Connector returns Connector
 	 *
 	 * Constraint:
-	 *     (((name=EString alias=ID) | name=ID) leftport=[Port|ID] rightport=[Port|ID] interface=[Interface|EString])
+	 *     (((name=STRING alias=ID) | name=ID) leftport=[Port|ID] rightport=[Port|ID] interface=[Interface|ID])
 	 */
 	protected void sequence_Connector(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, (EObject) semanticObject);
@@ -221,7 +221,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Dependency returns Dependency
 	 *
 	 * Constraint:
-	 *     (leftclassifier=[Classifier|EString] rightclassifier=[Classifier|EString])
+	 *     (leftclassifier=[Classifier|ID] rightclassifier=[Classifier|ID])
 	 */
 	protected void sequence_Dependency(ISerializationContext context, Dependency semanticObject) {
 		if (errorAcceptor != null) {
@@ -231,8 +231,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getDependencyAccess().getLeftclassifierClassifierEStringParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
-		feeder.accept(grammarAccess.getDependencyAccess().getRightclassifierClassifierEStringParserRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getDependencyAccess().getLeftclassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getDependencyAccess().getRightclassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -243,7 +243,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Generalization returns Generalization
 	 *
 	 * Constraint:
-	 *     (leftclassifier=[Classifier|EString] rightclassifier=[Classifier|EString])
+	 *     (leftclassifier=[Classifier|ID] rightclassifier=[Classifier|ID])
 	 */
 	protected void sequence_Generalization(ISerializationContext context, Generalization semanticObject) {
 		if (errorAcceptor != null) {
@@ -253,8 +253,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftclassifierClassifierEStringParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
-		feeder.accept(grammarAccess.getGeneralizationAccess().getRightclassifierClassifierEStringParserRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getLeftclassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getGeneralizationAccess().getRightclassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -278,7 +278,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Manifestation returns Manifestation
 	 *
 	 * Constraint:
-	 *     (leftclassifier=[Classifier|EString] rightclassifier=[Classifier|EString])
+	 *     (leftclassifier=[Classifier|ID] rightclassifier=[Classifier|ID])
 	 */
 	protected void sequence_Manifestation(ISerializationContext context, Manifestation semanticObject) {
 		if (errorAcceptor != null) {
@@ -288,8 +288,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getManifestationAccess().getLeftclassifierClassifierEStringParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
-		feeder.accept(grammarAccess.getManifestationAccess().getRightclassifierClassifierEStringParserRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getManifestationAccess().getLeftclassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getManifestationAccess().getRightclassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
 		feeder.finish();
 	}
 	
@@ -394,7 +394,7 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substitution returns Substitution
 	 *
 	 * Constraint:
-	 *     (leftclassifier=[Classifier|EString] rightclassifier=[Classifier|EString])
+	 *     (leftclassifier=[Classifier|ID] rightclassifier=[Classifier|ID])
 	 */
 	protected void sequence_Substitution(ISerializationContext context, Substitution semanticObject) {
 		if (errorAcceptor != null) {
@@ -404,8 +404,8 @@ public class ComponentSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing((EObject) semanticObject, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, (EObject) semanticObject);
-		feeder.accept(grammarAccess.getSubstitutionAccess().getLeftclassifierClassifierEStringParserRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
-		feeder.accept(grammarAccess.getSubstitutionAccess().getRightclassifierClassifierEStringParserRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getSubstitutionAccess().getLeftclassifierClassifierIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false));
+		feeder.accept(grammarAccess.getSubstitutionAccess().getRightclassifierClassifierIDTerminalRuleCall_4_0_1(), semanticObject.eGet(ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false));
 		feeder.finish();
 	}
 	

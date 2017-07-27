@@ -886,8 +886,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g2 = createEGenericType(theUMLPackage.getDependency());
         g1.getETypeArguments().add(g2);
         requireEClass.getEGenericSuperTypes().add(g1);
-        portEClass.getESuperTypes().add(theTextualCommonsPackage.getNamedElement());
-        portEClass.getESuperTypes().add(theTextualCommonsPackage.getVisibilityHavingElement());
+        g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
+        portEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getVisibilityHavingElement());
+        portEClass.getEGenericSuperTypes().add(g1);
+        g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
+        g2 = createEGenericType(theUMLPackage.getPort());
+        g1.getETypeArguments().add(g2);
+        portEClass.getEGenericSuperTypes().add(g1);
 
         // Initialize classes, features, and operations; add parameters
         initEClass(componentDiagramEClass, ComponentDiagram.class, "ComponentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -33,19 +33,19 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cComponentDiagramAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cStartCpdKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTitleAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTitleEStringParserRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
+		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
 		private final Assignment cRootpackageAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRootpackageRootPackageParserRuleCall_3_0 = (RuleCall)cRootpackageAssignment_3.eContents().get(0);
 		private final Keyword cEndCpdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ComponentDiagram:
 		//	{ComponentDiagram}
-		//	'@start-cpd' title=EString
+		//	'@start-cpd' title=STRING
 		//	rootpackage=RootPackage
 		//	'@end-cpd';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ComponentDiagram} '@start-cpd' title=EString rootpackage=RootPackage '@end-cpd'
+		//{ComponentDiagram} '@start-cpd' title=STRING rootpackage=RootPackage '@end-cpd'
 		public Group getGroup() { return cGroup; }
 		
 		//{ComponentDiagram}
@@ -54,11 +54,11 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'@start-cpd'
 		public Keyword getStartCpdKeyword_1() { return cStartCpdKeyword_1; }
 		
-		//title=EString
+		//title=STRING
 		public Assignment getTitleAssignment_2() { return cTitleAssignment_2; }
 		
-		//EString
-		public RuleCall getTitleEStringParserRuleCall_2_0() { return cTitleEStringParserRuleCall_2_0; }
+		//STRING
+		public RuleCall getTitleSTRINGTerminalRuleCall_2_0() { return cTitleSTRINGTerminalRuleCall_2_0; }
 		
 		//rootpackage=RootPackage
 		public Assignment getRootpackageAssignment_3() { return cRootpackageAssignment_3; }
@@ -119,17 +119,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//Component
 		public RuleCall getComponentParserRuleCall_1() { return cComponentParserRuleCall_1; }
 	}
-	public class NameStringElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.NameString");
-		private final RuleCall cSTRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//NameString:
-		//	STRING;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall() { return cSTRINGTerminalRuleCall; }
-	}
 	public class PortRelationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.PortRelation");
 		private final RuleCall cConnectorParserRuleCall = (RuleCall)rule.eContents().get(1);
@@ -178,25 +167,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Attribute
 		public RuleCall getAttributeParserRuleCall_1() { return cAttributeParserRuleCall_1; }
-	}
-	public class EStringElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.EString");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSTRINGTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIDTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//EString:
-		//	STRING | ID;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//STRING | ID
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//STRING
-		public RuleCall getSTRINGTerminalRuleCall_0() { return cSTRINGTerminalRuleCall_0; }
-		
-		//ID
-		public RuleCall getIDTerminalRuleCall_1() { return cIDTerminalRuleCall_1; }
 	}
 	public class RootPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.RootPackage");
@@ -374,18 +344,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLeftclassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLeftclassifierClassifierCrossReference_2_0 = (CrossReference)cLeftclassifierAssignment_2.eContents().get(0);
-		private final RuleCall cLeftclassifierClassifierEStringParserRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
+		private final RuleCall cLeftclassifierClassifierIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRightclassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cRightclassifierClassifierCrossReference_4_0 = (CrossReference)cRightclassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRightclassifierClassifierEStringParserRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final RuleCall cRightclassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Generalization:
-		//	'isa' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+		//	'isa' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'isa' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
+		//'isa' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'isa'
@@ -394,26 +364,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//leftclassifier=[Classifier|EString]
+		//leftclassifier=[Classifier]
 		public Assignment getLeftclassifierAssignment_2() { return cLeftclassifierAssignment_2; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getLeftclassifierClassifierCrossReference_2_0() { return cLeftclassifierClassifierCrossReference_2_0; }
 		
-		//EString
-		public RuleCall getLeftclassifierClassifierEStringParserRuleCall_2_0_1() { return cLeftclassifierClassifierEStringParserRuleCall_2_0_1; }
+		//ID
+		public RuleCall getLeftclassifierClassifierIDTerminalRuleCall_2_0_1() { return cLeftclassifierClassifierIDTerminalRuleCall_2_0_1; }
 		
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rightclassifier=[Classifier|EString]
+		//rightclassifier=[Classifier]
 		public Assignment getRightclassifierAssignment_4() { return cRightclassifierAssignment_4; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getRightclassifierClassifierCrossReference_4_0() { return cRightclassifierClassifierCrossReference_4_0; }
 		
-		//EString
-		public RuleCall getRightclassifierClassifierEStringParserRuleCall_4_0_1() { return cRightclassifierClassifierEStringParserRuleCall_4_0_1; }
+		//ID
+		public RuleCall getRightclassifierClassifierIDTerminalRuleCall_4_0_1() { return cRightclassifierClassifierIDTerminalRuleCall_4_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -425,18 +395,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLeftclassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLeftclassifierClassifierCrossReference_2_0 = (CrossReference)cLeftclassifierAssignment_2.eContents().get(0);
-		private final RuleCall cLeftclassifierClassifierEStringParserRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
+		private final RuleCall cLeftclassifierClassifierIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRightclassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cRightclassifierClassifierCrossReference_4_0 = (CrossReference)cRightclassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRightclassifierClassifierEStringParserRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final RuleCall cRightclassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Abstraction:
-		//	'abs' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+		//	'abs' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'abs' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
+		//'abs' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'abs'
@@ -445,26 +415,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//leftclassifier=[Classifier|EString]
+		//leftclassifier=[Classifier]
 		public Assignment getLeftclassifierAssignment_2() { return cLeftclassifierAssignment_2; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getLeftclassifierClassifierCrossReference_2_0() { return cLeftclassifierClassifierCrossReference_2_0; }
 		
-		//EString
-		public RuleCall getLeftclassifierClassifierEStringParserRuleCall_2_0_1() { return cLeftclassifierClassifierEStringParserRuleCall_2_0_1; }
+		//ID
+		public RuleCall getLeftclassifierClassifierIDTerminalRuleCall_2_0_1() { return cLeftclassifierClassifierIDTerminalRuleCall_2_0_1; }
 		
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rightclassifier=[Classifier|EString]
+		//rightclassifier=[Classifier]
 		public Assignment getRightclassifierAssignment_4() { return cRightclassifierAssignment_4; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getRightclassifierClassifierCrossReference_4_0() { return cRightclassifierClassifierCrossReference_4_0; }
 		
-		//EString
-		public RuleCall getRightclassifierClassifierEStringParserRuleCall_4_0_1() { return cRightclassifierClassifierEStringParserRuleCall_4_0_1; }
+		//ID
+		public RuleCall getRightclassifierClassifierIDTerminalRuleCall_4_0_1() { return cRightclassifierClassifierIDTerminalRuleCall_4_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -476,18 +446,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLeftclassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLeftclassifierClassifierCrossReference_2_0 = (CrossReference)cLeftclassifierAssignment_2.eContents().get(0);
-		private final RuleCall cLeftclassifierClassifierEStringParserRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
+		private final RuleCall cLeftclassifierClassifierIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRightclassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cRightclassifierClassifierCrossReference_4_0 = (CrossReference)cRightclassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRightclassifierClassifierEStringParserRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final RuleCall cRightclassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Manifestation:
-		//	'man' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+		//	'man' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'man' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
+		//'man' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'man'
@@ -496,26 +466,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//leftclassifier=[Classifier|EString]
+		//leftclassifier=[Classifier]
 		public Assignment getLeftclassifierAssignment_2() { return cLeftclassifierAssignment_2; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getLeftclassifierClassifierCrossReference_2_0() { return cLeftclassifierClassifierCrossReference_2_0; }
 		
-		//EString
-		public RuleCall getLeftclassifierClassifierEStringParserRuleCall_2_0_1() { return cLeftclassifierClassifierEStringParserRuleCall_2_0_1; }
+		//ID
+		public RuleCall getLeftclassifierClassifierIDTerminalRuleCall_2_0_1() { return cLeftclassifierClassifierIDTerminalRuleCall_2_0_1; }
 		
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rightclassifier=[Classifier|EString]
+		//rightclassifier=[Classifier]
 		public Assignment getRightclassifierAssignment_4() { return cRightclassifierAssignment_4; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getRightclassifierClassifierCrossReference_4_0() { return cRightclassifierClassifierCrossReference_4_0; }
 		
-		//EString
-		public RuleCall getRightclassifierClassifierEStringParserRuleCall_4_0_1() { return cRightclassifierClassifierEStringParserRuleCall_4_0_1; }
+		//ID
+		public RuleCall getRightclassifierClassifierIDTerminalRuleCall_4_0_1() { return cRightclassifierClassifierIDTerminalRuleCall_4_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -527,18 +497,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLeftclassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLeftclassifierClassifierCrossReference_2_0 = (CrossReference)cLeftclassifierAssignment_2.eContents().get(0);
-		private final RuleCall cLeftclassifierClassifierEStringParserRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
+		private final RuleCall cLeftclassifierClassifierIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRightclassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cRightclassifierClassifierCrossReference_4_0 = (CrossReference)cRightclassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRightclassifierClassifierEStringParserRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final RuleCall cRightclassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Substitution:
-		//	'sub' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+		//	'sub' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'sub' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
+		//'sub' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'sub'
@@ -547,26 +517,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//leftclassifier=[Classifier|EString]
+		//leftclassifier=[Classifier]
 		public Assignment getLeftclassifierAssignment_2() { return cLeftclassifierAssignment_2; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getLeftclassifierClassifierCrossReference_2_0() { return cLeftclassifierClassifierCrossReference_2_0; }
 		
-		//EString
-		public RuleCall getLeftclassifierClassifierEStringParserRuleCall_2_0_1() { return cLeftclassifierClassifierEStringParserRuleCall_2_0_1; }
+		//ID
+		public RuleCall getLeftclassifierClassifierIDTerminalRuleCall_2_0_1() { return cLeftclassifierClassifierIDTerminalRuleCall_2_0_1; }
 		
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rightclassifier=[Classifier|EString]
+		//rightclassifier=[Classifier]
 		public Assignment getRightclassifierAssignment_4() { return cRightclassifierAssignment_4; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getRightclassifierClassifierCrossReference_4_0() { return cRightclassifierClassifierCrossReference_4_0; }
 		
-		//EString
-		public RuleCall getRightclassifierClassifierEStringParserRuleCall_4_0_1() { return cRightclassifierClassifierEStringParserRuleCall_4_0_1; }
+		//ID
+		public RuleCall getRightclassifierClassifierIDTerminalRuleCall_4_0_1() { return cRightclassifierClassifierIDTerminalRuleCall_4_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -578,18 +548,18 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLeftclassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLeftclassifierClassifierCrossReference_2_0 = (CrossReference)cLeftclassifierAssignment_2.eContents().get(0);
-		private final RuleCall cLeftclassifierClassifierEStringParserRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
+		private final RuleCall cLeftclassifierClassifierIDTerminalRuleCall_2_0_1 = (RuleCall)cLeftclassifierClassifierCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRightclassifierAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cRightclassifierClassifierCrossReference_4_0 = (CrossReference)cRightclassifierAssignment_4.eContents().get(0);
-		private final RuleCall cRightclassifierClassifierEStringParserRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
+		private final RuleCall cRightclassifierClassifierIDTerminalRuleCall_4_0_1 = (RuleCall)cRightclassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Dependency:
-		//	'dep' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+		//	'dep' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'dep' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')'
+		//'dep' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'dep'
@@ -598,26 +568,26 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//leftclassifier=[Classifier|EString]
+		//leftclassifier=[Classifier]
 		public Assignment getLeftclassifierAssignment_2() { return cLeftclassifierAssignment_2; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getLeftclassifierClassifierCrossReference_2_0() { return cLeftclassifierClassifierCrossReference_2_0; }
 		
-		//EString
-		public RuleCall getLeftclassifierClassifierEStringParserRuleCall_2_0_1() { return cLeftclassifierClassifierEStringParserRuleCall_2_0_1; }
+		//ID
+		public RuleCall getLeftclassifierClassifierIDTerminalRuleCall_2_0_1() { return cLeftclassifierClassifierIDTerminalRuleCall_2_0_1; }
 		
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rightclassifier=[Classifier|EString]
+		//rightclassifier=[Classifier]
 		public Assignment getRightclassifierAssignment_4() { return cRightclassifierAssignment_4; }
 		
-		//[Classifier|EString]
+		//[Classifier]
 		public CrossReference getRightclassifierClassifierCrossReference_4_0() { return cRightclassifierClassifierCrossReference_4_0; }
 		
-		//EString
-		public RuleCall getRightclassifierClassifierEStringParserRuleCall_4_0_1() { return cRightclassifierClassifierEStringParserRuleCall_4_0_1; }
+		//ID
+		public RuleCall getRightclassifierClassifierIDTerminalRuleCall_4_0_1() { return cRightclassifierClassifierIDTerminalRuleCall_4_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -627,23 +597,23 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNoteKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyEStringParserRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
+		private final RuleCall cBodySTRINGTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
 		
 		//Comment textualCommons::Comment:
-		//	'note' body=EString;
+		//	'note' body=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'note' body=EString
+		//'note' body=STRING
 		public Group getGroup() { return cGroup; }
 		
 		//'note'
 		public Keyword getNoteKeyword_0() { return cNoteKeyword_0; }
 		
-		//body=EString
+		//body=STRING
 		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
 		
-		//EString
-		public RuleCall getBodyEStringParserRuleCall_1_0() { return cBodyEStringParserRuleCall_1_0; }
+		//STRING
+		public RuleCall getBodySTRINGTerminalRuleCall_1_0() { return cBodySTRINGTerminalRuleCall_1_0; }
 	}
 	public class PortElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Port");
@@ -785,7 +755,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
-		private final RuleCall cNameEStringParserRuleCall_1_0_0_0 = (RuleCall)cNameAssignment_1_0_0.eContents().get(0);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_0_0_0 = (RuleCall)cNameAssignment_1_0_0.eContents().get(0);
 		private final Keyword cAsKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
 		private final Assignment cAliasAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
 		private final RuleCall cAliasIDTerminalRuleCall_1_0_2_0 = (RuleCall)cAliasAssignment_1_0_2.eContents().get(0);
@@ -802,34 +772,33 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cInterfaceAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final CrossReference cInterfaceInterfaceCrossReference_7_0 = (CrossReference)cInterfaceAssignment_7.eContents().get(0);
-		private final RuleCall cInterfaceInterfaceEStringParserRuleCall_7_0_1 = (RuleCall)cInterfaceInterfaceCrossReference_7_0.eContents().get(1);
+		private final RuleCall cInterfaceInterfaceIDTerminalRuleCall_7_0_1 = (RuleCall)cInterfaceInterfaceCrossReference_7_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Connector:
-		//	'con' (name=EString 'as' alias=ID | name=ID)
+		//	'con' (name=STRING 'as' alias=ID | name=ID)
 		//	'('
-		//	leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
+		//	leftport=[Port] ',' rightport=[Port] ',' interface=[Interface]
 		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'con' (name=EString 'as' alias=ID | name=ID) '(' leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
-		//')'
+		//'con' (name=STRING 'as' alias=ID | name=ID) '(' leftport=[Port] ',' rightport=[Port] ',' interface=[Interface] ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'con'
 		public Keyword getConKeyword_0() { return cConKeyword_0; }
 		
-		//name=EString 'as' alias=ID | name=ID
+		//name=STRING 'as' alias=ID | name=ID
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//name=EString 'as' alias=ID
+		//name=STRING 'as' alias=ID
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
-		//name=EString
+		//name=STRING
 		public Assignment getNameAssignment_1_0_0() { return cNameAssignment_1_0_0; }
 		
-		//EString
-		public RuleCall getNameEStringParserRuleCall_1_0_0_0() { return cNameEStringParserRuleCall_1_0_0_0; }
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_1_0_0_0() { return cNameSTRINGTerminalRuleCall_1_0_0_0; }
 		
 		//'as'
 		public Keyword getAsKeyword_1_0_1() { return cAsKeyword_1_0_1; }
@@ -873,14 +842,14 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		//','
 		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
 		
-		//interface=[Interface|EString]
+		//interface=[Interface]
 		public Assignment getInterfaceAssignment_7() { return cInterfaceAssignment_7; }
 		
-		//[Interface|EString]
+		//[Interface]
 		public CrossReference getInterfaceInterfaceCrossReference_7_0() { return cInterfaceInterfaceCrossReference_7_0; }
 		
-		//EString
-		public RuleCall getInterfaceInterfaceEStringParserRuleCall_7_0_1() { return cInterfaceInterfaceEStringParserRuleCall_7_0_1; }
+		//ID
+		public RuleCall getInterfaceInterfaceIDTerminalRuleCall_7_0_1() { return cInterfaceInterfaceIDTerminalRuleCall_7_0_1; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
@@ -948,25 +917,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//FQN
 		public RuleCall getInterfaceInterfaceFQNParserRuleCall_2_0_1() { return cInterfaceInterfaceFQNParserRuleCall_2_0_1; }
-	}
-	public class EBooleanElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.EBoolean");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cTrueKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cFalseKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		
-		//EBoolean ecore::EBoolean:
-		//	'true' | 'false';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'true' | 'false'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'true'
-		public Keyword getTrueKeyword_0() { return cTrueKeyword_0; }
-		
-		//'false'
-		public Keyword getFalseKeyword_1() { return cFalseKeyword_1; }
 	}
 	public class MethodElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.Method");
@@ -1287,11 +1237,9 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	private final ComponentDiagramElements pComponentDiagram;
 	private final ClassifierRelationElements pClassifierRelation;
 	private final ClassifierElements pClassifier;
-	private final NameStringElements pNameString;
 	private final PortRelationElements pPortRelation;
 	private final InterfaceRelationElements pInterfaceRelation;
 	private final MemberElements pMember;
-	private final EStringElements pEString;
 	private final RootPackageElements pRootPackage;
 	private final ComponentElements pComponent;
 	private final GeneralizationElements pGeneralization;
@@ -1306,13 +1254,11 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	private final ProvideElements pProvide;
 	private final RequireElements pRequire;
 	private final VisibilityElements eVisibility;
-	private final EBooleanElements pEBoolean;
 	private final MethodElements pMethod;
 	private final AttributeElements pAttribute;
 	private final ParameterElements pParameter;
 	private final FQNElements pFQN;
 	private final TerminalRule tID;
-	private final TerminalRule tUNDERSCORE;
 	
 	private final Grammar grammar;
 	
@@ -1326,11 +1272,9 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		this.pComponentDiagram = new ComponentDiagramElements();
 		this.pClassifierRelation = new ClassifierRelationElements();
 		this.pClassifier = new ClassifierElements();
-		this.pNameString = new NameStringElements();
 		this.pPortRelation = new PortRelationElements();
 		this.pInterfaceRelation = new InterfaceRelationElements();
 		this.pMember = new MemberElements();
-		this.pEString = new EStringElements();
 		this.pRootPackage = new RootPackageElements();
 		this.pComponent = new ComponentElements();
 		this.pGeneralization = new GeneralizationElements();
@@ -1345,13 +1289,11 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		this.pProvide = new ProvideElements();
 		this.pRequire = new RequireElements();
 		this.eVisibility = new VisibilityElements();
-		this.pEBoolean = new EBooleanElements();
 		this.pMethod = new MethodElements();
 		this.pAttribute = new AttributeElements();
 		this.pParameter = new ParameterElements();
 		this.pFQN = new FQNElements();
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.ID");
-		this.tUNDERSCORE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "de.cooperateproject.modeling.textual.component.Component.UNDERSCORE");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1383,7 +1325,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ComponentDiagram:
 	//	{ComponentDiagram}
-	//	'@start-cpd' title=EString
+	//	'@start-cpd' title=STRING
 	//	rootpackage=RootPackage
 	//	'@end-cpd';
 	public ComponentDiagramElements getComponentDiagramAccess() {
@@ -1412,16 +1354,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getClassifierRule() {
 		return getClassifierAccess().getRule();
-	}
-	
-	//NameString:
-	//	STRING;
-	public NameStringElements getNameStringAccess() {
-		return pNameString;
-	}
-	
-	public ParserRule getNameStringRule() {
-		return getNameStringAccess().getRule();
 	}
 	
 	//PortRelation:
@@ -1454,16 +1386,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 		return getMemberAccess().getRule();
 	}
 	
-	//EString:
-	//	STRING | ID;
-	public EStringElements getEStringAccess() {
-		return pEString;
-	}
-	
-	public ParserRule getEStringRule() {
-		return getEStringAccess().getRule();
-	}
-	
 	//RootPackage:
 	//	{RootPackage}
 	//	'rootPackage' name=FQN
@@ -1494,7 +1416,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Generalization:
-	//	'isa' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+	//	'isa' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 	public GeneralizationElements getGeneralizationAccess() {
 		return pGeneralization;
 	}
@@ -1504,7 +1426,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Abstraction:
-	//	'abs' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+	//	'abs' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 	public AbstractionElements getAbstractionAccess() {
 		return pAbstraction;
 	}
@@ -1514,7 +1436,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Manifestation:
-	//	'man' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+	//	'man' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 	public ManifestationElements getManifestationAccess() {
 		return pManifestation;
 	}
@@ -1524,7 +1446,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Substitution:
-	//	'sub' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+	//	'sub' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 	public SubstitutionElements getSubstitutionAccess() {
 		return pSubstitution;
 	}
@@ -1534,7 +1456,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Dependency:
-	//	'dep' '(' leftclassifier=[Classifier|EString] "," rightclassifier=[Classifier|EString] ')';
+	//	'dep' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')';
 	public DependencyElements getDependencyAccess() {
 		return pDependency;
 	}
@@ -1544,7 +1466,7 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Comment textualCommons::Comment:
-	//	'note' body=EString;
+	//	'note' body=STRING;
 	public CommentElements getCommentAccess() {
 		return pComment;
 	}
@@ -1576,9 +1498,9 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Connector:
-	//	'con' (name=EString 'as' alias=ID | name=ID)
+	//	'con' (name=STRING 'as' alias=ID | name=ID)
 	//	'('
-	//	leftport=[Port] ',' rightport=[Port] ',' interface=[Interface|EString]
+	//	leftport=[Port] ',' rightport=[Port] ',' interface=[Interface]
 	//	')';
 	public ConnectorElements getConnectorAccess() {
 		return pConnector;
@@ -1621,16 +1543,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getVisibilityRule() {
 		return getVisibilityAccess().getRule();
-	}
-	
-	//EBoolean ecore::EBoolean:
-	//	'true' | 'false';
-	public EBooleanElements getEBooleanAccess() {
-		return pEBoolean;
-	}
-	
-	public ParserRule getEBooleanRule() {
-		return getEBooleanAccess().getRule();
 	}
 	
 	//Method:
@@ -1684,12 +1596,6 @@ public class ComponentGrammarAccess extends AbstractGrammarElementFinder {
 	//	'^'? ('a'..'z' | 'A'..'Z') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return tID;
-	}
-	
-	//terminal UNDERSCORE:
-	//	'_';
-	public TerminalRule getUNDERSCORERule() {
-		return tUNDERSCORE;
 	}
 	
 	//terminal INT returns ecore::EInt:

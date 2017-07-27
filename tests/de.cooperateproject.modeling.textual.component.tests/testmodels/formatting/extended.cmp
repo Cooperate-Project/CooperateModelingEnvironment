@@ -3,19 +3,19 @@
 rootPackage Minimal
 
 component testComp {
-	component first_comp{
-		require first_ifaces
+	component first_comp {
+		require first_iface
 	}
+	provide second_iface
 	interface first_iface {
 		someName : String
-		someOperation(anObject : AbstractClass, aPrimitive : int) : long
+		someOperation(anObject : first_iface, aPrimitive : int) : long
 	}
 }
 interface second_iface {
 	someName : String
-	someOperation(anObject : AbstractClass, aPrimitive : int) : long
+	someOperation(anObject : second_iface, aPrimitive : int) : long
 }
-isa (testComp, second_iface)
 abs (testComp, second_iface)
 
 @end-cpd
