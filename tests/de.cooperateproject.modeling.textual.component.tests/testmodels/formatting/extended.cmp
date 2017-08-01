@@ -4,13 +4,13 @@ rootPackage Minimal
 
 component testComp {
 	component first_comp {
-		require first_iface
+		require first first_iface
 	}
-	provide second_iface
 	interface first_iface {
 		someName : String
 		someOperation(anObject : first_iface, aPrimitive : int) : long
 	}
+	provide second second_iface
 }
 interface second_iface {
 	someName : String

@@ -8,14 +8,14 @@
         eType="#//RootPackage" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootPackage">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relation" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
         containment="true">
       <eGenericType eClassifier="#//ClassifierRelation">
         <eTypeArguments/>
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifiers" upperBound="-1"
         containment="true">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
@@ -33,26 +33,22 @@
     <eTypeParameters name="RightUMLType">
       <eBounds eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="leftclassifier" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftClassifier" lowerBound="1">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments eTypeParameter="#//ClassifierRelation/LeftUMLType"/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightclassifier" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightClassifier" lowerBound="1">
       <eGenericType eClassifier="#//Classifier">
         <eTypeArguments eTypeParameter="#//ClassifierRelation/RightUMLType"/>
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PortRelation" abstract="true" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
-        eType="#//Interface"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="leftport" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outerPort" lowerBound="1"
         eType="#//Port"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightport" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="innerPort" lowerBound="1"
         eType="#//Port"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connector">
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
@@ -131,11 +127,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" upperBound="-1"
         eType="#//Component" containment="true" eOpposite="#//Component/owningComponent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="portrelation" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portRelation" upperBound="-1"
         eType="#//PortRelation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interfacerelation" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaceRelation" upperBound="-1"
         eType="#//InterfaceRelation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="interface" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedInterface" upperBound="-1"
         eType="#//Interface" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="port" upperBound="-1" eType="#//Port"
         containment="true"/>
@@ -146,7 +142,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interface">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
         eType="#//Member" containment="true"/>
     <eGenericSuperTypes eClassifier="#//Classifier">
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
@@ -171,7 +167,7 @@
       <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InterfaceRelation" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="InterfaceRelation" abstract="true" eSuperTypes="../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//AliasedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interface" lowerBound="1"
         eType="#//Interface"/>
   </eClassifiers>
@@ -184,7 +180,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Require">
     <eGenericSuperTypes eClassifier="#//InterfaceRelation"/>
     <eGenericSuperTypes eClassifier="ecore:EClass ../../de.cooperateproject.modeling.textual.common.metamodel/model/textualCommons.ecore#//UMLReferencingElement">
-      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
+      <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Port">

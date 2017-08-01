@@ -2,7 +2,7 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
-import org.eclipse.emf.cdo.CDOObject;
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.AliasedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,10 +18,9 @@ import org.eclipse.emf.cdo.CDOObject;
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getInterfaceRelation()
  * @model abstract="true"
- * @extends CDOObject
  * @generated
  */
-public interface InterfaceRelation extends CDOObject {
+public interface InterfaceRelation extends AliasedElement {
     /**
      * Returns the value of the '<em><b>Interface</b></em>' reference.
      * <!-- begin-user-doc -->

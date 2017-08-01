@@ -25,8 +25,8 @@ import org.eclipse.uml2.uml.Abstraction;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.AbstractionImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.AbstractionImpl#getAlias <em>Alias</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.AbstractionImpl#getLeftclassifier <em>Leftclassifier</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.AbstractionImpl#getRightclassifier <em>Rightclassifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.AbstractionImpl#getLeftClassifier <em>Left Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.AbstractionImpl#getRightClassifier <em>Right Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -159,8 +159,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Classifier<org.eclipse.uml2.uml.Classifier> getLeftclassifier() {
-        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> getLeftClassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, true, true);
     }
 
     /**
@@ -168,8 +168,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetLeftclassifier() {
-        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetLeftClassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false, true);
     }
 
     /**
@@ -177,8 +177,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftclassifier(Classifier<org.eclipse.uml2.uml.Classifier> newLeftclassifier) {
-        eDynamicSet(ComponentPackage.ABSTRACTION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
+    public void setLeftClassifier(Classifier<org.eclipse.uml2.uml.Classifier> newLeftClassifier) {
+        eDynamicSet(ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, newLeftClassifier);
     }
 
     /**
@@ -187,8 +187,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Classifier<org.eclipse.uml2.uml.Classifier> getRightclassifier() {
-        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> getRightClassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, true, true);
     }
 
     /**
@@ -196,8 +196,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetRightclassifier() {
-        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    public Classifier<org.eclipse.uml2.uml.Classifier> basicGetRightClassifier() {
+        return (Classifier<org.eclipse.uml2.uml.Classifier>)eDynamicGet(ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false, true);
     }
 
     /**
@@ -205,8 +205,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightclassifier(Classifier<org.eclipse.uml2.uml.Classifier> newRightclassifier) {
-        eDynamicSet(ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
+    public void setRightClassifier(Classifier<org.eclipse.uml2.uml.Classifier> newRightClassifier) {
+        eDynamicSet(ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, newRightClassifier);
     }
 
     /**
@@ -221,12 +221,12 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
                 return getName();
             case ComponentPackage.ABSTRACTION__ALIAS:
                 return getAlias();
-            case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER:
-                if (resolve) return getLeftclassifier();
-                return basicGetLeftclassifier();
-            case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER:
-                if (resolve) return getRightclassifier();
-                return basicGetRightclassifier();
+            case ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER:
+                if (resolve) return getLeftClassifier();
+                return basicGetLeftClassifier();
+            case ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER:
+                if (resolve) return getRightClassifier();
+                return basicGetRightClassifier();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -246,11 +246,11 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
             case ComponentPackage.ABSTRACTION__ALIAS:
                 setAlias((String)newValue);
                 return;
-            case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
+            case ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER:
+                setLeftClassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
-            case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
+            case ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER:
+                setRightClassifier((Classifier<org.eclipse.uml2.uml.Classifier>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -270,11 +270,11 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
             case ComponentPackage.ABSTRACTION__ALIAS:
                 unsetAlias();
                 return;
-            case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
+            case ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER:
+                setLeftClassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
                 return;
-            case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
+            case ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER:
+                setRightClassifier((Classifier<org.eclipse.uml2.uml.Classifier>)null);
                 return;
         }
         super.eUnset(featureID);
@@ -292,10 +292,10 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
                 return isSetName();
             case ComponentPackage.ABSTRACTION__ALIAS:
                 return isSetAlias();
-            case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER:
-                return basicGetLeftclassifier() != null;
-            case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER:
-                return basicGetRightclassifier() != null;
+            case ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER:
+                return basicGetLeftClassifier() != null;
+            case ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER:
+                return basicGetRightClassifier() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -321,8 +321,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
         }
         if (baseClass == ClassifierRelation.class) {
             switch (derivedFeatureID) {
-                case ComponentPackage.ABSTRACTION__LEFTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER;
-                case ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER;
+                case ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER;
+                case ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER;
                 default: return -1;
             }
         }
@@ -350,8 +350,8 @@ public class AbstractionImpl extends UMLReferencingElementImpl<Abstraction> impl
         }
         if (baseClass == ClassifierRelation.class) {
             switch (baseFeatureID) {
-                case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER: return ComponentPackage.ABSTRACTION__LEFTCLASSIFIER;
-                case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER: return ComponentPackage.ABSTRACTION__RIGHTCLASSIFIER;
+                case ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER: return ComponentPackage.ABSTRACTION__LEFT_CLASSIFIER;
+                case ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER: return ComponentPackage.ABSTRACTION__RIGHT_CLASSIFIER;
                 default: return -1;
             }
         }

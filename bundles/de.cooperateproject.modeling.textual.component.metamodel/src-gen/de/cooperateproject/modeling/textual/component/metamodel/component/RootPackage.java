@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getRelation <em>Relation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getClassifier <em>Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getRelations <em>Relations</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.RootPackage#getClassifiers <em>Classifiers</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getRootPackage()
@@ -25,35 +25,35 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface RootPackage extends PackageBase<RootPackage> {
     /**
-     * Returns the value of the '<em><b>Relation</b></em>' containment reference list.
+     * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation}<code>&lt;?, ?&gt;</code>.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Relation</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Relation</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getRootPackage_Relation()
+     * @return the value of the '<em>Relations</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getRootPackage_Relations()
      * @model containment="true"
      * @generated
      */
-    EList<ClassifierRelation<?, ?>> getRelation();
+    EList<ClassifierRelation<?, ?>> getRelations();
 
     /**
-     * Returns the value of the '<em><b>Classifier</b></em>' containment reference list.
+     * Returns the value of the '<em><b>Classifiers</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Classifier}<code>&lt;org.eclipse.uml2.uml.Classifier&gt;</code>.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Classifier</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Classifiers</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Classifier</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getRootPackage_Classifier()
+     * @return the value of the '<em>Classifiers</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getRootPackage_Classifiers()
      * @model containment="true"
      * @generated
      */
-    EList<Classifier<org.eclipse.uml2.uml.Classifier>> getClassifier();
+    EList<Classifier<org.eclipse.uml2.uml.Classifier>> getClassifiers();
 
 } // RootPackage

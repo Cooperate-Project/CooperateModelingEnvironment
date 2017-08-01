@@ -3,8 +3,7 @@
 package de.cooperateproject.modeling.textual.component.metamodel.component;
 
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
-
-import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,5 +15,5 @@ import org.eclipse.uml2.uml.Dependency;
  * @model
  * @generated
  */
-public interface Require extends InterfaceRelation, UMLReferencingElement<Dependency> {
+public interface Require extends InterfaceRelation, UMLReferencingElement<Usage> {
 } // Require

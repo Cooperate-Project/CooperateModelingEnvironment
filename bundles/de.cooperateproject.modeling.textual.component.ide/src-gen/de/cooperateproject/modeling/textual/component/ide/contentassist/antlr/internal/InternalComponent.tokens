@@ -10,7 +10,7 @@
 '@start-cpd'=18
 'abs'=29
 'abstract'=41
-'as'=24
+'as'=22
 'component'=21
 'con'=36
 'dep'=32
@@ -27,8 +27,8 @@
 'rootPackage'=20
 'static'=42
 'sub'=31
-'{'=22
-'}'=23
+'{'=23
+'}'=24
 '~'=17
 RULE_ANY_OTHER=10
 RULE_ID=4

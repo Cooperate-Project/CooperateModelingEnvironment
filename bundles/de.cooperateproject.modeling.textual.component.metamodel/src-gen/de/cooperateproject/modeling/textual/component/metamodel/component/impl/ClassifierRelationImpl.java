@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl#getLeftclassifier <em>Leftclassifier</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl#getRightclassifier <em>Rightclassifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl#getLeftClassifier <em>Left Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ClassifierRelationImpl#getRightClassifier <em>Right Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,8 +49,8 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Classifier<LeftUMLType> getLeftclassifier() {
-        return (Classifier<LeftUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    public Classifier<LeftUMLType> getLeftClassifier() {
+        return (Classifier<LeftUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, true, true);
     }
 
     /**
@@ -58,8 +58,8 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<LeftUMLType> basicGetLeftclassifier() {
-        return (Classifier<LeftUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    public Classifier<LeftUMLType> basicGetLeftClassifier() {
+        return (Classifier<LeftUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false, true);
     }
 
     /**
@@ -67,8 +67,8 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftclassifier(Classifier<LeftUMLType> newLeftclassifier) {
-        eDynamicSet(ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
+    public void setLeftClassifier(Classifier<LeftUMLType> newLeftClassifier) {
+        eDynamicSet(ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, newLeftClassifier);
     }
 
     /**
@@ -77,8 +77,8 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Classifier<RightUMLType> getRightclassifier() {
-        return (Classifier<RightUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    public Classifier<RightUMLType> getRightClassifier() {
+        return (Classifier<RightUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, true, true);
     }
 
     /**
@@ -86,8 +86,8 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<RightUMLType> basicGetRightclassifier() {
-        return (Classifier<RightUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    public Classifier<RightUMLType> basicGetRightClassifier() {
+        return (Classifier<RightUMLType>)eDynamicGet(ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false, true);
     }
 
     /**
@@ -95,8 +95,8 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightclassifier(Classifier<RightUMLType> newRightclassifier) {
-        eDynamicSet(ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
+    public void setRightClassifier(Classifier<RightUMLType> newRightClassifier) {
+        eDynamicSet(ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, newRightClassifier);
     }
 
     /**
@@ -107,12 +107,12 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER:
-                if (resolve) return getLeftclassifier();
-                return basicGetLeftclassifier();
-            case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER:
-                if (resolve) return getRightclassifier();
-                return basicGetRightclassifier();
+            case ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER:
+                if (resolve) return getLeftClassifier();
+                return basicGetLeftClassifier();
+            case ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER:
+                if (resolve) return getRightClassifier();
+                return basicGetRightClassifier();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -126,11 +126,11 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier<LeftUMLType>)newValue);
+            case ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER:
+                setLeftClassifier((Classifier<LeftUMLType>)newValue);
                 return;
-            case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier<RightUMLType>)newValue);
+            case ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER:
+                setRightClassifier((Classifier<RightUMLType>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -144,11 +144,11 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier<LeftUMLType>)null);
+            case ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER:
+                setLeftClassifier((Classifier<LeftUMLType>)null);
                 return;
-            case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier<RightUMLType>)null);
+            case ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER:
+                setRightClassifier((Classifier<RightUMLType>)null);
                 return;
         }
         super.eUnset(featureID);
@@ -162,10 +162,10 @@ public abstract class ClassifierRelationImpl<LeftUMLType extends org.eclipse.uml
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER:
-                return basicGetLeftclassifier() != null;
-            case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER:
-                return basicGetRightclassifier() != null;
+            case ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER:
+                return basicGetLeftClassifier() != null;
+            case ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER:
+                return basicGetRightClassifier() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -36,42 +36,43 @@ Member returns Member:
 RootPackage returns RootPackage: 
 	{RootPackage}
 	'rootPackage' name=FQN
-			classifier+=Classifier*
-			relation+=ClassifierRelation*
+			classifiers+=Classifier*
+			relations+=ClassifierRelation*
 	;
 
 Component returns Component: 
 	{Component}
 	'component'
-	((name=STRING 'as' alias = ID)|name = ID)'{'  (
+	((name=STRING 'as' alias = ID)|name = ID) ( (comments+=Comment)? | ('{'  (
 		(((comments+=Comment)? 
 		(component+=Component)*
 		(port+=Port)*
-		(portrelation+=PortRelation)*
-		(interfacerelation+=InterfaceRelation)*
-		(interface+=Interface)* )))'}'
+		(nestedInterface+=Interface)*
+		(portRelation+=PortRelation)*
+		(interfaceRelation+=InterfaceRelation)*
+		 )))'}' ))
 		
 		;
 
 
 Generalization returns Generalization:
-		'isa' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
+		'isa' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' 
 ;
 
 Abstraction returns Abstraction:
-		'abs' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')'
+		'abs' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')'
  ;
 
 Manifestation returns Manifestation:
-		'man' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
+		'man' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' 
 ;
 
 Substitution returns Substitution:
-		'sub' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
+		'sub' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' 
 ;
 
 Dependency returns Dependency:
-		'dep' '(' leftclassifier=[Classifier] "," rightclassifier=[Classifier] ')' 
+		'dep' '(' leftClassifier=[Classifier] "," rightClassifier=[Classifier] ')' 
 ;
 
 
@@ -90,24 +91,24 @@ Interface returns Interface:
 	{Interface}
 	'interface'
 	((name=STRING 'as' alias = ID)|name = ID)( (comments+=Comment)? |
-		(('{' (comments+=Comment)? (member += Member)* '}')))
+		(('{' (comments+=Comment)? (members += Member)* '}')))
 ;
 
 
 Connector returns Connector: 
 	'con' ((name=STRING 'as' alias = ID)|name = ID) 
 	'('
-		leftport=[Port] ',' rightport=[Port] ',' interface=[Interface]
+		outerPort=[Port] ',' innerPort=[Port] 
 	')';
 
 Provide returns Provide: 
 	{Provide}
-		'provide' interface=[Interface|FQN]
+		'provide' ((name=STRING 'as' alias = ID)|name = ID) interface=[Interface|FQN]
 ;
 
 Require returns Require: 
 	{Require}
-		'require' interface=[Interface|FQN]
+		'require' ((name=STRING 'as' alias = ID)|name = ID) interface=[Interface|FQN]
 ;
 
 enum Visibility returns uml::VisibilityKind: 

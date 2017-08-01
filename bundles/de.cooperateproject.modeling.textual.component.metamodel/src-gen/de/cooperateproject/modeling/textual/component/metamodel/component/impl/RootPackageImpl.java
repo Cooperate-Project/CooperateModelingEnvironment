@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getRelation <em>Relation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getClassifier <em>Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.RootPackageImpl#getClassifiers <em>Classifiers</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,8 +71,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<ClassifierRelation<?, ?>> getRelation() {
-        return (EList<ClassifierRelation<?, ?>>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__RELATION, ComponentPackage.Literals.ROOT_PACKAGE__RELATION, true, true);
+    public EList<ClassifierRelation<?, ?>> getRelations() {
+        return (EList<ClassifierRelation<?, ?>>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__RELATIONS, ComponentPackage.Literals.ROOT_PACKAGE__RELATIONS, true, true);
     }
 
     /**
@@ -81,8 +81,8 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Classifier<org.eclipse.uml2.uml.Classifier>> getClassifier() {
-        return (EList<Classifier<org.eclipse.uml2.uml.Classifier>>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__CLASSIFIER, ComponentPackage.Literals.ROOT_PACKAGE__CLASSIFIER, true, true);
+    public EList<Classifier<org.eclipse.uml2.uml.Classifier>> getClassifiers() {
+        return (EList<Classifier<org.eclipse.uml2.uml.Classifier>>)eDynamicGet(ComponentPackage.ROOT_PACKAGE__CLASSIFIERS, ComponentPackage.Literals.ROOT_PACKAGE__CLASSIFIERS, true, true);
     }
 
     /**
@@ -93,10 +93,10 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case ComponentPackage.ROOT_PACKAGE__RELATION:
-                return ((InternalEList<?>)getRelation()).basicRemove(otherEnd, msgs);
-            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
-                return ((InternalEList<?>)getClassifier()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.ROOT_PACKAGE__RELATIONS:
+                return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIERS:
+                return ((InternalEList<?>)getClassifiers()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -109,10 +109,10 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ComponentPackage.ROOT_PACKAGE__RELATION:
-                return getRelation();
-            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
-                return getClassifier();
+            case ComponentPackage.ROOT_PACKAGE__RELATIONS:
+                return getRelations();
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIERS:
+                return getClassifiers();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -126,13 +126,13 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ComponentPackage.ROOT_PACKAGE__RELATION:
-                getRelation().clear();
-                getRelation().addAll((Collection<? extends ClassifierRelation<?, ?>>)newValue);
+            case ComponentPackage.ROOT_PACKAGE__RELATIONS:
+                getRelations().clear();
+                getRelations().addAll((Collection<? extends ClassifierRelation<?, ?>>)newValue);
                 return;
-            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
-                getClassifier().clear();
-                getClassifier().addAll((Collection<? extends Classifier<org.eclipse.uml2.uml.Classifier>>)newValue);
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIERS:
+                getClassifiers().clear();
+                getClassifiers().addAll((Collection<? extends Classifier<org.eclipse.uml2.uml.Classifier>>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -146,11 +146,11 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ComponentPackage.ROOT_PACKAGE__RELATION:
-                getRelation().clear();
+            case ComponentPackage.ROOT_PACKAGE__RELATIONS:
+                getRelations().clear();
                 return;
-            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
-                getClassifier().clear();
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIERS:
+                getClassifiers().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -164,10 +164,10 @@ public class RootPackageImpl extends PackageBaseImpl<RootPackage> implements Roo
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ComponentPackage.ROOT_PACKAGE__RELATION:
-                return !getRelation().isEmpty();
-            case ComponentPackage.ROOT_PACKAGE__CLASSIFIER:
-                return !getClassifier().isEmpty();
+            case ComponentPackage.ROOT_PACKAGE__RELATIONS:
+                return !getRelations().isEmpty();
+            case ComponentPackage.ROOT_PACKAGE__CLASSIFIERS:
+                return !getClassifiers().isEmpty();
         }
         return super.eIsSet(featureID);
     }

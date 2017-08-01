@@ -151,8 +151,8 @@ class ComponentParsingTest extends AbstractComponentTest{
 			@start-cpd "someDiagram"
 			rootPackage RootElement
 			component testComp { 
-				provide testiface
-				require testiface2
+				provide firstRelation testiface
+				require "second Relation" as second testiface2
 			}
 			interface testiface { }
 			interface testiface2 { }			
@@ -239,10 +239,9 @@ class ComponentParsingTest extends AbstractComponentTest{
 			component testComp {
 				component innerComp{
 					port port2
-					con contest (port2, port1, iface)
+					con contest (port2, port1)
 				}				
 				port port1
-				interface iface {}
 			}
 			@end-cpd
 		'''.parse(rs)

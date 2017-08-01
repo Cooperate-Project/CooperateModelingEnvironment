@@ -310,7 +310,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRootPackage_Relation() {
+    public EReference getRootPackage_Relations() {
         return (EReference)rootPackageEClass.getEStructuralFeatures().get(0);
     }
 
@@ -319,7 +319,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRootPackage_Classifier() {
+    public EReference getRootPackage_Classifiers() {
         return (EReference)rootPackageEClass.getEStructuralFeatures().get(1);
     }
 
@@ -337,7 +337,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getClassifierRelation_Leftclassifier() {
+    public EReference getClassifierRelation_LeftClassifier() {
         return (EReference)classifierRelationEClass.getEStructuralFeatures().get(0);
     }
 
@@ -346,7 +346,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getClassifierRelation_Rightclassifier() {
+    public EReference getClassifierRelation_RightClassifier() {
         return (EReference)classifierRelationEClass.getEStructuralFeatures().get(1);
     }
 
@@ -364,7 +364,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPortRelation_Interface() {
+    public EReference getPortRelation_OuterPort() {
         return (EReference)portRelationEClass.getEStructuralFeatures().get(0);
     }
 
@@ -373,26 +373,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPortRelation_Leftport() {
+    public EReference getPortRelation_InnerPort() {
         return (EReference)portRelationEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPortRelation_Rightport() {
-        return (EReference)portRelationEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getPortRelation_Static() {
-        return (EAttribute)portRelationEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -508,8 +490,17 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_Portrelation() {
+    public EReference getComponent_PortRelation() {
         return (EReference)componentEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getComponent_InterfaceRelation() {
+        return (EReference)componentEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -535,16 +526,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getComponent_Interfacerelation() {
-        return (EReference)componentEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getComponent_Interface() {
+    public EReference getComponent_NestedInterface() {
         return (EReference)componentEClass.getEStructuralFeatures().get(3);
     }
 
@@ -562,7 +544,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getInterface_Member() {
+    public EReference getInterface_Members() {
         return (EReference)interfaceEClass.getEStructuralFeatures().get(0);
     }
 
@@ -707,18 +689,16 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         createEReference(componentDiagramEClass, COMPONENT_DIAGRAM__ROOTPACKAGE);
 
         rootPackageEClass = createEClass(ROOT_PACKAGE);
-        createEReference(rootPackageEClass, ROOT_PACKAGE__RELATION);
-        createEReference(rootPackageEClass, ROOT_PACKAGE__CLASSIFIER);
+        createEReference(rootPackageEClass, ROOT_PACKAGE__RELATIONS);
+        createEReference(rootPackageEClass, ROOT_PACKAGE__CLASSIFIERS);
 
         classifierRelationEClass = createEClass(CLASSIFIER_RELATION);
-        createEReference(classifierRelationEClass, CLASSIFIER_RELATION__LEFTCLASSIFIER);
-        createEReference(classifierRelationEClass, CLASSIFIER_RELATION__RIGHTCLASSIFIER);
+        createEReference(classifierRelationEClass, CLASSIFIER_RELATION__LEFT_CLASSIFIER);
+        createEReference(classifierRelationEClass, CLASSIFIER_RELATION__RIGHT_CLASSIFIER);
 
         portRelationEClass = createEClass(PORT_RELATION);
-        createEReference(portRelationEClass, PORT_RELATION__INTERFACE);
-        createEReference(portRelationEClass, PORT_RELATION__LEFTPORT);
-        createEReference(portRelationEClass, PORT_RELATION__RIGHTPORT);
-        createEAttribute(portRelationEClass, PORT_RELATION__STATIC);
+        createEReference(portRelationEClass, PORT_RELATION__OUTER_PORT);
+        createEReference(portRelationEClass, PORT_RELATION__INNER_PORT);
 
         connectorEClass = createEClass(CONNECTOR);
 
@@ -740,14 +720,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
         componentEClass = createEClass(COMPONENT);
         createEReference(componentEClass, COMPONENT__COMPONENT);
-        createEReference(componentEClass, COMPONENT__PORTRELATION);
-        createEReference(componentEClass, COMPONENT__INTERFACERELATION);
-        createEReference(componentEClass, COMPONENT__INTERFACE);
+        createEReference(componentEClass, COMPONENT__PORT_RELATION);
+        createEReference(componentEClass, COMPONENT__INTERFACE_RELATION);
+        createEReference(componentEClass, COMPONENT__NESTED_INTERFACE);
         createEReference(componentEClass, COMPONENT__PORT);
         createEReference(componentEClass, COMPONENT__OWNING_COMPONENT);
 
         interfaceEClass = createEClass(INTERFACE);
-        createEReference(interfaceEClass, INTERFACE__MEMBER);
+        createEReference(interfaceEClass, INTERFACE__MEMBERS);
 
         methodEClass = createEClass(METHOD);
         createEAttribute(methodEClass, METHOD__ABSTRACT);
@@ -911,6 +891,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g2 = createEGenericType(theUMLPackage.getProperty());
         g1.getETypeArguments().add(g2);
         memberEClass.getEGenericSuperTypes().add(g1);
+        interfaceRelationEClass.getESuperTypes().add(theTextualCommonsPackage.getAliasedElement());
         g1 = createEGenericType(this.getInterfaceRelation());
         provideEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
@@ -920,7 +901,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g1 = createEGenericType(this.getInterfaceRelation());
         requireEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getUMLReferencingElement());
-        g2 = createEGenericType(theUMLPackage.getDependency());
+        g2 = createEGenericType(theUMLPackage.getUsage());
         g1.getETypeArguments().add(g2);
         requireEClass.getEGenericSuperTypes().add(g1);
         g1 = createEGenericType(theTextualCommonsPackage.getNamedElement());
@@ -943,27 +924,25 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
         g1.getETypeArguments().add(g2);
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        initEReference(getRootPackage_Relation(), g1, null, "relation", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRootPackage_Relations(), g1, null, "relations", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(theUMLPackage.getClassifier());
         g1.getETypeArguments().add(g2);
-        initEReference(getRootPackage_Classifier(), g1, null, "classifier", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRootPackage_Classifiers(), g1, null, "classifiers", null, 0, -1, RootPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(classifierRelationEClass, ClassifierRelation.class, "ClassifierRelation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(classifierRelationEClass_LeftUMLType);
         g1.getETypeArguments().add(g2);
-        initEReference(getClassifierRelation_Leftclassifier(), g1, null, "leftclassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifierRelation_LeftClassifier(), g1, null, "leftClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         g1 = createEGenericType(this.getClassifier());
         g2 = createEGenericType(classifierRelationEClass_RightUMLType);
         g1.getETypeArguments().add(g2);
-        initEReference(getClassifierRelation_Rightclassifier(), g1, null, "rightclassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getClassifierRelation_RightClassifier(), g1, null, "rightClassifier", null, 1, 1, ClassifierRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(portRelationEClass, PortRelation.class, "PortRelation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPortRelation_Interface(), this.getInterface(), null, "interface", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPortRelation_Leftport(), this.getPort(), null, "leftport", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPortRelation_Rightport(), this.getPort(), null, "rightport", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getPortRelation_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPortRelation_OuterPort(), this.getPort(), null, "outerPort", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPortRelation_InnerPort(), this.getPort(), null, "innerPort", null, 1, 1, PortRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -985,14 +964,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
         initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getComponent_Component(), this.getComponent(), this.getComponent_OwningComponent(), "component", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_Portrelation(), this.getPortRelation(), null, "portrelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_Interfacerelation(), this.getInterfaceRelation(), null, "interfacerelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_Interface(), this.getInterface(), null, "interface", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_PortRelation(), this.getPortRelation(), null, "portRelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_InterfaceRelation(), this.getInterfaceRelation(), null, "interfaceRelation", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_NestedInterface(), this.getInterface(), null, "nestedInterface", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_Port(), this.getPort(), null, "port", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_OwningComponent(), this.getComponent(), this.getComponent_Component(), "owningComponent", null, 0, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(interfaceEClass, Interface.class, "Interface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInterface_Member(), this.getMember(), null, "member", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInterface_Members(), this.getMember(), null, "members", null, 0, -1, Interface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMethod_Abstract(), theEcorePackage.getEBoolean(), "abstract", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

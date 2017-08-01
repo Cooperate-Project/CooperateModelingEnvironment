@@ -3,13 +3,11 @@
  */
 package de.cooperateproject.modeling.textual.component.ui.internal;
 
-import org.eclipse.emf.ecore.EPackage;
-
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-
-import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
+import de.cooperateproject.modeling.textual.component.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.xtext.runtime.ui.injectingfactory.IInjectorProvider;
+import org.eclipse.emf.ecore.EPackage;
 
 /**
  * Language-specific injector provider.

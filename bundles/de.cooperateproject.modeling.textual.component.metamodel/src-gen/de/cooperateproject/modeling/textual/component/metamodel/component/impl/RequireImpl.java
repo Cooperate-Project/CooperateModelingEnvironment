@@ -2,23 +2,14 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Require;
-
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,8 +59,8 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Dependency getReferencedElement() {
-        return (Dependency)eDynamicGet(ComponentPackage.REQUIRE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
+    public Usage getReferencedElement() {
+        return (Usage)eDynamicGet(ComponentPackage.REQUIRE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, true, true);
     }
 
     /**
@@ -77,8 +68,8 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Dependency basicGetReferencedElement() {
-        return (Dependency)eDynamicGet(ComponentPackage.REQUIRE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
+    public Usage basicGetReferencedElement() {
+        return (Usage)eDynamicGet(ComponentPackage.REQUIRE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, false, true);
     }
 
     /**
@@ -86,21 +77,8 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setReferencedElement(Dependency newReferencedElement) {
+    public void setReferencedElement(Usage newReferencedElement) {
         eDynamicSet(ComponentPackage.REQUIRE__REFERENCED_ELEMENT, TextualCommonsPackage.Literals.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT, newReferencedElement);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PackageBase<?> getNearestPackage() {
-        EObject parent = this;
-        while (parent != null && !(parent instanceof PackageBase)) {
-            parent = parent.eContainer();
-        }
-        return (PackageBase<?>)parent;
     }
 
     /**
@@ -127,7 +105,7 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case ComponentPackage.REQUIRE__REFERENCED_ELEMENT:
-                setReferencedElement((Dependency)newValue);
+                setReferencedElement((Usage)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -142,7 +120,7 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
     public void eUnset(int featureID) {
         switch (featureID) {
             case ComponentPackage.REQUIRE__REFERENCED_ELEMENT:
-                setReferencedElement((Dependency)null);
+                setReferencedElement((Usage)null);
                 return;
         }
         super.eUnset(featureID);
@@ -169,11 +147,6 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case ComponentPackage.REQUIRE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
@@ -190,11 +163,6 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ComponentPackage.REQUIRE__REFERENCED_ELEMENT;
@@ -202,41 +170,6 @@ public class RequireImpl extends InterfaceRelationImpl implements Require {
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseOperationID) {
-                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ComponentPackage.REQUIRE___GET_NEAREST_PACKAGE;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case ComponentPackage.REQUIRE___GET_NEAREST_PACKAGE:
-                return getNearestPackage();
-        }
-        return super.eInvoke(operationID, arguments);
     }
 
 } //RequireImpl

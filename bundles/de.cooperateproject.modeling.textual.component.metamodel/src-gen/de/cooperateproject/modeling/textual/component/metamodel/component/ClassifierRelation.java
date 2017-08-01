@@ -14,8 +14,8 @@ import org.eclipse.uml2.uml.Classifier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftclassifier <em>Leftclassifier</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightclassifier <em>Rightclassifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftClassifier <em>Left Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightClassifier <em>Right Classifier</em>}</li>
  * </ul>
  *
  * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation()
@@ -24,55 +24,55 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public interface ClassifierRelation<LeftUMLType extends Classifier, RightUMLType extends Classifier> extends AliasedElement {
     /**
-     * Returns the value of the '<em><b>Leftclassifier</b></em>' reference.
+     * Returns the value of the '<em><b>Left Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Leftclassifier</em>' reference isn't clear,
+     * If the meaning of the '<em>Left Classifier</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Leftclassifier</em>' reference.
-     * @see #setLeftclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier)
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation_Leftclassifier()
+     * @return the value of the '<em>Left Classifier</em>' reference.
+     * @see #setLeftClassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier)
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation_LeftClassifier()
      * @model required="true"
      * @generated
      */
-    de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<LeftUMLType> getLeftclassifier();
+    de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<LeftUMLType> getLeftClassifier();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftclassifier <em>Leftclassifier</em>}' reference.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getLeftClassifier <em>Left Classifier</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Leftclassifier</em>' reference.
-     * @see #getLeftclassifier()
+     * @param value the new value of the '<em>Left Classifier</em>' reference.
+     * @see #getLeftClassifier()
      * @generated
      */
-    void setLeftclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<LeftUMLType> value);
+    void setLeftClassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<LeftUMLType> value);
 
     /**
-     * Returns the value of the '<em><b>Rightclassifier</b></em>' reference.
+     * Returns the value of the '<em><b>Right Classifier</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Rightclassifier</em>' reference isn't clear,
+     * If the meaning of the '<em>Right Classifier</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Rightclassifier</em>' reference.
-     * @see #setRightclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier)
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation_Rightclassifier()
+     * @return the value of the '<em>Right Classifier</em>' reference.
+     * @see #setRightClassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier)
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getClassifierRelation_RightClassifier()
      * @model required="true"
      * @generated
      */
-    de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<RightUMLType> getRightclassifier();
+    de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<RightUMLType> getRightClassifier();
 
     /**
-     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightclassifier <em>Rightclassifier</em>}' reference.
+     * Sets the value of the '{@link de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation#getRightClassifier <em>Right Classifier</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Rightclassifier</em>' reference.
-     * @see #getRightclassifier()
+     * @param value the new value of the '<em>Right Classifier</em>' reference.
+     * @see #getRightClassifier()
      * @generated
      */
-    void setRightclassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<RightUMLType> value);
+    void setRightClassifier(de.cooperateproject.modeling.textual.component.metamodel.component.Classifier<RightUMLType> value);
 
 } // ClassifierRelation

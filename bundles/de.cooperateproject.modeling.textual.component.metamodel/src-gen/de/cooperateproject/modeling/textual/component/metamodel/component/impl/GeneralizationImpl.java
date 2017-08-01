@@ -26,8 +26,8 @@ import org.eclipse.uml2.uml.Interface;
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.GeneralizationImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.GeneralizationImpl#getAlias <em>Alias</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.GeneralizationImpl#getLeftclassifier <em>Leftclassifier</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.GeneralizationImpl#getRightclassifier <em>Rightclassifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.GeneralizationImpl#getLeftClassifier <em>Left Classifier</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.GeneralizationImpl#getRightClassifier <em>Right Classifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -160,8 +160,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Classifier<Interface> getLeftclassifier() {
-        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, true, true);
+    public Classifier<Interface> getLeftClassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, true, true);
     }
 
     /**
@@ -169,8 +169,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<Interface> basicGetLeftclassifier() {
-        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, false, true);
+    public Classifier<Interface> basicGetLeftClassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, false, true);
     }
 
     /**
@@ -178,8 +178,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLeftclassifier(Classifier<Interface> newLeftclassifier) {
-        eDynamicSet(ComponentPackage.GENERALIZATION__LEFTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFTCLASSIFIER, newLeftclassifier);
+    public void setLeftClassifier(Classifier<Interface> newLeftClassifier) {
+        eDynamicSet(ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__LEFT_CLASSIFIER, newLeftClassifier);
     }
 
     /**
@@ -188,8 +188,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public Classifier<Interface> getRightclassifier() {
-        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, true, true);
+    public Classifier<Interface> getRightClassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, true, true);
     }
 
     /**
@@ -197,8 +197,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public Classifier<Interface> basicGetRightclassifier() {
-        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, false, true);
+    public Classifier<Interface> basicGetRightClassifier() {
+        return (Classifier<Interface>)eDynamicGet(ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, false, true);
     }
 
     /**
@@ -206,8 +206,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setRightclassifier(Classifier<Interface> newRightclassifier) {
-        eDynamicSet(ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHTCLASSIFIER, newRightclassifier);
+    public void setRightClassifier(Classifier<Interface> newRightClassifier) {
+        eDynamicSet(ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER, ComponentPackage.Literals.CLASSIFIER_RELATION__RIGHT_CLASSIFIER, newRightClassifier);
     }
 
     /**
@@ -222,12 +222,12 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
                 return getName();
             case ComponentPackage.GENERALIZATION__ALIAS:
                 return getAlias();
-            case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER:
-                if (resolve) return getLeftclassifier();
-                return basicGetLeftclassifier();
-            case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER:
-                if (resolve) return getRightclassifier();
-                return basicGetRightclassifier();
+            case ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER:
+                if (resolve) return getLeftClassifier();
+                return basicGetLeftClassifier();
+            case ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER:
+                if (resolve) return getRightClassifier();
+                return basicGetRightClassifier();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -247,11 +247,11 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
             case ComponentPackage.GENERALIZATION__ALIAS:
                 setAlias((String)newValue);
                 return;
-            case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier<Interface>)newValue);
+            case ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER:
+                setLeftClassifier((Classifier<Interface>)newValue);
                 return;
-            case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier<Interface>)newValue);
+            case ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER:
+                setRightClassifier((Classifier<Interface>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -271,11 +271,11 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
             case ComponentPackage.GENERALIZATION__ALIAS:
                 unsetAlias();
                 return;
-            case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER:
-                setLeftclassifier((Classifier<Interface>)null);
+            case ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER:
+                setLeftClassifier((Classifier<Interface>)null);
                 return;
-            case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER:
-                setRightclassifier((Classifier<Interface>)null);
+            case ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER:
+                setRightClassifier((Classifier<Interface>)null);
                 return;
         }
         super.eUnset(featureID);
@@ -293,10 +293,10 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
                 return isSetName();
             case ComponentPackage.GENERALIZATION__ALIAS:
                 return isSetAlias();
-            case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER:
-                return basicGetLeftclassifier() != null;
-            case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER:
-                return basicGetRightclassifier() != null;
+            case ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER:
+                return basicGetLeftClassifier() != null;
+            case ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER:
+                return basicGetRightClassifier() != null;
         }
         return super.eIsSet(featureID);
     }
@@ -322,8 +322,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
         }
         if (baseClass == ClassifierRelation.class) {
             switch (derivedFeatureID) {
-                case ComponentPackage.GENERALIZATION__LEFTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER;
-                case ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER;
+                case ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER;
+                case ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER: return ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER;
                 default: return -1;
             }
         }
@@ -351,8 +351,8 @@ public class GeneralizationImpl extends UMLReferencingElementImpl<Generalization
         }
         if (baseClass == ClassifierRelation.class) {
             switch (baseFeatureID) {
-                case ComponentPackage.CLASSIFIER_RELATION__LEFTCLASSIFIER: return ComponentPackage.GENERALIZATION__LEFTCLASSIFIER;
-                case ComponentPackage.CLASSIFIER_RELATION__RIGHTCLASSIFIER: return ComponentPackage.GENERALIZATION__RIGHTCLASSIFIER;
+                case ComponentPackage.CLASSIFIER_RELATION__LEFT_CLASSIFIER: return ComponentPackage.GENERALIZATION__LEFT_CLASSIFIER;
+                case ComponentPackage.CLASSIFIER_RELATION__RIGHT_CLASSIFIER: return ComponentPackage.GENERALIZATION__RIGHT_CLASSIFIER;
                 default: return -1;
             }
         }

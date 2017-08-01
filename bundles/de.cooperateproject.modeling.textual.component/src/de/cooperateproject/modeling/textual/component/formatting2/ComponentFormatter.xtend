@@ -32,10 +32,10 @@ class ComponentFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(RootPackage rootPackage, extension IFormattableDocument document) {
-		for (ClassifierRelation elementRelation : rootPackage.getRelation()) {
+		for (ClassifierRelation elementRelation : rootPackage.getRelations()) {
 			elementRelation.format;
 		}
-		for (Classifier elementContent : rootPackage.getClassifier()) {
+		for (Classifier elementContent : rootPackage.getClassifiers()) {
 			elementContent.format;
 		}
 		rootPackage.regionFor.assignment(rootPackageAccess.nameAssignment_2).append[newLines = 2]
@@ -49,20 +49,20 @@ class ComponentFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Component cmp, extension IFormattableDocument document) {
 		interior(			
-			cmp.regionFor.keyword(componentAccess.leftCurlyBracketKeyword_3).append[newLine],
-			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_5).append[newLine].prepend[newLines = 1 priority = 4],
+			cmp.regionFor.keyword(componentAccess.leftCurlyBracketKeyword_3_1_0).append[newLine],
+			cmp.regionFor.keyword(componentAccess.rightCurlyBracketKeyword_3_1_2).append[newLine].prepend[newLines = 1 priority = 4],
 			[indent]
 		)
 		for(Component component: cmp.getComponent()){
 			component.format();
 		}
-		for(Interface iface: cmp.getInterface()){
+		for(Interface iface: cmp.getNestedInterface()){
 			iface.format();
 		}
-		for(PortRelation portRel: cmp.getPortrelation){
+		for(PortRelation portRel: cmp.getPortRelation){
 			portRel.append[newLine]
 		}
-		for(InterfaceRelation portRel: cmp.getInterfacerelation()){
+		for(InterfaceRelation portRel: cmp.getInterfaceRelation()){
 			portRel.append[newLine]
 		}
 	}
@@ -74,7 +74,7 @@ class ComponentFormatter extends AbstractFormatter2 {
 			[indent]
 		)
 		
-		for (Member members : iface.getMember()) {
+		for (Member members : iface.getMembers()) {
 			format(members, document);
 		}
 		iface.append[newLine; priority = 2]

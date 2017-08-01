@@ -30,9 +30,9 @@ import org.eclipse.uml2.uml.Component;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getComponent <em>Component</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPortrelation <em>Portrelation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterfacerelation <em>Interfacerelation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPortRelation <em>Port Relation</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getInterfaceRelation <em>Interface Relation</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getPort <em>Port</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.ComponentImpl#getOwningComponent <em>Owning Component</em>}</li>
  * </ul>
@@ -75,8 +75,18 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<PortRelation> getPortrelation() {
-        return (EList<PortRelation>)eDynamicGet(ComponentPackage.COMPONENT__PORTRELATION, ComponentPackage.Literals.COMPONENT__PORTRELATION, true, true);
+    public EList<PortRelation> getPortRelation() {
+        return (EList<PortRelation>)eDynamicGet(ComponentPackage.COMPONENT__PORT_RELATION, ComponentPackage.Literals.COMPONENT__PORT_RELATION, true, true);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<InterfaceRelation> getInterfaceRelation() {
+        return (EList<InterfaceRelation>)eDynamicGet(ComponentPackage.COMPONENT__INTERFACE_RELATION, ComponentPackage.Literals.COMPONENT__INTERFACE_RELATION, true, true);
     }
 
     /**
@@ -142,18 +152,8 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<InterfaceRelation> getInterfacerelation() {
-        return (EList<InterfaceRelation>)eDynamicGet(ComponentPackage.COMPONENT__INTERFACERELATION, ComponentPackage.Literals.COMPONENT__INTERFACERELATION, true, true);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    public EList<Interface> getInterface() {
-        return (EList<Interface>)eDynamicGet(ComponentPackage.COMPONENT__INTERFACE, ComponentPackage.Literals.COMPONENT__INTERFACE, true, true);
+    public EList<Interface> getNestedInterface() {
+        return (EList<Interface>)eDynamicGet(ComponentPackage.COMPONENT__NESTED_INTERFACE, ComponentPackage.Literals.COMPONENT__NESTED_INTERFACE, true, true);
     }
 
     /**
@@ -166,12 +166,12 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
         switch (featureID) {
             case ComponentPackage.COMPONENT__COMPONENT:
                 return ((InternalEList<?>)getComponent()).basicRemove(otherEnd, msgs);
-            case ComponentPackage.COMPONENT__PORTRELATION:
-                return ((InternalEList<?>)getPortrelation()).basicRemove(otherEnd, msgs);
-            case ComponentPackage.COMPONENT__INTERFACERELATION:
-                return ((InternalEList<?>)getInterfacerelation()).basicRemove(otherEnd, msgs);
-            case ComponentPackage.COMPONENT__INTERFACE:
-                return ((InternalEList<?>)getInterface()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__PORT_RELATION:
+                return ((InternalEList<?>)getPortRelation()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__INTERFACE_RELATION:
+                return ((InternalEList<?>)getInterfaceRelation()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.COMPONENT__NESTED_INTERFACE:
+                return ((InternalEList<?>)getNestedInterface()).basicRemove(otherEnd, msgs);
             case ComponentPackage.COMPONENT__PORT:
                 return ((InternalEList<?>)getPort()).basicRemove(otherEnd, msgs);
             case ComponentPackage.COMPONENT__OWNING_COMPONENT:
@@ -204,12 +204,12 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
         switch (featureID) {
             case ComponentPackage.COMPONENT__COMPONENT:
                 return getComponent();
-            case ComponentPackage.COMPONENT__PORTRELATION:
-                return getPortrelation();
-            case ComponentPackage.COMPONENT__INTERFACERELATION:
-                return getInterfacerelation();
-            case ComponentPackage.COMPONENT__INTERFACE:
-                return getInterface();
+            case ComponentPackage.COMPONENT__PORT_RELATION:
+                return getPortRelation();
+            case ComponentPackage.COMPONENT__INTERFACE_RELATION:
+                return getInterfaceRelation();
+            case ComponentPackage.COMPONENT__NESTED_INTERFACE:
+                return getNestedInterface();
             case ComponentPackage.COMPONENT__PORT:
                 return getPort();
             case ComponentPackage.COMPONENT__OWNING_COMPONENT:
@@ -231,17 +231,17 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
                 getComponent().clear();
                 getComponent().addAll((Collection<? extends de.cooperateproject.modeling.textual.component.metamodel.component.Component>)newValue);
                 return;
-            case ComponentPackage.COMPONENT__PORTRELATION:
-                getPortrelation().clear();
-                getPortrelation().addAll((Collection<? extends PortRelation>)newValue);
+            case ComponentPackage.COMPONENT__PORT_RELATION:
+                getPortRelation().clear();
+                getPortRelation().addAll((Collection<? extends PortRelation>)newValue);
                 return;
-            case ComponentPackage.COMPONENT__INTERFACERELATION:
-                getInterfacerelation().clear();
-                getInterfacerelation().addAll((Collection<? extends InterfaceRelation>)newValue);
+            case ComponentPackage.COMPONENT__INTERFACE_RELATION:
+                getInterfaceRelation().clear();
+                getInterfaceRelation().addAll((Collection<? extends InterfaceRelation>)newValue);
                 return;
-            case ComponentPackage.COMPONENT__INTERFACE:
-                getInterface().clear();
-                getInterface().addAll((Collection<? extends Interface>)newValue);
+            case ComponentPackage.COMPONENT__NESTED_INTERFACE:
+                getNestedInterface().clear();
+                getNestedInterface().addAll((Collection<? extends Interface>)newValue);
                 return;
             case ComponentPackage.COMPONENT__PORT:
                 getPort().clear();
@@ -265,14 +265,14 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
             case ComponentPackage.COMPONENT__COMPONENT:
                 getComponent().clear();
                 return;
-            case ComponentPackage.COMPONENT__PORTRELATION:
-                getPortrelation().clear();
+            case ComponentPackage.COMPONENT__PORT_RELATION:
+                getPortRelation().clear();
                 return;
-            case ComponentPackage.COMPONENT__INTERFACERELATION:
-                getInterfacerelation().clear();
+            case ComponentPackage.COMPONENT__INTERFACE_RELATION:
+                getInterfaceRelation().clear();
                 return;
-            case ComponentPackage.COMPONENT__INTERFACE:
-                getInterface().clear();
+            case ComponentPackage.COMPONENT__NESTED_INTERFACE:
+                getNestedInterface().clear();
                 return;
             case ComponentPackage.COMPONENT__PORT:
                 getPort().clear();
@@ -294,12 +294,12 @@ public class ComponentImpl extends ClassifierImpl<Component> implements de.coope
         switch (featureID) {
             case ComponentPackage.COMPONENT__COMPONENT:
                 return !getComponent().isEmpty();
-            case ComponentPackage.COMPONENT__PORTRELATION:
-                return !getPortrelation().isEmpty();
-            case ComponentPackage.COMPONENT__INTERFACERELATION:
-                return !getInterfacerelation().isEmpty();
-            case ComponentPackage.COMPONENT__INTERFACE:
-                return !getInterface().isEmpty();
+            case ComponentPackage.COMPONENT__PORT_RELATION:
+                return !getPortRelation().isEmpty();
+            case ComponentPackage.COMPONENT__INTERFACE_RELATION:
+                return !getInterfaceRelation().isEmpty();
+            case ComponentPackage.COMPONENT__NESTED_INTERFACE:
+                return !getNestedInterface().isEmpty();
             case ComponentPackage.COMPONENT__PORT:
                 return !getPort().isEmpty();
             case ComponentPackage.COMPONENT__OWNING_COMPONENT:

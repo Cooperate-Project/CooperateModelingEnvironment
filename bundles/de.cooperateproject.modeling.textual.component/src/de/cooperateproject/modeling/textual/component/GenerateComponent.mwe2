@@ -99,9 +99,7 @@ Workflow {
 			fragment = ecore2xtext.Ecore2XtextValueConverterServiceFragment2 auto-inject {}
 			
 			fragment = org.eclipse.xtext.generator.adapter.FragmentAdapter {
-				//fragment = org.eclipse.xtext.generator.ecore2xtext.FormatterFragment {}
 				fragment = org.eclipse.xtext.generator.formatting2.Formatter2Fragment {}
-				//fragment = org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment {}
 			}
 			
 			fragment = scoping.ImportNamespacesScopingFragment2 auto-inject {}

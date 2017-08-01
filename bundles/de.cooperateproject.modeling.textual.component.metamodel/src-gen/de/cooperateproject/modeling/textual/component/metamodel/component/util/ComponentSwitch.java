@@ -271,6 +271,9 @@ public class ComponentSwitch<T1> extends Switch<T1> {
             case ComponentPackage.INTERFACE_RELATION: {
                 InterfaceRelation interfaceRelation = (InterfaceRelation)theEObject;
                 T1 result = caseInterfaceRelation(interfaceRelation);
+                if (result == null) result = caseAliasedElement(interfaceRelation);
+                if (result == null) result = caseNamedElement(interfaceRelation);
+                if (result == null) result = caseElement(interfaceRelation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -279,6 +282,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseProvide(provide);
                 if (result == null) result = caseInterfaceRelation(provide);
                 if (result == null) result = caseUMLReferencingElement(provide);
+                if (result == null) result = caseAliasedElement(provide);
+                if (result == null) result = caseNamedElement(provide);
                 if (result == null) result = caseElement(provide);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -288,6 +293,8 @@ public class ComponentSwitch<T1> extends Switch<T1> {
                 T1 result = caseRequire(require);
                 if (result == null) result = caseInterfaceRelation(require);
                 if (result == null) result = caseUMLReferencingElement(require);
+                if (result == null) result = caseAliasedElement(require);
+                if (result == null) result = caseNamedElement(require);
                 if (result == null) result = caseElement(require);
                 if (result == null) result = defaultCase(theEObject);
                 return result;

@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Interface;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.InterfaceImpl#getMember <em>Member</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.impl.InterfaceImpl#getMembers <em>Members</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,8 +57,8 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EList<Member> getMember() {
-        return (EList<Member>)eDynamicGet(ComponentPackage.INTERFACE__MEMBER, ComponentPackage.Literals.INTERFACE__MEMBER, true, true);
+    public EList<Member> getMembers() {
+        return (EList<Member>)eDynamicGet(ComponentPackage.INTERFACE__MEMBERS, ComponentPackage.Literals.INTERFACE__MEMBERS, true, true);
     }
 
     /**
@@ -69,8 +69,8 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case ComponentPackage.INTERFACE__MEMBER:
-                return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
+            case ComponentPackage.INTERFACE__MEMBERS:
+                return ((InternalEList<?>)getMembers()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -83,8 +83,8 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case ComponentPackage.INTERFACE__MEMBER:
-                return getMember();
+            case ComponentPackage.INTERFACE__MEMBERS:
+                return getMembers();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -98,9 +98,9 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case ComponentPackage.INTERFACE__MEMBER:
-                getMember().clear();
-                getMember().addAll((Collection<? extends Member>)newValue);
+            case ComponentPackage.INTERFACE__MEMBERS:
+                getMembers().clear();
+                getMembers().addAll((Collection<? extends Member>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -114,8 +114,8 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case ComponentPackage.INTERFACE__MEMBER:
-                getMember().clear();
+            case ComponentPackage.INTERFACE__MEMBERS:
+                getMembers().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -129,8 +129,8 @@ public class InterfaceImpl extends ClassifierImpl<Interface> implements de.coope
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case ComponentPackage.INTERFACE__MEMBER:
-                return !getMember().isEmpty();
+            case ComponentPackage.INTERFACE__MEMBERS:
+                return !getMembers().isEmpty();
         }
         return super.eIsSet(featureID);
     }

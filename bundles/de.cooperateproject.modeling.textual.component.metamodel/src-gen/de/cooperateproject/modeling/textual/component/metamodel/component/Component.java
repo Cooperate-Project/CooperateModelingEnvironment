@@ -14,9 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getComponent <em>Component</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPortrelation <em>Portrelation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterfacerelation <em>Interfacerelation</em>}</li>
- *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterface <em>Interface</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPortRelation <em>Port Relation</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getInterfaceRelation <em>Interface Relation</em>}</li>
+ *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getPort <em>Port</em>}</li>
  *   <li>{@link de.cooperateproject.modeling.textual.component.metamodel.component.Component#getOwningComponent <em>Owning Component</em>}</li>
  * </ul>
@@ -45,20 +45,36 @@ public interface Component extends Classifier<org.eclipse.uml2.uml.Component> {
     EList<Component> getComponent();
 
     /**
-     * Returns the value of the '<em><b>Portrelation</b></em>' containment reference list.
+     * Returns the value of the '<em><b>Port Relation</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation}.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Portrelation</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Port Relation</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Portrelation</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_Portrelation()
+     * @return the value of the '<em>Port Relation</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_PortRelation()
      * @model containment="true"
      * @generated
      */
-    EList<PortRelation> getPortrelation();
+    EList<PortRelation> getPortRelation();
+
+    /**
+     * Returns the value of the '<em><b>Interface Relation</b></em>' containment reference list.
+     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Interface Relation</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Interface Relation</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_InterfaceRelation()
+     * @model containment="true"
+     * @generated
+     */
+    EList<InterfaceRelation> getInterfaceRelation();
 
     /**
      * Returns the value of the '<em><b>Port</b></em>' containment reference list.
@@ -105,35 +121,19 @@ public interface Component extends Classifier<org.eclipse.uml2.uml.Component> {
     void setOwningComponent(Component value);
 
     /**
-     * Returns the value of the '<em><b>Interfacerelation</b></em>' containment reference list.
-     * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Interfacerelation</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Interfacerelation</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_Interfacerelation()
-     * @model containment="true"
-     * @generated
-     */
-    EList<InterfaceRelation> getInterfacerelation();
-
-    /**
-     * Returns the value of the '<em><b>Interface</b></em>' containment reference list.
+     * Returns the value of the '<em><b>Nested Interface</b></em>' containment reference list.
      * The list contents are of type {@link de.cooperateproject.modeling.textual.component.metamodel.component.Interface}.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Interface</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Nested Interface</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Interface</em>' containment reference list.
-     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_Interface()
+     * @return the value of the '<em>Nested Interface</em>' containment reference list.
+     * @see de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage#getComponent_NestedInterface()
      * @model containment="true"
      * @generated
      */
-    EList<Interface> getInterface();
+    EList<Interface> getNestedInterface();
 
 } // Component

@@ -2,21 +2,12 @@
  */
 package de.cooperateproject.modeling.textual.component.metamodel.component.impl;
 
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Element;
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.PackageBase;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 
 import de.cooperateproject.modeling.textual.component.metamodel.component.ComponentPackage;
 import de.cooperateproject.modeling.textual.component.metamodel.component.Provide;
-
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.InterfaceRealization;
 
@@ -95,19 +86,6 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
      * <!-- end-user-doc -->
      * @generated
      */
-    public PackageBase<?> getNearestPackage() {
-        EObject parent = this;
-        while (parent != null && !(parent instanceof PackageBase)) {
-            parent = parent.eContainer();
-        }
-        return (PackageBase<?>)parent;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -169,11 +147,6 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
      */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (derivedFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (derivedFeatureID) {
                 case ComponentPackage.PROVIDE__REFERENCED_ELEMENT: return TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT;
@@ -190,11 +163,6 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
      */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseFeatureID) {
-                default: return -1;
-            }
-        }
         if (baseClass == UMLReferencingElement.class) {
             switch (baseFeatureID) {
                 case TextualCommonsPackage.UML_REFERENCING_ELEMENT__REFERENCED_ELEMENT: return ComponentPackage.PROVIDE__REFERENCED_ELEMENT;
@@ -202,41 +170,6 @@ public class ProvideImpl extends InterfaceRelationImpl implements Provide {
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-        if (baseClass == Element.class) {
-            switch (baseOperationID) {
-                case TextualCommonsPackage.ELEMENT___GET_NEAREST_PACKAGE: return ComponentPackage.PROVIDE___GET_NEAREST_PACKAGE;
-                default: return -1;
-            }
-        }
-        if (baseClass == UMLReferencingElement.class) {
-            switch (baseOperationID) {
-                default: return -1;
-            }
-        }
-        return super.eDerivedOperationID(baseOperationID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-        switch (operationID) {
-            case ComponentPackage.PROVIDE___GET_NEAREST_PACKAGE:
-                return getNearestPackage();
-        }
-        return super.eInvoke(operationID, arguments);
     }
 
 } //ProvideImpl
