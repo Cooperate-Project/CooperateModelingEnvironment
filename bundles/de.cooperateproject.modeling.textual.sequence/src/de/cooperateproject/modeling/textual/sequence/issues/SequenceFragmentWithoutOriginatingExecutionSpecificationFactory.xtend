@@ -4,10 +4,9 @@ import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLR
 import de.cooperateproject.modeling.textual.sequence.sequence.Fragment
 import de.cooperateproject.modeling.textual.sequence.sequence.Message
 import de.cooperateproject.modeling.textual.sequence.sequence.SequencePackage
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification
+import org.eclipse.uml2.uml.ExecutionSpecification
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
-import org.eclipse.uml2.uml.ExecutionSpecification
 
 class SequenceFragmentWithoutOriginatingExecutionSpecificationFactory extends SequenceAutomatedIssueResolutionFactoryBase<Fragment> {
 	

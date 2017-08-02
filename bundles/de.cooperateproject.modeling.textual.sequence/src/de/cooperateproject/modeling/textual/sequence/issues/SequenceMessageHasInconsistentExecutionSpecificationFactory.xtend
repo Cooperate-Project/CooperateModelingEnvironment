@@ -40,7 +40,7 @@ class SequenceMessageHasInconsistentExecutionSpecificationFactory extends Sequen
         if (umlOcc === null) return false
         val request = msg.correspondingRequest
         
-        umlOcc.getExecutionSpecification[finish] == 
+        umlOcc.getExecutionSpecification[finish] != 
             request.arrivalEvent.occurenceSpecification.referencedElement.getExecutionSpecification[start]
     }
     

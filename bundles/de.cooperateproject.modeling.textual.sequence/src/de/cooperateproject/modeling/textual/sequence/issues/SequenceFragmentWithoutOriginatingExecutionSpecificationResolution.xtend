@@ -26,18 +26,20 @@ class SequenceFragmentWithoutOriginatingExecutionSpecificationResolution extends
         if (!resolvePossible) return;
         
         val idx = element.containingSequence.UMLFragmentSequence.indexOf(element.sendEvent.occurenceSpecification.referencedElement)
-        element.containingSequence.UMLFragmentSequence.add(idx + 1, UMLFactory.eINSTANCE.createBehaviorExecutionSpecification => [
-            start = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification => [
+        element.containingSequence.UMLFragmentSequence.add(idx + 1, UMLFactory.eINSTANCE.createBehaviorExecutionSpecification => [bes |
+            bes.start = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification => [
                 element.containingSequence.UMLFragmentSequence.add(idx, it)
                 covered = element.left.referencedElement
+                execution = bes
             ]
-            finish = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification => [
+            bes.finish = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification => [
                 element.containingSequence.UMLFragmentSequence.add(
                     element.right.determineIndexOfFinishExecutionOnLifelineAfter(element), it
                 )
                 covered = element.left.referencedElement
+                execution = bes
             ]
-            covereds.add(start.covered)
+            bes.covereds.add(bes.start.covered)
         ])
     }
 }

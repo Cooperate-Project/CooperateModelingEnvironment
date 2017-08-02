@@ -11,6 +11,8 @@ import java.util.Iterator
 import org.eclipse.uml2.uml.InteractionFragment
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification
 
+import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
+
 class SequenceFragmentSequenceHasWrongOrderFactory extends SequenceAutomatedIssueResolutionFactoryBase<FragmentSequence> {
 	
 	private static val ISSUE_CODE = "fragmentSequenceHasWrongOrder"
@@ -36,6 +38,7 @@ class SequenceFragmentSequenceHasWrongOrderFactory extends SequenceAutomatedIssu
     }
     
     override protected hasIssueInternal(FragmentSequence element) {
+        if (!(element as UMLReferencingElement<?>).hasReferencedElement) return false
         val umlIter = element.UMLFragmentSequence.iterator
         
         !element.fragments.forall[elementsInOrder(umlIter)]
