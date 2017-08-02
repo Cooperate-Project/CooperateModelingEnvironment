@@ -14,6 +14,7 @@ import java.util.Set
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.uml2.uml.InteractionFragment
+import de.cooperateproject.modeling.textual.sequence.sequence.ResponseMessage
 
 class SequenceDiagramIssueUtils {
     public static def int determineIndexOfFinishExecutionOnLifelineAfter(Actor actor, Fragment fragment) {
@@ -92,6 +93,10 @@ class SequenceDiagramIssueUtils {
     
     private static def dispatch boolean isIncomingEdge(Actor actor, Message fragment) {
         fragment.right == actor
+    }
+    
+    private static def dispatch boolean isIncomingEdge(Actor actor, ResponseMessage fragment) {
+        false
     }
     
     
