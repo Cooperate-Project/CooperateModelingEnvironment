@@ -27,8 +27,6 @@ Require-Bundle: org.eclipse.xtext,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.textual.sequence,
  de.cooperateproject.modeling.textual.sequence.issues,
- de.cooperateproject.modeling.textual.sequence.matching,
- de.cooperateproject.modeling.textual.sequence.matching.matcher,
  de.cooperateproject.modeling.textual.sequence.parser.antlr,
  de.cooperateproject.modeling.textual.sequence.parser.antlr.internal,
  de.cooperateproject.modeling.textual.sequence.scoping,

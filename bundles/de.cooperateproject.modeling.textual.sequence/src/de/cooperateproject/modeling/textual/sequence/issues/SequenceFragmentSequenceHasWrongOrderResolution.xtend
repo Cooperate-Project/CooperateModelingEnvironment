@@ -58,7 +58,7 @@ class SequenceFragmentSequenceHasWrongOrderResolution extends AutomatedIssueReso
     
     private def int skipUMLElementsIfNecessary(int umlIndex) {
         var index = umlIndex
-        while (index >= problematicElement.UMLFragmentSequence.length &&
+        while (index < problematicElement.UMLFragmentSequence.length &&
             problematicElement.UMLFragmentSequence.get(index).skipUMLElement) {
             index++
         }

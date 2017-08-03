@@ -8,7 +8,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification
 
 class SequenceMessageHasInconsistentExecutionSpecificationFactory extends SequenceAutomatedIssueResolutionFactoryBase<Message> {
 	
-	private static val ISSUE_CODE = "fragmentSequenceHasWrongOrder"
+	private static val ISSUE_CODE = "fragmentSequenceHasInconsistentExecutionSpecification"
 	
 	new() {
 		super(ISSUE_CODE, new SequenceMessageHasInconsistentExecutionSpecificationChecker(), Message)
@@ -24,7 +24,7 @@ class SequenceMessageHasInconsistentExecutionSpecificationFactory extends Sequen
     
     override protected getIssueFeatureInternal(Message element) {
         val index = element.containingSequence.fragments.indexOf(element)
-        new IssueLocator(SequencePackage.eINSTANCE.fragmentSequence_Fragments, index, element.containingSequence)
+        new IssueLocator(SequencePackage.eINSTANCE.fragmentSequence_Fragments, index, element.containingSequence, element)
     }
     
     override protected getResolutionNameInternal(Message element) {
@@ -40,7 +40,7 @@ class SequenceMessageHasInconsistentExecutionSpecificationFactory extends Sequen
         if (umlOcc === null) return false
         val request = msg.correspondingRequest
         
-        umlOcc.getExecutionSpecification[finish] == 
+        umlOcc.getExecutionSpecification[finish] != 
             request.arrivalEvent.occurenceSpecification.referencedElement.getExecutionSpecification[start]
     }
     

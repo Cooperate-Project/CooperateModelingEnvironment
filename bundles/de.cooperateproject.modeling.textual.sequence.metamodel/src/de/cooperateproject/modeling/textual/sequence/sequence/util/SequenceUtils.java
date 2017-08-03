@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -114,6 +115,17 @@ public class SequenceUtils {
     private static boolean isSimilarResponse(ResponseMessage m1, ResponseMessage m2) {
         return m1.getLeft() == m2.getLeft()
                 && m1.getRight() == m2.getRight();
+    }
+    
+    public static Optional<ResponseMessage> getResponseCorrespondingToSynchronousMessage(StandardMessage message) {
+        FragmentSequence parent = determineClosestContainingFragmentSequence(message);
+        Iterable<EObject> allContents = () -> EcoreUtil.getAllContents(parent, false);
+        return StreamSupport.stream(allContents.spliterator(), false)
+            .filter(SequencePackage.eINSTANCE.getResponseMessage()::isInstance)
+            .map(ResponseMessage.class::cast)
+            .filter(m -> isPotentialRequestResponsePair(message, m))
+            .filter(m -> getSynchronousMessageCorrespondingToResponse(m) == message)
+            .findAny();
     }
     
     public static StandardMessage getSynchronousMessageCorrespondingToResponse(ResponseMessage response) {

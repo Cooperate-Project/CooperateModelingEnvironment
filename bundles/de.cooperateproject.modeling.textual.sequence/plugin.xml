@@ -12,6 +12,9 @@
           <factory
                 class="de.cooperateproject.modeling.textual.sequence.issues.SequenceFragmentSequenceHasWrongOrderFactory">
           </factory>
+          <factory
+                class="de.cooperateproject.modeling.textual.sequence.issues.SequenceFragmentWithoutOriginatingExecutionSpecificationFactory">
+          </factory>
     </extension>
     <extension
           point="de.cooperateproject.modeling.textual.xtext.runtime.derivedstate.processor">
