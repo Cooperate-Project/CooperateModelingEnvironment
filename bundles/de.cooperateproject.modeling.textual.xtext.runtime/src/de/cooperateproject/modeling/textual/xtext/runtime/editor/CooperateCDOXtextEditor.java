@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -424,8 +425,8 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
     }
 
     private static void saveAllAssociated(CooperateXtextDocument document) {
-        ResourceSet rs = document.getResource().getResourceSet();
-        List<Resource> resourcesToBeSaved = rs.getResources().stream().filter(r -> r != document.getResource())
+        Collection<Resource> knownResources = getAllKnownResources(document);
+        List<Resource> resourcesToBeSaved = knownResources.stream().filter(r -> r != document.getResource())
                 .filter(r -> !r.isTrackingModification() || r.isModified()).collect(Collectors.toList());
 
         for (Resource r : resourcesToBeSaved) {
@@ -435,6 +436,20 @@ public class CooperateCDOXtextEditor extends CDOXtextEditor implements IReloadin
                 throw new IllegalStateException("Error during save of associated resources.", e);
             }
         }
+    }
+
+    private static Collection<Resource> getAllKnownResources(CooperateXtextDocument document) {
+        Collection<Resource> result = new ArrayList<>();
+        LinkedList<ResourceSet> queue = new LinkedList<>();
+        queue.add(document.getResource().getResourceSet());
+        while (!queue.isEmpty()) {
+            ResourceSet rs = queue.pop();
+            if (rs instanceof ResourceSetReferencingResourceSet) {
+                queue.addAll(((ResourceSetReferencingResourceSet) rs).getReferencedResourceSets());
+            }
+            result.addAll(rs.getResources());
+        }
+        return result;
     }
 
     private void waitForReconcileToStartAndFinish() {
