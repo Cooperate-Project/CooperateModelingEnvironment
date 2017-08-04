@@ -18,7 +18,7 @@
       <repositories location="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.sdk.feature.feature.group"/>
       </repositories>
-      <repositories location="https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/latest/" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/PapyrusCollaborativeModeling/updatesite/1.2.0.RC1/" mirrorArtifacts="false">
         <features name="org.eclipse.papyrus.extra.cdo.feature.feature.group"/>
       </repositories>
       <repositories location="https://dl.bintray.com/cooperate-project/CooperateLicense/updatesite/1.0.0/" mirrorArtifacts="false">
@@ -27,7 +27,7 @@
       <repositories location="https://dl.bintray.com/cooperate-project/CDOXtext/updatesite/0.3.1/" mirrorArtifacts="false">
         <features name="de.cooperateproject.cdoxtext.feature.feature.group"/>
       </repositories>
-      <repositories location="https://dl.bintray.com/cooperate-project/Externals/updatesite/latest/" mirrorArtifacts="false">
+      <repositories location="https://dl.bintray.com/cooperate-project/Externals/updatesite/1.0.0/" mirrorArtifacts="false">
         <bundles name="org.apache.activemq.all"/>
       </repositories>
     </contributions>
