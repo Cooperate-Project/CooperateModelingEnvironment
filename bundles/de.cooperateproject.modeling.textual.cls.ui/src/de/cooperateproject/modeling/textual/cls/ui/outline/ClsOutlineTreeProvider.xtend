@@ -10,6 +10,7 @@ import de.cooperateproject.modeling.textual.cls.cls.Connector
 import de.cooperateproject.modeling.textual.cls.cls.Package
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation
 import de.cooperateproject.modeling.textual.cls.ui.labeling.UMLImage
+import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import java.util.Collection
 import org.eclipse.emf.ecore.EObject
@@ -19,8 +20,6 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode
-import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.Commentable
-import com.google.common.collect.Iterables
 
 /**
  * Customization of the default outline structure.
@@ -45,15 +44,18 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			getStyledString("Classifiers", pkg.classifiers.size), false)
 		createFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.ASSOCIATION.image,
 			getStyledString("Connectors", pkg.connectors.size), false)
-			
-		val comments = Iterables.concat(pkg.classifiers, pkg.connectors).filter(Commentable).filter[!comments.isEmpty].map[comments]
-		createFeatureNode(parentNode, pkg, ClsPackage.Literals.PACKAGE__CONNECTORS, UMLImage.COMMENT.image, 
-		    getStyledString("Comments", comments.size), false, [!comments.empty]
-		)
 	}
 
 	dispatch def createChildren(IOutlineNode parentNode, XtextAssociation asc) {
 		asc.memberEndTypes.forEach[t|createEObjectNode(parentNode, t)];
+		_createChildren(parentNode, asc as Commentable<?>)
+	}
+	
+	dispatch def createChildren(IOutlineNode parentNode, Commentable<?> commentable) {
+		if (!commentable.comments.isEmpty) {
+			val comment = commentable.comments.findFirst[true]
+			createEObjectNode(parentNode, comment , UMLImage.COMMENT.image, textDispatcher.invoke(comment), true)
+		}
 	}
 
 	protected def dispatch createNode(EStructuralFeatureNode parentNode, Connector c) {
@@ -85,7 +87,7 @@ class ClsOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	private def <T extends EObject> createFeatureNode(IOutlineNode parentNode, T parent, EReference ref, Image img,
 		StyledString text, boolean isLeaf, Predicate<T> pred) {
 		if (pred.apply(parent)) {
-			createEStructuralFeatureNode(parentNode, parent, ref, img, text, false)
+			createEStructuralFeatureNode(parentNode, parent, ref, img, text, isLeaf)
 		}
 	}
 
