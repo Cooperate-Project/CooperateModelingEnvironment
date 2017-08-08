@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Graphical Modeling Commons
 Bundle-SymbolicName: de.cooperateproject.modeling.graphical.common
-Bundle-Version: 0.2.1.qualifier
+Bundle-Version: 0.2.1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: de.cooperateproject.modeling.common
 Export-Package: de.cooperateproject.modeling.graphical.common.conventions
