@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.cooperateproject.modeling.feature_0.2.1.jar" id="de.cooperateproject.modeling.feature" version="0.2.1">
+   <feature url="features/de.cooperateproject.modeling.feature_0.2.2.qualifier.jar" id="de.cooperateproject.modeling.feature" version="0.2.2.qualifier">
       <category name="modeling"/>
    </feature>
    <category-def name="modeling" label="Cooperate Modeling Environment"/>
