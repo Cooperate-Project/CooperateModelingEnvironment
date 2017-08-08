@@ -16,5 +16,4 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common,
  com.google.guava;bundle-version="15.0.0"
 Bundle-Activator: de.cooperate.modeling.graphical.papyrus.extensions.Activator
 Bundle-ActivationPolicy: lazy
-Import-Package: de.cooperateproject.modeling.graphical.common.conventions,
- org.slf4j
+Import-Package: org.slf4j
