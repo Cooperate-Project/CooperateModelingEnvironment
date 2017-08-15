@@ -37,6 +37,7 @@ import com.google.common.collect.Lists;
 
 import de.cooperateproject.cdo.util.merger.CustomCDOMerger;
 import de.cooperateproject.cdo.util.resources.CDOResourceHandler;
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.modeling.transformation.engine.executor.TransformationExecutor;
 import de.cooperateproject.ui.util.EditorInputSwitch;
 
@@ -94,13 +95,13 @@ public class TransformationManager {
     public void handleEditorSave(IEditorInput editorInput) throws TransformationException {
         try {
             triggerTransformation(editorInput);
-            mergeChangesToMaster();
+            mergeChangesToMaster(getCommitMessage(editorInput));
         } catch (IOException | CommitException e) {
             throw new TransformationException("Could not transform and merge model changes.", e);
         }
     }
 
-    private void mergeChangesToMaster() throws CommitException {
+    private void mergeChangesToMaster(String commitMessage) throws CommitException {
         CDOBranch editorBranch = cdoCheckout.getBranchPoint().getBranch();
         CDOBranch mainBranch = editorBranch.getBranchManager().getMainBranch();
 
@@ -110,10 +111,7 @@ public class TransformationManager {
             CDOBranchPoint sourceToRevision = editorBranch.getHead();
             CDOBranchPoint targetFromRevision = mainBranch.getPoint(lastMergeTimeMain);
             mergeTransaction.merge(sourceToRevision, sourceFromRevision, targetFromRevision, new CustomCDOMerger());
-            /*
-             * MergeHelper.merge(mergeTransaction, sourceToRevision, sourceFromRevision, targetFromRevision,
-             * new CustomCDOMerger());
-             */
+            mergeTransaction.setCommitComment(commitMessage);
             CDOCommitInfo mergeCommitInfo = mergeTransaction.commit();
             mergeCommitInfo.getTimeStamp();
             lastMergeTimeBranch = getTimestampOfBranch(cdoCheckout, editorBranch);
@@ -275,6 +273,13 @@ public class TransformationManager {
 
         return processedURI;
 
+    }
+
+    private static String getCommitMessage(IEditorInput editorInput) {
+        String resource = editorInput.getAdapter(ILauncherFileEditorInput.class).getAssociatedLauncherFile().getName();
+        String editorType = editorInput.getAdapter(ILauncherFileEditorInput.class).getEditorType().toString()
+                .toLowerCase();
+        return "Diagram " + resource + " in " + editorType + " editor was edited by " + System.getProperty("user.name");
     }
 
 }

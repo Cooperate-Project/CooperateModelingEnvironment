@@ -9,4 +9,5 @@ Require-Bundle: de.cooperateproject.ui;bundle-version="0.2.2",
  org.eclipse.emf.cdo.ui,
  de.cooperateproject.modeling.textual.xtext.runtime,
  org.apache.commons.lang3,
- de.cooperateproject.ui.util
+ de.cooperateproject.ui.util,
+ de.cooperateproject.modeling.common;bundle-version="0.2.2"

@@ -5,7 +5,9 @@ Bundle-SymbolicName: de.cooperateproject.modeling.common
 Bundle-Version: 0.2.2.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.cooperateproject.modeling.common.conventions,
+ de.cooperateproject.modeling.common.editorInput,
  de.cooperateproject.modeling.common.types
 Require-Bundle: org.apache.commons.lang3,
  org.eclipse.emf.common,
- org.apache.commons.io
+ org.apache.commons.io,
+ org.eclipse.core.resources;bundle-version="3.12.0"
