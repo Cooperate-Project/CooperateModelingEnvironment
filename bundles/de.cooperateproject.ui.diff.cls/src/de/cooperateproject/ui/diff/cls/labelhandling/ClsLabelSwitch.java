@@ -12,7 +12,6 @@ import de.cooperateproject.modeling.textual.cls.cls.Interface;
 import de.cooperateproject.modeling.textual.cls.cls.Method;
 import de.cooperateproject.modeling.textual.cls.cls.Parameter;
 import de.cooperateproject.modeling.textual.cls.cls.XtextAssociation;
-import de.cooperateproject.modeling.textual.cls.cls.XtextAssociationMemberEndReferencedType;
 import de.cooperateproject.modeling.textual.cls.cls.util.ClsSwitch;
 import de.cooperateproject.modeling.textual.cls.cls.Class;
 import de.cooperateproject.modeling.textual.cls.cls.Package;
@@ -79,11 +78,11 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
 
         String visibText = handleNonEObject(object.getVisibility());
 
-        String paramText = "";
+        StringBuilder paramText = new StringBuilder();
         for (Parameter param : params) {
-            paramText = paramText + caseParameter(param);
+            paramText.append(caseParameter(param));
             if (params.indexOf(param) < params.size() - 1) {
-                paramText += ", ";
+                paramText.append(", ");
             }
         }
 
@@ -115,11 +114,6 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
         return object.getType().getName();
     }
     
-    @Override
-    public String caseXtextAssociationMemberEndReferencedType(XtextAssociationMemberEndReferencedType object) {
-        return "class " + object.getType().getName();
-    }
-
     @Override
     public String caseImplementation(Implementation object) {
         String left = object.getLeft().getName();

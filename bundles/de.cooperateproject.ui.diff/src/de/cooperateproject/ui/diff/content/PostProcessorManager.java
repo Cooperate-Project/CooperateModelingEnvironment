@@ -1,8 +1,8 @@
 package de.cooperateproject.ui.diff.content;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -33,7 +33,7 @@ public class PostProcessorManager {
 	    //private constructor to hide creation of object
 	}
 
-	static HashMap<EObject, DiffTreeItem> postProcessDiffTree(HashMap<EObject, DiffTreeItem> tree) {
+	static Map<EObject, DiffTreeItem> postProcessDiffTree(Map<EObject, DiffTreeItem> tree) {
 		if (tree.isEmpty()) {
 			return tree;
 		}

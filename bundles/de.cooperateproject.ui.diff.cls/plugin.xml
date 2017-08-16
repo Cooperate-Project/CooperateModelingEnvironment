@@ -15,5 +15,12 @@
             ns_uri="http://www.eclipse.org/emf/CDO/Eresource/4.0.0">
       </class>
    </extension>
+   <extension
+         point="de.cooperateproject.ui.diff.postProcessor">
+      <postProcessor
+            class="de.cooperateproject.ui.diff.cls.postproccesing.ClsPostProcessor"
+            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
+      </postProcessor>
+</extension>
 
 </plugin>

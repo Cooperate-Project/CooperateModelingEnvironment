@@ -1,7 +1,7 @@
 package de.cooperateproject.ui.diff.content;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface IPostProcessor {
 
-	HashMap<EObject, DiffTreeItem> postProcessDiffTreeBuilder(HashMap<EObject, DiffTreeItem> tree);
+	Map<EObject, DiffTreeItem> postProcessDiffTreeBuilder(Map<EObject, DiffTreeItem> tree);
 
 	List<SummaryItem> postProcessSummaryViewBuilder(List<SummaryItem> summaryList);
 
