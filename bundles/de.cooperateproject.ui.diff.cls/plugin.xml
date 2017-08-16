@@ -19,7 +19,7 @@
          point="de.cooperateproject.ui.diff.postProcessor">
       <postProcessor
             class="de.cooperateproject.ui.diff.cls.postproccesing.ClsPostProcessor"
-            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
+            metamodel="de.cooperateproject.modeling.textual.usecase.usecase.impl">
       </postProcessor>
 </extension>
 

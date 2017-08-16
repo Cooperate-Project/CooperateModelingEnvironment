@@ -38,6 +38,13 @@ public class DiffTreeItem {
 		this.parent = null;
 		children = new HashSet<>();
 	}
+	
+	public DiffTreeItem(Object object, DiffTreeItem parent) {
+	    this.object = object;
+	    this.kind = null;
+	    this.parent = parent;
+	    children = new HashSet<>();
+	}
 
 	/**
 	 * Adds a new child to the item.

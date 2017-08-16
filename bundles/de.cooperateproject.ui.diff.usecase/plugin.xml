@@ -8,5 +8,12 @@
             metamodel="de.cooperateproject.modeling.textual.usecase.usecase.impl">
       </labelHandler>
    </extension>
+   <extension
+         point="de.cooperateproject.ui.diff.postProcessor">
+      <postProcessor
+            class="de.cooperateproject.ui.diff.usecase.postprocessing.UsecasePostProcessor"
+            metamodel="de.cooperateproject.modeling.textual.usecase.usecase.impl">
+      </postProcessor>
+   </extension>
 
 </plugin>
