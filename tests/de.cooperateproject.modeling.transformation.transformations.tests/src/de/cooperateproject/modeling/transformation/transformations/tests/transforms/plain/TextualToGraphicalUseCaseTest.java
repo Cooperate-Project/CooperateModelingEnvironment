@@ -7,7 +7,7 @@ import de.cooperateproject.modeling.textual.usecase.usecase.UsecasePackage;
 
 public class TextualToGraphicalUseCaseTest extends DirectionalTransformationTestBase {
 
-    private static final URI TRANSFORMATION_URI = createTransformationURI("Textual_to_Graphical_for_Usecase.qvto");
+    private static final URI TRANSFORMATION_URI = createTransformationURI("Textual_to_Graphical_for_UseCase.qvto");
 
     static {
         UsecasePackage.eINSTANCE.eClass();

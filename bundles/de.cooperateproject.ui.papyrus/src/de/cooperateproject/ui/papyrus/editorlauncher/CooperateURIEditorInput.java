@@ -6,7 +6,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
+import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
 
 /**
  * {@link URIEditorInput} that additionally can hold an {@link IFile} referring to a launcher file.
@@ -53,6 +54,11 @@ public class CooperateURIEditorInput extends URIEditorInput implements ILauncher
             localResult = Objects.equals(((CooperateURIEditorInput) o).getAssociatedLauncherFile(), launcherFile);
         }
         return super.equals(o) && localResult;
+    }
+
+    @Override
+    public ConcreteSyntaxTypes getEditorType() {
+        return ConcreteSyntaxTypes.GRAPHICAL;
     }
 
 }

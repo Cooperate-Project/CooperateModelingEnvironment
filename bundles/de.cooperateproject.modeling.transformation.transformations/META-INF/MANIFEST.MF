@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Transformations
 Bundle-SymbolicName: de.cooperateproject.modeling.transformation.transformations;singleton:=true
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.2.2.qualifier
 Bundle-Vendor: 
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,
@@ -14,9 +14,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation;bundle-version="1.8.0",
  org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="1.0.0";visibility:=reexport,
  de.cooperateproject.modeling.graphical.common,
- de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.2.0",
- de.cooperateproject.modeling.textual.common;bundle-version="0.2.0",
- de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.2.0",
+ de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.2.2",
+ de.cooperateproject.modeling.textual.common;bundle-version="0.2.2",
+ de.cooperateproject.modeling.textual.usecase.metamodel;bundle-version="0.2.2",
  com.google.guava;bundle-version="21.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

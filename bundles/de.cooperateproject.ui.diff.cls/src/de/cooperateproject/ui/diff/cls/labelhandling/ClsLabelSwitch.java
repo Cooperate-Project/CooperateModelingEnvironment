@@ -112,12 +112,12 @@ public class ClsLabelSwitch extends ClsSwitch<String> {
     
     @Override
     public String caseAssociationMemberEnd(AssociationMemberEnd object) {
-        return object.getName();
+        return object.getType().getName();
     }
     
     @Override
     public String caseXtextAssociationMemberEndReferencedType(XtextAssociationMemberEndReferencedType object) {
-        return null;
+        return "class " + object.getType().getName();
     }
 
     @Override

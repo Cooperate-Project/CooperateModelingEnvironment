@@ -2,7 +2,7 @@
 <feature
       id="de.cooperateproject.modeling.textual.feature"
       label="%featureName"
-      version="0.1.5.qualifier"
+      version="0.2.2.qualifier"
       license-feature="de.cooperateproject.license"
       license-feature-version="1.0.0">
 
@@ -22,6 +22,13 @@
          id="de.cooperateproject.modeling.textual.class.feature"
          version="0.0.0"/>
 
+   <includes
+         id="de.cooperateproject.modeling.textual.usecase.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="de.cooperateproject.externals.guice"
+         version="0.0.0"/>
    <plugin
          id="de.cooperateproject.ui.diff"
          download-size="0"
