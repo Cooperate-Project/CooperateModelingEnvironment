@@ -21,6 +21,7 @@ import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.cdo.util.InvalidURIException;
 import org.eclipse.emf.cdo.util.ObjectNotFoundException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
@@ -134,7 +135,11 @@ public class ComparisonManager {
         EObject rootElement = concreteSyntaxModel.getRootElement();
         URI rootURI = EcoreUtil.getURI(rootElement);
         String resourcePath = CDOURIUtil.extractResourcePath(rootURI);
-        return currentView.getResource(resourcePath);
+        try {
+            return currentView.getResource(resourcePath);
+        } catch (InvalidURIException e) {
+            return null;
+        }
     }
 
     private void initStateOfObjects(CDOView previousView, CDOView currentView) {
