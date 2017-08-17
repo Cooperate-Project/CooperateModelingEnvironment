@@ -18,8 +18,8 @@
    <extension
          point="de.cooperateproject.ui.diff.postProcessor">
       <postProcessor
-            class="de.cooperateproject.ui.diff.cls.postproccesing.ClsPostProcessor"
-            metamodel="de.cooperateproject.modeling.textual.usecase.usecase.impl">
+            class="de.cooperateproject.ui.diff.cls.postprocessing.ClsPostProcessor"
+            metamodel="de.cooperateproject.modeling.textual.cls.cls.impl">
       </postProcessor>
 </extension>
 

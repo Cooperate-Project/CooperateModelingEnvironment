@@ -1,4 +1,4 @@
-package de.cooperateproject.ui.diff.cls.postproccesing;
+package de.cooperateproject.ui.diff.cls.postprocessing;
 
 import java.util.List;
 import java.util.Map;
