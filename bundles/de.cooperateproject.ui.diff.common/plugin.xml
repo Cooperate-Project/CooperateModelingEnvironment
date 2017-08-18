@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.cooperateproject.ui.diff.labelHandlers">
+      <labelHandler
+            class="de.cooperateproject.ui.diff.common.labeling.CommonLabelHandler"
+            metamodel="de.cooperateproject.modeling.textual.common.metamodel.textualCommons.impl">
+      </labelHandler>
+   </extension>
+
+</plugin>

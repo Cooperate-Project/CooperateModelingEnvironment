@@ -4,9 +4,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.ui.focus.manager.IFocusManager;
 import de.cooperateproject.ui.focus.manager.IFocusManagerFactory;
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 /**
  * Factory for the textual focus manager.

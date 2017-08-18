@@ -17,11 +17,11 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.textual.common.conventions.FileExtensions;
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 /**
  * Manages focus in textual view.

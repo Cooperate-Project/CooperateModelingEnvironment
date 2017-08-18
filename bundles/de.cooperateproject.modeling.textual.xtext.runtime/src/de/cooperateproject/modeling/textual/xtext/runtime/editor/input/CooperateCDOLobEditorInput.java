@@ -4,7 +4,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.internal.ui.CDOLobEditorInput;
 
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
+import de.cooperateproject.modeling.common.types.ConcreteSyntaxTypes;
 
 public class CooperateCDOLobEditorInput extends CDOLobEditorInput implements ILauncherFileEditorInput {
 
@@ -29,6 +30,11 @@ public class CooperateCDOLobEditorInput extends CDOLobEditorInput implements ILa
             return adapter.cast(this);
         }
         return super.getAdapter(adapter);
+    }
+
+    @Override
+    public ConcreteSyntaxTypes getEditorType() {
+        return ConcreteSyntaxTypes.TEXTUAL;
     }
 
 }
