@@ -23,5 +23,102 @@ mapping notation::Diagram::diagramToDiagram() : component::ComponentDiagram
 
 mapping notation::Diagram::diagramToRootPackage() : component::RootPackage
 {
-	referencedElement := self.element.oclAsType(uml::Package)
+	var relevantEdges := self.findRelevantEdges();
+	referencedElement := self.element.oclAsType(uml::Package);
+	//TODO
+	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR).map nodeToComponent();
+	classifiers := self.children->select(type = PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR).map nodeToInterface();
+	relations := self.edges.map edgeToClassifierRelation();
+}
+/**
+mapping notation::Node::nodeToClassifier() : component::Classifier
+disjuncts
+	notation::Node::nodeToComponent,
+	notation::Node::nodeToInterface
+{
+	//referencedElement := self.element.toElement();
+	//comments := self.getCommentShape().map commentToComment();
+}**/
+
+mapping notation::Node::nodeToComponent() : component::Component
+{
+	referencedElement :=self.element.oclAsType(uml::Component);
+	//TODO Port Comment Interface portRelation interfaceRelation component
+}
+
+mapping notation::Node::nodeToInterface() : component::Interface
+{
+	
+}
+
+mapping notation::Edge::edgeToClassifierRelation() : component::ClassifierRelation
+disjuncts
+ notation::Edge::edgeToGeneralization,
+ notation::Edge::edgeToAbstraction,
+ notation::Edge::edgeToManifestation,
+ notation::Edge::edgeToSubstitution,
+ notation::Edge::edgeToDependency
+{
+	
+}
+
+mapping notation::Edge::edgeToGeneralization() : component::Generalization
+{
+	
+}
+mapping notation::Edge::edgeToAbstraction() : component::Abstraction
+{
+	
+}
+mapping notation::Edge::edgeToManifestation() : component::Manifestation
+{
+	
+}
+mapping notation::Edge::edgeToSubstitution() : component::Substitution
+{
+	
+}
+mapping notation::Edge::edgeToDependency() : component::Dependency
+{
+	
+}
+
+mapping notation::View::commentToComment() : textualCommons::Comment
+when {not self.oclIsInvalid() and not self.oclIsUndefined()}
+{
+	referencedElement := self.element.oclAsType(uml::Comment);
+}
+
+query notation::Diagram::findRelevantEdges() : OrderedSet(notation::Edge)
+{
+	return self.findRelevantEdgesByContainment();
+}
+
+query notation::Node::findRelevantEdges() : OrderedSet(notation::Edge)
+{
+	return self.findRelevantEdgesByContainment();
+}
+
+query notation::View::findRelevantEdgesByContainment() : OrderedSet(notation::Edge)
+{
+	assert fatal (self.element.oclIsKindOf(uml::Package)) with log('Finding relevant edges is only possible for views that represent packages.');
+	var umlPackage = self.element.oclAsType(uml::Package);
+
+	return self.diagram.edges->select(findOwningPackage() = umlPackage);
+} 
+
+query notation::Edge::findOwningPackage() : uml::Package
+{
+	return if self.oclIsKindOf(notation::Connector) then self.oclAsType(notation::Connector).findOwningPackage() else null endif;
+}
+
+mapping notation::View::commentViewToComment() : textualCommons::Comment
+{
+	var umlComment = self.element.oclAsType(uml::Comment);
+	referencedElement := umlComment;
+}
+
+query notation::View::getCommentShape() : notation::View
+{
+	return self.diagram.children->select(type = PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR)->any(element.oclAsType(uml::Comment).annotatedElement->includes(self.element));
 }

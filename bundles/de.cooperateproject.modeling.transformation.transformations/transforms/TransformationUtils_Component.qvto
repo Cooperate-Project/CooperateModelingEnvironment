@@ -5,3 +5,17 @@ import TransformationUtils;
 property PAPYRUS_NOTATION_EDGE_CONSTRAINT : String = "Constraint_ConstrainedElementEdge";
 
 property PAPYRUS_NOTATION_EDGE_COMMENTLINK : String = "Comment_AnnotatedElementEdge";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR = "Component_PackagedElementShape";
+property PAPYRUS_NOTATION_SHAPE_COMMENT_REGULAR : String = "Comment_Shape";
+property PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR : String = "Component_NameLabel";
+property PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR : String = "Component_FloatingNameLabel";
+property PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR : String = "Component_StructureCompartment";
+
+
+property PAPYRUS_NOTATION_SHAPE_INTERFACE_REGULAR = "Interface_ClassifierShape";
+property PAPYRUS_NOTATION_NODE_INTERFACE_NAME_REGULAR : String = "Interface_ClassifierNameLabel";
+property PAPYRUS_NOTATION_NODE_INTERFACE_FLOATINGNAME_REGULAR : String = "Interface_ClassifierFloatingNameLabel";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_REGULAR : String = "Interface_AttributeCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_PROPERTIES_INPACKAGE : String = "Interface_AttributeCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_REGULAR : String = "Interface_OperationCompartment";
+property PAPYRUS_NOTATION_COMPARTMENT_INTERFACE_OPERATIONS_INPACKAGE : String = "Interface_OperationCompartment_CN";

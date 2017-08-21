@@ -23,6 +23,11 @@ public class TextualToGraphicalComponentTest extends DirectionalTransformationTe
     }
 
     @Test
+    public void testSingleComponent() throws Exception {
+        testRegular("ComponentDiagramSingleComponent");
+    }
+
+    @Test
     public void testMinimalIncremental() throws Exception {
         testIncremental("ComponentMinimal");
     }

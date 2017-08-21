@@ -28,4 +28,8 @@ public class TextualToGraphicalComponentTraceTest extends DirectedTraceTransform
         testTraceTransformation("ComponentMinimal");
     }
 
+    @Test
+    public void testSingleComponent() throws Exception {
+        testTraceTransformation("ComponentDiagramSingleComponent");
+    }
 }

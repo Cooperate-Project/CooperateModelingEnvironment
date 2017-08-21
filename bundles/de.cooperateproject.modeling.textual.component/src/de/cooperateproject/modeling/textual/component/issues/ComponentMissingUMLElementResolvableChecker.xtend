@@ -3,10 +3,19 @@ package de.cooperateproject.modeling.textual.component.issues
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.TextualCommonsPackage
 import de.cooperateproject.modeling.textual.common.metamodel.textualCommons.UMLReferencingElement
 import de.cooperateproject.modeling.textual.component.metamodel.component.Component
+import de.cooperateproject.modeling.textual.component.metamodel.component.Method
+import de.cooperateproject.modeling.textual.component.metamodel.component.PortRelation
+import de.cooperateproject.modeling.textual.component.metamodel.component.ClassifierRelation
+import de.cooperateproject.modeling.textual.component.metamodel.component.Classifier
+import de.cooperateproject.modeling.textual.component.metamodel.component.Connector
+import de.cooperateproject.modeling.textual.component.metamodel.component.Interface
+import de.cooperateproject.modeling.textual.component.metamodel.component.InterfaceRelation
+import de.cooperateproject.modeling.textual.component.metamodel.component.Port
 import de.cooperateproject.modeling.textual.xtext.runtime.issues.automatedfixing.IResolvableChecker
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Element
 import org.eclipse.uml2.uml.Package
+import org.eclipse.uml2.uml.OperationOwner
 
 import static extension de.cooperateproject.modeling.textual.common.issues.CommonIssueResolutionUtilities.*
 
@@ -27,5 +36,11 @@ class ComponentMissingUMLElementResolvableChecker implements IResolvableChecker<
 		val parent = element.eContainer as UMLReferencingElement<Element>
 		return parent.hasReferencedElementOfType(Package) || parent.hasReferencedElementOfType(Class)
 	}
+	
+	private def dispatch resolvePossible(Method element) {
+		return !element.parameters.map[type].contains(null) && !element.parameters.map[name].contains(null)
+	}
+	
+	
 	
 }

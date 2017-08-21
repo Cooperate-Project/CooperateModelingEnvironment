@@ -17,12 +17,14 @@ main() {
 
 mapping component::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
-
+	log ("hier \n\n\n\n\n\n");
 	type := "PapyrusUMLComponentDiagram";
 	name := self.title;
 	measurementUnit := notation::MeasurementUnit::Pixel;
 	element := rootPackage.toEObject();
-	
+	children +=self.rootpackage.classifiers.map classifiersToShape();
+	self.rootpackage.relations.map relationsToShape();
+
 	styles := self.map diagramToStringValueStyle();
 	styles += self.map diagramToDiagramStyle();
 	styles += self.map diagramToDiagramStylePapyrus();
@@ -41,3 +43,79 @@ mapping component::ComponentDiagram::diagramToDiagramStylePapyrus() : style::Pap
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
 	owner := self.rootpackage.referencedElement.toEObject();
 }
+
+//acutal mapping
+
+mapping component::Classifier::classifiersToShape() : notation::Shape
+disjuncts component::Component::componentToShape, component::Interface::interfaceToShape;
+
+mapping component::Component::componentToShape() : notation::Shape
+when {self.oclIsKindOf(component::Component)}
+{
+log ("hier");
+	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR;
+	element := self.referencedElement.toEObject();
+	children += self.map componentToNameLabel();
+	children += self.map componentFloatingNameLabel();
+	children += self.map componentToCompartment();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+mapping component::Interface::interfaceToShape() : notation::Shape
+when {self.oclIsKindOf(component::Interface)}
+{
+	
+}
+
+mapping component::ClassifierRelation::relationsToShape() : notation::Shape
+{
+	
+}
+
+//TODO restliche commentable einfügen
+mapping textualCommons::Commentable::commentableToShape() : notation::Shape
+disjuncts component::Classifier::classifiersToShape;
+
+mapping component::Component::componentToCompartment() : notation::BasicCompartment
+{
+	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR;
+	children := self.component.map commentableToShape();
+	layoutConstraint := result.toEObject().map notationBounds();
+}
+
+
+
+
+
+
+// Labels /Decorations /...
+
+
+mapping component::Component::componentToNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR;
+}
+
+mapping component::Component::componentFloatingNameLabel() : notation::DecorationNode
+{
+	type := PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR;
+	layoutConstraint := result.toEObject().map locationConstraint();
+}
+
+//Style
+mapping component::ComponentDiagram::stringValueStyle() : notation::StringValueStyle
+{
+	name := "diagram_compatibility_version";
+	stringValue := "1.3.0";	
+}
+
+mapping component::ComponentDiagram::diagramStyle() : notation::DiagramStyle
+{	
+}
+
+mapping component::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
+{
+	owner := rootElement.toEObject();
+	diagramKindId := "org.eclipse.papyrus.uml.diagram.component";
+}
+

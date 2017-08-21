@@ -33,6 +33,11 @@ mapping trace::TraceRecord::traceRecord() : List(trace::TraceRecord)
 	result += self.map traceRecordDiagram();
 }
 
+mapping trace::TraceRecord::nodeToComponent() :List(trace::TraceRecord)
+{
+	//TODO
+}
+
 mapping trace::TraceRecord::traceRecordDiagram() : List(trace::TraceRecord)
 when {self.mappingOperation.name = "diagramToDiagram"}
 {
