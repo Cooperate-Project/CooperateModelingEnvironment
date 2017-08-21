@@ -4,7 +4,7 @@ transformation Graphical_to_Textual_for_Component(in graphical : NOTATION, inout
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype TXT uses component('http://www.cooperateproject.de/modeling/textual/cmp/Cmp');
+modeltype TXT uses cmp('http://www.cooperateproject.de/modeling/textual/component/Component');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 
@@ -15,13 +15,13 @@ main() {
 	diagrams->map diagramToDiagram();
 }
 
-mapping notation::Diagram::diagramToDiagram() : component::ComponentDiagram
+mapping notation::Diagram::diagramToDiagram() : cmp::ComponentDiagram
 {
 	title := self.name;
 	rootpackage := self.map diagramToRootPackage();
 }
 
-mapping notation::Diagram::diagramToRootPackage() : component::RootPackage
+mapping notation::Diagram::diagramToRootPackage() : cmp::RootPackage
 {
 	var relevantEdges := self.findRelevantEdges();
 	referencedElement := self.element.oclAsType(uml::Package);
@@ -31,7 +31,7 @@ mapping notation::Diagram::diagramToRootPackage() : component::RootPackage
 	relations := self.edges.map edgeToClassifierRelation();
 }
 /**
-mapping notation::Node::nodeToClassifier() : component::Classifier
+mapping notation::Node::nodeToClassifier() : cmp::Classifier
 disjuncts
 	notation::Node::nodeToComponent,
 	notation::Node::nodeToInterface
@@ -40,18 +40,18 @@ disjuncts
 	//comments := self.getCommentShape().map commentToComment();
 }**/
 
-mapping notation::Node::nodeToComponent() : component::Component
+mapping notation::Node::nodeToComponent() : cmp::Component
 {
 	referencedElement :=self.element.oclAsType(uml::Component);
 	//TODO Port Comment Interface portRelation interfaceRelation component
 }
 
-mapping notation::Node::nodeToInterface() : component::Interface
+mapping notation::Node::nodeToInterface() : cmp::Interface
 {
 	
 }
 
-mapping notation::Edge::edgeToClassifierRelation() : component::ClassifierRelation
+mapping notation::Edge::edgeToClassifierRelation() : cmp::ClassifierRelation
 disjuncts
  notation::Edge::edgeToGeneralization,
  notation::Edge::edgeToAbstraction,
@@ -62,23 +62,23 @@ disjuncts
 	
 }
 
-mapping notation::Edge::edgeToGeneralization() : component::Generalization
+mapping notation::Edge::edgeToGeneralization() : cmp::Generalization
 {
 	
 }
-mapping notation::Edge::edgeToAbstraction() : component::Abstraction
+mapping notation::Edge::edgeToAbstraction() : cmp::Abstraction
 {
 	
 }
-mapping notation::Edge::edgeToManifestation() : component::Manifestation
+mapping notation::Edge::edgeToManifestation() : cmp::Manifestation
 {
 	
 }
-mapping notation::Edge::edgeToSubstitution() : component::Substitution
+mapping notation::Edge::edgeToSubstitution() : cmp::Substitution
 {
 	
 }
-mapping notation::Edge::edgeToDependency() : component::Dependency
+mapping notation::Edge::edgeToDependency() : cmp::Dependency
 {
 	
 }

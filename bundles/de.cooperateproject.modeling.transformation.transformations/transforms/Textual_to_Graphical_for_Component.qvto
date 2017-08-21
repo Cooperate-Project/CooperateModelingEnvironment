@@ -4,18 +4,18 @@ transformation Textual_to_Graphical_for_Component(in textual : TXT, inout graphi
 
 modeltype NOTATION uses notation('http://www.eclipse.org/gmf/runtime/1.0.2/notation');
 modeltype UML uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
-modeltype TXT uses component('http://www.cooperateproject.de/modeling/textual/component/Component');
+modeltype TXT uses cmp('http://www.cooperateproject.de/modeling/textual/component/Component');
 modeltype TXTCMN uses textualCommons('http://www.cooperateproject.de/modeling/textual/commons');
 modeltype ECORE uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 modeltype STYLE uses style('http://www.eclipse.org/papyrus/infra/gmfdiag/style');
 
 main() {
-	var diagrams := textual.rootObjects()[component::ComponentDiagram];
+	var diagrams := textual.rootObjects()[cmp::ComponentDiagram];
 	assert fatal (diagrams->size() = 1);
 	diagrams->map diagramToDiagram();
 }
 
-mapping component::ComponentDiagram::diagramToDiagram() : notation::Diagram {
+mapping cmp::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	var rootPackage := self.rootpackage.referencedElement.oclAsType(uml::Package);
 	log ("hier \n\n\n\n\n\n");
 	type := "PapyrusUMLComponentDiagram";
@@ -30,27 +30,27 @@ mapping component::ComponentDiagram::diagramToDiagram() : notation::Diagram {
 	styles += self.map diagramToDiagramStylePapyrus();
 }
 
-mapping component::ComponentDiagram::diagramToStringValueStyle() : notation::StringValueStyle {
+mapping cmp::ComponentDiagram::diagramToStringValueStyle() : notation::StringValueStyle {
 	name := "diagram_compatibility_version";
 	stringValue := "1.3.0";
 }
 
-mapping component::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle {
+mapping cmp::ComponentDiagram::diagramToDiagramStyle() : notation::DiagramStyle {
 	
 }
 
-mapping component::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
+mapping cmp::ComponentDiagram::diagramToDiagramStylePapyrus() : style::PapyrusDiagramStyle {
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component.root.package";
 	owner := self.rootpackage.referencedElement.toEObject();
 }
 
 //acutal mapping
 
-mapping component::Classifier::classifiersToShape() : notation::Shape
-disjuncts component::Component::componentToShape, component::Interface::interfaceToShape;
+mapping cmp::Classifier::classifiersToShape() : notation::Shape
+disjuncts cmp::Component::componentToShape, cmp::Interface::interfaceToShape;
 
-mapping component::Component::componentToShape() : notation::Shape
-when {self.oclIsKindOf(component::Component)}
+mapping cmp::Component::componentToShape() : notation::Shape
+when {self.oclIsKindOf(cmp::Component)}
 {
 log ("hier");
 	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_REGULAR;
@@ -61,22 +61,22 @@ log ("hier");
 	layoutConstraint := result.toEObject().map notationBounds();
 }
 
-mapping component::Interface::interfaceToShape() : notation::Shape
-when {self.oclIsKindOf(component::Interface)}
+mapping cmp::Interface::interfaceToShape() : notation::Shape
+when {self.oclIsKindOf(cmp::Interface)}
 {
 	
 }
 
-mapping component::ClassifierRelation::relationsToShape() : notation::Shape
+mapping cmp::ClassifierRelation::relationsToShape() : notation::Shape
 {
 	
 }
 
 //TODO restliche commentable einfügen
 mapping textualCommons::Commentable::commentableToShape() : notation::Shape
-disjuncts component::Classifier::classifiersToShape;
+disjuncts cmp::Classifier::classifiersToShape;
 
-mapping component::Component::componentToCompartment() : notation::BasicCompartment
+mapping cmp::Component::componentToCompartment() : notation::BasicCompartment
 {
 	type := PAPYRUS_NOTATION_SHAPE_COMPONENT_COMPARTMENT_REGULAR;
 	children := self.component.map commentableToShape();
@@ -91,29 +91,29 @@ mapping component::Component::componentToCompartment() : notation::BasicCompartm
 // Labels /Decorations /...
 
 
-mapping component::Component::componentToNameLabel() : notation::DecorationNode
+mapping cmp::Component::componentToNameLabel() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_COMPONENT_NAME_REGULAR;
 }
 
-mapping component::Component::componentFloatingNameLabel() : notation::DecorationNode
+mapping cmp::Component::componentFloatingNameLabel() : notation::DecorationNode
 {
 	type := PAPYRUS_NOTATION_NODE_COMPONENT_FLOATINGNAME_REGULAR;
 	layoutConstraint := result.toEObject().map locationConstraint();
 }
 
 //Style
-mapping component::ComponentDiagram::stringValueStyle() : notation::StringValueStyle
+mapping cmp::ComponentDiagram::stringValueStyle() : notation::StringValueStyle
 {
 	name := "diagram_compatibility_version";
 	stringValue := "1.3.0";	
 }
 
-mapping component::ComponentDiagram::diagramStyle() : notation::DiagramStyle
+mapping cmp::ComponentDiagram::diagramStyle() : notation::DiagramStyle
 {	
 }
 
-mapping component::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
+mapping cmp::ComponentDiagram::papyrusViewStyle(rootElement : uml::Package) : style::PapyrusDiagramStyle
 {
 	owner := rootElement.toEObject();
 	diagramKindId := "org.eclipse.papyrus.uml.diagram.component";
