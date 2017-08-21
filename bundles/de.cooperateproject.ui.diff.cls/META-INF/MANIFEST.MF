@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Cls
+Bundle-SymbolicName: de.cooperateproject.ui.diff.cls;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.cooperateproject.ui.diff.cls.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ de.cooperateproject.ui.diff,
+ de.cooperateproject.modeling.textual.cls.metamodel;bundle-version="0.1.5",
+ de.cooperateproject.modeling.textual.common;bundle-version="0.2.0",
+ de.cooperateproject.modeling.textual.cls.ui;bundle-version="0.2.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -69,6 +69,8 @@ public class ModelCreator {
 
                 mainTransaction.merge(tmpBranch.getHead(), tmpBranch.getBase(),
                         new DefaultCDOMerger.PerFeature.ManyValued());
+                mainTransaction.setCommitComment("Diagram " + diagramName + " in project " + project.getName()
+                        + " created by " + System.getProperty("user.name") + ".");
                 mainTransaction.commit();
 
                 return Status.OK_STATUS;

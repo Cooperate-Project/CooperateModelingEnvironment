@@ -24,7 +24,7 @@ public class LauncherModelHelper {
         Validate.notNull(rs);
         Validate.notNull(launcherFile);
 
-        URI fileUri = URI.createPlatformResourceURI(launcherFile.getFullPath().toString(), true);
+        URI fileUri = URI.createPlatformResourceURI(launcherFile.getFullPath().toString(), false);
         Resource r = rs.createResource(fileUri, FILE_EXTENSION);
         r.load(Collections.emptyMap());
         EObject rootObject = r.getContents().get(0);

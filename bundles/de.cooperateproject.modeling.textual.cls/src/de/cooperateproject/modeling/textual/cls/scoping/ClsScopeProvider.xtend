@@ -3,6 +3,16 @@
  */
 package de.cooperateproject.modeling.textual.cls.scoping
 
+import de.cooperateproject.modeling.textual.cls.cls.Class
+import de.cooperateproject.modeling.textual.cls.cls.ClsPackage
+import de.cooperateproject.modeling.textual.cls.cls.Generalization
+import de.cooperateproject.modeling.textual.cls.cls.Implementation
+import de.cooperateproject.modeling.textual.cls.cls.Interface
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.xtext.scoping.impl.FilteringScope
 
 /**
  * This class contains custom scoping description.
@@ -12,4 +22,39 @@ package de.cooperateproject.modeling.textual.cls.scoping
  */
 class ClsScopeProvider extends AbstractClsScopeProvider {
 
+	override getScope(EObject context, EReference reference) {
+		return context.getSpecificScope(reference) ?: super.getScope(context, reference)
+	}
+
+	protected def dispatch getSpecificScope(Generalization context, EReference reference) {
+		if (reference == ClsPackage.Literals.TYPED_CONNECTOR__RIGHT && context.left !== null) {
+			var EClass requestedEClass
+			if (context.left instanceof Class) {
+				requestedEClass = ClsPackage.Literals.CLASS
+			} else if (context.left instanceof Interface) {
+				requestedEClass = ClsPackage.Literals.INTERFACE
+			}
+			return super.getScope(context, reference).filter(requestedEClass)
+		}
+	}
+	
+	protected def dispatch getSpecificScope(Implementation context, EReference reference) {
+		if (reference == ClsPackage.Literals.TYPED_CONNECTOR__LEFT) {
+			return super.getScope(context, reference).filter(ClsPackage.Literals.CLASS)
+		}
+		if (reference == ClsPackage.Literals.TYPED_CONNECTOR__RIGHT) {
+			return super.getScope(context, reference).filter(ClsPackage.Literals.INTERFACE)
+		}
+	}
+	
+	protected def dispatch getSpecificScope(EObject context, EReference reference) {
+		return null
+	}
+	
+	protected static def filter(IScope baseScope, EClass requestedType) {
+		if (requestedType === null) {
+			return baseScope
+		}
+		return new FilteringScope(baseScope, [requestedType.isSuperTypeOf(EClass)])
+	}
 }

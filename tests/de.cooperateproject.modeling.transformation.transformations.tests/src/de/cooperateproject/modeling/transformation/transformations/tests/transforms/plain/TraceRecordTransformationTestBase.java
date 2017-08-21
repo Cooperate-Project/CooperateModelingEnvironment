@@ -2,11 +2,9 @@ package de.cooperateproject.modeling.transformation.transformations.tests.transf
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 import org.eclipse.emf.common.util.ECollections;
@@ -20,7 +18,6 @@ import org.eclipse.emf.compare.scope.DefaultComparisonScope;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.m2m.internal.qvt.oml.trace.EDirectionKind;
 import org.eclipse.m2m.internal.qvt.oml.trace.EMappingResults;
 import org.eclipse.m2m.internal.qvt.oml.trace.EValue;
@@ -87,8 +84,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 
     }
 
-    private static final File DEBUG_SERIALIZATION_DIR = null;
-
+    @Override
     protected void runTransformation(URI transformationURI, Iterable<ModelExtent> transformationParameters,
             Trace traceModel) throws IOException {
         super.runTransformation(transformationURI, transformationParameters, traceModel);
@@ -129,7 +125,7 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
         sortTraceRecords(expectedTrace);
         sortTraceRecords(actualTrace);
 
-        debugSerialization(expectedTrace, actualTraceModel.getContents());
+        debugSerialize(Arrays.asList(expectedTrace), actualTraceModel.getContents());
 
         DefaultComparisonScope scope = new DefaultComparisonScope(expectedTrace, actualTrace, null);
         DefaultDiffEngine de = new DefaultDiffEngine() {
@@ -154,30 +150,6 @@ public class TraceRecordTransformationTestBase extends PlainTransformationTestBa
 
         Comparison comparison = EMFCompare.builder().setDiffEngine(de).build().compare(scope);
         assertEquals(prettyPrint(comparison), 0, comparison.getDifferences().size());
-    }
-
-    private void debugSerialization(EObject expectedTrace, Collection<EObject> actualTrace) throws IOException {
-        debugSerialization(Arrays.asList(expectedTrace), actualTrace);
-    }
-
-    private void debugSerialization(Collection<EObject> expectedTrace, Collection<EObject> actualTrace)
-            throws IOException {
-        if (DEBUG_SERIALIZATION_DIR == null) {
-            return;
-        }
-
-        URI expectedURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "expectedXMI.txt").getAbsolutePath());
-        URI actualURI = URI.createFileURI(new File(DEBUG_SERIALIZATION_DIR, "actualXMI.txt").getAbsolutePath());
-
-        Resource rExpected = createResource(getResourceSet(), expectedURI);
-        rExpected.getContents().clear();
-        rExpected.getContents().addAll(expectedTrace);
-        rExpected.save(Collections.emptyMap());
-
-        Resource rActual = createResource(getResourceSet(), actualURI);
-        rActual.getContents().clear();
-        rActual.getContents().addAll(actualTrace);
-        rActual.save(Collections.emptyMap());
     }
 
     private static void replaceModelElementWithMatchingOne(EValue value, Comparison comparison) {

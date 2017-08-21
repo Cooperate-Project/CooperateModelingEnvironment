@@ -26,10 +26,10 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.modeling.common.types.DiagramTypes;
 import de.cooperateproject.modeling.graphical.common.conventions.NotationDiagramTypes;
 import de.cooperateproject.ui.focus.manager.FocusManagerBase;
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 /**
  * Manages focus in graphical view.

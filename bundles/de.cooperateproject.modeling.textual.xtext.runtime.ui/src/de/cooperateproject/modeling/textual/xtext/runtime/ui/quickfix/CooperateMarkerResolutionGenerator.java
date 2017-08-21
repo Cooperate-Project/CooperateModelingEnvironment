@@ -9,8 +9,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator;
 
+import de.cooperateproject.modeling.common.editorInput.ILauncherFileEditorInput;
 import de.cooperateproject.ui.util.editor.EditorFinderUtil;
-import de.cooperateproject.util.editor.ILauncherFileEditorInput;
 
 /**
  * Marker generator that finds editors that match a resource by comparing the launcher files.
